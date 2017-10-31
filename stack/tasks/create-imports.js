@@ -2,8 +2,12 @@
 
 const fs = require('fs');
 const path = require('path');
-const CWD = process.cwd();
+const constants = require('../constants');
+const cpx = require("cpx");
 const mkdirp = require('mkdirp');
+const ENV = process.argv[2]; // second element is the first argument.
+const CWD = process.cwd();
+
 
 const walkSync = (d) => fs.statSync(d).isDirectory() ? fs.readdirSync(d).map(f => walkSync(path.join(d, f))) : d;
 
@@ -20,7 +24,8 @@ mkdirp(`${CWD}/.tmp`, (err) => {
     html += `<link rel="import" href="${partial}" > \n`
   })
 
-  fs.writeFile(`${CWD}/.tmp/__imports.html`, html, (err) => {
+  const importPath = ENV === constants.ENV.PROD ? `${CWD}/docs/__imports.html` : `${CWD}/.tmp/__imports.html`
+  fs.writeFile(importPath, html, (err) => {
       if(err) {
         return console.log(err);
       }
