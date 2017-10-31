@@ -1,0 +1,47 @@
+{
+  "name": "axa-ch_style-html-guide",
+  "version": "1.0.0",
+  "description": "style and html guide and demos for axa ch",
+  "main": "stack/server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "server": "node stack/server.js",
+    "dev": "npm-watch build-dev",
+    "serve": "parallelshell \"npm run server\" \"npm run dev\"",
+    "build-dev": "node stack/tasks/build.html.js DEV",
+    "build-prod": "node stack/tasks/build.html.js PROD"
+  },
+  "watch": {
+    "build-dev": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,html",
+      "quiet": false
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.axa.com/axa-winterthur/axa-ch_style-html-guide.git"
+  },
+  "keywords": [
+    "axa"
+  ],
+  "engines": {
+    "node": ">=8.8.1",
+    "npm": "~5.4.2"
+  },
+  "author": "luca.mele@axa-winterthur.ch",
+  "license": "MIT",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "express": "~4.16.2",
+    "npm-watch": "~0.3.0",
+    "parallelshell": "~3.0.2"
+  },
+  "dependencies": {
+    "del": "^3.0.0"
+  }
+}
