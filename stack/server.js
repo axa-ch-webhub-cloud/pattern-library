@@ -23,11 +23,13 @@ coice and happy coding :)
 `
 );
 
+const server = http.createServer(app);
+
+server.listen(3000);
+
 processOnClose = () => {
-  
+  server.close()
 }
 
-process.on('exit', )
-
-
-http.createServer(app).listen(3000);
+process.on('uncaughtException', processOnClose);
+process.on('SIGTERM', processOnClose);
