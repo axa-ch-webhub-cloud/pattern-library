@@ -7,7 +7,7 @@ const ENV = process.argv[2]; // second element is the first argument.
 const app = express();
 
 if (ENV === constants.ENV.PROD) {
-  app.use(express.static(`${process.cwd()}/docs`));
+  app.use(express.static(`${process.cwd()}/dist`));
 } else {
   app.use(express.static(`${process.cwd()}/.tmp`));
 }
@@ -22,6 +22,12 @@ coice and happy coding :)
 *********************************************************
 `
 );
+
+processOnClose = () => {
+  
+}
+
+process.on('exit', )
 
 
 http.createServer(app).listen(3000);

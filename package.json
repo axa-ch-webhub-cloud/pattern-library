@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "style and html guide and demos for axa ch",
   "main": "stack/server.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
     "start": "node stack/server.js",
     "watch": "npm-watch build-dev",
     "serve": "parallelshell \"npm start DEV\" \"npm run watch\"",
     "serve-build-prod": "parallelshell \"npm start PROD\" \"npm run build-prod\"",
-    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV",
-    "build-prod": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD"
+    "build-js-dev": "node_modules/.bin/cross-env BABEL_ENV=development node_modules/.bin/babel -d .tmp/ src/ && node stack/tasks/copy-vendors.js DEV",
+    "build-js-prod": "node_modules/.bin/cross-env BABEL_ENV=production node_modules/.bin/babel -d dist/ src/ && node stack/tasks/copy-vendors.js PROD",
+    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV && npm run build-js-dev",
+    "build-prod": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-js-prod"
   },
   "watch": {
     "build-dev": {
@@ -37,14 +36,19 @@
   "author": "luca.mele@axa-winterthur.ch",
   "license": "MIT",
   "devDependencies": {
-    "cpx": "^1.5.0",
+    "babel-preset-env": "~1.6.1",
+    "babel-preset-minify": "~0.2.0",
+    "cpx": "~1.5.0",
+    "cross-env": "^5.1.1",
     "express": "~4.16.2",
-    "mkdirp": "^0.5.1",
-    "node-dir": "^0.1.17",
+    "mkdirp": "~0.5.1",
+    "node-dir": "~0.1.17",
     "npm-watch": "~0.3.0",
     "parallelshell": "~3.0.2"
   },
   "dependencies": {
-    "del": "^3.0.0"
+    "core-js": "~2.5.1",
+    "del": "~3.0.0",
+    "webcomponents.js": "~0.7.24"
   }
 }
