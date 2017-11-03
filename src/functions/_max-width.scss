@@ -1,0 +1,17 @@
+@function max-width($value) {
+  @if type_of($value) != number {
+    @warn "Expected $value #{$value} to be of type Number.";
+  }
+
+  $unit: unit($value);
+
+  @if ($unit == 'px') {
+    $value: $value - 1px;
+  } @else if($unit == 'em') {
+    $value: $value - 0.01em;
+  } @else if($unit == 'rem') {
+    $value: $value - 0.01rem;
+  }
+
+  @return $value;
+}
