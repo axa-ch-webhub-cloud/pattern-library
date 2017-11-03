@@ -1,0 +1,85 @@
+@import "../functions/max-width";
+
+$grid-breakpoints:
+  (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+  ) !default;
+
+@function next-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $breakpoint);
+
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function get-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $direction: down) {
+  @if type_of($breakpoints) != map {
+    @error "$breakpoints #{$breakpoints} has to be a Map.";
+  }
+
+  $type-of-breakpoint: type_of($breakpoint);
+  $breakpoint-is-number: $type-of-breakpoint == number;
+  $breakpoint-is-mapped: $type-of-breakpoint == string && map_has_key($breakpoints, $breakpoint);
+
+  @if ( not $breakpoint-is-number AND not $breakpoint-is-mapped) {
+    @error "$breakpoint #{$breakpoint} has to be either a Number or valid key of a breakpoints Map.";
+  }
+
+  @if $breakpoint-is-mapped {
+    @if $direction == up {
+      $breakpoint: next-breakpoint($breakpoint, $breakpoints);
+      $breakpoint: max-width(map_get($breakpoints, $breakpoint));
+    } @else {
+      $breakpoint: map_get($breakpoints, $breakpoint);
+    }
+  }
+
+  @if $breakpoint < 0 {
+    @error "$breakpoint #{$breakpoint} can't be negative.";
+  }
+
+  @return $breakpoint;
+}
+
+@mixin respond-up($breakpoint, $breakpoints: $grid-breakpoints) {
+  $min: get-breakpoint($breakpoint, $breakpoints, up);
+
+  @if $min > 0 {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin respond-down($breakpoint, $breakpoints: $grid-breakpoints) {
+  $max: get-breakpoint($breakpoint, $breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin respond-between($from, $to, $breakpoints: $grid-breakpoints) {
+  @include respond-up($from, $breakpoints) {
+    @include respond-down($to, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-only($breakpoint, $breakpoints: $grid-breakpoints) {
+  $breakpoint: get-breakpoint($breakpoint, $breakpoints);
+
+  @include respond-between($breakpoint, $breakpoint, $breakpoints: $grid-breakpoints) {
+    @content;
+  }
+}
