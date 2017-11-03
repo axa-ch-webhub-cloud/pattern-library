@@ -1,0 +1,14 @@
+// $see https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+@mixin ellipsis($textOverflow: 'ellipsis') {
+  @if $textOverflow == 'none' {
+    overflow: visible;
+
+    text-overflow: clip;
+    white-space: normal;
+  } @else {
+    overflow: hidden;
+
+    text-overflow: unquote($textOverflow);
+    white-space: nowrap;
+  }
+}

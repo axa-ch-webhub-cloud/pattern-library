@@ -1,0 +1,15 @@
+// $see https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+@mixin word-break($hyphens: 'auto') {
+  @if $hyphens == 'none' {
+    hyphens: manual;
+    overflow-wrap: normal;
+    word-wrap: normal;
+  } @else {
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    hyphens: unquote($hyphens);
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
