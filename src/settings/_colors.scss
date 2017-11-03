@@ -1,0 +1,77 @@
+// Colors as specified at
+// https://design.axa.com/web-guidelines/color
+
+// AXA brand colors
+$color-axa-blue: #00008f !default;
+$color-axa-red: #ff1721 !default;
+
+// main palette colors (excluding brand colors)
+$color-prim-blue-deep-sapphire: #00005b !default;
+$color-prim-blue-st-tropaz: #2425aa !default;
+$color-prim-blue-azure: #3032c1 !default;
+$color-prim-blue-dark-indigo: #3b3fd8 !default;
+$color-prim-blue-indigo: #494df4 !default;
+
+$color-prim-red-flamingo: #ec4d33 !default;
+$color-prim-red-burnt-sienna: #f07662 !default;
+
+$color-prim-gray-mine-shaft: #333 !default;
+$color-prim-gray-scorpion: #5f5f5f !default;
+$color-prim-gray: #7f7f7f !default;
+$color-prim-gray-dusty: #999 !default;
+$color-prim-gray-silver: #ccc !default;
+$color-prim-gray-mercury: #e5e5e5 !default;
+$color-prim-gray-wild-sand: #f5f5f5 !default;
+$color-prim-gray-alabaster: #fafafa !default;
+$color-prim-white: #fff !default;
+
+// secondary palette
+$color-sec-blue-igloo: #b5d0ee !default;
+$color-sec-pink-cotton-candy: #fad6de !default;
+$color-sec-pink-azalea: #f1afc6 !default;
+$color-sec-green-aqua: #9fd9b4 !default;
+$color-sec-blue-logan: #9190ac !default;
+$color-sec-green-greyjoy: #9fbeaf !default;
+$color-sec-green-viridian: #668980 !default;
+$color-sec-blue-pacific: #00adc6 !default;
+$color-sec-blue-teal: #027180 !default;
+$color-sec-green-acid: #f0ff93 !default;
+$color-sec-orange-dune: #fcd385 !default;
+$color-sec-orange-apache: #ddbe65 !default;
+$color-sec-red-tosca: #914146 !default;
+
+// state
+$color-state-green-malachite: #1cc54e !default;
+$color-state-red-shy-tomato: #c91432 !default;
+
+// texts
+$color-text: $color-prim-gray-mine-shaft;
+$color-text-secondary: $color-prim-blue-azure;
+$color-text--highlight: $color-prim-white;
+$color-text-secondary--highlight: $color-axa-blue;
+
+// links
+$color-link: $color-axa-blue;
+$color-link--hover: $color-prim-blue-deep-sapphire;
+$color-link--red: $color-prim-red-burnt-sienna;
+$color-link--red--hover: $color-prim-red-flamingo;
+
+// backgrounds
+$color-bg: $color-prim-blue-dark-indigo;
+$color-bg--darker: $color-axa-blue;
+$color-bg--gray: $color-prim-gray-wild-sand;
+$color-bg--white: $color-prim-white;
+
+// buttons
+$color-button-text: $color-prim-white;
+$color-button-bg: $color-axa-blue;
+$color-button-bg--hover: $color-prim-blue-deep-sapphire;
+$color-button-bg--disabled: $color-prim-gray-dusty;
+$color-button-bg--white: $color-prim-white;
+$color-button-text--ghost: $color-axa-blue;
+$color-button-text--ghost--hover: $color-prim-blue-deep-sapphire;
+$color-button-text--white--ghost--hover: $color-prim-gray-scorpion;
+
+// icons
+$color-icon: $color-axa-blue;
+$color-icon--white: $color-prim-white;
