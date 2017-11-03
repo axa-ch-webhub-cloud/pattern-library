@@ -1,3 +1,20 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "max-len": ["warn", 140, 2],
+  },
+  "globals": {
+    "HTMLElement": true,
+    "document": true,
+    "window": true,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "classes": true,
+      "decorations": true,
+      "jsx": true
+    }
+  }
 }

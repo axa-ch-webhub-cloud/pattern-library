@@ -6,20 +6,24 @@
   "scripts": {
     "test": "./node_modules/.bin/eslint src/",
     "start": "node stack/server.js",
+    "preinstall": "npm cache clean",
+    "postinstall": "npm rebuild node-sass",
     "watch": "npm-watch build-dev",
     "serve": "parallelshell \"npm start DEV\" \"npm run watch\"",
-    "serve-build-prod": "parallelshell \"npm start PROD\" \"npm run build-prod\"",
+    "serve-build-prod": "parallelshell \"npm start PROD\" \"npm run build\"",
+    "build-css-dev": "./node_modules/.bin/node-sass src/ -o .tmp/",
+    "build-css-prod": "./node_modules/.bin/node-sass src/ -o dist/",
     "build-js-dev": "node_modules/.bin/cross-env BABEL_ENV=development node_modules/.bin/babel -d .tmp/ src/ && node stack/tasks/copy-vendors.js DEV",
     "build-js-prod": "node_modules/.bin/cross-env BABEL_ENV=production node_modules/.bin/babel -d dist/ src/ && node stack/tasks/copy-vendors.js PROD",
-    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV && npm run build-js-dev",
-    "build-prod": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-js-prod"
+    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV && npm run build-js-dev && npm run build-css-dev",
+    "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-js-prod && npm run build-css-prod"
   },
   "watch": {
     "build-dev": {
       "patterns": [
         "src"
       ],
-      "extensions": "js,html",
+      "extensions": "js,html,scss",
       "quiet": false
     }
   },
@@ -41,6 +45,7 @@
     "babel-preset-minify": "~0.2.0",
     "cpx": "~1.5.0",
     "cross-env": "^5.1.1",
+    "del": "~3.0.0",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -49,12 +54,18 @@
     "express": "~4.16.2",
     "mkdirp": "~0.5.1",
     "node-dir": "~0.1.17",
+    "node-sass": "^4.5.3",
     "npm-watch": "~0.3.0",
-    "parallelshell": "~3.0.2"
+    "parallelshell": "~3.0.2",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-declaration-strict-value": "^1.0.4",
+    "stylelint-scss": "^2.1.0",
+    "stylelint-selector-bem-pattern": "^2.0.0"
   },
   "dependencies": {
+    "@webcomponents/custom-elements": "^1.0.4",
     "core-js": "~2.5.1",
-    "del": "~3.0.0",
     "webcomponents.js": "~0.7.24"
   }
 }

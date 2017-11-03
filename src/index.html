@@ -11,13 +11,23 @@
             // polyfill the platform!
             var e = document.createElement('script');
             e.src = 'app/webcomponents-lite.min.js';
-            document.body.appendChild(e);
+            document.head.appendChild(e);
+            var e = document.createElement('script');
+            e.src = 'app/custom-elements.min.js';
+            document.head.appendChild(e);
       }
     })();
     </script>
+    <script src="app/native-shim.js"></script>
+    <!--link rel="import" href="__imports.html"-->
+    <!--script src="app/style-guide.js"></script-->
   </head>
   <body>
-    <script src="app/style-guide.js"></script>
-    <link rel="import" href="__imports.html">
+    <!--core-imports></core-imports-->
+
+
+
+        <link rel="import" href="components/dummy/index.html">
+        <core-dummy></core-dummy>
   </body>
 </html>
