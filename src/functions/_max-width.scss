@@ -1,6 +1,8 @@
 @function max-width($value) {
   @if type_of($value) != number {
     @warn "Expected $value #{$value} to be of type Number.";
+
+    @return $value;
   }
 
   $unit: unit($value);

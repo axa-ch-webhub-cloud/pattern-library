@@ -12,7 +12,7 @@ $grid-breakpoints:
 @mixin respond-up($breakpoint, $breakpoints: $grid-breakpoints) {
   $min: get-breakpoint($breakpoint, $breakpoints, up);
 
-  @if $min > 0 {
+  @if ( type_of $min == number AND $min > 0 ) {
     @media (min-width: $min) {
       @content;
     }
