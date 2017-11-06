@@ -1,23 +1,23 @@
 @import "../../settings/colors";
 @import "../../mixins/typo";
 
-.c-top-content-bar {
+.o-top-content-bar {
   color: $color-prim-white;
 
   background: $color-sec-blue-teal;
 }
 
-.c-top-content-bar--commercial {
+.o-top-content-bar--commercial {
   background: $color-prim-blue-deep-sapphire;
 }
 
-.c-top-content-bar--warning {
+.o-top-content-bar--warning {
   background: $color-state-red-shy-tomato;
 }
 
-.c-top-content-bar__text {
+.o-top-content-bar__text {
   @include typo-13();
 }
 
-.c-top-content-bar__button {
+.o-top-content-bar__button {
 }

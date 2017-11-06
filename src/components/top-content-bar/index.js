@@ -6,7 +6,7 @@ class TopContentBar extends HTMLElement {
 
         const type = this.getAttribute('type');
 
-        this.className = `c-top-content-bar c-top-content-bar--${type}`;
+        this.className = `o-top-content-bar o-top-content-bar--${type}`;
 
         console.log(this.className)
     }
