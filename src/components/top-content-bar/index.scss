@@ -1,4 +1,5 @@
 @import "../../settings/colors";
+@import "../../mixins/typo";
 
 .c-top-content-bar {
   color: $color-prim-white;
@@ -15,9 +16,8 @@
 }
 
 .c-top-content-bar__text {
-
+  @include typo-13();
 }
 
 .c-top-content-bar__button {
-
 }

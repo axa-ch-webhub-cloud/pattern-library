@@ -6,12 +6,9 @@ class TopContentBar extends HTMLElement {
 
         const type = this.getAttribute('type');
 
-        this.innerHTML = `
-            <section class="c-top-content-bar c-top-content-bar--${type}">
-                <p class="c-top-content-bar__text">Ein Test text</p>
-                <button class="c-top-content-bar__button"></button>
-            </section>
-        `;
+        this.className = `c-top-content-bar c-top-content-bar--${type}`;
+
+        console.log(this.className)
     }
 }
 
