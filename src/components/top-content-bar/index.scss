@@ -17,9 +17,15 @@
   background: $color-state-red-shy-tomato;
 }
 
-.o-top-content-bar__text {
+.a-top-content-bar__box {
+  max-width: 1140px;
+
+  margin: 0 auto;
+}
+
+.a-top-content-bar__text {
   @include typo-13();
 }
 
-.o-top-content-bar__button {
+.a-top-content-bar__button {
 }
