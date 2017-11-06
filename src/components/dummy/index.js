@@ -1,8 +1,11 @@
-const mainDoc = document.currentScript.ownerDocument;
+import getCurrentScript from '../../functions/get-current-script'
+
+const componentDoc = getCurrentScript(document).ownerDocument;
 
 class CoreDummy extends HTMLElement {
   connectedCallback() {
-    const clone = document.importNode(mainDoc.querySelector('#core-dummy').content, true);
+    const clone = document.importNode(componentDoc.getElementById('core-dummy').content, true);
+
     this.appendChild(clone);
   }
 }
