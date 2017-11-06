@@ -41,6 +41,7 @@
   "author": "luca.mele@axa-winterthur.ch",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "~1.6.1",
     "babel-preset-minify": "~0.2.0",
     "cpx": "~1.5.0",
