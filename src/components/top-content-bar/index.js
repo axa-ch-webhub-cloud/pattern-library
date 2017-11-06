@@ -12,4 +12,4 @@ class TopContentBar extends HTMLElement {
     }
 }
 
-window.customElements.define('top-content-bar', TopContentBar);
+window.customElements.define('axa-top-content-bar', TopContentBar);
