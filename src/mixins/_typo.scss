@@ -73,6 +73,7 @@ $typo-map:
 // common font weight name mapping
 // as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
 // and here: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
+// @TODO: probably replace by https://www.npmjs.com/package/postcss-font-weight-names
 $font-weight-map:
   (
     Thin: 100,
