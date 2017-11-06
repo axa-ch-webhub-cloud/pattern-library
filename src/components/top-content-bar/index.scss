@@ -2,6 +2,8 @@
 @import "../../mixins/typo";
 
 .o-top-content-bar {
+  display: block;
+
   color: $color-prim-white;
 
   background: $color-sec-blue-teal;
