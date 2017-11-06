@@ -168,18 +168,18 @@ $face-map:
 }
 
 @mixin typo-css($name, $face: null, $weight: null) {
-  @include typo-decls($name, xl, $face, $weight);
+  @include typo-decls($name, sm, $face, $weight);
 
-  @include respond-down(lg) {
-    @include typo-decls($name, lg, $face, $weight);
-  }
-
-  @include respond-down(md) {
+  @include respond-up(md) {
     @include typo-decls($name, md, $face, $weight);
   }
 
-  @include respond-down(sm) {
-    @include typo-decls($name, sm, $face, $weight);
+  @include respond-up(lg) {
+    @include typo-decls($name, lg, $face, $weight);
+  }
+
+  @include respond-up(xl) {
+    @include typo-decls($name, xl, $face, $weight);
   }
 }
 
