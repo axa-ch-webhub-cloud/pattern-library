@@ -1,12 +1,21 @@
 // axa global grid
-// as defined here:https://design.axa.com/web-guidelines/structure#grids
+// as defined here: https://design.axa.com/web-guidelines/structure#grids
+// and based of bs4: https://getbootstrap.com/docs/4.0/layout/grid/#variables
+
+$grid-columns:      12 !default;
+$grid-gutter-width: 30px !default;
 
 $grid-breakpoints:
   (
+    // Extra small screen / phone
     xs: 0,
+    // Small screen / phone
     sm: 576px,
+    // Medium screen / tablet
     md: 768px,
+    // Large screen / desktop
     lg: 992px,
+    // Extra large screen / wide desktop
     xl: 1200px
   ) !default;
 
@@ -18,7 +27,3 @@ $grid-max-widths:
     lg: 960px,
     xl: 1140px
   ) !default;
-
-$grid-columns: 12 !default;
-
-$grid-gutter: 30px;
