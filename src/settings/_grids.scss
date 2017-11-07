@@ -1,6 +1,15 @@
 // axa global grid
 // as defined here:https://design.axa.com/web-guidelines/structure#grids
 
+$grid-breakpoints:
+  (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+  ) !default;
+
 $grid-max-widths:
   (
     xs: auto,
