@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "rules": {
     "max-len": ["warn", 140, 2],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}]
   },
   "globals": {
     "HTMLElement": true,
@@ -9,7 +10,7 @@
     "window": true,
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
       "classes": true,

@@ -10,11 +10,13 @@
     "postinstall": "npm rebuild node-sass",
     "watch": "npm-watch build-dev",
     "serve": "parallelshell \"npm start DEV\" \"npm run watch\"",
+    "bundle-dev": "node stack/tasks/bundle.js DEV",
+    "bundle-prod": "node stack/tasks/bundle.js PROD",
     "serve-build-prod": "parallelshell \"npm start PROD\" \"npm run build\"",
     "build-css-dev": "./node_modules/.bin/node-sass src/ -o .tmp/",
     "build-css-prod": "./node_modules/.bin/node-sass src/ -o dist/",
-    "build-js-dev": "node_modules/.bin/cross-env BABEL_ENV=development node_modules/.bin/babel -d .tmp/ src/ && node stack/tasks/copy-vendors.js DEV",
-    "build-js-prod": "node_modules/.bin/cross-env BABEL_ENV=production node_modules/.bin/babel -d dist/ src/ && node stack/tasks/copy-vendors.js PROD",
+    "build-js-dev": "node_modules/.bin/cross-env BABEL_ENV=development node_modules/.bin/babel -d .tmp/components src/components && npm run bundle-dev",
+    "build-js-prod": "node_modules/.bin/cross-env BABEL_ENV=production node_modules/.bin/babel -d dist/components src/components && npm run bundle-prod",
     "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV && npm run build-js-dev && npm run build-css-dev",
     "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-js-prod && npm run build-css-prod"
   },
@@ -42,6 +44,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "babel-preset-env": "~1.6.1",
     "babel-preset-minify": "~0.2.0",
     "cpx": "~1.5.0",
@@ -58,6 +61,11 @@
     "node-sass": "^4.5.3",
     "npm-watch": "~0.3.0",
     "parallelshell": "~3.0.2",
+    "rollup": "^0.50.0",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-multi-entry": "^2.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-declaration-strict-value": "^1.0.4",
@@ -65,8 +73,7 @@
     "stylelint-selector-bem-pattern": "^2.0.0"
   },
   "dependencies": {
-    "@webcomponents/custom-elements": "^1.0.4",
-    "core-js": "~2.5.1",
-    "webcomponents.js": "~0.7.24"
+    "@webcomponents/webcomponentsjs": "^1.0.18",
+    "core-js": "~2.5.1"
   }
 }

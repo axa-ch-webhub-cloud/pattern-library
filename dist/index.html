@@ -10,14 +10,20 @@
           && 'content' in document.createElement('template'))) {
             // polyfill the platform!
             var e = document.createElement('script');
-            e.src = 'app/wc-enabler.js';
+            e.src = 'app/webcomponents-lite.js';
             document.head.appendChild(e);
       }
     })();
     </script>
+    <!--link rel="import" href="__imports.html"-->
+    <!--script src="app/style-guide.js"></script-->
   </head>
   <body>
-    <link rel="import" href="components/dummy/index.html">
-    <hello-world></hello-world>
+    <!--core-imports></core-imports-->
+
+
+
+        <link rel="import" href="components/dummy/index.html">
+        <hello-world></hello-world>
   </body>
 </html>

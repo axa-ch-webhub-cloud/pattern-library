@@ -1,13 +1,9 @@
-import getCurrentScript from '../../functions/get-current-script'
-
-const componentDoc = getCurrentScript(document).ownerDocument;
-
 class CoreDummy extends HTMLElement {
   connectedCallback() {
-    const clone = document.importNode(componentDoc.getElementById('core-dummy').content, true);
-
-    this.appendChild(clone);
+    this.className = 'sss';
+    this.innerHTML = '<p>hdhdhd</p>';
+    console.log(this.innerHTML);
   }
 }
 
-window.customElements.define('core-dummy', CoreDummy);
+window.customElements.define('hello-world', CoreDummy);
