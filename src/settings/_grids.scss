@@ -2,7 +2,7 @@
 // as defined here: https://design.axa.com/web-guidelines/structure#grids
 // and based of bs4: https://getbootstrap.com/docs/4.0/layout/grid/#variables
 
-$grid-columns:      12 !default;
+$grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
 
 $grid-breakpoints:
@@ -19,7 +19,7 @@ $grid-breakpoints:
     xl: 1200px
   ) !default;
 
-$grid-max-widths:
+$container-max-widths:
   (
     xs: auto,
     sm: auto,
