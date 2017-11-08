@@ -1,0 +1,24 @@
+@import "../settings/grids";
+@import "../mixins/respond";
+
+@mixin make-container() {
+  display: block;
+
+  width: 100%;
+  padding-left: $grid-gutter-width/2;
+  padding-right: $grid-gutter-width/2;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-up(sm) {
+    width: map_get($container-max-widths, md)
+  }
+
+  @include respond-up(md) {
+    width: map_get($container-max-widths, lg)
+  }
+
+  @include respond-up(lg) {
+    width: map_get($container-max-widths, xl)
+  }
+}
