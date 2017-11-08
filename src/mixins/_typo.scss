@@ -129,7 +129,8 @@ $font-weight-map:
 
 $face-map:
   (
-    publico: (Publico Headline, Georgia, serif),
+    source-sans-pro: ("Source Sans Pro", Arial, sans-serif),
+    publico: ("Publico Headline", Georgia, serif),
   );
 
 @function get-face($face: null) {
