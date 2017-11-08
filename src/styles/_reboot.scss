@@ -100,8 +100,8 @@ hr {
 // margin for easier control within type scales as it avoids margin collapsing.
 // stylelint-disable selector-list-comma-newline-after
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: $headings-margin-bottom;
+  margin-bottom: 0;
+  margin-top: $headings-margin-top;
 }
 // stylelint-enable selector-list-comma-newline-after
 
@@ -110,8 +110,8 @@ h1, h2, h3, h4, h5, h6 {
 // Similarly, the top margin on `<p>`s get reset. However, we also reset the
 // bottom margin to use `rem` units instead of `em`.
 p {
-  margin-top: 0;
-  margin-bottom: $paragraph-margin-bottom;
+  margin-bottom: 0;
+  margin-top: $paragraph-margin-top;
 }
 
 // Abbreviations
@@ -130,7 +130,7 @@ abbr[data-original-title] { // 4
 }
 
 address {
-  margin-bottom: $margin-bottom-base;
+  margin-top: $margin-top-base;
   font-style: normal;
   line-height: inherit;
 }
@@ -138,15 +138,15 @@ address {
 ol,
 ul,
 dl {
-  margin-top: 0;
-  margin-bottom: $margin-bottom-base;
+  margin-bottom: 0;
+  margin-top: $margin-top-base;
 }
 
 ol ol,
 ul ul,
 ol ul,
 ul ol {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 
 dt {
@@ -154,12 +154,12 @@ dt {
 }
 
 dd {
-  margin-bottom: $margin-bottom-base/2;
+  margin-top: $margin-top-base/2;
   margin-left: 0; // Undo browser default
 }
 
 blockquote {
-  margin: 0 0 $margin-bottom-base;
+  margin: 0 0 $margin-top-base;
 }
 
 dfn {
@@ -249,9 +249,9 @@ samp {
 
 pre {
   // Remove browser default top margin
-  margin-top: 0;
+  margin-bottom: 0;
   // Reset browser default of `1em` to use `rem`s
-  margin-bottom: $margin-bottom-base;
+  margin-top: $margin-top-base;
   // Don't allow content to break outside
   overflow: auto;
   // We have @viewport set which causes scrollbars to overlap content in IE11 and Edge, so
@@ -266,7 +266,7 @@ pre {
 
 figure {
   // Apply a consistent margin strategy (matches our type styles).
-  margin: 0 0 $margin-bottom-base;
+  margin: $margin-top-base 0 0;
 }
 
 
@@ -337,7 +337,7 @@ th {
 label {
   // Allow labels to use `margin` for spacing.
   display: inline-block;
-  margin-bottom: $margin-bottom-base/2;
+  margin-top: $margin-top-base/2;
 }
 
 // Remove the default `border-radius` that macOS Chrome adds.
@@ -441,7 +441,7 @@ legend {
   width: 100%;
   max-width: 100%; // 1
   padding: 0;
-  margin-bottom: $margin-bottom-base/2;
+  margin-top: $margin-top-base/2;
   font-size: 1.5rem;
   line-height: inherit;
   color: inherit; // 2
