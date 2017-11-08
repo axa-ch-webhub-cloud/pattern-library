@@ -27,6 +27,13 @@
   box-sizing: border-box; // 1
 }
 
+// Vertical Rhythm
+//
+// 1. Reset top margin for all first-child elements by lowest specifity
+*:first-child {
+  margin-top: 0; // 1
+}
+
 html {
   font-family: sans-serif; // 2
   line-height: 1.15; // 3
