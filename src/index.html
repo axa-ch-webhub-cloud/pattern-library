@@ -5,16 +5,15 @@
     <title>AXA-CH Style and HTML guide</title>
     <script>
     (function() {
-      if (!('registerElement' in document
-          && 'import' in document.createElement('link')
-          && 'content' in document.createElement('template'))) {
-            // polyfill the platform!
+      if (!('Reflect' in window
+          && 'Promise' in window)) {
             var e = document.createElement('script');
-            e.src = 'app/wc-enabler.js';
+            e.src = 'app/es6-polyfills.js';
             document.head.appendChild(e);
-      }
+       }
     })();
     </script>
+    <script src="app/webcomponents-loader.js"></script>
   </head>
   <body>
     <link rel="import" href="components/dummy/index.html">

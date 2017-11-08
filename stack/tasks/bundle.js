@@ -10,7 +10,7 @@ const ENV = process.argv[2]; // second element is the first argument.
 const CWD = process.cwd();
 
 const inputOptions = {
-  input: `${CWD}/src/app/wc-enabler.js`,
+  input: `${CWD}/src/app/es6-polyfills.js`,
   plugins: [
     resolve({
       jsnext: true,
@@ -26,7 +26,7 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  file: `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/wc-enabler.js`,
+  file: `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/es6-polyfills.js`,
   format: 'iife',
   name: 'StyleGuideWebComponent',
 };
