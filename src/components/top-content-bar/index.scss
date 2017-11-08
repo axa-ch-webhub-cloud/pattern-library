@@ -1,0 +1,44 @@
+@import "../../settings/colors";
+@import "../../mixins/typo";
+@import "../../mixins/container";
+@import "../../mixins/respond";
+
+.o-top-content-bar {
+  display: block;
+
+  color: $color-prim-white;
+}
+
+.o-top-content-bar,
+.o-top-content-bar--corporate {
+  background: $color-sec-blue-teal;
+}
+
+.o-top-content-bar--commercial {
+  background: $color-prim-blue-deep-sapphire;
+}
+
+.o-top-content-bar--warning {
+  background: $color-state-red-shy-tomato;
+}
+
+.o-top-content-bar__box {
+  @include make-container();
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-up(xs) {
+    flex-direction: row;
+
+    justify-content: center;
+  }
+}
+
+.o-top-content-bar__text {
+  @include typo-13();
+}
+
+.o-top-content-bar__button {
+}

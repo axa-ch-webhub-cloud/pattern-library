@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>AXA-CH Style and HTML guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <script>
     (function() {
       if (!('Reflect' in window
@@ -18,5 +19,19 @@
   <body>
     <link rel="import" href="components/dummy/index.html">
     <hello-world></hello-world>
+
+    <link rel="import" href="components/top-content-bar/index.html">
+    <axa-top-content-bar type="corporate">
+      <p class="o-top-content-bar__text">corporate stuff</p>
+      <button>get it for free</button>
+    </axa-top-content-bar>
+    <axa-top-content-bar type="commercial">
+      <p class="o-top-content-bar__text">commercial stuff</p>
+      <button>get it for free</button>
+    </axa-top-content-bar>
+    <axa-top-content-bar type="warning">
+      <p class="o-top-content-bar__text">warning stuff</p>
+      <button>get it for free</button>
+    </axa-top-content-bar>
   </body>
 </html>

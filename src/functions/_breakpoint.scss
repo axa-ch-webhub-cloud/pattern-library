@@ -28,7 +28,7 @@
     }
   }
 
-  @if $breakpoint < 0 {
+  @if ( type_of($breakpoint) == number AND $breakpoint < 0 ) {
     @error "$breakpoint #{$breakpoint} can't be negative.";
   }
 
