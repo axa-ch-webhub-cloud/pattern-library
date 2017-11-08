@@ -4,9 +4,13 @@
 @mixin make-container() {
   display: block;
 
+  box-sizing: border-box;
+
   width: 100%;
+
   padding-left: $grid-gutter-width/2;
   padding-right: $grid-gutter-width/2;
+
   margin-left: auto;
   margin-right: auto;
 
