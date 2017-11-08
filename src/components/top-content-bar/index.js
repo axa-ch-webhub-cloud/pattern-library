@@ -1,13 +1,18 @@
 class TopContentBar extends HTMLElement {
-    connectedCallback() {
-        //const clone = document.importNode(, true);
+  connectedCallback() {
+    const type = this.getAttribute('type');
+    const box = document.createElement('div');
 
-        //this.appendChild(clone);
+    box.className = 'o-top-content-bar__box';
 
-        const type = this.getAttribute('type');
-
-        this.className = `o-top-content-bar o-top-content-bar--${type}`;
+    while(this.childNodes.length) {
+      box.appendChild(this.firstChild)
     }
+
+    this.className = `o-top-content-bar o-top-content-bar--${type}`;
+
+    this.appendChild(box);
+  }
 }
 
 window.customElements.define('axa-top-content-bar', TopContentBar);
