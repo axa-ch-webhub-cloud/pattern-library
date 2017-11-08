@@ -1,5 +1,6 @@
 @import "../../settings/colors";
 @import "../../mixins/typo";
+@import "../../mixins/container";
 
 .o-top-content-bar {
   display: block;
@@ -21,9 +22,7 @@
 }
 
 .o-top-content-bar__box {
-  max-width: 1140px;
-
-  margin: 0 auto;
+  @include make-container();
 }
 
 .o-top-content-bar__text {
