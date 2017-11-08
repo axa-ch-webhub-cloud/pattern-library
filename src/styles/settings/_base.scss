@@ -6,6 +6,8 @@ $font-family-base: "Source Sans Pro", Arial, sans-serif !default;
 $font-size-base: 16px !default;
 $font-weight-base: normal !default;
 
+$line-height-base: 1.5 !default;
+
 $body-color: $color-text !default;
 $body-bg: $color-prim-white !default;
 
@@ -18,3 +20,8 @@ $dt-font-weight: bold !default;
 $table-cell-padding: 12px !default;
 
 $text-muted: $color-prim-gray-scorpion !default;
+
+$link-color: $color-link !default;
+$link-decoration: none !default;
+$link-hover-color: $color-link--hover !default;
+$link-hover-decoration: underline !default;
