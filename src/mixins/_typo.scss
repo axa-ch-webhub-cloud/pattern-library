@@ -172,15 +172,15 @@ $face-map:
 @mixin typo-css($name, $face: null, $weight: null) {
   @include typo-decls($name, sm, $face, $weight);
 
-  @include respond-up(md) {
+  @include respond-up(sm) {
     @include typo-decls($name, md, $face, $weight);
   }
 
-  @include respond-up(lg) {
+  @include respond-up(md) {
     @include typo-decls($name, lg, $face, $weight);
   }
 
-  @include respond-up(xl) {
+  @include respond-up(lg) {
     @include typo-decls($name, xl, $face, $weight);
   }
 }
