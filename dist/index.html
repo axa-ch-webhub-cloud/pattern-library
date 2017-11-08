@@ -3,27 +3,35 @@
   <head>
     <meta charset="UTF-8">
     <title>AXA-CH Style and HTML guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <script>
     (function() {
-      if (!('registerElement' in document
-          && 'import' in document.createElement('link')
-          && 'content' in document.createElement('template'))) {
-            // polyfill the platform!
+      if (!('Reflect' in window
+          && 'Promise' in window)) {
             var e = document.createElement('script');
-            e.src = 'app/webcomponents-lite.js';
+            e.src = 'app/es6-polyfills.js';
             document.head.appendChild(e);
-      }
+       }
     })();
     </script>
-    <!--link rel="import" href="__imports.html"-->
-    <!--script src="app/style-guide.js"></script-->
+    <script src="app/webcomponents-loader.js"></script>
   </head>
   <body>
-    <!--core-imports></core-imports-->
+    <link rel="import" href="components/dummy/index.html">
+    <hello-world></hello-world>
 
-
-
-        <link rel="import" href="components/dummy/index.html">
-        <hello-world></hello-world>
+    <link rel="import" href="components/top-content-bar/index.html">
+    <axa-top-content-bar type="corporate">
+      <p class="o-top-content-bar__text">corporate stuff</p>
+      <button>get it for free</button>
+    </axa-top-content-bar>
+    <axa-top-content-bar type="commercial">
+      <p class="o-top-content-bar__text">commercial stuff</p>
+      <button>get it for free</button>
+    </axa-top-content-bar>
+    <axa-top-content-bar type="warning">
+      <p class="o-top-content-bar__text">warning stuff</p>
+      <button>get it for free</button>
+    </axa-top-content-bar>
   </body>
 </html>
