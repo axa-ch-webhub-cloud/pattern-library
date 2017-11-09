@@ -1,0 +1,50 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/button";
+
+// Buttons as specified at
+// https://design.axa.com/web-guidelines/buttons-and-links
+
+.a-button {
+  @include button();
+  @include button--color();
+}
+
+.a-button__icon {
+  @include button__icon();
+}
+
+.a-button__arrow {
+  @include button__arrow();
+}
+
+.button--motion {
+
+}
+
+.a-button--sm {
+  @include button--sm();
+}
+
+.a-button--lg {
+  @include button--lg();
+}
+
+.a-button--red {
+  @include button--color(red);
+}
+
+.a-button--white {
+  @include button--color(white);
+}
+
+.a-button--ghost {
+  @include button--ghost();
+
+  &.a-button--red {
+    @include button--ghost(red);
+  }
+
+  &.a-button--white {
+    @include button--ghost(white);
+  }
+}
