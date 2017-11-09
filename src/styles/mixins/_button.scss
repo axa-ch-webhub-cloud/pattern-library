@@ -1,14 +1,18 @@
 @import "../settings/colors";
+@import "../functions/min-max";
 @import "respond";
 @import "typo";
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
 
-@mixin button() {
+$button-padding-min: 20px !default;
+$button-padding-max: 40px !default;
+
+@mixin button($padding: 30px) {
   @include typo-14();
 
-  padding: 10px 30px;
+  padding: 10px min-max($button-padding-min, $button-padding-max, $padding);
 
   text-decoration: none;
   text-transform: uppercase;
