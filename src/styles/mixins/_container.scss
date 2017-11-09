@@ -1,5 +1,5 @@
 @import "../settings/grids";
-@import "../mixins/respond";
+@import "respond";
 
 @mixin make-container() {
   display: block;

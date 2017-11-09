@@ -1,4 +1,4 @@
-@import "./max-width";
+@import "max-width";
 
 @function next-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $breakpoint);
