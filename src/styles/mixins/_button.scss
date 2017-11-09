@@ -1,0 +1,141 @@
+@import "../settings/colors";
+@import "respond";
+@import "typo";
+
+// Buttons as specified at
+// https://design.axa.com/web-guidelines/buttons-and-links
+
+@mixin button() {
+  @include typo-14();
+
+  padding: 10px 30px;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+  @at-root {
+    a#{&} {
+      display: inline-block;
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    cursor: pointer;
+
+    text-decoration: none;
+
+    outline: none;
+  }
+
+  &:disabled,
+  &[disabled] {
+    cursor: default !important;
+  }
+}
+
+@function get-button-colors($style: default) {
+  @if not map_has_key($color-button, $style) {
+    @error "$color-button does not include #{$style} style!";
+  }
+
+  @return map_get($color-button, $style);
+}
+
+@function get-button-color($style, $prop) {
+  $color-button-default: get-button-colors();
+  $color-button-style: get-button-colors($style);
+
+  @if map_has_key($color-button-style, $prop) {
+    @return map_get($color-button-style, $prop);
+  } @else if map_has_key($color-button-default, $prop) {
+    @return map_get($color-button-default, $prop);
+  } @else {
+    @error "$color-button does not have #{$prop} color!";
+  }
+}
+
+@mixin button--color($style: default) {
+  $color-button-text: get-button-color($style, text);
+  $color-button-bg: get-button-color($style, bg);
+  $color-button-bg--hover: get-button-color($style, bg--hover);
+  $color-button-bg--disabled: get-button-color($style, bg--disabled);
+
+  color: $color-button-text;
+
+  background: $color-button-bg;
+  border: 2px solid $color-button-bg;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $color-button-bg--hover;
+    border-color: $color-button-bg--hover;
+    color: $color-button-text;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: $color-button-bg--disabled !important;
+    border-color: $color-button-bg--disabled !important;
+  }
+}
+
+@mixin button--ghost($style: default) {
+  $color-button-text--ghost: get-button-color($style, text--ghost);
+  $color-button-text--ghost--hover: get-button-color($style, text--ghost--hover);
+  $color-button-bg--ghost: get-button-color($style, bg--ghost);
+  $color-button-bg--ghost--hover: get-button-color($style, bg--ghost--hover);
+
+  color: $color-button-text--ghost;
+
+  background: $color-button-bg--ghost;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-button-text--ghost--hover;
+    background: $color-button-bg--ghost--hover;
+
+    @if $color-button-bg--ghost--hover != transparent {
+      border-color: $color-button-bg--ghost--hover;
+    }
+  }
+}
+
+@mixin button--sm() {
+  @include typo-13();
+
+  padding-top: 4.5px;
+  padding-bottom: 4.5px;
+}
+
+@mixin button--lg() {
+  @include typo-16();
+
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+@mixin button__icon() {
+  width: 16px;
+  height: 16px;
+
+  padding: 10px;
+
+  border-left: 1px solid rgba($color-prim-white, 0.2);
+}
+
+@mixin button__icon--lg() {
+  width: 20px;
+  height: 20px;
+
+  padding: 15px;
+  margin: -13px -32px -13px 28px;
+}
+
+@mixin button__arrow() {
+
+}
