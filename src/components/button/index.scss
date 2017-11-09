@@ -17,10 +17,6 @@
   @include button__arrow();
 }
 
-.button--motion {
-
-}
-
 .a-button--sm {
   @include button--sm();
 }
@@ -47,4 +43,8 @@
   &.a-button--white {
     @include button--ghost(white);
   }
+}
+
+.a-button--motion {
+ @include button--motion();
 }

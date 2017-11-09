@@ -143,3 +143,42 @@ $button-padding-max: 40px !default;
 @mixin button__arrow() {
 
 }
+
+@mixin button--motion() {
+  $color-button--motion--hover: inherit;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: all 0.75s ease 0s;
+
+  &::after {
+    display: block;
+    content: '';
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 0;
+    height: 550px;
+    background: inherit;
+
+    opacity: 0;
+
+    transition: all 0.75s ease 0s;
+
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+    background: $color-button--motion--hover !important;
+
+    &::after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}
