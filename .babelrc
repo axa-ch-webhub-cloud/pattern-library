@@ -7,11 +7,6 @@
       }
     }]
   ],
-  "env": {
-    "production": {
-      "presets": ["minify"]
-    }
-  },
   "plugins": [
     "transform-custom-element-classes"
   ]

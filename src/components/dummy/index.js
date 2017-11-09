@@ -1,3 +1,7 @@
+import { ex } from './some-import.partial';
+
+console.log(ex)
+
 const thisDoc = (document._currentScript || document.currentScript).ownerDocument; // eslint-disable-line
 
 class CoreDummy extends HTMLElement {
