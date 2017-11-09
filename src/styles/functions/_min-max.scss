@@ -1,0 +1,17 @@
+@function min-max($min, $max, $value) {
+  $type-min: type_of($min);
+  $type-max: type_of($max);
+  $type-value: type_of($value);
+
+  @if ($type-min != number OR $type-max != number OR $type-value != number) {
+    @error "All args [min: #{$type-min}, max: #{$type-max}, value: #{$type-value}] to min-max have to be of type number!";
+  }
+
+  @if $value < $min {
+    @return $min;
+  } @else if $value > $max {
+    @return $max;
+  } @else {
+    @return $value;
+  }
+}
