@@ -1,17 +1,5 @@
-import { ex } from './some-import.partial';
+import { BaseComponentShadow } from '../_abstract/component-types';
 
-console.log(ex)
-
-const thisDoc = (document._currentScript || document.currentScript).ownerDocument; // eslint-disable-line
-
-class CoreDummy extends HTMLElement {
-  connectedCallback() {
-    const template = thisDoc.querySelector('template').content;
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    // Adds a template clone into shadow root
-    const clone = document.importNode(template, true);
-    shadowRoot.appendChild(clone);
-  }
-}
+class CoreDummy extends BaseComponentShadow {}
 
 window.customElements.define('hello-world', CoreDummy);

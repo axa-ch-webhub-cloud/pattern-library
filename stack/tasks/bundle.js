@@ -59,27 +59,31 @@ const outputOptionsComponents = {
   ...outputOptions,
 };
 
-const reGetParentDirAndFile = /(?:[^/]+\/)?[^/]+\.[^/]+$/;
-const reGetParentDirAndFileAndComponent = /\/components\/[^/]+\/index\.js$/;
+const reGetParentDirAndFileAndComponent = /\/components\/(?:[^/]+\/)+index\.js$/;
 
 mkdirp(`${CWD}/.tmp`, () => {
   dir.files(`${CWD}/src/components`, (err, allFiles) => {
     const jsFiles = allFiles.filter(_file => _file.match(reGetParentDirAndFileAndComponent));
-    const basePath = ENV === constants.ENV.PROD ? `${CWD}/dist/components` : `${CWD}/.tmp/components`;
+    jsFiles.sort((lx, rx) => {
+      if (lx < rx) return -1;
+      if (lx > rx) return 1;
+      return 0;
+    });
     jsFiles.forEach((filePath) => {
+      console.log(filePath)
       async function buildComponents() {
         const bundle = await rollup.rollup({
           ...inputOptionsComponents,
           input: filePath,
         });
-        console.log(bundle.imports); // eslint-disable-line
+        console.log(`Bundled to: ${filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/')}`); // eslint-disable-line
         // or write the bundle to disk
         await bundle.write({
           ...outputOptionsComponents,
-          file: `${basePath}/${filePath.match(reGetParentDirAndFile)[0]}`,
+          file: filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/'),
         });
       }
       buildComponents();
     });
-  })
+  });
 });

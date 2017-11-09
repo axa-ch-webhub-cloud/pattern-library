@@ -15,8 +15,8 @@
     "serve-build-prod": "parallelshell \"npm start PROD\" \"npm run build\"",
     "build-css-dev": "./node_modules/.bin/node-sass src/ -o .tmp/",
     "build-css-prod": "./node_modules/.bin/node-sass src/ -o dist/",
-    "build-js-dev": "node_modules/.bin/cross-env BABEL_ENV=development node_modules/.bin/babel -d .tmp/components src/components --ignore '**/*.partial.js' && npm run bundle-dev",
-    "build-js-prod": "node_modules/.bin/cross-env BABEL_ENV=production node_modules/.bin/babel -d dist/components src/components --ignore '**/*.partial.js' && npm run bundle-prod",
+    "build-js-dev": "npm run bundle-dev",
+    "build-js-prod": "npm run bundle-prod",
     "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV && npm run build-js-dev && npm run build-css-dev",
     "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-js-prod && npm run build-css-prod"
   },
@@ -44,6 +44,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "babel-preset-env": "~1.6.1",
     "cpx": "~1.5.0",
