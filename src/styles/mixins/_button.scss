@@ -8,6 +8,8 @@
 
 $button-padding-min: 20px !default;
 $button-padding-max: 40px !default;
+$button__icon-width: 16px !default;
+$button__icon--lg-width: 20px !default;
 
 @mixin button($padding: 30px) {
   @include typo-14();
@@ -124,8 +126,8 @@ $button-padding-max: 40px !default;
 }
 
 @mixin button__icon() {
-  width: 16px;
-  height: 16px;
+  width: $button__icon-width;
+  height: $button__icon-width;
 
   padding: 10px;
 
@@ -133,8 +135,8 @@ $button-padding-max: 40px !default;
 }
 
 @mixin button__icon--lg() {
-  width: 20px;
-  height: 20px;
+  width: $button__icon--lg-width;
+  height: $button__icon--lg-width;
 
   padding: 15px;
   margin: -13px -32px -13px 28px;
