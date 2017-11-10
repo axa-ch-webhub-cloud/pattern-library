@@ -13,6 +13,8 @@
   @include typo-14();
 
   padding: 10px $x-padding;
+  border-width: $button-border-width;
+  border-style: solid;
 
   text-decoration: none;
   text-transform: uppercase;
@@ -49,7 +51,7 @@
   color: $color-button-text;
 
   background: $color-button-bg;
-  border: 2px solid $color-button-bg;
+  border-color: $color-button-bg;
   border-bottom-color: $color-button-bg--hover;
 
   &:hover,
@@ -100,7 +102,7 @@
   padding-top: 5.5px;
   padding-bottom: 5.5px;
 
-  border-width: 1px;
+  border-width: $button-border-width--sm;
 }
 
 @mixin button--lg() {
