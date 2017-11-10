@@ -6,15 +6,15 @@
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
 
-$button-padding-min: 20px !default;
-$button-padding-max: 40px !default;
+$button-x-padding-min: 20px !default;
+$button-x-padding-max: 40px !default;
 $button__icon-width: 16px !default;
 $button__icon--lg-width: 20px !default;
 
-@mixin button($padding: 30px) {
+@mixin button($x-padding: 30px) {
   @include typo-14();
 
-  padding: 10px min-max($button-padding-min, $button-padding-max, $padding);
+  padding: 10px min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   text-decoration: none;
   text-transform: uppercase;
