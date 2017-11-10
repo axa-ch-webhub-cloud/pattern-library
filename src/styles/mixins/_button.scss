@@ -1,20 +1,18 @@
-@import "../settings/colors";
+@import "../settings/button";
 @import "../functions/min-max";
+@import "../functions/button";
 @import "respond";
 @import "typo";
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
 
-$button-x-padding-min: 20px !default;
-$button-x-padding-max: 40px !default;
-$button__icon-width: 16px !default;
-$button__icon--lg-width: 20px !default;
-
 @mixin button($x-padding: 30px) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+
   @include typo-14();
 
-  padding: 10px min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding: 10px $x-padding;
 
   text-decoration: none;
   text-transform: uppercase;
@@ -39,27 +37,6 @@ $button__icon--lg-width: 20px !default;
   &:disabled,
   &[disabled] {
     cursor: default !important;
-  }
-}
-
-@function get-button-colors($style: default) {
-  @if not map_has_key($color-button, $style) {
-    @error "$color-button does not include #{$style} style!";
-  }
-
-  @return map_get($color-button, $style);
-}
-
-@function get-button-color($style, $prop) {
-  $color-button-default: get-button-colors();
-  $color-button-style: get-button-colors($style);
-
-  @if map_has_key($color-button-style, $prop) {
-    @return map_get($color-button-style, $prop);
-  } @else if map_has_key($color-button-default, $prop) {
-    @return map_get($color-button-default, $prop);
-  } @else {
-    @error "$color-button does not have #{$prop} color!";
   }
 }
 
@@ -147,13 +124,11 @@ $button__icon--lg-width: 20px !default;
 }
 
 @mixin button--motion() {
-  $color-button--motion--hover: inherit;
-
   position: relative;
 
   overflow: hidden;
 
-  transition: all 0.75s ease 0s;
+  transition: all $button__motion-transition-duration $button__motion-transition-easing 0s;
 
   &::after {
     display: block;
@@ -165,14 +140,29 @@ $button__icon--lg-width: 20px !default;
 
     width: 0;
     height: 550px;
-    background: inherit;
 
     opacity: 0;
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    transition: all 0.75s ease 0s;
+    transition: all $button__motion-transition-duration $button__motion-transition-easing 0s;
 
     z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}
+
+@mixin button--motion-style($style: default) {
+  $color-button--motion--hover: inherit;
+
+  &::after {
+    background: inherit;
   }
 
   &:hover,
@@ -180,8 +170,6 @@ $button__icon--lg-width: 20px !default;
     background: $color-button--motion--hover !important;
 
     &::after {
-      width: 100%;
-      opacity: 1;
     }
   }
 }

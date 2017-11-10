@@ -1,0 +1,43 @@
+@import "colors";
+
+$button-x-padding-min: 20px !default;
+$button-x-padding-max: 40px !default;
+
+$button__icon-width: 16px !default;
+$button__icon--lg-width: 20px !default;
+
+$button__motion-transition-duration: 0.75s;
+$button__motion-transition-easing: ease;
+
+$button-color: (
+  default: (
+    text: $color-prim-white,
+    text--ghost: $color-axa-blue,
+    text--ghost--hover: $color-prim-blue-deep-sapphire,
+    bg: $color-axa-blue,
+    bg--hover: $color-prim-blue-deep-sapphire,
+    bg--disabled: $color-prim-gray-dusty,
+    bg--ghost: transparent,
+    bg--ghost--hover: transparent,
+  ),
+  red: (
+    text: $color-prim-white,
+    text--ghost: $color-prim-red-burnt-sienna,
+    text--ghost--hover: $color-prim-red-flamingo,
+    bg: $color-prim-red-burnt-sienna,
+    bg--hover: $color-prim-red-flamingo,
+    bg--disabled: $color-prim-gray-dusty,
+    bg--ghost: transparent,
+    bg--ghost--hover: transparent,
+  ),
+  white: (
+    text: $color-prim-white,
+    text--ghost: $color-prim-white,
+    text--ghost--hover: $color-prim-blue-dark-indigo,
+    bg: $color-prim-white,
+    bg--hover: $color-prim-blue-deep-sapphire,
+    bg--disabled: $color-prim-gray-dusty,
+    bg--ghost: transparent,
+    bg--ghost--hover: $color-prim-white,
+  )
+) !default;

@@ -63,38 +63,6 @@ $color-bg--gray: $color-prim-gray-wild-sand  !default;
 $color-bg--white: $color-prim-white  !default;
 
 // buttons
-$color-button: (
-  default: (
-    text: $color-prim-white,
-    text--ghost: $color-axa-blue,
-    text--ghost--hover: $color-prim-blue-deep-sapphire,
-    bg: $color-axa-blue,
-    bg--hover: $color-prim-blue-deep-sapphire,
-    bg--disabled: $color-prim-gray-dusty,
-    bg--ghost: transparent,
-    bg--ghost--hover: transparent,
-  ),
-  red: (
-    text: $color-prim-white,
-    text--ghost: $color-prim-red-burnt-sienna,
-    text--ghost--hover: $color-prim-red-flamingo,
-    bg: $color-prim-red-burnt-sienna,
-    bg--hover: $color-prim-red-flamingo,
-    bg--disabled: $color-prim-gray-dusty,
-    bg--ghost: transparent,
-    bg--ghost--hover: transparent,
-  ),
-  white: (
-    text: $color-prim-white,
-    text--ghost: $color-prim-white,
-    text--ghost--hover: $color-prim-blue-dark-indigo,
-    bg: $color-prim-white,
-    bg--hover: $color-prim-blue-deep-sapphire,
-    bg--disabled: $color-prim-gray-dusty,
-    bg--ghost: transparent,
-    bg--ghost--hover: $color-prim-white,
-  )
-) !default;
 $color-button-text: $color-prim-white !default;
 $color-button-bg: $color-axa-blue !default;
 $color-button-bg--hover: $color-prim-blue-deep-sapphire !default;

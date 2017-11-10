@@ -46,5 +46,26 @@
 }
 
 .a-button--motion {
- @include button--motion();
+  @include button--motion();
+  @include button--motion-style();
+
+  &.a-button--red {
+    @include button--motion-style(red);
+  }
+
+  &.a-button--white {
+    @include button--motion-style(white);
+  }
+
+  &.a-button--ghost {
+    @include button--motion-style(ghost);
+
+    &.a-button--red {
+      @include button--motion-style(ghost--red);
+    }
+
+    &.a-button--white {
+      @include button--motion-style(ghost--white);
+    }
+  }
 }
