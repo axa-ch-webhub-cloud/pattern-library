@@ -2,12 +2,16 @@
 
 $button-x-padding-min: 20px !default;
 $button-x-padding-max: 40px !default;
+$button-x-padding-default: 30px !default;
 
 $button-border-width: 2px;
 $button-border-width--sm: 1px;
 
 $button__icon-width: 16px !default;
 $button__icon--lg-width: 20px !default;
+
+$button__arrow-width: 13px !default;
+$button__arrow-gap: 12px !default;
 
 $button__motion-transition-duration: 0.3s;
 $button__motion-transition-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955);

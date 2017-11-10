@@ -7,7 +7,7 @@
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
 
-@mixin button($x-padding: 30px) {
+@mixin button($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   @include typo-14();
@@ -44,7 +44,7 @@
   }
 }
 
-@mixin button--x-padding($x-padding) {
+@mixin button--x-padding($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   padding-left: $x-padding;
@@ -143,13 +143,30 @@
   position: absolute;
 
   top: 50%;
-  right: 30px;
   margin-top: -7.5px;
 
   fill: currentColor;
 
-  width: 13px;
-  height: 13px;
+  width: $button__arrow-width;
+  height: $button__arrow-width;
+}
+
+@mixin button__arrow-right($right: $button-x-padding-default) {
+  $right: min-max($button-x-padding-min, $button-x-padding-max, $right);
+
+  right: $right;
+}
+
+@mixin button--arrow-adjust($right: $button-x-padding-default) {
+  $right: min-max($button-x-padding-min, $button-x-padding-max, $right);
+
+  padding-right: $button__arrow-width + $button__arrow-gap + $right;
+}
+
+@mixin button__arrow--motion() {
+  animation-duration: 0.6s;
+  animation-fill-mode: both;
+  animation-name: fadeOutRightInLeft;
 }
 
 @mixin button--motion() {

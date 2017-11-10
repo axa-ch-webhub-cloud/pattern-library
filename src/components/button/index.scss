@@ -16,6 +16,7 @@
 
 .a-button__arrow {
   @include button__arrow();
+  @include button__arrow-right();
 }
 
 .a-button--red {
@@ -58,23 +59,41 @@
   &:active,
   &:focus {
     .a-button__arrow {
-      animation-duration: 0.6s;
-      animation-fill-mode: both;
-      animation-name: fadeOutRightInLeft;
+      @include button__arrow--motion();
     }
   }
 }
 
 .a-button--arrow {
-  padding-right: 53px;
+  @include button--arrow-adjust();
 }
 
 .a-button--x-pad-20 {
-  @include button--x-padding(20px);
+  $x-pad: 20px;
+
+  @include button--x-padding($x-pad);
+
+  &.a-button--arrow {
+    @include button--arrow-adjust($x-pad);
+  }
+
+  .a-button__arrow {
+    @include button__arrow-right($x-pad);
+  }
 }
 
 .a-button--x-pad-40 {
-  @include button--x-padding(40px);
+  $x-pad: 40px;
+
+  @include button--x-padding($x-pad);
+
+  &.a-button--arrow {
+    @include button--arrow-adjust($x-pad);
+  }
+
+  .a-button__arrow {
+    @include button__arrow-right($x-pad);
+  }
 }
 
 .a-button--sm {
