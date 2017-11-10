@@ -42,6 +42,13 @@
   }
 }
 
+@mixin button--x-padding($x-padding) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+
+  padding-left: $x-padding;
+  padding-right: $x-padding;
+}
+
 @mixin button--color($style: default) {
   $color-button-text: get-button-color($style, text);
   $color-button-bg: get-button-color($style, bg);
