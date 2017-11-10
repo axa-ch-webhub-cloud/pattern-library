@@ -9,4 +9,4 @@ class Button extends BaseComponentGlobal {
 
 window.customElements.define('axa-button', Button);
 
-document.createElement('axa-button');
+document.body.appendChild(document.createElement('axa-button'));
