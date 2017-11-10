@@ -204,3 +204,7 @@
     }
   }
 }
+
+@mixin button--motion--ghost() {
+  background: transparent !important;
+}
