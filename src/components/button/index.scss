@@ -17,14 +17,6 @@
   @include button__arrow();
 }
 
-.a-button--sm {
-  @include button--sm();
-}
-
-.a-button--lg {
-  @include button--lg();
-}
-
 .a-button--red {
   @include button--color(red);
 }
@@ -68,4 +60,12 @@
       //@include button--motion-style(ghost--white);
     }
   }
+}
+
+.a-button--sm {
+  @include button--sm();
+}
+
+.a-button--lg {
+  @include button--lg();
 }
