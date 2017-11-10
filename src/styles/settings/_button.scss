@@ -6,8 +6,8 @@ $button-x-padding-max: 40px !default;
 $button__icon-width: 16px !default;
 $button__icon--lg-width: 20px !default;
 
-$button__motion-transition-duration: 0.75s;
-$button__motion-transition-easing: ease;
+$button__motion-transition-duration: 0.3s;
+$button__motion-transition-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955);
 
 $button-color: (
   default: (
