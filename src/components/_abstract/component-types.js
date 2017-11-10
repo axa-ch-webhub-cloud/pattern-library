@@ -1,7 +1,5 @@
-const thisDoc = (document._currentScript || document.currentScript).ownerDocument; // eslint-disable-line
-
 // guide: https://developers.google.com/web/fundamentals/web-components/customelements
-
+const cScript = (document._currentScript || document.currentScript);
 const memory = {};
 
 /**
@@ -12,7 +10,17 @@ export class BaseComponent extends HTMLElement {
   constructor(styles = '') {
     super();
     this._styles = styles;
+    let thisDoc;
+    if (window.HTMLImports) {
+      thisDoc = HTMLImports.importForElement(cScript);
+    } else {
+      thisDoc = cScript.ownerDocument;
+    }
     this.template = thisDoc.querySelector('template');
+    if (!this.template || (window.HTMLImports && thisDoc !== HTMLImports.importForElement(this.template))) {
+      // This element is contained in another import, skip.
+      this.template = null;
+    }
     if (this.template) {
       this.clone = document.importNode(this.template.content, true);
     }
@@ -24,7 +32,7 @@ export class BaseComponent extends HTMLElement {
    */
   connectedCallback() {
     this._appendStyles();
-    if (this.clone) {
+    if (this.template && this.clone) {
       this.appendChild(this.clone);
     }
   }
@@ -61,7 +69,7 @@ export class BaseComponentShadow extends BaseComponent {
   connectedCallback(mode = 'open') {
     const shadowRoot = this.attachShadow({ mode });
     this._appendStyles(shadowRoot);
-    if (this.clone) {
+    if (this.template && this.clone) {
       shadowRoot.appendChild(this.clone);
     }
   }
