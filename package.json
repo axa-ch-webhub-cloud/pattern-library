@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^1.0.18",
+    "classnames": "^2.2.5",
     "core-js": "~2.5.1"
   }
 }
