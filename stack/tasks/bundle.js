@@ -53,7 +53,7 @@ const inputOptionsComponents = {
   plugins: [
     ...inputOptions.plugins,
     sass({
-      insert: true,
+      insert: false,
     }),
     babel({
       runtimeHelpers: true,

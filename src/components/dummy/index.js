@@ -5,6 +5,9 @@ class CoreDummy extends BaseComponentShadow {
   constructor() {
     super(styles);
   }
+  connectedCallback() {
+    super.connectedCallback();
+  }
 }
 
 window.customElements.define('hello-world', CoreDummy);
