@@ -12,6 +12,8 @@
 
   @include typo-14();
 
+  position: relative;
+
   padding: 10px $x-padding;
   border-width: $button-border-width;
   border-style: solid;
@@ -137,12 +139,20 @@
 }
 
 @mixin button__arrow() {
+  display: block;
+  position: absolute;
 
+  top: 50%;
+  right: 30px;
+  margin-top: -7.5px;
+
+  fill: currentColor;
+
+  width: 13px;
+  height: 13px;
 }
 
 @mixin button--motion() {
-  position: relative;
-
   overflow: hidden;
 
   z-index: 0;
