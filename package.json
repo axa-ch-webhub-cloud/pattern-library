@@ -13,12 +13,12 @@
     "bundle-dev": "node stack/tasks/bundle.js DEV && node stack/tasks/copy-polyfills.js DEV",
     "bundle-prod": "node stack/tasks/bundle.js PROD && node stack/tasks/copy-polyfills.js PROD",
     "serve-build-prod": "parallelshell \"npm start PROD\" \"npm run build\"",
-    "build-css-dev": "./node_modules/.bin/node-sass src/ -o .tmp/",
-    "build-css-prod": "./node_modules/.bin/node-sass src/ -o dist/",
+    "build-css-dev": "./node_modules/.bin/node-sass src/index.scss -o .tmp/",
+    "build-css-prod": "./node_modules/.bin/node-sass src/index.scss -o dist/",
     "build-js-dev": "npm run bundle-dev",
     "build-js-prod": "npm run bundle-prod",
-    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && node stack/tasks/build.html.js DEV && npm run build-js-dev && npm run build-css-dev",
-    "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-js-prod && npm run build-css-prod"
+    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && npm run build-css-dev && node stack/tasks/build.html.js DEV && npm run build-js-dev",
+    "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-css-prod && npm run build-js-prod"
   },
   "watch": {
     "build-dev": {
@@ -64,8 +64,8 @@
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-multi-entry": "^2.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-sass": "^0.5.3",
     "rollup-plugin-uglify": "^2.0.1",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",

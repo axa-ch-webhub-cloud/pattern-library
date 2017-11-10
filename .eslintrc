@@ -3,6 +3,7 @@
   "rules": {
     "max-len": ["warn", 140, 2],
     "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}]
   },
   "globals": {

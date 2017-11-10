@@ -6,6 +6,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const uglify = require('rollup-plugin-uglify');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
+const sass = require('rollup-plugin-sass');
 
 const constants = require('../constants');
 
@@ -51,7 +52,12 @@ const inputOptionsComponents = {
   ...inputOptions,
   plugins: [
     ...inputOptions.plugins,
-    babel(),
+    sass({
+      insert: true,
+    }),
+    babel({
+      runtimeHelpers: true,
+    }),
   ],
 };
 
@@ -70,17 +76,21 @@ mkdirp(`${CWD}/.tmp`, () => {
       return 0;
     });
     jsFiles.forEach((filePath) => {
-      console.log(filePath)
+      const fPath = filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/');
       async function buildComponents() {
         const bundle = await rollup.rollup({
           ...inputOptionsComponents,
+          plugins: [
+            ...inputOptionsComponents.plugins,
+          ],
           input: filePath,
         });
-        console.log(`Bundled to: ${filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/')}`); // eslint-disable-line
+        console.log(fPath.replace('.js', '.css'))
+        console.log(`Bundled to: ${fPath}`); // eslint-disable-line
         // or write the bundle to disk
         await bundle.write({
           ...outputOptionsComponents,
-          file: filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/'),
+          file: fPath,
         });
       }
       buildComponents();
