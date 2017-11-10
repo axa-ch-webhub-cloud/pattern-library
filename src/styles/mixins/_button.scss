@@ -50,6 +50,7 @@
 
   background: $color-button-bg;
   border: 2px solid $color-button-bg;
+  border-bottom-color: $color-button-bg--hover;
 
   &:hover,
   &:active,
@@ -67,6 +68,8 @@
 }
 
 @mixin button--ghost($style: default) {
+  $color-button-bg: get-button-color($style, bg);
+  $color-button-bg--hover: get-button-color($style, bg--hover);
   $color-button-text--ghost: get-button-color($style, text--ghost);
   $color-button-text--ghost--hover: get-button-color($style, text--ghost--hover);
   $color-button-bg--ghost: get-button-color($style, bg--ghost);
@@ -75,6 +78,7 @@
   color: $color-button-text--ghost;
 
   background: $color-button-bg--ghost;
+  border-color: $color-button-bg;
 
   &:hover,
   &:active,
@@ -84,6 +88,8 @@
 
     @if $color-button-bg--ghost--hover != transparent {
       border-color: $color-button-bg--ghost--hover;
+    } @else {
+      border-color: $color-button-bg--hover;
     }
   }
 }
@@ -91,8 +97,10 @@
 @mixin button--sm() {
   @include typo-13();
 
-  padding-top: 4.5px;
-  padding-bottom: 4.5px;
+  padding-top: 5.5px;
+  padding-bottom: 5.5px;
+
+  border-width: 1px;
 }
 
 @mixin button--lg() {
