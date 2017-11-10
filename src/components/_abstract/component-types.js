@@ -75,7 +75,7 @@ export class BaseComponentShadow extends BaseComponent {
  * The style will be included only once in the DOM and is insert in the head of the main document.
  */
 export class BaseComponentGlobal extends BaseComponent {
-  _appendStyles(el = this) {
+  _appendStyles() {
     if (this._styles) {
       if (!memory[this._styles]) {
         const styleNode = document.createElement('style');
@@ -85,8 +85,6 @@ export class BaseComponentGlobal extends BaseComponent {
         document.querySelector('head').appendChild(styleNode);
         memory[this._styles] = true;
       }
-      this._styles = '// Style threated as global';
-      super._appendStyles(el);
     }
   }
 }
