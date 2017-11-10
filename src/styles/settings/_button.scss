@@ -19,6 +19,9 @@ $button-color: (
     bg--disabled: $color-prim-gray-dusty,
     bg--ghost: transparent,
     bg--ghost--hover: transparent,
+    bg--motion: $color-axa-blue,
+    bg--motion--hover: $color-prim-blue-deep-sapphire,
+    text--motion--hover: $color-prim-white,
   ),
   red: (
     text: $color-prim-white,
@@ -29,6 +32,9 @@ $button-color: (
     bg--disabled: $color-prim-gray-dusty,
     bg--ghost: transparent,
     bg--ghost--hover: transparent,
+    bg--motion: $color-prim-red-burnt-sienna,
+    bg--motion--hover: $color-prim-red-flamingo,
+    text--motion--hover: $color-prim-white,
   ),
   white: (
     text: $color-prim-white,
@@ -39,5 +45,8 @@ $button-color: (
     bg--disabled: $color-prim-gray-dusty,
     bg--ghost: transparent,
     bg--ghost--hover: $color-prim-white,
+    bg--motion: transparent,
+    bg--motion--hover: $color-prim-white,
+    text--motion--hover: $color-prim-blue-dark-indigo,
   )
 ) !default;

@@ -130,6 +130,8 @@
 
   transition: all $button__motion-transition-duration $button__motion-transition-easing 0s;
 
+  z-index: 0;
+
   &::after {
     display: block;
     content: '';
@@ -159,17 +161,24 @@
 }
 
 @mixin button--motion-style($style: default) {
-  $color-button--motion--hover: inherit;
+  $color-button-bg--motion: get-button-color($style, bg--motion);
+  $color-button-bg--motion--hover: get-button-color($style, bg--motion--hover);
+  $color-button-text--motion--hover: get-button-color($style, text--motion--hover);
 
   &::after {
-    background: inherit;
+    background: $color-button-bg--motion;
   }
 
   &:hover,
   &:focus {
-    background: $color-button--motion--hover !important;
+    background: $color-button-bg--motion !important;
+
+    @if $color-button-text--motion--hover {
+      color: $color-button-text--motion--hover;
+    }
 
     &::after {
+      background: $color-button-bg--motion--hover;
     }
   }
 }

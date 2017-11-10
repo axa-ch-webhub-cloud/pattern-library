@@ -58,14 +58,14 @@
   }
 
   &.a-button--ghost {
-    @include button--motion-style(ghost);
+    //@include button--motion-style(ghost);
 
     &.a-button--red {
-      @include button--motion-style(ghost--red);
+      //@include button--motion-style(ghost--red);
     }
 
     &.a-button--white {
-      @include button--motion-style(ghost--white);
+      //@include button--motion-style(ghost--white);
     }
   }
 }
