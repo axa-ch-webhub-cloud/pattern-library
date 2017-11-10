@@ -145,8 +145,6 @@
 
   overflow: hidden;
 
-  transition: all $button__motion-transition-duration $button__motion-transition-easing 0s;
-
   z-index: 0;
 
   &::after {
@@ -160,8 +158,6 @@
     width: 0;
     height: 550px;
 
-    opacity: 0;
-
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: all $button__motion-transition-duration $button__motion-transition-easing 0s;
 
@@ -172,7 +168,6 @@
   &:focus {
     &::after {
       width: 110%;
-      opacity: 1;
     }
   }
 }
@@ -188,7 +183,7 @@
 
   &:hover,
   &:focus {
-    background: $color-button-bg--motion !important;
+    background: $color-button-bg--motion;
 
     @if $color-button-text--motion--hover {
       color: $color-button-text--motion--hover;

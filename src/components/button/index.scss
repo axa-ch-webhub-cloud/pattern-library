@@ -52,6 +52,8 @@
   &.a-button--ghost {
     //@include button--motion-style(ghost);
 
+    background: transparent !important;
+
     &.a-button--red {
       //@include button--motion-style(ghost--red);
     }
