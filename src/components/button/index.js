@@ -25,7 +25,7 @@ class Button extends BaseComponentGlobal {
     const size = this.getAttribute('size');
     const ghost = this.hasAttribute('ghost');
     const motion = this.hasAttribute('motion');
-    let arrow = this.hasAttribute('arrow');
+    let arrow = this.hasAttribute('arrow') || '';
     const classes = classnames('a-button', {
       [`a-button--${color}`]: color,
       [`a-button--${size}`]: size,
