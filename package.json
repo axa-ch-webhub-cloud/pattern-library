@@ -17,8 +17,8 @@
     "build-css-prod": "./node_modules/.bin/node-sass src/index.scss -o dist/",
     "build-js-dev": "npm run bundle-dev",
     "build-js-prod": "npm run bundle-prod",
-    "build-dev": "node stack/tasks/cleanup.js DEV && node stack/tasks/create-imports.js DEV && npm run build-css-dev && node stack/tasks/build.html.js DEV && npm run build-js-dev",
-    "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/create-imports.js PROD && npm run build-css-prod && npm run build-js-prod"
+    "build-dev": "node stack/tasks/cleanup.js DEV && npm run build-css-dev && node stack/tasks/build.html.js DEV && node stack/tasks/build-examples.js DEV && npm run build-js-dev",
+    "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/build-examples.js PROD && npm run build-css-prod && npm run build-js-prod"
   },
   "watch": {
     "build-dev": {
