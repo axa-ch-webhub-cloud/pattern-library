@@ -73,3 +73,10 @@
     @error "$type of #{$type} is not supported!";
   }
 }
+
+@mixin link__arrow--motion() {
+  animation-duration: $link__arrow-motion-duration;
+  animation-timing-function: $link__arrow-motion-easing;
+  animation-fill-mode: both;
+  animation-name: fadeOutRightInLeft;
+}

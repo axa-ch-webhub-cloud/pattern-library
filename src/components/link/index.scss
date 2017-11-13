@@ -38,3 +38,14 @@
 .a-link__listed {
   @include link__arrow--adjust(listed);
 }
+
+.a-link--motion {
+  &:hover,
+  &:active,
+  &:focus {
+    .a-link__arrow,
+    .a-link__listed {
+      @include link__arrow--motion();
+    }
+  }
+}
