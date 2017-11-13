@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import classnames from 'classnames';
 
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
@@ -11,12 +11,6 @@ const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="a-button__arro
 class Button extends BaseComponentGlobal {
   constructor() {
     super(styles);
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-
-    this._render();
   }
 
   _render() {
