@@ -1,6 +1,7 @@
 @import "../settings/button";
 @import "../functions/min-max";
-@import "../functions/button";
+@import "../functions/color-map";
+@import "../animations/fade-out-right-in-left";
 @import "respond";
 @import "typo";
 
@@ -52,10 +53,10 @@
 }
 
 @mixin button--color($style: default) {
-  $color-button-text: get-button-color($style, text);
-  $color-button-bg: get-button-color($style, bg);
-  $color-button-bg--hover: get-button-color($style, bg--hover);
-  $color-button-bg--disabled: get-button-color($style, bg--disabled);
+  $color-button-text: get-color($button-color, $style, text);
+  $color-button-bg: get-color($button-color, $style, bg);
+  $color-button-bg--hover: get-color($button-color, $style, bg--hover);
+  $color-button-bg--disabled: get-color($button-color, $style, bg--disabled);
 
   color: $color-button-text;
 
@@ -79,12 +80,12 @@
 }
 
 @mixin button--ghost($style: default) {
-  $color-button-bg: get-button-color($style, bg);
-  $color-button-bg--hover: get-button-color($style, bg--hover);
-  $color-button-text--ghost: get-button-color($style, text--ghost);
-  $color-button-text--ghost--hover: get-button-color($style, text--ghost--hover);
-  $color-button-bg--ghost: get-button-color($style, bg--ghost);
-  $color-button-bg--ghost--hover: get-button-color($style, bg--ghost--hover);
+  $color-button-bg: get-color($button-color, $style, bg);
+  $color-button-bg--hover: get-color($button-color, $style, bg--hover);
+  $color-button-text--ghost: get-color($button-color, $style, text--ghost);
+  $color-button-text--ghost--hover: get-color($button-color, $style, text--ghost--hover);
+  $color-button-bg--ghost: get-color($button-color, $style, bg--ghost);
+  $color-button-bg--ghost--hover: get-color($button-color, $style, bg--ghost--hover);
 
   color: $color-button-text--ghost;
 
@@ -201,9 +202,9 @@
 }
 
 @mixin button--motion-style($style: default) {
-  $color-button-bg--motion: get-button-color($style, bg--motion);
-  $color-button-bg--motion--hover: get-button-color($style, bg--motion--hover);
-  $color-button-text--motion--hover: get-button-color($style, text--motion--hover);
+  $color-button-bg--motion: get-color($button-color, $style, bg--motion);
+  $color-button-bg--motion--hover: get-color($button-color, $style, bg--motion--hover);
+  $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
 
   &::after {
     background: $color-button-bg--motion;
