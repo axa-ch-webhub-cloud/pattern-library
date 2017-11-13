@@ -1,5 +1,6 @@
 @import "../settings/link";
 @import "../functions/color-map";
+@import "../mixins/typo";
 
 @mixin link() {
   text-decoration: none;
@@ -21,5 +22,54 @@
   &:focus,
   &:active {
     color: $color-link--hover;
+  }
+}
+
+@mixin link-arrow() {
+  @include typo-14();
+
+  display: inline-block;
+  position: relative;
+
+  text-transform: uppercase;
+  font-weight: bold !important;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+@mixin link-arrow--adjust($type: default) {
+  @if $type == default {
+    padding-right: $link__arrow-size + $link__arrow-padding;
+  } @else if $type == listed {
+    padding-left: $link__arrow-size + $link__arrow-padding;
+  } @else {
+    @error "$type of #{$type} is not supported!";
+  }
+}
+
+@mixin link__arrow() {
+  display: block;
+  position: absolute;
+
+  top: 50%;
+  margin-top: -($link__arrow-size/2);
+
+  fill: currentColor;
+
+  width: $link__arrow-size;
+  height: $link__arrow-size;
+}
+
+@mixin link__arrow--adjust($type: default) {
+  @if $type == default {
+    right: 0;
+  } @else if $type == listed {
+    left: 0;
+  } @else {
+    @error "$type of #{$type} is not supported!";
   }
 }

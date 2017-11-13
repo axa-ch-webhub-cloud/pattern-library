@@ -1,5 +1,8 @@
 @import "colors";
 
+$link__arrow-size: 13px !default;
+$link__arrow-padding: 10px !default;
+
 $link-color: (
   default: (
     text: $color-link,
@@ -9,4 +12,4 @@ $link-color: (
     text: $color-link--red,
     text--hover: $color-link--red--hover
   )
-);
+) !default;
