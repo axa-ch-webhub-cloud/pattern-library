@@ -29,9 +29,9 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
       <article class="js--o-sg-section o-sg-section">
         <section class="o-sg-section__title-section">
           <h1 class="o-sg-section__title">${name.replace('/_example.html', '')}</h1>
-          <button class="js--toggle" data-toggle-preview>Show PREVIEW</button>
-          <button class="js--toggle" data-toggle-html>Show HTML</button>
-          <button class="js--toggle" data-toggle-css>Show CSS</button>
+          <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle-preview>Show PREVIEW</button>
+          <button class="js--toggle o-sg-section__button" data-toggle-html>Show HTML</button>
+          <button class="js--toggle o-sg-section__button" data-toggle-css>Show CSS</button>
         </section>
         <article class="o-sg-section--source">
           ${fs.readFileSync(filePath, 'utf8')}
