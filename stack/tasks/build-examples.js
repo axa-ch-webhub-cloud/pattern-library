@@ -3,7 +3,6 @@
 const dir = require('node-dir');
 const fs = require('fs');
 const constants = require('../constants');
-const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
 
 const ENV = process.argv[2]; // second element is the first argument.
 const CWD = process.cwd();
@@ -24,7 +23,21 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   htmlFiles.forEach((filePath) => {
     const partial = filePath.replace(`${CWD}/src/`, '').replace('_example.html', 'index.html');
     imports += `<link rel="import" href="${partial}" > \n`;
-    html += `${fs.readFileSync(filePath, 'utf8')}\n`;
+    const name = filePath.split('/').slice(-2).join('/');
+    html +=
+    `
+      <article class="js--o-sg-section o-sg-section">
+        <section class="o-sg-section__title-section">
+          <h1 class="o-sg-section__title">${name.replace('/_example.html', '')}</h1>
+          <button class="js--toggle" data-toggle-preview>Show PREVIEW</button>
+          <button class="js--toggle" data-toggle-html>Show HTML</button>
+          <button class="js--toggle" data-toggle-css>Show CSS</button>
+        </section>
+        <article class="o-sg-section--source">
+          ${fs.readFileSync(filePath, 'utf8')}
+        </article>
+      </article>
+    `;
   });
 
   const result = indexHtml.replace(/<!-- {CUT AND INJECT HERE} -->/g, imports + html);

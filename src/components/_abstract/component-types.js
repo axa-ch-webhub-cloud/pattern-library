@@ -16,13 +16,15 @@ export class BaseComponent extends HTMLElement {
     } else {
       thisDoc = cScript.ownerDocument;
     }
-    this.template = thisDoc.querySelector('template');
-    if (!this.template || (window.HTMLImports && thisDoc !== HTMLImports.importForElement(this.template))) {
-      // This element is contained in another import, skip.
-      this.template = null;
-    }
-    if (this.template) {
-      this.clone = document.importNode(this.template.content, true);
+    if (thisDoc) {
+      this.template = thisDoc.querySelector('template');
+      if (!this.template || (window.HTMLImports && thisDoc !== HTMLImports.importForElement(this.template))) {
+        // This element is contained in another import, skip.
+        this.template = null;
+      }
+      if (this.template) {
+        this.clone = document.importNode(this.template.content, true);
+      }
     }
   }
   /**

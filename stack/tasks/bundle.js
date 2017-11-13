@@ -85,7 +85,7 @@ mkdirp(`${CWD}/.tmp`, () => {
           ],
           input: filePath,
         });
-        console.log(fPath.replace('.js', '.css'))
+        console.log(fPath.replace('.js', '.css'));
         console.log(`Bundled to: ${fPath}`); // eslint-disable-line
         // or write the bundle to disk
         await bundle.write({
