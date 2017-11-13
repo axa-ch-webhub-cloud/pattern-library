@@ -14,9 +14,9 @@ The main goal here to have components that are reusable on every frontend techno
 Are you not familiar with webcomponents?
 Then stop here and read this (chapter Introduction and Specification): https://www.webcomponents.org/introduction
 
-How they are should to work in your browser go to the w3c Spec. Here the link to the custom element for example: https://www.w3.org/TR/custom-elements/
+To know how they work in your browser go to the w3c Spec. Here the link to the custom element for example: https://www.w3.org/TR/custom-elements/
 
-Hold on, dont re-invent the wheel! Check if that what you have to do already exists: https://www.webcomponents.org/  
+Hold on, don't re-invent the wheel! Check if that what you have to do already exists: https://www.webcomponents.org/  
 
 ## Setting things up with your Repo:
 
