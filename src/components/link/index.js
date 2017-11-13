@@ -50,3 +50,5 @@ class Link extends BaseComponentGlobal {
 }
 
 window.customElements.define('axa-link', Link);
+
+BaseComponentGlobal.appendGlobalStyles(styles);
