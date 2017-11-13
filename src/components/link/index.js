@@ -50,5 +50,3 @@ class Button extends BaseComponentGlobal {
 }
 
 window.customElements.define('axa-link', Button);
-
-document.body.appendChild(document.createElement('axa-link'));
