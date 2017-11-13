@@ -35,6 +35,7 @@ export class BaseComponent extends HTMLElement {
     if (this.template && this.clone) {
       this.appendChild(this.clone);
     }
+    this._render();
   }
   /**
    * _appendStyles - description
@@ -52,6 +53,16 @@ export class BaseComponent extends HTMLElement {
         el.appendChild(styleNode);
       }
     }
+  }
+
+
+  /**
+   * _render - method can be overriden and is called right after the component is connected
+   *
+   * @return {type}  description
+   */
+  _render() { // eslint-disable-line
+    return null;
   }
 }
 
@@ -77,6 +88,7 @@ export class BaseComponentShadow extends BaseComponent {
     if (this.template && this.clone) {
       shadowRoot.appendChild(this.clone);
     }
+    this._render();
   }
 }
 
