@@ -1,45 +1,3 @@
-<!DOCTYPE html>
-<html class="no-js">
-  <head>
-    <meta charset="UTF-8">
-    <title>AXA-CH Style and HTML guide</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <script>
-      !function(document){
-        var root = document.documentElement || document.getElementsByTagName("html")[0]
-        root.className = root.className.split("no-js").join("js")
-      }(document);
-    </script>
-    <script>
-      (function(document) {
-        if (!('Reflect' in window
-            && 'Promise' in window)) {
-              var e = document.createElement('script');
-              e.src = 'app/es6-polyfills.js';
-              document.head.appendChild(e);
-         }
-      })(document);
-    </script>
-    <script src="app/webcomponents-loader.js"></script>
-    <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
-    <link rel="import" href="components/top-content-bar/index.html" > 
-<link rel="import" href="components/button/index.html" > 
-<link rel="import" href="components/dummy/index.html" > 
-<axa-top-content-bar type="corporate">
-  <p class="o-top-content-bar__text">corporate stuff</p>
-  <button>get it for free</button>
-</axa-top-content-bar>
-<axa-top-content-bar type="commercial">
-  <p class="o-top-content-bar__text">commercial stuff</p>
-  <button>get it for free</button>
-</axa-top-content-bar>
-<axa-top-content-bar type="warning">
-  <p class="o-top-content-bar__text">warning stuff</p>
-  <button>get it for free</button>
-</axa-top-content-bar>
-
 <div>
   <axa-button tag="button" size="sm">Small</axa-button>
   <axa-button tag="button">Default</axa-button>
@@ -229,11 +187,3 @@
   <axa-button tag="a" color="white" ghost motion arrow>Default</axa-button>
   <axa-button tag="a" color="white" size="lg" ghost motion arrow>Large</axa-button>
 </div>
-
-<link rel="import" href="components/dummy/other-dummy/any-random-name.html">
-
-<hello-world></hello-world>
-
-
-  </body>
-</html>
