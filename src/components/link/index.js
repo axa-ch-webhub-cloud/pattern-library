@@ -11,7 +11,7 @@ const listedIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="a-link__liste
   <path d="M30.533 16.8c.333-.533.267-1.267-.2-1.667l-11.4-11.4c-1.2-1.2-3.133.667-1.867 1.867l9.133 9.133H2.666c-1.733 0-1.733 2.667 0 2.667h23.533l-9.133 9.133c-1.2 1.2.667 3.133 1.867 1.867l11.4-11.4.2-.2z"></path>
 </svg>`;
 
-class Button extends BaseComponentGlobal {
+class Link extends BaseComponentGlobal {
   constructor() {
     super(styles);
 
@@ -49,4 +49,4 @@ class Button extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-link', Button);
+window.customElements.define('axa-link', Link);
