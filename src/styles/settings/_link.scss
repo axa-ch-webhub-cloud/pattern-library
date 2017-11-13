@@ -14,5 +14,9 @@ $link-color: (
   red: (
     text: $color-link--red,
     text--hover: $color-link--red--hover
+  ),
+  white: (
+    text: $color-link--white,
+    text--hover: $color-link--white--hover
   )
 ) !default;
