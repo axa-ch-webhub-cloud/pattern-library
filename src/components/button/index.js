@@ -27,10 +27,10 @@ class Button extends BaseComponentGlobal {
       'a-button--ghost': ghost,
       'a-button--motion': motion,
       'a-button--arrow': arrow,
-    })
+    });
 
     if (arrow) {
-      arrow = arrowIcon
+      arrow = arrowIcon;
     }
 
     if (tag === 'button') {
