@@ -11,10 +11,12 @@ const arrowIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="a-button__arro
 class Button extends BaseComponentGlobal {
   constructor() {
     super(styles);
+
+    this.initialInnerHTML = this.innerHTML;
   }
 
   _render() {
-    const initialInnerHTML = this.innerHTML;
+    const initialInnerHTML = this.initialInnerHTML;
     const tag = this.getAttribute('tag') || 'button';
     const color = this.getAttribute('color');
     const size = this.getAttribute('size');
