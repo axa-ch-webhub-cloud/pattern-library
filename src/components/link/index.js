@@ -14,36 +14,6 @@ class Button extends BaseComponentGlobal {
   }
 
   _render() {
-    const initialInnerHTML = this.innerHTML;
-    const tag = this.getAttribute('tag') || 'button';
-    const color = this.getAttribute('color');
-    const size = this.getAttribute('size');
-    const ghost = this.hasAttribute('ghost');
-    const motion = this.hasAttribute('motion');
-    let arrow = this.hasAttribute('arrow') || '';
-    const classes = classnames('a-button', {
-      [`a-button--${color}`]: color,
-      [`a-button--${size}`]: size,
-      'a-button--ghost': ghost,
-      'a-button--motion': motion,
-      'a-button--arrow': arrow,
-    });
-
-    if (arrow) {
-      arrow = arrowIcon;
-    }
-
-    if (tag === 'button') {
-      this.innerHTML = `<button type="button" class="${classes}">
-        ${initialInnerHTML}
-        ${arrow}
-      </button>`;
-    } else if (tag === 'a') {
-      this.innerHTML = `<a href="#" class="${classes}">
-        ${initialInnerHTML}
-        ${arrow}
-      </a>`;
-    }
   }
 }
 

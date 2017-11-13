@@ -1,0 +1,12 @@
+@import "colors";
+
+$link-color: (
+  default: (
+    text: $color-link,
+    text--hover: $color-link--hover
+  ),
+  red: (
+    text: $color-link--red,
+    text--hover: $color-link--red--hover
+  )
+);

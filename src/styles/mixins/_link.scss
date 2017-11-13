@@ -1,0 +1,25 @@
+@import "../settings/link";
+@import "../functions/color-map";
+
+@mixin link() {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+}
+
+@mixin link-color($style: default) {
+  $color-link: get-color($link-color, $style, text);
+  $color-link--hover: get-color($link-color, $style, text--hover);
+
+  color: $color-link;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link--hover;
+  }
+}
