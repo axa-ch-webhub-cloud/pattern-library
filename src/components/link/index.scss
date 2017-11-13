@@ -1,0 +1,33 @@
+@import "../../styles/settings/colors";
+
+.a-link {
+  color: $color-link;
+
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link--hover;
+
+    text-decoration: underline;
+  }
+}
+
+.a-link--red {
+  color: $color-link--red;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link--red--hover;
+  }
+}
+
+.a-link__icon {
+
+}
+
+.a-link__arrow {
+
+}
