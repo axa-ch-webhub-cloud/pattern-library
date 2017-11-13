@@ -13,11 +13,11 @@ The main goal here to have components that are reusable on every frontend techno
 
 ## Setting things up with your Repo:
 
-Do you have angular >= 2? Here a helpfull link for you: https://www.sitepen.com/blog/2017/09/14/using-web-components-with-angular/
+Do you love *angular >= 2*? Here a helpfull link for you: https://www.sitepen.com/blog/2017/09/14/using-web-components-with-angular/
 
-Do you have React? Here a helpfull link for you: https://github.com/webcomponents/react-integration
+Do you love *React*? Here a helpfull link for you: https://github.com/webcomponents/react-integration
 
-Do you have Vue? Here a helpfull link for you: https://alligator.io/vuejs/vue-integrate-web-components/
+Do you love *Vue*? Here a helpfull link for you: https://alligator.io/vuejs/vue-integrate-web-components/
 
 ## Adding your first Style-Guide component:
 Super easy: just go to `src/components` and create a new folder having a `index.scss`, `index.html` and `index.js`. Take the dummy component as reference and there you go, your component is done and ready in the styleguide! No other steps required! No include in global `index.js` or `index.scss`. All done.
