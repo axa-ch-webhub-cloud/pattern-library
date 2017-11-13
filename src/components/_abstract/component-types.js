@@ -66,6 +66,13 @@ export class BaseComponent extends HTMLElement {
   _render() { // eslint-disable-line
     return null;
   }
+
+  static uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
+      return v.toString(16);
+    });
+  }
 }
 
 /**
@@ -103,14 +110,24 @@ export class BaseComponentShadow extends BaseComponent {
  */
 export class BaseComponentGlobal extends BaseComponent {
   _appendStyles() {
-    if (this._styles) {
-      if (!memory[this._styles]) {
+    BaseComponentGlobal.appendGlobalStyles(this._styles, this.nodeName);
+  }
+  /**
+   * @static appendGlobalStyles - description
+   *
+   * @param  {type} styles description
+   * @param  {type} nodeName description
+   * @return {type}        description
+   */
+  static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
+    if (styles) {
+      if (!memory[styles]) {
         const styleNode = document.createElement('style');
-        const styleText = document.createTextNode(this._styles);
+        const styleText = document.createTextNode(styles);
         styleNode.appendChild(styleText);
-        styleNode.setAttribute('data-c-name', this.nodeName.toLowerCase());
+        styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
         document.querySelector('head').appendChild(styleNode);
-        memory[this._styles] = true;
+        memory[styles] = true;
       }
     }
   }
