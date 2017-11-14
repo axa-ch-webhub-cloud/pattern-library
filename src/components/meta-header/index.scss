@@ -1,8 +1,9 @@
 @import "../../styles/settings/colors";
+@import "settings/meta-header";
 
 .o-meta-header {
   display: block;
 
-  background: $color-prim-gray-alabaster;
-  border-top: 2px solid $color-axa-blue;
+  background: $meta-header-bg;
+  border-top: $meta-header-border-top-width solid $meta-header-border-top-color;
 }
