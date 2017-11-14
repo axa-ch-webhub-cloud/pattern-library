@@ -1,9 +1,9 @@
 @import "../settings/button";
-@import "../functions/min-max";
-@import "../functions/color-map";
-@import "../animations/fade-out-right-in-left";
-@import "respond";
-@import "typo";
+@import "../../../styles/functions/min-max";
+@import "../../../styles/functions/color-map";
+@import "../../../styles/animations/fade-out-right-in-left";
+@import "../../../styles/mixins/respond";
+@import "../../../styles/mixins/typo";
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
