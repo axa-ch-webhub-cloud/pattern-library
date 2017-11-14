@@ -36,14 +36,14 @@
 
   color: $meta-header__link-color;
 
-  padding: 0 $meta-header__link-x-padding;
+  padding: 10px $meta-header__link-x-padding;
 
   &:hover,
   &:active,
   &:focus {
     text-decoration: none;
 
-    color: $meta-header__link-color;
+    color: $meta-header__link-color--hover;
     background: $meta-header__link-bg--hover;
   }
 }
