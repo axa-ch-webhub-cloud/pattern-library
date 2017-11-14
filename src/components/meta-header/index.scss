@@ -35,6 +35,8 @@
   text-transform: uppercase;
 
   color: $meta-header__link-color;
+  // @todo: keep until qestion regarding custom font styles is resolved
+  font-weight: 600 !important;
 
   padding: 10px $meta-header__link-x-padding;
 
