@@ -112,8 +112,10 @@ export class BaseComponentGlobal extends BaseComponent {
   _appendStyles() {
     BaseComponentGlobal.appendGlobalStyles(this._styles, this.nodeName);
   }
+
   /**
-   * @static appendGlobalStyles - description
+   * @static appendGlobalStyles - This allows you to add styles also without having to
+   * append the custom element into the dom
    *
    * @param  {type} styles description
    * @param  {type} nodeName description
