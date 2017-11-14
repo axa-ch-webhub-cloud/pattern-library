@@ -1,13 +1,17 @@
+@import "settings/main-navigation";
 @import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/unstyle-list";
 
 .o-main-navigation {
   display: block;
 
-  border-bottom: 2px solid $color-prim-gray-mercury;
+  border-bottom: $main-navigation-border-bottom-width solid $main-navigation-border-bottom-color;
 }
 
 .o-main-navigation__box {
-
+  @include make-container();
+  @include make-container-max-widths();
 }
 
 .o-main-navigation__logo-link {
@@ -17,6 +21,10 @@
 .o-main-navigation__logo-img {
   display: block;
 
-  width: 55px;
-  height: 55px;
+  width: $main-navigation__logo-img-size;
+  height: $main-navigation__logo-img-size;
+}
+
+.o-main-navigation__list {
+  @include unstyle-list();
 }
