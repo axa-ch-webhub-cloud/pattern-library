@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
-class SubHeader extends BaseComponentGlobal {
+class SubNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -10,16 +10,16 @@ class SubHeader extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'o-sub-header__box';
+    box.className = 'o-sub-navigation__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `o-sub-header o-sub-header--${type}`;
+    this.className = `o-sub-navigation o-sub-navigation--${type}`;
 
     this.appendChild(box);
   }
 }
 
-window.customElements.define('axa-sub-header', SubHeader);
+window.customElements.define('axa-sub-navigation', SubNavigation);
