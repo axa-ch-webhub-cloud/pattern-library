@@ -58,6 +58,8 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     let previewName = name.replace('/_preview.html', '');
 
+    const orginalName = previewName;
+
     let atomicName = '';
     switch (previewName.substring(0, 2)) {
       case 'a-':
@@ -84,7 +86,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
       <style>
         ${styles}
       </style>
-      <article class="js--section o-sg-section">
+      <article class="js--section o-sg-section" id="${orginalName}">
         <section class="o-sg-section__section o-sg-section__section--title">
           <h1 class="o-sg-section__title">
             <strong class="o-sg-section__title--strong">${atomicName}</strong>
