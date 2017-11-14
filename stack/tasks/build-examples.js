@@ -4,9 +4,11 @@ const dir = require('node-dir');
 const fs = require('fs');
 const constants = require('../constants');
 const nsh = require('node-syntaxhighlighter');
+const sass = require('node-sass');
 
 // const jsLang = nsh.getLanguage('js');
 const htmlLang = nsh.getLanguage('html');
+const cssLang = nsh.getLanguage('css');
 const highlightStyles = nsh.getStyles();
 
 const ENV = process.argv[2]; // second element is the first argument.
@@ -81,6 +83,11 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
       example = preview.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
+    const resultCss = sass.renderSync({
+      file: filePath.replace('_preview.html', 'index.scss'),
+      outputStyle: 'expanded',
+    });
+
     html +=
     `
       <style>
@@ -100,7 +107,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
           ${preview}
         </article>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--html">${nsh.highlight(example, htmlLang)}</pre>
-        <pre class="js--section-css o-sg-section__section o-sg-section__section--css"></pre>
+        <pre class="js--section-css o-sg-section__section o-sg-section__section--css">${nsh.highlight(resultCss.css.toString(), cssLang)}</pre>
       </article>
     `;
   });

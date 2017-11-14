@@ -54,7 +54,7 @@ async function buildApp() {
     ...inputOptions,
     input: `${CWD}/src/app/app.js`,
   });
-  const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`
+  const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`;
   console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
@@ -105,7 +105,7 @@ mkdirp(`${CWD}/.tmp`, () => {
           ],
           input: filePath,
         });
-        console.log(fPath.replace('.js', '.css'));
+        console.log(fPath.replace('.js', '.css')); // eslint-disable-line
         console.log(`Bundled to: ${fPath}`); // eslint-disable-line
         // or write the bundle to disk
         await bundle.write({
