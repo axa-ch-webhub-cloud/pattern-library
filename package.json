@@ -59,6 +59,7 @@
     "mkdirp": "~0.5.1",
     "node-dir": "^0.1.17",
     "node-sass": "^4.5.3",
+    "node-syntaxhighlighter": "^0.8.1",
     "npm-watch": "~0.3.0",
     "parallelshell": "~3.0.2",
     "rollup": "^0.50.0",

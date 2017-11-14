@@ -3,6 +3,11 @@
 const dir = require('node-dir');
 const fs = require('fs');
 const constants = require('../constants');
+const nsh = require('node-syntaxhighlighter');
+
+// const jsLang = nsh.getLanguage('js');
+const htmlLang = nsh.getLanguage('html');
+const highlightStyles = nsh.getStyles();
 
 const ENV = process.argv[2]; // second element is the first argument.
 const CWD = process.cwd();
@@ -26,24 +31,40 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let imports = '';
 
   const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
+  const stylesPath = highlightStyles.filter(style => style.name === 'eclipse')[0].sourcePath;
+  const styles = fs.readFileSync(stylesPath, 'utf8');
 
   previewHtmls.forEach((filePath, index) => {
     const partial = filePath.replace(`${CWD}/src/`, '').replace('_preview.html', 'index.html');
     imports += `<link rel="import" href="${partial}" > \n`;
     const name = filePath.split('/').slice(-2).join('/');
+
+    let example = fs.readFileSync(exampleHtmls[index], 'utf8');
+    const preview = fs.readFileSync(filePath, 'utf8');
+
+    const previewName = name.replace('/_preview.html', '');
+
+    if (example.trim(' ') === '<!--take-preview-->') {
+      example = preview.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
     html +=
     `
-      <article class="js--o-sg-section o-sg-section">
+      <style>
+        ${styles}
+      </style>
+      <article class="js--section o-sg-section">
         <section class="o-sg-section__section o-sg-section__section--title">
-          <h1 class="o-sg-section__title">${name.replace('/_preview.html', '')}</h1>
-          <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle-preview>Show PREVIEW</button>
-          <button class="js--toggle o-sg-section__button" data-toggle-html>Show HTML</button>
-          <button class="js--toggle o-sg-section__button" data-toggle-css>Show CSS</button>
+          <h1 class="o-sg-section__title">${previewName}</h1>
+          <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Show PREVIEW</button>
+          <button class="js--toggle o-sg-section__button" data-toggle="html">Show HTML</button>
+          <button class="js--toggle o-sg-section__button" data-toggle="css">Show CSS</button>
         </section>
         <article class="js--section-source o-sg-section__section o-sg-section__section--source o-sg-section__section--visible">
-          ${fs.readFileSync(filePath, 'utf8')}
+          ${preview}
         </article>
-        <pre class="js--section-html o-sg-section__section o-sg-section__section--html">${fs.readFileSync(exampleHtmls[index], 'utf8').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+        <pre class="js--section-html o-sg-section__section o-sg-section__section--html">${nsh.highlight(example, htmlLang)}</pre>
+        <pre class="js--section-css o-sg-section__section o-sg-section__section--css"></pre>
       </article>
     `;
   });
