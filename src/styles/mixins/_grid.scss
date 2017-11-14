@@ -9,8 +9,8 @@
 @import "../settings/grids";
 @import "respond";
 
-@mixin make-container() {
-  $grid-gutter-half: ($grid-gutter-width / 2);
+@mixin make-container($gutter-width: $grid-gutter-width) {
+  $grid-gutter-half: ($gutter-width / 2);
 
   width: 100%;
   padding-right: $grid-gutter-half;
@@ -29,8 +29,8 @@
   }
 }
 
-@mixin make-row() {
-  $grid-gutter-half: ($grid-gutter-width / -2);
+@mixin make-row($gutter-width: $grid-gutter-width) {
+  $grid-gutter-half: ($gutter-width / -2);
 
   display: flex;
   flex-wrap: wrap;
@@ -38,8 +38,8 @@
   margin-left: $grid-gutter-half;
 }
 
-@mixin make-col-ready() {
-  $grid-gutter-half: ($grid-gutter-width / 2);
+@mixin make-col-ready($gutter-width: $grid-gutter-width) {
+  $grid-gutter-half: ($gutter-width / 2);
 
   position: relative;
   // Prevent columns from becoming too narrow when at smaller grid tiers by
