@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
-class MainHeader extends BaseComponentGlobal {
+class MainNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -10,16 +10,16 @@ class MainHeader extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'o-main-header__box';
+    box.className = 'o-main-navigation__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `o-main-header o-main-header--${type}`;
+    this.className = `o-main-navigation o-main-navigation--${type}`;
 
     this.appendChild(box);
   }
 }
 
-window.customElements.define('axa-main-header', MainHeader);
+window.customElements.define('axa-main-navigation', MainNavigation);
