@@ -7,6 +7,7 @@
 
   background: $meta-header-bg;
   border-top: $meta-header-border-top-width solid $meta-header-border-top-color;
+  border-bottom: $meta-header-border-bottom-width solid $meta-header-border-bottom-color;
 }
 
 .o-meta-header__box {
@@ -28,4 +29,17 @@
 
 .o-meta-header__link {
   text-transform: uppercase;
+
+  color: $meta-header__link-color;
+
+  padding: 0 $meta-header__link-x-padding;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+
+    color: $meta-header__link-color;
+    background: $meta-header__link-bg--hover;
+  }
 }
