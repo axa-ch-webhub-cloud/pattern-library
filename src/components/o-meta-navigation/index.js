@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
-class MetaHeader extends BaseComponentGlobal {
+class MetaNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -10,16 +10,16 @@ class MetaHeader extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'o-meta-header__box';
+    box.className = 'o-meta-navigation__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `o-meta-header o-meta-header--${type}`;
+    this.className = `o-meta-navigation o-meta-navigation--${type}`;
 
     this.appendChild(box);
   }
 }
 
-window.customElements.define('axa-meta-header', MetaHeader);
+window.customElements.define('axa-meta-navigation', MetaNavigation);

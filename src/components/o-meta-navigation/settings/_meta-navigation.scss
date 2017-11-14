@@ -1,0 +1,12 @@
+@import "../../../styles/settings/colors";
+
+$meta-navigation-bg: $color-prim-gray-alabaster !default;
+$meta-navigation-border-top-width: 2px !default;
+$meta-navigation-border-top-color: $color-axa-blue !default;
+$meta-navigation-border-bottom-width: 1px !default;
+$meta-navigation-border-bottom-color: #e8e8e8 !default;
+
+$meta-navigation__link-x-padding: 15px;
+$meta-navigation__link-color: $color-prim-gray-dusty !default;
+$meta-navigation__link-color--hover: $color-prim-gray !default;
+$meta-navigation__link-bg--hover: $color-prim-white !default;
