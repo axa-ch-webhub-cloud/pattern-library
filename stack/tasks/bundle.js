@@ -31,19 +31,39 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  file: `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/es6-polyfills.js`,
   format: 'iife',
   name: 'StyleGuideWebComponent',
 };
 
+// @TODO: dry principle with buildApp
 async function buildPolyfills() {
   const bundle = await rollup.rollup(inputOptions);
-  console.log(bundle.imports); // eslint-disable-line
+  const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/es6-polyfills.js`;
+  console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
   // or write the bundle to disk
-  await bundle.write(outputOptions);
+  await bundle.write({
+    ...outputOptions,
+    file,
+  });
 }
 
 buildPolyfills();
+
+async function buildApp() {
+  const bundle = await rollup.rollup({
+    ...inputOptions,
+    input: `${CWD}/src/app/app.js`,
+  });
+  const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`
+  console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
+  // or write the bundle to disk
+  await bundle.write({
+    ...outputOptions,
+    file,
+  });
+}
+
+buildApp();
 
 // vendors: @TODO
 

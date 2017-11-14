@@ -1,30 +1,44 @@
 @import "../styles/settings/colors";
 
 body {
-  background: $color-prim-gray-wild-sand;
+  background: $color-prim-gray-alabaster;
 }
 
 $sg-white: $color-prim-white;
 $bg-button: $color-axa-blue;
 
 .o-sg-section {
-  margin: 3% 5% 0;
-  border: 1px dashed gray;
-  background-color: $sg-white;
-
   &:last-child {
     margin-bottom: 20%;
   }
 }
 
-@media only screen and (max-width: 680px) {
+.o-sg-section__section {
+  display: none;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.o-sg-section__section--source {
+  background-color: $sg-white;
+  border-bottom: 2px solid $color-axa-blue;
+  border-top: 2px solid $color-axa-blue;
+
+  margin-top: -2px;
+}
+
+.o-sg-section__section--visible {
+  display: block;
+}
+
+@media only screen and (max-width: 900px) {
   .o-sg-section {
-    margin: 3% 1% 0;
+    margin: 3% 0;
   }
 }
 
 .o-sg-section__title {
   margin-right: 20px;
+  padding: 5px 0;
 
   &::first-letter {
 
@@ -32,17 +46,22 @@ $bg-button: $color-axa-blue;
   }
 }
 
-.o-sg-section__title-section {
-  border-bottom: 2px solid gray;
-  margin: 1% 0;
+.o-sg-section__section--title {
+  border: 1px solid $color-axa-blue;
+  background-color: $color-prim-gray-wild-sand;
+  border-bottom: 0;
+  margin: 3% auto 0;
   padding: 0 1%;
+  height: 110px;
+  z-index: 3;
+  position: relative;
+  box-shadow: none;
 
-  * {
-    float: left;
-    height: 30px;
-    margin-left: 5px;
-    margin-bottom: 10px;
-  }
+  max-width: 1024px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &::after {
     content: "";
