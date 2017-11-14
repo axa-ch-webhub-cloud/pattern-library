@@ -9,6 +9,10 @@
   @include link-color(red);
 }
 
+.a-link--white {
+  @include link-color(white);
+}
+
 .a-link--arrow,
 .a-link--listed {
   @include link-arrow();

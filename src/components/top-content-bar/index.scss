@@ -7,6 +7,15 @@
   display: block;
 
   color: $color-prim-white;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  @include respond-up(xs) {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
 }
 
 .o-top-content-bar,
@@ -38,7 +47,16 @@
 
 .o-top-content-bar__text {
   @include typo-13();
+
+  @include respond-up(xs) {
+    margin-right: 24px;
+  }
 }
 
 .o-top-content-bar__button {
+  margin-top: 10px;
+
+  @include respond-up(xs) {
+    margin-top: 0;
+  }
 }
