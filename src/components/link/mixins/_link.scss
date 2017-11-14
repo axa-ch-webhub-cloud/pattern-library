@@ -1,6 +1,6 @@
 @import "../settings/link";
-@import "../functions/color-map";
-@import "../mixins/typo";
+@import "../../../styles/functions/color-map";
+@import "../../../styles/mixins/typo";
 
 @mixin link() {
   text-decoration: none;
