@@ -1,4 +1,4 @@
-@import "../../styles/settings/colors";
+@import "settings/top-content-bar";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/container";
 @import "../../styles/mixins/respond";
@@ -8,12 +8,12 @@
 
   color: $color-prim-white;
 
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: $top-content-bar-y-padding;
+  padding-bottom: $top-content-bar-y-padding;
 
   @include respond-up(xs) {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: $top-content-bar-y-padding--xs;
+    padding-bottom: $top-content-bar-y-padding--xs;
 
   }
 }
@@ -49,12 +49,12 @@
   @include typo-13();
 
   @include respond-up(xs) {
-    margin-right: 24px;
+    margin-right: $top-content-bar__text-margin-right;
   }
 }
 
 .o-top-content-bar__button {
-  margin-top: 10px;
+  margin-top: $top-content-bar__button-margin-top;
 
   @include respond-up(xs) {
     margin-top: 0;
