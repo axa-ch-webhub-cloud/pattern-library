@@ -45,22 +45,24 @@ $color-state-green-malachite: #1cc54e !default;
 $color-state-red-shy-tomato: #c91432 !default;
 
 // texts
-$color-text: $color-prim-gray-mine-shaft  !default;
-$color-text-secondary: $color-prim-blue-azure  !default;
-$color-text--highlight: $color-prim-white  !default;
-$color-text-secondary--highlight: $color-axa-blue  !default;
+$color-text: $color-prim-gray-mine-shaft !default;
+$color-text-secondary: $color-prim-blue-azure !default;
+$color-text--highlight: $color-prim-white !default;
+$color-text-secondary--highlight: $color-axa-blue !default;
 
 // links
-$color-link: $color-axa-blue  !default;
-$color-link--hover: $color-prim-blue-deep-sapphire  !default;
-$color-link--red: $color-prim-red-burnt-sienna  !default;
-$color-link--red--hover: $color-prim-red-flamingo  !default;
+$color-link: $color-axa-blue !default;
+$color-link--hover: $color-prim-blue-deep-sapphire !default;
+$color-link--red: $color-prim-red-burnt-sienna !default;
+$color-link--red--hover: $color-prim-red-flamingo !default;
+$color-link--white: $color-prim-white !default;
+$color-link--white--hover: $color-prim-gray-wild-sand !default;
 
 // backgrounds
-$color-bg: $color-prim-blue-dark-indigo  !default;
-$color-bg--darker: $color-axa-blue  !default;
-$color-bg--gray: $color-prim-gray-wild-sand  !default;
-$color-bg--white: $color-prim-white  !default;
+$color-bg: $color-prim-blue-dark-indigo !default;
+$color-bg--darker: $color-axa-blue !default;
+$color-bg--gray: $color-prim-gray-wild-sand !default;
+$color-bg--white: $color-prim-white !default;
 
 // buttons
 $color-button-text: $color-prim-white !default;
