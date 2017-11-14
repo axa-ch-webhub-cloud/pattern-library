@@ -1,0 +1,68 @@
+// as referenced in https://design.axa.com/web-guidelines/structure#grids
+// and explained at https://getbootstrap.com/docs/4.0/layout/grid/
+// copied from https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss
+
+/// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+@import "../settings/grids";
+@import "respond";
+
+@mixin make-container() {
+  $grid-gutter-half: ($grid-gutter-width / 2);
+
+  width: 100%;
+  padding-right: $grid-gutter-half;
+  padding-left: $grid-gutter-half;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include respond-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+@mixin make-row() {
+  $grid-gutter-half: ($grid-gutter-width / -2);
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: $grid-gutter-half;
+  margin-left: $grid-gutter-half;
+}
+
+@mixin make-col-ready() {
+  $grid-gutter-half: ($grid-gutter-width / 2);
+
+  position: relative;
+  // Prevent columns from becoming too narrow when at smaller grid tiers by
+  // always setting `width: 100%;`. This works because we use `flex` values
+  // later on to override this initial width.
+  width: 100%;
+  min-height: 1px; // Prevent collapsing
+  padding-right: $grid-gutter-half;
+  padding-left: $grid-gutter-half;
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  $column-width: percentage($size / $columns);
+
+  flex: 0 0 $column-width;
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-width: $column-width;
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+
+  margin-left: if($num == 0, 0, percentage($num));
+}
