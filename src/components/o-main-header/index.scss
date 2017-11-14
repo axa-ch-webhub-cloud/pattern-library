@@ -1,4 +1,12 @@
+@import "../../styles/settings/colors";
+
 .o-main-header {
+  display: block;
+
+  border-bottom: 2px solid $color-prim-gray-mercury;
+}
+
+.o-main-header__box {
 
 }
 
