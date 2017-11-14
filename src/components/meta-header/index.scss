@@ -1,5 +1,6 @@
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
 @import "settings/meta-header";
 
 .o-meta-header {
@@ -28,6 +29,9 @@
 }
 
 .o-meta-header__link {
+  @include typo-13();
+
+  display: block;
   text-transform: uppercase;
 
   color: $meta-header__link-color;
