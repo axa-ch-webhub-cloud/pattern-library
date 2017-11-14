@@ -15,6 +15,17 @@ const CWD = process.cwd();
 const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
 const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
 
+const sorter = (a, b) => {
+  if (a > b) {
+    return 1;
+  }
+  if (a < b) {
+    return -1;
+  }
+  // a muss gleich b sein
+  return 0;
+};
+
 dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let previewHtmls = [];
   let exampleHtmls = [];
@@ -34,6 +45,9 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   const stylesPath = highlightStyles.filter(style => style.name === 'eclipse')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
 
+  previewHtmls = previewHtmls.sort(sorter);
+  exampleHtmls = exampleHtmls.sort(sorter);
+
   previewHtmls.forEach((filePath, index) => {
     const partial = filePath.replace(`${CWD}/src/`, '').replace('_preview.html', 'index.html');
     imports += `<link rel="import" href="${partial}" > \n`;
@@ -42,7 +56,24 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     let example = fs.readFileSync(exampleHtmls[index], 'utf8');
     const preview = fs.readFileSync(filePath, 'utf8');
 
-    const previewName = name.replace('/_preview.html', '');
+    let previewName = name.replace('/_preview.html', '');
+
+    let atomicName = '';
+    switch (previewName.substring(0, 2)) {
+      case 'a-':
+        atomicName = 'Atom';
+        break;
+      case 'm-':
+        atomicName = 'Molecule';
+        break;
+      case 'o-':
+        atomicName = 'Organism';
+        break;
+      default:
+        atomicName = 'Organism';
+    }
+
+    previewName = previewName.substring(2, previewName.length);
 
     if (example.trim(' ') === '<!--take-preview-->') {
       example = preview.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -55,7 +86,10 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
       </style>
       <article class="js--section o-sg-section">
         <section class="o-sg-section__section o-sg-section__section--title">
-          <h1 class="o-sg-section__title">${previewName}</h1>
+          <h1 class="o-sg-section__title">
+            <strong class="o-sg-section__title--strong">${atomicName}</strong>
+            <span class="o-sg-section__title--normal">${previewName}</span>
+          </h1>
           <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Show PREVIEW</button>
           <button class="js--toggle o-sg-section__button" data-toggle="html">Show HTML</button>
           <button class="js--toggle o-sg-section__button" data-toggle="css">Show CSS</button>

@@ -33,11 +33,10 @@ $bg-button: $color-axa-blue;
 .o-sg-section__title {
   margin-right: 20px;
   padding: 5px 0;
+}
 
-  &::first-letter {
-
-    text-transform: uppercase;
-  }
+.o-sg-section__title--strong {
+  text-transform: uppercase;
 }
 
 .o-sg-section__section--title {
