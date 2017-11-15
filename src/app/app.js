@@ -93,5 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   syncHashWithAtomicChoice();
-  window.onhashchange = syncHashWithAtomicChoice;
+  window.onhashchange = () => {
+    window.location.reload();
+  };
 });
