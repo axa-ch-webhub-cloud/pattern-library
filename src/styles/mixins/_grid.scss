@@ -30,16 +30,20 @@
 }
 
 @mixin make-row($gutter-width: $grid-gutter-width) {
-  $grid-gutter-half: ($gutter-width / -2);
+  @if type_of($gutter-width) == number {
+    $gutter-width: ($gutter-width / -2);
+  }
 
   display: flex;
   flex-wrap: wrap;
-  margin-right: $grid-gutter-half;
-  margin-left: $grid-gutter-half;
+  margin-right: $gutter-width;
+  margin-left: $gutter-width;
 }
 
 @mixin make-col-ready($gutter-width: $grid-gutter-width) {
-  $grid-gutter-half: ($gutter-width / 2);
+  @if type_of($gutter-width) == number {
+    $gutter-width: ($gutter-width / 2);
+  }
 
   position: relative;
   // Prevent columns from becoming too narrow when at smaller grid tiers by
@@ -47,8 +51,8 @@
   // later on to override this initial width.
   width: 100%;
   min-height: 1px; // Prevent collapsing
-  padding-right: $grid-gutter-half;
-  padding-left: $grid-gutter-half;
+  padding-right: $gutter-width;
+  padding-left: $gutter-width;
 }
 
 @mixin make-col($size, $columns: $grid-columns) {
