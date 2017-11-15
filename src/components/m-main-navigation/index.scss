@@ -30,6 +30,10 @@
   @include unstyle-list();
 }
 
+.m-main-navigation__list-item {
+
+}
+
 .m-main-navigation__list-link {
   @include typo-13--semibold();
 
