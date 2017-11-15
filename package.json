@@ -6,7 +6,6 @@
   "scripts": {
     "test": "./node_modules/.bin/eslint src/",
     "start": "node stack/server.js",
-    "preinstall": "npm cache verify",
     "postinstall": "npm rebuild node-sass",
     "watch": "npm-watch build-dev",
     "serve": "parallelshell \"npm start DEV\" \"npm run watch\"",
