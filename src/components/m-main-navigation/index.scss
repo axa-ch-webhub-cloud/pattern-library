@@ -73,12 +73,21 @@
 
 .m-main-navigation__form {
   display: block;
+
+  border-left: 1px solid $color-prim-gray-silver;
+  padding: 6px 20px 6px;
+  margin-left: 20px;
 }
 
 .m-main-navigation__search {
-
+  display: none;
 }
 
 .m-main-navigation__search-icon {
+  display: block;
+  width: 25px;
+  height: 25px;
 
+  color: $color-prim-gray;
+  fill: currentColor;
 }
