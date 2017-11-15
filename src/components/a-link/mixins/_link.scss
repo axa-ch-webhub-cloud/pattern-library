@@ -1,0 +1,82 @@
+@import "../settings/link";
+@import "../../../styles/functions/color-map";
+@import "../../../styles/mixins/typo";
+
+@mixin link() {
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+}
+
+@mixin link-color($style: default) {
+  $color-link: get-color($link-color, $style, text);
+  $color-link--hover: get-color($link-color, $style, text--hover);
+
+  color: $color-link;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-link--hover;
+  }
+}
+
+@mixin link-arrow() {
+  @include typo-14();
+
+  display: inline-block;
+  position: relative;
+
+  text-transform: uppercase;
+  font-weight: bold !important;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+@mixin link-arrow--adjust($type: default) {
+  @if $type == default {
+    padding-right: $link__arrow-size + $link__arrow-padding;
+  } @else if $type == listed {
+    padding-left: $link__arrow-size + $link__arrow-padding;
+  } @else {
+    @error "$type of #{$type} is not supported!";
+  }
+}
+
+@mixin link__arrow() {
+  display: block;
+  position: absolute;
+
+  top: 50%;
+  margin-top: -($link__arrow-size/2);
+
+  fill: currentColor;
+
+  width: $link__arrow-size;
+  height: $link__arrow-size;
+}
+
+@mixin link__arrow--adjust($type: default) {
+  @if $type == default {
+    right: 0;
+  } @else if $type == listed {
+    left: 0;
+  } @else {
+    @error "$type of #{$type} is not supported!";
+  }
+}
+
+@mixin link__arrow--motion() {
+  animation-duration: $link__arrow-motion-duration;
+  animation-timing-function: $link__arrow-motion-easing;
+  animation-fill-mode: both;
+  animation-name: fadeOutRightInLeft;
+}

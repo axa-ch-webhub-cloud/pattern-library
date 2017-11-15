@@ -1,0 +1,104 @@
+@import "../../styles/settings/colors";
+@import "mixins/button";
+
+// Buttons as specified at
+// https://design.axa.com/web-guidelines/buttons-and-links
+
+.a-button {
+  @include button();
+  @include button--color();
+}
+
+.a-button__icon {
+  @include button__icon();
+}
+
+.a-button__arrow {
+  @include button__arrow();
+  @include button__arrow-right();
+}
+
+.a-button--red {
+  @include button--color(red);
+}
+
+.a-button--white {
+  @include button--color(white);
+}
+
+.a-button--ghost {
+  @include button--ghost();
+
+  &.a-button--red {
+    @include button--ghost(red);
+  }
+
+  &.a-button--white {
+    @include button--ghost(white);
+  }
+}
+
+.a-button--motion {
+  @include button--motion();
+  @include button--motion-style();
+
+  &.a-button--red {
+    @include button--motion-style(red);
+  }
+
+  &.a-button--white {
+    @include button--motion-style(white);
+  }
+
+  &.a-button--ghost {
+    @include button--motion--ghost();
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    .a-button__arrow {
+      @include button__arrow--motion();
+    }
+  }
+}
+
+.a-button--arrow {
+  @include button--arrow-adjust();
+}
+
+.a-button--x-pad-20 {
+  $x-pad: 20px;
+
+  @include button--x-padding($x-pad);
+
+  &.a-button--arrow {
+    @include button--arrow-adjust($x-pad);
+  }
+
+  .a-button__arrow {
+    @include button__arrow-right($x-pad);
+  }
+}
+
+.a-button--x-pad-40 {
+  $x-pad: 40px;
+
+  @include button--x-padding($x-pad);
+
+  &.a-button--arrow {
+    @include button--arrow-adjust($x-pad);
+  }
+
+  .a-button__arrow {
+    @include button__arrow-right($x-pad);
+  }
+}
+
+.a-button--sm {
+  @include button--sm();
+}
+
+.a-button--lg {
+  @include button--lg();
+}

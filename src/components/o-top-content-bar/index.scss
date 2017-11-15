@@ -1,0 +1,62 @@
+@import "settings/top-content-bar";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/container";
+@import "../../styles/mixins/respond";
+
+.o-top-content-bar {
+  display: block;
+
+  color: $color-prim-white;
+
+  padding-top: $top-content-bar-y-padding;
+  padding-bottom: $top-content-bar-y-padding;
+
+  @include respond-up(xs) {
+    padding-top: $top-content-bar-y-padding--xs;
+    padding-bottom: $top-content-bar-y-padding--xs;
+
+  }
+}
+
+.o-top-content-bar,
+.o-top-content-bar--corporate {
+  background: $color-sec-blue-teal;
+}
+
+.o-top-content-bar--commercial {
+  background: $color-prim-blue-deep-sapphire;
+}
+
+.o-top-content-bar--warning {
+  background: $color-state-red-shy-tomato;
+}
+
+.o-top-content-bar__box {
+  @include make-container();
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-up(xs) {
+    flex-direction: row;
+
+    justify-content: center;
+  }
+}
+
+.o-top-content-bar__text {
+  @include typo-13();
+
+  @include respond-up(xs) {
+    margin-right: $top-content-bar__text-margin-right;
+  }
+}
+
+.o-top-content-bar__button {
+  margin-top: $top-content-bar__button-margin-top;
+
+  @include respond-up(xs) {
+    margin-top: 0;
+  }
+}

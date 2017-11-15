@@ -1,0 +1,42 @@
+@import "../functions/breakpoint";
+@import "../settings/grids";
+
+@mixin respond-up($breakpoint, $breakpoints: $grid-breakpoints) {
+  $min: get-breakpoint($breakpoint, $breakpoints, up);
+
+  @if (type_of($min) == number AND $min > 0) {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin respond-down($breakpoint, $breakpoints: $grid-breakpoints) {
+  $max: get-breakpoint($breakpoint, $breakpoints);
+
+  @if (type_of($max) == number) {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin respond-between($from, $to, $breakpoints: $grid-breakpoints) {
+  @include respond-up($from, $breakpoints) {
+    @include respond-down($to, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-only($breakpoint, $breakpoints: $grid-breakpoints) {
+  $breakpoint: get-breakpoint($breakpoint, $breakpoints);
+
+  @include respond-between($breakpoint, $breakpoint, $breakpoints: $grid-breakpoints) {
+    @content;
+  }
+}

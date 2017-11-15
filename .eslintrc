@@ -1,0 +1,24 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "max-len": ["warn", 140, 2],
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}]
+  },
+  "globals": {
+    "HTMLElement": true,
+    "HTMLImports": true,
+    "document": true,
+    "window": true,
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "classes": true,
+      "decorations": true,
+      "jsx": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+// inspired by https://github.com/twbs/bootstrap/blob/v4.0.0-beta.2/scss/_variables.scss
+
+@import "colors";
+
+$font-family-base: "Source Sans Pro", Arial, sans-serif !default;
+$font-size-base: 16px !default;
+$font-weight-base: normal !default;
+
+$line-height-base: 1.5 !default;
+
+$body-color: $color-text !default;
+$body-bg: $color-prim-white !default;
+
+$margin-top-base: 16px !default;
+$headings-margin-top: $margin-top-base/2 !default;
+$paragraph-margin-top: $margin-top-base !default;
+
+$dt-font-weight: bold !default;
+
+$table-cell-padding: 12px !default;
+
+$text-muted: $color-prim-gray-scorpion !default;
+
+$link-color: $color-link !default;
+$link-decoration: none !default;
+$link-hover-color: $color-link--hover !default;
+$link-hover-decoration: underline !default;

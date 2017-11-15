@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <title>AXA-CH Style and HTML guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script>
+      !function(document){
+        var root = document.documentElement || document.getElementsByTagName("html")[0]
+        root.className = root.className.split("no-js").join("js")
+      }(document);
+    </script>
+    <script>
+      (function(document) {
+        if (!('Reflect' in window
+            && 'Promise' in window)) {
+              var e = document.createElement('script');
+              e.src = 'app/es6-polyfills.js';
+              document.head.appendChild(e);
+         }
+      })(document);
+    </script>
+    <script src="app/webcomponents-loader.js"></script>
+    <script src="app/app.js"></script>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <!-- {CUT AND INJECT HERE} -->
+  </body>
+</html>
