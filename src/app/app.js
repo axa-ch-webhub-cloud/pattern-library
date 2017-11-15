@@ -34,6 +34,34 @@ const switchAtomicElemenetsTo = (elementGroupName = '', button) => {
   lastMainButton = button;
 };
 
+const syncHashWithAtomicChoice = () => {
+  const { hash } = window.location;
+  const id = hash.replace('#', '');
+  const el = document.getElementById(id);
+  if (hash.length) {
+    const prefix = hash.substring(1, 2);
+    switch (prefix) {
+      case 'a':
+        switchAtomicElemenetsTo('atom', document.querySelector('[data-atomic-switch-to="atom"]'));
+        break;
+      case 'm':
+        switchAtomicElemenetsTo('molecule', document.querySelector('[data-atomic-switch-to="molecule"]'));
+        break;
+      case 'o':
+        switchAtomicElemenetsTo('organism', document.querySelector('[data-atomic-switch-to="organism"]'));
+        break;
+      default:
+        break;
+    }
+    // quick hack for development. @TODO do it better
+    setTimeout(() => {
+      if (el) {
+        el.scrollIntoView();
+      }
+    }, 150);
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // all sections's buttons toggle
   const sections = document.querySelectorAll('.js--section');
@@ -64,29 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const { hash } = window.location;
-  const id = hash.replace('#', '');
-  const el = document.getElementById(id);
-  if (hash.length) {
-    const prefix = hash.substring(1, 2);
-    switch (prefix) {
-      case 'a':
-        switchAtomicElemenetsTo('atom', document.querySelector('[data-atomic-switch-to="atom"]'));
-        break;
-      case 'm':
-        switchAtomicElemenetsTo('molecule', document.querySelector('[data-atomic-switch-to="molecule"]'));
-        break;
-      case 'o':
-        switchAtomicElemenetsTo('organism', document.querySelector('[data-atomic-switch-to="organism"]'));
-        break;
-      default:
-        break;
-    }
-    // quick hack for development. @TODO do it better
-    setTimeout(() => {
-      if (el) {
-        el.scrollIntoView();
-      }
-    }, 150);
-  }
+  syncHashWithAtomicChoice();
+  window.onhashchange = syncHashWithAtomicChoice;
 });
