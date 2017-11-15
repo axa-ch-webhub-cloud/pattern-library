@@ -33,14 +33,12 @@
 }
 
 .m-meta-navigation__list-link {
-  @include typo-13();
+  @include typo-13--semibold();
 
   display: block;
   text-transform: uppercase;
 
   color: $meta-navigation__link-color;
-  // @todo: keep until question regarding custom font styles is resolved
-  font-weight: 600 !important;
 
   padding: 10px $meta-navigation__link-x-padding;
 
