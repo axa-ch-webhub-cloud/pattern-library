@@ -25,7 +25,11 @@
 }
 
 .m-meta-navigation__list-item {
+  border-right: $meta-navigation__nav-border-x-width solid $meta-navigation__nav-border-x-color;
 
+  &:first-child {
+    border-left: $meta-navigation__nav-border-x-width solid $meta-navigation__nav-border-x-color;
+  }
 }
 
 .m-meta-navigation__list-link {
