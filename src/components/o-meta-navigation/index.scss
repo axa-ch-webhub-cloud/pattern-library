@@ -1,0 +1,51 @@
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
+@import "settings/meta-navigation";
+
+.o-meta-navigation {
+  display: block;
+
+  background: $meta-navigation-bg;
+  border-top: $meta-navigation-border-top-width solid $meta-navigation-border-top-color;
+  border-bottom: $meta-navigation-border-bottom-width solid $meta-navigation-border-bottom-color;
+}
+
+.o-meta-navigation__box {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+.o-meta-navigation__nav-other {
+}
+
+.o-meta-navigation__list {
+  @include unstyle-list();
+  @include make-row();
+}
+
+.o-meta-navigation__list-item {
+
+}
+
+.o-meta-navigation__list-link {
+  @include typo-13();
+
+  display: block;
+  text-transform: uppercase;
+
+  color: $meta-navigation__link-color;
+  // @todo: keep until question regarding custom font styles is resolved
+  font-weight: 600 !important;
+
+  padding: 10px $meta-navigation__link-x-padding;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+
+    color: $meta-navigation__link-color--hover;
+    background: $meta-navigation__link-bg--hover;
+  }
+}

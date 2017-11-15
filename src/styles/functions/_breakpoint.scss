@@ -20,7 +20,7 @@
   }
 
   @if $breakpoint-is-mapped {
-    @if $direction == up {
+    @if $direction == down {
       $breakpoint: next-breakpoint($breakpoint, $breakpoints);
       $breakpoint: max-width(map_get($breakpoints, $breakpoint));
     } @else {
