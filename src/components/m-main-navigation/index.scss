@@ -9,6 +9,7 @@
 .m-main-navigation {
   display: block;
 
+  height: 75px;
   border-bottom: $main-navigation-border-bottom-width solid $main-navigation-border-bottom-color;
 }
 
@@ -16,6 +17,8 @@
   @include make-container();
   @include make-container-max-widths();
   @include make-row(null);
+
+  align-items: center;
 }
 
 .m-main-navigation__logo-link {
