@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import Stroke from './stroke';
+import Stroke from './js/stroke';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
 class MainNavigation extends BaseComponentGlobal {

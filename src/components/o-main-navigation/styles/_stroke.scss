@@ -1,0 +1,15 @@
+@import "../../../styles/settings/colors";
+
+.a-stroke {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 0px;
+  height: 4px;
+  background: $color-prim-red-flamingo;
+  transition: transform 0.2s ease,
+    width 0.2s ease,
+    visibility 0s ease 0.2s;
+}
