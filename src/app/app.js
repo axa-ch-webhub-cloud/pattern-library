@@ -27,7 +27,7 @@ const switchAtomicElemenetsTo = (elementGroupName = '', button) => {
 
   button.classList.add('o-sg-section__button--selected');
 
-  if (lastMainButton) {
+  if (lastMainButton && lastMainButton !== button) {
     lastMainButton.classList.remove('o-sg-section__button--selected');
   }
 
@@ -63,4 +63,30 @@ document.addEventListener('DOMContentLoaded', () => {
       switchAtomicElemenetsTo(switchTo, button);
     });
   });
+
+  const { hash } = window.location;
+  const id = hash.replace('#', '');
+  const el = document.getElementById(id);
+  if (hash.length) {
+    const prefix = hash.substring(1, 2);
+    switch (prefix) {
+      case 'a':
+        switchAtomicElemenetsTo('atom', document.querySelector('[data-atomic-switch-to="atom"]'));
+        break;
+      case 'm':
+        switchAtomicElemenetsTo('molecule', document.querySelector('[data-atomic-switch-to="molecule"]'));
+        break;
+      case 'o':
+        switchAtomicElemenetsTo('organism', document.querySelector('[data-atomic-switch-to="organism"]'));
+        break;
+      default:
+        break;
+    }
+    // quick hack for development. @TODO do it better
+    setTimeout(() => {
+      if (el) {
+        el.scrollIntoView();
+      }
+    }, 150);
+  }
 });
