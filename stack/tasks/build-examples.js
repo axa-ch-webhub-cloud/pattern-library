@@ -19,10 +19,10 @@ const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
 
 const sorter = (a, b) => {
   if (a > b) {
-    return 1;
+    return -1;
   }
   if (a < b) {
-    return -1;
+    return 1;
   }
   // a muss gleich b sein
   return 0;
@@ -88,12 +88,14 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
       outputStyle: 'expanded',
     });
 
+    const atomicCategory = atomicName.toLowerCase();
+
     html +=
     `
       <style>
         ${styles}
       </style>
-      <article class="js--section o-sg-section" id="${orginalName}">
+      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section${atomicCategory === 'organism' ? ' o-sg-section--visible' : ''}" id="${orginalName}">
         <section class="o-sg-section__section o-sg-section__section--title">
           <h1 class="o-sg-section__title">
             <strong class="o-sg-section__title--strong">${atomicName}</strong>

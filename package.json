@@ -1,12 +1,12 @@
 {
-  "name": "axa-ch_style-html-guide",
+  "name": "axa-ch-style-guide_ext",
   "version": "1.0.0",
   "description": "style and html guide and demos for axa ch",
   "main": "stack/server.js",
   "scripts": {
     "test": "./node_modules/.bin/eslint src/",
     "start": "node stack/server.js",
-    "xpreinstall": "npm cache clean",
+    "preinstall": "npm cache verify",
     "postinstall": "npm rebuild node-sass",
     "watch": "npm-watch build-dev",
     "serve": "parallelshell \"npm start DEV\" \"npm run watch\"",
