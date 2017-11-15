@@ -3,7 +3,7 @@
 @import "../../styles/mixins/container";
 @import "../../styles/mixins/respond";
 
-.o-top-content-bar {
+.m-top-content-bar {
   display: block;
 
   color: $color-prim-white;
@@ -18,20 +18,20 @@
   }
 }
 
-.o-top-content-bar,
-.o-top-content-bar--corporate {
+.m-top-content-bar,
+.m-top-content-bar--corporate {
   background: $color-sec-blue-teal;
 }
 
-.o-top-content-bar--commercial {
+.m-top-content-bar--commercial {
   background: $color-prim-blue-deep-sapphire;
 }
 
-.o-top-content-bar--warning {
+.m-top-content-bar--warning {
   background: $color-state-red-shy-tomato;
 }
 
-.o-top-content-bar__box {
+.m-top-content-bar__box {
   @include make-container();
 
   display: flex;
@@ -45,7 +45,7 @@
   }
 }
 
-.o-top-content-bar__text {
+.m-top-content-bar__text {
   @include typo-13();
 
   @include respond-up(xs) {
@@ -53,7 +53,7 @@
   }
 }
 
-.o-top-content-bar__button {
+.m-top-content-bar__button {
   margin-top: $top-content-bar__button-margin-top;
 
   @include respond-up(xs) {

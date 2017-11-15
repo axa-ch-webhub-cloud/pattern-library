@@ -4,40 +4,40 @@
 @import "../../styles/mixins/unstyle-list";
 @import "styles/stroke";
 
-.o-main-navigation {
+.m-main-navigation {
   display: block;
 
   border-bottom: $main-navigation-border-bottom-width solid $main-navigation-border-bottom-color;
 }
 
-.o-main-navigation__box {
+.m-main-navigation__box {
   @include make-container();
   @include make-container-max-widths();
 }
 
-.o-main-navigation__logo-link {
+.m-main-navigation__logo-link {
 
 }
 
-.o-main-navigation__logo-img {
+.m-main-navigation__logo-img {
   display: block;
 
   width: $main-navigation__logo-img-size;
   height: $main-navigation__logo-img-size;
 }
 
-.o-main-navigation__list {
+.m-main-navigation__list {
   @include unstyle-list();
 }
 
-.o-main-navigation__form {
+.m-main-navigation__form {
 
 }
 
-.o-main-navigation__search {
+.m-main-navigation__search {
 
 }
 
-.o-main-navigation__search-icon {
+.m-main-navigation__search-icon {
 
 }

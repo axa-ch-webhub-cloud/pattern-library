@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
-class MetaNavigation extends BaseComponentGlobal {
+class SubNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -10,16 +10,16 @@ class MetaNavigation extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'o-meta-navigation__box';
+    box.className = 'm-sub-navigation__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `o-meta-navigation o-meta-navigation--${type}`;
+    this.className = `m-sub-navigation m-sub-navigation--${type}`;
 
     this.appendChild(box);
   }
 }
 
-window.customElements.define('axa-meta-navigation', MetaNavigation);
+window.customElements.define('axa-sub-navigation', SubNavigation);

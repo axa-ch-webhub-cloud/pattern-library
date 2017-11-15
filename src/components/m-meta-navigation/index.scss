@@ -3,7 +3,7 @@
 @import "../../styles/mixins/typo";
 @import "settings/meta-navigation";
 
-.o-meta-navigation {
+.m-meta-navigation {
   display: block;
 
   background: $meta-navigation-bg;
@@ -11,24 +11,24 @@
   border-bottom: $meta-navigation-border-bottom-width solid $meta-navigation-border-bottom-color;
 }
 
-.o-meta-navigation__box {
+.m-meta-navigation__box {
   @include make-container();
   @include make-container-max-widths();
 }
 
-.o-meta-navigation__nav-other {
+.m-meta-navigation__nav-other {
 }
 
-.o-meta-navigation__list {
+.m-meta-navigation__list {
   @include unstyle-list();
   @include make-row();
 }
 
-.o-meta-navigation__list-item {
+.m-meta-navigation__list-item {
 
 }
 
-.o-meta-navigation__list-link {
+.m-meta-navigation__list-link {
   @include typo-13();
 
   display: block;
