@@ -9,6 +9,7 @@
   ],
   "plugins": [
     "external-helpers",
-    "transform-custom-element-classes"
+    "transform-custom-element-classes",
+    "transform-class-properties"
   ]
 }
