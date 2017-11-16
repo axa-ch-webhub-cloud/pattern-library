@@ -52,6 +52,12 @@ buildPolyfills();
 async function buildApp() {
   const bundle = await rollup.rollup({
     ...inputOptions,
+    plugins: [
+      babel({
+        runtimeHelpers: true,
+      }),
+      ENV === constants.ENV.PROD ? uglify() : () => {},
+    ],
     input: `${CWD}/src/app/app.js`,
   });
   const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`;

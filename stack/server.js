@@ -12,24 +12,24 @@ if (ENV === constants.ENV.PROD) {
   app.use(express.static(`${process.cwd()}/.tmp`));
 }
 
-console.log(
-`
-************* AXA CH SIMULATING ENV: ${ENV} *************
-Server is running on http://localhost:3000.
+const port = ENV === constants.ENV.PROD ? '8080' : '3000';
 
-Please open http://localhost:3000 in your browser of
+console.log(`
+************* AXA CH SIMULATING ENV: ${ENV} *************
+Server is running on http://localhost:${port}.
+
+Please open http://localhost:${port} in your browser of
 coice and happy coding :)
 *********************************************************
-`
-);
+`);
 
 const server = http.createServer(app);
 
-server.listen(3000);
+server.listen(port);
 
-processOnClose = () => {
-  server.close()
-}
+const processOnClose = () => {
+  server.close();
+};
 
 process.on('uncaughtException', processOnClose);
 process.on('SIGTERM', processOnClose);
