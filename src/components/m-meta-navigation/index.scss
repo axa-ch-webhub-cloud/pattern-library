@@ -42,6 +42,7 @@
 
   padding: 10px $meta-navigation__link-x-padding;
 
+  &.is-active,
   &:hover,
   &:active,
   &:focus {
