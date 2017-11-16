@@ -50,5 +50,8 @@
 
     color: $meta-navigation__link-color--hover;
     background: $meta-navigation__link-bg--hover;
+
+    border-bottom: $meta-navigation-border-bottom-width solid $meta-navigation__link-bg--hover;
+    margin-bottom: -$meta-navigation-border-bottom-width;
   }
 }
