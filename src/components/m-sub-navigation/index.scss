@@ -1,0 +1,84 @@
+@import "settings/sub-navigation";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/quantity-query";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
+
+.m-sub-navigation {
+  display: none;
+
+  .is-open & {
+    display: block;
+  }
+}
+
+.m-sub-navigation__box {
+  @include make-container();
+  @include make-container-max-widths();
+  @include make-row(null);
+
+  justify-content: center;
+  padding-top: $sub-navigation-padding-top;
+  padding-bottom: $sub-navigation-padding-bottom;
+}
+
+.m-sub-navigation__block {
+  @include make-col(3);
+
+  padding: $sub-navigation__block-y-padding $sub-navigation__block-x-padding;
+
+  border-left: $sub-navigation__block-border-width solid $sub-navigation__block-border-color;
+
+  &:first-child {
+    border: none;
+  }
+
+  @include quantity-query(2) {
+    @include make-col(3);
+
+    padding-left: $sub-navigation__block-x-padding-2-columns;
+    padding-right: $sub-navigation__block-x-padding-2-columns;
+  }
+
+  @include quantity-query(3) {
+    @include make-col(4);
+
+    padding-left: $sub-navigation__block-x-padding-3-columns;
+    padding-right: $sub-navigation__block-x-padding-3-columns;
+  }
+}
+
+.m-sub-navigation__block--wide {
+  @include make-col(6);
+}
+
+.m-sub-navigation__category {
+  @include typo-24();
+  @include word-break();
+
+  color: $sub-navigation__category-color;
+}
+
+.m-sub-navigation__list {
+  @include unstyle-list();
+
+  margin-top: $sub-navigation__list-margin-top;
+}
+
+.m-sub-navigation__list-item {
+
+}
+
+.m-sub-navigation__link {
+  @include typo-18();
+  @include word-break();
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+
+    font-weight: 600;
+  }
+}
