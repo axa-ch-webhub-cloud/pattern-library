@@ -1,13 +1,16 @@
 import styles from './index.scss';
 import Stroke from './js/stroke';
+import SubNavigation from './js/sub-navigation';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
 class MainNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
+
   connectedCallback() {
     super.connectedCallback();
+
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
@@ -21,11 +24,16 @@ class MainNavigation extends BaseComponentGlobal {
 
     this.appendChild(box);
 
-    this.stroke = new Stroke();
+    this.stroke = new Stroke(this);
+    this.subNavigation = new SubNavigation(this);
   }
+
   disconnectedCallback() {
     this.stroke.destroy();
     delete this.stroke;
+
+    this.subNavigation.destroy();
+    delete this.subNavigation();
   }
 }
 
