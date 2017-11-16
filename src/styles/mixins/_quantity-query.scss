@@ -1,0 +1,6 @@
+@mixin quantity-query($i) {
+  &:nth-last-child(#{$i}):first-child,
+  &:nth-last-child(#{$i}):first-child ~ * {
+    @content;
+  }
+}
