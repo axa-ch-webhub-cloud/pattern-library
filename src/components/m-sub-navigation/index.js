@@ -4,21 +4,13 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 class SubNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles);
+
+    this.initialInnerHTML = this.innerHTML;
   }
-  connectedCallback() {
-    super.connectedCallback();
-    const type = this.getAttribute('type');
-    const box = document.createElement('div');
 
-    box.className = 'm-sub-navigation__box';
-
-    while (this.childNodes.length) {
-      box.appendChild(this.firstChild);
-    }
-
-    this.className = `m-sub-navigation m-sub-navigation--${type}`;
-
-    this.appendChild(box);
+  _render() {
+    this.className = 'm-sub-navigation';
+    this.innerHTML = `<div class="m-sub-navigation__box">${this.initialInnerHTML}</div>`;
   }
 }
 

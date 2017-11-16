@@ -7,6 +7,18 @@
 
 .m-sub-navigation {
   display: none;
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+
+  z-index: $sub-navigation-z-index;
+
+  width: 100%;
+
+  margin-top: 2px;
+
+  background: $sub-navigation-bg;
 
   .is-open & {
     display: block;
