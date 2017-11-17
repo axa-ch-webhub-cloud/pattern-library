@@ -1,6 +1,21 @@
 @import "../../../styles/settings/colors";
 
-$main-navigation-border-bottom-color: $color-prim-gray-mercury;
+$main-navigation-height: 75px !default;
+
+$main-navigation-border-bottom-color: $color-prim-gray-mercury !default;
 $main-navigation-border-bottom-width: 2px !default;
 
 $main-navigation__logo-img-size: 55px !default;
+
+$main-navigation__list-item-x-margin: 8px !default;
+
+$main-navigation__list-link-x-padding: 10px !default;
+
+$main-navigation__form-x-padding: 6px !default;
+$main-navigation__form-padding-right: 20px !default;
+$main-navigation__form-border-left-width: 1px !default;
+$main-navigation__form-border-left-color: $color-prim-gray-silver !default;
+$main-navigation__form-margin-left: 20px !default;
+
+$main-navigation__search-icon-size: 25px !default;
+$main-navigation__search-icon-fill: $color-prim-gray !default;
