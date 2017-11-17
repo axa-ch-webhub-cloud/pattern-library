@@ -33,7 +33,7 @@ class MainNavigation extends BaseComponentGlobal {
     delete this.stroke;
 
     this.subNavigation.destroy();
-    delete this.subNavigation();
+    delete this.subNavigation;
   }
 }
 
