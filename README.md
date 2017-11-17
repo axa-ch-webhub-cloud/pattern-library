@@ -41,4 +41,4 @@ commands:
 
 ### Guide to for the base components:
 
-When you create your own component please 
+When you create your own component please ...
