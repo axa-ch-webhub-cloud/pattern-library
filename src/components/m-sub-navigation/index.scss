@@ -7,6 +7,13 @@
 
 .m-sub-navigation {
   display: none;
+
+  .is-open & {
+    display: block;
+  }
+}
+
+.m-sub-navigation--flyout {
   position: absolute;
 
   top: 100%;
@@ -19,10 +26,6 @@
   margin-top: 2px;
 
   background: $sub-navigation-bg;
-
-  .is-open & {
-    display: block;
-  }
 }
 
 .m-sub-navigation__box {
