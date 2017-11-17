@@ -83,6 +83,8 @@ class MenuObserver {
     if (isLeave) {
       this.notify('leave', listItem);
 
+      this.offInteractive();
+
       if (this.lastListItem) {
         delete this.lastListItem;
       }
@@ -94,6 +96,8 @@ class MenuObserver {
 
     if (this.lastListItem) {
       this.notify('leave', this.lastListItem);
+
+      this.offInteractive();
 
       delete this.lastListItem;
     }
