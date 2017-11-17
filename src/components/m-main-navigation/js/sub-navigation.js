@@ -1,6 +1,5 @@
-import on from '../../../js/on';
-import outer from '../../../js/outer';
 import classList from '../../../js/class-list';
+import getMenuObserver from './menu-observer';
 
 class SubNavigation {
   static DEFAULTS = {
@@ -19,89 +18,45 @@ class SubNavigation {
       ...options
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
     this.init();
   }
 
   init() {
     this.list = this.rootNode.querySelector(this.options.list);
 
+    this.observer = getMenuObserver(this.rootNode);
+
     this.on();
   }
 
   on() {
-    this.off();
-
-    this.unClick = on(this.list, 'click', this.options.listLink, this.handleClick);
+    this.observer.notify(this);
   }
 
   off() {
-    if ('unClick' in this) {
-      this.unClick();
-      delete this.unClick;
-    }
-
-    this.offInteractive();
+    this.observer.denotify(this);
   }
 
-  onInteractive() {
-    this.offInteractive();
-
-    this.unOuterClick = outer(this.list, 'click', this.handleClose);
-    this.unCloseClick = on(this.list, 'click', this.options.closeButton, this.handleClose);
-  }
-
-  offInteractive() {
-    if ('unOuterClick' in this) {
-      this.unOuterClick();
-      delete this.unOuterClick;
-    }
-
-    if ('unCloseClick' in this) {
-      this.unCloseClick();
-      delete this.unCloseClick;
-    }
-  }
-
-  handleClick(e, delegateTarget) {
-    e.preventDefault();
-
-    const listItem = delegateTarget.parentNode;
-    const isSame = listItem === this.lastOpen;
-
-    this.close();
-
-    if (!isSame) {
-      this.open(listItem);
-    }
-  }
-
-  handleClose(e) {
-    e.preventDefault();
-
-    this.close();
-  }
-
-  open(dom) {
+  enter(dom) {
     classList.add(dom, this.options.stateClass);
-    this.lastOpen = dom;
-
-    this.onInteractive();
   }
 
-  close() {
-    if (this.lastOpen) {
-      classList.remove(this.lastOpen, this.options.stateClass);
-      delete this.lastOpen;
-    }
+  move(newDom, lastDom) {
+    classList.remove(lastDom, this.options.stateClass);
+    classList.add(newDom, this.options.stateClass);
+  }
 
-    this.offInteractive();
+  leave(dom) {
+    classList.remove(dom, this.options.stateClass);
   }
 
   destroy() {
     this.off();
+
+    if ('observer' in this) {
+      this.observer.destroy();
+      delete this.observer;
+    }
   }
 }
 

@@ -12,11 +12,10 @@ $stroke-height: 4px !default;
   width: 0;
   height: 0;
   background: $color-prim-red-burnt-sienna;
+  transition: height 0.2s ease;
 
   &.is-enter {
     height: $stroke-height;
-
-    transition: height 0.2s ease;
   }
 
   &.is-move {

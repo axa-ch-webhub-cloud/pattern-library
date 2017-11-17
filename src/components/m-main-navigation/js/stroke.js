@@ -1,6 +1,6 @@
-import on from '../../../js/on';
 import css from '../../../js/css';
 import classList from '../../../js/class-list';
+import getMenuObserver from './menu-observer';
 
 class Stroke {
   static DEFAULTS = {
@@ -20,10 +20,6 @@ class Stroke {
       ...options
     };
 
-    this.handleClick = this.handleClick.bind(this);
-
-    this.isVisible = false;
-
     this.init();
   }
 
@@ -37,44 +33,20 @@ class Stroke {
 
     this.list.appendChild(this.stroke);
 
-    console.log('init stroke');
+    this.observer = getMenuObserver(this.rootNode);
 
     this.on();
   }
 
   on() {
-    this.off();
-
-    this.unClick = on(this.list, 'click', this.options.listLink, this.handleClick);
+    this.observer.notify(this);
   }
 
   off() {
-    if ('unClick' in this) {
-      this.unClick();
-      delete this.unClick;
-    }
-  }
-
-  handleClick(e, delegateTarget) {
-    e.preventDefault();
-
-    const listItem = delegateTarget.parentNode;
-    const isSame = listItem === this.lastOpen;
-
-    if (!this.isVisible) {
-      this.enter(delegateTarget);
-    } else {
-      if (isSame) {
-        this.leave();
-      } else {
-        this.move(delegateTarget);
-      }
-    }
+    this.observer.denotify(this);
   }
 
   enter(dom) {
-    this.lastOpen = dom;
-
     classList.add(this.stroke, 'is-enter');
 
     css(this.stroke, {
@@ -85,22 +57,16 @@ class Stroke {
     this.isVisible = true;
   }
 
-  move(dom) {
-    this.lastOpen = dom;
-
+  move(newDom) {
     classList.add(this.stroke, 'is-move');
 
     css(this.stroke, {
-      width: `${dom.offsetWidth}px`,
-      left: `${dom.offsetLeft}px`
+      width: `${newDom.offsetWidth}px`,
+      left: `${newDom.offsetLeft}px`
     });
   }
 
   leave() {
-    if (this.lastOpen) {
-      delete this.lastOpen;
-    }
-
     classList.remove(this.stroke, 'is-move');
     classList.remove(this.stroke, 'is-enter');
 
@@ -109,6 +75,11 @@ class Stroke {
 
   destroy() {
     this.off();
+
+    if ('observer' in this) {
+      this.observer.destroy();
+      delete this.observer;
+    }
   }
 }
 
