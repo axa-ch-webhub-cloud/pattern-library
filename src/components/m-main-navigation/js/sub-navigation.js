@@ -30,11 +30,11 @@ class SubNavigation {
   }
 
   on() {
-    this.observer.notify(this);
+    this.observer.register(this);
   }
 
   off() {
-    this.observer.denotify(this);
+    this.observer.deregister(this);
   }
 
   enter(dom) {

@@ -74,17 +74,17 @@ class MenuObserver {
     const isLeave = !isEnter && !isMove;
 
     if (isEnter) {
-      this.call('enter', listItem);
+      this.notify('enter', listItem);
 
       this.onInteractive();
     } else if (isMove) {
-      this.call('move', listItem, this.lastListItem);
+      this.notify('move', listItem, this.lastListItem);
     }
 
     this.lastListItem = listItem;
 
     if (isLeave) {
-      this.call('leave', listItem);
+      this.notify('leave', listItem);
 
       if (this.lastListItem) {
         delete this.lastListItem;
@@ -96,13 +96,13 @@ class MenuObserver {
     e.preventDefault();
 
     if (this.lastListItem) {
-      this.call('leave', this.lastListItem);
+      this.notify('leave', this.lastListItem);
 
       delete this.lastListItem;
     }
   }
 
-  call(name, listItem, lastListItem) {
+  notify(name, listItem, lastListItem) {
     const length = this.receivers.length;
 
     for(let i=0; i<length; i++) {
@@ -114,11 +114,11 @@ class MenuObserver {
     }
   }
 
-  notify(receiver) {
+  register(receiver) {
     this.receivers.push(receiver);
   }
 
-  denotify(receiver) {
+  deregister(receiver) {
     const index = this.receivers.indexOf(receiver);
 
     if (index !== -1) {
