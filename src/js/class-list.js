@@ -4,31 +4,31 @@ function getReClass(className, modifier) {
   return new RegExp(`^${className}$|^${className}\\s|\\s${className}\\s|\\s${className}$`, modifier);
 }
 
-export function add(dom, className) {
-  if (!has(dom, className)) {
-    dom.className += ` ${className}`;
+export function add(node, className) {
+  if (!has(node, className)) {
+    node.className += ` ${className}`;
   }
 }
 
-export function has(dom, className) {
+export function has(node, className) {
   const reClass = getReClass(className);
 
-  return reClass.test(dom.className);
+  return reClass.test(node.className);
 }
 
-export function remove(dom, className) {
-  if (has(dom, className)) {
+export function remove(node, className) {
+  if (has(node, className)) {
     const reClass = getReClass(className, 'g');
 
-    dom.className = dom.className.replace(reClass, ' ').replace(reTrim, ' ');
+    node.className = node.className.replace(reClass, ' ').replace(reTrim, ' ');
   }
 }
 
-export function toggle(dom, className) {
-  if (has(dom, className)) {
-    remove(dom, className);
+export function toggle(node, className) {
+  if (has(node, className)) {
+    remove(node, className);
   } else {
-    add(dom, className);
+    add(node, className);
   }
 }
 

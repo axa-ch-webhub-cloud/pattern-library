@@ -1,7 +1,11 @@
 function css(node, decls) {
   const css = [];
+  const props = Object.keys(decls);
+  const length = props.length;
 
-  for(const prop in decls) {
+  for(let i=0; i<length; ++i) {
+    const prop = props[i];
+
     css.push(`${prop}:${decls[prop]};`);
   }
 

@@ -1,18 +1,18 @@
-function outer(dom, event, func, capture = true) {
-  const root = dom.ownerDocument.documentElement;
+function outer(node, eventName, func, capture = true) {
+  const root = node.ownerDocument.documentElement;
 
-  root.addEventListener(event, handler, capture);
+  root.addEventListener(eventName, handler, capture);
 
   return off;
 
   function off() {
-    root.removeEventListener(event, handler, capture);
+    root.removeEventListener(eventName, handler, capture);
   }
 
   function handler(e) {
     const { target } = e;
 
-    if (!dom.contains(target) && dom !== target) {
+    if (!node.contains(target) && node !== target) {
       func(e);
     }
   }

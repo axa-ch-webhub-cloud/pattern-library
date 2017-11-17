@@ -1,22 +1,22 @@
 import classList from './class-list'
 
-function on(dom, event, className, func, capture = false) {
-  dom.addEventListener(event, delegate, capture);
+function on(node, eventName, className, func, capture = false) {
+  node.addEventListener(eventName, delegate, capture);
 
   return off;
 
   function off() {
-    dom.removeEventListener(event, delegate, capture);
+    node.removeEventListener(eventName, delegate, capture);
   }
 
   function delegate(e) {
     let { target } = e;
 
-    while (!classList.has(target, className) && target !== dom) {
+    while (!classList.has(target, className) && target !== node) {
       target = target.parentNode;
     }
 
-    if (target !== dom) {
+    if (target !== node) {
       return func(e, target);
     }
   }
