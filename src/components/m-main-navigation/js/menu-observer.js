@@ -40,7 +40,6 @@ class MenuObserver {
   off() {
     if ('unClick' in this) {
       this.unClick();
-      delete this.unClick;
     }
 
     this.offInteractive();
@@ -56,12 +55,10 @@ class MenuObserver {
   offInteractive() {
     if ('unOuterClick' in this) {
       this.unOuterClick();
-      delete this.unOuterClick;
     }
 
     if ('unCloseClick' in this) {
       this.unCloseClick();
-      delete this.unCloseClick;
     }
   }
 
