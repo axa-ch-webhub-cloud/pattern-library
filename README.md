@@ -37,7 +37,7 @@ commands:
 * to run only the server run `npm start DEV` or `npm start PROD`
 * to run only the watches run `npm run watch`
 * to run server and watchers `npm run serve`
-* to run server and watchers from the dist folder `npm run serve-build-prod`
+* to run PROD server `npm run serve-build-prod`
 
 ### Guide to for the base components:
 
