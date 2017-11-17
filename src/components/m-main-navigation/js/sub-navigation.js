@@ -8,6 +8,7 @@ class SubNavigation {
     listItem: 'm-main-navigation__list-item',
     listLink: 'm-main-navigation__list-link',
     subNavigation: 'm-sub-navigation',
+    closeButton: 'm-sub-navigation__index-close',
     stateClass: 'is-open'
   };
 
@@ -19,7 +20,7 @@ class SubNavigation {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleOuterClick = this.handleOuterClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
 
     this.init();
   }
@@ -48,13 +49,19 @@ class SubNavigation {
   onInteractive() {
     this.offInteractive();
 
-    this.unOuterClick = outer(this.list, 'click', this.handleOuterClick);
+    this.unOuterClick = outer(this.list, 'click', this.handleClose);
+    this.unCloseClick = on(this.list, 'click', this.options.closeButton, this.handleClose);
   }
 
   offInteractive() {
     if ('unOuterClick' in this) {
       this.unOuterClick();
       delete this.unOuterClick;
+    }
+
+    if ('unCloseClick' in this) {
+      this.unCloseClick();
+      delete this.unCloseClick;
     }
   }
 
@@ -71,7 +78,7 @@ class SubNavigation {
     }
   }
 
-  handleOuterClick(e) {
+  handleClose(e) {
     e.preventDefault();
 
     this.close();

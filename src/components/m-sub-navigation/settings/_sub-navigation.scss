@@ -1,7 +1,14 @@
 @import "../../../styles/settings/colors";
 
-$sub-navigation-z-index: 1000;
-$sub-navigation-bg: $color-prim-white;
+$sub-navigation-z-index: 1000 !default;
+$sub-navigation-bg: $color-prim-white !default;
+$sub-navigation-margin-top: 2px !default;
+
+$sub-navigation__index-bg: $color-prim-gray-alabaster !default;
+$sub-navigation__index-height: 60px !default;
+
+$sub-navigation__index-close-padding-left: 21px !default;
+$sub-navigation__index-close__icon-size: 23px !default;
 
 $sub-navigation-padding-top: 30px !default;
 $sub-navigation-padding-bottom: 40px !default;

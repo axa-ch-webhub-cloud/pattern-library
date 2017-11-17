@@ -16,7 +16,7 @@ class SubNavigation extends BaseComponentGlobal {
     });
 
     this.className = classes;
-    this.innerHTML = `<div class="m-sub-navigation__box">${this.initialInnerHTML}</div>`;
+    //this.innerHTML = `<div class="m-sub-navigation__box">${this.initialInnerHTML}</div>`;
   }
 }
 
