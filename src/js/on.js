@@ -1,4 +1,5 @@
 import classList from './class-list'
+import { freeByValue } from "./free";
 
 function on(node, eventName, className, func, capture = false) {
   node.addEventListener(eventName, delegate, capture);
@@ -7,6 +8,8 @@ function on(node, eventName, className, func, capture = false) {
 
   function off() {
     node.removeEventListener(eventName, delegate, capture);
+
+    freeByValue(this, off);
   }
 
   function delegate(e) {

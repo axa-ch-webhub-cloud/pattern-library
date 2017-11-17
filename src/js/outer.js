@@ -1,3 +1,5 @@
+import { freeByValue } from "./free";
+
 function outer(node, eventName, func, capture = true) {
   const root = node.ownerDocument.documentElement;
 
@@ -7,6 +9,8 @@ function outer(node, eventName, func, capture = true) {
 
   function off() {
     root.removeEventListener(eventName, handler, capture);
+
+    freeByValue(this, off);
   }
 
   function handler(e) {
