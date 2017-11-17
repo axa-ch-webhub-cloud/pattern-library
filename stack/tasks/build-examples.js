@@ -55,7 +55,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     imports += `<link rel="import" href="${partial}" > \n`;
     const name = filePath.split('/').slice(-2).join('/');
 
-    let example = fs.readFileSync(exampleHtmls[index], 'utf8');
+    const example = fs.readFileSync(exampleHtmls[index], 'utf8');
     const preview = fs.readFileSync(filePath, 'utf8');
 
     let previewName = name.replace('/_preview.html', '');
@@ -79,10 +79,6 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     previewName = previewName.substring(2, previewName.length);
 
-    if (example.trim(' ') === '<!--take-preview-->') {
-      example = preview.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    }
-
     const resultCss = sass.renderSync({
       file: filePath.replace('_preview.html', 'index.scss'),
       outputStyle: 'expanded',
@@ -102,14 +98,16 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
             <span class="o-sg-section__title--normal">${previewName}</span>
           </h1>
           <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Show PREVIEW</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="html">Show HTML</button>
+          <button class="js--toggle o-sg-section__button" data-toggle="wc-html">Show Webcomponent HTML</button>
+          <button class="js--toggle o-sg-section__button" data-toggle="html">Show Traditional HTML</button>
           <button class="js--toggle o-sg-section__button" data-toggle="css">Show CSS</button>
         </section>
         <article class="js--section-source o-sg-section__section o-sg-section__section--source o-sg-section__section--visible">
           ${preview}
         </article>
-        <pre class="js--section-html o-sg-section__section o-sg-section__section--html">${nsh.highlight(example, htmlLang)}</pre>
-        <pre class="js--section-css o-sg-section__section o-sg-section__section--css">${nsh.highlight(resultCss.css.toString(), cssLang)}</pre>
+        <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
+        <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
+        <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${nsh.highlight(resultCss.css.toString(), cssLang)}</pre>
       </article>
     `;
   });
