@@ -9,10 +9,6 @@ class Stroke {
   static DEFAULTS = {
     strokeClass: 'a-stroke',
     list: '.m-main-navigation__list',
-    listItem: 'm-main-navigation__list-item',
-    listLink: 'm-main-navigation__list-link',
-    subNavigation: 'm-sub-navigation',
-    closeButton: 'm-sub-navigation__index-close',
     enterClass: 'is-enter',
     moveClass: 'is-move'
   };

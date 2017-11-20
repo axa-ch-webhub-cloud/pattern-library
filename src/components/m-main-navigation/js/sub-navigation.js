@@ -7,10 +7,6 @@ const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER');
 class SubNavigation {
   static DEFAULTS = {
     list: '.m-main-navigation__list',
-    listItem: 'm-main-navigation__list-item',
-    listLink: 'm-main-navigation__list-link',
-    subNavigation: 'm-sub-navigation',
-    closeButton: 'm-sub-navigation__index-close',
     stateClass: 'is-open'
   };
 
