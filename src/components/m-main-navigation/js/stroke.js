@@ -83,6 +83,9 @@ class Stroke {
       this[DYNAMIC_PROPS.STROKE].parentNode.removeChild(this[DYNAMIC_PROPS.STROKE]);
       delete this[DYNAMIC_PROPS.STROKE];
     }
+
+    delete this.rootNode;
+    delete this.options;
   }
 }
 

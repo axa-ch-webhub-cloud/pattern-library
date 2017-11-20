@@ -58,6 +58,9 @@ class SubNavigation {
       this[DYNAMIC_PROPS.OBSERVER].destroy();
       delete this[DYNAMIC_PROPS.OBSERVER];
     }
+
+    delete this.rootNode;
+    delete this.options;
   }
 }
 
