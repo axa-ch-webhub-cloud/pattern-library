@@ -5,10 +5,10 @@
  * @returns {{}} - Returns an object enumerating all agruments by upper case keys.
  */
 function Enum(...args) {
-  const length = args.length;
+  const { length } = args;
   const obj = {};
 
-  for (let i=0; i<length; ++i) {
+  for (let i = 0; i < length; ++i) {
     const arg = args[i];
 
     obj[arg.toUpperCase()] = arg;

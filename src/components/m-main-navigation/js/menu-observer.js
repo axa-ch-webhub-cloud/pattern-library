@@ -1,7 +1,7 @@
 import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import outer from '../../../js/outer';
-import {freeByValue} from "../../../js/free";
+import { freeByValue } from '../../../js/free';
 
 const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'UN_CLOSE_ESCAPE', 'click', 'keyup', 'enter', 'move', 'leave');
 
@@ -12,7 +12,7 @@ class MenuObserver {
   static DEFAULTS = {
     list: '.js-main-navigation__list',
     listLink: 'js-main-navigation__list-link',
-    closeButton: 'js-sub-navigation__index-close'
+    closeButton: 'js-sub-navigation__index-close',
   };
 
   constructor(rootNode, options = {}) {
@@ -123,9 +123,9 @@ class MenuObserver {
   }
 
   notify(name, listItem, lastListItem) {
-    const length = this.receivers.length;
+    const { length } = this.receivers;
 
-    for(let i=0; i<length; i++) {
+    for (let i = 0; i < length; i++) {
       const receiver = this.receivers[i];
 
       if (name in receiver && typeof receiver.enter === 'function') {
@@ -152,6 +152,7 @@ class MenuObserver {
 
   destroy() {
     if (this.rootNode && this.rootNode in count) {
+      // eslint-disable-next-line no-plusplus
       count[this.rootNode]--;
 
       if (count[this.rootNode] <= 0) {
@@ -174,6 +175,7 @@ function getInstance(rootNode, options) {
     count[rootNode] = 0;
   }
 
+  // eslint-disable-next-line no-plusplus
   count[rootNode]++;
 
   return cache[rootNode];

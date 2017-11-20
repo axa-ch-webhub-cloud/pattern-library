@@ -61,6 +61,6 @@ export default {
   add,
   has,
   remove,
-  toggle
+  toggle,
 };
 

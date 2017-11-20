@@ -5,17 +5,17 @@
  * @param {Object} decls - An object containing all CSS properties to be set.
  */
 function css(node, decls) {
-  const css = [];
+  const cssText = [];
   const props = Object.keys(decls);
-  const length = props.length;
+  const { length } = props;
 
-  for(let i=0; i<length; ++i) {
+  for (let i = 0; i < length; ++i) {
     const prop = props[i];
 
-    css.push(`${prop}:${decls[prop]};`);
+    cssText.push(`${prop}:${decls[prop]};`);
   }
 
-  node.style.cssText = css.join('');
+  node.style.cssText = cssText.join('');
 }
 
 export default css;

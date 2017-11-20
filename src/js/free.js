@@ -9,6 +9,8 @@ export function free(object, name) {
   if (name in object) {
     return delete object[name];
   }
+
+  return false;
 }
 
 /**
@@ -20,17 +22,19 @@ export function free(object, name) {
  */
 export function freeByValue(object, value) {
   const keys = Object.keys(object);
-  const length = keys.length;
+  const { length } = keys;
 
-  for(let i=0; i<length; ++i) {
+  for (let i = 0; i < length; ++i) {
     const key = keys[i];
     if (object[key] === value) {
       return delete object[key];
     }
   }
+
+  return false;
 }
 
 export default {
   free,
   freeByValue,
-}
+};

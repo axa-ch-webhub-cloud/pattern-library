@@ -1,5 +1,5 @@
 import Enum from '../../../js/enum';
-import classList from '../../../js/class-list';
+import { add, remove } from '../../../js/class-list';
 import getMenuObserver from './menu-observer';
 
 const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER');
@@ -7,14 +7,14 @@ const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER');
 class SubNavigation {
   static DEFAULTS = {
     list: '.js-main-navigation__list',
-    stateClass: 'is-open'
+    stateClass: 'is-open',
   };
 
   constructor(rootNode, options = {}) {
     this.rootNode = rootNode;
     this.options = {
       ...SubNavigation.DEFAULTS,
-      ...options
+      ...options,
     };
 
     this.init();
@@ -39,16 +39,16 @@ class SubNavigation {
   }
 
   enter(dom) {
-    classList.add(dom, this.options.stateClass);
+    add(dom, this.options.stateClass);
   }
 
   move(newDom, lastDom) {
-    classList.remove(lastDom, this.options.stateClass);
-    classList.add(newDom, this.options.stateClass);
+    remove(lastDom, this.options.stateClass);
+    add(newDom, this.options.stateClass);
   }
 
   leave(dom) {
-    classList.remove(dom, this.options.stateClass);
+    remove(dom, this.options.stateClass);
   }
 
   destroy() {

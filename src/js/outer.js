@@ -1,4 +1,4 @@
-import { freeByValue } from "./free";
+import { freeByValue } from './free';
 
 /**
  * With outside events you can bind to an event that will be triggered only when a specific “originating” event occurs outside the element in question.
@@ -22,11 +22,12 @@ function outer(node, eventName, func, capture = true) {
     freeByValue(this, off);
   }
 
+  // eslint-disable-next-line consistent-return
   function handler(e) {
     const { target } = e;
 
     if (!node.contains(target) && node !== target) {
-      func(e);
+      return func(e);
     }
   }
 }

@@ -1,5 +1,5 @@
-import classList from './class-list'
-import { freeByValue } from "./free";
+import { has } from './class-list';
+import { freeByValue } from './free';
 
 /**
  * Attach an event handler function for one event to the selected element, optionally delegated by given className.
@@ -12,12 +12,14 @@ import { freeByValue } from "./free";
  * @returns {off} - Returns a functions which properly removes the event listener from the target.
  */
 function on(eventTarget, eventName, className, func, capture = false) {
-  const typeClassName = typeof className
-  const isDelegated = typeClassName === 'string'
+  const typeClassName = typeof className;
+  const isDelegated = typeClassName === 'string';
 
   if (typeClassName === 'function') {
+    /* eslint-disable no-param-reassign */
     capture = !!func;
     func = className;
+    /* eslint-enable no-param-reassign */
   }
 
   const handler = isDelegated ? delegate : func;
@@ -32,10 +34,11 @@ function on(eventTarget, eventName, className, func, capture = false) {
     freeByValue(this, off);
   }
 
+  // eslint-disable-next-line consistent-return
   function delegate(e) {
     let { target } = e;
 
-    while (!classList.has(target, className) && target !== eventTarget) {
+    while (!has(target, className) && target !== eventTarget) {
       target = target.parentNode;
     }
 
@@ -45,4 +48,4 @@ function on(eventTarget, eventName, className, func, capture = false) {
   }
 }
 
-export default on
+export default on;
