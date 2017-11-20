@@ -1,9 +1,23 @@
+/**
+ * Delete property of given object by key.
+ *
+ * @param {Object} object - The object to search for matching properties.
+ * @param {string} name - The key to be garbage collected.
+ * @returns {boolean} - Returns `true` if deletion was successful, else `false`.
+ */
 export function free(object, name) {
   if (name in object) {
     return delete object[name];
   }
 }
 
+/**
+ * Delete property of given object by value.
+ *
+ * @param {Object} object - The object to search for matching properties.
+ * @param {Any} value - The value to be garbage collected.
+ * @returns {boolean} - Returns `true` if deletion was successful, else `false`.
+ */
 export function freeByValue(object, value) {
   const keys = Object.keys(object);
   const length = keys.length;
