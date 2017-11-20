@@ -3,7 +3,7 @@ import on from '../../../js/on';
 import outer from '../../../js/outer';
 import {freeByValue} from "../../../js/free";
 
-const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'click', 'enter', 'move', 'leave');
+const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'UN_CLOSE_ESCAPE', 'click', 'keyup', 'enter', 'move', 'leave');
 
 const cache = {};
 const count = {};
@@ -24,6 +24,7 @@ class MenuObserver {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
 
     this.receivers = [];
 
@@ -55,6 +56,7 @@ class MenuObserver {
 
     this[DYNAMIC_PROPS.UN_OUTER_CLICK] = outer(this.list, DYNAMIC_PROPS.CLICK, this.handleClose);
     this[DYNAMIC_PROPS.UN_CLOSE_CLICK] = on(this.list, DYNAMIC_PROPS.CLICK, this.options.closeButton, this.handleClose);
+    this[DYNAMIC_PROPS.UN_CLOSE_ESCAPE] = on(document, DYNAMIC_PROPS.KEYUP, this.handleKeyUp);
   }
 
   offInteractive() {
@@ -64,6 +66,10 @@ class MenuObserver {
 
     if (DYNAMIC_PROPS.UN_CLOSE_CLICK in this) {
       this[DYNAMIC_PROPS.UN_CLOSE_CLICK]();
+    }
+
+    if (DYNAMIC_PROPS.UN_CLOSE_ESCAPE in this) {
+      this[DYNAMIC_PROPS.UN_CLOSE_ESCAPE]();
     }
   }
 
@@ -86,19 +92,33 @@ class MenuObserver {
     this.lastListItem = listItem;
 
     if (isLeave) {
-      this.notify(DYNAMIC_PROPS.LEAVE, listItem);
-
-      this.offInteractive();
-
-      if (this.lastListItem) {
-        delete this.lastListItem;
-      }
+      this.close();
     }
   }
 
   handleClose(e) {
     e.preventDefault();
 
+    this.close();
+  }
+
+  handleKeyUp(e) {
+    let isEscape = false;
+
+    if ("key" in e) {
+      isEscape = (e.key == "Escape" || e.key == "Esc");
+    } else {
+      isEscape = (e.keyCode == 27);
+    }
+
+    if (isEscape) {
+      e.preventDefault();
+
+      this.close();
+    }
+  }
+
+  close() {
     if (this.lastListItem) {
       this.notify(DYNAMIC_PROPS.LEAVE, this.lastListItem);
 
