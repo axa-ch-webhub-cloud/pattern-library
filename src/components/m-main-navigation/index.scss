@@ -19,9 +19,9 @@
   @include make-container();
   @include make-container-max-widths();
   @include make-row(null);
+  flex-wrap: nowrap;
 
   align-items: center;
-  flex-wrap: nowrap;
 }
 
 .m-main-navigation__logo {
@@ -80,9 +80,9 @@
 .m-main-navigation__list-item {
   display: block;
 
-  margin: 0 $main-navigation__list-item-x-margin;
-
   float: left;
+
+  margin: 0 $main-navigation__list-item-x-margin;
 }
 
 .m-main-navigation__list-link {
@@ -109,10 +109,10 @@
 
 .m-main-navigation__form {
   display: block;
-
-  border-left: $main-navigation__form-border-left-width solid $main-navigation__form-border-left-color;
   padding: $main-navigation__form-x-padding 0 $main-navigation__form-x-padding $main-navigation__form-padding-right;
   margin-left: $main-navigation__form-margin-left;
+
+  border-left: $main-navigation__form-border-left-width solid $main-navigation__form-border-left-color;
 }
 
 .m-main-navigation__search {

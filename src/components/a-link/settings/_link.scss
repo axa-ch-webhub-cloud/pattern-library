@@ -6,17 +6,18 @@ $link__arrow-padding: 10px !default;
 $link__arrow-motion-duration: 0.6s !default;
 $link__arrow-motion-easing: ease !default;
 
-$link-color: (
-  default: (
-    text: $color-link,
-    text--hover: $color-link--hover
-  ),
-  red: (
-    text: $color-link--red,
-    text--hover: $color-link--red--hover
-  ),
-  white: (
-    text: $color-link--white,
-    text--hover: $color-link--white--hover
-  )
-) !default;
+$link-color:
+  (
+    default: (
+      text: $color-link,
+      text--hover: $color-link--hover
+    ),
+    red: (
+      text: $color-link--red,
+      text--hover: $color-link--red--hover
+    ),
+    white: (
+      text: $color-link--white,
+      text--hover: $color-link--white--hover
+    )
+  ) !default;

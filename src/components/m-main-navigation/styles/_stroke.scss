@@ -5,11 +5,12 @@ $stroke-height: 4px !default;
 $stroke-z-index: 1px !default;
 
 .a-stroke {
-  display: block;
   position: absolute;
-  z-index: $stroke-z-index;
   bottom: 0;
   left: 0;
+  z-index: $stroke-z-index;
+
+  display: block;
   width: 0;
   height: 0;
   background: $color-prim-red-burnt-sienna;

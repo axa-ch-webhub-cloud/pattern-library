@@ -21,15 +21,15 @@ $bg-button: $color-axa-blue;
 
 .o-sg-section__section {
   display: none;
+
+  min-height: 50px;
+
+  margin-top: -2px;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   background-color: $sg-white;
   border-bottom: 2px solid $color-axa-blue;
   border-top: 2px solid $color-axa-blue;
-
-  margin-top: -2px;
-
-  min-height: 50px;
 }
 
 .o-sg-section__section--visible {
@@ -37,8 +37,8 @@ $bg-button: $color-axa-blue;
 }
 
 .o-sg-section__title {
-  margin-right: 20px;
   padding: 5px 0;
+  margin-right: 20px;
 }
 
 .o-sg-section__title--strong {
@@ -46,33 +46,34 @@ $bg-button: $color-axa-blue;
 }
 
 .o-sg-section__section--title {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  height: 110px;
+
+  max-width: 800px;
+  padding: 0 1%;
+  margin: 3% auto 0;
+
+  justify-content: center;
+  align-items: center;
   border: 1px solid $color-axa-blue;
   background-color: $color-prim-gray-wild-sand;
   border-bottom: 0;
-  margin: 3% auto 0;
-  padding: 0 1%;
-  height: 110px;
-  z-index: 3;
-  position: relative;
   box-shadow: none;
 
-  max-width: 800px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   &::after {
-    content: "";
     display: table;
     clear: both;
+    content: "";
   }
 }
 
 .o-sg-section__section--src {
   max-width: 1900px;
-  margin: -2px auto 0 auto;
   padding: 0 3%;
+  margin: -2px auto 0 auto;
 }
 
 .o-sg-section__button {

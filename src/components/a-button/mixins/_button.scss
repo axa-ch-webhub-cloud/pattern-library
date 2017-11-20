@@ -47,9 +47,9 @@
 
 @mixin button--x-padding($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding;
 
   padding-left: $x-padding;
-  padding-right: $x-padding;
 }
 
 @mixin button--color($style: default) {
@@ -140,16 +140,17 @@
 }
 
 @mixin button__arrow() {
-  display: block;
   position: absolute;
 
   top: 50%;
-  margin-top: -($button__arrow-width / 2);
 
-  fill: currentColor;
+  display: block;
 
   width: $button__arrow-width;
   height: $button__arrow-width;
+  margin-top: -($button__arrow-width / 2);
+
+  fill: currentColor;
 }
 
 @mixin button__arrow-right($right: $button-x-padding-default) {
@@ -172,25 +173,27 @@
 }
 
 @mixin button--motion() {
-  overflow: hidden;
 
   z-index: $button__motion-z-index;
 
+  overflow: hidden;
+
   &::after {
-    display: block;
-    content: '';
 
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
+
+    z-index: $button__motion-pseudo-z-index;
+
+    display: block;
 
     width: 0;
     height: 550px;
+    content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: all $button__motion-duration $button__motion-easing 0s;
-
-    z-index: $button__motion-pseudo-z-index;
   }
 
   &:hover,

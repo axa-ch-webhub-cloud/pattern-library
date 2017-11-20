@@ -5,9 +5,12 @@
     font-weight: 700;
     src: url('../../assets/fonts/PublicoHeadline-Bold-Web.eot'); /* IE9 Compat Modes */
     src:
-      local('Publico Headline Web'), local('Publico Headline'),
-      url('../../assets/fonts/PublicoHeadline-Bold-Web.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../../assets/fonts/PublicoHeadline-Bold-Web.woff') format('woff'); /* Modern Browsers */
+      local('Publico Headline Web'),
+      local('Publico Headline'),
+      /* Super Modern Browsers */
+      url('../../assets/fonts/PublicoHeadline-Bold-Web.woff2') format('woff2'),
+      /* Modern Browsers */
+      url('../../assets/fonts/PublicoHeadline-Bold-Web.woff') format('woff');
   }
 }
 
@@ -19,9 +22,12 @@
     font-weight: 400;
     src: url('../../assets/fonts/source-sans-pro-v10-latin-regular.eot'); /* IE9 Compat Modes */
     src:
-      local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
-      url('../../assets/fonts/source-sans-pro-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-regular.woff') format('woff'); /* Modern Browsers */
+      local('Source Sans Pro Regular'),
+      local('SourceSansPro-Regular'),
+      /* Super Modern Browsers */
+      url('../../assets/fonts/source-sans-pro-v10-latin-regular.woff2') format('woff2'),
+      /* Modern Browsers */
+      url('../../assets/fonts/source-sans-pro-v10-latin-regular.woff') format('woff');
   }
 }
 
@@ -33,9 +39,12 @@
     font-weight: 700;
     src: url('../../assets/fonts/source-sans-pro-v10-latin-700.eot'); /* IE9 Compat Modes */
     src:
-      local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),
-      url('../../assets/fonts/source-sans-pro-v10-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-700.woff') format('woff'); /* Modern Browsers */
+      local('Source Sans Pro Bold'),
+      local('SourceSansPro-Bold'),
+      /* Super Modern Browsers */
+      url('../../assets/fonts/source-sans-pro-v10-latin-700.woff2') format('woff2'),
+      /* Modern Browsers */
+      url('../../assets/fonts/source-sans-pro-v10-latin-700.woff') format('woff');
   }
 }
 
@@ -47,8 +56,11 @@
     font-weight: 600;
     src: url('../../assets/fonts/source-sans-pro-v10-latin-600.eot'); /* IE9 Compat Modes */
     src:
-      local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'),
-      url('../../assets/fonts/source-sans-pro-v10-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-600.woff') format('woff'); /* Modern Browsers */
+      local('Source Sans Pro SemiBold'),
+      local('SourceSansPro-SemiBold'),
+      /* Super Modern Browsers */
+      url('../../assets/fonts/source-sans-pro-v10-latin-600.woff2') format('woff2'),
+      /* Modern Browsers */
+      url('../../assets/fonts/source-sans-pro-v10-latin-600.woff') format('woff');
   }
 }
