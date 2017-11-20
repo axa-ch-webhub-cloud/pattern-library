@@ -4,6 +4,7 @@
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
 @import "styles/stroke";
 
 .m-main-navigation {
@@ -19,11 +20,19 @@
   @include make-row(null);
 
   align-items: center;
+  flex-wrap: nowrap;
+}
+
+.m-main-navigation__logo {
+  @include make-col(2);
+
+  align-self: flex-start;
 }
 
 .m-main-navigation__logo-link {
   display: block;
-  align-self: flex-start;
+
+  width: $main-navigation__logo-img-size;
 }
 
 .m-main-navigation__logo-img {
@@ -40,8 +49,9 @@
 }
 
 .m-main-navigation__list {
-  @include clearfix();
   @include unstyle-list();
+
+  display: flex;
 }
 
 .m-main-navigation__list-item {
@@ -54,6 +64,8 @@
 
 .m-main-navigation__list-link {
   @include typo-13--semibold();
+  // @todo: check if need this here
+  @include word-break();
 
   display: table-cell;
 
