@@ -37,6 +37,79 @@
         "hasBlock": true
       }
     ],
+    "order/properties-order": [[
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "position",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "z-index"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "display",
+          "box-sizing",
+          "float",
+          "width",
+          "height",
+          "max-width",
+          "max-height",
+          "min-width",
+          "min-height",
+          "padding",
+          "padding-top",
+          "padding-right",
+          "padding-bottom",
+          "padding-left",
+          "margin",
+          "margin-top",
+          "margin-right",
+          "margin-bottom",
+          "margin-left",
+          "margin-collapse",
+          "margin-top-collapse",
+          "margin-right-collapse",
+          "margin-bottom-collapse",
+          "margin-left-collapse",
+          "overflow",
+          "overflow-x",
+          "overflow-y",
+          "clip",
+          "clear"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "flex-flow",
+          "flex-direction",
+          "flex-wrap",
+          "justify-content",
+          "align-items",
+          "align-content"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "order",
+          "flex",
+          "flex-grow",
+          "flex-shrink",
+          "flex-basis",
+          "align-self"
+        ]
+      }
+    ], { "unspecified": "bottom" }],
     "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
     "scss/at-else-closing-brace-space-after": "always-intermediate",
     "scss/at-else-empty-line-before": "never",
