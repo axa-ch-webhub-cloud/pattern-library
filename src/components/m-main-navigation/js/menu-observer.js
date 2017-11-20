@@ -1,5 +1,8 @@
+import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import outer from '../../../js/outer';
+
+const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'click', 'enter', 'move', 'leave');
 
 const cache = {};
 
@@ -34,12 +37,12 @@ class MenuObserver {
   on() {
     this.off();
 
-    this.unClick = on(this.list, 'click', this.options.listLink, this.handleClick);
+    this[DYNAMIC_PROPS.UN_CLICK] = on(this.list, DYNAMIC_PROPS.CLICK, this.options.listLink, this.handleClick);
   }
 
   off() {
-    if ('unClick' in this) {
-      this.unClick();
+    if (DYNAMIC_PROPS.UN_CLICK in this) {
+      this[DYNAMIC_PROPS.UN_CLICK]();
     }
 
     this.offInteractive();
@@ -48,17 +51,17 @@ class MenuObserver {
   onInteractive() {
     this.offInteractive();
 
-    this.unOuterClick = outer(this.list, 'click', this.handleClose);
-    this.unCloseClick = on(this.list, 'click', this.options.closeButton, this.handleClose);
+    this[DYNAMIC_PROPS.UN_OUTER_CLICK] = outer(this.list, DYNAMIC_PROPS.CLICK, this.handleClose);
+    this[DYNAMIC_PROPS.UN_CLOSE_CLICK] = on(this.list, DYNAMIC_PROPS.CLICK, this.options.closeButton, this.handleClose);
   }
 
   offInteractive() {
-    if ('unOuterClick' in this) {
-      this.unOuterClick();
+    if (DYNAMIC_PROPS.UN_OUTER_CLICK in this) {
+      this[DYNAMIC_PROPS.UN_OUTER_CLICK]();
     }
 
-    if ('unCloseClick' in this) {
-      this.unCloseClick();
+    if (DYNAMIC_PROPS.UN_CLOSE_CLICK in this) {
+      this[DYNAMIC_PROPS.UN_CLOSE_CLICK]();
     }
   }
 
@@ -71,17 +74,17 @@ class MenuObserver {
     const isLeave = !isEnter && !isMove;
 
     if (isEnter) {
-      this.notify('enter', listItem);
+      this.notify(DYNAMIC_PROPS.ENTER, listItem);
 
       this.onInteractive();
     } else if (isMove) {
-      this.notify('move', listItem, this.lastListItem);
+      this.notify(DYNAMIC_PROPS.MOVE, listItem, this.lastListItem);
     }
 
     this.lastListItem = listItem;
 
     if (isLeave) {
-      this.notify('leave', listItem);
+      this.notify(DYNAMIC_PROPS.LEAVE, listItem);
 
       this.offInteractive();
 
@@ -95,7 +98,7 @@ class MenuObserver {
     e.preventDefault();
 
     if (this.lastListItem) {
-      this.notify('leave', this.lastListItem);
+      this.notify(DYNAMIC_PROPS.LEAVE, this.lastListItem);
 
       this.offInteractive();
 
