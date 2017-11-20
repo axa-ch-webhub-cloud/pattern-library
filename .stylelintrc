@@ -4,6 +4,7 @@
   ],
   "extends": "stylelint-config-standard",
   "plugins": [
+    "stylelint-order",
     "stylelint-scss",
     "stylelint-selector-bem-pattern",
     "stylelint-declaration-strict-value"
@@ -19,6 +20,23 @@
     "scale-unlimited/declaration-strict-value": [["/color/", "fill", "stroke", "z-index", "font-size"], {
       "ignoreKeywords": ["transparent", "currentColor", "inherit"]
     }],
+    "order/order": [
+      "at-variables",
+      "dollar-variables",
+      {
+        "type": "at-rule",
+        "name": "include",
+        "hasBlock": false
+      },
+      "custom-properties",
+      "declarations",
+      "rules",
+      {
+        "type": "at-rule",
+        "name": "include",
+        "hasBlock": true
+      }
+    ],
     "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
     "scss/at-else-closing-brace-space-after": "always-intermediate",
     "scss/at-else-empty-line-before": "never",
