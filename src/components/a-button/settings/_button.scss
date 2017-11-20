@@ -17,6 +17,8 @@ $button__arrow-motion-easing: ease !default;
 
 $button__motion-duration: 0.3s !default;
 $button__motion-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955) !default;
+$button__motion-z-index: 0 !default;
+$button__motion-pseudo-z-index: -1 !default;
 
 $button-color: (
   default: (

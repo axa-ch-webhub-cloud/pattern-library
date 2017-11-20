@@ -174,7 +174,7 @@
 @mixin button--motion() {
   overflow: hidden;
 
-  z-index: 0;
+  z-index: $button__motion-z-index;
 
   &::after {
     display: block;
@@ -190,7 +190,7 @@
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: all $button__motion-duration $button__motion-easing 0s;
 
-    z-index: -1;
+    z-index: $button__motion-pseudo-z-index;
   }
 
   &:hover,
