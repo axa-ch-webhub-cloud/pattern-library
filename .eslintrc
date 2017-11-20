@@ -4,6 +4,7 @@
     "max-len": ["warn", 140, 2],
     "import/prefer-default-export": "off",
     "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}]
