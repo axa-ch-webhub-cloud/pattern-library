@@ -103,13 +103,7 @@ class MenuObserver {
   }
 
   handleKeyUp(e) {
-    let isEscape = false;
-
-    if ("key" in e) {
-      isEscape = (e.key == "Escape" || e.key == "Esc");
-    } else {
-      isEscape = (e.keyCode == 27);
-    }
+    const isEscape = 'key' in e ? (e.key === 'Escape' || e.key === 'Esc') : e.keyCode === 27;
 
     if (isEscape) {
       e.preventDefault();
