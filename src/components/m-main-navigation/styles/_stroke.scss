@@ -1,0 +1,24 @@
+@import "../../../styles/settings/colors";
+
+$stroke-bg: $color-prim-red-burnt-sienna !default;
+$stroke-height: 4px !default;
+
+.a-stroke {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: $color-prim-red-burnt-sienna;
+  transition: height 0.2s ease;
+
+  &.is-enter {
+    height: $stroke-height;
+  }
+
+  &.is-move {
+    transition: all 0.2s ease;
+  }
+}

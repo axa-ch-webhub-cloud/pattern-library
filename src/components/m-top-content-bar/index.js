@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
-class SubNavigation extends BaseComponentGlobal {
+class TopContentBar extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -10,16 +10,16 @@ class SubNavigation extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'o-sub-navigation__box';
+    box.className = 'm-top-content-bar__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `o-sub-navigation o-sub-navigation--${type}`;
+    this.className = `m-top-content-bar m-top-content-bar--${type}`;
 
     this.appendChild(box);
   }
 }
 
-window.customElements.define('axa-sub-navigation', SubNavigation);
+window.customElements.define('axa-top-content-bar', TopContentBar);

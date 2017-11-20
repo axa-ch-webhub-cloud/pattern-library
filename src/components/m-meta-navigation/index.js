@@ -10,13 +10,13 @@ class MetaNavigation extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'o-meta-navigation__box';
+    box.className = 'm-meta-navigation__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `o-meta-navigation o-meta-navigation--${type}`;
+    this.className = `m-meta-navigation m-meta-navigation--${type}`;
 
     this.appendChild(box);
   }
