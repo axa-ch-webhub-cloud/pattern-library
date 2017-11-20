@@ -152,6 +152,9 @@
       "ignoreAtRules": ["if", "else"]
     }],
     "block-closing-brace-space-after": null,
-    "block-no-empty": null
+    "block-no-empty": null,
+    "max-empty-lines": [2, {
+      "ignore": ["comments"]
+    }]
   }
 }
