@@ -3,7 +3,7 @@ import css from '../../../js/css';
 import classList from '../../../js/class-list';
 import getMenuObserver from './menu-observer';
 
-const DYNAMIC_PROPS = Enum('OBSERVER');
+const DYNAMIC_PROPS = Enum('OBSERVER', 'stroke');
 
 class Stroke {
   static DEFAULTS = {
@@ -32,10 +32,10 @@ class Stroke {
 
     this.list = this.rootNode.querySelector(this.options.list);
 
-    this.stroke = document.createElement('div');
-    this.stroke.className = this.options.strokeClass;
+    this[DYNAMIC_PROPS.STROKE] = document.createElement('div');
+    this[DYNAMIC_PROPS.STROKE].className = this.options.strokeClass;
 
-    this.list.appendChild(this.stroke);
+    this.list.appendChild(this[DYNAMIC_PROPS.STROKE]);
 
     this[DYNAMIC_PROPS.OBSERVER] = getMenuObserver(this.rootNode);
 
@@ -51,26 +51,26 @@ class Stroke {
   }
 
   enter(dom) {
-    classList.add(this.stroke, this.options.enterClass);
+    classList.add(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
 
-    css(this.stroke, {
+    css(this[DYNAMIC_PROPS.STROKE], {
       width: `${dom.offsetWidth}px`,
       left: `${dom.offsetLeft}px`
     });
   }
 
   move(newDom) {
-    classList.add(this.stroke, this.options.moveClass);
+    classList.add(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
 
-    css(this.stroke, {
+    css(this[DYNAMIC_PROPS.STROKE], {
       width: `${newDom.offsetWidth}px`,
       left: `${newDom.offsetLeft}px`
     });
   }
 
   leave() {
-    classList.remove(this.stroke, this.options.moveClass);
-    classList.remove(this.stroke, this.options.enterClass);
+    classList.remove(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
+    classList.remove(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
   }
 
   destroy() {
@@ -79,6 +79,11 @@ class Stroke {
     if (DYNAMIC_PROPS.OBSERVER in this) {
       this[DYNAMIC_PROPS.OBSERVER].destroy();
       delete this[DYNAMIC_PROPS.OBSERVER];
+    }
+
+    if (DYNAMIC_PROPS.STROKE in this) {
+      this[DYNAMIC_PROPS.STROKE].parentNode.removeChild(this[DYNAMIC_PROPS.STROKE]);
+      delete this[DYNAMIC_PROPS.STROKE];
     }
   }
 }
