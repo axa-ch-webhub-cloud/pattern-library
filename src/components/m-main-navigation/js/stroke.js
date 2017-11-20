@@ -8,7 +8,7 @@ const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER', 'stroke');
 class Stroke {
   static DEFAULTS = {
     strokeClass: 'a-stroke',
-    list: '.m-main-navigation__list',
+    list: '.js-main-navigation__list',
     enterClass: 'is-enter',
     moveClass: 'is-move'
   };

@@ -10,9 +10,9 @@ const count = {};
 
 class MenuObserver {
   static DEFAULTS = {
-    list: '.m-main-navigation__list',
-    listLink: 'm-main-navigation__list-link',
-    closeButton: 'm-sub-navigation__index-close'
+    list: '.js-main-navigation__list',
+    listLink: 'js-main-navigation__list-link',
+    closeButton: 'js-sub-navigation__index-close'
   };
 
   constructor(rootNode, options = {}) {
