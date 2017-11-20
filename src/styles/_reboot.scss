@@ -27,6 +27,7 @@
   box-sizing: border-box; // 1
 }
 
+
 // Vertical Rhythm
 //
 // 1. Reset top margin for all first-child elements by lowest specifity
@@ -40,7 +41,7 @@ html {
   -webkit-text-size-adjust: 100%; // 4
   -ms-text-size-adjust: 100%; // 4
   -ms-overflow-style: scrollbar; // 5
-  -webkit-tap-highlight-color: rgba(0,0,0,0); // 6
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 6
 }
 
 // IE10+ doesn't honor `<meta name="viewport">` in some cases.
@@ -84,7 +85,6 @@ body {
   outline: none !important;
 }
 
-
 // Content grouping
 //
 // 1. Add the correct box sizing in Firefox.
@@ -107,8 +107,8 @@ hr {
 // margin for easier control within type scales as it avoids margin collapsing.
 // stylelint-disable selector-list-comma-newline-after
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 0;
   margin-top: $headings-margin-top;
+  margin-bottom: 0;
 }
 // stylelint-enable selector-list-comma-newline-after
 
@@ -117,9 +117,10 @@ h1, h2, h3, h4, h5, h6 {
 // Similarly, the top margin on `<p>`s get reset. However, we also reset the
 // bottom margin to use `rem` units instead of `em`.
 p {
-  margin-bottom: 0;
   margin-top: $paragraph-margin-top;
+  margin-bottom: 0;
 }
+
 
 // Abbreviations
 //
@@ -145,8 +146,8 @@ address {
 ol,
 ul,
 dl {
-  margin-bottom: 0;
   margin-top: $margin-top-base;
+  margin-bottom: 0;
 }
 
 ol ol,
@@ -161,7 +162,7 @@ dt {
 }
 
 dd {
-  margin-top: $margin-top-base/2;
+  margin-top: $margin-top-base / 2;
   margin-left: 0; // Undo browser default
 }
 
@@ -197,8 +198,8 @@ sup {
   vertical-align: baseline;
 }
 
-sub { bottom: -.25em; }
-sup { top: -.5em; }
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
 
 
 //
@@ -255,12 +256,15 @@ samp {
 // stylelint-enable font-family-no-duplicate-names
 
 pre {
-  // Remove browser default top margin
-  margin-bottom: 0;
   // Reset browser default of `1em` to use `rem`s
   margin-top: $margin-top-base;
+
+  // Remove browser default top margin
+  margin-bottom: 0;
+
   // Don't allow content to break outside
   overflow: auto;
+
   // We have @viewport set which causes scrollbars to overlap content in IE11 and Edge, so
   // we force a non-overlapping, non-auto-hiding scrollbar to counteract.
   -ms-overflow-style: scrollbar;
@@ -344,7 +348,7 @@ th {
 label {
   // Allow labels to use `margin` for spacing.
   display: inline-block;
-  margin-top: $margin-top-base/2;
+  margin-top: $margin-top-base / 2;
 }
 
 // Remove the default `border-radius` that macOS Chrome adds.
@@ -435,6 +439,7 @@ fieldset {
   // See https://github.com/twbs/bootstrap/issues/12359
   // and https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
   min-width: 0;
+
   // Reset the default outline behavior of fieldsets so they don't affect page layout.
   padding: 0;
   margin: 0;
@@ -448,7 +453,7 @@ legend {
   width: 100%;
   max-width: 100%; // 1
   padding: 0;
-  margin-top: $margin-top-base/2;
+  margin-top: $margin-top-base / 2;
   font-size: 1.5rem;
   line-height: inherit;
   color: inherit; // 2

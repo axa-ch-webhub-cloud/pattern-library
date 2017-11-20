@@ -6,15 +6,14 @@
 .m-top-content-bar {
   display: block;
 
-  color: $color-prim-white;
-
   padding-top: $top-content-bar-y-padding;
   padding-bottom: $top-content-bar-y-padding;
+
+  color: $color-prim-white;
 
   @include respond-up(xs) {
     padding-top: $top-content-bar-y-padding--xs;
     padding-bottom: $top-content-bar-y-padding--xs;
-
   }
 }
 
@@ -35,6 +34,7 @@
   @include make-container();
 
   display: flex;
+
   flex-direction: column;
   align-items: center;
 

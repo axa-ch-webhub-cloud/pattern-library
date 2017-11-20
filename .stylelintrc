@@ -4,6 +4,7 @@
   ],
   "extends": "stylelint-config-standard",
   "plugins": [
+    "stylelint-order",
     "stylelint-scss",
     "stylelint-selector-bem-pattern",
     "stylelint-declaration-strict-value"
@@ -19,6 +20,96 @@
     "scale-unlimited/declaration-strict-value": [["/color/", "fill", "stroke", "z-index", "font-size"], {
       "ignoreKeywords": ["transparent", "currentColor", "inherit"]
     }],
+    "order/order": [
+      "at-variables",
+      "dollar-variables",
+      {
+        "type": "at-rule",
+        "name": "include",
+        "hasBlock": false
+      },
+      "custom-properties",
+      "declarations",
+      "rules",
+      {
+        "type": "at-rule",
+        "name": "include",
+        "hasBlock": true
+      }
+    ],
+    "order/properties-order": [[
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "position",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "z-index"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "display",
+          "box-sizing",
+          "float",
+          "width",
+          "height",
+          "max-width",
+          "max-height",
+          "min-width",
+          "min-height",
+          "padding",
+          "padding-top",
+          "padding-right",
+          "padding-bottom",
+          "padding-left",
+          "margin",
+          "margin-top",
+          "margin-right",
+          "margin-bottom",
+          "margin-left",
+          "margin-collapse",
+          "margin-top-collapse",
+          "margin-right-collapse",
+          "margin-bottom-collapse",
+          "margin-left-collapse",
+          "overflow",
+          "overflow-x",
+          "overflow-y",
+          "clip",
+          "clear"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "flex-flow",
+          "flex-direction",
+          "flex-wrap",
+          "justify-content",
+          "align-items",
+          "align-content"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "order": "flexible",
+        "properties": [
+          "order",
+          "flex",
+          "flex-grow",
+          "flex-shrink",
+          "flex-basis",
+          "align-self"
+        ]
+      }
+    ], { "unspecified": "bottom" }],
     "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
     "scss/at-else-closing-brace-space-after": "always-intermediate",
     "scss/at-else-empty-line-before": "never",
@@ -30,6 +121,7 @@
     "scss/at-import-partial-extension-blacklist": ["scss"],
     "scss/at-mixin-argumentless-call-parentheses": "always",
     "scss/at-mixin-pattern": "[a-z]+(:?-[a-z]+)*",
+    "scss/at-rule-no-unknown": true,
     "scss/dollar-variable-colon-newline-after": "always-multi-line",
     "scss/dollar-variable-colon-space-after": "always-single-line",
     "scss/dollar-variable-colon-space-before": "never",
@@ -54,11 +146,15 @@
       "ignore": ["after-comment", "blockless-after-blockless"],
       "ignoreAtRules": ["if", "else"]
     } ],
+    "at-rule-no-unknown": null,
     "declaration-empty-line-before": null,
     "block-closing-brace-newline-after": ["always", {
       "ignoreAtRules": ["if", "else"]
     }],
     "block-closing-brace-space-after": null,
-    "block-no-empty": null
+    "block-no-empty": null,
+    "max-empty-lines": [2, {
+      "ignore": ["comments"]
+    }]
   }
 }

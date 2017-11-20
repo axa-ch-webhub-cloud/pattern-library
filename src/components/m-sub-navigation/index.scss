@@ -59,10 +59,11 @@
   @include typo-13--semibold();
 
   position: relative;
-  text-transform: uppercase;
+
+  padding-right: $sub-navigation__index-close__icon-size + $sub-navigation__index-close-padding-left;
 
   margin-left: auto;
-  padding-right: $sub-navigation__index-close__icon-size + $sub-navigation__index-close-padding-left;
+  text-transform: uppercase;
   border: none;
   background: transparent;
 
@@ -81,15 +82,16 @@
 
 .m-sub-navigation__index-close__icon {
   position: absolute;
+
+  top: 50%;
+  right: 0;
+
   display: block;
 
   width: $sub-navigation__index-close__icon-size;
   height: $sub-navigation__index-close__icon-size;
 
-  top: 50%;
-  right: 0;
-
-  margin-top: ($sub-navigation__index-close__icon-size/-2);
+  margin-top: ($sub-navigation__index-close__icon-size / -2);
 
   fill: currentColor;
 }
@@ -104,21 +106,21 @@
 
 .m-sub-navigation__row {
   @include make-row(null);
-
-  justify-content: center;
+  margin-right: -$sub-navigation__block-x-padding;
 
   margin-left: -$sub-navigation__block-x-padding;
-  margin-right: -$sub-navigation__block-x-padding;
+
+  justify-content: center;
 }
 
 .m-sub-navigation__row--col-2 {
-  margin-left: -$sub-navigation__block-x-padding-2-columns;
   margin-right: -$sub-navigation__block-x-padding-2-columns;
+  margin-left: -$sub-navigation__block-x-padding-2-columns;
 }
 
 .m-sub-navigation__row--col-3 {
-  margin-left: -$sub-navigation__block-x-padding-3-columns;
   margin-right: -$sub-navigation__block-x-padding-3-columns;
+  margin-left: -$sub-navigation__block-x-padding-3-columns;
 }
 
 .m-sub-navigation__block {
@@ -134,16 +136,16 @@
 
   @include quantity-query(2) {
     @include make-col(3);
+    padding-right: $sub-navigation__block-x-padding-2-columns;
 
     padding-left: $sub-navigation__block-x-padding-2-columns;
-    padding-right: $sub-navigation__block-x-padding-2-columns;
   }
 
   @include quantity-query(3) {
     @include make-col(4);
+    padding-right: $sub-navigation__block-x-padding-3-columns;
 
     padding-left: $sub-navigation__block-x-padding-3-columns;
-    padding-right: $sub-navigation__block-x-padding-3-columns;
   }
 }
 

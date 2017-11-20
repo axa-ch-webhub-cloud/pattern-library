@@ -36,22 +36,22 @@
   @include typo-13--semibold();
 
   display: block;
+
+  padding: 10px $meta-navigation__link-x-padding;
   text-transform: uppercase;
 
   color: $meta-navigation__link-color;
-
-  padding: 10px $meta-navigation__link-x-padding;
 
   &.is-active,
   &:hover,
   &:active,
   &:focus {
+    margin-bottom: -$meta-navigation-border-bottom-width;
     text-decoration: none;
 
     color: $meta-navigation__link-color--hover;
     background: $meta-navigation__link-bg--hover;
 
     border-bottom: $meta-navigation-border-bottom-width solid $meta-navigation__link-bg--hover;
-    margin-bottom: -$meta-navigation-border-bottom-width;
   }
 }

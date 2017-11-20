@@ -1,6 +1,6 @@
 import Enum from '../../../js/enum';
 import css from '../../../js/css';
-import classList from '../../../js/class-list';
+import { add, remove } from '../../../js/class-list';
 import getMenuObserver from './menu-observer';
 
 const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER', 'stroke');
@@ -10,14 +10,14 @@ class Stroke {
     strokeClass: 'a-stroke',
     list: '.js-main-navigation__list',
     enterClass: 'is-enter',
-    moveClass: 'is-move'
+    moveClass: 'is-move',
   };
 
   constructor(rootNode, options = {}) {
     this.rootNode = rootNode;
     this.options = {
       ...Stroke.DEFAULTS,
-      ...options
+      ...options,
     };
 
     this.init();
@@ -49,26 +49,26 @@ class Stroke {
   }
 
   enter(dom) {
-    classList.add(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
+    add(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
 
     css(this[DYNAMIC_PROPS.STROKE], {
       width: `${dom.offsetWidth}px`,
-      left: `${dom.offsetLeft}px`
+      left: `${dom.offsetLeft}px`,
     });
   }
 
   move(newDom) {
-    classList.add(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
+    add(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
 
     css(this[DYNAMIC_PROPS.STROKE], {
       width: `${newDom.offsetWidth}px`,
-      left: `${newDom.offsetLeft}px`
+      left: `${newDom.offsetLeft}px`,
     });
   }
 
   leave() {
-    classList.remove(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
-    classList.remove(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
+    remove(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
+    remove(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
   }
 
   destroy() {
@@ -83,6 +83,9 @@ class Stroke {
       this[DYNAMIC_PROPS.STROKE].parentNode.removeChild(this[DYNAMIC_PROPS.STROKE]);
       delete this[DYNAMIC_PROPS.STROKE];
     }
+
+    delete this.rootNode;
+    delete this.options;
   }
 }
 

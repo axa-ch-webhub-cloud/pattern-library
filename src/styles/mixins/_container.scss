@@ -7,22 +7,22 @@
   box-sizing: border-box;
 
   width: 100%;
+  padding-right: $grid-gutter-width / 2;
 
-  padding-left: $grid-gutter-width/2;
-  padding-right: $grid-gutter-width/2;
-
-  margin-left: auto;
+  padding-left: $grid-gutter-width / 2;
   margin-right: auto;
 
+  margin-left: auto;
+
   @include respond-up(sm) {
-    width: map_get($container-max-widths, md)
+    width: map_get($container-max-widths, md);
   }
 
   @include respond-up(md) {
-    width: map_get($container-max-widths, lg)
+    width: map_get($container-max-widths, lg);
   }
 
   @include respond-up(lg) {
-    width: map_get($container-max-widths, xl)
+    width: map_get($container-max-widths, xl);
   }
 }

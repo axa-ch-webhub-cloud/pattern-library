@@ -16,46 +16,49 @@ $button__arrow-motion-duration: 0.6s !default;
 $button__arrow-motion-easing: ease !default;
 
 $button__motion-duration: 0.3s !default;
-$button__motion-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955) !default;
+$button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955) !default;
+$button__motion-z-index: 0 !default;
+$button__motion-pseudo-z-index: -1 !default;
 
-$button-color: (
-  default: (
-    text: $color-prim-white,
-    text--ghost: $color-axa-blue,
-    text--ghost--hover: $color-prim-blue-deep-sapphire,
-    bg: $color-axa-blue,
-    bg--hover: $color-prim-blue-deep-sapphire,
-    bg--disabled: $color-prim-gray-dusty,
-    bg--ghost: transparent,
-    bg--ghost--hover: transparent,
-    bg--motion: $color-axa-blue,
-    bg--motion--hover: $color-prim-blue-deep-sapphire,
-    text--motion--hover: $color-prim-white,
-  ),
-  red: (
-    text: $color-prim-white,
-    text--ghost: $color-prim-red-burnt-sienna,
-    text--ghost--hover: $color-prim-red-flamingo,
-    bg: $color-prim-red-burnt-sienna,
-    bg--hover: $color-prim-red-flamingo,
-    bg--disabled: $color-prim-gray-dusty,
-    bg--ghost: transparent,
-    bg--ghost--hover: transparent,
-    bg--motion: $color-prim-red-burnt-sienna,
-    bg--motion--hover: $color-prim-red-flamingo,
-    text--motion--hover: $color-prim-white,
-  ),
-  white: (
-    text: $color-prim-white,
-    text--ghost: $color-prim-white,
-    text--ghost--hover: $color-prim-blue-dark-indigo,
-    bg: $color-prim-white,
-    bg--hover: $color-prim-blue-deep-sapphire,
-    bg--disabled: $color-prim-gray-dusty,
-    bg--ghost: transparent,
-    bg--ghost--hover: $color-prim-white,
-    bg--motion: transparent,
-    bg--motion--hover: $color-prim-white,
-    text--motion--hover: $color-prim-blue-dark-indigo,
-  )
-) !default;
+$button-color:
+  (
+    default: (
+      text: $color-prim-white,
+      text--ghost: $color-axa-blue,
+      text--ghost--hover: $color-prim-blue-deep-sapphire,
+      bg: $color-axa-blue,
+      bg--hover: $color-prim-blue-deep-sapphire,
+      bg--disabled: $color-prim-gray-dusty,
+      bg--ghost: transparent,
+      bg--ghost--hover: transparent,
+      bg--motion: $color-axa-blue,
+      bg--motion--hover: $color-prim-blue-deep-sapphire,
+      text--motion--hover: $color-prim-white,
+    ),
+    red: (
+      text: $color-prim-white,
+      text--ghost: $color-prim-red-burnt-sienna,
+      text--ghost--hover: $color-prim-red-flamingo,
+      bg: $color-prim-red-burnt-sienna,
+      bg--hover: $color-prim-red-flamingo,
+      bg--disabled: $color-prim-gray-dusty,
+      bg--ghost: transparent,
+      bg--ghost--hover: transparent,
+      bg--motion: $color-prim-red-burnt-sienna,
+      bg--motion--hover: $color-prim-red-flamingo,
+      text--motion--hover: $color-prim-white,
+    ),
+    white: (
+      text: $color-prim-white,
+      text--ghost: $color-prim-white,
+      text--ghost--hover: $color-prim-blue-dark-indigo,
+      bg: $color-prim-white,
+      bg--hover: $color-prim-blue-deep-sapphire,
+      bg--disabled: $color-prim-gray-dusty,
+      bg--ghost: transparent,
+      bg--ghost--hover: $color-prim-white,
+      bg--motion: transparent,
+      bg--motion--hover: $color-prim-white,
+      text--motion--hover: $color-prim-blue-dark-indigo,
+    )
+  ) !default;
