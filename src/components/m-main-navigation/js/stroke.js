@@ -10,7 +10,8 @@ class Stroke {
     listLink: 'm-main-navigation__list-link',
     subNavigation: 'm-sub-navigation',
     closeButton: 'm-sub-navigation__index-close',
-    stateClass: 'is-open'
+    enterClass: 'is-enter',
+    moveClass: 'is-move'
   };
 
   constructor(rootNode, options = {}) {
@@ -47,18 +48,16 @@ class Stroke {
   }
 
   enter(dom) {
-    classList.add(this.stroke, 'is-enter');
+    classList.add(this.stroke, this.options.enterClass);
 
     css(this.stroke, {
       width: `${dom.offsetWidth}px`,
       left: `${dom.offsetLeft}px`
     });
-
-    this.isVisible = true;
   }
 
   move(newDom) {
-    classList.add(this.stroke, 'is-move');
+    classList.add(this.stroke, this.options.moveClass);
 
     css(this.stroke, {
       width: `${newDom.offsetWidth}px`,
@@ -67,10 +66,8 @@ class Stroke {
   }
 
   leave() {
-    classList.remove(this.stroke, 'is-move');
-    classList.remove(this.stroke, 'is-enter');
-
-    this.isVisible = false;
+    classList.remove(this.stroke, this.options.moveClass);
+    classList.remove(this.stroke, this.options.enterClass);
   }
 
   destroy() {
