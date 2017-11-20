@@ -11,8 +11,9 @@
     "HTMLElement": true,
     "HTMLImports": true,
     "document": true,
-    "window": true,
+    "window": true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 8,
     "ecmaFeatures": {
