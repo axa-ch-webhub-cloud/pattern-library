@@ -10,8 +10,8 @@ export function freeByValue(object, value) {
 
   for(let i=0; i<length; ++i) {
     const key = keys[i];
-    if (this[key] === value) {
-      return delete this[key];
+    if (object[key] === value) {
+      return delete object[key];
     }
   }
 }
