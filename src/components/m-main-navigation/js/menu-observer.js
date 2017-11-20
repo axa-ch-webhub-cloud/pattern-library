@@ -1,10 +1,12 @@
 import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import outer from '../../../js/outer';
+import {freeByValue} from "../../../js/free";
 
 const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'click', 'enter', 'move', 'leave');
 
 const cache = {};
+const count = {};
 
 class MenuObserver {
   static DEFAULTS = {
@@ -120,26 +122,45 @@ class MenuObserver {
 
   register(receiver) {
     this.receivers.push(receiver);
-  }
 
-  deregister(receiver) {
-    const index = this.receivers.indexOf(receiver);
+    return deregister;
 
-    if (index !== -1) {
-      this.receivers.slice(index, 1);
+    function deregister() {
+      const index = this.receivers.indexOf(receiver);
+
+      if (index !== -1) {
+        this.receivers.slice(index, 1);
+      }
+
+      freeByValue(receiver, deregister);
     }
   }
 
   destroy() {
-    this.off();
-    delete this.receivers;
+    if (this.rootNode && this.rootNode in count) {
+      count[this.rootNode]--;
+
+      if (count[this.rootNode] <= 0) {
+        this.off();
+
+        delete cache[this.rootNode];
+        delete count[this.rootNode];
+
+        delete this.rootNode;
+        delete this.options;
+        delete this.receivers;
+      }
+    }
   }
 }
 
 function getInstance(rootNode, options) {
   if (!cache[rootNode]) {
     cache[rootNode] = new MenuObserver(rootNode, options);
+    count[rootNode] = 0;
   }
+
+  count[rootNode]++;
 
   return cache[rootNode];
 }

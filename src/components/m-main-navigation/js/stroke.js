@@ -3,7 +3,7 @@ import css from '../../../js/css';
 import classList from '../../../js/class-list';
 import getMenuObserver from './menu-observer';
 
-const DYNAMIC_PROPS = Enum('OBSERVER', 'stroke');
+const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER', 'stroke');
 
 class Stroke {
   static DEFAULTS = {
@@ -43,11 +43,13 @@ class Stroke {
   }
 
   on() {
-    this[DYNAMIC_PROPS.OBSERVER].register(this);
+    this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER] = this[DYNAMIC_PROPS.OBSERVER].register(this);
   }
 
   off() {
-    this[DYNAMIC_PROPS.OBSERVER].deregister(this);
+    if (DYNAMIC_PROPS.OBSERVER_UN_REGISTER in this) {
+      this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER]();
+    }
   }
 
   enter(dom) {
