@@ -56,7 +56,7 @@ class MenuObserver {
 
     this[DYNAMIC_PROPS.UN_OUTER_CLICK] = outer(this.list, DYNAMIC_PROPS.CLICK, this.handleClose);
     this[DYNAMIC_PROPS.UN_CLOSE_CLICK] = on(this.list, DYNAMIC_PROPS.CLICK, this.options.closeButton, this.handleClose);
-    this[DYNAMIC_PROPS.UN_CLOSE_ESCAPE] = on(document, DYNAMIC_PROPS.KEYUP, this.handleKeyUp);
+    this[DYNAMIC_PROPS.UN_CLOSE_ESCAPE] = on(this.list.ownerDocument, DYNAMIC_PROPS.KEYUP, this.handleKeyUp);
   }
 
   offInteractive() {
