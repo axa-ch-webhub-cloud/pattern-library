@@ -1,0 +1,35 @@
+@import "../settings/grids";
+@import "./respond";
+
+@mixin hide($breakpoints: $grid-breakpoints) {
+  $parent: &;
+  $breakpoints-keys: map-keys($breakpoints);
+
+  display: none !important;
+
+  @each $breakpoint-key in $breakpoints-keys {
+    @include respond-down($breakpoint-key) {
+      @at-root {
+        #{$parent}-#{$breakpoint-key}-down {
+          display: none !important;
+        }
+      }
+    }
+
+    @include respond-up($breakpoint-key) {
+      @at-root {
+        #{$parent}-#{$breakpoint-key}-up {
+          display: none !important;
+        }
+      }
+    }
+
+    @include respond-only($breakpoint-key) {
+      @at-root {
+        #{$parent}-#{$breakpoint-key} {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
