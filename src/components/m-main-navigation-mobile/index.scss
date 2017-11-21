@@ -70,8 +70,8 @@
   position: relative;
 
   display: block;
-  padding-left: 60px;
-  padding-right: 40px;
+  padding-left: $main-navigation-mobile__item-padding-left;
+  padding-right: $main-navigation-mobile__item-padding-right;
 
   text-transform: uppercase;
 }
@@ -88,47 +88,45 @@
 .m-main-navigation-mobile__list-link {
   @include typo-16--semibold();
 
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: $main-navigation-mobile__item-y-padding;
+  padding-bottom: $main-navigation-mobile__item-y-padding;
 }
 
 .m-main-navigation-mobile__category {
-  padding-right: 70px;
+  padding-right: $main-navigation-mobile__category-padding-right;
 }
 
 .m-main-navigation-mobile__back {
   @include typo-24();
 
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 105px;
+  padding-top: $main-navigation-mobile__back-y-padding;
+  padding-bottom: $main-navigation-mobile__back-y-padding;
+  padding-left: $main-navigation-mobile__back-padding-left;
 }
 
 .m-main-navigation-mobile__list-link {
 }
 
-.m-main-navigation-mobile__icon-next {
-  position: absolute;
-  top: 50%;
-  right: 40px;
-
-  height: 30px;
-  margin-top: -15px;
-
-  pointer-events: none;
-  transform: rotate(-90deg);
-  fill: currentColor;
-}
-
+.m-main-navigation-mobile__icon-next,
 .m-main-navigation-mobile__icon-back {
   position: absolute;
   top: 50%;
-  left: 60px;
 
-  height: 30px;
-  margin-top: -15px;
+  height: $main-navigation-mobile__icon-size;
+  margin-top: ($main-navigation-mobile__icon-size / -2);
 
   pointer-events: none;
-  transform: rotate(90deg);
   fill: currentColor;
+}
+
+.m-main-navigation-mobile__icon-next {
+  right: $main-navigation-mobile__item-padding-right;
+
+  transform: rotate(-90deg);
+}
+
+.m-main-navigation-mobile__icon-back {
+  left: $main-navigation-mobile__item-padding-left;
+
+  transform: rotate(90deg);
 }
