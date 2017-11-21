@@ -5,6 +5,7 @@ class TopContentBar extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
+
   connectedCallback() {
     super.connectedCallback();
     const type = this.getAttribute('type');
