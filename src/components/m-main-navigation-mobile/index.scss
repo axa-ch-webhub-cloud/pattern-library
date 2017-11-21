@@ -1,3 +1,4 @@
+@import "./settings/main-navigation-mobile";
 @import "../a-link/mixins/link";
 @import "../../styles/mixins/button-reset";
 @import "../../styles/settings/colors";
@@ -12,7 +13,7 @@
 
   display: block;
 
-  background: $color-prim-white;
+  background: $main-navigation-mobile-bg;
 }
 
 .m-main-navigation-mobile--off-canvas {
@@ -32,7 +33,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: $main-navigation-mobile__nav-z-index;
 
     display: none;
 
@@ -52,10 +53,10 @@
 .m-main-navigation-mobile__list-item {
   display: block;
 
-  border-bottom: 1px solid $color-prim-gray-silver;
+  border-bottom: $main-navigation-mobile__list-item-border-width solid $main-navigation-mobile__list-item-border-color;
 
   & &:first-child {
-    border-top: 1px solid $color-prim-gray-silver;
+    border-top: $main-navigation-mobile__list-item-border-width solid $main-navigation-mobile__list-item-border-color;
   }
 }
 
