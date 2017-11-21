@@ -31,18 +31,25 @@
 
   & & {
     position: absolute;
+    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
     z-index: $main-navigation-mobile__nav-z-index;
 
-    display: none;
-
-    width: 100%;
     height: 100%;
+
+    transform: translateX(110%);
+    transition: all 0.2s ease;
+
+    @include respond-up(sm) {
+      left: 10px;
+      box-shadow: -5px 0 10px -5px rgba(0, 0, 0, 0.3);
+    }
   }
 
   .is-open > & {
-    display: block;
+    transform: translateX(0);
   }
 }
 
