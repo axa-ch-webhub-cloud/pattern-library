@@ -1,10 +1,12 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import MobileNavigation from './js/mobile-navigation';
 
 class MainNavigationMobile extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
+
   connectedCallback() {
     super.connectedCallback();
     const type = this.getAttribute('type');
@@ -19,6 +21,8 @@ class MainNavigationMobile extends BaseComponentGlobal {
     this.className = `m-main-navigation-mobile m-main-navigation-mobile--${type}`;
 
     this.appendChild(box);
+
+    this.interaction = new MobileNavigation(this);
   }
 }
 
