@@ -1,0 +1,62 @@
+@import "../a-link/mixins/link";
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+
+.m-main-navigation-mobile {
+  position: relative;
+
+  display: block;
+}
+
+.m-main-navigation-mobile--off-canvas {
+  position: fixed;
+
+  @include respond-up(md) {
+    display: none;
+  }
+}
+
+.m-main-navigation-mobile__nav {
+  display: block;
+}
+
+.m-main-navigation-mobile__list {
+  @include unstyle-list();
+}
+
+.m-main-navigation-mobile__list-item {
+  display: block;
+
+  border-bottom: 1px solid $color-prim-gray-silver;
+}
+
+.m-main-navigation-mobile__list-link {
+  @include make-container();
+  @include link-color();
+  @include typo-16--semibold();
+
+  position: relative;
+
+  display: block;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  text-transform: uppercase;
+}
+
+.m-main-navigation-mobile__icon-link {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+
+  height: 30px;
+  margin-top: -15px;
+
+  pointer-events: none;
+  transform: rotate(-90deg);
+  fill: currentColor;
+}
