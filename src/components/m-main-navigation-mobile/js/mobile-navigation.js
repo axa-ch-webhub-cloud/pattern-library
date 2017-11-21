@@ -3,9 +3,10 @@ import { add, remove } from '../../../js/class-list';
 
 class MobileNavigation {
   static DEFAULTS = {
-    burger: '.js-main-navigation__burger',
-    burgerState: 'is-open',
-    nav: 'js-main-navigation-mobile__nav',
+    nav: '.js-main-navigation-mobile__nav',
+    category: 'js-main-navigation-mobile__category',
+    back: 'js-main-navigation-mobile__back',
+    isOpenClass: 'is-open',
   }
 
   constructor(rootNode, options) {
@@ -14,53 +15,58 @@ class MobileNavigation {
       ...MobileNavigation.DEFAULTS,
       ...options,
     };
-    this.isOpen = false;
 
-    this.handleBurgerClick = this.handleBurgerClick.bind(this);
+    this.opened = [];
+
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
 
     this.init();
   }
 
   init() {
-    this.burger = this.rootNode.ownerDocument.querySelector(this.options.burger);
+    this.nav = this.rootNode.querySelector(this.options.nav);
 
     this.on();
   }
 
   on() {
-    this.unBurger = on(this.burger, 'click', this.handleBurgerClick);
+    this.off();
+
+    this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
+    this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
   }
 
-  handleBurgerClick(e) {
+  off() {
+    if (this.unCategoryClick) {
+      this.unCategoryClick();
+    }
+
+    if (this.unBackClick) {
+      this.unBackClick();
+    }
+  }
+
+  handleCategoryClick(e, delegateTarget) {
     e.preventDefault();
 
-    console.log('clicked burger');
+    const { parentNode } = delegateTarget;
 
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
+    if (parentNode.lastChild !== delegateTarget) {
+      add(parentNode, this.options.isOpenClass);
+
+      this.opened.push(parentNode);
     }
   }
 
-  open() {
-    if (this.isOpen) {
-      return;
-    }
+  handleBackClick(e) {
+    e.preventDefault();
 
-    this.isOpen = true;
-
-    add(this.burger, this.options.burgerState);
+    remove(this.opened.pop(), this.options.isOpenClass);
   }
 
-  close() {
-    if (!this.isOpen) {
-      return;
-    }
-
-    this.isOpen = false;
-
-    remove(this.burger, this.options.burgerState);
+  handleLinkClick(e) {
+    e.preventDefault();
   }
 }
 

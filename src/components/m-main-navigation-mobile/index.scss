@@ -5,6 +5,7 @@
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
 
 .m-main-navigation-mobile {
   position: relative;
@@ -62,6 +63,7 @@
 .m-main-navigation-mobile__back,
 .m-main-navigation-mobile__list-link {
   @include make-container();
+  @include word-break();
   @include link-color();
 
   position: relative;
@@ -88,7 +90,7 @@
 }
 
 .m-main-navigation-mobile__category {
-
+  padding-right: 60px;
 }
 
 .m-main-navigation-mobile__back {

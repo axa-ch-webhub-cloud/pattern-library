@@ -24,6 +24,11 @@ class MainNavigationMobile extends BaseComponentGlobal {
 
     this.interaction = new MobileNavigation(this);
   }
+
+  disconnectedCallback() {
+    this.interaction.destroy();
+    delete this.interaction;
+  }
 }
 
 window.customElements.define('axa-main-navigation-mobile', MainNavigationMobile);
