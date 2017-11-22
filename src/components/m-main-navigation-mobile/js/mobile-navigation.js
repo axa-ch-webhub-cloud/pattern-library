@@ -64,10 +64,6 @@ class MobileNavigation {
 
     remove(this.opened.pop(), this.options.isOpenClass);
   }
-
-  handleLinkClick(e) {
-    e.preventDefault();
-  }
 }
 
 export default MobileNavigation;

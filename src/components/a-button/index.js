@@ -17,7 +17,7 @@ class Button extends BaseComponentGlobal {
   }
 
   _render() {
-    const initialInnerHTML = this.initialInnerHTML;
+    const { initialInnerHTML } = this;
     const tag = this.getAttribute('tag') || 'button';
     const color = this.getAttribute('color');
     const size = this.getAttribute('size');

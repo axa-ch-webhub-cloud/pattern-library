@@ -19,7 +19,7 @@ class Link extends BaseComponentGlobal {
   }
 
   _render() {
-    const initialInnerHTML = this.initialInnerHTML;
+    const { initialInnerHTML } = this;
     const color = this.getAttribute('color');
     const size = this.getAttribute('size');
     const motion = this.hasAttribute('motion');
