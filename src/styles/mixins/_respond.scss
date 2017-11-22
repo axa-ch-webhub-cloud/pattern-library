@@ -34,8 +34,6 @@
 }
 
 @mixin respond-only($breakpoint, $breakpoints: $grid-breakpoints) {
-  $breakpoint: get-breakpoint($breakpoint, $breakpoints);
-
   @include respond-between($breakpoint, $breakpoint, $breakpoints: $grid-breakpoints) {
     @content;
   }

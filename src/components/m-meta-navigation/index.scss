@@ -16,7 +16,21 @@
   @include make-container-max-widths();
 }
 
+.m-meta-navigation__row {
+  @include make-row();
+
+  align-items: center;
+
+  > .a-button {
+    margin-top: -2px;
+    margin-bottom: -1px;
+  }
+}
+
 .m-meta-navigation__nav-other {
+  @include make-gutter();
+
+  margin-right: auto;
 }
 
 .m-meta-navigation__list {

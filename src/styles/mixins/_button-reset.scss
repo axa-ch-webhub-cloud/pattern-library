@@ -1,0 +1,10 @@
+@mixin button-reset() {
+  background: transparent;
+  border: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

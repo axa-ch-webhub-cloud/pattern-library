@@ -3,6 +3,8 @@
 $sub-navigation-z-index: 1000 !default;
 $sub-navigation-bg: $color-prim-white !default;
 $sub-navigation-margin-top: 2px !default;
+$sub-navigation-border-width: 2px !default;
+$sub-navigation-border-color: $color-prim-gray-silver !default;
 
 $sub-navigation__index-bg: $color-prim-gray-alabaster !default;
 $sub-navigation__index-height: 60px !default;
@@ -15,6 +17,7 @@ $sub-navigation-padding-bottom: 40px !default;
 
 $sub-navigation__block-x-padding: 30px !default;
 $sub-navigation__block-y-padding: 0 !default;
+$sub-navigation__block-padding-top--repeat: 30px !default;
 
 $sub-navigation__block-x-padding-2-columns: 45px !default;
 $sub-navigation__block-x-padding-3-columns: 65px !default;
@@ -25,3 +28,6 @@ $sub-navigation__block-border-color: $color-prim-gray-silver !default;
 $sub-navigation__category-color: $color-axa-blue !default;
 
 $sub-navigation__list-margin-top: 15px !default;
+
+$sub-navigation__list-item-y-padding: 4px !default;
+$sub-navigation__list-item-line-height: 1.3 !default;

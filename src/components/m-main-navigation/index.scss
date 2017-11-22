@@ -1,6 +1,8 @@
 @import "settings/main-navigation";
+@import "../a-link/mixins/link";
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/clearfix";
+@import "../../styles/mixins/button-reset";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
@@ -19,6 +21,9 @@
   @include make-container();
   @include make-container-max-widths();
   @include make-row(null);
+
+  height: 100%;
+
   flex-wrap: nowrap;
 
   align-items: center;
@@ -69,6 +74,10 @@
   display: block;
 
   margin-left: auto;
+
+  @include respond-down(md) {
+    display: none;
+  }
 }
 
 .m-main-navigation__list {
@@ -86,6 +95,7 @@
 }
 
 .m-main-navigation__list-link {
+  @include link-color();
   @include typo-13--semibold();
 
   // @todo: check if need this here
@@ -109,10 +119,19 @@
 
 .m-main-navigation__form {
   display: block;
-  padding: $main-navigation__form-x-padding 0 $main-navigation__form-x-padding $main-navigation__form-padding-right;
-  margin-left: $main-navigation__form-margin-left;
+  padding: $main-navigation__form-y-padding 0 $main-navigation__form-y-padding $main-navigation__form-padding-side;
+  margin-left: $main-navigation__form-margin-side;
 
-  border-left: $main-navigation__form-border-left-width solid $main-navigation__form-border-left-color;
+  border-left: $main-navigation__form-border-side-width solid $main-navigation__form-border-side-color;
+
+  @include respond-down(md) {
+    padding-left: 0;
+    padding-right: $main-navigation__form-padding-side;
+    margin-left: auto;
+
+    border-left: none;
+    border-right: $main-navigation__form-border-side-width solid $main-navigation__form-border-side-color;
+  }
 }
 
 .m-main-navigation__search {
@@ -125,4 +144,36 @@
   height: $main-navigation__search-icon-size;
 
   fill: $main-navigation__search-icon-fill;
+}
+
+.m-main-navigation__burger {
+  @include button-reset();
+
+  display: none;
+
+  margin-left: $main-navigation__burger-margin-left;
+
+  color: $main-navigation__burger-color;
+
+  @include respond-down(md) {
+    display: block;
+  }
+}
+
+.m-main-navigation__burger-icon {
+  display: block;
+  fill: currentColor;
+
+  .is-open & {
+    display: none;
+  }
+}
+
+.m-main-navigation__close-icon {
+  display: none;
+  fill: currentColor;
+
+  .is-open & {
+    display: block;
+  }
 }

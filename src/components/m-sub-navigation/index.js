@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import classnames from 'classnames';
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
@@ -16,7 +16,7 @@ class SubNavigation extends BaseComponentGlobal {
     });
 
     this.className = classes;
-    //this.innerHTML = `<div class="m-sub-navigation__box">${this.initialInnerHTML}</div>`;
+    // this.innerHTML = `<div class="m-sub-navigation__box">${this.initialInnerHTML}</div>`;
   }
 }
 

@@ -10,13 +10,29 @@
 @import "respond";
 
 @mixin make-container($gutter-width: $grid-gutter-width) {
-  $grid-gutter-half: ($gutter-width / 2);
+  @include make-gutter($gutter-width);
 
   width: 100%;
-  padding-right: $grid-gutter-half;
-  padding-left: $grid-gutter-half;
   margin-right: auto;
   margin-left: auto;
+}
+
+@mixin make-gutter($gutter-width: $grid-gutter-width) {
+  @if type_of($gutter-width) == number {
+    $gutter-width: ($gutter-width / 2);
+  }
+
+  padding-right: $gutter-width;
+  padding-left: $gutter-width;
+}
+
+@mixin revert-gutter($gutter-width: $grid-gutter-width) {
+  @if type_of($gutter-width) == number {
+    $gutter-width: ($gutter-width / -2);
+  }
+
+  margin-right: $gutter-width;
+  margin-left: $gutter-width;
 }
 
 // For each breakpoint, define the maximum width of the container in a media query
@@ -29,21 +45,15 @@
 }
 
 @mixin make-row($gutter-width: $grid-gutter-width) {
-  @if type_of($gutter-width) == number {
-    $gutter-width: ($gutter-width / -2);
-  }
+  @include revert-gutter($gutter-width);
 
   display: flex;
-  margin-right: $gutter-width;
-  margin-left: $gutter-width;
 
   flex-wrap: wrap;
 }
 
 @mixin make-col-ready($gutter-width: $grid-gutter-width) {
-  @if type_of($gutter-width) == number {
-    $gutter-width: ($gutter-width / 2);
-  }
+  @include make-gutter($gutter-width);
 
   position: relative;
 
@@ -52,8 +62,6 @@
   // later on to override this initial width.
   width: 100%;
   min-height: 1px; // Prevent collapsing
-  padding-right: $gutter-width;
-  padding-left: $gutter-width;
 }
 
 @mixin make-col($size, $columns: $grid-columns) {

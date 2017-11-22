@@ -9,6 +9,7 @@
   display: none;
 
   background: $sub-navigation-bg;
+  border-bottom: $sub-navigation-border-width solid $sub-navigation-border-color;
 
   .is-open & {
     display: block;
@@ -111,6 +112,10 @@
   margin-left: -$sub-navigation__block-x-padding;
 
   justify-content: center;
+
+  & + & > .m-sub-navigation__block {
+    padding-top: $sub-navigation__block-padding-top--repeat;
+  }
 }
 
 .m-sub-navigation__row--col-2 {
@@ -169,12 +174,17 @@
 }
 
 .m-sub-navigation__list-item {
-
+  display: block;
 }
 
 .m-sub-navigation__link {
   @include typo-18();
   @include word-break();
+
+  display: inline-block;
+  padding: $sub-navigation__list-item-y-padding 0;
+
+  line-height: $sub-navigation__list-item-line-height !important;
 
   &:hover,
   &:active,

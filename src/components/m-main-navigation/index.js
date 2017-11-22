@@ -1,6 +1,7 @@
 import styles from './index.scss';
 import Stroke from './js/stroke';
 import SubNavigation from './js/sub-navigation';
+import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
 class MainNavigation extends BaseComponentGlobal {
@@ -26,6 +27,7 @@ class MainNavigation extends BaseComponentGlobal {
 
     this.stroke = new Stroke(this);
     this.subNavigation = new SubNavigation(this);
+    this.burger = new Burger(this);
   }
 
   disconnectedCallback() {
@@ -34,6 +36,9 @@ class MainNavigation extends BaseComponentGlobal {
 
     this.subNavigation.destroy();
     delete this.subNavigation;
+
+    this.burger.destroy();
+    delete this.burger;
   }
 }
 

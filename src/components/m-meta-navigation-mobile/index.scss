@@ -1,0 +1,93 @@
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
+@import "settings/meta-navigation-mobile";
+
+.m-meta-navigation-mobile {
+  display: block;
+}
+
+.m-meta-navigation-mobile__box {
+}
+
+.m-meta-navigation-mobile__nav-other {
+  display: block;
+
+  background: $meta-navigation-mobile__nav-other-bg;
+}
+
+.m-meta-navigation-mobile__list {
+  @include unstyle-list();
+}
+
+.m-meta-navigation-mobile__list-item {
+  display: block;
+
+  border-top: $meta-navigation-mobile__nav-border-top-width solid $meta-navigation-mobile__nav-border-top-color;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.m-meta-navigation-mobile__list-link {
+  @include typo-16--semibold();
+
+  display: block;
+
+  padding: $meta-navigation-mobile__link-y-padding $meta-navigation-mobile__link-x-padding;
+
+  color: $meta-navigation-mobile__link-color;
+  text-transform: uppercase;
+
+  &.is-active,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $meta-navigation-mobile__link-color--hover;
+  }
+}
+
+.m-main-navigation-mobile__nav-lang {
+  display: block;
+
+  background: $main-navigation-mobile__nav-lang-bg;
+
+  text-align: center;
+}
+
+.m-meta-navigation-mobile__lang-link {
+  @include typo-16();
+
+  display: inline-block;
+
+  padding: $meta-navigation-mobile__lang-link-y-padding $meta-navigation-mobile__lang-link-x-padding;
+
+  color: $meta-navigation-mobile__lang-link-color;
+  text-transform: uppercase;
+
+  &.is-active,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $meta-navigation-mobile__lang-link-color--hover;
+  }
+
+  &::before {
+    display: block;
+    float: left;
+    margin-left: -$meta-navigation-mobile__lang-link-x-padding;
+
+    content: '\00a0';
+
+    border-left: 1px solid $meta-navigation-mobile__lang-link-color;
+  }
+
+  &:first-child {
+    &::before {
+      display: none;
+    }
+  }
+}

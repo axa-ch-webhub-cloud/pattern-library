@@ -1,7 +1,8 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import MobileNavigation from './js/mobile-navigation';
 
-class TopContentBar extends BaseComponentGlobal {
+class MainNavigationMobile extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -11,22 +12,23 @@ class TopContentBar extends BaseComponentGlobal {
     const type = this.getAttribute('type');
     const box = document.createElement('div');
 
-    box.className = 'm-top-content-bar__box';
+    box.className = 'm-main-navigation-mobile__box';
 
     while (this.childNodes.length) {
       box.appendChild(this.firstChild);
     }
 
-    this.className = `m-top-content-bar m-top-content-bar--${type}`;
+    this.className = `m-main-navigation-mobile m-main-navigation-mobile--${type}`;
+
     this.appendChild(box);
 
-    this.box = box;
+    this.interaction = new MobileNavigation(this);
   }
 
   disconnectedCallback() {
-    this.removeChild(this.box);
-    delete this.box;
+    this.interaction.destroy();
+    delete this.interaction;
   }
 }
 
-window.customElements.define('axa-top-content-bar', TopContentBar);
+window.customElements.define('axa-main-navigation-mobile', MainNavigationMobile);
