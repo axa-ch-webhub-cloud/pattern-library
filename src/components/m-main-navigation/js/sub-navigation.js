@@ -1,8 +1,5 @@
-import Enum from '../../../js/enum';
 import { add, remove } from '../../../js/class-list';
 import getUiObserver from '../../../js/ui-observer';
-
-const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER');
 
 class SubNavigation {
   static DEFAULTS = {
@@ -23,7 +20,7 @@ class SubNavigation {
   init() {
     this.list = this.rootNode.querySelector(this.options.list);
 
-    this[DYNAMIC_PROPS.OBSERVER] = getUiObserver(this.rootNode, {
+    this.observer = getUiObserver(this.rootNode, {
       containerClass: '.js-main-navigation__list',
       toggleClass: 'js-main-navigation__list-link',
       closeClass: 'js-sub-navigation__index-close',
@@ -33,12 +30,12 @@ class SubNavigation {
   }
 
   on() {
-    this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER] = this[DYNAMIC_PROPS.OBSERVER].register(this);
+    this.unObserve = this.observer.register(this);
   }
 
   off() {
-    if (DYNAMIC_PROPS.OBSERVER_UN_REGISTER in this) {
-      this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER]();
+    if (this.unObserve) {
+      this.unObserve();
     }
   }
 
@@ -58,9 +55,9 @@ class SubNavigation {
   destroy() {
     this.off();
 
-    if (DYNAMIC_PROPS.OBSERVER in this) {
-      this[DYNAMIC_PROPS.OBSERVER].destroy();
-      delete this[DYNAMIC_PROPS.OBSERVER];
+    if (this.observer) {
+      this.observer.destroy();
+      delete this.observer;
     }
 
     delete this.rootNode;

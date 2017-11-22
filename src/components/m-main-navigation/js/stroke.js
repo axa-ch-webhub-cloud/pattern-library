@@ -1,9 +1,6 @@
-import Enum from '../../../js/enum';
 import css from '../../../js/css';
 import { add, remove } from '../../../js/class-list';
 import getUiObserver from '../../../js/ui-observer';
-
-const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER', 'stroke');
 
 class Stroke {
   static DEFAULTS = {
@@ -28,12 +25,12 @@ class Stroke {
 
     this.list = this.rootNode.querySelector(this.options.list);
 
-    this[DYNAMIC_PROPS.STROKE] = document.createElement('div');
-    this[DYNAMIC_PROPS.STROKE].className = this.options.strokeClass;
+    this.stroke = document.createElement('div');
+    this.stroke.className = this.options.strokeClass;
 
-    this.list.appendChild(this[DYNAMIC_PROPS.STROKE]);
+    this.list.appendChild(this.stroke);
 
-    this[DYNAMIC_PROPS.OBSERVER] = getUiObserver(this.rootNode, {
+    this.observer = getUiObserver(this.rootNode, {
       containerClass: '.js-main-navigation__list',
       toggleClass: 'js-main-navigation__list-link',
       closeClass: 'js-sub-navigation__index-close',
@@ -43,53 +40,53 @@ class Stroke {
   }
 
   on() {
-    this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER] = this[DYNAMIC_PROPS.OBSERVER].register(this);
+    this.unObserve = this.observer.register(this);
   }
 
   off() {
-    if (DYNAMIC_PROPS.OBSERVER_UN_REGISTER in this) {
-      this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER]();
+    if (this.unObserve) {
+      this.unObserve();
     }
   }
 
   enter(node) {
-    add(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
+    add(this.stroke, this.options.enterClass);
 
     const { parentNode } = node;
 
-    css(this[DYNAMIC_PROPS.STROKE], {
+    css(this.stroke, {
       width: `${parentNode.offsetWidth}px`,
       left: `${parentNode.offsetLeft}px`,
     });
   }
 
   move(node) {
-    add(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
+    add(this.stroke, this.options.moveClass);
 
     const { parentNode } = node;
 
-    css(this[DYNAMIC_PROPS.STROKE], {
+    css(this.stroke, {
       width: `${parentNode.offsetWidth}px`,
       left: `${parentNode.offsetLeft}px`,
     });
   }
 
   leave() {
-    remove(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
-    remove(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
+    remove(this.stroke, this.options.moveClass);
+    remove(this.stroke, this.options.enterClass);
   }
 
   destroy() {
     this.off();
 
-    if (DYNAMIC_PROPS.OBSERVER in this) {
-      this[DYNAMIC_PROPS.OBSERVER].destroy();
-      delete this[DYNAMIC_PROPS.OBSERVER];
+    if (this.observer) {
+      this.observer.destroy();
+      delete this.observer;
     }
 
-    if (DYNAMIC_PROPS.STROKE in this) {
-      this[DYNAMIC_PROPS.STROKE].parentNode.removeChild(this[DYNAMIC_PROPS.STROKE]);
-      delete this[DYNAMIC_PROPS.STROKE];
+    if (this.stroke) {
+      this.stroke.parentNode.removeChild(this.stroke);
+      delete this.stroke;
     }
 
     delete this.rootNode;
