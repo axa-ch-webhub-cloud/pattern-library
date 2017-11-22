@@ -1,6 +1,6 @@
 import Enum from '../../../js/enum';
 import { add, remove } from '../../../js/class-list';
-import getMenuObserver from './menu-observer';
+import getMenuObserver from '../../../js/ui-observer';
 
 const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER');
 

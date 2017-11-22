@@ -1,14 +1,14 @@
-import Enum from '../../../js/enum';
-import on from '../../../js/on';
-import outer from '../../../js/outer';
-import { freeByValue } from '../../../js/free';
+import Enum from './enum';
+import on from './on';
+import outer from './outer';
+import { freeByValue } from './free';
 
 const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'UN_CLOSE_ESCAPE', 'click', 'keyup', 'enter', 'move', 'leave');
 
 const cache = {};
 const count = {};
 
-class MenuObserver {
+class UiObserver {
   static DEFAULTS = {
     list: '.js-main-navigation__list',
     listLink: 'js-main-navigation__list-link',
@@ -18,7 +18,7 @@ class MenuObserver {
   constructor(rootNode, options = {}) {
     this.rootNode = rootNode;
     this.options = {
-      ...MenuObserver.DEFAULTS,
+      ...UiObserver.DEFAULTS,
       ...options,
     };
 
@@ -171,7 +171,7 @@ class MenuObserver {
 
 function getInstance(rootNode, options) {
   if (!cache[rootNode]) {
-    cache[rootNode] = new MenuObserver(rootNode, options);
+    cache[rootNode] = new UiObserver(rootNode, options);
     count[rootNode] = 0;
   }
 
