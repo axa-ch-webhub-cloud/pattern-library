@@ -13,7 +13,7 @@ import { freeByValue } from './free';
  */
 function on(eventTarget, eventName, className, func, capture = false) {
   const typeClassName = typeof className;
-  const isDelegated = typeClassName === 'string';
+  const isDelegated = className && typeClassName === 'string';
 
   if (typeClassName === 'function') {
     /* eslint-disable no-param-reassign */
