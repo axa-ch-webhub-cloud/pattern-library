@@ -16,6 +16,10 @@
   @include make-container-max-widths();
 }
 
+.m-meta-navigation__row {
+  @include make-row();
+}
+
 .m-meta-navigation__nav-other {
 }
 
