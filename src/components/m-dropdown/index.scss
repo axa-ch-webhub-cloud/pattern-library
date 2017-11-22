@@ -1,0 +1,54 @@
+@import "../../styles/mixins/button-reset";
+@import "../../styles/mixins/unstyle-list";
+
+.m-dropdown {
+  position: relative;
+
+  display: inline-block;
+}
+
+.m-dropdown__toggle {
+  @include button-reset();
+
+  position: relative;
+}
+
+.m-dropdown__icon {
+  width: 20px;
+  height: 20px;
+
+  transition: all 0.3s ease;
+
+  .is-open & {
+    transform: rotate(180deg);
+  }
+}
+
+.m-dropdown__content {
+  @include unstyle-list();
+
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+
+  height: 0;
+  overflow: hidden;
+
+  transition: height 0.3s ease;
+
+  .is-open > & {
+    height: auto;
+  }
+
+  .m-dropdown--in-flow > & {
+    position: static;
+  }
+}
+
+.m-dropdown__item {
+  display: block;
+}
+
+.m-dropdown__link {
+
+}
