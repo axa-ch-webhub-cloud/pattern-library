@@ -18,8 +18,13 @@ class TopContentBar extends BaseComponentGlobal {
     }
 
     this.className = `m-top-content-bar m-top-content-bar--${type}`;
-
     this.appendChild(box);
+
+    this.box = box;
+  }
+
+  disconnectedCallback() {
+    this.removeChild(this.box);
   }
 }
 
