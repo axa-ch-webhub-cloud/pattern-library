@@ -47,5 +47,18 @@
     </header>
 
     <!-- {CUT AND INJECT HERE} -->
+
+    <script>
+      // SVG sprite loader
+      var httpObj = new XMLHttpRequest();
+      httpObj.open("GET", "./assets/icons/icons.svg", true);
+      httpObj.send();
+      httpObj.onload = function(e) {
+        var div = document.createElement("div");
+        div.innerHTML = httpObj.responseText;
+        div.style.display = 'none';
+        document.body.insertBefore(div, document.body.childNodes[0]);
+      }
+    </script>
   </body>
 </html>

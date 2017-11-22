@@ -9,6 +9,22 @@ const memory = {};
 export class BaseComponent extends HTMLElement {
   constructor(styles = '') {
     super();
+    this._initialise(styles);
+  }
+
+  /**
+   * _initialise - description
+   *
+   * @param  {type} styles description
+   * @return {type}        description
+   */
+  _initialise(styles) {
+    this.templateAttributes = [];
+    this.templateAttributesName = [];
+    for (let i = 0, atts = this.attributes, n = atts.length; i < n; i++) { // eslint-disable-line no-plusplus
+      this.templateAttributes.push(this.getAttribute(atts[i].nodeName));
+      this.templateAttributesName.push(atts[i].nodeName);
+    }
     this._styles = styles;
     let thisDoc;
     if (window.HTMLImports) {
@@ -23,7 +39,8 @@ export class BaseComponent extends HTMLElement {
         this.template = null;
       }
       if (this.template) {
-        this.clone = document.importNode(this.template.content, true);
+        const { content } = this.template;
+        this.clone = document.importNode(content, true);
       }
     }
   }
