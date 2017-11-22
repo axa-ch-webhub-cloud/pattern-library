@@ -25,6 +25,7 @@ class TopContentBar extends BaseComponentGlobal {
 
   disconnectedCallback() {
     this.removeChild(this.box);
+    delete this.box;
   }
 }
 
