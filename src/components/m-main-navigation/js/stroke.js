@@ -1,7 +1,7 @@
 import Enum from '../../../js/enum';
 import css from '../../../js/css';
 import { add, remove } from '../../../js/class-list';
-import getMenuObserver from '../../../js/ui-observer';
+import getUiObserver from '../../../js/ui-observer';
 
 const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER', 'stroke');
 
@@ -33,7 +33,11 @@ class Stroke {
 
     this.list.appendChild(this[DYNAMIC_PROPS.STROKE]);
 
-    this[DYNAMIC_PROPS.OBSERVER] = getMenuObserver(this.rootNode);
+    this[DYNAMIC_PROPS.OBSERVER] = getUiObserver(this.rootNode, {
+      containerClass: '.js-main-navigation__list',
+      toggleClass: 'js-main-navigation__list-link',
+      closeClass: 'js-sub-navigation__index-close',
+    });
 
     this.on();
   }
@@ -48,21 +52,25 @@ class Stroke {
     }
   }
 
-  enter(dom) {
+  enter(node) {
     add(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
 
+    const { parentNode } = node;
+
     css(this[DYNAMIC_PROPS.STROKE], {
-      width: `${dom.offsetWidth}px`,
-      left: `${dom.offsetLeft}px`,
+      width: `${parentNode.offsetWidth}px`,
+      left: `${parentNode.offsetLeft}px`,
     });
   }
 
-  move(newDom) {
+  move(node) {
     add(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
 
+    const { parentNode } = node;
+
     css(this[DYNAMIC_PROPS.STROKE], {
-      width: `${newDom.offsetWidth}px`,
-      left: `${newDom.offsetLeft}px`,
+      width: `${parentNode.offsetWidth}px`,
+      left: `${parentNode.offsetLeft}px`,
     });
   }
 

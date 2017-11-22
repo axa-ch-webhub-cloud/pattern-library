@@ -1,6 +1,6 @@
 import Enum from '../../../js/enum';
 import { add, remove } from '../../../js/class-list';
-import getMenuObserver from '../../../js/ui-observer';
+import getUiObserver from '../../../js/ui-observer';
 
 const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER');
 
@@ -23,7 +23,11 @@ class SubNavigation {
   init() {
     this.list = this.rootNode.querySelector(this.options.list);
 
-    this[DYNAMIC_PROPS.OBSERVER] = getMenuObserver(this.rootNode);
+    this[DYNAMIC_PROPS.OBSERVER] = getUiObserver(this.rootNode, {
+      containerClass: '.js-main-navigation__list',
+      toggleClass: 'js-main-navigation__list-link',
+      closeClass: 'js-sub-navigation__index-close',
+    });
 
     this.on();
   }
@@ -38,17 +42,17 @@ class SubNavigation {
     }
   }
 
-  enter(dom) {
-    add(dom, this.options.stateClass);
+  enter(node) {
+    add(node.parentNode, this.options.stateClass);
   }
 
-  move(newDom, lastDom) {
-    remove(lastDom, this.options.stateClass);
-    add(newDom, this.options.stateClass);
+  move(node, lastNode) {
+    remove(lastNode.parentNode, this.options.stateClass);
+    add(node.parentNode, this.options.stateClass);
   }
 
-  leave(dom) {
-    remove(dom, this.options.stateClass);
+  leave(node) {
+    remove(node.parentNode, this.options.stateClass);
   }
 
   destroy() {

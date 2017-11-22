@@ -3,16 +3,18 @@ import on from './on';
 import outer from './outer';
 import { freeByValue } from './free';
 
-const DYNAMIC_PROPS = Enum('UN_CLICK', 'UN_OUTER_CLICK', 'UN_CLOSE_CLICK', 'UN_CLOSE_ESCAPE', 'click', 'keyup', 'enter', 'move', 'leave');
+const DYNAMIC_PROPS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
 const cache = {};
 const count = {};
 
 class UiObserver {
   static DEFAULTS = {
-    list: '.js-main-navigation__list',
-    listLink: 'js-main-navigation__list-link',
-    closeButton: 'js-sub-navigation__index-close',
+    containerClass: '.js-ui-container',
+    toggleClass: 'js-ui-toggle',
+    closeClass: 'js-ui-close',
+    escapeClose: true,
+    outerClose: true,
   };
 
   constructor(rootNode, options = {}) {
@@ -32,7 +34,7 @@ class UiObserver {
   }
 
   init() {
-    this.list = this.rootNode.querySelector(this.options.list);
+    this.container = this.rootNode.querySelector(this.options.containerClass);
 
     this.on();
   }
@@ -40,12 +42,12 @@ class UiObserver {
   on() {
     this.off();
 
-    this[DYNAMIC_PROPS.UN_CLICK] = on(this.list, DYNAMIC_PROPS.CLICK, this.options.listLink, this.handleClick);
+    this.unClick = on(this.container, DYNAMIC_PROPS.CLICK, this.options.toggleClass, this.handleClick);
   }
 
   off() {
-    if (DYNAMIC_PROPS.UN_CLICK in this) {
-      this[DYNAMIC_PROPS.UN_CLICK]();
+    if (this.unClick) {
+      this.unClick();
     }
 
     this.offInteractive();
@@ -54,42 +56,51 @@ class UiObserver {
   onInteractive() {
     this.offInteractive();
 
-    this[DYNAMIC_PROPS.UN_OUTER_CLICK] = outer(this.list, DYNAMIC_PROPS.CLICK, this.handleClose);
-    this[DYNAMIC_PROPS.UN_CLOSE_CLICK] = on(this.list, DYNAMIC_PROPS.CLICK, this.options.closeButton, this.handleClose);
-    this[DYNAMIC_PROPS.UN_CLOSE_ESCAPE] = on(this.list.ownerDocument, DYNAMIC_PROPS.KEYUP, this.handleKeyUp);
+    if (this.options.closeClass) {
+      this.unCloseClick = on(this.container, DYNAMIC_PROPS.CLICK, this.options.closeClass, this.handleClose);
+    }
+
+    if (this.options.outerClose) {
+      this.unOuterClick = outer(this.container, DYNAMIC_PROPS.CLICK, this.handleClose);
+    }
+
+    if (this.options.escapeClose) {
+      this.unCloseEscape = on(this.container.ownerDocument, DYNAMIC_PROPS.KEYUP, this.handleKeyUp);
+    }
   }
 
   offInteractive() {
-    if (DYNAMIC_PROPS.UN_OUTER_CLICK in this) {
-      this[DYNAMIC_PROPS.UN_OUTER_CLICK]();
+    if (this.unOuterClick) {
+      this.unOuterClick();
     }
 
-    if (DYNAMIC_PROPS.UN_CLOSE_CLICK in this) {
-      this[DYNAMIC_PROPS.UN_CLOSE_CLICK]();
+    if (this.unCloseClick) {
+      this.unCloseClick();
     }
 
-    if (DYNAMIC_PROPS.UN_CLOSE_ESCAPE in this) {
-      this[DYNAMIC_PROPS.UN_CLOSE_ESCAPE]();
+    if (this.unCloseEscape) {
+      this.unCloseEscape();
     }
+
+    delete this.lastToggleNode;
   }
 
-  handleClick(e, delegateTarget) {
+  handleClick(e, toggleNode) {
     e.preventDefault();
 
-    const listItem = delegateTarget.parentNode;
-    const isEnter = !this.lastListItem;
-    const isMove = listItem !== this.lastListItem;
+    const isEnter = !this.lastToggleNode;
+    const isMove = toggleNode !== this.lastToggleNode;
     const isLeave = !isEnter && !isMove;
 
     if (isEnter) {
-      this.notify(DYNAMIC_PROPS.ENTER, listItem);
+      this.notify(DYNAMIC_PROPS.ENTER, toggleNode);
 
       this.onInteractive();
     } else if (isMove) {
-      this.notify(DYNAMIC_PROPS.MOVE, listItem, this.lastListItem);
+      this.notify(DYNAMIC_PROPS.MOVE, toggleNode, this.lastToggleNode);
     }
 
-    this.lastListItem = listItem;
+    this.lastToggleNode = toggleNode;
 
     if (isLeave) {
       this.close();
@@ -103,7 +114,7 @@ class UiObserver {
   }
 
   handleKeyUp(e) {
-    const isEscape = 'key' in e ? (e.key === 'Escape' || e.key === 'Esc') : e.keyCode === 27;
+    const isEscape = e.key === DYNAMIC_PROPS.ESCAPE || e.key === DYNAMIC_PROPS.ESCAPE.ESC || e.keyCode === 27;
 
     if (isEscape) {
       e.preventDefault();
@@ -113,23 +124,23 @@ class UiObserver {
   }
 
   close() {
-    if (this.lastListItem) {
-      this.notify(DYNAMIC_PROPS.LEAVE, this.lastListItem);
+    if (this.lastToggleNode) {
+      this.notify(DYNAMIC_PROPS.LEAVE, this.lastToggleNode);
 
       this.offInteractive();
 
-      delete this.lastListItem;
+      delete this.lastToggleNode;
     }
   }
 
-  notify(name, listItem, lastListItem) {
+  notify(name, toggleNode, lastToggleNode) {
     const { length } = this.receivers;
 
     for (let i = 0; i < length; i++) {
       const receiver = this.receivers[i];
 
-      if (name in receiver && typeof receiver.enter === 'function') {
-        receiver[name](listItem, lastListItem);
+      if (name in receiver && typeof receiver[name] === 'function') {
+        receiver[name](toggleNode, lastToggleNode);
       }
     }
   }
