@@ -25,6 +25,18 @@
   }
 }
 
+.m-main-navigation-mobile__box {
+  > .a-button {
+    display: block;
+
+    margin: 20px $main-navigation-mobile__item-padding-right 0 $main-navigation-mobile__item-padding-left;
+
+    + * {
+      margin-top: 20px;
+    }
+  }
+}
+
 .m-main-navigation-mobile__nav {
   display: block;
 
@@ -63,7 +75,7 @@
 
   border-bottom: $main-navigation-mobile__list-item-border-width solid $main-navigation-mobile__list-item-border-color;
 
-  & &:first-child {
+  &:first-child {
     border-top: $main-navigation-mobile__list-item-border-width solid $main-navigation-mobile__list-item-border-color;
   }
 }
