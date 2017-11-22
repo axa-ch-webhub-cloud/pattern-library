@@ -21,6 +21,7 @@
 }
 
 .m-meta-navigation__nav-other {
+  @include make-gutter();
 }
 
 .m-meta-navigation__list {
