@@ -1,2 +1,20 @@
 <!DOCTYPE html>
+<template>
+  <div></div>
+
+  <ul @languages>
+    <li>{{code}}
+      <ul @languages>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</template>
+<template self>
+  <ul @languages>
+    <li>{{code}}
+      #self if language.sub
+    </li>
+  </ul>
+</template>
 <script src="./index.js"></script>
