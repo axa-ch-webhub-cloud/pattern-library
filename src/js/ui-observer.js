@@ -34,7 +34,9 @@ class UiObserver {
   }
 
   init() {
-    this.container = this.rootNode.querySelector(this.options.containerClass);
+    const { containerClass } = this.options;
+
+    this.container = containerClass ? this.rootNode.querySelector(containerClass) : this.rootNode;
 
     this.on();
   }
