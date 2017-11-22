@@ -22,8 +22,8 @@
     $gutter-width: ($gutter-width / 2);
   }
 
-  padding-right: $grid-gutter;
-  padding-left: $grid-gutter;
+  padding-right: $gutter-width;
+  padding-left: $gutter-width;
 }
 
 @mixin revert-gutter($gutter-width: $grid-gutter-width) {
