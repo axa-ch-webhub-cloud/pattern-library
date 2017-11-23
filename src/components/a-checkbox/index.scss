@@ -1,0 +1,62 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/typo";
+
+.a-checkbox {
+  @include typo-16();
+
+  position: relative;
+  display: flex;
+  margin-bottom: 8px;
+  flex-direction: row;
+  user-select: none;
+}
+
+.a-checkbox__input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.a-checkbox__indicator {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  margin-right: 10px;
+  background: $color-prim-white;
+  border: 1px solid $color-prim-gray-dusty;
+
+  @include respond-up(sm) {
+    margin-top: 5px;
+  }
+
+  .a-checkbox__input:focus ~ &,
+  .a-checkbox:hover .a-checkbox__input:not(:disabled) ~ & {
+    border-color: $color-prim-blue-azure;
+  }
+
+  .a-checkbox__input:checked ~ &,
+  .a-checkbox__input:active:not(:disabled) ~ & {
+    background: $color-prim-blue-azure;
+    border-color: $color-prim-blue-azure;
+  }
+
+  .a-checkbox__input:checked:disabled ~ & {
+    background: $color-prim-gray-dusty;
+    border-color: $color-prim-gray-dusty;
+  }
+}
+
+.a-checkbox__label {
+  color: $color-prim-gray-mine-shaft;
+
+  .a-checkbox__input:focus ~ &,
+  .a-checkbox:hover .a-checkbox__input:not(:disabled) ~ & {
+    color: $color-axa-blue;
+  }
+
+  .a-checkbox__input:disabled ~ & {
+    color: $color-prim-gray-dusty;
+  }
+}
