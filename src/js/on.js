@@ -1,5 +1,11 @@
 import { has } from './class-list';
 import { freeByValue } from './free';
+import whichTransitionEnd from './which-transition-event';
+
+const reWhitespace = /\s+/;
+const eventNameMap = {
+  transitionend: whichTransitionEnd(),
+};
 
 /**
  * Attach an event handler function for one event to the selected element, optionally delegated by given className.
@@ -12,7 +18,13 @@ import { freeByValue } from './free';
  * @returns {off} - Returns a functions which properly removes the event listener from the target.
  */
 function on(eventTarget, eventName, className, func, capture = false) {
-  if (!eventTarget) {
+  if (eventNameMap[eventName]) {
+    /* eslint-disable */
+    eventName = eventNameMap[eventName];
+    /* eslint-enable */
+  }
+
+  if (!eventTarget || !eventName) {
     return null;
   }
 
@@ -27,13 +39,19 @@ function on(eventTarget, eventName, className, func, capture = false) {
   }
 
   const handler = isDelegated ? delegate : func;
+  const eventNames = eventName.split(reWhitespace);
+  const { length } = eventNames;
 
-  eventTarget.addEventListener(eventName, handler, capture);
+  for (let i = 0; i < length; ++i) {
+    eventTarget.addEventListener(eventNames[i], handler, capture);
+  }
 
   return off;
 
   function off() {
-    eventTarget.removeEventListener(eventName, handler, capture);
+    for (let i = 0; i < length; ++i) {
+      eventTarget.removeEventListener(eventNames[i], handler, capture);
+    }
 
     freeByValue(this, off);
   }
