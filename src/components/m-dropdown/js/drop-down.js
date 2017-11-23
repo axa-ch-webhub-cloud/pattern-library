@@ -1,4 +1,5 @@
 import UiObserver from '../../../js/ui-observer';
+import on from '../../../js/on';
 import { add, remove } from '../../../js/class-list';
 
 class DropDown {
@@ -14,6 +15,8 @@ class DropDown {
       ...options,
     };
     this.rootNode = rootNode;
+
+    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
 
     this.init();
   }
@@ -36,10 +39,24 @@ class DropDown {
     }
   }
 
+  onInteractive() {
+    this.offInteractive();
+
+    this.unTransitionEnd = on(this.rootNode, 'transitionend', this.handleTransitionEnd);
+  }
+
+  offInteractive() {
+    if (this.unTransitionEnd) {
+      this.unTransitionEnd();
+    }
+  }
+
   enter(node) {
     const { parentNode } = node;
     const { lastElementChild } = parentNode;
     const { scrollHeight } = lastElementChild;
+
+    this.onInteractive();
 
     lastElementChild.style.height = `${scrollHeight}px`;
 
@@ -50,9 +67,19 @@ class DropDown {
     const { parentNode } = node;
     const { lastElementChild } = parentNode;
 
-    lastElementChild.style.height = 0;
+    this.offInteractive();
+
+    lastElementChild.style.height = null;
 
     remove(parentNode, 'is-open');
+  }
+
+  handleTransitionEnd(e) {
+    if (e.propertyName === 'height') {
+      e.target.style.height = null;
+
+      this.offInteractive();
+    }
   }
 
   destroy() {
