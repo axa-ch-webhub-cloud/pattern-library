@@ -4,6 +4,10 @@ import observeAttrChange from '../../js/observe-attr-change';
 import setTabbable from '../../js/set-tabbable';
 import styles from './index.scss';
 
+const inputAttrs = ['id', 'name', 'value', 'disabled', 'checked'];
+const checkBoxIndicator = '<span class="a-checkbox__indicator"/>';
+const checkBoxBaseClass = 'a-checkbox';
+
 class Checkbox extends BaseComponentGlobal {
   constructor() {
     super(styles);
@@ -13,16 +17,18 @@ class Checkbox extends BaseComponentGlobal {
 
   _render() {
     const { initialInnerHTML } = this;
+
     const disabled = this.getAttribute('disabled');
     const checked = this.getAttribute('checked');
     const id = this.getAttribute('id');
-    this.inputAttrs = ['id', 'name', 'value', 'disabled', 'checked'];
+
+
     this.inputEl = this._addRealInput();
 
     if (initialInnerHTML.trim() !== '') {
       const label = document.createElement('label');
-      label.setAttribute('for', `a-checkbox-${id}`);
-      label.setAttribute('class', 'a-checkbox__label');
+      label.setAttribute('for', id);
+      label.setAttribute('class', `${checkBoxBaseClass}__label`);
       label.innerHTML = initialInnerHTML;
       this.appendChild(label);
     }
@@ -35,12 +41,12 @@ class Checkbox extends BaseComponentGlobal {
       }
     });
 
-    this.className = classnames('a-checkbox', {
-      'a-checkbox--disabled': disabled,
-      'a-checkbox--checked': checked,
+    this.className = classnames(checkBoxBaseClass, {
+      [`${checkBoxBaseClass}--disabled`]: disabled,
+      [`${checkBoxBaseClass}--checked`]: checked,
     });
 
-    if (!this.classList.contains('a-checkbox--disabled')) {
+    if (!this.classList.contains(`${checkBoxBaseClass}--disabled`)) {
       setTabbable(this, () => {
         this.inputEl.click();
       });
@@ -53,15 +59,15 @@ class Checkbox extends BaseComponentGlobal {
     inputEl.setAttribute('tabindex', '-1');
 
     Array.from(this.attributes).forEach((attr) => {
-      if (this.inputAttrs.includes(attr.name) && attr.value !== null) {
+      if (inputAttrs.includes(attr.name) && attr.value !== null) {
         inputEl.setAttribute(attr.name, attr.value);
         if (attr.name === 'id') {
-          this.setAttribute('id', `a-checkbox-${attr.value}`);
+          this.setAttribute('id', `${checkBoxBaseClass}-${attr.value}`);
         }
       }
     });
     this.appendChild(inputEl);
-    this.insertAdjacentHTML('beforeend', '<span class="a-checkbox__indicator"/>');
+    this.insertAdjacentHTML('beforeend', checkBoxIndicator);
 
     return inputEl;
   }
