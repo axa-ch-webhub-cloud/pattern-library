@@ -1,5 +1,6 @@
 import UiObserver from '../../../js/ui-observer';
 import on from '../../../js/on';
+import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import { add, remove } from '../../../js/class-list';
 
 class DropDown {
@@ -66,17 +67,23 @@ class DropDown {
   leave(node) {
     const { parentNode } = node;
     const { lastElementChild } = parentNode;
+    const { scrollHeight } = lastElementChild;
 
     this.offInteractive();
 
-    lastElementChild.style.height = null;
+    requestAnimationFrame(() => {
+      lastElementChild.style.height = `${scrollHeight}px`;
 
-    remove(parentNode, 'is-open');
+      requestAnimationFrame(() => {
+        remove(parentNode, 'is-open');
+        lastElementChild.style.height = 0;
+      });
+    });
   }
 
   handleTransitionEnd(e) {
     if (e.propertyName === 'height') {
-      e.target.style.height = null;
+      e.target.style.height = '';
 
       this.offInteractive();
     }
