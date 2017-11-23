@@ -12,6 +12,10 @@ import { freeByValue } from './free';
  * @returns {off} - Returns a functions which properly removes the event listener from the target.
  */
 function on(eventTarget, eventName, className, func, capture = false) {
+  if (!eventTarget) {
+    return null;
+  }
+
   const typeClassName = typeof className;
   const isDelegated = className && typeClassName === 'string';
 
