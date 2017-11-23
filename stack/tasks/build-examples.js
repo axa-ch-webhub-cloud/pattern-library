@@ -5,6 +5,7 @@ const fs = require('fs');
 const constants = require('../constants');
 const nsh = require('node-syntaxhighlighter');
 const sass = require('node-sass');
+const path = require('path');
 
 // const jsLang = nsh.getLanguage('js');
 const htmlLang = nsh.getLanguage('html');
@@ -16,6 +17,12 @@ const CWD = process.cwd();
 
 const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
 const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
+
+const adaptSlashes = (file) => { // eslint-disable-line no-param-reassign
+  const isExtendedLengthPath = /^\\\\\?\\/.test(file);
+  const hasNonAscii = /[^\u0000-\u0080]+/.test(file);
+  return (isExtendedLengthPath || hasNonAscii) ? file : file.replace(/\\/g, '/');
+};
 
 const sorter = (a, b) => {
   if (a > b) {
@@ -32,6 +39,8 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let previewHtmls = [];
   let exampleHtmls = [];
   if (err) throw err;
+
+  allFiles = allFiles.map(adaptSlashes);
 
   previewHtmls = allFiles.filter(_file => _file.match(reGetPreviews));
   exampleHtmls = allFiles.filter(_file => _file.match(reGetExamples));
@@ -51,7 +60,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   exampleHtmls = exampleHtmls.sort(sorter);
 
   previewHtmls.forEach((filePath, index) => {
-    const partial = filePath.replace(`${CWD}/src/`, '').replace('_preview.html', 'index.html');
+    const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.html');
     imports += `<link rel="import" href="${partial}" > \n`;
     const name = filePath.split('/').slice(-2).join('/');
 
