@@ -51,7 +51,7 @@ export class BaseComponent extends HTMLElement {
           data = [];
         }
         const newEL = this.clone.querySelector('[data-set-repeat]');
-        if (newEL && data.length) {
+        if (newEL && data.length && newEL.innerHTML && newEL.innerHTML.trim(' ')) {
           this._recursivePropsLoop(data, newEL);
         }
       }
@@ -66,23 +66,25 @@ export class BaseComponent extends HTMLElement {
    * @return {type}         description
    */
   _recursivePropsLoop(data, element) {
-    let firstOcc = true;
     data.forEach((obj) => {
       const keys = Object.keys(obj);
       const div = document.createElement('div');
-      let tmpHtml = element.outerHTML;
+      const container = document.createElement('div');
+      container.appendChild(element);
+      let tmpHtml = container.innerHTML;
       for (let i = 0, l = keys.length; i < l; i++) {
         const key = keys[i];
         const value = obj[key];
         tmpHtml = tmpHtml.replace(`{{${key}}}`, value);
       }
       div.innerHTML = tmpHtml.replace(/{{(.*?)}}/gi, '');
-      div.firstChild.removeAttribute('data-set-repeat');
-      if (firstOcc) {
-        element.replaceWith(div.firstChild);
-        firstOcc = false;
-      } else {
-        this.clone.appendChild(div.firstChild);
+      const { firstChild } = div;
+      if (firstChild) {
+        firstChild.removeAttribute('data-set-repeat');
+
+        if (firstChild.innerHTML.trim(' ')) {
+          this.clone.appendChild(firstChild);
+        }
       }
     });
     element.removeAttribute('data-set-repeat');
