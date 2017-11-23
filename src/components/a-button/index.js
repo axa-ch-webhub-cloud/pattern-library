@@ -5,9 +5,12 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 
 // @Todo: replace by proper icon system as soon as it is ready
 const arrowIcon = `
-<svg class="a-button__arrow">
-  <use xlink:href="#src--assets--icons--arrow" />
-</svg>`;
+<axa-icon data-set="{
+  'anykeyname': [{
+    'id': 'src--assets--icons--arrow',
+    'className': 'a-button__arrow'
+  }]
+}"></axa-icon>`;
 
 class Button extends BaseComponentGlobal {
   constructor() {
