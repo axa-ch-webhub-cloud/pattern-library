@@ -41,7 +41,54 @@ export class BaseComponent extends HTMLElement {
       if (this.template) {
         const { content } = this.template;
         this.clone = document.importNode(content, true);
+        let data = this.getAttribute('data-set');
+        if (!data) {
+          data = '[]';
+        }
+        try {
+          data = JSON.parse(data.replace(/'/g, '"'));
+        } catch (err) {
+          data = [];
+        }
+        const newEL = this.clone.querySelector('[data-set-repeat]');
+        if (newEL && data.length) {
+          this._recursivePropsLoop(data, newEL);
+        }
       }
+    }
+  }
+
+  /**
+   * _recursivePropsLoop - description
+   *
+   * @param  {type} data    description
+   * @param  {type} element description
+   * @return {type}         description
+   */
+  _recursivePropsLoop(data, element) {
+    let firstOcc = true;
+    data.forEach((obj) => {
+      const keys = Object.keys(obj);
+      const div = document.createElement('div');
+      let tmpHtml = element.outerHTML;
+      for (let i = 0, l = keys.length; i < l; i++) {
+        const key = keys[i];
+        const value = obj[key];
+        tmpHtml = tmpHtml.replace(`{{${key}}}`, value);
+      }
+      div.innerHTML = tmpHtml.replace(/{{(.*?)}}/gi, '');
+      div.firstChild.removeAttribute('data-set-repeat');
+      if (firstOcc) {
+        element.replaceWith(div.firstChild);
+        firstOcc = false;
+      } else {
+        this.clone.appendChild(div.firstChild);
+      }
+    });
+    element.removeAttribute('data-set-repeat');
+    const newEL = this.clone.querySelector('[data-set-repeat]');
+    if (newEL) {
+      this._recursivePropsLoop(data, newEL);
     }
   }
   /**
