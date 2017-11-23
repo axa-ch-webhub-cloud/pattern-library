@@ -8,6 +8,7 @@ class Checkbox extends BaseComponentGlobal {
   constructor() {
     super(styles);
     this.initialInnerHTML = this.innerHTML;
+    this.innerHTML = '';
   }
 
   _render() {
@@ -18,7 +19,7 @@ class Checkbox extends BaseComponentGlobal {
     this.inputAttrs = ['id', 'name', 'value', 'disabled', 'checked'];
     this.inputEl = this._addRealInput();
 
-    if(initialInnerHTML.trim() !== '') {
+    if (initialInnerHTML.trim() !== '') {
       const label = document.createElement('label');
       label.setAttribute('for', `a-checkbox-${id}`);
       label.setAttribute('class', 'a-checkbox__label');
@@ -27,7 +28,11 @@ class Checkbox extends BaseComponentGlobal {
     }
 
     observeAttrChange(this, (attr, value) => {
-      value === null ? this.inputEl.removeAttribute(attr) : this.inputEl.setAttribute(attr, value);
+      if (value === null) {
+        this.inputEl.removeAttribute(attr);
+      } else {
+        this.inputEl.setAttribute(attr, value);
+      }
     });
 
     this.className = classnames('a-checkbox', {
@@ -43,19 +48,20 @@ class Checkbox extends BaseComponentGlobal {
   }
 
   _addRealInput() {
-    let inputEl = document.createElement('input');
+    const inputEl = document.createElement('input');
     inputEl.setAttribute('type', 'checkbox');
     inputEl.setAttribute('tabindex', '-1');
-    inputEl.setAttribute('class', 'a-checkbox__input');
 
-    Array.from(this.attributes).forEach(attr => {
+    Array.from(this.attributes).forEach((attr) => {
       if (this.inputAttrs.includes(attr.name) && attr.value !== null) {
         inputEl.setAttribute(attr.name, attr.value);
-        (attr.name === 'id') && this.setAttribute('id', `a-checkbox-${attr.value}`);
+        if (attr.name === 'id') {
+          this.setAttribute('id', `a-checkbox-${attr.value}`);
+        }
       }
     });
     this.appendChild(inputEl);
-    this.insertAdjacentHTML('beforeend', `<span class="a-checkbox__indicator"/>`);
+    this.insertAdjacentHTML('beforeend', '<span class="a-checkbox__indicator"/>');
 
     return inputEl;
   }

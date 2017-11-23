@@ -1,8 +1,8 @@
 export default function observeAttrChange(el, callback) {
-  const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
       if (mutation.type === 'attributes') {
-        let newVal = mutation.target.getAttribute(mutation.attributeName);
+        const newVal = mutation.target.getAttribute(mutation.attributeName);
         callback(mutation.attributeName, newVal);
       }
     });
