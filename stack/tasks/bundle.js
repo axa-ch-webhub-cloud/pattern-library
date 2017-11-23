@@ -35,10 +35,16 @@ const outputOptions = {
   name: 'StyleGuideWebComponent',
 };
 
+const adaptSlashes = (file) => { // eslint-disable-line no-param-reassign
+  const isExtendedLengthPath = /^\\\\\?\\/.test(file);
+  const hasNonAscii = /[^\u0000-\u0080]+/.test(file);
+  return (isExtendedLengthPath || hasNonAscii) ? file : file.replace(/\\/g, '/');
+};
+
 // @TODO: dry principle with buildApp
 async function buildPolyfills() {
   const bundle = await rollup.rollup(inputOptions);
-  const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/es6-polyfills.js`;
+  const file = adaptSlashes(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/es6-polyfills.js`);
   console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
@@ -60,7 +66,7 @@ async function buildApp() {
     ],
     input: `${CWD}/src/app/app.js`,
   });
-  const file = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`;
+  const file = adaptSlashes(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`);
   console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
@@ -95,6 +101,7 @@ const reGetParentDirAndFileAndComponent = /\/components\/(?:[^/]+\/)+index\.js$/
 
 mkdirp(`${CWD}/.tmp`, () => {
   dir.files(`${CWD}/src/components`, (err, allFiles) => {
+    allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
     const jsFiles = allFiles.filter(_file => _file.match(reGetParentDirAndFileAndComponent));
     jsFiles.sort((lx, rx) => {
       if (lx < rx) return -1;
