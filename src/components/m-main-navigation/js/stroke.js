@@ -1,6 +1,6 @@
 import css from '../../../js/css';
 import { add, remove } from '../../../js/class-list';
-import getUiObserver from '../../../js/ui-observer';
+import UiObserver from '../../../js/ui-observer';
 
 class Stroke {
   static DEFAULTS = {
@@ -30,7 +30,7 @@ class Stroke {
 
     this.list.appendChild(this.stroke);
 
-    this.observer = getUiObserver(this.rootNode, {
+    this.observer = new UiObserver(this.rootNode, {
       containerClass: '.js-main-navigation__list',
       toggleClass: 'js-main-navigation__list-link',
       closeClass: 'js-sub-navigation__index-close',
@@ -40,7 +40,7 @@ class Stroke {
   }
 
   on() {
-    this.unObserve = this.observer.register(this);
+    this.unObserve = this.observer.subscribe(this);
   }
 
   off() {

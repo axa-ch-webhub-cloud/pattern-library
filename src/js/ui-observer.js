@@ -5,9 +5,6 @@ import { freeByValue } from './free';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
-const cache = {};
-const count = {};
-
 class UiObserver {
   static DEFAULTS = {
     containerClass: '.js-ui-container',
@@ -147,52 +144,30 @@ class UiObserver {
     }
   }
 
-  register(receiver) {
+  subscribe(receiver) {
     this.receivers.push(receiver);
 
-    return deregister;
+    return unsubscribe;
 
-    function deregister() {
+    function unsubscribe() {
       const index = this.receivers.indexOf(receiver);
 
       if (index !== -1) {
         this.receivers.slice(index, 1);
       }
 
-      freeByValue(receiver, deregister);
+      freeByValue(receiver, unsubscribe);
     }
   }
 
   destroy() {
-    if (this.rootNode && this.rootNode in count) {
-      // eslint-disable-next-line no-plusplus
-      count[this.rootNode]--;
+    this.off();
 
-      if (count[this.rootNode] <= 0) {
-        this.off();
-
-        delete cache[this.rootNode];
-        delete count[this.rootNode];
-
-        delete this.rootNode;
-        delete this.options;
-        delete this.receivers;
-      }
-    }
+    delete this.rootNode;
+    delete this.options;
+    delete this.receivers;
   }
 }
 
-function getInstance(rootNode, options) {
-  if (!cache[rootNode]) {
-    cache[rootNode] = new UiObserver(rootNode, options);
-    count[rootNode] = 0;
-  }
-
-  // eslint-disable-next-line no-plusplus
-  count[rootNode]++;
-
-  return cache[rootNode];
-}
-
-export default getInstance;
+export default UiObserver;
 

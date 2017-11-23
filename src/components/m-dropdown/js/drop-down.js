@@ -1,4 +1,4 @@
-import getUiObserver from '../../../js/ui-observer';
+import UiObserver from '../../../js/ui-observer';
 import { add, remove } from '../../../js/class-list';
 
 class DropDown {
@@ -19,7 +19,7 @@ class DropDown {
   }
 
   init() {
-    this.observer = getUiObserver(this.rootNode, this.options);
+    this.observer = new UiObserver(this.rootNode, this.options);
 
     this.on();
   }
@@ -27,7 +27,7 @@ class DropDown {
   on() {
     this.off();
 
-    this.unObserve = this.observer.register(this);
+    this.unObserve = this.observer.subscribe(this);
   }
 
   off() {
