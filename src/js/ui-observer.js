@@ -3,7 +3,7 @@ import on from './on';
 import outer from './outer';
 import { freeByValue } from './free';
 
-const DYNAMIC_PROPS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
+const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
 const cache = {};
 const count = {};
@@ -44,7 +44,7 @@ class UiObserver {
   on() {
     this.off();
 
-    this.unClick = on(this.container, DYNAMIC_PROPS.CLICK, this.options.toggleClass, this.handleClick);
+    this.unClick = on(this.container, EVENTS.CLICK, this.options.toggleClass, this.handleClick);
   }
 
   off() {
@@ -59,15 +59,15 @@ class UiObserver {
     this.offInteractive();
 
     if (this.options.closeClass) {
-      this.unCloseClick = on(this.container, DYNAMIC_PROPS.CLICK, this.options.closeClass, this.handleClose);
+      this.unCloseClick = on(this.container, EVENTS.CLICK, this.options.closeClass, this.handleClose);
     }
 
     if (this.options.outerClose) {
-      this.unOuterClick = outer(this.container, DYNAMIC_PROPS.CLICK, this.handleClose);
+      this.unOuterClick = outer(this.container, EVENTS.CLICK, this.handleClose);
     }
 
     if (this.options.escapeClose) {
-      this.unCloseEscape = on(this.container.ownerDocument, DYNAMIC_PROPS.KEYUP, this.handleKeyUp);
+      this.unCloseEscape = on(this.container.ownerDocument, EVENTS.KEYUP, this.handleKeyUp);
     }
   }
 
@@ -95,11 +95,11 @@ class UiObserver {
     const isLeave = !isEnter && !isMove;
 
     if (isEnter) {
-      this.notify(DYNAMIC_PROPS.ENTER, toggleNode);
+      this.notify(EVENTS.ENTER, toggleNode);
 
       this.onInteractive();
     } else if (isMove) {
-      this.notify(DYNAMIC_PROPS.MOVE, toggleNode, this.lastToggleNode);
+      this.notify(EVENTS.MOVE, toggleNode, this.lastToggleNode);
     }
 
     this.lastToggleNode = toggleNode;
@@ -116,7 +116,7 @@ class UiObserver {
   }
 
   handleKeyUp(e) {
-    const isEscape = e.key === DYNAMIC_PROPS.ESCAPE || e.key === DYNAMIC_PROPS.ESCAPE.ESC || e.keyCode === 27;
+    const isEscape = e.key === EVENTS.ESCAPE || e.key === EVENTS.ESC || e.keyCode === 27;
 
     if (isEscape) {
       e.preventDefault();
@@ -127,7 +127,7 @@ class UiObserver {
 
   close() {
     if (this.lastToggleNode) {
-      this.notify(DYNAMIC_PROPS.LEAVE, this.lastToggleNode);
+      this.notify(EVENTS.LEAVE, this.lastToggleNode);
 
       this.offInteractive();
 
