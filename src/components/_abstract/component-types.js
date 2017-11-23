@@ -43,16 +43,24 @@ export class BaseComponent extends HTMLElement {
         this.clone = document.importNode(content, true);
         let data = this.getAttribute('data-set');
         if (!data) {
-          data = '[]';
+          data = '{}';
         }
         try {
           data = JSON.parse(data.replace(/'/g, '"'));
         } catch (err) {
-          data = [];
+          data = null;
+          console.error(`Web Component ${this.nodeName} has an error:\n${err}\n`); // eslint-disable-line
         }
-        const newEL = this.clone.querySelector('[data-set-repeat]');
-        if (newEL && data.length && newEL.innerHTML && newEL.innerHTML.trim(' ')) {
-          this._recursivePropsLoop(data, newEL);
+        if (data) {
+          const keys = Object.keys(data);
+          for (let i = 0, l = keys.length; i < l; i++) {
+            const key = keys[i];
+            const value = data[key];
+            const newEL = this.clone.querySelector(`[data-set-repeat="${key}"]`);
+            if (newEL && newEL.innerHTML && newEL.innerHTML.trim(' ')) {
+              this._recursivePropsLoop(value, newEL, key);
+            }
+          }
         }
       }
     }
@@ -63,9 +71,10 @@ export class BaseComponent extends HTMLElement {
    *
    * @param  {type} data    description
    * @param  {type} element description
+   * @param  {type} selectorKey description
    * @return {type}         description
    */
-  _recursivePropsLoop(data, element) {
+  _recursivePropsLoop(data, element, selectorKey) {
     data.forEach((obj) => {
       const keys = Object.keys(obj);
       const div = document.createElement('div');
@@ -81,14 +90,13 @@ export class BaseComponent extends HTMLElement {
       const { firstChild } = div;
       if (firstChild) {
         firstChild.removeAttribute('data-set-repeat');
-
         if (firstChild.innerHTML.trim(' ')) {
           this.clone.appendChild(firstChild);
         }
       }
     });
     element.removeAttribute('data-set-repeat');
-    const newEL = this.clone.querySelector('[data-set-repeat]');
+    const newEL = this.clone.querySelector(`[data-set-repeat=${selectorKey}]`);
     if (newEL) {
       this._recursivePropsLoop(data, newEL);
     }
