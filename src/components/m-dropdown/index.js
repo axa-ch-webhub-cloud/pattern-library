@@ -12,8 +12,6 @@ class Dropdown extends BaseComponentGlobal {
     super(styles);
 
     this.initialInnerHTML = this.innerHTML;
-
-    console.log('construct drop down');
   }
 
   connectedCallback() {
@@ -22,8 +20,6 @@ class Dropdown extends BaseComponentGlobal {
     this.dropDown = new DropDown(this, {
       containerClass: null,
     });
-
-    console.log('connected drop down', this.dropDown);
   }
 
   disconnectedCallback() {
