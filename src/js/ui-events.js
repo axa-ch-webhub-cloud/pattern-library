@@ -136,6 +136,20 @@ class UiEvents {
     }
   }
 
+  // eslint-disable-next-line no-unused-vars, class-methods-use-this
+  enter(toggleNode) {
+    throw new Error('UiEvent.enter method not overwritten');
+  }
+
+  // eslint-disable-next-line no-unused-vars, class-methods-use-this
+  move(toggleNode, lastToggleNode) {
+  }
+
+  // eslint-disable-next-line no-unused-vars, class-methods-use-this
+  leave(toggleNode) {
+    throw new Error('UiEvent.leave method not overwritten');
+  }
+
   destroy() {
     this._off();
 
