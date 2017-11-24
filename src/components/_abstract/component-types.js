@@ -54,9 +54,6 @@ export class BaseComponent extends HTMLElement {
    */
   connectedCallback() {
     this._appendStyles();
-    if (this.template && this.clone) {
-      this.appendChild(this.clone);
-    }
     this._render();
   }
   /**
@@ -114,9 +111,6 @@ export class BaseComponentShadow extends BaseComponent {
   connectedCallback(mode = 'open') {
     const shadowRoot = this.attachShadow({ mode });
     this._appendStyles(shadowRoot);
-    if (this.template && this.clone) {
-      shadowRoot.appendChild(this.clone);
-    }
     this._render();
   }
 }
