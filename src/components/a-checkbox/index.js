@@ -1,4 +1,3 @@
-import { BaseComponent } from '../_abstract/component-types';
 import on from '../../js/on';
 import styles from './index.scss';
 
@@ -6,23 +5,28 @@ const KEYCODE = {
   SPACE: 32,
 };
 
+const template = document.createElement('template');
+template.innerHTML = `<style>${styles}</style>`;
+if (window.ShadyCSS) {
+  window.ShadyCSS.prepareTemplate(template, 'axa-checkbox');
+}
 
-class Checkbox extends BaseComponent {
+class Checkbox extends HTMLElement {
   static get observedAttributes() {
     return ['checked', 'disabled'];
   }
 
   constructor() {
     super();
-
-    const template = document.createElement('template');
-    template.innerHTML = `<style>${styles}</style>`;
-
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  _render() {
+  connectedCallback() {
+    if (window.ShadyCSS) {
+      window.ShadyCSS.styleElement(this);
+    }
+
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'checkbox');
     }
@@ -34,8 +38,8 @@ class Checkbox extends BaseComponent {
     this._upgradeProperty('checked');
     this._upgradeProperty('disabled');
 
-    on(this, 'keyup', null, this._onKeyUp);
-    on(this, 'click', null, this._onClick);
+    on(this, 'keyup', undefined, this._onKeyUp);
+    on(this, 'click', undefined, this._onClick);
   }
 
   _upgradeProperty(prop) {
@@ -82,6 +86,7 @@ class Checkbox extends BaseComponent {
   }
 
   _onClick(event) {
+    console.log('click')
     this._toggleChecked();
   }
 
