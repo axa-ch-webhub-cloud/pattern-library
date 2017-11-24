@@ -86,7 +86,7 @@
   margin-top: -$dropdown__toggle-border-width;
   overflow: hidden;
 
-  background: $color-prim-white;
+  background: $dropdown__content-bg;
   transition: height 0.3s ease;
 
   .is-open > & {
