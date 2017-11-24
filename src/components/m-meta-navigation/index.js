@@ -1,5 +1,6 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import DropDown from '../m-dropdown/js/drop-down';
 
 class MetaNavigation extends BaseComponentGlobal {
   constructor() {
@@ -19,6 +20,8 @@ class MetaNavigation extends BaseComponentGlobal {
     this.className = `m-meta-navigation m-meta-navigation--${type}`;
 
     this.appendChild(box);
+
+    this.dropDown = new DropDown(this);
   }
 }
 

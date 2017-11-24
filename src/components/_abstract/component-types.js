@@ -1,3 +1,5 @@
+import getAttributes from '../../js/get-attributes';
+
 const memory = {};
 
 /**
@@ -19,30 +21,23 @@ export class BaseComponent extends HTMLElement {
    */
   _initialise(styles, template = null) {
     this._styles = styles;
+
+    // @todo move this to generic render method
     if (template) {
-      let data = this.getAttribute('data-set');
-      if (!data) {
-        data = '{}';
-      }
       try {
-        data = JSON.parse(data.replace(/'/g, '"'));
-      } catch (err) {
-        data = null;
-        console.error(`Web Component ${this.nodeName} has an error:\n${err}\n`); // eslint-disable-line
-      }
-      if (data) {
-        try {
-          const items = template(data);
-          if (Array.isArray(items)) {
-            items.forEach((item) => {
-              this.appendChild(item);
-            });
-          } else {
-            this.appendChild(items);
-          }
-        } catch (err) {
-          console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
+        const items = template(getAttributes(this), this.innerHTML);
+
+        this.innerHTML = '';
+
+        if (Array.isArray(items)) {
+          items.forEach((item) => {
+            this.appendChild(item);
+          });
+        } else {
+          this.appendChild(items);
         }
+      } catch (err) {
+        console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
       }
     }
   }

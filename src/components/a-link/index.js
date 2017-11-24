@@ -26,17 +26,11 @@ class Link extends BaseComponentGlobal {
     });
 
     if (arrow) {
-      arrow = `<axa-icon data-set="{
-        'id': 'arrow',
-        'className': 'a-link__arrow'
-      }"></axa-icon>`;
+      arrow = '<axa-icon id="arrow" classname="a-link__arrow"></axa-icon>';
     }
 
     if (listed) {
-      listed = `<axa-icon data-set="{
-        'id': 'arrow',
-        'className': 'a-link__listed'
-      }"></axa-icon>`;
+      listed = '<axa-icon id="arrow" classname="a-link__listed"></axa-icon>';
     }
 
     this.innerHTML = `<a href="#" class="${classes}">

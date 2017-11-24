@@ -3,7 +3,7 @@ import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
 import { add, remove } from '../../../js/class-list';
 
-const DYNAMIC_PROPS = Enum('UN_BURGER', 'click', 'UN_RESIZE', 'resize');
+const EVENTS = Enum('click', 'resize');
 
 class Burger {
   static DEFAULTS = {
@@ -34,17 +34,17 @@ class Burger {
   on() {
     this.off();
 
-    this[DYNAMIC_PROPS.UN_BURGER] = on(this.burger, DYNAMIC_PROPS.CLICK, this.handleBurgerClick);
-    this[DYNAMIC_PROPS.UN_RESIZE] = on(ownerWindow(this.rootNode), DYNAMIC_PROPS.RESIZE, this.handleResize);
+    this.unBurgerClick = on(this.burger, EVENTS.CLICK, this.handleBurgerClick);
+    this.unResize = on(ownerWindow(this.rootNode), EVENTS.RESIZE, this.handleResize);
   }
 
   off() {
-    if (DYNAMIC_PROPS.UN_BURGER in this) {
-      this[DYNAMIC_PROPS.UN_BURGER]();
+    if (this.unBurgerClick) {
+      this.unBurgerClick();
     }
 
-    if (DYNAMIC_PROPS.UN_RESIZE in this) {
-      this[DYNAMIC_PROPS.UN_RESIZE]();
+    if (this.unResize) {
+      this.unResize();
     }
   }
 

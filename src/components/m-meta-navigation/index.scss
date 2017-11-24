@@ -1,3 +1,4 @@
+@import "../../styles/mixins/button-reset";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
@@ -20,17 +21,28 @@
   @include make-row();
 
   align-items: center;
+}
 
-  > .a-button {
+.m-meta-navigation__nav-left {
+  @include make-gutter();
+}
+
+.m-meta-navigation__nav-right {
+  margin-left: auto;
+
+  .a-button {
     margin-top: -2px;
     margin-bottom: -1px;
   }
 }
 
-.m-meta-navigation__nav-other {
-  @include make-gutter();
+.m-meta-navigation__list-right {
+  @include unstyle-list();
+  @include make-row();
+}
 
-  margin-right: auto;
+.m-meta-navigation__list-item-right {
+  display: block;
 }
 
 .m-meta-navigation__list {
@@ -69,3 +81,46 @@
     border-bottom: $meta-navigation-border-bottom-width solid $meta-navigation__link-bg--hover;
   }
 }
+
+.m-meta-navigation__lang-drop-down {
+  @include button-reset();
+
+  position: relative;
+}
+
+.m-meta-navigation__lang-drop-down-icon {
+  width: 20px;
+  height: 20px;
+
+  transition: all 0.3s ease;
+
+  .is-open & {
+    transform: rotate(180deg);
+  }
+}
+
+.m-main-navigation__lang-list {
+  @include unstyle-list();
+
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+
+  height: 0;
+  overflow: hidden;
+
+  transition: height 0.3s ease;
+
+  .is-open > & {
+    height: auto;
+  }
+}
+
+.m-main-navigation__lang-list-item {
+  display: block;
+}
+
+.m-meta-navigation__lang-list-link {
+
+}
+

@@ -1,11 +1,8 @@
-import Enum from '../../../js/enum';
 import css from '../../../js/css';
 import { add, remove } from '../../../js/class-list';
-import getMenuObserver from './menu-observer';
+import UiEvents from '../../../js/ui-events';
 
-const DYNAMIC_PROPS = Enum('OBSERVER', 'OBSERVER_UN_REGISTER', 'stroke');
-
-class Stroke {
+class Stroke extends UiEvents {
   static DEFAULTS = {
     strokeClass: 'a-stroke',
     list: '.js-main-navigation__list',
@@ -14,6 +11,12 @@ class Stroke {
   };
 
   constructor(rootNode, options = {}) {
+    super(rootNode, {
+      containerClass: '.js-main-navigation__list',
+      toggleClass: 'js-main-navigation__list-link',
+      closeClass: 'js-sub-navigation__index-close',
+    });
+
     this.rootNode = rootNode;
     this.options = {
       ...Stroke.DEFAULTS,
@@ -28,60 +31,45 @@ class Stroke {
 
     this.list = this.rootNode.querySelector(this.options.list);
 
-    this[DYNAMIC_PROPS.STROKE] = document.createElement('div');
-    this[DYNAMIC_PROPS.STROKE].className = this.options.strokeClass;
+    this.stroke = document.createElement('div');
+    this.stroke.className = this.options.strokeClass;
 
-    this.list.appendChild(this[DYNAMIC_PROPS.STROKE]);
-
-    this[DYNAMIC_PROPS.OBSERVER] = getMenuObserver(this.rootNode);
-
-    this.on();
+    this.list.appendChild(this.stroke);
   }
 
-  on() {
-    this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER] = this[DYNAMIC_PROPS.OBSERVER].register(this);
-  }
+  enter(node) {
+    add(this.stroke, this.options.enterClass);
 
-  off() {
-    if (DYNAMIC_PROPS.OBSERVER_UN_REGISTER in this) {
-      this[DYNAMIC_PROPS.OBSERVER_UN_REGISTER]();
-    }
-  }
+    const { parentNode } = node;
 
-  enter(dom) {
-    add(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
-
-    css(this[DYNAMIC_PROPS.STROKE], {
-      width: `${dom.offsetWidth}px`,
-      left: `${dom.offsetLeft}px`,
+    css(this.stroke, {
+      width: `${parentNode.offsetWidth}px`,
+      left: `${parentNode.offsetLeft}px`,
     });
   }
 
-  move(newDom) {
-    add(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
+  move(node) {
+    add(this.stroke, this.options.moveClass);
 
-    css(this[DYNAMIC_PROPS.STROKE], {
-      width: `${newDom.offsetWidth}px`,
-      left: `${newDom.offsetLeft}px`,
+    const { parentNode } = node;
+
+    css(this.stroke, {
+      width: `${parentNode.offsetWidth}px`,
+      left: `${parentNode.offsetLeft}px`,
     });
   }
 
   leave() {
-    remove(this[DYNAMIC_PROPS.STROKE], this.options.moveClass);
-    remove(this[DYNAMIC_PROPS.STROKE], this.options.enterClass);
+    remove(this.stroke, this.options.moveClass);
+    remove(this.stroke, this.options.enterClass);
   }
 
   destroy() {
-    this.off();
+    super.destroy();
 
-    if (DYNAMIC_PROPS.OBSERVER in this) {
-      this[DYNAMIC_PROPS.OBSERVER].destroy();
-      delete this[DYNAMIC_PROPS.OBSERVER];
-    }
-
-    if (DYNAMIC_PROPS.STROKE in this) {
-      this[DYNAMIC_PROPS.STROKE].parentNode.removeChild(this[DYNAMIC_PROPS.STROKE]);
-      delete this[DYNAMIC_PROPS.STROKE];
+    if (this.stroke) {
+      this.stroke.parentNode.removeChild(this.stroke);
+      delete this.stroke;
     }
 
     delete this.rootNode;
