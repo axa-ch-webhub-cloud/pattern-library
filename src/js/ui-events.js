@@ -1,7 +1,6 @@
 import Enum from './enum';
 import on from './on';
 import outer from './outer';
-import { freeByValue } from './free';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
