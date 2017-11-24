@@ -2,6 +2,6 @@ import bel from 'bel';
 
 export default item => bel`
   <svg class="${item.className}">
-    <use xlink:href="#${item.id}" />
+    <use xlink:href="#src--assets--icons--${item.id}" />
   </svg>
 `;

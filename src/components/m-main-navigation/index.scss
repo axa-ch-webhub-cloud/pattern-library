@@ -140,8 +140,8 @@
 
 .m-main-navigation__search-icon {
   display: block;
-  width: $main-navigation__search-icon-size;
-  height: $main-navigation__search-icon-size;
+  width: $main-navigation__icon-size;
+  height: $main-navigation__icon-size;
 
   fill: $main-navigation__search-icon-fill;
 }
@@ -162,6 +162,9 @@
 
 .m-main-navigation__burger-icon {
   display: block;
+  width: $main-navigation__icon-size;
+  height: $main-navigation__icon-size;
+
   fill: currentColor;
 
   .is-open & {
@@ -171,6 +174,9 @@
 
 .m-main-navigation__close-icon {
   display: none;
+  width: $main-navigation__icon-size;
+  height: $main-navigation__icon-size;
+
   fill: currentColor;
 
   .is-open & {
