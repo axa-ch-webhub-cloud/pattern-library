@@ -33,7 +33,7 @@ export class BaseComponent extends HTMLElement {
       if (data) {
         try {
           const items = template(data);
-          if (typeof items.forEach === 'function') {
+          if (Array.isArray(items)) {
             items.forEach((item) => {
               this.appendChild(item);
             });
