@@ -53,6 +53,7 @@
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "~1.6.1",
+    "compression": "^1.7.1",
     "cpx": "~1.5.0",
     "cross-env": "^5.1.1",
     "del": "~3.0.0",
@@ -86,6 +87,7 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^1.0.18",
+    "bel": "^5.1.5",
     "classnames": "^2.2.5",
     "core-js": "~2.5.1",
     "innersvg-polyfill": "0.0.2"

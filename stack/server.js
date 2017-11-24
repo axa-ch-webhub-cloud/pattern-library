@@ -1,15 +1,24 @@
 const http = require('http');
 const constants = require('./constants');
 const express = require('express');
+const compression = require('compression');
 
 const ENV = process.argv[2]; // second element is the first argument.
 
 const app = express();
 
 if (ENV === constants.ENV.PROD) {
+  app.use(compression({ filter: shouldCompress }));
   app.use(express.static(`${process.cwd()}/dist`));
 } else {
   app.use(express.static(`${process.cwd()}/.tmp`));
+}
+
+function shouldCompress(req, res) {
+  if (req.headers['x-no-compression']) {
+    return false;
+  }
+  return compression.filter(req, res);
 }
 
 const port = ENV === constants.ENV.PROD ? '8080' : '3000';
