@@ -5,7 +5,7 @@ import { freeByValue } from './free';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
-class UiObserver {
+class UiEvents {
   static DEFAULTS = {
     containerClass: '.js-ui-container',
     toggleClass: 'js-ui-toggle',
@@ -17,7 +17,7 @@ class UiObserver {
   constructor(rootNode, options = {}) {
     this.rootNode = rootNode;
     this.options = {
-      ...UiObserver.DEFAULTS,
+      ...UiEvents.DEFAULTS,
       ...options,
     };
 
@@ -169,5 +169,5 @@ class UiObserver {
   }
 }
 
-export default UiObserver;
+export default UiEvents;
 

@@ -1,4 +1,4 @@
-import UiObserver from '../../../js/ui-observer';
+import UiEvents from '../../../js/ui-events';
 import on from '../../../js/on';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import { add, remove } from '../../../js/class-list';
@@ -23,7 +23,7 @@ class DropDown {
   }
 
   init() {
-    this.observer = new UiObserver(this.rootNode, this.options);
+    this.observer = new UiEvents(this.rootNode, this.options);
 
     this.on();
   }
