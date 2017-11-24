@@ -1,13 +1,19 @@
 import { add, remove } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
-class SubNavigation {
+class SubNavigation extends UiEvents {
   static DEFAULTS = {
     list: '.js-main-navigation__list',
     stateClass: 'is-open',
   };
 
   constructor(rootNode, options = {}) {
+    super(rootNode, {
+      containerClass: '.js-main-navigation__list',
+      toggleClass: 'js-main-navigation__list-link',
+      closeClass: 'js-sub-navigation__index-close',
+    });
+
     this.rootNode = rootNode;
     this.options = {
       ...SubNavigation.DEFAULTS,
@@ -19,24 +25,6 @@ class SubNavigation {
 
   init() {
     this.list = this.rootNode.querySelector(this.options.list);
-
-    this.observer = new UiEvents(this.rootNode, {
-      containerClass: '.js-main-navigation__list',
-      toggleClass: 'js-main-navigation__list-link',
-      closeClass: 'js-sub-navigation__index-close',
-    });
-
-    this.on();
-  }
-
-  on() {
-    this.unObserve = this.observer.subscribe(this);
-  }
-
-  off() {
-    if (this.unObserve) {
-      this.unObserve();
-    }
   }
 
   enter(node) {
@@ -53,12 +41,7 @@ class SubNavigation {
   }
 
   destroy() {
-    this.off();
-
-    if (this.observer) {
-      this.observer.destroy();
-      delete this.observer;
-    }
+    super.destroy();
 
     delete this.rootNode;
     delete this.options;

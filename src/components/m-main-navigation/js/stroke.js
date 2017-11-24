@@ -2,7 +2,7 @@ import css from '../../../js/css';
 import { add, remove } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
-class Stroke {
+class Stroke extends UiEvents {
   static DEFAULTS = {
     strokeClass: 'a-stroke',
     list: '.js-main-navigation__list',
@@ -11,6 +11,12 @@ class Stroke {
   };
 
   constructor(rootNode, options = {}) {
+    super(rootNode, {
+      containerClass: '.js-main-navigation__list',
+      toggleClass: 'js-main-navigation__list-link',
+      closeClass: 'js-sub-navigation__index-close',
+    });
+
     this.rootNode = rootNode;
     this.options = {
       ...Stroke.DEFAULTS,
@@ -29,24 +35,6 @@ class Stroke {
     this.stroke.className = this.options.strokeClass;
 
     this.list.appendChild(this.stroke);
-
-    this.observer = new UiEvents(this.rootNode, {
-      containerClass: '.js-main-navigation__list',
-      toggleClass: 'js-main-navigation__list-link',
-      closeClass: 'js-sub-navigation__index-close',
-    });
-
-    this.on();
-  }
-
-  on() {
-    this.unObserve = this.observer.subscribe(this);
-  }
-
-  off() {
-    if (this.unObserve) {
-      this.unObserve();
-    }
   }
 
   enter(node) {
@@ -77,12 +65,7 @@ class Stroke {
   }
 
   destroy() {
-    this.off();
-
-    if (this.observer) {
-      this.observer.destroy();
-      delete this.observer;
-    }
+    super.destroy();
 
     if (this.stroke) {
       this.stroke.parentNode.removeChild(this.stroke);

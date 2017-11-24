@@ -3,7 +3,7 @@ import on from '../../../js/on';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import { add, remove } from '../../../js/class-list';
 
-class DropDown {
+class DropDown extends UiEvents {
   static DEFAULTS = {
     containerClass: '.js-dropdown',
     toggleClass: 'js-dropdown__toggle',
@@ -11,33 +11,18 @@ class DropDown {
   }
 
   constructor(rootNode, options) {
-    this.options = {
+    // eslint-disable-next-line no-param-reassign
+    options = {
       ...DropDown.DEFAULTS,
       ...options,
     };
+
+    super(rootNode, options);
+
+    this.options = options;
     this.rootNode = rootNode;
 
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
-
-    this.init();
-  }
-
-  init() {
-    this.observer = new UiEvents(this.rootNode, this.options);
-
-    this.on();
-  }
-
-  on() {
-    this.off();
-
-    this.unObserve = this.observer.subscribe(this);
-  }
-
-  off() {
-    if (this.unObserve) {
-      this.unObserve();
-    }
   }
 
   onInteractive() {
@@ -90,12 +75,7 @@ class DropDown {
   }
 
   destroy() {
-    this.off();
-
-    if (this.observer) {
-      this.observer.destroy();
-      delete this.observer;
-    }
+    super.destroy();
 
     delete this.rootNode;
     delete this.options;
