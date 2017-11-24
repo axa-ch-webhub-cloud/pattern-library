@@ -27,8 +27,6 @@ export class BaseComponent extends HTMLElement {
       try {
         const items = template(getAttributes(this), this.innerHTML);
 
-        this.innerHTML = '';
-
         if (Array.isArray(items)) {
           items.forEach((item) => {
             this.appendChild(item);
