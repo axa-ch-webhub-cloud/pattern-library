@@ -1,5 +1,3 @@
-// guide: https://developers.google.com/web/fundamentals/web-components/customelements
-const cScript = (document._currentScript || document.currentScript);
 const memory = {};
 
 /**
@@ -7,100 +5,48 @@ const memory = {};
  * and if yes appends it. It also appends custom styles to the top of the dom tree
  */
 export class BaseComponent extends HTMLElement {
-  constructor(styles = '') {
+  constructor(styles = '', template) {
     super();
-    this._initialise(styles);
+    this._initialise(styles, template);
   }
 
   /**
    * _initialise - description
    *
    * @param  {type} styles description
+   * @param  {type} template description
    * @return {type}        description
    */
-  _initialise(styles) {
-    this.templateAttributes = [];
-    this.templateAttributesName = [];
-    for (let i = 0, atts = this.attributes, n = atts.length; i < n; i++) { // eslint-disable-line no-plusplus
-      this.templateAttributes.push(this.getAttribute(atts[i].nodeName));
-      this.templateAttributesName.push(atts[i].nodeName);
-    }
+  _initialise(styles, template = null) {
     this._styles = styles;
-    let thisDoc;
-    if (window.HTMLImports) {
-      thisDoc = HTMLImports.importForElement(cScript);
-    } else {
-      thisDoc = cScript.ownerDocument;
-    }
-    if (thisDoc) {
-      this.template = thisDoc.querySelector('template');
-      if (!this.template || (window.HTMLImports && thisDoc !== HTMLImports.importForElement(this.template))) {
-        // This element is contained in another import, skip.
-        this.template = null;
+    if (template) {
+      let data = this.getAttribute('data-set');
+      if (!data) {
+        data = '{}';
       }
-      if (this.template) {
-        const { content } = this.template;
-        this.clone = document.importNode(content, true);
-        let data = this.getAttribute('data-set');
-        if (!data) {
-          data = '{}';
-        }
+      try {
+        data = JSON.parse(data.replace(/'/g, '"'));
+      } catch (err) {
+        data = null;
+        console.error(`Web Component ${this.nodeName} has an error:\n${err}\n`); // eslint-disable-line
+      }
+      if (data) {
         try {
-          data = JSON.parse(data.replace(/'/g, '"'));
-        } catch (err) {
-          data = null;
-          console.error(`Web Component ${this.nodeName} has an error:\n${err}\n`); // eslint-disable-line
-        }
-        if (data) {
-          const keys = Object.keys(data);
-          for (let i = 0, l = keys.length; i < l; i++) {
-            const key = keys[i];
-            const value = data[key];
-            const newEL = this.clone.querySelector(`[data-set-repeat="${key}"]`);
-            if (newEL && newEL.innerHTML && newEL.innerHTML.trim(' ')) {
-              this._recursivePropsLoop(value, newEL, key);
-            }
+          const items = template(data);
+          if (typeof items.forEach === 'function') {
+            items.forEach((item) => {
+              this.appendChild(item);
+            });
+          } else {
+            this.appendChild(items);
           }
+        } catch (err) {
+          console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
         }
       }
     }
   }
 
-  /**
-   * _recursivePropsLoop - description
-   *
-   * @param  {type} data    description
-   * @param  {type} element description
-   * @param  {type} selectorKey description
-   * @return {type}         description
-   */
-  _recursivePropsLoop(data, element, selectorKey) {
-    data.forEach((obj) => {
-      const keys = Object.keys(obj);
-      const div = document.createElement('div');
-      const container = document.createElement('div');
-      container.appendChild(element);
-      let tmpHtml = container.innerHTML;
-      for (let i = 0, l = keys.length; i < l; i++) {
-        const key = keys[i];
-        const value = obj[key];
-        tmpHtml = tmpHtml.replace(`{{${key}}}`, value);
-      }
-      div.innerHTML = tmpHtml.replace(/{{(.*?)}}/gi, '');
-      const { firstChild } = div;
-      if (firstChild) {
-        firstChild.removeAttribute('data-set-repeat');
-        if (firstChild.innerHTML.trim(' ')) {
-          this.clone.appendChild(firstChild);
-        }
-      }
-    });
-    element.removeAttribute('data-set-repeat');
-    const newEL = this.clone.querySelector(`[data-set-repeat=${selectorKey}]`);
-    if (newEL) {
-      this._recursivePropsLoop(data, newEL);
-    }
-  }
   /**
    * connectedCallback - description
    *
