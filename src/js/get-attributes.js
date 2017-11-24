@@ -1,3 +1,5 @@
+const reJson = /^[[{].*[\]}]$/;
+
 function getAttributes(node) {
   if (!node.hasAttributes) {
     return null;
@@ -12,10 +14,12 @@ function getAttributes(node) {
     const { name } = attribute;
     let { value } = attribute;
 
-    try {
-      value = JSON.parse(value);
-    } catch (error) {
-      console.error(`Attributes ${node.nodeName} has an error:\n${error}\n`); // eslint-disable-line
+    if (reJson.test(value)) {
+      try {
+        value = JSON.parse(value);
+      } catch (error) {
+        console.error(`Attributes ${node.nodeName} has an error:\n${error}\n`, value); // eslint-disable-line
+      }
     }
 
     out[name] = value;
