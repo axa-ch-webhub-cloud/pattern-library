@@ -5,7 +5,6 @@ const fs = require('fs');
 const constants = require('../constants');
 const nsh = require('node-syntaxhighlighter');
 const sass = require('node-sass');
-const path = require('path');
 
 // const jsLang = nsh.getLanguage('js');
 const htmlLang = nsh.getLanguage('html');
@@ -40,7 +39,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let exampleHtmls = [];
   if (err) throw err;
 
-  allFiles = allFiles.map(adaptSlashes);
+  allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
 
   previewHtmls = allFiles.filter(_file => _file.match(reGetPreviews));
   exampleHtmls = allFiles.filter(_file => _file.match(reGetExamples));
