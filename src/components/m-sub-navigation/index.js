@@ -10,6 +10,8 @@ class SubNavigation extends BaseComponentGlobal {
   }
 
   _render() {
+    super._render();
+
     const flyout = this.hasAttribute('flyout');
     const classes = classnames('m-sub-navigation', {
       'm-sub-navigation--flyout': flyout,
