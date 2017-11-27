@@ -15,7 +15,7 @@ class Checkbox extends BaseComponentGlobal {
     super(styles);
   }
 
-  _render() {
+  render() {
     this.className = 'a-checkbox';
 
     if (!this.hasAttribute('role')) {
