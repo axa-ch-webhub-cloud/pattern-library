@@ -21,29 +21,7 @@ export class BaseComponent extends HTMLElement {
    */
   _initialise(styles, template = null) {
     this._styles = styles;
-
-    // @todo move this to generic render method
-    if (template) {
-      try {
-        const children = document.createDocumentFragment();
-
-        while (this.firstChild) {
-          children.appendChild(this.firstChild);
-        }
-        // this.innerHTML = ''
-        const items = template(getAttributes(this), children);
-
-        if (Array.isArray(items)) {
-          items.forEach((item) => {
-            this.appendChild(item);
-          });
-        } else {
-          this.appendChild(items);
-        }
-      } catch (err) {
-        console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
-      }
-    }
+    this._template = template;
   }
 
   /**
@@ -53,7 +31,7 @@ export class BaseComponent extends HTMLElement {
    */
   connectedCallback() {
     this._appendStyles();
-    this._render();
+    this.render();
   }
   /**
    * _appendStyles - description
@@ -75,12 +53,41 @@ export class BaseComponent extends HTMLElement {
 
 
   /**
-   * _render - method can be overriden and is called right after the component is connected
+   * render - method can be overriden and is called right after the component is connected
+   * @TODO how to deal with rerenders, e.g. triggered by `attributeChangedCallback` or observed DOM
    *
    * @return {type}  description
    */
-  _render() { // eslint-disable-line
-    return null;
+  render() { // eslint-disable-line
+    if (this._hasRendered) {
+      return;
+    }
+
+    const { _template: template } = this;
+
+    if (template) {
+      try {
+        const children = document.createDocumentFragment();
+
+        while (this.firstChild) {
+          children.appendChild(this.firstChild);
+        }
+        // this.innerHTML = ''
+        const items = template(getAttributes(this), children);
+
+        if (Array.isArray(items)) {
+          items.forEach((item) => {
+            this.appendChild(item);
+          });
+        } else {
+          this.appendChild(items);
+        }
+
+        this._hasRendered = true;
+      } catch (err) {
+        console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
+      }
+    }
   }
 
   static uuidv4() {
@@ -110,7 +117,7 @@ export class BaseComponentShadow extends BaseComponent {
   connectedCallback(mode = 'open') {
     const shadowRoot = this.attachShadow({ mode });
     this._appendStyles(shadowRoot);
-    this._render();
+    this.render();
   }
 }
 
