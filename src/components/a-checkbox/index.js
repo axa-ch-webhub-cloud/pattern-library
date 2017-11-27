@@ -1,31 +1,22 @@
 import on from '../../js/on';
+import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 
 const KEYCODE = {
   SPACE: 32,
 };
 
-const template = document.createElement('template');
-template.innerHTML = `<style>${styles}</style>`;
-if (window.ShadyCSS) {
-  window.ShadyCSS.prepareTemplate(template, 'axa-checkbox');
-}
-
-class Checkbox extends HTMLElement {
+class Checkbox extends BaseComponentGlobal {
   static get observedAttributes() {
     return ['checked', 'disabled'];
   }
 
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    super(styles);
   }
 
-  connectedCallback() {
-    if (window.ShadyCSS) {
-      window.ShadyCSS.styleElement(this);
-    }
+  _render() {
+    this.className = 'a-checkbox';
 
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'checkbox');
@@ -38,8 +29,8 @@ class Checkbox extends HTMLElement {
     this._upgradeProperty('checked');
     this._upgradeProperty('disabled');
 
-    on(this, 'keyup', undefined, this._onKeyUp);
-    on(this, 'click', undefined, this._onClick);
+    on(this, 'keyup', this._onKeyUp);
+    on(this, 'click', this._onClick);
   }
 
   _upgradeProperty(prop) {
@@ -85,14 +76,14 @@ class Checkbox extends HTMLElement {
     }
   }
 
-  _onClick(event) {
-    console.log('click')
+  _onClick() {
     this._toggleChecked();
   }
 
   _toggleChecked() {
-    if (this.disabled)
+    if (this.disabled) {
       return;
+    }
     this.checked = !this.checked;
     this.dispatchEvent(new CustomEvent('change', {
       detail: {
