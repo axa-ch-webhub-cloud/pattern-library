@@ -1,4 +1,4 @@
-const reJson = /^[[{].*[\]}]$/;
+const reJson = /^\s*[[{].*[\]}]\s*$/gm;
 
 function getAttributes(node) {
   if (!node.hasAttributes) {
