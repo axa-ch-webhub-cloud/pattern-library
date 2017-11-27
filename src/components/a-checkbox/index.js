@@ -37,7 +37,7 @@ class Checkbox extends BaseComponentGlobal {
      A developer might attempt to set a property on your element before its definition has been loaded.
      This is especially true if the developer is using a framework which handles loading components, inserting them into to the page, and binding their properties to a model.
 
-     In the following example, React example we bind der checked property.
+     In the following React example, we bind the checked property.
      If the definition for axa-checkbox was lazy loaded it's possible that React might attempt to set the checked property before the element has upgraded.
 
       <axa-checkbox checked={checked}></axa-checkbox>
