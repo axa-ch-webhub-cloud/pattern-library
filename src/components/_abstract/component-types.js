@@ -54,6 +54,7 @@ export class BaseComponent extends HTMLElement {
 
   /**
    * render - method can be overriden and is called right after the component is connected
+   * @TODO how to deal with rerenders, e.g. triggered by `attributeChangedCallback` or observed DOM
    *
    * @return {type}  description
    */
