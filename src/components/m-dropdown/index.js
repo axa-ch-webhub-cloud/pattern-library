@@ -23,6 +23,8 @@ class Dropdown extends BaseComponentGlobal {
   }
 
   _render() {
+    super._render();
+
     const inFlow = this.hasAttribute('in-flow');
 
     this.className = classnames('m-dropdown js-dropdown', {

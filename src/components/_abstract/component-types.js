@@ -21,29 +21,8 @@ export class BaseComponent extends HTMLElement {
    */
   _initialise(styles, template = null) {
     this._styles = styles;
-
+    this._template = template;
     // @todo move this to generic render method
-    if (template) {
-      try {
-        const children = document.createDocumentFragment();
-
-        while (this.firstChild) {
-          children.appendChild(this.firstChild);
-        }
-        // this.innerHTML = ''
-        const items = template(getAttributes(this), children);
-
-        if (Array.isArray(items)) {
-          items.forEach((item) => {
-            this.appendChild(item);
-          });
-        } else {
-          this.appendChild(items);
-        }
-      } catch (err) {
-        console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
-      }
-    }
   }
 
   /**
@@ -80,7 +59,35 @@ export class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   _render() { // eslint-disable-line
-    return null;
+    if (this._hasRendered) {
+      return;
+    }
+
+    const { _template: template } = this;
+
+    if (template) {
+      try {
+        const children = document.createDocumentFragment();
+
+        while (this.firstChild) {
+          children.appendChild(this.firstChild);
+        }
+        // this.innerHTML = ''
+        const items = template(getAttributes(this), children);
+
+        if (Array.isArray(items)) {
+          items.forEach((item) => {
+            this.appendChild(item);
+          });
+        } else {
+          this.appendChild(items);
+        }
+
+        this._hasRendered = true;
+      } catch (err) {
+        console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
+      }
+    }
   }
 
   static uuidv4() {
