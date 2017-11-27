@@ -1,26 +1,17 @@
 import styles from './index.scss';
+import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import MobileNavigation from './js/mobile-navigation';
 
 class MainNavigationMobile extends BaseComponentGlobal {
   constructor() {
-    super(styles);
+    super(styles, template);
   }
 
   connectedCallback() {
     super.connectedCallback();
-    const type = this.getAttribute('type');
-    const box = document.createElement('div');
 
-    box.className = 'm-main-navigation-mobile__box';
-
-    while (this.childNodes.length) {
-      box.appendChild(this.firstChild);
-    }
-
-    this.className = `m-main-navigation-mobile m-main-navigation-mobile--${type}`;
-
-    this.appendChild(box);
+    this.className = 'm-main-navigation-mobile';
 
     this.interaction = new MobileNavigation(this);
   }
