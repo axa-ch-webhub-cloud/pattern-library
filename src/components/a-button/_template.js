@@ -20,7 +20,7 @@ export default function ({
 
   const arrowIcon = raw('<axa-icon id="arrow" classes="a-button__arrow"></axa-icon>');
 
-  if (tag === 'a') {
+  if (tag.toUpperCase() === 'a') {
     return bel`<a href="#" class="${classes}">
       ${children}
       ${arrow && arrowIcon}
