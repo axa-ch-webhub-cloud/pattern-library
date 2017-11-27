@@ -33,6 +33,31 @@ class Checkbox extends BaseComponentGlobal {
     on(this, 'click', this._onClick);
   }
 
+  /* Make properties lazy
+     A developer might attempt to set a property on your element before its definition has been loaded.
+     This is especially true if the developer is using a framework which handles loading components, inserting them into to the page, and binding their properties to a model.
+
+     In the following example, React example we bind der checked property.
+     If the definition for axa-checkbox was lazy loaded it's possible that React might attempt to set the checked property before the element has upgraded.
+
+      <axa-checkbox checked={checked}></axa-checkbox>
+      A custom element should handle this scenario by checking if any properties have already been set on its instance.
+
+      render() {
+        ...
+        this._upgradeProperty('checked');
+      }
+
+      _upgradeProperty(prop) {
+        if (this.hasOwnProperty(prop)) {
+          let value = this[prop];
+          delete this[prop];
+          this[prop] = value;
+        }
+      }
+      _upgradeProperty() captures the value from the unupgraded instance and deletes the property so it does not shadow the custom element's own property setter.
+      This way, when the element's definition does finally load, it can immediately reflect the correct state.
+*/
   _upgradeProperty(prop) {
     if (Object.prototype.hasOwnProperty.call(this, prop)) {
       const value = this[prop];
