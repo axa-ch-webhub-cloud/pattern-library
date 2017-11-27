@@ -1,24 +1,28 @@
 @import "../../styles/settings/colors";
 
-:host {
+.a-checkbox {
   display: inline-block;
-  background: $color-prim-white;
-  border: 1px solid $color-prim-gray-dusty;
   width: 24px;
   height: 24px;
+  background: $color-prim-white;
+  border: 1px solid $color-prim-gray-dusty;
 }
-:host([hidden]) {
+
+.a-checkbox[hidden] {
   display: none;
 }
-:host([checked]) {
+
+.a-checkbox[checked] {
   background: $color-prim-blue-azure;
   border-color: $color-prim-blue-azure;
 }
-:host([disabled]) {
+
+.a-checkbox[disabled] {
   background: $color-prim-gray-dusty;
   border-color: $color-prim-gray-dusty;
 }
-:host([checked][disabled]) {
+
+.a-checkbox[checked][disabled] {
   background: $color-prim-gray-dusty;
   border-color: $color-prim-gray-dusty;
 }
