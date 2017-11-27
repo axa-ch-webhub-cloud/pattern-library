@@ -5,7 +5,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 
 // @Todo: replace by proper icon system as soon as it is ready
 const arrowIcon = `
-<axa-icon id="arrow" classname="a-button__arrow"></axa-icon>`;
+<axa-icon id="arrow" classes="a-button__arrow"></axa-icon>`;
 
 class Button extends BaseComponentGlobal {
   constructor() {

@@ -1,7 +1,7 @@
 import bel from 'bel';
 import raw from 'bel/raw';
 
-const arrowIcon = '<axa-icon id="angle-bracket-right" classname="m-dropdown__icon"></axa-icon>';
+const arrowIcon = '<axa-icon id="angle-bracket-right" classes="m-dropdown__icon"></axa-icon>';
 
 export default ({ title, items }) => [
   bel`<button role="button" class="m-dropdown__toggle js-dropdown__toggle">
