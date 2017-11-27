@@ -22,7 +22,6 @@ export class BaseComponent extends HTMLElement {
   _initialise(styles, template = null) {
     this._styles = styles;
     this._template = template;
-    // @todo move this to generic render method
   }
 
   /**
