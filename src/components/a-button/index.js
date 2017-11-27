@@ -1,50 +1,10 @@
-import classnames from 'classnames';
-
 import styles from './index.scss';
+import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-
-// @Todo: replace by proper icon system as soon as it is ready
-const arrowIcon = `
-<axa-icon id="arrow" classes="a-button__arrow"></axa-icon>`;
 
 class Button extends BaseComponentGlobal {
   constructor() {
-    super(styles);
-
-    this.initialInnerHTML = this.innerHTML;
-  }
-
-  _render() {
-    const { initialInnerHTML } = this;
-    const tag = this.getAttribute('tag') || 'button';
-    const color = this.getAttribute('color');
-    const size = this.getAttribute('size');
-    const ghost = this.hasAttribute('ghost');
-    const motion = this.hasAttribute('motion');
-    let arrow = this.hasAttribute('arrow') || '';
-    const classes = classnames('a-button', {
-      [`a-button--${color}`]: color,
-      [`a-button--${size}`]: size,
-      'a-button--ghost': ghost,
-      'a-button--motion': motion,
-      'a-button--arrow': arrow,
-    });
-
-    if (arrow) {
-      arrow = arrowIcon;
-    }
-
-    if (tag === 'button') {
-      this.innerHTML = `<button type="button" class="${classes}">
-        ${initialInnerHTML}
-        ${arrow}
-      </button>`;
-    } else if (tag === 'a') {
-      this.innerHTML = `<a href="#" class="${classes}">
-        ${initialInnerHTML}
-        ${arrow}
-      </a>`;
-    }
+    super(styles, template);
   }
 }
 
