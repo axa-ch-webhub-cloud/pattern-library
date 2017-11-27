@@ -6,5 +6,7 @@
   &:active,
   &:focus {
     outline: none;
+
+    cursor: pointer;
   }
 }

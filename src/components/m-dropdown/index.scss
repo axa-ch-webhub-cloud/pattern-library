@@ -1,3 +1,4 @@
+@import "./settings/dropdown";
 @import "../../styles/settings/colors";
 @import "../../styles/settings/zindex";
 @import "../../styles/mixins/button-reset";
@@ -11,26 +12,28 @@
 }
 
 .m-dropdown__toggle {
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__toggle-x-padding);
+
   @include button-reset();
   @include typo-18();
 
   position: relative;
 
-  padding: 10.5px 60px 10.5px 20px;
+  padding: $dropdown__toggle-y-padding $padding-right $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
 
-  background: $color-prim-white;
-  border: 1px solid $color-prim-gray-silver;
-  color: $color-prim-gray-dusty;
+  background: $dropdown__toggle-bg;
+  border: $dropdown__toggle-border-width solid $dropdown__toggle-border-color;
+  color: $dropdown__toggle-color;
 
   &:hover,
   &:active,
   &:focus {
-    border-color: $color-axa-blue;
+    border-color: $dropdown__toggle-color--hover;
 
     cursor: pointer;
 
     .m-dropdown__icon {
-      color: $color-axa-blue;
+      color: $dropdown__toggle-color--hover;
     }
 
     &::after {
@@ -40,29 +43,29 @@
 
   &::after {
     position: absolute;
-    bottom: -1px;
+    bottom: -$dropdown__toggle-border-width;
     left: 0;
     z-index: $zindex-dropdown + 1;
 
     display: none;
     width: 100%;
-    height: 1px;
+    height: $dropdown__toggle-border-width;
     overflow: hidden;
 
     content: '';
-    background: $color-axa-blue;
+    background: $dropdown__toggle-color--hover;
   }
 }
 
 .m-dropdown__icon {
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: $dropdown__toggle-x-padding;
 
   display: block;
-  width: 10px;
-  height: 10px;
-  margin-top: -5px;
+  width: $dropdown__icon-size;
+  height: $dropdown__icon-size;
+  margin-top: -($dropdown__icon-size / 2);
 
   transition: all 0.3s ease;
 
@@ -80,10 +83,10 @@
 
   height: 0;
   min-width: 100%;
-  margin-top: -1px;
+  margin-top: -$dropdown__toggle-border-width;
   overflow: hidden;
 
-  background: $color-prim-white;
+  background: $dropdown__content-bg;
   transition: height 0.3s ease;
 
   .is-open > & {
@@ -96,15 +99,15 @@
 }
 
 .m-dropdown__item {
-  border-left: 1px solid $color-prim-gray-silver;
-  border-right: 1px solid $color-prim-gray-silver;
+  border-left: $dropdown__item-border-width solid $dropdown__item-border-color;
+  border-right: $dropdown__item-border-width solid $dropdown__item-border-color;
 
   &:first-child {
-    border-top: 1px solid $color-prim-gray-silver;
+    border-top: $dropdown__item-border-width solid $dropdown__item-border-color;
   }
 
   &:last-child {
-    border-bottom: 3px solid $color-prim-gray-silver;
+    border-bottom: $dropdown__item-border-width-last solid $dropdown__item-border-color;
   }
 }
 
@@ -112,15 +115,15 @@
   @include typo-18();
 
   display: block;
-  padding: 10.5px 20px;
+  padding: $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
 
-  color: $color-prim-gray-dusty;
+  color: $dropdown__toggle-color;
   white-space: nowrap;
 
   &:hover,
   &:active,
   &:focus {
-    color: $color-axa-blue;
+    color: $dropdown__toggle-color--hover;
     text-decoration: none;
     background: $color-prim-gray-wild-sand;
   }
