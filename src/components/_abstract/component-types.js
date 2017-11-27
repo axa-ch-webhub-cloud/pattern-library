@@ -32,7 +32,7 @@ export class BaseComponent extends HTMLElement {
    */
   connectedCallback() {
     this._appendStyles();
-    this._render();
+    this.render();
   }
   /**
    * _appendStyles - description
@@ -54,11 +54,11 @@ export class BaseComponent extends HTMLElement {
 
 
   /**
-   * _render - method can be overriden and is called right after the component is connected
+   * render - method can be overriden and is called right after the component is connected
    *
    * @return {type}  description
    */
-  _render() { // eslint-disable-line
+  render() { // eslint-disable-line
     if (this._hasRendered) {
       return;
     }
@@ -117,7 +117,7 @@ export class BaseComponentShadow extends BaseComponent {
   connectedCallback(mode = 'open') {
     const shadowRoot = this.attachShadow({ mode });
     this._appendStyles(shadowRoot);
-    this._render();
+    this.render();
   }
 }
 

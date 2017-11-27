@@ -9,8 +9,8 @@ class SubNavigation extends BaseComponentGlobal {
     this.initialInnerHTML = this.innerHTML;
   }
 
-  _render() {
-    super._render();
+  render() {
+    super.render();
 
     const flyout = this.hasAttribute('flyout');
     const classes = classnames('m-sub-navigation', {

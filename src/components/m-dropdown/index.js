@@ -22,8 +22,8 @@ class Dropdown extends BaseComponentGlobal {
     delete this.dropDown;
   }
 
-  _render() {
-    super._render();
+  render() {
+    super.render();
 
     const inFlow = this.hasAttribute('in-flow');
 
