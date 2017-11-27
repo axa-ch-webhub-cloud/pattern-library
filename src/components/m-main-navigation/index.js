@@ -1,4 +1,5 @@
 import styles from './index.scss';
+import template from './_template';
 import Stroke from './js/stroke';
 import SubNavigation from './js/sub-navigation';
 import Burger from './js/burger';
@@ -6,24 +7,13 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 
 class MainNavigation extends BaseComponentGlobal {
   constructor() {
-    super(styles);
+    super(styles, template);
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    const type = this.getAttribute('type');
-    const box = document.createElement('div');
-
-    box.className = 'm-main-navigation__box';
-
-    while (this.childNodes.length) {
-      box.appendChild(this.firstChild);
-    }
-
-    this.className = `m-main-navigation m-main-navigation--${type}`;
-
-    this.appendChild(box);
+    this.className = 'm-main-navigation';
 
     this.stroke = new Stroke(this);
     this.subNavigation = new SubNavigation(this);

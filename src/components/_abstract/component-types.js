@@ -25,7 +25,13 @@ export class BaseComponent extends HTMLElement {
     // @todo move this to generic render method
     if (template) {
       try {
-        const items = template(getAttributes(this), this.innerHTML);
+        const children = document.createDocumentFragment();
+
+        while (this.firstChild) {
+          children.appendChild(this.firstChild);
+        }
+        // this.innerHTML = ''
+        const items = template(getAttributes(this), children);
 
         if (Array.isArray(items)) {
           items.forEach((item) => {
