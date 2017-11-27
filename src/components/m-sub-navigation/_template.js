@@ -33,8 +33,6 @@ export default ({ items }, childrens) => {
         </div>
       </div>
     `);
-  } else {
-    console.log(items)
   }
 
   return arr;
