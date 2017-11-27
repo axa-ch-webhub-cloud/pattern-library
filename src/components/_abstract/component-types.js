@@ -51,7 +51,6 @@ export class BaseComponent extends HTMLElement {
     }
   }
 
-
   /**
    * render - method can be overriden and is called right after the component is connected
    * @TODO how to deal with rerenders, e.g. triggered by `attributeChangedCallback` or observed DOM
@@ -85,7 +84,12 @@ export class BaseComponent extends HTMLElement {
 
         this._hasRendered = true;
       } catch (err) {
-        console.error(`Web Component ${this.nodeName} has an error when loading its template:\n${err}\n`); // eslint-disable-line
+        console.error( // eslint-disable-line
+          `\n%cWeb Component %c${this.nodeName}%c has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
+          'color: #580000; font-size: 14px; line-height:16px;',
+          'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
+          'color: #580000; font-size: 14px; line-height:16px;',
+        );
       }
     }
   }
