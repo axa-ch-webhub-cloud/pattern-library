@@ -6,6 +6,12 @@ class FooterLegals extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.className = 'm-footer-legals';
+  }
 }
 
 window.customElements.define('axa-footer-legals', FooterLegals);
