@@ -1,0 +1,22 @@
+.a-warp {
+  display: block;
+}
+
+.a-warp__box {
+  &::before,
+  &::after {
+    display: block;
+  }
+
+  &::before {
+    content: '>>>>>';
+
+    background: green;
+  }
+
+  &::after {
+    content: '<<<<<';
+
+    background: red;
+  }
+}
