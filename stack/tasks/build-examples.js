@@ -23,16 +23,11 @@ const adaptSlashes = (file) => { // eslint-disable-line no-param-reassign
   return (isExtendedLengthPath || hasNonAscii) ? file : file.replace(/\\/g, '/');
 };
 
-const sorter = (a, b) => {
-  if (a > b) {
-    return -1;
-  }
-  if (a < b) {
-    return 1;
-  }
-  // a muss gleich b sein
-  return 0;
-};
+// @TODO: import order seems to be crucial for chrome, whats going on here??
+/* eslint-disable */
+const sortDown = (a, b) => (a > b) ? -1 : (a < b) ? 1 : 0;
+const sortUp = (a, b) => (a > b) ? 1 : (a < b) ? -1 : 0;
+/* eslint-enable */
 
 dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let previewHtmls = [];
@@ -55,8 +50,8 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   const stylesPath = highlightStyles.filter(style => style.name === 'eclipse')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
 
-  previewHtmls = previewHtmls.sort(sorter);
-  exampleHtmls = exampleHtmls.sort(sorter);
+  previewHtmls = previewHtmls.sort(sortUp);
+  exampleHtmls = exampleHtmls.sort(sortUp);
 
   previewHtmls.forEach((filePath, index) => {
     const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.html');
@@ -120,7 +115,9 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     `;
   });
 
-  const result = indexHtml.replace(/<!-- {CUT AND INJECT HERE} -->/g, imports + html);
+  const result = indexHtml
+    .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
+    .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, html);
 
   fs.writeFile(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/index.html`, result, (_err) => {
     if (_err) {
