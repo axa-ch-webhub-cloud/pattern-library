@@ -28,6 +28,7 @@
     border-radius: 50%;
 
     &:hover {
+      background: $color-prim-gray-silver;
       border-color: $color-axa-blue;
     }
   }
@@ -38,16 +39,22 @@
 }
 
 .a-radio[checked] {
-  background: $color-prim-blue-azure;
-  border-color: $color-prim-blue-azure;
+  &::after {
+    background: $color-axa-blue;
+    border-color: $color-axa-blue;
+  }
 }
 
 .a-radio[disabled] {
-  background: $color-prim-gray-dusty;
-  border-color: $color-prim-gray-dusty;
+  &::after {
+    background: $color-prim-white;
+    border-color: $color-prim-gray-silver;
+  }
 }
 
 .a-radio[checked][disabled] {
-  background: $color-prim-gray-dusty;
-  border-color: $color-prim-gray-dusty;
+  &::after {
+    background: $color-prim-white;
+    border-color: $color-prim-gray-silver;
+  }
 }
