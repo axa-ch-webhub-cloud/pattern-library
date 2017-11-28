@@ -1,0 +1,53 @@
+@import "../../styles/settings/colors";
+
+.a-radio {
+  display: flex;
+  margin-right: 20px;
+  width: 16px;
+  height: 16px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  background: $color-prim-white;
+  border: 1px solid $color-prim-gray-silver;
+  border-radius: 50%;
+
+  &:hover {
+    border-color: $color-axa-blue;
+  }
+
+  &::after {
+    display: block;
+    width: 6px;
+    height: 6px;
+    content: "";
+    background: $color-prim-white;
+    border: 1px solid $color-prim-gray-silver;
+    border-radius: 50%;
+
+    &:hover {
+      border-color: $color-axa-blue;
+    }
+  }
+}
+
+.a-radio[hidden] {
+  display: none;
+}
+
+.a-radio[checked] {
+  background: $color-prim-blue-azure;
+  border-color: $color-prim-blue-azure;
+}
+
+.a-radio[disabled] {
+  background: $color-prim-gray-dusty;
+  border-color: $color-prim-gray-dusty;
+}
+
+.a-radio[checked][disabled] {
+  background: $color-prim-gray-dusty;
+  border-color: $color-prim-gray-dusty;
+}
