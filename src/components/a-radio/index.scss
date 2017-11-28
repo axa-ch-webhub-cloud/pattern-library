@@ -1,7 +1,7 @@
 @import "../../styles/settings/colors";
 
 .a-radio {
-  display: flex;
+  display: inline-flex;
   margin-right: 20px;
   width: 16px;
   height: 16px;
@@ -14,8 +14,14 @@
   border: 1px solid $color-prim-gray-silver;
   border-radius: 50%;
 
-  &:hover {
+  &:hover,
+  &:active {
     border-color: $color-axa-blue;
+
+    &::after {
+      background: $color-prim-gray-silver;
+      border-color: $color-axa-blue;
+    }
   }
 
   &::after {
@@ -26,11 +32,6 @@
     background: $color-prim-white;
     border: 1px solid $color-prim-gray-silver;
     border-radius: 50%;
-
-    &:hover {
-      background: $color-prim-gray-silver;
-      border-color: $color-axa-blue;
-    }
   }
 }
 
