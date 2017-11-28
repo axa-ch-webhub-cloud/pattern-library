@@ -1,0 +1,28 @@
+@import "../../styles/settings/colors";
+
+.a-checkbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: $color-prim-white;
+  border: 1px solid $color-prim-gray-dusty;
+}
+
+.a-checkbox[hidden] {
+  display: none;
+}
+
+.a-checkbox[checked] {
+  background: $color-prim-blue-azure;
+  border-color: $color-prim-blue-azure;
+}
+
+.a-checkbox[disabled] {
+  background: $color-prim-gray-dusty;
+  border-color: $color-prim-gray-dusty;
+}
+
+.a-checkbox[checked][disabled] {
+  background: $color-prim-gray-dusty;
+  border-color: $color-prim-gray-dusty;
+}
