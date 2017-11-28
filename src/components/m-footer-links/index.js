@@ -6,6 +6,12 @@ class FooterLinks extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.className = 'm-footer-links';
+  }
 }
 
 window.customElements.define('axa-footer-links', FooterLinks);
