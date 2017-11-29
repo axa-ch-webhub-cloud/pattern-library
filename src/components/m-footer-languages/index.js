@@ -1,7 +1,7 @@
+import classnames from 'classnames';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
-import classnames from 'classnames';
 
 class FooterLanguages extends BaseComponentGlobal {
   constructor() {

@@ -12,7 +12,7 @@
 }
 
 .m-footer-languages__title {
-  @include typo-14();
+  @include typo-14--bold();
 
   color: $color-prim-white;
   text-transform: uppercase;
@@ -24,11 +24,36 @@
 }
 
 .m-footer-languages__list-item {
+  position: relative;
+
   display: block;
   float: left;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    display: block;
+    width: 1px;
+    height: 14px;
+    margin-top: -7px;
+
+    content: '';
+    background: rgba($color-prim-white, 0.65);
+  }
+
+  &:first-child::after {
+    display: none;
+  }
 }
 
 .m-footer-languages__link {
+  @include typo-14--semibold();
+
+  display: block;
+  padding: 10px;
+
   color: rgba($color-prim-white, 0.65);
   text-transform: uppercase;
 
@@ -42,11 +67,17 @@
 
 .m-footer-languages--inline {
   .m-footer-languages__box {
-    @include clearfix();
+    display: flex;
+
+    align-items: center;
   }
 
-  .m-footer-languages__title,
+  .m-footer-languages__title {
+    display: block;
+
+    margin-right: 20px;
+  }
+
   .m-footer-languages__list {
-    float: left;
   }
 }
