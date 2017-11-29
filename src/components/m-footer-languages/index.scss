@@ -1,5 +1,40 @@
+@import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
 
 .m-footer-languages {
   display: block;
+}
+
+.m-footer-languages__box {
+
+}
+
+.m-footer-languages__title {
+
+}
+
+.m-footer-languages__list {
+  @include unstyle-list();
+  @include clearfix();
+}
+
+.m-footer-languages__list-item {
+  display: block;
+  float: left;
+}
+
+.m-footer-languages__link {
+  text-transform: uppercase;
+}
+
+.m-footer-languages--inline {
+  .m-footer-languages__box {
+    @include clearfix();
+  }
+
+  .m-footer-languages__title,
+  .m-footer-languages__list {
+    float: left;
+  }
 }

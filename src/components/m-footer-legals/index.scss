@@ -1,7 +1,10 @@
+@import "../../styles/settings/colors";
 @import "../../styles/mixins/typo";
 
 .m-footer-legals {
   @include typo-13();
 
   display: block;
+
+  color: rgba($color-prim-white, 0.65);
 }

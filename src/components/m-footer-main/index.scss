@@ -1,8 +1,18 @@
 @import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
 
 .m-footer-main {
   display: block;
 
   background: $color-prim-blue-dark-indigo;
   border-top: 1px solid rgba($color-prim-white, 0.25);
+}
+
+.m-footer-main__box {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+.m-footer-main__row {
+  @include make-row();
 }

@@ -1,6 +1,6 @@
 import bel from 'bel';
 
-export default function ({ title, items }, children) {
+export default function ({ title, items, inline }, children) {
   return bel`<aside class="m-footer-languages__box">
     <strong class="m-footer-languages__title">${title}</strong>
     
