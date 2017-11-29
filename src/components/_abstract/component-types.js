@@ -2,6 +2,8 @@ import getAttributes from '../../js/get-attributes';
 
 const memory = {};
 
+const THROWED_ERROR = 'throwed';
+
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
  * and if yes appends it. It also appends custom styles to the top of the dom tree
@@ -78,18 +80,31 @@ export class BaseComponent extends HTMLElement {
           items.forEach((item) => {
             this.appendChild(item);
           });
-        } else {
+        } else if (items) {
+          if (typeof items === 'string' || items === null) {
+            const err = new Error(THROWED_ERROR);
+            // @TODO: implement log system
+            console.error( // eslint-disable-line
+              `\n%cWeb Component %c${this.nodeName}%c does not accept string as a return from a template.\n\nStack Trace: ${err.stack}\n`,
+              'color: #580000; font-size: 14px; line-height:16px;',
+              'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
+              'color: #580000; font-size: 14px; line-height:16px;',
+            );
+            throw err;
+          }
           this.appendChild(items);
         }
 
         this._hasRendered = true;
       } catch (err) {
-        console.error( // eslint-disable-line
-          `\n%cWeb Component %c${this.nodeName}%c has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
-          'color: #580000; font-size: 14px; line-height:16px;',
-          'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
-          'color: #580000; font-size: 14px; line-height:16px;',
-        );
+        if (err.message !== THROWED_ERROR) {
+          console.error( // eslint-disable-line
+            `\n%cWeb Component %c${this.nodeName}%c has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
+            'color: #580000; font-size: 14px; line-height:16px;',
+            'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
+            'color: #580000; font-size: 14px; line-height:16px;',
+          );
+        }
       }
     }
   }
