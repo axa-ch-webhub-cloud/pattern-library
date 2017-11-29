@@ -5,6 +5,9 @@
 @import "../../styles/mixins/unstyle-list";
 
 .m-footer-languages {
+  @include make-col-ready();
+  @include make-col(4);
+
   display: block;
 }
 
@@ -13,7 +16,7 @@
 }
 
 .m-footer-languages__title {
-  @include typo-14--bold();
+  @include typo-16--bold();
 
   color: $color-prim-white;
   text-transform: uppercase;
@@ -68,6 +71,8 @@
 }
 
 .m-footer-languages--inline {
+  @include reset-col();
+
   .m-footer-languages__box {
     display: flex;
 
@@ -75,6 +80,8 @@
   }
 
   .m-footer-languages__title {
+    @include typo-14--bold();
+
     display: block;
 
     margin-right: 20px;
