@@ -20,6 +20,10 @@ class UiEvents {
       ...options,
     };
 
+    const toggler = rootNode.querySelector(`.${this._options.toggleClass}`);
+
+    this._useDefaultEvent = toggler ? toggler.getAttribute('data-use-default-event') === 'true' : false;
+
     this._handleClick = this._handleClick.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
@@ -82,7 +86,9 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    e.preventDefault();
+    if (!this._useDefaultEvent) {
+      e.preventDefault();
+    }
 
     const isEnter = !this._lastToggleNode;
     const isMove = toggleNode !== this._lastToggleNode;
@@ -104,7 +110,9 @@ class UiEvents {
   }
 
   _handleClose(e) {
-    e.preventDefault();
+    if (!this._useDefaultEvent) {
+      e.preventDefault();
+    }
 
     this._close();
   }
@@ -158,4 +166,3 @@ class UiEvents {
 }
 
 export default UiEvents;
-

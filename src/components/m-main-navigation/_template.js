@@ -29,7 +29,9 @@ export default ({ items, customsearch }, childrens) => [
             </li>
           ` : bel`
             <li class="m-main-navigation__list-item">
-              <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
+              <a data-use-default-event="true" class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">
+                ${raw(name)}
+              </a>
             </li>
           `}
         `)}
