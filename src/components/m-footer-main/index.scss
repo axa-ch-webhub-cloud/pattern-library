@@ -1,0 +1,37 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
+
+.m-footer-main {
+  display: block;
+  padding: 50px 0;
+
+  background: $color-prim-blue-dark-indigo;
+  border-top: 1px solid rgba($color-prim-white, 0.25);
+}
+
+.m-footer-main__box {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+.m-footer-main__row {
+  @include make-row();
+
+  > :last-child {
+    margin-left: auto;
+  }
+
+  > :first-child {
+    margin-left: 0;
+  }
+
+  @include respond-down(lg) {
+    flex-direction: row;
+  }
+}
+
+.m-footer-main--light {
+  min-height: 49px;
+  padding: 0;
+}

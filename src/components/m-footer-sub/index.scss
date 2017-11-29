@@ -1,0 +1,21 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
+
+.m-footer-sub {
+  display: block;
+
+  background: $color-prim-blue-azure;
+  border-top: 1px solid rgba($color-prim-white, 0.25);
+}
+
+.m-footer-sub__box {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+.m-footer-sub__row {
+  @include make-row();
+
+  align-items: center;
+  justify-content: space-between;
+}

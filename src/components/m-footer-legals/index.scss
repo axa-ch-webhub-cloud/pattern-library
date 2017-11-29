@@ -1,0 +1,30 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/typo";
+
+.m-footer-legals {
+  @include typo-13();
+
+  display: block;
+  padding: 6px 0;
+  margin-left: auto;
+
+  color: rgba($color-prim-white, 0.65);
+}
+
+.m-footer-legals--bottom {
+  align-self: flex-end;
+}
+
+.m-footer-legals__link {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: -6px 0;
+
+  color: rgba($color-prim-white, 0.65);
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-prim-white;
+  }
+}

@@ -75,6 +75,15 @@
   flex: 0 0 $column-width;
 }
 
+@mixin reset-col() {
+  position: static;
+
+  width: auto;
+  max-width: none;
+
+  flex: auto;
+}
+
 @mixin make-col-offset($size, $columns: $grid-columns) {
   $num: $size / $columns;
 

@@ -1,0 +1,88 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/clearfix";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+
+.m-footer-languages {
+  @include make-col-ready();
+  @include make-col(4);
+
+  display: block;
+}
+
+.m-footer-languages__title {
+  @include typo-16--bold();
+
+  color: $color-prim-white;
+  text-transform: uppercase;
+}
+
+.m-footer-languages__list {
+  @include unstyle-list();
+  @include clearfix();
+  @include revert-gutter(20px);
+}
+
+.m-footer-languages__list-item {
+  position: relative;
+
+  display: block;
+  float: left;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    display: block;
+    width: 1px;
+    height: 14px;
+    margin-top: -7px;
+
+    content: '';
+    background: rgba($color-prim-white, 0.65);
+  }
+
+  &:first-child::after {
+    display: none;
+  }
+}
+
+.m-footer-languages__link {
+  @include typo-14--semibold();
+
+  display: block;
+  padding: 16px 10px 17px;
+
+  color: rgba($color-prim-white, 0.65);
+  text-transform: uppercase;
+
+  &:hover,
+  &:active,
+  &.is-selected {
+    color: $color-prim-white;
+    text-decoration: none;
+  }
+}
+
+.m-footer-languages--inline {
+  @include reset-col();
+
+  .m-footer-languages__box {
+    display: flex;
+
+    align-items: center;
+  }
+
+  .m-footer-languages__title {
+    @include typo-14--bold();
+
+    display: block;
+
+    margin-right: 20px;
+  }
+
+  .m-footer-languages__list {
+  }
+}

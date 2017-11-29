@@ -1,6 +1,11 @@
+import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 
 class Header extends BaseComponentGlobal {
+  constructor() {
+    super(styles);
+  }
+
   connectedCallback() {
     super.connectedCallback();
     const type = this.getAttribute('type');

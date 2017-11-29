@@ -1,4 +1,4 @@
-const reJson = /^\s*[[{](?:.|[\r\n])*[\]}]\s*$/;
+import getAttribute from './get-attribute';
 
 function getAttributes(node) {
   if (!node.hasAttributes) {
@@ -12,19 +12,8 @@ function getAttributes(node) {
   for (let i = 0; i < length; ++i) {
     const attribute = attributes[i];
     const { name } = attribute;
-    let { value } = attribute;
 
-    if (!value) {
-      value = true;
-    } else if (reJson.test(value)) {
-      try {
-        value = JSON.parse(value);
-      } catch (error) {
-        console.error(`Attributes ${node.nodeName} has an error:\n${error}\n`, value); // eslint-disable-line
-      }
-    }
-
-    out[name] = value;
+    out[name] = getAttribute(attribute);
   }
 
   return out;
