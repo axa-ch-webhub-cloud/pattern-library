@@ -1,10 +1,23 @@
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/clearfix";
+@import "../../styles/mixins/grid";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
 
 .m-footer-links {
   display: block;
+}
+
+.m-footer-links__row {
+  @include make-row();
+}
+
+.m-footer-links__block {
+  margin-left: 60px;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 .m-footer-links__category {
@@ -46,7 +59,7 @@
 }
 
 .m-footer-links__link {
-  @include typo-16();
+  @include typo-14();
 
   display: block;
   padding: 5px 0;
