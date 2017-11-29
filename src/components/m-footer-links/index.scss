@@ -5,7 +5,11 @@
 @import "../../styles/mixins/unstyle-list";
 
 .m-footer-links {
+  @include make-col-ready();
+  @include make-col(3);
+
   display: block;
+  margin-left: 0 !important;
 }
 
 .m-footer-links__row {
@@ -28,7 +32,7 @@
 }
 
 .m-footer-links__cols {
-  @include clearfix();
+  @include make-row();
 
   margin-top: 25px;
 
@@ -39,9 +43,10 @@
 
 .m-footer-links__list {
   @include unstyle-list();
+  @include make-col-ready();
+  @include make-col(12);
 
-  float: left;
-  margin-left: 50px;
+  margin-left: auto;
 
   &:first-child {
     margin-left: 0;
@@ -71,5 +76,16 @@
   &:focus {
     color: rgba($color-prim-white, 0.65);
     text-decoration: none;
+  }
+}
+
+.m-footer-links--cols {
+}
+
+.m-footer-links--cols-2 {
+  @include make-col(5);
+
+  .m-footer-links__list {
+    @include make-col(6);
   }
 }

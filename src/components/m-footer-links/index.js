@@ -1,4 +1,6 @@
+import classnames from 'classnames';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';
 
@@ -9,8 +11,12 @@ class FooterLinks extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
+    const cols = getAttribute(this, 'cols');
 
-    this.className = 'm-footer-links';
+    this.className = classnames('m-footer-links', {
+      'm-footer-links--cols': cols,
+      [`m-footer-links--cols-${cols}`]: cols,
+    });
   }
 }
 
