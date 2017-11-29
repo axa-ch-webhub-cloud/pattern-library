@@ -1,8 +1,8 @@
 import bel from 'bel';
 
-export default function ({ title, items }, children) {
+export default function ({ title, items }) {
   return bel`<aside class="m-footer-social__box">
-    <strong class="m-footer-social__title">${title}</strong>
+    ${title && bel`<strong class="m-footer-social__title">${title}</strong>`}
 
     <ul class="m-footer-social__list">
       ${items.map(({ name, url }) => bel`

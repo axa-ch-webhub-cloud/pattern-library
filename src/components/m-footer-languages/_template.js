@@ -1,8 +1,8 @@
 import bel from 'bel';
 
-export default function ({ title, items, inline }, children) {
+export default function ({ title, items }) {
   return bel`<aside class="m-footer-languages__box">
-    <strong class="m-footer-languages__title">${title}</strong>
+    ${title && bel`<strong class="m-footer-languages__title">${title}</strong>`}
     
     <ul class="m-footer-languages__list">
       ${items.map(({ name, short, url }) => bel`
