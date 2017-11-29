@@ -81,11 +81,11 @@ export class BaseComponent extends HTMLElement {
             this.appendChild(item);
           });
         } else if (items) {
-          if (typeof items === 'string' || items === null) {
+          if (typeof items === 'string') {
             const err = new Error(THROWED_ERROR);
             // @TODO: implement log system
             console.error( // eslint-disable-line
-              `\n%cWeb Component %c${this.nodeName}%c does not accept string as a return from a template.\n\nStack Trace: ${err.stack}\n`,
+              `\n%cWeb Component %c${this.nodeName}%c does not accept string as a return from a template. Maybe use bel?\n\nStack Trace: ${err.stack}\n`, // eslint-disable-line
               'color: #580000; font-size: 14px; line-height:16px;',
               'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
               'color: #580000; font-size: 14px; line-height:16px;',
