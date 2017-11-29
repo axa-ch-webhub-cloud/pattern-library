@@ -14,7 +14,7 @@ function getAttributes(node) {
     const { name } = attribute;
     let { value } = attribute;
 
-    if (!value) {
+    if (!value || name === value) {
       value = true;
     } else if (reJson.test(value)) {
       try {
