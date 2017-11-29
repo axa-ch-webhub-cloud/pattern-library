@@ -16,4 +16,8 @@
 
 .m-footer-main__row {
   @include make-row();
+
+  > :last-child {
+    margin-left: auto;
+  }
 }

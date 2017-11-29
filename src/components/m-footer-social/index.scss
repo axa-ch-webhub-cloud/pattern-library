@@ -22,7 +22,7 @@
   @include unstyle-list();
   @include clearfix();
 
-  margin-top: 25px;
+  margin-top: 15px;
 
   &:first-child {
     margin-top: 0;
@@ -32,15 +32,16 @@
 .m-footer-social__list-item {
   display: block;
   float: left;
-  margin-left: 30px;
+  margin-left: 10px;
 
   &:first-child {
-    margin-left: 0;
+    margin-left: -10px;
   }
 }
 
 .m-footer-social__link {
-
+  display: block;
+  padding: 10px;
 }
 
 .m-footer-social__icon {
@@ -49,4 +50,33 @@
   height: 25px;
 
   color: $color-prim-white;
+}
+
+.m-footer-social--inline {
+  .m-footer-social__box {
+    display: flex;
+
+    align-items: center;
+  }
+
+  .m-footer-social__title {
+    display: block;
+
+    margin-right: 20px;
+  }
+
+  .m-footer-social__list {
+    margin-top: 0;
+  }
+}
+
+.m-footer-social--light {
+  .m-footer-social__title {
+    @include typo-14--bold();
+  }
+
+  .m-footer-social__icon {
+    width: 20px;
+    height: 20px;
+  }
 }
