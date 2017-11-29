@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
@@ -9,8 +10,11 @@ class FooterMain extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
+    const light = this.hasAttribute('light') && this.getAttribute('light') !== 'false';
 
-    this.className = 'm-footer-main';
+    this.className = classnames('m-footer-main', {
+      'm-footer-main--light': light,
+    });
   }
 }
 
