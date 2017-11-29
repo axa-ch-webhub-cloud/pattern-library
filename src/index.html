@@ -28,25 +28,28 @@
   </head>
   <body>
     <header>
-      <h1>AXA Styleguide!</h1>
-      <article>
-        <h2>How to use it</h2>
-        <p>
-          the components are split in 3 categories:
-          <ul>
-            <li>Atoms: Which are the essential build blocks</li>
-            <li>Molecules: Which more complex elements and that contains some atoms</li>
-            <li>Organisms: Usually they are final component for a entire section. For example the header is be one. They are ususally composed of more molecules, other organisms and atoms</li>
-          </ul>
-        </p>
-        <p>Filter them:
-          <button class="js--atomic-switch o-sg-section__button--selected" data-atomic-switch-to="organism">Organisms</button>
-          <button class="js--atomic-switch" data-atomic-switch-to="molecule">Molecules</button>
-          <button class="js--atomic-switch" data-atomic-switch-to="atom">Atoms</button>
-          <button class="js--atomic-switch" data-atomic-switch-to="">All</button>
-        </p>
-      </article>
+      <axa-header>
+        <axa-main-navigation items='[
+          {"url": "#organism", "name": "Organisms"},
+          {"url": "#molecule", "name": "Molecules"},
+          {"url": "#atom", "name": "Atoms"}
+        ]' customsearch='
+          <h3 class="o-sg-patternlink">
+            <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
+          </h3>
+        '>
+        </axa-main-navigation>
+      </axa-header>
     </header>
+
+    <!--
+
+    <button class="js--atomic-switch o-sg-section__button--selected" data-atomic-switch-to="organism">Organisms</button>
+    <button class="js--atomic-switch" data-atomic-switch-to="molecule">Molecules</button>
+    <button class="js--atomic-switch" data-atomic-switch-to="atom">Atoms</button>
+    <button class="js--atomic-switch" data-atomic-switch-to="">All</button>
+
+  -->
 
     <!-- {CUT AND INJECT PREVIEWS HERE} -->
 

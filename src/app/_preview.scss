@@ -1,4 +1,11 @@
 @import "../styles/settings/colors";
+@import "../styles/mixins/respond";
+
+$sg-patternlink-y-padding: 6px !default;
+$sg-patternlink-padding-side: 20px !default;
+$sg-patternlink-border-side-width: 1px !default;
+$sg-patternlink-border-side-color: $color-prim-gray-silver !default;
+$sg-patternlink-margin-side: 20px !default;
 
 body {
   background: $color-prim-gray-alabaster;
@@ -85,4 +92,21 @@ $bg-button: $color-axa-blue;
 
 .o-sg-section__button--selected {
   background-color: $color-sec-blue-teal;
+}
+
+.o-sg-patternlink {
+  display: block;
+  padding: 0 0 $sg-patternlink-y-padding $sg-patternlink-padding-side;
+  margin-left: $sg-patternlink-margin-side;
+
+  border-left: $sg-patternlink-border-side-width solid $sg-patternlink-border-side-color;
+
+  @include respond-down(md) {
+    padding-left: 0;
+    padding-right: $sg-patternlink-padding-side;
+    margin-left: auto;
+
+    border-left: none;
+    border-right: $sg-patternlink-border-side-width solid $sg-patternlink-border-side-color;
+  }
 }
