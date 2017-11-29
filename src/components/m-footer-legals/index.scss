@@ -1,3 +1,7 @@
+@import "../../styles/mixins/typo";
+
 .m-footer-legals {
+  @include typo-13();
+
   display: block;
 }
