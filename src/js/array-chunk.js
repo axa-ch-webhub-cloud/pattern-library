@@ -1,5 +1,10 @@
 function arrayChunk(array, number) {
   const { length } = array;
+
+  if (!length) {
+    return array;
+  }
+
   const chunkSize = Math.ceil(length / number);
   const chunks = new Array(number);
   let i;
