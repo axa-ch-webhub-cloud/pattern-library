@@ -7,7 +7,7 @@ export default function ({ items }) {
     <ul class="m-footer-links__list">
       ${items.map(({ name, url }) => bel`
         <li class="m-footer-links__list-item">
-          <a href="${url}">${name}</a>
+          <a class="m-footer-links__link" href="${url}">${name}</a>
         </li>
       `)}
     </ul>

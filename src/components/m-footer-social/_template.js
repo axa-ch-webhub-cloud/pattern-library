@@ -6,7 +6,7 @@ export default function ({ title, items }, children) {
 
     <ul class="m-footer-social__list">
       ${items.map(({ name, url }) => bel`
-        <li class="m-footer-social-list-item">
+        <li class="m-footer-social__list-item">
           <a href="${url}" class="m-footer-social__link">
             <axa-icon id="${name}" classes="m-footer-social__icon"></axa-icon>
           </a>
