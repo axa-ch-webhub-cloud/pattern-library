@@ -71,7 +71,7 @@ export class BaseComponent extends HTMLElement {
         while (this.firstChild) {
           children.appendChild(this.firstChild);
         }
-        // this.innerHTML = ''
+
         const items = template(getAttributes(this), children);
 
         if (Array.isArray(items)) {

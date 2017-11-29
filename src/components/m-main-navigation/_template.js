@@ -1,7 +1,7 @@
 import bel from 'bel';
 import raw from 'bel/raw';
 
-export default ({ items }, childrens) => [
+export default ({ items, submenu }, childrens) => [
   bel`
   <div class="m-main-navigation__box">
     <div class="m-main-navigation__logo">
@@ -12,10 +12,26 @@ export default ({ items }, childrens) => [
 
     <nav class="m-main-navigation__nav">
       <ul class="m-main-navigation__list js-main-navigation__list">
-        ${items && items.map(({ url, name }) => bel`
-          <li class="m-main-navigation__list-item">
-            <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
-          </li>
+        ${items && items.map(({ url, name, subMenuIndexSettings }, index) => bel`
+          ${submenu && submenu.length === items.length ? bel`
+            <li class="m-main-navigation__list-item">
+              <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
+                <axa-sub-navigation items='${JSON.stringify(submenu[index])}' flyout>
+                  ${(subMenuIndexSettings && subMenuIndexSettings.title) ? raw(`
+                    <a class="m-sub-navigation__index-link" href="#">${subMenuIndexSettings.title}</a>
+
+                    <button type="button" class="m-sub-navigation__index-close js-sub-navigation__index-close">
+                      ${subMenuIndexSettings.close}
+                      <axa-icon id="cross-gap" classes="m-sub-navigation__index-close__icon"></axa-icon>
+                    </button>
+                    `) : ''}
+                </axa-sub-navigation>
+            </li>
+          ` : bel`
+            <li class="m-main-navigation__list-item">
+              <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
+            </li>
+          `}
         `)}
       </ul>
     </nav>
