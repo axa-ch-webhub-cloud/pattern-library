@@ -17,7 +17,7 @@ $typo-map:
     typo-24--xl: ( size: 24px, weight: Bold, spacing: 0, lineHeight: 1.2, paddingBottom: 13px ),
     typo-20--xl: ( size: 20px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
     typo-18--xl: ( size: 18px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 15px ),
-    typo-16--xl: ( size: 16px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-16--xl: ( size: 16px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
     typo-14--xl: ( size: 14px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.21, paddingBottom: 8px ),
     typo-13--xl: ( size: 13px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.38, paddingBottom: 9px ),
     // large -> small desktop
@@ -33,7 +33,7 @@ $typo-map:
     typo-24--lg: ( size: 24px, weight: Bold, spacing: 0, lineHeight: 1.2, paddingBottom: 13px ),
     typo-20--lg: ( size: 20px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
     typo-18--lg: ( size: 18px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 15px ),
-    typo-16--lg: ( size: 16px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-16--lg: ( size: 16px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
     typo-14--lg: ( size: 14px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.21, paddingBottom: 8px ),
     typo-13--lg: ( size: 13px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.38, paddingBottom: 9px ),
     // medium -> tablet
@@ -49,7 +49,7 @@ $typo-map:
     typo-24--md: ( size: 24px, weight: Bold, spacing: 0, lineHeight: 1.2, paddingBottom: 13px ),
     typo-20--md: ( size: 20px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
     typo-18--md: ( size: 18px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 15px ),
-    typo-16--md: ( size: 16px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-16--md: ( size: 16px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
     typo-14--md: ( size: 14px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.21, paddingBottom: 8px ),
     typo-13--md: ( size: 13px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.38, paddingBottom: 9px ),
     // small -> mobile
@@ -65,7 +65,7 @@ $typo-map:
     typo-24--sm: ( size: 16px, weight: Bold, spacing: 0, lineHeight: 1.5, paddingBottom: 11px ),
     typo-20--sm: ( size: 16px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 12px ),
     typo-18--sm: ( size: 14px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 10px ),
-    typo-16--sm: ( size: 12px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
+    typo-16--sm: ( size: 12px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
     typo-14--sm: ( size: 12px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
     typo-13--sm: ( size: 12px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
   );
@@ -247,6 +247,10 @@ $face-map:
 
 @mixin typo-16--semibold() {
   @include typo-css($name: typo-16, $weight: Semibold);
+}
+
+@mixin typo-16--bold() {
+  @include typo-css($name: typo-16, $weight: Bold);
 }
 
 @mixin typo-14() {
