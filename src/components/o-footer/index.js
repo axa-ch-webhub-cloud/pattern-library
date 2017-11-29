@@ -5,7 +5,7 @@ class Footer extends BaseComponentGlobal {
     super.connectedCallback();
     const type = this.getAttribute('type');
 
-    this.className = `o-footer o-header--${type}`;
+    this.className = `o-footer o-footer--${type}`;
   }
 }
 

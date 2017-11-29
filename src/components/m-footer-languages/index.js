@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
@@ -10,7 +11,7 @@ class FooterLanguages extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
-    const inline = this.hasAttribute('inline') && this.getAttribute('inline') !== 'false';
+    const inline = getAttribute(this, 'inline');
 
     this.className = classnames('m-footer-languages', {
       'm-footer-languages--inline': inline,

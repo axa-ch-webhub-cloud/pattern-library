@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
@@ -10,7 +11,7 @@ class FooterLegals extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
-    const bottom = this.hasAttribute('bottom') && this.getAttribute('bottom') !== 'false';
+    const bottom = getAttribute(this, 'bottom');
 
     this.className = classnames('m-footer-legals', {
       'm-footer-legals--bottom': bottom,
