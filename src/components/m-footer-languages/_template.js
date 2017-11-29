@@ -7,7 +7,7 @@ export default function ({ title, items, inline }, children) {
     <ul class="m-footer-languages__list">
       ${items.map(({ name, short, url }) => bel`
         <li class="m-footer-languages__list-item">
-          <a clas="m-footer-languages__link" href="${url}" lang="${short}">${name}</a>
+          <a class="m-footer-languages__link" href="${url}" lang="${short}">${name}</a>
         </li>
       `)}
     </ul>

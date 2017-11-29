@@ -15,4 +15,7 @@
 
 .m-footer-sub__row {
   @include make-row();
+
+  align-items: center;
+  justify-content: space-between;
 }
