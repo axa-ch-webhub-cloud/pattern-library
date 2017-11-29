@@ -14,13 +14,24 @@
   text-transform: uppercase;
 }
 
-.m-footer-links__list {
-  @include unstyle-list();
+.m-footer-links__cols {
+  @include clearfix();
 
   margin-top: 25px;
 
   &:first-child {
     margin-top: 0;
+  }
+}
+
+.m-footer-links__list {
+  @include unstyle-list();
+
+  float: left;
+  margin-left: 50px;
+
+  &:first-child {
+    margin-left: 0;
   }
 }
 
