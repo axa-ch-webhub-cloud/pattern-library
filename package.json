@@ -1,7 +1,7 @@
 {
-  "name": "patterns-library",
-  "version": "1.0.0",
-  "description": "style and html guide and demos for axa ch",
+  "name": "@axa-ch/patterns-library",
+  "version": "1.0.1",
+  "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "scripts": {
     "test": "./node_modules/.bin/eslint src/",

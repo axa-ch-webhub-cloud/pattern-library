@@ -357,6 +357,21 @@ template {
     .hide-xl {
       display: none !important; } }
 
+.a-stroke {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1px;
+  display: block;
+  width: 0;
+  height: 0;
+  background: #f07662;
+  transition: height 0.2s ease; }
+  .a-stroke.is-enter {
+    height: 4px; }
+  .a-stroke.is-move {
+    transition: all 0.2s ease; }
+
 body {
   background: #fafafa; }
 
@@ -417,5 +432,15 @@ body {
   background-color: #00008f;
   color: #fff; }
 
-.o-sg-section__button--selected {
-  background-color: #027180; }
+.o-sg-patternlink {
+  display: block;
+  padding: 0 0 6px 20px;
+  margin-left: 20px;
+  border-left: 1px solid #ccc; }
+  @media (max-width: 991px) {
+    .o-sg-patternlink {
+      padding-left: 0;
+      padding-right: 20px;
+      margin-left: auto;
+      border-left: none;
+      border-right: 1px solid #ccc; } }

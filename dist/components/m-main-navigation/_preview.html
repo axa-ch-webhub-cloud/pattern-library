@@ -1,38 +1,8 @@
-<axa-main-navigation>
-  <div class="m-main-navigation__logo">
-    <a href="#" class="m-main-navigation__logo-link">
-      <img class="m-main-navigation__logo-img" src="../../assets/icons/logo-AXA.svg" />
-    </a>
-  </div>
-
-  <nav class="m-main-navigation__nav">
-    <ul class="m-main-navigation__list js-main-navigation__list">
-      <li class="m-main-navigation__list-item">
-        <a href="#" class="m-main-navigation__list-link js-main-navigation__list-link">car insurance</a>
-      </li>
-      <li class="m-main-navigation__list-item">
-        <a href="#" class="m-main-navigation__list-link js-main-navigation__list-link">home insurance</a>
-      </li>
-      <li class="m-main-navigation__list-item">
-        <a href="#" class="m-main-navigation__list-link js-main-navigation__list-link">health insurance<br>sub line</a>
-      </li>
-      <li class="m-main-navigation__list-item">
-        <a href="#" class="m-main-navigation__list-link js-main-navigation__list-link">travel insurance</a>
-      </li>
-    </ul>
-  </nav>
-
+<axa-main-navigation items='[
+  {"url": "#", "name": "car insurance"},
+  {"url": "#", "name": "home insurance"},
+  {"url": "#", "name": "health insurance<br>sub line"},
+  {"url": "#", "name": "travel insurance"}
+]'>
   <a href="#" class="a-button a-button--ghost a-button--motion hide-md-down">Pay or review</a>
-
-  <form class="m-main-navigation__form">
-    <axa-icon id="search-left" classname="m-main-navigation__search-icon"></axa-icon>
-
-    <input type="text" class="m-main-navigation__search" />
-  </form>
-
-  <button role="button" class="m-main-navigation__burger js-main-navigation__burger">
-    <axa-icon id="menu" classname="m-main-navigation__burger-icon"></axa-icon>
-
-    <axa-icon id="cross-gap" classname="m-main-navigation__close-icon"></axa-icon>
-  </button>
 </axa-main-navigation>
