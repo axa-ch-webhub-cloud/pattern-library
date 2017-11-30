@@ -1,4 +1,6 @@
 import css from '../../../js/css';
+import on from '../../../js/on';
+import ownerWindow from '../../../js/owner-window';
 import { add, remove } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
@@ -28,6 +30,8 @@ class Stroke extends UiEvents {
       ...options,
     };
 
+    this._handleResize = this._handleResize.bind(this);
+
     this.init();
   }
 
@@ -42,21 +46,37 @@ class Stroke extends UiEvents {
     this.list.appendChild(this.stroke);
   }
 
+  onInteractive() {
+    this.offInteractive();
+
+    this.unResize = on(ownerWindow(this.rootNode), 'resize', this._handleResize);
+  }
+
+  offInteractive() {
+    if (this.unResize) {
+      this.unResize();
+    }
+  }
+
   enter(node) {
     add(this.stroke, this.options.enterClass);
 
     const { parentNode } = node;
+    this.parentNode = parentNode;
 
     css(this.stroke, {
       width: `${parentNode.offsetWidth}px`,
       left: `${parentNode.offsetLeft}px`,
     });
+
+    this.onInteractive();
   }
 
   move(node) {
     add(this.stroke, this.options.moveClass);
 
     const { parentNode } = node;
+    this.parentNode = parentNode;
 
     css(this.stroke, {
       width: `${parentNode.offsetWidth}px`,
@@ -67,6 +87,21 @@ class Stroke extends UiEvents {
   leave() {
     remove(this.stroke, this.options.moveClass);
     remove(this.stroke, this.options.enterClass);
+
+    this.offInteractive();
+
+    this.parentNode = null;
+  }
+
+  _handleResize() {
+    const { parentNode: { offsetWidth, offsetLeft } } = this;
+
+    if (offsetWidth && offsetLeft) {
+      css(this.stroke, {
+        width: `${offsetWidth}px`,
+        left: `${offsetLeft}px`,
+      });
+    }
   }
 
   destroy() {
