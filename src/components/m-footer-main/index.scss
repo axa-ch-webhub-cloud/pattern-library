@@ -26,8 +26,12 @@
     margin-left: auto;
   }
 
-  @include respond-down(lg) {
-    flex-direction: row;
+  @include respond-down(xs) {
+    flex-direction: column;
+
+    > :last-child {
+      margin-left: 0;
+    }
   }
 }
 

@@ -15,6 +15,10 @@
   @include respond-down(md) {
     @include make-col(4);
   }
+
+  @include respond-down(xs) {
+    @include reset-col();
+  }
 }
 
 .m-footer-links__row {
@@ -34,6 +38,16 @@
 
   color: $color-prim-white;
   text-transform: uppercase;
+}
+
+.m-footer-links__category__icon {
+  display: none;
+  width: 10px;
+  height: 10px;
+
+  @include respond-down(xs) {
+    display: block;
+  }
 }
 
 .m-footer-links__cols {
@@ -96,5 +110,9 @@
 
   @include respond-down(md) {
     @include make-col(8);
+  }
+
+  @include respond-down(xs) {
+    @include reset-col();
   }
 }
