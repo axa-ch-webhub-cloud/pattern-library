@@ -1,7 +1,7 @@
 import css from '../../../js/css';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
+import { requestAnimationFrame, cancelAnimationFrame } from '../../../js/request-animation-frame';
 import { add, remove } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
@@ -132,14 +132,21 @@ class Stroke extends UiEvents {
   }
 
   _handleResize() {
-    const { _parentNode: { offsetWidth, offsetLeft } } = this;
-
-    if (offsetWidth && offsetLeft) {
-      css(this._stroke, {
-        width: `${offsetWidth}px`,
-        left: `${offsetLeft}px`,
-      });
+    if (this.resizeTimeout) {
+      cancelAnimationFrame(this.resizeTimeout);
+      this.resizeTimeout = null;
     }
+
+    this.resizeTimeout = requestAnimationFrame(() => {
+      const { _parentNode: { offsetWidth, offsetLeft } } = this;
+
+      if (offsetWidth && offsetLeft) {
+        css(this._stroke, {
+          width: `${offsetWidth}px`,
+          left: `${offsetLeft}px`,
+        });
+      }
+    });
   }
 
   _handleTransitionEnd(e) {
