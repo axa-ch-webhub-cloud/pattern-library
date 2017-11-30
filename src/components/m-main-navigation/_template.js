@@ -31,7 +31,7 @@ export default ({ items, customsearch }, childrens) => [
             </li>
           ` : bel`
             <li class="m-main-navigation__list-item">
-              <a data-has-submenu="false" class="m-main-navigation__list-link js-main-navigation__list-link${writeClasses(classes)}" href="${url}">
+              <a class="m-main-navigation__list-link js-main-navigation__list-link${writeClasses(classes)}" href="${url}">
                 ${raw(name)}
               </a>
             </li>

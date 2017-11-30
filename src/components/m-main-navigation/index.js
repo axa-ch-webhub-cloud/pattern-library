@@ -1,4 +1,5 @@
 import styles from './index.scss';
+import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import SubNavigation from './js/sub-navigation';
@@ -15,14 +16,13 @@ class MainNavigation extends BaseComponentGlobal {
 
     this.className = 'm-main-navigation';
 
-    const toggler = this.querySelector(`.${Stroke.DEFAULTS.toggleClass}`);
-    this._simpleMenu = toggler ? toggler.getAttribute('data-has-submenu') === 'false' : false;
+    const simpleMenu = getAttribute(this, 'simplemenu');
 
     this.stroke = new Stroke(this, {
-      simpleMenu: this._simpleMenu,
+      simpleMenu,
     });
     this.subNavigation = new SubNavigation(this, {
-      simpleMenu: this._simpleMenu,
+      simpleMenu,
     });
     this.burger = new Burger(this);
   }
