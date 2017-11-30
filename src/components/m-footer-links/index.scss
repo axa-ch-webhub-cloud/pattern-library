@@ -122,8 +122,8 @@
   }
 
   @include respond-down(xs) {
-    border-bottom: 1px solid $color-prim-blue-dark-indigo;
     margin-top: 0;
+    border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
     &:last-child {
       border-bottom: none;
