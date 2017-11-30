@@ -1,7 +1,6 @@
 {
-  "name": "axa-ch-style-guide_ext",
+  "name": "patterns-library",
   "version": "1.0.0",
-  "private": true,
   "description": "style and html guide and demos for axa ch",
   "main": "stack/server.js",
   "scripts": {

@@ -5,6 +5,6 @@ script:
 - npm run build
 deploy:
   provider: npm
+  skip_cleanup: true
   on:
     tags: true
-    repo: axa-ch/patterns-library
