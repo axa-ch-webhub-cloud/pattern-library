@@ -35,7 +35,7 @@
  * @example <caption>avoid costly calculation while the window size is in flux</caption>
  *
  * // avoid costly calculation while the window size is in flux
- * window.addEventListener('resize', _.debounce(calculateLayout, 150));
+ * window.addEventListener('resize', debounce(calculateLayout, 150));
  *
  * function calculateLayout() {
  *  // do heavy stuff here, triggering Reflow, Relayout, Repaint...
@@ -44,7 +44,7 @@
  * @example <caption>ensure `mousemove` is invoked after 1 second of debounced calls</caption>
  *
  * // ensure `mousemove` is invoked after 1 second of debounced calls
- * document.body.addEventListener('mousemove', _.debounce(mousemove, 250, { maxWait: 1000}));
+ * document.body.addEventListener('mousemove', debounce(mousemove, 250, { maxWait: 1000}));
  *
  * function mousemove(event) {
  *  // do heavy stuff here
