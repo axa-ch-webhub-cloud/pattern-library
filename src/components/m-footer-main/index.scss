@@ -22,10 +22,6 @@
     margin-left: auto;
   }
 
-  > :first-child {
-    margin-left: 0;
-  }
-
   @include respond-down(lg) {
     flex-direction: row;
   }
