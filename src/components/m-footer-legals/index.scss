@@ -9,10 +9,7 @@
   margin-left: auto;
 
   color: rgba($color-prim-white, 0.65);
-}
-
-.m-footer-legals--bottom {
-  align-self: flex-end;
+  text-align: right;
 }
 
 .m-footer-legals__link {
@@ -26,5 +23,19 @@
   &:active,
   &:focus {
     color: $color-prim-white;
+  }
+}
+
+.m-footer-legals--bottom {
+  align-self: flex-end;
+
+  .m-footer-legals__link {
+    &:last-of-type {
+      margin-right: -10px;
+    }
+  }
+
+  .m-footer-legals__copy {
+    display: block;
   }
 }
