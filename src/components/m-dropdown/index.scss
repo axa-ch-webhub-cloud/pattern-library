@@ -7,7 +7,7 @@
 @import "./mixins/dropdown";
 
 .m-dropdown {
-  position: relative;
+  @include dropdown-container();
 
   display: inline-block;
 }
@@ -68,7 +68,7 @@
   background: $dropdown__content-bg;
 
   .m-dropdown--in-flow > & {
-    position: static;
+    @include dropdown-inflow();
   }
 }
 

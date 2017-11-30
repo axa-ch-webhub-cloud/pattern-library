@@ -1,5 +1,9 @@
 @import "../settings/dropdown";
 
+@mixin dropdown-container() {
+  position: relative;
+}
+
 @mixin dropdown-toggle() {
   position: relative;
 
@@ -41,4 +45,8 @@
   .is-open > & {
     height: auto;
   }
+}
+
+@mixin dropdown-inflow() {
+  position: static;
 }
