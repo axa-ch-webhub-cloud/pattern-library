@@ -43,22 +43,69 @@ class Stroke extends UiEvents {
   init() {
     this.rootNode.style.position = 'relative';
 
-    this.list = this.rootNode.querySelector(this.options.list);
+    this._list = this.rootNode.querySelector(this.options.list);
 
-    this.stroke = document.createElement('div');
-    this.stroke.className = this.options.strokeClass;
+    this._stroke = document.createElement('div');
+    this._stroke.className = this.options.strokeClass;
 
-    this.list.appendChild(this.stroke);
+    this._list.appendChild(this._stroke);
   }
 
-  onInteractive() {
-    this.offInteractive();
+  enter(node) {
+    const { parentNode } = node;
+    this._node = node;
+    this._parentNode = parentNode;
+
+    this._handleStaticState(true);
+
+    requestAnimationFrame(() => {
+      add(this._stroke, this.options.enterClass);
+      css(this._stroke, {
+        width: `${parentNode.offsetWidth}px`,
+        left: `${parentNode.offsetLeft}px`,
+      });
+    });
+  }
+
+  move(node) {
+    const { parentNode } = node;
+    this._node = node;
+    this._parentNode = parentNode;
+
+    this._handleStaticState(false);
+
+    requestAnimationFrame(() => {
+      add(this._stroke, this.options.moveClass);
+      css(this._stroke, {
+        width: `${parentNode.offsetWidth}px`,
+        left: `${parentNode.offsetLeft}px`,
+      });
+
+      this._onMoving();
+    });
+  }
+
+  leave() {
+    this._offMoving();
+    this._handleStaticState(true);
+
+    requestAnimationFrame(() => {
+      remove(this._stroke, this.options.moveClass);
+      remove(this._stroke, this.options.enterClass);
+    });
+
+    this._parentNode = null;
+    this._node = null;
+  }
+
+  _onMoving() {
+    this._offMoving();
 
     this._unResize = on(ownerWindow(this.rootNode), 'resize', this._handleResize);
-    this._unTransitionEnd = on(this.stroke, 'transitionend', this._handleTransitionEnd);
+    this._unTransitionEnd = on(this._stroke, 'transitionend', this._handleTransitionEnd);
   }
 
-  offInteractive() {
+  _offMoving() {
     if (this._unResize) {
       this._unResize();
     }
@@ -76,66 +123,19 @@ class Stroke extends UiEvents {
     this._isStatic = isStatic;
 
     if (isStatic) {
-      this.node.appendChild(this.stroke);
-      add(this.stroke, this.options.staticClass);
+      this._node.appendChild(this._stroke);
+      add(this._stroke, this.options.staticClass);
     } else {
-      this.list.appendChild(this.stroke);
-      remove(this.stroke, this.options.staticClass);
+      this._list.appendChild(this._stroke);
+      remove(this._stroke, this.options.staticClass);
     }
   }
 
-  enter(node) {
-    const { parentNode } = node;
-    this.node = node;
-    this.parentNode = parentNode;
-
-    this._handleStaticState(true);
-
-    requestAnimationFrame(() => {
-      add(this.stroke, this.options.enterClass);
-      css(this.stroke, {
-        width: `${parentNode.offsetWidth}px`,
-        left: `${parentNode.offsetLeft}px`,
-      });
-    });
-  }
-
-  move(node) {
-    const { parentNode } = node;
-    this.node = node;
-    this.parentNode = parentNode;
-
-    this._handleStaticState(false);
-
-    requestAnimationFrame(() => {
-      add(this.stroke, this.options.moveClass);
-      css(this.stroke, {
-        width: `${parentNode.offsetWidth}px`,
-        left: `${parentNode.offsetLeft}px`,
-      });
-
-      this.onInteractive();
-    });
-  }
-
-  leave() {
-    this.offInteractive();
-    this._handleStaticState(true);
-
-    requestAnimationFrame(() => {
-      remove(this.stroke, this.options.moveClass);
-      remove(this.stroke, this.options.enterClass);
-    });
-
-    this.parentNode = null;
-    this.node = null;
-  }
-
   _handleResize() {
-    const { parentNode: { offsetWidth, offsetLeft } } = this;
+    const { _parentNode: { offsetWidth, offsetLeft } } = this;
 
     if (offsetWidth && offsetLeft) {
-      css(this.stroke, {
+      css(this._stroke, {
         width: `${offsetWidth}px`,
         left: `${offsetLeft}px`,
       });
@@ -144,7 +144,7 @@ class Stroke extends UiEvents {
 
   _handleTransitionEnd(e) {
     if (e.propertyName === 'left') {
-      this.offInteractive();
+      this._offMoving();
       this._handleStaticState(true);
     }
   }
@@ -152,9 +152,9 @@ class Stroke extends UiEvents {
   destroy() {
     super.destroy();
 
-    if (this.stroke) {
-      this.stroke.parentNode.removeChild(this.stroke);
-      delete this.stroke;
+    if (this._stroke) {
+      this._stroke.parentNode.removeChild(this._stroke);
+      delete this._stroke;
     }
 
     delete this.rootNode;
