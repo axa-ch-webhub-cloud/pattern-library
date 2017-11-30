@@ -23,4 +23,9 @@ $stroke-z-index: 1px !default;
   &.is-move {
     transition: all 0.2s ease;
   }
+
+  &.is-static {
+    left: 0 !important;
+    bottom: 1px;
+  }
 }
