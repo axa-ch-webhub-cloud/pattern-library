@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LucaMele/jquery-free.svg?branch=master)](https://travis-ci.org/axa-ch/patterns-library)
+
 # The AXA CH Style and HTML Guide
 This is the core style-guide used for AXA Switzerland. It's based on Web-Components.
 Web-Components are natively supported in modern browser. This repo contains also polyfills for those
