@@ -12,6 +12,10 @@
   @include respond-down(md) {
     padding-top: 40px;
   }
+
+  @include respond-down(xs) {
+    padding: 0;
+  }
 }
 
 .m-footer-main__box {
