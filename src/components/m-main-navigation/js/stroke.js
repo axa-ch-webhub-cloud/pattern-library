@@ -1,6 +1,7 @@
 import css from '../../../js/css';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
+import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import { add, remove } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
@@ -11,6 +12,7 @@ class Stroke extends UiEvents {
     toggleClass: 'js-main-navigation__list-link',
     enterClass: 'is-enter',
     moveClass: 'is-move',
+    staticClass: 'is-static',
   };
 
   constructor(rootNode, options = {}) {
@@ -30,7 +32,10 @@ class Stroke extends UiEvents {
       ...options,
     };
 
+    this._isStatic = false;
+
     this._handleResize = this._handleResize.bind(this);
+    this._handleTransitionEnd = this._handleTransitionEnd.bind(this);
 
     this.init();
   }
@@ -49,48 +54,81 @@ class Stroke extends UiEvents {
   onInteractive() {
     this.offInteractive();
 
-    this.unResize = on(ownerWindow(this.rootNode), 'resize', this._handleResize);
+    this._unResize = on(ownerWindow(this.rootNode), 'resize', this._handleResize);
+    this._unTransitionEnd = on(this.stroke, 'transitionend', this._handleTransitionEnd);
   }
 
   offInteractive() {
-    if (this.unResize) {
-      this.unResize();
+    if (this._unResize) {
+      this._unResize();
+    }
+
+    if (this._unTransitionEnd) {
+      this._unTransitionEnd();
+    }
+  }
+
+  _handleStaticState(isStatic) {
+    if (isStatic === this._isStatic) {
+      return;
+    }
+
+    this._isStatic = isStatic;
+
+    if (isStatic) {
+      this.node.appendChild(this.stroke);
+      add(this.stroke, this.options.staticClass);
+    } else {
+      this.list.appendChild(this.stroke);
+      remove(this.stroke, this.options.staticClass);
     }
   }
 
   enter(node) {
-    add(this.stroke, this.options.enterClass);
-
     const { parentNode } = node;
+    this.node = node;
     this.parentNode = parentNode;
 
-    css(this.stroke, {
-      width: `${parentNode.offsetWidth}px`,
-      left: `${parentNode.offsetLeft}px`,
-    });
+    this._handleStaticState(true);
 
-    this.onInteractive();
+    requestAnimationFrame(() => {
+      add(this.stroke, this.options.enterClass);
+      css(this.stroke, {
+        width: `${parentNode.offsetWidth}px`,
+        left: `${parentNode.offsetLeft}px`,
+      });
+    });
   }
 
   move(node) {
-    add(this.stroke, this.options.moveClass);
-
     const { parentNode } = node;
+    this.node = node;
     this.parentNode = parentNode;
 
-    css(this.stroke, {
-      width: `${parentNode.offsetWidth}px`,
-      left: `${parentNode.offsetLeft}px`,
+    this._handleStaticState(false);
+
+    requestAnimationFrame(() => {
+      add(this.stroke, this.options.moveClass);
+      css(this.stroke, {
+        width: `${parentNode.offsetWidth}px`,
+        left: `${parentNode.offsetLeft}px`,
+      });
+
+      this.onInteractive();
     });
   }
 
   leave() {
-    remove(this.stroke, this.options.moveClass);
-    remove(this.stroke, this.options.enterClass);
-
     this.offInteractive();
+    this._handleStaticState(true);
+
+    requestAnimationFrame(() => {
+      remove(this.stroke, this.options.moveClass);
+      remove(this.stroke, this.options.enterClass);
+    });
 
     this.parentNode = null;
+    this.node = null;
   }
 
   _handleResize() {
@@ -101,6 +139,13 @@ class Stroke extends UiEvents {
         width: `${offsetWidth}px`,
         left: `${offsetLeft}px`,
       });
+    }
+  }
+
+  _handleTransitionEnd(e) {
+    if (e.propertyName === 'left') {
+      this.offInteractive();
+      this._handleStaticState(true);
     }
   }
 

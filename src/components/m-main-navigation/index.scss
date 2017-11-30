@@ -101,8 +101,9 @@
   // @todo: check if need this here
   @include word-break();
 
-  display: table-cell;
+  position: relative;
 
+  display: table-cell;
   height: $main-navigation-height;
   padding: 0 $main-navigation__list-link-x-padding;
 
