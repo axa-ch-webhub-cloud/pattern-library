@@ -18,6 +18,8 @@ class Stroke extends UiEvents {
       closeClass: 'js-sub-navigation__index-close',
       sameClickClose: !options.simpleMenu,
       useDefaultEvent: !!options.simpleMenu,
+      outerClose: !options.simpleMenu,
+      escapeClose: !options.simpleMenu,
     });
 
     this.rootNode = rootNode;

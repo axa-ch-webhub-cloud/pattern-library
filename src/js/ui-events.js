@@ -58,7 +58,7 @@ class UiEvents {
       this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose);
     }
 
-    if (this._options.outerClose && this._options.sameClickClose) {
+    if (this._options.outerClose) {
       this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose);
     }
 

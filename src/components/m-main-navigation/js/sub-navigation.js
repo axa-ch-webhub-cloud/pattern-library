@@ -14,6 +14,8 @@ class SubNavigation extends UiEvents {
       toggleClass: SubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-sub-navigation__index-close',
       useDefaultEvent: !!options.simpleMenu,
+      outerClose: !options.simpleMenu,
+      escapeClose: !options.simpleMenu,
     });
 
     this.rootNode = rootNode;
