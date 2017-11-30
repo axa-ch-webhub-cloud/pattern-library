@@ -1,18 +1,24 @@
 @import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 
 .m-footer-legals {
   @include typo-13();
+  @include make-gutter();
 
   display: block;
-  padding: 6px 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
   margin-left: auto;
 
   color: rgba($color-prim-white, 0.65);
-}
+  text-align: right;
 
-.m-footer-legals--bottom {
-  align-self: flex-end;
+  @include respond-down(md) {
+    margin-left: 0;
+    text-align: center;
+  }
 }
 
 .m-footer-legals__link {
@@ -26,5 +32,20 @@
   &:active,
   &:focus {
     color: $color-prim-white;
+  }
+}
+
+.m-footer-legals--bottom {
+  align-self: flex-end;
+  text-align: right !important;
+
+  .m-footer-legals__link {
+    &:last-of-type {
+      margin-right: -10px;
+    }
+  }
+
+  .m-footer-legals__copy {
+    display: block;
   }
 }
