@@ -1,5 +1,6 @@
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
 
 .m-footer-sub {
   display: block;
@@ -18,4 +19,8 @@
 
   align-items: center;
   justify-content: space-between;
+
+  @include respond-down(md) {
+    flex-direction: column;
+  }
 }

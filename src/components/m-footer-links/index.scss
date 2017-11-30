@@ -1,6 +1,7 @@
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
 
@@ -10,6 +11,10 @@
 
   display: block;
   margin-left: 0 !important;
+
+  @include respond-down(md) {
+    @include make-col(4);
+  }
 }
 
 .m-footer-links__row {
@@ -87,5 +92,9 @@
 
   .m-footer-links__list {
     @include make-col(6);
+  }
+
+  @include respond-down(md) {
+    @include make-col(8);
   }
 }
