@@ -1,5 +1,6 @@
 @import "../styles/settings/colors";
 @import "../styles/mixins/respond";
+@import "../components/m-main-navigation/styles/stroke";
 
 $sg-patternlink-y-padding: 6px !default;
 $sg-patternlink-padding-side: 20px !default;
@@ -88,10 +89,6 @@ $bg-button: $color-axa-blue;
   cursor: pointer;
   background-color: $bg-button;
   color: $sg-white;
-}
-
-.o-sg-section__button--selected {
-  background-color: $color-sec-blue-teal;
 }
 
 .o-sg-patternlink {

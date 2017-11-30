@@ -1,6 +1,8 @@
 import bel from 'bel';
 import raw from 'bel/raw';
 
+const writeClasses = classes => classes ? ` ${classes}` : ''; // eslint-disable-line no-confusing-arrow
+
 export default ({ items, customsearch }, childrens) => [
   bel`
   <div class="m-main-navigation__box">
@@ -12,10 +14,10 @@ export default ({ items, customsearch }, childrens) => [
 
     <nav class="m-main-navigation__nav">
       <ul class="m-main-navigation__list js-main-navigation__list">
-        ${items && items.map(({ url, name, subMenuIndexSettings, submenu }) => bel`
+        ${items && items.map(({ url, name, subMenuIndexSettings, submenu, classes }) => bel`
           ${submenu ? bel`
             <li class="m-main-navigation__list-item">
-              <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
+              <a class="m-main-navigation__list-link js-main-navigation__list-link" ${writeClasses(classes)} href="${url}">${raw(name)}</a>
                 <axa-sub-navigation items='${JSON.stringify(submenu)}' flyout>
                   ${(subMenuIndexSettings && subMenuIndexSettings.title) ? raw(`
                     <a class="m-sub-navigation__index-link" href="#">${subMenuIndexSettings.title}</a>
@@ -29,7 +31,7 @@ export default ({ items, customsearch }, childrens) => [
             </li>
           ` : bel`
             <li class="m-main-navigation__list-item">
-              <a data-use-default-event="true" class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">
+              <a data-has-submenu="false" class="m-main-navigation__list-link js-main-navigation__list-link${writeClasses(classes)}" href="${url}">
                 ${raw(name)}
               </a>
             </li>

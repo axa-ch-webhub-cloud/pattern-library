@@ -11,6 +11,8 @@ class UiEvents {
     closeClass: 'js-ui-close',
     escapeClose: true,
     outerClose: true,
+    sameClickClose: true,
+    useDefaultEvent: false,
   };
 
   constructor(rootNode, options = {}) {
@@ -19,10 +21,6 @@ class UiEvents {
       ...UiEvents.DEFAULTS,
       ...options,
     };
-
-    const toggler = rootNode.querySelector(`.${this._options.toggleClass}`);
-
-    this._useDefaultEvent = toggler ? toggler.getAttribute('data-use-default-event') === 'true' : false;
 
     this._handleClick = this._handleClick.bind(this);
     this._handleClose = this._handleClose.bind(this);
@@ -60,7 +58,7 @@ class UiEvents {
       this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose);
     }
 
-    if (this._options.outerClose) {
+    if (this._options.outerClose && this._options.sameClickClose) {
       this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose);
     }
 
@@ -86,7 +84,7 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    if (!this._useDefaultEvent) {
+    if (!this._options.useDefaultEvent) {
       e.preventDefault();
     }
 
@@ -104,13 +102,13 @@ class UiEvents {
 
     this._lastToggleNode = toggleNode;
 
-    if (isLeave) {
+    if (isLeave && this._options.sameClickClose) {
       this._close();
     }
   }
 
   _handleClose(e) {
-    if (!this._useDefaultEvent) {
+    if (!this._options.useDefaultEvent) {
       e.preventDefault();
     }
 

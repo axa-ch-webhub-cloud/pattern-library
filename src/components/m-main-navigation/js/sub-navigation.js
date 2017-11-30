@@ -13,6 +13,7 @@ class SubNavigation extends UiEvents {
       containerClass: '.js-main-navigation__list',
       toggleClass: SubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-sub-navigation__index-close',
+      useDefaultEvent: !!options.simpleMenu,
     });
 
     this.rootNode = rootNode;

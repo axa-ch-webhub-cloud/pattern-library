@@ -15,8 +15,15 @@ class MainNavigation extends BaseComponentGlobal {
 
     this.className = 'm-main-navigation';
 
-    this.stroke = new Stroke(this);
-    this.subNavigation = new SubNavigation(this);
+    const toggler = this.querySelector(`.${Stroke.DEFAULTS.toggleClass}`);
+    this._simpleMenu = toggler ? toggler.getAttribute('data-has-submenu') === 'false' : false;
+
+    this.stroke = new Stroke(this, {
+      simpleMenu: this._simpleMenu,
+    });
+    this.subNavigation = new SubNavigation(this, {
+      simpleMenu: this._simpleMenu,
+    });
     this.burger = new Burger(this);
   }
 
