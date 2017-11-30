@@ -4,6 +4,7 @@
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "../m-dropdown/mixins/dropdown";
 
 .m-footer-links {
   @include make-col-ready();
@@ -31,12 +32,14 @@
   &:first-child {
     margin-left: 0;
   }
+
+  @include respond-down(xs) {
+    @include dropdown-container();
+  }
 }
 
 .m-footer-links__category {
   @include typo-16--bold();
-
-  position: relative;
 
   display: block;
 
@@ -45,6 +48,7 @@
 
   @include respond-down(xs) {
     @include typo-16--semibold();
+    @include dropdown-toggle();
 
     padding-top: 20px;
     padding-bottom: 20px;
@@ -55,20 +59,9 @@
 }
 
 .m-footer-links__category__icon {
-  position: absolute;
-  top: 50%;
-  right: 15px;
+  @include dropdown-icon(10px, 30px);
 
   display: none;
-  width: 10px;
-  height: 10px;
-  margin-top: -(10px / 2);
-
-  transition: all 0.3s ease;
-
-  .is-open & {
-    transform: rotate(180deg);
-  }
 
   @include respond-down(xs) {
     display: block;
@@ -85,6 +78,9 @@
   }
 
   @include respond-down(xs) {
+    @include dropdown-content();
+    @include dropdown-inflow();
+
     display: block;
     margin-top: 0;
 
