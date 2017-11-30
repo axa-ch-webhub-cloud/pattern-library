@@ -84,7 +84,7 @@
 }
 
 .m-meta-navigation__lang-drop-down {
-  position: relative;
+  @include dropdown-container();
 }
 
 .m-meta-navigation__lang-drop-down__toggle {
