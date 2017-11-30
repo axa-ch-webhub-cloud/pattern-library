@@ -83,9 +83,13 @@
     @include dropdown-inflow();
 
     display: block;
-    margin-top: 0;
+    margin: 0;
 
     background: $color-prim-blue-azure;
+  }
+
+  @include respond-up(sm) {
+    height: auto !important;
   }
 }
 
@@ -104,7 +108,7 @@
     @include reset-col();
 
     display: block;
-
+    padding: 0;
     margin-left: 0;
   }
 }
