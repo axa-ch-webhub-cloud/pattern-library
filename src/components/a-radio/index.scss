@@ -1,0 +1,61 @@
+@import "../../styles/settings/colors";
+
+.a-radio {
+  display: inline-flex;
+  margin-right: 20px;
+  width: 16px;
+  height: 16px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  background: $color-prim-white;
+  border: 1px solid $color-prim-gray-silver;
+  border-radius: 50%;
+
+  &:hover,
+  &:active {
+    border-color: $color-axa-blue;
+
+    &::after {
+      background: $color-prim-gray-silver;
+      border-color: $color-axa-blue;
+    }
+  }
+
+  &::after {
+    display: block;
+    width: 6px;
+    height: 6px;
+    content: "";
+    background: $color-prim-white;
+    border: 1px solid $color-prim-gray-silver;
+    border-radius: 50%;
+  }
+}
+
+.a-radio[hidden] {
+  display: none;
+}
+
+.a-radio[checked] {
+  &::after {
+    background: $color-axa-blue;
+    border-color: $color-axa-blue;
+  }
+}
+
+.a-radio[disabled] {
+  &::after {
+    background: $color-prim-white;
+    border-color: $color-prim-gray-silver;
+  }
+}
+
+.a-radio[checked][disabled] {
+  &::after {
+    background: $color-prim-white;
+    border-color: $color-prim-gray-silver;
+  }
+}
