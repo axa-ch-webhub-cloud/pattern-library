@@ -28,8 +28,7 @@ Well first of all install the npm module:
 
 Then, you can add the component of your choice simply by importing the js! Styles, HTML and JS will be all in one file! See example below:
 
-`import '@axa-ch/patterns-library/dist/components/a-button'` in your index.js
-to use it, simple append it: `<axa-button>Hello</axa-button>`
+`import '@axa-ch/patterns-library/dist/components/a-button'` in your index.js to be able to use the button. Wherever you want, add `<axa-button>Hello</axa-button>` in your html and like magic, the button will be work as defined per the styleguide!
 
 To use the webcomponents with older browsers, import the polyfills which are available under
 `<script src="@axa-ch/patterns-library/dist/components/webcomponents-sd-ce.js"></script>`
