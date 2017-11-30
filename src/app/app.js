@@ -1,18 +1,14 @@
 const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
 
-let lastMainButton = null;
-
 const disable = (element, parent) => {
-  element.classList.remove('o-sg-section__button--selected');
   parent.querySelector(sectionSelector(element)).classList.remove('o-sg-section__section--visible');
 };
 
 const enable = (element, parent) => {
-  element.classList.add('o-sg-section__button--selected');
   parent.querySelector(sectionSelector(element)).classList.add('o-sg-section__section--visible');
 };
 
-const switchAtomicElemenetsTo = (elementGroupName = '', button) => {
+const switchAtomicElemenetsTo = (elementGroupName = '', button, firstCall = false) => {
   const allCategories = document.querySelectorAll('[data-atomic-category]');
   Array.from(allCategories).forEach((element) => {
     element.classList.remove('o-sg-section--visible');
@@ -25,16 +21,16 @@ const switchAtomicElemenetsTo = (elementGroupName = '', button) => {
     element.classList.add('o-sg-section--visible');
   });
 
-  button.classList.add('o-sg-section__button--selected');
-
-  if (lastMainButton && lastMainButton !== button) {
-    lastMainButton.classList.remove('o-sg-section__button--selected');
+  if (!button) {
+    return;
   }
 
-  lastMainButton = button;
+  if (firstCall) {
+    button.click();
+  }
 };
 
-const syncHashWithAtomicChoice = () => {
+const syncHashWithAtomicChoice = (firstCall = false) => {
   const { hash } = window.location;
   const id = hash.replace('#', '');
   const el = document.getElementById(id);
@@ -42,13 +38,13 @@ const syncHashWithAtomicChoice = () => {
     const prefix = hash.substring(1, 2);
     switch (prefix) {
       case 'a':
-        switchAtomicElemenetsTo('atom', document.querySelector('[data-atomic-switch-to="atom"]'));
+        switchAtomicElemenetsTo('atom', document.querySelector('.js-atomic-switch-to-atom'), firstCall);
         break;
       case 'm':
-        switchAtomicElemenetsTo('molecule', document.querySelector('[data-atomic-switch-to="molecule"]'));
+        switchAtomicElemenetsTo('molecule', document.querySelector('.js-atomic-switch-to-molecule'), firstCall);
         break;
       case 'o':
-        switchAtomicElemenetsTo('organism', document.querySelector('[data-atomic-switch-to="organism"]'));
+        switchAtomicElemenetsTo('organism', document.querySelector('.js-atomic-switch-to-organism'), firstCall);
         break;
       default:
         break;
@@ -80,20 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // main buttons atomic toggle
-  const mainButtons = document.querySelectorAll('.js--atomic-switch');
-  Array.from(mainButtons).forEach((button, index) => {
-    if (index === 0) {
-      lastMainButton = button;
-    }
-    button.addEventListener('click', () => {
-      const switchTo = button.getAttribute('data-atomic-switch-to');
-      switchAtomicElemenetsTo(switchTo, button);
-    });
-  });
+  setTimeout(() => {
+    syncHashWithAtomicChoice(true);
+  }, 100);
 
-  syncHashWithAtomicChoice();
   window.onhashchange = () => {
-    window.location.reload();
+    syncHashWithAtomicChoice(false);
   };
 });

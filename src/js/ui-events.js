@@ -11,6 +11,8 @@ class UiEvents {
     closeClass: 'js-ui-close',
     escapeClose: true,
     outerClose: true,
+    sameClickClose: true,
+    useDefaultEvent: false,
   };
 
   constructor(rootNode, options = {}) {
@@ -82,7 +84,9 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    e.preventDefault();
+    if (!this._options.useDefaultEvent) {
+      e.preventDefault();
+    }
 
     const isEnter = !this._lastToggleNode;
     const isMove = toggleNode !== this._lastToggleNode;
@@ -98,13 +102,15 @@ class UiEvents {
 
     this._lastToggleNode = toggleNode;
 
-    if (isLeave) {
+    if (isLeave && this._options.sameClickClose) {
       this._close();
     }
   }
 
   _handleClose(e) {
-    e.preventDefault();
+    if (!this._options.useDefaultEvent) {
+      e.preventDefault();
+    }
 
     this._close();
   }
@@ -158,4 +164,3 @@ class UiEvents {
 }
 
 export default UiEvents;
-

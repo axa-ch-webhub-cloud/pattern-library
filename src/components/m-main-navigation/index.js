@@ -1,4 +1,5 @@
 import styles from './index.scss';
+import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import SubNavigation from './js/sub-navigation';
@@ -15,8 +16,14 @@ class MainNavigation extends BaseComponentGlobal {
 
     this.className = 'm-main-navigation';
 
-    this.stroke = new Stroke(this);
-    this.subNavigation = new SubNavigation(this);
+    const simpleMenu = getAttribute(this, 'simplemenu');
+
+    this.stroke = new Stroke(this, {
+      simpleMenu,
+    });
+    this.subNavigation = new SubNavigation(this, {
+      simpleMenu,
+    });
     this.burger = new Burger(this);
   }
 

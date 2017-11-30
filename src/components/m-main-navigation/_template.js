@@ -1,7 +1,9 @@
 import bel from 'bel';
 import raw from 'bel/raw';
 
-export default ({ items, submenu }, childrens) => [
+const writeClasses = classes => classes ? ` ${classes}` : ''; // eslint-disable-line no-confusing-arrow
+
+export default ({ items, customsearch }, childrens) => [
   bel`
   <div class="m-main-navigation__box">
     <div class="m-main-navigation__logo">
@@ -12,11 +14,11 @@ export default ({ items, submenu }, childrens) => [
 
     <nav class="m-main-navigation__nav">
       <ul class="m-main-navigation__list js-main-navigation__list">
-        ${items && items.map(({ url, name, subMenuIndexSettings }, index) => bel`
-          ${submenu && submenu.length === items.length ? bel`
+        ${items && items.map(({ url, name, subMenuIndexSettings, submenu, classes }) => bel`
+          ${submenu ? bel`
             <li class="m-main-navigation__list-item">
-              <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
-                <axa-sub-navigation items='${JSON.stringify(submenu[index])}' flyout>
+              <a class="m-main-navigation__list-link js-main-navigation__list-link" ${writeClasses(classes)} href="${url}">${raw(name)}</a>
+                <axa-sub-navigation items='${JSON.stringify(submenu)}' flyout>
                   ${(subMenuIndexSettings && subMenuIndexSettings.title) ? raw(`
                     <a class="m-sub-navigation__index-link" href="#">${subMenuIndexSettings.title}</a>
 
@@ -29,7 +31,9 @@ export default ({ items, submenu }, childrens) => [
             </li>
           ` : bel`
             <li class="m-main-navigation__list-item">
-              <a class="m-main-navigation__list-link js-main-navigation__list-link" href="${url}">${raw(name)}</a>
+              <a class="m-main-navigation__list-link js-main-navigation__list-link${writeClasses(classes)}" href="${url}">
+                ${raw(name)}
+              </a>
             </li>
           `}
         `)}
@@ -38,11 +42,13 @@ export default ({ items, submenu }, childrens) => [
 
     ${childrens}
 
-    <form class="m-main-navigation__form">
-      ${raw('<axa-icon id="search-left" classes="m-main-navigation__search-icon"></axa-icon>')}
+    ${customsearch ? raw(customsearch) : bel`
+      <form class="m-main-navigation__form">
+        ${raw('<axa-icon id="search-left" classes="m-main-navigation__search-icon"></axa-icon>')}
 
-      <input type="text" class="m-main-navigation__search" />
-    </form>
+        <input type="text" class="m-main-navigation__search" />
+      </form>
+    `}
 
     <button role="button" class="m-main-navigation__burger js-main-navigation__burger">
       ${raw('<axa-icon id="menu" classes="m-main-navigation__burger-icon"></axa-icon>')}
