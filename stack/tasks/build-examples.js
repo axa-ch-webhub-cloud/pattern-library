@@ -50,19 +50,17 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     <axa-button tag="a" url="#molecules" data-atomic-category="molecule" motion size="sm">Alle</axa-button>
     <axa-button tag="a" url="#organisms" data-atomic-category="organism" motion size="sm">Alle</axa-button>
   `;
-  let componentsMolecules = '';
-  let componentsOrganisms = '';
 
   const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
-  const stylesPath = highlightStyles.filter(style => style.name === 'eclipse')[0].sourcePath;
+  const stylesPath = highlightStyles.filter(style => style.name === 'midnight')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
 
   previewHtmls = previewHtmls.sort(sortUp);
   exampleHtmls = exampleHtmls.sort(sortUp);
 
   previewHtmls.forEach((filePath, index) => {
-    const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.html');
-    imports += `<link rel="import" href="${partial}" > \n`;
+    const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.js');
+    imports += `<script src="${partial}"></script>\n`;
 
     const name = filePath.split('/').slice(-2).join('/');
 
@@ -105,23 +103,22 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     html +=
     `
-      <style>
-        ${styles}
-      </style>
       <article data-atomic-category=${atomicCategory} class="js--section o-sg-section${atomicCategory === 'organism' ? ' o-sg-section--visible' : ''}" id="${orginalName}">
         <section class="o-sg-section__section o-sg-section__section--title">
-          <h1 class="o-sg-section__title">
-            <strong class="o-sg-section__title--strong">${atomicName}</strong>
-            <span class="o-sg-section__title--normal">${previewName}</span>
+          <h1 class="o-sg-section__section__title">
+            <strong class="o-sg-section__section__title--text">${atomicName}</strong>
+            <span class="o-sg-section__section__title--text">${previewName}</span>
           </h1>
-          <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Show PREVIEW</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="wc-html">Show Webcomponent HTML</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="html">Show Traditional HTML</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="css">Show CSS</button>
         </section>
         <article class="js--section-source o-sg-section__section o-sg-section__section--source o-sg-section__section--visible">
           ${preview}
         </article>
+        <section class="o-sg-section__section o-sg-section__section--buttons">
+          <axa-button ghost color="red" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source" data-atomic-category="organism">Close</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="wc-html" data-atomic-category="organism">Webcomponent HTML</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="html" data-atomic-category="organism">Traditional HTML</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="css" data-atomic-category="organism">CSS</axa-button>
+        </section>
         <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
         <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${nsh.highlight(resultCss.css.toString(), cssLang)}</pre>
@@ -132,7 +129,12 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   const result = indexHtml
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
     .replace(/<!-- {CUT AND INJECT BUTTONS HERE} -->/g, componentsAtoms)
-    .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, html);
+    .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, `
+      <style>
+        ${styles}
+      </style>
+      ${html}
+      `);
 
   fs.writeFile(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/index.html`, result, (_err) => {
     if (_err) {

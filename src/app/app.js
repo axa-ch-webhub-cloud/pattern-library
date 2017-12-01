@@ -1,11 +1,11 @@
 const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
 
 const disable = (element, parent) => {
-  parent.querySelector(sectionSelector(element)).classList.remove('o-sg-section__section--visible');
+  parent.querySelector(sectionSelector(element.parentNode)).classList.remove('o-sg-section__section--visible');
 };
 
 const enable = (element, parent) => {
-  parent.querySelector(sectionSelector(element)).classList.add('o-sg-section__section--visible');
+  parent.querySelector(sectionSelector(element.parentNode)).classList.add('o-sg-section__section--visible');
 };
 
 const switchAtomicElemenetsTo = (elementGroupName = '', button, firstCall = false) => {

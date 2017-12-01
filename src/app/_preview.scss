@@ -1,15 +1,19 @@
 @import "../styles/settings/colors";
 @import "../styles/mixins/respond";
-@import "../components/m-main-navigation/styles/stroke";
 
 $sg-patternlink-y-padding: 6px !default;
 $sg-patternlink-padding-side: 20px !default;
 $sg-patternlink-border-side-width: 1px !default;
 $sg-patternlink-border-side-color: $color-prim-gray-silver !default;
 $sg-patternlink-margin-side: 20px !default;
+$sg-main-title-size: 2.8rem;
 
 $sg-white: $color-prim-white;
 $bg-button: $color-axa-blue;
+
+$sg-black-syntaxhighlighter: #000;
+
+$sg-paddings-page: 3%;
 
 body {
   background: $sg-white;
@@ -28,60 +32,57 @@ body {
 }
 
 .o-sg-section__section {
-  display: none;
-
   min-height: 50px;
-
-  margin-top: -2px;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-  background-color: $sg-white;
-  border-bottom: 2px solid $color-axa-blue;
-  border-top: 2px solid $color-axa-blue;
-}
-
-.o-sg-section__section--visible {
-  display: block;
-}
-
-.o-sg-section__title {
-  padding: 5px 0;
-  margin-right: 20px;
-}
-
-.o-sg-section__title--strong {
-  text-transform: uppercase;
 }
 
 .o-sg-section__section--title {
-  position: relative;
-  z-index: 3;
+  margin: 80px $sg-paddings-page 30px;
+}
 
-  display: flex;
-  height: 110px;
+.o-sg-section__section--buttons {
+  margin: 30px $sg-paddings-page 0;
 
-  max-width: 800px;
-  padding: 0 1%;
-  margin: 3% auto 0;
+  padding: 10px;
 
-  justify-content: center;
-  align-items: center;
-  border: 1px solid $color-axa-blue;
-  background-color: $color-prim-gray-wild-sand;
-  border-bottom: 0;
-  box-shadow: none;
+  background-color: $color-prim-gray-mine-shaft;
 
-  &::after {
-    display: table;
-    clear: both;
-    content: "";
+  text-align: center;
+
+  > :first-child {
+    float: left;
   }
 }
 
+.o-sg-section__section__title {
+  font-size: $sg-main-title-size;
+}
+
+.o-sg-section__section__title--text {
+  text-transform: capitalize;
+}
+
 .o-sg-section__section--src {
+  display: none;
   max-width: 1900px;
   padding: 0 3%;
-  margin: -2px auto 0 auto;
+  margin: 0 auto;
+
+  .syntaxhighlighter {
+    margin-top: 0 !important;
+    padding: 10px;
+    background-color: $sg-black-syntaxhighlighter !important;
+  }
+
+  .syntaxhighlighter {
+    .line {
+      background-color: $sg-black-syntaxhighlighter !important;
+
+      &.alt1,
+      &.alt2 {
+        background-color: $sg-black-syntaxhighlighter !important;
+      }
+    }
+  }
 }
 
 .o-sg-section__button {
@@ -121,4 +122,8 @@ body {
       display: inline-block;
     }
   }
+}
+
+.o-sg-section__section--visible {
+  display: block;
 }
