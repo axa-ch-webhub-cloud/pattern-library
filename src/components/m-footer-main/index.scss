@@ -11,6 +11,7 @@
 
   @include respond-down(md) {
     padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   @include respond-down(xs) {
