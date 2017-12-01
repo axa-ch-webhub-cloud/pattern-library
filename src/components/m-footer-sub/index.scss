@@ -1,12 +1,13 @@
 @import "../../styles/settings/colors";
+@import "../../styles/settings/footer";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 
 .m-footer-sub {
   display: block;
 
-  background: $color-prim-blue-azure;
-  border-top: 1px solid rgba($color-prim-white, 0.25);
+  background: $footer-sub-bg;
+  border-top: 1px solid $footer-color--dim;
 }
 
 .m-footer-sub__box {
