@@ -45,17 +45,23 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
   let html = '';
   let imports = '';
+  let componentsAtoms = `
+    <axa-button tag="a" url="#atoms" class="o-sg-section__atomic-category" data-atomic-category="atom" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#molecules" class="o-sg-section__atomic-category" data-atomic-category="molecule" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#organisms"  class="o-sg-section__atomic-category" data-atomic-category="organism" motion size="sm">Alle</axa-button>
+  `;
 
   const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
-  const stylesPath = highlightStyles.filter(style => style.name === 'eclipse')[0].sourcePath;
+  const stylesPath = highlightStyles.filter(style => style.name === 'midnight')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
 
   previewHtmls = previewHtmls.sort(sortUp);
   exampleHtmls = exampleHtmls.sort(sortUp);
 
   previewHtmls.forEach((filePath, index) => {
-    const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.html');
-    imports += `<link rel="import" href="${partial}" > \n`;
+    const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.js');
+    imports += `<script src="${partial}"></script>\n`;
+
     const name = filePath.split('/').slice(-2).join('/');
 
     const example = fs.readFileSync(exampleHtmls[index], 'utf8');
@@ -65,18 +71,24 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     const orginalName = previewName;
 
+    const attrAxaButton = `size="sm" ghost tag="a" url="#${previewName}" motion class="o-sg-section__atomic-category"`;
+
     let atomicName = '';
     switch (previewName.substring(0, 2)) {
       case 'a-':
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="atom">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Atom';
         break;
       case 'm-':
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="molecule">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Molecule';
         break;
       case 'o-':
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="organism">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Organism';
         break;
       default:
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="organism">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Organism';
     }
 
@@ -91,23 +103,22 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     html +=
     `
-      <style>
-        ${styles}
-      </style>
-      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section${atomicCategory === 'organism' ? ' o-sg-section--visible' : ''}" id="${orginalName}">
+      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section o-sg-section__atomic-category" id="${orginalName}">
         <section class="o-sg-section__section o-sg-section__section--title">
-          <h1 class="o-sg-section__title">
-            <strong class="o-sg-section__title--strong">${atomicName}</strong>
-            <span class="o-sg-section__title--normal">${previewName}</span>
+          <h1 class="o-sg-section__section__title">
+            <strong class="o-sg-section__section__title--text">${atomicName}</strong>
+            <span class="o-sg-section__section__title--text">${previewName}</span>
           </h1>
-          <button class="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Show PREVIEW</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="wc-html">Show Webcomponent HTML</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="html">Show Traditional HTML</button>
-          <button class="js--toggle o-sg-section__button" data-toggle="css">Show CSS</button>
         </section>
-        <article class="js--section-source o-sg-section__section o-sg-section__section--source o-sg-section__section--visible">
+        <article class="js--section-source o-sg-section__section o-sg-section__section--source">
           ${preview}
         </article>
+        <section class="o-sg-section__section o-sg-section__section--buttons">
+          <axa-button ghost color="red" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Close</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="wc-html">Webcomponent HTML</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="html">Traditional HTML</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="css">CSS</axa-button>
+        </section>
         <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
         <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${nsh.highlight(resultCss.css.toString(), cssLang)}</pre>
@@ -117,7 +128,13 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
   const result = indexHtml
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
-    .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, html);
+    .replace(/<!-- {CUT AND INJECT BUTTONS HERE} -->/g, componentsAtoms)
+    .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, `
+      <style>
+        ${styles}
+      </style>
+      ${html}
+      `);
 
   fs.writeFile(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/index.html`, result, (_err) => {
     if (_err) {
