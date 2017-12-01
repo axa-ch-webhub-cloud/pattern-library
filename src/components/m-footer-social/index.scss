@@ -28,8 +28,6 @@
   @include respond-down(xs) {
     padding: 25px 30px;
     margin-bottom: 0;
-
-    order: -1;
   }
 }
 
@@ -97,6 +95,10 @@
     display: block;
 
     margin-right: 20px;
+
+    &::after {
+      content: ':';
+    }
   }
 
   .m-footer-social__list {
