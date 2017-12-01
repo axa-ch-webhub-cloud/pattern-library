@@ -1,9 +1,30 @@
 @import "../../styles/settings/colors";
+@import "../../styles/settings/footer";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+
+$footer-social-padding-x--xs: 30px !default;
+$footer-social-padding-y--xs: 25px !default;
+$footer-social-margin-bottom--md: -10px !default;
+
+$footer-social__title-color: $footer-color !default;
+$footer-social__title-margin-right--inline: 20px !default;
+
+$footer-social__list-margin-top: 15px !default;
+$footer-social__list-margin-x: -10px !default;
+$footer-social__list-margin-top--md: 25px !default;
+$footer-social__list-margin--xs: -10px !default;
+
+$footer-social__list-item-margin-right: 10px !default;
+
+$footer-social__link-padding: 10px !default;
+
+$footer-social__icon-size: 25px !default;
+$footer-social__icon-size--light: 20px !default;
+$footer-social__icon-color: $footer-color !default;
 
 .m-footer-social {
   @include make-col-ready();
@@ -20,7 +41,7 @@
   @include respond-down(md) {
     @include reset-col();
 
-    margin-bottom: -10px;
+    margin-bottom: $footer-social-margin-bottom;
 
     &:first-child {
       margin-bottom: 0;
@@ -28,7 +49,7 @@
   }
 
   @include respond-down(xs) {
-    padding: 25px 30px;
+    padding: $footer-social-padding-y--xs $footer-social-padding-x--xs;
     margin-bottom: 0;
   }
 }
@@ -36,7 +57,7 @@
 .m-footer-social__title {
   @include typo-16--bold();
 
-  color: $color-prim-white;
+  color: $footer-social__title-color;
   text-transform: uppercase;
 
   @include respond-down(md) {
@@ -48,25 +69,25 @@
   @include unstyle-list();
   @include clearfix();
 
-  margin: 15px -10px 0 -10px;
+  margin: $footer-social__list-margin-top $footer-social__list-margin-x 0 $footer-social__list-margin-x;
 
   &:first-child {
     margin-top: 0;
   }
 
   @include respond-down(md) {
-    margin-top: 25px;
+    margin-top: $footer-social__list-margin-top--md;
   }
 
   @include respond-down(xs) {
-    margin: -10px;
+    margin: $footer-social__list-margin--xs;
   }
 }
 
 .m-footer-social__list-item {
   display: block;
   float: left;
-  margin-right: 10px;
+  margin-right: $footer-social__list-item-margin-right;
 
   &:last-child {
     margin-right: 0;
@@ -75,15 +96,15 @@
 
 .m-footer-social__link {
   display: block;
-  padding: 10px;
+  padding: $footer-social__link-padding;
 }
 
 .m-footer-social__icon {
   display: block;
-  width: 25px;
-  height: 25px;
+  width: $footer-social__icon-size;
+  height: $footer-social__icon-size;
 
-  color: $color-prim-white;
+  color: $footer-social__icon-color;
 }
 
 .m-footer-social--inline {
@@ -96,7 +117,7 @@
   .m-footer-social__title {
     display: block;
 
-    margin-right: 20px;
+    margin-right: $footer-social__title-margin-right--inline;
 
     &::after {
       content: ':';
@@ -116,7 +137,7 @@
   }
 
   .m-footer-social__icon {
-    width: 20px;
-    height: 20px;
+    width: $footer-social__icon-size--light;
+    height: $footer-social__icon-size--light;
   }
 }
