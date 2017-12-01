@@ -1,5 +1,6 @@
 @import "../styles/settings/colors";
 @import "../styles/mixins/respond";
+@import "../styles/mixins/grid";
 
 $sg-patternlink-y-padding: 6px !default;
 $sg-patternlink-padding-side: 20px !default;
@@ -14,6 +15,13 @@ $bg-button: $color-axa-blue;
 $sg-black-syntaxhighlighter: #000;
 
 $sg-paddings-page: 3%;
+
+$sg-margin-tops: 30px;
+
+$sg-small-margin: 10px;
+$sg-margin: 20px;
+
+$sg-gutter-size: 15px;
 
 body {
   background: $sg-white;
@@ -36,13 +44,13 @@ body {
 }
 
 .o-sg-section__section--title {
-  margin: 80px $sg-paddings-page 30px;
+  margin: 80px $sg-paddings-page $sg-margin-tops;
 }
 
 .o-sg-section__section--buttons {
-  margin: 30px $sg-paddings-page 0;
+  margin: $sg-margin-tops $sg-paddings-page 0;
 
-  padding: 10px;
+  padding: $sg-small-margin;
 
   background-color: $color-prim-gray-mine-shaft;
 
@@ -62,14 +70,14 @@ body {
 }
 
 .o-sg-section__section--src {
+  @include make-gutter(6%);
+
   display: none;
-  max-width: 1900px;
-  padding: 0 3%;
   margin: 0 auto;
 
   .syntaxhighlighter {
     margin-top: 0 !important;
-    padding: 10px;
+    padding: $sg-small-margin;
     background-color: $sg-black-syntaxhighlighter !important;
   }
 
@@ -110,13 +118,13 @@ body {
 }
 
 .o-sg-header__buttons {
-  padding: 10px 20px 20px;
+  padding: $sg-small-margin $sg-margin $sg-margin;
   background-color: $color-prim-gray-alabaster;
 
   [data-atomic-category] {
     display: none;
-    margin-right: 10px;
-    margin-top: 10px;
+    margin-right: $sg-small-margin;
+    margin-top: $sg-small-margin;
 
     &.o-sg-section--visible {
       display: inline-block;
