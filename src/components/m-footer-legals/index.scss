@@ -1,4 +1,4 @@
-@import "../../styles/settings/colors";
+@import "./settings/footer-legals";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
@@ -8,31 +8,79 @@
   @include make-gutter();
 
   display: block;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: $footer-legals-y-padding;
+  padding-bottom: $footer-legals-y-padding;
   margin-left: auto;
 
-  color: rgba($color-prim-white, 0.65);
+  color: $footer-legals-y-color;
   text-align: right;
 
   @include respond-down(md) {
+    padding-bottom: $footer-legals-padding-bottom--md;
     margin-left: 0;
     text-align: center;
+
+    // if only child don't increase bottom padding
+    &:first-child:last-child {
+      padding-bottom: $footer-legals-y-padding;
+    }
+  }
+
+  @include respond-down(xs) {
+    &:last-child {
+      padding-top: 0;
+    }
+
+    &:first-child {
+      padding-top: $footer-legals-padding-top--xs;
+    }
+
+    // if only child don't increase top padding
+    &:first-child:last-child {
+      padding-top: $footer-legals-y-padding;
+    }
   }
 }
 
 .m-footer-legals__link {
-  display: inline-block;
-  padding: 6px 10px;
-  margin: -6px 0;
+  position: relative;
 
-  color: rgba($color-prim-white, 0.65);
+  display: inline-block;
+  padding: $footer-legals__link-padding-y $footer-legals__link-padding-x;
+  margin: -$footer-legals__link-padding-y 0;
+
+  color: $footer-legals__link-color;
 
   &:hover,
   &:active,
   &:focus {
-    color: $color-prim-white;
+    color: $footer-legals__link-color--hover;
+    text-decoration: none;
   }
+
+  // delimiter
+  &::after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    display: block;
+    width: $footer-delimiter-width;
+    height: $footer-delimiter-height;
+    margin-top: ($footer-delimiter-height / -2);
+
+    content: '';
+    background: $footer-delimiter-bg;
+  }
+
+  &:first-child::after {
+    display: none;
+  }
+}
+
+.m-footer-legals__copy {
+  display: inline-block;
+  margin-left: $footer-legals__copy-margin-left;
 }
 
 .m-footer-legals--bottom {
@@ -41,11 +89,13 @@
 
   .m-footer-legals__link {
     &:last-of-type {
-      margin-right: -10px;
+      // undo padding
+      margin-right: -$footer-legals__link-padding-x;
     }
   }
 
   .m-footer-legals__copy {
     display: block;
+    margin-left: 0;
   }
 }

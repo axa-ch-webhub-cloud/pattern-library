@@ -1,0 +1,13 @@
+@import "./colors";
+
+$footer-bg: $color-prim-blue-dark-indigo !default;
+$footer-color: $color-prim-white !default;
+$footer-color--light: rgba($color-prim-white, 0.65) !default;
+$footer-color--dim: rgba($color-prim-white, 0.25) !default;
+$footer-border-width: 1px !default;
+
+$footer-sub-bg: $color-prim-blue-azure !default;
+
+$footer-delimiter-bg: $footer-color--light !default;
+$footer-delimiter-width: 1px !default;
+$footer-delimiter-height: 14px !default;

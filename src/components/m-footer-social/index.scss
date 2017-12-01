@@ -1,4 +1,4 @@
-@import "../../styles/settings/colors";
+@import "./settings/footer-social";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
@@ -11,15 +11,33 @@
 
   display: block;
 
+  // if only child -> width based on content
+  &:first-child:last-child {
+    @include reset-col();
+
+    flex: 0 1 auto;
+  }
+
   @include respond-down(md) {
     @include reset-col();
+
+    margin-bottom: $footer-social-margin-bottom--md;
+
+    &:first-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @include respond-down(xs) {
+    padding: $footer-social-padding-y--xs $footer-social-padding-x--xs;
+    margin-bottom: 0;
   }
 }
 
 .m-footer-social__title {
   @include typo-16--bold();
 
-  color: $color-prim-white;
+  color: $footer-social__title-color;
   text-transform: uppercase;
 
   @include respond-down(md) {
@@ -31,34 +49,43 @@
   @include unstyle-list();
   @include clearfix();
 
-  margin-top: 15px;
+  margin: $footer-social__list-margin-top $footer-social__list-margin-x 0 $footer-social__list-margin-x;
 
+  // if no title -> disable top margin
   &:first-child {
     margin-top: 0;
+  }
+
+  @include respond-down(md) {
+    margin-top: $footer-social__list-margin-top--md;
+  }
+
+  @include respond-down(xs) {
+    margin: $footer-social__list-margin--xs;
   }
 }
 
 .m-footer-social__list-item {
   display: block;
   float: left;
-  margin-left: 10px;
+  margin-right: $footer-social__list-item-margin-right;
 
-  &:first-child {
-    margin-left: -10px;
+  &:last-child {
+    margin-right: 0;
   }
 }
 
 .m-footer-social__link {
   display: block;
-  padding: 10px;
+  padding: $footer-social__link-padding;
 }
 
 .m-footer-social__icon {
   display: block;
-  width: 25px;
-  height: 25px;
+  width: $footer-social__icon-size;
+  height: $footer-social__icon-size;
 
-  color: $color-prim-white;
+  color: $footer-social__icon-color;
 }
 
 .m-footer-social--inline {
@@ -71,7 +98,12 @@
   .m-footer-social__title {
     display: block;
 
-    margin-right: 20px;
+    margin-right: $footer-social__title-margin-right--inline;
+
+    // inline always with colon at end of title
+    &::after {
+      content: ':';
+    }
   }
 
   .m-footer-social__list {
@@ -87,7 +119,7 @@
   }
 
   .m-footer-social__icon {
-    width: 20px;
-    height: 20px;
+    width: $footer-social__icon-size--light;
+    height: $footer-social__icon-size--light;
   }
 }

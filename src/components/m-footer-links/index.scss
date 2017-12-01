@@ -1,9 +1,10 @@
-@import "../../styles/settings/colors";
+@import "./settings/footer-links";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "../m-dropdown/mixins/dropdown";
 
 .m-footer-links {
   @include make-col-ready();
@@ -15,6 +16,12 @@
   @include respond-down(md) {
     @include make-col(4);
   }
+
+  @include respond-down(xs) {
+    @include reset-col();
+
+    padding: 0;
+  }
 }
 
 .m-footer-links__row {
@@ -22,49 +29,92 @@
 }
 
 .m-footer-links__block {
-  margin-left: 60px;
+  margin-left: $footer-links__block-margin-left;
 
   &:first-child {
     margin-left: 0;
+  }
+
+  @include respond-down(xs) {
+    @include dropdown-container();
   }
 }
 
 .m-footer-links__category {
   @include typo-16--bold();
 
-  color: $color-prim-white;
+  display: block;
+
+  color: $footer-links__category-color;
   text-transform: uppercase;
+
+  @include respond-down(xs) {
+    $padding-y: $footer-links__category-padding-y;
+    $padding-left: $footer-links__category-padding-x;
+    $padding-right: $footer-links__category-padding-x + $footer-links__category__icon-right;
+
+    @include typo-16--semibold();
+    @include dropdown-toggle();
+
+    padding: $padding-y $padding-right $padding-y $padding-left;
+    border-bottom: 1px solid $color-prim-blue-st-tropaz;
+
+    background: $color-prim-blue-dark-indigo;
+  }
 }
 
-.m-footer-links__cols {
-  @include make-row();
+.m-footer-links__category__icon {
+  @include dropdown-icon($footer-links__category__icon-size, $footer-links__category__icon-right);
 
-  margin-top: 25px;
+  display: none;
 
-  &:first-child {
-    margin-top: 0;
+  @include respond-down(xs) {
+    display: block;
   }
 }
 
 .m-footer-links__list {
   @include unstyle-list();
-  @include make-col-ready();
-  @include make-col(12);
 
-  margin-left: auto;
+  display: block;
+  padding-top: $footer-links__list-padding-top;
 
-  &:first-child {
-    margin-left: 0;
+  @include respond-down(md) {
+    padding-top: $footer-links__list-padding-top--md;
+  }
+
+  @include respond-down(xs) {
+    @include dropdown-content();
+    @include dropdown-inflow();
+
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    background: $footer-links__list-bg--xs;
+  }
+
+  @include respond-up(sm) {
+    height: auto !important;
   }
 }
 
 .m-footer-links__list-item {
-  display: block;
+  display: inline-block;
+  width: 100%;
+  margin-top: $footer-links__list-item-margin-top;
 
-  margin-top: 10px;
+  @include respond-down(md) {
+    margin-top: $footer-links__list-item-margin-top--md;
+  }
 
-  &:first-child {
-    margin-top: -5px;
+  @include respond-down(xs) {
+    margin-top: 0;
+    border-bottom: $footer-links__list-item-border-bottom-width solid $footer-links__list-item-border-bottom-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }
 
@@ -72,29 +122,38 @@
   @include typo-14();
 
   display: block;
-  padding: 5px 0;
+  padding: $footer-links__link-padding-y 0;
 
-  color: $color-prim-white;
+  color: $footer-links__link-color;
 
   &:hover,
   &:active,
   &:focus {
-    color: rgba($color-prim-white, 0.65);
+    color: $footer-links__link-color--hover;
     text-decoration: none;
   }
-}
 
-.m-footer-links--cols {
+  @include respond-down(xs) {
+    padding: $footer-links__link-padding-y--xs $footer-links__link-padding-x--xs;
+  }
 }
 
 .m-footer-links--cols-2 {
   @include make-col(5);
 
   .m-footer-links__list {
-    @include make-col(6);
+    column-count: 2;
+
+    @include respond-down(xs) {
+      column-count: 1;
+    }
   }
 
   @include respond-down(md) {
     @include make-col(8);
+  }
+
+  @include respond-down(xs) {
+    @include reset-col();
   }
 }

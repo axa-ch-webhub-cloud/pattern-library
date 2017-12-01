@@ -3,6 +3,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';
+import DropDown from '../m-dropdown/js/drop-down';
 
 class FooterLinks extends BaseComponentGlobal {
   constructor() {
@@ -17,6 +18,8 @@ class FooterLinks extends BaseComponentGlobal {
       'm-footer-links--cols': cols,
       [`m-footer-links--cols-${cols}`]: cols,
     });
+
+    this.dropDown = new DropDown(this);
   }
 }
 

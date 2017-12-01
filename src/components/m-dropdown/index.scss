@@ -4,9 +4,10 @@
 @import "../../styles/mixins/button-reset";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "./mixins/dropdown";
 
 .m-dropdown {
-  position: relative;
+  @include dropdown-container();
 
   display: inline-block;
 }
@@ -16,8 +17,7 @@
 
   @include button-reset();
   @include typo-18();
-
-  position: relative;
+  @include dropdown-toggle();
 
   padding: $dropdown__toggle-y-padding $padding-right $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
 
@@ -29,8 +29,6 @@
   &:active,
   &:focus {
     border-color: $dropdown__toggle-color--hover;
-
-    cursor: pointer;
 
     .m-dropdown__icon {
       color: $dropdown__toggle-color--hover;
@@ -58,43 +56,19 @@
 }
 
 .m-dropdown__icon {
-  position: absolute;
-  top: 50%;
-  right: $dropdown__toggle-x-padding;
-
-  display: block;
-  width: $dropdown__icon-size;
-  height: $dropdown__icon-size;
-  margin-top: -($dropdown__icon-size / 2);
-
-  transition: all 0.3s ease;
-
-  .is-open & {
-    transform: rotate(180deg);
-  }
+  @include dropdown-icon();
 }
 
 .m-dropdown__content {
   @include unstyle-list();
+  @include dropdown-content();
 
-  position: absolute;
-  top: 100%;
-  z-index: $zindex-dropdown;
-
-  height: 0;
-  min-width: 100%;
   margin-top: -$dropdown__toggle-border-width;
-  overflow: hidden;
 
   background: $dropdown__content-bg;
-  transition: height 0.3s ease;
-
-  .is-open > & {
-    height: auto;
-  }
 
   .m-dropdown--in-flow > & {
-    position: static;
+    @include dropdown-inflow();
   }
 }
 

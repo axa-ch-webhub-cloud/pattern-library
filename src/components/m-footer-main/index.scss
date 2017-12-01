@@ -1,16 +1,21 @@
-@import "../../styles/settings/colors";
+@import "./settings/footer-main";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 
 .m-footer-main {
   display: block;
-  padding: 50px 0;
+  padding: $footer-main-y-padding 0;
 
-  background: $color-prim-blue-dark-indigo;
-  border-top: 1px solid rgba($color-prim-white, 0.25);
+  background: $footer-bg;
+  border-top: $footer-main-border-top-width solid $footer-main-border-top-color;
 
   @include respond-down(md) {
-    padding-top: 40px;
+    padding-top: $footer-main-y-padding--md;
+    padding-bottom: $footer-main-y-padding--md;
+  }
+
+  @include respond-down(xs) {
+    padding: 0;
   }
 }
 
@@ -22,16 +27,21 @@
 .m-footer-main__row {
   @include make-row();
 
+  // last molecules should always be on the left (except m-footer-links)
   > :last-child {
     margin-left: auto;
   }
 
-  @include respond-down(lg) {
-    flex-direction: row;
+  @include respond-down(xs) {
+    flex-direction: column;
+
+    > :last-child {
+      margin-left: 0;
+    }
   }
 }
 
 .m-footer-main--light {
-  min-height: 49px;
+  min-height: $footer-main-min-height - $footer-main-border-top-width;
   padding: 0;
 }

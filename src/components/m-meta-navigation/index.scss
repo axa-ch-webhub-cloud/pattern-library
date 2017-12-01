@@ -2,6 +2,7 @@
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
+@import "../m-dropdown/mixins/dropdown.scss";
 @import "settings/meta-navigation";
 
 .m-meta-navigation {
@@ -83,14 +84,13 @@
 }
 
 .m-meta-navigation__lang-drop-down {
-  position: relative;
+  @include dropdown-container();
 }
 
 .m-meta-navigation__lang-drop-down__toggle {
   @include button-reset();
   @include typo-13--semibold();
-
-  position: relative;
+  @include dropdown-toggle();
 
   padding: 10.5px 50px 10.5px 20px;
 
@@ -99,39 +99,14 @@
 }
 
 .m-meta-navigation__lang-drop-down-icon {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-
-  display: block;
-  width: 16px;
-  height: 16px;
-  margin-top: -8px;
-
-  transition: all 0.3s ease;
-
-  .is-open & {
-    transform: rotate(180deg);
-  }
+  @include dropdown-icon(16px, 20px);
 }
 
 .m-meta-navigation__lang-list {
   @include unstyle-list();
-
-  position: absolute;
-  top: 100%;
-  z-index: 1000;
-
-  height: 0;
-  min-width: 100%;
-  overflow: hidden;
+  @include dropdown-content();
 
   background: $meta-navigation-bg;
-  transition: height 0.3s ease;
-
-  .is-open > & {
-    height: auto;
-  }
 }
 
 .m-meta-navigation__lang-list-item {

@@ -1,0 +1,52 @@
+@import "../settings/dropdown";
+
+@mixin dropdown-container() {
+  position: relative;
+}
+
+@mixin dropdown-toggle() {
+  position: relative;
+
+  &:hover,
+  &:active,
+  &:focus {
+    cursor: pointer;
+  }
+}
+
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__toggle-x-padding) {
+  position: absolute;
+  top: 50%;
+  right: $right;
+
+  display: block;
+  width: $size;
+  height: $size;
+  margin-top: -($size / 2);
+
+  transition: transform 0.3s ease;
+
+  .is-open & {
+    transform: rotate(180deg);
+  }
+}
+
+@mixin dropdown-content($zindex: $zindex-dropdown) {
+  position: absolute;
+  top: 100%;
+  z-index: $zindex;
+
+  height: 0;
+  min-width: 100%;
+  overflow: hidden;
+
+  transition: height 0.3s ease;
+
+  .is-open > & {
+    height: auto;
+  }
+}
+
+@mixin dropdown-inflow() {
+  position: static;
+}

@@ -1,4 +1,4 @@
-@import "../../styles/settings/colors";
+@import "./settings/footer-languages";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
@@ -19,9 +19,10 @@
 .m-footer-languages__title {
   @include typo-16--bold();
 
-  color: $color-prim-white;
+  color: $footer-languages__title-color;
   text-transform: uppercase;
 
+  // never show title on phones and phablets
   @include respond-down(md) {
     display: none !important;
   }
@@ -39,18 +40,19 @@
   display: block;
   float: left;
 
+  // delimiter
   &::after {
     position: absolute;
     left: 0;
     top: 50%;
 
     display: block;
-    width: 1px;
-    height: 14px;
-    margin-top: -7px;
+    width: $footer-delimiter-width;
+    height: $footer-delimiter-height;
+    margin-top: ($footer-delimiter-height / -2);
 
     content: '';
-    background: rgba($color-prim-white, 0.65);
+    background: $footer-delimiter-bg;
   }
 
   &:first-child::after {
@@ -59,18 +61,22 @@
 }
 
 .m-footer-languages__link {
+  $padding-top: ($footer-languages__link-y-padding - $footer-border-width);
+  $padding-x: $footer-languages__link-x-padding;
+  $padding-bottom: $footer-languages__link-y-padding;
+
   @include typo-14--semibold();
 
   display: block;
-  padding: 16px 10px 17px;
+  padding: $padding-top $padding-x $padding-bottom;
 
-  color: rgba($color-prim-white, 0.65);
+  color: $footer-languages__link-color;
   text-transform: uppercase;
 
   &:hover,
   &:active,
-  &.is-selected {
-    color: $color-prim-white;
+  &.is-active {
+    color: $footer-languages__link-color--hover;
     text-decoration: none;
   }
 }
@@ -89,9 +95,11 @@
 
     display: block;
 
-    margin-right: 20px;
-  }
+    margin-right: $footer-languages__title-margin-right--inline;
 
-  .m-footer-languages__list {
+    // inline always with colon at end of title
+    &::after {
+      content: ':';
+    }
   }
 }
