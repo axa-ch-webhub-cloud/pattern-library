@@ -1,35 +1,10 @@
-@import "../../styles/settings/colors";
-@import "../../styles/settings/footer";
+@import "./settings/footer-links";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
 @import "../m-dropdown/mixins/dropdown";
-
-$footer-links__block-margin-left: 60px !default;
-
-$footer-links__category-color: $footer-color;
-$footer-links__category-padding-x: 30px !default;
-$footer-links__category-padding-y: 20px !default;
-
-$footer-links__category__icon-size: 10px !default;
-$footer-links__category__icon-right: 30px !default;
-
-$footer-links__list-bg--xs: $color-prim-blue-azure !default;
-$footer-links__list-padding-top: 15px !default;
-$footer-links__list-padding-top--md: 10px !default;
-
-$footer-links__list-item-margin-top: 10px !default;
-$footer-links__list-item-margin-top--md: 8px !default;
-$footer-links__list-item-border-bottom-width: 1px !default;
-$footer-links__list-item-border-bottom-color: $color-prim-blue-dark-indigo !default;
-
-$footer-links__link-color: $footer-color !default;
-$footer-links__link-color--hover: $footer-color--light !default;
-$footer-links__link-padding-y: 5px !default;
-$footer-links__link-padding-x--xs: 30px !default;
-$footer-links__link-padding-y--xs: 20px !default;
 
 .m-footer-links {
   @include make-col-ready();

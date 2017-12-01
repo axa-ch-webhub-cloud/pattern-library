@@ -1,20 +1,7 @@
-@import "../../styles/settings/colors";
-@import "../../styles/settings/footer";
+@import "./settings/footer-legals";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
-
-$footer-legals-y-color: $footer-color--light !default;
-$footer-legals-y-padding: 6px !default;
-$footer-legals-padding-bottom--md: 15px !default;
-$footer-legals-padding-top--xs: 15px !default;
-
-$footer-legals__link-color: $footer-color--light !default;
-$footer-legals__link-color--hover: $footer-color !default;
-$footer-legals__link-padding-x: 10px !default;
-$footer-legals__link-padding-y: 6px !default;
-
-$footer-legals__copy-margin-left: 10px !default;
 
 .m-footer-legals {
   @include typo-13();

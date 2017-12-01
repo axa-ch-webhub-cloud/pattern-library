@@ -1,14 +1,6 @@
-@import "../../styles/settings/colors";
-@import "../../styles/settings/footer";
+@import "./settings/footer-main";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
-
-$footer-main-min-height: 50px !default;
-$footer-main-y-padding: 50px !default;
-$footer-main-y-padding--md: 40px !default;
-
-$footer-main-border-top-width: 1px !default;
-$footer-main-border-top-color: $footer-color--dim;
 
 .m-footer-main {
   display: block;
