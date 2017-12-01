@@ -2,11 +2,10 @@ import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
-import template from './_template';
 
 class FooterLegals extends BaseComponentGlobal {
   constructor() {
-    super(styles, template);
+    super(styles);
   }
 
   connectedCallback() {
