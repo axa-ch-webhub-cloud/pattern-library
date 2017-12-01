@@ -19,7 +19,10 @@ $sg-paddings-page: 3%;
 $sg-margin-tops: 30px;
 
 $sg-small-margin: 10px;
+$sg-big-margin: 80px;
 $sg-margin: 20px;
+
+$sg-min-height: 50px;
 
 $sg-gutter-size: 15px;
 
@@ -40,11 +43,11 @@ body {
 }
 
 .o-sg-section__section {
-  min-height: 50px;
+  min-height: $sg-min-height;
 }
 
 .o-sg-section__section--title {
-  margin: 80px $sg-paddings-page $sg-margin-tops;
+  margin: $sg-big-margin $sg-paddings-page $sg-margin-tops;
 }
 
 .o-sg-section__section--buttons {
