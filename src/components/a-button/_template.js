@@ -19,7 +19,7 @@ export default function ({
     'a-button--motion': motion,
     'a-button--arrow': arrow,
   });
-  
+
   const arrowIcon = raw('<axa-icon id="arrow" classes="a-button__arrow"></axa-icon>');
 
   if (tag.toLowerCase() === 'a') {

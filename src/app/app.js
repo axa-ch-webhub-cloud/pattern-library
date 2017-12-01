@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  if (!window.location.hash) {
+    window.location.hash = '#organism';
+  }
+
   setTimeout(() => {
     syncHashWithAtomicChoice(true);
   }, 100);

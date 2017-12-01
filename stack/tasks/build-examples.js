@@ -103,21 +103,21 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     html +=
     `
-      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section${atomicCategory === 'organism' ? ' o-sg-section--visible' : ''}" id="${orginalName}">
+      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section" id="${orginalName}">
         <section class="o-sg-section__section o-sg-section__section--title">
           <h1 class="o-sg-section__section__title">
             <strong class="o-sg-section__section__title--text">${atomicName}</strong>
             <span class="o-sg-section__section__title--text">${previewName}</span>
           </h1>
         </section>
-        <article class="js--section-source o-sg-section__section o-sg-section__section--source o-sg-section__section--visible">
+        <article class="js--section-source o-sg-section__section o-sg-section__section--source">
           ${preview}
         </article>
         <section class="o-sg-section__section o-sg-section__section--buttons">
-          <axa-button ghost color="red" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source" data-atomic-category="organism">Close</axa-button>
-          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="wc-html" data-atomic-category="organism">Webcomponent HTML</axa-button>
-          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="html" data-atomic-category="organism">Traditional HTML</axa-button>
-          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="css" data-atomic-category="organism">CSS</axa-button>
+          <axa-button ghost color="red" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Close</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="wc-html">Webcomponent HTML</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="html">Traditional HTML</axa-button>
+          <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="css">CSS</axa-button>
         </section>
         <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
