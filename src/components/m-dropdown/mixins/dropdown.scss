@@ -24,7 +24,7 @@
   height: $size;
   margin-top: -($size / 2);
 
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 
   .is-open & {
     transform: rotate(180deg);
