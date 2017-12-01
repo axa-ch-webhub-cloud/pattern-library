@@ -124,7 +124,7 @@ body {
   padding: $sg-small-margin $sg-margin $sg-margin;
   background-color: $color-prim-gray-alabaster;
 
-  [data-atomic-category] {
+  .o-sg-section__atomic-category {
     display: none;
     margin-right: $sg-small-margin;
     margin-top: $sg-small-margin;

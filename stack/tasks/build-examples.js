@@ -46,9 +46,9 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let html = '';
   let imports = '';
   let componentsAtoms = `
-    <axa-button tag="a" url="#atoms" data-atomic-category="atom" motion size="sm">Alle</axa-button>
-    <axa-button tag="a" url="#molecules" data-atomic-category="molecule" motion size="sm">Alle</axa-button>
-    <axa-button tag="a" url="#organisms" data-atomic-category="organism" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#atoms" class="o-sg-section__atomic-category" data-atomic-category="atom" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#molecules" class="o-sg-section__atomic-category" data-atomic-category="molecule" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#organisms"  class="o-sg-section__atomic-category" data-atomic-category="organism" motion size="sm">Alle</axa-button>
   `;
 
   const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
@@ -71,7 +71,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     const orginalName = previewName;
 
-    const attrAxaButton = `size="sm" ghost tag="a" url="#${previewName}" motion`;
+    const attrAxaButton = `size="sm" ghost tag="a" url="#${previewName}" motion class="o-sg-section__atomic-category"`;
 
     let atomicName = '';
     switch (previewName.substring(0, 2)) {
@@ -103,7 +103,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     html +=
     `
-      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section" id="${orginalName}">
+      <article data-atomic-category=${atomicCategory} class="js--section o-sg-section o-sg-section__atomic-category" id="${orginalName}">
         <section class="o-sg-section__section o-sg-section__section--title">
           <h1 class="o-sg-section__section__title">
             <strong class="o-sg-section__section__title--text">${atomicName}</strong>
