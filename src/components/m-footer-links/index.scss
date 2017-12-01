@@ -75,6 +75,10 @@
   display: block;
   padding-top: 15px;
 
+  @include respond-down(md) {
+    padding-top: 10px;
+  }
+
   @include respond-down(xs) {
     @include dropdown-content();
     @include dropdown-inflow();

@@ -16,13 +16,27 @@
   text-align: right;
 
   @include respond-down(md) {
+    padding-bottom: 15px;
     margin-left: 0;
     text-align: center;
+
+    &:first-child:last-child {
+      padding-bottom: 6px;
+    }
   }
 
   @include respond-down(xs) {
-    padding-top: 0;
-    padding-bottom: 15px;
+    &:last-child {
+      padding-top: 0;
+    }
+
+    &:first-child {
+      padding-top: 15px;
+    }
+
+    &:first-child:last-child {
+      padding-top: 6px;
+    }
   }
 }
 
