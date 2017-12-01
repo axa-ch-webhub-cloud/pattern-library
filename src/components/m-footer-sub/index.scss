@@ -3,11 +3,14 @@
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 
+$footer-sub-border-top-width: 1px !default;
+$footer-sub-border-top-color: $footer-color--dim !default;
+
 .m-footer-sub {
   display: block;
 
   background: $footer-sub-bg;
-  border-top: 1px solid $footer-color--dim;
+  border-top: $footer-sub-border-top-width solid $footer-sub-border-top-color;
 }
 
 .m-footer-sub__box {
