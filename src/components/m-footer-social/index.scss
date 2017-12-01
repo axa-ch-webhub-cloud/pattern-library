@@ -42,7 +42,7 @@ $footer-social__icon-color: $footer-color !default;
   @include respond-down(md) {
     @include reset-col();
 
-    margin-bottom: $footer-social-margin-bottom;
+    margin-bottom: $footer-social-margin-bottom--md;
 
     &:first-child {
       margin-bottom: 0;
