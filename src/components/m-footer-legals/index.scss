@@ -71,6 +71,7 @@ $footer-legals__copy-margin-left: 10px !default;
     text-decoration: none;
   }
 
+  // delimiter
   &::after {
     position: absolute;
     left: 0;

@@ -163,9 +163,6 @@ $footer-links__link-padding-y--xs: 20px !default;
   }
 }
 
-.m-footer-links--cols {
-}
-
 .m-footer-links--cols-2 {
   @include make-col(5);
 

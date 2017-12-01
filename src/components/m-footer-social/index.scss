@@ -32,6 +32,7 @@ $footer-social__icon-color: $footer-color !default;
 
   display: block;
 
+  // if only child -> width based on content
   &:first-child:last-child {
     @include reset-col();
 
@@ -71,6 +72,7 @@ $footer-social__icon-color: $footer-color !default;
 
   margin: $footer-social__list-margin-top $footer-social__list-margin-x 0 $footer-social__list-margin-x;
 
+  // if no title -> disable top margin
   &:first-child {
     margin-top: 0;
   }
@@ -119,6 +121,7 @@ $footer-social__icon-color: $footer-color !default;
 
     margin-right: $footer-social__title-margin-right--inline;
 
+    // inline always with colon at end of title
     &::after {
       content: ':';
     }
