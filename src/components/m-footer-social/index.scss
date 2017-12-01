@@ -14,6 +14,10 @@
   @include respond-down(md) {
     @include reset-col();
   }
+
+  @include respond-down(xs) {
+    padding: 25px 30px;
+  }
 }
 
 .m-footer-social__title {
@@ -32,19 +36,25 @@
   @include clearfix();
 
   margin-top: 15px;
+  margin-left: -10px;
+  margin-right: -10px;
 
   &:first-child {
     margin-top: 0;
+  }
+
+  @include respond-down(xs) {
+    margin: -10px;
   }
 }
 
 .m-footer-social__list-item {
   display: block;
   float: left;
-  margin-left: 10px;
+  margin-right: 10px;
 
-  &:first-child {
-    margin-left: -10px;
+  &:last-child {
+    margin-right: 0;
   }
 }
 
