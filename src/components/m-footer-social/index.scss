@@ -11,6 +11,12 @@
 
   display: block;
 
+  &:first-child:last-child {
+    @include reset-col();
+
+    flex: 0 1 auto;
+  }
+
   @include respond-down(md) {
     @include reset-col();
 
@@ -18,10 +24,6 @@
 
     &:first-child {
       margin-bottom: 0;
-    }
-
-    &:first-child:last-child {
-      flex: 0 1 auto;
     }
   }
 
