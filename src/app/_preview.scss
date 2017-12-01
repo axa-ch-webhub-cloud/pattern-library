@@ -8,12 +8,12 @@ $sg-patternlink-border-side-width: 1px !default;
 $sg-patternlink-border-side-color: $color-prim-gray-silver !default;
 $sg-patternlink-margin-side: 20px !default;
 
-body {
-  background: $color-prim-gray-alabaster;
-}
-
 $sg-white: $color-prim-white;
 $bg-button: $color-axa-blue;
+
+body {
+  background: $sg-white;
+}
 
 .o-sg-section {
   display: none;
@@ -105,5 +105,20 @@ $bg-button: $color-axa-blue;
 
     border-left: none;
     border-right: $sg-patternlink-border-side-width solid $sg-patternlink-border-side-color;
+  }
+}
+
+.o-sg-header__buttons {
+  padding: 10px 20px 20px;
+  background-color: $color-prim-gray-alabaster;
+
+  [data-atomic-category] {
+    display: none;
+    margin-right: 10px;
+    margin-top: 10px;
+
+    &.o-sg-section--visible {
+      display: inline-block;
+    }
   }
 }

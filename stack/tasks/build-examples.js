@@ -45,6 +45,13 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
   let html = '';
   let imports = '';
+  let componentsAtoms = `
+    <axa-button tag="a" url="#atoms" data-atomic-category="atom" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#molecules" data-atomic-category="molecule" motion size="sm">Alle</axa-button>
+    <axa-button tag="a" url="#organisms" data-atomic-category="organism" motion size="sm">Alle</axa-button>
+  `;
+  let componentsMolecules = '';
+  let componentsOrganisms = '';
 
   const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
   const stylesPath = highlightStyles.filter(style => style.name === 'eclipse')[0].sourcePath;
@@ -56,6 +63,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   previewHtmls.forEach((filePath, index) => {
     const partial = filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.html');
     imports += `<link rel="import" href="${partial}" > \n`;
+
     const name = filePath.split('/').slice(-2).join('/');
 
     const example = fs.readFileSync(exampleHtmls[index], 'utf8');
@@ -65,18 +73,24 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     const orginalName = previewName;
 
+    const attrAxaButton = `size="sm" ghost tag="a" url="#${previewName}" motion`;
+
     let atomicName = '';
     switch (previewName.substring(0, 2)) {
       case 'a-':
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="atom">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Atom';
         break;
       case 'm-':
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="molecule">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Molecule';
         break;
       case 'o-':
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="organism">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Organism';
         break;
       default:
+        componentsAtoms += `<axa-button ${attrAxaButton} data-atomic-category="organism">${previewName.substring(2, previewName.length)}</axa-button>`;
         atomicName = 'Organism';
     }
 
@@ -117,6 +131,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
   const result = indexHtml
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
+    .replace(/<!-- {CUT AND INJECT BUTTONS HERE} -->/g, componentsAtoms)
     .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, html);
 
   fs.writeFile(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/index.html`, result, (_err) => {

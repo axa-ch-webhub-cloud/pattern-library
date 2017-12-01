@@ -26,7 +26,10 @@ const switchAtomicElemenetsTo = (elementGroupName = '', button, firstCall = fals
   }
 
   if (firstCall) {
+    // little hack
+    button.href = window.location.href;
     button.click();
+    button.href = `#${elementGroupName}`;
   }
 };
 
@@ -34,28 +37,27 @@ const syncHashWithAtomicChoice = (firstCall = false) => {
   const { hash } = window.location;
   const id = hash.replace('#', '');
   const el = document.getElementById(id);
-  if (hash.length) {
-    const prefix = hash.substring(1, 2);
-    switch (prefix) {
-      case 'a':
-        switchAtomicElemenetsTo('atom', document.querySelector('.js-atomic-switch-to-atom'), firstCall);
-        break;
-      case 'm':
-        switchAtomicElemenetsTo('molecule', document.querySelector('.js-atomic-switch-to-molecule'), firstCall);
-        break;
-      case 'o':
-        switchAtomicElemenetsTo('organism', document.querySelector('.js-atomic-switch-to-organism'), firstCall);
-        break;
-      default:
-        break;
-    }
-    // quick hack for development. @TODO do it better
-    setTimeout(() => {
-      if (el) {
-        el.scrollIntoView();
-      }
-    }, 150);
+  const prefix = hash.substring(1, 2);
+  switch (prefix) {
+    case 'a':
+      switchAtomicElemenetsTo('atom', document.querySelector('.js-atomic-switch-to-atom'), firstCall);
+      break;
+    case 'm':
+      switchAtomicElemenetsTo('molecule', document.querySelector('.js-atomic-switch-to-molecule'), firstCall);
+      break;
+    case 'o':
+      switchAtomicElemenetsTo('organism', document.querySelector('.js-atomic-switch-to-organism'), firstCall);
+      break;
+    default:
+      switchAtomicElemenetsTo('organism', document.querySelector('.js-atomic-switch-to-organism'), firstCall);
+      break;
   }
+  // quick hack for development. @TODO do it better
+  setTimeout(() => {
+    if (el) {
+      el.scrollIntoView();
+    }
+  }, 150);
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -5,6 +5,7 @@ import classnames from 'classnames';
 export default function ({
   tag = 'button',
   color,
+  url = '#',
   size,
   ghost,
   motion,
@@ -21,7 +22,7 @@ export default function ({
   const arrowIcon = raw('<axa-icon id="arrow" classes="a-button__arrow"></axa-icon>');
 
   if (tag.toLowerCase() === 'a') {
-    return bel`<a href="#" class="${classes}">
+    return bel`<a href="${url}" class="${classes}">
       ${children}
       ${arrow && arrowIcon}
     </a>`;
