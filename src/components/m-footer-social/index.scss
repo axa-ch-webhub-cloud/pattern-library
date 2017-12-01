@@ -17,6 +17,8 @@
 
   @include respond-down(xs) {
     padding: 25px 30px;
+
+    order: -1;
   }
 }
 
@@ -41,6 +43,10 @@
 
   &:first-child {
     margin-top: 0;
+  }
+
+  @include respond-down(md) {
+    margin-top: 30px;
   }
 
   @include respond-down(xs) {
