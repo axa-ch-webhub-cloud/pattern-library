@@ -69,14 +69,11 @@
   }
 }
 
-.m-footer-links__cols {
-  @include make-row();
+.m-footer-links__list {
+  @include unstyle-list();
 
-  margin-top: 25px;
-
-  &:first-child {
-    margin-top: 0;
-  }
+  display: block;
+  padding-top: 15px;
 
   @include respond-down(xs) {
     @include dropdown-content();
@@ -84,6 +81,7 @@
 
     display: block;
     margin: 0;
+    padding: 0;
 
     background: $color-prim-blue-azure;
   }
@@ -93,34 +91,10 @@
   }
 }
 
-.m-footer-links__list {
-  @include unstyle-list();
-  @include make-col-ready();
-  @include make-col(12);
-
-  margin-left: auto;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  @include respond-down(xs) {
-    @include reset-col();
-
-    display: block;
-    padding: 0;
-    margin-left: 0;
-  }
-}
-
 .m-footer-links__list-item {
-  display: block;
-
+  display: inline-block;
+  width: 100%;
   margin-top: 10px;
-
-  &:first-child {
-    margin-top: -5px;
-  }
 }
 
 @include respond-down(xs) {
@@ -162,10 +136,10 @@
   @include make-col(5);
 
   .m-footer-links__list {
-    @include make-col(6);
+    column-count: 2;
 
     @include respond-down(xs) {
-      @include reset-col();
+      column-count: 1;
     }
   }
 
