@@ -1,0 +1,46 @@
+@import "../../styles/settings/colors";
+@import "../../styles/settings/grids";
+@import "../../styles/settings/pixel-ratios";
+@import "../../styles/settings/zindex";
+@import "../../styles/mixins/respond";
+
+.a-device-state::after {
+  $breakpoints-keys: map-keys($grid-breakpoints);
+
+  position: absolute;
+
+  display: block;
+  content: 'breakpoint:xl, orientation:landscape, pixel-ratio: 1';
+
+  @each $pixel-ratio in $pixel-ratios {
+    @each $breakpoint-key in $breakpoints-keys {
+      @include respond-portrait() {
+        @include respond-pixel-ratio($pixel-ratio) {
+          @include respond-up($breakpoint-key) {
+            content: 'breakpoint:#{$breakpoint-key}, orientation:portrait, pixel-ratio:#{$pixel-ratio}';
+          }
+        }
+      }
+
+      @include respond-landscape() {
+        @include respond-pixel-ratio($pixel-ratio) {
+          @include respond-up($breakpoint-key) {
+            content: 'breakpoint:#{$breakpoint-key}, orientation:portrait, pixel-ratio:#{$pixel-ratio}';
+          }
+        }
+      }
+    }
+  }
+}
+
+.a-device-state--debug::after {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: $zindex-fixed;
+
+  display: block;
+  padding: 10px;
+  background: rgba($color-state-red-shy-tomato, 0.9);
+  color: $color-prim-white;
+}
