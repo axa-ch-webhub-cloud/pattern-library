@@ -10,7 +10,7 @@ function deviceState(key) {
   const window = ownerWindow(node);
   let lastContent;
 
-  on(ownerWindow(node), 'resize', throttle(handleResize));
+  on(ownerWindow(node), 'resize', throttle(handleResize), 100);
 
   function handleResize() {
     const content = window.getComputedStyle(node, 'after').getPropertyValue('content');
