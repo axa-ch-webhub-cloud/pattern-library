@@ -8,6 +8,8 @@
   $breakpoints-keys: map-keys($grid-breakpoints);
 
   position: absolute;
+  top: -999em;
+  left: -999em;
 
   display: block;
   content: 'breakpoint:xl, orientation:landscape, pixel-ratio: 1';
@@ -35,6 +37,8 @@
 
 .a-device-state--debug::after {
   position: fixed;
+  top: auto;
+  left: auto;
   right: 0;
   bottom: 0;
   z-index: $zindex-fixed;
