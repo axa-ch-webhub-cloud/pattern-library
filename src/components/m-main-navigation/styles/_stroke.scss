@@ -1,10 +1,13 @@
 @import "../../../styles/settings/colors";
+@import "../../../styles/mixins/hardware-accelerate";
 
 $stroke-bg: $color-prim-red-burnt-sienna !default;
 $stroke-height: 4px !default;
 $stroke-z-index: 1px !default;
 
 .a-stroke {
+  @include hardware-accelerate();
+
   position: absolute;
   bottom: 0;
   left: 0;
@@ -21,7 +24,7 @@ $stroke-z-index: 1px !default;
   }
 
   &.is-move {
-    transition: all 0.2s ease;
+    transition: height 0.2s ease, left 0.2s ease;
   }
 
   &.is-static {
