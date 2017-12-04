@@ -3,6 +3,7 @@
 @import "../../styles/mixins/button-reset";
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/hardware-accelerate";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
@@ -43,6 +44,8 @@
   background: $color-prim-white;
 
   & & {
+    @include hardware-accelerate();
+
     position: absolute;
     left: 0;
     right: 0;
@@ -53,7 +56,7 @@
     height: 100%;
 
     transform: translateX(110%);
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease;
 
     @include respond-up(sm) {
       left: 10px;
