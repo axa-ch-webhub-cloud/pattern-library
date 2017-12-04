@@ -56,7 +56,7 @@ class Stroke extends UiEvents {
     this._node = node;
     this._parentNode = parentNode;
 
-    this._handleStaticState(true);
+    this._handleStaticState(true, true);
 
     requestAnimationFrame(() => {
       add(this._stroke, this.options.enterClass);
@@ -115,8 +115,8 @@ class Stroke extends UiEvents {
     }
   }
 
-  _handleStaticState(isStatic) {
-    if (isStatic === this._isStatic) {
+  _handleStaticState(isStatic, force) {
+    if (!force && isStatic === this._isStatic) {
       return;
     }
 
