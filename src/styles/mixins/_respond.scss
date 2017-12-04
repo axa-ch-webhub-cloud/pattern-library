@@ -38,3 +38,15 @@
     @content;
   }
 }
+
+@mixin respond-portrait() {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin respond-landscape() {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
