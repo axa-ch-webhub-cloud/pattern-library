@@ -10,7 +10,9 @@ function deviceState(key) {
   const window = ownerWindow(node);
   let lastContent;
 
-  on(ownerWindow(node), 'resize', throttle(handleResize), 100);
+  const _handleResize = throttle(handleResize, 100);
+  const unResize = on(ownerWindow(node), 'resize', _handleResize);
+  const unOrientationchange = on(ownerWindow(node), 'orientationchange', _handleResize);
 
   function handleResize() {
     const content = window.getComputedStyle(node, 'after').getPropertyValue('content');
