@@ -25,7 +25,7 @@
       @include respond-landscape() {
         @include respond-pixel-ratio($pixel-ratio) {
           @include respond-up($breakpoint-key) {
-            content: 'breakpoint:#{$breakpoint-key}, orientation:portrait, pixel-ratio:#{$pixel-ratio}';
+            content: 'breakpoint:#{$breakpoint-key}, orientation:landscape, pixel-ratio:#{$pixel-ratio}';
           }
         }
       }
