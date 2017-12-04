@@ -2,6 +2,7 @@
 @import "../../../styles/functions/min-max";
 @import "../../../styles/functions/color-map";
 @import "../../../styles/animations/fade-out-right-in-left";
+@import "../../../styles/mixins/hardware-accelerate";
 @import "../../../styles/mixins/respond";
 @import "../../../styles/mixins/typo";
 
@@ -173,6 +174,7 @@
 }
 
 @mixin button--motion() {
+  @include hardware-accelerate();
 
   z-index: $button__motion-z-index;
 
@@ -193,7 +195,7 @@
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    transition: all $button__motion-duration $button__motion-easing 0s;
+    transition: width $button__motion-duration $button__motion-easing 0s;
   }
 
   &:hover,

@@ -1,4 +1,5 @@
 @import "../settings/dropdown";
+@import "../../../styles/mixins/hardware-accelerate";
 
 @mixin dropdown-container() {
   position: relative;
@@ -15,6 +16,8 @@
 }
 
 @mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__toggle-x-padding) {
+  @include hardware-accelerate();
+
   position: absolute;
   top: 50%;
   right: $right;
@@ -32,6 +35,8 @@
 }
 
 @mixin dropdown-content($zindex: $zindex-dropdown) {
+  @include hardware-accelerate();
+
   position: absolute;
   top: 100%;
   z-index: $zindex;
