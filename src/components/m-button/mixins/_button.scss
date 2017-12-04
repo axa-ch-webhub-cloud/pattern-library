@@ -193,7 +193,7 @@
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    transition: transform $button__motion-duration $button__motion-easing 0s;
+    transition: width $button__motion-duration $button__motion-easing 0s;
   }
 
   &:hover,
