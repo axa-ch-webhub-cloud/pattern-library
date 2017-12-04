@@ -4,6 +4,8 @@
 $stroke-bg: $color-prim-red-burnt-sienna !default;
 $stroke-height: 4px !default;
 $stroke-z-index: 1px !default;
+$stroke-transition-duration: 0.2s !default;
+$stroke-transition-easing: ease !default;
 
 .a-stroke {
   @include hardware-accelerate();
@@ -17,14 +19,17 @@ $stroke-z-index: 1px !default;
   width: 0;
   height: 0;
   background: $color-prim-red-burnt-sienna;
-  transition: height 0.2s ease;
+  transition: height $stroke-transition-duration $stroke-transition-easing;
 
   &.is-enter {
     height: $stroke-height;
   }
 
   &.is-move {
-    transition: height 0.2s ease, left 0.2s ease, width 0.2s ease;
+    transition:
+      height $stroke-transition-duration $stroke-transition-easing,
+      left $stroke-transition-duration $stroke-transition-easing,
+      width $stroke-transition-duration $stroke-transition-easing;
   }
 
   &.is-static {
