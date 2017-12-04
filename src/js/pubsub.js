@@ -1,6 +1,7 @@
 const topics = {};
 
 export function publish(topic, ...args) {
+  console.log('publish', topic, topics[topic]);
   // If the topic doesn't exist, or there's no listeners in queue, just leave
   if (!(topic in topics)) {
     return;
@@ -17,17 +18,22 @@ export function publish(topic, ...args) {
 export function subscribe(topic, func) {
   // Create the topic's object if not yet created
   if (!(topic in topics)) {
-    topic[topic] = [];
+    topics[topic] = [];
   }
 
   // Add the listener to queue
-  const index = topic[topic].push(func);
+  const index = topics[topic].push(func) - 1;
+
+  console.log('subscribe', topic, topics[topic]);
 
   // Provide handle back for removal of topic
   return unsubscribe;
 
   function unsubscribe() {
+    console.log('unsubscribe', topic);
     delete topics[topic][index];
+
+    console.log(topics);
   }
 }
 

@@ -5,6 +5,9 @@ import styles from './index.scss';
 import template from './_template';
 import DropDown from '../m-dropdown/js/drop-down';
 import { domready } from '../../js/domready';
+import { subscribe } from '../../js/pubsub';
+
+const breakpoints = ['xs', 'sm'];
 
 class FooterLinks extends BaseComponentGlobal {
   constructor() {
@@ -20,7 +23,27 @@ class FooterLinks extends BaseComponentGlobal {
       [`m-footer-links--cols-${cols}`]: cols,
     });
 
-    this.dropDown = new DropDown(this);
+    this.unsubscribe = subscribe('/device-state/change', ({ breakpoint }) => {
+      const hasDropdown = breakpoints.indexOf(breakpoint) > -1;
+
+      if (hasDropdown && !this.dropDown) {
+        this.dropDown = new DropDown(this);
+        console.log('add dropdown');
+      } else if (!hasDropdown && this.dropDown) {
+        this.dropDown.destroy();
+        delete this.dropDown;
+        console.log('remove dropdown');
+      }
+    });
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe();
+
+    if (this.dropDown) {
+      this.dropDown.destroy();
+      delete this.dropDown;
+    }
   }
 }
 
