@@ -24,7 +24,7 @@ $stroke-z-index: 1px !default;
   }
 
   &.is-move {
-    transition: height 0.2s ease, left 0.2s ease;
+    transition: height 0.2s ease, left 0.2s ease, width 0.2s ease;
   }
 
   &.is-static {
