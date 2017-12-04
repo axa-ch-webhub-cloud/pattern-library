@@ -12,15 +12,15 @@ export default function ({
   motion,
   arrow,
 }, children) {
-  const buttonClasses = classnames('a-button', classes, {
-    [`a-button--${color}`]: color,
-    [`a-button--${size}`]: size,
-    'a-button--ghost': ghost,
-    'a-button--motion': motion,
-    'a-button--arrow': arrow,
+  const buttonClasses = classnames('m-button', classes, {
+    [`m-button--${color}`]: color,
+    [`m-button--${size}`]: size,
+    'm-button--ghost': ghost,
+    'm-button--motion': motion,
+    'm-button--arrow': arrow,
   });
 
-  const arrowIcon = raw('<axa-icon id="arrow" classes="a-button__arrow"></axa-icon>');
+  const arrowIcon = raw('<axa-icon id="arrow" classes="m-button__arrow"></axa-icon>');
 
   if (tag.toLowerCase() === 'a') {
     return bel`<a href="${url}" class="${buttonClasses}">

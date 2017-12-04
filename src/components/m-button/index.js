@@ -8,6 +8,6 @@ class Button extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-button', Button);
+window.customElements.define('axm-button', Button);
 
 BaseComponentGlobal.appendGlobalStyles(styles);
