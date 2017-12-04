@@ -2,6 +2,7 @@
 @import "../../../styles/functions/min-max";
 @import "../../../styles/functions/color-map";
 @import "../../../styles/animations/fade-out-right-in-left";
+@import "../../../styles/mixins/hardware-accelerate";
 @import "../../../styles/mixins/respond";
 @import "../../../styles/mixins/typo";
 
@@ -173,6 +174,7 @@
 }
 
 @mixin button--motion() {
+  @include hardware-accelerate();
 
   z-index: $button__motion-z-index;
 
