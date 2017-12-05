@@ -14,4 +14,6 @@ class FooterSub extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-sub', FooterSub);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer-sub', FooterSub);
+}, false);

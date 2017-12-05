@@ -39,4 +39,6 @@ class MainNavigation extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-main-navigation', MainNavigation);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-main-navigation', MainNavigation);
+}, false);

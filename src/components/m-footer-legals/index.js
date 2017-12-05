@@ -18,4 +18,6 @@ class FooterLegals extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-legals', FooterLegals);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer-legals', FooterLegals);
+}, false);

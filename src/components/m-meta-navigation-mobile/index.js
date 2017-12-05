@@ -8,4 +8,6 @@ class MetaNavigationMobile extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-meta-navigation-mobile', MetaNavigationMobile);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-meta-navigation-mobile', MetaNavigationMobile);
+}, false);

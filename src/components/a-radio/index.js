@@ -120,4 +120,7 @@ class Radio extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-radio', Radio);
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-radio', Radio);
+}, false);

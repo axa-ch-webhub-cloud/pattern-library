@@ -19,4 +19,6 @@ class FooterLanguages extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-languages', FooterLanguages);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer-languages', FooterLanguages);
+}, false);

@@ -16,4 +16,6 @@ class MetaNavigation extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-meta-navigation', MetaNavigation);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-meta-navigation', MetaNavigation);
+}, false);

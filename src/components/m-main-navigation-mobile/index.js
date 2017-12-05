@@ -22,4 +22,6 @@ class MainNavigationMobile extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-main-navigation-mobile', MainNavigationMobile);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-main-navigation-mobile', MainNavigationMobile);
+}, false);

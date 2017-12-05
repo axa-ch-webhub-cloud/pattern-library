@@ -19,4 +19,6 @@ class FooterMain extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-main', FooterMain);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer-main', FooterMain);
+}, false);

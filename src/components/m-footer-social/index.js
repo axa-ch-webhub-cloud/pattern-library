@@ -21,4 +21,6 @@ class FooterSocial extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-social', FooterSocial);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer-social', FooterSocial);
+}, false);

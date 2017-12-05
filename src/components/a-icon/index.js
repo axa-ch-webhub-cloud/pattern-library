@@ -8,4 +8,6 @@ class Icon extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-icon', Icon);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-icon', Icon);
+}, false);

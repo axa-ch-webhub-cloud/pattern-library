@@ -15,4 +15,6 @@ class TopContentBar extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-top-content-bar', TopContentBar);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-top-content-bar', TopContentBar);
+}, false);

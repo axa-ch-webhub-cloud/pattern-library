@@ -33,6 +33,8 @@ class Dropdown extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-dropdown', Dropdown);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-dropdown', Dropdown);
 
-BaseComponentGlobal.appendGlobalStyles(styles);
+  BaseComponentGlobal.appendGlobalStyles(styles);
+}, false);

@@ -8,4 +8,6 @@ class Footer extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer', Footer);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer', Footer);
+}, false);

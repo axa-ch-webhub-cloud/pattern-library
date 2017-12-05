@@ -145,4 +145,6 @@ class Checkbox extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-checkbox', Checkbox);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-checkbox', Checkbox);
+}, false);

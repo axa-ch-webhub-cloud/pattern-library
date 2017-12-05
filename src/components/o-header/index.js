@@ -8,4 +8,6 @@ class Header extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-header', Header);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-header', Header);
+}, false);

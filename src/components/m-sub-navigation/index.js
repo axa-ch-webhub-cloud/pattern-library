@@ -20,4 +20,6 @@ class SubNavigation extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-sub-navigation', SubNavigation);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-sub-navigation', SubNavigation);
+}, false);

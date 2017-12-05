@@ -23,4 +23,6 @@ class FooterLinks extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-links', FooterLinks);
+document.addEventListener('DOMContentLoaded', () => {
+  window.customElements.define('axa-footer-links', FooterLinks);
+}, false);

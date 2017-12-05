@@ -64,19 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // all sections's buttons toggle
   const sections = document.querySelectorAll('.js--section');
 
-  Array.from(sections).forEach((section) => {
-    let lastEnabled = null;
-    const toggleButtons = section.querySelectorAll('.js--toggle');
-    const arr = Array.from(toggleButtons);
-    [lastEnabled] = arr;
-    arr.forEach((button) => {
-      button.addEventListener('click', () => {
-        disable(lastEnabled, section);
-        enable(button, section);
-        lastEnabled = button;
+  // let the components render first, thats why this hack
+  setTimeout(() => {
+    Array.from(sections).forEach((section) => {
+      let lastEnabled = null;
+      const toggleButtons = section.querySelectorAll('.js--toggle');
+      const arr = Array.from(toggleButtons);
+      [lastEnabled] = arr;
+      arr.forEach((button) => {
+        button.addEventListener('click', () => {
+          disable(lastEnabled, section);
+          enable(button, section);
+          lastEnabled = button;
+        });
       });
     });
-  });
+  }, 10);
 
   if (!window.location.hash) {
     window.location.hash = '#organism';
