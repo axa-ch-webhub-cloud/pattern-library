@@ -1,7 +1,7 @@
 import on from '../../js/on';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
-
+import { domready } from '../../js/domready';
 
 const KEYCODE = {
   SPACE: 32,
@@ -120,4 +120,6 @@ class Radio extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-radio', Radio);
+domready(() => {
+  window.customElements.define('axa-radio', Radio);
+});

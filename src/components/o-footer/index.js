@@ -1,4 +1,5 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import { domready } from '../../js/domready';
 
 class Footer extends BaseComponentGlobal {
   connectedCallback() {
@@ -8,4 +9,6 @@ class Footer extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer', Footer);
+domready(() => {
+  window.customElements.define('axa-footer', Footer);
+});

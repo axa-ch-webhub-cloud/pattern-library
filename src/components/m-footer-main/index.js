@@ -3,6 +3,7 @@ import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
+import { domready } from '../../js/domready';
 
 class FooterMain extends BaseComponentGlobal {
   constructor() {
@@ -19,4 +20,6 @@ class FooterMain extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-main', FooterMain);
+domready(() => {
+  window.customElements.define('axa-footer-main', FooterMain);
+});

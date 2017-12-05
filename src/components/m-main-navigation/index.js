@@ -5,6 +5,7 @@ import Stroke from './js/stroke';
 import SubNavigation from './js/sub-navigation';
 import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import { domready } from '../../js/domready';
 
 class MainNavigation extends BaseComponentGlobal {
   constructor() {
@@ -39,4 +40,6 @@ class MainNavigation extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-main-navigation', MainNavigation);
+domready(() => {
+  window.customElements.define('axa-main-navigation', MainNavigation);
+});

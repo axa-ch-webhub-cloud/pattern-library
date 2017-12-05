@@ -4,6 +4,7 @@ import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';
 import DropDown from '../m-dropdown/js/drop-down';
+import { domready } from '../../js/domready';
 
 class FooterLinks extends BaseComponentGlobal {
   constructor() {
@@ -23,4 +24,6 @@ class FooterLinks extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define('axa-footer-links', FooterLinks);
+domready(() => {
+  window.customElements.define('axa-footer-links', FooterLinks);
+});
