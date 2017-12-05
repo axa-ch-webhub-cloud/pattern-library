@@ -1,34 +1,63 @@
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
 import throttle from '../../../js/throttle';
-import { publish } from '../../../js/pubsub';
+import { publish, subscribe } from '../../../js/pubsub';
 
 const reWhiteSpace = /\s/g;
 const reUnquote = /^"+|"+$/g;
 let isInitialised = false;
+let hasChanged = true;
+let node;
+let window;
+let lastContent;
 
-function deviceState() {
-  let node;
-  let window;
-  let lastContent;
+export function getDeviceState() {
+  if (!node) {
+    node = document.querySelector('.a-device-state');
+  }
 
+  if (!window && node) {
+    window = ownerWindow(node);
+  }
+
+  if (!node || !window) {
+    return false;
+  }
+
+  const content = window.getComputedStyle(node, 'after').getPropertyValue('content');
+
+  // somehow still not ready, whats up with u CSSOM?
+  if (!content) {
+    return false;
+  }
+
+  hasChanged = content !== lastContent;
+
+  // now is really ready
+  lastContent = content;
+
+  const state = content.replace(reWhiteSpace, '')
+    .replace(reUnquote, '')
+    .split(',')
+    .reduce(parsePair, {});
+
+  return state;
+}
+
+function observeDeviceState() {
   const _handleResize = throttle(handleResize, 100);
 
   on(document, 'DOMContentLoaded', _handleResize);
   on(document, 'load', _handleResize);
 
+  subscribe('onsubscribe/device-state/change', handleSubscribtion)
+
   handleResize();
 
   function handleResize() {
-    if (!node) {
-      node = document.querySelector('.a-device-state');
-    }
+    const state = getDeviceState();
 
-    if (!window && node) {
-      window = ownerWindow(node);
-    }
-
-    if (!node || !window) {
+    if (!state) {
       return;
     }
 
@@ -39,18 +68,19 @@ function deviceState() {
       on(ownerWindow(node), 'orientationchange', _handleResize);
     }
 
-    const content = window.getComputedStyle(node, 'after').getPropertyValue('content');
-
-    if (content && content !== lastContent) {
-      lastContent = content;
-
-      const state = content.replace(reWhiteSpace, '')
-        .replace(reUnquote, '')
-        .split(',')
-        .reduce(parsePair, {});
-
+    if (hasChanged) {
       publish('device-state/change', state);
     }
+  }
+
+  function handleSubscribtion() {
+    const state = getDeviceState();
+
+    if (!state) {
+      return;
+    }
+
+    publish('device-state/change', state);
   }
 }
 
@@ -62,4 +92,4 @@ function parsePair(accumulated, pair) {
   return accumulated;
 }
 
-export default deviceState;
+export default observeDeviceState;
