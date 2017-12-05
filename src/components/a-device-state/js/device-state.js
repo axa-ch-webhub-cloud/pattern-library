@@ -1,7 +1,7 @@
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
 import throttle from '../../../js/throttle';
-import { publish } from '../../../js/pubsub';
+import { publish, subscribe } from '../../../js/pubsub';
 
 const reWhiteSpace = /\s/g;
 const reUnquote = /^"+|"+$/g;
@@ -50,6 +50,8 @@ function observeDeviceState() {
   on(document, 'DOMContentLoaded', _handleResize);
   on(document, 'load', _handleResize);
 
+  subscribe('onsubscribe/device-state/change', handleSubscribtion)
+
   handleResize();
 
   function handleResize() {
@@ -69,6 +71,16 @@ function observeDeviceState() {
     if (hasChanged) {
       publish('device-state/change', state);
     }
+  }
+
+  function handleSubscribtion() {
+    const state = getDeviceState();
+
+    if (!state) {
+      return;
+    }
+
+    publish('device-state/change', state);
   }
 }
 
