@@ -8,8 +8,8 @@
   $breakpoints-keys: map-keys($grid-breakpoints);
 
   position: absolute;
-  top: -999em;
-  left: -999em;
+  top: -9999px;
+  left: -9999px;
 
   display: block;
   content: 'breakpoint:xl, orientation:landscape, pixel-ratio: 1';
