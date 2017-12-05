@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Here i want that my listener comes at the end. I evaluated that listening to
   // the actual load of the component is too much for this only styleguide relevant js
   // and i dont want to write any code in the component that is needed only for the styleguide
+  // TODO: Implement a solution without setTimeout
   setTimeout(() => {
     Array.from(sections).forEach((section) => {
       let lastEnabled = null;
