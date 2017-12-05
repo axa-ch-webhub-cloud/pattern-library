@@ -1,5 +1,6 @@
 import on from '../../../js/on';
 import { add, remove } from '../../../js/class-list';
+import { subscribe } from '../../../js/pubsub';
 
 class MobileNavigation {
   static DEFAULTS = {
@@ -20,6 +21,8 @@ class MobileNavigation {
 
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
 
     this.init();
   }
@@ -35,6 +38,8 @@ class MobileNavigation {
 
     this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
     this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
+    this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open);
+    this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close);
   }
 
   off() {
@@ -45,6 +50,22 @@ class MobileNavigation {
     if (this.unBackClick) {
       this.unBackClick();
     }
+
+    if (this.unSubscribeOpen) {
+      this.unSubscribeOpen();
+    }
+
+    if (this.unSubscribeClose) {
+      this.unSubscribeClose();
+    }
+  }
+
+  open() {
+    console.log('open mobile menu');
+  }
+
+  close() {
+    console.log('close mobile menu');
   }
 
   handleCategoryClick(e, delegateTarget) {

@@ -2,6 +2,7 @@ import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
 import { add, remove } from '../../../js/class-list';
+import { publish } from '../../../js/pubsub';
 
 const EVENTS = Enum('click', 'resize');
 
@@ -70,6 +71,8 @@ class Burger {
     this.isOpen = true;
 
     add(this.burger, this.options.burgerState);
+
+    publish('main-navigation-mobile/open');
   }
 
   close() {
@@ -80,6 +83,8 @@ class Burger {
     this.isOpen = false;
 
     remove(this.burger, this.options.burgerState);
+
+    publish('main-navigation-mobile/close');
   }
 
   destroy() {
