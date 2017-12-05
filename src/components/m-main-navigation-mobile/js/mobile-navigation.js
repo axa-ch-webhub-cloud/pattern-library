@@ -62,10 +62,14 @@ class MobileNavigation {
 
   open() {
     console.log('open mobile menu');
+
+    add(this.rootNode, this.options.isOpenClass);
   }
 
   close() {
     console.log('close mobile menu');
+
+    remove(this.rootNode, this.options.isOpenClass);
   }
 
   handleCategoryClick(e, delegateTarget) {

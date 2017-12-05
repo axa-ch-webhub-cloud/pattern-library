@@ -20,6 +20,18 @@
 
 .m-main-navigation-mobile--off-canvas {
   position: fixed;
+  top: 73px;
+  right: 0;
+  z-index: $main-navigation-mobile__nav-z-index;
+
+  height: 100%;
+
+  transform: translateX(110%);
+  transition: transform 0.2s ease;
+
+  &.is-open {
+    transform: translateX(0);
+  }
 
   @include respond-up(md) {
     display: none;
