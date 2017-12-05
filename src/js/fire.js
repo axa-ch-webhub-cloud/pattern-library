@@ -1,6 +1,7 @@
 /* global Event, CustomEvent */
 
 function fire(node, eventName, eventObject) {
+  // @TODO: maybe polyfill is needed for Event or CustomEvent, like document.createEvent...
   const event = !eventObject ?
     new Event(eventName)
     :
