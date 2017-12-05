@@ -1,7 +1,8 @@
 import CustomEvent from './custom-event';
 
-function fire(node, eventName, eventObject) {
+function fire(node, eventName, eventObject, eventInit = {}) {
   const event = new CustomEvent(eventName, {
+    ...eventInit,
     detail: eventObject,
   });
 
