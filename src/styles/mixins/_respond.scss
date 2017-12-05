@@ -38,3 +38,33 @@
     @content;
   }
 }
+
+@mixin respond-portrait() {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin respond-landscape() {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin respond-pixel-ratio($ratio: 1) {
+  @if (type_of($ratio) != number) {
+    @error "$ratio #{$ratio} has to be a Number!";
+  }
+
+  @if (unitless($ratio)) {
+    $ratio: $ratio * 1dppx;
+  }
+
+  @if (unit($ratio) != dppx) {
+    @error "$ratio #{$ratio} has to be ofunit dppx or unitless!";
+  }
+
+  @media (min-resolution: $ratio) {
+    @content;
+  }
+}
