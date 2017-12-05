@@ -47,19 +47,19 @@ function deviceState() {
       const state = content.replace(reWhiteSpace, '')
         .replace(reUnquote, '')
         .split(',')
-        .map(parsePair);
+        .reduce(parsePair, {});
 
-      publish('/device-state/change', state);
+      publish('device-state/change', state);
     }
   }
 }
 
-function parsePair(pair) {
+function parsePair(accumulated, pair) {
   const [key, value] = pair.split(':');
 
-  return {
-    [key]: +value || value,
-  };
+  accumulated[key] = +value || value;
+
+  return accumulated;
 }
 
 export default deviceState;

@@ -7,7 +7,7 @@ import DropDown from '../m-dropdown/js/drop-down';
 import { domready } from '../../js/domready';
 import { subscribe } from '../../js/pubsub';
 
-const breakpoints = ['xs', 'sm'];
+const hasDropdownBreakpoints = 'xs';
 
 class FooterLinks extends BaseComponentGlobal {
   constructor() {
@@ -23,22 +23,29 @@ class FooterLinks extends BaseComponentGlobal {
       [`m-footer-links--cols-${cols}`]: cols,
     });
 
-    this.unsubscribe = subscribe('/device-state/change', ({ breakpoint }) => {
-      const hasDropdown = breakpoints.indexOf(breakpoint) > -1;
+    this.off();
+
+    this.unsubscribe = subscribe('device-state/change', (event) => {
+      const { detail: { breakpoint } } = event;
+      const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
 
       if (hasDropdown && !this.dropDown) {
         this.dropDown = new DropDown(this);
-        console.log('add dropdown');
       } else if (!hasDropdown && this.dropDown) {
         this.dropDown.destroy();
         delete this.dropDown;
-        console.log('remove dropdown');
       }
     });
   }
 
+  off() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
+  }
+
   disconnectedCallback() {
-    this.unsubscribe();
+    this.off();
 
     if (this.dropDown) {
       this.dropDown.destroy();
