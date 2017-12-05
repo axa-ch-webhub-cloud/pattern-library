@@ -1,6 +1,7 @@
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import { domready } from '../../js/domready';
 
 class TopContentBar extends BaseComponentGlobal {
   constructor() {
@@ -15,6 +16,6 @@ class TopContentBar extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-top-content-bar', TopContentBar);
-}, false);
+});

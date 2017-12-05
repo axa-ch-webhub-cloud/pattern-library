@@ -1,6 +1,7 @@
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import { domready } from '../../js/domready';
 
 class MetaNavigationMobile extends BaseComponentGlobal {
   constructor() {
@@ -8,6 +9,6 @@ class MetaNavigationMobile extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-meta-navigation-mobile', MetaNavigationMobile);
-}, false);
+});

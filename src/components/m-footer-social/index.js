@@ -3,6 +3,7 @@ import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
+import { domready } from '../../js/domready';
 
 class FooterSocial extends BaseComponentGlobal {
   constructor() {
@@ -21,6 +22,6 @@ class FooterSocial extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-footer-social', FooterSocial);
-}, false);
+});

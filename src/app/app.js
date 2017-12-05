@@ -64,7 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // all sections's buttons toggle
   const sections = document.querySelectorAll('.js--section');
 
-  // let the components render first, thats why this hack
+  // let the components render first, thats why this hack.
+  // All the WC components initialise on dom ready, but they are later in the queue.
+  // Here i want that my listener comes at the end. I evaluated that listening to
+  // the actual load of the component is too much for this only styleguide relevant js
+  // and i dont want to write any code in the component that is needed only for the styleguide
   setTimeout(() => {
     Array.from(sections).forEach((section) => {
       let lastEnabled = null;

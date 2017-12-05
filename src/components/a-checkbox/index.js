@@ -1,6 +1,7 @@
 import on from '../../js/on';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
+import { domready } from '../../js/domready';
 
 const KEYCODE = {
   SPACE: 32,
@@ -145,6 +146,6 @@ class Checkbox extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-checkbox', Checkbox);
-}, false);
+});

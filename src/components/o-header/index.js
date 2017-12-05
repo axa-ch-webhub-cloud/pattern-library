@@ -1,4 +1,5 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import { domready } from '../../js/domready';
 
 class Header extends BaseComponentGlobal {
   connectedCallback() {
@@ -8,6 +9,6 @@ class Header extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-header', Header);
-}, false);
+});

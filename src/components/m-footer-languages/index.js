@@ -3,6 +3,7 @@ import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
+import { domready } from '../../js/domready';
 
 class FooterLanguages extends BaseComponentGlobal {
   constructor() {
@@ -19,6 +20,6 @@ class FooterLanguages extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-footer-languages', FooterLanguages);
-}, false);
+});

@@ -3,6 +3,7 @@ import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import DropDown from './js/drop-down';
+import { domready } from '../../js/domready';
 
 class Dropdown extends BaseComponentGlobal {
   constructor() {
@@ -33,8 +34,8 @@ class Dropdown extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+domready(() => {
   window.customElements.define('axa-dropdown', Dropdown);
 
   BaseComponentGlobal.appendGlobalStyles(styles);
-}, false);
+});
