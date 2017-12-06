@@ -53,6 +53,7 @@ class Child extends BaseComponentGlobal {
   }
 }
 
+// markup does not defined bootstrap order, instead definition seems to do
 domready(() => {
   window.customElements.define('axa-child', Child);
 });
