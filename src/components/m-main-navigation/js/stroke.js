@@ -56,13 +56,15 @@ class Stroke extends UiEvents {
     this._node = node;
     this._parentNode = parentNode;
 
-    this._handleStaticState(true, true);
-
     requestAnimationFrame(() => {
-      add(this._stroke, this.options.enterClass);
-      css(this._stroke, {
-        width: `${parentNode.offsetWidth}px`,
-        left: `${parentNode.offsetLeft}px`,
+      this._handleStaticState(true, true);
+
+      requestAnimationFrame(() => {
+        add(this._stroke, this.options.enterClass);
+        css(this._stroke, {
+          width: `${parentNode.offsetWidth}px`,
+          left: `${parentNode.offsetLeft}px`,
+        });
       });
     });
   }
@@ -72,30 +74,35 @@ class Stroke extends UiEvents {
     this._node = node;
     this._parentNode = parentNode;
 
-    this._handleStaticState(false);
-
     requestAnimationFrame(() => {
-      add(this._stroke, this.options.moveClass);
-      css(this._stroke, {
-        width: `${parentNode.offsetWidth}px`,
-        left: `${parentNode.offsetLeft}px`,
-      });
+      this._handleStaticState(false);
 
-      this._onMoving();
+      requestAnimationFrame(() => {
+        add(this._stroke, this.options.moveClass);
+        css(this._stroke, {
+          width: `${parentNode.offsetWidth}px`,
+          left: `${parentNode.offsetLeft}px`,
+        });
+
+        this._onMoving();
+      });
     });
   }
 
   leave() {
     this._offMoving();
-    this._handleStaticState(true);
 
     requestAnimationFrame(() => {
-      remove(this._stroke, this.options.moveClass);
-      remove(this._stroke, this.options.enterClass);
-    });
+      this._handleStaticState(true);
 
-    this._parentNode = null;
-    this._node = null;
+      requestAnimationFrame(() => {
+        remove(this._stroke, this.options.moveClass);
+        remove(this._stroke, this.options.enterClass);
+      });
+
+      this._parentNode = null;
+      this._node = null;
+    });
   }
 
   _onMoving() {
