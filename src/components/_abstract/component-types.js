@@ -125,7 +125,7 @@ export class BaseComponent extends HTMLElement {
     let { parentNode } = this;
 
     while (parentNode && !parentNode.__isContext) {
-      // eslint-disable-next-line
+      // eslint-disable-next-line prefer-destructuring
       parentNode = parentNode.parentNode;
     }
 
