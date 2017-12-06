@@ -109,6 +109,21 @@ export class BaseComponent extends HTMLElement {
     }
   }
 
+  setContext() {
+    this.__isContext = true;
+  }
+
+  getContext() {
+    let { parentNode } = this;
+
+    while (parentNode && !parentNode.__isContext) {
+      // eslint-disable-next-line
+      parentNode = parentNode.parentNode;
+    }
+
+    return (parentNode && parentNode.__isContext) ? parentNode : false;
+  }
+
   static uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
