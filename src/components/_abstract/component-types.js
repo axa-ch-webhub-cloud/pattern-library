@@ -118,7 +118,7 @@ export class BaseComponent extends HTMLElement {
     this.__isContext = true;
 
     // publish oncontextenabled with current contextNode
-    publish(`oncontextenabled/${this.constructor.name}`, this);
+    publish(`oncontextenabled/${this.nodeName.toLowerCase()}`, this);
   }
 
   /**
