@@ -1,4 +1,5 @@
 import getAttributes from '../../js/get-attributes';
+import { publish } from '../../js/pubsub';
 
 const memory = {};
 
@@ -115,6 +116,9 @@ export class BaseComponent extends HTMLElement {
    */
   enableContext() {
     this.__isContext = true;
+
+    // publish oncontextenabled with current contextNode
+    publish(`oncontextenabled/${this.constructor.name}`, this);
   }
 
   /**
