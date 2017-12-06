@@ -10,7 +10,7 @@ const eventNameMap = {
 /**
  * Attach an event handler function for one event to the selected element, optionally delegated by given className.
  *
- * @param {Element|Document|Window|XMLHttpRequest} eventTarget - The event target may be an Element in a document, the Document itself, a Window, or any other object that supports events (such as XMLHttpRequest)
+ * @param {Element|Document|Window|XMLHttpRequest} eventTarget - The event target may be an Element in a document, the Document itself, a Window, or any other object that supports events (such as XMLHttpRequest).
  * @param {string} eventName -  A string representing the event type to listen for.
  * @param {string} [className] - A CSS class name upon which the given callback should be executet (without the preceding dot).
  * @param [Function] func - A function which receives a notification when an event of the specified type occurs.
