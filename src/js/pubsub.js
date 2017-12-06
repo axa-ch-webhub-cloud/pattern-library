@@ -12,6 +12,7 @@ const cache = {};
  * @param {Element} [node=document] - The node to publish message to.
  */
 export function publish(topic, arg, node = document) {
+  // @TODO: atm this does not define cancelable nor bubbles
   // Cycle through topics queue, fire!
   fire(node, topic, arg);
 }
