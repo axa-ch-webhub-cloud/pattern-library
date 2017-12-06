@@ -109,6 +109,7 @@ export class BaseComponent extends HTMLElement {
     }
   }
 
+  // @TODO: atm no data can be shared by enabling context, though this could be necessary
   /**
    * Provides an opt-in contextual scope for hierarchy-agnostic child components.
    */
