@@ -103,9 +103,10 @@
 
   position: relative;
 
-  display: table-cell;
+  display: flex;
   height: $main-navigation-height;
   padding: 0 $main-navigation__list-link-x-padding;
+  align-items: center;
 
   text-align: center;
   text-transform: uppercase;
