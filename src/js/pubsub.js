@@ -3,7 +3,11 @@ import on from './on';
 import debounce from './debounce';
 
 // @TODO: this local variable isn't shared between redundant module instance
-const subscriptions = {};
+const subscriptions = (function (window) {
+  window.__subscribtions__ = window.__subscribtions__ || {};
+
+  return window.__subscribtions__;
+}(window));
 
 /**
  * Publish a message regarding a given topic.
