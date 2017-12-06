@@ -21,6 +21,7 @@ class MobileNavigation {
 
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
+    this.onContextEnabled = this.onContextEnabled.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -40,8 +41,7 @@ class MobileNavigation {
 
     this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
     this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
-    this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this.rootNode.contextNode);
-    this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this.rootNode.contextNode);
+    this.unSubscribeContextEnabled = subscribe('oncontextenabled/axa-header', this.onContextEnabled);
   }
 
   off() {
@@ -51,6 +51,21 @@ class MobileNavigation {
 
     if (this.unBackClick) {
       this.unBackClick();
+    }
+  }
+
+  onContextEnabled() {
+    this.offContextEnabled();
+
+    console.log('context enabled');
+
+    this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this.rootNode.contextNode);
+    this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this.rootNode.contextNode);
+  }
+
+  offContextEnabled() {
+    if (this.unSubscribeContextEnabled) {
+      this.unSubscribeContextEnabled();
     }
 
     if (this.unSubscribeOpen) {
