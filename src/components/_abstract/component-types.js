@@ -109,6 +109,30 @@ export class BaseComponent extends HTMLElement {
     }
   }
 
+  // @TODO: atm no data can be shared by enabling context, though this could be necessary
+  /**
+   * Provides an opt-in contextual scope for hierarchy-agnostic child components.
+   */
+  enableContext() {
+    this.__isContext = true;
+  }
+
+  /**
+   * Returns contextual scope, if defined by any parent component.
+   *
+   * @returns {ContextNode|Boolean} - Returns an associated context node if found, else `false`.
+   */
+  get contextNode() {
+    let { parentNode } = this;
+
+    while (parentNode && !parentNode.__isContext) {
+      // eslint-disable-next-line prefer-destructuring
+      parentNode = parentNode.parentNode;
+    }
+
+    return (parentNode && parentNode.__isContext) ? parentNode : false;
+  }
+
   static uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
