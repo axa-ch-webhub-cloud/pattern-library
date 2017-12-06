@@ -109,10 +109,18 @@ export class BaseComponent extends HTMLElement {
     }
   }
 
+  /**
+   * Provides an opt-in contextual scope for hierarchy-agnostic child components.
+   */
   setContext() {
     this.__isContext = true;
   }
 
+  /**
+   * Returns contextual scope, if defined by any parent component.
+   *
+   * @returns {ContextNode|Boolean} - Returns an associated context node if found, else `false`.
+   */
   getContext() {
     let { parentNode } = this;
 
