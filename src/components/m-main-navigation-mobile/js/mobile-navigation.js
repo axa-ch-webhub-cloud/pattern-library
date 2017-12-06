@@ -36,10 +36,12 @@ class MobileNavigation {
   on() {
     this.off();
 
+    console.log('connectCallback MainNavigationMobile setup mobile menu and contextual node', this.rootNode.contextNode);
+
     this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
     this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
-    this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open);
-    this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close);
+    this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this.rootNode.contextNode);
+    this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this.rootNode.contextNode);
   }
 
   off() {

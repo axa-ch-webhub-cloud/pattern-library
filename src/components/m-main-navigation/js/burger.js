@@ -72,7 +72,7 @@ class Burger {
 
     add(this.burger, this.options.burgerState);
 
-    publish('main-navigation-mobile/open');
+    publish('main-navigation-mobile/open', null, this.rootNode.contextNode);
   }
 
   close() {
@@ -84,7 +84,7 @@ class Burger {
 
     remove(this.burger, this.options.burgerState);
 
-    publish('main-navigation-mobile/close');
+    publish('main-navigation-mobile/close', null, this.rootNode.contextNode);
   }
 
   destroy() {
