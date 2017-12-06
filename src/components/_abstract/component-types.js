@@ -121,7 +121,7 @@ export class BaseComponent extends HTMLElement {
    *
    * @returns {ContextNode|Boolean} - Returns an associated context node if found, else `false`.
    */
-  get context() {
+  get contextNode() {
     let { parentNode } = this;
 
     while (parentNode && !parentNode.__isContext) {
