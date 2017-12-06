@@ -2,6 +2,7 @@ import fire from './fire';
 import on from './on';
 import debounce from './debounce';
 
+// @TODO: this local variable isn't shared between redundant module instance
 const subscriptions = {};
 
 /**
