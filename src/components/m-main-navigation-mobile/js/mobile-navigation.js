@@ -8,6 +8,7 @@ class MobileNavigation {
     category: 'js-main-navigation-mobile__category',
     back: 'js-main-navigation-mobile__back',
     isOpenClass: 'is-open',
+    isBodyFrozen: 'is-body-frozen',
   }
 
   constructor(rootNode, options) {
@@ -79,6 +80,7 @@ class MobileNavigation {
   open() {
     console.log('open mobile menu');
 
+    add(document.body, this.options.isBodyFrozen);
     add(this.rootNode, this.options.isOpenClass);
   }
 
@@ -86,6 +88,7 @@ class MobileNavigation {
     console.log('close mobile menu');
 
     remove(this.rootNode, this.options.isOpenClass);
+    remove(document.body, this.options.isBodyFrozen);
   }
 
   handleCategoryClick(e, delegateTarget) {

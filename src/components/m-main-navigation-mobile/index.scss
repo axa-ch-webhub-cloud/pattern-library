@@ -43,6 +43,10 @@
   }
 }
 
+body.is-body-frozen {
+  overflow: hidden;
+}
+
 .m-main-navigation-mobile__box {
   > .m-button {
     display: block;
