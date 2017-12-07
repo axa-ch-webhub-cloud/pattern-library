@@ -21,12 +21,13 @@
 .m-main-navigation-mobile--off-canvas {
   @include hardware-accelerate();
 
-  position: fixed;
-  top: 73px;
+  position: absolute;
+  top: 100%;
   right: 0;
   z-index: $main-navigation-mobile__nav-z-index;
 
   height: 100%;
+  margin-top: -1px;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;

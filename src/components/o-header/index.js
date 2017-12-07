@@ -1,9 +1,10 @@
+import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
 
 class Header extends BaseComponentGlobal {
   constructor() {
-    super();
+    super(styles);
 
     this.enableContext();
     console.log('constructor -> enabled context for  header');
