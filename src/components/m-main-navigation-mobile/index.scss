@@ -34,7 +34,7 @@
   transform: translateX(110%);
   transition: transform 0.2s ease;
 
-  &.is-open {
+  &.is-mobile-menu-open {
     transform: translateX(0);
   }
 

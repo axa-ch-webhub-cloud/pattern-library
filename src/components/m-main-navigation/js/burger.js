@@ -9,7 +9,7 @@ const EVENTS = Enum('click', 'resize');
 class Burger {
   static DEFAULTS = {
     burger: '.js-main-navigation__burger',
-    burgerState: 'is-open',
+    burgerState: 'is-burger-open',
   }
 
   constructor(rootNode, options) {

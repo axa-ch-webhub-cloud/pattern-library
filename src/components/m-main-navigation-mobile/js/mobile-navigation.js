@@ -7,7 +7,7 @@ class MobileNavigation {
     nav: '.js-main-navigation-mobile__nav',
     category: 'js-main-navigation-mobile__category',
     back: 'js-main-navigation-mobile__back',
-    isOpenClass: 'is-open',
+    isOpenClass: 'is-mobile-menu-open',
     isBodyFrozen: 'is-body-frozen',
   }
 

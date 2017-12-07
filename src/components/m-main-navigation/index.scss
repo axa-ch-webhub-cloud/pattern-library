@@ -169,7 +169,7 @@
 
   fill: currentColor;
 
-  .is-open & {
+  .is-burger-open & {
     display: none;
   }
 }
@@ -181,7 +181,7 @@
 
   fill: currentColor;
 
-  .is-open & {
+  .is-burger-open & {
     display: block;
   }
 }
