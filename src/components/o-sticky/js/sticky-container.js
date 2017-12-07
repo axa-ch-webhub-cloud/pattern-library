@@ -1,4 +1,4 @@
-import EventManager from './event-manager';
+import StickySpy from './sticky-spy';
 import Enum from '../../../js/enum';
 import { subscribe } from '../../../js/pubsub';
 import { add, remove } from '../../../js/class-list';
@@ -13,7 +13,7 @@ class StickyContainer {
     this._enter = this._enter.bind(this);
     this._leave = this._leave.bind(this);
 
-    this.eventManagerInstance = EventManager();
+    this.spy = StickySpy();
 
     this._on();
   }

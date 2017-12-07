@@ -17,7 +17,7 @@ const events = [
   'load',
 ].join(' ');
 
-class EventManager {
+class StickySpy {
   constructor() {
     this.lastScrollTop = 0;
 
@@ -90,7 +90,7 @@ class EventManager {
 
 export default function factory() {
   if (!instance) {
-    instance = new EventManager();
+    instance = new StickySpy();
   }
 
   return instance;
