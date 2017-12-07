@@ -2,4 +2,8 @@
   position: relative;
 
   display: block;
+
+  &.is-sticky-container-active {
+    background: green;
+  }
 }
