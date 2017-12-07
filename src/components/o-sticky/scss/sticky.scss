@@ -1,0 +1,26 @@
+.o-sticky {
+  display: block;
+
+  &.is-sticky {
+    position: fixed;
+
+    top: 0;
+  }
+
+  &.is-top,
+  &.is-bottom {
+    position: absolute;
+  }
+
+  &.is-top {
+    top: 0;
+  }
+
+  &.is-bottom {
+    bottom: 0;
+  }
+
+  &.is-in-flow {
+    position: static;
+  }
+}
