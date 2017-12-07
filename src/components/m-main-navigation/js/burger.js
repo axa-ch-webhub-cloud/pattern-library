@@ -72,6 +72,7 @@ class Burger {
 
     add(this.burger, this.options.burgerState);
 
+    console.log('>>>>>>>>> publish open');
     publish('main-navigation-mobile/open', null, this.rootNode.contextNode);
   }
 
@@ -84,6 +85,7 @@ class Burger {
 
     remove(this.burger, this.options.burgerState);
 
+    console.log('<<<<<<<<< publish close');
     publish('main-navigation-mobile/close', null, this.rootNode.contextNode);
   }
 
