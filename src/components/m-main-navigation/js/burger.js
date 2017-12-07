@@ -32,6 +32,10 @@ class Burger {
     this.on();
   }
 
+  set contextNode(value) {
+    this._contextNode = value;
+  }
+
   on() {
     this.off();
 
@@ -72,8 +76,10 @@ class Burger {
 
     add(this.burger, this.options.burgerState);
 
-    console.log('>>>>>>>>> publish open');
-    publish('main-navigation-mobile/open', null, this.rootNode.contextNode);
+    if (this._contextNode) {
+      console.log('>>>>>>>>> publish open');
+      publish('main-navigation-mobile/open', null, this._contextNode);
+    }
   }
 
   close() {
@@ -85,8 +91,10 @@ class Burger {
 
     remove(this.burger, this.options.burgerState);
 
-    console.log('<<<<<<<<< publish close');
-    publish('main-navigation-mobile/close', null, this.rootNode.contextNode);
+    if (this._contextNode) {
+      console.log('<<<<<<<<< publish close');
+      publish('main-navigation-mobile/close', null, this._contextNode);
+    }
   }
 
   destroy() {

@@ -23,6 +23,12 @@ class MainNavigationMobile extends BaseComponentGlobal {
     this.interaction = new MobileNavigation(this);
   }
 
+  contextCallback(contextNode) {
+    console.log(`contextCallback ${this.nodeName} from ${contextNode.nodeName}`);
+
+    this.interaction.contextNode = contextNode;
+  }
+
   disconnectedCallback() {
     this.interaction.destroy();
     delete this.interaction;

@@ -28,6 +28,12 @@ class MainNavigation extends BaseComponentGlobal {
     this.burger = new Burger(this);
   }
 
+  contextCallback(contextNode) {
+    console.log(`contextCallback ${this.nodeName} from ${contextNode.nodeName}`);
+
+    this.burger.contextNode = contextNode;
+  }
+
   disconnectedCallback() {
     this.stroke.destroy();
     delete this.stroke;
