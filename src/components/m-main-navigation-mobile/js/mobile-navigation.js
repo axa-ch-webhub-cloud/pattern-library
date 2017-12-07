@@ -1,9 +1,10 @@
 import on from '../../../js/on';
 import { add, remove } from '../../../js/class-list';
-import { subscribe } from '../../../js/pubsub';
+import { publish, subscribe } from '../../../js/pubsub';
 
 class MobileNavigation {
   static DEFAULTS = {
+    backdrop: '.js-m-main-navigation-mobile__backdrop',
     nav: '.js-main-navigation-mobile__nav',
     category: 'js-main-navigation-mobile__category',
     back: 'js-main-navigation-mobile__back',
@@ -21,6 +22,7 @@ class MobileNavigation {
 
     this.opened = [];
 
+    this.handleBackdropClick = this.handleBackdropClick.bind(this);
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
     this.open = this.open.bind(this);
@@ -31,6 +33,7 @@ class MobileNavigation {
 
   init() {
     this.nav = this.rootNode.querySelector(this.options.nav);
+    this.backdrop = this.rootNode.querySelector(this.options.backdrop);
 
     this.on();
   }
@@ -44,11 +47,16 @@ class MobileNavigation {
   on() {
     this.off();
 
+    this.unBackdropClick = on(this.backdrop, 'click', this.handleBackdropClick);
     this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
     this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
   }
 
   off() {
+    if (this.unBackdropClick) {
+      this.unBackdropClick();
+    }
+
     if (this.unCategoryClick) {
       this.unCategoryClick();
     }
@@ -56,6 +64,8 @@ class MobileNavigation {
     if (this.unBackClick) {
       this.unBackClick();
     }
+
+    this.offContextEnabled();
   }
 
   onContextEnabled() {
@@ -90,6 +100,12 @@ class MobileNavigation {
 
     remove(this.rootNode, this.options.isMenuOpenClass);
     remove(document.body, this.options.isBodyFrozen);
+  }
+
+  handleBackdropClick(e) {
+    console.log('backdrop clicked');
+
+    publish('main-navigation-mobile/close', null, this._contextNode);
   }
 
   handleCategoryClick(e, delegateTarget) {

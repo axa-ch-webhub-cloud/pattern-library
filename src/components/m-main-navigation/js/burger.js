@@ -2,7 +2,7 @@ import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
 import { add, remove } from '../../../js/class-list';
-import { publish } from '../../../js/pubsub';
+import { publish, subscribe } from '../../../js/pubsub';
 
 const EVENTS = Enum('click', 'resize', 'keyup');
 
@@ -23,6 +23,8 @@ class Burger {
     this._handleBurgerClick = this._handleBurgerClick.bind(this);
     this._handleResize = this._handleResize.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
 
     this.init();
   }
@@ -35,6 +37,28 @@ class Burger {
 
   set contextNode(value) {
     this._contextNode = value;
+
+    this.onContextEnabled();
+  }
+
+  onContextEnabled() {
+    // check if context is ready
+    if (this._contextNode) {
+      this.offContextEnabled();
+
+      this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this._contextNode);
+      this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this._contextNode);
+    }
+  }
+
+  offContextEnabled() {
+    if (this.unSubscribeOpen) {
+      this.unSubscribeOpen();
+    }
+
+    if (this.unSubscribeClose) {
+      this.unSubscribeClose();
+    }
   }
 
   on() {
@@ -57,6 +81,8 @@ class Burger {
     if (this._unCloseEscape) {
       this._unCloseEscape();
     }
+
+    this.offContextEnabled();
   }
 
   _handleBurgerClick(e) {
@@ -83,7 +109,7 @@ class Burger {
     }
   }
 
-  open() {
+  open(e) {
     if (this.isOpen) {
       return;
     }
@@ -92,13 +118,13 @@ class Burger {
 
     add(this.burger, this.options.burgerState);
 
-    if (this._contextNode) {
+    if (!e && this._contextNode) {
       console.log('>>>>>>>>> publish open');
       publish('main-navigation-mobile/open', null, this._contextNode);
     }
   }
 
-  close() {
+  close(e) {
     if (!this.isOpen) {
       return;
     }
@@ -107,7 +133,7 @@ class Burger {
 
     remove(this.burger, this.options.burgerState);
 
-    if (this._contextNode) {
+    if (!e && this._contextNode) {
       console.log('<<<<<<<<< publish close');
       publish('main-navigation-mobile/close', null, this._contextNode);
     }
