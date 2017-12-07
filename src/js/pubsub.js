@@ -26,7 +26,6 @@ export function publish(topic, arg, node = document) {
   // if no subscription enqueue and return early
   if (Array.isArray(queue)) {
     queue.push([topic, arg, node]);
-    console.log(`queue ${topic}`);
     return;
   }
 
@@ -47,9 +46,16 @@ export function subscribe(topic, func, node = document) {
   // first bind subscription handler
   const off = on(node, topic, func);
 
-  fire(document, 'pubsub/onsubscribe', topic);
+  if (!subscriptions[topic]) {
+    subscriptions[topic] = {
+      count: 0,
+    };
+  }
 
   const subscription = subscriptions[topic];
+
+  // eslint-disable-next-line no-plusplus
+  subscription.count++;
 
   // trigger onsubscribe handlers
   if (!subscription.onsubscribe) {
@@ -75,6 +81,7 @@ export function subscribe(topic, func, node = document) {
 
 function onsubscribe(_topic) {
   return function initialPublish() {
+    fire(document, 'pubsub/onsubscribe', _topic);
     fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
 
     if (subscriptions[_topic]) {
@@ -87,7 +94,6 @@ function onsubscribe(_topic) {
 on(document, 'pubsub/onsubscribe', flush);
 
 function flush({ detail: topic }) {
-  console.log(`flush ${topic}`);
   if (!subscriptions[topic]) {
     subscriptions[topic] = {
       count: 0,
@@ -95,10 +101,6 @@ function flush({ detail: topic }) {
   }
 
   const subscription = subscriptions[topic];
-
-  // eslint-disable-next-line no-plusplus
-  subscription.count++;
-
   const { queue } = subscription;
 
   if (Array.isArray(queue)) {
