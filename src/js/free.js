@@ -6,6 +6,11 @@
  * @returns {boolean} - Returns `true` if deletion was successful, else `false`.
  */
 export function free(object, name) {
+  // @TODO: may this should throw an error
+  if (!object) {
+    return false;
+  }
+
   if (name in object) {
     return delete object[name];
   }
@@ -21,6 +26,11 @@ export function free(object, name) {
  * @returns {boolean} - Returns `true` if deletion was successful, else `false`.
  */
 export function freeByValue(object, value) {
+  // @TODO: may this should throw an error
+  if (!object) {
+    return false;
+  }
+
   const keys = Object.keys(object);
   const { length } = keys;
 

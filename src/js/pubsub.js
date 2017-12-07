@@ -2,7 +2,8 @@ import fire from './fire';
 import on from './on';
 import debounce from './debounce';
 
-const cache = {};
+// @TODO: this local variable isn't shared between redundant module instance
+const subscriptions = {};
 
 /**
  * Publish a message regarding a given topic.
@@ -12,6 +13,22 @@ const cache = {};
  * @param {Element} [node=document] - The node to publish message to.
  */
 export function publish(topic, arg, node = document) {
+  if (!subscriptions[topic]) {
+    subscriptions[topic] = {
+      count: 0,
+      queue: [],
+    };
+  }
+
+  const subscription = subscriptions[topic];
+  const { queue } = subscription;
+
+  // if no subscription enqueue and return early
+  if (Array.isArray(queue)) {
+    queue.push([topic, arg, node]);
+    return;
+  }
+
   // @TODO: atm this does not define cancelable nor bubbles
   // Cycle through topics queue, fire!
   fire(node, topic, arg);
@@ -26,22 +43,73 @@ export function publish(topic, arg, node = document) {
  * @returns {Function} - Returns a function to unsubscribe.
  */
 export function subscribe(topic, func, node = document) {
-  if (!cache[topic]) {
-    cache[topic] = debounce(onsubscribe(topic), 100);
+  // first bind subscription handler
+  const off = on(node, topic, func);
+
+  if (!subscriptions[topic]) {
+    subscriptions[topic] = {
+      count: 0,
+    };
   }
 
-  cache[topic]();
+  const subscription = subscriptions[topic];
+
+  // eslint-disable-next-line no-plusplus
+  subscription.count++;
+
+  // trigger onsubscribe handlers
+  if (!subscription.onsubscribe) {
+    subscription.onsubscribe = debounce(onsubscribe(topic), 100);
+  }
+
+  subscription.onsubscribe();
 
   // Provide handle back for removal of topic
-  return on(node, topic, func);
+  return unsubscribe;
+
+  function unsubscribe() {
+    // eslint-disable-next-line no-plusplus
+    subscription.count--;
+
+    off.call(this);
+
+    if (subscription.count <= 0) {
+      delete subscriptions[topic];
+    }
+  }
 }
 
 function onsubscribe(_topic) {
   return function initialPublish() {
-    publish(`onsubscribe/${_topic}`, _topic);
+    fire(document, 'pubsub/onsubscribe', _topic);
+    fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
 
-    delete cache[_topic];
+    if (subscriptions[_topic]) {
+      delete subscriptions[_topic].unsubscribe;
+    }
   };
+}
+
+// flush queued published message w/o subscriptions
+on(document, 'pubsub/onsubscribe', flush);
+
+function flush({ detail: topic }) {
+  if (!subscriptions[topic]) {
+    subscriptions[topic] = {
+      count: 0,
+    };
+  }
+
+  const subscription = subscriptions[topic];
+  const { queue } = subscription;
+
+  if (Array.isArray(queue)) {
+    queue.forEach(([_topic, arg, node]) => {
+      fire(node, _topic, arg);
+    });
+
+    delete subscription.queue;
+  }
 }
 
 export default {
