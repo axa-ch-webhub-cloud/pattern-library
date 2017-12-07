@@ -140,7 +140,8 @@ export class BaseComponent extends HTMLElement {
 
   _makeContextReady() {
     if (this.contextNode) {
-      setTimeout(() => {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = setTimeout(() => {
         this.contextCallback(this.contextNode);
       }, 10);
     } else if (!this.unContextEnabled) {
