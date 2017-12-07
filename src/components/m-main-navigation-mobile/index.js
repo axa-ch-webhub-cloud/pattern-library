@@ -14,7 +14,7 @@ class MainNavigationMobile extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    const offCanvas = getAttribute(this, 'off-canvas');
+    const offCanvas = getAttribute(this, 'offcanvas');
 
     this.className = classnames('m-main-navigation-mobile', {
       'm-main-navigation-mobile--off-canvas': !offCanvas,

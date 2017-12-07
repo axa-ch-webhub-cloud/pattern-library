@@ -10,6 +10,26 @@
 @import "../../styles/mixins/word-break";
 
 .m-main-navigation-mobile {
+  display: block;
+}
+
+.m-main-navigation-mobile__backdrop {
+  position: absolute;
+  top: 100%;
+
+  display: none;
+  min-height: 1000px;
+  height: 100%;
+  width: 100%;
+
+  background: $main-navigation-mobile__backdrop-bg;
+
+  .is-mobile-menu-open > & {
+    display: block;
+  }
+}
+
+.m-main-navigation-mobile__canvas {
   position: relative;
 
   display: block;
@@ -18,7 +38,7 @@
   background: $main-navigation-mobile-bg;
 }
 
-.m-main-navigation-mobile--off-canvas {
+.m-main-navigation-mobile__canvas--off-canvas {
   @include hardware-accelerate();
 
   position: absolute;
@@ -35,7 +55,7 @@
   transform: translateX(110%);
   transition: transform 0.2s ease;
 
-  &.is-mobile-menu-open {
+  .is-mobile-menu-open > & {
     transform: translateX(0);
   }
 
