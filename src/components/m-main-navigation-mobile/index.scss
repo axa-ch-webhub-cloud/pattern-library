@@ -19,6 +19,8 @@
 }
 
 .m-main-navigation-mobile--off-canvas {
+  @include hardware-accelerate();
+
   position: fixed;
   top: 73px;
   right: 0;
@@ -33,7 +35,7 @@
     transform: translateX(0);
   }
 
-  @include respond-up(md) {
+  @include respond-up(lg) {
     display: none;
   }
 }
