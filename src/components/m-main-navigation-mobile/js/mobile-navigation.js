@@ -54,13 +54,14 @@ class MobileNavigation {
     }
   }
 
-  onContextEnabled({ detail }) {
-    this.offContextEnabled();
+  onContextEnabled() {
+    // check if context is ready
+    if (this.rootNode.contextNode) {
+      this.offContextEnabled();
 
-    console.log('context enabled');
-
-    this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, detail);
-    this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, detail);
+      this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this.rootNode.contextNode);
+      this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this.rootNode.contextNode);
+    }
   }
 
   offContextEnabled() {
