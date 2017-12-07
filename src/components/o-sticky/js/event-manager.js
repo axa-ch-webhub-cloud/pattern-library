@@ -1,5 +1,5 @@
 import on from '../../../js/on';
-import { has } from '../../../js/class-list';
+import closest from '../../../js/closest';
 import throttle from '../../../js/throttle';
 import getScrollTop from '../../../js/get-scroll-top';
 import elementFromPagePoint from '../../../js/element-from-page-point';
@@ -53,20 +53,6 @@ class EventManager {
     this.lastStickyNode = stickyNode;
     this.lastStickyContainer = stickyContainerNode;
   }
-}
-
-function closest(node, className) {
-  let parentNode = node;
-
-  while (parentNode) {
-    if (has(parentNode, className)) {
-      return parentNode;
-    }
-
-    parentNode = parentNode.parentNode;
-  }
-
-  return null;
 }
 
 export default function factory() {
