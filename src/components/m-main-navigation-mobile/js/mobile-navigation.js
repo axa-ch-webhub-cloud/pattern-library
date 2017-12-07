@@ -7,7 +7,8 @@ class MobileNavigation {
     nav: '.js-main-navigation-mobile__nav',
     category: 'js-main-navigation-mobile__category',
     back: 'js-main-navigation-mobile__back',
-    isOpenClass: 'is-mobile-menu-open',
+    isMenuOpenClass: 'is-mobile-menu-open',
+    isSubMenuOpenClass: 'is-mobile-sub-menu-open',
     isBodyFrozen: 'is-body-frozen',
   }
 
@@ -81,13 +82,13 @@ class MobileNavigation {
     console.log('open mobile menu');
 
     add(document.body, this.options.isBodyFrozen);
-    add(this.rootNode, this.options.isOpenClass);
+    add(this.rootNode, this.options.isMenuOpenClass);
   }
 
   close() {
     console.log('close mobile menu');
 
-    remove(this.rootNode, this.options.isOpenClass);
+    remove(this.rootNode, this.options.isMenuOpenClass);
     remove(document.body, this.options.isBodyFrozen);
   }
 
@@ -97,7 +98,7 @@ class MobileNavigation {
     const { parentNode } = delegateTarget;
 
     if (parentNode.lastChild !== delegateTarget) {
-      add(parentNode, this.options.isOpenClass);
+      add(parentNode, this.options.isSubMenuOpenClass);
 
       this.opened.push(parentNode);
     }
@@ -106,7 +107,7 @@ class MobileNavigation {
   handleBackClick(e) {
     e.preventDefault();
 
-    remove(this.opened.pop(), this.options.isOpenClass);
+    remove(this.opened.pop(), this.options.isSubMenuOpenClass);
   }
 }
 
