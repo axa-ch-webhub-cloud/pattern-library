@@ -85,7 +85,9 @@ function onsubscribe(_topic) {
     fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
     fire(document, 'pubsub/onsubscribe', _topic);
 
-    delete subscriptions[_topic].unsubscribe;
+    if (subscriptions[_topic]) {
+      delete subscriptions[_topic].unsubscribe;
+    }
   };
 }
 
