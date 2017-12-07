@@ -4,7 +4,7 @@ import ownerWindow from '../../../js/owner-window';
 import { add, remove } from '../../../js/class-list';
 import { publish } from '../../../js/pubsub';
 
-const EVENTS = Enum('click', 'resize');
+const EVENTS = Enum('click', 'resize', 'keyup');
 
 class Burger {
   static DEFAULTS = {
@@ -20,8 +20,9 @@ class Burger {
     };
     this.isOpen = false;
 
-    this.handleBurgerClick = this.handleBurgerClick.bind(this);
-    this.handleResize = this.handleResize.bind(this);
+    this._handleBurgerClick = this._handleBurgerClick.bind(this);
+    this._handleResize = this._handleResize.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
 
     this.init();
   }
@@ -39,21 +40,26 @@ class Burger {
   on() {
     this.off();
 
-    this.unBurgerClick = on(this.burger, EVENTS.CLICK, this.handleBurgerClick);
-    this.unResize = on(ownerWindow(this.rootNode), EVENTS.RESIZE, this.handleResize);
+    this._unBurgerClick = on(this.burger, EVENTS.CLICK, this._handleBurgerClick);
+    this._unResize = on(ownerWindow(this.rootNode), EVENTS.RESIZE, this._handleResize);
+    this._unCloseEscape = on(this.rootNode.ownerDocument, EVENTS.KEYUP, this._handleKeyUp);
   }
 
   off() {
-    if (this.unBurgerClick) {
-      this.unBurgerClick();
+    if (this._unBurgerClick) {
+      this._unBurgerClick();
     }
 
-    if (this.unResize) {
-      this.unResize();
+    if (this._unResize) {
+      this._unResize();
+    }
+
+    if (this._unCloseEscape) {
+      this._unCloseEscape();
     }
   }
 
-  handleBurgerClick(e) {
+  _handleBurgerClick(e) {
     e.preventDefault();
 
     if (this.isOpen) {
@@ -63,8 +69,18 @@ class Burger {
     }
   }
 
-  handleResize() {
+  _handleResize() {
     this.close();
+  }
+
+  _handleKeyUp(e) {
+    const isEscape = e.key === EVENTS.ESCAPE || e.key === EVENTS.ESC || e.keyCode === 27;
+
+    if (isEscape) {
+      e.preventDefault();
+
+      this.close();
+    }
   }
 
   open() {
