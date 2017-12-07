@@ -44,6 +44,7 @@ class EventManager {
     // the diference between the last scroll position
     const diffTop = scrollTop - this.lastScrollTop;
     // the scroll direction -> -1: top, 0: node, 1: bottom
+    // eslint-disable-next-line no-nested-tenary
     const direction = diffTop > 0 ? 1 : diffTop < 0 ? -1 : 0;
     // width of viewport
     const viewportWidth = getViewportWidth();
@@ -56,17 +57,17 @@ class EventManager {
 
     // enter a sticky container
     const enterContainer = stickyContainerNode && !this.lastStickyContainer;
-    // move between containers
-    const moveContainer = stickyContainerNode && this.lastStickyContainer && stickyContainerNode !== this.lastStickyContainer;
     // leave a sticky container
     const leaveContainer = !stickyContainerNode && this.lastStickyContainer;
+    // move between containers
+    const moveContainer = stickyContainerNode && this.lastStickyContainer && stickyContainerNode !== this.lastStickyContainer;
 
     // enter a sticky node
     const enterSticky = stickyNode && !this.lastStickyNode;
-    // move a sticky node
-    const moveSticky = stickyNode && this.lastStickyNode && stickyNode !== this.lastStickyNode;
     // leave a sticky node
     const leaveSticky = !stickyNode && this.lastStickyNode;
+    // move a sticky node
+    const moveSticky = stickyNode && this.lastStickyNode && stickyNode !== this.lastStickyNode;
 
     if (enterContainer || moveContainer) {
       publish('sticky-container/enter', null, stickyContainerNode);
@@ -75,7 +76,6 @@ class EventManager {
     if (leaveContainer || moveContainer) {
       publish('sticky-container/leave', null, this.lastStickyContainer);
     }
-
 
     console.log(`sticky -> ${event.type}`);
     console.log(`top: ${scrollTop}; diff: ${diffTop}, direction: ${direction}`);
