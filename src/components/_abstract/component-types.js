@@ -1,5 +1,5 @@
 import getAttributes from '../../js/get-attributes';
-import { publish } from '../../js/pubsub';
+import { publish, subscribe } from '../../js/pubsub';
 
 const memory = {};
 
@@ -12,6 +12,8 @@ const THROWED_ERROR = 'throwed';
 export class BaseComponent extends HTMLElement {
   constructor(styles = '', template) {
     super();
+
+    this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
   }
 
@@ -35,6 +37,21 @@ export class BaseComponent extends HTMLElement {
   connectedCallback() {
     this._appendStyles();
     this.render();
+
+    if (this.contextCallback) {
+      this._makeContextReady();
+    }
+  }
+
+  /**
+   * disconnectedCallback - description
+   *
+   * @return {type}  description
+   */
+  disconnectedCallback() {
+    if (this.unContextEnabled) {
+      this.unContextEnabled();
+    }
   }
   /**
    * _appendStyles - description
@@ -117,8 +134,16 @@ export class BaseComponent extends HTMLElement {
   enableContext() {
     this.__isContext = true;
 
-    // publish oncontextenabled with current contextNode
-    publish(`oncontextenabled/${this.nodeName.toLowerCase()}`, this);
+    // publish context/enabled with contextual node name
+    publish('context/enabled', this.nodeName.toLowerCase());
+  }
+
+  _makeContextReady() {
+    if (this.contextNode) {
+      this.contextCallback(this.contextNode);
+    } else if (!this.unContextEnabled) {
+      this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
+    }
   }
 
   /**
