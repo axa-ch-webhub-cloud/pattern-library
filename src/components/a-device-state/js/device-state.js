@@ -50,7 +50,7 @@ function observeDeviceState() {
   on(document, 'DOMContentLoaded', _handleResize);
   on(document, 'load', _handleResize);
 
-  subscribe('onsubscribe/device-state/change', handleSubscribtion)
+  subscribe('pubsub/onsubscribe/device-state/change', handleSubscribtion);
 
   handleResize();
 
