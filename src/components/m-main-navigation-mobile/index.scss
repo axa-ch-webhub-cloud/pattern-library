@@ -71,10 +71,9 @@ body.is-body-frozen {
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0;
     z-index: $main-navigation-mobile__nav-z-index;
 
-    height: 100%;
+    min-height: 100%;
 
     transform: translateX(110%);
     transition: transform 0.2s ease;
