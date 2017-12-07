@@ -3,11 +3,7 @@ import on from './on';
 import debounce from './debounce';
 
 // @TODO: this local variable isn't shared between redundant module instance
-const subscriptions = (function (window) {
-  window.__subscribtions__ = window.__subscribtions__ || {};
-
-  return window.__subscribtions__;
-}(window));
+const subscriptions = {};
 
 /**
  * Publish a message regarding a given topic.
@@ -19,6 +15,7 @@ const subscriptions = (function (window) {
 export function publish(topic, arg, node = document) {
   if (!subscriptions[topic]) {
     subscriptions[topic] = {
+      count: 0,
       queue: [],
     };
   }
@@ -29,6 +26,7 @@ export function publish(topic, arg, node = document) {
   // if no subscription enqueue and return early
   if (Array.isArray(queue)) {
     queue.push([topic, arg, node]);
+    console.log(`queue ${topic}`);
     return;
   }
 
@@ -67,15 +65,6 @@ export function subscribe(topic, func, node = document) {
 
   subscription.onsubscribe();
 
-  // flush queued published message w/o subscriptions
-  const { queue } = subscription;
-
-  if (Array.isArray(queue)) {
-    flush(topic);
-  } else {
-    delete subscription.queue;
-  }
-
   // Provide handle back for removal of topic
   return unsubscribe;
 
@@ -91,25 +80,34 @@ export function subscribe(topic, func, node = document) {
   }
 }
 
-function flush(_topic) {
-  const subscription = subscriptions[_topic];
+function onsubscribe(_topic) {
+  return function initialPublish() {
+    fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
+    fire(document, 'pubsub/onsubscribe', _topic);
+
+    delete subscriptions[_topic].unsubscribe;
+  };
+}
+
+// flush queued published message w/o subscriptions
+on(document, 'pubsub/onsubscribe', flush);
+
+function flush({ detail }) {
+  console.log(`flush ${detail}`);
+  const subscription = subscriptions[detail];
+  if (!subscription) {
+    return;
+  }
+
   const { queue } = subscription;
 
   if (Array.isArray(queue)) {
     queue.forEach(([topic, arg, node]) => {
-      publish(topic, arg, node);
+      fire(node, topic, arg);
     });
 
     delete subscription.queue;
   }
-}
-
-function onsubscribe(_topic) {
-  return function initialPublish() {
-    publish(`onsubscribe/${_topic}`, _topic);
-
-    delete subscriptions[_topic].unsubscribe;
-  };
 }
 
 export default {
