@@ -40,9 +40,9 @@ class EventManager {
     const scrollTop = getScrollTop();
     const diffTop = scrollTop - this.lastScrollTop;
     const direction = diffTop > 0 ? 1 : diffTop < 0 ? -1 : 0;
-    const topNode = closest(elementFromPagePoint(0, scrollTop), 'js-sticky');
+    const topNode = elementFromPagePoint(0, scrollTop);
     const stickyNode = closest(topNode, 'js-sticky');
-    const stickyContainerNode = closest(stickyNode, 'js-sticky-container');
+    const stickyContainerNode = closest(stickyNode || topNode, 'js-sticky-container');
 
     console.log(`sticky -> ${event.type}`);
     console.log(`top: ${scrollTop}; diff: ${diffTop}, direction: ${direction}`);
