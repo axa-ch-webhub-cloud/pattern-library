@@ -1,3 +1,5 @@
+@import "../../../styles/settings/zindex";
+
 .o-sticky {
   display: block;
 }
@@ -13,11 +15,13 @@
   .is-sticky-sticky > & {
     position: fixed;
     top: 0;
+    z-index: $zindex-sticky;
   }
 
   .is-sticky-bottom > & {
     position: absolute;
     bottom: 0;
+    z-index: $zindex-sticky;
   }
 
   .is-sticky-in-flow > & {
