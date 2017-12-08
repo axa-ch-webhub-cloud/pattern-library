@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
@@ -13,7 +14,7 @@ class Header extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'o-header';
+    this.className = `${this.initialClassName} o-header`;
   }
 }
 

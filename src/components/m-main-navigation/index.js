@@ -17,7 +17,7 @@ class MainNavigation extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'm-main-navigation';
+    this.className = `${this.initialClassName} m-main-navigation`;
 
     const simpleMenu = getAttribute(this, 'simplemenu');
 

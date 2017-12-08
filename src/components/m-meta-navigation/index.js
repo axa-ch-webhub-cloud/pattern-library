@@ -11,7 +11,7 @@ class MetaNavigation extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'm-meta-navigation';
+    this.className = `${this.initialClassName} m-meta-navigation`;
 
     this.dropDown = new DropDown(this);
   }
