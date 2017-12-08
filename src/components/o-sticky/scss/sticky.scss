@@ -34,6 +34,7 @@
 
       @at-root {
         #{$o-sticky--debug} > #{$o-sticky__box} {
+          background: rgba(blue, 0.5);
           color: white;
 
           &::before {
@@ -43,6 +44,8 @@
         }
 
         #{$o-sticky--debug}.is-sticky-sticky > #{$o-sticky__box} {
+          background: rgba(red, 0.7);
+
           &::before {
             content: 'is-sticky';
           }
