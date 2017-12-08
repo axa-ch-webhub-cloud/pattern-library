@@ -2,6 +2,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
 import stylesStickyContainer from './scss/sticky-container.scss';
 import stylesSticky from './scss/sticky.scss';
+import templateSticky from './sticky.template';
 import Sticky from './js/sticky';
 import StickyContainer from './js/sticky-container';
 
@@ -27,7 +28,7 @@ class AXAStickyContainer extends BaseComponentGlobal {
 
 class AXASticky extends BaseComponentGlobal {
   constructor() {
-    super(stylesSticky);
+    super(stylesSticky, templateSticky);
   }
 
   connectedCallback() {

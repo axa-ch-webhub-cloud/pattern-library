@@ -1,5 +1,14 @@
 .o-sticky {
   display: block;
+}
+
+.o-sticky__placeholder {
+  display: block;
+  height: 0;
+}
+
+.o-sticky__box {
+  display: block;
 
   &.is-sticky {
     position: fixed;
