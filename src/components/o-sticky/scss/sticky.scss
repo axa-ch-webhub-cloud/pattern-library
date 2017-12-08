@@ -13,11 +13,20 @@
   background: rgba(blue, 0.5);
   color: white;
 
+  &::before {
+    content: '';
+    color: yellow;
+  }
+
   .is-sticky-sticky > & {
     position: fixed;
     top: 0;
 
     background: rgba(red, 0.7);
+
+    &::before {
+      content: 'is-sticky';
+    }
   }
 
   .is-sticky-bottom > & {
@@ -25,9 +34,17 @@
     bottom: 0;
 
     background: rgba(orange, 0.7);
+
+    &::before {
+      content: 'is-bottom';
+    }
   }
 
   .is-sticky-in-flow > & {
     position: static;
+
+    &::before {
+      content: 'is-in-flow';
+    }
   }
 }

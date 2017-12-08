@@ -5,9 +5,21 @@
 
   background: rgba(yellow, 0.5);
 
-  &.is-sticky-container-active {
-    background: green;
+  &::before {
+    content: '';
   }
 
-  &.is-sticky-container-idle {}
+  &.is-sticky-container-active {
+    background: green;
+
+    &::before {
+      content: 'is-active';
+    }
+  }
+
+  &.is-sticky-container-idle {
+    &::before {
+      content: 'is-idle';
+    }
+  }
 }
