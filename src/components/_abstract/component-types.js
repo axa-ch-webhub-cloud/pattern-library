@@ -132,10 +132,22 @@ export class BaseComponent extends HTMLElement {
    * Provides an opt-in contextual scope for hierarchy-agnostic child components.
    */
   enableContext() {
+    const contextName = this.nodeName.toLowerCase();
+
     this.__isContext = true;
+    this.__contextName = contextName;
 
     // publish context/enabled with contextual node name
     publish('context/enabled', this.nodeName.toLowerCase());
+  }
+
+  /**
+   * Opt-in to select a specific context by component name.
+   *
+   * @param name
+   */
+  selectContext(name) {
+    this.__selectedContext = name.toLowerCase();
   }
 
   _makeContextReady() {
@@ -155,9 +167,10 @@ export class BaseComponent extends HTMLElement {
    * @returns {ContextNode|Boolean} - Returns an associated context node if found, else `false`.
    */
   get contextNode() {
+    const { __selectedContext } = this;
     let { parentNode } = this;
 
-    while (parentNode && !parentNode.__isContext) {
+    while (parentNode && !parentNode.__isContext && (!__selectedContext || __selectedContext === parentNode.__contextName)) {
       // eslint-disable-next-line prefer-destructuring
       parentNode = parentNode.parentNode;
     }
