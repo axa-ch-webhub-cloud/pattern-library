@@ -10,6 +10,8 @@ import { domready } from '../../js/domready';
 class MainNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
+
+    this.selectContext('axa-header');
   }
 
   connectedCallback() {
