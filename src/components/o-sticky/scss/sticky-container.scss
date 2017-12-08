@@ -2,7 +2,9 @@
   position: relative;
 
   display: block;
+}
 
+.o-sticky-container--debug {
   background: rgba(yellow, 0.5);
 
   &::before {

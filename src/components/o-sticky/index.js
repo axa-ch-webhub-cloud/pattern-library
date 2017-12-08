@@ -1,5 +1,7 @@
+import classnames from 'classnames';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
+import getAttribute from '../../js/get-attribute';
 import stylesStickyContainer from './scss/sticky-container.scss';
 import stylesSticky from './scss/sticky.scss';
 import templateSticky from './sticky.template';
@@ -16,7 +18,11 @@ class AXAStickyContainer extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'o-sticky-container js-sticky-container';
+    const debug = getAttribute(this, 'debug');
+
+    this.className = classnames('o-sticky-container js-sticky-container', {
+      'o-sticky-container--debug': debug,
+    });
 
     this.stickyContainer = new StickyContainer(this);
   }
@@ -34,7 +40,11 @@ class AXASticky extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'o-sticky js-sticky';
+    const debug = getAttribute(this, 'debug');
+
+    this.className = classnames('o-sticky js-sticky', {
+      'o-sticky--debug': debug,
+    });
 
     this.sticky = new Sticky(this);
   }
