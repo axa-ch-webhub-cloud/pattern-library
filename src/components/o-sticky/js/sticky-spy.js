@@ -4,12 +4,12 @@ import { publish } from '../../../js/pubsub';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 
 let instance;
-const forceRepaint = [
+const criticalEvents = [
   'resize',
   'orientationchange',
 ].join(' ');
 const events = [
-  forceRepaint,
+  criticalEvents,
   'scroll',
   'touchstart',
   'touchmove',
@@ -47,7 +47,7 @@ class StickySpy {
   }
 
   _change({ type }) {
-    if (forceRepaint.indexOf(type) >= 0) {
+    if (criticalEvents.indexOf(type) >= 0) {
       this.forceRepaint = true;
     }
 
