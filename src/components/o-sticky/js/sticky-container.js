@@ -8,6 +8,7 @@ const states = Enum('IS_IDLE', 'IS_ACTIVE');
 class StickyContainer {
   static DEFAULTS = {
     isActiveClass: 'is-sticky-container-active',
+    isIdleClass: 'is-sticky-container-idle',
   };
 
   constructor(rootNode) {
@@ -47,6 +48,7 @@ class StickyContainer {
     this.state = states.IS_ACTIVE;
 
     add(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
+    remove(this.roodNode, StickyContainer.DEFAULTS.isIdleClass);
   }
 
   _idle() {
@@ -55,6 +57,7 @@ class StickyContainer {
     }
     this.state = states.IS_IDLE;
 
+    add(this.roodNode, StickyContainer.DEFAULTS.isIdleClass);
     remove(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
   }
 }
