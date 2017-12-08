@@ -20,7 +20,7 @@ class AXAStickyContainer extends BaseComponentGlobal {
 
     const debug = getAttribute(this, 'debug');
 
-    this.className = classnames('o-sticky-container js-sticky-container', {
+    this.className = classnames(this.initialClassName, 'o-sticky-container js-sticky-container', {
       'o-sticky-container--debug': debug,
     });
 
@@ -45,7 +45,7 @@ class AXASticky extends BaseComponentGlobal {
 
     const debug = getAttribute(this, 'debug');
 
-    this.className = classnames('o-sticky js-sticky', {
+    this.className = classnames(this.initialClassName, 'o-sticky js-sticky', {
       'o-sticky--debug': debug,
     });
 

@@ -25,6 +25,7 @@ export class BaseComponent extends HTMLElement {
    * @return {type}        description
    */
   _initialise(styles, template = null) {
+    this.initialClassName = this.className;
     this._styles = styles;
     this._template = template;
   }
