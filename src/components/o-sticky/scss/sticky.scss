@@ -40,7 +40,8 @@
         background: rgba(blue, 0.5);
         color: white;
 
-        &::before {
+        &::before,
+        &::after {
           content: '';
           color: yellow;
         }
@@ -65,6 +66,18 @@
       #{$o-sticky--debug}.is-sticky-in-flow > #{$o-sticky__box} {
         &::before {
           content: 'is-in-flow';
+        }
+      }
+
+      #{$o-sticky--debug}.is-sticky-scroll-up > #{$o-sticky__box} {
+        &::after {
+          content: 'is-scroll-up';
+        }
+      }
+
+      #{$o-sticky--debug}.is-sticky-scroll-down > #{$o-sticky__box} {
+        &::after {
+          content: 'is-scroll-down';
         }
       }
     }

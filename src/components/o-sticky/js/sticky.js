@@ -12,11 +12,14 @@ class Sticky {
     boxClass: '.js-sticky__box',
     isStickyClass: 'is-sticky-sticky',
     isBottomClass: 'is-sticky-bottom',
+    isScrollUp: 'is-sticky-scroll-up',
+    isScrollDown: 'is-sticky-scroll-down',
   };
 
   constructor(rootNode) {
     this.rootNode = rootNode;
     this.state = states.IS_IN_FLOW;
+    this.lastDirection = 0;
 
     this._update = this._update.bind(this);
 
@@ -51,15 +54,23 @@ class Sticky {
 
   _update({ detail }) {
     const { containerTop, containerBottom, direction, forceRepaint } = detail;
-    const { rootNode } = this;
+    const { rootNode, state, lastDirection } = this;
+    const hasDirectionChanged = direction !== lastDirection;
     const { offsetHeight, offsetWidth } = rootNode;
     const { left, top } = rootNode.getBoundingClientRect();
     const isInFlow = top > 0;
     const isSticky = top <= 0 && containerBottom >= offsetHeight;
     const isBottom = top <= 0 && containerBottom < offsetHeight;
 
+    if (hasDirectionChanged && direction === 1) {
+      add(rootNode, Sticky.DEFAULTS.isScrollDown);
+      remove(rootNode, Sticky.DEFAULTS.isScrollUp);
+    } else if (hasDirectionChanged && direction === -1) {
+      add(rootNode, Sticky.DEFAULTS.isScrollUp);
+      remove(rootNode, Sticky.DEFAULTS.isScrollDown);
+    }
 
-    if (isSticky && (forceRepaint || this.state !== states.IS_STICKY)) {
+    if (isSticky && (forceRepaint || state !== states.IS_STICKY)) {
       this.state = states.IS_STICKY;
 
       add(rootNode, Sticky.DEFAULTS.isStickyClass);
@@ -68,7 +79,7 @@ class Sticky {
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
 
-    if (isBottom && (forceRepaint || this.state !== states.IS_BOTTOM)) {
+    if (isBottom && (forceRepaint || state !== states.IS_BOTTOM)) {
       this.state = states.IS_BOTTOM;
 
       remove(rootNode, Sticky.DEFAULTS.isStickyClass);
@@ -77,7 +88,7 @@ class Sticky {
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
 
-    if (isInFlow && (forceRepaint || this.state !== states.IS_IN_FLOW)) {
+    if (isInFlow && (forceRepaint || state !== states.IS_IN_FLOW)) {
       this.state = states.IS_IN_FLOW;
 
       remove(rootNode, Sticky.DEFAULTS.isStickyClass);
