@@ -65,7 +65,7 @@ class StickySpy {
       // the diference between the last scroll position
       const diffTop = scrollTop - this.lastScrollTop;
       // the scroll direction -> -1: top, 0: node, 1: bottom
-      // eslint-disable-next-line no-nested-tenary
+      // eslint-disable-next-line no-nested-ternary
       const direction = diffTop > 0 ? 1 : diffTop < 0 ? -1 : 0;
       // all spied container nodes
       const { containerNodes, forceRepaint } = this;
