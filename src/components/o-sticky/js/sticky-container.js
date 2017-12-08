@@ -6,6 +6,10 @@ import { add, remove } from '../../../js/class-list';
 const states = Enum('IS_IDLE', 'IS_ACTIVE');
 
 class StickyContainer {
+  static DEFAULTS = {
+    isActiveClass: 'is-sticky-container-active',
+  };
+
   constructor(rootNode) {
     this.roodNode = rootNode;
     this.state = states.IS_IDLE;
@@ -42,7 +46,7 @@ class StickyContainer {
     }
     this.state = states.IS_ACTIVE;
 
-    add(this.roodNode, 'is-sticky-container-active');
+    add(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
   }
 
   _idle() {
@@ -51,7 +55,7 @@ class StickyContainer {
     }
     this.state = states.IS_IDLE;
 
-    remove(this.roodNode, 'is-sticky-container-active');
+    remove(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
   }
 }
 

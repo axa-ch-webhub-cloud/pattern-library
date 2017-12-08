@@ -13,21 +13,21 @@
   background: rgba(blue, 0.5);
   color: white;
 
-  .is-sticky > & {
+  .is-sticky-sticky > & {
     position: fixed;
     top: 0;
 
     background: rgba(red, 0.7);
   }
 
-  .is-bottom > & {
+  .is-sticky-bottom > & {
     position: absolute;
     bottom: 0;
 
     background: rgba(orange, 0.7);
   }
 
-  .is-in-flow > & {
+  .is-sticky-in-flow > & {
     position: static;
   }
 }

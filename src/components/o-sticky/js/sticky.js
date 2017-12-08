@@ -10,7 +10,9 @@ class Sticky {
   static DEFAULTS = {
     placeholderClass: '.js-sticky__placeholder',
     boxClass: '.js-sticky__box',
-  }
+    isStickyClass: 'is-sticky-sticky',
+    isBottomClass: 'is-sticky-bottom',
+  };
 
   constructor(rootNode) {
     this.rootNode = rootNode;
@@ -60,8 +62,8 @@ class Sticky {
     if (isSticky && (forceRepaint || this.state !== states.IS_STICKY)) {
       this.state = states.IS_STICKY;
 
-      add(rootNode, 'is-sticky');
-      remove(rootNode, 'is-bottom');
+      add(rootNode, Sticky.DEFAULTS.isStickyClass);
+      remove(rootNode, Sticky.DEFAULTS.isBottomClass);
       css(this.placeholder, { height: `${offsetHeight}px` });
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
@@ -69,8 +71,8 @@ class Sticky {
     if (isBottom && (forceRepaint || this.state !== states.IS_BOTTOM)) {
       this.state = states.IS_BOTTOM;
 
-      remove(rootNode, 'is-sticky');
-      add(rootNode, 'is-bottom');
+      remove(rootNode, Sticky.DEFAULTS.isStickyClass);
+      add(rootNode, Sticky.DEFAULTS.isBottomClass);
       css(this.placeholder, { height: `${offsetHeight}px` });
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
@@ -78,8 +80,8 @@ class Sticky {
     if (isInFlow && (forceRepaint || this.state !== states.IS_IN_FLOW)) {
       this.state = states.IS_IN_FLOW;
 
-      remove(rootNode, 'is-sticky');
-      remove(rootNode, 'is-bottom');
+      remove(rootNode, Sticky.DEFAULTS.isStickyClass);
+      remove(rootNode, Sticky.DEFAULTS.isBottomClass);
 
       css(this.placeholder, { height: '' });
       css(this.box, { left: '', width: '' });
