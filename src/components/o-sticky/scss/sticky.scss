@@ -28,41 +28,39 @@
 .o-sticky--debug {
   $o-sticky--debug: &;
 
-  @at-root {
-    .o-sticky__box {
-      $o-sticky__box: &;
+  @at-root .o-sticky__box {
+    $o-sticky__box: &;
 
-      @at-root {
-        #{$o-sticky--debug} > #{$o-sticky__box} {
-          background: rgba(blue, 0.5);
-          color: white;
+    @at-root {
+      #{$o-sticky--debug} > #{$o-sticky__box} {
+        background: rgba(blue, 0.5);
+        color: white;
 
-          &::before {
-            content: '';
-            color: yellow;
-          }
+        &::before {
+          content: '';
+          color: yellow;
         }
+      }
 
-        #{$o-sticky--debug}.is-sticky-sticky > #{$o-sticky__box} {
-          background: rgba(red, 0.7);
+      #{$o-sticky--debug}.is-sticky-sticky > #{$o-sticky__box} {
+        background: rgba(red, 0.7);
 
-          &::before {
-            content: 'is-sticky';
-          }
+        &::before {
+          content: 'is-sticky';
         }
+      }
 
-        #{$o-sticky--debug}.is-sticky-bottom > #{$o-sticky__box} {
-          background: rgba(orange, 0.7);
+      #{$o-sticky--debug}.is-sticky-bottom > #{$o-sticky__box} {
+        background: rgba(orange, 0.7);
 
-          &::before {
-            content: 'is-bottom';
-          }
+        &::before {
+          content: 'is-bottom';
         }
+      }
 
-        #{$o-sticky--debug}.is-sticky-in-flow > #{$o-sticky__box} {
-          &::before {
-            content: 'is-in-flow';
-          }
+      #{$o-sticky--debug}.is-sticky-in-flow > #{$o-sticky__box} {
+        &::before {
+          content: 'is-in-flow';
         }
       }
     }
