@@ -1,14 +1,15 @@
 import on from '../../../js/on';
-import closest from '../../../js/closest';
 import getScrollTop from '../../../js/get-scroll-top';
-import elementFromPagePoint from '../../../js/element-from-page-point';
-import { getViewportWidth, getViewportHeight } from '../../../js/viewport';
 import { publish } from '../../../js/pubsub';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 
 let instance;
-const events = [
+const forceRepaint = [
   'resize',
+  'orientationchange',
+].join(' ');
+const events = [
+  forceRepaint,
   'scroll',
   'touchstart',
   'touchmove',
@@ -19,6 +20,7 @@ const events = [
 
 class StickySpy {
   constructor() {
+    this.forceRepaint = false;
     this.framePending = false;
     this.lastScrollTop = 0;
     this.containerNodes = [];
@@ -44,7 +46,11 @@ class StickySpy {
     }
   }
 
-  _change(event) {
+  _change({ type }) {
+    if (forceRepaint.indexOf(type) >= 0) {
+      this.forceRepaint = true;
+    }
+
     if (this.framePending) {
       return;
     }
@@ -57,10 +63,8 @@ class StickySpy {
       // the scroll direction -> -1: top, 0: node, 1: bottom
       // eslint-disable-next-line no-nested-tenary
       const direction = diffTop > 0 ? 1 : diffTop < 0 ? -1 : 0;
-      // width of viewport
-      const viewportWidth = getViewportWidth();
       // all spied container nodes
-      const { containerNodes } = this;
+      const { containerNodes, forceRepaint } = this;
 
       for (let i = 0, { length } = containerNodes; i < length; i++) {
         const container = containerNodes[i];
@@ -68,12 +72,13 @@ class StickySpy {
         const isActiveContainer = top <= 0 && bottom >= 0;
         const eventType = isActiveContainer ? 'active' : 'idle';
 
-        publish(`sticky-container/${eventType}`, { containerTop: top, containerBottom: bottom, direction }, container);
+        publish(`sticky-container/${eventType}`, { containerTop: top, containerBottom: bottom, direction, forceRepaint }, container);
       }
 
       this.lastScrollTop = scrollTop;
 
       this.framePending = false;
+      this.forceRepaint = false;
     });
   }
 }

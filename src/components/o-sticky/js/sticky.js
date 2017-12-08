@@ -48,7 +48,7 @@ class Sticky {
   }
 
   _update({ detail }) {
-    const { containerTop, containerBottom, direction } = detail;
+    const { containerTop, containerBottom, direction, forceRepaint } = detail;
     const { rootNode } = this;
     const { offsetHeight, offsetWidth } = rootNode;
     const { left, top, bottom } = rootNode.getBoundingClientRect();
@@ -57,7 +57,7 @@ class Sticky {
     const isBottom = top <= 0 && containerBottom < offsetHeight;
 
 
-    if (isSticky && this.state !== states.IS_STICKY) {
+    if (isSticky && (forceRepaint || this.state !== states.IS_STICKY)) {
       this.state = states.IS_STICKY;
 
       add(rootNode, 'is-sticky');
@@ -66,7 +66,7 @@ class Sticky {
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
 
-    if (isBottom && this.state !== states.IS_BOTTOM) {
+    if (isBottom && (forceRepaint || this.state !== states.IS_BOTTOM)) {
       this.state = states.IS_BOTTOM;
 
       remove(rootNode, 'is-sticky');
@@ -75,7 +75,7 @@ class Sticky {
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
 
-    if (isInFlow && this.state !== states.IS_IN_FLOW) {
+    if (isInFlow && (forceRepaint || this.state !== states.IS_IN_FLOW)) {
       this.state = states.IS_IN_FLOW;
 
       remove(rootNode, 'is-sticky');
