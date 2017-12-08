@@ -170,7 +170,7 @@ export class BaseComponent extends HTMLElement {
     const { __selectedContext } = this;
     let { parentNode } = this;
 
-    while (parentNode && !parentNode.__isContext && (!__selectedContext || __selectedContext === parentNode.__contextName)) {
+    while (parentNode && (!parentNode.__isContext || (__selectedContext && __selectedContext !== parentNode.__contextName))) {
       // eslint-disable-next-line prefer-destructuring
       parentNode = parentNode.parentNode;
     }
