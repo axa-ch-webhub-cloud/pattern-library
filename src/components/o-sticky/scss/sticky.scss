@@ -10,26 +10,24 @@
 .o-sticky__box {
   display: block;
 
-  &.is-sticky {
+  background: rgba(blue, 0.5);
+  color: white;
+
+  .is-sticky > & {
     position: fixed;
-
     top: 0;
+
+    background: rgba(red, 0.7);
   }
 
-  &.is-top,
-  &.is-bottom {
+  .is-bottom > & {
     position: absolute;
-  }
-
-  &.is-top {
-    top: 0;
-  }
-
-  &.is-bottom {
     bottom: 0;
+
+    background: rgba(orange, 0.7);
   }
 
-  &.is-in-flow {
+  .is-in-flow > & {
     position: static;
   }
 }

@@ -3,6 +3,8 @@
 
   display: block;
 
+  background: rgba(yellow, 0.5);
+
   &.is-sticky-container-active {
     background: green;
   }

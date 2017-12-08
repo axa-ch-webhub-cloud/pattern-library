@@ -10,10 +10,11 @@ class StickyContainer {
     this.roodNode = rootNode;
     this.state = states.IS_IDLE;
 
-    this._enter = this._enter.bind(this);
-    this._leave = this._leave.bind(this);
+    this._active = this._active.bind(this);
+    this._idle = this._idle.bind(this);
 
     this.spy = StickySpy();
+    this.spy.addContainer(rootNode);
 
     this._on();
   }
@@ -21,21 +22,21 @@ class StickyContainer {
   _on() {
     this._off();
 
-    this._unEnter = subscribe('sticky-container/enter', this._enter, this.roodNode);
-    this._unLeave = subscribe('sticky-container/leave', this._leave, this.roodNode);
+    this._unActive = subscribe('sticky-container/active', this._active, this.roodNode);
+    this._unIdle = subscribe('sticky-container/idle', this._idle, this.roodNode);
   }
 
   _off() {
-    if (this._unEnter) {
-      this._unEnter();
+    if (this._unActive) {
+      this._unActive();
     }
 
-    if (this._unLeave) {
-      this._unLeave();
+    if (this._unIdle) {
+      this._unIdle();
     }
   }
 
-  _enter() {
+  _active() {
     if (this.state === states.IS_ACTIVE) {
       return;
     }
@@ -44,7 +45,7 @@ class StickyContainer {
     add(this.roodNode, 'is-sticky-container-active');
   }
 
-  _leave() {
+  _idle() {
     if (this.state === states.IS_IDLE) {
       return;
     }
