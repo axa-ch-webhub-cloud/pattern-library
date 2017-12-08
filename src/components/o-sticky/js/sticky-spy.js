@@ -32,6 +32,8 @@ class StickySpy {
 
   addContainer(node) {
     this.containerNodes.push(node);
+
+    this._change();
   }
 
   _on() {
@@ -46,7 +48,7 @@ class StickySpy {
     }
   }
 
-  _change({ type }) {
+  _change({ type } = {}) {
     if (criticalEvents.indexOf(type) >= 0) {
       this.forceRepaint = true;
     }
