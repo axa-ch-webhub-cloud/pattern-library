@@ -15,10 +15,10 @@
 
 .m-main-navigation-mobile__backdrop {
   position: absolute;
-  top: 100%;
+  top: 0;
+  z-index: $main-navigation-mobile__backdrop-z-index;
 
   display: none;
-  min-height: 1000px;
   height: 100%;
   width: 100%;
 
@@ -42,12 +42,11 @@
   @include hardware-accelerate();
 
   position: absolute;
-  top: 100%;
+  top: 75px;
   right: 0;
+  bottom: 0;
   z-index: $main-navigation-mobile__nav-z-index;
 
-  height: 100%;
-  margin-top: -1px;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;

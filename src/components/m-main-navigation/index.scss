@@ -11,10 +11,13 @@
 @import "styles/stroke";
 
 .m-main-navigation {
-  display: block;
+  position: relative;
+  z-index: $main-navigation-z-index;
 
+  display: block;
   height: $main-navigation-height;
   border-bottom: $main-navigation-border-bottom-width solid $main-navigation-border-bottom-color;
+  background: $main-navigation-bg;
 }
 
 .m-main-navigation__box {

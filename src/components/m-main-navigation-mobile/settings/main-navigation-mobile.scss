@@ -1,11 +1,13 @@
 @import "../../../styles/settings/colors";
+@import "../../../styles/settings/zindex";
 
 $main-navigation-mobile-bg: $color-prim-white !default;
 
 $main-navigation-mobile__backdrop-bg: rgba($color-prim-black, 0.5) !default;
+$main-navigation-mobile__backdrop-z-index: $zindex-modal-backdrop !default;
 
 $main-navigation-mobile__nav-bg: $color-prim-white !default;
-$main-navigation-mobile__nav-z-index: 1 !default;
+$main-navigation-mobile__nav-z-index: $zindex-modal !default;
 
 $main-navigation-mobile__list-item-border-width: 1px !default;
 $main-navigation-mobile__list-item-border-color: $color-prim-gray-silver !default;

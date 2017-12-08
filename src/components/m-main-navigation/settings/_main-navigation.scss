@@ -1,6 +1,9 @@
 @import "../../../styles/settings/colors";
+@import "../../../styles/settings/zindex";
 
+$main-navigation-bg: $color-prim-white !default;
 $main-navigation-height: 75px !default;
+$main-navigation-z-index: $zindex-modal !default;
 
 $main-navigation-border-bottom-color: $color-prim-gray-mercury !default;
 $main-navigation-border-bottom-width: 2px !default;
