@@ -60,6 +60,14 @@ class StickyContainer {
     add(this.roodNode, StickyContainer.DEFAULTS.isIdleClass);
     remove(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
   }
+
+  destroy() {
+    this._off();
+
+    this.spy.remove(this.roodNode);
+    delete this.spy;
+    delete this.roodNode;
+  }
 }
 
 export default StickyContainer;

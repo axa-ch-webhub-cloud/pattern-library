@@ -28,7 +28,8 @@ class AXAStickyContainer extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-
+    this.stickyContainer.destroy();
+    delete this.stickyContainer;
   }
 }
 
@@ -56,7 +57,8 @@ class AXASticky extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-
+    this.sticky.destroy();
+    delete this.sticky;
   }
 }
 

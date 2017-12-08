@@ -87,6 +87,17 @@ class Sticky {
       css(this.box, { left: '', width: '' });
     }
   }
+
+  destroy() {
+    this._off();
+
+    this.spy.remove();
+    delete this.spy;
+    delete this.roodNode;
+    delete this.placeholder;
+    delete this.box;
+    delete this._contextNode;
+  }
 }
 
 export default Sticky;

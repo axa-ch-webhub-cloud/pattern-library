@@ -1,9 +1,11 @@
 import on from '../../../js/on';
 import getScrollTop from '../../../js/get-scroll-top';
+import remove from '../../../js/array-remove';
 import { publish } from '../../../js/pubsub';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 
 let instance;
+let instanceCount = 0;
 const criticalEvents = [
   'resize',
   'orientationchange',
@@ -88,12 +90,31 @@ class StickySpy {
       this.forceRepaint = false;
     });
   }
+
+  remove(container) {
+    if (container) {
+      remove(this.containerNodes, container);
+    }
+
+    // eslint-disable-next-line no-plusplus
+    instanceCount--;
+
+    if (instanceCount <= 0 && instance) {
+      this._off();
+
+      delete this.containerNodes;
+      instance = null;
+    }
+  }
 }
 
 export default function factory() {
   if (!instance) {
     instance = new StickySpy();
   }
+
+  // eslint-disable-next-line no-plusplus
+  instanceCount++;
 
   return instance;
 }
