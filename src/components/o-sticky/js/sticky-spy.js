@@ -72,7 +72,12 @@ class StickySpy {
         const isActiveContainer = top <= 0 && bottom >= 0;
         const eventType = isActiveContainer ? 'active' : 'idle';
 
-        publish(`sticky-container/${eventType}`, { containerTop: top, containerBottom: bottom, direction, forceRepaint }, container);
+        publish(`sticky-container/${eventType}`, {
+          containerTop: top,
+          containerBottom: bottom,
+          direction,
+          forceRepaint,
+        }, container);
       }
 
       this.lastScrollTop = scrollTop;
