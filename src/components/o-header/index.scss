@@ -2,3 +2,20 @@
   position: relative;
   display: block;
 }
+
+.o-header__fade {
+  &.is-sticky-sticky {
+    > .o-sticky__box {
+      transform: translateY(0);
+      transition: transform 0.2s ease;
+    }
+
+    &.is-sticky-scroll-down > .o-sticky__box {
+      transform: translateY(-100%);
+    }
+
+    &.is-sticky-scroll-up > .o-sticky__box {
+      transform: translateY(0);
+    }
+  }
+}
