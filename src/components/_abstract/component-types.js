@@ -138,7 +138,7 @@ export class BaseComponent extends HTMLElement {
     this.__contextName = contextName;
 
     // publish context/enabled with contextual node name
-    publish('context/enabled', this.nodeName.toLowerCase());
+    publish('context/enabled', contextName);
   }
 
   /**
