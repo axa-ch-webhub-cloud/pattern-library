@@ -33,9 +33,14 @@
   position: relative;
 
   display: block;
+  width: 100%;
   overflow: hidden;
 
   background: $main-navigation-mobile-bg;
+
+  @include respond-up(sm) {
+    width: $main-navigation-mobile__canvas-width-sm;
+  }
 }
 
 .m-main-navigation-mobile__canvas--off-canvas {
