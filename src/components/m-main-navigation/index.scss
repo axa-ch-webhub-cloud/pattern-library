@@ -30,6 +30,10 @@
   flex-wrap: nowrap;
 
   align-items: center;
+
+  @include respond-down(md) {
+    max-width: none !important;
+  }
 }
 
 .m-main-navigation__logo {
