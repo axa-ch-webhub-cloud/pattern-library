@@ -14,7 +14,7 @@ class FooterMain extends BaseComponentGlobal {
     super.connectedCallback();
     const light = getAttribute(this, 'light');
 
-    this.className = classnames('m-footer-main', {
+    this.className = classnames(this.initialClassName, 'm-footer-main', {
       'm-footer-main--light': light,
     });
   }

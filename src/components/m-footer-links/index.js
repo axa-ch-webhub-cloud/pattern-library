@@ -18,7 +18,7 @@ class FooterLinks extends BaseComponentGlobal {
     super.connectedCallback();
     const cols = getAttribute(this, 'cols');
 
-    this.className = classnames('m-footer-links', {
+    this.className = classnames(this.initialClassName, 'm-footer-links', {
       'm-footer-links--cols': cols,
       [`m-footer-links--cols-${cols}`]: cols,
     });

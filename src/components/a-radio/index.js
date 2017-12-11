@@ -17,7 +17,7 @@ class Radio extends BaseComponentGlobal {
   }
 
   render() {
-    this.className = 'a-radio';
+    this.className = `${this.initialClassName} a-radio`;
 
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'radio');

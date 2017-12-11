@@ -11,7 +11,7 @@ class FooterSub extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'm-footer-sub';
+    this.className = `${this.initialClassName} m-footer-sub`;
   }
 }
 

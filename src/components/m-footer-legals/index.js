@@ -13,7 +13,7 @@ class FooterLegals extends BaseComponentGlobal {
     super.connectedCallback();
     const bottom = getAttribute(this, 'bottom');
 
-    this.className = classnames('m-footer-legals', {
+    this.className = classnames(this.initialClassName, 'm-footer-legals', {
       'm-footer-legals--bottom': bottom,
     });
   }

@@ -15,7 +15,7 @@ class FooterSocial extends BaseComponentGlobal {
     const inline = getAttribute(this, 'inline');
     const light = getAttribute(this, 'light');
 
-    this.className = classnames('m-footer-social', {
+    this.className = classnames(this.initialClassName, 'm-footer-social', {
       'm-footer-social--inline': inline,
       'm-footer-social--light': light,
     });

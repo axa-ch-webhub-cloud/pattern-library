@@ -14,7 +14,7 @@ class FooterLanguages extends BaseComponentGlobal {
     super.connectedCallback();
     const inline = getAttribute(this, 'inline');
 
-    this.className = classnames('m-footer-languages', {
+    this.className = classnames(this.initialClassName, 'm-footer-languages', {
       'm-footer-languages--inline': inline,
     });
   }

@@ -1,8 +1,9 @@
 @import "../../styles/mixins/button-reset";
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
-@import "../m-dropdown/mixins/dropdown.scss";
+@import "../m-dropdown/mixins/dropdown";
 @import "settings/meta-navigation";
 
 .m-meta-navigation {
@@ -11,6 +12,10 @@
   background: $meta-navigation-bg;
   border-top: $meta-navigation-border-top-width solid $meta-navigation-border-top-color;
   border-bottom: $meta-navigation-border-bottom-width solid $meta-navigation-border-bottom-color;
+
+  @include respond-down(md) {
+    display: none;
+  }
 }
 
 .m-meta-navigation__box {

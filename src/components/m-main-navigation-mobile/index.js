@@ -1,20 +1,32 @@
+import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import MobileNavigation from './js/mobile-navigation';
+import getAttribute from '../../js/get-attribute';
 import { domready } from '../../js/domready';
 
 class MainNavigationMobile extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
+
+    this.selectContext('axa-header');
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'm-main-navigation-mobile';
+    const offCanvas = getAttribute(this, 'offcanvas');
+
+    this.className = classnames(this.initialClassName, 'm-main-navigation-mobile', {
+      'm-main-navigation-mobile--off-canvas': !offCanvas,
+    });
 
     this.interaction = new MobileNavigation(this);
+  }
+
+  contextCallback(contextNode) {
+    this.interaction.contextNode = contextNode;
   }
 
   disconnectedCallback() {

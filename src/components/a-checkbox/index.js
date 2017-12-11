@@ -17,7 +17,7 @@ class Checkbox extends BaseComponentGlobal {
   }
 
   render() {
-    this.className = 'a-checkbox';
+    this.className = `${this.initialClassName} a-checkbox`;
 
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'checkbox');

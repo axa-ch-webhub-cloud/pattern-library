@@ -11,10 +11,13 @@
 @import "styles/stroke";
 
 .m-main-navigation {
-  display: block;
+  position: relative;
+  z-index: $main-navigation-z-index;
 
+  display: block;
   height: $main-navigation-height;
   border-bottom: $main-navigation-border-bottom-width solid $main-navigation-border-bottom-color;
+  background: $main-navigation-bg;
 }
 
 .m-main-navigation__box {
@@ -27,6 +30,10 @@
   flex-wrap: nowrap;
 
   align-items: center;
+
+  @include respond-down(md) {
+    max-width: none !important;
+  }
 }
 
 .m-main-navigation__logo {
@@ -169,7 +176,7 @@
 
   fill: currentColor;
 
-  .is-open & {
+  .is-burger-open & {
     display: none;
   }
 }
@@ -181,7 +188,7 @@
 
   fill: currentColor;
 
-  .is-open & {
+  .is-burger-open & {
     display: block;
   }
 }

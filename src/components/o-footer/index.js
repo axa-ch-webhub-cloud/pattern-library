@@ -5,7 +5,7 @@ class Footer extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = 'o-footer';
+    this.className = `${this.initialClassName} o-footer`;
   }
 }
 

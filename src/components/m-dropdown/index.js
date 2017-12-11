@@ -28,7 +28,7 @@ class Dropdown extends BaseComponentGlobal {
 
     const inFlow = this.hasAttribute('in-flow');
 
-    this.className = classnames('m-dropdown js-dropdown', {
+    this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
       'm-dropdown--in-flow': inFlow,
     });
   }

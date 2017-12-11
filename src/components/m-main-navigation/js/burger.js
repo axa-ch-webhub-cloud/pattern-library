@@ -1,14 +1,18 @@
 import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
+import posY from '../../../js/pos-y';
+import scrollTo from '../../../js/scroll-to';
+import getScrollTop from '../../../js/get-scroll-top';
 import { add, remove } from '../../../js/class-list';
+import { publish, subscribe } from '../../../js/pubsub';
 
-const EVENTS = Enum('click', 'resize');
+const EVENTS = Enum('click', 'resize', 'keyup');
 
 class Burger {
   static DEFAULTS = {
     burger: '.js-main-navigation__burger',
-    burgerState: 'is-open',
+    burgerState: 'is-burger-open',
   }
 
   constructor(rootNode, options) {
@@ -19,8 +23,11 @@ class Burger {
     };
     this.isOpen = false;
 
-    this.handleBurgerClick = this.handleBurgerClick.bind(this);
-    this.handleResize = this.handleResize.bind(this);
+    this._handleBurgerClick = this._handleBurgerClick.bind(this);
+    this._handleResize = this._handleResize.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
 
     this.init();
   }
@@ -31,24 +38,57 @@ class Burger {
     this.on();
   }
 
+  set contextNode(value) {
+    this._contextNode = value;
+
+    this.onContextEnabled();
+  }
+
+  onContextEnabled() {
+    // check if context is ready
+    if (this._contextNode) {
+      this.offContextEnabled();
+
+      this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this._contextNode);
+      this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this._contextNode);
+    }
+  }
+
+  offContextEnabled() {
+    if (this.unSubscribeOpen) {
+      this.unSubscribeOpen();
+    }
+
+    if (this.unSubscribeClose) {
+      this.unSubscribeClose();
+    }
+  }
+
   on() {
     this.off();
 
-    this.unBurgerClick = on(this.burger, EVENTS.CLICK, this.handleBurgerClick);
-    this.unResize = on(ownerWindow(this.rootNode), EVENTS.RESIZE, this.handleResize);
+    this._unBurgerClick = on(this.burger, EVENTS.CLICK, this._handleBurgerClick);
+    this._unResize = on(ownerWindow(this.rootNode), EVENTS.RESIZE, this._handleResize);
+    this._unCloseEscape = on(this.rootNode.ownerDocument, EVENTS.KEYUP, this._handleKeyUp);
   }
 
   off() {
-    if (this.unBurgerClick) {
-      this.unBurgerClick();
+    if (this._unBurgerClick) {
+      this._unBurgerClick();
     }
 
-    if (this.unResize) {
-      this.unResize();
+    if (this._unResize) {
+      this._unResize();
     }
+
+    if (this._unCloseEscape) {
+      this._unCloseEscape();
+    }
+
+    this.offContextEnabled();
   }
 
-  handleBurgerClick(e) {
+  _handleBurgerClick(e) {
     e.preventDefault();
 
     if (this.isOpen) {
@@ -58,21 +98,49 @@ class Burger {
     }
   }
 
-  handleResize() {
+  _handleResize() {
     this.close();
   }
 
-  open() {
+  _handleKeyUp(e) {
+    const { key, keyCode } = e;
+    const isEscape = key === EVENTS.ESCAPE || key === EVENTS.ESC || keyCode === 27;
+
+    if (isEscape) {
+      e.preventDefault();
+
+      this.close();
+    }
+  }
+
+  open(e) {
     if (this.isOpen) {
       return;
     }
 
     this.isOpen = true;
 
+    // @TODO: quick fix for scroll position
+    // turns out it needs to scroll to sticky elements holder
+    // turns out further, that this triggers scroll events
+    const y = posY(this.rootNode);
+
+    if (y !== 0 && y !== getScrollTop()) {
+      publish('sticky-container/freeze-direction');
+      scrollTo(this.rootNode.parentNode.parentNode);
+      setTimeout(() => {
+        publish('sticky-container/thaw-direction');
+      }, 10);
+    }
+
     add(this.burger, this.options.burgerState);
+
+    if (!e && this._contextNode) {
+      publish('main-navigation-mobile/open', null, this._contextNode);
+    }
   }
 
-  close() {
+  close(e) {
     if (!this.isOpen) {
       return;
     }
@@ -80,6 +148,10 @@ class Burger {
     this.isOpen = false;
 
     remove(this.burger, this.options.burgerState);
+
+    if (!e && this._contextNode) {
+      publish('main-navigation-mobile/close', null, this._contextNode);
+    }
   }
 
   destroy() {

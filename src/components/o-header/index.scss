@@ -1,0 +1,28 @@
+.o-header {
+  position: relative;
+
+  display: block;
+}
+
+.o-header__fade {
+  .o-sticky__box {
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.2s ease;
+  }
+
+  &.is-sticky-sticky {
+    > .o-sticky__box {
+      transform: translateY(0);
+    }
+
+    &.is-sticky-scroll-down > .o-sticky__box {
+      transform: translateY(-100%);
+    }
+
+    &.is-sticky-scroll-up > .o-sticky__box {
+      transform: translateY(0);
+    }
+  }
+}

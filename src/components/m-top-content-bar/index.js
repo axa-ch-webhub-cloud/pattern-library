@@ -12,7 +12,8 @@ class TopContentBar extends BaseComponentGlobal {
     super.connectedCallback();
     const type = this.getAttribute('type');
 
-    this.className = `m-top-content-bar m-top-content-bar--${type}`;
+
+    this.className = `${this.initialClassName} m-top-content-bar m-top-content-bar--${type}`;
   }
 }
 
