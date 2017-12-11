@@ -119,7 +119,6 @@ class Burger {
     add(this.burger, this.options.burgerState);
 
     if (!e && this._contextNode) {
-      console.log('>>>>>>>>> publish open');
       publish('main-navigation-mobile/open', null, this._contextNode);
     }
   }
@@ -134,7 +133,6 @@ class Burger {
     remove(this.burger, this.options.burgerState);
 
     if (!e && this._contextNode) {
-      console.log('<<<<<<<<< publish close');
       publish('main-navigation-mobile/close', null, this._contextNode);
     }
   }

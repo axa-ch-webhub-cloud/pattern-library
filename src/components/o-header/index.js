@@ -8,7 +8,6 @@ class Header extends BaseComponentGlobal {
     super(styles);
 
     this.enableContext();
-    console.log('constructor -> enabled context for  header');
   }
 
   connectedCallback() {

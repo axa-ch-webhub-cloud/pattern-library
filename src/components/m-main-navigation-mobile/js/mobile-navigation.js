@@ -90,15 +90,11 @@ class MobileNavigation {
   }
 
   open() {
-    console.log('open mobile menu');
-
     add(document.body, this.options.isBodyFrozen);
     add(this.rootNode, this.options.isMenuOpenClass);
   }
 
   close() {
-    console.log('close mobile menu');
-
     this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
       if (propertyName === 'opacity') {
         remove(this.backdrop, this.options.isBackdropFading);
@@ -112,8 +108,6 @@ class MobileNavigation {
   }
 
   handleBackdropClick(e) {
-    console.log('backdrop clicked');
-
     publish('main-navigation-mobile/close', null, this._contextNode);
   }
 
