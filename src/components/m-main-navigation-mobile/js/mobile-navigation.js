@@ -95,6 +95,9 @@ class MobileNavigation {
   }
 
   close() {
+    if (this.unTransitionEndBackdrop) {
+      this.unTransitionEndBackdrop();
+    }
     this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
       if (propertyName === 'opacity') {
         remove(this.backdrop, this.options.isBackdropFading);
