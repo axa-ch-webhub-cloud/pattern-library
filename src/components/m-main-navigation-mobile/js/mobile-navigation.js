@@ -125,6 +125,16 @@ class MobileNavigation {
 
     remove(this.opened.pop(), this.options.isSubMenuOpenClass);
   }
+
+  destroy() {
+    this.off();
+
+    delete this.rootNode;
+    delete this.nav;
+    delete this.backdrop;
+    delete this._contextNode;
+    delete this.opened;
+  }
 }
 
 export default MobileNavigation;
