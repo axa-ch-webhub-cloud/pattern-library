@@ -37,7 +37,7 @@ function mobileNav(items, parent) {
 }
 
 export default ({ items, offcanvas }, children) => [bel`<div class="m-main-navigation-mobile__backdrop js-m-main-navigation-mobile__backdrop"></div>`,
-  bel`<div class="m-main-navigation-mobile__canvas ${classnames('m-main-navigation-mobile__canvas', {
+  bel`<div class="m-main-navigation-mobile__canvas js-main-navigation-mobile__canvas ${classnames({
     'm-main-navigation-mobile__canvas--off-canvas': !offcanvas,
   })}">
     <div class="m-main-navigation-mobile__box">

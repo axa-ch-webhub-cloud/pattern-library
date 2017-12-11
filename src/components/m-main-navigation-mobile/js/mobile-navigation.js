@@ -4,6 +4,7 @@ import { publish, subscribe } from '../../../js/pubsub';
 
 class MobileNavigation {
   static DEFAULTS = {
+    canvas: '.js-main-navigation-mobile__canvas',
     backdrop: '.js-m-main-navigation-mobile__backdrop',
     nav: '.js-main-navigation-mobile__nav',
     category: 'js-main-navigation-mobile__category',
@@ -33,6 +34,7 @@ class MobileNavigation {
   }
 
   init() {
+    this.canvas = this.rootNode.querySelector(this.options.canvas);
     this.nav = this.rootNode.querySelector(this.options.nav);
     this.backdrop = this.rootNode.querySelector(this.options.backdrop);
 
@@ -120,22 +122,34 @@ class MobileNavigation {
     const { parentNode } = delegateTarget;
 
     if (parentNode.lastChild !== delegateTarget) {
+      const { scrollTop } = this.canvas;
+
       add(parentNode, this.options.isSubMenuOpenClass);
 
-      this.opened.push(parentNode);
+      this.canvas.scrollTop = 0;
+
+      this.opened.push({
+        parentNode,
+        scrollTop,
+      });
     }
   }
 
   handleBackClick(e) {
     e.preventDefault();
 
-    remove(this.opened.pop(), this.options.isSubMenuOpenClass);
+    const { parentNode, scrollTop } = this.opened.pop();
+
+    remove(parentNode, this.options.isSubMenuOpenClass);
+
+    this.canvas.scrollTop = scrollTop;
   }
 
   destroy() {
     this.off();
 
     delete this.rootNode;
+    delete this.canvas;
     delete this.nav;
     delete this.backdrop;
     delete this._contextNode;
