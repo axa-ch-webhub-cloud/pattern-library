@@ -1,6 +1,9 @@
 import Enum from '../../../js/enum';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
+import posY from '../../../js/pos-y';
+import scrollTo from '../../../js/scroll-to';
+import getScrollTop from '../../../js/get-scroll-top';
 import { add, remove } from '../../../js/class-list';
 import { publish, subscribe } from '../../../js/pubsub';
 
@@ -100,7 +103,8 @@ class Burger {
   }
 
   _handleKeyUp(e) {
-    const isEscape = e.key === EVENTS.ESCAPE || e.key === EVENTS.ESC || e.keyCode === 27;
+    const { key, keyCode } = e;
+    const isEscape = key === EVENTS.ESCAPE || key === EVENTS.ESC || keyCode === 27;
 
     if (isEscape) {
       e.preventDefault();
@@ -115,6 +119,19 @@ class Burger {
     }
 
     this.isOpen = true;
+
+    // @TODO: quick fix for scroll position
+    // turns out it needs to scroll to sticky elements holder
+    // turns out further, that this triggers scroll events
+    const y = posY(this.rootNode);
+
+    if (y !== 0 && y !== getScrollTop()) {
+      publish('sticky-container/freeze-direction');
+      scrollTo(this.rootNode.parentNode.parentNode);
+      setTimeout(() => {
+        publish('sticky-container/thaw-direction');
+      }, 10);
+    }
 
     add(this.burger, this.options.burgerState);
 
