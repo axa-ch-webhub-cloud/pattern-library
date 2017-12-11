@@ -102,8 +102,20 @@ class MobileNavigation {
     }
     this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
       if (propertyName === 'opacity') {
-        remove(this.backdrop, this.options.isBackdropFading);
         this.unTransitionEndBackdrop();
+        remove(this.backdrop, this.options.isBackdropFading);
+
+        // reset initial scroll and menu state
+        this.canvas.scrollTop = 0;
+
+        let open = this.opened.pop();
+
+        while (open) {
+          const { parentNode } = open;
+          remove(parentNode, this.options.isSubMenuOpenClass);
+
+          open = this.opened.pop();
+        }
       }
     });
 
