@@ -15,17 +15,29 @@
 
 .m-main-navigation-mobile__backdrop {
   position: fixed;
-  top: 0;
+  top: -200%;
+  left: -200%;
   z-index: $main-navigation-mobile__backdrop-z-index;
 
-  display: none;
+  display: block;
   height: 100%;
   width: 100%;
 
   background: $main-navigation-mobile__backdrop-bg;
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
 
   .is-mobile-menu-open > & {
-    display: block;
+    top: 0;
+    left: 0;
+
+    opacity: 1;
+  }
+
+  &.is-mobile-backdrop-fading {
+    top: 0;
+    left: 0;
   }
 }
 

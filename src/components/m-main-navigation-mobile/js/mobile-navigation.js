@@ -10,6 +10,7 @@ class MobileNavigation {
     back: 'js-main-navigation-mobile__back',
     isMenuOpenClass: 'is-mobile-menu-open',
     isSubMenuOpenClass: 'is-mobile-sub-menu-open',
+    isBackdropFading: 'is-mobile-backdrop-fading',
     isBodyFrozen: 'is-body-frozen',
   }
 
@@ -98,6 +99,14 @@ class MobileNavigation {
   close() {
     console.log('close mobile menu');
 
+    this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
+      if (propertyName === 'opacity') {
+        remove(this.backdrop, this.options.isBackdropFading);
+        this.unTransitionEndBackdrop();
+      }
+    });
+
+    add(this.backdrop, this.options.isBackdropFading);
     remove(this.rootNode, this.options.isMenuOpenClass);
     remove(document.body, this.options.isBodyFrozen);
   }
