@@ -14,7 +14,7 @@
 }
 
 .m-main-navigation-mobile__backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: $main-navigation-mobile__backdrop-z-index;
 
@@ -41,7 +41,7 @@
 .m-main-navigation-mobile__canvas--off-canvas {
   @include hardware-accelerate();
 
-  position: absolute;
+  position: fixed;
   top: 75px;
   right: 0;
   bottom: 0;
