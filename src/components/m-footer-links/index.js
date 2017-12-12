@@ -9,7 +9,7 @@ import { subscribe } from '../../js/pubsub';
 
 const hasDropdownBreakpoints = 'xs';
 
-class FooterLinks extends BaseComponentGlobal {
+class AXAFooterLinks extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -55,5 +55,5 @@ class FooterLinks extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-footer-links', FooterLinks);
+  window.customElements.define('axa-footer-links', AXAFooterLinks);
 });
