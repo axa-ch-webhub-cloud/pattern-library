@@ -6,7 +6,7 @@ import MobileNavigation from './js/mobile-navigation';
 import getAttribute from '../../js/get-attribute';
 import { domready } from '../../js/domready';
 
-class MainNavigationMobile extends BaseComponentGlobal {
+class AXAMainNavigationMobile extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
@@ -36,5 +36,5 @@ class MainNavigationMobile extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-main-navigation-mobile', MainNavigationMobile);
+  window.customElements.define('axa-main-navigation-mobile', AXAMainNavigationMobile);
 });

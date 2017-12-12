@@ -5,7 +5,7 @@ import styles from './index.scss';
 import template from './_template';
 import { domready } from '../../js/domready';
 
-class FooterMain extends BaseComponentGlobal {
+class AXAFooterMain extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -21,5 +21,5 @@ class FooterMain extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-footer-main', FooterMain);
+  window.customElements.define('axa-footer-main', AXAFooterMain);
 });

@@ -4,7 +4,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import { domready } from '../../js/domready';
 
-class FooterLegals extends BaseComponentGlobal {
+class AXAFooterLegals extends BaseComponentGlobal {
   constructor() {
     super(styles);
   }
@@ -20,5 +20,5 @@ class FooterLegals extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-footer-legals', FooterLegals);
+  window.customElements.define('axa-footer-legals', AXAFooterLegals);
 });

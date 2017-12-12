@@ -4,7 +4,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 import DropDown from '../m-dropdown/js/drop-down';
 import { domready } from '../../js/domready';
 
-class MetaNavigation extends BaseComponentGlobal {
+class AXAMetaNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -18,5 +18,5 @@ class MetaNavigation extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-meta-navigation', MetaNavigation);
+  window.customElements.define('axa-meta-navigation', AXAMetaNavigation);
 });

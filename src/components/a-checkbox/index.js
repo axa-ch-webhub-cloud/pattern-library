@@ -7,7 +7,7 @@ const KEYCODE = {
   SPACE: 32,
 };
 
-class Checkbox extends BaseComponentGlobal {
+class AXACheckbox extends BaseComponentGlobal {
   static get observedAttributes() {
     return ['checked', 'disabled'];
   }
@@ -147,5 +147,5 @@ class Checkbox extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-checkbox', Checkbox);
+  window.customElements.define('axa-checkbox', AXACheckbox);
 });

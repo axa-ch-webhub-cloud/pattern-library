@@ -3,14 +3,14 @@ import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
 
-class Button extends BaseComponentGlobal {
+class AXAButton extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
 }
 
 domready(() => {
-  window.customElements.define('axa-button', Button);
+  window.customElements.define('axa-button', AXAButton);
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });
