@@ -3,7 +3,7 @@ import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
 
-class Header extends BaseComponentGlobal {
+class AXAHeader extends BaseComponentGlobal {
   constructor() {
     super(styles);
 
@@ -18,5 +18,5 @@ class Header extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-header', Header);
+  window.customElements.define('axa-header', AXAHeader);
 });

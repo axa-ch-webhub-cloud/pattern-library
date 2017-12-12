@@ -5,7 +5,7 @@ import styles from './index.scss';
 import template from './_template';
 import { domready } from '../../js/domready';
 
-class FooterLanguages extends BaseComponentGlobal {
+class AXAFooterLanguages extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -21,5 +21,5 @@ class FooterLanguages extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-footer-languages', FooterLanguages);
+  window.customElements.define('axa-footer-languages', AXAFooterLanguages);
 });

@@ -5,7 +5,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 import DropDown from './js/drop-down';
 import { domready } from '../../js/domready';
 
-class Dropdown extends BaseComponentGlobal {
+class AXADropdown extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -35,7 +35,7 @@ class Dropdown extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-dropdown', Dropdown);
+  window.customElements.define('axa-dropdown', AXADropdown);
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });

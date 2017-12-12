@@ -7,7 +7,7 @@ const KEYCODE = {
   SPACE: 32,
 };
 
-class Radio extends BaseComponentGlobal {
+class AXARadio extends BaseComponentGlobal {
   static get observedAttributes() {
     return ['checked', 'disabled'];
   }
@@ -121,5 +121,5 @@ class Radio extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-radio', Radio);
+  window.customElements.define('axa-radio', AXARadio);
 });

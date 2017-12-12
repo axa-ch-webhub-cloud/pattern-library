@@ -5,7 +5,7 @@ import styles from './index.scss';
 import template from './_template';
 import { domready } from '../../js/domready';
 
-class FooterSocial extends BaseComponentGlobal {
+class AXAFooterSocial extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -23,5 +23,5 @@ class FooterSocial extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-footer-social', FooterSocial);
+  window.customElements.define('axa-footer-social', AXAFooterSocial);
 });

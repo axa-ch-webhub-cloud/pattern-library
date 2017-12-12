@@ -4,7 +4,7 @@ import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
 
-class SubNavigation extends BaseComponentGlobal {
+class AXASubNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -22,5 +22,5 @@ class SubNavigation extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-sub-navigation', SubNavigation);
+  window.customElements.define('axa-sub-navigation', AXASubNavigation);
 });

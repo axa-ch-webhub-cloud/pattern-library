@@ -7,7 +7,7 @@ import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';
 
-class MainNavigation extends BaseComponentGlobal {
+class AXAMainNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
@@ -47,5 +47,5 @@ class MainNavigation extends BaseComponentGlobal {
 }
 
 domready(() => {
-  window.customElements.define('axa-main-navigation', MainNavigation);
+  window.customElements.define('axa-main-navigation', AXAMainNavigation);
 });
