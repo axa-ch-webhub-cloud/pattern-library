@@ -55,7 +55,7 @@ Do you love **React**? Here a helpfull link for you: https://github.com/webcompo
 Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vue-integrate-web-components/
 
 ## Adding your first Pattern Library component:
-Super easy: Read the specs and then just execte `npm run new`. Follow the instruction on the CLI.
+Super easy: Read the specs and then just execute `npm run new`. Follow the instruction on the CLI.
 
 ## DEV stuff:
 
