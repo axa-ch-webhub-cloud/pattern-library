@@ -26,7 +26,7 @@
     "bump-major": "npm run test && npmversion --increment major",
     "bump-minor": "npm run test && npmversion --increment minor",
     "bump-patch": "npm run test && npmversion --increment patch",
-    "bump-major-beta": "npm run test && npmversion --increment major --preid beta"
+    "bump-major-beta": "npm run test && npmversion --increment major --preid beta --force-preid"
   },
   "watch": {
     "build-dev": {
