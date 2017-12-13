@@ -36,7 +36,7 @@ Then, you can add the component of your choice simply by importing the `index.js
 
 Import the button via `import '@axa-ch/patterns-library/dist/components/m-button'` in your `index.js` to be able to use the button. Wherever you want, add `<axa-button>Hello</axa-button>` in your html and like magic, the button will work!
 
-If a component has dependecies to other components, you will have to add them as well. The button in the example above actually has a dependency to `a-icon`. So we will have to include it as well. **Remember, a molecule or an organism will always have dependecies to other components.** These components will work also bye adding them directly with the `<script src='@axa-ch/patterns-library/dist/components/m-button'></script>` tag.
+If a component has dependecies to other components, you will have to add them as well. The button in the example above actually has a dependency to `a-icon`. So we will have to include it as well. **Remember, a molecule or an organism will always have dependecies to other components.** These components will work also by adding them directly with the `<script src='@axa-ch/patterns-library/dist/components/m-button'></script>` tag.
 
 To use the webcomponents with older browsers, import the polyfills which are available under
 `<script src="@axa-ch/patterns-library/dist/app/webcomponents-lite.js"></script>`
