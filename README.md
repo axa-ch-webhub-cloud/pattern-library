@@ -30,8 +30,9 @@ Well first of all install the npm module:
 
 `npm install --save @axa-ch/patterns-library` or while still in development better `npm install https://github.com/axa-ch/patterns-library.git --save`
 
-Then, you can add the component of your choice simply by importing the `index.js` which is contained in the  `/dist/components/**` folder! Styles, HTML and JS will be all in one file! See example below:
+Then, you can add the component of your choice simply by importing the `index.js` which is contained in the  `/dist/components/**` folder! Styles, HTML and JS will be all in one file!
 
+As an example:
 Import the button via `import '@axa-ch/patterns-library/dist/components/m-button'` in your `index.js` to be able to use the button. Wherever you want, add `<axa-button>Hello</axa-button>` in your html and like magic, the button will be work!
 
 If a component has dependecies to other components, you will have to add them as well. The button in the example above actually have a dependcy to `a-icon`. So we will have to include it as well. **Remember, a molecule or an organism will always have dependecies to other components.** These components will work also bye adding them directly with the `<script src='@axa-ch/patterns-library/dist/components/m-button'></script>` tag.
