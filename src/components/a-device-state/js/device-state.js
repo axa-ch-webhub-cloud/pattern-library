@@ -3,6 +3,7 @@ import ownerWindow from '../../../js/owner-window';
 import throttle from '../../../js/throttle';
 import { publish, subscribe } from '../../../js/pubsub';
 
+const deviceStateClass = '.a-device-state'
 const reWhiteSpace = /\s/g;
 const reUnquote = /^"+|"+$/g;
 let isInitialised = false;
@@ -13,7 +14,7 @@ let lastContent;
 
 export function getDeviceState() {
   if (!node) {
-    node = document.querySelector('.a-device-state');
+    node = document.querySelector(deviceStateClass);
   }
 
   if (!window && node) {
@@ -21,6 +22,7 @@ export function getDeviceState() {
   }
 
   if (!node || !window) {
+    console.warn(`Can't find device-state's ${deviceStateClass} class - recommended to be attached to <body> tag.`);
     return false;
   }
 
