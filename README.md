@@ -15,7 +15,7 @@ REF: https://github.com/webcomponents/webcomponentsjs
 
 The main goal here to have components that are reusable with every frontend technology. It doesn't matter if you are using angular or React, you can always import the Components from the pattern library.
 
-*At the moment, we only use Proposed Standard Custom Element, therefor it will run natively on Safari and Chrome on mobile and desktop.*
+*At the moment, we only use Proposed Standard Custom Element, therefore it will run natively on Safari and Chrome on mobile and desktop.*
 
 Are you not familiar with Webcomponents?
 Then stop here and read this (chapter Introduction and Specification): https://www.webcomponents.org/introduction
