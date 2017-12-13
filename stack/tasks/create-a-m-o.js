@@ -11,15 +11,18 @@ process.stdin.setEncoding('utf8');
 // ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
   outdent`
+
     Hello Dear developer, thank you for contributing with us. 😊
 
-    I will help you create a new web component 😎.
+    I will help you to create a new web component 😎.
 
-    You can choose between ATOM📗, MOLECULE📘 and ORGANISM📙.
+    You can choose between ATOM📗, MOLECULE📘 or ORGANISM📙.
 
     As a general guideline, an ATOM📗 is indivisible and is the smallest component.
-    I won't make sense to use it on its own, but is a essential builing block. An ATOM📗 should not have dependencies to other elements
+    It won't make sense to use it on its own, but is an essential builing block. An ATOM📗 should not have dependencies to other elements
+
     An ORGANISM📙 is the finished and ready to use component. It must have at least one element as dependency.
+
     A MOLECULE📘 is a not completly finished component and can be resused somewhere else. It must contain at least one ATOM📗.
 
     Now, please tell me what do you wan to create
@@ -40,7 +43,7 @@ const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.
 const displayNameText = () => {
   console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
     outdent`
-    
+
     Please enter the name of the new ${mapElement[element]} ( something that make sense 😉 ).
 
     `,
@@ -62,6 +65,7 @@ const displayElementSelector = () => {
 };
 
 const writeIndexJs = (path, _name) => {
+  const className = _name.replace(/-/g, '');
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import { BaseComponentGlobal } from '../_abstract/component-types';
@@ -71,7 +75,7 @@ const writeIndexJs = (path, _name) => {
       import template from './_template';
       import { domready } from '../../js/domready';
 
-      class AXA${capitalizeFirstLetter(_name)} extends BaseComponentGlobal {
+      class AXA${capitalizeFirstLetter(className)} extends BaseComponentGlobal {
         constructor() {
           super(styles, template);
 
@@ -105,8 +109,9 @@ const writeIndexJs = (path, _name) => {
       }
 
       domready(() => {
-        window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(_name)});
+        window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(className)});
       });
+      
     `
     , (err) => {
       if (err) {
@@ -176,9 +181,7 @@ const writeTemplateJs = (path) => {
   );
 };
 
-const createBoilerplate = (name) => {
-  const _name = name.trim(' ');
-
+const createBoilerplate = (_name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
 
   if (fs.existsSync(`${path}/index.js`)) {
@@ -229,7 +232,7 @@ process.stdin.on('readable', () => {
       break;
     default:
       if (element && chunk) {
-        createBoilerplate(chunk);
+        createBoilerplate(chunk.trim().replace(/\s+/g, '-'));
       } else {
         displayElementSelector();
       }
