@@ -1,11 +1,13 @@
 import on from '../../../js/on';
+import { add } from '../../../js/class-list';
 import ownerWindow from '../../../js/owner-window';
 import throttle from '../../../js/throttle';
 import { publish, subscribe } from '../../../js/pubsub';
 
-const deviceStateClass = '.a-device-state'
+const deviceStateClass = '.a-device-state';
 const reWhiteSpace = /\s/g;
 const reUnquote = /^"+|"+$/g;
+let isDomReady = false;
 let isInitialised = false;
 let hasChanged = true;
 let node;
@@ -15,6 +17,11 @@ let lastContent;
 export function getDeviceState() {
   if (!node) {
     node = document.querySelector(deviceStateClass);
+
+    if (!node && isDomReady) {
+      node = document.body;
+      add(node, deviceStateClass);
+    }
   }
 
   if (!window && node) {
@@ -22,7 +29,6 @@ export function getDeviceState() {
   }
 
   if (!node || !window) {
-    console.warn(`Can't find device-state's ${deviceStateClass} class - recommended to be attached to <body> tag.`);
     return false;
   }
 
@@ -49,12 +55,18 @@ export function getDeviceState() {
 function observeDeviceState() {
   const _handleResize = throttle(handleResize, 100);
 
-  on(document, 'DOMContentLoaded', _handleResize);
-  on(document, 'load', _handleResize);
+  on(document, 'DOMContentLoaded', ready);
+  on(document, 'load', ready);
 
   subscribe('pubsub/onsubscribe/device-state/change', handleSubscribtion);
 
   handleResize();
+
+  function ready() {
+    isDomReady = true;
+
+    _handleResize();
+  }
 
   function handleResize() {
     const state = getDeviceState();
