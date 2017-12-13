@@ -31,24 +31,29 @@
 
 .o-sticky--debug {
   $o-sticky--debug: &;
+  $sticky-bg: blue;
+  $sticky-bg--is-sticky: red;
+  $sticky-bg--is-bottom: orange;
+  $sticky-color: #fff;
+  $sticky-pseudo-color: yellow;
 
   @at-root .o-sticky__box {
     $o-sticky__box: &;
 
     @at-root {
       #{$o-sticky--debug} > #{$o-sticky__box} {
-        background: rgba(blue, 0.5);
-        color: white;
+        background: rgba($sticky-bg, 0.5);
+        color: $sticky-color;
 
         &::before,
         &::after {
           content: '';
-          color: yellow;
+          color: $sticky-pseudo-color;
         }
       }
 
       #{$o-sticky--debug}.is-sticky-sticky > #{$o-sticky__box} {
-        background: rgba(red, 0.7);
+        background: rgba($sticky-bg--is-sticky, 0.7);
 
         &::before {
           content: 'is-sticky';
@@ -56,7 +61,7 @@
       }
 
       #{$o-sticky--debug}.is-sticky-bottom > #{$o-sticky__box} {
-        background: rgba(orange, 0.7);
+        background: rgba($sticky-bg--is-bottom, 0.7);
 
         &::before {
           content: 'is-bottom';

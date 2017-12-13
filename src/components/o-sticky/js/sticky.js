@@ -53,7 +53,7 @@ class Sticky {
   }
 
   _update({ detail }) {
-    const { containerTop, containerBottom, direction, forceRepaint } = detail;
+    const { containerBottom, direction, forceRepaint } = detail;
     const { rootNode, state, lastDirection } = this;
     const hasDirectionChanged = direction !== lastDirection;
     const { offsetHeight, offsetWidth } = rootNode;

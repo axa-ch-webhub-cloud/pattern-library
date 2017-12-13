@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { domready } from '../../js/domready';

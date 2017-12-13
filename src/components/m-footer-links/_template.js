@@ -1,6 +1,5 @@
 import bel from 'bel';
 import raw from 'bel/raw';
-import chunk from '../../js/array-chunk';
 
 const arrowIcon = '<axa-icon id="angle-bracket-right" classes="m-footer-links__category__icon"></axa-icon>';
 
