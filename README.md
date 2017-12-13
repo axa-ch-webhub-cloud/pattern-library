@@ -17,7 +17,7 @@ The main goal here to have components that are reusable with every frontend tech
 
 *At the moment, we only use Proposed Standard Custom Element, therefore it will run natively on Safari and Chrome on mobile and desktop.*
 
-Are you not familiar with Webcomponents?
+__Are you not familiar with Webcomponents__?
 Then stop here and read this (chapter Introduction and Specification): https://www.webcomponents.org/introduction
 
 To know how they work in your browser go to the w3c Spec. Here the link to the custom element for example: https://www.w3.org/TR/custom-elements/
