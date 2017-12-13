@@ -8,6 +8,7 @@
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
     "start": "npm run serve-build-prod",
+    "new": "node stack/tasks/create-a-m-o.js",
     "server": "node stack/server.js",
     "postinstall": "npm rebuild node-sass",
     "watch": "npm-watch build-dev",
