@@ -1,5 +1,6 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
+const outdent = require('outdent');
 
 const CWD = process.cwd();
 
@@ -9,19 +10,19 @@ process.stdin.setEncoding('utf8');
 
 // ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-  `
-  Hello Dear developer, thank you for contributing with us. 😊
+  outdent`
+    Hello Dear developer, thank you for contributing with us. 😊
 
-  I will help you create a new web component 😎.
+    I will help you create a new web component 😎.
 
-  You can choose between ATOM📗, MOLECULE📘 and ORGANISM📙.
+    You can choose between ATOM📗, MOLECULE📘 and ORGANISM📙.
 
-  As a general guideline, an ATOM📗 is indivisible and is the smallest component.
-  I won't make sense to use it on its own, but is a essential builing block. An ATOM📗 should not have dependencies to other elements
-  An ORGANISM📙 is the finished and ready to use component. It must have at least one element as dependency.
-  A MOLECULE📘 is a not completly finished component and can be resused somewhere else. It must contain at least one ATOM📗.
+    As a general guideline, an ATOM📗 is indivisible and is the smallest component.
+    I won't make sense to use it on its own, but is a essential builing block. An ATOM📗 should not have dependencies to other elements
+    An ORGANISM📙 is the finished and ready to use component. It must have at least one element as dependency.
+    A MOLECULE📘 is a not completly finished component and can be resused somewhere else. It must contain at least one ATOM📗.
 
-  Now, please tell me what do you wan to create
+    Now, please tell me what do you wan to create
   `,
 );
 
@@ -38,20 +39,24 @@ const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.
 
 const displayNameText = () => {
   console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
-    `
-  Please enter the name of the new ${mapElement[element]} ( something that make sense 😉 ).
+    outdent`
+    
+    Please enter the name of the new ${mapElement[element]} ( something that make sense 😉 ).
+
     `,
   );
 };
 
 const displayElementSelector = () => {
   console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
-    `
-  Press:
+    outdent`
 
-  1 for ATOM 📗
-  2 for MOLECULE 📘
-  3 for ORGANISM 📙
+      Press:
+
+      1 for ATOM 📗
+      2 for MOLECULE 📘
+      3 for ORGANISM 📙
+
     `,
   );
 };
@@ -59,50 +64,50 @@ const displayElementSelector = () => {
 const writeIndexJs = (path, _name) => {
   fs.writeFileSync(
     `${path}/index.js`,
-    `import { BaseComponentGlobal } from '../_abstract/component-types';
-// import the styles used for this component
-import styles from './index.scss';
-// import the template used for this component
-import template from './_template';
-import { domready } from '../../js/domready';
+    outdent`import { BaseComponentGlobal } from '../_abstract/component-types';
+      // import the styles used for this component
+      import styles from './index.scss';
+      // import the template used for this component
+      import template from './_template';
+      import { domready } from '../../js/domready';
 
-class AXA${capitalizeFirstLetter(_name)} extends BaseComponentGlobal {
-  constructor() {
-    super(styles, template);
+      class AXA${capitalizeFirstLetter(_name)} extends BaseComponentGlobal {
+        constructor() {
+          super(styles, template);
 
-    // does this provide context (See docs for context) ?
-    // this.enableContext()
+          // does this provide context (See docs for context) ?
+          // this.enableContext()
 
-    // or do you want to consume a specific context
-    // this.selectContext('axa-context-provider');
-  }
+          // or do you want to consume a specific context
+          // this.selectContext('axa-context-provider');
+        }
 
-  /**
-   * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-   */
-  connectedCallback() {
-    super.connectedCallback();
+        /**
+         * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
+         */
+        connectedCallback() {
+          super.connectedCallback();
 
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
-  }
+          // Your DOM interaction here, but keep it decoupled.
+          // If you don't have any, just remove this function
+        }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
+        disconnectedCallback() {
+          super.disconnectedCallback();
 
-    // Don't forget to cleanup :)
-  }
+          // Don't forget to cleanup :)
+        }
 
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
-}
+        // Do you consume context?
+        // contextCallback(contextNode) {
+        //   contextNode is now available.
+        // }
+      }
 
-domready(() => {
-  window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(_name)});
-});
-`
+      domready(() => {
+        window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(_name)});
+      });
+    `
     , (err) => {
       if (err) {
         console.error(err); // eslint-disable-line
@@ -115,10 +120,10 @@ domready(() => {
 const writeIndexScss = (path, _name) => {
   fs.writeFileSync(
     `${path}/index.scss`,
-    `.${element}-${_name} {
-  display: block;
-}
-`
+    outdent`.${element}-${_name} {
+        display: block;
+      }
+    `
     , (err) => {
       if (err) {
         console.error(err); // eslint-disable-line
@@ -131,8 +136,8 @@ const writeIndexScss = (path, _name) => {
 const writePreviewAndHtml = (path, _name) => {
   fs.writeFileSync(
     `${path}/_preview.html`,
-    `<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
-`
+    outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
+    `
     , (err) => {
       if (err) {
         console.error(err); // eslint-disable-line
@@ -142,8 +147,8 @@ const writePreviewAndHtml = (path, _name) => {
   );
   fs.writeFileSync(
     `${path}/_example.html`,
-    `<!--Please create here a HTML exmple by using just default HTML tags-->
-`
+    outdent`<!--Please create here a HTML exmple by using just default HTML tags-->
+    `
     , (err) => {
       if (err) {
         console.error(err); // eslint-disable-line
@@ -156,12 +161,12 @@ const writePreviewAndHtml = (path, _name) => {
 const writeTemplateJs = (path) => {
   fs.writeFileSync(
     `${path}/_template.js`,
-    `import bel from 'bel';
+    outdent`import bel from 'bel';
 
-export default ({ classes }) => bel\`
-  <article class=\${classes}>Ready to start</article>
-\`;
-`
+      export default ({ classes }) => bel\`
+        <article class=\${classes}>Ready to start</article>
+      \`;
+    `
     , (err) => {
       if (err) {
         console.error(err); // eslint-disable-line
@@ -177,13 +182,15 @@ const createBoilerplate = (name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
 
   if (fs.existsSync(`${path}/index.js`)) {
-    console.log('\x1b[41m', '\x1b[36m', ' Component already exists. Please start over again 😥 '); //eslint-disable-line
+    console.log('\x1b[41m', '\x1b[36m', '\nComponent already exists. Please start over again 😥 \n'); //eslint-disable-line
     element = '';
     displayElementSelector();
   } else {
     console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-      `
-  I'm creating a ${mapElement[element]} called ${_name} for you...
+      outdent`
+
+      I'm creating a ${mapElement[element]} called ${_name} for you...
+
       `,
     );
     mkdirp(`${path}`, () => {
@@ -192,10 +199,11 @@ const createBoilerplate = (name) => {
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-        `
-  Created under ${path}
+        outdent`
 
-  happy Coding 😊
+          Created under ${path}
+          happy Coding 😊
+
         `,
       );
       process.exit(0);
