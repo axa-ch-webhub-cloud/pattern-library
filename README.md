@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/LucaMele/jquery-free.svg?branch=master)](https://travis-ci.org/axa-ch/patterns-library)
 
 # The AXA CH Style and HTML Guide (Editor's Draft)
-This is the core style-guide used for AXA Switzerland. It's based on Web-Components.
+This is the core pattern library used for AXA Switzerland. It's based on Web-Components.
 Web-Components are natively supported in modern browser. This repo contains also polyfills for those
 less "cool" browsers out there. Support is:
 
@@ -11,9 +11,13 @@ less "cool" browsers out there. Support is:
 * Chrome / Chrome Mobile (100% native)
 * Safari / iOS Safari (Polyfill for html import)
 
-The main goal here to have components that are reusable on every frontend technology. It doesn't matter if you are using angular or React, you can always import the Components from the styleguide.
+REF: https://github.com/webcomponents/webcomponentsjs
 
-Are you not familiar with webcomponents?
+The main goal here to have components that are reusable with every frontend technology. It doesn't matter if you are using angular or React, you can always import the Components from the pattern library.
+
+*At the moment, we only use Proposed Standard Custom Element, therefore it will run natively on Safari and Chrome on mobile and desktop.*
+
+__Are you not familiar with Webcomponents__?
 Then stop here and read this (chapter Introduction and Specification): https://www.webcomponents.org/introduction
 
 To know how they work in your browser go to the w3c Spec. Here the link to the custom element for example: https://www.w3.org/TR/custom-elements/
@@ -24,21 +28,25 @@ Hold on, don't re-invent the wheel! Check if that what you have to do already ex
 
 Well first of all install the npm module:
 
-`npm install --save @axa-ch/patterns-library`
+`npm install --save @axa-ch/patterns-library` or while still in development better `npm install https://github.com/axa-ch/patterns-library.git --save`
 
-Then, you can add the component of your choice simply by importing the js! Styles, HTML and JS will be all in one file! See example below:
+Then, you can add the component of your choice simply by importing the `index.js` which is contained in the  `/dist/components/**` folder! Styles, HTML and JS will be all in one file!
 
-`import '@axa-ch/patterns-library/dist/components/a-button'` in your index.js to be able to use the button. Wherever you want, add `<axa-button>Hello</axa-button>` in your html and like magic, the button will be work as defined per the styleguide!
+**As an example:**
+
+Import the button via `import '@axa-ch/patterns-library/dist/components/m-button'` in your `index.js` to be able to use the button. Wherever you want, add `<axa-button>Hello</axa-button>` in your html and like magic, the button will work!
+
+If a component has dependecies to other components, you will have to add them as well. The button in the example above actually has a dependency to `a-icon`. So we will have to include it as well. **Remember, a molecule or an organism will always have dependecies to other components.** These components will work also by adding them directly with the `<script src='@axa-ch/patterns-library/dist/components/m-button'></script>` tag.
 
 To use the webcomponents with older browsers, import the polyfills which are available under
-`<script src="@axa-ch/patterns-library/dist/components/webcomponents-sd-ce.js"></script>`
+`<script src="node_modules/@axa-ch/patterns-library/dist/app/webcomponents-lite.js"></script>`
 
 A quick overview what they do:
-`webcomponents-lite.js` include all the polyfills needed for ES6 ready browsers and include polyfills for all 4 parts of the webcomponents specs. For AXA Patterns, only `webcomponents-sd-ce.js` is actually needed (it is just shadow dom and custom element). All components within patterns library need only custom element polyfill.
-`es6-polyfills.js` are all the polyfills needed for almost ES6 ready browsers like ie11.
-`webcomponents-loader` loads the needed polyfills that is needed asynchronously.
+`webcomponents-lite.js` includes all the polyfills needed for ES6 ready browsers and includes polyfills for all 4 parts of the webcomponents specs.
+`es6-polyfills.js` are all the polyfills needed for ie11.
+Alternativly to `webcomponents-lite.js`, `webcomponents-loader.js` loads the polyfills that is needed asynchronously via AJAX.
 
-If you are using your own framework, be aware to convert the webcponents to a component for your framework (simple components like <axa-button> does not need to be converted):
+If you are using your own framework, be aware to convert the webcponents to a component for your framework (simple components like `m-button` does not need to be converted):
 
 Do you love **angular >= 2**? Here a helpfull link for you: https://www.sitepen.com/blog/2017/09/14/using-web-components-with-angular/
 
@@ -46,19 +54,25 @@ Do you love **React**? Here a helpfull link for you: https://github.com/webcompo
 
 Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vue-integrate-web-components/
 
-## Adding your first Style-Guide component:
-Super easy: just go to `src/components` and create a new folder having a `index.scss`, `index.html` and `index.js`. Take the dummy component as reference and there you go, your component is done and ready in the styleguide! No other steps required! No include in global `index.js` or `index.scss`. All done.
+## Adding your first Pattern Library component:
+Super easy: Read the specs and then just execte `npm run new`. Follow the instruction on the CLI.
 
 ## DEV stuff:
 
 commands:
 
-* To build to dist simply run `npm run build`
-* to run only the server run `npm start DEV` or `npm start PROD`
-* to run only the watches run `npm run watch`
-* to run server and watchers `npm run serve`
-* to run PROD server `npm run serve-build-prod`
+* To build to dist folder, simply run `npm run build`
+* to run server and watchers (this is what you want while you are developing) `npm run serve`
+* to run the PROD server `npm run serve-build-prod`
 
 ### Guide to for the base components:
 
-When you create your own component please .....
+TODO.
+
+### Publish / Subscribe between webcomponents
+
+TODO.
+
+### Context enabler and context listener
+
+TODO.
