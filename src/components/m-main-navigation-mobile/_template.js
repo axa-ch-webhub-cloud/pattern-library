@@ -4,10 +4,10 @@ import classnames from 'classnames';
 function mobileNavItem(item) {
   const hasItems = !!item.items;
 
+  /* eslint-disable indent */
   return bel`
     <li class="m-main-navigation-mobile__list-item">
-      ${hasItems ? [bel`
-        <button type="button" class="m-main-navigation-mobile__category js-main-navigation-mobile__category">
+      ${hasItems ? [bel`<button type="button" class="m-main-navigation-mobile__category js-main-navigation-mobile__category">
           ${item.name}
           <axa-icon id="angle-bracket-right" classes="m-main-navigation-mobile__icon-next"></axa-icon>
         </button>
@@ -18,6 +18,7 @@ function mobileNavItem(item) {
       `}
     </li>
   `;
+  /* eslint-enable indent */
 }
 function mobileNav(items, parent) {
   return bel`

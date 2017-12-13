@@ -124,7 +124,7 @@ class MobileNavigation {
     remove(document.body, this.options.isBodyFrozen);
   }
 
-  handleBackdropClick(e) {
+  handleBackdropClick() {
     publish('main-navigation-mobile/close', null, this._contextNode);
   }
 

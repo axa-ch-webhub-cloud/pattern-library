@@ -182,7 +182,7 @@ strong {
 // stylelint-enable font-weight-notation
 
 small {
-  font-size: 80%; // Add the correct font size in all browsers
+  font-size: $font-size-base--small; // Add the correct font size in all browsers
 }
 
 //
@@ -193,7 +193,7 @@ small {
 sub,
 sup {
   position: relative;
-  font-size: 75%;
+  font-size: $font-size-base--subsup;
   line-height: 0;
   vertical-align: baseline;
 }
@@ -251,7 +251,7 @@ code,
 kbd,
 samp {
   font-family: monospace, monospace; // Correct the inheritance and scaling of font size in all browsers.
-  font-size: 1em; // Correct the odd `em` font sizing in all browsers.
+  font-size: $font-size-base--code; // Correct the odd `em` font sizing in all browsers.
 }
 // stylelint-enable font-family-no-duplicate-names
 
@@ -454,7 +454,7 @@ legend {
   max-width: 100%; // 1
   padding: 0;
   margin-top: $margin-top-base / 2;
-  font-size: 1.5rem;
+  font-size: $font-size-base--legend;
   line-height: inherit;
   color: inherit; // 2
   white-space: normal; // 1
