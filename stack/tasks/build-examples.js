@@ -94,10 +94,14 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     previewName = previewName.substring(2, previewName.length);
 
-    const resultCss = sass.renderSync({
-      file: filePath.replace('_preview.html', 'index.scss'),
-      outputStyle: 'expanded',
-    });
+    let resultCss;
+
+    try {
+      resultCss = sass.renderSync({
+        file: filePath.replace('_preview.html', 'index.scss'),
+        outputStyle: 'expanded',
+      });
+    } catch (error) {} // eslint-disable-line
 
     const atomicCategory = atomicName.toLowerCase();
 
@@ -121,7 +125,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
         </section>
         <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
-        <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${nsh.highlight(resultCss.css.toString(), cssLang)}</pre>
+        <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${resultCss ? nsh.highlight(resultCss.css.toString(), cssLang) : ''}</pre>
       </article>
     `;
   });
