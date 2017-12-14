@@ -71,7 +71,7 @@ We have a strict strategy for releasing new versions of the Patterns Library. Pl
 
 ### Publish / Subscribe between webcomponents
 
-To listen to event and triggers between component, we use some decoupled events. This logic is included in the `BaseComponent` class and is available for every component.
+To listen to events and triggers between components, we use some decoupled events. This logic is included in the `BaseComponent` class and is available for every component.
 
 The publish/subscribe system use native Custom Events (https://dom.spec.whatwg.org/#interface-customevent). Per default they don't bubble and don't cancel (no prevent default). The event name is name spaced with a slash.
 
