@@ -67,6 +67,8 @@ Super easy: Read the specs and then just execute `npm run new`. Follow the instr
 
 We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
 
+## Developers Guide:
+
 ### Publish / Subscribe between webcomponents
 
 To listen to event and triggers between component, we use some decoupled events. This logic is included in the `BaseComponent` class and is available for every component.
