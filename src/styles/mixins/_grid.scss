@@ -75,7 +75,7 @@
   flex: 0 0 $column-width;
 }
 
-@mixin reset-col($important) {
+@mixin reset-col($important: false) {
   @if $important {
     $important: !important;
   } @else {
