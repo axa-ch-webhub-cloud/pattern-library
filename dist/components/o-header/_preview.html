@@ -1,200 +1,290 @@
-<axa-header>
-  <axa-top-content-bar type="commercial">
-    <p class="m-top-content-bar__text">commercial <a href="#" class="a-link a-link--white">link</a> stuff</p>
-    <button class="a-button a-button--white a-button--ghost m-top-content-bar__button">get it for free</button>
-  </axa-top-content-bar>
+<axa-sticky-container>
+  <axa-header>
+    <axa-top-content-bar class="hide-md-down" type="commercial">
+      <p class="m-top-content-bar__text">commercial <a href="#" class="a-link a-link--white">link</a> stuff</p>
+      <button class="m-button m-button--white m-button--ghost m-top-content-bar__button">get it for free</button>
+    </axa-top-content-bar>
 
-  <axa-meta-navigation left='[
-      {"name": "individuals", "url": "#"},
-      {"name": "small busineses", "url": "#"},
-      {"name": "businesses", "url": "#"}
+    <axa-sticky class="o-header__fade">
+    <axa-meta-navigation left='[
+        {"name": "individuals", "url": "#"},
+        {"name": "small busineses", "url": "#"},
+        {"name": "businesses", "url": "#"}
+      ]'>
+    </axa-meta-navigation>
+
+    <axa-main-navigation items='[
+      {
+        "url": "#",
+        "name": "Offers",
+        "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
+        "submenu": [
+          {
+            "col": "3",
+            "column": [
+              {
+                "boxes": [
+                  {"url": "#", "name": "Property insurance"},
+                  {"url": "#", "name": "Engineering insurance"},
+                  {"url": "#", "name": "Third-party liability insurance"},
+                  {"url": "#", "name": "Fidelity insurance"},
+                  {"url": "#", "name": "Companies"},
+                  {"url": "#", "name": "Transportation insurance <br> subline"},
+                  {"url": "#", "name": "Building insurance"},
+                  {"url": "#", "name": "Construction insurance"},
+                  {"url": "#", "name": "Guarantees and bonds"},
+                  {"url": "#", "name": "Credit insurance"},
+                  {"url": "#", "name": "Epidemic insurance"},
+                  {"url": "#", "name": "Cyber insurance"}
+                ],
+                "title": "Liability and property"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "Car insurance"},
+                  {"url": "#", "name": "Watercraft insurance"},
+                  {"url": "#", "name": "Aviation insurance"}
+                ],
+                "title": "Vehicles"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "Daily sickness benefits insurance"},
+                  {"url": "#", "name": "Accident insurance for companies"}
+                ],
+                "title": "Persons"
+              }
+            ]
+          },
+          {
+            "col": "3",
+            "column": [
+              {
+                "boxes": [
+                  {"url": "#", "name": "Solutions for start-ups and SMEs"},
+                  {"url": "#", "name": "Pension fund solutions"}
+                ],
+                "title": "Occupational benefits"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "Smart Fleet"},
+                  {"url": "#", "name": "Pre-finance customer invoices"}
+                ],
+                "title": "AXA & partners"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "Corporate Health Management"},
+                  {"url": "#", "name": "Customer magazine"},
+                  {"url": "#", "name": "Current legislation on Pillar 2 – BVG"}
+                ],
+                "title": "Knowledge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "url": "#",
+        "name": "your situation",
+        "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
+        "submenu": [
+          {
+            "col": "2",
+            "isWide": true,
+            "column": [
+              {
+                "boxes": [
+                  {"url": "#", "name": "Your company start-up"},
+                  {"url": "#", "name": "Your self-employment"},
+                  {"url": "#", "name": "Your succession planning"},
+                  {"url": "#", "name": "The health of your employees"}
+                ],
+                "title": "You are interested in"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "Company with up to 20 employees"},
+                  {"url": "#", "name": "Company with 20 to 100 employees"},
+                  {"url": "#", "name": "Corporates with 100+ employees"}
+                ],
+                "title": "You are a ..."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "url": "#",
+        "name": "Advice, Contact, Service",
+        "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
+        "submenu": [
+          {
+            "col": "3",
+            "column": [
+              {
+                "boxes": [
+                  {"url": "#", "name": "Corporate customer advisor"},
+                  {"url": "#", "name": "Consultant pension fund"},
+                  {"url": "#", "name": "Insurance check"}
+                ],
+                "title": "Advice"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "General contact"}
+                ],
+                "title": "Contact"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "Download-Center Corporate customers"}
+                ],
+                "title": "Service"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "url": "#",
+        "name": "Report and Update",
+        "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
+        "submenu": [
+          {
+            "col": "2",
+            "column": [
+              {
+                "boxes": [
+                  {"url": "#", "name": "Electronic salary notification"},
+                  {"url": "#", "name": "Report accident / illness"},
+                  {"url": "#", "name": "File a claim"},
+                  {"url": "#", "name": "Online contract administration for BVG"}
+                ],
+                "title": "Notify"
+              },
+              {
+                "boxes": [
+                  {"url": "#", "name": "myAXA customer portal"}
+                ],
+                "title": "Update"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "url": "#",
+        "name": "Blog",
+        "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
+        "submenu": [
+          {
+            "col": "1",
+            "column": [
+              {
+                "boxes": [
+                  {"url": "#", "name": "Link"},
+                  {"url": "#", "name": "Link"},
+                  {"url": "#", "name": "Link"}
+                ],
+                "title": "Category"
+              }
+            ]
+          }
+        ]
+      }
     ]'>
-  </axa-meta-navigation>
+    </axa-main-navigation>
 
-  <axa-main-navigation items='[
-    {
-      "url": "#",
-      "name": "Offers",
-      "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
-      "submenu": [
-        {
-          "col": "3",
-          "column": [
-            {
-              "boxes": [
-                {"url": "#", "name": "Property insurance"},
-                {"url": "#", "name": "Engineering insurance"},
-                {"url": "#", "name": "Third-party liability insurance"},
-                {"url": "#", "name": "Fidelity insurance"},
-                {"url": "#", "name": "Companies"},
-                {"url": "#", "name": "Transportation insurance <br> subline"},
-                {"url": "#", "name": "Building insurance"},
-                {"url": "#", "name": "Construction insurance"},
-                {"url": "#", "name": "Guarantees and bonds"},
-                {"url": "#", "name": "Credit insurance"},
-                {"url": "#", "name": "Epidemic insurance"},
-                {"url": "#", "name": "Cyber insurance"}
-              ],
-              "title": "Liability and property"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "Car insurance"},
-                {"url": "#", "name": "Watercraft insurance"},
-                {"url": "#", "name": "Aviation insurance"}
-              ],
-              "title": "Vehicles"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "Daily sickness benefits insurance"},
-                {"url": "#", "name": "Accident insurance for companies"}
-              ],
-              "title": "Persons"
-            }
-          ]
-        },
-        {
-          "col": "3",
-          "column": [
-            {
-              "boxes": [
-                {"url": "#", "name": "Solutions for start-ups and SMEs"},
-                {"url": "#", "name": "Pension fund solutions"}
-              ],
-              "title": "Occupational benefits"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "Smart Fleet"},
-                {"url": "#", "name": "Pre-finance customer invoices"}
-              ],
-              "title": "AXA & partners"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "Corporate Health Management"},
-                {"url": "#", "name": "Customer magazine"},
-                {"url": "#", "name": "Current legislation on Pillar 2 – BVG"}
-              ],
-              "title": "Knowledge"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "#",
-      "name": "your situation",
-      "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
-      "submenu": [
-        {
-          "col": "2",
-          "isWide": true,
-          "column": [
-            {
-              "boxes": [
-                {"url": "#", "name": "Your company start-up"},
-                {"url": "#", "name": "Your self-employment"},
-                {"url": "#", "name": "Your succession planning"},
-                {"url": "#", "name": "The health of your employees"}
-              ],
-              "title": "You are interested in"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "Company with up to 20 employees"},
-                {"url": "#", "name": "Company with 20 to 100 employees"},
-                {"url": "#", "name": "Corporates with 100+ employees"}
-              ],
-              "title": "You are a ..."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "#",
-      "name": "Advice, Contact, Service",
-      "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
-      "submenu": [
-        {
-          "col": "3",
-          "column": [
-            {
-              "boxes": [
-                {"url": "#", "name": "Corporate customer advisor"},
-                {"url": "#", "name": "Consultant pension fund"},
-                {"url": "#", "name": "Insurance check"}
-              ],
-              "title": "Advice"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "General contact"}
-              ],
-              "title": "Contact"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "Download-Center Corporate customers"}
-              ],
-              "title": "Service"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "#",
-      "name": "Report and Update",
-      "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
-      "submenu": [
-        {
-          "col": "2",
-          "column": [
-            {
-              "boxes": [
-                {"url": "#", "name": "Electronic salary notification"},
-                {"url": "#", "name": "Report accident / illness"},
-                {"url": "#", "name": "File a claim"},
-                {"url": "#", "name": "Online contract administration for BVG"}
-              ],
-              "title": "Notify"
-            },
-            {
-              "boxes": [
-                {"url": "#", "name": "myAXA customer portal"}
-              ],
-              "title": "Update"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "#",
-      "name": "Blog",
-      "subMenuIndexSettings": {"title": "Index Page", "close": "Close" },
-      "submenu": [
-        {
-          "col": "1",
-          "column": [
-            {
-              "boxes": [
-                {"url": "#", "name": "Link"},
-                {"url": "#", "name": "Link"},
-                {"url": "#", "name": "Link"}
-              ],
-              "title": "Category"
-            }
-          ]
-        }
-      ]
-    }
+    <axa-main-navigation-mobile items='[{"name": "car insurance", "items": [
+         {"name": "professional indemnity insurance"},
+         {"name": "public liability insurance"},
+         {"name": "shop insurance sub line"},
+         {"name": "van insurance"},
+         {"name": "residential landlord insurance"}
+         ]},
+  {"name": "home insurance", "items": [
+         {"name": "personal sub line", "items": [
+                {"name": "car insurance"},
+                {"name": "home insurance"},
+                {"name": "travel insurance"},
+                {"name": "breakdown cover"},
+                {"name": "van insurance"}
+         ]},
+         {"name": "business", "items": [
+                {"name": "professional indemnity insurance"},
+                {"name": "public liability insurance"},
+                {"name": "shop insurance"},
+                {"name": "van insurance"},
+                {"name": "residential landlord insurance"}
+         ]}
+  ]},
+  {"name": "health insurance", "items": [
+         {"name": "personal sub line", "items": [
+                {"name": "car insurance"},
+                {"name": "home insurance"},
+                {"name": "travel insurance"},
+                {"name": "breakdown cover"},
+                {"name": "van insurance"}
+         ]},
+         {"name": "business", "items": [
+                {"name": "professional indemnity insurance"},
+                {"name": "public liability insurance"},
+                {"name": "shop insurance"},
+                {"name": "van insurance"},
+                {"name": "residential landlord insurance"}
+         ]}
+
+  ]},
+  {"name": "travel insurance", "items": [
+         {"name": "personal sub line", "items": [
+                {"name": "car insurance"},
+                {"name": "home insurance"},
+                {"name": "travel insurance"},
+                {"name": "breakdown cover"},
+                {"name": "van insurance"}
+         ]},
+         {"name": "business", "items": [
+                {"name": "professional indemnity insurance"},
+                {"name": "public liability insurance"},
+                {"name": "shop insurance"},
+                {"name": "van insurance"},
+                {"name": "residential landlord insurance"}
+         ]}
+
+  ]},
+  {"name": "all products", "items": [
+         {"name": "personal sub line", "items": [
+                {"name": "car insurance"},
+                {"name": "home insurance"},
+                {"name": "travel insurance"},
+                {"name": "breakdown cover"},
+                {"name": "van insurance"}
+         ]},
+         {"name": "business", "items": [
+                {"name": "professional indemnity insurance"},
+                {"name": "public liability insurance"},
+                {"name": "shop insurance"},
+                {"name": "van insurance"},
+                {"name": "residential landlord insurance"}
+         ]}
+
+  ]}
   ]'>
-  </axa-main-navigation>
+      <a href="#" class="m-button m-button--ghost m-button--motion">myAXA Login</a>
 
+      <axa-top-content-bar type="commercial">
+        <p class="m-top-content-bar__text">commercial <a href="#" class="a-link a-link--white">link</a> stuff</p>
+        <button class="m-button m-button--white m-button--ghost m-top-content-bar__button">get it for free</button>
+      </axa-top-content-bar>
 
-</axa-header>
-<div style="height: 500px;">Empty space</div>
+      <axa-meta-navigation-mobile
+        others='[{"name": "individuals", "url": "#", "isActive": true}, {"name": "small busineses", "url": "#"}, {"name": "businesses", "url": "#"}]'
+        languages='[{"code": "de", "url": "#", "isActive": true}, {"code": "en", "url": "#en"}, {"code": "fr", "url": "#fr"}, {"code": "it", "url": "#it"}]'>
+      </axa-meta-navigation-mobile>
+    </axa-main-navigation-mobile>
+    </axa-sticky>
+  </axa-header>
+  <div style="height: 500px;">Empty space</div>
+</axa-sticky-container>
