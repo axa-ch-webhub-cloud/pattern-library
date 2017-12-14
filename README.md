@@ -57,22 +57,80 @@ Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vu
 ## Adding your first Pattern Library component:
 Super easy: Read the specs and then just execute `npm run new`. Follow the instruction on the CLI.
 
-## DEV stuff:
-
-commands:
+## Main NPM commands:
 
 * To build to dist folder, simply run `npm run build`
 * to run server and watchers (this is what you want while you are developing) `npm run serve`
 * to run the PROD server `npm run serve-build-prod`
 
-### Guide to for the base components:
+## How do we release a new version
 
-TODO.
+We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
+
+## Developers Guide:
 
 ### Publish / Subscribe between webcomponents
 
-TODO.
+To listen to events and triggers between components, we use some decoupled events. This logic is included in the `BaseComponent` class and is available for every component.
+
+The publish/subscribe system use native Custom Events (https://dom.spec.whatwg.org/#interface-customevent). Per default they don't bubble and don't cancel (no prevent default). The event name is name spaced with a slash.
+
+Here is the declaration of the publish function:
+
+```javascript
+/**
+ * Publish a message regarding a given topic.
+ *
+ * @param {String} topic - A string defining the topic to publish to.
+ * @param {*} arg - The data associate with the generated event.
+ * @param {Element} [node=document] - The node to publish message to.
+ */
+export function publish(topic, arg, node = document) {
+  ...
+}
+```
+
+The event, per default, is propagated through the document node:
+
+![Alt text](./readme-assets/pub-sub-default-ev.png)
+
+Example:
+```javascript
+// COMP A triggers
+publish('device-state/change', state);
+
+// COMP B listens
+subscribe('device-state/change', (state) => {
+  ...
+});
+
+// As all the events are asynchronously, if COMP A want to know if someone specifically subscribe
+// to the publish we have a system event for it. Lets say N components will or have subscribed to COMP A, but COMP A
+// wants to know only when COMP B subscribed, he can listen to the Subscription event of COMP B:
+subscribe('pubsub/onsubscribe/device-state/change', () => {});
+
+```
+
+Alternatively, you can set a custom node where the event will be triggered on:
+
+![Alt text](./readme-assets/pub-sub-custom-ev.png)
+
+The concept is similar to the description above, with the difference that you can pass a custom node.
+
+```javascript
+// context node here is used to encapsulate event listeners and triggers to a single container.
+// In the concrete example, we want that not every mobile navigation listen to a publish event, but
+// only that one which is inside a certain context. Here could be that axa-header is the containing
+// context and axa navigation mobile have to listen to axa main navigation. In order to be sure that
+// it listens only to one axa-header and not all potential other ones, we use the context
+publish('main-navigation-mobile/close', null, this._contextNode);
+subscribe('main-navigation-mobile/close', (arg) => {}, this._contextNode);
+```
 
 ### Context enabler and context listener
+
+TODO.
+
+### Guide to for the base components:
 
 TODO.

@@ -111,7 +111,7 @@ const writeIndexJs = (path, _name) => {
       domready(() => {
         window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(className)});
       });
-      
+
     `
     , (err) => {
       if (err) {
@@ -125,9 +125,11 @@ const writeIndexJs = (path, _name) => {
 const writeIndexScss = (path, _name) => {
   fs.writeFileSync(
     `${path}/index.scss`,
-    outdent`.${element}-${_name} {
+    outdent`
+      .${element}-${_name} {
         display: block;
       }
+    
     `
     , (err) => {
       if (err) {
@@ -171,6 +173,7 @@ const writeTemplateJs = (path) => {
       export default ({ classes }) => bel\`
         <article class=\${classes}>Ready to start</article>
       \`;
+
     `
     , (err) => {
       if (err) {
