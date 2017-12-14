@@ -90,7 +90,7 @@ export function publish(topic, arg, node = document) {
 }
 ```
 
-The event, per default, are propagated through the document node:
+The event, per default, is propagated through the document node:
 
 ![Alt text](./readme-assets/pub-sub-default-ev.png)
 
@@ -115,7 +115,7 @@ Alternatively, you can set a custom node where the event will be triggered on:
 
 ![Alt text](./readme-assets/pub-sub-custom-ev.png)
 
-The concept is similar to the description above, with the difference that you can pass a context.
+The concept is similar to the description above, with the difference that you can pass a custom node.
 
 ```javascript
 // context node here is used to encapsulate event listeners and triggers to a single container.
