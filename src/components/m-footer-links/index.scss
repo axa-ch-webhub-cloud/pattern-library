@@ -18,7 +18,7 @@
   }
 
   @include respond-down(xs) {
-    @include reset-col(true);
+    @include reset-col();
 
     padding: 0;
   }
@@ -154,6 +154,6 @@
   }
 
   @include respond-down(xs) {
-    @include reset-col(true);
+    @include reset-col();
   }
 }
