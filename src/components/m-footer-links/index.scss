@@ -20,7 +20,7 @@
   @include respond-down(xs) {
     @include reset-col(true);
 
-    padding: 0 !important;
+    padding: 0;
   }
 }
 
@@ -89,7 +89,7 @@
 
     display: block;
     margin: 0;
-    padding: 0 !important;
+    padding: 0;
 
     background: $footer-links__list-bg--xs;
   }
