@@ -75,11 +75,9 @@
   flex: 0 0 $column-width;
 }
 
-@mixin reset-col($important: false) {
+@mixin reset-col($important: null) {
   @if $important {
     $important: !important;
-  } @else {
-    $important: '';
   }
 
   position: static $important;
