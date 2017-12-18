@@ -157,6 +157,10 @@
 .m-header-sub-navigation__block--wide {
   @include quantity-query(2) {
     @include make-col(6);
+
+    .m-header-sub-navigation__list {
+      column-count: 2;
+    }
   }
 }
 
