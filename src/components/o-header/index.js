@@ -1,6 +1,6 @@
 import styles from './index.scss';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAHeader extends BaseComponentGlobal {
   constructor() {
@@ -16,6 +16,6 @@ class AXAHeader extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-header', AXAHeader);
 });

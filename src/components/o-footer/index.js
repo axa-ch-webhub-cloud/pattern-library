@@ -1,5 +1,5 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAFooter extends BaseComponentGlobal {
   connectedCallback() {
@@ -9,6 +9,6 @@ class AXAFooter extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-footer', AXAFooter);
 });

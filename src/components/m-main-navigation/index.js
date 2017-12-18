@@ -5,7 +5,7 @@ import Stroke from './js/stroke';
 import SubNavigation from './js/sub-navigation';
 import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAMainNavigation extends BaseComponentGlobal {
   constructor() {
@@ -46,6 +46,6 @@ class AXAMainNavigation extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-main-navigation', AXAMainNavigation);
 });

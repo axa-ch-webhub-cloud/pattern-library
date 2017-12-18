@@ -1,7 +1,7 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAIcon extends BaseComponentGlobal {
   constructor() {
@@ -9,6 +9,6 @@ class AXAIcon extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-icon', AXAIcon);
 });

@@ -3,7 +3,7 @@ import { BaseComponentGlobal } from '../_abstract/component-types';
 import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 import FooterLinks from './js/footer-links';
 
 class AXAFooterLinks extends BaseComponentGlobal {
@@ -31,6 +31,6 @@ class AXAFooterLinks extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-footer-links', AXAFooterLinks);
 });

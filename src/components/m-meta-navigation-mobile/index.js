@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAMetaNavigationMobile extends BaseComponentGlobal {
   constructor() {
@@ -9,6 +9,6 @@ class AXAMetaNavigationMobile extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-meta-navigation-mobile', AXAMetaNavigationMobile);
 });
