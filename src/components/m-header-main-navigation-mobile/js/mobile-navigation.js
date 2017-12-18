@@ -4,11 +4,11 @@ import { publish, subscribe } from '../../../js/pubsub';
 
 class MobileNavigation {
   static DEFAULTS = {
-    canvas: '.js-main-navigation-mobile__canvas',
-    backdrop: '.js-m-main-navigation-mobile__backdrop',
-    nav: '.js-main-navigation-mobile__nav',
-    category: 'js-main-navigation-mobile__category',
-    back: 'js-main-navigation-mobile__back',
+    canvas: '.js-header-main-navigation-mobile__canvas',
+    backdrop: '.js-m-header-main-navigation-mobile__backdrop',
+    nav: '.js-header-main-navigation-mobile__nav',
+    category: 'js-header-main-navigation-mobile__category',
+    back: 'js-header-main-navigation-mobile__back',
     isMenuOpenClass: 'is-mobile-menu-open',
     isSubMenuOpenClass: 'is-mobile-sub-menu-open',
     isBackdropFading: 'is-mobile-backdrop-fading',
@@ -76,8 +76,8 @@ class MobileNavigation {
     if (this._contextNode) {
       this.offContextEnabled();
 
-      this.unSubscribeOpen = subscribe('main-navigation-mobile/open', this.open, this._contextNode);
-      this.unSubscribeClose = subscribe('main-navigation-mobile/close', this.close, this._contextNode);
+      this.unSubscribeOpen = subscribe('header-main-navigation-mobile/open', this.open, this._contextNode);
+      this.unSubscribeClose = subscribe('header-main-navigation-mobile/close', this.close, this._contextNode);
     }
   }
 
@@ -125,7 +125,7 @@ class MobileNavigation {
   }
 
   handleBackdropClick() {
-    publish('main-navigation-mobile/close', null, this._contextNode);
+    publish('header-main-navigation-mobile/close', null, this._contextNode);
   }
 
   handleCategoryClick(e, delegateTarget) {

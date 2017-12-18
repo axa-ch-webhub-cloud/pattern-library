@@ -18,8 +18,8 @@ class AXAMainNavigationMobile extends BaseComponentGlobal {
 
     const offCanvas = getAttribute(this, 'offcanvas');
 
-    this.className = classnames(this.initialClassName, 'm-header-main-navigation-mobile', {
-      'm-main-navigation-mobile--off-canvas': !offCanvas,
+    this.className = classnames(this.initialClassName, 'm-header-header-main-navigation-mobile', {
+      'm-header-main-navigation-mobile--off-canvas': !offCanvas,
     });
 
     this.interaction = new MobileNavigation(this);
@@ -36,5 +36,5 @@ class AXAMainNavigationMobile extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-main-navigation-mobile', AXAMainNavigationMobile);
+  window.customElements.define('axa-header-main-navigation-mobile', AXAMainNavigationMobile);
 });
