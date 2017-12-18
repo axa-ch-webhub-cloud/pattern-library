@@ -88,6 +88,9 @@ const inputOptionsComponents = {
     ...inputOptions.plugins,
     sass({
       insert: false,
+      options: {
+        outputStyle: ENV === constants.ENV.PROD ? undefined : 'expanded',
+      },
       processor: css => postcss([autoprefixer])
         .process(css)
         .then(result => result.css),
