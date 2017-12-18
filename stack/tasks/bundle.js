@@ -7,6 +7,8 @@ const uglify = require('rollup-plugin-uglify');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const sass = require('rollup-plugin-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require('postcss');
 
 const constants = require('../constants');
 
@@ -86,6 +88,9 @@ const inputOptionsComponents = {
     ...inputOptions.plugins,
     sass({
       insert: false,
+      processor: css => postcss([autoprefixer])
+        .process(css)
+        .then(result => result.css),
     }),
     babel({
       runtimeHelpers: true,

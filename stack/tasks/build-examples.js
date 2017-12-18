@@ -5,6 +5,7 @@ const fs = require('fs');
 const constants = require('../constants');
 const nsh = require('node-syntaxhighlighter');
 const sass = require('node-sass');
+const autoprefixer = require('autoprefixer-core');
 
 // const jsLang = nsh.getLanguage('js');
 const htmlLang = nsh.getLanguage('html');
@@ -95,12 +96,14 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     previewName = previewName.substring(2, previewName.length);
 
     let resultCss;
+    let resultCssString;
 
     try {
       resultCss = sass.renderSync({
         file: filePath.replace('_preview.html', 'index.scss'),
         outputStyle: 'expanded',
       });
+      resultCssString = autoprefixer.process(resultCss.css).css;
     } catch (error) {} // eslint-disable-line
 
     const atomicCategory = atomicName.toLowerCase();
@@ -125,7 +128,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
         </section>
         <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
-        <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${resultCss ? nsh.highlight(resultCss.css.toString(), cssLang) : ''}</pre>
+        <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${resultCssString ? nsh.highlight(resultCssString.toString(), cssLang) : ''}</pre>
       </article>
     `;
   });
