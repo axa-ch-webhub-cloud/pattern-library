@@ -65,7 +65,7 @@
     $ratio: $ratio * 96dpi;
   }
 
-  @if (unit($ratio) != dppx) {
+  @if (unit($ratio) != dpi) {
     @error "$ratio #{$ratio} has to be of unit dppx or unitless!";
   }
 
