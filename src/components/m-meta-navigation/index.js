@@ -2,7 +2,7 @@ import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import DropDown from '../m-dropdown/js/drop-down';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAMetaNavigation extends BaseComponentGlobal {
   constructor() {
@@ -17,6 +17,6 @@ class AXAMetaNavigation extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-meta-navigation', AXAMetaNavigation);
 });

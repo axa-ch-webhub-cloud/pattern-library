@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXASubNavigation extends BaseComponentGlobal {
   constructor() {
@@ -21,6 +21,6 @@ class AXASubNavigation extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-sub-navigation', AXASubNavigation);
 });

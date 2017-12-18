@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAFooterLegals extends BaseComponentGlobal {
   constructor() {
@@ -19,6 +19,6 @@ class AXAFooterLegals extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-footer-legals', AXAFooterLegals);
 });

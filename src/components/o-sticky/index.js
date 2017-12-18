@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 import getAttribute from '../../js/get-attribute';
 import stylesStickyContainer from './scss/sticky-container.scss';
 import stylesSticky from './scss/sticky.scss';
@@ -62,7 +62,7 @@ class AXASticky extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-sticky-container', AXAStickyContainer);
   window.customElements.define('axa-sticky', AXASticky);
 });

@@ -1,7 +1,7 @@
 import on from '../../js/on';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 import CustomEvent from '../../js/custom-event';
 
 const KEYCODE = {
@@ -121,6 +121,6 @@ class AXARadio extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-radio', AXARadio);
 });

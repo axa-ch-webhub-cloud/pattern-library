@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXALink extends BaseComponentGlobal {
   constructor() {
@@ -9,7 +9,7 @@ class AXALink extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-link', AXALink);
 
   BaseComponentGlobal.appendGlobalStyles(styles);

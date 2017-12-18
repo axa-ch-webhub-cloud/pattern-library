@@ -3,7 +3,7 @@ import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
 import template from './_template';
-import { domready } from '../../js/domready';
+import { wcdomready } from '../../js/wcdomready';
 
 class AXAFooterMain extends BaseComponentGlobal {
   constructor() {
@@ -20,6 +20,6 @@ class AXAFooterMain extends BaseComponentGlobal {
   }
 }
 
-domready(() => {
+wcdomready(() => {
   window.customElements.define('axa-footer-main', AXAFooterMain);
 });
