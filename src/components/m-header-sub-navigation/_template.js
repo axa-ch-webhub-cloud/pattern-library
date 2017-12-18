@@ -7,6 +7,7 @@ const linkItem = ({ url, name }) => bel`
   </li>
 `;
 
+// @TODO: proper behaiviour still needs to be defined
 const getColumnsCount = ({ length }) => {
   if (length === 2) {
     return length;
