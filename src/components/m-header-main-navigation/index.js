@@ -2,7 +2,7 @@ import styles from './index.scss';
 import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
-import SubNavigation from './js/header-sub-navigation';
+import HeaderSubNavigation from './js/header-sub-navigation';
 import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { wcdomready } from '../../js/wcdomready';
@@ -24,7 +24,7 @@ class AXAHeaderMainNavigation extends BaseComponentGlobal {
     this.stroke = new Stroke(this, {
       simpleMenu,
     });
-    this.subNavigation = new SubNavigation(this, {
+    this.subNavigation = new HeaderSubNavigation(this, {
       simpleMenu,
     });
     this.burger = new Burger(this);
