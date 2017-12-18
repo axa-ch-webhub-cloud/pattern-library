@@ -11,7 +11,12 @@
 
   color: $color-prim-white;
 
-  @include respond-up(sm) {
+  .m-header-main-navigation-mobile & {
+    padding-top: $header-top-content-bar-y-padding--xs !important;
+    padding-bottom: $header-top-content-bar-y-padding--xs !important;
+  }
+
+  @include respond-down(sm) {
     padding-top: $header-top-content-bar-y-padding--xs;
     padding-bottom: $header-top-content-bar-y-padding--xs;
   }
@@ -39,9 +44,13 @@
   flex-direction: column;
   align-items: center;
 
+  .m-header-main-navigation-mobile & {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
   @include respond-up(sm) {
     flex-direction: row;
-
     justify-content: center;
   }
 }
@@ -56,6 +65,10 @@
 
 .m-header-top-content-bar__button {
   margin-top: $header-top-content-bar__button-margin-top;
+
+  .m-header-main-navigation-mobile & {
+    margin-top: $header-top-content-bar__button-margin-top !important;
+  }
 
   @include respond-up(xs) {
     margin-top: 0;

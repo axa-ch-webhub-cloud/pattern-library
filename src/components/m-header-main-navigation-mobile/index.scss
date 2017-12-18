@@ -98,6 +98,11 @@ body.is-body-frozen {
       margin-top: 20px;
     }
   }
+
+  .m-header-top-content-bar__box {
+    padding-left: $header-main-navigation-mobile__item-padding-left !important;
+    padding-right: $header-main-navigation-mobile__item-padding-right !important;
+  }
 }
 
 .m-header-main-navigation-mobile__nav {
