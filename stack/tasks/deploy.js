@@ -6,7 +6,7 @@ process.stdin.setEncoding('utf8');
 console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
   outdent`
 
-  Hello Dear developer, welcome to the deploy assistent.
+  🚀  Hello Dear developer, welcome to the release assistent. 🚀
 
   I'm getting some information....
 
@@ -37,7 +37,7 @@ exec(
           console.log('\x1b[40m', '\x1b[31m', // eslint-disable-line
             outdent`
 
-              Attention: Your account ${whoami} has no publisher right. Please contact the administrator
+              Attention: Your account ${whoami} has no publisher rights. Please contact the administrator
 
             `,
           );
