@@ -7,7 +7,7 @@ import { publish, subscribe } from '../../../js/pubsub';
 const deviceStateClass = '.a-device-state';
 const reWhiteSpace = /\s/g;
 const reUnquote = /^"+|"+$/g;
-let iswcdomready = false;
+let isDomReady = false;
 let isInitialised = false;
 let hasChanged = true;
 let node;
@@ -18,7 +18,7 @@ export function getDeviceState() {
   if (!node) {
     node = document.querySelector(deviceStateClass);
 
-    if (!node && iswcdomready) {
+    if (!node && isDomReady) {
       node = document.body;
       add(node, deviceStateClass);
     }
@@ -63,7 +63,7 @@ function observeDeviceState() {
   handleResize();
 
   function ready() {
-    iswcdomready = true;
+    isDomReady = true;
 
     _handleResize();
   }
