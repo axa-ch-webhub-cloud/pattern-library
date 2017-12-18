@@ -1,3 +1,4 @@
+@import "../functions/strip-unit";
 @import "../functions/breakpoint";
 @import "../settings/grids";
 
@@ -56,12 +57,16 @@
     @error "$ratio #{$ratio} has to be a Number!";
   }
 
-  @if (unitless($ratio)) {
-    $ratio: $ratio * 1dppx;
+  @if (unit($ratio) == dppx) {
+    $ratio: strip-unit($ratio);
   }
 
-  @if (unit($ratio) != dppx) {
-    @error "$ratio #{$ratio} has to be ofunit dppx or unitless!";
+  @if (unitless($ratio)) {
+    $ratio: $ratio * 96dpi;
+  }
+
+  @if (unit($ratio) != dpi) {
+    @error "$ratio #{$ratio} has to be of unit dppx or unitless!";
   }
 
   @media (min-resolution: $ratio) {

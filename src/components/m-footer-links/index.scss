@@ -100,7 +100,7 @@
 }
 
 .m-footer-links__list-item {
-  display: inline-block;
+  display: block;
   width: 100%;
   margin-top: $footer-links__list-item-margin-top;
 
@@ -141,11 +141,17 @@
 .m-footer-links--cols-2 {
   @include make-col(5);
 
+  // Firefox messes with scrollHeight on mobile if it's set there
   .m-footer-links__list {
-    column-count: 2;
+    @include respond-up(sm) {
+      column-count: 2;
+    }
+  }
 
-    @include respond-down(xs) {
-      column-count: 1;
+  // fix CSS-Column offset bug
+  .m-footer-links__list-item {
+    @include respond-up(sm) {
+      display: inline-block;
     }
   }
 
