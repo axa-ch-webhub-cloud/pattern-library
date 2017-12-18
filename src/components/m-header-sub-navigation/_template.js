@@ -7,8 +7,18 @@ const linkItem = ({ url, name }) => bel`
   </li>
 `;
 
+const getColumnsCount = ({ length }) => {
+  if (length === 2) {
+    return length;
+  } else if (length % 3 === 0) {
+    return 3;
+  }
+
+  return 4;
+};
+
 const rowItem = ({ columns, col, isWide }) => bel`
-  <div class="m-header-sub-navigation__row m-header-sub-navigation__row--col-${col}">
+  <div class="m-header-sub-navigation__row m-header-sub-navigation__row--col-${col || getColumnsCount(columns)}">
 
   ${columns && columns.map(({ links, title }) => bel`
     <div class="m-header-sub-navigation__block ${isWide ? 'm-header-sub-navigation__block--wide' : ''}">
