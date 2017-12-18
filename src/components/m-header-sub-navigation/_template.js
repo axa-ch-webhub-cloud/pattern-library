@@ -17,11 +17,14 @@ export default ({ items }, childrens) => {
 
     arr.push(bel`
       <div class="m-header-sub-navigation__box">
+
         ${items && items.map(({ column, col, isWide }) => bel`
           <div class="m-header-sub-navigation__row m-header-sub-navigation__row--col-${col}">
+
           ${column && column.map(({ boxes, title }) => bel`
             <div class="m-header-sub-navigation__block ${isWide ? 'm-header-sub-navigation__block--wide' : ''}">
               <strong class="m-header-sub-navigation__category">${title}</strong>
+
               <ul class="m-header-sub-navigation__list">
                 ${boxes && boxes.map(({ url, name }) => bel`
                   <li class="m-header-sub-navigation__list-item">
