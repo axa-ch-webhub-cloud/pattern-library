@@ -11,7 +11,7 @@ export default ({ others, languages }) =>
       </ul>
     </nav>
     
-    <nav class="m-main-navigation-mobile__nav-lang">
+    <nav class="m-header-main-navigation-mobile__nav-lang">
       ${languages && languages.map(({ code, url, isActive }) => bel`
         <a href="${url}" class="m-header-meta-navigation-mobile__lang-link ${isActive && 'is-active'}">${code}</a>`)}
     </nav>
