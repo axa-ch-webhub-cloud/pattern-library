@@ -1,0 +1,196 @@
+@import "settings/header-sub-navigation";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/quantity-query";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
+
+.m-header-sub-navigation {
+  display: none;
+
+  background: $header-sub-navigation-bg;
+  border-bottom: $header-sub-navigation-border-width solid $header-sub-navigation-border-color;
+
+  .is-open & {
+    display: block;
+  }
+}
+
+.m-header-sub-navigation--flyout {
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+
+  z-index: $header-sub-navigation-z-index;
+
+  width: 100%;
+
+  margin-top: $header-sub-navigation-margin-top;
+}
+
+.m-header-sub-navigation__index {
+  background: $header-sub-navigation__index-bg;
+}
+
+.m-header-sub-navigation__index-box {
+  @include make-container();
+  @include make-container-max-widths();
+  @include make-row(null);
+
+  height: $header-sub-navigation__index-height;
+
+  align-items: center;
+}
+
+.m-header-sub-navigation__index-link {
+  @include typo-18();
+  @include word-break();
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+
+    font-weight: 600;
+  }
+}
+
+.m-header-sub-navigation__index-close {
+  @include typo-13--semibold();
+
+  position: relative;
+
+  padding-right: $header-sub-navigation__index-close__icon-size + $header-sub-navigation__index-close-padding-left;
+
+  margin-left: auto;
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+
+  color: $color-axa-blue;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-prim-blue-deep-sapphire;
+
+    cursor: pointer;
+
+    outline: none;
+  }
+}
+
+.m-header-sub-navigation__index-close__icon {
+  position: absolute;
+
+  top: 50%;
+  right: 0;
+
+  display: block;
+
+  width: $header-sub-navigation__index-close__icon-size;
+  height: $header-sub-navigation__index-close__icon-size;
+
+  margin-top: ($header-sub-navigation__index-close__icon-size / -2);
+
+  fill: currentColor;
+}
+
+.m-header-sub-navigation__box {
+  @include make-container();
+  @include make-container-max-widths();
+
+  padding-top: $header-sub-navigation-padding-top;
+  padding-bottom: $header-sub-navigation-padding-bottom;
+}
+
+.m-header-sub-navigation__row {
+  @include make-row(null);
+  margin-right: -$header-sub-navigation__block-x-padding;
+
+  margin-left: -$header-sub-navigation__block-x-padding;
+
+  justify-content: center;
+
+  & + & > .m-header-sub-navigation__block {
+    padding-top: $header-sub-navigation__block-padding-top--repeat;
+  }
+}
+
+.m-header-sub-navigation__row--col-2 {
+  margin-right: -$header-sub-navigation__block-x-padding-2-columns;
+  margin-left: -$header-sub-navigation__block-x-padding-2-columns;
+}
+
+.m-header-sub-navigation__row--col-3 {
+  margin-right: -$header-sub-navigation__block-x-padding-3-columns;
+  margin-left: -$header-sub-navigation__block-x-padding-3-columns;
+}
+
+.m-header-sub-navigation__block {
+  @include make-col(3);
+
+  padding: $header-sub-navigation__block-y-padding $header-sub-navigation__block-x-padding;
+
+  border-left: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
+
+  &:first-child {
+    border: none;
+  }
+
+  @include quantity-query(2) {
+    @include make-col(3);
+    padding-right: $header-sub-navigation__block-x-padding-2-columns;
+
+    padding-left: $header-sub-navigation__block-x-padding-2-columns;
+  }
+
+  @include quantity-query(3) {
+    @include make-col(4);
+    padding-right: $header-sub-navigation__block-x-padding-3-columns;
+
+    padding-left: $header-sub-navigation__block-x-padding-3-columns;
+  }
+}
+
+.m-header-sub-navigation__block--wide {
+  @include quantity-query(2) {
+    @include make-col(6);
+  }
+}
+
+.m-header-sub-navigation__category {
+  @include typo-24();
+  @include word-break();
+
+  color: $header-sub-navigation__category-color;
+}
+
+.m-header-sub-navigation__list {
+  @include unstyle-list();
+
+  margin-top: $header-sub-navigation__list-margin-top;
+}
+
+.m-header-sub-navigation__list-item {
+  display: block;
+}
+
+.m-header-sub-navigation__link {
+  @include typo-18();
+  @include word-break();
+
+  display: inline-block;
+  padding: $header-sub-navigation__list-item-y-padding 0;
+
+  line-height: $header-sub-navigation__list-item-line-height !important;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+
+    font-weight: 600;
+  }
+}

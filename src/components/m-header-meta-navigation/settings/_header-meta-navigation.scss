@@ -1,0 +1,14 @@
+@import "../../../styles/settings/colors";
+
+$header-meta-navigation-bg: $color-prim-gray-alabaster !default;
+$header-meta-navigation-border-top-width: 2px !default;
+$header-meta-navigation-border-top-color: $color-axa-blue !default;
+$header-meta-navigation-border-bottom-width: 1px !default;
+$header-meta-navigation-border-bottom-color: $color-prim-gray-silver !default;
+$header-meta-navigation__nav-border-x-width: 1px !default;
+$header-meta-navigation__nav-border-x-color: $color-prim-gray-silver !default;
+
+$header-meta-navigation__link-x-padding: 15px;
+$header-meta-navigation__link-color: $color-prim-gray !default;
+$header-meta-navigation__link-color--hover: $color-prim-blue-deep-sapphire !default;
+$header-meta-navigation__link-bg--hover: $color-prim-white !default;
