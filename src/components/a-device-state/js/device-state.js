@@ -32,7 +32,10 @@ export function getDeviceState() {
     return false;
   }
 
-  const content = window.getComputedStyle(node, 'after').getPropertyValue('content');
+  // @TODO: this should be battle tested...
+  // has to include the colon, either `:after` or `::after`
+  // https://www.w3.org/TR/cssom-1/#dom-window-getcomputedstyle
+  const content = window.getComputedStyle(node, ':after').getPropertyValue('content');
 
   // somehow still not ready, whats up with u CSSOM?
   if (!content) {
