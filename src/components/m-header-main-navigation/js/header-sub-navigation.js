@@ -1,7 +1,7 @@
 import { add, remove } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
-class SubNavigation extends UiEvents {
+class HeaderSubNavigation extends UiEvents {
   static DEFAULTS = {
     list: '.js-main-navigation__list',
     toggleClass: 'js-main-navigation__list-link',
@@ -11,7 +11,7 @@ class SubNavigation extends UiEvents {
   constructor(rootNode, options = {}) {
     super(rootNode, {
       containerClass: '.js-main-navigation__list',
-      toggleClass: SubNavigation.DEFAULTS.toggleClass,
+      toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-sub-navigation__index-close',
       useDefaultEvent: !!options.simpleMenu,
       outerClose: !options.simpleMenu,
@@ -20,7 +20,7 @@ class SubNavigation extends UiEvents {
 
     this.rootNode = rootNode;
     this.options = {
-      ...SubNavigation.DEFAULTS,
+      ...HeaderSubNavigation.DEFAULTS,
       ...options,
     };
 
@@ -52,4 +52,4 @@ class SubNavigation extends UiEvents {
   }
 }
 
-export default SubNavigation;
+export default HeaderSubNavigation;

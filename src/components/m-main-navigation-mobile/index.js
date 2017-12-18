@@ -18,7 +18,7 @@ class AXAMainNavigationMobile extends BaseComponentGlobal {
 
     const offCanvas = getAttribute(this, 'offcanvas');
 
-    this.className = classnames(this.initialClassName, 'm-main-navigation-mobile', {
+    this.className = classnames(this.initialClassName, 'm-header-main-navigation-mobile', {
       'm-main-navigation-mobile--off-canvas': !offCanvas,
     });
 

@@ -2,12 +2,12 @@ import styles from './index.scss';
 import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
-import SubNavigation from './js/sub-navigation';
+import SubNavigation from './js/header-sub-navigation';
 import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import { wcdomready } from '../../js/wcdomready';
 
-class AXAMainNavigation extends BaseComponentGlobal {
+class AXAHeaderMainNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
@@ -17,7 +17,7 @@ class AXAMainNavigation extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-main-navigation`;
+    this.className = `${this.initialClassName} m-header-main-navigation`;
 
     const simpleMenu = getAttribute(this, 'simplemenu');
 
@@ -47,5 +47,5 @@ class AXAMainNavigation extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-main-navigation', AXAMainNavigation);
+  window.customElements.define('axa-header-main-navigation', AXAHeaderMainNavigation);
 });
