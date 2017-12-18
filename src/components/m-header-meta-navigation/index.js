@@ -11,12 +11,12 @@ class AXAMetaNavigation extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-meta-navigation`;
+    this.className = `${this.initialClassName} m-header-meta-navigation`;
 
     this.dropDown = new DropDown(this);
   }
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-meta-navigation', AXAMetaNavigation);
+  window.customElements.define('axa-header-meta-navigation', AXAMetaNavigation);
 });
