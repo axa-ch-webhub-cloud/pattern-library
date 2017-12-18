@@ -8,8 +8,8 @@ import UiEvents from '../../../js/ui-events';
 class Stroke extends UiEvents {
   static DEFAULTS = {
     strokeClass: 'a-stroke',
-    list: '.js-main-navigation__list',
-    toggleClass: 'js-main-navigation__list-link',
+    list: '.js-header-main-navigation__list',
+    toggleClass: 'js-header-main-navigation__list-link',
     enterClass: 'is-enter',
     moveClass: 'is-move',
     staticClass: 'is-static',
@@ -17,7 +17,7 @@ class Stroke extends UiEvents {
 
   constructor(rootNode, options = {}) {
     super(rootNode, {
-      containerClass: '.js-main-navigation__list',
+      containerClass: '.js-header-main-navigation__list',
       toggleClass: Stroke.DEFAULTS.toggleClass,
       closeClass: 'js-sub-navigation__index-close',
       sameClickClose: !options.simpleMenu,
