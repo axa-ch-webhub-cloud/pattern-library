@@ -3,6 +3,22 @@ import raw from 'bel/raw';
 
 const writeClasses = classes => classes ? ` ${classes}` : ''; // eslint-disable-line no-confusing-arrow
 
+const submenuItem = ({ url, name, items, classes }) => bel`
+  ${items ? bel`
+    <li class="m-header-main-navigation__list-item">
+      <a class="m-header-main-navigation__list-link js-header-main-navigation__list-link" ${writeClasses(classes)} href="${url}">${raw(name)}</a>
+        <axa-header-sub-navigation indextitle="${name}" indexurl="${url}" items='${JSON.stringify(items)}' flyout>
+        </axa-header-sub-navigation>
+    </li>
+  ` : bel`
+    <li class="m-header-main-navigation__list-item">
+      <a class="m-header-main-navigation__list-link js-header-main-navigation__list-link${writeClasses(classes)}" href="${url}">
+        ${raw(name)}
+      </a>
+    </li>
+  `}
+`;
+
 export default ({ items, customsearch }, childrens) => [
   bel`
   <div class="m-header-main-navigation__box">
@@ -14,29 +30,7 @@ export default ({ items, customsearch }, childrens) => [
 
     <nav class="m-header-main-navigation__nav">
       <ul class="m-header-main-navigation__list js-header-main-navigation__list">
-        ${items && items.map(({ url, name, subMenuIndexSettings, submenu, classes }) => bel`
-          ${submenu ? bel`
-            <li class="m-header-main-navigation__list-item">
-              <a class="m-header-main-navigation__list-link js-header-main-navigation__list-link" ${writeClasses(classes)} href="${url}">${raw(name)}</a>
-                <axa-header-sub-navigation items='${JSON.stringify(submenu)}' flyout>
-                  ${(subMenuIndexSettings && subMenuIndexSettings.title) ? raw(`
-                    <a class="m-header-sub-navigation__index-link" href="#">${subMenuIndexSettings.title}</a>
-
-                    <button type="button" class="m-header-sub-navigation__index-close js-header-sub-navigation__index-close">
-                      ${subMenuIndexSettings.close}
-                      <axa-icon id="cross-gap" classes="m-header-sub-navigation__index-close__icon"></axa-icon>
-                    </button>
-                    `) : ''}
-                </axa-header-sub-navigation>
-            </li>
-          ` : bel`
-            <li class="m-header-main-navigation__list-item">
-              <a class="m-header-main-navigation__list-link js-header-main-navigation__list-link${writeClasses(classes)}" href="${url}">
-                ${raw(name)}
-              </a>
-            </li>
-          `}
-        `)}
+        ${items && items.map(submenuItem)}
       </ul>
     </nav>
 

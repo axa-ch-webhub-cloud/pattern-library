@@ -146,7 +146,7 @@
     padding-left: $header-sub-navigation__block-x-padding-2-columns;
   }
 
-  @include quantity-query(3) {
+  @include quantity-query(3n) {
     @include make-col(4);
     padding-right: $header-sub-navigation__block-x-padding-3-columns;
 
@@ -157,6 +157,10 @@
 .m-header-sub-navigation__block--wide {
   @include quantity-query(2) {
     @include make-col(6);
+
+    .m-header-sub-navigation__list {
+      column-count: 2;
+    }
   }
 }
 
