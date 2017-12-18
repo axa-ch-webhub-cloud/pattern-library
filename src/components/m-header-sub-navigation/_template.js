@@ -2,15 +2,19 @@ import bel from 'bel';
 import raw from 'bel/raw';
 import hasNodeChildren from '../../js/has-node-children';
 
-export default ({ items }, childrens) => {
+export default ({ items, indexurl, indextitle }) => {
   const arr = [];
 
   if (Array.isArray(items)) {
-    if (hasNodeChildren(childrens, true)) {
+    if (indextitle && indexurl) {
       arr.push(bel`
         <div class="m-header-sub-navigation__index">
           <div class="m-header-sub-navigation__index-box">
-            ${childrens}
+            <a class="m-header-sub-navigation__index-link" href="${indexurl}">${indextitle}</a>
+            <button type="button" class="m-header-sub-navigation__index-close js-header-sub-navigation__index-close">
+              Close
+              <axa-icon id="cross-gap" classes="m-header-sub-navigation__index-close__icon"></axa-icon>
+            </button>
           </div>
         </div>`);
     }
