@@ -16,9 +16,9 @@
     padding-bottom: $header-top-content-bar-y-padding !important;
   }
 
-  @include respond-up(xs) {
-    padding-top: $header-top-content-bar-y-padding--xs;
-    padding-bottom: $header-top-content-bar-y-padding--xs;
+  @include respond-up(sm) {
+    padding-top: $header-top-content-bar-y-padding--sm;
+    padding-bottom: $header-top-content-bar-y-padding--sm;
   }
 }
 
@@ -70,7 +70,7 @@
     margin-top: $header-top-content-bar__button-margin-top !important;
   }
 
-  @include respond-up(xs) {
+  @include respond-up(sm) {
     margin-top: 0;
   }
 }
