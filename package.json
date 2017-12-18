@@ -24,6 +24,7 @@
     "build-icons-prod": "node stack/tasks/icons.js PROD",
     "build-dev": "node stack/tasks/cleanup.js DEV && npm run build-css-dev && node stack/tasks/build.html.js DEV && node stack/tasks/build-examples.js DEV && npm run build-js-dev && npm run build-icons-dev",
     "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/build-examples.js PROD && npm run build-css-prod && npm run build-js-prod && npm run build-icons-prod",
+    "deploy": "node ./stack/tasks/deploy.js",
     "bump-major": "npm run test && npmversion --increment major",
     "bump-minor": "npm run test && npmversion --increment minor",
     "bump-patch": "npm run test && npmversion --increment patch",
