@@ -40,7 +40,10 @@ class DropDown extends UiEvents {
   enter(node) {
     const { parentNode } = node;
     const { lastElementChild } = parentNode;
+
+    lastElementChild.style.overflow = 'scroll';
     const { scrollHeight } = lastElementChild;
+    lastElementChild.style.overflow = '';
 
     this.onInteractive();
 
