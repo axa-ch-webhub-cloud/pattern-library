@@ -4,12 +4,12 @@
 $header-main-navigation-mobile-bg: $color-prim-white !default;
 
 $header-main-navigation-mobile__backdrop-bg: rgba($color-prim-black, 0.5) !default;
-$header-main-navigation-mobile__backdrop-z-index: $zindex-sub-navigation-backdrop !default;
+$header-main-navigation-mobile__backdrop-z-index: $zindex-header-sub-navigation-backdrop !default;
 
 $header-main-navigation-mobile__canvas-width-sm: 370px !default;
 
 $header-main-navigation-mobile__nav-bg: $color-prim-white !default;
-$header-main-navigation-mobile__nav-z-index: $zindex-sub-navigation !default;
+$header-main-navigation-mobile__nav-z-index: $zindex-header-sub-navigation !default;
 
 $header-main-navigation-mobile__list-item-border-width: 1px !default;
 $header-main-navigation-mobile__list-item-border-color: $color-prim-gray-silver !default;
