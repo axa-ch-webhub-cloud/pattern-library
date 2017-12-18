@@ -13,8 +13,8 @@ class AXASubNavigation extends BaseComponentGlobal {
     super.render();
 
     const flyout = this.hasAttribute('flyout');
-    const classes = classnames(this.initialClassName, 'm-sub-navigation', {
-      'm-sub-navigation--flyout': flyout,
+    const classes = classnames(this.initialClassName, 'm-header-header-sub-navigation', {
+      'm-header-sub-navigation--flyout': flyout,
     });
 
     this.className = classes;
@@ -22,5 +22,5 @@ class AXASubNavigation extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-sub-navigation', AXASubNavigation);
+  window.customElements.define('axa-header-sub-navigation', AXASubNavigation);
 });

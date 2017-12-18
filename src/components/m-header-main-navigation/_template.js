@@ -18,7 +18,7 @@ export default ({ items, customsearch }, childrens) => [
           ${submenu ? bel`
             <li class="m-main-navigation__list-item">
               <a class="m-main-navigation__list-link js-main-navigation__list-link" ${writeClasses(classes)} href="${url}">${raw(name)}</a>
-                <axa-sub-navigation items='${JSON.stringify(submenu)}' flyout>
+                <axa-header-sub-navigation items='${JSON.stringify(submenu)}' flyout>
                   ${(subMenuIndexSettings && subMenuIndexSettings.title) ? raw(`
                     <a class="m-sub-navigation__index-link" href="#">${subMenuIndexSettings.title}</a>
 
@@ -27,7 +27,7 @@ export default ({ items, customsearch }, childrens) => [
                       <axa-icon id="cross-gap" classes="m-sub-navigation__index-close__icon"></axa-icon>
                     </button>
                     `) : ''}
-                </axa-sub-navigation>
+                </axa-header-sub-navigation>
             </li>
           ` : bel`
             <li class="m-main-navigation__list-item">
