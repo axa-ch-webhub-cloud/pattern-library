@@ -12,11 +12,11 @@
   color: $color-prim-white;
 
   .m-header-main-navigation-mobile & {
-    padding-top: $header-top-content-bar-y-padding--xs !important;
-    padding-bottom: $header-top-content-bar-y-padding--xs !important;
+    padding-top: $header-top-content-bar-y-padding !important;
+    padding-bottom: $header-top-content-bar-y-padding !important;
   }
 
-  @include respond-down(sm) {
+  @include respond-up(xs) {
     padding-top: $header-top-content-bar-y-padding--xs;
     padding-bottom: $header-top-content-bar-y-padding--xs;
   }
