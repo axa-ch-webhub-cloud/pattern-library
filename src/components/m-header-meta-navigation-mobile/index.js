@@ -10,5 +10,5 @@ class AXAMetaNavigationMobile extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-meta-navigation-mobile', AXAMetaNavigationMobile);
+  window.customElements.define('axa-header-meta-navigation-mobile', AXAMetaNavigationMobile);
 });
