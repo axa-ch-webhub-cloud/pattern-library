@@ -13,8 +13,8 @@
 }
 
 @mixin link-color($style: default) {
-  $color-link: get-color($link-color, $style, text);
-  $color-link--hover: get-color($link-color, $style, text--hover);
+  $color-link: get-color($link-colors-map, $style, text);
+  $color-link--hover: get-color($link-colors-map, $style, text--hover);
 
   color: $color-link;
 
