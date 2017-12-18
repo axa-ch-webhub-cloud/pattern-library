@@ -1,0 +1,13 @@
+@import "../../../styles/settings/colors";
+
+$header-top-content-bar-color-text: $color-prim-white !default;
+
+$header-top-content-bar-color-bg: $color-sec-blue-teal !default;
+$header-top-content-bar-color-bg--commercial: $color-prim-blue-deep-sapphire !default;
+$header-top-content-bar-color-bg--warning: $color-state-red-shy-tomato !default;
+
+$header-top-content-bar-y-padding: 12px !important;
+$header-top-content-bar-y-padding--xs: 5px !important;
+
+$header-top-content-bar__text-margin-right: 24px !default;
+$header-top-content-bar__button-margin-top: 10px !default;

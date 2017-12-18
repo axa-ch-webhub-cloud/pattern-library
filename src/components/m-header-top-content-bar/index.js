@@ -13,10 +13,10 @@ class AXATopContentBar extends BaseComponentGlobal {
     const type = this.getAttribute('type');
 
 
-    this.className = `${this.initialClassName} m-top-content-bar m-top-content-bar--${type}`;
+    this.className = `${this.initialClassName} m-header-top-content-bar m-header-top-content-bar--${type}`;
   }
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-top-content-bar', AXATopContentBar);
+  window.customElements.define('axa-header-top-content-bar', AXATopContentBar);
 });

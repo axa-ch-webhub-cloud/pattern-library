@@ -1,36 +1,36 @@
-@import "settings/top-content-bar";
+@import "settings/header-header-top-content-bar";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
 
-.m-top-content-bar {
+.m-header-top-content-bar {
   display: block;
 
-  padding-top: $top-content-bar-y-padding;
-  padding-bottom: $top-content-bar-y-padding;
+  padding-top: $header-top-content-bar-y-padding;
+  padding-bottom: $header-top-content-bar-y-padding;
 
   color: $color-prim-white;
 
   @include respond-up(sm) {
-    padding-top: $top-content-bar-y-padding--xs;
-    padding-bottom: $top-content-bar-y-padding--xs;
+    padding-top: $header-top-content-bar-y-padding--xs;
+    padding-bottom: $header-top-content-bar-y-padding--xs;
   }
 }
 
-.m-top-content-bar,
-.m-top-content-bar--corporate {
+.m-header-top-content-bar,
+.m-header-top-content-bar--corporate {
   background: $color-sec-blue-teal;
 }
 
-.m-top-content-bar--commercial {
+.m-header-top-content-bar--commercial {
   background: $color-prim-blue-deep-sapphire;
 }
 
-.m-top-content-bar--warning {
+.m-header-top-content-bar--warning {
   background: $color-state-red-shy-tomato;
 }
 
-.m-top-content-bar__box {
+.m-header-top-content-bar__box {
   @include make-container();
   @include make-container-max-widths();
 
@@ -46,16 +46,16 @@
   }
 }
 
-.m-top-content-bar__text {
+.m-header-top-content-bar__text {
   @include typo-13();
 
   @include respond-up(xs) {
-    margin-right: $top-content-bar__text-margin-right;
+    margin-right: $header-top-content-bar__text-margin-right;
   }
 }
 
-.m-top-content-bar__button {
-  margin-top: $top-content-bar__button-margin-top;
+.m-header-top-content-bar__button {
+  margin-top: $header-top-content-bar__button-margin-top;
 
   @include respond-up(xs) {
     margin-top: 0;
