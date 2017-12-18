@@ -20,6 +20,7 @@ function mobileNavItem(item) {
   `;
   /* eslint-enable indent */
 }
+
 function mobileNav(items, parent) {
   return bel`
     <nav class="m-header-main-navigation-mobile__nav ${!parent && 'js-header-main-navigation-mobile__nav'}">
@@ -30,7 +31,7 @@ function mobileNav(items, parent) {
         </button>
       `}
       <ul class="m-header-main-navigation-mobile__list">
-        ${mobileNavItem({ ...parent, name: 'index page', items: null })}
+        ${parent && mobileNavItem({ ...parent, name: 'index page', items: null })}
         ${items.map(mobileNavItem)}
       </ul>
     </nav>
