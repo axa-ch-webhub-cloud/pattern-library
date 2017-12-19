@@ -138,7 +138,7 @@ const release = (version) => {
   console.log('\x1b[40m', '\x1b[33m', '\nproceed: to proceed with the above described steps. This operation cannot be undone!');
 };
 
-const generalCleanupHandling = () => {
+const generalCleanupHandling = (exitcode) => {
   exec(
     'git checkout master && git branch -D release-tmp',
     (_error4) => {
@@ -146,7 +146,7 @@ const generalCleanupHandling = () => {
         console.log('\x1b[40m', '\x1b[31m', _error4);
         process.exit(1);
       }
-      process.exit(0);
+      process.exit(exitcode);
     },
   );
 };
@@ -161,8 +161,7 @@ const confirmedRelease = (type, version) => {
     (_error1) => {
       if (_error1) {
         console.log('\x1b[40m', '\x1b[31m', _error1);
-        generalCleanupHandling();
-        process.exit(1);
+        generalCleanupHandling(1);
       }
       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
         outdent`
@@ -174,8 +173,7 @@ const confirmedRelease = (type, version) => {
         (_error2) => {
           if (_error2) {
             console.log('\x1b[40m', '\x1b[31m', _error2);
-            generalCleanupHandling();
-            process.exit(1);
+            generalCleanupHandling(1);
           }
           console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
             outdent`
@@ -191,8 +189,7 @@ const confirmedRelease = (type, version) => {
             (_error3) => {
               if (_error3) {
                 console.log('\x1b[40m', '\x1b[31m', _error3);
-                generalCleanupHandling();
-                process.exit(1);
+                generalCleanupHandling(1);
               }
               console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
                 outdent`
@@ -204,16 +201,14 @@ const confirmedRelease = (type, version) => {
                 (_error5) => {
                   if (_error5) {
                     console.log('\x1b[40m', '\x1b[31m', _error5);
-                    generalCleanupHandling();
-                    process.exit(1);
+                    generalCleanupHandling(1);
                   }
                   exec(
                     'git checkout master && git merge --ff-only release-tmp && git push && git push --tags',
                     (_error4) => {
                       if (_error4) {
                         console.log('\x1b[40m', '\x1b[31m', _error4);
-                        generalCleanupHandling();
-                        process.exit(1);
+                        generalCleanupHandling(1);
                       }
                       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
                         outdent`
@@ -222,7 +217,7 @@ const confirmedRelease = (type, version) => {
 
                         `,
                       );
-                      generalCleanupHandling();
+                      generalCleanupHandling(0);
                     },
                   );
                 },
