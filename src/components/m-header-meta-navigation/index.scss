@@ -116,6 +116,19 @@
 
 .m-header-meta-navigation__lang-list-item {
   display: block;
+
+  border-width: 0 $header-meta-navigation__lang-list-item-border-width;
+  border-color: $header-meta-navigation__lang-list-item-border-color;
+  border-style: solid;
+
+  &:first-child {
+    border-top-width: $header-meta-navigation__lang-list-item-border-width;
+  }
+
+  &:last-child {
+    border-bottom-color: $header-meta-navigation__lang-list-item-border-bottom-color--last;
+    border-bottom-width: $header-meta-navigation__lang-list-item-border-bottom-width--last;
+  }
 }
 
 .m-header-meta-navigation__lang-list-link {
