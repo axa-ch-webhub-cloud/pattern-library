@@ -95,12 +95,13 @@ const prerelease = (what) => {
 
       Ok, we will release a ${what} version!
 
-      Choose which version you want to bump.
+      Choose which version label you want to bump.
 
       Remember:
-      MAJOR version when you make incompatible API changes,
-      MINOR version when you add functionality in a backwards-compatible manner, and
-      PATCH version when you make backwards-compatible bug fixes.
+      ${what === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Reccomended step!' : ''}
+      ${what === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
+      ${what === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
+      ${what === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
 
       Select:
     `,
@@ -108,6 +109,7 @@ const prerelease = (what) => {
   console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
     outdent`
 
+      ${what === 'unstable' ? 'beta: for beta release of current branch. Reccomended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
@@ -136,18 +138,81 @@ const release = (version) => {
 };
 
 const confirmedRelease = (type, version) => {
+  if (type === 'stable' && version === 'beta') {
+    return;
+  }
+
   exec(
     'git checkout master && git pull',
-    (_error, stdout) => {
-      if (_error) {
-        console.log(_error);
+    (_error1) => {
+      if (_error1) {
+        console.log('\x1b[40m', '\x1b[31m', _error1);
         process.exit(1);
       }
       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
         outdent`
-
           Step 1 complete...
         `,
+      );
+      exec(
+        'npm run build',
+        (_error2) => {
+          if (_error2) {
+            console.log('\x1b[40m', '\x1b[31m', _error2);
+            process.exit(1);
+          }
+          console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
+            outdent`
+              Step 2 complete...
+            `,
+          );
+          let command;
+          if (type === 'unstable') {
+            command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+          } else {
+            command = `npm run bump-${version}`;
+          }
+          exec(
+            command,
+            (_error3) => {
+              if (_error3) {
+                console.log('\x1b[40m', '\x1b[31m', _error3);
+                process.exit(1);
+              }
+              console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
+                outdent`
+                  Step 3 complete...
+                `,
+              );
+              exec(
+                'git push && git push --tags',
+                (_error4) => {
+                  if (_error4) {
+                    console.log('\x1b[40m', '\x1b[31m', _error4);
+                    process.exit(1);
+                  }
+                  exec(
+                    `npm publish @axa-ch/patterns-libray${version === 'beta' ? ' --tag beta' : ''}`,
+                    (_error5) => {
+                      if (_error5) {
+                        console.log('\x1b[40m', '\x1b[31m', _error5);
+                        process.exit(1);
+                      }
+                      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
+                        outdent`
+
+                          Step 4 complete! Publishing done successfully. Have fun!
+
+                        `,
+                      );
+                      process.exit(0);
+                    },
+                  );
+                },
+              );
+            },
+          );
+        },
       );
     },
   );
@@ -196,6 +261,14 @@ process.stdin.on('readable', () => {
         return;
       }
       releaseVersion = 'major';
+      release(releaseVersion);
+      step++; // eslint-disable-line no-plusplus
+      break;
+    case 'beta':
+      if (step !== 2) {
+        return;
+      }
+      releaseVersion = 'beta';
       release(releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
