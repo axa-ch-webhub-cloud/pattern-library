@@ -129,7 +129,7 @@ const writeIndexScss = (path, _name) => {
       .${element}-${_name} {
         display: block;
       }
-    
+
     `
     , (err) => {
       if (err) {

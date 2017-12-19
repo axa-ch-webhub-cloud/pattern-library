@@ -65,7 +65,9 @@ Super easy: Read the specs and then just execute `npm run new`. Follow the instr
 
 ## How do we release a new version
 
-We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
+Please run `npm run release` and follow the steps in the wizard
+
+For more information: We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
 
 ## Developers Guide:
 
