@@ -1,66 +1,68 @@
-@mixin publico-headline {
+@import "../settings/fonts";
+
+@mixin publico-headline($base-path: $font-base-path) {
   @font-face {
     font-family: 'Publico Headline Web';
     font-style: normal;
     font-weight: 700;
-    src: url('../../assets/fonts/PublicoHeadline-Bold-Web.eot'); /* IE9 Compat Modes */
+    src: url('#{$base-path}PublicoHeadline-Bold-Web.eot'); /* IE9 Compat Modes */
     src:
       local('Publico Headline Web'),
       local('Publico Headline'),
       /* Super Modern Browsers */
-      url('../../assets/fonts/PublicoHeadline-Bold-Web.woff2') format('woff2'),
+      url('#{$base-path}PublicoHeadline-Bold-Web.woff2') format('woff2'),
       /* Modern Browsers */
-      url('../../assets/fonts/PublicoHeadline-Bold-Web.woff') format('woff');
+      url('#{$base-path}PublicoHeadline-Bold-Web.woff') format('woff');
   }
 }
 
 /* source-sans-pro-regular - latin */
-@mixin source-sans-pro {
+@mixin source-sans-pro($base-path: $font-base-path) {
   @font-face {
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
-    src: url('../../assets/fonts/source-sans-pro-v10-latin-regular.eot'); /* IE9 Compat Modes */
+    src: url('#{$base-path}source-sans-pro-v10-latin-regular.eot'); /* IE9 Compat Modes */
     src:
       local('Source Sans Pro Regular'),
       local('SourceSansPro-Regular'),
       /* Super Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-regular.woff2') format('woff2'),
+      url('#{$base-path}source-sans-pro-v10-latin-regular.woff2') format('woff2'),
       /* Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-regular.woff') format('woff');
+      url('#{$base-path}source-sans-pro-v10-latin-regular.woff') format('woff');
   }
 }
 
 /* source-sans-pro-700 - latin */
-@mixin source-sans-pro--bold {
+@mixin source-sans-pro--bold($base-path: $font-base-path) {
   @font-face {
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 700;
-    src: url('../../assets/fonts/source-sans-pro-v10-latin-700.eot'); /* IE9 Compat Modes */
+    src: url('#{$base-path}source-sans-pro-v10-latin-700.eot'); /* IE9 Compat Modes */
     src:
       local('Source Sans Pro Bold'),
       local('SourceSansPro-Bold'),
       /* Super Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-700.woff2') format('woff2'),
+      url('#{$base-path}source-sans-pro-v10-latin-700.woff2') format('woff2'),
       /* Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-700.woff') format('woff');
+      url('#{$base-path}source-sans-pro-v10-latin-700.woff') format('woff');
   }
 }
 
 /* source-sans-pro-600 - latin */
-@mixin source-sans-pro--semibold {
+@mixin source-sans-pro--semibold($base-path: $font-base-path) {
   @font-face {
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 600;
-    src: url('../../assets/fonts/source-sans-pro-v10-latin-600.eot'); /* IE9 Compat Modes */
+    src: url('#{$base-path}source-sans-pro-v10-latin-600.eot'); /* IE9 Compat Modes */
     src:
       local('Source Sans Pro SemiBold'),
       local('SourceSansPro-SemiBold'),
       /* Super Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-600.woff2') format('woff2'),
+      url('#{$base-path}source-sans-pro-v10-latin-600.woff2') format('woff2'),
       /* Modern Browsers */
-      url('../../assets/fonts/source-sans-pro-v10-latin-600.woff') format('woff');
+      url('#{$base-path}source-sans-pro-v10-latin-600.woff') format('woff');
   }
 }
