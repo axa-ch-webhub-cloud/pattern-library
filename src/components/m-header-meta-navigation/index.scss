@@ -109,7 +109,7 @@
 
 .m-header-meta-navigation__lang-list {
   @include unstyle-list();
-  @include dropdown-content();
+  @include dropdown-content($header-meta-navigation__lang-list-zindex);
 
   background: $header-meta-navigation-bg;
 }
