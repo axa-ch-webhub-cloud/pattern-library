@@ -223,7 +223,6 @@ const confirmedRelease = (type, version) => {
                         `,
                       );
                       generalCleanupHandling();
-                      process.exit(0);
                     },
                   );
                 },
