@@ -185,17 +185,17 @@ const confirmedRelease = (type, version) => {
                 `,
               );
               exec(
-                'git push && git push --tags',
-                (_error4) => {
-                  if (_error4) {
-                    console.log('\x1b[40m', '\x1b[31m', _error4);
+                `npm publish @axa-ch/patterns-library${version === 'beta' ? ' --tag beta' : ''}`,
+                (_error5) => {
+                  if (_error5) {
+                    console.log('\x1b[40m', '\x1b[31m', _error5);
                     process.exit(1);
                   }
                   exec(
-                    `npm publish @axa-ch/patterns-library${version === 'beta' ? ' --tag beta' : ''}`,
-                    (_error5) => {
-                      if (_error5) {
-                        console.log('\x1b[40m', '\x1b[31m', _error5);
+                    'git push && git push --tags',
+                    (_error4) => {
+                      if (_error4) {
+                        console.log('\x1b[40m', '\x1b[31m', _error4);
                         process.exit(1);
                       }
                       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
