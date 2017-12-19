@@ -1,0 +1,100 @@
+$font-base-path: './assets/fonts/' !default;
+
+$face-map:
+  (
+    source-sans-pro: ("Source Sans Pro", Arial, sans-serif),
+    publico: ("Publico Headline", Georgia, serif),
+  ) !default;
+
+// axa global typography
+// as defined here: https://design.axa.com/web-guidelines/typography
+$typo-map:
+  (
+    // extra large -> full desktop
+    typo-78--xl--publico: ( size: 78px, weight: Bold, spacing: 0.02em, lineHeight: 1.05, paddingBottom: 28px ),
+    typo-62--xl--publico: ( size: 62px, weight: Bold, spacing: 0.02em, lineHeight: 1.16, paddingBottom: 26px ),
+    typo-48--xl--publico: ( size: 48px, weight: Bold, spacing: 0.02em, lineHeight: 1.13, paddingBottom: 18px ),
+    typo-36--xl--publico: ( size: 36px, weight: Bold, spacing: 0.02em, lineHeight: 1.17, paddingBottom: 17px ),
+    typo-78--xl: ( size: 78px, weight: Bold, spacing: 0.01em, lineHeight: 1.05, paddingBottom: 28px ),
+    typo-62--xl: ( size: 62px, weight: Bold, spacing: 0.01em, lineHeight: 1.16, paddingBottom: 26px ),
+    typo-48--xl: ( size: 48px, weight: Bold, spacing: 0.01em, lineHeight: 1.13, paddingBottom: 18px ),
+    typo-36--xl: ( size: 36px, weight: Bold, spacing: 0.01em, lineHeight: 1.17, paddingBottom: 17px ),
+    typo-28--xl: ( size: 28px, weight: (Bold, Semibold), spacing: 0.01em, lineHeight: 1.14, paddingBottom: 13px ),
+    typo-24--xl: ( size: 24px, weight: Bold, spacing: 0, lineHeight: 1.2, paddingBottom: 13px ),
+    typo-20--xl: ( size: 20px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
+    typo-18--xl: ( size: 18px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 15px ),
+    typo-16--xl: ( size: 16px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-14--xl: ( size: 14px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.21, paddingBottom: 8px ),
+    typo-13--xl: ( size: 13px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.38, paddingBottom: 9px ),
+    // large -> small desktop
+    typo-78--lg--publico: ( size: 78px, weight: Bold, spacing: 0.02em, lineHeight: 1.05, paddingBottom: 28px ),
+    typo-62--lg--publico: ( size: 62px, weight: Bold, spacing: 0.02em, lineHeight: 1.16, paddingBottom: 26px ),
+    typo-48--lg--publico: ( size: 48px, weight: Bold, spacing: 0.02em, lineHeight: 1.13, paddingBottom: 18px ),
+    typo-36--lg--publico: ( size: 36px, weight: Bold, spacing: 0.02em, lineHeight: 1.17, paddingBottom: 17px ),
+    typo-78--lg: ( size: 78px, weight: Bold, spacing: 0.01em, lineHeight: 1.05, paddingBottom: 28px ),
+    typo-62--lg: ( size: 62px, weight: Bold, spacing: 0.01em, lineHeight: 1.16, paddingBottom: 26px ),
+    typo-48--lg: ( size: 48px, weight: Bold, spacing: 0.01em, lineHeight: 1.13, paddingBottom: 18px ),
+    typo-36--lg: ( size: 36px, weight: Bold, spacing: 0.01em, lineHeight: 1.17, paddingBottom: 17px ),
+    typo-28--lg: ( size: 28px, weight: (Bold, Semibold), spacing: 0.01em, lineHeight: 1.14, paddingBottom: 13px ),
+    typo-24--lg: ( size: 24px, weight: Bold, spacing: 0, lineHeight: 1.2, paddingBottom: 13px ),
+    typo-20--lg: ( size: 20px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
+    typo-18--lg: ( size: 18px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 15px ),
+    typo-16--lg: ( size: 16px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-14--lg: ( size: 14px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.21, paddingBottom: 8px ),
+    typo-13--lg: ( size: 13px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.38, paddingBottom: 9px ),
+    // medium -> tablet
+    typo-78--md--publico: ( size: 78px, weight: Bold, spacing: 0.02em, lineHeight: 1.05, paddingBottom: 28px ),
+    typo-62--md--publico: ( size: 62px, weight: Bold, spacing: 0.02em, lineHeight: 1.16, paddingBottom: 26px ),
+    typo-48--md--publico: ( size: 48px, weight: Bold, spacing: 0.02em, lineHeight: 1.13, paddingBottom: 18px ),
+    typo-36--md--publico: ( size: 36px, weight: Bold, spacing: 0.02em, lineHeight: 1.17, paddingBottom: 17px ),
+    typo-78--md: ( size: 78px, weight: Bold, spacing: 0.01em, lineHeight: 1.05, paddingBottom: 28px ),
+    typo-62--md: ( size: 62px, weight: Bold, spacing: 0.01em, lineHeight: 1.16, paddingBottom: 26px ),
+    typo-48--md: ( size: 48px, weight: Bold, spacing: 0.01em, lineHeight: 1.13, paddingBottom: 18px ),
+    typo-36--md: ( size: 36px, weight: Bold, spacing: 0.01em, lineHeight: 1.17, paddingBottom: 17px ),
+    typo-28--md: ( size: 28px, weight: (Bold, Semibold), spacing: 0.01em, lineHeight: 1.14, paddingBottom: 13px ),
+    typo-24--md: ( size: 24px, weight: Bold, spacing: 0, lineHeight: 1.2, paddingBottom: 13px ),
+    typo-20--md: ( size: 20px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
+    typo-18--md: ( size: 18px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 15px ),
+    typo-16--md: ( size: 16px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-14--md: ( size: 14px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.21, paddingBottom: 8px ),
+    typo-13--md: ( size: 13px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.38, paddingBottom: 9px ),
+    // small -> mobile
+    typo-78--sm--publico: ( size: 46px, weight: Bold, spacing: 0.02em, lineHeight: 1.13, paddingBottom: 21px ),
+    typo-62--sm--publico: ( size: 40px, weight: Bold, spacing: 0.02em, lineHeight: 1.1, paddingBottom: 16px ),
+    typo-48--sm--publico: ( size: 30px, weight: Bold, spacing: 0.02em, lineHeight: 1.13, paddingBottom: 13px ),
+    typo-36--sm--publico: ( size: 24px, weight: Bold, spacing: 0.02em, lineHeight: 1.17, paddingBottom: 11px ),
+    typo-78--sm: ( size: 46px, weight: Bold, spacing: 0.01em, lineHeight: 1.13, paddingBottom: 21px ),
+    typo-62--sm: ( size: 40px, weight: Bold, spacing: 0.01em, lineHeight: 1.1, paddingBottom: 16px ),
+    typo-48--sm: ( size: 30px, weight: Bold, spacing: 0.01em, lineHeight: 1.13, paddingBottom: 13px ),
+    typo-36--sm: ( size: 24px, weight: Bold, spacing: 0.01em, lineHeight: 1.17, paddingBottom: 11px ),
+    typo-28--sm: ( size: 20px, weight: (Bold, Semibold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 16px ),
+    typo-24--sm: ( size: 16px, weight: Bold, spacing: 0, lineHeight: 1.5, paddingBottom: 11px ),
+    typo-20--sm: ( size: 16px, weight: Regular, spacing: 0.01em, lineHeight: 1.5, paddingBottom: 12px ),
+    typo-18--sm: ( size: 14px, weight: (Regular, Bold), spacing: 0.01em, lineHeight: 1.5, paddingBottom: 10px ),
+    typo-16--sm: ( size: 12px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
+    typo-14--sm: ( size: 12px, weight: (Regular, Semibold, Bold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
+    typo-13--sm: ( size: 12px, weight: (Regular, Semibold), spacing: 0.02em, lineHeight: 1.5, paddingBottom: 10px ),
+  ) !default;
+
+// common font weight name mapping
+// as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
+// and here: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
+// @TODO: probably replace by https://www.npmjs.com/package/postcss-font-weight-names
+$font-weight-map:
+  (
+    Thin: 100,
+    Extralight: 200,
+    Ultralight: 200,
+    Light: 300,
+    Normal: 400,
+    Book: 400,
+    Regular: 400,
+    Medium: 500,
+    Semibold: 600,
+    Demibold: 600,
+    Bold: 700,
+    Extrabold: 800,
+    Ultrabold: 800,
+    Black: 900,
+    Heavy: 900,
+  ) !default;
