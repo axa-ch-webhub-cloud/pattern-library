@@ -124,13 +124,13 @@
   display: block;
   padding: 10px 20px;
 
+  text-transform: uppercase;
   color: $color-prim-gray;
 
   &:hover,
   &:active,
   &:focus {
     text-decoration: none;
-
     color: $header-meta-navigation__link-color--hover;
   }
 }
