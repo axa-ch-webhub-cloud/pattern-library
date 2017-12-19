@@ -15,3 +15,8 @@ $header-meta-navigation__link-color--hover: $color-prim-blue-deep-sapphire !defa
 $header-meta-navigation__link-bg--hover: $color-prim-white !default;
 
 $header-meta-navigation__lang-list-zindex: $zindex-header-meta-navigation !default;
+
+$header-meta-navigation__lang-list-item-border-color: $color-prim-gray-mercury !default;
+$header-meta-navigation__lang-list-item-border-width: 1px !default;
+$header-meta-navigation__lang-list-item-border-bottom-color--last: $color-prim-gray-silver !default;
+$header-meta-navigation__lang-list-item-border-bottom-width--last: 2px !default;
