@@ -112,6 +112,7 @@
   @include dropdown-content($header-meta-navigation__lang-list-zindex);
 
   background: $header-meta-navigation-bg;
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.3);
 }
 
 .m-header-meta-navigation__lang-list-item {
