@@ -172,9 +172,8 @@ const confirmedRelease = (type, version) => {
             command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
           }
           exec(
-            `pwd && ${command}`,
+            command,
             (_error3) => {
-              console.log(process.cwd());
               if (_error3) {
                 console.log('\x1b[40m', '\x1b[31m', _error3);
                 process.exit(1);
@@ -185,7 +184,7 @@ const confirmedRelease = (type, version) => {
                 `,
               );
               exec(
-                `npm publish @axa-ch/patterns-library${version === 'beta' ? ' --tag beta' : ''}`,
+                `npm publish ${version === 'beta' ? ' --tag beta' : ''}`,
                 (_error5) => {
                   if (_error5) {
                     console.log('\x1b[40m', '\x1b[31m', _error5);
