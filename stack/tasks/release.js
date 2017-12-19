@@ -167,11 +167,9 @@ const confirmedRelease = (type, version) => {
               Step 2 complete...
             `,
           );
-          let command;
+          let command = `npm run bump-${version}`;
           if (type === 'unstable') {
             command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
-          } else {
-            command = `npm run bump-${version}`;
           }
           exec(
             command,
