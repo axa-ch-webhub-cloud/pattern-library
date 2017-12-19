@@ -105,9 +105,6 @@
   @include link-color();
   @include typo-13--semibold();
 
-  // @todo: check if need this here
-  @include word-break();
-
   position: relative;
 
   display: flex;
