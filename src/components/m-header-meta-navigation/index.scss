@@ -49,16 +49,14 @@
   @include make-row();
 }
 
-.m-header-meta-navigation__list-item-right {
-  display: block;
-}
-
 .m-header-meta-navigation__list {
   @include unstyle-list();
   @include make-row();
 }
 
-.m-header-meta-navigation__list-item {
+.m-header-meta-navigation__list-item,
+.m-header-meta-navigation__list-item-right {
+  display: block;
   border-right: $header-meta-navigation__nav-border-x-width solid $header-meta-navigation__nav-border-x-color;
 
   &:first-child {
