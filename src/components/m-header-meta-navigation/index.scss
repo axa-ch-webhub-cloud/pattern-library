@@ -34,6 +34,8 @@
 }
 
 .m-header-meta-navigation__nav-right {
+  @include make-gutter();
+
   margin-left: auto;
 
   .m-button {
