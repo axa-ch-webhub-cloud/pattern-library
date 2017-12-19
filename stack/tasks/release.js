@@ -191,7 +191,7 @@ const confirmedRelease = (type, version) => {
                     process.exit(1);
                   }
                   exec(
-                    `npm publish @axa-ch/patterns-libray${version === 'beta' ? ' --tag beta' : ''}`,
+                    `npm publish @axa-ch/patterns-library${version === 'beta' ? ' --tag beta' : ''}`,
                     (_error5) => {
                       if (_error5) {
                         console.log('\x1b[40m', '\x1b[31m', _error5);
