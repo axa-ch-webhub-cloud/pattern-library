@@ -23,6 +23,10 @@
 
   align-items: center;
 
+  .m-header-main--first-left > & > *:first-child + * {
+    margin-left: auto;
+  }
+
   @include respond-down(md) {
     max-width: none !important;
   }
