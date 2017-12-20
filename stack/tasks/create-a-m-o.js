@@ -39,6 +39,7 @@ const mapElement = {
 
 
 const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+const camelCase = string => string.split(/[-_]+/).map(capitalizeFirstLetter).join('');
 
 const displayNameText = () => {
   console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
@@ -65,7 +66,8 @@ const displayElementSelector = () => {
 };
 
 const writeIndexJs = (path, _name) => {
-  const className = _name.replace(/-/g, '');
+  const className = `AXA${camelCase(_name)}`;
+
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import { BaseComponentGlobal } from '../_abstract/component-types';
@@ -75,7 +77,7 @@ const writeIndexJs = (path, _name) => {
       import template from './_template';
       import wcdomready from '../../js/wcdomready';
 
-      class AXA${capitalizeFirstLetter(className)} extends BaseComponentGlobal {
+      class ${className} extends BaseComponentGlobal {
         constructor() {
           super(styles, template);
 
@@ -110,7 +112,7 @@ const writeIndexJs = (path, _name) => {
       }
 
       wcdomready(() => {
-        window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(className)});
+        window.customElements.define('axa-${_name}', ${className});
       });
 
     `
