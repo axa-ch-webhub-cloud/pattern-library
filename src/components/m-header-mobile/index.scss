@@ -1,0 +1,80 @@
+@import "settings/header-mobile";
+@import "../m-header-main/settings/header-main";
+@import "../../styles/mixins/hardware-accelerate";
+@import "../../styles/mixins/respond";
+
+.m-header-mobile {
+  display: block;
+}
+
+.m-header-mobile__backdrop {
+  position: fixed;
+  top: -200%;
+  left: -200%;
+  z-index: $header-mobile__backdrop-z-index;
+
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  background: $header-mobile__backdrop-bg;
+  opacity: 0;
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+
+  .is-mobile-menu-open > & {
+    top: 0;
+    left: 0;
+
+    opacity: 1;
+  }
+
+  &.is-mobile-backdrop-fading {
+    top: 0;
+    left: 0;
+  }
+}
+
+.m-header-mobile__canvas {
+  position: relative;
+
+  display: block;
+  width: 100%;
+  overflow: hidden;
+
+  background: $header-mobile-bg;
+
+  @include respond-up(sm) {
+    width: $header-mobile__canvas-width-sm;
+  }
+}
+
+.m-header-mobile__canvas--off-canvas {
+  @include hardware-accelerate();
+
+  position: fixed;
+  top: $header-main-height;
+  right: 0;
+  bottom: 0;
+  z-index: $header-mobile__canvas-z-index;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  transform: translateX(110%);
+  transition: transform 0.2s ease;
+
+  .is-mobile-menu-open > & {
+    transform: translateX(0);
+  }
+
+  @include respond-up(lg) {
+    display: none;
+  }
+}
+
+body.is-body-frozen {
+  overflow: hidden;
+}

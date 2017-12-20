@@ -1,0 +1,10 @@
+@import "../../../styles/settings/colors";
+@import "../../../styles/settings/zindex";
+
+$header-mobile-bg: $color-prim-white !default;
+
+$header-mobile__backdrop-bg: rgba($color-prim-black, 0.5) !default;
+$header-mobile__backdrop-z-index: $zindex-header-sub-navigation-backdrop !default;
+
+$header-mobile__canvas-width-sm: 370px !default;
+$header-mobile__canvas-z-index: $zindex-header-sub-navigation !default;
