@@ -3,6 +3,10 @@
 
 .m-header-search {
   display: block;
+
+  @include respond-down(md) {
+    margin-left: auto;
+  }
 }
 
 .m-header-search__form {
@@ -15,7 +19,6 @@
   @include respond-down(md) {
     padding-left: 0;
     padding-right: $header-search__form-padding-side;
-    margin-left: auto;
 
     border-left: none;
     border-right: $header-search__form-border-side-width solid $header-search__form-border-side-color;
