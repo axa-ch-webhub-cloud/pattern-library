@@ -31,10 +31,10 @@
 
   display: block;
 
-  padding: 10px $header-others__link-x-padding;
+  padding: 10px $header-meta__link-x-padding;
   text-transform: uppercase;
 
-  color: $header-others__link-color;
+  color: $header-meta__link-color;
 
   &.is-active,
   &:hover,
@@ -43,9 +43,9 @@
     margin-bottom: -$header-meta-border-bottom-width;
     text-decoration: none;
 
-    color: $header-others__link-color--hover;
-    background: $header-others__link-bg--hover;
+    color: $header-meta__link-color--hover;
+    background: $header-meta__link-bg--hover;
 
-    border-bottom: $header-meta-border-bottom-width solid $header-others__link-bg--hover;
+    border-bottom: $header-meta-border-bottom-width solid $header-meta__link-bg--hover;
   }
 }
