@@ -129,10 +129,11 @@ class HeaderMobileNavigation {
     e.preventDefault();
 
     const { parentNode, scrollTop } = this.opened.pop();
+    const canvas = this.rootNode.parentNode.parentNode;
 
     remove(parentNode, this.options.isSubMenuOpenClass);
 
-    this.canvas.scrollTop = scrollTop;
+    canvas.scrollTop = scrollTop;
   }
 
   destroy() {
