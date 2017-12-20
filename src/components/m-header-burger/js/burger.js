@@ -49,8 +49,8 @@ class Burger {
     if (this._contextNode) {
       this.offContextEnabled();
 
-      this.unSubscribeOpen = subscribe('header-navigation-mobile/open', this.open, this._contextNode);
-      this.unSubscribeClose = subscribe('header-navigation-mobile/close', this.close, this._contextNode);
+      this.unSubscribeOpen = subscribe('header-mobile/open', this.open, this._contextNode);
+      this.unSubscribeClose = subscribe('header-mobile/close', this.close, this._contextNode);
     }
   }
 
