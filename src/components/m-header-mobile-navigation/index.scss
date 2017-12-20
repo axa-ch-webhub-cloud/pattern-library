@@ -1,4 +1,5 @@
 @import "settings/header-mobile-navigation";
+@import "../m-header-mobile/settings/header-mobile";
 @import "../a-link/mixins/link";
 @import "../../styles/mixins/button-reset";
 @import "../../styles/settings/colors";
@@ -11,6 +12,10 @@
 
 .m-header-mobile-navigation {
   display: block;
+
+  &:first-child {
+    margin-top: -$header-mobile__item-margin-top;
+  }
 }
 
 .m-header-mobile-navigation__nav {
@@ -67,8 +72,8 @@
   position: relative;
 
   display: block;
-  padding-left: $header-mobile-navigation__item-padding-left;
-  padding-right: $header-mobile-navigation__item-padding-right;
+  padding-left: $header-mobile__item-padding-left;
+  padding-right: $header-mobile__item-padding-right;
 
   text-transform: uppercase;
 }
@@ -85,8 +90,8 @@
 .m-header-mobile-navigation__list-link {
   @include typo-16--semibold();
 
-  padding-top: $header-mobile-navigation__item-y-padding;
-  padding-bottom: $header-mobile-navigation__item-y-padding;
+  padding-top: $header-mobile__item-padding-y;
+  padding-bottom: $header-mobile__item-padding-y;
 }
 
 .m-header-mobile-navigation__category {
@@ -118,13 +123,13 @@
 }
 
 .m-header-mobile-navigation__icon-next {
-  right: $header-mobile-navigation__item-padding-right;
+  right: $header-mobile__item-padding-right;
 
   transform: rotate(-90deg);
 }
 
 .m-header-mobile-navigation__icon-back {
-  left: $header-mobile-navigation__item-padding-left;
+  left: $header-mobile__item-padding-left;
 
   transform: rotate(90deg);
 }

@@ -78,14 +78,20 @@
 .m-header-mobile__box {
   position: relative;
 
+  padding-top: $header-mobile__item-margin-top;
+
   > .m-button {
     display: block;
-    margin: 20px $header-mobile__item-padding-right 0 $header-mobile__item-padding-left;
+    margin: $header-mobile__item-margin-top $header-mobile__item-padding-right 0 $header-mobile__item-padding-left;
 
     text-align: center;
 
+    &:first-child {
+      margin-top: 0;
+    }
+
     + * {
-      margin-top: 20px;
+      margin-top: $header-mobile__item-margin-top;
     }
   }
 
