@@ -4,7 +4,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import DropDown from '../m-dropdown/js/drop-down';
-import { wcdomready } from '../../js/wcdomready';
+import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderLanguages extends BaseComponentGlobal {
   constructor() {
