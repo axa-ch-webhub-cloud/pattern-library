@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { wcdomready } from '../../js/wcdomready';
+import wcdomready from '../../js/wcdomready';
 
 class AXASubNavigation extends BaseComponentGlobal {
   constructor() {

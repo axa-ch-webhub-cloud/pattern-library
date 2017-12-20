@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import styles from './index.scss';
-import { wcdomready } from '../../js/wcdomready';
+import wcdomready from '../../js/wcdomready';
 
 class AXAFooterLegals extends BaseComponentGlobal {
   constructor() {

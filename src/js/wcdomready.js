@@ -1,4 +1,4 @@
-export const wcdomready = (cb) => {
+const wcdomready = (cb) => {
   let usage = 0;
   const once = (...args) => {
     if (usage === 0) {
@@ -13,3 +13,5 @@ export const wcdomready = (cb) => {
   document.addEventListener('DOMContentLoaded', once, false);
   document.addEventListener('WebComponentsReady', once, false);
 };
+
+export default wcdomready;

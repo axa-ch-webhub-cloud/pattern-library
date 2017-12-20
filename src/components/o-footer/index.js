@@ -1,5 +1,5 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { wcdomready } from '../../js/wcdomready';
+import wcdomready from '../../js/wcdomready';
 
 class AXAFooter extends BaseComponentGlobal {
   connectedCallback() {

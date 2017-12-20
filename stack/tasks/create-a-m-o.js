@@ -39,6 +39,7 @@ const mapElement = {
 
 
 const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+const camelCase = string => string.split(/[-_]+/).map(capitalizeFirstLetter).join('');
 
 const displayNameText = () => {
   console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
@@ -65,7 +66,8 @@ const displayElementSelector = () => {
 };
 
 const writeIndexJs = (path, _name) => {
-  const className = _name.replace(/-/g, '');
+  const className = `AXA${camelCase(_name)}`;
+
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import { BaseComponentGlobal } from '../_abstract/component-types';
@@ -73,9 +75,9 @@ const writeIndexJs = (path, _name) => {
       import styles from './index.scss';
       // import the template used for this component
       import template from './_template';
-      import { domready } from '../../js/domready';
+      import wcdomready from '../../js/wcdomready';
 
-      class AXA${capitalizeFirstLetter(className)} extends BaseComponentGlobal {
+      class ${className} extends BaseComponentGlobal {
         constructor() {
           super(styles, template);
 
@@ -92,6 +94,7 @@ const writeIndexJs = (path, _name) => {
         connectedCallback() {
           super.connectedCallback();
 
+          this.className = \`${this.initialClassName} ${element}-${_name}\`;
           // Your DOM interaction here, but keep it decoupled.
           // If you don't have any, just remove this function
         }
@@ -108,8 +111,8 @@ const writeIndexJs = (path, _name) => {
         // }
       }
 
-      domready(() => {
-        window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(className)});
+      wcdomready(() => {
+        window.customElements.define('axa-${_name}', ${className});
       });
 
     `
