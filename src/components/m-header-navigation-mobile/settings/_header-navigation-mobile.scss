@@ -1,0 +1,26 @@
+@import "../../../styles/settings/colors";
+@import "../../../styles/settings/zindex";
+
+$header-navigation-mobile-bg: $color-prim-white !default;
+
+$header-navigation-mobile__backdrop-bg: rgba($color-prim-black, 0.5) !default;
+$header-navigation-mobile__backdrop-z-index: $zindex-header-sub-navigation-backdrop !default;
+
+$header-navigation-mobile__canvas-width-sm: 370px !default;
+
+$header-navigation-mobile__nav-bg: $color-prim-white !default;
+$header-navigation-mobile__nav-z-index: $zindex-header-sub-navigation !default;
+
+$header-navigation-mobile__list-item-border-width: 1px !default;
+$header-navigation-mobile__list-item-border-color: $color-prim-gray-silver !default;
+
+$header-navigation-mobile__item-padding-left: 60px !default;
+$header-navigation-mobile__item-padding-right: 40px !default;
+$header-navigation-mobile__item-y-padding: 20px !default;
+
+$header-navigation-mobile__category-padding-right: 70px !default;
+
+$header-navigation-mobile__back-padding-left: 105px !default;
+$header-navigation-mobile__back-y-padding: 30px !default;
+
+$header-navigation-mobile__icon-size: 15px !default;

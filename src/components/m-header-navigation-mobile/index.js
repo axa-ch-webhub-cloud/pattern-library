@@ -6,7 +6,7 @@ import MobileNavigation from './js/mobile-navigation';
 import getAttribute from '../../js/get-attribute';
 import wcdomready from '../../js/wcdomready';
 
-class AXAMainNavigationMobile extends BaseComponentGlobal {
+class AXANavigationMobile extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
@@ -19,7 +19,7 @@ class AXAMainNavigationMobile extends BaseComponentGlobal {
     const offCanvas = getAttribute(this, 'offcanvas');
 
     this.className = classnames(this.initialClassName, 'm-header-navigation-mobile', {
-      'm-header-main-navigation-mobile--off-canvas': !offCanvas,
+      'm-header-navigation-mobile--off-canvas': !offCanvas,
     });
 
     this.interaction = new MobileNavigation(this);
@@ -36,5 +36,5 @@ class AXAMainNavigationMobile extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-main-navigation-mobile', AXAMainNavigationMobile);
+  window.customElements.define('axa-header-navigation-mobile', AXANavigationMobile);
 });

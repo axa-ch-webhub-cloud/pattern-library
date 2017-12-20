@@ -49,8 +49,8 @@ class Burger {
     if (this._contextNode) {
       this.offContextEnabled();
 
-      this.unSubscribeOpen = subscribe('header-main-navigation-mobile/open', this.open, this._contextNode);
-      this.unSubscribeClose = subscribe('header-main-navigation-mobile/close', this.close, this._contextNode);
+      this.unSubscribeOpen = subscribe('header-navigation-mobile/open', this.open, this._contextNode);
+      this.unSubscribeClose = subscribe('header-navigation-mobile/close', this.close, this._contextNode);
     }
   }
 
@@ -136,7 +136,7 @@ class Burger {
     add(this.burger, this.options.burgerState);
 
     if (!e && this._contextNode) {
-      publish('header-main-navigation-mobile/open', null, this._contextNode);
+      publish('header-navigation-mobile/open', null, this._contextNode);
     }
   }
 
@@ -150,7 +150,7 @@ class Burger {
     remove(this.burger, this.options.burgerState);
 
     if (!e && this._contextNode) {
-      publish('header-main-navigation-mobile/close', null, this._contextNode);
+      publish('header-navigation-mobile/close', null, this._contextNode);
     }
   }
 
