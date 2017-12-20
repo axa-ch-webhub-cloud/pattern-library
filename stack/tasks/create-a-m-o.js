@@ -73,7 +73,7 @@ const writeIndexJs = (path, _name) => {
       import styles from './index.scss';
       // import the template used for this component
       import template from './_template';
-      import { domready } from '../../js/domready';
+      import wcdomready from '../../js/wcdomready';
 
       class AXA${capitalizeFirstLetter(className)} extends BaseComponentGlobal {
         constructor() {
@@ -108,7 +108,7 @@ const writeIndexJs = (path, _name) => {
         // }
       }
 
-      domready(() => {
+      wcdomready(() => {
         window.customElements.define('axa-${_name}', AXA${capitalizeFirstLetter(className)});
       });
 

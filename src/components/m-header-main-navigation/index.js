@@ -5,7 +5,7 @@ import Stroke from './js/stroke';
 import HeaderSubNavigation from './js/header-sub-navigation';
 import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
-import { wcdomready } from '../../js/wcdomready';
+import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMainNavigation extends BaseComponentGlobal {
   constructor() {

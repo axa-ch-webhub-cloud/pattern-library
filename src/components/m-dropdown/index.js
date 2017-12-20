@@ -3,7 +3,7 @@ import styles from './index.scss';
 import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import DropDown from './js/drop-down';
-import { wcdomready } from '../../js/wcdomready';
+import wcdomready from '../../js/wcdomready';
 
 class AXADropdown extends BaseComponentGlobal {
   constructor() {
