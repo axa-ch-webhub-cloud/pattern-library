@@ -1,0 +1,29 @@
+@import "settings/header-main";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
+
+.m-header-main {
+  position: relative;
+  z-index: $header-main-z-index;
+
+  display: block;
+  height: $header-main-height;
+  border-bottom: $header-main-border-bottom-width solid $header-main-border-bottom-color;
+  background: $header-main-bg;
+}
+
+.m-header-main__box {
+  @include make-container();
+  @include make-container-max-widths();
+  @include make-row(null);
+
+  height: 100%;
+
+  flex-wrap: nowrap;
+
+  align-items: center;
+
+  @include respond-down(md) {
+    max-width: none !important;
+  }
+}
