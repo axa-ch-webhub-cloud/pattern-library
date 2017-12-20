@@ -1,0 +1,28 @@
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/unstyle-list";
+@import "settings/header-meta-right";
+
+.m-header-meta-right {
+  @include make-gutter();
+
+  margin-left: auto;
+
+  .m-button {
+    margin-top: -2px;
+    margin-bottom: -1px;
+  }
+}
+
+.m-header-meta-right__list {
+  @include unstyle-list();
+  @include make-row();
+}
+
+.m-header-meta-right__list-item {
+  display: block;
+  border-right: $header-meta-right__nav-border-x-width solid $header-meta-right__nav-border-x-color;
+
+  &:first-child {
+    border-left: $header-meta-right__nav-border-x-width solid $header-meta-right__nav-border-x-color;
+  }
+}
