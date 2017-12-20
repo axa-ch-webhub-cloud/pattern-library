@@ -1,4 +1,5 @@
 @import "settings/header-navigation";
+@import "../m-header-main/settings/header-main";
 @import "../a-link/mixins/link";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
@@ -6,16 +7,6 @@
 @import "styles/stroke";
 
 .m-header-navigation {
-  position: relative;
-  z-index: $header-navigation-z-index;
-
-  display: block;
-  height: $header-navigation-height;
-  border-bottom: $header-navigation-border-bottom-width solid $header-navigation-border-bottom-color;
-  background: $header-navigation-bg;
-}
-
-.m-header-navigation__nav {
   display: block;
 
   margin-left: auto;
@@ -46,7 +37,7 @@
   position: relative;
 
   display: flex;
-  height: $header-navigation-height;
+  height: $header-main-height;
   padding: 0 $header-navigation__list-link-x-padding;
 
   align-items: center;

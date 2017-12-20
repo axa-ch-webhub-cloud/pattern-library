@@ -1,13 +1,6 @@
 @import "../../../styles/settings/colors";
 @import "../../../styles/settings/zindex";
 
-$header-navigation-bg: $color-prim-white !default;
-$header-navigation-height: 75px !default;
-$header-navigation-z-index: $zindex-header-main-navigation !default;
-
-$header-navigation-border-bottom-color: $color-prim-gray-mercury !default;
-$header-navigation-border-bottom-width: 2px !default;
-
 $header-navigation__logo-size: 35px !default;
 $header-navigation__logo-size--md: 43px !default;
 $header-navigation__logo-size--xl: 53px !default;

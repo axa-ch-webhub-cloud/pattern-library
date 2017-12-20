@@ -20,9 +20,7 @@ const submenuItem = ({ url, name, items, classes }) => bel`
 `;
 
 export default ({ items }) => bel`
-  <nav class="m-header-navigation__nav">
-    <ul class="m-header-navigation__list js-header-navigation__list">
-      ${items && items.map(submenuItem)}
-    </ul>
-  </nav>
+  <ul class="m-header-navigation__list js-header-navigation__list">
+    ${items && items.map(submenuItem)}
+  </ul>
 `;
