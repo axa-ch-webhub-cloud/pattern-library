@@ -1,8 +1,8 @@
 import bel from 'bel';
 
 export default ({ items }) => bel`
-  <nav class="m-header-meta-navigation-mobile__nav-lang">
+  <nav class="m-header-mobile-languages__nav">
     ${items && items.map(({ code, url, isActive }) => bel`
-      <a href="${url}" class="m-header-meta-navigation-mobile__lang-link ${isActive && 'is-active'}">${code}</a>`)}
+      <a href="${url}" class="m-header-mobile-languages__link ${isActive && 'is-active'}">${code}</a>`)}
   </nav>
 `;
