@@ -1,0 +1,50 @@
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
+@import "settings/header-mobile-others";
+
+.m-header-mobile-others {
+  display: block;
+}
+
+.m-header-mobile-others__box {
+}
+
+.m-header-mobile-others__nav {
+  display: block;
+
+  background: $header-mobile-others__nav-bg;
+}
+
+.m-header-mobile-others__list {
+  @include unstyle-list();
+}
+
+.m-header-mobile-others__list-item {
+  display: block;
+
+  border-top: $header-mobile-others__list-item-border-top-width solid $header-mobile-others__list-item-border-top-color;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.m-header-mobile-others__link {
+  @include typo-16--semibold();
+
+  display: block;
+
+  padding: $header-mobile-others__link-y-padding $header-mobile-others__link-x-padding;
+
+  color: $header-mobile-others__link-color;
+  text-transform: uppercase;
+
+  &.is-active,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $header-mobile-others__link-color--hover;
+  }
+}
