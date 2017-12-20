@@ -1,0 +1,52 @@
+@import "settings/header-burger";
+@import "../a-link/mixins/link";
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/clearfix";
+@import "../../styles/mixins/button-reset";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
+
+.m-header-burger {
+  display: block;
+}
+
+.m-header-burger {
+  @include button-reset();
+
+  display: none;
+
+  margin-left: $header-burger-margin-left;
+
+  color: $header-burger-color;
+
+  @include respond-down(md) {
+    display: block;
+  }
+}
+
+.m-header-burger-icon {
+  display: block;
+  width: $header-burger__icon-size;
+  height: $header-burger__icon-size;
+
+  fill: currentColor;
+
+  .is-burger-open & {
+    display: none;
+  }
+}
+
+.m-header-burger__close-icon {
+  display: none;
+  width: $header-burger__icon-size;
+  height: $header-burger__icon-size;
+
+  fill: currentColor;
+
+  .is-burger-open & {
+    display: block;
+  }
+}
