@@ -94,7 +94,7 @@ const writeIndexJs = (path, _name) => {
         connectedCallback() {
           super.connectedCallback();
 
-          this.className = \`${this.initialClassName} ${element}-${_name}\`;
+          this.className = \`\${this.initialClassName} ${element}-${_name}\`;
           // Your DOM interaction here, but keep it decoupled.
           // If you don't have any, just remove this function
         }
