@@ -20,7 +20,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
     const simpleMenu = getAttribute(this, 'simplemenu');
 
-    this.stroke = new Stroke(this, {
+    this.stroke = new Stroke(this.parentNode.parentNode, {
       simpleMenu,
     });
     this.subNavigation = new HeaderSubNavigation(this, {
