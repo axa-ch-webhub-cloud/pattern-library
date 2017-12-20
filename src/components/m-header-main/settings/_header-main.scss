@@ -1,0 +1,9 @@
+@import "../../../styles/settings/colors";
+@import "../../../styles/settings/zindex";
+
+$header-main-bg: $color-prim-white !default;
+$header-main-height: 75px !default;
+$header-main-z-index: $zindex-header-main-navigation !default;
+
+$header-main-border-bottom-color: $color-prim-gray-mercury !default;
+$header-main-border-bottom-width: 2px !default;

@@ -1,0 +1,47 @@
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
+@import "settings/header-mobile-languages";
+
+.m-header-mobile-languages {
+  display: block;
+
+  background: $header-mobile-languages__nav-lang-bg;
+
+  text-align: center;
+}
+
+.m-header-mobile-languages__link {
+  @include typo-16();
+
+  display: inline-block;
+
+  padding: $header-mobile-languages__link-y-padding $header-mobile-languages__link-x-padding;
+
+  color: $header-mobile-languages__link-color;
+  text-transform: uppercase;
+
+  &.is-active,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $header-mobile-languages__link-color--hover;
+  }
+
+  &::before {
+    display: block;
+    float: left;
+    margin-left: -$header-mobile-languages__link-x-padding;
+
+    content: '\00a0';
+
+    border-left: 1px solid $header-mobile-languages__link-color;
+  }
+
+  &:first-child {
+    &::before {
+      display: none;
+    }
+  }
+}

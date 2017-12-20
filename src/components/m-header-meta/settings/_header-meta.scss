@@ -1,0 +1,12 @@
+@import "../../../styles/settings/colors";
+
+$header-meta-bg: $color-prim-gray-alabaster !default;
+$header-meta-border-top-width: 2px !default;
+$header-meta-border-top-color: $color-axa-blue !default;
+$header-meta-border-bottom-width: 1px !default;
+$header-meta-border-bottom-color: $color-prim-gray-silver !default;
+
+$header-meta__link-x-padding: 15px;
+$header-meta__link-color: $color-prim-gray !default;
+$header-meta__link-color--hover: $color-prim-blue-deep-sapphire !default;
+$header-meta__link-bg--hover: $color-prim-white !default;

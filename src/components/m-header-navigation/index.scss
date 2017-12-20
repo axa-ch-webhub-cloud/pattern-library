@@ -1,0 +1,53 @@
+@import "settings/header-navigation";
+@import "../m-header-main/settings/header-main";
+@import "../a-link/mixins/link";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+@import "styles/stroke";
+
+.m-header-navigation {
+  display: block;
+
+  margin-left: auto;
+
+  @include respond-down(md) {
+    display: none;
+  }
+}
+
+.m-header-navigation__list {
+  @include unstyle-list();
+
+  display: flex;
+}
+
+.m-header-navigation__list-item {
+  display: block;
+
+  float: left;
+
+  margin: 0 $header-navigation__list-item-x-margin;
+}
+
+.m-header-navigation__list-link {
+  @include link-color();
+  @include typo-13--semibold();
+
+  position: relative;
+
+  display: flex;
+  height: $header-main-height;
+  padding: 0 $header-navigation__list-link-x-padding;
+
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,38 @@
+@import "settings/header-search";
+@import "../../styles/mixins/respond";
+
+.m-header-search {
+  display: block;
+
+  @include respond-down(md) {
+    margin-left: auto;
+  }
+}
+
+.m-header-search__form {
+  display: block;
+  padding: $header-search__form-y-padding 0 $header-search__form-y-padding $header-search__form-padding-side;
+  margin-left: $header-search__form-margin-side;
+
+  border-left: $header-search__form-border-side-width solid $header-search__form-border-side-color;
+
+  @include respond-down(md) {
+    padding-left: 0;
+    padding-right: $header-search__form-padding-side;
+
+    border-left: none;
+    border-right: $header-search__form-border-side-width solid $header-search__form-border-side-color;
+  }
+}
+
+.m-header-search__input {
+  display: none;
+}
+
+.m-header-search__icon {
+  display: block;
+  width: $header-search__icon-size;
+  height: $header-search__icon-size;
+
+  color: $header-search__icon-fill;
+}

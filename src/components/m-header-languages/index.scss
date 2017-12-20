@@ -1,0 +1,71 @@
+@import "../../styles/mixins/button-reset";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
+@import "../m-dropdown/mixins/dropdown";
+@import "../m-header-meta/settings/header-meta";
+@import "settings/header-languages";
+
+.m-header-languages {
+  @include dropdown-container();
+
+  display: block;
+}
+
+.m-header-languages__drop-down-toggle {
+  @include button-reset();
+  @include typo-13--semibold();
+  @include dropdown-toggle();
+
+  padding: 10.5px 50px 10.5px 20px;
+
+  color: $color-prim-gray;
+  text-transform: uppercase;
+}
+
+.m-header-languages__drop-down-icon {
+  @include dropdown-icon(16px, 20px);
+}
+
+.m-header-languages__list {
+  @include unstyle-list();
+  @include dropdown-content($header-languages__list-zindex);
+
+  background: $header-meta-bg;
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.m-header-languages__list-item {
+  display: block;
+
+  border-width: 0 $header-languages__list-item-border-width;
+  border-color: $header-languages__list-item-border-color;
+  border-style: solid;
+
+  &:first-child {
+    border-top-width: $header-languages__list-item-border-width;
+  }
+
+  &:last-child {
+    border-bottom-color: $header-languages__list-item-border-bottom-color--last;
+    border-bottom-width: $header-languages__list-item-border-bottom-width--last;
+  }
+}
+
+.m-header-languages__list-link {
+  @include typo-13--semibold();
+
+  display: block;
+  padding: 10px 20px;
+
+  text-transform: uppercase;
+  color: $color-prim-gray;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $header-meta__link-color--hover;
+  }
+}
