@@ -1,19 +1,12 @@
 @import "settings/header-burger";
-@import "../a-link/mixins/link";
-@import "../../styles/settings/colors";
-@import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/button-reset";
-@import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
-@import "../../styles/mixins/typo";
-@import "../../styles/mixins/unstyle-list";
-@import "../../styles/mixins/word-break";
 
 .m-header-burger {
   display: block;
 }
 
-.m-header-burger {
+.m-header-burger__button {
   @include button-reset();
 
   display: none;
@@ -27,7 +20,7 @@
   }
 }
 
-.m-header-burger-icon {
+.m-header-burger__icon {
   display: block;
   width: $header-burger__icon-size;
   height: $header-burger__icon-size;

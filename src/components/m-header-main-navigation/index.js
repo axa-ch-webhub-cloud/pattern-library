@@ -3,7 +3,6 @@ import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import HeaderSubNavigation from './js/header-sub-navigation';
-import Burger from './js/burger';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import wcdomready from '../../js/wcdomready';
 
@@ -27,11 +26,6 @@ class AXAHeaderMainNavigation extends BaseComponentGlobal {
     this.subNavigation = new HeaderSubNavigation(this, {
       simpleMenu,
     });
-    this.burger = new Burger(this);
-  }
-
-  contextCallback(contextNode) {
-    this.burger.contextNode = contextNode;
   }
 
   disconnectedCallback() {
@@ -40,9 +34,6 @@ class AXAHeaderMainNavigation extends BaseComponentGlobal {
 
     this.subNavigation.destroy();
     delete this.subNavigation;
-
-    this.burger.destroy();
-    delete this.burger;
   }
 }
 

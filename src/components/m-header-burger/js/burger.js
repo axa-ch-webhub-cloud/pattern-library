@@ -11,7 +11,7 @@ const EVENTS = Enum('click', 'resize', 'keyup');
 
 class Burger {
   static DEFAULTS = {
-    burger: '.js-header-main-navigation__burger',
+    burger: '.js-header-burger__button',
     burgerState: 'is-burger-open',
   }
 
