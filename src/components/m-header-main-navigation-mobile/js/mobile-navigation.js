@@ -5,7 +5,7 @@ import { publish, subscribe } from '../../../js/pubsub';
 class MobileNavigation {
   static DEFAULTS = {
     canvas: '.js-header-main-navigation-mobile__canvas',
-    backdrop: '.js-m-header-main-navigation-mobile__backdrop',
+    backdrop: '.js-m-header-navigation-mobile__backdrop',
     nav: '.js-header-main-navigation-mobile__nav',
     category: 'js-header-main-navigation-mobile__category',
     back: 'js-header-main-navigation-mobile__back',

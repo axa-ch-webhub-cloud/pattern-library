@@ -6,7 +6,7 @@ import HeaderSubNavigation from './js/header-sub-navigation';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import wcdomready from '../../js/wcdomready';
 
-class AXAHeaderMainNavigation extends BaseComponentGlobal {
+class AXAHeaderNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
@@ -16,7 +16,7 @@ class AXAHeaderMainNavigation extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-header-main-navigation`;
+    this.className = `${this.initialClassName} m-header-navigation`;
 
     const simpleMenu = getAttribute(this, 'simplemenu');
 
@@ -38,5 +38,5 @@ class AXAHeaderMainNavigation extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-main-navigation', AXAHeaderMainNavigation);
+  window.customElements.define('axa-header-navigation', AXAHeaderNavigation);
 });

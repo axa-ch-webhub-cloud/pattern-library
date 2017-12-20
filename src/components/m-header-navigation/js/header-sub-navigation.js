@@ -3,14 +3,14 @@ import UiEvents from '../../../js/ui-events';
 
 class HeaderSubNavigation extends UiEvents {
   static DEFAULTS = {
-    list: '.js-header-main-navigation__list',
-    toggleClass: 'js-header-main-navigation__list-link',
+    list: '.js-header-navigation__list',
+    toggleClass: 'js-header-navigation__list-link',
     stateClass: 'is-open',
   };
 
   constructor(rootNode, options = {}) {
     super(rootNode, {
-      containerClass: '.js-header-main-navigation__list',
+      containerClass: '.js-header-navigation__list',
       toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-header-sub-navigation__index-close',
       useDefaultEvent: !!options.simpleMenu,
