@@ -136,7 +136,7 @@ class Burger {
     add(this.burger, this.options.burgerState);
 
     if (!e && this._contextNode) {
-      publish('header-navigation-mobile/open', null, this._contextNode);
+      publish('header-mobile/open', null, this._contextNode);
     }
   }
 
@@ -150,7 +150,7 @@ class Burger {
     remove(this.burger, this.options.burgerState);
 
     if (!e && this._contextNode) {
-      publish('header-navigation-mobile/close', null, this._contextNode);
+      publish('header-mobile/close', null, this._contextNode);
     }
   }
 
