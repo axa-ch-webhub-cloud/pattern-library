@@ -13,26 +13,6 @@
   display: block;
 }
 
-.m-header-mobile-navigation__box {
-  position: relative;
-
-  > .m-button {
-    display: block;
-    margin: 20px $header-mobile-navigation__item-padding-right 0 $header-mobile-navigation__item-padding-left;
-
-    text-align: center;
-
-    + * {
-      margin-top: 20px;
-    }
-  }
-
-  .m-header-top-content-bar__box {
-    padding-left: $header-mobile-navigation__item-padding-left !important;
-    padding-right: $header-mobile-navigation__item-padding-right !important;
-  }
-}
-
 .m-header-mobile-navigation__nav {
   display: block;
 

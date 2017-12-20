@@ -1,5 +1,4 @@
 import bel from 'bel';
-import classnames from 'classnames';
 
 function mobileNavItem(item) {
   const hasItems = !!item.items;
@@ -38,13 +37,4 @@ function mobileNav(items, parent) {
   `;
 }
 
-export default ({ items, offcanvas }, children) => [bel`<div class="m-header-mobile-navigation__backdrop js-m-header-mobile-navigation__backdrop"></div>`,
-  bel`<div class="m-header-mobile-navigation__canvas js-header-mobile-navigation__canvas ${classnames({
-    'm-header-mobile-navigation__canvas--off-canvas': !offcanvas,
-  })}">
-    <div class="m-header-mobile-navigation__box">
-      ${mobileNav(items)}
-      ${children}
-    </div>
-  </div>
-`];
+export default ({ items }) => mobileNav(items);

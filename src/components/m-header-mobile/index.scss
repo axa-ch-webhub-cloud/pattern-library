@@ -75,6 +75,26 @@
   }
 }
 
+.m-header-mobile__box {
+  position: relative;
+
+  > .m-button {
+    display: block;
+    margin: 20px $header-mobile__item-padding-right 0 $header-mobile__item-padding-left;
+
+    text-align: center;
+
+    + * {
+      margin-top: 20px;
+    }
+  }
+
+  .m-header-top-content-bar__box {
+    padding-left: $header-mobile__item-padding-left !important;
+    padding-right: $header-mobile__item-padding-right !important;
+  }
+}
+
 body.is-body-frozen {
   overflow: hidden;
 }
