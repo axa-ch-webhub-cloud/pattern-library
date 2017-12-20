@@ -4,30 +4,8 @@
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
 @import "../m-dropdown/mixins/dropdown";
+@import "../m-header-meta/settings/header-meta";
 @import "settings/header-meta-navigation";
-
-.m-header-meta-navigation {
-  display: block;
-
-  background: $header-meta-navigation-bg;
-  border-top: $header-meta-navigation-border-top-width solid $header-meta-navigation-border-top-color;
-  border-bottom: $header-meta-navigation-border-bottom-width solid $header-meta-navigation-border-bottom-color;
-
-  @include respond-down(md) {
-    display: none;
-  }
-}
-
-.m-header-meta-navigation__box {
-  @include make-container();
-  @include make-container-max-widths();
-}
-
-.m-header-meta-navigation__row {
-  @include make-row();
-
-  align-items: center;
-}
 
 .m-header-meta-navigation__nav-left {
   @include make-gutter();
@@ -78,13 +56,13 @@
   &:hover,
   &:active,
   &:focus {
-    margin-bottom: -$header-meta-navigation-border-bottom-width;
+    margin-bottom: -$header-meta-border-bottom-width;
     text-decoration: none;
 
     color: $header-meta-navigation__link-color--hover;
     background: $header-meta-navigation__link-bg--hover;
 
-    border-bottom: $header-meta-navigation-border-bottom-width solid $header-meta-navigation__link-bg--hover;
+    border-bottom: $header-meta-border-bottom-width solid $header-meta-navigation__link-bg--hover;
   }
 }
 
@@ -111,7 +89,7 @@
   @include unstyle-list();
   @include dropdown-content($header-meta-navigation__lang-list-zindex);
 
-  background: $header-meta-navigation-bg;
+  background: $header-meta-bg;
   box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.3);
 }
 
