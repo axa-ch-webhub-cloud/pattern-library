@@ -111,11 +111,12 @@ class HeaderMobileNavigation {
     const { parentNode } = delegateTarget;
 
     if (parentNode.lastChild !== delegateTarget) {
-      const { scrollTop } = this.canvas;
+      const canvas = this.rootNode.parentNode.parentNode;
+      const { scrollTop } = canvas;
 
       add(parentNode, this.options.isSubMenuOpenClass);
 
-      this.canvas.scrollTop = 0;
+      canvas.scrollTop = 0;
 
       this.opened.push({
         parentNode,
