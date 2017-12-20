@@ -11,7 +11,7 @@ export default function ({
   classes,
   motion,
   arrow,
-}, children) {
+}, childrenFragment) {
   const buttonClasses = classnames('m-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
@@ -24,13 +24,13 @@ export default function ({
 
   if (tag.toLowerCase() === 'a') {
     return bel`<a href="${url}" class="${buttonClasses}">
-      ${children}
+      ${childrenFragment}
       ${arrow && arrowIcon}
     </a>`;
   }
 
   return bel`<button type="button" class="${buttonClasses}">
-      ${children}
+      ${childrenFragment}
       ${arrow && arrowIcon}
     </button>`;
 }

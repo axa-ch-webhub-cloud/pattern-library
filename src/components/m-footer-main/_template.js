@@ -1,7 +1,7 @@
 import bel from 'bel';
 
-export default function (props, children) {
+export default function (props, childrenFragment) {
   return bel`<div class="m-footer-main__box">
-    <div class="m-footer-main__row">${children}</div>
+    <div class="m-footer-main__row">${childrenFragment}</div>
   </div>`;
 }

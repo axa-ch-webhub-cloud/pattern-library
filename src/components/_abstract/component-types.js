@@ -87,13 +87,13 @@ export class BaseComponent extends HTMLElement {
 
     if (template) {
       try {
-        const children = document.createDocumentFragment();
+        const childrenFragment = document.createDocumentFragment();
 
         while (this.firstChild) {
-          children.appendChild(this.firstChild);
+          childrenFragment.appendChild(this.firstChild);
         }
 
-        const items = template(getAttributes(this), children);
+        const items = template(getAttributes(this), childrenFragment);
 
         if (Array.isArray(items)) {
           items.forEach((item) => {
