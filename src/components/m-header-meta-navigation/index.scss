@@ -7,10 +7,6 @@
 @import "../m-header-meta/settings/header-meta";
 @import "settings/header-meta-navigation";
 
-.m-header-meta-navigation__nav-left {
-  @include make-gutter();
-}
-
 .m-header-meta-navigation__nav-right {
   @include make-gutter();
 
@@ -27,42 +23,13 @@
   @include make-row();
 }
 
-.m-header-meta-navigation__list {
-  @include unstyle-list();
-  @include make-row();
-}
 
-.m-header-meta-navigation__list-item,
 .m-header-meta-navigation__list-item-right {
   display: block;
   border-right: $header-meta-navigation__nav-border-x-width solid $header-meta-navigation__nav-border-x-color;
 
   &:first-child {
     border-left: $header-meta-navigation__nav-border-x-width solid $header-meta-navigation__nav-border-x-color;
-  }
-}
-
-.m-header-meta-navigation__list-link {
-  @include typo-13--semibold();
-
-  display: block;
-
-  padding: 10px $header-meta-navigation__link-x-padding;
-  text-transform: uppercase;
-
-  color: $header-meta-navigation__link-color;
-
-  &.is-active,
-  &:hover,
-  &:active,
-  &:focus {
-    margin-bottom: -$header-meta-border-bottom-width;
-    text-decoration: none;
-
-    color: $header-meta-navigation__link-color--hover;
-    background: $header-meta-navigation__link-bg--hover;
-
-    border-bottom: $header-meta-border-bottom-width solid $header-meta-navigation__link-bg--hover;
   }
 }
 

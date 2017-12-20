@@ -1,0 +1,51 @@
+@import "../../styles/mixins/button-reset";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/typo";
+@import "../m-header-meta/settings/header-meta";
+@import "settings/header-others";
+
+.m-header-others {
+  @include make-gutter();
+
+  display: block;
+}
+
+.m-header-others__list {
+  @include unstyle-list();
+  @include make-row();
+}
+
+.m-header-others__list-item {
+  display: block;
+  border-right: $header-others__list-item-border-x-width solid $header-others__list-item-border-x-color;
+
+  &:first-child {
+    border-left: $header-others__list-item-border-x-width solid $header-others__list-item-border-x-color;
+  }
+}
+
+.m-header-others__list-link {
+  @include typo-13--semibold();
+
+  display: block;
+
+  padding: 10px $header-others__link-x-padding;
+  text-transform: uppercase;
+
+  color: $header-others__link-color;
+
+  &.is-active,
+  &:hover,
+  &:active,
+  &:focus {
+    margin-bottom: -$header-meta-border-bottom-width;
+    text-decoration: none;
+
+    color: $header-others__link-color--hover;
+    background: $header-others__link-bg--hover;
+
+    border-bottom: $header-meta-border-bottom-width solid $header-others__link-bg--hover;
+  }
+}
