@@ -1,0 +1,9 @@
+@import "../../../styles/settings/colors";
+@import "../../../styles/settings/zindex";
+
+$header-languages__list-zindex: $zindex-header-meta-navigation !default;
+
+$header-languages__list-item-border-color: $color-prim-gray-mercury !default;
+$header-languages__list-item-border-width: 1px !default;
+$header-languages__list-item-border-bottom-color--last: $color-prim-gray-silver !default;
+$header-languages__list-item-border-bottom-width--last: 2px !default;
