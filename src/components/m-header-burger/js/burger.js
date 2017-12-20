@@ -127,7 +127,8 @@ class Burger {
 
     if (y !== 0 && y !== getScrollTop()) {
       publish('sticky-container/freeze-direction');
-      scrollTo(this.rootNode.parentNode.parentNode);
+      // @TODO: This scroll to the `axa-sticky` parent node, should be selctable or contextual
+      scrollTo(this.rootNode.parentNode.parentNode.parentNode.parentNode);
       setTimeout(() => {
         publish('sticky-container/thaw-direction');
       }, 10);
