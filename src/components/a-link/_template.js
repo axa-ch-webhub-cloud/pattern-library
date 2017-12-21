@@ -7,7 +7,7 @@ export default function ({
   motion,
   arrow,
   listed,
-}, children) {
+}, childrenFragment) {
   const classes = classnames('a-link', {
     [`a-link--${color}`]: color,
     [`a-link--${size}`]: size,
@@ -18,7 +18,7 @@ export default function ({
 
   return bel`<a href="#" class="${classes}">
       ${listed && bel`<axa-icon id="arrow" classes="a-link__listed"></axa-icon>`}
-      ${children}
+      ${childrenFragment}
       ${arrow && bel`<axa-icon id="arrow" classes="a-link__arrow"></axa-icon>`}
     </a>`;
 }
