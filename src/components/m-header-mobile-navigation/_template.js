@@ -22,7 +22,7 @@ function mobileNavItem(item) {
 
 function mobileNav(items, parent) {
   return bel`
-    <nav class="m-header-mobile-navigation__nav ${!parent && 'js-header-mobile-navigation__nav'}">
+    <div class="m-header-mobile-navigation__nav ${!parent && 'js-header-mobile-navigation__nav'}">
       ${parent && bel`
         <button type="button" class="m-header-mobile-navigation__back js-header-mobile-navigation__back">
           <axa-icon id="angle-bracket-right" classes="m-header-mobile-navigation__icon-back"></axa-icon>
@@ -33,7 +33,7 @@ function mobileNav(items, parent) {
         ${parent && mobileNavItem({ ...parent, name: 'index page', items: null })}
         ${items.map(mobileNavItem)}
       </ul>
-    </nav>
+    </div>
   `;
 }
 
