@@ -1,4 +1,5 @@
 @import "settings/header-sub-navigation";
+@import "../a-link/mixins/link";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/quantity-query";
 @import "../../styles/mixins/typo";
@@ -191,9 +192,12 @@
 
   line-height: $header-sub-navigation__list-item-line-height !important;
 
+  &.is-active,
   &:hover,
   &:active,
   &:focus {
+    @include link-color--hover();
+
     text-decoration: none;
 
     font-weight: 600;
