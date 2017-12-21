@@ -31,7 +31,7 @@
 }
 
 .m-header-navigation__list-link {
-  @include link-color();
+  @include link-color-only();
   @include typo-13--semibold();
 
   position: relative;
@@ -45,9 +45,12 @@
   text-transform: uppercase;
   vertical-align: middle;
 
+  &.is-active,
   &:hover,
   &:active,
   &:focus {
+    @include link-color--hover();
+
     text-decoration: none;
   }
 }
