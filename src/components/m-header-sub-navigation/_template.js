@@ -11,7 +11,7 @@ const linkItem = ({ url, name }) => bel`
 const getColumnsCount = ({ length }) => {
   if (length === 2) {
     return length;
-  } else if (length % 3 === 0) {
+  } else if (length % 3 === 0 && length % 4 !== 0) {
     return 3;
   }
 
