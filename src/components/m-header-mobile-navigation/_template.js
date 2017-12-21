@@ -1,19 +1,22 @@
 import bel from 'bel';
 
 function mobileNavItem(item) {
-  const hasItems = !!item.items;
+  const { name, url, isActive, items } = item;
+  const hasItems = !!items;
+  const activeClass = isActive ? 'is-active' : '';
 
   /* eslint-disable indent */
   return bel`
     <li class="m-header-mobile-navigation__list-item">
-      ${hasItems ? [bel`<button type="button" class="m-header-mobile-navigation__category js-header-mobile-navigation__category">
-          ${item.name}
+      ${hasItems ? [bel`<button type="button" class="m-header-mobile-navigation__category js-header-mobile-navigation__category ${activeClass}">
+          ${name}
           <axa-icon id="angle-bracket-right" classes="m-header-mobile-navigation__icon-next"></axa-icon>
         </button>
         `,
-        mobileNav(item.items, item),
+        mobileNav(items, item),
       ] : bel`
-        <a href="${item.url}" class="m-header-mobile-navigation__list-link js-header-mobile-navigation__list-link">${item.name}</a>
+        <a class="m-header-mobile-navigation__list-link js-header-mobile-navigation__list-link ${activeClass}"
+           href="${url}">${name}</a>
       `}
     </li>
   `;

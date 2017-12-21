@@ -67,7 +67,7 @@
 .m-header-mobile-navigation__list-link {
   @include make-container();
   @include word-break();
-  @include link-color();
+  @include link-color-only();
 
   position: relative;
 
@@ -76,6 +76,13 @@
   padding-right: $header-mobile__item-padding-right;
 
   text-transform: uppercase;
+
+  &.is-active,
+  &:hover,
+  &:active,
+  &:focus {
+    @include link-color--hover();
+  }
 }
 
 .m-header-mobile-navigation__category,
