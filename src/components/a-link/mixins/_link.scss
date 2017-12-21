@@ -14,15 +14,20 @@
 
 @mixin link-color($style: default) {
   $color-link: get-color($link-colors-map, $style, text);
-  $color-link--hover: get-color($link-colors-map, $style, text--hover);
 
   color: $color-link;
 
   &:hover,
   &:focus,
   &:active {
-    color: $color-link--hover;
+    @include link-color--hover($style);
   }
+}
+
+@mixin link-color--hover($style: default) {
+  $color-link--hover: get-color($link-colors-map, $style, text--hover);
+
+  color: $color-link--hover;
 }
 
 @mixin link-arrow() {
