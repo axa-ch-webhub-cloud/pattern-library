@@ -5,7 +5,7 @@ const fs = require('fs');
 const constants = require('../constants');
 const nsh = require('node-syntaxhighlighter');
 const sass = require('node-sass');
-const autoprefixer = require('autoprefixer-core');
+const autoprefixer = require('autoprefixer');
 
 // const jsLang = nsh.getLanguage('js');
 const htmlLang = nsh.getLanguage('html');
