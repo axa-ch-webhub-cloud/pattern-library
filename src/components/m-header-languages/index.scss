@@ -62,6 +62,7 @@
   text-transform: uppercase;
   color: $color-prim-gray;
 
+  &.is-active,
   &:hover,
   &:active,
   &:focus {
