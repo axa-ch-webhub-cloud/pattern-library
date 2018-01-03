@@ -58,6 +58,7 @@
   /* don't use background nor border - the parent deals with that */
   background: transparent;
   border: none;
+  color: inherit;
 
   /* disable native appearance like arrow */
   -webkit-appearance: none;
@@ -129,7 +130,14 @@
 
   background: $dropdown__toggle-bg;
 
+  /* fix missing height of wrapping root node of <axa-icon> */
+  > * {
+    display: block;
+    height: 100%;
+  }
+
   .#{$icon-class} {
+    position: relative;
     right: auto;
   }
 }
