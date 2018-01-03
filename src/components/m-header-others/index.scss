@@ -40,10 +40,13 @@
   &:hover,
   &:active,
   &:focus {
-    margin-bottom: -$header-meta-border-bottom-width;
     text-decoration: none;
-
     color: $header-meta__link-color--hover;
+  }
+
+  &.is-active {
+    margin-bottom: -$header-meta-border-bottom-width;
+
     background: $header-meta__link-bg--hover;
 
     border-bottom: $header-meta-border-bottom-width solid $header-meta__link-bg--hover;
