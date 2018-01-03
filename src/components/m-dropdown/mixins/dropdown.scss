@@ -1,8 +1,137 @@
 @import "../settings/dropdown";
 @import "../../../styles/mixins/hardware-accelerate";
+@import "../../../styles/mixins/target";
 
 @mixin dropdown-container() {
   position: relative;
+}
+
+@mixin dropdown-frame($icon-class: 'm-dropdown__icon') {
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__toggle-x-padding);
+
+  padding: $dropdown__toggle-y-padding $padding-right $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
+
+  background: $dropdown__toggle-bg;
+  border: $dropdown__toggle-border-width solid $dropdown__toggle-border-color;
+  color: $dropdown__toggle-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $dropdown__toggle-color--hover;
+
+    .#{$icon-class} {
+      color: $dropdown__toggle-color--hover;
+    }
+  }
+}
+
+@mixin dropdown-label() {
+  position: relative;
+
+  display: block;
+  width: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+@mixin dropdown-select($icon-class: 'm-dropdown__icon') {
+  display: block;
+  box-sizing: border-box;
+
+  /* important: fake it to have 0 width */
+  float: left;
+
+  /* overflow is indented to fix browser who don't support hiding the native arrow */
+  width: 120%;
+  height: $dropdown__select-height;
+  padding: 0;
+  margin-right: -120%;
+
+  line-height: $dropdown__select-height; /* not ideal, firefox is buggy here - see fix at the bottom */
+  text-indent: $dropdown__select-indent;	/* not ideal, firefox is buggy here - see fix at the bottom */
+  vertical-align: middle;
+  cursor: pointer;
+
+  /* don't use background nor border - the parent deals with that */
+  background: transparent;
+  border: none;
+
+  /* disable native appearance like arrow */
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* disable outline styles */
+  &:active,
+  &:focus {
+    border: none;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  &:focus {
+    color: $dropdown__toggle-color--hover;
+
+    + .#{$icon-class} {
+      color: $dropdown__toggle-color--hover;
+    }
+  }
+
+  /* fix firefox focus stuff */
+  /* stylelint-disable plugin/selector-bem-pattern */
+  &::-moz-focus-inner,
+  option::-moz-focus-inner {
+    border: none;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  /* stylelint-enable */
+
+  /* fix ugly blue screen at focused option value in IE */
+  &:focus::-ms-value {
+    color: inherit;
+
+    background: transparent;
+  }
+
+  /* fix native select arrows on IE */
+  &::-ms-expand {
+    display: none;
+  }
+
+  @include target(ie) {
+    /* fix IE not adhering to `text-indent` rules at <select> tags */
+    padding-left: $dropdown__select-indent;
+  }
+
+  @include target(moz) {
+    /* Fix Firefox doubles text-indent value */
+    text-indent: ($dropdown__select-indent / 2);
+
+    /* fix firefox dotted border on focused selects */
+    &:focus {
+      color: transparent;
+      text-shadow: 0 0 0 $dropdown__toggle-color--hover;
+    }
+  }
+}
+
+@mixin dropdown-select-icon($icon-class: 'm-dropdown__icon') {
+  display: block;
+  float: right;
+  height: $dropdown__select-height;
+  padding: 0 $dropdown__select-indent;
+  margin-left: -100%;
+
+  pointer-events: none;
+
+  background: $dropdown__toggle-bg;
+
+  .#{$icon-class} {
+    right: auto;
+  }
 }
 
 @mixin dropdown-toggle() {

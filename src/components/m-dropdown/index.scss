@@ -12,28 +12,28 @@
   display: inline-block;
 }
 
-.m-dropdown__toggle {
-  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__toggle-x-padding);
+.m-dropdown__label {
+  @include dropdown-frame();
+  @include dropdown-label();
+}
 
+.m-dropdown__select {
+  @include dropdown-select();
+}
+
+.m-dropdown__select-icon {
+  @include dropdown-select-icon();
+}
+
+.m-dropdown__toggle {
   @include button-reset();
   @include typo-18();
   @include dropdown-toggle();
-
-  padding: $dropdown__toggle-y-padding $padding-right $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
-
-  background: $dropdown__toggle-bg;
-  border: $dropdown__toggle-border-width solid $dropdown__toggle-border-color;
-  color: $dropdown__toggle-color;
+  @include dropdown-frame();
 
   &:hover,
   &:active,
   &:focus {
-    border-color: $dropdown__toggle-color--hover;
-
-    .m-dropdown__icon {
-      color: $dropdown__toggle-color--hover;
-    }
-
     &::after {
       display: block;
     }

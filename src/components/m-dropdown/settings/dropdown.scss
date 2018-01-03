@@ -5,9 +5,12 @@ $dropdown__toggle-bg: $color-prim-white !default;
 $dropdown__toggle-color: $color-prim-gray-dusty !default;
 $dropdown__toggle-color--hover: $color-axa-blue !default;
 $dropdown__toggle-y-padding: 10.5px !default;
-$dropdown__toggle-x-padding: 20px !default;
+$dropdown__toggle-x-padding: 40px !default;
 $dropdown__toggle-border-width: 1px !default;
 $dropdown__toggle-border-color: $color-prim-gray-silver !default;
+
+$dropdown__select-height: 50px !default;
+$dropdown__select-indent: 20px !default;
 
 $dropdown__icon-size: 10px !default;
 $dropdown__icon-gap: 20px !default;
