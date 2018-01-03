@@ -5,7 +5,7 @@ class HeaderSubNavigation extends UiEvents {
   static DEFAULTS = {
     list: '.js-header-navigation__list',
     toggleClass: 'js-header-navigation__list-link',
-    stateClass: 'is-open',
+    openClass: 'is-open',
   };
 
   constructor(rootNode, options = {}) {
@@ -32,16 +32,16 @@ class HeaderSubNavigation extends UiEvents {
   }
 
   enter(node) {
-    add(node.parentNode, this.options.stateClass);
+    add(node.parentNode, this.options.openClass);
   }
 
   move(node, lastNode) {
-    remove(lastNode.parentNode, this.options.stateClass);
-    add(node.parentNode, this.options.stateClass);
+    remove(lastNode.parentNode, this.options.openClass);
+    add(node.parentNode, this.options.openClass);
   }
 
   leave(node) {
-    remove(node.parentNode, this.options.stateClass);
+    remove(node.parentNode, this.options.openClass);
   }
 
   destroy() {

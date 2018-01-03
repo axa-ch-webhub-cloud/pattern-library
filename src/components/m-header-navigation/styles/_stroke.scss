@@ -7,7 +7,8 @@ $stroke-z-index: 1px !default;
 $stroke-transition-duration: 0.2s !default;
 $stroke-transition-easing: ease !default;
 
-.a-stroke {
+.a-stroke,
+.m-header-navigation__list-link.is-active::after {
   @include hardware-accelerate();
 
   position: absolute;
@@ -20,7 +21,9 @@ $stroke-transition-easing: ease !default;
   height: 0;
   background: $color-prim-red-burnt-sienna;
   transition: height $stroke-transition-duration $stroke-transition-easing;
+}
 
+.a-stroke {
   &.is-enter {
     height: $stroke-height;
   }
@@ -35,5 +38,29 @@ $stroke-transition-easing: ease !default;
   &.is-static {
     left: 0 !important;
     bottom: 1px;
+  }
+}
+
+.m-header-navigation__list-link.is-active {
+  &::after {
+    bottom: 1px;
+
+    width: 100%;
+    height: $stroke-height;
+
+    content: '';
+
+    .is-interactive & {
+      height: 0;
+    }
+  }
+
+  &.is-active-open::after {
+    transition-property: none;
+    transition-duration: 0s;
+  }
+
+  &.is-active-move::after {
+    height: $stroke-height;
   }
 }
