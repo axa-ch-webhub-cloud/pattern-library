@@ -141,6 +141,36 @@
     border: none;
   }
 
+  .m-header-sub-navigation__row--col-2 & {
+    &:nth-child(2n + 1) {
+      border: none;
+    }
+
+    &:nth-child(n + 3) {
+      padding-top: $header-sub-navigation__block-padding-top--repeat;
+    }
+  }
+
+  .m-header-sub-navigation__row--col-3 & {
+    &:nth-child(3n + 1) {
+      border: none;
+    }
+
+    &:nth-child(n + 4) {
+      padding-top: $header-sub-navigation__block-padding-top--repeat;
+    }
+  }
+
+  .m-header-sub-navigation__row--col-4 & {
+    &:nth-child(4n + 1) {
+      border: none;
+    }
+
+    &:nth-child(n + 5) {
+      padding-top: $header-sub-navigation__block-padding-top--repeat;
+    }
+  }
+
   @include quantity-query(1) {
     @include make-col(4);
   }
