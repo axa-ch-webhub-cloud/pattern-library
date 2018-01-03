@@ -141,6 +141,10 @@
     border: none;
   }
 
+  @include quantity-query(1) {
+    @include make-col(4);
+  }
+
   @include quantity-query(2) {
     @include make-col(3);
     padding-right: $header-sub-navigation__block-x-padding-2-columns;
