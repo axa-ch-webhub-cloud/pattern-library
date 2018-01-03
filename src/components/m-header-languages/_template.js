@@ -2,7 +2,7 @@ import bel from 'bel';
 import raw from 'bel/raw';
 
 export default ({ items }) => [bel`
-  <button role="button" class="m-header-languages__drop-down-toggle js-dropdown__toggle">
+  <button type="button" class="m-header-languages__drop-down-toggle js-dropdown__toggle">
     ${items[0].name}
     <axa-icon id="angle-bracket-right" classes="m-header-languages__drop-down-icon"></axa-icon>
   </button>
