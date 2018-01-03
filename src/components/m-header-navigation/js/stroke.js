@@ -2,7 +2,7 @@ import css from '../../../js/css';
 import on from '../../../js/on';
 import ownerWindow from '../../../js/owner-window';
 import { requestAnimationFrame, cancelAnimationFrame } from '../../../js/request-animation-frame';
-import { add, remove } from '../../../js/class-list';
+import { add, remove, has } from '../../../js/class-list';
 import UiEvents from '../../../js/ui-events';
 
 class Stroke extends UiEvents {
@@ -13,6 +13,9 @@ class Stroke extends UiEvents {
     enterClass: 'is-enter',
     moveClass: 'is-move',
     staticClass: 'is-static',
+    interactiveClass: 'is-interactive',
+    activeOpenClass: 'is-active-open',
+    activeMoveClass: 'is-active-move',
   };
 
   constructor(rootNode, options = {}) {
@@ -56,8 +59,16 @@ class Stroke extends UiEvents {
     this._node = node;
     this._parentNode = parentNode;
 
+    if (has(node, 'is-active')) {
+      this._activeNode = node;
+
+      add(node, this.options.activeOpenClass);
+      add(node, this.options.activeMoveClass);
+    }
+
     requestAnimationFrame(() => {
       this._handleStaticState(true, true);
+      add(this._list, this.options.interactiveClass);
 
       requestAnimationFrame(() => {
         add(this._stroke, this.options.enterClass);
@@ -73,6 +84,10 @@ class Stroke extends UiEvents {
     const { parentNode } = node;
     this._node = node;
     this._parentNode = parentNode;
+
+    if (this._activeNode) {
+      remove(this._activeNode, this.options.activeMoveClass);
+    }
 
     requestAnimationFrame(() => {
       this._handleStaticState(false);
@@ -90,14 +105,28 @@ class Stroke extends UiEvents {
   }
 
   leave() {
+    const { _node } = this;
+
     this._offMoving();
+
+    if (this._activeNode) {
+      remove(this._activeNode, this.options.activeMoveClass);
+      remove(this._activeNode, this.options.activeOpenClass);
+      this._activeNode = null;
+    }
+
+    if (has(_node, 'is-active')) {
+      add(_node, this.options.activeOpenClass);
+    }
 
     requestAnimationFrame(() => {
       this._handleStaticState(true);
+      remove(this._list, this.options.interactiveClass);
 
       requestAnimationFrame(() => {
         remove(this._stroke, this.options.moveClass);
         remove(this._stroke, this.options.enterClass);
+        remove(_node, this.options.activeOpenClass);
       });
 
       this._parentNode = null;
