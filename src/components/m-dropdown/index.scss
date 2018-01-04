@@ -12,6 +12,7 @@
   display: inline-block;
 }
 
+// native select
 .m-dropdown__select-wrap {
   @include dropdown-frame();
   @include dropdown-select-wrap();
@@ -25,6 +26,7 @@
   @include dropdown-select-icon();
 }
 
+// js enhanced dropdown
 .m-dropdown__toggle {
   @include button-reset();
   @include typo-18();
