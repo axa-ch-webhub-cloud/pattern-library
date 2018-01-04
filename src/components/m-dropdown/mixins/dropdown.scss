@@ -7,22 +7,22 @@
 }
 
 @mixin dropdown-frame($icon-class: 'm-dropdown__icon') {
-  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__toggle-x-padding);
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
 
-  padding: $dropdown__toggle-y-padding $padding-right $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
+  padding: $dropdown__frame-y-padding $padding-right $dropdown__frame-y-padding $dropdown__frame-x-padding;
 
-  background: $dropdown__toggle-bg;
-  border: $dropdown__toggle-border-width solid $dropdown__toggle-border-color;
-  color: $dropdown__toggle-color;
+  background: $dropdown__frame-bg;
+  border: $dropdown__frame-border-width solid $dropdown__frame-border-color;
+  color: $dropdown__frame-color;
 
   &:hover,
   &:active,
   &:focus {
     outline: none;
-    border-color: $dropdown__toggle-color--hover;
+    border-color: $dropdown__frame-color--hover;
 
     .#{$icon-class} {
-      color: $dropdown__toggle-color--hover;
+      color: $dropdown__frame-color--hover;
     }
   }
 }
@@ -74,10 +74,10 @@
   }
 
   &:focus {
-    color: $dropdown__toggle-color;
+    color: $dropdown__frame-color;
 
     + .#{$icon-class} {
-      color: $dropdown__toggle-color--hover;
+      color: $dropdown__frame-color--hover;
     }
   }
 
@@ -115,7 +115,7 @@
     /* fix firefox dotted border on focused selects */
     &:focus {
       color: transparent;
-      text-shadow: 0 0 0 $dropdown__toggle-color--hover;
+      text-shadow: 0 0 0 $dropdown__frame-color--hover;
     }
   }
 }
@@ -129,7 +129,7 @@
 
   pointer-events: none;
 
-  background: $dropdown__toggle-bg;
+  background: $dropdown__frame-bg;
 
   /* fix missing height of wrapping root node of <axa-icon> */
   > * {
@@ -153,7 +153,7 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__toggle-x-padding) {
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding) {
   @include hardware-accelerate();
 
   position: absolute;

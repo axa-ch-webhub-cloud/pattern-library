@@ -1,16 +1,16 @@
 @import "../../../styles/settings/colors";
 @import "../../../styles/settings/zindex";
 
-$dropdown__toggle-bg: $color-prim-white !default;
-$dropdown__toggle-color: $color-prim-gray-mine-shaft !default;
-$dropdown__toggle-color--hover: $color-axa-blue !default;
-$dropdown__toggle-y-padding: 10.5px !default;
-$dropdown__toggle-x-padding: 20px !default;
-$dropdown__toggle-border-width: 1px !default;
-$dropdown__toggle-border-color: $color-prim-gray-silver !default;
+$dropdown__frame-bg: $color-prim-white !default;
+$dropdown__frame-color: $color-prim-gray-mine-shaft !default;
+$dropdown__frame-color--hover: $color-axa-blue !default;
+$dropdown__frame-y-padding: 10.5px !default;
+$dropdown__frame-x-padding: 20px !default;
+$dropdown__frame-border-width: 1px !default;
+$dropdown__frame-border-color: $color-prim-gray-silver !default;
 
 $dropdown__select-height: 50px !default;
-$dropdown__select-indent: $dropdown__toggle-x-padding !default;
+$dropdown__select-indent: $dropdown__frame-x-padding !default;
 
 $dropdown__icon-size: 10px !default;
 $dropdown__icon-gap: 20px !default;
