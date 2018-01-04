@@ -153,7 +153,7 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding) {
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__frame-border-color) {
   @include hardware-accelerate();
 
   position: absolute;
@@ -165,6 +165,7 @@
   height: $size;
   margin-top: -($size / 2);
 
+  color: $color;
   transition: transform 0.3s ease;
 
   .is-open & {
