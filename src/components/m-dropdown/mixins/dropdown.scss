@@ -155,7 +155,7 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__frame-border-color) {
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color) {
   @include hardware-accelerate();
 
   position: absolute;
