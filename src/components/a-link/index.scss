@@ -19,28 +19,27 @@
 }
 
 .a-link--arrow {
-  @include link-arrow--adjust();
+  @include link-icon--adjust();
 }
 
 .a-link--listed {
-  @include link-arrow--adjust(listed);
+  @include link-icon--adjust(listed);
 }
 
 .a-link__icon {
-
 }
 
 .a-link__arrow,
 .a-link__listed {
-  @include link__arrow();
+  @include link__icon();
 }
 
 .a-link__arrow {
-  @include link__arrow--adjust();
+  @include link__icon--adjust();
 }
 
 .a-link__listed {
-  @include link__arrow--adjust(listed);
+  @include link__icon--adjust(listed);
 }
 
 .a-link--motion {
