@@ -73,7 +73,7 @@
   }
 
   &:focus {
-    color: $dropdown__toggle-color--hover;
+    color: $dropdown__toggle-color;
 
     + .#{$icon-class} {
       color: $dropdown__toggle-color--hover;
