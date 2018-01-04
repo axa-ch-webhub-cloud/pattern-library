@@ -32,13 +32,15 @@
 
   display: block;
   width: 100%;
+
+  /* undo padding frame padding */
   padding: 0 !important;
   overflow: hidden;
 
   cursor: pointer;
 }
 
-@mixin dropdown-select($icon-class: 'm-dropdown__icon') {
+@mixin dropdown-select($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
   display: block;
   box-sizing: border-box;
 
@@ -47,12 +49,12 @@
 
   /* overflow is indented to fix browser who don't support hiding the native arrow */
   width: 120%;
-  height: $dropdown__select-height;
+  height: $height;
   padding: 0;
   margin-right: -120%;
 
-  line-height: $dropdown__select-height; /* not ideal, firefox is buggy here - see fix at the bottom */
-  text-indent: $dropdown__select-indent;	/* not ideal, firefox is buggy here - see fix at the bottom */
+  line-height: $height; /* not ideal, firefox is buggy here - see fix at the bottom */
+  text-indent: $indent;	/* not ideal, firefox is buggy here - see fix at the bottom */
   vertical-align: middle;
   cursor: pointer;
 
@@ -105,12 +107,12 @@
 
   @include target(ie) {
     /* fix IE not adhering to `text-indent` rules at <select> tags */
-    padding-left: $dropdown__select-indent;
+    padding-left: $indent;
   }
 
   @include target(moz) {
     /* Fix Firefox doubles text-indent value */
-    text-indent: ($dropdown__select-indent / 2);
+    text-indent: ($indent / 2);
 
     /* fix firefox dotted border on focused selects */
     &:focus {
@@ -120,11 +122,11 @@
   }
 }
 
-@mixin dropdown-select-icon($icon-class: 'm-dropdown__icon') {
+@mixin dropdown-select-icon($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
   display: block;
   float: right;
-  height: $dropdown__select-height;
-  padding: 0 $dropdown__select-indent;
+  height: $height;
+  padding: 0 $indent;
   margin-left: -100%;
 
   pointer-events: none;
