@@ -18,6 +18,7 @@
   &:hover,
   &:active,
   &:focus {
+    outline: none;
     border-color: $dropdown__toggle-color--hover;
 
     .#{$icon-class} {
@@ -26,7 +27,7 @@
   }
 }
 
-@mixin dropdown-label() {
+@mixin dropdown-select-box() {
   position: relative;
 
   display: block;

@@ -3,14 +3,14 @@ import raw from 'bel/raw';
 
 const arrowIcon = '<axa-icon id="angle-bracket-right" classes="m-dropdown__icon"></axa-icon>';
 
-export default ({ title, items, native }) => native ? bel`<label class="m-dropdown__label">
+export default ({ title, items, native }) => native ? bel`<div class="m-dropdown__select-box" tabindex="0">
     <select class="m-dropdown__select">
       ${items && items.map(({ name, url }) => bel`
         <option data-url="${url}">${name}</option>
       `)}
     </select>
     <div class="m-dropdown__select-icon">${raw(arrowIcon)}</div>
-  </label>` : [
+  </div>` : [
   bel`<button type="button" class="m-dropdown__toggle js-dropdown__toggle">
     ${title}${raw(arrowIcon)}
   </button>`,
