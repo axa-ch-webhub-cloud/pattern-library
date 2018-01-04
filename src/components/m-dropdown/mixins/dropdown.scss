@@ -1,8 +1,148 @@
 @import "../settings/dropdown";
 @import "../../../styles/mixins/hardware-accelerate";
+@import "../../../styles/mixins/target";
 
 @mixin dropdown-container() {
   position: relative;
+}
+
+@mixin dropdown-frame($icon-class: 'm-dropdown__icon') {
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
+
+  padding: $dropdown__frame-y-padding $padding-right $dropdown__frame-y-padding $dropdown__frame-x-padding;
+
+  background: $dropdown__frame-bg;
+  border: $dropdown__frame-border-width solid $dropdown__frame-border-color;
+  color: $dropdown__frame-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+    border-color: $dropdown__frame-color--hover;
+
+    .#{$icon-class} {
+      color: $dropdown__frame-color--hover;
+    }
+  }
+}
+
+@mixin dropdown-select-wrap() {
+  position: relative;
+
+  display: block;
+  width: 100%;
+
+  /* undo padding frame padding */
+  padding: 0 !important;
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+@mixin dropdown-select($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
+  display: block;
+  box-sizing: border-box;
+
+  /* important: fake it to have 0 width */
+  float: left;
+
+  /* overflow is indented to fix browser who don't support hiding the native arrow */
+  width: 120%;
+  height: $height;
+  padding: 0;
+  margin-right: -120%;
+
+  line-height: $height; /* not ideal, firefox is buggy here - see fix at the bottom */
+  text-indent: $indent;	/* not ideal, firefox is buggy here - see fix at the bottom */
+  vertical-align: middle;
+  cursor: pointer;
+
+  /* don't use background nor border - the parent deals with that */
+  background: transparent;
+  border: none;
+  color: inherit;
+
+  /* disable native appearance like arrow */
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* disable outline styles */
+  &:active,
+  &:focus {
+    border: none;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  &:focus {
+    color: $dropdown__frame-color;
+
+    + .#{$icon-class} {
+      color: $dropdown__frame-color--hover;
+    }
+  }
+
+  /* fix firefox focus stuff */
+  /* stylelint-disable plugin/selector-bem-pattern */
+  &::-moz-focus-inner,
+  option::-moz-focus-inner {
+    border: none;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  /* stylelint-enable */
+
+  /* fix ugly blue screen at focused option value in IE */
+  &:focus::-ms-value {
+    color: inherit;
+
+    background: transparent;
+  }
+
+  /* fix native select arrows on IE */
+  &::-ms-expand {
+    display: none;
+  }
+
+  @include target(ie) {
+    /* fix IE not adhering to `text-indent` rules at <select> tags */
+    padding-left: $indent;
+  }
+
+  @include target(moz) {
+    /* Fix Firefox doubles text-indent value */
+    text-indent: ($indent / 2);
+
+    /* fix firefox dotted border on focused selects */
+    &:focus {
+      color: transparent;
+      text-shadow: 0 0 0 $dropdown__frame-color--hover;
+    }
+  }
+}
+
+@mixin dropdown-select-icon($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
+  display: block;
+  float: right;
+  height: $height;
+  padding: 0 $indent;
+  margin-left: -100%;
+
+  pointer-events: none;
+
+  background: $dropdown__frame-bg;
+
+  /* fix missing height of wrapping root node of <axa-icon> */
+  > * {
+    display: block;
+    height: 100%;
+  }
+
+  .#{$icon-class} {
+    position: relative;
+    right: auto;
+  }
 }
 
 @mixin dropdown-toggle() {
@@ -15,7 +155,7 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__toggle-x-padding) {
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__frame-border-color) {
   @include hardware-accelerate();
 
   position: absolute;
@@ -27,6 +167,7 @@
   height: $size;
   margin-top: -($size / 2);
 
+  color: $color;
   transition: transform 0.3s ease;
 
   .is-open & {
