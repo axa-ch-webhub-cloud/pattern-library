@@ -43,17 +43,17 @@
 
   &::after {
     position: absolute;
-    bottom: -$dropdown__toggle-border-width;
+    bottom: -$dropdown__frame-border-width;
     left: 0;
     z-index: $zindex-dropdown + 1;
 
     display: none;
     width: 100%;
-    height: $dropdown__toggle-border-width;
+    height: $dropdown__frame-border-width;
     overflow: hidden;
 
     content: '';
-    background: $dropdown__toggle-color--hover;
+    background: $dropdown__frame-color--hover;
   }
 }
 
@@ -65,7 +65,7 @@
   @include unstyle-list();
   @include dropdown-content();
 
-  margin-top: -$dropdown__toggle-border-width;
+  margin-top: -$dropdown__frame-border-width;
 
   background: $dropdown__content-bg;
 
@@ -91,15 +91,15 @@
   @include typo-18();
 
   display: block;
-  padding: $dropdown__toggle-y-padding $dropdown__toggle-x-padding;
+  padding: $dropdown__frame-y-padding $dropdown__frame-x-padding;
 
-  color: $dropdown__toggle-color;
+  color: $dropdown__frame-color;
   white-space: nowrap;
 
   &:hover,
   &:active,
   &:focus {
-    color: $dropdown__toggle-color--hover;
+    color: $dropdown__frame-color--hover;
     text-decoration: none;
     background: $color-prim-gray-wild-sand;
   }
