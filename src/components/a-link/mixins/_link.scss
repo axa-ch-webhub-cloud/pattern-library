@@ -34,7 +34,7 @@
   color: $color-link--hover;
 }
 
-@mixin link-arrow() {
+@mixin link-icon() {
   @include typo-14();
   position: relative;
 
@@ -50,31 +50,31 @@
   }
 }
 
-@mixin link-arrow--adjust($type: default) {
+@mixin link-icon--adjust($type: default) {
   @if $type == default {
-    padding-right: $link__arrow-size + $link__arrow-padding;
+    padding-right: $link__icon-size + $link__icon-padding;
   } @else if $type == listed {
-    padding-left: $link__arrow-size + $link__arrow-padding;
+    padding-left: $link__icon-size + $link__icon-padding;
   } @else {
     @error "$type of #{$type} is not supported!";
   }
 }
 
-@mixin link__arrow() {
+@mixin link__icon() {
   position: absolute;
 
   top: 50%;
 
   display: block;
 
-  width: $link__arrow-size;
-  height: $link__arrow-size;
-  margin-top: -($link__arrow-size / 2);
+  width: $link__icon-size;
+  height: $link__icon-size;
+  margin-top: -($link__icon-size / 2);
 
   fill: currentColor;
 }
 
-@mixin link__arrow--adjust($type: default) {
+@mixin link__icon--adjust($type: default) {
   @if $type == default {
     right: 0;
   } @else if $type == listed {
