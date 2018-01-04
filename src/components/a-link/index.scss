@@ -13,22 +13,22 @@
   @include link-color(white);
 }
 
+.a-link--icon,
 .a-link--arrow,
 .a-link--listed {
-  @include link-arrow();
+  @include link-icon();
 }
 
 .a-link--arrow {
   @include link-icon--adjust();
 }
 
+.a-link--icon,
 .a-link--listed {
   @include link-icon--adjust(listed);
 }
 
-.a-link__icon {
-}
-
+.a-link__icon,
 .a-link__arrow,
 .a-link__listed {
   @include link__icon();
@@ -38,6 +38,7 @@
   @include link__icon--adjust();
 }
 
+.a-link__icon,
 .a-link__listed {
   @include link__icon--adjust(listed);
 }

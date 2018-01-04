@@ -34,7 +34,7 @@
   color: $color-link--hover;
 }
 
-@mixin link-arrow() {
+@mixin link-icon() {
   @include typo-14();
   position: relative;
 
