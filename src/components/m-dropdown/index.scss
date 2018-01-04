@@ -12,9 +12,9 @@
   display: inline-block;
 }
 
-.m-dropdown__select-box {
+.m-dropdown__select-wrap {
   @include dropdown-frame();
-  @include dropdown-select-box();
+  @include dropdown-select-wrap();
 }
 
 .m-dropdown__select {
