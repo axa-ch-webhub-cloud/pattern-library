@@ -56,7 +56,7 @@
 }
 
 .m-header-top-content-bar__text {
-  @include typo-13();
+  @include typo-legals();
 
   @include respond-up(xs) {
     margin-right: $header-top-content-bar__text-margin-right;

@@ -17,7 +17,7 @@
 }
 
 .m-footer-languages__title {
-  @include typo-16--bold();
+  @include typo-secondary-text--bold();
 
   color: $footer-languages__title-color;
   text-transform: uppercase;
@@ -65,7 +65,7 @@
   $padding-x: $footer-languages__link-x-padding;
   $padding-bottom: $footer-languages__link-y-padding;
 
-  @include typo-14--semibold();
+  @include typo-tag--semibold();
 
   display: block;
   padding: $padding-top $padding-x $padding-bottom;
@@ -91,7 +91,7 @@
   }
 
   .m-footer-languages__title {
-    @include typo-14--bold();
+    @include typo-tag--bold();
 
     display: block;
 

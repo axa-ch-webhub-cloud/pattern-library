@@ -95,7 +95,7 @@
 
 .m-header-mobile-navigation__category,
 .m-header-mobile-navigation__list-link {
-  @include typo-16--semibold();
+  @include typo-secondary-text--semibold();
 
   padding-top: $header-mobile__item-padding-y;
   padding-bottom: $header-mobile__item-padding-y;
@@ -106,7 +106,7 @@
 }
 
 .m-header-mobile-navigation__back {
-  @include typo-24();
+  @include typo-item-highlight();
 
   padding-top: $header-mobile-navigation__back-y-padding;
   padding-bottom: $header-mobile-navigation__back-y-padding;
