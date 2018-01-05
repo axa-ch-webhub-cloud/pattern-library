@@ -205,6 +205,7 @@
   @include word-break();
 
   color: $header-sub-navigation__category-color;
+  text-transform: uppercase;
 }
 
 .m-header-sub-navigation__list {
