@@ -32,7 +32,7 @@
 
 .m-header-navigation__list-link {
   @include link-color-only();
-  @include typo-13--semibold();
+  @include typo-legals--semibold();
 
   position: relative;
 

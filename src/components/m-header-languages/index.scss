@@ -15,7 +15,7 @@
 
 .m-header-languages__drop-down-toggle {
   @include button-reset();
-  @include typo-13--semibold();
+  @include typo-legals--semibold();
   @include dropdown-toggle();
 
   padding: 10.5px 50px 10.5px 20px;
@@ -54,7 +54,7 @@
 }
 
 .m-header-languages__list-link {
-  @include typo-13--semibold();
+  @include typo-legals--semibold();
 
   display: block;
   padding: 10px 20px;

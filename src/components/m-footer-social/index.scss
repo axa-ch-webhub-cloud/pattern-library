@@ -35,7 +35,7 @@
 }
 
 .m-footer-social__title {
-  @include typo-16--bold();
+  @include typo-secondary-text--bold();
 
   color: $footer-social__title-color;
   text-transform: uppercase;
@@ -115,7 +115,7 @@
   @include reset-col();
 
   .m-footer-social__title {
-    @include typo-14--bold();
+    @include typo-tag--bold();
   }
 
   .m-footer-social__icon {
