@@ -1,0 +1,99 @@
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/typo";
+
+.a-typo {
+  @include make-container();
+  @include make-container-max-widths();
+
+  display: block;
+}
+
+// Publico
+.a-typo__main-title--publico {
+  @include typo-main-title--publico();
+}
+
+.a-typo__page-title--publico {
+  @include typo-page-title--publico();
+}
+
+.a-typo__slice-title--publico {
+  @include typo-slice-title--publico();
+}
+
+.a-typo__small-module-title--publico {
+  @include typo-small-module-title--publico();
+}
+
+// Source Sans Pro
+.a-typo__main-title {
+  @include typo-main-title();
+}
+
+.a-typo__page-title {
+  @include typo-page-title();
+}
+
+.a-typo__slice-title {
+  @include typo-slice-title();
+}
+
+.a-typo__small-module-title {
+  @include typo-small-module-title();
+}
+
+.a-typo__title {
+  @include typo-title();
+}
+
+.a-typo__title--semibold {
+  @include typo-title--semibold();
+}
+
+.a-typo__item-highlight {
+  @include typo-item-highlight();
+}
+
+.a-typo__text {
+  @include typo-text();
+}
+
+.a-typo__text-longer {
+  @include typo-text-longer();
+}
+
+.a-typo__text-longer--bold {
+  @include typo-text-longer--bold();
+}
+
+.a-typo__secondary-text {
+  @include typo-secondary-text();
+}
+
+.a-typo__secondary-text--semibold {
+  @include typo-secondary-text--semibold();
+}
+
+.a-typo__secondary-text--bold {
+  @include typo-secondary-text--bold();
+}
+
+.a-typo__tag {
+  @include typo-tag();
+}
+
+.a-typo__tag--semibold {
+  @include typo-tag--semibold();
+}
+
+.a-typo__tag--bold {
+  @include typo-tag--bold();
+}
+
+.a-typo__legals {
+  @include typo-legals();
+}
+
+.a-typo__legals--semibold {
+  @include typo-legals--semibold();
+}
