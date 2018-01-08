@@ -12,6 +12,16 @@
   }
 }
 
+@mixin link-deco() {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
 @mixin link-color($style: default) {
   @include link-color-only($style);
 
