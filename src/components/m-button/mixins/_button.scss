@@ -12,7 +12,7 @@
 @mixin button($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
-  @include typo-tag();
+  @include typo-tag--semibold();
 
   position: relative;
 
@@ -108,7 +108,7 @@
 }
 
 @mixin button--sm() {
-  @include typo-legals();
+  @include typo-legals--semibold();
 
   padding-top: 5.5px;
   padding-bottom: 5.5px;
@@ -117,7 +117,7 @@
 }
 
 @mixin button--lg() {
-  @include typo-secondary-text();
+  @include typo-secondary-text--semibold();
 
   padding-top: 11px;
   padding-bottom: 11px;
