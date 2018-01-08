@@ -8,6 +8,7 @@ export default function ({
   arrow,
   listed,
   icon,
+  deco,
 }, childrenFragment) {
   const classes = classnames('a-link', {
     [`a-link--${color}`]: color,
@@ -16,6 +17,7 @@ export default function ({
     'a-link--arrow': arrow,
     'a-link--listed': listed,
     'a-link--icon': icon,
+    'a-link--deco': deco,
   });
 
   return bel`<a href="#" class="${classes}">

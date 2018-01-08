@@ -5,6 +5,10 @@
   @include link-color();
 }
 
+.a-link--deco {
+  @include link-deco();
+}
+
 .a-link--red {
   @include link-color(red);
 }
