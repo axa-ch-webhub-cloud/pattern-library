@@ -6,7 +6,7 @@
 //
 // Generate semantic grid columns with these mixins.
 
-@import "../settings/grids";
+@import "../settings/grid";
 @import "respond";
 
 @mixin make-container($gutter-width: $grid-gutter-width) {

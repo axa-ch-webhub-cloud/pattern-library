@@ -1,4 +1,4 @@
-@import "../settings/grids";
+@import "../settings/grid";
 @import "./respond";
 
 @mixin hide($breakpoints: $grid-breakpoints) {

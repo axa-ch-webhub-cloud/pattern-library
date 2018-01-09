@@ -1,6 +1,6 @@
 @import "../functions/strip-unit";
 @import "../functions/breakpoint";
-@import "../settings/grids";
+@import "../settings/grid";
 
 @mixin respond-up($breakpoint, $breakpoints: $grid-breakpoints) {
   $min: get-breakpoint($breakpoint, $breakpoints, up);
