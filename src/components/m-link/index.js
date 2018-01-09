@@ -14,3 +14,5 @@ wcdomready(() => {
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });
+
+export default AXALink;

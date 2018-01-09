@@ -18,3 +18,5 @@ class AXAFooterSub extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-footer-sub', AXAFooterSub);
 });
+
+export default AXAFooterSub;

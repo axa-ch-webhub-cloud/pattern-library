@@ -22,3 +22,5 @@ class AXAFooterLegals extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-footer-legals', AXAFooterLegals);
 });
+
+export default AXAFooterLegals;

@@ -23,3 +23,5 @@ class AXAHeaderSearch extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-search', AXAHeaderSearch);
 });
+
+export default AXAHeaderSearch;

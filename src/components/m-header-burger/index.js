@@ -35,3 +35,5 @@ class AXAHeaderBurger extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-burger', AXAHeaderBurger);
 });
+
+export default AXAHeaderBurger;

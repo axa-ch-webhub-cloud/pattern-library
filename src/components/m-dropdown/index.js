@@ -39,3 +39,5 @@ wcdomready(() => {
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });
+
+export default AXADropdown;

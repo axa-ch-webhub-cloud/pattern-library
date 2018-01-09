@@ -124,3 +124,5 @@ class AXARadio extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-radio', AXARadio);
 });
+
+export default AXARadio;

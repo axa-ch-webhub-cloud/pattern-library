@@ -20,3 +20,5 @@ class AXAHeaderMetaRight extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-meta-right', AXAHeaderMetaRight);
 });
+
+export default AXAHeaderMetaRight;

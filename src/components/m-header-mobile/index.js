@@ -39,3 +39,5 @@ class AXAHeaderMobile extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-mobile', AXAHeaderMobile);
 });
+
+export default AXAHeaderMobile;

@@ -115,6 +115,8 @@ const writeIndexJs = (path, _name) => {
         window.customElements.define('axa-${_name}', ${className});
       });
 
+      export default ${className};
+
     `
     , (err) => {
       if (err) {
