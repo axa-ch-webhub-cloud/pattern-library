@@ -20,3 +20,5 @@ class AXAHeaderLogo extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-logo', AXAHeaderLogo);
 });
+
+export default AXAHeaderLogo;

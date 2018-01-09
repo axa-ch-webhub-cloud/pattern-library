@@ -66,3 +66,8 @@ wcdomready(() => {
   window.customElements.define('axa-sticky-container', AXAStickyContainer);
   window.customElements.define('axa-sticky', AXASticky);
 });
+
+export default {
+  AXASticky,
+  AXAStickyContainer,
+};

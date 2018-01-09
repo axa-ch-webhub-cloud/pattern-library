@@ -23,3 +23,5 @@ class AXATypo extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-typo', AXATypo);
 });
+
+export default AXATypo;

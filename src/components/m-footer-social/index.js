@@ -25,3 +25,5 @@ class AXAFooterSocial extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-footer-social', AXAFooterSocial);
 });
+
+export default AXAFooterSocial;

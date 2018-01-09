@@ -34,3 +34,5 @@ class AXAFooterLinks extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-footer-links', AXAFooterLinks);
 });
+
+export default AXAFooterLinks;

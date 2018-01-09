@@ -24,3 +24,5 @@ class AXASubNavigation extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-sub-navigation', AXASubNavigation);
 });
+
+export default AXASubNavigation;

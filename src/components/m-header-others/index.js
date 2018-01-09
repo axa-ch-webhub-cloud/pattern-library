@@ -20,3 +20,5 @@ class AXAHeaderOthers extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-others', AXAHeaderOthers);
 });
+
+export default AXAHeaderOthers;

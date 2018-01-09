@@ -20,3 +20,5 @@ class AXATopContentBar extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-top-content-bar', AXATopContentBar);
 });
+
+export default AXATopContentBar;

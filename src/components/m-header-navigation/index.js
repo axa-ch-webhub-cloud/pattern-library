@@ -40,3 +40,5 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-navigation', AXAHeaderNavigation);
 });
+
+export default AXAHeaderNavigation;

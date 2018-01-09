@@ -32,3 +32,5 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-languages', AXAHeaderLanguages);
 });
+
+export default AXAHeaderLanguages;

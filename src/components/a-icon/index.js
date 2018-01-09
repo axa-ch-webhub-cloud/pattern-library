@@ -12,3 +12,5 @@ class AXAIcon extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-icon', AXAIcon);
 });
+
+export default AXAIcon;

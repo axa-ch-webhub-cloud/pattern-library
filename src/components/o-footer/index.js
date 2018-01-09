@@ -12,3 +12,5 @@ class AXAFooter extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-footer', AXAFooter);
 });
+
+export default AXAFooter;

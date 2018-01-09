@@ -26,3 +26,5 @@ class AXAHeaderMain extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-main', AXAHeaderMain);
 });
+
+export default AXAHeaderMain;

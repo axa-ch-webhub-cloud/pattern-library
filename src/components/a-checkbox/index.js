@@ -150,3 +150,5 @@ class AXACheckbox extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-checkbox', AXACheckbox);
 });
+
+export default AXACheckbox;

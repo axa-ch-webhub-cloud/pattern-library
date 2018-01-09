@@ -23,3 +23,5 @@ class AXAFooterLanguages extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-footer-languages', AXAFooterLanguages);
 });
+
+export default AXAFooterLanguages;

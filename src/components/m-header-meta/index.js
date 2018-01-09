@@ -20,3 +20,5 @@ class AXAHeaderMeta extends BaseComponentGlobal {
 wcdomready(() => {
   window.customElements.define('axa-header-meta', AXAHeaderMeta);
 });
+
+export default AXAHeaderMeta;
