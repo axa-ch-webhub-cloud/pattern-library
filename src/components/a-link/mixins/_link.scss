@@ -70,6 +70,16 @@
   }
 }
 
+@mixin link-icon--justify($type: default) {
+  @if $type == default {
+    margin-right: -($link__icon-size + $link__icon-padding);
+  } @else if $type == listed {
+    margin-left: -($link__icon-size + $link__icon-padding);
+  } @else {
+    @error "$type of #{$type} is not supported!";
+  }
+}
+
 @mixin link__icon() {
   position: absolute;
 
