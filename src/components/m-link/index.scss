@@ -1,58 +1,58 @@
 @import "mixins/link";
 
-.a-link {
+.m-link {
   @include link();
   @include link-color();
 }
 
-.a-link--deco {
+.m-link--deco {
   @include link-deco();
 }
 
-.a-link--red {
+.m-link--red {
   @include link-color(red);
 }
 
-.a-link--white {
+.m-link--white {
   @include link-color(white);
 }
 
-.a-link--icon,
-.a-link--arrow,
-.a-link--listed {
+.m-link--icon,
+.m-link--arrow,
+.m-link--listed {
   @include link-icon();
 }
 
-.a-link--arrow {
+.m-link--arrow {
   @include link-icon--adjust();
 }
 
-.a-link--icon,
-.a-link--listed {
+.m-link--icon,
+.m-link--listed {
   @include link-icon--adjust(listed);
 }
 
-.a-link__icon,
-.a-link__arrow,
-.a-link__listed {
+.m-link__icon,
+.m-link__arrow,
+.m-link__listed {
   @include link__icon();
 }
 
-.a-link__arrow {
+.m-link__arrow {
   @include link__icon--adjust();
 }
 
-.a-link__icon,
-.a-link__listed {
+.m-link__icon,
+.m-link__listed {
   @include link__icon--adjust(listed);
 }
 
-.a-link--motion {
+.m-link--motion {
   &:hover,
   &:active,
   &:focus {
-    .a-link__arrow,
-    .a-link__listed {
+    .m-link__arrow,
+    .m-link__listed {
       @include link__arrow--motion();
     }
   }
