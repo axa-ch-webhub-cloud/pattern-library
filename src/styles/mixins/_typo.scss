@@ -75,6 +75,10 @@
   @include typo-css($name: typo-20);
 }
 
+@mixin typo-text--bold() {
+  @include typo-css($name: typo-20, $weight: Bold);
+}
+
 @mixin typo-text-longer() {
   @include typo-css($name: typo-18);
 }
