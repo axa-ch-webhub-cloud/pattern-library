@@ -7,20 +7,16 @@
 
   @each $top-paddings-key in $top-paddings-keys {
     @include respond-up($top-paddings-key) {
-      @at-root {
-        &:first-child {
-          padding-top: map_get($top-paddings, $top-paddings-key);
-        }
+      &:first-child {
+        padding-top: map_get($top-paddings, $top-paddings-key);
       }
     }
   }
 
   @each $bottom-paddings-key in $bottom-paddings-keys {
     @include respond-up($bottom-paddings-key) {
-      @at-root {
-        &:last-child {
-          padding-top: map_get($bottom-paddings, $bottom-paddings-key);
-        }
+      &:last-child {
+        padding-top: map_get($bottom-paddings, $bottom-paddings-key);
       }
     }
   }
@@ -31,21 +27,28 @@
 
   @each $top-margins-key in $top-margins-keys {
     @include respond-up($top-margins-key) {
-      @at-root {
-        &:first-child {
-          margin-top: map_get($top-margins, $top-margins-key);
-        }
-      }
+      @include vr-reset-item();
+
+      margin-top: map_get($top-margins, $top-margins-key);
     }
   }
 }
 
-@mixin vr-reset($size: 0) {
-  margin-top: $size;
-}
-
 @mixin vr-reset-first($size: 0) {
   &:first-child {
-    @include vr-reset($size);
+    padding-top: $size;
+  }
+}
+
+@mixin vr-reset-last($size: 0) {
+  &:last-child {
+    padding-bottom: $size;
+  }
+}
+
+
+@mixin vr-reset-item($size: 0) {
+  &:first-child {
+    margin-top: $size;
   }
 }
