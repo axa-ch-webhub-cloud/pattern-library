@@ -58,6 +58,10 @@
   @include typo-text();
 }
 
+.a-typo__text--semibold {
+  @include typo-text--semibold();
+}
+
 .a-typo__text--bold {
   @include typo-text--bold();
 }
