@@ -58,6 +58,10 @@
   @include typo-text();
 }
 
+.a-typo__text--bold {
+  @include typo-text--bold();
+}
+
 .a-typo__text-longer {
   @include typo-text-longer();
 }

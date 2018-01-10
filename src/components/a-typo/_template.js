@@ -19,6 +19,7 @@ export default () => bel`
     </p>
 
     <p class="a-typo__text">Text</p>
+    <p class="a-typo__text--bold">Text</p>
     <p class="a-typo__text-longer">Text Longer</p>
     <p class="a-typo__text-longer--bold">Text Longer (Bold)</p>
     <p class="a-typo__secondary-text">Secondary Text</p>
