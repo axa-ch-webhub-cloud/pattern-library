@@ -26,6 +26,20 @@
   }
 }
 
+@mixin vr-margin-item($top-margins: $vr-top-margins) {
+  $top-margins-keys: map-keys($top-margins);
+
+  @each $top-margins-key in $top-margins-keys {
+    @include respond-up($top-margins-key) {
+      @at-root {
+        &:first-child {
+          margin-top: map_get($top-margins, $top-margins-key);
+        }
+      }
+    }
+  }
+}
+
 @mixin vr-reset($size: 0) {
   margin-top: $size;
 }
