@@ -1,4 +1,30 @@
 @import "../settings/vertical-rhythm";
+@import "./respond";
+
+@mixin vr-pad-items($top-paddings: $vr-top-paddings, $bottom-paddings: $vr-bottom-paddings) {
+  $top-paddings-keys: map-keys($top-paddings);
+  $bottom-paddings-keys: map-keys($bottom-paddings);
+
+  @each $top-paddings-key in $top-paddings-keys {
+    @include respond-up($top-paddings-key) {
+      @at-root {
+        &:first-child {
+          padding-top: map_get($top-paddings, $top-paddings-key);
+        }
+      }
+    }
+  }
+
+  @each $bottom-paddings-key in $bottom-paddings-keys {
+    @include respond-up($bottom-paddings-key) {
+      @at-root {
+        &:last-child {
+          padding-top: map_get($bottom-paddings, $bottom-paddings-key);
+        }
+      }
+    }
+  }
+}
 
 @mixin vr-reset($size: 0) {
   margin-top: $size;
