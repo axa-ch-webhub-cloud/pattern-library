@@ -1,0 +1,43 @@
+$vr-base: 10px !default;
+
+$vr-top-paddings:
+  (
+    // Extra small screen / phone
+    xs: 30px,
+    // Small screen / phone
+    sm: 30px,
+    // Medium screen / tablet
+    md: 60px,
+    // Large screen / desktop
+    lg: 80px,
+    // Extra large screen / wide desktop
+    xl: 80px
+  ) !default;
+
+$vr-bottom-paddings:
+  (
+    // Extra small screen / phone
+    xs: 30px,
+    // Small screen / phone
+    sm: 30px,
+    // Medium screen / tablet
+    md: 60px,
+    // Large screen / desktop
+    lg: 80px,
+    // Extra large screen / wide desktop
+    xl: 80px
+  ) !default;
+
+$vr-top-margins:
+  (
+    // Extra small screen / phone
+    xs: 20px,
+    // Small screen / phone
+    sm: 20px,
+    // Medium screen / tablet
+    md: 40px,
+    // Large screen / desktop
+    lg: 60px,
+    // Extra large screen / wide desktop
+    xl: 60px
+  ) !default;
