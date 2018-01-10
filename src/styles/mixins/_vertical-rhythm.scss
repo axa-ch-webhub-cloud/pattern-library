@@ -1,0 +1,11 @@
+@import "../settings/vertical-rhythm";
+
+@mixin vr-reset($size: 0) {
+  margin-top: $size;
+}
+
+@mixin vr-reset-first($size: 0) {
+  &:first-child {
+    @include vr-reset($size);
+  }
+}
