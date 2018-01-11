@@ -3,29 +3,29 @@ $vr-base: 10px !default;
 $vr-top-paddings:
   (
     // Extra small screen / phone
-    xs: 30px,
+    xs: 40px,
     // Small screen / phone
-    sm: 30px,
+    // sm: 40px,
     // Medium screen / tablet
     md: 60px,
     // Large screen / desktop
-    lg: 80px,
+    lg: 70px,
     // Extra large screen / wide desktop
-    xl: 80px
+    // xl: 70px
   ) !default;
 
 $vr-bottom-paddings:
   (
     // Extra small screen / phone
-    xs: 30px,
+    xs: 40px,
     // Small screen / phone
-    sm: 30px,
+    // sm: 40px,
     // Medium screen / tablet
     md: 60px,
     // Large screen / desktop
-    lg: 80px,
+    // lg: 60px,
     // Extra large screen / wide desktop
-    xl: 80px
+    // xl: 60px
   ) !default;
 
 $vr-top-margins:
@@ -33,11 +33,11 @@ $vr-top-margins:
     // Extra small screen / phone
     xs: 20px,
     // Small screen / phone
-    sm: 20px,
+    // sm: 20px,
     // Medium screen / tablet
     md: 40px,
     // Large screen / desktop
     lg: 60px,
     // Extra large screen / wide desktop
-    xl: 60px
+    // xl: 60px
   ) !default;
