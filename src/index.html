@@ -27,23 +27,31 @@
   </head>
   <body class="a-device-state a-device-state--debug">
     <header>
-      <axa-header class="js-styleguide-header">
-        <axa-header-main>
-          <axa-header-logo></axa-header-logo>
+      <axa-header>
+          <axa-header-main first-left>
+            <axa-header-logo></axa-header-logo>
+            <axa-header-navigation items='[
+              {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism", "isActive": true},
+              {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
+              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"}
+            ]' simplemenu></axa-header-navigation>
+            <h3 class="o-sg-patternlink">
+              <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
+            </h3>
+            <axa-header-burger></axa-header-burger>
+          </axa-header-main>
 
-          <axa-header-navigation items='[
-            {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism"},
-            {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
-            {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"}
-          ]' simplemenu></axa-header-navigation>
+          <axa-header-mobile>
+            <a href="#" class="m-button m-button--ghost m-button--motion">myAXA Login</a>
 
-          <h3 class="o-sg-patternlink">
-            <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
-          </h3>
-
-          <axa-header-burger></axa-header-burger>
-        </axa-header-main>
+            <axa-header-mobile-navigation items='[
+              {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism", "isActive": true},
+              {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
+              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"}
+            ]'></axa-header-mobile-navigation>
+          </axa-header-mobile>
       </axa-header>
+
       <section class="o-sg-header__buttons">
         <!-- {CUT AND INJECT BUTTONS HERE} -->
       </section>
