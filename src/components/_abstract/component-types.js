@@ -163,9 +163,13 @@ export class BaseComponent extends HTMLElement {
       this.timeoutId = setTimeout(() => {
         this.contextCallback(this.contextNode);
       }, 10);
-    } else if (!this.unContextEnabled) {
-      this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
     }
+
+    if (this.unContextEnabled) {
+      this.unContextEnabled();
+    }
+
+    this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
 
     logAxaHeader(contextName)(`*** _makeContextReady -> ${contextName} | found: ${!!this.contextNode}`, this);
   }
