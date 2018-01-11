@@ -87,13 +87,13 @@
 }
 
 @mixin escape-col-left($size, $columns: $grid-columns) {
-  $column-width: percentage(100 / $columns);
+  $column-width: percentage(1 / $columns);
 
   margin-left: -($column-width * $size);
 }
 
 @mixin escape-col-right($size, $columns: $grid-columns) {
-  $column-width: percentage(100 / $columns);
+  $column-width: percentage(1 / $columns);
 
   margin-left: -($column-width * $size);
 }
