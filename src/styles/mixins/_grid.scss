@@ -75,6 +75,29 @@
   flex: 0 0 $column-width;
 }
 
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+@mixin escape-col($size, $columns: $grid-columns) {
+  @include escape-col-left($size, $columns);
+  @include escape-col-right($size, $columns);
+}
+
+@mixin escape-col-left($size, $columns: $grid-columns) {
+  $column-width: percentage(100 / $columns);
+
+  margin-left: -($column-width * $size);
+}
+
+@mixin escape-col-right($size, $columns: $grid-columns) {
+  $column-width: percentage(100 / $columns);
+
+  margin-left: -($column-width * $size);
+}
+
 @mixin reset-col($important: null) {
   @if $important {
     $important: !important;
@@ -86,10 +109,4 @@
   max-width: none $important;
 
   flex: auto $important;
-}
-
-@mixin make-col-offset($size, $columns: $grid-columns) {
-  $num: $size / $columns;
-
-  margin-left: if($num == 0, 0, percentage($num));
 }
