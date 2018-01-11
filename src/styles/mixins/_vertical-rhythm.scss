@@ -11,7 +11,7 @@
 
   @each $top-paddings-key in $top-paddings-keys {
     @include respond-up($top-paddings-key) {
-      &:first-child {
+      > :first-child {
         padding-top: map_get($top-paddings, $top-paddings-key);
       }
     }
@@ -23,7 +23,7 @@
 
   @each $bottom-paddings-key in $bottom-paddings-keys {
     @include respond-up($bottom-paddings-key) {
-      &:last-child {
+      > :last-child {
         padding-top: map_get($bottom-paddings, $bottom-paddings-key);
       }
     }
