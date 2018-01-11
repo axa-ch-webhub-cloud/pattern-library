@@ -1,3 +1,4 @@
+@import "../settings/colors";
 @import "../functions/typo";
 @import "respond";
 
@@ -11,7 +12,7 @@
   letter-spacing: typo-prop($typo, spacing);
 }
 
-@mixin typo-css($name, $face: null, $weight: null) {
+@mixin typo-css($name, $face: null, $weight: null, $debug: false) {
   @include typo-decls($name, sm, $face, $weight);
 
   @include respond-up(sm) {
@@ -25,100 +26,111 @@
   @include respond-up(lg) {
     @include typo-decls($name, xl, $face, $weight);
   }
+
+  @if ($debug) {
+    &::after {
+      margin-left: 0.5em;
+      content: '[#{$name}]';
+
+      color: $color-prim-gray;
+      font-size: smaller;
+      vertical-align: super;
+    }
+  }
 }
 
-@mixin typo-main-title--publico() {
-  @include typo-css($name: typo-78, $face: publico);
+@mixin typo-main-title--publico($debug: false) {
+  @include typo-css($name: typo-78, $face: publico, $debug: $debug);
 }
 
-@mixin typo-page-title--publico() {
-  @include typo-css($name: typo-62, $face: publico);
+@mixin typo-page-title--publico($debug: false) {
+  @include typo-css($name: typo-62, $face: publico, $debug: $debug);
 }
 
-@mixin typo-slice-title--publico() {
-  @include typo-css($name: typo-48, $face: publico);
+@mixin typo-slice-title--publico($debug: false) {
+  @include typo-css($name: typo-48, $face: publico, $debug: $debug);
 }
 
-@mixin typo-small-module-title--publico() {
-  @include typo-css($name: typo-36, $face: publico);
+@mixin typo-small-module-title--publico($debug: false) {
+  @include typo-css($name: typo-36, $face: publico, $debug: $debug);
 }
 
-@mixin typo-main-title() {
-  @include typo-css($name: typo-78);
+@mixin typo-main-title($debug: false) {
+  @include typo-css($name: typo-78, $debug: $debug);
 }
 
-@mixin typo-page-title() {
-  @include typo-css($name: typo-62);
+@mixin typo-page-title($debug: false) {
+  @include typo-css($name: typo-62, $debug: $debug);
 }
 
-@mixin typo-slice-title() {
-  @include typo-css($name: typo-48);
+@mixin typo-slice-title($debug: false) {
+  @include typo-css($name: typo-48, $debug: $debug);
 }
 
-@mixin typo-small-module-title() {
-  @include typo-css($name: typo-36);
+@mixin typo-small-module-title($debug: false) {
+  @include typo-css($name: typo-36, $debug: $debug);
 }
 
-@mixin typo-title() {
-  @include typo-css($name: typo-28);
+@mixin typo-title($debug: false) {
+  @include typo-css($name: typo-28, $debug: $debug);
 }
 
-@mixin typo-title--semibold() {
-  @include typo-css($name: typo-28, $weight: Semibold);
+@mixin typo-title--semibold($debug: false) {
+  @include typo-css($name: typo-28, $weight: Semibold, $debug: $debug);
 }
 
-@mixin typo-item-highlight() {
-  @include typo-css($name: typo-24);
+@mixin typo-item-highlight($debug: false) {
+  @include typo-css($name: typo-24, $debug: $debug);
 }
 
-@mixin typo-text() {
-  @include typo-css($name: typo-20);
+@mixin typo-text($debug: false) {
+  @include typo-css($name: typo-20, $debug: $debug);
 }
 
-@mixin typo-text--semibold() {
-  @include typo-css($name: typo-20, $weight: Semibold);
+@mixin typo-text--semibold($debug: false) {
+  @include typo-css($name: typo-20, $weight: Semibold, $debug: $debug);
 }
 
-@mixin typo-text--bold() {
-  @include typo-css($name: typo-20, $weight: Bold);
+@mixin typo-text--bold($debug: false) {
+  @include typo-css($name: typo-20, $weight: Bold, $debug: $debug);
 }
 
-@mixin typo-text-longer() {
-  @include typo-css($name: typo-18);
+@mixin typo-text-longer($debug: false) {
+  @include typo-css($name: typo-18, $debug: $debug);
 }
 
-@mixin typo-text-longer--bold() {
-  @include typo-css($name: typo-18, $weight: Bold);
+@mixin typo-text-longer--bold($debug: false) {
+  @include typo-css($name: typo-18, $weight: Bold, $debug: $debug);
 }
 
-@mixin typo-secondary-text() {
-  @include typo-css($name: typo-16);
+@mixin typo-secondary-text($debug: false) {
+  @include typo-css($name: typo-16, $debug: $debug);
 }
 
-@mixin typo-secondary-text--semibold() {
-  @include typo-css($name: typo-16, $weight: Semibold);
+@mixin typo-secondary-text--semibold($debug: false) {
+  @include typo-css($name: typo-16, $weight: Semibold, $debug: $debug);
 }
 
-@mixin typo-secondary-text--bold() {
-  @include typo-css($name: typo-16, $weight: Bold);
+@mixin typo-secondary-text--bold($debug: false) {
+  @include typo-css($name: typo-16, $weight: Bold, $debug: $debug);
 }
 
-@mixin typo-tag() {
-  @include typo-css($name: typo-14);
+@mixin typo-tag($debug: false) {
+  @include typo-css($name: typo-14, $debug: $debug);
 }
 
-@mixin typo-tag--semibold() {
-  @include typo-css($name: typo-14, $weight: Semibold);
+@mixin typo-tag--semibold($debug: false) {
+  @include typo-css($name: typo-14, $weight: Semibold, $debug: $debug);
 }
 
-@mixin typo-tag--bold() {
-  @include typo-css($name: typo-14, $weight: Bold);
+@mixin typo-tag--bold($debug: false) {
+  @include typo-css($name: typo-14, $weight: Bold, $debug: $debug);
 }
 
-@mixin typo-legals() {
-  @include typo-css($name: typo-13);
+@mixin typo-legals($debug: false) {
+  @include typo-css($name: typo-13, $debug: $debug);
 }
 
-@mixin typo-legals--semibold() {
-  @include typo-css($name: typo-13, $weight: Semibold);
+@mixin typo-legals--semibold($debug: false) {
+  @include typo-css($name: typo-13, $weight: Semibold, $debug: $debug);
 }
