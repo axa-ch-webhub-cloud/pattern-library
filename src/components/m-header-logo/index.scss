@@ -9,7 +9,7 @@
 
   align-self: center;
 
-  @include respond-up(sm) {
+  @include respond-up(lg) {
     align-self: flex-start;
   }
 }
