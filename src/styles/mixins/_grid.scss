@@ -95,7 +95,7 @@
 @mixin escape-col-right($size, $columns: $grid-columns) {
   $column-width: percentage(1 / $columns);
 
-  margin-left: -($column-width * $size);
+  margin-right: -($column-width * $size);
 }
 
 @mixin reset-col($important: null) {
