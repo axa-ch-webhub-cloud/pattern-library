@@ -1,9 +1,13 @@
 import fire from './fire';
 import on from './on';
 import debounce from './debounce';
+import maybe, { toEqual } from './maybe';
 
 // @TODO: this local variable isn't shared between redundant module instance
 const subscriptions = {};
+
+const logMaybe = maybe(console.log)(toEqual);
+const logContext = logMaybe('context/enabled');
 
 /**
  * Publish a message regarding a given topic.
@@ -23,11 +27,15 @@ export function publish(topic, arg, node = document) {
   const subscription = subscriptions[topic];
   const { queue } = subscription;
 
+  logContext(topic)(`>>> PUBLISH: ${topic} [${arg}] - queued: ${!!queue && queue.length}`);
+
   // if no subscription enqueue and return early
   if (Array.isArray(queue)) {
     queue.push([topic, arg, node]);
     return;
   }
+
+  logContext(topic)(`>>> FIRE: ${topic} [${arg}]`);
 
   // @TODO: atm this does not define cancelable nor bubbles
   // Cycle through topics queue, fire!
@@ -62,6 +70,8 @@ export function subscribe(topic, func, node = document) {
     subscription.onsubscribe = debounce(onsubscribe(topic), 100);
   }
 
+  logContext(topic)(`>>> SUBSCRIBE: ${topic} [${subscription.count}]`);
+
   subscription.onsubscribe();
 
   // Provide handle back for removal of topic
@@ -81,6 +91,8 @@ export function subscribe(topic, func, node = document) {
 
 function onsubscribe(_topic) {
   return function initialPublish() {
+    logContext(_topic)(`>>> ONSUBSCRIBE: ${_topic}`);
+
     fire(document, 'pubsub/onsubscribe', _topic);
     fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
 
@@ -102,6 +114,8 @@ function flush({ detail: topic }) {
 
   const subscription = subscriptions[topic];
   const { queue } = subscription;
+
+  logContext(topic)(`>>> FLUSH: ${topic} - queued: ${!!queue && queue.length}`);
 
   if (Array.isArray(queue)) {
     queue.forEach(([_topic, arg, node]) => {
