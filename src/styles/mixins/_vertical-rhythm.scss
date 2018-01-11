@@ -11,9 +11,7 @@
 
   @each $top-paddings-key in $top-paddings-keys {
     @include respond-up($top-paddings-key) {
-      > :first-child {
-        padding-top: map_get($top-paddings, $top-paddings-key);
-      }
+      @include vr-pad-item-first(map_get($top-paddings, $top-paddings-key));
     }
   }
 }
@@ -23,10 +21,20 @@
 
   @each $bottom-paddings-key in $bottom-paddings-keys {
     @include respond-up($bottom-paddings-key) {
-      > :last-child {
-        padding-top: map_get($bottom-paddings, $bottom-paddings-key);
-      }
+      @include vr-pad-item-last(map_get($bottom-paddings, $bottom-paddings-key));
     }
+  }
+}
+
+@mixin vr-pad-item-first($top-padding) {
+  > :first-child {
+    padding-top: $top-padding;
+  }
+}
+
+@mixin vr-pad-item-last($bottom-padding) {
+  > :last-child {
+    padding-bottom: $bottom-padding;
   }
 }
 
