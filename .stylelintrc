@@ -18,7 +18,7 @@
       }
     },
     "scale-unlimited/declaration-strict-value": [["/color/", "fill", "stroke", "z-index", "font-size"], {
-      "ignoreKeywords": ["transparent", "currentColor", "inherit"]
+      "ignoreKeywords": ["transparent", "currentColor", "inherit", "smaller"]
     }],
     "order/order": [
       "at-variables",
