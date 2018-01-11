@@ -2,8 +2,12 @@
 @import "./respond";
 
 @mixin vr-pad-items($top-paddings: $vr-top-paddings, $bottom-paddings: $vr-bottom-paddings) {
+  @include vr-pad-items-first($top-paddings);
+  @include vr-pad-items-last($bottom-paddings);
+}
+
+@mixin vr-pad-items-first($top-paddings: $vr-top-paddings) {
   $top-paddings-keys: map-keys($top-paddings);
-  $bottom-paddings-keys: map-keys($bottom-paddings);
 
   @each $top-paddings-key in $top-paddings-keys {
     @include respond-up($top-paddings-key) {
@@ -12,6 +16,10 @@
       }
     }
   }
+}
+
+@mixin vr-pad-items-last($bottom-paddings: $vr-bottom-paddings) {
+  $bottom-paddings-keys: map-keys($bottom-paddings);
 
   @each $bottom-paddings-key in $bottom-paddings-keys {
     @include respond-up($bottom-paddings-key) {
