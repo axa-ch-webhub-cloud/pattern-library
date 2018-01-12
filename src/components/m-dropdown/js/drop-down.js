@@ -7,7 +7,7 @@ class DropDown extends UiEvents {
   static DEFAULTS = {
     containerClass: '.js-dropdown',
     toggleClass: 'js-dropdown__toggle',
-    isOpenClass: 'is-open',
+    isOpenClass: 'is-dropdown-open',
   }
 
   constructor(rootNode, options) {

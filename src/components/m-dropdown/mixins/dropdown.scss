@@ -170,7 +170,7 @@
   color: $color;
   transition: transform 0.3s ease;
 
-  .is-open & {
+  .is-dropdown-open & {
     transform: rotate(180deg);
   }
 }
@@ -188,7 +188,7 @@
 
   transition: height 0.3s ease;
 
-  .is-open > & {
+  .is-dropdown-open > & {
     height: auto;
   }
 }
