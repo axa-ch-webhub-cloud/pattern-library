@@ -13,7 +13,7 @@
   border-bottom: $header-sub-navigation-border-width solid $header-sub-navigation-border-color;
   box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.3);
 
-  .is-open & {
+  .is-header-sub-navigation-open & {
     display: block;
   }
 }
@@ -228,7 +228,7 @@
 
   line-height: $header-sub-navigation__list-item-line-height !important;
 
-  &.is-active,
+  &.is-header-sub-navigation-active,
   &:hover,
   &:active,
   &:focus {

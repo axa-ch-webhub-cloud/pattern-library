@@ -5,7 +5,7 @@ class HeaderSubNavigation extends UiEvents {
   static DEFAULTS = {
     list: '.js-header-navigation__list',
     toggleClass: 'js-header-navigation__list-link',
-    openClass: 'is-open',
+    openClass: 'is-header-sub-navigation-open',
   };
 
   constructor(rootNode, options = {}) {
