@@ -49,7 +49,7 @@ class DropDown extends UiEvents {
 
     lastElementChild.style.height = `${scrollHeight}px`;
 
-    add(parentNode, 'is-open');
+    add(parentNode, this.options.isOpenClass);
   }
 
   leave(node) {
@@ -63,7 +63,7 @@ class DropDown extends UiEvents {
       lastElementChild.style.height = `${scrollHeight}px`;
 
       requestAnimationFrame(() => {
-        remove(parentNode, 'is-open');
+        remove(parentNode, this.options.isOpenClass);
         lastElementChild.style.height = 0;
       });
     });

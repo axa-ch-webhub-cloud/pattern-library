@@ -155,7 +155,7 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color) {
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: 'is-dropdown-open') {
   // @include hardware-accelerate(); Chrome has an issue
 
   position: absolute;
@@ -170,12 +170,12 @@
   color: $color;
   transition: transform 0.3s ease;
 
-  .is-dropdown-open & {
+  .#{$is-open-class} & {
     transform: rotate(180deg);
   }
 }
 
-@mixin dropdown-content($zindex: $zindex-dropdown) {
+@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: 'is-dropdown-open') {
   // @include hardware-accelerate(); chrome has an issue
 
   position: absolute;
@@ -188,7 +188,7 @@
 
   transition: height 0.3s ease;
 
-  .is-dropdown-open > & {
+  .#{$is-open-class} > & {
     height: auto;
   }
 }
