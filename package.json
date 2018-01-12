@@ -11,7 +11,11 @@
     "new": "node stack/tasks/create-a-m-o.js",
     "server": "node stack/server.js",
     "postinstall": "npm rebuild node-sass",
-    "watch": "npm-watch build-dev",
+    "watch": "parallelshell \"npm run watch-scss\" \"npm run watch-js\" \"npm run watch-html\" \"npm run watch-svg\"",
+    "watch-scss": "npm-watch build-css-dev",
+    "watch-js": "npm-watch build-js-dev",
+    "watch-html": "npm-watch build-html-dev",
+    "watch-svg": "npm-watch build-icons-dev",
     "serve": "parallelshell \"npm run server DEV\" \"npm run watch\"",
     "bundle-dev": "node stack/tasks/bundle.js DEV && node stack/tasks/copy-polyfills.js DEV && npm run bundle-demos-dev",
     "bundle-demos-dev": "node stack/tasks/bundle-demos.js DEV",
@@ -21,10 +25,11 @@
     "build-css-dev": "node-sass src/index.scss -o .tmp/",
     "build-css-prod": "node-sass src/index.scss -o dist/",
     "build-js-dev": "npm run bundle-dev",
+    "build-html-dev": "node stack/tasks/build.html.js DEV && node stack/tasks/build-examples.js DEV",
     "build-js-prod": "npm run bundle-prod",
     "build-icons-dev": "node stack/tasks/icons.js DEV",
     "build-icons-prod": "node stack/tasks/icons.js PROD",
-    "build-dev": "node stack/tasks/cleanup.js DEV && npm run build-css-dev && node stack/tasks/build.html.js DEV && node stack/tasks/build-examples.js DEV && npm run build-js-dev && npm run build-icons-dev",
+    "build-dev": "node stack/tasks/cleanup.js DEV && npm run build-css-dev && npm run build-html-dev && npm run build-js-dev && npm run build-icons-dev",
     "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/build-examples.js PROD && npm run build-css-prod && npm run build-js-prod && npm run build-icons-prod && node stack/tasks/copy-dist-to-docs.js",
     "release": "node ./stack/tasks/release.js",
     "bump-major": "npm run test && npmversion --increment major",
@@ -36,11 +41,32 @@
     "bump-beta": "npm run test && npmversion --increment prerelease --preid beta --force-preid"
   },
   "watch": {
-    "build-dev": {
+    "build-css-dev": {
       "patterns": [
         "src"
       ],
-      "extensions": "js,html,scss,svg",
+      "extensions": "scss",
+      "quiet": false
+    },
+    "build-js-dev": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js",
+      "quiet": false
+    },
+    "build-html-dev": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "html",
+      "quiet": false
+    },
+    "build-icons-dev": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "svg",
       "quiet": false
     }
   },
