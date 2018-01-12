@@ -1,9 +1,13 @@
 import fire from './fire';
 import on from './on';
 import debounce from './debounce';
+// import maybe, { toEqual } from './maybe';
 
 // @TODO: this local variable isn't shared between redundant module instance
 const subscriptions = {};
+
+/* const logMaybe = maybe(console.log)(toEqual);
+const logContext = logMaybe('context/enabled'); */
 
 /**
  * Publish a message regarding a given topic.
@@ -81,6 +85,7 @@ export function subscribe(topic, func, node = document) {
 
 function onsubscribe(_topic) {
   return function initialPublish() {
+
     fire(document, 'pubsub/onsubscribe', _topic);
     fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
 

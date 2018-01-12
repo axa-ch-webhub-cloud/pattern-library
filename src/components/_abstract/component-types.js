@@ -151,15 +151,19 @@ export class BaseComponent extends HTMLElement {
     this.__selectedContext = name.toLowerCase();
   }
 
-  _makeContextReady() {
+  _makeContextReady({ detail: contextName } = {}) {
     if (this.contextNode) {
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {
         this.contextCallback(this.contextNode);
       }, 10);
-    } else if (!this.unContextEnabled) {
-      this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
     }
+
+    if (this.unContextEnabled) {
+      this.unContextEnabled();
+    }
+
+    this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
   }
 
   /**
