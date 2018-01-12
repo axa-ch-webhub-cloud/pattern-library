@@ -43,7 +43,7 @@
     }
   }
 
-  .is-mobile-sub-menu-open > & {
+  .is-header-mobile-navigation-nav-open > & {
     transform: translateX(0);
   }
 }
@@ -77,7 +77,7 @@
 
   text-transform: uppercase;
 
-  &.is-active,
+  &.is-header-mobile-navigation-active,
   &:hover,
   &:active,
   &:focus {

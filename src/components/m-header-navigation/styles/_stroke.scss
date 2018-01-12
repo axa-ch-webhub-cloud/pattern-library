@@ -8,7 +8,7 @@ $stroke-transition-duration: 0.2s !default;
 $stroke-transition-easing: ease !default;
 
 .a-stroke,
-.m-header-navigation__list-link.is-active::after {
+.m-header-navigation__list-link.is-header-navigation-active::after {
   @include hardware-accelerate();
 
   position: absolute;
@@ -24,18 +24,18 @@ $stroke-transition-easing: ease !default;
 }
 
 .a-stroke {
-  &.is-enter {
+  &.is-stroke-enter {
     height: $stroke-height;
   }
 
-  &.is-move {
+  &.is-stroke-move {
     transition:
       height $stroke-transition-duration $stroke-transition-easing,
       left $stroke-transition-duration $stroke-transition-easing,
       width $stroke-transition-duration $stroke-transition-easing;
   }
 
-  &.is-static {
+  &.is-stroke-static {
     left: 0 !important;
     bottom: 1px;
   }
@@ -50,17 +50,17 @@ $stroke-transition-easing: ease !default;
 
     content: '';
 
-    .is-interactive & {
+    .is-stroke-interactive & {
       height: 0;
     }
   }
 
-  &.is-active-open::after {
+  &.is-stroke-active-open::after {
     transition-property: none;
     transition-duration: 0s;
   }
 
-  &.is-active-move::after {
+  &.is-stroke-active-move::after {
     height: $stroke-height;
   }
 }

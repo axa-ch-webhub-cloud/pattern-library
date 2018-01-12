@@ -7,7 +7,7 @@ class HeaderMobileNavigation {
     nav: '.js-header-mobile-navigation__nav',
     category: 'js-header-mobile-navigation__category',
     back: 'js-header-mobile-navigation__back',
-    isSubMenuOpenClass: 'is-mobile-sub-menu-open',
+    isSubMenuOpenClass: 'is-header-mobile-navigation-nav-open',
   }
 
   constructor(rootNode, options) {

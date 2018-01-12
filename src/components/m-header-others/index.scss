@@ -36,7 +36,7 @@
 
   color: $header-meta__link-color;
 
-  &.is-active,
+  &.is-header-others-active,
   &:hover,
   &:active,
   &:focus {
@@ -44,7 +44,7 @@
     color: $header-meta__link-color--hover;
   }
 
-  &.is-active {
+  &.is-header-others-active {
     margin-bottom: -$header-meta-border-bottom-width;
 
     background: $header-meta__link-bg--hover;

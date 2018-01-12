@@ -5,7 +5,7 @@ const writeClasses = classes => classes ? ` ${classes}` : ''; // eslint-disable-
 
 const submenuItem = ({ url, name, items, classes, isActive, simplemenu }) => bel`
     <li class="m-header-navigation__list-item">
-      <a class="m-header-navigation__list-link ${(items || !!simplemenu) ? 'js-header-navigation__list-link' : ''} ${isActive ? 'is-active' : ''} ${writeClasses(classes)}" href="${url}">${raw(name)}</a>
+      <a class="m-header-navigation__list-link ${(items || !!simplemenu) ? 'js-header-navigation__list-link' : ''} ${isActive ? 'is-header-navigation-active' : ''} ${writeClasses(classes)}" href="${url}">${raw(name)}</a>
 
       ${items ? bel`<axa-header-sub-navigation indextitle="${name}" indexurl="${url}" items='${JSON.stringify(items)}' flyout>
         </axa-header-sub-navigation>` : ''}
