@@ -3,7 +3,7 @@ import bel from 'bel';
 function mobileNavItem(item) {
   const { name, url, isActive, items } = item;
   const hasItems = !!items;
-  const activeClass = isActive ? 'is-active' : '';
+  const activeClass = isActive ? 'is-header-mobile-navigation-active' : '';
 
   /* eslint-disable indent */
   return bel`
