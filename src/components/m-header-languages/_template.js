@@ -10,7 +10,7 @@ export default ({ items }) => [bel`
   <ul class="m-header-languages__list">
     ${items && items.map(({ url, name }, index) => bel`
       <li class="m-header-languages__list-item">
-        <a class="m-header-languages__list-link${index === 0 ? ' is-active' : ''}" href="${url}">
+        <a class="m-header-languages__list-link${index === 0 ? ' is-header-languages-active' : ''}" href="${url}">
           ${raw(name)}
         </a>
       </li>
