@@ -1,51 +1,51 @@
 @import "../settings/vertical-rhythm";
 @import "./respond";
 
-@mixin vr-pad-items($top-paddings: $vr-top-paddings, $bottom-paddings: $vr-bottom-paddings) {
-  @include vr-pad-items-first($top-paddings);
-  @include vr-pad-items-last($bottom-paddings);
+@mixin vr-pad-items($padding-tops: $vr-padding-tops, $padding-bottoms: $vr-padding-bottoms) {
+  @include vr-pad-items-first($padding-tops);
+  @include vr-pad-items-last($padding-bottoms);
 }
 
-@mixin vr-pad-items-first($top-paddings: $vr-top-paddings) {
-  $top-paddings-keys: map-keys($top-paddings);
+@mixin vr-pad-items-first($padding-tops: $vr-padding-tops) {
+  $padding-tops-keys: map-keys($padding-tops);
 
-  @each $top-paddings-key in $top-paddings-keys {
-    @include respond-up($top-paddings-key) {
-      @include vr-pad-item-first(map_get($top-paddings, $top-paddings-key));
+  @each $padding-tops-key in $padding-tops-keys {
+    @include respond-up($padding-tops-key) {
+      @include vr-pad-item-first(map_get($padding-tops, $padding-tops-key));
     }
   }
 }
 
-@mixin vr-pad-items-last($bottom-paddings: $vr-bottom-paddings) {
-  $bottom-paddings-keys: map-keys($bottom-paddings);
+@mixin vr-pad-items-last($padding-bottoms: $vr-padding-bottoms) {
+  $padding-bottoms-keys: map-keys($padding-bottoms);
 
-  @each $bottom-paddings-key in $bottom-paddings-keys {
-    @include respond-up($bottom-paddings-key) {
-      @include vr-pad-item-last(map_get($bottom-paddings, $bottom-paddings-key));
+  @each $padding-bottoms-key in $padding-bottoms-keys {
+    @include respond-up($padding-bottoms-key) {
+      @include vr-pad-item-last(map_get($padding-bottoms, $padding-bottoms-key));
     }
   }
 }
 
-@mixin vr-pad-item-first($top-padding) {
+@mixin vr-pad-item-first($padding-top) {
   > :first-child {
-    padding-top: $top-padding;
+    padding-top: $padding-top;
   }
 }
 
-@mixin vr-pad-item-last($bottom-padding) {
+@mixin vr-pad-item-last($padding-bottom) {
   > :last-child {
-    padding-bottom: $bottom-padding;
+    padding-bottom: $padding-bottom;
   }
 }
 
-@mixin vr-margin-item($top-margins: $vr-top-margins) {
-  $top-margins-keys: map-keys($top-margins);
+@mixin vr-margin-item($margin-tops: $vr-margin-tops) {
+  $margin-tops-keys: map-keys($margin-tops);
 
-  @each $top-margins-key in $top-margins-keys {
-    @include respond-up($top-margins-key) {
+  @each $margin-tops-key in $margin-tops-keys {
+    @include respond-up($margin-tops-key) {
       @include vr-reset-item();
 
-      margin-top: map_get($top-margins, $top-margins-key);
+      margin-top: map_get($margin-tops, $margin-tops-key);
     }
   }
 }

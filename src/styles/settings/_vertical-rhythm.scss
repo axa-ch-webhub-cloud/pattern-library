@@ -1,6 +1,6 @@
 $vr-base: 10px !default;
 
-$vr-top-paddings:
+$vr-padding-tops:
   (
     // Extra small screen / phone
     xs: $vr-base * 4, // 40px
@@ -14,7 +14,7 @@ $vr-top-paddings:
     // xl: 70px
   ) !default;
 
-$vr-bottom-paddings:
+$vr-padding-bottoms:
   (
     // Extra small screen / phone
     xs: $vr-base * 4, // 40px
@@ -28,7 +28,7 @@ $vr-bottom-paddings:
     // xl: 60px
   ) !default;
 
-$vr-top-margins:
+$vr-margin-tops:
   (
     // Extra small screen / phone
     xs: $vr-base * 2, // 20px
