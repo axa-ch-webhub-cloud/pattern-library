@@ -10,12 +10,12 @@ class Stroke extends UiEvents {
     strokeClass: 'a-stroke',
     list: '.js-header-navigation__list',
     toggleClass: 'js-header-navigation__list-link',
-    enterClass: 'is-enter',
-    moveClass: 'is-move',
-    staticClass: 'is-static',
-    interactiveClass: 'is-interactive',
-    activeOpenClass: 'is-active-open',
-    activeMoveClass: 'is-active-move',
+    enterClass: 'is-stroke-enter',
+    moveClass: 'is-stroke-move',
+    staticClass: 'is-stroke-static',
+    interactiveClass: 'is-stroke-interactive',
+    activeOpenClass: 'is-stroke-active-open',
+    activeMoveClass: 'is-stroke-active-move',
   };
 
   constructor(rootNode, options = {}) {
