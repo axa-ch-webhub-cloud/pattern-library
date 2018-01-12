@@ -51,7 +51,7 @@
 }
 
 .m-header-mobile__canvas--off-canvas {
-  @include hardware-accelerate();
+  // @include hardware-accelerate(); Chrome has a rendering issue.
 
   position: fixed;
   top: $header-main-height;

@@ -156,7 +156,7 @@
 }
 
 @mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color) {
-  @include hardware-accelerate();
+  // @include hardware-accelerate(); Chrome has an issue
 
   position: absolute;
   top: 50%;
@@ -176,7 +176,7 @@
 }
 
 @mixin dropdown-content($zindex: $zindex-dropdown) {
-  @include hardware-accelerate();
+  // @include hardware-accelerate(); chrome has an issue
 
   position: absolute;
   top: 100%;

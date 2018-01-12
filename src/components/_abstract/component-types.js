@@ -1,9 +1,5 @@
 import getAttributes from '../../js/get-attributes';
 import { publish, subscribe } from '../../js/pubsub';
-import maybe, { toEqual } from '../../js/maybe';
-
-const logMaybe = maybe(console.log)(toEqual);
-const logAxaHeader = logMaybe('axa-header');
 
 const memory = {};
 
@@ -142,8 +138,6 @@ export class BaseComponent extends HTMLElement {
     this.__isContext = true;
     this.__contextName = contextName;
 
-    logAxaHeader(contextName)(`*** enableContext -> ${contextName}`);
-
     // publish context/enabled with contextual node name
     publish('context/enabled', contextName);
   }
@@ -170,8 +164,6 @@ export class BaseComponent extends HTMLElement {
     }
 
     this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
-
-    logAxaHeader(contextName)(`*** _makeContextReady -> ${contextName} | found: ${!!this.contextNode}`, this);
   }
 
   /**
