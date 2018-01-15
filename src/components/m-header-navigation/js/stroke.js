@@ -14,6 +14,7 @@ class Stroke extends UiEvents {
     moveClass: 'is-stroke-move',
     staticClass: 'is-stroke-static',
     interactiveClass: 'is-stroke-interactive',
+    activeClass: 'is-header-navigation-active',
     activeOpenClass: 'is-stroke-active-open',
     activeMoveClass: 'is-stroke-active-move',
   };
@@ -59,7 +60,7 @@ class Stroke extends UiEvents {
     this._node = node;
     this._parentNode = parentNode;
 
-    if (has(node, 'is-active')) {
+    if (has(node, this.options.activeClass)) {
       this._activeNode = node;
 
       add(node, this.options.activeOpenClass);
@@ -115,7 +116,7 @@ class Stroke extends UiEvents {
       this._activeNode = null;
     }
 
-    if (has(_node, 'is-active')) {
+    if (has(_node, this.options.activeClass)) {
       add(_node, this.options.activeOpenClass);
     }
 
