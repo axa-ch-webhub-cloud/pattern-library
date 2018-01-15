@@ -41,7 +41,7 @@ $stroke-transition-easing: ease !default;
   }
 }
 
-.m-header-navigation__list-link.is-active {
+.m-header-navigation__list-link.is-header-navigation-active {
   &::after {
     bottom: 1px;
 
