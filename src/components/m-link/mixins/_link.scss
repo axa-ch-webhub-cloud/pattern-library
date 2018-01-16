@@ -83,15 +83,24 @@
 @mixin link__icon() {
   position: absolute;
 
-  top: 50%;
-
   display: block;
 
   width: $link__icon-size;
   height: $link__icon-size;
-  margin-top: -($link__icon-size / 2);
 
   fill: currentColor;
+}
+
+@mixin link__icon--top() {
+  top: 0;
+
+  margin-top: 0;
+}
+
+@mixin link__icon--middle() {
+  top: 50%;
+
+  margin-top: -($link__icon-size / 2);
 }
 
 @mixin link__icon--adjust($type: default) {

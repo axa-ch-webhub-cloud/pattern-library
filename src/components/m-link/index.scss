@@ -38,13 +38,22 @@
   @include link__icon();
 }
 
-.m-link__arrow {
-  @include link__icon--adjust();
-}
-
 .m-link__icon,
 .m-link__listed {
   @include link__icon--adjust(listed);
+}
+
+.m-link__icon {
+  @include link__icon--top();
+}
+
+.m-link__arrow {
+  @include link__icon--middle();
+  @include link__icon--adjust();
+}
+
+.m-link__listed {
+  @include link__icon--middle();
 }
 
 .m-link--motion {
