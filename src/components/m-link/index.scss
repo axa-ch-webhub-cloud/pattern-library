@@ -29,7 +29,7 @@
 
 .m-link--icon,
 .m-link--listed {
-  @include link-icon--adjust(listed);
+  @include link-icon--adjust($side: left);
 }
 
 .m-link__icon,
@@ -40,7 +40,7 @@
 
 .m-link__icon,
 .m-link__listed {
-  @include link__icon--adjust(listed);
+  @include link__icon--adjust($side: left);
 }
 
 .m-link__icon {
