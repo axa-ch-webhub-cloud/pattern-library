@@ -64,12 +64,15 @@
   }
 }
 
-@mixin vr-margin-item($margin-tops: $vr-margin-tops, $debug: false) {
+@mixin vr-margin-item($margin-tops: $vr-margin-tops, $reset-first: true, $debug: false) {
   $margin-tops-keys: map-keys($margin-tops);
 
   @each $margin-tops-key in $margin-tops-keys {
     @include respond-up($margin-tops-key) {
-      @include vr-reset-item();
+      @if $reset-first {
+        @include vr-reset-item();
+      }
+
       @include vr-margin-top(map_get($margin-tops, $margin-tops-key), $debug);
     }
   }
