@@ -60,33 +60,33 @@
   }
 }
 
-@mixin link-icon--adjust($type: default) {
-  @if $type == default {
-    padding-right: $link__icon-size + $link__icon-padding;
-  } @else if $type == listed {
-    padding-left: $link__icon-size + $link__icon-padding;
+@mixin link-icon--adjust($icon-size: $link__icon-size, $icon-padding: $link__icon-padding, $side: right) {
+  @if $side == left {
+    padding-left: $icon-size + $icon-padding;
+  } @else if $side == right {
+    padding-right: $icon-size + $icon-padding;
   } @else {
-    @error "$type of #{$type} is not supported!";
+    @error "$side of #{$side} is not supported - use left or right!";
   }
 }
 
-@mixin link-icon--justify($type: default) {
-  @if $type == default {
-    margin-right: -($link__icon-size + $link__icon-padding);
-  } @else if $type == listed {
-    margin-left: -($link__icon-size + $link__icon-padding);
+@mixin link-icon--justify($icon-size: $link__icon-size, $icon-padding: $link__icon-padding, $side: right) {
+  @if $side == left {
+    margin-left: -($icon-size + $icon-padding);
+  } @else if $side == right {
+    margin-right: -($icon-size + $icon-padding);
   } @else {
-    @error "$type of #{$type} is not supported!";
+    @error "$side of #{$side} is not supported - use left or right!";
   }
 }
 
-@mixin link__icon() {
+@mixin link__icon($icon-size: $link__icon-size) {
   position: absolute;
 
   display: block;
 
-  width: $link__icon-size;
-  height: $link__icon-size;
+  width: $icon-size;
+  height: $icon-size;
 
   fill: currentColor;
 }
@@ -97,19 +97,19 @@
   margin-top: 0;
 }
 
-@mixin link__icon--middle() {
+@mixin link__icon--middle($icon-size: $link__icon-size) {
   top: 50%;
 
-  margin-top: -($link__icon-size / 2);
+  margin-top: -($icon-size / 2);
 }
 
-@mixin link__icon--adjust($type: default) {
-  @if $type == default {
-    right: 0;
-  } @else if $type == listed {
+@mixin link__icon--adjust($side: right) {
+  @if $side == left {
     left: 0;
+  } @else if $side == right {
+    right: 0;
   } @else {
-    @error "$type of #{$type} is not supported!";
+    @error "$side of #{$side} is not supported - use left or right!";
   }
 }
 
