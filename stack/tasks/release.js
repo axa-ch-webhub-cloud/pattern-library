@@ -169,7 +169,7 @@ const confirmedRelease = (type, version) => {
         `,
       );
       exec(
-        'npm run build && git add ./dist && git commit -m"rebuild"',
+        'npm run build && git add ./dist ./docs && git commit -m"rebuild"',
         (_error2) => {
           if (_error2) {
             console.log('\x1b[40m', '\x1b[31m', _error2);
