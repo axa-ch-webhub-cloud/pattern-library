@@ -24,12 +24,6 @@
   text-transform: uppercase;
   vertical-align: middle;
 
-  @at-root {
-    a#{&} {
-      display: inline-block;
-    }
-  }
-
   &:hover,
   &:active,
   &:focus {
@@ -43,6 +37,14 @@
   &:disabled,
   &[disabled] {
     cursor: default !important;
+  }
+}
+
+@mixin button--fix-a-tag($display: inline-block) {
+  @at-root {
+    a#{&} {
+      display: $display;
+    }
   }
 }
 
