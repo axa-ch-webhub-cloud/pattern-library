@@ -6,6 +6,7 @@
 
 .m-button {
   @include button();
+  @include button--fix-a-tag();
   @include button--color();
 }
 
