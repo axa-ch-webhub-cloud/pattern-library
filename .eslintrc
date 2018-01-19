@@ -16,6 +16,7 @@
   "globals": {
     "HTMLElement": true,
     "HTMLImports": true,
+    "MutationObserver": true,
     "document": true,
     "window": true
   },
