@@ -1,6 +1,7 @@
 const http = require('http');
 const constants = require('./constants');
 const express = require('express');
+const readline = require('readline');
 const compression = require('compression');
 
 const ENV = process.argv[2]; // second element is the first argument.
@@ -42,3 +43,16 @@ const processOnClose = () => {
 
 process.on('uncaughtException', processOnClose);
 process.on('SIGTERM', processOnClose);
+
+if (process.platform === 'win32') {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  rl.on('SIGINT', () => {
+    process.emit('SIGINT');
+  });
+}
+
+process.on('SIGINT', processOnClose);
