@@ -42,6 +42,9 @@ const syncHashWithAtomicChoice = (firstCall = false) => {
     case 'a':
       switchAtomicElemenetsTo('atom', document.querySelector('.js-atomic-switch-to-atom'), firstCall);
       break;
+    case 'r':
+      switchAtomicElemenetsTo('react', document.querySelector('.js-atomic-switch-to-react'), firstCall);
+      break;
     case 'm':
       switchAtomicElemenetsTo('molecule', document.querySelector('.js-atomic-switch-to-molecule'), firstCall);
       break;

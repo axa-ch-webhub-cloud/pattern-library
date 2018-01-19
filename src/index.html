@@ -33,7 +33,8 @@
             <axa-header-navigation items='[
               {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism", "isActive": true},
               {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
-              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"}
+              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"},
+              {"url": "#react", "name": "React (W.I.P.)", "classes": "js-atomic-switch-to-react"}
             ]' simplemenu></axa-header-navigation>
             <h3 class="o-sg-patternlink">
               <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
@@ -47,7 +48,8 @@
             <axa-header-mobile-navigation items='[
               {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism", "isActive": true},
               {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
-              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"}
+              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"},
+              {"url": "#react", "name": "React (W.I.P.)", "classes": "js-atomic-switch-to-react"}
             ]'></axa-header-mobile-navigation>
           </axa-header-mobile>
       </axa-header>
@@ -56,15 +58,6 @@
         <!-- {CUT AND INJECT BUTTONS HERE} -->
       </section>
     </header>
-
-    <!--
-
-    <button class="js--atomic-switch o-sg-section__button--selected" data-atomic-switch-to="organism">Organisms</button>
-    <button class="js--atomic-switch" data-atomic-switch-to="molecule">Molecules</button>
-    <button class="js--atomic-switch" data-atomic-switch-to="atom">Atoms</button>
-    <button class="js--atomic-switch" data-atomic-switch-to="">All</button>
-
-  -->
 
     <!-- {CUT AND INJECT PREVIEWS HERE} -->
 
@@ -81,5 +74,11 @@
       }
     </script>
     <!-- {CUT AND INJECT IMPORTS HERE} -->
+
+    <article data-atomic-category="react">
+      <script src="./app/all-demos.js"></script>
+      <!-- {CUT AND INJECT REACT DEMOS HERE} -->
+    </article>
+
   </body>
 </html>

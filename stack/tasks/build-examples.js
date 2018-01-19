@@ -17,6 +17,7 @@ const CWD = process.cwd();
 
 const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
 const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
+const reGetDemosHtml = /\/src\/[^/]+\/demo\.react\.html$/;
 
 const adaptSlashes = (file) => { // eslint-disable-line no-param-reassign
   const isExtendedLengthPath = /^\\\\\?\\/.test(file);
@@ -29,6 +30,16 @@ const adaptSlashes = (file) => { // eslint-disable-line no-param-reassign
 const sortDown = (a, b) => (a > b) ? -1 : (a < b) ? 1 : 0;
 const sortUp = (a, b) => (a > b) ? 1 : (a < b) ? -1 : 0;
 /* eslint-enable */
+
+let reactDemos = '';
+
+dir.files(`${CWD}/src/demos`, (err, allFiles) => {
+  allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
+  const demoHtmls = allFiles.filter(_file => _file.match(reGetDemosHtml));
+  demoHtmls.forEach((_file) => {
+    reactDemos += fs.readFileSync(_file, 'utf8');
+  });
+});
 
 dir.files(`${CWD}/src/components`, (err, allFiles) => {
   let previewHtmls = [];
@@ -136,6 +147,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   const result = indexHtml
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
     .replace(/<!-- {CUT AND INJECT BUTTONS HERE} -->/g, componentsAtoms)
+    .replace(/<!-- {CUT AND INJECT REACT DEMOS HERE} -->/g, reactDemos)
     .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, `
       <style>
         ${styles}
