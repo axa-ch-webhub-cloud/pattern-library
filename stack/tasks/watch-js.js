@@ -23,7 +23,9 @@ nodemon({
 }).on('restart', (arr) => {
   if (arr && arr.length) {
     app();
-    arr.forEach(f => components.bundleSingleFile(f.replace('.scss', '.js')));
+    const { bundleSingleFile } = components;
+    // if file is not in src/app , then bundleSingleFile
+    arr.forEach(f => !~f.indexOf('src/app') ? bundleSingleFile(f.replace('.scss', '.js')) : () => {});
   }
 });
 
