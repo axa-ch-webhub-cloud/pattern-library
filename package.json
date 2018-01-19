@@ -13,7 +13,7 @@
     "postinstall": "npm rebuild node-sass",
     "watch": "parallelshell \"npm run watch-scss\" \"npm run watch-js\" \"npm run watch-html\" \"npm run watch-svg\"",
     "watch-scss": "npm-watch build-css-dev",
-    "watch-js": "npm-watch build-js-dev",
+    "watch-js": "node stack/tasks/watch-js.js DEV",
     "watch-html": "npm-watch build-html-dev",
     "watch-svg": "npm-watch build-icons-dev",
     "serve": "parallelshell \"npm run server DEV\" \"npm run watch\"",
@@ -24,7 +24,7 @@
     "serve-build-prod": "parallelshell \"npm run server PROD\" \"npm run build\"",
     "build-css-dev": "node-sass src/index.scss -o .tmp/",
     "build-css-prod": "node-sass src/index.scss -o dist/",
-    "build-js-dev": "npm run bundle-dev",
+    "build-js-dev": "node stack/tasks/copy-polyfills.js DEV && node stack/tasks/watch-js.js",
     "build-html-dev": "node stack/tasks/build.html.js DEV && node stack/tasks/build-examples.js DEV",
     "build-js-prod": "npm run bundle-prod",
     "build-icons-dev": "node stack/tasks/icons.js DEV",
@@ -46,13 +46,6 @@
         "src"
       ],
       "extensions": "scss",
-      "quiet": false
-    },
-    "build-js-dev": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "js",
       "quiet": false
     },
     "build-html-dev": {
@@ -109,11 +102,13 @@
     "node-dir": "^0.1.17",
     "node-sass": "^4.5.3",
     "node-syntaxhighlighter": "^0.8.1",
-    "npm-watch": "~0.3.0",
+    "nodemon": "^1.14.11",
+    "npm-watch": "^0.3.0",
     "npmversion": "~1.4.0",
     "outdent": "^0.4.1",
     "parallelshell": "~3.0.2",
     "postcss": "^6.0.14",
+    "readline": "^1.3.0",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
