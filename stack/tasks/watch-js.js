@@ -4,6 +4,8 @@ const app = require('./bundles/app');
 const readline = require('readline');
 const components = require('./bundles/components');
 
+const SRC_COMPONENTS = 'src/components/';
+
 let started = false;
 
 nodemon({
@@ -22,10 +24,29 @@ nodemon({
   process.exit(1);
 }).on('restart', (arr) => {
   if (arr && arr.length) {
-    app();
     const { bundleSingleFile } = components;
-    // if file is not in src/app , then bundleSingleFile
-    arr.forEach(f => !~f.indexOf('src/app') ? bundleSingleFile(f.replace('.scss', '.js')) : () => {});
+    let compPaths = arr.filter(f => ~f.indexOf('src/app') || ~f.indexOf('src/components'));
+    if (compPaths.length === arr.length) {
+      // if file is not in src/app , then bundleSingleFile
+      compPaths = compPaths.map((f) => {
+        const split = f.split(SRC_COMPONENTS);
+        if (split.length === 2) {
+          const compName = split[1].split('/');
+          if (compName[0]) {
+            return `${split[0]}${SRC_COMPONENTS}${compName[0]}/index.js`;
+          }
+          return f;
+        }
+        return f;
+      });
+
+      compPaths.forEach(f => !~f.indexOf('src/app') ? bundleSingleFile(f.replace('.scss', '.js')) : () => {});
+    } else {
+      // TODO: you can access the file in the bundle of rollup and read the dependecy tree.
+      // TODO: So here we should have a map with all depedndecies and trigger only those who include the utility js.
+      components.bundleAllFiles();
+    }
+    app();
   }
 });
 
