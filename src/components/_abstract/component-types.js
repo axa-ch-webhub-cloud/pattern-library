@@ -155,7 +155,7 @@ export class BaseComponent extends HTMLElement {
     if (this.contextNode) {
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {
-        this.contextCallback(this.contextNode);
+        this.contextCallback(this.contextNode, contextName);
       }, 10);
     }
 
