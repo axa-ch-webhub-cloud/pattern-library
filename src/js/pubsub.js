@@ -85,7 +85,6 @@ export function subscribe(topic, func, node = document) {
 
 function onsubscribe(_topic) {
   return function initialPublish() {
-
     fire(document, 'pubsub/onsubscribe', _topic);
     fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
 
