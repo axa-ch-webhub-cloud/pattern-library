@@ -21,6 +21,7 @@
 .m-link--arrow,
 .m-link--listed {
   @include link-icon();
+  @include link-icon--mailto();
 }
 
 .m-link--arrow {
