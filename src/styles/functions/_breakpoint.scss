@@ -13,9 +13,9 @@
 
   $type-of-breakpoint: type_of($breakpoint);
   $breakpoint-is-number: $type-of-breakpoint == number;
-  $breakpoint-is-mapped: $type-of-breakpoint == string AND map_has_key($breakpoints, $breakpoint);
+  $breakpoint-is-mapped: $type-of-breakpoint == string and map_has_key($breakpoints, $breakpoint);
 
-  @if ( not $breakpoint-is-number AND not $breakpoint-is-mapped) {
+  @if ( not $breakpoint-is-number and not $breakpoint-is-mapped) {
     @error "$breakpoint #{$breakpoint} has to be either a Number or valid key of a breakpoints Map.";
   }
 
@@ -28,7 +28,7 @@
     }
   }
 
-  @if ( type_of($breakpoint) == number AND $breakpoint < 0 ) {
+  @if ( type_of($breakpoint) == number and $breakpoint < 0 ) {
     @error "$breakpoint #{$breakpoint} can't be negative.";
   }
 
