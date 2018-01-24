@@ -5,6 +5,7 @@
 @import "../../../styles/mixins/hardware-accelerate";
 @import "../../../styles/mixins/respond";
 @import "../../../styles/mixins/typo";
+@import "../../../styles/mixins/word-break";
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
@@ -12,6 +13,7 @@
 @mixin button($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
+  @include word-break();
   @include typo-tag--semibold();
 
   position: relative;
