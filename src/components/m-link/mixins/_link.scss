@@ -60,6 +60,12 @@
   }
 }
 
+@mixin link-icon--mailto() {
+  &[href^="mailto:"] {
+    text-transform: none;
+  }
+}
+
 @mixin link-icon--adjust($icon-size: $link__icon-size, $icon-padding: $link__icon-padding, $side: right) {
   @if $side == left {
     padding-left: $icon-size + $icon-padding;
