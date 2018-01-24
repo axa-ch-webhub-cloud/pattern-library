@@ -3,7 +3,7 @@
   $type-max: type_of($max);
   $type-value: type_of($value);
 
-  @if ($type-min != number OR $type-max != number OR $type-value != number) {
+  @if ($type-min != number or $type-max != number or $type-value != number) {
     @error "All args [min: #{$type-min}, max: #{$type-max}, value: #{$type-value}] to min-max have to be of type number!";
   }
 
