@@ -1,8 +1,9 @@
 @import "../../styles/mixins/button-reset";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/respond";
-@import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
 @import "../m-header-meta/settings/header-meta";
 @import "settings/header-others";
 
@@ -27,12 +28,14 @@
 }
 
 .m-header-others__list-link {
+  @include word-break();
   @include typo-legals--semibold();
 
   display: block;
 
   padding: 10px $header-meta__link-x-padding;
   text-transform: uppercase;
+  white-space: nowrap;
 
   color: $header-meta__link-color;
 

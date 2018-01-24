@@ -4,6 +4,7 @@
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
 
 .m-footer-languages {
   @include make-col-ready();
@@ -17,6 +18,7 @@
 }
 
 .m-footer-languages__title {
+  @include word-break();
   @include typo-secondary-text--bold();
 
   color: $footer-languages__title-color;

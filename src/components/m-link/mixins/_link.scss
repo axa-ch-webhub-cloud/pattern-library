@@ -1,8 +1,11 @@
 @import "../settings/link";
 @import "../../../styles/functions/color-map";
 @import "../../../styles/mixins/typo";
+@import "../../../styles/mixins/word-break";
 
 @mixin link() {
+  @include word-break();
+
   text-decoration: none;
 
   &:hover,
@@ -13,6 +16,8 @@
 }
 
 @mixin link-deco() {
+  @include word-break();
+
   text-decoration: underline;
 
   &:hover,
