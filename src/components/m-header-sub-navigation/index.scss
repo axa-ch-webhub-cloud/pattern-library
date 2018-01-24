@@ -46,8 +46,8 @@
 }
 
 .m-header-sub-navigation__index-link {
-  @include typo-text-longer();
   @include word-break();
+  @include typo-text-longer();
 
   &:hover,
   &:active,
@@ -59,6 +59,7 @@
 }
 
 .m-header-sub-navigation__index-close {
+  @include word-break();
   @include typo-legals--semibold();
 
   position: relative;
@@ -201,8 +202,8 @@
 }
 
 .m-header-sub-navigation__category {
-  @include typo-item-highlight();
   @include word-break();
+  @include typo-item-highlight();
 
   color: $header-sub-navigation__category-color;
   text-transform: uppercase;
@@ -219,8 +220,8 @@
 }
 
 .m-header-sub-navigation__link {
-  @include typo-text-longer();
   @include word-break();
+  @include typo-text-longer();
 
   display: inline-block;
   width: 100%;

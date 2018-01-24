@@ -4,6 +4,7 @@
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
+@import "../../styles/mixins/word-break";
 
 .m-footer-social {
   @include make-col-ready();
@@ -35,6 +36,7 @@
 }
 
 .m-footer-social__title {
+  @include word-break();
   @include typo-secondary-text--bold();
 
   color: $footer-social__title-color;
