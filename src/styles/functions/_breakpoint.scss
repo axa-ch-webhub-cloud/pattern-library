@@ -13,7 +13,7 @@
 
   $type-of-breakpoint: type_of($breakpoint);
   $breakpoint-is-number: $type-of-breakpoint == number;
-  $breakpoint-is-mapped: $type-of-breakpoint == string && map_has_key($breakpoints, $breakpoint);
+  $breakpoint-is-mapped: $type-of-breakpoint == string AND map_has_key($breakpoints, $breakpoint);
 
   @if ( not $breakpoint-is-number AND not $breakpoint-is-mapped) {
     @error "$breakpoint #{$breakpoint} has to be either a Number or valid key of a breakpoints Map.";
