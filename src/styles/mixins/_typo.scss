@@ -95,7 +95,7 @@
 }
 
 @mixin typo-title--semibold($debug: false) {
-  @include typo-css($name: typo-28, $weight: Semibold, $debug: $debug);
+  @include typo-title($weight: Semibold, $debug: $debug);
 }
 
 @mixin typo-item-highlight($weight: null, $debug: false) {
@@ -107,11 +107,11 @@
 }
 
 @mixin typo-text--semibold($debug: false) {
-  @include typo-css($name: typo-20, $weight: Semibold, $debug: $debug);
+  @include typo-text($weight: Semibold, $debug: $debug);
 }
 
 @mixin typo-text--bold($debug: false) {
-  @include typo-css($name: typo-20, $weight: Bold, $debug: $debug);
+  @include typo-text($weight: Bold, $debug: $debug);
 }
 
 @mixin typo-text-longer($weight: null, $debug: false) {
@@ -119,7 +119,7 @@
 }
 
 @mixin typo-text-longer--bold($debug: false) {
-  @include typo-css($name: typo-18, $weight: Bold, $debug: $debug);
+  @include typo-text-longer($weight: Bold, $debug: $debug);
 }
 
 @mixin typo-secondary-text($weight: null, $debug: false) {
@@ -127,11 +127,11 @@
 }
 
 @mixin typo-secondary-text--semibold($debug: false) {
-  @include typo-css($name: typo-16, $weight: Semibold, $debug: $debug);
+  @include typo-secondary-text($weight: Semibold, $debug: $debug);
 }
 
 @mixin typo-secondary-text--bold($debug: false) {
-  @include typo-css($name: typo-16, $weight: Bold, $debug: $debug);
+  @include typo-secondary-text($weight: Bold, $debug: $debug);
 }
 
 @mixin typo-tag($weight: null, $debug: false) {
@@ -139,11 +139,11 @@
 }
 
 @mixin typo-tag--semibold($debug: false) {
-  @include typo-css($name: typo-14, $weight: Semibold, $debug: $debug);
+  @include typo-tag($weight: Semibold, $debug: $debug);
 }
 
 @mixin typo-tag--bold($debug: false) {
-  @include typo-css($name: typo-14, $weight: Bold, $debug: $debug);
+  @include typo-tag($weight: Bold, $debug: $debug);
 }
 
 @mixin typo-legals($weight: null, $debug: false) {
@@ -151,5 +151,5 @@
 }
 
 @mixin typo-legals--semibold($debug: false) {
-  @include typo-css($name: typo-13, $weight: Semibold, $debug: $debug);
+  @include typo-legals($weight: Semibold, $debug: $debug);
 }
