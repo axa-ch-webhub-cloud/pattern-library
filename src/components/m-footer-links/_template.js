@@ -1,7 +1,7 @@
 import bel from 'bel';
 import raw from 'bel/raw';
 
-const arrowIcon = '<axa-icon id="angle-bracket-right" classes="m-footer-links__category__icon"></axa-icon>';
+const arrowIcon = '<axa-icon id="angle-bracket-down" classes="m-footer-links__category__icon"></axa-icon>';
 
 export default function ({ title, items }) {
   return bel`<div class="m-footer-links__block js-dropdown">
