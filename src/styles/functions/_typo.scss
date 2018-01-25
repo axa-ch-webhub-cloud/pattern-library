@@ -1,15 +1,12 @@
 @import "../settings/fonts";
+@import "./map";
 
-@function get-typo($name, $breakpoint: sm, $face: null) {
+@function get-typo-key($name, $face: null) {
   @if type-of($name) != string {
     @error "$name #{$name} is not of type string";
   }
 
-  @if type-of($breakpoint) != string {
-    @error "$breakpoint #{$breakpoint} is not of type string";
-  }
-
-  $key: #{$name}--#{$breakpoint};
+  $key: #{$name};
 
   @if $face {
     @if type-of($face) != string {
@@ -19,11 +16,42 @@
     $key: #{$key}--#{$face};
   }
 
-  @if not map-has-key($typo-map, $key) {
-    @error "Key #{$key} not found in $typo-map.";
+  @return $key;
+}
+
+@function get-typo($name, $breakpoint: sm, $face: null) {
+  @if type-of($breakpoint) != string {
+    @error "$breakpoint #{$breakpoint} is not of type string";
   }
 
-  @return map-get($typo-map, $key);
+  @if not map-has-key($typo-map, $breakpoint) {
+    @error "Breakpoint #{$breakpoint} not found in $typo-map.";
+  }
+
+  $typos: map_get($typo-map, $breakpoint);
+  $key: get-typo-key($name, $face);
+
+  @if not map-has-key($typos, $key) {
+    @error "Typo #{$key} @ #{$breakpoint} not found in $typo-map.";
+  }
+
+  @return map-get($typos, $key);
+}
+
+@function get-typo-before($name, $breakpoint: sm, $face: null) {
+  @if type-of($breakpoint) != string {
+    @error "$breakpoint #{$breakpoint} is not of type string";
+  }
+
+  $typos: map-previous-value($typo-map, $breakpoint);
+
+  @if type_of($typos) == map {
+    $key: get-typo-key($name, $face);
+
+    @return map-get($typos, $key);
+  }
+
+  @return null;
 }
 
 @function typo-prop($typo, $key) {
