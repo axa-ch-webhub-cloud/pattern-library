@@ -5,16 +5,34 @@
 
 @mixin typo-decls($name, $breakpoint: sm, $face: null, $weight: null) {
   $typo: get-typo($name, $breakpoint, $face);
+  $typo-before: get-typo-before($name, $breakpoint, $face);
 
-  font-family: get-face($face);
-  font-size: typo-prop($typo, size);
-  font-weight: get-weight($typo, $weight);
-  line-height: typo-prop($typo, lineHeight);
-  letter-spacing: typo-prop($typo, spacing);
+  $font-size: typo-prop($typo, size);
+  $font-weight: get-weight($typo, $weight);
+  $line-height: typo-prop($typo, lineHeight);
+  $letter-spacing: typo-prop($typo, spacing);
+
+  @if not $typo-before or $font-size != typo-prop($typo-before, size) {
+    font-size: $font-size;
+  }
+
+  @if not $typo-before or $font-weight != get-weight($typo-before, $weight) {
+    font-weight: $font-weight;
+  }
+
+  @if not $typo-before or $line-height != typo-prop($typo-before, lineHeight) {
+    line-height: $line-height;
+  }
+
+  @if not $typo-before or $letter-spacing != typo-prop($typo-before, spacing) {
+    letter-spacing: $letter-spacing;
+  }
 }
 
 @mixin typo-css($name, $face: null, $weight: null, $debug: false) {
   @include typo-decls($name, sm, $face, $weight);
+
+  font-family: get-face($face);
 
   @include respond-up(sm) {
     @include typo-decls($name, md, $face, $weight);
