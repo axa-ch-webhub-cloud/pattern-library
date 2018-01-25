@@ -8,7 +8,6 @@
     }]
   ],
   "plugins": [
-    "external-helpers",
     "transform-custom-element-classes",
     "transform-class-properties",
     "transform-es2015-destructuring",

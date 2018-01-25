@@ -32,6 +32,7 @@ async function buildComponents() {
       babel({
         runtimeHelpers: true,
         presets: ['react'],
+        plugins: ['external-helpers']
       }),
     ],
     input: './src/demos/*.jsx',
