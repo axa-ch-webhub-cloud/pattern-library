@@ -102,7 +102,7 @@
   @include typo-css($name: typo-24, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-item-highlight--normal($weight: null, $debug: false) {
+@mixin typo-item-highlight--regular($weight: null, $debug: false) {
   @include typo-item-highlight($weight: Regular, $debug: $debug);
 }
 
