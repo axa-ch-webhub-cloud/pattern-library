@@ -1,6 +1,6 @@
 @import "../settings/fonts";
 
-@function get-typo($name, $breakpoint: xl, $face: null) {
+@function get-typo($name, $breakpoint: sm, $face: null) {
   @if type-of($name) != string {
     @error "$name #{$name} is not of type string";
   }
