@@ -2,7 +2,7 @@
 @import "../functions/typo";
 @import "respond";
 
-@mixin typo-decls($name, $breakpoint: xl, $face: null, $weight: null) {
+@mixin typo-decls($name, $breakpoint: sm, $face: null, $weight: null) {
   $typo: get-typo($name, $breakpoint, $face);
 
   font-family: get-face($face);
