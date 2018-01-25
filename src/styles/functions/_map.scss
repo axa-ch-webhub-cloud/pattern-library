@@ -1,0 +1,35 @@
+@function map-index-by-key($map, $key) {
+  @if type_of($map) == map and map_has_key($map, $key) {
+    $value: map_get($map, $key);
+
+    @return map-index-by-value($map, $value);
+  }
+}
+
+@function map-index-by-value($map, $value) {
+  @if type_of($map) == map {
+    $index: index(($map), ($key $value));
+
+    @return $index;
+  }
+}
+
+@function map-previous($map, $key) {
+  @if type_of($map) == map {
+    $index: map-index-by-key($map, $key);
+
+    @if type_of($index) == number {
+      @return nth($map, $index + 1);
+    }
+  }
+}
+
+@function map-next($map, $key) {
+  @if type_of($map) == map {
+    $index: map-index-by-key($map, $key);
+
+    @if type_of($index) == number {
+      @return nth($map, $index + 1);
+    }
+  }
+}
