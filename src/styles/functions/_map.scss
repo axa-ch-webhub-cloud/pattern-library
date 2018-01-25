@@ -24,6 +24,22 @@
   }
 }
 
+@function map-previous-key($map, $key) {
+  $list: map-previous($map, $key);
+
+  @if type_of($list) == list {
+    @return nth($list, 1);
+  }
+}
+
+@function map-previous-value($map, $key) {
+  $list: map-previous($map, $key);
+
+  @if type_of($list) == list {
+    @return nth($list, 2);
+  }
+}
+
 @function map-next($map, $key) {
   @if type_of($map) == map {
     $index: map-index-by-key($map, $key);
@@ -31,5 +47,21 @@
     @if type_of($index) == number {
       @return nth($map, $index + 1);
     }
+  }
+}
+
+@function map-next-key($map, $key) {
+  $list: map-next($map, $key);
+
+  @if type_of($list) == list {
+    @return nth($list, 1);
+  }
+}
+
+@function map-next-value($map, $key) {
+  $list: map-next($map, $key);
+
+  @if type_of($list) == list {
+    @return nth($list, 2);
   }
 }
