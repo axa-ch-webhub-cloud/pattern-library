@@ -11,6 +11,7 @@
   &:hover,
   &:focus,
   &:active {
+    cursor: pointer;
     text-decoration: underline;
   }
 }
@@ -23,6 +24,7 @@
   &:hover,
   &:focus,
   &:active {
+    cursor: pointer;
     text-decoration: none;
   }
 }
