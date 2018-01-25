@@ -1,27 +1,24 @@
 @function map-index-by-key($map, $key) {
   @if type_of($map) == map and map_has_key($map, $key) {
     $value: map_get($map, $key);
-
-    @return map-index-by-value($map, $value);
-  }
-}
-
-@function map-index-by-value($map, $value) {
-  @if type_of($map) == map {
     $index: index(($map), ($key $value));
 
     @return $index;
   }
+
+  @return null;
 }
 
 @function map-previous($map, $key) {
   @if type_of($map) == map {
     $index: map-index-by-key($map, $key);
 
-    @if type_of($index) == number {
-      @return nth($map, $index + 1);
+    @if type_of($index) == number and $index > 1 {
+      @return nth($map, $index - 1);
     }
   }
+
+  @return null;
 }
 
 @function map-previous-key($map, $key) {
@@ -30,6 +27,8 @@
   @if type_of($list) == list {
     @return nth($list, 1);
   }
+
+  @return null;
 }
 
 @function map-previous-value($map, $key) {
@@ -38,16 +37,20 @@
   @if type_of($list) == list {
     @return nth($list, 2);
   }
+
+  @return null;
 }
 
 @function map-next($map, $key) {
   @if type_of($map) == map {
     $index: map-index-by-key($map, $key);
 
-    @if type_of($index) == number {
+    @if type_of($index) == number and $index < length($map) {
       @return nth($map, $index + 1);
     }
   }
+
+  @return null;
 }
 
 @function map-next-key($map, $key) {
@@ -56,6 +59,8 @@
   @if type_of($list) == list {
     @return nth($list, 1);
   }
+
+  @return null;
 }
 
 @function map-next-value($map, $key) {
@@ -64,4 +69,6 @@
   @if type_of($list) == list {
     @return nth($list, 2);
   }
+
+  @return null;
 }
