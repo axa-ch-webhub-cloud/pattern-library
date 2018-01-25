@@ -16,6 +16,10 @@ export default () => bel`
 
     <p>
       <span class="a-typo__item-highlight">Item Highlight</span>
+      <br>
+      <span class="a-typo__item-highlight--semibold">Item Highlight (Semibold)</span>
+      <br>
+      <span class="a-typo__item-highlight--regular">Item Highlight (Regular)</span>
     </p>
 
     <p class="a-typo__text">Text</p>
