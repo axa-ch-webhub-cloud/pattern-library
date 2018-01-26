@@ -1,5 +1,5 @@
 /// Remove the unit of a length
-/// https://css-tricks.com/snippets/sass/strip-unit-function/
+/// @link https://css-tricks.com/snippets/sass/strip-unit-function/
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
