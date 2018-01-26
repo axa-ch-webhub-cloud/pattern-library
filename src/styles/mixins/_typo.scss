@@ -3,6 +3,12 @@
 @import "../functions/typo";
 @import "respond";
 
+/// Render font related CSS declarations for a specific breakpoint.
+/// Only output different property values by comparing the corresponding settings of the previous breakpoint (mobile-first).
+/// @param {string} $name - The name of a specific typeface variation.
+/// @param {string} $breakpoint - The name of a specific breakpoint.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $weight [null] - The name of a font weight.
 @mixin typo-decls($name, $breakpoint: sm, $face: null, $weight: null) {
   $typo: get-typo($name, $breakpoint, $face);
   $typo-before: get-typo-before($name, $breakpoint, $face);
@@ -29,6 +35,12 @@
   }
 }
 
+/// Render font related CSS declarations for all breakpoints.
+/// Only output different property values by comparing the corresponding settings of the previous breakpoint (mobile-first).
+/// @param {string} $name - The name of a specific typeface variation.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-css($name, $face: null, $weight: null, $debug: false) {
   @include typo-decls($name, sm, $face, $weight);
 

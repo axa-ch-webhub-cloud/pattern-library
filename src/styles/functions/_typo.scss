@@ -4,7 +4,7 @@
 /// Get the compound key for a specific typeface variation.
 /// @link https://design.axa.com/web-guidelines/typography#properties
 /// @param {string} $name - The name of a specific typeface variation.
-/// @param {face} $map [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
 /// @returns {string} - Returns a valid key for the responsive typeface variation map.
 @function get-typo-key($name, $face: null) {
   @if type-of($name) != string {
@@ -28,7 +28,7 @@
 /// @link https://design.axa.com/web-guidelines/typography#properties
 /// @param {string} $name - The name of a specific typeface variation.
 /// @param {string} $breakpoint - The name of a specific breakpoint.
-/// @param {face} $map [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
 /// @returns {Map} - Returns a valid responsive typeface variation map.
 @function get-typo($name, $breakpoint: sm, $face: null) {
   @if type-of($breakpoint) != string {
@@ -54,7 +54,7 @@
 /// @link https://design.axa.com/web-guidelines/typography#properties
 /// @param {string} $name - The name of a specific typeface variation.
 /// @param {string} $breakpoint - The name of a specific breakpoint.
-/// @param {face} $map [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
 /// @returns {Map|null} - Returns a valid responsive typeface variation map or `null` if none exists before.
 @function get-typo-before($name, $breakpoint: sm, $face: null) {
   @if type-of($breakpoint) != string {
@@ -85,7 +85,7 @@
 }
 
 /// Get the font-face by name.
-/// @param {string} $face [null] - The font-face name.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
 /// @returns {string|null} - Returns a valid CSS font-family property value or null.
 @function get-face($face: null) {
   @if not map-has-key($face-map, $face) {
@@ -99,7 +99,7 @@
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
 /// @link here: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
 /// @param {Map} $typo - The name of a specific typeface variation.
-/// @param {string} $weight - The name of a font weight.
+/// @param {string} $weight [null] - The name of a font weight.
 /// @returns {number} - Returns a valid CSS `font-weight` value.
 @function get-weight($typo, $weight: null) {
   $allowedWeights: typo-prop($typo, weight);
