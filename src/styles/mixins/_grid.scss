@@ -1,14 +1,15 @@
-// as referenced in https://design.axa.com/web-guidelines/structure#grids
-// and explained at https://getbootstrap.com/docs/4.0/layout/grid/
-// copied from https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss
-
 /// Grid system
-//
-// Generate semantic grid columns with these mixins.
+///
+/// Generate semantic grid columns with these mixins.
+/// @link https://design.axa.com/web-guidelines/structure#grids as referenced in
+/// @link https://getbootstrap.com/docs/4.0/layout/grid/ and explained at
+/// @link https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss Original Source
 
 @import "../settings/grid";
 @import "respond";
 
+/// Creates a wrapper for a series of rows.
+/// @param {number} $gutter-width [$grid-gutter-width] - The gutter width applied to the wrapper.
 @mixin make-container($gutter-width: $grid-gutter-width) {
   @include make-gutter($gutter-width);
 
@@ -17,6 +18,8 @@
   margin-left: auto;
 }
 
+/// Applies a gutter.
+/// @param {number} $gutter-width [$grid-gutter-width] - The applied gutter width.
 @mixin make-gutter($gutter-width: $grid-gutter-width) {
   @if type_of($gutter-width) == number {
     $gutter-width: ($gutter-width / 2);
@@ -26,6 +29,8 @@
   padding-left: $gutter-width;
 }
 
+/// Reverts a gutter.
+/// @param {number} $gutter-width [$grid-gutter-width] - The gutter width to be reverted.
 @mixin revert-gutter($gutter-width: $grid-gutter-width) {
   @if type_of($gutter-width) == number {
     $gutter-width: ($gutter-width / -2);
@@ -35,7 +40,9 @@
   margin-left: $gutter-width;
 }
 
-// For each breakpoint, define the maximum width of the container in a media query
+/// For each grid-tier, define the maximum width of the container in a media query.
+/// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include respond-up($breakpoint, $breakpoints) {
@@ -44,10 +51,24 @@
   }
 }
 
+/// Applies maximum width of the container by breakpoint and column size.
+/// @param {number} $size [$grid-columns] - Amount of columns used.
+/// @param {string} $breakpoint [sm] - Breakpoint to use of max-width map.
+/// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
 @mixin make-max-width($size: $grid-columns, $breakpoint: sm, $max-widths: $container-max-widths, $columns: $grid-columns) {
-  max-width: map_get($max-widths, $breakpoint) / $columns * $size;
+  $max-width: map_get($max-widths, $breakpoint);
+
+  // IMPORTANT: deal with numbers only, skip stuff like auto
+  @if type_of($max-width) == number {
+    $max-width: $max-width / $columns * $size;
+  }
+
+  max-width: $max-width;
 }
 
+/// Creates a wrapper for a series of columns.
+/// @param {number} $gutter-width [$grid-gutter-width] - The applied gutter width.
 @mixin make-row($gutter-width: $grid-gutter-width) {
   @include revert-gutter($gutter-width);
 
@@ -56,6 +77,8 @@
   flex-wrap: wrap;
 }
 
+/// Make the element grid-ready (applying everything but the width).
+/// @param {number} $gutter-width [$grid-gutter-width] - The applied gutter width.
 @mixin make-col-ready($gutter-width: $grid-gutter-width) {
   @include make-gutter($gutter-width);
 
@@ -68,6 +91,9 @@
   min-height: 1px; // Prevent collapsing
 }
 
+/// Creates a column.
+/// @param {number} $size [$grid-columns] - Amount of columns used.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
 @mixin make-col($size, $columns: $grid-columns) {
   $column-width: percentage($size / $columns);
 
@@ -79,29 +105,43 @@
   flex: 0 0 $column-width;
 }
 
+/// Offsets a column.
+/// @param {number} $size [$grid-columns] - Amount of columns used to offset.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
 @mixin make-col-offset($size, $columns: $grid-columns) {
   $num: $size / $columns;
 
   margin-left: if($num == 0, 0, percentage($num));
 }
 
+/// Escapes out of a column by negative margin.
+/// @param {number} $size [$grid-columns] - Amount of columns used to escape.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
 @mixin escape-col($size, $columns: $grid-columns) {
   @include escape-col-left($size, $columns);
   @include escape-col-right($size, $columns);
 }
 
+/// Escapes onto left of a column by negative margin.
+/// @param {number} $size [$grid-columns] - Amount of columns used to escape.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
 @mixin escape-col-left($size, $columns: $grid-columns) {
   $column-width: percentage(1 / $columns);
 
   margin-left: -($column-width * $size);
 }
 
+/// Escapes onto right of a column by negative margin.
+/// @param {number} $size [$grid-columns] - Amount of columns used to escape.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
 @mixin escape-col-right($size, $columns: $grid-columns) {
   $column-width: percentage(1 / $columns);
 
   margin-right: -($column-width * $size);
 }
 
+/// Resets a column.
+/// @param {any} $important [null] - Trump this reset.
 @mixin reset-col($important: null) {
   @if $important {
     $important: !important;
