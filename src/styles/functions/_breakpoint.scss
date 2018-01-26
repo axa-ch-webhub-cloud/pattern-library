@@ -1,3 +1,4 @@
+@import "../settings/grid";
 @import "max-width";
 
 @function next-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
