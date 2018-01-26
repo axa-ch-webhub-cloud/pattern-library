@@ -39,9 +39,13 @@
 @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include respond-up($breakpoint, $breakpoints) {
-      max-width: $container-max-width;
+      @include make-max-width($breakpoint: $breakpoint);
     }
   }
+}
+
+@mixin make-max-width($size: $grid-columns, $breakpoint: sm, $max-widths: $container-max-widths, $columns: $grid-columns) {
+  max-width: map_get($max-widths, $breakpoint) / $columns * $size;
 }
 
 @mixin make-row($gutter-width: $grid-gutter-width) {
