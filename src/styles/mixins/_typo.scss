@@ -1,19 +1,50 @@
 @import "../settings/colors";
+@import "../functions/map";
 @import "../functions/typo";
 @import "respond";
 
-@mixin typo-decls($name, $breakpoint: xl, $face: null, $weight: null) {
+/// Render font related CSS declarations for a specific breakpoint.
+/// Only output different property values by comparing the corresponding settings of the previous breakpoint (mobile-first).
+/// @param {string} $name - The name of a specific typeface variation.
+/// @param {string} $breakpoint - The name of a specific breakpoint.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $weight [null] - The name of a font weight.
+@mixin typo-decls($name, $breakpoint: sm, $face: null, $weight: null) {
   $typo: get-typo($name, $breakpoint, $face);
+  $typo-before: get-typo-before($name, $breakpoint, $face);
 
-  font-family: get-face($face);
-  font-size: typo-prop($typo, size);
-  font-weight: get-weight($typo, $weight);
-  line-height: typo-prop($typo, lineHeight);
-  letter-spacing: typo-prop($typo, spacing);
+  $font-size: typo-prop($typo, size);
+  $font-weight: get-weight($typo, $weight);
+  $line-height: typo-prop($typo, lineHeight);
+  $letter-spacing: typo-prop($typo, spacing);
+
+  @if not $typo-before or $font-size != typo-prop($typo-before, size) {
+    font-size: $font-size;
+  }
+
+  @if not $typo-before or $font-weight != get-weight($typo-before, $weight) {
+    font-weight: $font-weight;
+  }
+
+  @if not $typo-before or $line-height != typo-prop($typo-before, lineHeight) {
+    line-height: $line-height;
+  }
+
+  @if not $typo-before or $letter-spacing != typo-prop($typo-before, spacing) {
+    letter-spacing: $letter-spacing;
+  }
 }
 
+/// Render font related CSS declarations for all breakpoints.
+/// Only output different property values by comparing the corresponding settings of the previous breakpoint (mobile-first).
+/// @param {string} $name - The name of a specific typeface variation.
+/// @param {string} $face [null] - A valid alternative face, e.g. `publico`.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-css($name, $face: null, $weight: null, $debug: false) {
   @include typo-decls($name, sm, $face, $weight);
+
+  font-family: get-face($face);
 
   @include respond-up(sm) {
     @include typo-decls($name, md, $face, $weight);
@@ -39,98 +70,184 @@
   }
 }
 
-@mixin typo-main-title--publico($debug: false) {
-  @include typo-css($name: typo-78, $face: publico, $debug: $debug);
+/// Render **Main Title** (*typo-78*) with Publico Headline.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-main-title--publico($weight: null, $debug: false) {
+  @include typo-css($name: typo-78, $face: publico, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-page-title--publico($debug: false) {
-  @include typo-css($name: typo-62, $face: publico, $debug: $debug);
+/// Render **Page Title** (*typo-62*) with Publico Headline.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-page-title--publico($weight: null, $debug: false) {
+  @include typo-css($name: typo-62, $face: publico, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-slice-title--publico($debug: false) {
-  @include typo-css($name: typo-48, $face: publico, $debug: $debug);
+/// Render **Slice Title** (*typo-48*) with Publico Headline.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-slice-title--publico($weight: null, $debug: false) {
+  @include typo-css($name: typo-48, $face: publico, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-small-module-title--publico($debug: false) {
-  @include typo-css($name: typo-36, $face: publico, $debug: $debug);
+/// Render **Small Module Title** (*typo-36*) with Publico Headline.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-small-module-title--publico($weight: null, $debug: false) {
+  @include typo-css($name: typo-36, $face: publico, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-main-title($debug: false) {
-  @include typo-css($name: typo-78, $debug: $debug);
+/// Render **Main Title** (*typo-78*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-main-title($weight: null, $debug: false) {
+  @include typo-css($name: typo-78, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-page-title($debug: false) {
-  @include typo-css($name: typo-62, $debug: $debug);
+/// Render **Page Title** (*typo-62*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-page-title($weight: null, $debug: false) {
+  @include typo-css($name: typo-62, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-slice-title($debug: false) {
-  @include typo-css($name: typo-48, $debug: $debug);
+/// Render **Slice Title** (*typo-48*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-slice-title($weight: null, $debug: false) {
+  @include typo-css($name: typo-48, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-small-module-title($debug: false) {
-  @include typo-css($name: typo-36, $debug: $debug);
+/// Render **Small Module Title** (*typo-36*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-small-module-title($weight: null, $debug: false) {
+  @include typo-css($name: typo-36, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-title($debug: false) {
-  @include typo-css($name: typo-28, $debug: $debug);
+/// Render **Title** (*typo-28*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-title($weight: null, $debug: false) {
+  @include typo-css($name: typo-28, $weight: $weight, $debug: $debug);
 }
 
+/// Render **Title Semibold** (*typo-28*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-title--semibold($debug: false) {
-  @include typo-css($name: typo-28, $weight: Semibold, $debug: $debug);
+  @include typo-title($weight: Semibold, $debug: $debug);
 }
 
-@mixin typo-item-highlight($debug: false) {
-  @include typo-css($name: typo-24, $debug: $debug);
+/// Render **Item Highlight** (*typo-24*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-item-highlight($weight: null, $debug: false) {
+  @include typo-css($name: typo-24, $weight: $weight, $debug: $debug);
 }
 
-@mixin typo-text($debug: false) {
-  @include typo-css($name: typo-20, $debug: $debug);
+/// Render **Item Highlight Regular** (*typo-24*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-item-highlight--regular($weight: null, $debug: false) {
+  @include typo-item-highlight($weight: Regular, $debug: $debug);
 }
 
+/// Render **Item Highlight Semibold** (*typo-24*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-item-highlight--semibold($weight: null, $debug: false) {
+  @include typo-item-highlight($weight: Semibold, $debug: $debug);
+}
+
+/// Render **Text** (*typo-20*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-text($weight: null, $debug: false) {
+  @include typo-css($name: typo-20, $weight: $weight, $debug: $debug);
+}
+
+/// Render **Text Semibold** (*typo-20*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-text--semibold($debug: false) {
-  @include typo-css($name: typo-20, $weight: Semibold, $debug: $debug);
+  @include typo-text($weight: Semibold, $debug: $debug);
 }
 
+/// Render **Text Bold** (*typo-20*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-text--bold($debug: false) {
-  @include typo-css($name: typo-20, $weight: Bold, $debug: $debug);
+  @include typo-text($weight: Bold, $debug: $debug);
 }
 
-@mixin typo-text-longer($debug: false) {
-  @include typo-css($name: typo-18, $debug: $debug);
+/// Render **Text Longer** (*typo-18*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-text-longer($weight: null, $debug: false) {
+  @include typo-css($name: typo-18, $weight: $weight, $debug: $debug);
 }
 
+/// Render **Text Longer Bold** (*typo-18*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-text-longer--bold($debug: false) {
-  @include typo-css($name: typo-18, $weight: Bold, $debug: $debug);
+  @include typo-text-longer($weight: Bold, $debug: $debug);
 }
 
-@mixin typo-secondary-text($debug: false) {
-  @include typo-css($name: typo-16, $debug: $debug);
+/// Render **Secondary Text** (*typo-16*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-secondary-text($weight: null, $debug: false) {
+  @include typo-css($name: typo-16, $weight: $weight, $debug: $debug);
 }
 
+/// Render **Secondary Text Semibold** (*typo-16*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-secondary-text--semibold($debug: false) {
-  @include typo-css($name: typo-16, $weight: Semibold, $debug: $debug);
+  @include typo-secondary-text($weight: Semibold, $debug: $debug);
 }
 
+/// Render **Secondary Text Bold** (*typo-16*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-secondary-text--bold($debug: false) {
-  @include typo-css($name: typo-16, $weight: Bold, $debug: $debug);
+  @include typo-secondary-text($weight: Bold, $debug: $debug);
 }
 
-@mixin typo-tag($debug: false) {
-  @include typo-css($name: typo-14, $debug: $debug);
+/// Render **Tag** (*typo-14*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-tag($weight: null, $debug: false) {
+  @include typo-css($name: typo-14, $weight: $weight, $debug: $debug);
 }
 
+/// Render **Tag Semibold** (*typo-14*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-tag--semibold($debug: false) {
-  @include typo-css($name: typo-14, $weight: Semibold, $debug: $debug);
+  @include typo-tag($weight: Semibold, $debug: $debug);
 }
 
+/// Render **Tag Bold** (*typo-14*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-tag--bold($debug: false) {
-  @include typo-css($name: typo-14, $weight: Bold, $debug: $debug);
+  @include typo-tag($weight: Bold, $debug: $debug);
 }
 
-@mixin typo-legals($debug: false) {
-  @include typo-css($name: typo-13, $debug: $debug);
+/// Render **Legals** (*typo-13*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
+@mixin typo-legals($weight: null, $debug: false) {
+  @include typo-css($name: typo-13, $weight: $weight, $debug: $debug);
 }
 
+/// Render **Legals Semibold** (*typo-13*) with Source Sans Pro.
+/// @param {string} $weight [null] - The name of a font weight.
+/// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-legals--semibold($debug: false) {
-  @include typo-css($name: typo-13, $weight: Semibold, $debug: $debug);
+  @include typo-legals($weight: Semibold, $debug: $debug);
 }

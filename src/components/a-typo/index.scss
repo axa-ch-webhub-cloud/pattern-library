@@ -12,98 +12,106 @@ $typo-debug: true !default;
 
 // Publico
 .a-typo__main-title--publico {
-  @include typo-main-title--publico($typo-debug);
+  @include typo-main-title--publico($debug: $typo-debug);
 }
 
 .a-typo__page-title--publico {
-  @include typo-page-title--publico($typo-debug);
+  @include typo-page-title--publico($debug: $typo-debug);
 }
 
 .a-typo__slice-title--publico {
-  @include typo-slice-title--publico($typo-debug);
+  @include typo-slice-title--publico($debug: $typo-debug);
 }
 
 .a-typo__small-module-title--publico {
-  @include typo-small-module-title--publico($typo-debug);
+  @include typo-small-module-title--publico($debug: $typo-debug);
 }
 
 // Source Sans Pro
 .a-typo__main-title {
-  @include typo-main-title($typo-debug);
+  @include typo-main-title($debug: $typo-debug);
 }
 
 .a-typo__page-title {
-  @include typo-page-title($typo-debug);
+  @include typo-page-title($debug: $typo-debug);
 }
 
 .a-typo__slice-title {
-  @include typo-slice-title($typo-debug);
+  @include typo-slice-title($debug: $typo-debug);
 }
 
 .a-typo__small-module-title {
-  @include typo-small-module-title($typo-debug);
+  @include typo-small-module-title($debug: $typo-debug);
 }
 
 .a-typo__title {
-  @include typo-title($typo-debug);
+  @include typo-title($debug: $typo-debug);
 }
 
 .a-typo__title--semibold {
-  @include typo-title--semibold($typo-debug);
+  @include typo-title--semibold($debug: $typo-debug);
 }
 
 .a-typo__item-highlight {
-  @include typo-item-highlight($typo-debug);
+  @include typo-item-highlight($debug: $typo-debug);
+}
+
+.a-typo__item-highlight--semibold {
+  @include typo-item-highlight--semibold($debug: $typo-debug);
+}
+
+.a-typo__item-highlight--regular {
+  @include typo-item-highlight--regular($debug: $typo-debug);
 }
 
 .a-typo__text {
-  @include typo-text($typo-debug);
+  @include typo-text($debug: $typo-debug);
 }
 
 .a-typo__text--semibold {
-  @include typo-text--semibold($typo-debug);
+  @include typo-text--semibold($debug: $typo-debug);
 }
 
 .a-typo__text--bold {
-  @include typo-text--bold($typo-debug);
+  @include typo-text--bold($debug: $typo-debug);
 }
 
 .a-typo__text-longer {
-  @include typo-text-longer($typo-debug);
+  @include typo-text-longer($debug: $typo-debug);
 }
 
 .a-typo__text-longer--bold {
-  @include typo-text-longer--bold($typo-debug);
+  @include typo-text-longer--bold($debug: $typo-debug);
 }
 
 .a-typo__secondary-text {
-  @include typo-secondary-text($typo-debug);
+  @include typo-secondary-text($debug: $typo-debug);
 }
 
 .a-typo__secondary-text--semibold {
-  @include typo-secondary-text--semibold($typo-debug);
+  @include typo-secondary-text--semibold($debug: $typo-debug);
 }
 
 .a-typo__secondary-text--bold {
-  @include typo-secondary-text--bold($typo-debug);
+  @include typo-secondary-text--bold($debug: $typo-debug);
 }
 
 .a-typo__tag {
-  @include typo-tag($typo-debug);
+  @include typo-tag($debug: $typo-debug);
 }
 
 .a-typo__tag--semibold {
-  @include typo-tag--semibold($typo-debug);
+  @include typo-tag--semibold($debug: $typo-debug);
 }
 
 .a-typo__tag--bold {
-  @include typo-tag--bold($typo-debug);
+  @include typo-tag--bold($debug: $typo-debug);
 }
 
 .a-typo__legals {
-  @include typo-legals($typo-debug);
+  @include typo-legals($debug: $typo-debug);
 }
 
 .a-typo__legals--semibold {
-  @include typo-legals--semibold($typo-debug);
+  @include typo-legals--semibold($debug: $typo-debug);
 }
