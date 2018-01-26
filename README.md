@@ -72,6 +72,30 @@ Please run `npm run release` and follow the steps in the wizard
 
 For more information: We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
 
+## Usage guide - With just Webcomponents (no framework)
+
+__this code snipped is tested on FF, IE11, EDGE, Chrome, Safari, Mobile Chrome, Mobile Safari__
+
+Here an example on how to use the component button and typo in your project. The component Typo is used to show you
+all the possible fonts avaiable. The index.css contains all the basic page settings
+
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="http://localhost:8080/node_modules/patterns-library/dist/index.css">
+  </head>
+  <body>
+    <script src="http://localhost:8080/node_modules/patterns-library/dist/app/es6-polyfills.js"></script>
+    <script src="http://localhost:8080/node_modules/patterns-library/dist/app/webcomponents-lite.js"></script>
+    <script src="http://localhost:8080/node_modules/patterns-library/dist/components/m-button/index.js"></script>
+    <script src="http://localhost:8080/node_modules/patterns-library/dist/components/a-typo/index.js"></script>
+
+    <axa-button>I'm a button</axa-button>
+    <axa-typo></axa-typo>
+  </body>
+</html>
+```
+
 ## Developers Guide:
 
 ### Publish / Subscribe between webcomponents
