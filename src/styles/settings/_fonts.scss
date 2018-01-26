@@ -1,13 +1,19 @@
+/// Base path of font location.
+/// In case this changes for you just ovverride it before importing.
 $font-base-path: './assets/fonts/' !default;
 
+/// AXA use two font faces - Publico Headline and Source Sans Pro.
+///
+/// @link https://design.axa.com/web-guidelines/typography#overview
 $face-map:
   (
     source-sans-pro: ("Source Sans Pro", Arial, sans-serif),
     publico: ("Publico Headline", Georgia, serif),
   ) !default;
 
-// axa global typography
-// as defined here: https://design.axa.com/web-guidelines/typography
+/// AXA global typography
+///
+/// @link https://design.axa.com/web-guidelines/typography#properties
 $typo-map:
   (
     // small -> mobile
@@ -84,10 +90,12 @@ $typo-map:
     ),
   ) !default;
 
-// common font weight name mapping
-// as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
-// and here: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
-// @TODO: probably replace by https://www.npmjs.com/package/postcss-font-weight-names
+/// Common font weight name mapping.
+///
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
+/// @link here: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
+///
+/// @TODO: probably replace by https://www.npmjs.com/package/postcss-font-weight-names
 $font-weight-map:
   (
     Thin: 100,
