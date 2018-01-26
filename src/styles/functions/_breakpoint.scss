@@ -1,11 +1,20 @@
+@import "../settings/grid";
 @import "max-width";
 
+/// Get the next breakpoint.
+/// @param {string} $breakpoint - Breakpoint to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+/// @param {list} $breakpoint-names [map-keys($breakpoints)] - All available breakpoint keys.
 @function next-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $breakpoint);
 
   @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
 
+/// Get a specific breakpoint, either by key or concrete number.
+/// @param {string} $breakpoint - Breakpoint to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+/// @param {up|down} $direction [down] - Direction of the breakpoint.
 @function get-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $direction: down) {
   @if type_of($breakpoints) != map {
     @error "$breakpoints #{$breakpoints} has to be a Map.";

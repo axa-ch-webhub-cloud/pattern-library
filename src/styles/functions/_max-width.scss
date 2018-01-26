@@ -1,3 +1,5 @@
+/// Decrement responsive breakpoint values by `1px` or `0.01em/rem` for media query rules.
+/// @param {number} $value - The breakpoint to decrement for media queries.
 @function max-width($value) {
   $value-type: type_of($value);
 
