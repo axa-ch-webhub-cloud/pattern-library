@@ -1,3 +1,4 @@
+@import "../../styles/mixins/force-ios-click";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
@@ -13,6 +14,7 @@
 
 .m-header-mobile-languages__link {
   @include typo-secondary-text();
+  @include force-ios-click();
 
   display: inline-block;
 

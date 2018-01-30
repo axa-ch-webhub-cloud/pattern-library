@@ -1,5 +1,6 @@
 @import "settings/header-burger";
 @import "../../styles/mixins/button-reset";
+@import "../../styles/mixins/force-ios-click";
 @import "../../styles/mixins/respond";
 
 .m-header-burger {
@@ -8,6 +9,7 @@
 
 .m-header-burger__button {
   @include button-reset();
+  @include force-ios-click();
 
   display: none;
 
