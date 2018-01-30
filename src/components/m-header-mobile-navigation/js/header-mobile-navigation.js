@@ -1,12 +1,13 @@
 import on from '../../../js/on';
 import { add, remove } from '../../../js/class-list';
-import { subscribe } from '../../../js/pubsub';
+import { publish, subscribe } from '../../../js/pubsub';
 
 class HeaderMobileNavigation {
   static DEFAULTS = {
     nav: '.js-header-mobile-navigation__nav',
     category: 'js-header-mobile-navigation__category',
     back: 'js-header-mobile-navigation__back',
+    link: 'js-header-mobile-navigation__list-link',
     isSubMenuOpenClass: 'is-header-mobile-navigation-nav-open',
   }
 
@@ -22,6 +23,7 @@ class HeaderMobileNavigation {
 
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
+    this.handleLinkClick = this.handleLinkClick.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this.fadeFinish = this.fadeFinish.bind(this);
@@ -46,6 +48,7 @@ class HeaderMobileNavigation {
 
     this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
     this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
+    this.unLinkClick = on(this.nav, 'click', this.options.link, this.handleLinkClick);
   }
 
   off() {
@@ -55,6 +58,10 @@ class HeaderMobileNavigation {
 
     if (this.unBackClick) {
       this.unBackClick();
+    }
+
+    if (this.unLinkClick) {
+      this.unLinkClick();
     }
 
     this.offContextEnabled();
@@ -134,6 +141,10 @@ class HeaderMobileNavigation {
     remove(parentNode, this.options.isSubMenuOpenClass);
 
     canvas.scrollTop = scrollTop;
+  }
+
+  handleLinkClick() {
+    publish('header-mobile/close', null, this._contextNode);
   }
 
   destroy() {

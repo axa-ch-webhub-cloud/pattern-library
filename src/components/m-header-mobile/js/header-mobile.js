@@ -83,6 +83,7 @@ class HeaderMobile {
     if (this.unTransitionEndBackdrop) {
       this.unTransitionEndBackdrop();
     }
+
     this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
       if (propertyName === 'opacity') {
         this.unTransitionEndBackdrop();
