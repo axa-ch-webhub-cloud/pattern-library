@@ -148,6 +148,9 @@
 @mixin dropdown-toggle() {
   position: relative;
 
+  // this is important to enable click events on iOS
+  cursor: pointer;
+
   &:hover,
   &:active,
   &:focus {
