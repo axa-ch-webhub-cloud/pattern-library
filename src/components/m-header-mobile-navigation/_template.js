@@ -15,7 +15,7 @@ function mobileNavItem(item) {
         `,
         mobileNav(items, item),
       ] : bel`
-        <a class="m-header-mobile-navigation__list-link js-header-mobile-navigation__list-link ${activeClass}"
+        <a class="m-header-mobile-navigation__list-link js-header-mobile-navigation__list-link js-header-mobile-close ${activeClass}"
            href="${url}">${name}</a>
       `}
     </li>
