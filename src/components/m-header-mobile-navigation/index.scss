@@ -3,6 +3,7 @@
 @import "../m-link/mixins/link";
 @import "../../styles/mixins/button-reset";
 @import "../../styles/settings/colors";
+@import "../../styles/mixins/force-ios-click";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/hardware-accelerate";
 @import "../../styles/mixins/respond";
@@ -72,6 +73,7 @@
   @include make-container();
   @include word-break();
   @include link-color-only();
+  @include force-ios-click();
 
   position: relative;
 
@@ -80,9 +82,6 @@
   padding-right: $header-mobile__item-padding-right;
 
   text-transform: uppercase;
-
-  // this is important to enable click events on iOS
-  cursor: pointer;
 
   &.is-header-mobile-navigation-active,
   &:hover,

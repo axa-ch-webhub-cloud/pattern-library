@@ -1,4 +1,5 @@
 @import "../settings/dropdown";
+@import "../../../styles/mixins/force-ios-click";
 @import "../../../styles/mixins/hardware-accelerate";
 @import "../../../styles/mixins/target";
 
@@ -146,10 +147,9 @@
 }
 
 @mixin dropdown-toggle() {
-  position: relative;
+  @include force-ios-click();
 
-  // this is important to enable click events on iOS
-  cursor: pointer;
+  position: relative;
 
   &:hover,
   &:active,

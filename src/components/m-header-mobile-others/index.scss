@@ -1,4 +1,5 @@
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/force-ios-click";
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/typo";
 @import "settings/header-mobile-others";
@@ -25,6 +26,7 @@
 
 .m-header-mobile-others__link {
   @include typo-secondary-text--semibold();
+  @include force-ios-click();
 
   display: block;
 
@@ -32,9 +34,6 @@
 
   color: $header-mobile-others__link-color;
   text-transform: uppercase;
-
-  // this is important to enable click events on iOS
-  cursor: pointer;
 
   &.is-header-mobile-others-active,
   &:hover,
