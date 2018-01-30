@@ -62,6 +62,9 @@
     border-bottom: 1px solid $color-prim-blue-st-tropaz;
 
     background: $color-prim-blue-dark-indigo;
+
+    // this is important to enable click events on iOS
+    cursor: pointer;
   }
 }
 
