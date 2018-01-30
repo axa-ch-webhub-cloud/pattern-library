@@ -15,6 +15,9 @@
 
   color: $header-burger-color;
 
+  // this is important to enable click events on iOS
+  cursor: pointer;
+
   @include respond-down(md) {
     display: block;
   }

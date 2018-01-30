@@ -81,6 +81,9 @@
 
   text-transform: uppercase;
 
+  // this is important to enable click events on iOS
+  cursor: pointer;
+
   &.is-header-mobile-navigation-active,
   &:hover,
   &:active,
