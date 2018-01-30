@@ -6,6 +6,7 @@ class HeaderMobile {
   static DEFAULTS = {
     canvas: '.js-header-mobile__canvas',
     backdrop: '.js-header-mobile__backdrop',
+    close: 'js-header-mobile-close',
     isMenuOpenClass: 'is-mobile-menu-open',
     isBackdropFading: 'is-mobile-backdrop-fading',
     isBodyFrozen: 'is-body-frozen',
@@ -20,7 +21,7 @@ class HeaderMobile {
 
     this.opened = [];
 
-    this.handleBackdropClick = this.handleBackdropClick.bind(this);
+    this.handleCloseClick = this.handleCloseClick.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -30,8 +31,6 @@ class HeaderMobile {
   init() {
     this.canvas = this.rootNode.querySelector(this.options.canvas);
     this.backdrop = this.rootNode.querySelector(this.options.backdrop);
-
-    this.on();
   }
 
   set contextNode(value) {
@@ -43,7 +42,8 @@ class HeaderMobile {
   on() {
     this.off();
 
-    this.unBackdropClick = on(this.backdrop, 'click', this.handleBackdropClick);
+    this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
+    this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
 
   off() {
@@ -51,7 +51,9 @@ class HeaderMobile {
       this.unBackdropClick();
     }
 
-    this.offContextEnabled();
+    if (this.unClose) {
+      this.unClose();
+    }
   }
 
   onContextEnabled() {
@@ -77,12 +79,17 @@ class HeaderMobile {
   open() {
     add(document.body, this.options.isBodyFrozen);
     add(this.rootNode, this.options.isMenuOpenClass);
+
+    this.on();
   }
 
   close() {
+    this.off();
+
     if (this.unTransitionEndBackdrop) {
       this.unTransitionEndBackdrop();
     }
+
     this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
       if (propertyName === 'opacity') {
         this.unTransitionEndBackdrop();
@@ -100,12 +107,13 @@ class HeaderMobile {
     remove(document.body, this.options.isBodyFrozen);
   }
 
-  handleBackdropClick() {
+  handleCloseClick() {
     publish('header-mobile/close', null, this._contextNode);
   }
 
   destroy() {
     this.off();
+    this.offContextEnabled();
 
     delete this.rootNode;
     delete this.canvas;
