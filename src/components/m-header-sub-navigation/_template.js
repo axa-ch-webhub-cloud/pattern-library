@@ -3,7 +3,7 @@ import raw from 'bel/raw';
 
 const linkItem = ({ url, name, isActive }) => bel`
   <li class="m-header-sub-navigation__list-item">
-    <a class="m-header-sub-navigation__link ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
+    <a class="m-header-sub-navigation__link js-header-navigation-close ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
   </li>
 `;
 
@@ -43,8 +43,8 @@ export default ({ items, indexurl, indextitle }) => {
       arr.push(bel`
         <div class="m-header-sub-navigation__index">
           <div class="m-header-sub-navigation__index-box">
-            <a class="m-header-sub-navigation__index-link" href="${indexurl}">${indextitle}</a>
-            <button type="button" class="m-header-sub-navigation__index-close js-header-sub-navigation__index-close">
+            <a class="m-header-sub-navigation__index-link js-header-navigation-close" href="${indexurl}">${indextitle}</a>
+            <button type="button" class="m-header-sub-navigation__index-close js-header-navigation-close">
               Close
               <axa-icon id="cross-gap" classes="m-header-sub-navigation__index-close__icon"></axa-icon>
             </button>
