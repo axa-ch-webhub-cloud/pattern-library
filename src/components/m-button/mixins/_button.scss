@@ -137,10 +137,7 @@
 }
 
 @mixin button__icon--lg() {
-  @include icon($button__icon-width--lg);
-
-  padding: 15px;
-  margin: -13px -32px -13px 28px;
+  @include icon-size($button__icon-width--lg);
 }
 
 @mixin button__arrow() {
@@ -153,6 +150,12 @@
   margin-top: -($button__arrow-width / 2);
 }
 
+@mixin button__arrow--lg() {
+  @include icon-size($button__arrow-width--lg);
+
+  margin-top: -($button__arrow-width--lg / 2);
+}
+
 @mixin button__arrow-right($right: $button-x-padding-default) {
   $right: min-max($button-x-padding-min, $button-x-padding-max, $right);
 
@@ -163,6 +166,12 @@
   $right: min-max($button-x-padding-min, $button-x-padding-max, $right);
 
   padding-right: $button__arrow-width + $button__arrow-gap + $right;
+}
+
+@mixin button--arrow-adjust--lg($right: $button-x-padding-default) {
+  $right: min-max($button-x-padding-min, $button-x-padding-max, $right);
+
+  padding-right: $button__arrow-width--lg + $button__arrow-gap + $right;
 }
 
 @mixin button__arrow--motion() {
