@@ -1,0 +1,7 @@
+@mixin icon($width, $height: $width) {
+  display: block;
+  width: $width;
+  height: $height;
+
+  fill: currentColor;
+}
