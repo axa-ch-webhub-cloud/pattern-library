@@ -1,6 +1,7 @@
 @import "settings/header-burger";
 @import "../../styles/mixins/button-reset";
 @import "../../styles/mixins/force-ios-click";
+@import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
 
 .m-header-burger {
@@ -23,11 +24,7 @@
 }
 
 .m-header-burger__icon {
-  display: block;
-  width: $header-burger__icon-size;
-  height: $header-burger__icon-size;
-
-  fill: currentColor;
+  @include icon($header-burger__icon-size);
 
   .is-burger-open & {
     display: none;
@@ -35,11 +32,7 @@
 }
 
 .m-header-burger__close-icon {
-  display: none;
-  width: $header-burger__icon-size;
-  height: $header-burger__icon-size;
-
-  fill: currentColor;
+  @include icon($header-burger__icon-size);
 
   .is-burger-open & {
     display: block;

@@ -3,6 +3,7 @@
 @import "../../../styles/functions/color-map";
 @import "../../../styles/animations/fade-out-right-in-left";
 @import "../../../styles/mixins/hardware-accelerate";
+@import "../../../styles/mixins/icon";
 @import "../../../styles/mixins/respond";
 @import "../../../styles/mixins/typo";
 @import "../../../styles/mixins/word-break";
@@ -128,8 +129,7 @@
 }
 
 @mixin button__icon() {
-  width: $button__icon-width;
-  height: $button__icon-width;
+  @include icon($button__icon-width);
 
   padding: 10px;
 
@@ -137,25 +137,20 @@
 }
 
 @mixin button__icon--lg() {
-  width: $button__icon--lg-width;
-  height: $button__icon--lg-width;
+  @include icon($button__icon-width--lg);
 
   padding: 15px;
   margin: -13px -32px -13px 28px;
 }
 
 @mixin button__arrow() {
+  @include icon($button__arrow-width);
+
   position: absolute;
 
   top: 50%;
 
-  display: block;
-
-  width: $button__arrow-width;
-  height: $button__arrow-width;
   margin-top: -($button__arrow-width / 2);
-
-  fill: currentColor;
 }
 
 @mixin button__arrow-right($right: $button-x-padding-default) {

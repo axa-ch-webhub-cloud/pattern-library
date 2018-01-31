@@ -1,5 +1,6 @@
 @import "../settings/link";
 @import "../../../styles/functions/color-map";
+@import "../../../styles/mixins/icon";
 @import "../../../styles/mixins/typo";
 @import "../../../styles/mixins/word-break";
 
@@ -94,14 +95,9 @@
 }
 
 @mixin link__icon($icon-size: $link__icon-size) {
+  @include icon($icon-size);
+
   position: absolute;
-
-  display: block;
-
-  width: $icon-size;
-  height: $icon-size;
-
-  fill: currentColor;
 }
 
 @mixin link__icon--top() {

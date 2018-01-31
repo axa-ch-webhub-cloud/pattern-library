@@ -1,6 +1,7 @@
 @import "../settings/dropdown";
 @import "../../../styles/mixins/force-ios-click";
 @import "../../../styles/mixins/hardware-accelerate";
+@import "../../../styles/mixins/icon";
 @import "../../../styles/mixins/target";
 
 @mixin dropdown-container() {
@@ -160,14 +161,12 @@
 
 @mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: 'is-dropdown-open') {
   // @include hardware-accelerate(); Chrome has an issue
+  @include icon($size);
 
   position: absolute;
   top: 50%;
   right: $right;
 
-  display: block;
-  width: $size;
-  height: $size;
   margin-top: -($size / 2);
 
   color: $color;
