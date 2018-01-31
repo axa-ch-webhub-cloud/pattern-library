@@ -6,7 +6,7 @@ import { publish, subscribe } from '../../../js/pubsub';
 
 const deviceStateClass = '.a-device-state';
 const reWhiteSpace = /\s/g;
-const reUnquote = /^"+|"+$/g;
+const reUnquote = /^['"]+|['"]+$/g;
 let isDomReady = false;
 let isInitialised = false;
 let hasChanged = true;
@@ -35,7 +35,8 @@ export function getDeviceState() {
   // @TODO: this should be battle tested...
   // has to include the colon, either `:after` or `::after`
   // https://www.w3.org/TR/cssom-1/#dom-window-getcomputedstyle
-  const content = window.getComputedStyle(node, ':after').getPropertyValue('content');
+  const content = window.getComputedStyle(node, ':after').getPropertyValue('content')
+    || window.getComputedStyle(node, '::after').getPropertyValue('content');
 
   // somehow still not ready, whats up with u CSSOM?
   if (!content) {
