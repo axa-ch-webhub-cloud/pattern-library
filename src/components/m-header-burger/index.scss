@@ -34,6 +34,8 @@
 .m-header-burger__close-icon {
   @include icon($header-burger__icon-size);
 
+  display: none;
+
   .is-burger-open & {
     display: block;
   }
