@@ -1,5 +1,6 @@
 @import "settings/header-logo";
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
 
 .m-header-logo {
@@ -30,18 +31,15 @@
 
 .m-header-logo__icon,
 .m-header-logo__img {
+  @include icon-size($header-logo-size);
+
   display: block;
 
-  width: $header-logo-size;
-  height: $header-logo-size;
-
   @include respond-up(sm) {
-    width: $header-logo-size--md;
-    height: $header-logo-size--md;
+    @include icon-size($header-logo-size--md);
   }
 
   @include respond-up(xl) {
-    width: $header-logo-size--xl;
-    height: $header-logo-size--xl;
+    @include icon-size($header-logo-size--xl);
   }
 }

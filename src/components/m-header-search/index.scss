@@ -1,4 +1,5 @@
 @import "settings/header-search";
+@import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
 
 .m-header-search {
@@ -30,9 +31,7 @@
 }
 
 .m-header-search__icon {
-  display: block;
-  width: $header-search__icon-size;
-  height: $header-search__icon-size;
+  @include icon($header-search__icon-size);
 
   color: $header-search__icon-fill;
 }

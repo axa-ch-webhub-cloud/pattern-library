@@ -6,6 +6,7 @@
 @import "../../styles/mixins/force-ios-click";
 @import "../../styles/mixins/grid";
 @import "../../styles/mixins/hardware-accelerate";
+@import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
@@ -124,15 +125,14 @@
 
 .m-header-mobile-navigation__icon-next,
 .m-header-mobile-navigation__icon-back {
+  @include icon($header-mobile-navigation__icon-size);
+
   position: absolute;
   top: 50%;
 
-  height: $header-mobile-navigation__icon-size;
-  width: $header-mobile-navigation__icon-size;
   margin-top: ($header-mobile-navigation__icon-size / -2);
 
   pointer-events: none;
-  fill: currentColor;
 }
 
 .m-header-mobile-navigation__icon-next {

@@ -102,4 +102,16 @@
 
 .m-button--lg {
   @include button--lg();
+
+  &.m-button--arrow {
+    @include button--arrow-adjust--lg();
+  }
+
+  .m-button__icon {
+    @include button__icon--lg();
+  }
+
+  .m-button__arrow {
+    @include button__arrow--lg();
+  }
 }

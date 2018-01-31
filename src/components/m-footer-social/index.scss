@@ -1,6 +1,7 @@
 @import "./settings/footer-social";
 @import "../../styles/mixins/clearfix";
 @import "../../styles/mixins/grid";
+@import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/unstyle-list";
@@ -83,9 +84,7 @@
 }
 
 .m-footer-social__icon {
-  display: block;
-  width: $footer-social__icon-size;
-  height: $footer-social__icon-size;
+  @include icon($footer-social__icon-size);
 
   color: $footer-social__icon-color;
 }
@@ -121,7 +120,6 @@
   }
 
   .m-footer-social__icon {
-    width: $footer-social__icon-size--light;
-    height: $footer-social__icon-size--light;
+    @include icon-size($footer-social__icon-size--light);
   }
 }

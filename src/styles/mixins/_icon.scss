@@ -1,0 +1,22 @@
+/// Create basic icon css
+///
+/// @param {number} $width - The icon's width.
+/// @param {number} $height [$width] - The icon's height.
+@mixin icon($width, $height: $width) {
+  @include icon-size($width, $height);
+
+  // fix SVG are inline elements
+  display: block;
+
+  // fix external icons not specifying any valid color
+  fill: currentColor;
+}
+
+/// Create basic icon dimension css
+///
+/// @param {number} $width - The icon's width.
+/// @param {number} $height [$width] - The icon's height.
+@mixin icon-size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
