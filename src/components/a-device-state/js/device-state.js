@@ -6,7 +6,7 @@ import { publish, subscribe } from '../../../js/pubsub';
 
 const deviceStateClass = '.a-device-state';
 const reWhiteSpace = /\s/g;
-const reUnquote = /^"+|"+$/g;
+const reUnquote = /^['"]+|['"]+$/g;
 let isDomReady = false;
 let isInitialised = false;
 let hasChanged = true;
