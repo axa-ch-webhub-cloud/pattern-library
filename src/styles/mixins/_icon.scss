@@ -1,7 +1,12 @@
 @mixin icon($width, $height: $width) {
+  @include icon-size($width, $height);
+
   display: block;
-  width: $width;
-  height: $height;
 
   fill: currentColor;
+}
+
+@mixin icon-size($width, $height: $width) {
+  width: $width;
+  height: $height;
 }
