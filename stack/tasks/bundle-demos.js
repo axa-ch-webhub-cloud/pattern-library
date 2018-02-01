@@ -40,7 +40,7 @@ async function buildComponents() {
   console.log(`Bundled to: ${fPath}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
-    format: 'iife',
+    format: 'umd',
     name: 'StyleGuideWebComponentReact',
     file: fPath,
   });

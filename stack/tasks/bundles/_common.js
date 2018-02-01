@@ -25,7 +25,7 @@ module.exports = {
     ],
   },
   outputOptions: {
-    format: 'iife',
+    format: 'umd',
     name: 'StyleGuideWebComponent',
   },
   adaptSlashes: (file) => { // eslint-disable-line no-param-reassign
