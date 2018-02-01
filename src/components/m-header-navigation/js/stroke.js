@@ -23,7 +23,7 @@ class Stroke extends UiEvents {
     super(rootNode, {
       containerClass: '.js-header-navigation__list',
       toggleClass: Stroke.DEFAULTS.toggleClass,
-      closeClass: 'js-header-sub-navigation__index-close',
+      closeClass: 'js-header-navigation-close',
       sameClickClose: !options.simpleMenu,
       useDefaultEvent: !!options.simpleMenu,
       outerClose: !options.simpleMenu,
