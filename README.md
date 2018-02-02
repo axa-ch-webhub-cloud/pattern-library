@@ -85,10 +85,15 @@ all the possible fonts avaiable. The index.css contains all the basic page setti
     <link rel="stylesheet" href="http://localhost:8080/node_modules/patterns-library/dist/index.css">
   </head>
   <body>
+
+    <script src="http://localhost:8080/node_modules/patterns-library/dist/components/_core/index.js"></script>
+
     <script src="http://localhost:8080/node_modules/patterns-library/dist/app/es6-polyfills.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/app/webcomponents-lite.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/m-button/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/a-typo/index.js"></script>
+
+    <axa-core icons-path="./assets/icons/icons.svg"></axa-core>
 
     <axa-button>I'm a button</axa-button>
     <axa-typo></axa-typo>
