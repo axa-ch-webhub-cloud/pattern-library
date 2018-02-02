@@ -18,6 +18,7 @@
   "globals": {
     "HTMLElement": true,
     "HTMLImports": true,
+    "XMLHttpRequest": true,
     "MutationObserver": true,
     "document": true,
     "window": true

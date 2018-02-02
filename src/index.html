@@ -27,6 +27,10 @@
 
   </head>
   <body class="a-device-state a-device-state--debug">
+
+    <script src="components/_core/index.js"></script>
+    <axa-core icons-path="./assets/icons/icons.svg"></axa-core>
+
     <header>
       <axa-header>
           <axa-header-main first-left>
@@ -62,18 +66,6 @@
 
     <!-- {CUT AND INJECT PREVIEWS HERE} -->
 
-    <script>
-      // SVG sprite loader
-      var httpObj = new XMLHttpRequest();
-      httpObj.open("GET", "./assets/icons/icons.svg", true);
-      httpObj.send();
-      httpObj.onload = function(e) {
-        var div = document.createElement("div");
-        div.innerHTML = httpObj.responseText;
-        div.style.display = 'none';
-        document.body.insertBefore(div, document.body.childNodes[0]);
-      }
-    </script>
     <!-- {CUT AND INJECT IMPORTS HERE} -->
 
     <article data-atomic-category="react" class="js--section o-sg-section o-sg-section__atomic-category">
