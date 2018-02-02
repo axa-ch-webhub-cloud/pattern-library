@@ -28,6 +28,10 @@ module.exports = {
     format: 'iife',
     name: 'StyleGuideWebComponent',
   },
+  outputOptionsEsm: {
+    format: 'umd',
+    name: 'StyleGuideWebComponent',
+  },
   adaptSlashes: (file) => { // eslint-disable-line no-param-reassign
     const isExtendedLengthPath = /^\\\\\?\\/.test(file);
     const hasNonAscii = /[^\u0000-\u0080]+/.test(file);

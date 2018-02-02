@@ -42,13 +42,16 @@ const reGetParentDirAndFileAndComponent = /\/components\/(?:[^/]+\/)+index\.js$/
 const bundleSingleFile = (filePath) => {
   const fPath = filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/');
   async function buildComponents() {
-    const bundle = await rollup.rollup({
+    const bundleConfig = {
       ...inputOptionsComponents,
       plugins: [
         ...inputOptionsComponents.plugins,
       ],
       input: filePath,
-    });
+    };
+
+    const bundle = await rollup.rollup(bundleConfig);
+
     console.log(fPath.replace('.js', '.css')); // eslint-disable-line
     console.log(`Bundled to: ${fPath}`); // eslint-disable-line
     // or write the bundle to disk
@@ -56,6 +59,12 @@ const bundleSingleFile = (filePath) => {
       ...outputOptionsComponents,
       file: fPath,
     });
+    if (ENV === constants.ENV.PROD) {
+      await bundle.write({
+        ...common.outputOptionsEsm,
+        file: fPath.replace('.js', '.umd.js'),
+      });
+    }
   }
   buildComponents();
 };
