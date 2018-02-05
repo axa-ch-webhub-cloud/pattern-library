@@ -48,10 +48,13 @@
   }
 
   &.is-header-others-active {
-    margin-bottom: -$header-meta-border-bottom-width;
+    // firefox needs a bigger overlap
+    $bottom: $header-meta-border-bottom-width + 1;
+
+    margin-bottom: -$bottom;
 
     background: $header-meta__link-bg--hover;
 
-    border-bottom: $header-meta-border-bottom-width solid $header-meta__link-bg--hover;
+    border-bottom: $bottom solid $header-meta__link-bg--hover;
   }
 }
