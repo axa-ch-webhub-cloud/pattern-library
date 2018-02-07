@@ -17,20 +17,9 @@
 
 .m-header-logo__link {
   display: block;
-
-  width: $header-logo-size;
-
-  @include respond-up(sm) {
-    width: $header-logo-size--md;
-  }
-
-  @include respond-up(xl) {
-    width: $header-logo-size--xl;
-  }
 }
 
-.m-header-logo__icon,
-.m-header-logo__img {
+.m-header-logo__icon {
   @include icon-size($header-logo-size);
 
   display: block;
@@ -41,5 +30,19 @@
 
   @include respond-up(xl) {
     @include icon-size($header-logo-size--xl);
+  }
+}
+
+.m-header-logo__img {
+  display: block;
+
+  height: $header-logo-size;
+
+  @include respond-up(sm) {
+    height: $header-logo-size--md;
+  }
+
+  @include respond-up(xl) {
+    height: $header-logo-size--xl;
   }
 }
