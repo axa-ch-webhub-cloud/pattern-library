@@ -3,14 +3,14 @@ import styles from './index.scss';
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
-class AXARadio extends BaseComponentGlobal {
+class AXAFormInput extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-radio', AXARadio);
+  window.customElements.define('axa-form-input', AXAFormInput);
 });
 
-export default AXARadio;
+export default AXAFormInput;

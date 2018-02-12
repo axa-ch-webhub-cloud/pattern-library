@@ -1,0 +1,18 @@
+@import "../../styles/settings/colors";
+@import "../../styles/settings/base";
+@import "../../styles/mixins/typo";
+
+.a-form-label {
+  @include typo-secondary-text--semibold();
+
+  display: block;
+  padding-bottom: 10px;
+
+  &--disabled {
+    color: $color-prim-gray-dusty;
+  }
+
+  @include respond-up(md) {
+    padding-bottom: 15px;
+  }
+}

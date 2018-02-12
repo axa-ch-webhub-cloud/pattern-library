@@ -1,61 +1,80 @@
 @import "../../styles/settings/colors";
+@import "../../styles/settings/base";
+@import "../../styles/mixins/control-icon";
+@import "../../styles/mixins/visual-hidden";
+@import "../../styles/mixins/control-transition";
 
 .a-radio {
+  position: relative;
+
   display: inline-flex;
-  margin-right: 20px;
-  width: 16px;
-  height: 16px;
+
+  min-height: 20px;
 
   align-items: center;
-  justify-content: center;
 
-  flex-shrink: 0;
-  background: $color-prim-white;
-  border: 1px solid $color-prim-gray-silver;
-  border-radius: 50%;
+  line-height: $line-height-base;
 
-  &:hover,
-  &:active {
+  user-select: none;
+
+  &:hover:not(.a-radio--disabled):not(.a-radio--error) {
+    color: $color-axa-blue;
+
+    .a-radio__icon {
+      border-color: $color-axa-blue;
+
+      &::before {
+        border-color: $color-axa-blue;
+      }
+    }
+  }
+
+  &--disabled {
+    color: $color-prim-gray-dusty;
+  }
+
+  &--error {
+    color: $color-axa-red;
+
+    .a-radio__icon {
+      border-color: $color-axa-red;
+    }
+  }
+}
+
+.a-radio__input {
+  @include visual-hidden();
+
+  &:focus + .a-radio__icon {
     border-color: $color-axa-blue;
 
-    &::after {
-      background: $color-prim-gray-silver;
+    &::before {
       border-color: $color-axa-blue;
     }
   }
 
-  &::after {
-    display: block;
-    width: 6px;
-    height: 6px;
-    content: "";
-    background: $color-prim-white;
-    border: 1px solid $color-prim-gray-silver;
-    border-radius: 50%;
-  }
-}
-
-.a-radio[hidden] {
-  display: none;
-}
-
-.a-radio[checked] {
-  &::after {
+  &:checked + .a-radio__icon::before {
     background: $color-axa-blue;
     border-color: $color-axa-blue;
   }
-}
 
-.a-radio[disabled] {
-  &::after {
-    background: $color-prim-white;
-    border-color: $color-prim-gray-silver;
+  &[disabled] + .a-radio__icon {
+    cursor: default;
+    border-color: $color-prim-gray-dusty;
+
+    &::before {
+      border-color: transparent;
+    }
   }
 }
 
-.a-radio[checked][disabled] {
-  &::after {
-    background: $color-prim-white;
-    border-color: $color-prim-gray-silver;
+.a-radio__icon {
+  @include control-transition();
+  @include control-icon($control-icon-size);
+  @include control-inner($control-icon-inner-size);
+  border-radius: 50%;
+
+  &::before {
+    border-radius: 50%;
   }
 }

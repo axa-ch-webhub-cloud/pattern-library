@@ -10,21 +10,21 @@ export default function ({
   checked = false,
   disabled = false,
 }, childrenFragment) {
-  const checkBoxClasses = classnames('a-checkbox', classes, {
-    'a-checkbox--error': error,
-    'a-checkbox--checked': checked,
-    'a-checkbox--disabled': disabled,
+  const radioClasses = classnames('a-radio', classes, {
+    'a-radio--error': error,
+    'a-radio--checked': checked,
+    'a-radio--disabled': disabled,
   });
 
-  return bel`<label class="${checkBoxClasses}">
+  return bel`<label class="${radioClasses}">
     <input
       id="${id}"
-      class="a-checkbox__input" 
-      type="checkbox"
+      class="a-radio__input" 
+      type="radio"
       name="${name}" 
       checked="${checked}" 
       value="${value}" 
       disabled="${disabled}">
-    <span class="a-checkbox__icon"></span>${childrenFragment}
+    <span class="a-radio__icon"></span>${childrenFragment}
   </label>`;
 }
