@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import styles from './index.scss';
 import getAttribute from '../../js/get-attribute';
 import template from './_template';
@@ -16,9 +17,14 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-header-navigation`;
-
+    const hyphenate = this.hasAttribute('hyphenate');
     const simpleMenu = getAttribute(this, 'simplemenu');
+
+    const classes = classnames(this.initialClassName, 'm-header-navigation', {
+      'm-header-navigation--hyphenate': hyphenate,
+    });
+
+    this.className = classes;
 
     this.stroke = new Stroke(this.parentNode.parentNode, {
       simpleMenu,

@@ -32,7 +32,6 @@
 }
 
 .m-header-navigation__list-link {
-  @include word-break();
   @include link-color-only();
   @include typo-legals--semibold();
 
@@ -54,5 +53,9 @@
     @include link-color--hover();
 
     text-decoration: none;
+  }
+
+  .m-header-navigation--hyphenate & {
+    @include word-break();
   }
 }
