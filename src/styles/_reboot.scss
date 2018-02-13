@@ -38,8 +38,14 @@
 html {
   font-family: sans-serif; // 2
   line-height: 1.15; // 3
+  -webkit-text-size-adjust: none; // 4
   -webkit-text-size-adjust: 100%; // 4
+  -moz-text-size-adjust: none; // 4
+  -moz-text-size-adjust: 100%; // 4
+  -ms-text-size-adjust: none; // 4
   -ms-text-size-adjust: 100%; // 4
+  text-size-adjust: none; // 4
+  text-size-adjust: 100%; // 4
   -ms-overflow-style: scrollbar; // 5
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 6
 }
