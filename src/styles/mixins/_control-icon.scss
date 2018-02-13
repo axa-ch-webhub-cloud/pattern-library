@@ -1,6 +1,12 @@
 @import "../settings/colors";
 @import "../settings/base";
 
+@mixin control-icon-size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+
 @mixin control-icon($width, $height: $width) {
   @include control-icon-size($width, $height);
 
@@ -10,22 +16,17 @@
   justify-content: center;
   align-items: center;
 
-  border: 1px solid $color-prim-gray-dusty;
   background: $color-bg--white;
+  border: 1px solid $color-prim-gray-dusty;
 
   cursor: pointer;
-}
 
-@mixin control-icon-size($width, $height: $width) {
-  width: $width;
-  height: $height;
-}
-
-@mixin control-inner($width, $height: $width) {
-  &::before {
-    @include control-icon-size($width, $height);
+  &::after {
+    @include control-icon-size($control-icon-inner-size, $control-icon-inner-size);
 
     border: $control-border-width solid transparent;
     content: "";
   }
 }
+
+

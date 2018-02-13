@@ -1,0 +1,83 @@
+@import "../../styles/settings/colors";
+@import "../../styles/settings/base";
+@import "../../styles/mixins/control-icon";
+@import "../../styles/mixins/visual-hidden";
+@import "../../styles/mixins/control-transition";
+
+@mixin control-base($block, $border-radius: 0) {
+  .#{$block} {
+    position: relative;
+
+    display: inline-flex;
+
+    min-height: 20px;
+
+    align-items: center;
+
+    line-height: $line-height-base;
+
+    &:hover:not(.#{$block}--disabled):not(.#{$block}--error) {
+      color: $color-axa-blue;
+
+      > .#{$block}__icon {
+        border-color: $color-axa-blue;
+
+        &::after {
+          border-color: $color-axa-blue;
+        }
+      }
+    }
+  }
+
+  .#{$block}--error {
+    color: $color-state-red-shy-tomato;
+
+    .#{$block}__icon {
+      border-color: $color-state-red-shy-tomato;
+    }
+  }
+
+  .#{$block}--disabled {
+    color: $color-prim-gray-mine-shaft;
+  }
+
+  .#{$block}__input {
+    @include visual-hidden();
+
+    &:focus + .#{$block}__icon {
+      border-color: $color-axa-blue;
+
+      &::after {
+        border-color: $color-axa-blue;
+      }
+    }
+
+    &:checked + .#{$block}__icon,
+    &[checked] + .#{$block}__icon {
+      &::after {
+        border-color: $color-axa-blue;
+        background-color: $color-axa-blue;
+      }
+    }
+
+    &:disabled + .#{$block}__icon,
+    &[disabled] + .#{$block}__icon {
+      cursor: default;
+      border-color: $color-prim-gray-dusty;
+
+      &::after {
+        border-color: transparent;
+      }
+    }
+  }
+
+  .#{$block}__icon {
+    @include control-transition();
+    @include control-icon($control-icon-size);
+    border-radius: $border-radius;
+
+    &::after {
+      border-radius: $border-radius;
+    }
+  }
+}
