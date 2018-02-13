@@ -3,7 +3,7 @@
 @import "../../styles/mixins/respond";
 
 // fix for web-components
-
+/* stylelint-disable */
 axa-form-group {
   &:not(:first-child) {
     .m-form-group:not(.m-form-group--inline) {
@@ -21,6 +21,7 @@ axa-form-group {
     }
   }
 }
+/* stylelint-enable */
 
 .m-form-group {
   &:not(:first-child):not(.m-form-group--inline) {
