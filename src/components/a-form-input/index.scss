@@ -24,6 +24,9 @@
 .a-form-input {
   @include control-transition();
   @include typo-tag();
+  @include respond-up(md) {
+    margin-top: 15px;
+  }
 
   position: relative;
 
@@ -46,10 +49,6 @@
   border: $control-border-width solid $control-border-color;
 
   appearance: none;
-
-  @include respond-up(md) {
-    margin-top: 15px;
-  }
 
   &::placeholder {
     color: $color-prim-gray-dusty;
