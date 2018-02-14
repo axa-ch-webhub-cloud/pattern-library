@@ -10,14 +10,15 @@
 
   width: 100%;
   max-width: 100%;
+}
 
-  &--inline {
-    display: inline-block;
+.a-form-input-wrapper--inline {
 
-    width: auto;
+  display: inline-block;
 
-    vertical-align: middle;
-  }
+  width: auto;
+
+  vertical-align: middle;
 }
 
 .a-form-input {
@@ -35,6 +36,8 @@
 
   padding: 0 20px;
 
+  margin-top: 10px;
+
   align-items: center;
 
   color: $color-prim-gray-mine-shaft;
@@ -44,6 +47,10 @@
 
   appearance: none;
 
+  @include respond-up(md) {
+    margin-top: 15px;
+  }
+
   &::placeholder {
     color: $color-prim-gray-dusty;
   }
@@ -51,32 +58,32 @@
   &:hover,
   &:active,
   &:focus {
-    &:not([disabled]):not(.a-form-input--error) {
+    &:not([disabled]):not(:disabled):not(.a-form-input--error) {
       border-color: $control-border-color--active;
     }
   }
 
-  &[disabled] {
+  &[disabled],
+  :disabled {
     background-color: $color-bg--gray;
-  }
-
-  &--error {
-    border-color: $control-border-color--error;
-  }
-
-  &--valid {
-    max-width: calc(100% - 48px);
-  }
-
-  &--inline {
-    display: inline-block;
-
-    width: auto;
-
-    vertical-align: middle;
   }
 }
 
+.a-form-input--error {
+  border-color: $control-border-color--error;
+}
+
+.a-form-input--valid {
+  max-width: calc(100% - 48px);
+}
+
+.a-form-input--inline {
+  display: inline-block;
+
+  width: auto;
+
+  vertical-align: middle;
+}
 
 .a-form-input__valid-icon {
   position: absolute;

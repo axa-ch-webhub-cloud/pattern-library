@@ -4,8 +4,10 @@
 @import "../../styles/mixins/visual-hidden";
 @import "../../styles/mixins/control-transition";
 
-@mixin control-base($block, $border-radius: 0) {
-  .#{$block} {
+@mixin control-base($border-radius: 0) {
+  $parent: &;
+  
+  .#{$parent} {
     position: relative;
 
     display: inline-flex;
@@ -16,10 +18,10 @@
 
     line-height: $line-height-base;
 
-    &:hover:not(.#{$block}--disabled):not(.#{$block}--error) {
+    &:hover:not(.#{$parent}--disabled):not(.#{$parent}--error) {
       color: $color-axa-blue;
 
-      > .#{$block}__icon {
+      > .#{$parent}__icon {
         border-color: $color-axa-blue;
 
         &::after {
@@ -29,22 +31,22 @@
     }
   }
 
-  .#{$block}--error {
+  .#{$parent}--error {
     color: $color-state-red-shy-tomato;
 
-    .#{$block}__icon {
+    .#{$parent}__icon {
       border-color: $color-state-red-shy-tomato;
     }
   }
 
-  .#{$block}--disabled {
+  .#{$parent}--disabled {
     color: $color-prim-gray-mine-shaft;
   }
 
-  .#{$block}__input {
+  .#{$parent}__input {
     @include visual-hidden();
 
-    &:focus + .#{$block}__icon {
+    &:focus + .#{$parent}__icon {
       border-color: $color-axa-blue;
 
       &::after {
@@ -52,16 +54,16 @@
       }
     }
 
-    &:checked + .#{$block}__icon,
-    &[checked] + .#{$block}__icon {
+    &:checked + .#{$parent}__icon,
+    &[checked] + .#{$parent}__icon {
       &::after {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
       }
     }
 
-    &:disabled + .#{$block}__icon,
-    &[disabled] + .#{$block}__icon {
+    &:disabled + .#{$parent}__icon,
+    &[disabled] + .#{$parent}__icon {
       cursor: default;
       border-color: $color-prim-gray-dusty;
 
@@ -71,7 +73,7 @@
     }
   }
 
-  .#{$block}__icon {
+  .#{$parent}__icon {
     @include control-transition();
     @include control-icon($control-icon-size);
     border-radius: $border-radius;

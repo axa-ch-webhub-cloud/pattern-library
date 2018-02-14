@@ -1,3 +1,5 @@
 @import "../../styles/mixins/control-base";
 
-@include control-base('a-radio', 50%);
+.a-radio {
+  @include control-base(50%);
+}

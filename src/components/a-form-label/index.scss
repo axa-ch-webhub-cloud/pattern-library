@@ -6,13 +6,8 @@
   @include typo-secondary-text--semibold();
 
   display: block;
-  padding-bottom: 10px;
 
   &--disabled {
     color: $color-prim-gray-dusty;
-  }
-
-  @include respond-up(md) {
-    padding-bottom: 15px;
   }
 }

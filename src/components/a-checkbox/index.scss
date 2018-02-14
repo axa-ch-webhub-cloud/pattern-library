@@ -1,4 +1,7 @@
 @import "../../styles/mixins/control-base";
 
-@include control-base('a-checkbox');
+.a-checkbox {
+  @include control-base();
+}
+
 
