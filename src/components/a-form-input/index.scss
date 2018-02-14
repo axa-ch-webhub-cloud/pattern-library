@@ -24,9 +24,6 @@
 .a-form-input {
   @include control-transition();
   @include typo-tag();
-  @include respond-up(md) {
-    margin-top: 15px;
-  }
 
   position: relative;
 
@@ -65,6 +62,10 @@
   &[disabled],
   :disabled {
     background-color: $color-bg--gray;
+  }
+
+  @include respond-up(md) {
+    margin-top: 15px;
   }
 }
 
