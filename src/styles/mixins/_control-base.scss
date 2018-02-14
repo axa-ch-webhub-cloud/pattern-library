@@ -7,7 +7,7 @@
 
 @mixin control-base($border-radius: 0) {
   $parent: &;
-  
+
   .#{$parent} {
     position: relative;
 
