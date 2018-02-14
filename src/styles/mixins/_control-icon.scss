@@ -1,5 +1,5 @@
 @import "../settings/colors";
-@import "../settings/base";
+@import "../settings/controls";
 
 @mixin control-icon-size($width, $height: $width) {
   width: $width;
