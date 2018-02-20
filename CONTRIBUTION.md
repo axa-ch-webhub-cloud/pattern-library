@@ -12,6 +12,7 @@ Make sure to be familiar with:
  - [SCSS](https://sass-lang.com/)
  - [PostCSS](http://postcss.org/)
  - [BEM](http://getbem.com/) or [here](https://en.bem.info/)
+ - [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/)
  - and [WebComponents](https://www.webcomponents.org/)
 
 # Crafting a new component
