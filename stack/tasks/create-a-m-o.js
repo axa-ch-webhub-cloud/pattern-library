@@ -159,7 +159,7 @@ const writePreviewAndHtml = (path, _name) => {
   );
   fs.writeFileSync(
     `${path}/_example.html`,
-    outdent`<!--Please create here a HTML exmple by using just default HTML tags-->
+    outdent`<!--Please create here a HTML example by using just default HTML tags-->
     `
     , (err) => {
       if (err) {
