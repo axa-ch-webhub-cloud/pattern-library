@@ -4,7 +4,8 @@
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "scripts": {
-    "test": "parallelshell 'npm run test-eslint' 'npm run test-stylelint'",
+    "test": "parallelshell 'npm run test-editorconfig' 'npm run test-eslint' 'npm run test-stylelint'",
+    "test-editorconfig": "editorconfig-checker src",
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
     "start": "npm run serve-build-prod",
