@@ -45,11 +45,11 @@ We stick to hyphenated atomic BEM naming for CSS classes as follows:
 
 ### JS
 
-To facilitate custom non-webcomponent integrations we stick to adaptive implementations of interactive JS code, i.e. we consider Web-Components barely as another DOM-Selector layer and pass those DOM-nodes to concrete implementations hosted within the `js/` sub folder. Which could the be called any DOM-Selecting utility like `jQuery`, `document.querySelector`, you name it.
+To facilitate custom non-webcomponent integrations we stick to adaptive implementations of interactive JS code, i.e. we consider Web-Components barely as another DOM-Selector layer and pass those DOM-nodes to concrete implementations hosted within the `js/` sub folder. Which could then be called by any DOM-Selecting utility like `jQuery`, `document.querySelector`, you name it.
 
 ### HTML
 
-Write semantic and valid HTML 5 markup.
+Write semantic and valid HTML 5 markup - no `<div>` mess allowed.
 
 ## Scaffolding
 
@@ -66,12 +66,12 @@ This script will:
   - type `m` for a molecule or 
   - type `o` for an organism
 - Based on your input it will create a new folder with the following structure:
-  - `components/a-your-component-name/`
+  - `components/(a|m|o)-your-component-name/`
     - `_example.html` - this file contains full-fledged interactive demo code.
     - `_preview.html` - this will be rendered within the **patterns-library** preview.
-    - `_template.js` - return the inner HTML of your web component here.
+    - `_template.js` - return the inner HTML of your web component here by [bel](https://github.com/shama/bel).
     - `index.js` - define your custom element here, by extending our provided JS classes.
-    - `index.scss` - here goes your CSS
+    - `index.scss` - here goes your CSS.
 
 # How do we release a new version
 
