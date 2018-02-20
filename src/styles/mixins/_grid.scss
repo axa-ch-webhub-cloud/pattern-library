@@ -47,7 +47,7 @@
 @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include respond-up($breakpoint, $breakpoints) {
-      @include make-max-width($breakpoint: $breakpoint);
+      @include make-max-width($breakpoint: $breakpoint, $max-widths: $max-widths);
     }
   }
 }
