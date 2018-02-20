@@ -42,6 +42,10 @@ We stick to hyphenated atomic BEM naming for CSS classes as follows:
 
 **Note:** Never mix prefixes, the general rule is `.prefix-block__element--modifier`. States must include their corrisponding block, like `.is|has-block-state`.
 
+### JS
+
+To facilitate custom non-webcomponent integrations we stick to adaptive implementations of interactive JS code, i.e. we consider Web-Components barely as another DOM-Selector layer and pass those DOM-nodes to concrete implementations hosted within the `js/` sub folder. Which could the be called any DOM-Selecting utility like `jQuery`, `document.querySelector`, you name it.
+
 ## Scaffolding
 
 To help you adding new components fast, we provide an interactive CLI command for scaffolding new components - just follow the instructions by running:
