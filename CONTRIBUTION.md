@@ -11,6 +11,7 @@ Make sure to be familiar with:
  - [Babel](https://babeljs.io/)
  - [SCSS](https://sass-lang.com/)
  - [PostCSS](http://postcss.org/)
+ - [BEM](http://getbem.com/) or [here](https://en.bem.info/)
  - and [WebComponents](https://www.webcomponents.org/)
 
 # Crafting a new component
