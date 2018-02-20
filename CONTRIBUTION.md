@@ -10,6 +10,7 @@ Make sure to be familiar with:
  - [ES6](http://es6-features.org/) and beyond
  - [Babel](https://babeljs.io/)
  - [SCSS](https://sass-lang.com/)
+ - [PostCSS](http://postcss.org/)
  - and [WebComponents](https://www.webcomponents.org/)
 
 # Crafting a new component
