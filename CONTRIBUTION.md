@@ -46,6 +46,10 @@ We stick to hyphenated atomic BEM naming for CSS classes as follows:
 
 To facilitate custom non-webcomponent integrations we stick to adaptive implementations of interactive JS code, i.e. we consider Web-Components barely as another DOM-Selector layer and pass those DOM-nodes to concrete implementations hosted within the `js/` sub folder. Which could the be called any DOM-Selecting utility like `jQuery`, `document.querySelector`, you name it.
 
+### HTML
+
+Write semantic and valid HTML 5 markup.
+
 ## Scaffolding
 
 To help you adding new components fast, we provide an interactive CLI command for scaffolding new components - just follow the instructions by running:
