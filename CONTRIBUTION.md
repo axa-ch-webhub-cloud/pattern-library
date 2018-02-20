@@ -40,7 +40,7 @@ We stick to hyphenated atomic BEM naming for CSS classes as follows:
 - Utility prefix `.u-*`
 - JS interaction class prefix `.js-*`
 
-**Note:** Never mix prefixes, the general rule is `.prefix-block__element--modifier`. States must include their corrisponding block, like `.is|has-block-state`.
+**Note:** Never mix prefixes, the general rule is `.prefix-block__element--modifier`. States must include their corresponding block, like `.is|has-block-state`.
 
 ### JS
 
@@ -60,7 +60,7 @@ This script will:
   - type `a` for an atom,
   - type `m` for a molecule or 
   - type `o` for an organism
-- Based on your input it will create a new folder with the following structur:
+- Based on your input it will create a new folder with the following structure:
   - `components/a-your-component-name/`
     - `_example.html` - this file contains full-fledged interactive demo code.
     - `_preview.html` - this will be rendered within the **patterns-library** preview.
