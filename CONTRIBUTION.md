@@ -14,6 +14,7 @@ Make sure to be familiar with:
  - [BEM](http://getbem.com/) or [here](https://en.bem.info/)
  - [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/)
  - and [WebComponents](https://www.webcomponents.org/)
+ - [SemVer](https://semver.org/)
 
 # Crafting a new component
 
@@ -71,3 +72,9 @@ This script will:
     - `_template.js` - return the inner HTML of your web component here.
     - `index.js` - define your custom element here, by extending our provided JS classes.
     - `index.scss` - here goes your CSS
+
+# How do we release a new version
+
+Please run `npm run release` and follow the steps in the wizard.
+
+For more information: We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release

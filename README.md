@@ -66,12 +66,6 @@ Super easy: Read the specs and then just execute `npm run new`. Follow the instr
 * to run server and watchers (this is what you want while you are developing) `npm run serve`
 * to run the PROD server `npm run serve-build-prod`
 
-## How do we release a new version
-
-Please run `npm run release` and follow the steps in the wizard
-
-For more information: We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
-
 ## Usage guide - With just Webcomponents (no framework)
 
 __this code snipped is tested on FF, IE11, EDGE, Chrome, Safari, Mobile Chrome, Mobile Safari__
