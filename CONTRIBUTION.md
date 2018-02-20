@@ -1,15 +1,16 @@
 # First things first
 
 Setup your IDE to properly integrate with:
- - EditorConfig
- - ESLint
- - StyleLint
- - NVM
+ - [EditorConfig](http://editorconfig.org/)
+ - [ESLint](https://eslint.org/)
+ - [StyleLint](https://stylelint.io/)
+ - [NVM](https://github.com/creationix/nvm)
 
 Make sure to be familiar with:
- - ESNext
- - SCSS
- - and WebComponents
+ - [ES6](http://es6-features.org/) and beyond
+ - [Babel](https://babeljs.io/)
+ - [SCSS](https://sass-lang.com/)
+ - and [WebComponents](https://www.webcomponents.org/)
 
 # Crafting a new component
 
