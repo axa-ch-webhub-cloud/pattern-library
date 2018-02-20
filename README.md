@@ -102,6 +102,8 @@ all the possible fonts avaiable. The index.css contains all the basic page setti
 
 ## Developers Guide:
 
+Please see our [contribution file](./CONTRIBUTION.md).
+
 ### Publish / Subscribe between webcomponents
 
 To listen to events and triggers between components, we use some decoupled events. This logic is included in the `BaseComponent` class and is available for every component.
