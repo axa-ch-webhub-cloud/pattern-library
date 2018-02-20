@@ -13,8 +13,8 @@ Make sure to be familiar with:
  - [PostCSS](http://postcss.org/)
  - [BEM](http://getbem.com/) or [here](https://en.bem.info/)
  - [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/)
- - and [WebComponents](https://www.webcomponents.org/)
- - [SemVer](https://semver.org/)
+ - [WebComponents](https://www.webcomponents.org/), especially [Custom Elements](https://html.spec.whatwg.org/multipage/custom-elements.html)
+ - and [SemVer](https://semver.org/)
 
 # Crafting a new component
 
