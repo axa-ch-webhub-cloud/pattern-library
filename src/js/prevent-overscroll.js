@@ -14,12 +14,12 @@ import debounce from './debounce';
  */
 function preventOverscroll(node, body = document.body) {
   const offStart = on(node, 'touchstart', touchstart);
-  const offScroll = on(node, 'scroll', debounce(limitScrollTop), 100);
+  const offScroll = on(node, 'scroll', debounce(limitScroll), 100);
   const offBody = on(body, 'touchmove', bodymove);
   let offMove;
   let offEnd;
 
-  limitScrollTop();
+  limitScroll();
 
   return cleanUp;
 
@@ -28,7 +28,7 @@ function preventOverscroll(node, body = document.body) {
     offMove = on(node, 'touchmove', touchmove);
     offEnd = on(node, 'touchend', touchend);
 
-    limitScrollTop();
+    limitScroll();
   }
 
   function touchmove(event) {
@@ -50,10 +50,10 @@ function preventOverscroll(node, body = document.body) {
       offEnd = null;
     }
 
-    limitScrollTop();
+    limitScroll();
   }
 
-  function limitScrollTop() {
+  function limitScroll() {
     const { scrollTop, scrollHeight, offsetHeight } = node;
     const currentScroll = scrollTop + offsetHeight;
 
