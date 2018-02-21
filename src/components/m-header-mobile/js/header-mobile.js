@@ -43,7 +43,7 @@ class HeaderMobile {
   on() {
     this.off();
 
-    this.offOverscroll = preventOverscroll(this.rootNode);
+    this.offOverscroll = preventOverscroll(this.canvas);
     this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
     this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
