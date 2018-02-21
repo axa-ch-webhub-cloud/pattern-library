@@ -19,6 +19,8 @@ function preventOverscroll(node, body = document.body) {
   let offMove;
   let offEnd;
 
+  limitScrollTop();
+
   return cleanUp;
 
   function touchstart() {
