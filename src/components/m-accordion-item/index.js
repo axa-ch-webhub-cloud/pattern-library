@@ -22,7 +22,7 @@ class AXAAccordionItem extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} a-accordion-item`;
+    this.className = `${this.initialClassName} m-accordion-item`;
     // Your DOM interaction here, but keep it decoupled.
     // If you don't have any, just remove this function
   }

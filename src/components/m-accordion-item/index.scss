@@ -1,0 +1,110 @@
+@import "../../styles/mixins/typo";
+
+.m-accordion-item {
+  display: block;
+}
+
+.m-accordion-item__input {
+  &:checked ~,
+  &[checked] ~ {
+    .m-accordion-item__header {
+      .m-accordion-item__header__chevron {
+        transform: rotate(180deg);
+      }
+    }
+
+    .m-accordion-item__body {
+      max-height: 50rem;
+    }
+  }
+}
+
+.m-accordion-item__header {
+  position: relative;
+
+  display: flex;
+
+  margin: 0;
+
+  padding: 18px 60px 18px 10px;
+
+  align-items: center;
+
+  border: 0 solid $color-prim-gray-silver;
+  border-top-width: 1px;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.m-accordion-item__header__primary--with-icon {
+  .m-accordion-item__header__wrapper {
+    margin-left: 20px;
+  }
+
+  ~ .m-accordion-item__body {
+    padding-left: 32px;
+
+    .m-accordion-item__content {
+      padding: 2px 60px 18px 10px;
+    }
+  }
+}
+
+.m-accordion-item__header__wrapper {
+  margin-left: 18px;
+}
+
+.m-accordion-item__header__chevron {
+  position: absolute;
+
+  top: calc(50% - 8px);
+  right: 18px;
+
+  height: 16px;
+  width: 16px;
+
+  color: $color-axa-blue;
+  transition: all 0.2s ease;
+}
+
+.m-accordion-item__header__primary {
+  @include typo-item-highlight(Bold);
+  display: block;
+}
+
+.m-accordion-item__header__primary--with-secondary {
+  @include typo-secondary-text(Bold);
+}
+
+.m-accordion-item__header__primary--blue {
+  color: $color-axa-blue;
+}
+
+.m-accordion-item__header__icon-wrapper {
+  display: inline-flex;
+}
+
+.m-accordion-item__header__icon {
+  height: 30px;
+  width: 30px;
+
+  color: $color-axa-blue;
+}
+
+.m-accordion-item__header__secondary {
+  @include typo-tag();
+  display: block;
+  color: $color-prim-gray;
+}
+
+.m-accordion-item__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease;
+}
+
+.m-accordion-item__content {
+  margin-left: 18px;
+  padding: 2px 60px 18px 10px;
+}
