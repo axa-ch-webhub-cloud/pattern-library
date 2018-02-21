@@ -2,11 +2,8 @@
 
 .m-accordion-item {
   display: block;
-}
 
-.m-accordion-item__input {
-  &:checked ~,
-  &[checked] ~ {
+  &[open] {
     .m-accordion-item__header {
       .m-accordion-item__header__chevron {
         transform: rotate(180deg);
@@ -18,6 +15,7 @@
     }
   }
 }
+
 
 .m-accordion-item__header {
   position: relative;

@@ -1,4 +1,6 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import getAttribute from '../../js/get-attribute';
+import on from '../../js/on';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -8,12 +10,6 @@ import wcdomready from '../../js/wcdomready';
 class AXAAccordion extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
-
-    // does this provide context (See docs for context) ?
-    // this.enableContext()
-
-    // or do you want to consume a specific context
-    // this.selectContext('axa-context-provider');
   }
 
   /**
@@ -23,20 +19,51 @@ class AXAAccordion extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} m-accordion`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+
+    const accordionItems = [...this.getAllAccordionItems()];
+
+    if (!accordionItems || accordionItems.length === 0) {
+      throw new Error(`No axa-accordion-item found inside ${this}!`);
+    }
+
+    accordionItems.forEach((item) => {
+      on(item, 'accordion-item-opened', (event) => {
+        this.accordionItemToggled(event);
+      });
+    });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    // Don't forget to cleanup :)
   }
 
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
+  accordionItemToggled(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const accordionItems = [...this.getAllAccordionItems()];
+
+    const multiple = getAttribute(this, 'multiple');
+    if (!multiple) {
+      accordionItems.forEach((item) => {
+        if (event.target === item) {
+          item.setAttribute('open', true);
+        } else {
+          item.removeAttribute('open');
+        }
+      });
+    }
+  }
+
+  getOpenAccordionItems() {
+    return [...this.getAllAccordionItems()].filter(item => getAttribute(item, 'open'));
+  }
+
+  getAllAccordionItems() {
+    return this.querySelectorAll('axa-accordion-item');
+  }
+
+
 }
 
 wcdomready(() => {

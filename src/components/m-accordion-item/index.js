@@ -1,4 +1,6 @@
 import { BaseComponentGlobal } from '../_abstract/component-types';
+import CustomEvent from '../../js/custom-event';
+import on from '../../js/on';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -6,6 +8,7 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAAccordionItem extends BaseComponentGlobal {
+
   constructor() {
     super(styles, template);
 
@@ -23,8 +26,18 @@ class AXAAccordionItem extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} m-accordion-item`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+
+    const header = this.querySelector('.m-accordion-item__header');
+    console.log('test: ')
+
+    console.log(header)
+
+    on(header, 'click', (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      this.dispatchEvent(new CustomEvent('accordion-item-opened'));
+    });
   }
 
   disconnectedCallback() {
