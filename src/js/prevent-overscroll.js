@@ -7,12 +7,13 @@ import on from './on';
  * @link https://github.com/luster-io/prevent-overscroll
  * @link http://blog.christoffer.online/2015-06-10-six-things-i-learnt-about-ios-rubberband-overflow-scrolling/
  * @license MIT
- * @param {Element} node - Any Element which is scrollable.
+ * @param {Element} node - Any element which is scrollable.
+ * @param {Element} body [document.body] - A prent element which is scrollable.
  * @returns {cleanUp} - Returns a functions which properly removes the event listeners from the targets.
  */
-function preventOverscroll(node) {
+function preventOverscroll(node, body = document.body) {
   const offStart = on(node, 'touchstart', touchstart);
-  const offBody = on(document.body, 'touchmove', bodymove);
+  const offBody = on(body, 'touchmove', bodymove);
   let offMove;
   let offEnd;
 
