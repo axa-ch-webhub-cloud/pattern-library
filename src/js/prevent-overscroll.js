@@ -1,4 +1,5 @@
 import on from './on';
+import debounce from './debounce';
 
 /**
  * Prevents overscroll on mobile devices.
@@ -13,6 +14,7 @@ import on from './on';
  */
 function preventOverscroll(node, body = document.body) {
   const offStart = on(node, 'touchstart', touchstart);
+  const offScroll = on(node, 'scroll', debounce(limitScrollTop), 100);
   const offBody = on(body, 'touchmove', bodymove);
   let offMove;
   let offEnd;
@@ -24,19 +26,7 @@ function preventOverscroll(node, body = document.body) {
     offMove = on(node, 'touchmove', touchmove);
     offEnd = on(node, 'touchend', touchend);
 
-    const { scrollTop, scrollHeight, offsetHeight } = node;
-    const currentScroll = scrollTop + offsetHeight;
-
-    // If we're at the top or the bottom of the containers
-    // scroll, push up or down one pixel.
-    //
-    // this prevents the scroll from "passing through" to
-    // the body.
-    if (scrollTop === 0) {
-      node.scrollTop = 1;
-    } else if (currentScroll === scrollHeight) {
-      node.scrollTop = scrollTop - 1;
-    }
+    limitScrollTop();
   }
 
   function touchmove(event) {
@@ -57,6 +47,24 @@ function preventOverscroll(node, body = document.body) {
       offEnd();
       offEnd = null;
     }
+
+    limitScrollTop();
+  }
+
+  function limitScrollTop() {
+    const { scrollTop, scrollHeight, offsetHeight } = node;
+    const currentScroll = scrollTop + offsetHeight;
+
+    // If we're at the top or the bottom of the containers
+    // scroll, push up or down one pixel.
+    //
+    // this prevents the scroll from "passing through" to
+    // the body.
+    if (scrollTop === 0) {
+      node.scrollTop = 1;
+    } else if (currentScroll === scrollHeight) {
+      node.scrollTop = scrollTop - 1;
+    }
   }
 
   function bodymove(event) {
@@ -69,6 +77,7 @@ function preventOverscroll(node, body = document.body) {
 
   function cleanUp() {
     offStart();
+    offScroll();
     offBody();
 
     touchend();
