@@ -61,7 +61,7 @@ function preventOverscroll(node) {
 
   function bodymove(event) {
     // In this case, the default behavior is scrolling the body, which
-    // would result in an overflow.  Since we don't want that, we preventDefault.
+    // would result in an overflow. Since we don't want that, we preventDefault.
     if (!event._isScroller) {
       event.preventDefault();
     }
