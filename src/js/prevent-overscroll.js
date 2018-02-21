@@ -1,5 +1,15 @@
 import on from './on';
 
+/**
+ * Prevents overscroll on mobile devices.
+ * Idea copied from following link.
+ *
+ * @link https://github.com/luster-io/prevent-overscroll
+ * @link http://blog.christoffer.online/2015-06-10-six-things-i-learnt-about-ios-rubberband-overflow-scrolling/
+ * @license MIT
+ * @param {Element} node - Any Element which is scrollable.
+ * @returns {cleanUp} - Returns a functions which properly removes the event listeners from the targets.
+ */
 function preventOverscroll(node) {
   const offStart = on(node, 'touchstart', touchstart);
   const offBody = on(document.body, 'touchmove', bodymove);
