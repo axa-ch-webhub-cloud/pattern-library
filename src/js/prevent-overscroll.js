@@ -57,7 +57,6 @@ function preventOverscroll(node, body = document.body) {
       offEnd();
       offEnd = null;
     }
-
   }
 
   function bodymove(event) {
