@@ -1,4 +1,5 @@
 import on from '../../../js/on';
+import preventOverscroll from '../../../js/prevent-overscroll';
 import { add, remove } from '../../../js/class-list';
 import { publish, subscribe } from '../../../js/pubsub';
 
@@ -42,11 +43,16 @@ class HeaderMobile {
   on() {
     this.off();
 
+    this.offOverscroll = preventOverscroll(this.rootNode);
     this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
     this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
 
   off() {
+    if (this.offOverscroll) {
+      this.offOverscroll();
+    }
+
     if (this.unBackdropClick) {
       this.unBackdropClick();
     }
