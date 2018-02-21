@@ -6,7 +6,7 @@ export default () => bel`
     <h2 class="a-typo__page-title--publico">Page Title</h2>
     <h3 class="a-typo__slice-title--publico">Slice Title</h3>
     <h4 class="a-typo__small-module-title--publico">Small Module Title</h4>
-    
+
     <h1 class="a-typo__main-title">Main Title</h1>
     <h2 class="a-typo__page-title">Page Title</h2>
     <h3 class="a-typo__slice-title">Slice Title</h3>
@@ -38,7 +38,7 @@ export default () => bel`
       <br>
       <span class="a-typo__tag--bold">Tag (Bold)</span>
     </p>
-    
+
     <p>
       <span class="a-typo__legals">Legals</span>
       <br>

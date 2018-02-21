@@ -5,6 +5,7 @@
   "main": "stack/server.js",
   "scripts": {
     "test": "parallelshell 'npm run test-eslint' 'npm run test-stylelint'",
+    "test-editorconfig": "editorconfig-checker src",
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
     "start": "npm run serve-build-prod",
@@ -91,6 +92,7 @@
     "cross-env": "^5.1.1",
     "cssnano": "^3.10.0",
     "del": "~3.0.0",
+    "editorconfig-checker": "^1.1.5",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
