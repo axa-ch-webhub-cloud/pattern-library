@@ -19,6 +19,8 @@ function preventOverscroll(node, body = document.body) {
   let offMove;
   let offEnd;
 
+  // clicking at hardware accelerated elements seem to prevent settings scrollTop
+  // hence we need to make sure boundaries properly set before and after scroll
   limitScroll();
 
   return cleanUp;
