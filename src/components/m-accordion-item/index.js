@@ -6,19 +6,14 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
+import AccordionItem from './js/accordion-item';
 
 class AXAAccordionItem extends BaseComponentGlobal {
 
   constructor() {
     super(styles, template);
 
-    this.onHeaderClick = this.onHeaderClick.bind(this);
-
-    // does this provide context (See docs for context) ?
-    // this.enableContext()
-
-    // or do you want to consume a specific context
-    // this.selectContext('axa-context-provider');
+    this.selectContext('axa-accordion');
   }
 
   /**
@@ -27,10 +22,9 @@ class AXAAccordionItem extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-accordion-item`;
+    this.className = `${this.initialClassName} m-accordion-item js-accordion-item`;
 
-    const header = this.querySelector('.m-accordion-item__header');
-    on(header, 'click', this.onHeaderClick);
+    this.interaction = new AccordionItem(this);
   }
 
   disconnectedCallback() {
@@ -39,17 +33,9 @@ class AXAAccordionItem extends BaseComponentGlobal {
     // Don't forget to cleanup :)
   }
 
-  onHeaderClick(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
-    this.dispatchEvent(new CustomEvent('accordion-item-opened'));
+  contextCallback(contextNode) {
+    this.interaction.contextNode = contextNode;
   }
-
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
 }
 
 wcdomready(() => {

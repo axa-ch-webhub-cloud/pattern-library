@@ -10,6 +10,8 @@ import wcdomready from '../../js/wcdomready';
 class AXAAccordion extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
+
+    this.enableContext();
   }
 
   /**
@@ -18,54 +20,13 @@ class AXAAccordion extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-accordion`;
+    this.className = `${this.initialClassName} m-accordion js-accordion`;
 
-    const accordionItems = [...this.getAllAccordionItems()];
-
-    if (!accordionItems || accordionItems.length === 0) {
-      throw new Error(`No axa-accordion-item found inside ${this}!`);
-    }
-
-    accordionItems.forEach((item) => {
-      on(item, 'accordion-item-opened', (event) => {
-        this.accordionItemToggled(event);
-      });
-    });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
   }
-
-  accordionItemToggled(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
-    const accordionItems = [...this.getAllAccordionItems()];
-
-    const multiple = getAttribute(this, 'multiple');
-    accordionItems.forEach((item) => {
-      const isOpen = getAttribute(item, 'open');
-      if (event.target === item) {
-        if (isOpen) {
-          item.removeAttribute('open');
-        } else {
-          item.setAttribute('open', true);
-        }
-      } else if (!multiple) {
-        item.removeAttribute('open');
-      }
-    });
-  }
-
-  getOpenAccordionItems() {
-    return [...this.getAllAccordionItems()].filter(item => getAttribute(item, 'open'));
-  }
-
-  getAllAccordionItems() {
-    return this.querySelectorAll('axa-accordion-item');
-  }
-
 
 }
 
