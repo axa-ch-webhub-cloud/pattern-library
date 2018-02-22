@@ -106,8 +106,8 @@
 
 .m-header-sub-navigation__row {
   @include make-row(null);
-  margin-right: -$header-sub-navigation__block-x-padding;
 
+  margin-right: -$header-sub-navigation__block-x-padding;
   margin-left: -$header-sub-navigation__block-x-padding;
 
   justify-content: flex-start;
@@ -132,58 +132,68 @@
 
   padding: $header-sub-navigation__block-y-padding $header-sub-navigation__block-x-padding;
 
-  border-left: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
+  border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
 
-  &:first-child {
+  &:last-child {
     border: none;
   }
 
   .m-header-sub-navigation__row--col-2 & {
-    &:nth-child(2n + 1) {
-      border: none;
-    }
+    @include make-col(6);
 
     &:nth-child(n + 3) {
       padding-top: $header-sub-navigation__block-padding-top--repeat;
+      border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
+    }
+
+    &:nth-child(2n) {
+      border: none;
     }
   }
 
   .m-header-sub-navigation__row--col-3 & {
-    &:nth-child(3n + 1) {
-      border: none;
-    }
+    @include make-col(4);
 
     &:nth-child(n + 4) {
       padding-top: $header-sub-navigation__block-padding-top--repeat;
+      border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
+    }
+
+    &:nth-child(3n) {
+      border: none;
     }
   }
 
   .m-header-sub-navigation__row--col-4 & {
-    &:nth-child(4n + 1) {
-      border: none;
-    }
-
     &:nth-child(n + 5) {
       padding-top: $header-sub-navigation__block-padding-top--repeat;
+      border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
+    }
+
+    &:nth-child(4n) {
+      border: none;
     }
   }
 
-  @include quantity-query(1) {
-    @include make-col(4);
-  }
+  // CSS quantity based layout should only match if no column size modifiers are defined
+  .m-header-sub-navigation__row:not(.m-header-sub-navigation__row--col-2):not(.m-header-sub-navigation__row--col-3):not(.m-header-sub-navigation__row--col-4) & {
+    @include quantity-query(1) {
+      @include make-col(4);
+    }
 
-  @include quantity-query(2) {
-    @include make-col(3);
-    padding-right: $header-sub-navigation__block-x-padding-2-columns;
+    @include quantity-query(2) {
+      @include make-col(3);
 
-    padding-left: $header-sub-navigation__block-x-padding-2-columns;
-  }
+      padding-right: $header-sub-navigation__block-x-padding-2-columns;
+      padding-left: $header-sub-navigation__block-x-padding-2-columns;
+    }
 
-  @include quantity-query(3n) {
-    @include make-col(4);
-    padding-right: $header-sub-navigation__block-x-padding-3-columns;
+    @include quantity-query(3n) {
+      @include make-col(4);
 
-    padding-left: $header-sub-navigation__block-x-padding-3-columns;
+      padding-right: $header-sub-navigation__block-x-padding-3-columns;
+      padding-left: $header-sub-navigation__block-x-padding-3-columns;
+    }
   }
 }
 
