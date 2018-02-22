@@ -5,8 +5,8 @@ const hasDropdownBreakpoints = 'xs';
 
 // @TODO: dependency to a-device-state not explicit
 export default class FooterLinks {
-  constructor(rootNode) {
-    this.rootNode = rootNode;
+  constructor(wcNode) {
+    this.wcNode = wcNode;
 
     this.on();
   }
@@ -19,7 +19,7 @@ export default class FooterLinks {
       const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
 
       if (hasDropdown && !this.dropDown) {
-        this.dropDown = new DropDown(this.rootNode);
+        this.dropDown = new DropDown(this.wcNode);
       } else if (!hasDropdown && this.dropDown) {
         this.dropDown.destroy();
         delete this.dropDown;
@@ -41,6 +41,6 @@ export default class FooterLinks {
       delete this.dropDown;
     }
 
-    delete this.rootNode;
+    delete this.wcNode;
   }
 }

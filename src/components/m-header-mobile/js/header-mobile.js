@@ -13,8 +13,8 @@ class HeaderMobile {
     isBodyFrozen: 'is-body-frozen',
   }
 
-  constructor(rootNode, options) {
-    this.rootNode = rootNode;
+  constructor(wcNode, options) {
+    this.wcNode = wcNode;
     this.options = {
       ...HeaderMobile.DEFAULTS,
       ...options,
@@ -30,8 +30,8 @@ class HeaderMobile {
   }
 
   init() {
-    this.canvas = this.rootNode.querySelector(this.options.canvas);
-    this.backdrop = this.rootNode.querySelector(this.options.backdrop);
+    this.canvas = this.wcNode.querySelector(this.options.canvas);
+    this.backdrop = this.wcNode.querySelector(this.options.backdrop);
   }
 
   set contextNode(value) {
@@ -84,7 +84,7 @@ class HeaderMobile {
 
   open() {
     add(document.body, this.options.isBodyFrozen);
-    add(this.rootNode, this.options.isMenuOpenClass);
+    add(this.wcNode, this.options.isMenuOpenClass);
 
     this.on();
   }
@@ -109,7 +109,7 @@ class HeaderMobile {
     });
 
     add(this.backdrop, this.options.isBackdropFading);
-    remove(this.rootNode, this.options.isMenuOpenClass);
+    remove(this.wcNode, this.options.isMenuOpenClass);
     remove(document.body, this.options.isBodyFrozen);
   }
 
@@ -121,7 +121,7 @@ class HeaderMobile {
     this.off();
     this.offContextEnabled();
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.canvas;
     delete this.backdrop;
     delete this._contextNode;

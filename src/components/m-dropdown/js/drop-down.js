@@ -10,17 +10,17 @@ class DropDown extends UiEvents {
     isOpenClass: 'is-dropdown-open',
   }
 
-  constructor(rootNode, options) {
+  constructor(wcNode, options) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...DropDown.DEFAULTS,
       ...options,
     };
 
-    super(rootNode, options);
+    super(wcNode, options);
 
     this.options = options;
-    this.rootNode = rootNode;
+    this.wcNode = wcNode;
 
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
   }
@@ -28,7 +28,7 @@ class DropDown extends UiEvents {
   onInteractive() {
     this.offInteractive();
 
-    this.unTransitionEnd = on(this.rootNode, 'transitionend', this.handleTransitionEnd);
+    this.unTransitionEnd = on(this.wcNode, 'transitionend', this.handleTransitionEnd);
   }
 
   offInteractive() {
@@ -80,7 +80,7 @@ class DropDown extends UiEvents {
   destroy() {
     super.destroy();
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.options;
   }
 }

@@ -16,8 +16,8 @@ class Burger {
     burgerState: 'is-burger-open',
   }
 
-  constructor(rootNode, options) {
-    this.rootNode = rootNode;
+  constructor(wcNode, options) {
+    this.wcNode = wcNode;
     this.options = {
       ...Burger.DEFAULTS,
       ...options,
@@ -34,7 +34,7 @@ class Burger {
   }
 
   init() {
-    this.burger = this.rootNode.querySelector(this.options.burger);
+    this.burger = this.wcNode.querySelector(this.options.burger);
 
     this.on();
   }
@@ -69,8 +69,8 @@ class Burger {
     this.off();
 
     this._unBurgerClick = on(this.burger, EVENTS.CLICK, this._handleBurgerClick);
-    this._unResize = on(ownerWindow(this.rootNode), EVENTS.RESIZE, this._handleResize);
-    this._unCloseEscape = on(this.rootNode.ownerDocument, EVENTS.KEYUP, this._handleKeyUp);
+    this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, this._handleResize);
+    this._unCloseEscape = on(this.wcNode.ownerDocument, EVENTS.KEYUP, this._handleKeyUp);
   }
 
   off() {
@@ -124,12 +124,12 @@ class Burger {
     // @TODO: quick fix for scroll position
     // turns out it needs to scroll to sticky elements holder
     // turns out further, that this triggers scroll events
-    const y = posY(this.rootNode);
+    const y = posY(this.wcNode);
 
     if (y !== 0 && y !== getScrollTop()) {
       publish('sticky-container/freeze-direction');
       // @TODO: This scroll to the `axa-sticky` parent node, should be selectable or contextual
-      scrollTo(this.rootNode.parentNode.parentNode.parentNode.parentNode);
+      scrollTo(this.wcNode.parentNode.parentNode.parentNode.parentNode);
       requestAnimationFrame(() => {
         setTimeout(() => {
           publish('sticky-container/thaw-direction');

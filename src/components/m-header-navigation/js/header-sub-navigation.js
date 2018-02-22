@@ -8,8 +8,8 @@ class HeaderSubNavigation extends UiEvents {
     openClass: 'is-header-sub-navigation-open',
   };
 
-  constructor(rootNode, options = {}) {
-    super(rootNode, {
+  constructor(wcNode, options = {}) {
+    super(wcNode, {
       containerClass: '.js-header-navigation__list',
       toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
@@ -18,7 +18,7 @@ class HeaderSubNavigation extends UiEvents {
       escapeClose: !options.simpleMenu,
     });
 
-    this.rootNode = rootNode;
+    this.wcNode = wcNode;
     this.options = {
       ...HeaderSubNavigation.DEFAULTS,
       ...options,
@@ -28,7 +28,7 @@ class HeaderSubNavigation extends UiEvents {
   }
 
   init() {
-    this.list = this.rootNode.querySelector(this.options.list);
+    this.list = this.wcNode.querySelector(this.options.list);
   }
 
   enter(node) {
@@ -47,7 +47,7 @@ class HeaderSubNavigation extends UiEvents {
   destroy() {
     super.destroy();
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.options;
   }
 }
