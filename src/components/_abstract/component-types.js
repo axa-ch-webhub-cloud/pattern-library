@@ -148,7 +148,7 @@ export class BaseComponent extends HTMLElement {
    * @param name
    */
   selectContext(name) {
-    this.__selectedContext = name.toLowerCase();
+    this.__selectedContext = name && name.toLowerCase();
   }
 
   _makeContextReady({ detail: contextName } = {}) {
