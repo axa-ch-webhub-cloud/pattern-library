@@ -15,8 +15,8 @@ class UiEvents {
     useDefaultEvent: false,
   };
 
-  constructor(rootNode, options = {}) {
-    this._rootNode = rootNode;
+  constructor(wcNode, options = {}) {
+    this._wcNode = wcNode;
     this._options = {
       ...UiEvents.DEFAULTS,
       ...options,
@@ -32,7 +32,7 @@ class UiEvents {
   _init() {
     const { containerClass } = this._options;
 
-    this._container = containerClass ? this._rootNode.querySelector(containerClass) : this._rootNode;
+    this._container = containerClass ? this._wcNode.querySelector(containerClass) : this._wcNode;
 
     this._on();
   }
@@ -158,7 +158,7 @@ class UiEvents {
   destroy() {
     this._off();
 
-    delete this._rootNode;
+    delete this._wcNode;
     delete this._options;
   }
 }

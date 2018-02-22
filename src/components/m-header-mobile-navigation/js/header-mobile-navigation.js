@@ -10,8 +10,8 @@ class HeaderMobileNavigation {
     isSubMenuOpenClass: 'is-header-mobile-navigation-nav-open',
   }
 
-  constructor(rootNode, options) {
-    this.rootNode = rootNode;
+  constructor(wcNode, options) {
+    this.wcNode = wcNode;
     this.options = {
       ...HeaderMobileNavigation.DEFAULTS,
       ...options,
@@ -30,7 +30,7 @@ class HeaderMobileNavigation {
   }
 
   init() {
-    this.nav = this.rootNode.querySelector(this.options.nav);
+    this.nav = this.wcNode.querySelector(this.options.nav);
 
     this.on();
   }
@@ -111,7 +111,7 @@ class HeaderMobileNavigation {
     const { parentNode } = delegateTarget;
 
     if (parentNode.lastChild !== delegateTarget) {
-      const canvas = this.rootNode.parentNode.parentNode;
+      const canvas = this.wcNode.parentNode.parentNode;
       const { scrollTop } = canvas;
 
       add(parentNode, this.options.isSubMenuOpenClass);
@@ -129,7 +129,7 @@ class HeaderMobileNavigation {
     e.preventDefault();
 
     const { parentNode, scrollTop } = this.opened.pop();
-    const canvas = this.rootNode.parentNode.parentNode;
+    const canvas = this.wcNode.parentNode.parentNode;
 
     remove(parentNode, this.options.isSubMenuOpenClass);
 
@@ -139,7 +139,7 @@ class HeaderMobileNavigation {
   destroy() {
     this.off();
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.nav;
     delete this._contextNode;
     delete this.opened;

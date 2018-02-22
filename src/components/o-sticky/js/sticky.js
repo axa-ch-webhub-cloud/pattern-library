@@ -16,15 +16,15 @@ class Sticky {
     isScrollDown: 'is-sticky-scroll-down',
   };
 
-  constructor(rootNode) {
-    this.rootNode = rootNode;
+  constructor(wcNode) {
+    this.wcNode = wcNode;
     this.state = states.IS_IN_FLOW;
     this.lastDirection = 0;
 
     this._update = this._update.bind(this);
 
-    this.placeholder = rootNode.querySelector(Sticky.DEFAULTS.placeholderClass);
-    this.box = rootNode.querySelector(Sticky.DEFAULTS.boxClass);
+    this.placeholder = wcNode.querySelector(Sticky.DEFAULTS.placeholderClass);
+    this.box = wcNode.querySelector(Sticky.DEFAULTS.boxClass);
 
     this.spy = StickySpy();
   }
@@ -54,27 +54,27 @@ class Sticky {
 
   _update({ detail }) {
     const { containerBottom, direction, forceRepaint } = detail;
-    const { rootNode, state, lastDirection } = this;
+    const { wcNode, state, lastDirection } = this;
     const hasDirectionChanged = direction !== lastDirection;
-    const { offsetHeight, offsetWidth } = rootNode;
-    const { left, top } = rootNode.getBoundingClientRect();
+    const { offsetHeight, offsetWidth } = wcNode;
+    const { left, top } = wcNode.getBoundingClientRect();
     const isInFlow = top > 0;
     const isSticky = top <= 0 && containerBottom >= offsetHeight;
     const isBottom = top <= 0 && containerBottom < offsetHeight;
 
     if (hasDirectionChanged && direction === 1) {
-      add(rootNode, Sticky.DEFAULTS.isScrollDown);
-      remove(rootNode, Sticky.DEFAULTS.isScrollUp);
+      add(wcNode, Sticky.DEFAULTS.isScrollDown);
+      remove(wcNode, Sticky.DEFAULTS.isScrollUp);
     } else if (hasDirectionChanged && direction === -1) {
-      add(rootNode, Sticky.DEFAULTS.isScrollUp);
-      remove(rootNode, Sticky.DEFAULTS.isScrollDown);
+      add(wcNode, Sticky.DEFAULTS.isScrollUp);
+      remove(wcNode, Sticky.DEFAULTS.isScrollDown);
     }
 
     if (isSticky && (forceRepaint || state !== states.IS_STICKY)) {
       this.state = states.IS_STICKY;
 
-      add(rootNode, Sticky.DEFAULTS.isStickyClass);
-      remove(rootNode, Sticky.DEFAULTS.isBottomClass);
+      add(wcNode, Sticky.DEFAULTS.isStickyClass);
+      remove(wcNode, Sticky.DEFAULTS.isBottomClass);
       css(this.placeholder, { height: `${offsetHeight}px` });
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
@@ -82,8 +82,8 @@ class Sticky {
     if (isBottom && (forceRepaint || state !== states.IS_BOTTOM)) {
       this.state = states.IS_BOTTOM;
 
-      remove(rootNode, Sticky.DEFAULTS.isStickyClass);
-      add(rootNode, Sticky.DEFAULTS.isBottomClass);
+      remove(wcNode, Sticky.DEFAULTS.isStickyClass);
+      add(wcNode, Sticky.DEFAULTS.isBottomClass);
       css(this.placeholder, { height: `${offsetHeight}px` });
       css(this.box, { left: `${left}px`, width: `${offsetWidth}px` });
     }
@@ -91,8 +91,8 @@ class Sticky {
     if (isInFlow && (forceRepaint || state !== states.IS_IN_FLOW)) {
       this.state = states.IS_IN_FLOW;
 
-      remove(rootNode, Sticky.DEFAULTS.isStickyClass);
-      remove(rootNode, Sticky.DEFAULTS.isBottomClass);
+      remove(wcNode, Sticky.DEFAULTS.isStickyClass);
+      remove(wcNode, Sticky.DEFAULTS.isBottomClass);
 
       css(this.placeholder, { height: '' });
       css(this.box, { left: '', width: '' });
