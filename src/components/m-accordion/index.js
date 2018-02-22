@@ -44,15 +44,18 @@ class AXAAccordion extends BaseComponentGlobal {
     const accordionItems = [...this.getAllAccordionItems()];
 
     const multiple = getAttribute(this, 'multiple');
-    if (!multiple) {
-      accordionItems.forEach((item) => {
-        if (event.target === item) {
-          item.setAttribute('open', true);
-        } else {
+    accordionItems.forEach((item) => {
+      const isOpen = getAttribute(item, 'open');
+      if (event.target === item) {
+        if (isOpen) {
           item.removeAttribute('open');
+        } else {
+          item.setAttribute('open', true);
         }
-      });
-    }
+      } else if (!multiple) {
+        item.removeAttribute('open');
+      }
+    });
   }
 
   getOpenAccordionItems() {
