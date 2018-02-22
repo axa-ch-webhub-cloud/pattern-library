@@ -1,14 +1,14 @@
-@import "../../styles/settings/colors";
-@import "../../styles/settings/base";
-@import "../../styles/settings/controls";
-@import "../../styles/mixins/control-icon";
-@import "../../styles/mixins/visual-hidden";
-@import "../../styles/mixins/control-transition";
+@import "../settings/colors";
+@import "../settings/base";
+@import "../settings/controls";
+@import "./control-icon";
+@import "./visual-hidden";
+@import "./control-transition";
 
 @mixin control-base($border-radius: 0) {
   $parent: &;
 
-  .#{$parent} {
+  #{$parent} {
     position: relative;
 
     display: inline-flex;
@@ -19,10 +19,10 @@
 
     line-height: $line-height-base;
 
-    &:hover:not(.#{$parent}--disabled):not(.#{$parent}--error) {
+    &:hover:not(#{$parent}--disabled):not(#{$parent}--error) {
       color: $color-axa-blue;
 
-      > .#{$parent}__icon {
+      > #{$parent}__icon {
         border-color: $color-axa-blue;
 
         &::after {
@@ -32,22 +32,22 @@
     }
   }
 
-  .#{$parent}--error {
+  #{$parent}--error {
     color: $color-state-red-shy-tomato;
 
-    .#{$parent}__icon {
+    #{$parent}__icon {
       border-color: $color-state-red-shy-tomato;
     }
   }
 
-  .#{$parent}--disabled {
+  #{$parent}--disabled {
     color: $color-prim-gray-mine-shaft;
   }
 
-  .#{$parent}__input {
+  #{$parent}__input {
     @include visual-hidden();
 
-    &:focus + .#{$parent}__icon {
+    &:focus + #{$parent}__icon {
       border-color: $color-axa-blue;
 
       &::after {
@@ -55,16 +55,16 @@
       }
     }
 
-    &:checked + .#{$parent}__icon,
-    &[checked] + .#{$parent}__icon {
+    &:checked + #{$parent}__icon,
+    &[checked] + #{$parent}__icon {
       &::after {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
       }
     }
 
-    &:disabled + .#{$parent}__icon,
-    &[disabled] + .#{$parent}__icon {
+    &:disabled + #{$parent}__icon,
+    &[disabled] + #{$parent}__icon {
       cursor: default;
       border-color: $color-prim-gray-dusty;
 
@@ -74,7 +74,7 @@
     }
   }
 
-  .#{$parent}__icon {
+  #{$parent}__icon {
     @include control-transition();
     @include control-icon($control-icon-size);
     border-radius: $border-radius;
