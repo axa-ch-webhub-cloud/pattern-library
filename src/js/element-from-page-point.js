@@ -9,6 +9,13 @@ const elementFromPagePoint = ('pageYOffset' in window
   document.elementFromPoint.bind(document) :
   elementFromPoint;
 
+/**
+ * Select an element by it's page coordinates.
+ *
+ * @param {Number} x - The x coordinate within the whole page.
+ * @param {Number} y - The y coordinate within the whole page.
+ * @returns {Element} - Returns the found element.
+ */
 function elementFromPoint(x, y) {
   return document.elementFromPoint(x - getScrollLeft(), y - getScrollTop());
 }

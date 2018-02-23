@@ -1,5 +1,12 @@
 import { has } from './class-list';
 
+/**
+ * Returns the closest parent by class name.
+ *
+ * @param {Element} node - The DOM element from which to start traversing parents.
+ * @param {String} className - The CSS class name to be matched.
+ * @returns {Element|null} - Return the closest parent node or `null`.
+ */
 export default function closest(node, className) {
   let parentNode = node;
 

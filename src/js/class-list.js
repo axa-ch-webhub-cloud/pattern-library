@@ -1,5 +1,12 @@
 const reTrim = /^\s+|\s{2,}|\s+$/g;
 
+/**
+ * Generates a bullet-prove Regex to match a CSS class name.
+ *
+ * @param {String} className - The CSS class name to match.
+ * @param {String} modifier - Any valid Regex modifier
+ * @returns {RegExp} - Returns the Regex for a specific class name.
+ */
 function getReClass(className, modifier) {
   return new RegExp(`^${className}$|^${className}\\s|\\s${className}\\s|\\s${className}$`, modifier);
 }
