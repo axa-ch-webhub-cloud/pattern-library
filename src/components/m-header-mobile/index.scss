@@ -80,6 +80,10 @@
 
   padding-top: $header-mobile__item-margin-top;
 
+  // needed for iOS 11 black background render bug
+  // https://github.com/axa-ch/patterns-library/issues/263
+  background: $color-prim-white;
+
   > .m-button {
     display: block;
     margin: $header-mobile__item-margin-top $header-mobile__item-padding-right 0 $header-mobile__item-padding-left;
