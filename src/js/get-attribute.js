@@ -6,7 +6,7 @@ const reJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\r\
  *
  * @param {Element} node - The HTML element to get an attribute from.
  * @param {String} name - The attribute's name.
- * @returns {*} - Returns the value of the attribute.
+ * @returns {*} - Returns the value of the attribute - in case of valid JSON the result of `JSON.parse` else plain text.
  */
 function getAttribute(node, name) {
   if (typeof node.hasAttribute === 'function' && !node.hasAttribute(name)) {
