@@ -26,11 +26,11 @@
  * @category Function
  * @requires module:utils.isObject
  * @param {DebounceFunction} func - The function which will be debounced.
- * @param {number} [wait=0] - The time in milliseconds the execution of this function will be deferred.
+ * @param {Number} [wait=0] - The time in milliseconds the execution of this function will be deferred.
  * @param {object} [options] - The options object.
- * @param {boolean} [options.leading=false] - The function is executed at the beginning (first call).
- * @param {number} [options.maxWait=false] - the time in milliseconds after that function is executed anyway.
- * @param {boolean} [options.trailing=true] - The function will be executed at the end (last call, maybe deferred).
+ * @param {Boolean} [options.leading=false] - The function is executed at the beginning (first call).
+ * @param {Number} [options.maxWait=false] - the time in milliseconds after that function is executed anyway.
+ * @param {Boolean} [options.trailing=true] - The function will be executed at the end (last call, maybe deferred).
  * @returns {FunctionDebouncer} Returns the new debounced function.
  * @example <caption>avoid costly calculation while the window size is in flux</caption>
  *

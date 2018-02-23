@@ -1,3 +1,8 @@
+/**
+ * Specify a function to execute when the DOM and WebComponent APIs are fully loaded.
+ *
+ * @param {Function} cb - A function to execute after the DOM and WebComponent APIs are ready.
+ */
 const wcdomready = (cb) => {
   let usage = 0;
   const once = (...args) => {

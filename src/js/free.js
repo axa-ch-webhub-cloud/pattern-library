@@ -2,8 +2,8 @@
  * Delete property of given object by key.
  *
  * @param {Object} object - The object to search for matching properties.
- * @param {string} name - The key to be garbage collected.
- * @returns {boolean} - Returns `true` if deletion was successful, else `false`.
+ * @param {String} name - The key to be garbage collected.
+ * @returns {Boolean} - Returns `true` if deletion was successful, else `false`.
  */
 export function free(object, name) {
   // @TODO: may this should throw an error
@@ -23,7 +23,7 @@ export function free(object, name) {
  *
  * @param {Object} object - The object to search for matching properties.
  * @param {Any} value - The value to be garbage collected.
- * @returns {boolean} - Returns `true` if deletion was successful, else `false`.
+ * @returns {Boolean} - Returns `true` if deletion was successful, else `false`.
  */
 export function freeByValue(object, value) {
   // @TODO: may this should throw an error
