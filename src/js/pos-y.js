@@ -2,7 +2,7 @@
  * Get the `y` coordinates within the document.
  *
  * @param {Node} node - Any DOM node.
- * @returns {number} - Returns the position of the `y` coordinate in pixels.
+ * @returns {Number} - Returns the position of the `y` coordinate in pixels.
  */
 export default function posY(node) {
   let offsetParent = node;

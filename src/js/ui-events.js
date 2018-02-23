@@ -16,13 +16,13 @@ class UiEvents {
    * Default options of UIEvents
    *
    * @type {Object}
-   * @property {string} containerClass - A CSS class selector, if the container is not the WebComponent's node itself.
-   * @property {string} toggleClass - A CSS class selector for a dom node which toggle interaction mode.
-   * @property {string} closeClass - A CSS class selector which makes the component non-interactive upon an event.
-   * @property {boolean} escapeClose - Does hitting `Esc` make this component non-interactive?
-   * @property {boolean} outerClose - Does clicking outside of this component make it non-interactive?
-   * @property {boolean} sameClickClose - Does clicking the `toggleClass` node of this component toggle non-interactive?
-   * @property {boolean} useDefaultEvent - Is the default event action prevent?
+   * @property {String} containerClass - A CSS class selector, if the container is not the WebComponent's node itself.
+   * @property {String} toggleClass - A CSS class selector for a dom node which toggle interaction mode.
+   * @property {String} closeClass - A CSS class selector which makes the component non-interactive upon an event.
+   * @property {Boolean} escapeClose - Does hitting `Esc` make this component non-interactive?
+   * @property {Boolean} outerClose - Does clicking outside of this component make it non-interactive?
+   * @property {Boolean} sameClickClose - Does clicking the `toggleClass` node of this component toggle non-interactive?
+   * @property {Boolean} useDefaultEvent - Is the default event action prevent?
    */
   static DEFAULTS = {
     containerClass: '.js-ui-container',

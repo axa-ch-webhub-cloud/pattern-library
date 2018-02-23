@@ -20,10 +20,10 @@ import debounce from './debounce';
  * @category Function
  * @requires module:utils.debounce
  * @param {DebounceFunc} func - The function which will be throttled.
- * @param {number} [wait=0] - The time in milliseconds the execution of this function will be deferred.
+ * @param {Number} [wait=0] - The time in milliseconds the execution of this function will be deferred.
  * @param {object} [options] - The options object.
- * @param {boolean} [options.leading=true] - The function is executed at the beginning (first call).
- * @param {boolean} [options.trailing=true] - The function will be executed at the end (last call, maybe deferred).
+ * @param {Boolean} [options.leading=true] - The function is executed at the beginning (first call).
+ * @param {Boolean} [options.trailing=true] - The function will be executed at the end (last call, maybe deferred).
  * @returns {DebouncedFunction} Returns the new throttled function.
  * @example
  *
