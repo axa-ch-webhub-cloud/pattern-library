@@ -1,3 +1,7 @@
+/**
+ *
+ * @param cb
+ */
 const wcdomready = (cb) => {
   let usage = 0;
   const once = (...args) => {

@@ -1,3 +1,8 @@
+/**
+ * Find which transition event is supported.
+ *
+ * @returns {String|null} - Returns the supported transition event or `null`.
+ */
 function whichTransitionEvent() {
   const tmpNode = document.createElement('div');
   const { style } = tmpNode;
@@ -10,7 +15,6 @@ function whichTransitionEvent() {
   const transitionsKeys = Object.keys(transitions);
   const { length } = transitionsKeys;
   let transition;
-
 
   for (let i = 0; i < length; ++i) {
     transition = transitionsKeys[i];
