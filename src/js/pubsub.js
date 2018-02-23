@@ -50,6 +50,7 @@ export function subscribe(topic, func, node = document) {
   // first bind subscription handler
   const off = on(node, topic, func);
 
+  // count number of subscriptions
   if (!subscriptions[topic]) {
     subscriptions[topic] = {
       count: 0,
@@ -83,6 +84,14 @@ export function subscribe(topic, func, node = document) {
   }
 }
 
+/**
+ * Trigger the following subscription related events:
+ * - `pubsub/onsubscribe` for any topic
+ * - `pubsub/onsubscribe/${topic}` for a specific topic
+ *
+ * @param {String} _topic - A string defining the topic to subscribe to.
+ * @returns {initialPublish} - Returns a function which triggers onsubscribe events.
+ */
 function onsubscribe(_topic) {
   return function initialPublish() {
     fire(document, 'pubsub/onsubscribe', _topic);
@@ -97,6 +106,11 @@ function onsubscribe(_topic) {
 // flush queued published message w/o subscriptions
 on(document, 'pubsub/onsubscribe', flush);
 
+/**
+ * Flush publish cache as soon as any given topic has subscribtions.
+ *
+ * @param {String} topic - A string defining the topic to subscribe to.
+ */
 function flush({ detail: topic }) {
   if (!subscriptions[topic]) {
     subscriptions[topic] = {

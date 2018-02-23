@@ -4,7 +4,26 @@ import outer from './outer';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
+/**
+ * General purpose UI Event handling abstraction, it basically has two modes:
+ * - **interactive**
+ * - **non-interactive**
+ *
+ * Certain actions trigger interactive mode and others leave it.
+ */
 class UiEvents {
+  /**
+   * Default options of UIEvents
+   *
+   * @type {Object}
+   * @property {string} containerClass - A CSS class selector, if the container is not the WebComponent's node itself.
+   * @property {string} toggleClass - A CSS class selector for a dom node which toggle interaction mode.
+   * @property {string} closeClass - A CSS class selector which makes the component non-interactive upon an event.
+   * @property {boolean} escapeClose - Does hitting `Esc` make this component non-interactive?
+   * @property {boolean} outerClose - Does clicking outside of this component make it non-interactive?
+   * @property {boolean} sameClickClose - Does clicking the `toggleClass` node of this component toggle non-interactive?
+   * @property {boolean} useDefaultEvent - Is the default event action prevent?
+   */
   static DEFAULTS = {
     containerClass: '.js-ui-container',
     toggleClass: 'js-ui-toggle',
@@ -15,6 +34,12 @@ class UiEvents {
     useDefaultEvent: false,
   };
 
+  /**
+   * Constructor of UI-Events
+   *
+   * @param {Element} wcNode - The WebComponent's root node.
+   * @param {UiEvents.DEFAULTS} options - Options ovvering the defaults.
+   */
   constructor(wcNode, options = {}) {
     this._wcNode = wcNode;
     this._options = {
@@ -141,15 +166,30 @@ class UiEvents {
     }
   }
 
+  /**
+   * Overwrite this public method, it get's trigger as soon as your component get's **interactive**.
+   *
+   * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   enter(toggleNode) {
     throw new Error('UiEvent.enter method not overwritten');
   }
 
+  /**
+   * Optionally overwrite this public method, it get's triggered as soon as your component moves from one **interactive** view to another.
+   *
+   * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   move(toggleNode, lastToggleNode) {
   }
 
+  /**
+   * Overwrite this public method, it get's trigger as soon as your component get's **non-interactive**.
+   *
+   * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   leave(toggleNode) {
     throw new Error('UiEvent.leave method not overwritten');
