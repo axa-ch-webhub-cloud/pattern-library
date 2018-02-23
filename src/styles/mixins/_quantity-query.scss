@@ -1,6 +1,9 @@
-@mixin quantity-query($i) {
-  &:nth-last-child(#{$i}):first-child,
-  &:nth-last-child(#{$i}):first-child ~ * {
+/// Select elements based on their quantity.
+///
+/// @param {number} $quantity - Number of DOM nodes you want to match.
+@mixin quantity-query($quantity) {
+  &:nth-last-child(#{$quantity}):first-child,
+  &:nth-last-child(#{$quantity}):first-child ~ * {
     @content;
   }
 }

@@ -1,5 +1,8 @@
 @import "../settings/fonts";
 
+/// Load `Publico Headline Web` web font.
+///
+/// @param {string} $base-path [$font-base-path] - The path where your webfonts are stored.
 @mixin publico-headline($base-path: $font-base-path) {
   @font-face {
     font-family: 'Publico Headline Web';
@@ -16,7 +19,9 @@
   }
 }
 
-/* source-sans-pro-regular - latin */
+/// Load `source-sans-pro-regular - latin` web font.
+///
+/// @param {string} $base-path [$font-base-path] - The path where your webfonts are stored.
 @mixin source-sans-pro($base-path: $font-base-path) {
   @font-face {
     font-family: 'Source Sans Pro';
@@ -33,7 +38,9 @@
   }
 }
 
-/* source-sans-pro-700 - latin */
+/// Load `source-sans-pro-700 - latin` web font.
+///
+/// @param {string} $base-path [$font-base-path] - The path where your webfonts are stored.
 @mixin source-sans-pro--bold($base-path: $font-base-path) {
   @font-face {
     font-family: 'Source Sans Pro';
@@ -50,7 +57,9 @@
   }
 }
 
-/* source-sans-pro-600 - latin */
+/// Load `source-sans-pro-600 - latin` web font.
+///
+/// @param {string} $base-path [$font-base-path] - The path where your webfonts are stored.
 @mixin source-sans-pro--semibold($base-path: $font-base-path) {
   @font-face {
     font-family: 'Source Sans Pro';

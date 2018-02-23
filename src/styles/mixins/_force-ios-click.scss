@@ -1,3 +1,4 @@
+/// Force iOS to handle JS attached click events.
 @mixin force-ios-click() {
   // this is important to enable click events on iOS
   cursor: pointer;

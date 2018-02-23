@@ -1,4 +1,7 @@
-// $see https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+/// Add or remove ellipsis for overflowing text.
+///
+/// @link https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+/// @param {string} $textOverflow ["ellipsis"] - The style to be used for overflowing text (`ellipsis`, `none`, etc.).
 @mixin ellipsis($textOverflow: 'ellipsis') {
   @if $textOverflow == 'none' {
     overflow: visible;
