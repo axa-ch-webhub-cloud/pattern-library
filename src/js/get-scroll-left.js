@@ -1,3 +1,6 @@
+/**
+ * @returns {Number} - Returns the document's left scroll position.
+ */
 const getScrollLeft = 'pageXOffset' in window ? pageXOffset : scrollLeft;
 
 function pageXOffset() {

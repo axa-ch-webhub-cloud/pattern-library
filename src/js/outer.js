@@ -16,9 +16,13 @@ function outer(node, eventName, func, capture = true) {
 
   return off;
 
+  /**
+   * Removes associated event listener of tracked target.
+   */
   function off() {
     root.removeEventListener(eventName, handler, capture);
 
+    // automatically free instances holding the off callback.
     freeByValue(this, off);
   }
 

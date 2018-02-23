@@ -15,7 +15,7 @@ const eventNameMap = {
  * @param {string} [className] - A CSS class name upon which the given callback should be executet (without the preceding dot).
  * @param [Function] func - A function which receives a notification when an event of the specified type occurs.
  * @param {boolean} [capture] - A Boolean indicating that events of this type will be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree.
- * @returns {off} - Returns a functions which properly removes the event listener from the target.
+ * @returns {off} - Returns a function which properly removes the event listener from the target.
  */
 function on(eventTarget, eventName, className, func, capture = false) {
   if (eventNameMap[eventName]) {
@@ -31,6 +31,7 @@ function on(eventTarget, eventName, className, func, capture = false) {
   const typeClassName = typeof className;
   const isDelegated = className && typeClassName === 'string';
 
+  // reorder args
   if (typeClassName === 'function') {
     /* eslint-disable no-param-reassign */
     capture = !!func;
@@ -42,17 +43,23 @@ function on(eventTarget, eventName, className, func, capture = false) {
   const eventNames = eventName.split(reWhitespace);
   const { length } = eventNames;
 
+  // attach event handlers
   for (let i = 0; i < length; ++i) {
     eventTarget.addEventListener(eventNames[i], handler, capture);
   }
 
   return off;
 
+  /**
+   * Removes all associated event listeners of tracked target.
+   */
   function off() {
+    // remove event handlers
     for (let i = 0; i < length; ++i) {
       eventTarget.removeEventListener(eventNames[i], handler, capture);
     }
 
+    // automatically free instances holding the off callback.
     freeByValue(this, off);
   }
 
