@@ -4,7 +4,7 @@ import getAttribute from './get-attribute';
  * Get all attributes of a node.
  *
  * @param {Element} node - The HTML element to get all attributes of.
- * @returns {Object|null} -Returns a hash of all attributes or `null`.
+ * @returns {?Object} - Returns a hash of all attributes or `null`.
  */
 function getAttributes(node) {
   if (!node.hasAttributes) {
