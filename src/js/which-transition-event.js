@@ -1,7 +1,7 @@
 /**
  * Find which transition event is supported.
  *
- * @returns {?String} - Returns the supported transition event or `null`.
+ * @returns {String} - Returns the supported transition event or empty string `''`.
  */
 function whichTransitionEvent() {
   const tmpNode = document.createElement('div');
@@ -24,7 +24,7 @@ function whichTransitionEvent() {
     }
   }
 
-  return null;
+  return '';
 }
 
 export default whichTransitionEvent;
