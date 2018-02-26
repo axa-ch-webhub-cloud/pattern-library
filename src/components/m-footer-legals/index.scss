@@ -8,6 +8,7 @@
   @include make-gutter();
 
   display: block;
+  max-width: 100%;
   padding-top: $footer-legals-y-padding;
   padding-bottom: $footer-legals-y-padding;
   margin-left: auto;
