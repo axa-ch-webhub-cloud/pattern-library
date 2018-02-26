@@ -25,14 +25,15 @@ To help you with adding new components, please make sure to read our following c
 In order to make sure to keep our code maintainable and DRY we agreed to adhere to the following conventions:
 
 - Component-based development
-- Hyphenated Atomic BEM
+- Hyphenated Atomic [BEM](http://getbem.com/)
+- We classify components according to [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) based on it's purpose or function, we never classify based on number of `HTML` elements, e.g. `<label>` can't be used [without](https://stackoverflow.com/questions/12195052/is-it-allowed-to-use-label-tag-without-labeled-control) associated `<input />` elements, therefore the combination of both is an **atom**
 - Vanilla Code - as less Libraries and frameworks as possible
 - Write semantic and accessible code
 - Use complementary doclets
 
 ### CSS
 
-We stick to hyphenated atomic BEM naming for CSS classes as follows:
+We stick to hyphenated atomic [BEM](http://getbem.com/) naming for CSS classes as follows:
 
 - Atom prefix `.a-*`
 - Molecule prefix `.m-*`
