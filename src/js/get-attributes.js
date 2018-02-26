@@ -4,6 +4,7 @@ import camelize from './camelize';
 /**
  * Get all attributes of a node.
  *
+ * @link https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
  * @param {Element} node - The HTML element to get all attributes of.
  * @returns {?Object} - Returns a hash of all attributes or `null`.
  */
