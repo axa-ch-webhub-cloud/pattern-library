@@ -63,11 +63,12 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 
-  transform: translateX(110%);
+  transform: translate3d(110%, 0, 0);
+  backface-visibility: hidden;
   transition: transform 0.2s ease;
 
   .is-mobile-menu-open > & {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   @include respond-up(lg) {
@@ -79,6 +80,10 @@
   position: relative;
 
   padding-top: $header-mobile__item-margin-top;
+
+  // needed for iOS 11 black background render bug
+  // https://github.com/axa-ch/patterns-library/issues/263
+  background: $color-prim-white;
 
   > .m-button {
     display: block;
