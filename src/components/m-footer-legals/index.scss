@@ -8,6 +8,9 @@
   @include make-gutter();
 
   display: block;
+
+  // IE mobile overflows w/o
+  max-width: 100%;
   padding-top: $footer-legals-y-padding;
   padding-bottom: $footer-legals-y-padding;
   margin-left: auto;
