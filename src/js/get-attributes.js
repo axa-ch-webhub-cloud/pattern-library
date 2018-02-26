@@ -1,4 +1,5 @@
 import getAttribute from './get-attribute';
+import camelize from './camelize';
 
 /**
  * Get all attributes of a node.
@@ -19,7 +20,7 @@ function getAttributes(node) {
     const attribute = attributes[i];
     const { name } = attribute;
 
-    out[name] = getAttribute(attribute);
+    out[camelize(name)] = getAttribute(attribute);
   }
 
   return out;
