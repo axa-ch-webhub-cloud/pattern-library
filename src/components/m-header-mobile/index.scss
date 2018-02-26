@@ -20,6 +20,7 @@
   background: $header-mobile__backdrop-bg;
   opacity: 0;
   cursor: pointer;
+  overscroll-behavior: contain;
 
   transition: opacity 0.2s ease;
 
