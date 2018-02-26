@@ -78,13 +78,13 @@ class DropDown extends UiEvents {
   }
 
   reset() {
-    const parentNode = this.wcNode.querySelector(`.${this.options.isOpenClass}`);
+    const node = this.wcNode.querySelector(this.options.containerClass);
 
-    if (parentNode) {
-      const { lastElementChild } = parentNode;
+    if (node) {
+      const { lastElementChild } = node;
 
       lastElementChild.style.height = '';
-      remove(parentNode, this.options.isOpenClass);
+      remove(node, this.options.isOpenClass);
     }
   }
 
