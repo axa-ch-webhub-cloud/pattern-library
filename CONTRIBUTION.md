@@ -31,6 +31,14 @@ In order to make sure to keep our code maintainable and DRY we agreed to adhere 
 - Write semantic and accessible code
 - Use complementary doclets
 
+### Types of Components
+
+There are basically two types of components:
+- **Presentational Components** used to render data, and
+- **Container Components** used to manage or extend child components
+
+To facilitate communication between related components we setup and use a context for bidirectional communication between parent/child related components.
+
 ### CSS
 
 We stick to hyphenated atomic [BEM](http://getbem.com/) naming for CSS classes as follows:
