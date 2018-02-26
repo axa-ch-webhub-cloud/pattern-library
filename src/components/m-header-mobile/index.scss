@@ -20,6 +20,7 @@
   background: $header-mobile__backdrop-bg;
   opacity: 0;
   cursor: pointer;
+  overscroll-behavior: contain;
 
   transition: opacity 0.2s ease;
 
@@ -61,6 +62,7 @@
 
   overflow-x: hidden;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 
   transform: translate3d(110%, 0, 0);
