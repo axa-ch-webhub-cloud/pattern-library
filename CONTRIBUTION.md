@@ -27,7 +27,7 @@ In order to make sure to keep our code maintainable and DRY we agreed to adhere 
 - Component-based development
 - Hyphenated Atomic [BEM](http://getbem.com/)
 - We classify components according to [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) based on it's purpose or function, we never classify based on number of `HTML` elements, e.g. `<label>` can't be used [without](https://stackoverflow.com/questions/12195052/is-it-allowed-to-use-label-tag-without-labeled-control) associated `<input />` elements, therefore the combination of both is an **atom**
-- Vanilla Code - as less Libraries and frameworks as possible
+- Vanilla Code - as less libraries and frameworks as possible. Use a library/framework if there is a really benefit in time-saving or clean-code.
 - Write semantic and accessible code
 - Use complementary doclets
 
