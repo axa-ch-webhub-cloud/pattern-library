@@ -61,6 +61,7 @@
 
   overflow-x: hidden;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 
   transform: translate3d(110%, 0, 0);
