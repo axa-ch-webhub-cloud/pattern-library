@@ -117,16 +117,6 @@
   }
 }
 
-.m-header-sub-navigation__row--col-2 {
-  margin-right: -$header-sub-navigation__block-x-padding-2-columns;
-  margin-left: -$header-sub-navigation__block-x-padding-2-columns;
-}
-
-.m-header-sub-navigation__row--col-3 {
-  margin-right: -$header-sub-navigation__block-x-padding-3-columns;
-  margin-left: -$header-sub-navigation__block-x-padding-3-columns;
-}
-
 .m-header-sub-navigation__block {
   @include make-col(3);
 
