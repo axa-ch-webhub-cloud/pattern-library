@@ -48,6 +48,11 @@ We stick to hyphenated atomic [BEM](http://getbem.com/) naming for CSS classes a
 
 To facilitate custom non-webcomponent integrations we stick to adaptive implementations of interactive JS code, i.e. we consider Web-Components barely as another DOM-Selector layer and pass those DOM-nodes to concrete implementations hosted within the `js/` sub folder. Which could then be called by any DOM-Selecting utility like `jQuery`, `document.querySelector`, you name it.
 
+So we stick to following practises:
+- A WebComponent's root DOM element is always named `wcNode`
+- All WebComponents are always prefixed like: `<axa-foo>`, `AXAFoo extends HtmlElement`
+- Properly manage events, prevent memory leaks
+
 ### HTML
 
 Write semantic and valid HTML 5 markup - no `<div>` mess allowed.
