@@ -1,4 +1,5 @@
-const reWord = /(?:^\w|[A-Z]|\b\w)/g;
+const reWord = /(?:^\w|[A-Z]|\b\w|\s+|[-_]+)/g;
+const reSeparator = /[-_]+/g;
 
 /**
  * Camelcase any given string.
@@ -12,7 +13,7 @@ function camelize(string) {
 }
 
 function replaceCase(match, index) {
-  if (+match === 0) {
+  if (+match === 0 || reSeparator.test(match)) {
     return ''; // or if (/\s+/.test(match)) for white spaces
   }
 
