@@ -1,0 +1,40 @@
+@import "../../styles/mixins/visual-hidden";
+@import "../../styles/mixins/typo";
+@import "../../styles/settings/colors";
+@import "../m-button/mixins/button";
+
+.a-choice {
+  position: relative;
+
+  display: inline-flex;
+
+  & + & {
+    margin-left: 14px;
+  }
+
+  &:hover,
+  &:active {
+    .a-choice__label {
+      border-color: $color-axa-blue;
+      color: $color-axa-blue;
+      background-color: $color-bg--white;
+    }
+  }
+}
+
+.a-choice__label {
+  @include button();
+  @include typo-tag();
+
+  margin: 0;
+
+  color: $color-prim-gray-mine-shaft;
+
+  border: 1px solid $color-prim-gray-silver;
+  background-color: $color-prim-gray-wild-sand;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.a-choice__input {
+  @include visual-hidden();
+}
