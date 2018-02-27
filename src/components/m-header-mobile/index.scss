@@ -21,6 +21,7 @@
   opacity: 0;
   cursor: pointer;
   overscroll-behavior: contain;
+  touch-action: none;
 
   transition: opacity 0.2s ease;
 

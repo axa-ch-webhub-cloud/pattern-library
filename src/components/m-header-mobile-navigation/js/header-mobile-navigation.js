@@ -44,8 +44,8 @@ class HeaderMobileNavigation {
   on() {
     this.off();
 
-    this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick);
-    this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick);
+    this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick, { passive: false });
+    this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick, { passive: false });
   }
 
   off() {
