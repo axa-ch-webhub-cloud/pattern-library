@@ -37,7 +37,9 @@ function on(eventTarget, eventName, className, func, { capture = false, passive 
   // reorder args
   if (typeClassName === 'function') {
     /* eslint-disable no-param-reassign */
-    ({ capture, passive } = func);
+    if (func) {
+      ({ capture, passive } = func);
+    }
     func = className;
     /* eslint-enable no-param-reassign */
   }
