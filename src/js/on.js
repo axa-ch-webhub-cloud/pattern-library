@@ -33,16 +33,16 @@ function on(eventTarget, eventName, className, func, { capture = false, passive 
 
   const typeClassName = typeof className;
   const isDelegated = className && typeClassName === 'string';
-  const eventOptions = hasPassive ? { capture, passive } : capture;
 
   // reorder args
   if (typeClassName === 'function') {
     /* eslint-disable no-param-reassign */
-    capture = !!func;
+    ({ capture, passive } = func);
     func = className;
     /* eslint-enable no-param-reassign */
   }
 
+  const eventOptions = hasPassive ? { capture, passive } : capture;
   const handler = isDelegated ? delegate : func;
   const eventNames = eventName.split(reWhitespace);
   const { length } = eventNames;
