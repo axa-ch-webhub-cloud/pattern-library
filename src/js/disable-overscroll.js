@@ -7,7 +7,7 @@ import on from './on';
  * @returns {off} - Returns a function which properly removes the event listener from the target.
  */
 function disableOverscroll(node) {
-  return on(node, 'scroll touchstart touchmove', handleEvent);
+  return on(node, 'scroll touchmove', handleEvent);
 }
 
 function handleEvent(event) {
