@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.95",
+  "version": "2.0.1-beta.96",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "scripts": {
