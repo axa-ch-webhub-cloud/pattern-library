@@ -66,12 +66,11 @@
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 
-  transform: translate3d(110%, 0, 0);
-  backface-visibility: hidden;
+  transform: translateX(110%);
   transition: transform 0.2s ease;
 
   .is-mobile-menu-open > & {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 
   @include respond-up(lg) {
