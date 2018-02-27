@@ -1,3 +1,8 @@
+/**
+ * Feature detect passive event support.
+ *
+ * @link https://github.com/rafrex/detect-passive-events
+ */
 const hasPassive = (function () {
   let passive = false;
 
