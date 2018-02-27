@@ -68,9 +68,9 @@ class Burger {
   on() {
     this.off();
 
-    this._unBurgerClick = on(this.burger, EVENTS.CLICK, this._handleBurgerClick);
+    this._unBurgerClick = on(this.burger, EVENTS.CLICK, this._handleBurgerClick, { passive: false });
     this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, this._handleResize);
-    this._unCloseEscape = on(this.wcNode.ownerDocument, EVENTS.KEYUP, this._handleKeyUp);
+    this._unCloseEscape = on(this.wcNode.ownerDocument, EVENTS.KEYUP, this._handleKeyUp, { passive: false });
   }
 
   off() {

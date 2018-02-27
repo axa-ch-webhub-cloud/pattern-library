@@ -65,7 +65,7 @@ class UiEvents {
   _on() {
     this._off();
 
-    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick);
+    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: this._options.useDefaultEvent });
   }
 
   _off() {
@@ -80,15 +80,15 @@ class UiEvents {
     this._offInteractive();
 
     if (this._options.closeClass) {
-      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose);
+      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: this._options.useDefaultEvent });
     }
 
     if (this._options.outerClose) {
-      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose);
+      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: this._options.useDefaultEvent });
     }
 
     if (this._options.escapeClose) {
-      this._unCloseEscape = on(this._container.ownerDocument, EVENTS.KEYUP, this._handleKeyUp);
+      this._unCloseEscape = on(this._container.ownerDocument, EVENTS.KEYUP, this._handleKeyUp, { passive: false });
     }
   }
 
