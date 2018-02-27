@@ -13,9 +13,9 @@ import debounce from './debounce';
  * @returns {cleanUp} - Returns a functions which properly removes the event listeners from the targets.
  */
 function preventOverscroll(node, body = document.body) {
-  const offStart = on(node, 'touchstart', touchstart);
-  const offScroll = on(node, 'scroll', debounce(limitScroll), 100);
-  const offBody = on(body, 'touchmove', bodymove);
+  const offStart = on(node, 'touchstart', touchstart, { passive: false });
+  const offScroll = on(node, 'scroll', debounce(limitScroll), 200);
+  const offBody = on(body, 'touchmove', bodymove, { passive: false });
   let offMove;
   let offEnd;
 
