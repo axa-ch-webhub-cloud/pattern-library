@@ -23,6 +23,7 @@ class HeaderMobile {
     this.opened = [];
 
     this.handleCloseClick = this.handleCloseClick.bind(this);
+    this.preventOverscroll = this.preventOverscroll.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -45,6 +46,7 @@ class HeaderMobile {
 
     this.offOverscroll = preventOverscroll(this.canvas);
     this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
+    this.unBackdropOverscroll = on(this.backdrop, 'touchstart touchmove', this.preventOverscroll);
     this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
 
@@ -55,6 +57,10 @@ class HeaderMobile {
 
     if (this.unBackdropClick) {
       this.unBackdropClick();
+    }
+
+    if (this.unBackdropOverscroll) {
+      this.unBackdropOverscroll();
     }
 
     if (this.unClose) {
@@ -115,6 +121,12 @@ class HeaderMobile {
 
   handleCloseClick() {
     publish('header-mobile/close', null, this._contextNode);
+  }
+
+  preventOverscroll(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
   }
 
   destroy() {
