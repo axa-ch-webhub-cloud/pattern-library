@@ -39,6 +39,9 @@ function preventOverscroll(node, body = document.body) {
     if (node.offsetHeight < node.scrollHeight) {
       event._isScroller = true;
     }
+
+    // manually fix horizontal scroll in chrome
+    node.scrollLeft = 0;
   }
 
   function touchend() {
