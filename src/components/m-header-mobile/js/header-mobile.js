@@ -1,5 +1,6 @@
 import on from '../../../js/on';
 import preventOverscroll from '../../../js/prevent-overscroll';
+import disableOverscroll from '../../../js/disable-overscroll';
 import { add, remove } from '../../../js/class-list';
 import { publish, subscribe } from '../../../js/pubsub';
 
@@ -23,7 +24,6 @@ class HeaderMobile {
     this.opened = [];
 
     this.handleCloseClick = this.handleCloseClick.bind(this);
-    this.preventOverscroll = this.preventOverscroll.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
 
@@ -46,7 +46,7 @@ class HeaderMobile {
 
     this.offOverscroll = preventOverscroll(this.canvas);
     this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
-    this.unBackdropOverscroll = on(this.backdrop, 'touchstart touchmove', this.preventOverscroll);
+    this.unBackdropOverscroll = disableOverscroll(this.backdrop);
     this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
 
@@ -121,12 +121,6 @@ class HeaderMobile {
 
   handleCloseClick() {
     publish('header-mobile/close', null, this._contextNode);
-  }
-
-  preventOverscroll(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
   }
 
   destroy() {
