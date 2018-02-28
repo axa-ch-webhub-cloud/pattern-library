@@ -126,7 +126,6 @@ class AccordionItem extends UiEvents {
   }
 
   handleTransitionEnd(e) {
-    console.log('')
     if (e.propertyName === 'height') {
       e.target.style.height = '';
 
