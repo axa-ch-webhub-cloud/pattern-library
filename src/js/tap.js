@@ -22,12 +22,13 @@ const getPointer = event => event.targetTouches ? event.targetTouches[0] : event
 // eslint-disable-next-line consistent-return
 function addEventListenerProxy(eventType, ...args) {
   const eventTarget = this;
+  const isTap = eventType === 'tap';
 
-  if (!hasSupport) {
+  if (!hasSupport && isTap) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
-  if (eventType !== 'tap') {
+  if (!hasSupport || !isTap) {
     return _addEventListener.call(eventTarget, eventType, ...args);
   }
 
@@ -116,18 +117,20 @@ function addEventListenerProxy(eventType, ...args) {
     offUp = null;
 
     if (isValidThreshold && isValidPrecision) {
-      fire(target, eventType, event);
+      fire(target, eventType, event, { bubbles: true, cancelable: true });
     }
   }
 }
 
 // eslint-disable-next-line consistent-return
 function removeEventListenerProxy(eventType, ...args) {
-  if (!hasSupport) {
+  const isTap = eventType === 'tap';
+
+  if (!hasSupport && isTap) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
-  if (eventType !== 'tap') {
+  if (!hasSupport || !isTap) {
     return _removeEventListener.call(this, eventType, ...args);
   }
 
