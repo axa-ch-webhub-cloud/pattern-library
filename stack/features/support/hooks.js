@@ -1,55 +1,52 @@
-'use strict';
+const { After, Before } = require('cucumber');
+const webdriver = require('selenium-webdriver');
+const browserstack = require('browserstack-local');
 
-var webdriver = require('selenium-webdriver');
-var browserstack = require('browserstack-local');
+const configFile = `../../conf/${(process.env.CONFIG_FILE || 'dev')}.conf.js`;
+const { config } = require(configFile); // eslint-disable-line import/no-dynamic-require
 
-var config_file = '../../conf/' + (process.env.CONFIG_FILE || 'single') + '.conf.js';
-var config = require(config_file).config;
+const username = process.env.BROWSERSTACK_USERNAME || config.user;
+const accessKey = process.env.BROWSERSTACK_ACCESS_KEY || config.key;
 
-var username = process.env.BROWSERSTACK_USERNAME || config.user;
-var accessKey = process.env.BROWSERSTACK_ACCESS_KEY || config.key;
-
-var createBrowserStackSession = function(config, caps){
-  return new webdriver.Builder().
-    usingServer('http://'+config.server+'/wd/hub').
-    withCapabilities(caps).
-    build();
-}
-
-var myHooks = function () {
-  var bs_local = null;
-
-  this.Before(function (scenario, callback) {
-    var world = this;
-    var task_id = parseInt(process.env.TASK_ID || 0);
-    var caps = config.capabilities[task_id];
-    caps['browserstack.user'] = username;
-    caps['browserstack.key'] = accessKey;
-
-    if(caps["browserstack.local"]){
-      // Code to start browserstack local before start of test and stop browserstack local after end of test
-      bs_local = new browserstack.Local();
-      bs_local.start({'key': accessKey }, function(error) {
-        if (error) return console.log(error.red);
-
-        world.driver = createBrowserStackSession(config, caps);
-        callback();
-      });
-    }
-    else {
-      world.driver = createBrowserStackSession(config, caps);
-      callback();
-    }
-  });
-
-  this.After(function(scenario, callback){
-    this.driver.quit().then(function(){
-      if(bs_local){
-        bs_local.stop(callback);
-      }
-      else callback();
-    });
-  });
+const createBrowserStackSession = function createBrowserStackSession(_config, _caps) {
+  return new webdriver.Builder().usingServer(`http://${config.server}/wd/hub`).withCapabilities(_caps).build();
 };
 
-module.exports = myHooks;
+let bsLocal = null;
+
+// Asynchronous Callback
+Before(function bstackConnect(scenario, callback) {
+  const taskId = parseInt(process.env.TASK_ID || 0, 10);
+  const caps = config.capabilities[taskId];
+  caps['browserstack.user'] = username;
+  caps['browserstack.key'] = accessKey;
+
+  if (caps['browserstack.local']) {
+    // Code to start browserstack local before start of test and stop browserstack local after end of test
+    bsLocal = new browserstack.Local();
+    bsLocal.start({
+      key: accessKey,
+    }, (error) => {
+      if (error) {
+        console.error(error); // eslint-disable-line
+        process.exit(1);
+      }
+
+      this.driver = createBrowserStackSession(config, caps);
+      callback();
+    });
+  } else {
+    this.driver = createBrowserStackSession(config, caps);
+    callback();
+  }
+});
+
+After((scenario, callback) => {
+  if (bsLocal && bsLocal.isRunning()) {
+    bsLocal.stop(() => {
+      callback();
+    });
+  } else {
+    callback();
+  }
+});

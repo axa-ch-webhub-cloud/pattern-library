@@ -1,6 +1,6 @@
 exports.config = {
   user: 'lucamele1',
-  key: 'HERE_KEY',
+  key: 'pjjyhNhmJkFa5H8VdwqW',
   server: 'hub-cloud.browserstack.com',
 
   commonCapabilities: {
