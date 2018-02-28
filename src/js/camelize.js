@@ -1,3 +1,4 @@
+const regexWord = /(?:^\w|[A-Z]|\b\w|\s+|[-_]+)/g;
 const regexSeparator = /[-_]+/g;
 
 /**
@@ -8,12 +9,12 @@ const regexSeparator = /[-_]+/g;
  * @returns {String} - Returns camel-cased string.
  */
 function camelize(string) {
-  return string.replace(regexSeparator, replaceCase);
+  return string.replace(regexWord, replaceCase);
 }
 
 function replaceCase(match, index) {
-  if (regexSeparator.test(match)) {
-    return '';
+  if (+match === 0 || regexSeparator.test(match)) {
+    return ''; // or if (/\s+/.test(match)) for white spaces
   }
 
   return index === 0 ? match.toLowerCase() : match.toUpperCase();
