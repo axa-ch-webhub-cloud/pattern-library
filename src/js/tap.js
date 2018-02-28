@@ -43,7 +43,7 @@ function addEventListenerProxy(eventType, ...args) {
     const { pageX, pageY } = getPointer(event);
 
     // start by pointer or mouse?
-    wasPointer = type.test(regexPointer);
+    wasPointer = regexPointer.test(type);
 
     // cache pointerId
     cachedPointerId = pointerId;
