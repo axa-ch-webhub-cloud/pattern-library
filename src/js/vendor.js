@@ -7,8 +7,8 @@ const vendor = (function () {
   if (!window.getComputedStyle) return null;
 
   const styles = window.getComputedStyle(document.documentElement, '');
-  const reVendorPrefix = /-(moz|webkit|ms)-/;
-  const prefix = (Array.prototype.slice.call(styles).join('').match(reVendorPrefix) || (styles.OLink === '' && ['', 'o']))[1];
+  const regexVendorPrefix = /-(moz|webkit|ms)-/;
+  const prefix = (Array.prototype.slice.call(styles).join('').match(regexVendorPrefix) || (styles.OLink === '' && ['', 'o']))[1];
 
   const dom = ('WebKit|Moz|MS|O').match(new RegExp(`(${prefix})`, 'i'))[1];
 

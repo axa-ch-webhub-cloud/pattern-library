@@ -3,7 +3,7 @@ import { has } from './class-list';
 import { freeByValue } from './free';
 import whichTransitionEnd from './which-transition-event';
 
-const reWhitespace = /\s+/;
+const regexWhitespace = /\s+/;
 const eventNameMap = {
   transitionend: whichTransitionEnd(),
 };
@@ -46,7 +46,7 @@ function on(eventTarget, eventName, className, func, { capture = false, passive 
 
   const eventOptions = hasPassive ? { capture, passive } : capture;
   const handler = isDelegated ? delegate : func;
-  const eventNames = eventName.split(reWhitespace);
+  const eventNames = eventName.split(regexWhitespace);
   const { length } = eventNames;
 
   // attach event handlers
