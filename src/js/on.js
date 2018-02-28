@@ -2,6 +2,7 @@ import hasPassive from './has-passive';
 import { has } from './class-list';
 import { freeByValue } from './free';
 import whichTransitionEnd from './which-transition-event';
+import './tap';
 
 const regexWhitespace = /\s+/;
 const eventNameMap = {
