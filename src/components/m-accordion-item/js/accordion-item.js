@@ -12,6 +12,7 @@ import {
 
 class AccordionItem extends UiEvents {
   static DEFAULTS = {
+    containerClass: false,
     toggle: '.js-accordion-item__toggle',
     body: '.js-accordion-item__body',
     isOpen: 'is-accordion-item-open',
