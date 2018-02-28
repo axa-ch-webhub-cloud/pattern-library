@@ -1,5 +1,9 @@
 /* global Node */
-
+/**
+ * Inspired by Tocca.js.
+ *
+ * @link https://github.com/GianlucaGuarini/Tocca.js
+ */
 import on from './on';
 import fire from './fire';
 
