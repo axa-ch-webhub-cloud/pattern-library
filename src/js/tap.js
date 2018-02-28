@@ -1,7 +1,9 @@
 /* global Node */
+
 import on from './on';
 import fire from './fire';
 
+const hasSupport = document.createEvent !== 'function'; // no tap events here
 const { prototype } = Node;
 const _addEventListener = prototype.addEventListener;
 const _removeEventListener = prototype.removeEventListener;
@@ -16,6 +18,10 @@ const getPointer = event => event.targetTouches ? event.targetTouches[0] : event
 // eslint-disable-next-line consistent-return
 function addEventListenerProxy(eventType, ...args) {
   const target = this;
+
+  if (!hasSupport) {
+    eventType = 'click'; // eslint-disable-line no-param-reassign
+  }
 
   if (eventType !== 'tap') {
     return _addEventListener.call(target, eventType, ...args);
@@ -113,6 +119,10 @@ function addEventListenerProxy(eventType, ...args) {
 
 // eslint-disable-next-line consistent-return
 function removeEventListenerProxy(eventType, ...args) {
+  if (!hasSupport) {
+    eventType = 'click'; // eslint-disable-line no-param-reassign
+  }
+
   if (eventType !== 'tap') {
     return _removeEventListener.call(this, eventType, ...args);
   }
