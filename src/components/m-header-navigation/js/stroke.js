@@ -19,8 +19,8 @@ class Stroke extends UiEvents {
     activeMoveClass: 'is-stroke-active-move',
   };
 
-  constructor(rootNode, options = {}) {
-    super(rootNode, {
+  constructor(wcNode, options = {}) {
+    super(wcNode, {
       containerClass: '.js-header-navigation__list',
       toggleClass: Stroke.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
@@ -30,7 +30,7 @@ class Stroke extends UiEvents {
       escapeClose: !options.simpleMenu,
     });
 
-    this.rootNode = rootNode;
+    this.wcNode = wcNode;
     this.options = {
       ...Stroke.DEFAULTS,
       ...options,
@@ -45,9 +45,9 @@ class Stroke extends UiEvents {
   }
 
   init() {
-    this.rootNode.style.position = 'relative';
+    this.wcNode.style.position = 'relative';
 
-    this._list = this.rootNode.querySelector(this.options.list);
+    this._list = this.wcNode.querySelector(this.options.list);
 
     this._stroke = document.createElement('div');
     this._stroke.className = this.options.strokeClass;
@@ -138,7 +138,7 @@ class Stroke extends UiEvents {
   _onMoving() {
     this._offMoving();
 
-    this._unResize = on(ownerWindow(this.rootNode), 'resize', this._handleResize);
+    this._unResize = on(ownerWindow(this.wcNode), 'resize', this._handleResize);
     this._unTransitionEnd = on(this._stroke, 'transitionend', this._handleTransitionEnd);
   }
 
@@ -201,7 +201,7 @@ class Stroke extends UiEvents {
       delete this._stroke;
     }
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.options;
   }
 }

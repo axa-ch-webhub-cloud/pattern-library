@@ -57,20 +57,11 @@ Do you love **React**? Here a helpfull link for you: https://github.com/webcompo
 
 Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vue-integrate-web-components/
 
-## Adding your first Pattern Library component:
-Super easy: Read the specs and then just execute `npm run new`. Follow the instruction on the CLI.
-
 ## Main NPM commands:
 
 * To build to dist folder, simply run `npm run build`
 * to run server and watchers (this is what you want while you are developing) `npm run serve`
 * to run the PROD server `npm run serve-build-prod`
-
-## How do we release a new version
-
-Please run `npm run release` and follow the steps in the wizard
-
-For more information: We have a strict strategy for releasing new versions of the Patterns Library. Please refer to the wiki: https://github.com/axa-ch/patterns-library/wiki/Crafting-a-release
 
 ## Usage guide - With just Webcomponents (no framework)
 
@@ -101,6 +92,8 @@ all the possible fonts avaiable. The index.css contains all the basic page setti
 ```
 
 ## Developers Guide:
+
+Please see our [contribution file](./CONTRIBUTION.md).
 
 ### Publish / Subscribe between webcomponents
 

@@ -1,3 +1,6 @@
+/**
+ * @returns {Number} - Returns the document's top scroll position.
+ */
 const getScrollTop = 'pageYOffset' in window ? pageYOffset : scrollTop;
 
 function pageYOffset() {

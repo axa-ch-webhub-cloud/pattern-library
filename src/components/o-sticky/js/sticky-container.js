@@ -11,15 +11,15 @@ class StickyContainer {
     isIdleClass: 'is-sticky-container-idle',
   };
 
-  constructor(rootNode) {
-    this.roodNode = rootNode;
+  constructor(wcNode) {
+    this.roodNode = wcNode;
     this.state = states.IS_IDLE;
 
     this._active = this._active.bind(this);
     this._idle = this._idle.bind(this);
 
     this.spy = StickySpy();
-    this.spy.addContainer(rootNode);
+    this.spy.addContainer(wcNode);
 
     this._on();
   }

@@ -4,7 +4,26 @@ import outer from './outer';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
+/**
+ * General purpose UI Event handling abstraction, it basically has two modes:
+ * - **interactive**
+ * - **non-interactive**
+ *
+ * Certain actions trigger interactive mode and others leave it.
+ */
 class UiEvents {
+  /**
+   * Default options of UIEvents
+   *
+   * @type {Object}
+   * @property {String} containerClass - A CSS class selector, if the container is not the WebComponent's node itself.
+   * @property {String} toggleClass - A CSS class selector for a dom node which toggle interaction mode.
+   * @property {String} closeClass - A CSS class selector which makes the component non-interactive upon an event.
+   * @property {Boolean} escapeClose - Does hitting `Esc` make this component non-interactive?
+   * @property {Boolean} outerClose - Does clicking outside of this component make it non-interactive?
+   * @property {Boolean} sameClickClose - Does clicking the `toggleClass` node of this component toggle non-interactive?
+   * @property {Boolean} useDefaultEvent - Is the default event action prevent?
+   */
   static DEFAULTS = {
     containerClass: '.js-ui-container',
     toggleClass: 'js-ui-toggle',
@@ -15,8 +34,14 @@ class UiEvents {
     useDefaultEvent: false,
   };
 
-  constructor(rootNode, options = {}) {
-    this._rootNode = rootNode;
+  /**
+   * Constructor of UI-Events
+   *
+   * @param {Element} wcNode - The WebComponent's root node.
+   * @param {UiEvents.DEFAULTS} options - Options ovvering the defaults.
+   */
+  constructor(wcNode, options = {}) {
+    this._wcNode = wcNode;
     this._options = {
       ...UiEvents.DEFAULTS,
       ...options,
@@ -32,7 +57,7 @@ class UiEvents {
   _init() {
     const { containerClass } = this._options;
 
-    this._container = containerClass ? this._rootNode.querySelector(containerClass) : this._rootNode;
+    this._container = containerClass ? this._wcNode.querySelector(containerClass) : this._wcNode;
 
     this._on();
   }
@@ -141,15 +166,30 @@ class UiEvents {
     }
   }
 
+  /**
+   * Overwrite this public method, it get's trigger as soon as your component get's **interactive**.
+   *
+   * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   enter(toggleNode) {
     throw new Error('UiEvent.enter method not overwritten');
   }
 
+  /**
+   * Optionally overwrite this public method, it get's triggered as soon as your component moves from one **interactive** view to another.
+   *
+   * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   move(toggleNode, lastToggleNode) {
   }
 
+  /**
+   * Overwrite this public method, it get's trigger as soon as your component get's **non-interactive**.
+   *
+   * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   leave(toggleNode) {
     throw new Error('UiEvent.leave method not overwritten');
@@ -158,7 +198,7 @@ class UiEvents {
   destroy() {
     this._off();
 
-    delete this._rootNode;
+    delete this._wcNode;
     delete this._options;
   }
 }

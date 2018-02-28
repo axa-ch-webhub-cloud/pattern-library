@@ -1,3 +1,8 @@
+/**
+ * Infers the applicable vendor prefixes for DOM, CSS and JS.
+ *
+ * @type {{dom, lowercase, css, js}}
+ */
 const vendor = (function () {
   if (!window.getComputedStyle) return null;
 

@@ -1,3 +1,6 @@
+/// Limit CSS to a specific browser.
+///
+/// @param {string} $browser - Apply CSS for `ie` (IE10+) or `moz` (firefox).
 @mixin target($browser) {
   @if $browser == 'ie' {
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {

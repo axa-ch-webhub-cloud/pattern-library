@@ -1,4 +1,5 @@
 import on from '../../../js/on';
+import preventOverscroll from '../../../js/prevent-overscroll';
 import { add, remove } from '../../../js/class-list';
 import { publish, subscribe } from '../../../js/pubsub';
 
@@ -12,8 +13,8 @@ class HeaderMobile {
     isBodyFrozen: 'is-body-frozen',
   }
 
-  constructor(rootNode, options) {
-    this.rootNode = rootNode;
+  constructor(wcNode, options) {
+    this.wcNode = wcNode;
     this.options = {
       ...HeaderMobile.DEFAULTS,
       ...options,
@@ -29,8 +30,8 @@ class HeaderMobile {
   }
 
   init() {
-    this.canvas = this.rootNode.querySelector(this.options.canvas);
-    this.backdrop = this.rootNode.querySelector(this.options.backdrop);
+    this.canvas = this.wcNode.querySelector(this.options.canvas);
+    this.backdrop = this.wcNode.querySelector(this.options.backdrop);
   }
 
   set contextNode(value) {
@@ -42,11 +43,16 @@ class HeaderMobile {
   on() {
     this.off();
 
+    this.offOverscroll = preventOverscroll(this.canvas);
     this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
     this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
 
   off() {
+    if (this.offOverscroll) {
+      this.offOverscroll();
+    }
+
     if (this.unBackdropClick) {
       this.unBackdropClick();
     }
@@ -78,7 +84,7 @@ class HeaderMobile {
 
   open() {
     add(document.body, this.options.isBodyFrozen);
-    add(this.rootNode, this.options.isMenuOpenClass);
+    add(this.wcNode, this.options.isMenuOpenClass);
 
     this.on();
   }
@@ -103,7 +109,7 @@ class HeaderMobile {
     });
 
     add(this.backdrop, this.options.isBackdropFading);
-    remove(this.rootNode, this.options.isMenuOpenClass);
+    remove(this.wcNode, this.options.isMenuOpenClass);
     remove(document.body, this.options.isBodyFrozen);
   }
 
@@ -115,7 +121,7 @@ class HeaderMobile {
     this.off();
     this.offContextEnabled();
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.canvas;
     delete this.backdrop;
     delete this._contextNode;

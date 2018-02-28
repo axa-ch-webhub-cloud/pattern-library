@@ -1,4 +1,7 @@
-// $see https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+/// Control automatic hyphens through CSS.
+///
+/// @link https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+/// @param {string} $hyphens ['auto'] - Sets the `hyphens` props or `'none'` to disable it.
 @mixin word-break($hyphens: 'auto') {
   @if $hyphens == 'none' {
     hyphens: manual;

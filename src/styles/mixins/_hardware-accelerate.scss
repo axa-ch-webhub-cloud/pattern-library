@@ -1,4 +1,7 @@
+/// Enable hardware accelerated (GPU) rendering.
+///
+/// @param {string} $visibility ["hidden"] - Style of `backface-visibility`.
 @mixin hardware-accelerate($visibility: hidden) {
   transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+  backface-visibility: $visibility;
 }
