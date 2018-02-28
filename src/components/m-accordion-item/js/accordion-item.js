@@ -162,6 +162,10 @@ class AccordionItem extends UiEvents {
   destroy() {
     super.destroy();
 
+    this.off();
+    this.offInteractive();
+    this.offContextEnabled();
+
     delete this.wcNode;
     delete this.options;
   }
