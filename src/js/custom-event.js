@@ -4,7 +4,6 @@
 // https://github.com/krambuhl/custom-event-polyfill
 // https://github.com/d4tocchini/customevent-polyfill
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent#Polyfill
-
 const CustomEvent = (function () {
   try {
     const ce = new window.CustomEvent('test', { cancelable: true });
