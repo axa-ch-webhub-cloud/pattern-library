@@ -1,10 +1,10 @@
 import bel from 'bel';
 import classnames from 'classnames';
 
-export default ({ header, headersecondary, headercolor, icon }, childrenFragment) => {
+export default ({ header, headerSecondary, headerColor, icon }, childrenFragment) => {
   const headerPrimaryClasses = classnames('m-accordion-item__heading', 'm-accordion-item__heading--primary', {
-    [`m-accordion-item__heading--${headercolor}`]: headercolor,
-    'm-accordion-item__heading--with-secondary': headersecondary,
+    [`m-accordion-item__heading--${headerColor}`]: headerColor,
+    'm-accordion-item__heading--with-secondary': headerSecondary,
   });
   const headerClasses = classnames('m-accordion-item__header', 'js-accordion-item__toggle', {
     'm-accordion-item__header--with-icon': icon,
@@ -18,9 +18,9 @@ export default ({ header, headersecondary, headercolor, icon }, childrenFragment
           ${icon && iconToRender}
           <div class="m-accordion-item__heading-wrapper">
             <span class="${headerPrimaryClasses}">${header}</span> 
-            ${headersecondary &&
+            ${headerSecondary &&
                 bel`<span class="m-accordion-item__heading m-accordion-item__heading--secondary">
-                      ${headersecondary}
+                      ${headerSecondary}
                 </span>`}
           </div>
           ${chevron}
