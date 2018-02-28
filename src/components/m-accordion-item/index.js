@@ -14,7 +14,7 @@ class AXAAccordionItem extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-accordion-item js-accordion-item`;
+    this.className = `${this.initialClassName} m-accordion-item`;
 
     this.interaction = new AccordionItem(this);
   }

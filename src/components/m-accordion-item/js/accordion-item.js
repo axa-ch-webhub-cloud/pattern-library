@@ -12,7 +12,6 @@ import {
 
 class AccordionItem extends UiEvents {
   static DEFAULTS = {
-    container: '.js-accordion-item',
     toggle: '.js-accordion-item__toggle',
     body: '.js-accordion-item__body',
     isOpen: 'is-accordion-item-open',
@@ -93,6 +92,10 @@ class AccordionItem extends UiEvents {
     const parentNode = this.rootNode;
     const { lastElementChild } = parentNode;
 
+    if (this.isOpen) {
+      return;
+    }
+
     this.isOpen = true;
 
     lastElementChild.style.overflow = 'scroll';
@@ -110,6 +113,10 @@ class AccordionItem extends UiEvents {
     const parentNode = this.rootNode;
     const { lastElementChild } = parentNode;
     const { scrollHeight } = lastElementChild;
+
+    if (!this.isOpen) {
+      return;
+    }
 
     this.isOpen = false;
 
