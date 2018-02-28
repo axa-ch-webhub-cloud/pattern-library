@@ -21,19 +21,19 @@ const getPointer = event => event.targetTouches ? event.targetTouches[0] : event
 
 // eslint-disable-next-line consistent-return
 function addEventListenerProxy(eventType, ...args) {
-  const target = this;
+  const eventTarget = this;
 
   if (!hasSupport) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
   if (eventType !== 'tap') {
-    return _addEventListener.call(target, eventType, ...args);
+    return _addEventListener.call(eventTarget, eventType, ...args);
   }
 
   console.log(`>>> proxy ${eventType}`);
 
-  const { ownerDocument: { documentElement } } = target;
+  const { ownerDocument: { documentElement } } = eventTarget;
   let wasPointer = false;
   let cachedPointerId;
   const isSamePointer = event => !event.pointerId || typeof cachedPointerId === 'undefined' || event.pointerId === cachedPointerId;
@@ -44,7 +44,7 @@ function addEventListenerProxy(eventType, ...args) {
   let currentY;
 
   // cache offDown
-  this.__offDown = on(target, pointerdown, downHandler);
+  this.__offDown = on(eventTarget, pointerdown, downHandler);
   let offMove;
   let offUp;
 
