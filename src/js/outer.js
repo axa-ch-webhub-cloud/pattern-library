@@ -1,5 +1,5 @@
-import hasPassive from './has-passive';
-import { freeByValue } from './free';
+import on from './on';
+import outerIOSShame from './outer-ios-SHAME';
 
 /**
  * With outside events you can bind to an event that will be triggered only when a specific “originating” event occurs outside the element in question.
@@ -14,21 +14,11 @@ import { freeByValue } from './free';
  */
 function outer(node, eventName, func, { capture = true, passive = true } = {}) {
   const root = node.ownerDocument.documentElement;
-  const eventOptions = hasPassive ? { capture, passive } : capture;
+  const off = on(root, eventName, handler, { capture, passive });
 
-  root.addEventListener(eventName, handler, eventOptions);
+  outerIOSShame(root);
 
   return off;
-
-  /**
-   * Removes associated event listener of tracked target.
-   */
-  function off() {
-    root.removeEventListener(eventName, handler, eventOptions);
-
-    // automatically free instances holding the off callback.
-    freeByValue(this, off);
-  }
 
   // eslint-disable-next-line consistent-return
   function handler(e) {
