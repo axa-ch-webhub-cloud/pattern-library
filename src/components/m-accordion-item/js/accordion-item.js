@@ -17,19 +17,19 @@ class AccordionItem extends UiEvents {
     isOpen: 'is-accordion-item-open',
   };
 
-  constructor(rootNode, options) {
+  constructor(wcNode, options) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...AccordionItem.DEFAULTS,
       ...options,
     };
 
-    super(rootNode, options);
+    super(wcNode, options);
 
     this.isOpen = false;
 
     this.options = options;
-    this.rootNode = rootNode;
+    this.wcNode = wcNode;
 
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
     this.handleToggleClick = this.handleToggleClick.bind(this);
@@ -39,8 +39,8 @@ class AccordionItem extends UiEvents {
   }
 
   init() {
-    this.toggle = this.rootNode.querySelector(this.options.toggle);
-    this.body = this.rootNode.querySelector(this.options.body);
+    this.toggle = this.wcNode.querySelector(this.options.toggle);
+    this.body = this.wcNode.querySelector(this.options.body);
 
     this.on();
   }
@@ -77,7 +77,7 @@ class AccordionItem extends UiEvents {
 
 
   toggleState({ detail: node }) {
-    if (this.rootNode === node) {
+    if (this.wcNode === node) {
       if (this.isOpen) {
         this.close();
       } else {
@@ -89,7 +89,7 @@ class AccordionItem extends UiEvents {
   }
 
   open() {
-    const parentNode = this.rootNode;
+    const parentNode = this.wcNode;
     const { lastElementChild } = parentNode;
 
     if (this.isOpen) {
@@ -110,7 +110,7 @@ class AccordionItem extends UiEvents {
   }
 
   close() {
-    const parentNode = this.rootNode;
+    const parentNode = this.wcNode;
     const { lastElementChild } = parentNode;
     const { scrollHeight } = lastElementChild;
 
@@ -155,13 +155,13 @@ class AccordionItem extends UiEvents {
   }
 
   handleToggleClick() {
-    publish('accordion-item/toggle', this.rootNode, this._contextNode);
+    publish('accordion-item/toggle', this.wcNode, this._contextNode);
   }
 
   destroy() {
     super.destroy();
 
-    delete this.rootNode;
+    delete this.wcNode;
     delete this.options;
   }
 }
