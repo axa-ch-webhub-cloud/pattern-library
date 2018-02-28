@@ -52,8 +52,6 @@
 }
 
 .m-header-mobile__canvas--off-canvas {
-  // @include hardware-accelerate(); Chrome has a rendering issue.
-
   position: fixed;
   top: $header-main-height;
   right: 0;
@@ -65,12 +63,14 @@
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 
-  transform: translate3d(110%, 0, 0);
-  backface-visibility: hidden;
+  // ios black box issue when using GPU painting fix
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
+
+  transform: translateX(110%);
   transition: transform 0.2s ease;
 
   .is-mobile-menu-open > & {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 
   @include respond-up(lg) {

@@ -1,4 +1,4 @@
-const reJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\r\n])*[\]}])\s*$/;
+const regexJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\r\n])*[\]}])\s*$/;
 
 /**
  * Get an HTML attribute's value by it's name.
@@ -24,7 +24,7 @@ function getAttribute(node, name) {
 
   if (!value || name === value) {
     value = true;
-  } else if (reJson.test(value)) {
+  } else if (regexJson.test(value)) {
     try {
       value = JSON.parse(value);
     } catch (error) {

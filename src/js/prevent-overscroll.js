@@ -13,9 +13,10 @@ import debounce from './debounce';
  * @returns {cleanUp} - Returns a functions which properly removes the event listeners from the targets.
  */
 function preventOverscroll(node, body = document.body) {
-  const offStart = on(node, 'touchstart', touchstart);
-  const offScroll = on(node, 'scroll', debounce(limitScroll), 100);
-  const offBody = on(body, 'touchmove', bodymove);
+  const offStart = on(node, 'touchstart', touchstart, { passive: false });
+  const offScroll = on(node, 'scroll', scroll);
+  const offBody = on(body, 'touchmove', bodymove, { passive: false });
+  const debouncedLimit = debounce(limitScroll, 100);
   let offMove;
   let offEnd;
 
@@ -33,12 +34,22 @@ function preventOverscroll(node, body = document.body) {
     limitScroll();
   }
 
+  function scroll() {
+    // manually fix horizontal scroll in chrome
+    node.scrollLeft = 0;
+
+    debouncedLimit();
+  }
+
   function touchmove(event) {
     // if the content is actually scrollable, i.e. the content is long enough
     // that scrolling can occur
     if (node.offsetHeight < node.scrollHeight) {
       event._isScroller = true;
     }
+
+    // manually fix horizontal scroll in chrome
+    node.scrollLeft = 0;
   }
 
   function touchend() {

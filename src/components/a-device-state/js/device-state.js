@@ -5,8 +5,8 @@ import throttle from '../../../js/throttle';
 import { publish, subscribe } from '../../../js/pubsub';
 
 const deviceStateClass = '.a-device-state';
-const reWhiteSpace = /\s/g;
-const reUnquote = /^['"]+|['"]+$/g;
+const regexWhiteSpace = /\s/g;
+const regexUnquote = /^['"]+|['"]+$/g;
 let isDomReady = false;
 let isInitialised = false;
 let hasChanged = true;
@@ -48,8 +48,8 @@ export function getDeviceState() {
   // now is really ready
   lastContent = content;
 
-  const state = content.replace(reWhiteSpace, '')
-    .replace(reUnquote, '')
+  const state = content.replace(regexWhiteSpace, '')
+    .replace(regexUnquote, '')
     .split(',')
     .reduce(parsePair, {});
 

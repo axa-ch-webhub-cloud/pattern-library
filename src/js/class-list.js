@@ -1,4 +1,4 @@
-const reTrim = /^\s+|\s{2,}|\s+$/g;
+const regexTrim = /^\s+|\s{2,}|\s+$/g;
 
 /**
  * Generates a bullet-prove Regex to match a CSS class name.
@@ -31,9 +31,9 @@ export function add(node, className) {
  * @return {Boolean} - Returns `true` if the given class is set, else `false`.
  */
 export function has(node, className) {
-  const reClass = getReClass(className);
+  const regexClass = getReClass(className);
 
-  return reClass.test(node.className);
+  return regexClass.test(node.className);
 }
 
 /**
@@ -44,9 +44,9 @@ export function has(node, className) {
  */
 export function remove(node, className) {
   if (has(node, className)) {
-    const reClass = getReClass(className, 'g');
+    const regexClass = getReClass(className, 'g');
 
-    node.className = node.className.replace(reClass, ' ').replace(reTrim, ' ');
+    node.className = node.className.replace(regexClass, ' ').replace(regexTrim, ' ');
   }
 }
 
