@@ -53,6 +53,10 @@ function addEventListenerProxy(eventType, ...args) {
     const { type, timeStamp, pointerId } = event;
     const { pageX, pageY } = getPointer(event);
 
+    // skip mouse events if a touch event was dispatched on start
+    if (wasPointer && type.indexOf('mouse') !== -1) {
+      return;
+    }
     // start by pointer or mouse?
     wasPointer = regexPointer.test(type);
 
@@ -90,7 +94,7 @@ function addEventListenerProxy(eventType, ...args) {
   }
 
   function upHandler(event) {
-    const { type, timeStamp } = event;
+    const { type, timeStamp, target } = event;
 
     // skip mouse events if a touch event was dispatched on start
     // and reset wasPointer
