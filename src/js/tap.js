@@ -79,7 +79,7 @@ function addEventListenerProxy(eventType, ...args) {
       return;
     }
 
-    if (isSamePointer(event)) {
+    if (!isSamePointer(event)) {
       return;
     }
 
@@ -98,7 +98,7 @@ function addEventListenerProxy(eventType, ...args) {
     }
     wasPointer = false;
 
-    if (isSamePointer(event)) {
+    if (!isSamePointer(event)) {
       return;
     }
     cachedPointerId = undefined;
