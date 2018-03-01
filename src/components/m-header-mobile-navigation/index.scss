@@ -42,7 +42,7 @@
 
     // fix iOS landscape render issue
     // https://github.com/axa-ch/patterns-library/issues/291
-    transform: translate3d(0, 0, 110%);
+    transform: translate3d(110%, 0, 0);
     transition: transform 0.2s ease;
 
     @include respond-up(sm) {
