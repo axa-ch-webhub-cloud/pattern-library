@@ -40,7 +40,9 @@
 
     min-height: 100%;
 
-    transform: translateX(110%);
+    // fix iOS landscape render issue
+    // https://github.com/axa-ch/patterns-library/issues/291
+    transform: translate3d(0, 0, 110%);
     transition: transform 0.2s ease;
 
     @include respond-up(sm) {
@@ -50,7 +52,7 @@
   }
 
   .is-header-mobile-navigation-nav-open > & {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 

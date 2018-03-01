@@ -88,9 +88,6 @@
   background: $color-prim-white;
 
   > .m-button {
-    // fix iOS landscape render issue https://github.com/axa-ch/patterns-library/issues/291
-    @include hardware-accelerate($z: -1);
-
     display: block;
     margin: $header-mobile__item-margin-top $header-mobile__item-padding-right 0 $header-mobile__item-padding-left;
 
