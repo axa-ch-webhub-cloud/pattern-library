@@ -28,8 +28,10 @@ function addEventListenerProxy(eventType, ...args) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
+  _addEventListener.call(eventTarget, eventType, ...args);
+
   if (!hasSupport || !isTap) {
-    return _addEventListener.call(eventTarget, eventType, ...args);
+    return;
   }
 
   console.log(`>>> proxy ${eventType}`);
@@ -135,8 +137,10 @@ function removeEventListenerProxy(eventType, ...args) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
+  _removeEventListener.call(eventTarget, eventType, ...args);
+
   if (!hasSupport || !isTap) {
-    return _removeEventListener.call(eventTarget, eventType, ...args);
+    return;
   }
 
   if (eventTarget.__offDown) {
