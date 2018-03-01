@@ -159,8 +159,8 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: 'is-dropdown-open') {
-  // @include hardware-accelerate(); Chrome has an issue
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: 'is-dropdown-open', $is-animating-class: 'is-dropdown-animating') {
+  //  Chrome has an issue
   @include icon($size);
 
   position: absolute;
@@ -172,14 +172,16 @@
   color: $color;
   transition: transform 0.3s ease;
 
+  .#{$is-animating-class} > & {
+    @include hardware-accelerate();
+  }
+
   .#{$is-open-class} & {
     transform: rotate(180deg);
   }
 }
 
-@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: 'is-dropdown-open') {
-  // @include hardware-accelerate(); chrome has an issue
-
+@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: 'is-dropdown-open', $is-animating-class: 'is-dropdown-animating') {
   position: absolute;
   top: 100%;
   z-index: $zindex;
@@ -189,6 +191,10 @@
   overflow: hidden;
 
   transition: height 0.3s ease;
+
+  .#{$is-animating-class} > & {
+    @include hardware-accelerate();
+  }
 
   .#{$is-open-class} > & {
     height: auto;
