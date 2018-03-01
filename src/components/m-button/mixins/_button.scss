@@ -182,9 +182,11 @@
   animation-name: fadeOutRightInLeft;
 }
 
-@mixin button--motion() {
+@mixin button--gpu() {
   @include hardware-accelerate();
+}
 
+@mixin button--motion() {
   z-index: $button__motion-z-index;
 
   overflow: hidden;

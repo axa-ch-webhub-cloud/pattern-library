@@ -39,6 +39,10 @@
   }
 }
 
+.m-button--gpu {
+  @include button--gpu();
+}
+
 .m-button--motion {
   @include button--motion();
   @include button--motion-style();
