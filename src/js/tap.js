@@ -128,6 +128,7 @@ function addEventListenerProxy(eventType, ...args) {
 
 // eslint-disable-next-line consistent-return
 function removeEventListenerProxy(eventType, ...args) {
+  const eventTarget = this;
   const isTap = eventType === 'tap';
 
   if (!hasSupport && isTap) {
@@ -135,11 +136,11 @@ function removeEventListenerProxy(eventType, ...args) {
   }
 
   if (!hasSupport || !isTap) {
-    return _removeEventListener.call(this, eventType, ...args);
+    return _removeEventListener.call(eventTarget, eventType, ...args);
   }
 
-  if (this.__offDown) {
-    this.__offDown();
+  if (eventTarget.__offDown) {
+    eventTarget.__offDown();
   }
 }
 
