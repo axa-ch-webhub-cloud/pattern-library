@@ -159,7 +159,7 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: 'is-dropdown-open', $is-animating-class: 'is-dropdown-animating') {
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: $dropdown-is-open) {
   //  Chrome has an issue
   @include icon($size);
 
@@ -172,16 +172,18 @@
   color: $color;
   transition: transform 0.3s ease;
 
-  .#{$is-animating-class} > & {
-    @include hardware-accelerate();
-  }
-
   .#{$is-open-class} & {
     transform: rotate(180deg);
   }
 }
 
-@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: 'is-dropdown-open', $is-animating-class: 'is-dropdown-animating') {
+@mixin dropdown-icon--gpu($is-animating-class: $dropdown-is-animating) {
+  @at-root .#{$is-animating-class}#{&} {
+    @include hardware-accelerate();
+  }
+}
+
+@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: $dropdown-is-open) {
   position: absolute;
   top: 100%;
   z-index: $zindex;
@@ -192,12 +194,14 @@
 
   transition: height 0.3s ease;
 
-  .#{$is-animating-class} > & {
-    @include hardware-accelerate();
-  }
-
   .#{$is-open-class} > & {
     height: auto;
+  }
+}
+
+@mixin dropdown-content--gpu($is-animating-class: $dropdown-is-animating) {
+  @at-root .#{$is-animating-class}#{&} {
+    @include hardware-accelerate();
   }
 }
 

@@ -12,8 +12,20 @@ class AXADropdown extends BaseComponentGlobal {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  willRenderCallback() {
+    const { inFlow, size, gpu } = this;
+
+    this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
+      'm-dropdown--in-flow': inFlow,
+      'm-dropdown--gpu': gpu,
+      [`m-dropdown--${size}`]: size,
+    });
+  }
+
+  didRenderCallback() {
+    if (this.dropDown) {
+      this.dropDown.destroy();
+    }
 
     this.dropDown = new DropDown(this, {
       containerClass: null,
@@ -21,17 +33,10 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.dropDown.destroy();
-    delete this.dropDown;
-  }
-
-  willRenderCallback() {
-    const { inFlow, size } = this;
-
-    this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
-      'm-dropdown--in-flow': inFlow,
-      [`m-dropdown--${size}`]: size,
-    });
+    if (this.dropDown) {
+      this.dropDown.destroy();
+      delete this.dropDown;
+    }
   }
 }
 

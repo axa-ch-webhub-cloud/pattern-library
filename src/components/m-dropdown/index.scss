@@ -75,6 +75,10 @@
 
 .m-dropdown__icon {
   @include dropdown-icon();
+
+  .m-dropdown--gpu > & {
+    @include dropdown-icon--gpu();
+  }
 }
 
 .m-dropdown__select-icon--sm {
@@ -91,6 +95,10 @@
 
   .m-dropdown--in-flow > & {
     @include dropdown-inflow();
+  }
+
+  .m-dropdown--gpu > & {
+    @include dropdown-content--gpu();
   }
 }
 
