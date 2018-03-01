@@ -3,7 +3,7 @@ import on from './on';
 import getAttribute from './get-attribute';
 import outer from './outer';
 
-export const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
+export const EVENTS = Enum('tap', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
 /**
  * This is the data attribute that can be set on a DOM element and enforces prevent default.
@@ -74,7 +74,7 @@ class UiEvents {
   _on() {
     this._off();
 
-    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: !this._options.preventDefault });
+    this._unClick = on(this._container, EVENTS.TAP, this._options.toggleClass, this._handleClick, { passive: !this._options.preventDefault });
   }
 
   _off() {
@@ -89,11 +89,11 @@ class UiEvents {
     this._offInteractive();
 
     if (this._options.closeClass) {
-      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: !this._options.preventDefault });
+      this._unCloseClick = on(this._container, EVENTS.TAP, this._options.closeClass, this._handleClose, { passive: !this._options.preventDefault });
     }
 
     if (this._options.outerClose) {
-      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: !this._options.preventDefault });
+      this._unOuterClick = outer(this._container, EVENTS.TAP, this._handleClose, { passive: !this._options.preventDefault });
     }
 
     if (this._options.escapeClose) {
