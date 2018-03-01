@@ -6,9 +6,9 @@ import CustomEvent from './custom-event';
  * @param {Element|Document|Window|XMLHttpRequest} eventTarget - The event target may be an Element in a document, the Document itself, a Window, or any other object that supports events (such as XMLHttpRequest).
  * @param {String} eventName -  A string representing the event type to dispatch.
  * @param {*} eventObject - The data associated with the dispatched event - will be available within `event.detail`.
- * @param {Object} [eventInit={}] - An object specifying if the event is `cancelable` or `bubbles`.
+ * @param {Object} [eventInit={}] - An object specifying if the event is `bubbles`, `cancelable` or `composed`.
  */
-function fire(eventTarget, eventName, eventObject, eventInit = {}) {
+function fire(eventTarget, eventName, eventObject, eventInit = { bubbles: false, cancelable: true, composed: true }) {
   const event = new CustomEvent(eventName, {
     ...eventInit,
     detail: eventObject,
