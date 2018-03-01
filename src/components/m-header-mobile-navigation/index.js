@@ -21,9 +21,10 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { relative } = this;
+    const { gpu, relative } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-mobile-navigation', {
+      'm-header-mobile-navigation--gpu': gpu,
       'm-header-mobile-navigation--relative': relative,
     });
   }
