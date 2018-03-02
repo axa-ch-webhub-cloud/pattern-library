@@ -39,7 +39,8 @@
     "bump-minor-beta": "npm run test && npmversion --increment minor --preid beta --force-preid",
     "bump-patch-beta": "npm run test && npmversion --increment patch --preid beta --force-preid",
     "bump-beta": "npm run test && npmversion --increment prerelease --preid beta --force-preid",
-    "webpack": "webpack"
+    "webpack": "webpack --mode development",
+    "webpack-prod": "webpack --mode production"
   },
   "watch": {
     "build-css-dev": {
