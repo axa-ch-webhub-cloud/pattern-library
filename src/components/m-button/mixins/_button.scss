@@ -188,6 +188,8 @@
 
   overflow: hidden;
 
+  transition: color $button__motion-duration $button__motion-easing 0s;
+
   &::after {
 
     position: absolute;
