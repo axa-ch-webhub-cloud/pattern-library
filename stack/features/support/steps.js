@@ -1,14 +1,29 @@
-const { Given, When, Then } = require('cucumber');
-const { expect } = require('chai');
+const assert = require('cucumber-assert');
+const webdriver = require('selenium-webdriver');
 
-Given('a variable set to {int}', function setTo(number) {
-  this.setTo(number);
+const { When, Then } = require('cucumber');
+
+When(/^I type query as "([^"]*)"$/, function setTo(searchQuery, next) {
+  console.log('this.server', this.testServer)
+  this.driver.get(this.testServer);
+  this.driver.findElement({
+    name: 'q',
+  }).sendKeys(`${searchQuery}\n`).then(next);
 });
 
-When('I increment the variable by {int}', function incrementBy(number) {
-  this.incrementBy(number);
+Then(/^I submit$/, function iSubmit(next) {
+  this.driver.findElement({
+    name: 'btnG',
+  })
+    .click()
+    .then(() => {
+      this.driver.wait(() => this.driver.isElementPresent(webdriver.By.id('top_nav')), 5000);
+      next();
+    });
 });
 
-Then('the variable should contain {int}', function assert(number) {
-  expect(this.variable).to.eql(number);
+Then(/^I should see title "([^"]*)"$/, function assertion(titleMatch, next) {
+  this.driver.getTitle().then((title) => {
+    assert.equal(title, titleMatch, next, `Expected title to be ${titleMatch}`);
+  });
 });

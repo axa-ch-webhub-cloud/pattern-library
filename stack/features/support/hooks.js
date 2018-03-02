@@ -1,4 +1,4 @@
-const { After, Before } = require('cucumber');
+const { Before } = require('cucumber');
 const webdriver = require('selenium-webdriver');
 const browserstack = require('browserstack-local');
 
@@ -12,41 +12,38 @@ const createBrowserStackSession = function createBrowserStackSession(_config, _c
   return new webdriver.Builder().usingServer(`http://${config.server}/wd/hub`).withCapabilities(_caps).build();
 };
 
-let bsLocal = null;
+const bsLocal = new browserstack.Local();
 
 // Asynchronous Callback
 Before(function bstackConnect(scenario, callback) {
+  const setStriver = (caps) => {
+    this.driver = createBrowserStackSession(config, caps);
+    console.log(callback)
+    callback();
+  };
   const taskId = parseInt(process.env.TASK_ID || 0, 10);
   const caps = config.capabilities[taskId];
+  this.testServer = config.testServer ? config.testServer : 'http://localhost:3000';
   caps['browserstack.user'] = username;
   caps['browserstack.key'] = accessKey;
 
   if (caps['browserstack.local']) {
     // Code to start browserstack local before start of test and stop browserstack local after end of test
-    bsLocal = new browserstack.Local();
-    bsLocal.start({
-      key: accessKey,
-    }, (error) => {
-      if (error) {
-        console.error(error); // eslint-disable-line
-        process.exit(1);
-      }
-
-      this.driver = createBrowserStackSession(config, caps);
-      callback();
-    });
+    if (bsLocal.isRunning()) {
+      setStriver(caps);
+    } else {
+      bsLocal.start({
+        key: accessKey,
+      }, (error) => {
+        if (error) {
+          console.log(error); // eslint-disable-line
+          bsLocal.stop();
+          process.exit(1);
+        }
+        setStriver(caps);
+      });
+    }
   } else {
-    this.driver = createBrowserStackSession(config, caps);
-    callback();
-  }
-});
-
-After((scenario, callback) => {
-  if (bsLocal && bsLocal.isRunning()) {
-    bsLocal.stop(() => {
-      callback();
-    });
-  } else {
-    callback();
+    setStriver(caps);
   }
 });
