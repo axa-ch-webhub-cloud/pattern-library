@@ -215,6 +215,7 @@
 }
 
 @mixin button--motion-style($style: default) {
+  $color-button-bg: get-color($button-color, $style, bg);
   $color-button-bg--motion: get-color($button-color, $style, bg--motion);
   $color-button-bg--motion--hover: get-color($button-color, $style, bg--motion--hover);
   $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
@@ -225,7 +226,7 @@
 
   &:hover,
   &:focus {
-    background: $color-button-bg--motion;
+    background: $color-button-bg;
 
     @if $color-button-text--motion--hover {
       color: $color-button-text--motion--hover;
