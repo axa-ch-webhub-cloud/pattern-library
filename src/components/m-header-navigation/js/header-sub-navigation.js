@@ -45,6 +45,10 @@ class HeaderSubNavigation extends UiEvents {
   move(node, lastNode) {
     remove(lastNode.parentNode, this.options.openClass);
     add(node.parentNode, this.options.openClass);
+
+    // Edge 16 won't repaint -> force it
+    // see https://github.com/axa-ch/patterns-library/issues/304
+    forceRepaint(this.subMenu);
   }
 
   leave(node) {
