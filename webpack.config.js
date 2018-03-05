@@ -24,6 +24,8 @@ module.exports = {
       use: [{
         loader: 'raw-loader', // import CSS as string
       }, {
+        loader: 'postcss-loader', // autoprefix and other magic
+      }, {
         loader: 'sass-loader', // compiles Sass to CSS
       }],
     }],

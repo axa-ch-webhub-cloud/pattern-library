@@ -114,6 +114,7 @@
     "parallelshell": "~3.0.2",
     "postcss": "^6.0.14",
     "postcss-cli": "^4.1.1",
+    "postcss-loader": "^2.1.1",
     "raw-loader": "^0.5.1",
     "readline": "^1.3.0",
     "rollup": "0.55.3",
