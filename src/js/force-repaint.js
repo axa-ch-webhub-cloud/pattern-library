@@ -5,6 +5,10 @@
  * @param {Element} node - The DOM node to force repaint.
  */
 function forceRepaint(node) {
+  if (!node) {
+    return;
+  }
+
   node.style.display = 'none';
   // eslint-disable-next-line no-unused-expressions
   node.offsetHeight; // no need to store this anywhere, the reference is enough
