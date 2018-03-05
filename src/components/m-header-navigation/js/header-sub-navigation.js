@@ -1,5 +1,4 @@
 import { add, remove } from '../../../js/class-list';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import forceRepaint from '../../../js/force-repaint';
 import UiEvents from '../../../js/ui-events';
 
@@ -32,28 +31,27 @@ class HeaderSubNavigation extends UiEvents {
 
   init() {
     this.list = this.wcNode.querySelector(this.options.list);
-    this.subMenu = this.wcNode.querySelector(this.options.subNavi);
   }
 
   enter(node) {
-    add(node.parentNode, this.options.openClass);
+    const { parentNode } = node;
 
-    requestAnimationFrame(() => {
-      // Edge 16 won't repaint -> force it
-      // see https://github.com/axa-ch/patterns-library/issues/304
-      forceRepaint(this.subMenu);
-    });
+    add(parentNode, this.options.openClass);
+
+    // Edge 16 won't repaint -> force it
+    // see https://github.com/axa-ch/patterns-library/issues/304
+    forceRepaint(parentNode.querySelector(this.options.subNavi));
   }
 
   move(node, lastNode) {
-    remove(lastNode.parentNode, this.options.openClass);
-    add(node.parentNode, this.options.openClass);
+    const { parentNode } = node;
 
-    requestAnimationFrame(() => {
-      // Edge 16 won't repaint -> force it
-      // see https://github.com/axa-ch/patterns-library/issues/304
-      forceRepaint(this.subMenu);
-    });
+    remove(lastNode.parentNode, this.options.openClass);
+    add(parentNode, this.options.openClass);
+
+    // Edge 16 won't repaint -> force it
+    // see https://github.com/axa-ch/patterns-library/issues/304
+    forceRepaint(parentNode.querySelector(this.options.subNavi));
   }
 
   leave(node) {
