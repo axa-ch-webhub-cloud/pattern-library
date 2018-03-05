@@ -1,5 +1,6 @@
 import { add, remove } from '../../../js/class-list';
 import forceRepaint from '../../../js/force-repaint';
+import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import UiEvents from '../../../js/ui-events';
 
 class HeaderSubNavigation extends UiEvents {
@@ -37,9 +38,11 @@ class HeaderSubNavigation extends UiEvents {
   enter(node) {
     add(node.parentNode, this.options.openClass);
 
-    // Edge 16 won't repaint -> force it
-    // see https://github.com/axa-ch/patterns-library/issues/304
-    forceRepaint(this.subMenu);
+    requestAnimationFrame(() => {
+      // Edge 16 won't repaint -> force it
+      // see https://github.com/axa-ch/patterns-library/issues/304
+      forceRepaint(this.subMenu);
+    });
   }
 
   move(node, lastNode) {
