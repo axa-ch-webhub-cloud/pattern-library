@@ -7,6 +7,7 @@ class HeaderMobileNavigation {
     nav: '.js-header-mobile-navigation__nav',
     category: 'js-header-mobile-navigation__category',
     back: 'js-header-mobile-navigation__back',
+    useDefaultEvent: true,
     isSubMenuOpenClass: 'is-header-mobile-navigation-nav-open',
   }
 
@@ -106,7 +107,9 @@ class HeaderMobileNavigation {
   }
 
   handleCategoryClick(e, delegateTarget) {
-    e.preventDefault();
+    if (!this.options.useDefaultEvent) {
+      e.preventDefault();
+    }
 
     const { parentNode } = delegateTarget;
 
@@ -126,7 +129,9 @@ class HeaderMobileNavigation {
   }
 
   handleBackClick(e) {
-    e.preventDefault();
+    if (!this.options.useDefaultEvent) {
+      e.preventDefault();
+    }
 
     const { parentNode, scrollTop } = this.opened.pop();
     const canvas = this.wcNode.parentNode.parentNode;

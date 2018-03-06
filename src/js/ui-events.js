@@ -47,6 +47,8 @@ class UiEvents {
       ...options,
     };
 
+    console.log(this)
+
     this._handleClick = this._handleClick.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
@@ -79,7 +81,7 @@ class UiEvents {
   _onInteractive() {
     this._offInteractive();
 
-    if (this._options.closeClass) {
+    if (this._options.closeClass && !this._options.useDefaultEvent) {
       this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: this._options.useDefaultEvent });
     }
 
