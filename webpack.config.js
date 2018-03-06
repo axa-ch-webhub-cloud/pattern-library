@@ -1,11 +1,12 @@
 const glob = require('glob'); // eslint-disable-line
+
 const regexComponentName = /^.*\/components\/(.*)\/index.js$/;
-const entries = glob.sync('./src/components/*/index.js').reduce((entries, entry) => ({
+const entryNames = (entries, entry) => ({
   ...entries,
   [entry.replace(regexComponentName, '$1')]: entry,
-}), {});
-
-console.log(entries);
+});
+const entries = glob.sync('./src/components/*/index.js')
+  .reduce(entryNames, {});
 
 module.exports = {
   entry: entries,
