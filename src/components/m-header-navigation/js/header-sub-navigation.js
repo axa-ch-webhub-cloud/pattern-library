@@ -13,6 +13,7 @@ class HeaderSubNavigation extends UiEvents {
       containerClass: '.js-header-navigation__list',
       toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
+      useDefaultEvent: 'simpleMenu' in options ? !!options.simpleMenu : true,
       outerClose: !options.simpleMenu,
       escapeClose: !options.simpleMenu,
     });
