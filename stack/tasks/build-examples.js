@@ -17,11 +17,12 @@ const CWD = process.cwd();
 const ATOMS = 'atoms';
 const MOLECULES = 'molecules';
 const ORGANISMS = 'organisms';
+const REACT = 'react';
 const INDEX = 'index';
 
 const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
 const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
-// const reGetDemosHtml = /\/src\/[^/]+\/demo\.react\.html$/;
+const reGetDemosHtml = /\/src\/[^/]+\/demo\.react\.html$/;
 
 // @TODO: import order seems to be crucial for chrome, whats going on here??
 /* eslint-disable */
@@ -33,6 +34,7 @@ const buttonsHtml = {
   [ATOMS]: [],
   [MOLECULES]: [],
   [ORGANISMS]: [],
+  [REACT]: [],
   [INDEX]: [],
 };
 
@@ -40,6 +42,7 @@ const mobileButtonsHtml = {
   [ATOMS]: [],
   [MOLECULES]: [],
   [ORGANISMS]: [],
+  [REACT]: [],
   [INDEX]: [],
 };
 
@@ -47,8 +50,11 @@ const pageHtml = {
   [ATOMS]: [],
   [MOLECULES]: [],
   [ORGANISMS]: [],
+  [REACT]: [],
   [INDEX]: [],
 };
+
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 const createAmoPage = (indexHtml, imports, styles, typeAmo, filePath) => {
   const resultAtoms = indexHtml
@@ -78,11 +84,11 @@ const createAmoComponents = (amoType, previewName, atomicName, preview, resultCs
   buttonsHtml[amoType].push(`
     ,{
       "links": [
-        {"name": "${previewName.substring(2, previewName.length)}", "url": "${amoType}.html#${previewName}"}
+        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "${amoType}.html#${previewName}"}
       ]
     }`);
   mobileButtonsHtml[amoType].push(`
-    ,{"name": "${previewName.substring(2, previewName.length)}", "url": "${amoType}.html#${previewName}"}`);
+    ,{"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "${amoType}.html#${previewName}"}`);
 
   pageHtml[amoType].push(`
       <article class="o-sg-section o-sg-section__atomic-category js--section" id="${previewName}">
@@ -107,6 +113,14 @@ const createAmoComponents = (amoType, previewName, atomicName, preview, resultCs
       </article>
     `);
 };
+
+dir.files(`${CWD}/src/demos`, (err, allFiles) => {
+  allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
+  const demoHtmls = allFiles.filter(_file => _file.match(reGetDemosHtml));
+  demoHtmls.forEach((_file) => {
+    pageHtml[REACT].push(`<script src="./app/all-demos.js"></script>${fs.readFileSync(_file, 'utf8')}`);
+  });
+});
 
 dir.files(`${CWD}/src/components`, (err, _allFiles) => {
   let previewHtmls = [];
@@ -149,7 +163,7 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
 
     try {
       resultCss = sass.renderSync({
-        file: filePath.replace('_preview.html', 'index.scss'),
+        file: _filePath.replace('_preview.html', 'index.scss'),
         outputStyle: 'expanded',
       });
       resultCssString = autoprefixer.process(resultCss.css).css;
@@ -169,8 +183,19 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
         createAmoComponents(ORGANISMS, previewName, 'Organism', preview, resultCssString, example);
     }
   });
+
+  buttonsHtml[REACT].push(`
+    ,{
+      "links": [
+        {"name": "React", "url": "${REACT}.html"}
+      ]
+    }`);
+  mobileButtonsHtml[REACT].push(`
+    ,{"name": "React", "url": "${REACT}.html"}`);
+
   createAmoPage(indexHtml, imports, styles, ORGANISMS, filePath);
   createAmoPage(indexHtml, imports, styles, MOLECULES, filePath);
+  createAmoPage(indexHtml, imports, styles, REACT, filePath);
   createAmoPage(indexHtml, imports, styles, ATOMS, filePath);
 
   const _indexHtml = indexHtml
