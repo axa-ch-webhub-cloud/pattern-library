@@ -7,7 +7,6 @@ class HeaderMobileNavigation {
     nav: '.js-header-mobile-navigation__nav',
     category: 'js-header-mobile-navigation__category',
     back: 'js-header-mobile-navigation__back',
-    useDefaultEvent: true,
     isSubMenuOpenClass: 'is-header-mobile-navigation-nav-open',
   }
 

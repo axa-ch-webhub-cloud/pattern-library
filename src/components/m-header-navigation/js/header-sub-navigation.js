@@ -6,7 +6,6 @@ class HeaderSubNavigation extends UiEvents {
     list: '.js-header-navigation__list',
     toggleClass: 'js-header-navigation__list-link',
     openClass: 'is-header-sub-navigation-open',
-    useDefaultEvent: true,
   };
 
   constructor(wcNode, options = {}) {
@@ -14,7 +13,6 @@ class HeaderSubNavigation extends UiEvents {
       containerClass: '.js-header-navigation__list',
       toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
-      useDefaultEvent: true,
       outerClose: !options.simpleMenu,
       escapeClose: !options.simpleMenu,
     });

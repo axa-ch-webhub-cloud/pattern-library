@@ -14,23 +14,31 @@ const highlightStyles = nsh.getStyles();
 const ENV = process.argv[2]; // second element is the first argument.
 const CWD = process.cwd();
 
+const ATOMS = 'atoms';
+const MOLECULES = 'molecules';
+const ORGANISMS = 'organisms';
+const INDEX = 'index';
 
 const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
 const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
 // const reGetDemosHtml = /\/src\/[^/]+\/demo\.react\.html$/;
 
-const createAmoPage = (indexHtml, imports, styles, html, typeAmo, filePath) => {
-  const buttons = `
-    <axa-button tag="a" typeAmo="${typeAmo}.html" motion size="sm">Alle</axa-button>
-  `;
+// @TODO: import order seems to be crucial for chrome, whats going on here??
+/* eslint-disable */
+const sortDown = (a, b) => (a > b) ? -1 : (a < b) ? 1 : 0;
+const sortUp = (a, b) => (a > b) ? 1 : (a < b) ? -1 : 0;
+/* eslint-enable */
 
+const createAmoPage = (indexHtml, imports, styles, html, typeAmo, filePath, buttonsHtml) => {
   const resultAtoms = indexHtml
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
-    .replace(/<!-- {CUT AND INJECT BUTTONS HERE} -->/g, buttons)
     .replace(new RegExp(`<!-- {CUT AND INJECT ACTIVE ${typeAmo.toUpperCase()}} -->`, 'g'), ', "isActive": true')
+    .replace(new RegExp('<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->', 'g'), buttonsHtml[ORGANISMS].join('\n'))
+    .replace(new RegExp('<!-- {CUT AND INJECT MOLECULES BUTTONS} -->', 'g'), buttonsHtml[MOLECULES].join('\n'))
+    .replace(new RegExp('<!-- {CUT AND INJECT ATOMS BUTTONS} -->', 'g'), buttonsHtml[ATOMS].join('\n'))
+    .replace(/<!-- {CUT AND INJECT .* BUTTONS} -->/g, '')
     .replace(/<!-- {CUT AND INJECT ACTIVE.*} -->/g, ', "isActive": false')
     .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, `
-
       <style>
         ${styles}
       </style>
@@ -43,6 +51,13 @@ const createAmoPage = (indexHtml, imports, styles, html, typeAmo, filePath) => {
 dir.files(`${CWD}/src/components`, (err, _allFiles) => {
   let previewHtmls = [];
   let exampleHtmls = [];
+  const buttonsHtml = {
+    [ATOMS]: [],
+    [MOLECULES]: [],
+    [ORGANISMS]: [],
+    [INDEX]: [],
+  };
+
   if (err) throw err;
 
   const allFiles = _allFiles.map(adaptSlashes);
@@ -63,13 +78,53 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
 
   const filePath = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}`;
 
-  previewHtmls.forEach((_filePath, index) => {
+  previewHtmls = previewHtmls.sort(sortUp);
+  exampleHtmls = exampleHtmls.sort(sortUp);
+
+  previewHtmls.forEach((_filePath) => {
     const partial = _filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.js');
     imports += `<script src="${partial}"></script>\n`;
+
+    const name = _filePath.split('/').slice(-2).join('/');
+    const previewName = name.replace('/_preview.html', '');
+
+    switch (previewName.substring(0, 2)) {
+      case 'a-':
+        buttonsHtml[ATOMS].push(`
+          ,{
+            "links": [
+              {"name": "${previewName.substring(2, previewName.length)}", "url": "atoms.html"}
+            ]
+          }`);
+        break;
+      case 'm-':
+        buttonsHtml[MOLECULES].push(`
+          ,{
+            "links": [
+              {"name": "${previewName.substring(2, previewName.length)}", "url": "molecules.html"}
+            ]
+          }`);
+        break;
+      case 'o-':
+        buttonsHtml[ORGANISMS].push(`
+          ,{
+            "links": [
+              {"name": "${previewName.substring(2, previewName.length)}", "url": "organisms.html"}
+            ]
+          }`);
+        break;
+      default:
+        buttonsHtml[ORGANISMS].push(`
+        ,{
+          "links": [
+            {"name": "${previewName.substring(2, previewName.length)}", "url": "organisms.html"}
+          ]
+        }`);
+    }
   });
 
-  createAmoPage(indexHtml, imports, styles, html, 'atoms', filePath);
-  createAmoPage(indexHtml, imports, styles, html, 'molecules', filePath);
-  createAmoPage(indexHtml, imports, styles, html, 'organisms', filePath);
-  createAmoPage(indexHtml, imports, styles, html, 'index', filePath);
+  createAmoPage(indexHtml, imports, styles, html, ORGANISMS, filePath, buttonsHtml);
+  createAmoPage(indexHtml, imports, styles, html, MOLECULES, filePath, buttonsHtml);
+  createAmoPage(indexHtml, imports, styles, html, ATOMS, filePath, buttonsHtml);
+  createAmoPage(indexHtml, imports, styles, html, INDEX, filePath, buttonsHtml);
 });
