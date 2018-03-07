@@ -1,3 +1,7 @@
+import wcdomready from '../js/wcdomready';
+
+console.log('🚀 patterns library 🚀');
+
 const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
 
 const disable = (element, parent) => {
@@ -8,62 +12,7 @@ const enable = (element, parent) => {
   parent.querySelector(sectionSelector(element.parentNode)).classList.add('o-sg-section__section--visible');
 };
 
-const switchAtomicElemenetsTo = (elementGroupName = '', button, firstCall = false) => {
-  const allCategories = document.querySelectorAll('[data-atomic-category]');
-  Array.from(allCategories).forEach((element) => {
-    element.classList.remove('o-sg-section--visible');
-  });
-
-  const dataSelector = elementGroupName ? `="${elementGroupName}"` : '';
-
-  const filteredCategories = document.querySelectorAll(`[data-atomic-category${dataSelector}]`);
-  Array.from(filteredCategories).forEach((element) => {
-    element.classList.add('o-sg-section--visible');
-  });
-
-  if (!button) {
-    return;
-  }
-
-  if (firstCall) {
-    // little hack
-    button.href = window.location.href;
-    button.click();
-    button.href = `#${elementGroupName}`;
-  }
-};
-
-const syncHashWithAtomicChoice = (firstCall = false) => {
-  const { hash } = window.location;
-  const id = hash.replace('#', '');
-  const el = document.getElementById(id);
-  const prefix = hash.substring(1, 2);
-  switch (prefix) {
-    case 'a':
-      switchAtomicElemenetsTo('atom', document.querySelector('.js-atomic-switch-to-atom'), firstCall);
-      break;
-    case 'r':
-      switchAtomicElemenetsTo('react', document.querySelector('.js-atomic-switch-to-react'), firstCall);
-      break;
-    case 'm':
-      switchAtomicElemenetsTo('molecule', document.querySelector('.js-atomic-switch-to-molecule'), firstCall);
-      break;
-    case 'o':
-      switchAtomicElemenetsTo('organism', document.querySelector('.js-atomic-switch-to-organism'), firstCall);
-      break;
-    default:
-      switchAtomicElemenetsTo('organism', document.querySelector('.js-atomic-switch-to-organism'), firstCall);
-      break;
-  }
-  // quick hack for development. @TODO do it better
-  setTimeout(() => {
-    if (el) {
-      el.scrollIntoView();
-    }
-  }, 150);
-};
-
-document.addEventListener('DOMContentLoaded', () => {
+wcdomready(() => {
   // all sections's buttons toggle
   const sections = document.querySelectorAll('.js--section');
 
@@ -88,16 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }, 10);
-
-  if (!window.location.hash) {
-    window.location.hash = '#organism';
-  }
-
-  setTimeout(() => {
-    syncHashWithAtomicChoice(true);
-  }, 100);
-
-  window.onhashchange = () => {
-    syncHashWithAtomicChoice(false);
-  };
 });

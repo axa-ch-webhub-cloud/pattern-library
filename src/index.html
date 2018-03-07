@@ -10,18 +10,8 @@
         root.className = root.className.split("no-js").join("js")
       }(document);
     </script>
-    <script>
-      (function(document) {
-        if (!('Reflect' in window
-            && 'Promise' in window)) {
-              var e = document.createElement('script');
-              e.src = 'app/es6-polyfills.js';
-              document.head.appendChild(e);
-         }
-      })(document);
-    </script>
-    <script src="app/webcomponents-loader.js"></script>
-    <script src="app/app.js"></script>
+    <script src="app/es6-polyfills.js"></script>
+    <script src="app/webcomponents-lite.js"></script>
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./sg.css">
 
@@ -33,45 +23,113 @@
 
     <header>
       <axa-header>
-          <axa-header-main first-left>
-            <axa-header-logo></axa-header-logo>
-            <axa-header-navigation items='[
-              {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism", "isActive": true},
-              {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
-              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"},
-              {"url": "#react", "name": "React (W.I.P.)", "classes": "js-atomic-switch-to-react"}
-            ]' simplemenu></axa-header-navigation>
-            <h3 class="o-sg-patternlink">
-              <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
-            </h3>
-            <axa-header-burger></axa-header-burger>
-          </axa-header-main>
+        <axa-header-main first-left>
+          <axa-header-logo href="index.html"></axa-header-logo>
 
-          <axa-header-mobile>
-            <a href="#" class="m-button m-button--ghost m-button--motion">myAXA Login</a>
+          <axa-header-navigation items='[
+            {
+              "url": "#",
+              "name": "Organisms"<!-- {CUT AND INJECT ACTIVE ORGANISMS} -->,
+              "items": [
+                {
+                  "columns": [
+                    {
+                      "links": [
+                        {"url": "organisms.html", "name": "All"}
+                      ]
+                    }<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->
+                  ]
+                }
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Molecules"<!-- {CUT AND INJECT ACTIVE MOLECULES} -->,
+              "items": [
+                {
+                  "columns": [
+                    {
+                      "links": [
+                        {"url": "molecules.html", "name": "All"}
+                      ]
+                    }<!-- {CUT AND INJECT MOLECULES BUTTONS} -->
+                  ]
+                }
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Atoms"<!-- {CUT AND INJECT ACTIVE ATOMS} -->,
+              "items": [
+                {
+                  "columns": [
+                    {
+                      "links": [
+                        {"url": "atoms.html", "name": "All"}
+                      ]
+                    }<!-- {CUT AND INJECT ATOMS BUTTONS} -->
+                  ]
+                }
+              ]
+            },
+            {
+              "url": "#",
+              "name": "React"<!-- {CUT AND INJECT ACTIVE REACT} -->,
+              "items": [
+                {
+                  "columns": [
+                    {
+                      "links": [
+                        {"url": "react.html", "name": "All"}
+                      ]
+                    }<!-- {CUT AND INJECT REACT BUTTONS} -->
+                  ]
+                }
+              ]
+            }
+          ]'></axa-header-navigation>
 
-            <axa-header-mobile-navigation items='[
-              {"url": "#organism", "name": "Organisms", "classes": "js-atomic-switch-to-organism", "isActive": true},
-              {"url": "#molecule", "name": "Molecules", "classes": "js-atomic-switch-to-molecule"},
-              {"url": "#atom", "name": "Atoms", "classes": "js-atomic-switch-to-atom"},
-              {"url": "#react", "name": "React (W.I.P.)", "classes": "js-atomic-switch-to-react"}
-            ]'></axa-header-mobile-navigation>
-          </axa-header-mobile>
+          <h3 class="o-sg-patternlink">
+            <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
+          </h3>
+          <axa-header-burger></axa-header-burger>
+        </axa-header-main>
+
+        <axa-header-mobile>
+
+          <axa-header-mobile-navigation items='[
+            {
+              "url": "#",
+              "name": "Organisms"<!-- {CUT AND INJECT ACTIVE ORGANISMS} -->,
+              "items": [
+                {"name": "All", "url": "organisms.html"}<!-- {CUT AND INJECT ORGANISMS MOBILE BUTTONS} -->
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Molecules"<!-- {CUT AND INJECT ACTIVE MOLECULES} -->,
+              "items": [
+                {"name": "All", "url": "molecules.html"}<!-- {CUT AND INJECT MOLECULES MOBILE BUTTONS} -->
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Atoms"<!-- {CUT AND INJECT ACTIVE ATOMS} -->,
+              "items": [
+                {"name": "All", "url": "atoms.html"}<!-- {CUT AND INJECT ATOMS MOBILE BUTTONS} -->
+              ]
+            }
+          ]'></axa-header-mobile-navigation>
+        </axa-header-mobile>
       </axa-header>
-
-      <section class="o-sg-header__buttons">
-        <!-- {CUT AND INJECT BUTTONS HERE} -->
-      </section>
     </header>
+
+    <!-- {CUT AND INJECT INDEX HTML HERE} -->
 
     <!-- {CUT AND INJECT PREVIEWS HERE} -->
 
+    <script src="./app/app.js"></script>
     <!-- {CUT AND INJECT IMPORTS HERE} -->
-
-    <article data-atomic-category="react" class="js--section o-sg-section o-sg-section__atomic-category">
-      <script src="./app/all-demos.js"></script>
-      <!-- {CUT AND INJECT REACT DEMOS HERE} -->
-    </article>
 
   </body>
 </html>

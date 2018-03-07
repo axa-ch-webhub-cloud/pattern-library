@@ -6,6 +6,7 @@ export default function ({
   size,
   motion,
   arrow,
+  href = '#',
   listed,
   icon,
   deco,
@@ -20,7 +21,7 @@ export default function ({
     'm-link--deco': deco,
   });
 
-  return bel`<a href="#" class="${classes}">
+  return bel`<a href="${href}" class="${classes}">
       ${icon && bel`<axa-icon id="${icon}" classes="m-link__icon"></axa-icon>`}
       ${listed && bel`<axa-icon id="arrow" classes="m-link__listed"></axa-icon>`}
       ${childrenFragment}
