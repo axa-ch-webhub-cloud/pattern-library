@@ -1,3 +1,5 @@
+import wcdomready from '../js/wcdomready';
+
 console.log('🚀 patterns library 🚀');
 
 const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
@@ -10,7 +12,7 @@ const enable = (element, parent) => {
   parent.querySelector(sectionSelector(element.parentNode)).classList.add('o-sg-section__section--visible');
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+wcdomready(() => {
   // all sections's buttons toggle
   const sections = document.querySelectorAll('.js--section');
 

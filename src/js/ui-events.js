@@ -79,7 +79,7 @@ class UiEvents {
   _onInteractive() {
     this._offInteractive();
 
-    if (this._options.closeClass && !this._options.useDefaultEvent) {
+    if (this._options.closeClass) {
       this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: this._options.useDefaultEvent });
     }
 

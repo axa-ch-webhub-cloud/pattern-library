@@ -204,7 +204,7 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
       <h1>Welcome to the patterns library!</h1>
       <p>
         This is the core pattern library used for AXA Switzerland. It's based on Web-Components.
-        Web-Components are natively supported in modern browser. This repo contains also polyfills for those less "cool"
+        Web-Components are natively supported in modern browsers. This repo contains also polyfills for those less "cool"
         browsers out there. Support is:
       </p>
       <ul>
