@@ -22,97 +22,94 @@
     <axa-core icons-path="./assets/icons/icons.svg"></axa-core>
 
     <header>
-      <axa-sticky-container>
-        <axa-header>
-          <axa-sticky class="o-header__fade">
+      <axa-header>
+        <axa-header-main first-left>
+          <axa-header-logo href="index.html"></axa-header-logo>
 
-            <axa-header-main first-left>
-              <axa-header-logo></axa-header-logo>
-
-              <axa-header-navigation items='[
+          <axa-header-navigation items='[
+            {
+              "url": "#",
+              "name": "Organisms"<!-- {CUT AND INJECT ACTIVE ORGANISMS} -->,
+              "items": [
                 {
-                  "url": "#",
-                  "name": "Organisms"<!-- {CUT AND INJECT ACTIVE ORGANISMS} -->,
-                  "items": [
+                  "columns": [
                     {
-                      "columns": [
-                        {
-                          "links": [
-                            {"url": "organisms.html", "name": "All"}
-                          ]
-                        }<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->
+                      "links": [
+                        {"url": "organisms.html", "name": "All"}
                       ]
-                    }
-                  ]
-                },
-                {
-                  "url": "#",
-                  "name": "Molecules"<!-- {CUT AND INJECT ACTIVE MOLECULES} -->,
-                  "items": [
-                    {
-                      "columns": [
-                        {
-                          "links": [
-                            {"url": "molecules.html", "name": "All"}
-                          ]
-                        }<!-- {CUT AND INJECT MOLECULES BUTTONS} -->
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "url": "#",
-                  "name": "Atoms"<!-- {CUT AND INJECT ACTIVE ATOMS} -->,
-                  "items": [
-                    {
-                      "columns": [
-                        {
-                          "links": [
-                            {"url": "atoms.html", "name": "All"}
-                          ]
-                        }<!-- {CUT AND INJECT ATOMS BUTTONS} -->
-                      ]
-                    }
+                    }<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->
                   ]
                 }
-              ]'></axa-header-navigation>
-
-              <h3 class="o-sg-patternlink">
-                <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
-              </h3>
-              <axa-header-burger></axa-header-burger>
-            </axa-header-main>
-
-            <axa-header-mobile>
-
-              <axa-header-mobile-navigation items='[
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Molecules"<!-- {CUT AND INJECT ACTIVE MOLECULES} -->,
+              "items": [
                 {
-                  "url": "#",
-                  "name": "Organisms"<!-- {CUT AND INJECT ACTIVE ORGANISMS} -->,
-                  "items": [
-                    {"name": "All", "url": "organisms.html"}<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->
-                  ]
-                },
-                {
-                  "url": "#",
-                  "name": "Molecules"<!-- {CUT AND INJECT ACTIVE MOLECULES} -->,
-                  "items": [
-                    {"name": "All", "url": "molecules.html"}<!-- {CUT AND INJECT MOLECULES BUTTONS} -->
-                  ]
-                },
-                {
-                  "url": "#",
-                  "name": "Atoms"<!-- {CUT AND INJECT ACTIVE ATOMS} -->,
-                  "items": [
-                    {"name": "All", "url": "atoms.html"}<!-- {CUT AND INJECT ATOMS BUTTONS} -->
+                  "columns": [
+                    {
+                      "links": [
+                        {"url": "molecules.html", "name": "All"}
+                      ]
+                    }<!-- {CUT AND INJECT MOLECULES BUTTONS} -->
                   ]
                 }
-              ]'></axa-header-mobile-navigation>
-            </axa-header-mobile>
-          </axa-sticky>
-        </axa-header>
-      </axa-sticky-container>
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Atoms"<!-- {CUT AND INJECT ACTIVE ATOMS} -->,
+              "items": [
+                {
+                  "columns": [
+                    {
+                      "links": [
+                        {"url": "atoms.html", "name": "All"}
+                      ]
+                    }<!-- {CUT AND INJECT ATOMS BUTTONS} -->
+                  ]
+                }
+              ]
+            }
+          ]'></axa-header-navigation>
+
+          <h3 class="o-sg-patternlink">
+            <a class="o-sg-patternlink__link" href="#">Pattern Library</a>
+          </h3>
+          <axa-header-burger></axa-header-burger>
+        </axa-header-main>
+
+        <axa-header-mobile>
+
+          <axa-header-mobile-navigation items='[
+            {
+              "url": "#",
+              "name": "Organisms"<!-- {CUT AND INJECT ACTIVE ORGANISMS} -->,
+              "items": [
+                {"name": "All", "url": "organisms.html"}<!-- {CUT AND INJECT ORGANISMS MOBILE BUTTONS} -->
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Molecules"<!-- {CUT AND INJECT ACTIVE MOLECULES} -->,
+              "items": [
+                {"name": "All", "url": "molecules.html"}<!-- {CUT AND INJECT MOLECULES MOBILE BUTTONS} -->
+              ]
+            },
+            {
+              "url": "#",
+              "name": "Atoms"<!-- {CUT AND INJECT ACTIVE ATOMS} -->,
+              "items": [
+                {"name": "All", "url": "atoms.html"}<!-- {CUT AND INJECT ATOMS MOBILE BUTTONS} -->
+              ]
+            }
+          ]'></axa-header-mobile-navigation>
+        </axa-header-mobile>
+      </axa-header>
     </header>
+
+    <!-- {CUT AND INJECT INDEX HTML HERE} -->
 
     <!-- {CUT AND INJECT PREVIEWS HERE} -->
 

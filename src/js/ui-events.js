@@ -47,8 +47,6 @@ class UiEvents {
       ...options,
     };
 
-    console.log(this)
-
     this._handleClick = this._handleClick.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
