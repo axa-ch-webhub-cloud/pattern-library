@@ -1,13 +1,11 @@
 body {
   background: #fff; }
 
-.o-sg-section {
-  display: none; }
-  .o-sg-section:last-child {
-    margin-bottom: 20%; }
+.o-sg-section:last-child {
+  margin-bottom: 20%; }
 
-.o-sg-section--visible {
-  display: block; }
+.o-sg-section--padded {
+  margin: 80px 3% 30px; }
 
 .o-sg-section__section {
   min-height: 50px; }
