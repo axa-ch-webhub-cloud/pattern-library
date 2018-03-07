@@ -1,4 +1,4 @@
-module.exports = ({ file, options, env }) => ({
+module.exports = ({ env }) => ({
   plugins: [
     require('autoprefixer')({ // eslint-disable-line
 
