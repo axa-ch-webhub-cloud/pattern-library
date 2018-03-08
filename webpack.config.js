@@ -2,7 +2,7 @@ const glob = require('glob'); // eslint-disable-line
 
 // certain ES6 Polyfills are needed for all components
 // https://stackoverflow.com/questions/38960490/how-can-i-polyfill-promise-with-webpack
-const addES6PolyfillEntry = entry => ['./src/app/es6-polyfills.js', entry];
+const addES6PolyfillEntry = entry => ['./src/vendor/es6-polyfills.js', entry];
 
 // infer all entry names by component's folder name
 const regexComponentName = /^.*\/components\/(.*)\/index.js$/;
