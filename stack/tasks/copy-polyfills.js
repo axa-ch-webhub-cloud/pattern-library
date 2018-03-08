@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const constants = require('../constants');
 const cpx = require('cpx'); // eslint-disable-line import/no-extraneous-dependencies
 

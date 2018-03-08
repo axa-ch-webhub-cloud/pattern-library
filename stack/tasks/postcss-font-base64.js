@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const postcss = require('postcss');
 const fs = require('fs');
 const glob = require('glob');
