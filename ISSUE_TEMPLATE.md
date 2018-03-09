@@ -1,17 +1,26 @@
 First, thank you for contributing.
 Please provide us with at least the following data.
 
+# Prerequisites
+
+Please answer the following questions for yourself before submitting an issue. **YOU MAY DELETE THE PREREQUISITES SECTION.**
+
+- [ ] I am running the latest version
+- [ ] I checked the documentation and found no answer
+- [ ] I checked to make sure that this issue has not already been filed
+
 ## Are you reporting a bug or a feature?
 
  - [ ] Bug
  - [ ] Feature
 
-
 ## Expected Behavior
 
+Please describe the behavior you are expecting.
 
 ## Actual Behavior
 
+What is the current behavior?
 
 ## Steps to Reproduce the Problem
 
@@ -28,9 +37,14 @@ Please provide screencasts and/or screenshots - awesome tools are:
 
 **TL/DR:** just paste results from https://www.whatsmybrowser.org/
 
-Please tell us about your environment - os, browser, etc.
+Please provide any relevant information about your setup - os, browser, node, npm, etc.
 
-
- - Version:
+ - Browser:
+ - Browser Version:
+ - Node Version:
+ - NPM Version:
  - Platform:
- - Subsystem:
+ 
+## Failure Logs
+
+Please include any relevant log snippets or files here.
