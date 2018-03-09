@@ -3,12 +3,30 @@ const glob = require('glob'); // eslint-disable-line
 // certain ES6 Polyfills are needed for all components
 // https://stackoverflow.com/questions/38960490/how-can-i-polyfill-promise-with-webpack
 const addES6PolyfillEntry = entry => ['./src/vendor/es6-polyfills.js', entry];
+const regexSeparator = /[-_]+/g;
+const regexWord = /(?:^\w|[A-Z]|\b\w|\s+|[-_]+)/g;
+const replaceMatch = (match, index) => {
+  if (+match === 0 || regexSeparator.test(match)) {
+    return ''; // or if (/\s+/.test(match)) for white spaces
+  }
+
+  return index === 0 ? match.toLowerCase() : match.toUpperCase();
+};
+const camelize = string => string.replace(regexWord, replaceMatch);
+const entryCache = {};
+const cacheCamelize = (string) => {
+  const camelized = camelize(string);
+
+  entryCache[camelized] = string;
+
+  return camelized;
+};
 
 // infer all entry names by component's folder name
 const regexComponentName = /^.*\/components\/(.*)\/index.js$/;
 const entryNames = (entries, entry) => ({
   ...entries,
-  [entry.replace(regexComponentName, '$1')]: addES6PolyfillEntry(entry),
+  [cacheCamelize(entry.replace(regexComponentName, '$1'))]: addES6PolyfillEntry(entry),
 });
 const componentEntries = glob.sync('./src/components/*/index.js')
   .reduce(entryNames, {});
@@ -23,10 +41,10 @@ module.exports = {
     demo: './src/demos/demo.react.jsx',
   },
   output: {
-    filename: `[name]/index${libraryTarget ? '.' : ''}${libraryTarget}.js`,
+    filename: ({ chunk: { name } }) => `${entryCache[name] || name}/index${libraryTarget ? '.' : ''}${libraryTarget}.js`,
     path: `${__dirname}/bundle/components`,
     library: '[name]',
-    libraryTarget,
+    libraryTarget: libraryTarget || 'var',
   },
 
   module: {
