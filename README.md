@@ -93,7 +93,7 @@ all the possible fonts avaiable. The index.css contains all the basic page setti
 
 ## Developers Guide:
 
-Please see our [contribution file](./CONTRIBUTION.md).
+Please see our [contribution file](./CONTRIBUTING.md).
 
 ### Publish / Subscribe between webcomponents
 
