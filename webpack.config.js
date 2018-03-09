@@ -61,7 +61,7 @@ module.exports = {
     app: './src/app/app.js',
     // @todo: demos hasn't any pattern yet
     demo: './src/demos/demo.react.jsx',
-    common: './src/js/index.js',
+    //common: './src/js/index.js',
   },
   output: {
     filename,
@@ -90,7 +90,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      name: false,
+      name: 'common',
     },
   },
 };
