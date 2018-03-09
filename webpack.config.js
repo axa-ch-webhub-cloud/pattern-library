@@ -1,5 +1,7 @@
 const glob = require('glob'); // eslint-disable-line
 
+const libraryTarget = process.env.LIBRARY_TARGET || '';
+
 // certain ES6 Polyfills are needed for all components
 // https://stackoverflow.com/questions/38960490/how-can-i-polyfill-promise-with-webpack
 const addES6PolyfillEntry = entry => ['./src/vendor/es6-polyfills.js', entry];
@@ -31,7 +33,26 @@ const entryNames = (entries, entry) => ({
 const componentEntries = glob.sync('./src/components/*/index.js')
   .reduce(entryNames, {});
 
-const libraryTarget = process.env.LIBRARY_TARGET || '';
+const filename = ({ chunk: { name, id } }) => {
+  const libraryTargetSuffix = libraryTarget ? `.${libraryTarget}` : '';
+  const paths = {
+    app: 'app',
+    demo: 'demos',
+  };
+
+  // save all components entries to their respective folders
+  if (entryCache[name]) {
+    return `components/${entryCache[name] || name}/index${libraryTargetSuffix}.js`;
+  }
+
+  // save app and demo entries to their respective folders
+  if (name) {
+    return `${paths[name]}/${name}.js`;
+  }
+
+  // save optimized module chunks into common/
+  return `common/${id}.js`;
+};
 
 module.exports = {
   entry: {
@@ -41,8 +62,8 @@ module.exports = {
     demo: './src/demos/demo.react.jsx',
   },
   output: {
-    filename: ({ chunk: { name } }) => `${entryCache[name] || name}/index${libraryTarget ? '.' : ''}${libraryTarget}.js`,
-    path: `${__dirname}/bundle/components`,
+    filename,
+    path: `${__dirname}/bundle`,
     library: '[name]',
     libraryTarget: libraryTarget || 'var',
   },
