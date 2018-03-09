@@ -121,7 +121,7 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    if (this.shouldPreventDefault(toggleNode)) {
+    if (this.shouldPreventDefault(toggleNode || e.currentTarget)) {
       e.preventDefault();
     }
 
@@ -145,7 +145,7 @@ class UiEvents {
   }
 
   _handleClose(e, closeNode) {
-    if (this.shouldPreventDefault(closeNode)) {
+    if (this.shouldPreventDefault(closeNode || e.currentTarget)) {
       e.preventDefault();
     }
 
