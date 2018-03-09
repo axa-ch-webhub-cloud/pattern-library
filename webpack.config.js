@@ -13,6 +13,8 @@ const entryNames = (entries, entry) => ({
 const componentEntries = glob.sync('./src/components/*/index.js')
   .reduce(entryNames, {});
 
+const libraryTarget = process.env.LIBRARY_TARGET || '';
+
 module.exports = {
   entry: {
     ...componentEntries,
@@ -21,8 +23,10 @@ module.exports = {
     demo: './src/demos/demo.react.jsx',
   },
   output: {
-    filename: '[name]/index.js',
+    filename: `[name]/index${libraryTarget ? '.' : ''}${libraryTarget}.js`,
     path: `${__dirname}/bundle/components`,
+    library: '[name]',
+    libraryTarget,
   },
 
   module: {
