@@ -111,6 +111,8 @@ class UiEvents {
   _handleClick(e, toggleNode) {
     if (this._options.preventDefault) {
       e.preventDefault();
+      this._close();
+      return;
     }
 
     const isEnter = !this._lastToggleNode;
