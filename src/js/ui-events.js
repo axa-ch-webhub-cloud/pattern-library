@@ -31,7 +31,7 @@ class UiEvents {
     escapeClose: true,
     outerClose: true,
     sameClickClose: true,
-    preventDefault: false,
+    preventDefault: true,
   };
 
   /**
