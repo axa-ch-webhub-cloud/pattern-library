@@ -26,7 +26,7 @@ class Stroke extends UiEvents {
       toggleClass: Stroke.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
       sameClickClose: !options.simpleMenu,
-      preventDefault: false,
+      preventDefault: !options.simpleMenu,
       outerClose: !options.simpleMenu,
       escapeClose: !options.simpleMenu,
     });

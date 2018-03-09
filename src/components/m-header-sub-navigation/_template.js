@@ -3,7 +3,7 @@ import raw from 'bel/raw';
 
 const linkItem = ({ url, name, isActive }) => bel`
   <li class="m-header-sub-navigation__list-item">
-    <a class="m-header-sub-navigation__link ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
+    <a data-prevent-default="false" class="m-header-sub-navigation__link js-header-navigation-close ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
   </li>
 `;
 
