@@ -22,7 +22,7 @@ class UiEvents {
    * @property {Boolean} escapeClose - Does hitting `Esc` make this component non-interactive?
    * @property {Boolean} outerClose - Does clicking outside of this component make it non-interactive?
    * @property {Boolean} sameClickClose - Does clicking the `toggleClass` node of this component toggle non-interactive?
-   * @property {Boolean} useDefaultEvent - Is the default event action prevent?
+   * @property {Boolean} preventDefault - Is the default event action prevent?
    */
   static DEFAULTS = {
     containerClass: '.js-ui-container',
@@ -31,7 +31,7 @@ class UiEvents {
     escapeClose: true,
     outerClose: true,
     sameClickClose: true,
-    useDefaultEvent: false,
+    preventDefault: true,
   };
 
   /**
@@ -65,7 +65,7 @@ class UiEvents {
   _on() {
     this._off();
 
-    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: this._options.useDefaultEvent });
+    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: !this._options.preventDefault });
   }
 
   _off() {
@@ -80,11 +80,11 @@ class UiEvents {
     this._offInteractive();
 
     if (this._options.closeClass) {
-      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: this._options.useDefaultEvent });
+      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: !this._options.preventDefault });
     }
 
     if (this._options.outerClose) {
-      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: this._options.useDefaultEvent });
+      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: !this._options.preventDefault });
     }
 
     if (this._options.escapeClose) {
@@ -109,7 +109,7 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    if (!this._options.useDefaultEvent) {
+    if (this._options.preventDefault) {
       e.preventDefault();
     }
 
@@ -133,7 +133,7 @@ class UiEvents {
   }
 
   _handleClose(e) {
-    if (!this._options.useDefaultEvent) {
+    if (this._options.preventDefault) {
       e.preventDefault();
     }
 

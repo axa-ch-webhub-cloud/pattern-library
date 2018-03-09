@@ -106,7 +106,7 @@ class HeaderMobileNavigation {
   }
 
   handleCategoryClick(e, delegateTarget) {
-    if (!this.options.useDefaultEvent) {
+    if (!this.options.preventDefault) {
       e.preventDefault();
     }
 
@@ -128,7 +128,7 @@ class HeaderMobileNavigation {
   }
 
   handleBackClick(e) {
-    if (!this.options.useDefaultEvent) {
+    if (!this.options.preventDefault) {
       e.preventDefault();
     }
 
