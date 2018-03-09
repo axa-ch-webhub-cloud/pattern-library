@@ -109,7 +109,7 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    if (!this._options.preventDefault) {
+    if (this._options.preventDefault) {
       e.preventDefault();
     }
 
@@ -133,7 +133,7 @@ class UiEvents {
   }
 
   _handleClose(e) {
-    if (!this._options.preventDefault) {
+    if (this._options.preventDefault) {
       e.preventDefault();
     }
 
