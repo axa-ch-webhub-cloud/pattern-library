@@ -3,7 +3,7 @@ import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import forceRepaint from '../../../js/force-repaint';
 import UiEvents from '../../../js/ui-events';
 
-class HeaderSubNavigation extends UiEvents {
+class HeaderNavigation extends UiEvents {
   static DEFAULTS = {
     list: '.js-header-navigation__list',
     toggleClass: 'js-header-navigation__list-link',
@@ -14,7 +14,7 @@ class HeaderSubNavigation extends UiEvents {
   constructor(wcNode, options = {}) {
     super(wcNode, {
       containerClass: '.js-header-navigation__list',
-      toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
+      toggleClass: HeaderNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
       preventDefault: options.preventDefault || !options.simpleMenu,
       outerClose: !options.simpleMenu,
@@ -23,7 +23,7 @@ class HeaderSubNavigation extends UiEvents {
 
     this.wcNode = wcNode;
     this.options = {
-      ...HeaderSubNavigation.DEFAULTS,
+      ...HeaderNavigation.DEFAULTS,
       useDefaultEvent: !!options.useDefaultEvent || !!options.simpleMenu,
       ...options,
     };
@@ -70,4 +70,4 @@ class HeaderSubNavigation extends UiEvents {
   }
 }
 
-export default HeaderSubNavigation;
+export default HeaderNavigation;

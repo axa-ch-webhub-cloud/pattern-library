@@ -1,9 +1,15 @@
 import Enum from './enum';
 import on from './on';
-import hasPassive from './has-passive';
+import getAttribute from './get-attribute';
 import outer from './outer';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
+
+/**
+ * This is the data attribute that can be set on a DOM element and enforces prevent default.
+ * It only works only for childrens of the events!
+ */
+const DATA_PREVENT_DEFAULT = 'data-prevent-default';
 
 /**
  * General purpose UI Event handling abstraction, it basically has two modes:
@@ -93,6 +99,11 @@ class UiEvents {
     }
   }
 
+  shouldPreventDefault(node) {
+    const hasAttr = node.hasAttribute(DATA_PREVENT_DEFAULT);
+    return hasAttr ? getAttribute(node, DATA_PREVENT_DEFAULT) : this._options.preventDefault;
+  }
+
   _offInteractive() {
     if (this._unOuterClick) {
       this._unOuterClick();
@@ -110,7 +121,7 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    if (this._options.preventDefault) {
+    if (this.shouldPreventDefault(toggleNode)) {
       e.preventDefault();
     }
 
@@ -133,8 +144,8 @@ class UiEvents {
     }
   }
 
-  _handleClose(e) {
-    if (this._options.preventDefault) {
+  _handleClose(e, closeNode) {
+    if (this.shouldPreventDefault(closeNode)) {
       e.preventDefault();
     }
 

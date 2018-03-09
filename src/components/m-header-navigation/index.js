@@ -3,7 +3,7 @@ import styles from './index.scss';
 import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
-import HeaderSubNavigation from './js/header-sub-navigation';
+import HeaderNavigation from './js/header-navigation';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import wcdomready from '../../js/wcdomready';
 
@@ -19,8 +19,6 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
     const hyphenate = this.hasAttribute('hyphenate');
     const simpleMenu = getAttribute(this, 'simplemenu');
-    const useDefaultEvent = getAttribute(this, 'use-default');
-    const items = getAttribute(this, 'items');
 
     const classes = classnames(this.initialClassName, 'm-header-navigation', {
       'm-header-navigation--hyphenate': hyphenate,
@@ -32,9 +30,8 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.stroke = new Stroke(this.parentNode.parentNode, {
       simpleMenu,
     });
-    this.subNavigation = new HeaderSubNavigation(this, {
+    this.subNavigation = new HeaderNavigation(this, {
       simpleMenu,
-      useDefaultEvent,
     });
   }
 
