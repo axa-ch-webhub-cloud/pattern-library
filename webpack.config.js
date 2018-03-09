@@ -10,11 +10,16 @@ const entryNames = (entries, entry) => ({
   ...entries,
   [entry.replace(regexComponentName, '$1')]: addES6PolyfillEntry(entry),
 });
-const entries = glob.sync('./src/components/*/index.js')
+const componentEntries = glob.sync('./src/components/*/index.js')
   .reduce(entryNames, {});
 
 module.exports = {
-  entry: entries,
+  entry: {
+    ...componentEntries,
+    app: './src/app/app.js',
+    // @todo: demos hasn't any pattern yet
+    demo: './src/demos/demo.react.jsx',
+  },
   output: {
     filename: '[name]/index.js',
     path: `${__dirname}/bundle/components`,
