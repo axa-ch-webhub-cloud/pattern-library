@@ -95,7 +95,7 @@ const createAmoComponents = (amoType, previewName, atomicName, preview, resultCs
         <section class="o-sg-section__section o-sg-section__section--title">
           <h1 class="o-sg-section__section__title">
             <strong class="o-sg-section__section__title--text">${atomicName}</strong>
-            <span class="o-sg-section__section__title--text">${previewName}</span>
+            <span class="o-sg-section__section__title--text">${previewName.substring(2, previewName.length)}</span>
           </h1>
         </section>
         <article class="js--section-source o-sg-section__section o-sg-section__section--source">
