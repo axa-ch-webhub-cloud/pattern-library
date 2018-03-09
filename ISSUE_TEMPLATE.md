@@ -24,7 +24,7 @@ What is the current behavior?
 
 ## Steps to Reproduce the Problem
 
-What to we need to do, to reproduce your issue?
+What do we need to do, to reproduce your issue?
 Please provide screencasts and/or screenshots - awesome tools are:
 - MacOS: [GIPHY Capture](https://giphy.com/apps/giphycapture)
 - Windows: [ScreenToGif](http://www.screentogif.com/)
