@@ -1,5 +1,6 @@
 import Enum from './enum';
 import on from './on';
+import hasPassive from './has-passive';
 import outer from './outer';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
@@ -111,8 +112,6 @@ class UiEvents {
   _handleClick(e, toggleNode) {
     if (this._options.preventDefault) {
       e.preventDefault();
-      this._close();
-      return;
     }
 
     const isEnter = !this._lastToggleNode;

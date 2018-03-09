@@ -3,7 +3,7 @@
  *
  * @link https://github.com/rafrex/detect-passive-events
  */
-const hasPassive = (function () {
+const hasPassive = (function hasPassive() {
   let passive = false;
 
   if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {

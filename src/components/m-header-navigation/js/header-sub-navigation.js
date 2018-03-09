@@ -16,7 +16,7 @@ class HeaderSubNavigation extends UiEvents {
       containerClass: '.js-header-navigation__list',
       toggleClass: HeaderSubNavigation.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
-      preventDefault: !options.simpleMenu,
+      preventDefault: options.preventDefault || !options.simpleMenu,
       outerClose: !options.simpleMenu,
       escapeClose: !options.simpleMenu,
     });
@@ -24,6 +24,7 @@ class HeaderSubNavigation extends UiEvents {
     this.wcNode = wcNode;
     this.options = {
       ...HeaderSubNavigation.DEFAULTS,
+      useDefaultEvent: !!options.useDefaultEvent || !!options.simpleMenu,
       ...options,
     };
 

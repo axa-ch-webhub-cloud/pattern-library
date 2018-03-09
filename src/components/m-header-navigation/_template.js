@@ -5,7 +5,7 @@ const writeClasses = classes => classes ? ` ${classes}` : ''; // eslint-disable-
 
 const submenuItem = ({ url, name, items, classes, isActive, simplemenu, hyphenate = false }) => bel`
     <li class="m-header-navigation__list-item">
-      <a class="m-header-navigation__list-link ${(items || !!simplemenu) ? 'js-header-navigation__list-link' : ''} ${isActive ? 'is-header-navigation-active' : ''} ${hyphenate ? 'm-header-navigation__list-link--hyphenate' : ''} ${writeClasses(classes)}" href="${url}">${raw(name)}</a>
+      <a data-prevent-default class="m-header-navigation__list-link ${(items || !!simplemenu) ? 'js-header-navigation__list-link' : ''} ${isActive ? 'is-header-navigation-active' : ''} ${hyphenate ? 'm-header-navigation__list-link--hyphenate' : ''} ${writeClasses(classes)}" href="${url}">${raw(name)}</a>
 
       ${items ? bel`<axa-header-sub-navigation indextitle="${name}" indexurl="${url}" items='${JSON.stringify(items)}' flyout>
         </axa-header-sub-navigation>` : ''}

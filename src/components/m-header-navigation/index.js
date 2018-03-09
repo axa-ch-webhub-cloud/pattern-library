@@ -19,6 +19,8 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
     const hyphenate = this.hasAttribute('hyphenate');
     const simpleMenu = getAttribute(this, 'simplemenu');
+    const useDefaultEvent = getAttribute(this, 'use-default');
+    const items = getAttribute(this, 'items');
 
     const classes = classnames(this.initialClassName, 'm-header-navigation', {
       'm-header-navigation--hyphenate': hyphenate,
@@ -26,11 +28,13 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
     this.className = classes;
 
+    // simple menu nicht mehr brauchen. Stroke checkt if ein submenu da ist. un wenn ja dann mach default action
     this.stroke = new Stroke(this.parentNode.parentNode, {
       simpleMenu,
     });
     this.subNavigation = new HeaderSubNavigation(this, {
       simpleMenu,
+      useDefaultEvent,
     });
   }
 
