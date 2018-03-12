@@ -63,12 +63,16 @@ module.exports = {
     demo: './src/demos/demo.react.jsx',
     //common: './src/js/index.js',
   },
+
   output: {
     filename,
     path: `${__dirname}/bundle`,
     library: '[name]',
     libraryTarget: libraryTarget || 'umd',
+    umdNamedDefine: true,
   },
+
+  devtool: 'source-map',
 
   module: {
     rules: [{
