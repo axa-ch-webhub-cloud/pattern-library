@@ -1,0 +1,116 @@
+@import "../../styles/settings/colors";
+@import "../../styles/settings/controls";
+@import "../../styles/mixins/typo";
+@import "../../styles/mixins/control-transition";
+
+.a-form-input {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+}
+
+.a-form-input__wrapper {
+  position: relative;
+
+  margin-top: 10px;
+
+  @include respond-up(md) {
+    margin-top: 15px;
+  }
+}
+
+.a-form-input__input {
+  @include control-transition();
+  @include typo-tag();
+
+  position: relative;
+
+  display: inline-flex;
+
+  width: 100%;
+  height: $control-size;
+
+  max-width: 100%;
+
+  padding: 0 20px;
+
+  align-items: center;
+
+  color: $color-prim-gray-mine-shaft;
+  background: $color-bg--white;
+  outline: none;
+  border: $control-border-width solid $control-border-color;
+
+  appearance: none;
+
+  &::placeholder {
+    color: $color-prim-gray-dusty;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    &:not([disabled]):not(:disabled):not(.a-form-input--error) {
+      border-color: $control-border-color--active;
+    }
+  }
+
+  &[disabled],
+  :disabled {
+    background-color: $color-bg--gray;
+  }
+}
+
+.a-form-input--error {
+  border-color: $control-border-color--error;
+}
+
+.a-form-input--valid {
+  max-width: calc(100% - 48px);
+
+  .a-form-input__valid-icon {
+    display: inline-flex;
+  }
+}
+
+.a-form-input--inline {
+  display: inline-block;
+
+  width: auto;
+
+  vertical-align: middle;
+
+  .a-form-input__wrapper {
+    display: inline-block;
+
+    width: auto;
+
+    vertical-align: middle;
+  }
+}
+
+.a-form-input__valid-icon {
+  position: absolute;
+
+  display: none;
+
+  height: 100%;
+  width: 48px;
+
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    display: block;
+    width: 8px;
+    height: 16px;
+
+    content: "";
+
+    border: solid $color-state-green-malachite;
+    border-width: 0 2px 2px 0;
+
+    transform: rotate(45deg);
+  }
+}

@@ -1,0 +1,46 @@
+@import "../../styles/settings/colors";
+@import "../../styles/settings/base";
+@import "../../styles/mixins/respond";
+
+// fix for web-components
+/* stylelint-disable */
+axa-form-group {
+  &:not(:first-child) {
+    .m-form-group:not(.m-form-group--inline) {
+      margin-top: 20px;
+
+      @include respond-up(md) {
+        margin-top: 25px;
+      }
+    }
+  }
+
+  &[inline] + &[inline] {
+    .m-form-group {
+      margin-left: 8px;
+    }
+  }
+}
+/* stylelint-enable */
+
+.m-form-group {
+  &:not(:first-child):not(.m-form-group--inline) {
+    margin-top: 20px;
+
+    @include respond-up(md) {
+      margin-top: 25px;
+    }
+  }
+
+  &--inline {
+    display: inline-block;
+
+    width: auto;
+
+    vertical-align: middle;
+
+    & + & {
+      margin-right: 8px;
+    }
+  }
+}

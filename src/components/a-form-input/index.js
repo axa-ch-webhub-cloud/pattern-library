@@ -5,7 +5,7 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
-class AXARadio extends BaseComponentGlobal {
+class AXAFormInput extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
@@ -13,22 +13,23 @@ class AXARadio extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    const { error, checked, disabled } = getAttributes(this);
+    const { valid, inline, error, disabled } = getAttributes(this);
 
-    const radioClasses = classnames(this.initialClassName, 'a-radio', {
-      'a-radio--error': error,
-      'a-radio--checked': checked,
-      'a-radio--disabled': disabled,
+    const inputClasses = classnames('a-form-input', this.initialClassName, {
+      'a-form-input--valid': valid,
+      'a-form-input--inline': inline,
+      'a-form-input--error': error,
+      'a-form-input--disabled': disabled,
     });
 
-    this.className = radioClasses;
+    this.className = inputClasses;
     // Your DOM interaction here, but keep it decoupled.
     // If you don't have any, just remove this function
   }
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-radio', AXARadio);
+  window.customElements.define('axa-form-input', AXAFormInput);
 });
 
-export default AXARadio;
+export default AXAFormInput;
