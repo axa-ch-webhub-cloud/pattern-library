@@ -12,8 +12,8 @@
     margin-left: 14px;
   }
 
-  &:hover,
-  &:active {
+  &:hover:not(.a-choice--disabled):not(.a-choice--error),
+  &:active:not(.a-choice--disabled):not(.a-choice--error) {
     .a-choice__label {
       border-color: $color-axa-blue;
       color: $color-axa-blue;
@@ -32,9 +32,23 @@
 
   border: 1px solid $color-prim-gray-silver;
   background-color: $color-prim-gray-wild-sand;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 .a-choice__input {
   @include visual-hidden();
+
+  &:checked + .a-choice__label,
+  &[checked] + .a-choice__label {
+    @include typo-tag(Bold);
+    border-color: $color-axa-blue;
+    color: $color-axa-blue;
+    background-color: $color-bg--white;
+  }
+
+  &:disabled + .a-choice__label,
+  &[disabled] + .a-choice__label {
+    cursor: default;
+    color: $color-prim-gray-dusty;
+    border-color: $color-prim-gray-silver;
+  }
 }

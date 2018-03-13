@@ -9,7 +9,7 @@ export default function ({
 }, childrenFragment) {
   return bel`<label class="a-choice__wrapper">
     <input
-      id="${id}"
+      id=${id}
       class="a-choice__input" 
       type="radio"
       name="${name}" 
