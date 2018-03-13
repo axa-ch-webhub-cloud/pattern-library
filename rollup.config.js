@@ -46,7 +46,7 @@ export default {
 
   output: {
     dir: 'rollup',
-    format: 'umd',
+    format: 'es',
     sourcemap: true,
   },
 
