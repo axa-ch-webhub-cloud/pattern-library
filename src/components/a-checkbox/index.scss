@@ -3,3 +3,11 @@
 .a-checkbox {
   @include control-base();
 }
+
+.a-checkbox--error {
+  @include control-error();
+}
+
+.a-checkbox--disabled {
+  @include control-disabled();
+}

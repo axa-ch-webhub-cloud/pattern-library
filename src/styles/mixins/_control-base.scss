@@ -5,10 +5,32 @@
 @import "./visual-hidden";
 @import "./control-transition";
 
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
 @mixin control-base($border-radius: 0) {
   $parent: &;
 
-  #{$parent} {
+  &:hover:not(#{$parent}--disabled):not(#{$parent}--error) {
+    color: $color-axa-blue;
+
+    #{$parent}__icon {
+      border-color: $color-axa-blue;
+
+      &::after {
+        border-color: $color-axa-blue;
+      }
+    }
+  }
+
+  #{$parent}__wrapper {
     position: relative;
 
     display: inline-flex;
@@ -18,30 +40,6 @@
     align-items: center;
 
     line-height: $line-height-base;
-
-    &:hover:not(#{$parent}--disabled):not(#{$parent}--error) {
-      color: $color-axa-blue;
-
-      > #{$parent}__icon {
-        border-color: $color-axa-blue;
-
-        &::after {
-          border-color: $color-axa-blue;
-        }
-      }
-    }
-  }
-
-  #{$parent}--error {
-    color: $color-state-red-shy-tomato;
-
-    #{$parent}__icon {
-      border-color: $color-state-red-shy-tomato;
-    }
-  }
-
-  #{$parent}--disabled {
-    color: $color-prim-gray-mine-shaft;
   }
 
   #{$parent}__input {
@@ -83,4 +81,18 @@
       border-radius: $border-radius;
     }
   }
+}
+
+@mixin control-error() {
+  $parent: &;
+  $control: str-replace(#{$parent}, '--error', '');
+  color: $color-state-red-shy-tomato;
+
+  #{$control}__icon {
+    border-color: $color-state-red-shy-tomato;
+  }
+}
+
+@mixin control-disabled() {
+  color: $color-prim-gray-dusty;
 }

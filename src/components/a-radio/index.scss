@@ -3,3 +3,11 @@
 .a-radio {
   @include control-base(50%);
 }
+
+.a-radio--error {
+  @include control-error();
+}
+
+.a-radio--disabled {
+  @include control-disabled();
+}

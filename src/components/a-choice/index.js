@@ -5,7 +5,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
-import getAttribute from '../../js/get-attribute';
+import getAttributes from '../../js/get-attributes';
 
 class AXAChoice extends BaseComponentGlobal {
   constructor() {
@@ -24,11 +24,12 @@ class AXAChoice extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
+    const { error, checked, disabled } = getAttributes(this);
 
     const choiceClasses = classnames(this.initialClassName, 'a-choice', {
-      'a-choice--error': getAttribute(this, 'error'),
-      'a-choice--checked': getAttribute(this, 'checked'),
-      'a-choice--disabled': getAttribute(this, 'disabled'),
+      'a-choice--error': error,
+      'a-choice--checked': checked,
+      'a-choice--disabled': disabled,
     });
 
     this.className = choiceClasses;

@@ -3,25 +3,24 @@
 @import "../../styles/mixins/typo";
 @import "../../styles/mixins/control-transition";
 
-.a-form-input-wrapper {
-  position: relative;
-
+.a-form-input {
   display: block;
 
   width: 100%;
   max-width: 100%;
 }
 
-.a-form-input-wrapper--inline {
+.a-form-input__wrapper {
+  position: relative;
 
-  display: inline-block;
+  margin-top: 10px;
 
-  width: auto;
-
-  vertical-align: middle;
+  @include respond-up(md) {
+    margin-top: 15px;
+  }
 }
 
-.a-form-input {
+.a-form-input__input {
   @include control-transition();
   @include typo-tag();
 
@@ -35,8 +34,6 @@
   max-width: 100%;
 
   padding: 0 20px;
-
-  margin-top: 10px;
 
   align-items: center;
 
@@ -63,10 +60,6 @@
   :disabled {
     background-color: $color-bg--gray;
   }
-
-  @include respond-up(md) {
-    margin-top: 15px;
-  }
 }
 
 .a-form-input--error {
@@ -75,6 +68,10 @@
 
 .a-form-input--valid {
   max-width: calc(100% - 48px);
+
+  .a-form-input__valid-icon {
+    display: inline-flex;
+  }
 }
 
 .a-form-input--inline {
@@ -83,12 +80,20 @@
   width: auto;
 
   vertical-align: middle;
+
+  .a-form-input__wrapper {
+    display: inline-block;
+
+    width: auto;
+
+    vertical-align: middle;
+  }
 }
 
 .a-form-input__valid-icon {
   position: absolute;
 
-  display: inline-flex;
+  display: none;
 
   height: 100%;
   width: 48px;

@@ -2,21 +2,13 @@ import bel from 'bel';
 import classnames from 'classnames';
 
 export default function ({
-  classes,
   id,
   value,
   name,
-  error = false,
   checked = false,
   disabled = false,
 }, childrenFragment) {
-  const radioClasses = classnames('a-radio', classes, {
-    'a-radio--error': error,
-    'a-radio--checked': checked,
-    'a-radio--disabled': disabled,
-  });
-
-  return bel`<label class="${radioClasses}">
+  return bel`<label class="a-radio__wrapper">
     <input
       id="${id}"
       class="a-radio__input" 

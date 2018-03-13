@@ -34,6 +34,12 @@
   background-color: $color-prim-gray-wild-sand;
 }
 
+.a-choice--error {
+  .a-choice__label {
+    border-color: $color-state-red-shy-tomato;
+  }
+}
+
 .a-choice__input {
   @include visual-hidden();
 
