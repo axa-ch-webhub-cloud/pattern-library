@@ -30,7 +30,6 @@ $stroke-transition-easing: ease !default;
 
   &.is-stroke-move {
     transition:
-      height $stroke-transition-duration $stroke-transition-easing,
       left $stroke-transition-duration $stroke-transition-easing,
       width $stroke-transition-duration $stroke-transition-easing;
   }
@@ -38,6 +37,13 @@ $stroke-transition-easing: ease !default;
   &.is-stroke-static {
     left: 0 !important;
     bottom: 1px;
+  }
+
+  // Edge animation broken
+  // see https://github.com/axa-ch/patterns-library/issues/304
+  &.is-stroke-transition-off {
+    transition-property: none !important;
+    transition-duration: 0s !important;
   }
 }
 

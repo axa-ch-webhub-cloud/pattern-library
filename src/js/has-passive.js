@@ -3,11 +3,12 @@
  *
  * @link https://github.com/rafrex/detect-passive-events
  */
-const hasPassive = (function () {
+const hasPassive = (function hasPassive() {
   let passive = false;
 
   if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
     const options = Object.defineProperty({}, 'passive', {
+      // eslint-disable-next-line getter-return
       get() { passive = true; },
     });
     // note: have to set and remove a no-op listener instead of null

@@ -1,9 +1,9 @@
 import bel from 'bel';
 import raw from 'bel/raw';
 
-const linkItem = ({ url, name, isActive }) => bel`
+const linkItem = ({ url, name, isActive, preventDefault = 'false' }) => bel`
   <li class="m-header-sub-navigation__list-item">
-    <a class="m-header-sub-navigation__link js-header-navigation-close ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
+    <a data-prevent-default="${preventDefault}" class="m-header-sub-navigation__link js-header-navigation-close ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
   </li>
 `;
 

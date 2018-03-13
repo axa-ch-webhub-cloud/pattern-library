@@ -1,0 +1,27 @@
+@import "../../../styles/settings/colors";
+
+$accordion-item-padding-top: 18px !default;
+$accordion-item-padding-bottom: 18px !default;
+$accordion-item-padding-right: 60px !default;
+$accordion-item-padding-left: 10px !default;
+
+$accordion-item-content-padding-top: 2px !default;
+
+$accordion-item-body-height: 0 !default;
+$accordion-item-body-height-open: auto !default;
+$accordion-item-body-min-width: 100% !default;
+
+$accordion-item-border-width: 0 !default;
+$accordion-item-border-color: $color-prim-gray-silver !default;
+$accordion-item-border-width-top: 1px !default;
+
+$accordion-item-header-margin: 0 !default;
+
+$accordion-item-icon-width: 30px !default;
+$accordion-item-icon-height: 30px !default;
+$accordion-item-icon-spacing: 18px !default;
+
+$accordion-item-chevron-width: 16px !default;
+$accordion-item-chevron-height: 16px !default;
+
+$accordion-item-chevron-rotation: 180deg !default;

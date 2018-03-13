@@ -17,6 +17,7 @@ class Stroke extends UiEvents {
     activeClass: 'is-header-navigation-active',
     activeOpenClass: 'is-stroke-active-open',
     activeMoveClass: 'is-stroke-active-move',
+    transitionOffClass: 'is-stroke-transition-off',
   };
 
   constructor(wcNode, options = {}) {
@@ -25,7 +26,7 @@ class Stroke extends UiEvents {
       toggleClass: Stroke.DEFAULTS.toggleClass,
       closeClass: 'js-header-navigation-close',
       sameClickClose: !options.simpleMenu,
-      useDefaultEvent: !!options.simpleMenu,
+      preventDefault: !options.simpleMenu,
       outerClose: !options.simpleMenu,
       escapeClose: !options.simpleMenu,
     });
@@ -159,6 +160,10 @@ class Stroke extends UiEvents {
 
     this._isStatic = isStatic;
 
+    // Edge animation broken
+    // see https://github.com/axa-ch/patterns-library/issues/304
+    add(this._stroke, this.options.transitionOffClass);
+
     if (isStatic) {
       this._node.appendChild(this._stroke);
       add(this._stroke, this.options.staticClass);
@@ -166,6 +171,12 @@ class Stroke extends UiEvents {
       this._list.appendChild(this._stroke);
       remove(this._stroke, this.options.staticClass);
     }
+
+    // Edge animation broken
+    // see https://github.com/axa-ch/patterns-library/issues/304
+    requestAnimationFrame(() => {
+      remove(this._stroke, this.options.transitionOffClass);
+    });
   }
 
   _handleResize() {

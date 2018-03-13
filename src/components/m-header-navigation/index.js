@@ -3,7 +3,7 @@ import styles from './index.scss';
 import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
-import HeaderSubNavigation from './js/header-sub-navigation';
+import HeaderNavigation from './js/header-navigation';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import wcdomready from '../../js/wcdomready';
 
@@ -26,10 +26,11 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
     this.className = classes;
 
+    // simple menu nicht mehr brauchen. Stroke checkt if ein submenu da ist. un wenn ja dann mach default action
     this.stroke = new Stroke(this.parentNode.parentNode, {
       simpleMenu,
     });
-    this.subNavigation = new HeaderSubNavigation(this, {
+    this.subNavigation = new HeaderNavigation(this, {
       simpleMenu,
     });
   }

@@ -1,0 +1,110 @@
+@import "./settings/accordion-item";
+@import "../../styles/mixins/typo";
+
+.m-accordion-item {
+  display: block;
+}
+
+.m-accordion-item__header {
+  position: relative;
+
+  display: flex;
+
+  margin: $accordion-item-header-margin;
+
+  padding: $accordion-item-padding-top $accordion-item-padding-right $accordion-item-padding-bottom $accordion-item-padding-left;
+
+  align-items: center;
+
+  border: $accordion-item-border-width solid $accordion-item-border-color;
+  border-top-width: $accordion-item-border-width-top;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.m-accordion-item__header--with-icon {
+  .m-accordion-item__heading-wrapper {
+    margin-left: ($accordion-item-padding-right - $accordion-item-padding-left - $accordion-item-icon-width);
+  }
+
+  ~ .m-accordion-item__body {
+    padding-left: ($accordion-item-padding-right - $accordion-item-padding-left - $accordion-item-icon-spacing);
+
+    .m-accordion-item__content {
+      padding: $accordion-item-content-padding-top $accordion-item-padding-right $accordion-item-padding-bottom $accordion-item-padding-left;
+    }
+  }
+}
+
+.m-accordion-item__heading-wrapper {
+  margin-left: ($accordion-item-icon-spacing - $accordion-item-padding-left);
+}
+
+.m-accordion-item__heading {
+  display: block;
+}
+
+.m-accordion-item__heading--primary {
+  @include typo-item-highlight(Bold);
+}
+
+.m-accordion-item__heading--with-secondary {
+  @include typo-secondary-text(Bold);
+}
+
+.m-accordion-item__heading--blue {
+  color: $color-axa-blue;
+}
+
+.m-accordion-item__heading--secondary {
+  @include typo-tag();
+  color: $color-prim-gray;
+}
+
+.m-accordion-item__chevron {
+  position: absolute;
+
+  top: calc(50% - (#{$accordion-item-chevron-height} / 2));
+  right: $accordion-item-icon-spacing;
+
+  display: block;
+
+  height: $accordion-item-chevron-height;
+  width: $accordion-item-chevron-width;
+
+  color: $color-axa-blue;
+  transition: all 0.3s ease;
+}
+
+.m-accordion-item__icon {
+  display: block;
+
+  height: $accordion-item-icon-height;
+  width: $accordion-item-icon-width;
+
+  color: $color-axa-blue;
+}
+
+.m-accordion-item__body {
+  height: $accordion-item-body-height;
+  min-width: $accordion-item-body-min-width;
+  overflow: hidden;
+
+  transition: height 0.3s ease;
+}
+
+.m-accordion-item__content {
+  margin-left: $accordion-item-icon-spacing;
+  padding: $accordion-item-content-padding-top $accordion-item-padding-right $accordion-item-padding-bottom 0;
+}
+
+.is-accordion-item-open {
+  .m-accordion-item__chevron {
+    transform: rotate($accordion-item-chevron-rotation);
+  }
+
+  .m-accordion-item__body {
+    height: $accordion-item-body-height-open;
+  }
+}

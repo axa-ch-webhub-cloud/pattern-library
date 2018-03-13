@@ -1,8 +1,15 @@
 import Enum from './enum';
 import on from './on';
+import getAttribute from './get-attribute';
 import outer from './outer';
 
 const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
+
+/**
+ * This is the data attribute that can be set on a DOM element and enforces prevent default.
+ * It only works only for childrens of the events!
+ */
+const DATA_PREVENT_DEFAULT = 'data-prevent-default';
 
 /**
  * General purpose UI Event handling abstraction, it basically has two modes:
@@ -22,7 +29,7 @@ class UiEvents {
    * @property {Boolean} escapeClose - Does hitting `Esc` make this component non-interactive?
    * @property {Boolean} outerClose - Does clicking outside of this component make it non-interactive?
    * @property {Boolean} sameClickClose - Does clicking the `toggleClass` node of this component toggle non-interactive?
-   * @property {Boolean} useDefaultEvent - Is the default event action prevent?
+   * @property {Boolean} preventDefault - Is the default event action prevent?
    */
   static DEFAULTS = {
     containerClass: '.js-ui-container',
@@ -31,7 +38,7 @@ class UiEvents {
     escapeClose: true,
     outerClose: true,
     sameClickClose: true,
-    useDefaultEvent: false,
+    preventDefault: true,
   };
 
   /**
@@ -65,7 +72,7 @@ class UiEvents {
   _on() {
     this._off();
 
-    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: this._options.useDefaultEvent });
+    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: !this._options.preventDefault });
   }
 
   _off() {
@@ -80,16 +87,21 @@ class UiEvents {
     this._offInteractive();
 
     if (this._options.closeClass) {
-      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: this._options.useDefaultEvent });
+      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: !this._options.preventDefault });
     }
 
     if (this._options.outerClose) {
-      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: this._options.useDefaultEvent });
+      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: !this._options.preventDefault });
     }
 
     if (this._options.escapeClose) {
       this._unCloseEscape = on(this._container.ownerDocument, EVENTS.KEYUP, this._handleKeyUp, { passive: false });
     }
+  }
+
+  shouldPreventDefault(node) {
+    const hasAttr = node.hasAttribute(DATA_PREVENT_DEFAULT);
+    return hasAttr ? getAttribute(node, DATA_PREVENT_DEFAULT) : this._options.preventDefault;
   }
 
   _offInteractive() {
@@ -109,7 +121,7 @@ class UiEvents {
   }
 
   _handleClick(e, toggleNode) {
-    if (!this._options.useDefaultEvent) {
+    if (this.shouldPreventDefault(toggleNode || e.currentTarget)) {
       e.preventDefault();
     }
 
@@ -132,8 +144,8 @@ class UiEvents {
     }
   }
 
-  _handleClose(e) {
-    if (!this._options.useDefaultEvent) {
+  _handleClose(e, closeNode) {
+    if (this.shouldPreventDefault(closeNode || e.currentTarget)) {
       e.preventDefault();
     }
 
