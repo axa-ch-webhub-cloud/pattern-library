@@ -6,6 +6,10 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXATest extends BaseComponentGlobal {
+  // Specify observed attributes so that
+  // attributeChangedCallback will work
+  static get observedAttributes() { return ['foo']; }
+
   constructor() {
     super(styles, template);
 
