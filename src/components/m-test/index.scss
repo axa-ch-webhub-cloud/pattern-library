@@ -1,0 +1,19 @@
+.m-test {
+  display: block;
+}
+
+.m-test__article {
+  &::before {
+    display: inline-block;
+    margin-right: 10px;
+    content: 'before';
+    color: red;
+  }
+
+  &::after {
+    display: inline-block;
+    margin-left: 10px;
+    content: 'after';
+    color: red;
+  }
+}
