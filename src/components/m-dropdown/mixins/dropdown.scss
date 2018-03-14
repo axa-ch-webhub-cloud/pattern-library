@@ -198,3 +198,18 @@
 @mixin dropdown-inflow() {
   position: static;
 }
+
+@mixin dropdown--sm($line-height: false) {
+  height: $dropdown__select-height-sm;
+
+  @if $line-height {
+    line-height: $dropdown__select-height-sm;
+  }
+}
+
+@mixin dropdown-toggle--sm() {
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
+
+  @include dropdown--sm();
+  padding: $dropdown__frame-y-padding-sm $padding-right $dropdown__frame-y-padding-sm $dropdown__frame-x-padding;
+}
