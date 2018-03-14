@@ -6,29 +6,40 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
-// @todo: this is still broken
 const patchReplaceAndRemoveChild = (refsStore) => {
-  refsStore.forEach((ref, index) => {
+  let lastParentNode;
+
+  refsStore.forEach((ref) => {
     const { parentNode } = ref;
     const { replaceChild, removeChild } = parentNode;
 
-    parentNode.replaceChild = function replaceChildPatch(node, newNode) {
-      if (node === ref) {
-        refsStore.splice(index, 1, node);
+    if (lastParentNode === parentNode) {
+      return;
+    }
+
+    lastParentNode = parentNode;
+
+    parentNode.replaceChild = function replaceChildPatch(newNode, oldNode) {
+      const index = refsStore.indexOf(oldNode);
+
+      if (index > -1) {
+        refsStore.splice(index, 1, newNode);
       }
 
-      replaceChild.call(this, node, newNode);
+      replaceChild.call(this, newNode, oldNode);
     };
 
     parentNode.removeChild = function removeChildPatch(node) {
-      if (node === ref) {
+      const index = refsStore.indexOf(node);
+
+      if (index > -1) {
         refsStore.splice(index, 1);
       }
 
       removeChild.call(this, node);
     };
   });
-}
+};
 
 class AXATest extends BaseComponentGlobal {
   // Specify observed attributes so that
