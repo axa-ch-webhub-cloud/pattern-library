@@ -6,11 +6,13 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
+// @todo: this is still broken
 const patchReplaceAndRemoveChild = (refsStore) => {
   refsStore.forEach((ref, index) => {
-    const { replaceChild, removeChild } = ref;
+    const { parentNode } = ref;
+    const { replaceChild, removeChild } = parentNode;
 
-    ref.replaceChild = function replaceChildPatch(node, newNode) {
+    parentNode.replaceChild = function replaceChildPatch(node, newNode) {
       if (node === ref) {
         refsStore.splice(index, 1, node);
       }
@@ -18,7 +20,7 @@ const patchReplaceAndRemoveChild = (refsStore) => {
       replaceChild.call(this, node, newNode);
     };
 
-    ref.removeChild = function removeChildPatch(node) {
+    parentNode.removeChild = function removeChildPatch(node) {
       if (node === ref) {
         refsStore.splice(index, 1);
       }
