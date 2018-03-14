@@ -4,6 +4,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
+import getAttributes from "../../js/get-attributes";
 
 class AXATest extends BaseComponentGlobal {
   // Specify observed attributes so that
@@ -14,6 +15,8 @@ class AXATest extends BaseComponentGlobal {
     super(styles, template);
 
     console.log(`constructor -> ${this.nodeName}`);
+
+    console.log(this.children);
 
     // does this provide context (See docs for context) ?
     // this.enableContext()
@@ -48,9 +51,63 @@ class AXATest extends BaseComponentGlobal {
   }
 
   render() {
-    super.render();
+    // super.render();
 
     console.log(`render -> ${this.nodeName}`);
+
+    const { _template: template } = this;
+
+    if (template) {
+      try {
+        if (!this._hasRendered) {
+          const childrenFragment = document.createDocumentFragment();
+          const refsStore = [];
+
+          while (this.firstChild) {
+            // @todo: patch removeNode, replaceNode of each child to update refStore
+            refsStore.push(this.firstChild);
+            childrenFragment.appendChild(this.firstChild);
+          }
+
+          this.refsStore = refsStore;
+          this.childrenFragment = childrenFragment;
+        }
+
+        const items = template(getAttributes(this), this.childrenFragment);
+
+        super.innerHTML = '';
+
+        if (Array.isArray(items)) {
+          items.forEach((item) => {
+            super.appendChild(item);
+          });
+        } else if (items) {
+          if (typeof items === 'string') {
+            const err = new Error(THROWED_ERROR);
+            // @TODO: implement log system
+            console.error( // eslint-disable-line
+              `\n%cWeb Component %c${this.nodeName}%c does not accept string as a return from a template. Maybe use bel?\n\nStack Trace: ${err.stack}\n`, // eslint-disable-line
+              'color: #580000; font-size: 14px; line-height:16px;',
+              'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
+              'color: #580000; font-size: 14px; line-height:16px;',
+            );
+            throw err;
+          }
+          super.appendChild(items);
+        }
+
+        this._hasRendered = true;
+      } catch (err) {
+        if (err.message !== THROWED_ERROR) {
+          console.error( // eslint-disable-line
+            `\n%cWeb Component %c${this.nodeName}%c has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
+            'color: #580000; font-size: 14px; line-height:16px;',
+            'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
+            'color: #580000; font-size: 14px; line-height:16px;',
+          );
+        }
+      }
+    }
   }
 
   // monkey patching DOM APIs
@@ -58,6 +115,11 @@ class AXATest extends BaseComponentGlobal {
     console.log(`set innerText -> ${text}`);
 
     const textNode = document.createTextNode(text);
+
+    this.refsStore = [textNode];
+    this.childrenFragment.appendChild(textNode);
+
+    this.render();
   }
 
   set innerHTML(html) {
@@ -66,14 +128,27 @@ class AXATest extends BaseComponentGlobal {
     const div = document.createElement('div');
 
     div.innerHTML = html;
+
+    this.refsStore = [];
+
+    while (div.firstChild) {
+      this.refsStore.push(div.firstChild);
+      this.childrenFragment.appendChild(div.firstChild);
+    }
+
+    this.render();
   }
 
   appendChild(node) {
     console.log(`set appendChild -> ${node}`);
-  }
 
-  insertBefore(node) {
-    console.log(`set insertBefore -> ${node}`);
+    this.refsStore.push(node);
+
+    this.refsStore.forEach((ref) => {
+      this.childrenFragment.appendChild(ref);
+    });
+
+    this.render();
   }
 }
 
