@@ -13,8 +13,7 @@
 }
 
 .m-dropdown--sm {
-  height: $dropdown__select-height-sm;
-  line-height: $dropdown__select-height-sm;
+  @include dropdown--sm(true);
 }
 
 // native select
@@ -24,7 +23,7 @@
 }
 
 .m-dropdown__select-wrap--sm {
-  height: $dropdown__select-height-sm;
+  @include dropdown--sm();
 }
 
 .m-dropdown__select {
@@ -32,8 +31,7 @@
 }
 
 .m-dropdown__select--sm {
-  height: $dropdown__select-height-sm;
-  line-height: $dropdown__select-height-sm;
+  @include dropdown--sm(true);
 }
 
 .m-dropdown__select-icon {
@@ -72,9 +70,7 @@
 }
 
 .m-dropdown__toggle--sm {
-  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
-  padding: $dropdown__frame-y-padding-sm $padding-right $dropdown__frame-y-padding-sm $dropdown__frame-x-padding;
-  height: $dropdown__select-height-sm;
+  @include dropdown-toggle--sm();
 }
 
 .m-dropdown__icon {
@@ -82,7 +78,7 @@
 }
 
 .m-dropdown__select-icon--sm {
-  height: $dropdown__select-height-sm;
+  @include dropdown--sm();
 }
 
 .m-dropdown__content {
