@@ -6,6 +6,7 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
+const THROWED_ERROR = 'throwed';
 const patchReplaceAndRemoveChild = (refsStore) => {
   let lastParentNode;
 
