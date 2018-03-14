@@ -27,7 +27,7 @@
   }
 
   .m-form-group__info-button {
-    display: block;
+    display: flex;
   }
 }
 
@@ -50,6 +50,8 @@
   margin: $form-group-icon-button-margin;
   margin-right: $form-group-icon-button-margin-right;
   padding: $form-group-icon-button-padding;
+
+  align-items: center;
 
   flex-shrink: 0;
   flex-grow: 0;
