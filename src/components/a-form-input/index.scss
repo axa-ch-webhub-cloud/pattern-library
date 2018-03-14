@@ -8,16 +8,16 @@
 
   width: 100%;
   max-width: 100%;
-}
-
-.a-form-input__wrapper {
-  position: relative;
 
   margin-top: 10px;
 
   @include respond-up(md) {
     margin-top: 15px;
   }
+}
+
+.a-form-input__wrapper {
+  position: relative;
 }
 
 .a-form-input__input {
