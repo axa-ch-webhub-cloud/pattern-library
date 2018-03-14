@@ -32,7 +32,7 @@ class AXADropdown extends BaseComponentGlobal {
 
     this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
       'm-dropdown--in-flow': inFlow,
-      'm-dropdown--small': !!size,
+      [`m-dropdown--${size}`]: size,
     });
   }
 }
