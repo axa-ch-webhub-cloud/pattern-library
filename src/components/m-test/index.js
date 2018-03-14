@@ -68,11 +68,11 @@ class AXATest extends BaseComponentGlobal {
     div.innerHTML = html;
   }
 
-  set appendChild(node) {
+  appendChild(node) {
     console.log(`set appendChild -> ${node}`);
   }
 
-  set insertBefore(node) {
+  insertBefore(node) {
     console.log(`set insertBefore -> ${node}`);
   }
 }
