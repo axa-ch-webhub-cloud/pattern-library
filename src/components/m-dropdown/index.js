@@ -4,6 +4,7 @@ import template from './_template';
 import { BaseComponentGlobal } from '../_abstract/component-types';
 import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
+import getAttribute from '../../js/get-attribute';
 
 class AXADropdown extends BaseComponentGlobal {
   constructor() {
@@ -27,9 +28,11 @@ class AXADropdown extends BaseComponentGlobal {
     super.render();
 
     const inFlow = this.hasAttribute('in-flow');
+    const size = getAttribute('size');
 
     this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
       'm-dropdown--in-flow': inFlow,
+      'm-dropdown--small': !!size,
     });
   }
 }
