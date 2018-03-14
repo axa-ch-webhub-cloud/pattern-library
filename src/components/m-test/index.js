@@ -31,6 +31,10 @@ class AXATest extends BaseComponentGlobal {
     // If you don't have any, just remove this function
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log(`attributeChangedCallback -> ${this.nodeName} [${name}=${oldValue}] to [${name}=${newValue}]`);
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
 
