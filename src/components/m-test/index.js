@@ -52,6 +52,29 @@ class AXATest extends BaseComponentGlobal {
 
     console.log(`render -> ${this.nodeName}`);
   }
+
+  // monkey patching DOM APIs
+  set innerText(text) {
+    console.log(`set innerText -> ${text}`);
+
+    const textNode = document.createTextNode(text);
+  }
+
+  set innerHTML(html) {
+    console.log(`set innerHTML -> ${html}`);
+
+    const div = document.createElement('div');
+
+    div.innerHTML = html;
+  }
+
+  set appendChild(node) {
+    console.log(`set appendChild -> ${node}`);
+  }
+
+  set insertBefore(node) {
+    console.log(`set insertBefore -> ${node}`);
+  }
 }
 
 wcdomready(() => {
