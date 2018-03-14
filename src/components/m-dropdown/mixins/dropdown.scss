@@ -202,7 +202,7 @@
 @mixin dropdown--sm($line-height: false) {
   height: $dropdown__select-height-sm;
 
-  @if !$line-height {
+  @if $line-height {
     line-height: $dropdown__select-height-sm;
   }
 }
