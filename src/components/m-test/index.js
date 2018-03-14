@@ -108,12 +108,11 @@ class AXATest extends BaseComponentGlobal {
         }
 
         const items = template(getAttributes(this), this.childrenFragment);
-
-        super.innerHTML = '';
+        const renderFragment = document.createDocumentFragment();
 
         if (Array.isArray(items)) {
           items.forEach((item) => {
-            super.appendChild(item);
+            renderFragment.appendChild(item);
           });
         } else if (items) {
           if (typeof items === 'string') {
@@ -127,8 +126,11 @@ class AXATest extends BaseComponentGlobal {
             );
             throw err;
           }
-          super.appendChild(items);
+          renderFragment.appendChild(items);
         }
+
+        super.innerHTML = '';
+        super.appendChild(renderFragment);
 
         // @todo: we may need to rerender upon replace/remove child
         patchReplaceAndRemoveChild(this.refsStore);
