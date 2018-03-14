@@ -4,7 +4,29 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
-import getAttributes from "../../js/get-attributes";
+import getAttributes from '../../js/get-attributes';
+
+const patchReplaceAndRemoveChild = (refsStore) => {
+  refsStore.forEach((ref, index) => {
+    const { replaceChild, removeChild } = ref;
+
+    ref.replaceChild = function replaceChildPatch(node, newNode) {
+      if (node === ref) {
+        refsStore.splice(index, 1, node);
+      }
+
+      replaceChild.call(this, node, newNode);
+    };
+
+    ref.removeChild = function removeChildPatch(node) {
+      if (node === ref) {
+        refsStore.splice(index, 1);
+      }
+
+      removeChild.call(this, node);
+    };
+  });
+}
 
 class AXATest extends BaseComponentGlobal {
   // Specify observed attributes so that
@@ -64,7 +86,6 @@ class AXATest extends BaseComponentGlobal {
           const refsStore = [];
 
           while (this.firstChild) {
-            // @todo: patch removeNode, replaceNode of each child to update refStore
             refsStore.push(this.firstChild);
             childrenFragment.appendChild(this.firstChild);
           }
@@ -96,6 +117,8 @@ class AXATest extends BaseComponentGlobal {
           super.appendChild(items);
         }
 
+        // @todo: we may need to rerender upon replace/remove child
+        patchReplaceAndRemoveChild(this.refsStore);
         this._hasRendered = true;
       } catch (err) {
         if (err.message !== THROWED_ERROR) {
