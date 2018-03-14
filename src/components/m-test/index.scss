@@ -1,3 +1,5 @@
+@import "../../styles/settings/colors";
+
 .m-test {
   display: block;
 }
@@ -7,13 +9,13 @@
     display: inline-block;
     margin-right: 10px;
     content: 'before';
-    color: red;
+    color: $color-state-red-shy-tomato;
   }
 
   &::after {
     display: inline-block;
     margin-left: 10px;
     content: 'after';
-    color: red;
+    color: $color-state-red-shy-tomato;
   }
 }
