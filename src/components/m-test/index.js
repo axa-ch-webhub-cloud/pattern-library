@@ -7,6 +7,7 @@ import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
 const THROWED_ERROR = 'throwed';
+// @todo: as soon as refsStore changes the pathes should be remove from the old DOM and reassign to the new dom
 const patchReplaceAndRemoveChild = (refsStore, removeCallback) => {
   let lastParentNode;
 
@@ -108,7 +109,7 @@ class AXATest extends BaseComponentGlobal {
 
     if (template) {
       try {
-        // At initial rendering collect the light DOM first
+        // At initial rendering -> collect the light DOM first
         if (!this._hasRendered) {
           console.log('>>> initial light DOM');
           const childrenFragment = document.createDocumentFragment();
@@ -122,7 +123,7 @@ class AXATest extends BaseComponentGlobal {
           this.refsStore = refsStore;
           this.childrenFragment = childrenFragment;
         } else {
-          console.log('>>> incremental flattenend DOM >>>');
+          console.log('>>> incremental rendering - reuse light DOM >>>');
           this.refsStore.forEach((ref) => {
             this.childrenFragment.appendChild(ref);
           });
