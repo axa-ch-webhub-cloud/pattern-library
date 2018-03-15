@@ -1,4 +1,4 @@
-import { BaseComponentGlobal } from '../../js/component-types';
+import BaseComponentGlobal from '../../js/base-component-global';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component

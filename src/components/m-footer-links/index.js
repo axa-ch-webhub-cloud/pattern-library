@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { BaseComponentGlobal } from '../../js/component-types';
+import BaseComponentGlobal from '../../js/base-component-global';
 import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';

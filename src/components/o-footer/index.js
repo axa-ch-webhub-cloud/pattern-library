@@ -1,4 +1,4 @@
-import { BaseComponentGlobal } from '../../js/component-types';
+import BaseComponentGlobal from '../../js/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooter extends BaseComponentGlobal {

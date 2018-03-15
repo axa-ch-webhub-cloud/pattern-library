@@ -4,7 +4,7 @@ import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
-import { BaseComponentGlobal } from '../../js/component-types';
+import BaseComponentGlobal from '../../js/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
