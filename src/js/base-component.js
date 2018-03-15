@@ -174,6 +174,78 @@ export default class BaseComponent extends HTMLElement {
     }
   }
 
+  /**
+   * Monkey patch `innerText` API to re-rendering.
+   *
+   * @param {String} text
+   */
+  set innerText(text) {
+    if (!this._hasTemplate) {
+      super.innerText = text;
+      return;
+    }
+
+    const textNode = document.createTextNode(text);
+
+    this.lightDOMRefs = [textNode];
+
+    this.render();
+  }
+
+  /**
+   * Monkey patch `textContent` API to re-rendering.
+   *
+   * @param {String} text
+   */
+  set textContent(text) {
+    if (!this._hasTemplate) {
+      super.textContent = text;
+      return;
+    }
+
+    const textNode = document.createTextNode(text);
+
+    this.lightDOMRefs = [textNode];
+
+    this.render();
+  }
+
+  /**
+   * Monkey patch `innerHTML` API to re-rendering.
+   *
+   * @param {String} html
+   */
+  set innerHTML(html) {
+    if (!this._hasTemplate) {
+      super.innerHTML = html;
+      return;
+    }
+
+    const div = document.createElement('div');
+
+    div.innerHTML = html;
+
+    this.refsStore = Array.from(div.children);
+
+    this.render();
+  }
+
+  /**
+   * Monkey patch `appendChild` API to re-rendering.
+   *
+   * @param {Element} node
+   */
+  appendChild(node) {
+    if (!this._hasTemplate) {
+      super.appendChild(node);
+      return;
+    }
+
+    this.refsStore.push(node);
+
+    this.render();
+  }
+
   // @TODO: atm no data can be shared by enabling context, though this could be necessary
   /**
    * Provides an opt-in contextual scope for hierarchy-agnostic child components.
