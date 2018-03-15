@@ -102,31 +102,40 @@ export default class BaseComponent extends HTMLElement {
   }
 
   /**
-   * render - method can be overriden and is called right after the component is connected
-   * @TODO how to deal with rerenders, e.g. triggered by `attributeChangedCallback` or observed DOM
+   * render - method can be overwritten and is called right after the component is connected
+   * @TODO how to deal with re-renders, e.g. triggered by `attributeChangedCallback` or observed DOM
    *
    * @return {type}  description
    */
   render() { // eslint-disable-line
-    if (this._hasRendered) {
-      return;
-    }
-
     const { _template: template } = this;
 
     if (template) {
       try {
-        const childrenFragment = document.createDocumentFragment();
+        // At initial rendering -> collect the light DOM first
+        if (!this._hasRendered) {
+          const childrenFragment = document.createDocumentFragment();
+          const lightDOMRefs = [];
 
-        while (this.firstChild) {
-          childrenFragment.appendChild(this.firstChild);
+          while (this.firstChild) {
+            lightDOMRefs.push(this.firstChild);
+            childrenFragment.appendChild(this.firstChild);
+          }
+
+          this.lightDOMRefs = lightDOMRefs;
+          this.childrenFragment = childrenFragment;
+        } else { // Reuse the light DOM for subsequent rendering
+          this.lightDOMRefs.forEach((ref) => {
+            this.childrenFragment.appendChild(ref);
+          });
         }
 
-        const items = template(getAttributes(this), childrenFragment);
+        const items = template(getAttributes(this), this.childrenFragment);
+        const renderFragment = document.createDocumentFragment();
 
         if (Array.isArray(items)) {
           items.forEach((item) => {
-            this.appendChild(item);
+            renderFragment.appendChild(item);
           });
         } else if (items) {
           if (typeof items === 'string') {
@@ -140,8 +149,13 @@ export default class BaseComponent extends HTMLElement {
             );
             throw err;
           }
-          this.appendChild(items);
+          renderFragment.appendChild(items);
         }
+
+        // rebuild the whole DOM subtree
+        // @todo: this will breaks disconnect previous references
+        super.innerHTML = '';
+        super.appendChild(renderFragment);
 
         this._hasRendered = true;
       } catch (err) {
