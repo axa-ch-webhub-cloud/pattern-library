@@ -158,7 +158,9 @@ export default class BaseComponent extends HTMLElement {
 
       // rebuild the whole DOM subtree
       // @todo: this will break/disconnect previous references
-      super.innerHTML = '';
+      while (this.firstChild) {
+        this.removeChild(this.firstChild);
+      }
       super.appendChild(renderFragment);
 
       this._hasRendered = true;
