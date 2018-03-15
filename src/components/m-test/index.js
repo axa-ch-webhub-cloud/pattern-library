@@ -23,6 +23,8 @@ const patchReplaceAndRemoveChild = (refsStore, removeCallback) => {
     parentNode.replaceChild = function replaceChildPatch(newNode, oldNode) {
       const index = refsStore.indexOf(oldNode);
 
+      console.log(`replace ${oldNode.nodeName}`);
+
       if (index > -1) {
         refsStore.splice(index, 1, newNode);
       }
@@ -32,6 +34,8 @@ const patchReplaceAndRemoveChild = (refsStore, removeCallback) => {
 
     parentNode.removeChild = function removeChildPatch(node) {
       const index = refsStore.indexOf(node);
+
+      console.log(`remove ${node.nodeName}`);
 
       removeChild.call(this, node);
 
@@ -74,6 +78,10 @@ class AXATest extends BaseComponentGlobal {
     this.className = `${this.initialClassName} m-test`;
     // Your DOM interaction here, but keep it decoupled.
     // If you don't have any, just remove this function
+
+    this.timer = setInterval(() => {
+      this.render();
+    }, 1000);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -86,6 +94,8 @@ class AXATest extends BaseComponentGlobal {
     console.log(`disconnectedCallback -> ${this.nodeName}`);
 
     // Don't forget to cleanup :)
+
+    clearInterval(this.timer);
   }
 
   render() {
@@ -100,6 +110,7 @@ class AXATest extends BaseComponentGlobal {
       try {
         // At initial rendering collect the light DOM first
         if (!this._hasRendered) {
+          console.log('>>> initial light DOM');
           const childrenFragment = document.createDocumentFragment();
           const refsStore = [];
 
@@ -111,6 +122,7 @@ class AXATest extends BaseComponentGlobal {
           this.refsStore = refsStore;
           this.childrenFragment = childrenFragment;
         } else {
+          console.log('>>> incremental flattenend DOM >>>');
           this.refsStore.forEach((ref) => {
             this.childrenFragment.appendChild(ref);
           });
@@ -175,11 +187,7 @@ class AXATest extends BaseComponentGlobal {
 
     div.innerHTML = html;
 
-    this.refsStore = [];
-
-    while (div.firstChild) {
-      this.refsStore.push(div.firstChild);
-    }
+    this.refsStore = Array.from(div.children);
 
     this.render();
   }
