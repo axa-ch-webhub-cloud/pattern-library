@@ -7,7 +7,7 @@ import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
 const THROWED_ERROR = 'throwed';
-const patchReplaceAndRemoveChild = (refsStore) => {
+const patchReplaceAndRemoveChild = (refsStore, removeCallback) => {
   let lastParentNode;
 
   refsStore.forEach((ref) => {
@@ -33,11 +33,13 @@ const patchReplaceAndRemoveChild = (refsStore) => {
     parentNode.removeChild = function removeChildPatch(node) {
       const index = refsStore.indexOf(node);
 
+      removeChild.call(this, node);
+
       if (index > -1) {
         refsStore.splice(index, 1);
-      }
 
-      removeChild.call(this, node);
+        removeCallback();
+      }
     };
   });
 };
@@ -91,10 +93,12 @@ class AXATest extends BaseComponentGlobal {
 
     console.log(`render -> ${this.nodeName}`);
 
+    // eslint-disable-next-line no-shadow
     const { _template: template } = this;
 
     if (template) {
       try {
+        // At initial rendering collect the light DOM first
         if (!this._hasRendered) {
           const childrenFragment = document.createDocumentFragment();
           const refsStore = [];
@@ -106,6 +110,10 @@ class AXATest extends BaseComponentGlobal {
 
           this.refsStore = refsStore;
           this.childrenFragment = childrenFragment;
+        } else {
+          this.refsStore.forEach((ref) => {
+            this.childrenFragment.appendChild(ref);
+          });
         }
 
         const items = template(getAttributes(this), this.childrenFragment);
@@ -133,8 +141,8 @@ class AXATest extends BaseComponentGlobal {
         super.innerHTML = '';
         super.appendChild(renderFragment);
 
-        // @todo: we may need to rerender upon replace/remove child
-        patchReplaceAndRemoveChild(this.refsStore);
+        patchReplaceAndRemoveChild(this.refsStore, () => this.render());
+
         this._hasRendered = true;
       } catch (err) {
         if (err.message !== THROWED_ERROR) {
@@ -156,7 +164,6 @@ class AXATest extends BaseComponentGlobal {
     const textNode = document.createTextNode(text);
 
     this.refsStore = [textNode];
-    this.childrenFragment.appendChild(textNode);
 
     this.render();
   }
@@ -172,7 +179,6 @@ class AXATest extends BaseComponentGlobal {
 
     while (div.firstChild) {
       this.refsStore.push(div.firstChild);
-      this.childrenFragment.appendChild(div.firstChild);
     }
 
     this.render();
@@ -182,10 +188,6 @@ class AXATest extends BaseComponentGlobal {
     console.log(`set appendChild -> ${node}`);
 
     this.refsStore.push(node);
-
-    this.refsStore.forEach((ref) => {
-      this.childrenFragment.appendChild(ref);
-    });
 
     this.render();
   }
