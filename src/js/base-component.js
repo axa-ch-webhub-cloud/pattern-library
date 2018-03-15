@@ -5,7 +5,38 @@ const THROWED_ERROR = 'throwed';
 
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
- * and if yes appends it. It also appends custom styles to the top of the dom tree
+ * and if yes appends it. It also appends custom styles to the top of the dom tree.
+ *
+ * **Light DOM**
+ * The light DOM are the provided children from the users of your component (light meaning easy to digest).
+ *
+ * ```html
+ * <axa-example>
+ *   <div>This is some light DOM for axa-example</div>
+ * </axa-example>
+ * ```
+ *
+ * **Local DOM**
+ * The local DOM is the DOM tree rendered by the component itself (in our case provided by `template`).
+ *
+ * ```js
+ * function(props, childrenFragment) {
+ *   return bel`<article>
+ *     ${childrenFragment} <!-- light DOM injection point -->
+ *   </article>`;
+ * }
+ * ```
+ *
+ * **Flattened DOM**
+ * The flattened DOM is the final product where the user's light DOM is injected into the Components local DOM.
+ *
+ * ```html
+ * <axa-example>
+ *   <article>
+ *     <div>This is some light DOM for axa-example</div> <!-- light DOM injection point -->
+ *   </article>
+ * </axa-example>
+ * ```
  */
 export default class BaseComponent extends HTMLElement {
   constructor(styles = '', template) {
