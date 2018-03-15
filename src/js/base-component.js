@@ -180,7 +180,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {String} text
    */
   set innerText(text) {
-    if (!this._hasTemplate) {
+    if (!this._hasTemplate || !this._hasRendered) {
       super.innerText = text;
       return;
     }
@@ -198,7 +198,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {String} text
    */
   set textContent(text) {
-    if (!this._hasTemplate) {
+    if (!this._hasTemplate || !this._hasRendered) {
       super.textContent = text;
       return;
     }
@@ -216,7 +216,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {String} html
    */
   set innerHTML(html) {
-    if (!this._hasTemplate) {
+    if (!this._hasTemplate || !this._hasRendered) {
       super.innerHTML = html;
       return;
     }
@@ -236,7 +236,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {Element} node
    */
   appendChild(node) {
-    if (!this._hasTemplate) {
+    if (!this._hasTemplate || !this._hasRendered) {
       super.appendChild(node);
       return;
     }
