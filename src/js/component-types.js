@@ -193,8 +193,8 @@ export class BaseComponent extends HTMLElement {
 
 /**
  * Base class {BaseComponentShadow}. This class extends the {BaseComponent} and
- * applays a shadow dom to it. Please be aware that only a few browser
- * implements this correctly. With other browser works as well, apart of the global contaimination.
+ * applies a shadow dom to it. Please be aware that only a few browser
+ * implements this correctly. With other browser works as well, apart of the global contamination.
  * So if a inner shadow override a upper shadow and has the same class, the upper will be overridden from the
  * inners class as it has only one DOM.
  *
@@ -216,7 +216,7 @@ export class BaseComponentShadow extends BaseComponent {
 
 /**
  * Base class {BaseComponentGlobal}. This class extends the {BaseComponent} and
- * applays threat the component as a global element. the use is not recomended but
+ * applies threat the component as a global element. the use is not recommended but
  * in some occasion it can make sense. Typical use case is if a component
  * is used more than once and has lots of css.
  * The style will be included only once in the DOM and is insert in the head of the main document.
