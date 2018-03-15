@@ -126,10 +126,10 @@ export default class BaseComponent extends HTMLElement {
           childrenFragment.appendChild(this.firstChild);
         }
 
-        this.lightDOMRefs = lightDOMRefs;
+        this._lightDOMRefs = lightDOMRefs;
         this.childrenFragment = childrenFragment;
       } else { // Reuse the light DOM for subsequent rendering
-        this.lightDOMRefs.forEach((ref) => {
+        this._lightDOMRefs.forEach((ref) => {
           this.childrenFragment.appendChild(ref);
         });
       }
@@ -187,7 +187,7 @@ export default class BaseComponent extends HTMLElement {
 
     const textNode = document.createTextNode(text);
 
-    this.lightDOMRefs = [textNode];
+    this._lightDOMRefs = [textNode];
 
     this.render();
   }
@@ -205,7 +205,7 @@ export default class BaseComponent extends HTMLElement {
 
     const textNode = document.createTextNode(text);
 
-    this.lightDOMRefs = [textNode];
+    this._lightDOMRefs = [textNode];
 
     this.render();
   }
@@ -225,7 +225,7 @@ export default class BaseComponent extends HTMLElement {
 
     div.innerHTML = html;
 
-    this.lightDOMRefs = Array.from(div.children);
+    this._lightDOMRefs = Array.from(div.children);
 
     this.render();
   }
@@ -241,7 +241,7 @@ export default class BaseComponent extends HTMLElement {
       return;
     }
 
-    this.lightDOMRefs.push(node);
+    this._lightDOMRefs.push(node);
 
     this.render();
   }
