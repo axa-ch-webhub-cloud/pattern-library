@@ -1,0 +1,9 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/grid";
+@import "../../styles/mixins/vertical-rhythm";
+
+.m-container {
+  @include make-container();
+  @include make-container-max-widths();
+  display: block;
+}
