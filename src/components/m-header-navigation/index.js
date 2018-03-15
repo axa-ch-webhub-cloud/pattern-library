@@ -30,7 +30,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.stroke = new Stroke(this, {
       simpleMenu,
     });
-    this.subNavigation = new HeaderNavigation(this, {
+    this.navigation = new HeaderNavigation(this, {
       simpleMenu,
     });
   }
@@ -40,11 +40,15 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.stroke.destroy();
-    delete this.stroke;
+    if (this.stroke) {
+      this.stroke.destroy();
+      delete this.stroke;
+    }
 
-    this.subNavigation.destroy();
-    delete this.subNavigation;
+    if (this.navigation) {
+      this.navigation.destroy();
+      delete this.navigation;
+    }
   }
 }
 
