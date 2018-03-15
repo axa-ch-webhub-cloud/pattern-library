@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import { BaseComponentGlobal } from '../../js/component-types';
 import styles from './index.scss';
 import wcdomready from '../../js/wcdomready';
 

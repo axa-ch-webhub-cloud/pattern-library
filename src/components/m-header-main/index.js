@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import { BaseComponentGlobal } from '../../js/component-types';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component

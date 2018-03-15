@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import { BaseComponentGlobal } from '../../js/component-types';
 import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
 import getAttribute from '../../js/get-attribute';

@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import { BaseComponentGlobal } from '../../js/component-types';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeader extends BaseComponentGlobal {

@@ -1,5 +1,5 @@
-import getAttributes from '../../js/get-attributes';
-import { publish, subscribe } from '../../js/pubsub';
+import getAttributes from './get-attributes';
+import { publish, subscribe } from './pubsub';
 
 const memory = {};
 
