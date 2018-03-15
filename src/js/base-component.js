@@ -225,7 +225,7 @@ export default class BaseComponent extends HTMLElement {
 
     div.innerHTML = html;
 
-    this.refsStore = Array.from(div.children);
+    this.lightDOMRefs = Array.from(div.children);
 
     this.render();
   }
@@ -241,7 +241,7 @@ export default class BaseComponent extends HTMLElement {
       return;
     }
 
-    this.refsStore.push(node);
+    this.lightDOMRefs.push(node);
 
     this.render();
   }
