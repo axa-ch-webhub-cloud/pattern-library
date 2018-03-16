@@ -133,6 +133,8 @@ export default class BaseComponent extends HTMLElement {
         this.childrenFragment = childrenFragment;
       } else { // Reuse the light DOM for subsequent rendering
         this._lightDOMRefs.forEach((ref) => {
+          // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
+          // so we can always reuse this
           this.childrenFragment.appendChild(ref);
         });
       }
@@ -159,14 +161,17 @@ export default class BaseComponent extends HTMLElement {
         renderFragment.appendChild(items);
       }
 
+      const { _hasRendered: initial } = this;
+
+      this.willRenderCallback(!initial);
+
       // rebuild the whole DOM subtree
-      // @todo: this will break/disconnect previous references
+      // @todo: this will break/disconnect previous DOM references, associated events and stuff like that
+      // @todo: may bneed to be improved by DOM diffing, JSX, whatever
       while (this.firstChild) {
         this.removeChild(this.firstChild);
       }
       super.appendChild(renderFragment);
-
-      const { _hasRendered: initial } = this;
 
       this._hasRendered = true;
 
@@ -184,7 +189,16 @@ export default class BaseComponent extends HTMLElement {
   }
 
   /**
-   * Optionally overwrite this public method, it get's triggered as soon as your component has rendered.
+   * Optionally overwrite this public method, it get's triggered as soon as your component will render.
+   * Here you will cleanup your lost DOM references or their associated events or stuff like that.
+   *
+   * @param [Boolean] initial - Whether or not this was the first render of this component.
+   */
+  willRenderCallback(initial) {} // eslint-disable-line
+
+  /**
+   * Optionally overwrite this public method, it get's triggered as soon as your component did render.
+   * Here you will reattach your lost DOM references and events or stuff like that.
    *
    * @param [Boolean] initial - Whether or not this was the first render of this component.
    */
