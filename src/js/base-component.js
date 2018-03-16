@@ -58,6 +58,7 @@ export default class BaseComponent extends HTMLElement {
     this._styles = styles;
     this._template = template;
     this._hasTemplate = !!template;
+    this._hasRendered = false;
   }
 
   /**
@@ -83,6 +84,8 @@ export default class BaseComponent extends HTMLElement {
     if (this.unContextEnabled) {
       this.unContextEnabled();
     }
+
+    this._hasRendered = false;
   }
   /**
    * _appendStyles - description
