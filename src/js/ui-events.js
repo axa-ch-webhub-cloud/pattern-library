@@ -55,6 +55,7 @@ class UiEvents {
     this._init(wcNode, options);
   }
 
+  // @todo: may this API needs to be refactored from direct instantiation to lazy instantiation
   _init(wcNode, options) {
     if (wcNode) {
       this._wcNode = wcNode;
