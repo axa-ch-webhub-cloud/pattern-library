@@ -48,20 +48,25 @@ class UiEvents {
    * @param {UiEvents.DEFAULTS} options - Options ovvering the defaults.
    */
   constructor(wcNode, options = {}) {
-    this._wcNode = wcNode;
-    this._options = {
-      ...UiEvents.DEFAULTS,
-      ...options,
-    };
-
     this._handleClick = this._handleClick.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
 
-    this._init();
+    this._init(wcNode, options);
   }
 
-  _init() {
+  _init(wcNode, options) {
+    if (wcNode) {
+      this._wcNode = wcNode;
+    }
+
+    if (options) {
+      this._options = {
+        ...UiEvents.DEFAULTS,
+        ...options,
+      };
+    }
+
     const { containerClass } = this._options;
 
     this._container = containerClass ? this._wcNode.querySelector(containerClass) : this._wcNode;
