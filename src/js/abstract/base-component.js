@@ -1,5 +1,5 @@
-import getAttributes from './get-attributes';
-import { publish, subscribe } from './pubsub';
+import getAttributes from '../get-attributes';
+import { publish, subscribe } from '../pubsub';
 
 const THROWED_ERROR = 'throwed';
 

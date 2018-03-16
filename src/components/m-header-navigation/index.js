@@ -4,7 +4,7 @@ import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
-import BaseComponentGlobal from '../../js/base-component-global';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 let instanceCount = 0;
@@ -19,9 +19,8 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   connectedCallback() {
-    super.connectedCallback();
-
     console.log(`connectedCallback -> ${this.nodeName} - ${this.id}`);
+    super.connectedCallback();
 
     const hyphenate = this.hasAttribute('hyphenate');
     const simpleMenu = getAttribute(this, 'simplemenu');
@@ -46,7 +45,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   didRenderCallback(initial) {
-    console.log(`didRenderCallback -> ${this.nodeName} - ${this.id} ${initial}`);
+    console.log(`didRenderCallback -> ${this.nodeName} - ${this.id} | initial: ${initial}`);
 
     if (!initial) {
       this.stroke.init();
@@ -55,6 +54,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
   disconnectedCallback() {
     console.log(`disconnectedCallback -> ${this.nodeName} - ${this.id}`);
+    super.disconnectedCallback();
 
     if (this.stroke) {
       this.stroke.destroy();

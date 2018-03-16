@@ -1,6 +1,6 @@
 import styles from './index.scss';
 import observeDeviceState from './js/device-state';
-import BaseComponentGlobal from '../../js/base-component-global';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 
 observeDeviceState();
 
