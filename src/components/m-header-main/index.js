@@ -10,6 +10,8 @@ import getAttribute from '../../js/get-attribute';
 class AXAHeaderMain extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
+
+    this.enableContext();
   }
 
   connectedCallback() {

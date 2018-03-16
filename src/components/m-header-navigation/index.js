@@ -11,7 +11,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.selectContext('axa-header');
+    this.selectContext('axa-header-main');
   }
 
   connectedCallback() {
@@ -27,12 +27,16 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.className = classes;
 
     // simple menu nicht mehr brauchen. Stroke checkt if ein submenu da ist. un wenn ja dann mach default action
-    this.stroke = new Stroke(this.parentNode.parentNode, {
+    this.stroke = new Stroke(this, {
       simpleMenu,
     });
     this.subNavigation = new HeaderNavigation(this, {
       simpleMenu,
     });
+  }
+
+  contextCallback(contextNode) {
+    this.stroke.contextNode = contextNode;
   }
 
   disconnectedCallback() {
