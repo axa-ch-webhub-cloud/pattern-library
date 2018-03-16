@@ -163,7 +163,11 @@ export default class BaseComponent extends HTMLElement {
       }
       super.appendChild(renderFragment);
 
+      const { _hasRendered: initial } = this;
+
       this._hasRendered = true;
+
+      this.didRenderCallback(!initial);
     } catch (err) {
       if (err.message !== THROWED_ERROR) {
         console.error( // eslint-disable-line
@@ -175,6 +179,13 @@ export default class BaseComponent extends HTMLElement {
       }
     }
   }
+
+  /**
+   * Optionally overwrite this public method, it get's triggered as soon as your component has rendered.
+   *
+   * @param [Boolean] initial - Whether or not this was the first render of this component.
+   */
+  didRenderCallback(initial) {} // eslint-disable-line
 
   /**
    * Monkey patch `innerText` API to re-rendering.
