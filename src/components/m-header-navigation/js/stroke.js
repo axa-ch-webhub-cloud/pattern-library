@@ -41,19 +41,44 @@ class Stroke extends UiEvents {
 
     this._handleResize = this._handleResize.bind(this);
     this._handleTransitionEnd = this._handleTransitionEnd.bind(this);
-
-    this.init();
   }
 
   init() {
-    this.wcNode.style.position = 'relative';
+    this._contextNode.style.position = 'relative';
 
-    this._list = this.wcNode.querySelector(this.options.list);
+    this._list = this._contextNode.querySelector(this.options.list);
 
     this._stroke = document.createElement('div');
     this._stroke.className = this.options.strokeClass;
 
     this._list.appendChild(this._stroke);
+  }
+
+  set contextNode(value) {
+    this._contextNode = value;
+
+    this.onContextEnabled();
+  }
+
+  onContextEnabled() {
+    console.log(`stroke -> onContextEnabled`, this._contextNode);
+
+    // check if context is ready
+    if (this._contextNode) {
+      const { options } = this;
+
+      this._init(this._contextNode, {
+        containerClass: '.js-header-navigation__list',
+        toggleClass: Stroke.DEFAULTS.toggleClass,
+        closeClass: 'js-header-navigation-close',
+        sameClickClose: !options.simpleMenu,
+        preventDefault: !options.simpleMenu,
+        outerClose: !options.simpleMenu,
+        escapeClose: !options.simpleMenu,
+      });
+
+      this.init();
+    }
   }
 
   enter(node) {
@@ -212,6 +237,7 @@ class Stroke extends UiEvents {
       delete this._stroke;
     }
 
+    delete this._contextNode;
     delete this.wcNode;
     delete this.options;
   }
