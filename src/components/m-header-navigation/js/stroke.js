@@ -61,8 +61,6 @@ class Stroke extends UiEvents {
   }
 
   onContextEnabled() {
-    console.log(`stroke -> onContextEnabled`, this._contextNode);
-
     // check if context is ready
     if (this._contextNode) {
       const { options } = this;
