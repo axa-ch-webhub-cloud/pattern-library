@@ -7,15 +7,21 @@ import HeaderNavigation from './js/header-navigation';
 import BaseComponentGlobal from '../../js/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
+let instanceCount = 0;
+
 class AXAHeaderNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
+
+    this.id = ++instanceCount; // eslint-disable-line
 
     this.selectContext('axa-header-main');
   }
 
   connectedCallback() {
     super.connectedCallback();
+
+    console.log(`connectedCallback -> ${this.nodeName} - ${this.id}`);
 
     const hyphenate = this.hasAttribute('hyphenate');
     const simpleMenu = getAttribute(this, 'simplemenu');
@@ -39,7 +45,17 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.stroke.contextNode = contextNode;
   }
 
+  didRenderCallback(initial) {
+    console.log(`didRenderCallback -> ${this.nodeName} - ${this.id} ${initial}`);
+
+    if (!initial) {
+      this.stroke.init();
+    }
+  }
+
   disconnectedCallback() {
+    console.log(`disconnectedCallback -> ${this.nodeName} - ${this.id}`);
+
     if (this.stroke) {
       this.stroke.destroy();
       delete this.stroke;
