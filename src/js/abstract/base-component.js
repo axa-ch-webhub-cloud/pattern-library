@@ -1,7 +1,17 @@
 import getAttributes from '../get-attributes';
 import { publish, subscribe } from '../pubsub';
+import maybe from '../maybe';
 
 const THROWED_ERROR = 'throwed';
+const ids = {};
+const getId = (nodeName) => {
+  if (!(nodeName in ids)) {
+    ids[nodeName] = 0;
+  }
+
+  return ++ids[nodeName]; // eslint-disable-line no-plusplus
+};
+const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
@@ -44,6 +54,7 @@ export default class BaseComponent extends HTMLElement {
 
     this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
+    this.id = getId(this.nodeName);
   }
 
   /**
@@ -67,6 +78,8 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   connectedCallback() {
+    lifecycleLogger(this.logLifecycle)(`connectedCallback -> ${this.nodeName}#${this.id}`);
+
     this._appendStyles();
     this.render();
 
@@ -81,6 +94,8 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   disconnectedCallback() {
+    lifecycleLogger(this.logLifecycle)(`disconnectedCallback -> ${this.nodeName}#${this.id}`);
+
     if (this.unContextEnabled) {
       this.unContextEnabled();
     }
@@ -115,6 +130,8 @@ export default class BaseComponent extends HTMLElement {
     if (!this._hasTemplate) {
       return;
     }
+
+    lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this.id} <- initial: ${!this._hasRendered}`);
 
     const { _template: template } = this;
 
@@ -163,6 +180,7 @@ export default class BaseComponent extends HTMLElement {
 
       const { _hasRendered: initial } = this;
 
+      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this.id} <- initial: ${!initial}`);
       this.willRenderCallback(!initial);
 
       // rebuild the whole DOM subtree
@@ -175,6 +193,7 @@ export default class BaseComponent extends HTMLElement {
 
       this._hasRendered = true;
 
+      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this.id} <- initial: ${!initial}`);
       this.didRenderCallback(!initial);
     } catch (err) {
       if (err.message !== THROWED_ERROR) {
@@ -281,6 +300,8 @@ export default class BaseComponent extends HTMLElement {
    * Provides an opt-in contextual scope for hierarchy-agnostic child components.
    */
   enableContext() {
+    lifecycleLogger(this.logLifecycle)(`enableContext -> ${this.nodeName}#${this.id}`);
+
     const contextName = this.nodeName.toLowerCase();
 
     this.__isContext = true;
@@ -296,6 +317,8 @@ export default class BaseComponent extends HTMLElement {
    * @param name
    */
   selectContext(name) {
+    lifecycleLogger(this.logLifecycle)(`selectContext -> ${this.nodeName}#${this.id} <- context: ${name}`);
+
     this.__selectedContext = name && name.toLowerCase();
   }
 
@@ -303,6 +326,7 @@ export default class BaseComponent extends HTMLElement {
     if (this.contextNode) {
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {
+        lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this.id} <- context: ${contextName}`);
         this.contextCallback(this.contextNode, contextName);
       }, 10);
     }
