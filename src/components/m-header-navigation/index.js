@@ -7,19 +7,15 @@ import HeaderNavigation from './js/header-navigation';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
-let instanceCount = 0;
-
 class AXAHeaderNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.id = ++instanceCount; // eslint-disable-line
-
+    this.logLifecycle = true;
     this.selectContext('axa-header-main');
   }
 
   connectedCallback() {
-    console.log(`connectedCallback -> ${this.nodeName} - ${this.id}`);
     super.connectedCallback();
 
     const hyphenate = this.hasAttribute('hyphenate');
@@ -45,15 +41,12 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   didRenderCallback(initial) {
-    console.log(`didRenderCallback -> ${this.nodeName} - ${this.id} | initial: ${initial}`);
-
     if (!initial) {
       this.stroke.init();
     }
   }
 
   disconnectedCallback() {
-    console.log(`disconnectedCallback -> ${this.nodeName} - ${this.id}`);
     super.disconnectedCallback();
 
     if (this.stroke) {
