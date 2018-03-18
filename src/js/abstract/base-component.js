@@ -106,7 +106,6 @@ export default class BaseComponent extends HTMLElement {
       this.unContextEnabled();
     }
 
-    this._hasRendered = false;
     this._isConnected = false;
   }
   /**
