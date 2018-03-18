@@ -65,11 +65,11 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}        description
    */
   _initialise(styles, template = null) {
-    this.initialClassName = this.className;
     this._styles = styles;
     this._template = template;
     this._hasTemplate = !!template;
     this._hasRendered = false;
+    this._isConnected = false;
   }
 
   /**
@@ -80,12 +80,18 @@ export default class BaseComponent extends HTMLElement {
   connectedCallback() {
     lifecycleLogger(this.logLifecycle)(`connectedCallback -> ${this.nodeName}#${this.id}`);
 
+    if (!this._isConnected) {
+      this.initialClassName = this.className;
+    }
+
     this._appendStyles();
     this.render();
 
     if (this.contextCallback) {
       this._makeContextReady();
     }
+
+    this._isConnected = true;
   }
 
   /**
@@ -101,6 +107,7 @@ export default class BaseComponent extends HTMLElement {
     }
 
     this._hasRendered = false;
+    this._isConnected = false;
   }
   /**
    * _appendStyles - description
