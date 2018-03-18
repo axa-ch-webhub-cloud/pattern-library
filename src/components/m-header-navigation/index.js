@@ -11,7 +11,6 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.logLifecycle = true;
     this.selectContext('axa-header-main');
   }
 
