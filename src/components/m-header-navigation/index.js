@@ -40,7 +40,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   didRenderCallback(initial) {
-    if (!initial) {
+    if (!initial && this.stroke) {
       this.stroke.init();
     }
   }
