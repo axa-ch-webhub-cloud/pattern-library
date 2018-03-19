@@ -1,0 +1,128 @@
+@import "../settings/colors";
+@import "./vertical-rhythm.settings";
+@import "../mixins/respond";
+@import "../typo/typo.mixins";
+
+@mixin vr-pad-items($padding-tops: $vr-padding-tops, $padding-bottoms: $vr-padding-bottoms, $debug: false) {
+  @include vr-pad-items-first($padding-tops, $debug);
+  @include vr-pad-items-last($padding-bottoms, $debug);
+}
+
+@mixin vr-pad-items-first($padding-tops: $vr-padding-tops, $debug: false) {
+  $padding-tops-keys: map-keys($padding-tops);
+
+  @each $padding-tops-key in $padding-tops-keys {
+    @include respond-up($padding-tops-key) {
+      @include vr-pad-item-first(map_get($padding-tops, $padding-tops-key), $debug);
+    }
+  }
+}
+
+@mixin vr-pad-items-last($padding-bottoms: $vr-padding-bottoms, $debug: false) {
+  $padding-bottoms-keys: map-keys($padding-bottoms);
+
+  @each $padding-bottoms-key in $padding-bottoms-keys {
+    @include respond-up($padding-bottoms-key) {
+      @include vr-pad-item-last(map_get($padding-bottoms, $padding-bottoms-key), $debug);
+    }
+  }
+}
+
+@mixin vr-pad-item-first($padding-top, $debug: false) {
+  > :first-child {
+    padding-top: $padding-top;
+
+    @if $debug {
+      &::before {
+        @include vr-debug();
+
+        height: $padding-top;
+        margin-top: -$padding-top;
+
+        background: $color-sec-blue-igloo;
+        content: 'padding-top: #{$padding-top}';
+      }
+    }
+  }
+}
+
+@mixin vr-pad-item-last($padding-bottom, $debug: false) {
+  > :last-child {
+    padding-bottom: $padding-bottom;
+
+    @if $debug {
+      &::after {
+        @include vr-debug();
+
+        height: $padding-bottom;
+        margin-bottom: -$padding-bottom;
+
+        background: $color-sec-blue-igloo;
+        content: 'padding-bottom: #{$padding-bottom}';
+      }
+    }
+  }
+}
+
+@mixin vr-margin-item($margin-tops: $vr-margin-tops, $reset-first: true, $debug: false) {
+  $margin-tops-keys: map-keys($margin-tops);
+
+  @each $margin-tops-key in $margin-tops-keys {
+    @include respond-up($margin-tops-key) {
+      @if $reset-first {
+        @include vr-reset-item();
+      }
+
+      @include vr-margin-top(map_get($margin-tops, $margin-tops-key), $debug);
+    }
+  }
+
+  @if $debug {
+    background: $color-prim-white;
+  }
+}
+
+@mixin vr-margin-top($margin-top, $debug: false) {
+  margin-top: $margin-top;
+
+  @if $debug {
+    &::before {
+      @include vr-debug();
+
+      height: $margin-top;
+      margin-top: -$margin-top;
+
+      background: $color-sec-pink-cotton-candy;
+      content: 'margin-top: #{$margin-top}';
+    }
+  }
+}
+
+@mixin vr-reset-first($size: 0) {
+  &:first-child {
+    padding-top: $size;
+  }
+}
+
+@mixin vr-reset-last($size: 0) {
+  &:last-child {
+    padding-bottom: $size;
+  }
+}
+
+@mixin vr-reset-item($size: 0) {
+  &:first-child {
+    margin-top: $size;
+  }
+}
+
+@mixin vr-debug() {
+  @include typo-text-longer();
+
+  position: relative;
+
+  display: block;
+
+  color: $color-prim-white;
+  text-align: center;
+}
