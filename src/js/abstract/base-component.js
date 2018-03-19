@@ -191,7 +191,7 @@ export default class BaseComponent extends HTMLElement {
 
       // rebuild the whole DOM subtree
       // @todo: this will break/disconnect previous DOM references, associated events and stuff like that
-      // @todo: may bneed to be improved by DOM diffing, JSX, whatever
+      // @todo: may need to be improved by DOM diffing, JSX, whatever
       while (this.firstChild) {
         this.removeChild(this.firstChild);
       }
