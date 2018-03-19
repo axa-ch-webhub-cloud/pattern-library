@@ -2,6 +2,7 @@
 const resolve = require('rollup-plugin-node-resolve');
 const uglify = require('rollup-plugin-uglify');
 const commonjs = require('rollup-plugin-commonjs');
+const replace = require('rollup-plugin-replace');
 
 const constants = require('../../constants');
 
@@ -20,6 +21,10 @@ module.exports = {
       commonjs({
         include: 'node_modules/**',
         exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
+      }),
+      replace({
+        exclude: 'node_modules/**',
+        ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
     ],
