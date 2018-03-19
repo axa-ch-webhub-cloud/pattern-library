@@ -5,8 +5,9 @@
 @import "../../../styles/mixins/hardware-accelerate";
 @import "../../../styles/mixins/icon";
 @import "../../../styles/mixins/respond";
-@import "../../../styles/typo/typo.mixins";
+@import "../../../styles/mixins/size";
 @import "../../../styles/mixins/word-break";
+@import "../../../styles/typo/typo.mixins";
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
@@ -137,7 +138,7 @@
 }
 
 @mixin button__icon--lg() {
-  @include icon-size($button__icon-width--lg);
+  @include size($button__icon-width--lg);
 }
 
 @mixin button__arrow() {
@@ -151,7 +152,7 @@
 }
 
 @mixin button__arrow--lg() {
-  @include icon-size($button__arrow-width--lg);
+  @include size($button__arrow-width--lg);
 
   margin-top: -($button__arrow-width--lg / 2);
 }

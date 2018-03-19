@@ -2,6 +2,7 @@
 @import "../../styles/grid/grid.mixins";
 @import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
+@import "../../styles/mixins/size";
 
 .m-header-logo {
   @include make-col(2);
@@ -20,16 +21,16 @@
 }
 
 .m-header-logo__icon {
-  @include icon-size($header-logo-size);
+  @include size($header-logo-size);
 
   display: block;
 
   @include respond-up(sm) {
-    @include icon-size($header-logo-size--md);
+    @include size($header-logo-size--md);
   }
 
   @include respond-up(xl) {
-    @include icon-size($header-logo-size--xl);
+    @include size($header-logo-size--xl);
   }
 }
 

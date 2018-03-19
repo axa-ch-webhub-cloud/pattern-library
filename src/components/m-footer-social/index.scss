@@ -3,6 +3,7 @@
 @import "../../styles/grid/grid.mixins";
 @import "../../styles/mixins/icon";
 @import "../../styles/mixins/respond";
+@import "../../styles/mixins/size";
 @import "../../styles/typo/typo.mixins";
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/mixins/word-break";
@@ -120,6 +121,6 @@
   }
 
   .m-footer-social__icon {
-    @include icon-size($footer-social__icon-size--light);
+    @include size($footer-social__icon-size--light);
   }
 }
