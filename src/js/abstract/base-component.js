@@ -78,7 +78,9 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   connectedCallback() {
-    lifecycleLogger(this.logLifecycle)(`\n^^^ connectedCallback -> ${this.nodeName}#${this._id}`);
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`\n^^^ connectedCallback -> ${this.nodeName}#${this._id}`);
+    }
 
     if (!this._isConnected) {
       this.initialClassName = this.className;
@@ -100,7 +102,9 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   disconnectedCallback() {
-    lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
+    }
 
     if (this.unContextEnabled) {
       this.unContextEnabled();
@@ -137,7 +141,9 @@ export default class BaseComponent extends HTMLElement {
       return;
     }
 
-    lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
+    }
 
     const { _template: template } = this;
 
@@ -186,7 +192,10 @@ export default class BaseComponent extends HTMLElement {
 
       const { _hasRendered: initial } = this;
 
-      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      if (ENV !== 'production') {
+        lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      }
+
       this.willRenderCallback(!initial);
 
       // rebuild the whole DOM subtree
@@ -199,7 +208,10 @@ export default class BaseComponent extends HTMLElement {
 
       this._hasRendered = true;
 
-      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      if (ENV !== 'production') {
+        lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      }
+
       this.didRenderCallback(!initial);
     } catch (err) {
       if (err.message !== THROWED_ERROR) {
@@ -306,7 +318,9 @@ export default class BaseComponent extends HTMLElement {
    * Provides an opt-in contextual scope for hierarchy-agnostic child components.
    */
   enableContext() {
-    lifecycleLogger(this.logLifecycle)(`enableContext -> ${this.nodeName}#${this._id}`);
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`enableContext -> ${this.nodeName}#${this._id}`);
+    }
 
     const contextName = this.nodeName.toLowerCase();
 
@@ -323,7 +337,9 @@ export default class BaseComponent extends HTMLElement {
    * @param name
    */
   selectContext(name) {
-    lifecycleLogger(this.logLifecycle)(`selectContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`selectContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
+    }
 
     this.__selectedContext = name && name.toLowerCase();
   }
@@ -332,7 +348,10 @@ export default class BaseComponent extends HTMLElement {
     if (this.contextNode) {
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {
-        lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
+        if (ENV !== 'production') {
+          lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
+        }
+
         this.contextCallback(this.contextNode, contextName);
       }, 10);
     }
