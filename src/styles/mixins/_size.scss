@@ -1,0 +1,8 @@
+/// Create basic dimension css
+///
+/// @param {number} $width - The icon's width.
+/// @param {number} $height [$width] - The icon's height.
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
