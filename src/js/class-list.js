@@ -12,7 +12,7 @@ function getReClass(className, modifier) {
 }
 
 /**
- * Add the given `className`.
+ * Add the given `classNames`.
  *
  * @param [Element] node - The target element.
  * @param {...String} classNames - One or more CSS class names.
@@ -44,7 +44,7 @@ function addReducer(classesToAdd, { className, hasClass }) {
 }
 
 /**
- * Checks whether a given `className` is set or not.
+ * Checks whether the given `classNames` are set or not.
  *
  * @param [Element] node - The target element.
  * @param {...String} classNames - One or more CSS class names.
@@ -77,7 +77,7 @@ export function has(node, ...classNames) {
 }
 
 /**
- * Removes the given `className`.
+ * Removes the given `classNames`.
  *
  * @param [Element] node - The target element.
  * @param {...String} classNames - One or more CSS class names.
@@ -117,7 +117,7 @@ function removeClassReducer(nodeClassName, className) {
 }
 
 /**
- * Toggles the given `className`.
+ * Toggles the given `classNames`.
  *
  * @param [Element] node - The target element.
  * @param {...String} classNames - One or more CSS class names.
