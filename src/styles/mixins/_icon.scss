@@ -1,9 +1,11 @@
+@import "./size";
+
 /// Create basic icon css
 ///
 /// @param {number} $width - The icon's width.
 /// @param {number} $height [$width] - The icon's height.
 @mixin icon($width, $height: $width) {
-  @include icon-size($width, $height);
+  @include size($width, $height);
 
   // fix SVG are inline elements
   display: block;
@@ -17,6 +19,7 @@
 /// @param {number} $width - The icon's width.
 /// @param {number} $height [$width] - The icon's height.
 @mixin icon-size($width, $height: $width) {
-  width: $width;
-  height: $height;
+  @include size($width, $height);
+
+  @warn "DEPRECATED: Please import size from src/styles/mixins/size";
 }
