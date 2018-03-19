@@ -8,6 +8,9 @@
     }]
   ],
   "plugins": [
+    ["nanohtml", {
+      "useImport": true
+    }],
     "external-helpers",
     "transform-custom-element-classes",
     "transform-class-properties",
