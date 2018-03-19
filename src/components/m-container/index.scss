@@ -1,4 +1,4 @@
-@import "../../styles/mixins/grid";
+@import "../../styles/grid/grid.mixins";
 
 .m-container {
   @include make-container();
