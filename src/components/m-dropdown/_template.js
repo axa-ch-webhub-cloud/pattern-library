@@ -1,11 +1,11 @@
-import bel from 'bel';
-import raw from 'bel/raw';
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 
 const arrowIcon = '<axa-icon id="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
-const nativeSelect = ({ items, size }) => bel`<div class="m-dropdown__select-wrap ${size && `m-dropdown__select-wrap--${size}`}" tabindex="0">
+const nativeSelect = ({ items, size }) => html`<div class="m-dropdown__select-wrap ${size && `m-dropdown__select-wrap--${size}`}" tabindex="0">
     <select class="m-dropdown__select ${size && `m-dropdown__select--${size}`}">
-      ${items && items.map(({ name, url }) => bel`
+      ${items && items.map(({ name, url }) => html`
         <option data-url="${url}">${name}</option>
       `)}
     </select>
@@ -13,11 +13,11 @@ const nativeSelect = ({ items, size }) => bel`<div class="m-dropdown__select-wra
   </div>`;
 
 const enhancedSelect = ({ title, items, size }) => [
-  bel`<button type="button" class="m-dropdown__toggle js-dropdown__toggle ${size && `m-dropdown__toggle--${size}`}">
+  html`<button type="button" class="m-dropdown__toggle js-dropdown__toggle ${size && `m-dropdown__toggle--${size}`}">
     ${title}${raw(arrowIcon)}
   </button>`,
-  bel`<ul class="m-dropdown__content">
-    ${items && items.map(({ name, url }) => bel`
+  html`<ul class="m-dropdown__content">
+    ${items && items.map(({ name, url }) => html`
       <li class="m-dropdown__item">
         <a class="m-dropdown__link" href="${url}">${name}</a>
       </li>

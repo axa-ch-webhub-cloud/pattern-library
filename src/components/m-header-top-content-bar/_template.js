@@ -1,5 +1,5 @@
-import bel from 'bel';
+import html from 'nanohtml';
 
 export default function (props, childrenFragment) {
-  return bel`<div class="m-header-top-content-bar__box">${childrenFragment}</div>`;
+  return html`<div class="m-header-top-content-bar__box">${childrenFragment}</div>`;
 }

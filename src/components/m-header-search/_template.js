@@ -1,7 +1,7 @@
-import bel from 'bel';
-import raw from 'bel/raw';
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 
-export default ({ action, href, method = 'POST' } = {}) => bel`
+export default ({ action, href, method = 'POST' } = {}) => html`
   <form class="m-header-search__form" action="${action}" method="${method}">
     <a class="m-header-search__page-link" href="${href}">
       ${raw('<axa-icon id="search-left" classes="m-header-search__icon"></axa-icon>')}

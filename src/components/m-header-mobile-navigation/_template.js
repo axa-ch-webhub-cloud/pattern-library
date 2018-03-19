@@ -1,4 +1,4 @@
-import bel from 'bel';
+import html from 'nanohtml';
 
 function mobileNavItem(item) {
   const { name, url, isActive, items } = item;
@@ -6,15 +6,15 @@ function mobileNavItem(item) {
   const activeClass = isActive ? 'is-header-mobile-navigation-active' : '';
 
   /* eslint-disable indent */
-  return bel`
+  return html`
     <li class="m-header-mobile-navigation__list-item">
-      ${hasItems ? [bel`<button type="button" class="m-header-mobile-navigation__category js-header-mobile-navigation__category ${activeClass}">
+      ${hasItems ? [html`<button type="button" class="m-header-mobile-navigation__category js-header-mobile-navigation__category ${activeClass}">
           ${name}
           <axa-icon id="angle-bracket-down" classes="m-header-mobile-navigation__icon-next"></axa-icon>
         </button>
         `,
         mobileNav(items, item),
-      ] : bel`
+      ] : html`
         <a class="m-header-mobile-navigation__list-link js-header-mobile-navigation__list-link js-header-mobile-close ${activeClass}"
            href="${url}">${name}</a>
       `}
@@ -24,9 +24,9 @@ function mobileNavItem(item) {
 }
 
 function mobileNav(items, parent) {
-  return bel`
+  return html`
     <div class="m-header-mobile-navigation__nav ${!parent && 'js-header-mobile-navigation__nav'}">
-      ${parent && bel`
+      ${parent && html`
         <button type="button" class="m-header-mobile-navigation__back js-header-mobile-navigation__back">
           <axa-icon id="angle-bracket-down" classes="m-header-mobile-navigation__icon-back"></axa-icon>
           ${parent.name}
