@@ -1,7 +1,7 @@
-import bel from 'bel';
-import raw from 'bel/raw';
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 
-export default () => bel`
+export default () => html`
   <button type="button" class="m-header-burger__button js-header-burger__button">
     ${raw('<axa-icon id="menu" classes="m-header-burger__icon"></axa-icon>')}
 

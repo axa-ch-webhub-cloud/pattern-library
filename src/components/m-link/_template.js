@@ -1,4 +1,4 @@
-import bel from 'bel';
+import html from 'nanohtml';
 import classnames from 'classnames';
 
 export default function ({
@@ -21,10 +21,10 @@ export default function ({
     'm-link--deco': deco,
   });
 
-  return bel`<a href="${href}" class="${classes}">
-      ${icon && bel`<axa-icon id="${icon}" classes="m-link__icon"></axa-icon>`}
-      ${listed && bel`<axa-icon id="arrow" classes="m-link__listed"></axa-icon>`}
+  return html`<a href="${href}" class="${classes}">
+      ${icon && html`<axa-icon id="${icon}" classes="m-link__icon"></axa-icon>`}
+      ${listed && html`<axa-icon id="arrow" classes="m-link__listed"></axa-icon>`}
       ${childrenFragment}
-      ${arrow && bel`<axa-icon id="arrow" classes="m-link__arrow"></axa-icon>`}
+      ${arrow && html`<axa-icon id="arrow" classes="m-link__arrow"></axa-icon>`}
     </a>`;
 }

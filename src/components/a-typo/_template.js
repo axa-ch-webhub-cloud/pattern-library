@@ -1,6 +1,6 @@
-import bel from 'bel';
+import html from 'nanohtml';
 
-export default () => bel`
+export default () => html`
   <article>
     <h1 class="a-typo__main-title--publico">Main Title</h1>
     <h2 class="a-typo__page-title--publico">Page Title</h2>

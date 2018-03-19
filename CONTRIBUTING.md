@@ -83,7 +83,7 @@ This script will:
   - `components/(a|m|o)-your-component-name/`
     - `_example.html` - this file contains full-fledged interactive demo code.
     - `_preview.html` - this will be rendered within the **patterns-library** preview.
-    - `_template.js` - return the inner HTML of your web component here by [bel](https://github.com/shama/bel).
+    - `_template.js` - return the inner HTML of your web component here by [nanohtml](https://github.com/choojs/nanohtml).
     - `index.js` - define your custom element here, by extending our provided JS classes.
     - `index.scss` - here goes your CSS.
 

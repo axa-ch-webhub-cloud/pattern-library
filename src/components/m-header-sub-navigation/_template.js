@@ -1,7 +1,7 @@
-import bel from 'bel';
-import raw from 'bel/raw';
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 
-const linkItem = ({ url, name, isActive, preventDefault = 'false' }) => bel`
+const linkItem = ({ url, name, isActive, preventDefault = 'false' }) => html`
   <li class="m-header-sub-navigation__list-item">
     <a data-prevent-default="${preventDefault}" class="m-header-sub-navigation__link js-header-navigation-close ${isActive ? 'is-header-sub-navigation-active' : ''}" href="${url}">${raw(name)}</a>
   </li>
@@ -18,13 +18,13 @@ const getColumnsCount = ({ length }) => {
   return 4;
 };
 
-const rowItem = ({ columns, col, isWide }) => bel`
+const rowItem = ({ columns, col, isWide }) => html`
   <div class="m-header-sub-navigation__row m-header-sub-navigation__row--col-${col || getColumnsCount(columns)}">
 
-  ${columns && columns.map(({ links, title, url }) => bel`
+  ${columns && columns.map(({ links, title, url }) => html`
     <div class="m-header-sub-navigation__block ${isWide ? 'm-header-sub-navigation__block--wide' : ''}">
       <strong class="m-header-sub-navigation__category">
-        ${url ? bel`<a class="m-header-sub-navigation__category__link" href="${url}">${title}</a>` : title}
+        ${url ? html`<a class="m-header-sub-navigation__category__link" href="${url}">${title}</a>` : title}
       </strong>
 
       <ul class="m-header-sub-navigation__list">
@@ -40,7 +40,7 @@ export default ({ items, indexurl, indextitle }) => {
 
   if (Array.isArray(items)) {
     if (indextitle && indexurl) {
-      arr.push(bel`
+      arr.push(html`
         <div class="m-header-sub-navigation__index">
           <div class="m-header-sub-navigation__index-box">
             <a class="m-header-sub-navigation__index-link js-header-navigation-close" href="${indexurl}">${indextitle}</a>
@@ -52,7 +52,7 @@ export default ({ items, indexurl, indextitle }) => {
         </div>`);
     }
 
-    arr.push(bel`
+    arr.push(html`
       <div class="m-header-sub-navigation__box">
         ${items && items.map(rowItem)}
       </div>

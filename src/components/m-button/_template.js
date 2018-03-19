@@ -1,5 +1,5 @@
-import bel from 'bel';
-import raw from 'bel/raw';
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
 export default function ({
@@ -23,13 +23,13 @@ export default function ({
   const arrowIcon = raw('<axa-icon id="arrow" classes="m-button__arrow"></axa-icon>');
 
   if (tag.toLowerCase() === 'a') {
-    return bel`<a href="${url}" class="${buttonClasses}">
+    return html`<a href="${url}" class="${buttonClasses}">
       ${childrenFragment}
       ${arrow && arrowIcon}
     </a>`;
   }
 
-  return bel`<button type="button" class="${buttonClasses}">
+  return html`<button type="button" class="${buttonClasses}">
       ${childrenFragment}
       ${arrow && arrowIcon}
     </button>`;

@@ -173,9 +173,9 @@ const writePreviewAndHtml = (path, _name) => {
 const writeTemplateJs = (path) => {
   fs.writeFileSync(
     `${path}/_template.js`,
-    outdent`import bel from 'bel';
+    outdent`import html from 'nanohtml';
 
-      export default ({ classes }) => bel\`
+      export default ({ classes }) => html\`
         <article class=\${classes}>Ready to start</article>
       \`;
 

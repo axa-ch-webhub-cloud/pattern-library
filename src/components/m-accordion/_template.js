@@ -1,5 +1,5 @@
-import bel from 'bel';
+import html from 'nanohtml';
 
-export default ({ classes }, childrenFragment) => bel`
+export default ({ classes }, childrenFragment) => html`
   <article class=${classes}>${childrenFragment}</article>
 `;

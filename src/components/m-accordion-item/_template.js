@@ -1,4 +1,4 @@
-import bel from 'bel';
+import html from 'nanohtml';
 import classnames from 'classnames';
 
 export default ({ header, headerSecondary, headerColor, icon }, childrenFragment) => {
@@ -10,22 +10,22 @@ export default ({ header, headerSecondary, headerColor, icon }, childrenFragment
     'm-accordion-item__header--with-icon': icon,
   });
 
-  const iconToRender = bel`<axa-icon id="${icon}" classes="m-accordion-item__icon"></axa-icon>`;
-  const chevron = bel`<axa-icon id="chevron-down" classes="m-accordion-item__chevron"></axa-icon>`;
+  const iconToRender = html`<axa-icon id="${icon}" classes="m-accordion-item__icon"></axa-icon>`;
+  const chevron = html`<axa-icon id="chevron-down" classes="m-accordion-item__chevron"></axa-icon>`;
 
   return [
-    bel`<div class="${headerClasses}">
+    html`<div class="${headerClasses}">
           ${icon && iconToRender}
           <div class="m-accordion-item__heading-wrapper">
             <span class="${headerPrimaryClasses}">${header}</span> 
             ${headerSecondary &&
-                bel`<span class="m-accordion-item__heading m-accordion-item__heading--secondary">
+                html`<span class="m-accordion-item__heading m-accordion-item__heading--secondary">
                       ${headerSecondary}
                 </span>`}
           </div>
           ${chevron}
         </div>`,
-    bel`<div class="m-accordion-item__body js-accordion-item__body">
+    html`<div class="m-accordion-item__body js-accordion-item__body">
           <div class="m-accordion-item__content">
           ${childrenFragment}
           </div>
