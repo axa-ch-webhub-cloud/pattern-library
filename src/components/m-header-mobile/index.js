@@ -7,6 +7,8 @@ import wcdomready from '../../js/wcdomready';
 import HeaderMobile from './js/header-mobile';
 
 class AXAHeaderMobile extends BaseComponentGlobal {
+  static get observedAttributes() { return ['offcanvas']; }
+
   constructor() {
     super(styles, template);
 
@@ -20,12 +22,18 @@ class AXAHeaderMobile extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} m-header-mobile`;
-
-    this.interaction = new HeaderMobile(this);
   }
 
   contextCallback(contextNode) {
     this.interaction.contextNode = contextNode;
+  }
+
+  didRenderCallback() {
+    if (this.interaction) {
+      this.interaction.destroy();
+    }
+
+    this.interaction = new HeaderMobile(this);
   }
 
   disconnectedCallback() {
