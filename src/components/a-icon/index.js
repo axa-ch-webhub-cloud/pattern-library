@@ -4,8 +4,16 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAIcon extends BaseComponentGlobal {
+  // Specify observed attributes so that
+  // attributeChangedCallback will work
+  static get observedAttributes() { return ['icon']; }
+
   constructor() {
     super(styles, template);
+  }
+
+  attributeChangedCallback() {
+    this.render();
   }
 }
 
