@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderLogo extends BaseComponentGlobal {
+  static get observedAttributes() { return ['alt', 'href', 'src']; }
+
   constructor() {
     super(styles, template);
   }
