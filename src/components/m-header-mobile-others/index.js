@@ -4,6 +4,8 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileOthers extends BaseComponentGlobal {
+  static get observedAttributes() { return ['items']; }
+
   constructor() {
     super(styles, template);
   }
