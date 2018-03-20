@@ -7,26 +7,38 @@ import getAttribute from '../../js/get-attribute';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {
+  static get observedAttributes() { return ['items', 'relative']; }
+
   constructor() {
     super(styles, template);
 
     this.selectContext('axa-header');
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  contextCallback(contextNode) {
+    this.interaction.contextNode = contextNode;
+  }
 
+  willRenderCallback() {
     const relative = getAttribute(this, 'relative');
 
     this.className = classnames(this.initialClassName, 'm-header-mobile-navigation', {
       'm-header-mobile-navigation--relative': relative,
     });
-
-    this.interaction = new HeaderMobileNavigation(this);
   }
 
-  contextCallback(contextNode) {
-    this.interaction.contextNode = contextNode;
+  didRenderCallback() {
+    if (this.interaction) {
+      this.interaction.destroy();
+    }
+
+    this.interaction = new HeaderMobileNavigation(this);
+
+    const { contextNode } = this;
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
   }
 
   disconnectedCallback() {
