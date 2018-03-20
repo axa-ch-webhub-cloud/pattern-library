@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileLanguages extends BaseComponentGlobal {
+  static get observedAttributes() { return ['items']; }
+
   constructor() {
     super(styles, template);
   }
