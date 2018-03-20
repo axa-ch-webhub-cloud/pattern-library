@@ -103,7 +103,7 @@ const writeIndexJs = (path, _name) => {
           // If you don't have any, just remove this function
         }
         
-        attributeChangedCallback() {
+        attributeChangedCallback(name, oldValue, newValue) {
         }
 
         disconnectedCallback() {
