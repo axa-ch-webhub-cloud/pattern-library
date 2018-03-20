@@ -8,6 +8,8 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
+  static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu']; }
+
   constructor() {
     super(styles, template);
 
@@ -16,15 +18,30 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
+  }
 
+  contextCallback(contextNode) {
+    this.stroke.contextNode = contextNode;
+  }
+
+  willRenderCallback() {
     const hyphenate = this.hasAttribute('hyphenate');
-    const simpleMenu = getAttribute(this, 'simplemenu');
 
-    const classes = classnames(this.initialClassName, 'm-header-navigation', {
+    this.className = classnames(this.initialClassName, 'm-header-navigation', {
       'm-header-navigation--hyphenate': hyphenate,
     });
+  }
 
-    this.className = classes;
+  didRenderCallback() {
+    const simpleMenu = getAttribute(this, 'simplemenu');
+
+    if (this.stroke) {
+      this.stroke.destroy();
+    }
+
+    if (this.navigation) {
+      this.navigation.destroy();
+    }
 
     // simple menu nicht mehr brauchen. Stroke checkt if ein submenu da ist. un wenn ja dann mach default action
     this.stroke = new Stroke(this, {
@@ -33,16 +50,6 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.navigation = new HeaderNavigation(this, {
       simpleMenu,
     });
-  }
-
-  contextCallback(contextNode) {
-    this.stroke.contextNode = contextNode;
-  }
-
-  didRenderCallback(initial) {
-    if (!initial && this.stroke) {
-      this.stroke.init();
-    }
   }
 
   disconnectedCallback() {
