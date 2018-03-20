@@ -103,8 +103,11 @@ const writeIndexJs = (path, _name) => {
           // If you don't have any, just remove this function
         }
         
-        attributeChangedCallback(name, oldValue, newValue) {
-        }
+        // You have some special logic? Or need to update the web-components DOM node itself?
+        // Then don't forget to make sure that incremental rendering works properly.
+        // attributeChangedCallback(name, oldValue, newValue) {
+        //   super.attributeChangedCallback(name, oldValue, newValue);
+        // }
 
         disconnectedCallback() {
           super.disconnectedCallback();
