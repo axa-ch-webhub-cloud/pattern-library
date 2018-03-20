@@ -1,7 +1,7 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
-const arrowIcon = '<axa-icon id="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
+const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
 const nativeSelect = ({ items, size }) => html`<div class="m-dropdown__select-wrap ${size && `m-dropdown__select-wrap--${size}`}" tabindex="0">
     <select class="m-dropdown__select ${size && `m-dropdown__select--${size}`}">

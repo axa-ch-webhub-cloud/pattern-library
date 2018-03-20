@@ -22,9 +22,9 @@ export default function ({
   });
 
   return html`<a href="${href}" class="${classes}">
-      ${icon && html`<axa-icon id="${icon}" classes="m-link__icon"></axa-icon>`}
-      ${listed && html`<axa-icon id="arrow" classes="m-link__listed"></axa-icon>`}
+      ${icon && html`<axa-icon icon="${icon}" classes="m-link__icon"></axa-icon>`}
+      ${listed && html`<axa-icon icon="arrow" classes="m-link__listed"></axa-icon>`}
       ${childrenFragment}
-      ${arrow && html`<axa-icon id="arrow" classes="m-link__arrow"></axa-icon>`}
+      ${arrow && html`<axa-icon icon="arrow" classes="m-link__arrow"></axa-icon>`}
     </a>`;
 }

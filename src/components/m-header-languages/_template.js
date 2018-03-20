@@ -4,7 +4,7 @@ import raw from 'nanohtml/raw';
 export default ({ items }) => [html`
   <button type="button" class="m-header-languages__drop-down-toggle js-dropdown__toggle">
     ${items[0].name}
-    <axa-icon id="angle-bracket-down" classes="m-header-languages__drop-down-icon"></axa-icon>
+    <axa-icon icon="angle-bracket-down" classes="m-header-languages__drop-down-icon"></axa-icon>
   </button>
 `, html`
   <ul class="m-header-languages__list">
