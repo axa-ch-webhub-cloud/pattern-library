@@ -26,9 +26,7 @@ class AXADropdown extends BaseComponentGlobal {
     delete this.dropDown;
   }
 
-  render() {
-    super.render();
-
+  willRenderCallback() {
     const inFlow = this.hasAttribute('in-flow');
     const size = getAttribute('size');
 
