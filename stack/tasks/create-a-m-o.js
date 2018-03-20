@@ -108,6 +108,14 @@ const writeIndexJs = (path, _name) => {
         // attributeChangedCallback(name, oldValue, newValue) {
         //   super.attributeChangedCallback(name, oldValue, newValue);
         // }
+        
+        // You may want to update stuff before rendering.
+        // willRenderCallback(initial) {
+        // }
+        
+        // You may want to update staff after rendering
+        // didRenderCallback(initial) {
+        // }
 
         disconnectedCallback() {
           super.disconnectedCallback();
