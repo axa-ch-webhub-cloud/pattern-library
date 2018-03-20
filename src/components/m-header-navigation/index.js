@@ -16,10 +16,6 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.selectContext('axa-header-main');
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-  }
-
   contextCallback(contextNode) {
     this.stroke.contextNode = contextNode;
   }
