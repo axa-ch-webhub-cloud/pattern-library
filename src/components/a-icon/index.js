@@ -11,10 +11,6 @@ class AXAIcon extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
-
-  attributeChangedCallback() {
-    this.render();
-  }
 }
 
 wcdomready(() => {

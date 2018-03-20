@@ -21,10 +21,6 @@ class AXAAccordionItem extends BaseComponentGlobal {
     this.interaction = new AccordionItem(this);
   }
 
-  attributeChangedCallback() {
-    this.render();
-  }
-
   disconnectedCallback() {
     super.disconnectedCallback();
 

@@ -97,6 +97,13 @@ export default class BaseComponent extends HTMLElement {
   }
 
   /**
+   * Default behaviour is to re-render on attribute addition, change or removal.
+   */
+  attributeChangedCallback() {
+    this.render();
+  }
+
+  /**
    * disconnectedCallback - description
    *
    * @return {type}  description
