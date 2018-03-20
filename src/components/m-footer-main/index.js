@@ -6,12 +6,23 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooterMain extends BaseComponentGlobal {
+  static get observedAttributes() { return ['light']; }
+
   constructor() {
     super(styles, template);
   }
 
   connectedCallback() {
     super.connectedCallback();
+
+    this.renderWCNode();
+  }
+
+  attributeChangedCallback() {
+    this.renderWCNode();
+  }
+
+  renderWCNode() {
     const light = getAttribute(this, 'light');
 
     this.className = classnames(this.initialClassName, 'm-footer-main', {
