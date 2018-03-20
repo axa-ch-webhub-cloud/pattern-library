@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderSearch extends BaseComponentGlobal {
+  static get observedAttributes() { return ['action', 'href', 'method']; }
+
   constructor() {
     super(styles, template);
   }
