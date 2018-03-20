@@ -5,6 +5,8 @@ import styles from './index.scss';
 import AccordionItem from './js/accordion-item';
 
 class AXAAccordionItem extends BaseComponentGlobal {
+  static get observedAttributes() { return ['icon', 'header', 'header-secondary', 'header-color', 'multiple']; }
+
   constructor() {
     super(styles, template);
 
@@ -17,6 +19,10 @@ class AXAAccordionItem extends BaseComponentGlobal {
     this.className = `${this.initialClassName} m-accordion-item`;
 
     this.interaction = new AccordionItem(this);
+  }
+
+  attributeChangedCallback() {
+    this.render();
   }
 
   disconnectedCallback() {
