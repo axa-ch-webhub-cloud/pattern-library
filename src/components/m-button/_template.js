@@ -20,7 +20,7 @@ export default function ({
     'm-button--arrow': arrow,
   });
 
-  const arrowIcon = raw('<axa-icon id="arrow" classes="m-button__arrow"></axa-icon>');
+  const arrowIcon = raw('<axa-icon icon="arrow" classes="m-button__arrow"></axa-icon>');
 
   if (tag.toLowerCase() === 'a') {
     return html`<a href="${url}" class="${buttonClasses}">

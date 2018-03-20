@@ -10,7 +10,7 @@ function mobileNavItem(item) {
     <li class="m-header-mobile-navigation__list-item">
       ${hasItems ? [html`<button type="button" class="m-header-mobile-navigation__category js-header-mobile-navigation__category ${activeClass}">
           ${name}
-          <axa-icon id="angle-bracket-down" classes="m-header-mobile-navigation__icon-next"></axa-icon>
+          <axa-icon icon="angle-bracket-down" classes="m-header-mobile-navigation__icon-next"></axa-icon>
         </button>
         `,
         mobileNav(items, item),
@@ -28,7 +28,7 @@ function mobileNav(items, parent) {
     <div class="m-header-mobile-navigation__nav ${!parent && 'js-header-mobile-navigation__nav'}">
       ${parent && html`
         <button type="button" class="m-header-mobile-navigation__back js-header-mobile-navigation__back">
-          <axa-icon id="angle-bracket-down" classes="m-header-mobile-navigation__icon-back"></axa-icon>
+          <axa-icon icon="angle-bracket-down" classes="m-header-mobile-navigation__icon-back"></axa-icon>
           ${parent.name}
         </button>
       `}
