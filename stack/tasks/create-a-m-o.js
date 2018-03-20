@@ -78,6 +78,10 @@ const writeIndexJs = (path, _name) => {
       import wcdomready from '../../js/wcdomready';
 
       class ${className} extends BaseComponentGlobal {
+        // Specify observed attributes so that
+        // attributeChangedCallback will work
+        static get observedAttributes() { return []; }
+
         constructor() {
           super(styles, template);
 
@@ -97,6 +101,9 @@ const writeIndexJs = (path, _name) => {
           this.className = \`\${this.initialClassName} ${element}-${_name}\`;
           // Your DOM interaction here, but keep it decoupled.
           // If you don't have any, just remove this function
+        }
+        
+        attributeChangedCallback() {
         }
 
         disconnectedCallback() {
