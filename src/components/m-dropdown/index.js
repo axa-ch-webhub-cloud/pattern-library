@@ -7,6 +7,8 @@ import wcdomready from '../../js/wcdomready';
 import getAttribute from '../../js/get-attribute';
 
 class AXADropdown extends BaseComponentGlobal {
+  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title']; }
+
   constructor() {
     super(styles, template);
   }
