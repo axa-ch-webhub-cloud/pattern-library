@@ -1,4 +1,4 @@
-import html from 'nanohtml';
+import html from 'nanohtml/lib/browser';
 import raw from 'nanohtml/raw';
 
 export default () => html`

@@ -1,4 +1,4 @@
-import html from 'nanohtml';
+import html from 'nanohtml/lib/browser';
 import raw from 'nanohtml/raw';
 
 const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-footer-links__category__icon"></axa-icon>';

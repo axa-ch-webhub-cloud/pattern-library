@@ -1,4 +1,4 @@
-import html from 'nanohtml';
+import html from 'nanohtml/lib/browser';
 import classnames from 'classnames';
 
 export default ({ offcanvas }, childrenFragment) => [html`<div class="m-header-mobile__backdrop js-header-mobile__backdrop"></div>`,

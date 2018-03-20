@@ -1,4 +1,4 @@
-import html from 'nanohtml';
+import html from 'nanohtml/lib/browser';
 
 export default ({ icon, classes }) => html`
   <svg class="${classes}">
