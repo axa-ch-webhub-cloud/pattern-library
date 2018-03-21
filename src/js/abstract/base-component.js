@@ -1,5 +1,6 @@
 import getAttributes from '../get-attributes';
 import { publish, subscribe } from '../pubsub';
+import camelize from '../camelize';
 import maybe from '../maybe';
 
 const THROWED_ERROR = 'throwed';
@@ -61,7 +62,7 @@ export default class BaseComponent extends HTMLElement {
     // add DOM property getters/setters for related attributes
     if (Array.isArray(observedAttributes)) {
       observedAttributes.forEach((attr) => {
-        Object.defineProperty(this, attr, {
+        Object.defineProperty(this, camelize(attr), {
           get() {
             return this[`_${attr}`];
           },
