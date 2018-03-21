@@ -34,6 +34,10 @@ async function buildComponents() {
         include: 'node_modules/**',
         exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
       }),
+      replace({
+        exclude: 'node_modules/**',
+        ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      }),
       sass({
         insert: false,
         options: {
