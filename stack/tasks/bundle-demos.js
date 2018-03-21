@@ -5,6 +5,9 @@ const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const uglify = require('rollup-plugin-uglify');
 const replace = require('rollup-plugin-replace');
+const sass = require('rollup-plugin-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require('postcss');
 
 const constants = require('../constants');
 
@@ -29,6 +32,15 @@ async function buildComponents() {
       commonjs({
         include: 'node_modules/**',
         exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
+      }),
+      sass({
+        insert: false,
+        options: {
+          outputStyle: ENV === constants.ENV.PROD ? undefined : 'expanded',
+        },
+        processor: css => postcss([autoprefixer])
+          .process(css)
+          .then(result => result.css),
       }),
       babel({
         runtimeHelpers: true,
