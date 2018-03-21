@@ -1,4 +1,4 @@
-import html from 'nanohtml/lib/browser';
+import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
 export default ({ src, alt = 'AXA Logo', href = '#' } = {}) => html`

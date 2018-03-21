@@ -1,4 +1,4 @@
-import html from 'nanohtml/lib/browser';
+import html from 'nanohtml';
 
 export default function (props, childrenFragment) {
   return html`<div class="m-footer-sub__box">

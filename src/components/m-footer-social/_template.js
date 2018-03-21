@@ -1,4 +1,4 @@
-import html from 'nanohtml/lib/browser';
+import html from 'nanohtml';
 
 export default function ({ title, items }) {
   return html`<aside class="m-footer-social__box">

@@ -1,4 +1,4 @@
-import html from 'nanohtml/lib/browser';
+import html from 'nanohtml';
 
 export default function ({ title, items, short }) {
   return html`<aside class="m-footer-languages__box">

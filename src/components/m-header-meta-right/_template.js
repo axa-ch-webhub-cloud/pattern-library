@@ -1,4 +1,4 @@
-import html from 'nanohtml/lib/browser';
+import html from 'nanohtml';
 
 export default (props, { children }) => html`
   <ul class="m-header-meta-right__list">

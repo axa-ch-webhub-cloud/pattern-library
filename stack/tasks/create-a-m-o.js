@@ -191,7 +191,7 @@ const writePreviewAndHtml = (path, _name) => {
 const writeTemplateJs = (path) => {
   fs.writeFileSync(
     `${path}/_template.js`,
-    outdent`import html from 'nanohtml/lib/browser';
+    outdent`import html from 'nanohtml';
 
       export default ({ classes }) => html\`
         <article class=\${classes}>Ready to start</article>

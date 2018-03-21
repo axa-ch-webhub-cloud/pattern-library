@@ -1,4 +1,4 @@
-import html from 'nanohtml/lib/browser';
+import html from 'nanohtml';
 
 export default ({ items }) => html`
   <ul class="m-header-mobile-others__list">
