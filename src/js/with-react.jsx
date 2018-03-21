@@ -1,6 +1,26 @@
 import dasherize from './dasherize';
 import on from './on';
 
+/**
+ * Provides a partially applied function which let's you wrap any WebComponent with react.
+ * - it supports first-class props for web components
+ * - it handles custom events
+ *
+ * @link https://github.com/webcomponents/react-integration - inspired by react-integration
+ * @param React
+ * @returns {function(*)}
+ *
+ * @example <caption>How to use</caption>
+ * import React from 'react';
+ * import withReact from '@axa-ch/patterns-library/src/js/with-react';
+ * import AXAButton from '@axa-ch/patterns-library/dist/components/m-button'
+ *
+ * const AXAButtonReact = withReact(React)(AXAButton);
+ *
+ * const MyApp = ({ color, onClick }) => (
+ *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
+ * );
+ */
 const withReact = React => (WebComponent) => {
   const { name } = WebComponent;
   const displayName = `${name}React`;
