@@ -1,17 +1,62 @@
 import dasherize from './dasherize';
+import on from './on';
 
 const withReact = React => (WebComponent) => {
-  console.log(WebComponent);
-  console.log(WebComponent.name);
-  console.log(dasherize(WebComponent.name));
-
   const { name } = WebComponent;
   const displayName = `${name}React`;
   const WCTagName = dasherize(WebComponent.name);
+  const eventCache = {};
 
   return class WebComponentWrapper extends React.PureComponent {
     static get displayName() {
       return displayName;
+    }
+
+    constructor(props) {
+      super(props);
+
+      this.handleRef = this.handleRef.bind(this);
+    }
+
+    componentDidMount() {
+      this.componentWillReceiveProps(this.props);
+    }
+
+    componentWillReceiveProps(props) {
+      const wcNode = this;
+
+      Object.keys(props).forEach((key) => {
+        if (key === 'children' || key === 'style') {
+          return;
+        }
+
+        const keyFrom2 = key.charAt(2);
+
+        // bind event handlers
+        if (key.indexOf('on') === 0 && keyFrom2 === keyFrom2.toUpperCase()) {
+          if (eventCache[key]) {
+            eventCache[key]();
+          }
+
+          eventCache[key] = on(wcNode, key.substring(2).toLowerCase(), props[key]);
+        } else {
+          // set properties by DOM property API's - not HTML setAttribute -> first class props
+          wcNode[key] = props[key];
+        }
+      });
+    }
+
+    componentWillUnmount() {
+      // clean up bound custom events
+      Object.keys(eventCache).forEach((key) => {
+        if (eventCache[key]) {
+          eventCache[key]();
+        }
+      });
+    }
+
+    handleRef(wcNode) {
+      this.wcNode = wcNode;
     }
 
     render() {
@@ -19,7 +64,7 @@ const withReact = React => (WebComponent) => {
       const { children } = props;
 
       return (
-        <WCTagName {...props} ref={(wcNode) => { this.wcNode = wcNode; }}>{children}</WCTagName>
+        <WCTagName ref={this.handleRef}>{children}</WCTagName>
       );
     }
   };
