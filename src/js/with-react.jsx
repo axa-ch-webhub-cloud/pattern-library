@@ -5,9 +5,15 @@ const withReact = React => (WebComponent) => {
   console.log(WebComponent.name);
   console.log(dasherize(WebComponent.name));
 
+  const { name } = WebComponent;
+  const displayName = `${name}React`;
   const WCTagName = dasherize(WebComponent.name);
 
   return class WebComponentWrapper extends React.PureComponent {
+    static get displayName() {
+      return displayName;
+    }
+
     render() {
       const { props } = this;
       const { children } = props;
