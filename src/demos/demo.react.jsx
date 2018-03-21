@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import withReact from '../js/with-react.jsx';
+import withReact from '../js/with-react';
 import AXAButton from '../components/m-button';
 
 const AXAButtonReact = withReact(React)(AXAButton);
