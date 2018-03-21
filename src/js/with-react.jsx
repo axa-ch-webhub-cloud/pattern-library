@@ -1,7 +1,11 @@
+import dasherize from './dasherize';
+
 const withReact = React => (WebComponent) => {
   console.log(WebComponent);
+  console.log(WebComponent.name);
+  console.log(dasherize(WebComponent.name));
 
-  const WCTagName = '';
+  const WCTagName = dasherize(WebComponent.name);
 
   return class WebComponentWrapper extends React.PureComponent {
     render() {
