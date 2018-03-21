@@ -11,6 +11,14 @@ class AXAIcon extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
   }
+
+  get icon() {
+    return this._icon;
+  }
+
+  set icon(icon) {
+    this._icon = icon;
+  }
 }
 
 wcdomready(() => {
