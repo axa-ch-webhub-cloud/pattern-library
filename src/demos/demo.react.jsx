@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import withReact from '../js/with-react.jsx';
+import AXAButton from '../components/m-button';
+
+const AXAButtonReact = withReact(React)(AXAButton);
 
 // components are loaded already in the body cause this demo is a the end of the body
 
@@ -19,11 +23,12 @@ class MyEventDemoReact extends React.Component {
   }
 
   render() {
-    return (
+    return ([
       <axa-button onClick={this.handleClick}>
         <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
-      </axa-button>
-    );
+      </axa-button>,
+      <AXAButtonReact>{this.state.isToggleOn ? 'ON' : 'OFF'}</AXAButtonReact>,
+    ]);
   }
 }
 
