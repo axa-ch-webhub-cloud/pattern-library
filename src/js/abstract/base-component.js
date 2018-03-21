@@ -55,6 +55,22 @@ export default class BaseComponent extends HTMLElement {
     this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
+
+    const { observedAttributes } = this;
+
+    // add DOM property getters/setters for related attributes
+    if (Array.isArray(observedAttributes)) {
+      observedAttributes.forEach((attr) => {
+        Object.defineProperty(this, attr, {
+          get() {
+            return this[`_${attr}`];
+          },
+          set(value) {
+            this[`_${attr}`] = value;
+          },
+        });
+      });
+    }
   }
 
   /**
