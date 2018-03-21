@@ -27,6 +27,7 @@ async function buildComponents() {
         main: true,
         browser: true,
         preferBuiltins: false,
+        extensions: ['.js', '.jsx'],
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
       commonjs({
