@@ -43,7 +43,7 @@ const withReact = React => (WebComponent) => {
     }
 
     componentWillReceiveProps(props) {
-      const wcNode = this;
+      const { wcNode } = this;
 
       Object.keys(props).forEach((key) => {
         if (key === 'children' || key === 'style') {
