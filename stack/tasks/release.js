@@ -1,5 +1,7 @@
 const outdent = require('outdent');
 const { exec } = require('child_process');
+const developTrunk = 'develop';
+const masterTrunk = 'master';
 
 process.stdin.setEncoding('utf8');
 
@@ -140,7 +142,7 @@ const release = (version) => {
 
 const generalCleanupHandling = (exitcode) => {
   exec(
-    'git checkout master && git branch -D release-tmp',
+    `git checkout ${developTrunk} && git branch -D release-tmp`,
     (_error4) => {
       if (_error4) {
         console.log('\x1b[40m', '\x1b[31m', _error4);
@@ -157,7 +159,7 @@ const confirmedRelease = (type, version) => {
   }
 
   exec(
-    'git checkout master && git pull && git checkout -b release-tmp',
+    `git checkout ${developTrunk} && git pull && git checkout -b release-tmp`,
     (_error1) => {
       if (_error1) {
         console.log('\x1b[40m', '\x1b[31m', _error1);
@@ -198,26 +200,43 @@ const confirmedRelease = (type, version) => {
               );
               exec(
                 `npm publish ${version === 'beta' ? ' --tag beta' : ''}`,
-                (_error5) => {
-                  if (_error5) {
-                    console.log('\x1b[40m', '\x1b[31m', _error5);
+                (_error4) => {
+                  if (_error4) {
+                    console.log('\x1b[40m', '\x1b[31m', _error4);
                     generalCleanupHandling(1);
                   }
                   exec(
-                    'git checkout master && git merge --ff-only release-tmp && git push && git push --tags',
-                    (_error4) => {
-                      if (_error4) {
-                        console.log('\x1b[40m', '\x1b[31m', _error4);
+                    `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
+                    (_error5) => {
+                      if (_error5) {
+                        console.log('\x1b[40m', '\x1b[31m', _error5);
                         generalCleanupHandling(1);
                       }
                       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
                         outdent`
 
-                          Step 4 complete! Publishing done successfully. Have fun!
+                          Step 4 complete! Publishing done successfully.
 
                         `,
                       );
-                      generalCleanupHandling(0);
+
+                      exec(
+                        `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
+                        (_error6) => {
+                          if (_error6) {
+                            console.log('\x1b[40m', '\x1b[31m', _error6);
+                            generalCleanupHandling(1);
+                          }
+                          console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
+                            outdent`
+
+                          Step 5 complete! Updated master. Have fun!
+
+                        `,
+                          );
+                          generalCleanupHandling(0);
+                        },
+                      );
                     },
                   );
                 },
