@@ -134,7 +134,7 @@
     "classnames": "^2.2.5",
     "core-js": "~2.5.1",
     "innersvg-polyfill": "0.0.2",
-    "nanohtml": "^1.2.1",
+    "nanohtml": "^1.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }
