@@ -215,7 +215,7 @@ const confirmedRelease = (type, version) => {
                       }
                       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
                         outdent`
-                          Step 3 complete...
+                          Step 4 complete...
                         `,
                       );
 
