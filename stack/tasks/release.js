@@ -129,10 +129,11 @@ const release = (version) => {
 
       I will do now the following:
 
-      1. pull the master branch
+      1. pull the ${developTrunk} branch
       2. build the dist folder
       3. bump the desired version
       4. publish to npm
+      5. fast-foward merge ${developTrunk} into ${masterTrunk} and push
 
       Please confirm that you want to proceed
     `,
@@ -214,9 +215,7 @@ const confirmedRelease = (type, version) => {
                       }
                       console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
                         outdent`
-
-                          Step 4 complete! Publishing done successfully.
-
+                          Step 3 complete...
                         `,
                       );
 
@@ -230,7 +229,7 @@ const confirmedRelease = (type, version) => {
                           console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
                             outdent`
 
-                          Step 5 complete! Updated master. Have fun!
+                          Step 5 complete! Publishing done successfully. Have fun!
 
                         `,
                           );
