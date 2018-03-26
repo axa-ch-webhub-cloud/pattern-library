@@ -1,7 +1,7 @@
 @import "./settings/footer-legals";
-@import "../../styles/grid/grid.mixins";
+@import "../../styles/grid/grid-mixins";
 @import "../../styles/mixins/respond";
-@import "../../styles/typo/typo.mixins";
+@import "../../styles/typo/typo-mixins";
 
 .m-footer-legals {
   @include typo-legals();

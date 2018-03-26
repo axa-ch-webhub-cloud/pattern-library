@@ -1,4 +1,4 @@
-@import "./typo.settings";
+@import "./typo-settings";
 @import "../functions/map";
 
 /// Get the compound key for a specific typeface variation.
@@ -78,7 +78,7 @@
 /// @returns {any} - Returns the specific typeface property of a specific breakpoint.
 @function typo-prop($typo, $key) {
   @if not map-has-key($typo, $key) {
-    @error "Key #{$key} not found in $typo.";
+    @error "Key #{$key} not found in $typo-";
   }
 
   @return map-get($typo, $key);

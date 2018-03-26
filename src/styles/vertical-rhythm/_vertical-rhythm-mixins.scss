@@ -1,7 +1,7 @@
 @import "../settings/colors";
-@import "./vertical-rhythm.settings";
+@import "./vertical-rhythm-settings";
 @import "../mixins/respond";
-@import "../typo/typo.mixins";
+@import "../typo/typo-mixins";
 
 @mixin vr-pad-items($padding-tops: $vr-padding-tops, $padding-bottoms: $vr-padding-bottoms, $debug: false) {
   @include vr-pad-items-first($padding-tops, $debug);
