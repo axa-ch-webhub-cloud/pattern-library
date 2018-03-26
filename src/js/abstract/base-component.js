@@ -58,6 +58,7 @@ export default class BaseComponent extends HTMLElement {
     this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
+    this._props = {};
     this.render = this.render.bind(this);
     this.reRender = debounce(this.render, 50);
 
@@ -76,10 +77,6 @@ export default class BaseComponent extends HTMLElement {
           },
           set(value) {
             this[`_${attr}`] = value;
-
-            if (!('_props' in this)) {
-              this._props = {};
-            }
 
             this._props[key] = value;
 
