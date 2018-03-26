@@ -17,7 +17,9 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   contextCallback(contextNode) {
-    this.stroke.contextNode = contextNode;
+    if (this.stroke) {
+      this.stroke.contextNode = contextNode;
+    }
   }
 
   willRenderCallback() {
@@ -30,6 +32,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
   didRenderCallback() {
     const simpleMenu = getAttribute(this, 'simplemenu');
+    const { contextNode } = this;
 
     if (this.stroke) {
       this.stroke.destroy();
@@ -43,6 +46,11 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.stroke = new Stroke(this, {
       simpleMenu,
     });
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
+
     this.navigation = new HeaderNavigation(this, {
       simpleMenu,
     });

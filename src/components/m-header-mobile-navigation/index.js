@@ -16,7 +16,9 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   }
 
   contextCallback(contextNode) {
-    this.interaction.contextNode = contextNode;
+    if (this.interaction) {
+      this.interaction.contextNode = contextNode;
+    }
   }
 
   willRenderCallback() {
@@ -28,13 +30,13 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
+    const { contextNode } = this;
+
     if (this.interaction) {
       this.interaction.destroy();
     }
 
     this.interaction = new HeaderMobileNavigation(this);
-
-    const { contextNode } = this;
 
     if (contextNode) {
       this.contextCallback(contextNode);
