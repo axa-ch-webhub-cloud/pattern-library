@@ -112,12 +112,14 @@ export default class BaseComponent extends HTMLElement {
 
       this.initialClassName = this.className;
 
-      observedAttributes.forEach((attr) => {
-        const key = camelize(attr);
-        const value = getAttribute(this, attr);
+      if (Array.isArray(observedAttributes)) {
+        observedAttributes.forEach((attr) => {
+          const key = camelize(attr);
+          const value = getAttribute(this, attr);
 
-        this[key] = value;
-      });
+          this[key] = value;
+        });
+      }
     }
 
     this._appendStyles();
