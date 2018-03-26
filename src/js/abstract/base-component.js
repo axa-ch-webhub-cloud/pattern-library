@@ -72,7 +72,6 @@ export default class BaseComponent extends HTMLElement {
 
         Object.defineProperty(this, key, {
           get() {
-            console.log(`get ${key} from _${attr} -> ${this[`_${attr}`]}`);
             return this[`_${attr}`];
           },
           set(value) {
