@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
@@ -18,7 +17,7 @@ class AXAFooterLinks extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const cols = getAttribute(this, 'cols');
+    const { cols } = this;
 
     this.className = classnames(this.initialClassName, 'm-footer-links', {
       'm-footer-links--cols': cols,

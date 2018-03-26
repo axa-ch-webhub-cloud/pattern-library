@@ -22,7 +22,7 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const relative = getAttribute(this, 'relative');
+    const { relative } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-mobile-navigation', {
       'm-header-mobile-navigation--relative': relative,

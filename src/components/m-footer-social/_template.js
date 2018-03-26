@@ -1,6 +1,6 @@
 import html from 'nanohtml';
 
-export default function ({ title, items }) {
+export default function ({ title, items = [] }) {
   return html`<aside class="m-footer-social__box">
     ${title && html`<strong class="m-footer-social__title">${title}</strong>`}
 

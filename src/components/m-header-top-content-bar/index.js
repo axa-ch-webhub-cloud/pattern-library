@@ -11,7 +11,7 @@ class AXATopContentBar extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const type = this.getAttribute('type');
+    const { type } = this;
 
     this.className = `${this.initialClassName} m-header-top-content-bar m-header-top-content-bar--${type}`;
   }

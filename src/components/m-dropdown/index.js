@@ -4,7 +4,6 @@ import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
-import getAttribute from '../../js/get-attribute';
 
 class AXADropdown extends BaseComponentGlobal {
   static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title']; }
@@ -27,8 +26,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const inFlow = this.hasAttribute('in-flow');
-    const size = getAttribute('size');
+    const { inFlow, size } = this;
 
     this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
       'm-dropdown--in-flow': inFlow,

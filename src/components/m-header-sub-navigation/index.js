@@ -12,7 +12,7 @@ class AXASubNavigation extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const flyout = this.hasAttribute('flyout');
+    const { flyout } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-sub-navigation js-header-sub-navigation', {
       'm-header-sub-navigation--flyout': flyout,
