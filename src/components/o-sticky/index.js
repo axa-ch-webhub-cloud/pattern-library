@@ -68,7 +68,9 @@ class AXASticky extends BaseComponentGlobal {
   }
 
   contextCallback(contextNode) {
-    this.sticky.contextNode = contextNode;
+    if (this.sticky) {
+      this.sticky.contextNode = contextNode;
+    }
   }
 
   disconnectedCallback() {
