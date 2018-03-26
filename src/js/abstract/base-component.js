@@ -77,6 +77,12 @@ export default class BaseComponent extends HTMLElement {
           set(value) {
             this[`_${attr}`] = value;
 
+            if (!('_props' in this)) {
+              this._props = {};
+            }
+
+            this._props[key] = value;
+
             if (this._isConnected && this._hasRendered) {
               this.reRender();
             }
@@ -119,9 +125,12 @@ export default class BaseComponent extends HTMLElement {
       if (Array.isArray(observedAttributes)) {
         observedAttributes.forEach((attr) => {
           const key = camelize(attr);
-          const value = getAttribute(this, attr);
 
-          this[key] = value;
+          if (this.hasAttribute(attr)) {
+            const value = getAttribute(this, attr);
+
+            this[key] = value;
+          }
         });
       }
     }
@@ -222,7 +231,7 @@ export default class BaseComponent extends HTMLElement {
           });
         }
 
-        const items = template(this, this.childrenFragment);
+        const items = template(this._props, this.childrenFragment);
         const renderFragment = document.createDocumentFragment();
 
         if (Array.isArray(items)) {
