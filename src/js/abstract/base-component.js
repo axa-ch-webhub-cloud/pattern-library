@@ -81,7 +81,7 @@ export default class BaseComponent extends HTMLElement {
             this._props[key] = value;
 
             if (this._isConnected && this._hasRendered) {
-              // this.reRender();
+              this.reRender();
             }
           },
         });
