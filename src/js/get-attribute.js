@@ -1,4 +1,4 @@
-import toProp from './toProp';
+import toProp from './to-prop';
 
 /**
  * Get an HTML attribute's value by it's name.
