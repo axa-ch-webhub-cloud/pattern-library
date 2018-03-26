@@ -2,7 +2,7 @@ import dasherize from './dasherize';
 import on from './on';
 
 /**
- * Provides a partially applied function which let's you wrap any WebComponent with react.
+ * Provides a partially applied function which let's you wrap any WebComponent with React.
  * - it supports first-class props for web components
  * - it handles custom events
  *
