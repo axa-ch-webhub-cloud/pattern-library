@@ -8,6 +8,7 @@ import on from './on';
  *
  * @link https://github.com/webcomponents/react-integration - inspired by react-integration
  * @param React
+ * @param {Boolean} [options.pure=true] - Is this a pure component?
  * @returns {function(*)}
  *
  * @example <caption>How to use</caption>
@@ -21,13 +22,14 @@ import on from './on';
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = React => (WebComponent) => {
+const withReact = (React, { pure = true } = {}) => (WebComponent) => {
   const { name } = WebComponent;
   const displayName = `${name}React`;
   const WCTagName = dasherize(WebComponent.name);
   const eventCache = {};
+  const Component = pure ? React.PureComponent : React.Component;
 
-  return class WebComponentWrapper extends React.PureComponent {
+  return class WebComponentWrapper extends Component {
     static get displayName() {
       return displayName;
     }
