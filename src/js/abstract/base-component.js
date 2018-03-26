@@ -61,13 +61,18 @@ export default class BaseComponent extends HTMLElement {
     this.render = this.render.bind(this);
     this.reRender = debounce(this.render, 50);
 
-    const { observedAttributes } = this;
+    const { constructor: { observedAttributes } } = this;
 
     // add DOM property getters/setters for related attributes
     if (Array.isArray(observedAttributes)) {
       observedAttributes.forEach((attr) => {
-        Object.defineProperty(this, camelize(attr), {
+        const key = camelize(attr);
+
+        lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
+
+        Object.defineProperty(this, key, {
           get() {
+            console.log(`get ${key} from _${attr} -> ${this[`_${attr}`]}`);
             return this[`_${attr}`];
           },
           set(value) {
@@ -108,7 +113,7 @@ export default class BaseComponent extends HTMLElement {
     }
 
     if (!this._isConnected) {
-      const { observedAttributes } = this;
+      const { constructor: { observedAttributes } } = this;
 
       this.initialClassName = this.className;
 
