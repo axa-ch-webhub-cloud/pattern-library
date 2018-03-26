@@ -3,7 +3,6 @@ import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import HeaderMobileNavigation from './js/header-mobile-navigation';
-import getAttribute from '../../js/get-attribute';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {

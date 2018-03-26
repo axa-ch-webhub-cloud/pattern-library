@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import styles from './index.scss';
-import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
@@ -31,8 +30,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
-    const simpleMenu = getAttribute(this, 'simplemenu');
-    const { contextNode } = this;
+    const { contextNode, simpleMenu } = this;
 
     if (this.stroke) {
       this.stroke.destroy();
