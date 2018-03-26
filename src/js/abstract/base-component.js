@@ -81,7 +81,7 @@ export default class BaseComponent extends HTMLElement {
             this._props[key] = value;
 
             if (this._isConnected && this._hasRendered) {
-              this.reRender();
+              // this.reRender();
             }
           },
         });
@@ -115,11 +115,14 @@ export default class BaseComponent extends HTMLElement {
     }
 
     if (!this._isConnected) {
+      this._isConnected = true;
+
       const { constructor: { observedAttributes } } = this;
 
       this.initialClassName = this.className;
 
       if (Array.isArray(observedAttributes)) {
+        lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
         observedAttributes.forEach((attr) => {
           const key = camelize(attr);
 
@@ -129,6 +132,7 @@ export default class BaseComponent extends HTMLElement {
             this[key] = value;
           }
         });
+        lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
       }
     }
 
@@ -138,14 +142,16 @@ export default class BaseComponent extends HTMLElement {
     if (this.contextCallback) {
       this._makeContextReady();
     }
-
-    this._isConnected = true;
   }
 
   /**
    * Default behaviour is to re-render on attribute addition, change or removal.
    */
-  attributeChangedCallback(name, newValue) {
+  attributeChangedCallback(name, newValue, oldValue) {
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
+    }
+
     const key = camelize(name);
 
     this[key] = toProp(newValue);
