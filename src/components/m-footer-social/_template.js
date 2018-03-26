@@ -5,7 +5,7 @@ export default function ({ title, items = [] }) {
     ${title && html`<strong class="m-footer-social__title">${title}</strong>`}
 
     <ul class="m-footer-social__list">
-      ${items.map(({ name, url }) => html`
+      ${Array.isArray(items) && items.map(({ name, url }) => html`
         <li class="m-footer-social__list-item">
           <a href="${url}" class="m-footer-social__link">
             <axa-icon icon="${name}" classes="m-footer-social__icon"></axa-icon>

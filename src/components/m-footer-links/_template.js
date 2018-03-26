@@ -8,7 +8,7 @@ export default function ({ title, items }) {
     <strong class="m-footer-links__category js-dropdown__toggle">${title}${raw(arrowIcon)}</strong>
 
     <ul class="m-footer-links__list">
-      ${items.map(({ name, url }) => html`
+      ${Array.isArray(items) && items.map(({ name, url }) => html`
         <li class="m-footer-links__list-item">
           <a class="m-footer-links__link" href="${url}">${name}</a>
         </li>
