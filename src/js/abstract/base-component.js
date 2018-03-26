@@ -69,7 +69,9 @@ export default class BaseComponent extends HTMLElement {
       observedAttributes.forEach((attr) => {
         const key = camelize(attr);
 
-        lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
+        if (ENV !== 'production') {
+          lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
+        }
 
         Object.defineProperty(this, key, {
           get() {
@@ -81,6 +83,10 @@ export default class BaseComponent extends HTMLElement {
             this._props[key] = value;
 
             if (this._isConnected && this._hasRendered) {
+              if (ENV !== 'production') {
+                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${attr}`);
+              }
+
               this.reRender();
             }
           },
@@ -122,7 +128,10 @@ export default class BaseComponent extends HTMLElement {
       this.initialClassName = this.className;
 
       if (Array.isArray(observedAttributes)) {
-        lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
+        if (ENV !== 'production') {
+          lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
+        }
+
         observedAttributes.forEach((attr) => {
           const key = camelize(attr);
 
@@ -132,7 +141,10 @@ export default class BaseComponent extends HTMLElement {
             this[key] = value;
           }
         });
-        lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
+
+        if (ENV !== 'production') {
+          lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
+        }
       }
     }
 
