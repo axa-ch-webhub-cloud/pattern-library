@@ -1,5 +1,7 @@
-import getAttributes from '../get-attributes';
+import getAttribute from '../get-attribute';
+import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
+import debounce from '../debounce';
 import camelize from '../camelize';
 import maybe from '../maybe';
 
@@ -56,6 +58,8 @@ export default class BaseComponent extends HTMLElement {
     this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
+    this.render = this.render.bind(this);
+    this.reRender = debounce(this.render, 50);
 
     const { observedAttributes } = this;
 
@@ -68,6 +72,10 @@ export default class BaseComponent extends HTMLElement {
           },
           set(value) {
             this[`_${attr}`] = value;
+
+            if (this._isConnected && this._hasRendered) {
+              this.reRender();
+            }
           },
         });
       });
@@ -100,7 +108,16 @@ export default class BaseComponent extends HTMLElement {
     }
 
     if (!this._isConnected) {
+      const { observedAttributes } = this;
+
       this.initialClassName = this.className;
+
+      observedAttributes.forEach((attr) => {
+        const key = camelize(attr);
+        const value = getAttribute(this, attr);
+
+        this[key] = value;
+      });
     }
 
     this._appendStyles();
@@ -116,10 +133,10 @@ export default class BaseComponent extends HTMLElement {
   /**
    * Default behaviour is to re-render on attribute addition, change or removal.
    */
-  attributeChangedCallback() {
-    if (this._isConnected && this._hasRendered) {
-      this.render();
-    }
+  attributeChangedCallback(name, newValue) {
+    const key = camelize(name);
+
+    this[key] = toProp(newValue);
   }
 
   /**
@@ -176,7 +193,7 @@ export default class BaseComponent extends HTMLElement {
         lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
       }
 
-      const {_template: template} = this;
+      const { _template: template } = this;
 
       try {
         // At initial rendering -> collect the light DOM first
@@ -199,7 +216,7 @@ export default class BaseComponent extends HTMLElement {
           });
         }
 
-        const items = template(getAttributes(this), this.childrenFragment);
+        const items = template(this, this.childrenFragment);
         const renderFragment = document.createDocumentFragment();
 
         if (Array.isArray(items)) {
