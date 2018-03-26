@@ -8,24 +8,22 @@ import Sticky from './js/sticky';
 import StickyContainer from './js/sticky-container';
 
 class AXAStickyContainer extends BaseComponentGlobal {
+  static get observedAttributes() { return ['debug']; }
+
   constructor() {
     super(stylesStickyContainer);
 
     this.enableContext();
   }
 
-  willRenderCallback() {
+  connectedCallback() {
+    super.connectedCallback();
+
     const { debug } = this;
 
     this.className = classnames(this.initialClassName, 'o-sticky-container js-sticky-container', {
       'o-sticky-container--debug': debug,
     });
-  }
-
-  didRenderCallback() {
-    if (this.stickyContainer) {
-      this.stickyContainer.destroy();
-    }
 
     this.stickyContainer = new StickyContainer(this);
   }
@@ -39,6 +37,8 @@ class AXAStickyContainer extends BaseComponentGlobal {
 }
 
 class AXASticky extends BaseComponentGlobal {
+  static get observedAttributes() { return ['debug']; }
+
   constructor() {
     super(stylesSticky, templateSticky);
 
