@@ -12,7 +12,6 @@ class AXAHeaderMobile extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.logLifecycle = true;
     this.selectContext('axa-header');
   }
 
@@ -41,7 +40,7 @@ class AXAHeaderMobile extends BaseComponentGlobal {
     const { contextNode } = this;
 
     if (contextNode) {
-      this.connectedCallback(contextNode);
+      this.contextCallback(contextNode);
     }
   }
 
