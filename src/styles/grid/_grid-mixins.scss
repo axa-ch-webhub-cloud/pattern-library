@@ -5,8 +5,8 @@
 /// @link https://getbootstrap.com/docs/4.0/layout/grid/ and explained at
 /// @link https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss Original Source
 
-@import "./grid.settings";
-@import "./grid.functions";
+@import "./grid-settings";
+@import "./grid-functions";
 @import "../mixins/respond";
 
 /// Creates a wrapper for a series of rows.
