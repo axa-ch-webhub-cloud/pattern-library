@@ -48,8 +48,10 @@ class AXAHeaderMobile extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    this.interaction.destroy();
-    delete this.interaction;
+    if (this.interaction) {
+      this.interaction.destroy();
+      delete this.interaction;
+    }
   }
 }
 
