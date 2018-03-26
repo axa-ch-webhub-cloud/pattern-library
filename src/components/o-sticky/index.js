@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
-import getAttribute from '../../js/get-attribute';
 import stylesStickyContainer from './scss/sticky-container.scss';
 import stylesSticky from './scss/sticky.scss';
 import templateSticky from './sticky.template';
@@ -15,21 +14,27 @@ class AXAStickyContainer extends BaseComponentGlobal {
     this.enableContext();
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    const debug = getAttribute(this, 'debug');
+  willRenderCallback() {
+    const { debug } = this;
 
     this.className = classnames(this.initialClassName, 'o-sticky-container js-sticky-container', {
       'o-sticky-container--debug': debug,
     });
+  }
+
+  didRenderCallback() {
+    if (this.stickyContainer) {
+      this.stickyContainer.destroy();
+    }
 
     this.stickyContainer = new StickyContainer(this);
   }
 
   disconnectedCallback() {
-    this.stickyContainer.destroy();
-    delete this.stickyContainer;
+    if (this.stickyContainer) {
+      this.stickyContainer.destroy();
+      delete this.stickyContainer;
+    }
   }
 }
 
@@ -40,16 +45,26 @@ class AXASticky extends BaseComponentGlobal {
     this.selectContext('axa-sticky-container');
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    const debug = getAttribute(this, 'debug');
+  willRenderCallback() {
+    const { debug } = this;
 
     this.className = classnames(this.initialClassName, 'o-sticky js-sticky', {
       'o-sticky--debug': debug,
     });
+  }
+
+  didRenderCallback() {
+    if (this.sticky) {
+      this.sticky.destroy();
+    }
 
     this.sticky = new Sticky(this);
+
+    const { contextNode } = this;
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
   }
 
   contextCallback(contextNode) {
@@ -57,8 +72,10 @@ class AXASticky extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.sticky.destroy();
-    delete this.sticky;
+    if (this.sticky) {
+      this.sticky.destroy();
+      delete this.sticky;
+    }
   }
 }
 
