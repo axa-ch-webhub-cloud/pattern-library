@@ -40,6 +40,7 @@ class HeaderNavigation extends UiEvents {
 
     add(parentNode, this.options.openClass);
 
+    // @todo: can we fix this Edge problem better?
     requestAnimationFrame(() => {
       // Edge 16 won't repaint -> force it
       // see https://github.com/axa-ch/patterns-library/issues/304
