@@ -146,92 +146,90 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   render() { // eslint-disable-line
-    if (!this._hasTemplate) {
-      return;
-    }
+    const { _hasRendered: initial } = this;
 
     if (ENV !== 'production') {
-      lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
+      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
     }
 
-    const { _template: template } = this;
+    this.willRenderCallback(!initial);
 
-    try {
-      // At initial rendering -> collect the light DOM first
-      if (!this._hasRendered) {
-        const childrenFragment = document.createDocumentFragment();
-        const lightDOMRefs = [];
-
-        while (this.firstChild) {
-          lightDOMRefs.push(this.firstChild);
-          childrenFragment.appendChild(this.firstChild);
-        }
-
-        this._lightDOMRefs = lightDOMRefs;
-        this.childrenFragment = childrenFragment;
-      } else { // Reuse the light DOM for subsequent rendering
-        this._lightDOMRefs.forEach((ref) => {
-          // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
-          // so we can always reuse this
-          this.childrenFragment.appendChild(ref);
-        });
+    if (this._hasTemplate) {
+      if (ENV !== 'production') {
+        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
       }
 
-      const items = template(getAttributes(this), this.childrenFragment);
-      const renderFragment = document.createDocumentFragment();
+      const {_template: template} = this;
 
-      if (Array.isArray(items)) {
-        items.forEach((item) => {
-          renderFragment.appendChild(item);
-        });
-      } else if (items) {
-        if (typeof items === 'string') {
-          const err = new Error(THROWED_ERROR);
-          // @TODO: implement log system
+      try {
+        // At initial rendering -> collect the light DOM first
+        if (!this._hasRendered) {
+          const childrenFragment = document.createDocumentFragment();
+          const lightDOMRefs = [];
+
+          while (this.firstChild) {
+            lightDOMRefs.push(this.firstChild);
+            childrenFragment.appendChild(this.firstChild);
+          }
+
+          this._lightDOMRefs = lightDOMRefs;
+          this.childrenFragment = childrenFragment;
+        } else { // Reuse the light DOM for subsequent rendering
+          this._lightDOMRefs.forEach((ref) => {
+            // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
+            // so we can always reuse this
+            this.childrenFragment.appendChild(ref);
+          });
+        }
+
+        const items = template(getAttributes(this), this.childrenFragment);
+        const renderFragment = document.createDocumentFragment();
+
+        if (Array.isArray(items)) {
+          items.forEach((item) => {
+            renderFragment.appendChild(item);
+          });
+        } else if (items) {
+          if (typeof items === 'string') {
+            const err = new Error(THROWED_ERROR);
+            // @TODO: implement log system
+            console.error( // eslint-disable-line
+              `\n%cWeb Component %c${this.nodeName}%c#${this._id} does not accept string as a return from a template. Maybe use bel?\n\nStack Trace: ${err.stack}\n`, // eslint-disable-line
+              'color: #580000; font-size: 14px; line-height:16px;',
+              'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
+              'color: #580000; font-size: 14px; line-height:16px;',
+            );
+            throw err;
+          }
+          renderFragment.appendChild(items);
+        }
+
+        // rebuild the whole DOM subtree
+        // @todo: this will break/disconnect previous DOM references, associated events and stuff like that
+        // @todo: may need to be improved by DOM diffing, JSX, whatever
+        while (this.firstChild) {
+          this.removeChild(this.firstChild);
+        }
+        super.appendChild(renderFragment);
+      } catch (err) {
+        if (err.message !== THROWED_ERROR) {
           console.error( // eslint-disable-line
-            `\n%cWeb Component %c${this.nodeName}%c#${this._id} does not accept string as a return from a template. Maybe use bel?\n\nStack Trace: ${err.stack}\n`, // eslint-disable-line
+            `\n%cWeb Component %c${this.nodeName}%c#${this._id} has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
             'color: #580000; font-size: 14px; line-height:16px;',
             'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
             'color: #580000; font-size: 14px; line-height:16px;',
           );
-          throw err;
         }
-        renderFragment.appendChild(items);
-      }
-
-      const { _hasRendered: initial } = this;
-
-      if (ENV !== 'production') {
-        lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
-      }
-
-      this.willRenderCallback(!initial);
-
-      // rebuild the whole DOM subtree
-      // @todo: this will break/disconnect previous DOM references, associated events and stuff like that
-      // @todo: may need to be improved by DOM diffing, JSX, whatever
-      while (this.firstChild) {
-        this.removeChild(this.firstChild);
-      }
-      super.appendChild(renderFragment);
-
-      this._hasRendered = true;
-
-      if (ENV !== 'production') {
-        lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
-      }
-
-      this.didRenderCallback(!initial);
-    } catch (err) {
-      if (err.message !== THROWED_ERROR) {
-        console.error( // eslint-disable-line
-          `\n%cWeb Component %c${this.nodeName}%c#${this._id} has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
-          'color: #580000; font-size: 14px; line-height:16px;',
-          'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
-          'color: #580000; font-size: 14px; line-height:16px;',
-        );
       }
     }
+
+    this._hasRendered = true;
+
+    if (ENV !== 'production') {
+      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+    }
+
+    this.didRenderCallback(!initial);
   }
 
   /**
