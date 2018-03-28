@@ -7,6 +7,7 @@ import maybe from '../maybe';
 import PropertyExistsException from './property-exists-exception';
 
 const THROWED_ERROR = 'throwed';
+const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
 const ids = {};
 const getId = (nodeName) => {
   if (!(nodeName in ids)) {
@@ -69,15 +70,17 @@ export default class BaseComponent extends HTMLElement {
     if (Array.isArray(observedAttributes)) {
       observedAttributes.forEach((attr) => {
         const key = camelize(attr);
+        const hasKey = key in this;
 
         if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
         }
 
-        if (key in this) {
+        if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
           throw new PropertyExistsException(key, this);
         }
 
+        // @todo: may we should allow deletion by setting configurable: true
         Object.defineProperty(this, key, {
           get() {
             return this[`_${attr}`];
@@ -86,6 +89,10 @@ export default class BaseComponent extends HTMLElement {
             this[`_${attr}`] = value;
 
             this._props[key] = value;
+
+            if (hasKey) {
+              super[key] = value;
+            }
 
             if (this._isConnected && this._hasRendered) {
               if (ENV !== PROD) {
