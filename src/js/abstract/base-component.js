@@ -4,6 +4,7 @@ import { publish, subscribe } from '../pubsub';
 import debounce from '../debounce';
 import camelize from '../camelize';
 import maybe from '../maybe';
+import PropertyExistsException from './property-exists-exception';
 
 const THROWED_ERROR = 'throwed';
 const ids = {};
@@ -71,6 +72,10 @@ export default class BaseComponent extends HTMLElement {
 
         if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
+        }
+
+        if (key in this) {
+          throw new PropertyExistsException(`Property ${key} exists at ${this.nodeName}#${this._id} -> ${this[key]}`);
         }
 
         Object.defineProperty(this, key, {
