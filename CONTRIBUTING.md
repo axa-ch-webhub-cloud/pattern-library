@@ -184,7 +184,18 @@ static get observedAttributes() { return ['foo', 'bar']; }
 
 #### Property `setter()`
 
-All observed attributes defined by static `observedAttributes()` getter will be automatically turned in getter/setter properties.
+All observed attributes defined by static `observedAttributes()` getter will be automatically turned in camelcased getter/setter properties, like:
+
+```html
+<axa-example foo="bar" example-message="hello world"></axa-example>
+```
+
+```js
+const example = document.createElement('axa-example');
+
+example.foo = 'bar';
+example.exampleMessage = 'hello world';
+```
 
 **Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason!
 
