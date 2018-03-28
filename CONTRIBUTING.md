@@ -87,6 +87,111 @@ This script will:
     - `index.js` - define your custom element here, by extending our provided JS classes.
     - `index.scss` - here goes your CSS.
 
+## Custom Elements
+
+We stick to the [Custom Elements V1 spec](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements).
+
+There a few key principles you have to know:
+- Custom Elements are **asynchronous**, which means
+   - they only render if their definition (JS) is ready
+   - A child could render before it's parent
+   - this leads to **FOUC**
+   - in short - order of rendering is **non-deterministic**
+- HTML attributes (always `'string'`) VS DOM properties (first class props)
+- [Key Terms](#key-terms)
+- [Lifecycle phases](#lifecycle-phases)
+
+### Key Terms
+
+The following key terms are crucial for efficient web component development!
+
+#### Light DOM:
+
+The light DOM are the provided children from the users of your component (light meaning easy to digest).
+
+```html
+ <axa-example>
+  <div>This is some light DOM for axa-example</div>
+ </axa-example>
+```
+
+#### Local DOM:
+
+The local DOM is the DOM tree rendered by the component itself (in our case provided by `_template.js`).
+
+```js
+function(props, childrenFragment) {
+  return bel`<article>
+    ${childrenFragment} <!-- light DOM injection point -->
+  </article>`;
+}
+```
+
+#### Flattened DOM:
+
+The flattened DOM is the final product where the user's light DOM is injected into the Components local DOM.
+
+```html
+<axa-example>
+  <article>
+    <div>This is some light DOM for axa-example</div> <!-- light DOM injection point -->
+  </article>
+</axa-example>
+```
+
+#### First Class Props:
+
+First class props means that a property can be of any type of:
+
+- `'string'`
+- `true` or `false`
+- `0` to `Infinty`
+- `{ foo: 'bar'}`
+- `[1, 2, 3]`
+- `null`
+- `undefined`
+
+### Lifecycle Phases
+
+A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) undergoes various states, from construction, to DOM manipulation, to destruction - it's [lifecycle](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks). It's important to know that only at certain phases DOM manipulation is possible.
+
+**Note:** We provide a few additional lifecycle methods to ease development.
+
+#### `constructor()`
+
+The constructor can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
+It always starts by calling `super()` so that the correct prototype chain is established.
+
+#### `connectedCallback()`
+
+Invoked when the custom element is first connected to the document's DOM.
+
+#### `contextCallback(contextNode)`
+
+In case your custom element needs to communicate with a child or parent you are likely in the need of contexts.
+
+#### `attributeChangedCallback(name, oldValue, newValue)`
+
+Invoked when one of the custom element's attributes is added, removed, or changed.
+
+**IMPORTANT:**
+- attributes are always of type `'string'` and have to be parsed by `JSON.parse()` to provide proper [first class props](#first-class-props)
+- a static `observedAttributes()` getter must be defined to make this callback work!
+
+```js
+static get observedAttributes() { return ['foo', 'bar']; }
+```
+
+#### Property `setter()`
+
+All observed attributes defined by static `observedAttributes()` getter will be automatically turned in getter/setter properties.
+
+**Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason! 
+
+#### `disconnectedCallback()`
+
+Invoked when the custom element is disconnected from the document's DOM.
+
 # How do we release a new version
 
 Please run `npm run release` and follow the steps in the wizard.
