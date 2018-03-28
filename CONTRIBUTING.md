@@ -120,7 +120,7 @@ The light DOM are the provided children from the users of your component (light 
 The local DOM is the DOM tree rendered by the component itself (in our case provided by `_template.js`).
 
 ```js
-function(props, childrenFragment) {
+export default function(props, childrenFragment) {
   return nanohtml`<article>
     ${childrenFragment} <!-- light DOM injection point -->
   </article>`;
@@ -199,6 +199,10 @@ Invoked after the custom element's [flattened DOM](#flattened-dom) has rendered.
 #### `disconnectedCallback()`
 
 Invoked when the custom element is disconnected from the document's DOM.
+
+#### Render Loop
+
+The render loop makes sure that upon each `attributeChangedCallback()` invocation or any observed property `setter()` invocation that the flattened DOM is recomputed and that `willRenderCallback()` and `didRenderCallback()` lifecycle hooks are called respectively.
 
 # How do we release a new version
 
