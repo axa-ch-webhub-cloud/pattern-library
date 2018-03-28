@@ -7,7 +7,7 @@ const submenuItem = ({ url, name, items, classes, isActive, simplemenu, hyphenat
     <li class="m-header-navigation__list-item">
       <a data-prevent-default class="m-header-navigation__list-link ${(items || !!simplemenu) ? 'js-header-navigation__list-link' : ''} ${isActive ? 'is-header-navigation-active' : ''} ${hyphenate ? 'm-header-navigation__list-link--hyphenate' : ''} ${writeClasses(classes)}" href="${url}">${raw(name)}</a>
 
-      ${items ? html`<axa-header-sub-navigation indextitle="${name}" indexurl="${url}" items='${JSON.stringify(items)}' flyout>
+      ${items ? html`<axa-header-sub-navigation index-title="${name}" index-url="${url}" items='${JSON.stringify(items)}' flyout>
         </axa-header-sub-navigation>` : ''}
     </li>
 `;

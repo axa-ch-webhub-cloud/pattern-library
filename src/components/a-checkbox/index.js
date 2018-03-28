@@ -1,5 +1,5 @@
 import on from '../../js/on';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import wcdomready from '../../js/wcdomready';
 import CustomEvent from '../../js/custom-event';

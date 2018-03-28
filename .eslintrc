@@ -21,7 +21,8 @@
     "XMLHttpRequest": true,
     "MutationObserver": true,
     "document": true,
-    "window": true
+    "window": true,
+    "ENV": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

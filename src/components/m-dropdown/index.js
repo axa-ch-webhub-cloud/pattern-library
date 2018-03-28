@@ -1,12 +1,14 @@
 import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
 import getAttribute from '../../js/get-attribute';
 
 class AXADropdown extends BaseComponentGlobal {
+  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title']; }
+
   constructor() {
     super(styles, template);
   }
@@ -24,9 +26,7 @@ class AXADropdown extends BaseComponentGlobal {
     delete this.dropDown;
   }
 
-  render() {
-    super.render();
-
+  willRenderCallback() {
     const inFlow = this.hasAttribute('in-flow');
     const size = getAttribute('size');
 

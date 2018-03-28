@@ -19,11 +19,11 @@ console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
     You can choose between ATOM📗, MOLECULE📘 or ORGANISM📙.
 
     As a general guideline, an ATOM📗 is indivisible and is the smallest component.
-    It won't make sense to use it on its own, but is an essential builing block. An ATOM📗 should not have dependencies to other elements
+    It won't make sense to use it on its own, but is an essential building block. An ATOM📗 should not have dependencies to other elements
 
     An ORGANISM📙 is the finished and ready to use component. It must have at least one element as dependency.
 
-    A MOLECULE📘 is a not completly finished component and can be resused somewhere else. It must contain at least one ATOM📗.
+    A MOLECULE📘 is a not completely finished component and can be reused somewhere else. It must contain at least one ATOM📗.
 
     Now, please tell me what do you wan to create
   `,
@@ -70,7 +70,7 @@ const writeIndexJs = (path, _name) => {
 
   fs.writeFileSync(
     `${path}/index.js`,
-    outdent`import { BaseComponentGlobal } from '../_abstract/component-types';
+    outdent`import BaseComponentGlobal from '../../js/abstract/base-component-global';
       // import the styles used for this component
       import styles from './index.scss';
       // import the template used for this component
@@ -78,6 +78,10 @@ const writeIndexJs = (path, _name) => {
       import wcdomready from '../../js/wcdomready';
 
       class ${className} extends BaseComponentGlobal {
+        // Specify observed attributes so that attributeChangedCallback will work,
+        // this is essential for external re-rendering trigger.
+        static get observedAttributes() { return []; }
+
         constructor() {
           super(styles, template);
 
@@ -98,6 +102,20 @@ const writeIndexJs = (path, _name) => {
           // Your DOM interaction here, but keep it decoupled.
           // If you don't have any, just remove this function
         }
+        
+        // You have some special logic? Or need to update the web-components DOM node itself?
+        // Then don't forget to make sure that incremental rendering works properly.
+        // attributeChangedCallback(name, oldValue, newValue) {
+        //   super.attributeChangedCallback(name, oldValue, newValue);
+        // }
+        
+        // You may want to update stuff before rendering.
+        // willRenderCallback(initial) {
+        // }
+        
+        // You may want to update staff after rendering
+        // didRenderCallback(initial) {
+        // }
 
         disconnectedCallback() {
           super.disconnectedCallback();

@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 import getAttribute from '../../js/get-attribute';
 import stylesStickyContainer from './scss/sticky-container.scss';

@@ -198,10 +198,10 @@ class UiEvents {
    * Optionally overwrite this public method, it get's triggered as soon as your component moves from one **interactive** view to another.
    *
    * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   * @param {Element} lastToggleNode - The last DOM node upon which an event occurred.
    */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
-  move(toggleNode, lastToggleNode) {
-  }
+  move(toggleNode, lastToggleNode) {}
 
   /**
    * Overwrite this public method, it get's trigger as soon as your component get's **non-interactive**.

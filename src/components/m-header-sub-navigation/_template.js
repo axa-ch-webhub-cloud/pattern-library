@@ -35,15 +35,15 @@ const rowItem = ({ columns, col, isWide }) => html`
   </div>
 `;
 
-export default ({ items, indexurl, indextitle }) => {
+export default ({ items, indexUrl, indexTitle }) => {
   const arr = [];
 
   if (Array.isArray(items)) {
-    if (indextitle && indexurl) {
+    if (indexTitle && indexUrl) {
       arr.push(html`
         <div class="m-header-sub-navigation__index">
           <div class="m-header-sub-navigation__index-box">
-            <a class="m-header-sub-navigation__index-link js-header-navigation-close" href="${indexurl}">${indextitle}</a>
+            <a class="m-header-sub-navigation__index-link js-header-navigation-close" href="${indexUrl}">${indexTitle}</a>
             <button type="button" class="m-header-sub-navigation__index-close js-header-navigation-close">
               Close
               <axa-icon icon="cross-gap" classes="m-header-sub-navigation__index-close__icon"></axa-icon>
