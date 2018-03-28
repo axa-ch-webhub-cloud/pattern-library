@@ -75,7 +75,7 @@ export default class BaseComponent extends HTMLElement {
         }
 
         if (key in this) {
-          throw new PropertyExistsException(`Property ${key} exists at ${this.nodeName}#${this._id} -> ${this[key]}`);
+          throw new PropertyExistsException(key, this);
         }
 
         Object.defineProperty(this, key, {
