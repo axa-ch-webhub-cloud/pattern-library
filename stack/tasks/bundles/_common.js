@@ -23,6 +23,7 @@ module.exports = {
         exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
       }),
       replace({
+        ...constants.ENV,
         exclude: 'node_modules/**',
         ENV,
       }),
