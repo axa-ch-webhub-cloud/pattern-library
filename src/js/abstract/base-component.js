@@ -69,7 +69,7 @@ export default class BaseComponent extends HTMLElement {
       observedAttributes.forEach((attr) => {
         const key = camelize(attr);
 
-        if (ENV !== 'production') {
+        if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
         }
 
@@ -83,7 +83,7 @@ export default class BaseComponent extends HTMLElement {
             this._props[key] = value;
 
             if (this._isConnected && this._hasRendered) {
-              if (ENV !== 'production') {
+              if (ENV !== PROD) {
                 lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${attr}`);
               }
 
@@ -128,7 +128,7 @@ export default class BaseComponent extends HTMLElement {
       this.initialClassName = this.className;
 
       if (Array.isArray(observedAttributes)) {
-        if (ENV !== 'production') {
+        if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
         }
 
@@ -142,7 +142,7 @@ export default class BaseComponent extends HTMLElement {
           }
         });
 
-        if (ENV !== 'production') {
+        if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
         }
       }
@@ -160,7 +160,7 @@ export default class BaseComponent extends HTMLElement {
    * Default behaviour is to re-render on attribute addition, change or removal.
    */
   attributeChangedCallback(name, newValue, oldValue) {
-    if (ENV !== 'production') {
+    if (ENV !== PROD) {
       lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
     }
 
