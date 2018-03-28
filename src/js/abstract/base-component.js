@@ -35,7 +35,7 @@ const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
  * The local DOM is the DOM tree rendered by the component itself (in our case provided by `template`).
  *
  * ```js
- * function(props, childrenFragment) {
+ * export default function(props, childrenFragment) {
  *   return nanohtml`<article>
  *     ${childrenFragment} <!-- light DOM injection point -->
  *   </article>`;
