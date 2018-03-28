@@ -78,8 +78,8 @@ const writeIndexJs = (path, _name) => {
       import wcdomready from '../../js/wcdomready';
 
       class ${className} extends BaseComponentGlobal {
-        // Specify observed attributes so that
-        // attributeChangedCallback will work
+        // Specify observed attributes so that attributeChangedCallback will work,
+        // this is essential for external re-rendering trigger.
         static get observedAttributes() { return []; }
 
         constructor() {
