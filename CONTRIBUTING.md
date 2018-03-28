@@ -105,7 +105,7 @@ There are a few key principles you have to know:
 
 The following key terms are crucial for efficient web component development!
 
-#### Light DOM:
+#### Light DOM
 
 The light DOM are the provided children from the users of your component (light meaning easy to digest).
 
@@ -115,7 +115,7 @@ The light DOM are the provided children from the users of your component (light 
  </axa-example>
 ```
 
-#### Local DOM:
+#### Local DOM
 
 The local DOM is the DOM tree rendered by the component itself (in our case provided by `_template.js`).
 
@@ -127,7 +127,7 @@ export default function(props, childrenFragment) {
 }
 ```
 
-#### Flattened DOM:
+#### Flattened DOM
 
 The flattened DOM is the final product where the user's light DOM is injected into the Components local DOM.
 
@@ -139,7 +139,7 @@ The flattened DOM is the final product where the user's light DOM is injected in
 </axa-example>
 ```
 
-#### First Class Props:
+#### First Class Props
 
 First class props means that a property can be of any type of:
 
