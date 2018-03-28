@@ -186,6 +186,12 @@ static get observedAttributes() { return ['foo', 'bar']; }
 
 All observed attributes defined by static `observedAttributes()` getter will be automatically turned in camelcased getter/setter properties, like:
 
+```js
+class AXAExample extends BaseComponentGlobal {
+  static get observedAttributes() { return ['foo', 'example-message']; }
+}
+```
+
 ```html
 <axa-example foo="bar" example-message="hello world"></axa-example>
 ```
