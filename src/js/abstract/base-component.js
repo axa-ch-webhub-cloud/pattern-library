@@ -36,7 +36,7 @@ const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
  *
  * ```js
  * function(props, childrenFragment) {
- *   return bel`<article>
+ *   return nanohtml`<article>
  *     ${childrenFragment} <!-- light DOM injection point -->
  *   </article>`;
  * }

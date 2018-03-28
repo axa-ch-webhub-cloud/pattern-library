@@ -91,10 +91,10 @@ This script will:
 
 We stick to the [Custom Elements V1 spec](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements).
 
-There a few key principles you have to know:
+There are a few key principles you have to know:
 - Custom Elements are **asynchronous**, which means
    - they only render if their definition (JS) is ready
-   - A child could render before it's parent
+   - a child could render before it's parent
    - this leads to **FOUC**
    - in short - order of rendering is **non-deterministic**
 - HTML attributes (always `'string'`) VS DOM properties (first class props)
@@ -121,7 +121,7 @@ The local DOM is the DOM tree rendered by the component itself (in our case prov
 
 ```js
 function(props, childrenFragment) {
-  return bel`<article>
+  return nanohtml`<article>
     ${childrenFragment} <!-- light DOM injection point -->
   </article>`;
 }
