@@ -186,7 +186,15 @@ static get observedAttributes() { return ['foo', 'bar']; }
 
 All observed attributes defined by static `observedAttributes()` getter will be automatically turned in getter/setter properties.
 
-**Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason! 
+**Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason!
+
+#### `willRenderCallback(initial)`
+
+Invoked before the custom element's [flattened DOM](#flattened-dom) will be rendered.
+
+#### `didRenderCallback(initial)`
+
+Invoked after the custom element's [flattened DOM](#flattened-dom) has rendered.
 
 #### `disconnectedCallback()`
 
