@@ -2,7 +2,7 @@ import { add, remove } from '../../../js/class-list';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import forceRepaint from '../../../js/force-repaint';
 import UiEvents from '../../../js/ui-events';
-import isEdge from '../../../js/is-edge';
+import isEdge from '../../../js/shame/is-edge-SHAME';
 
 class HeaderNavigation extends UiEvents {
   static DEFAULTS = {
