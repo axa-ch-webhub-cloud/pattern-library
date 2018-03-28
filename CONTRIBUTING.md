@@ -202,7 +202,7 @@ Invoked when the custom element is disconnected from the document's DOM.
 
 #### Render Loop
 
-The render loop makes sure that upon each `attributeChangedCallback()` invocation or any observed property `setter()` invocation that the flattened DOM is recomputed and that `willRenderCallback()` and `didRenderCallback()` lifecycle hooks are called respectively.
+The render loop makes sure that upon each [`attributeChangedCallback()`](#attributechangedcallback-name-oldvalue-newvalue) invocation or any observed [property `setter()`](#property-setter) invocation that the flattened DOM is recomputed and that [`willRenderCallback()`](#willrendercallback-initial) and [`didRenderCallback()`](#didrendercallback-initial) lifecycle hooks are called respectively.
 
 # How do we release a new version
 
