@@ -5,7 +5,7 @@ const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon
 
 const nativeSelect = ({ items, size }) => html`<div class="m-dropdown__select-wrap ${size && `m-dropdown__select-wrap--${size}`}" tabindex="0">
     <select class="m-dropdown__select ${size && `m-dropdown__select--${size}`}">
-      ${items && items.map(({ name, url }) => html`
+      ${Array.isArray(items) && items.map(({ name, url }) => html`
         <option data-url="${url}">${name}</option>
       `)}
     </select>
@@ -17,7 +17,7 @@ const enhancedSelect = ({ title, items, size }) => [
     ${title}${raw(arrowIcon)}
   </button>`,
   html`<ul class="m-dropdown__content">
-    ${items && items.map(({ name, url }) => html`
+    ${Array.isArray(items) && items.map(({ name, url }) => html`
       <li class="m-dropdown__item">
         <a class="m-dropdown__link" href="${url}">${name}</a>
       </li>

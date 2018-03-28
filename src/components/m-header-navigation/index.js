@@ -1,6 +1,5 @@
 import classnames from 'classnames';
 import styles from './index.scss';
-import getAttribute from '../../js/get-attribute';
 import template from './_template';
 import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
@@ -17,11 +16,13 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   contextCallback(contextNode) {
-    this.stroke.contextNode = contextNode;
+    if (this.stroke) {
+      this.stroke.contextNode = contextNode;
+    }
   }
 
   willRenderCallback() {
-    const hyphenate = this.hasAttribute('hyphenate');
+    const { hyphenate } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-navigation', {
       'm-header-navigation--hyphenate': hyphenate,
@@ -29,7 +30,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
-    const simpleMenu = getAttribute(this, 'simplemenu');
+    const { contextNode, simpleMenu } = this;
 
     if (this.stroke) {
       this.stroke.destroy();
@@ -43,6 +44,11 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     this.stroke = new Stroke(this, {
       simpleMenu,
     });
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
+
     this.navigation = new HeaderNavigation(this, {
       simpleMenu,
     });

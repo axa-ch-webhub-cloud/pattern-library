@@ -1,8 +1,13 @@
-import getAttributes from '../get-attributes';
+import getAttribute from '../get-attribute';
+import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
+import debounce from '../debounce';
+import camelize from '../camelize';
 import maybe from '../maybe';
+import PropertyExistsException from './property-exists-exception';
 
 const THROWED_ERROR = 'throwed';
+const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
 const ids = {};
 const getId = (nodeName) => {
   if (!(nodeName in ids)) {
@@ -55,6 +60,51 @@ export default class BaseComponent extends HTMLElement {
     this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
+    this._props = {};
+    this.render = this.render.bind(this);
+    this.reRender = debounce(this.render, 50);
+
+    const { constructor: { observedAttributes } } = this;
+
+    // add DOM property getters/setters for related attributes
+    if (Array.isArray(observedAttributes)) {
+      observedAttributes.forEach((attr) => {
+        const key = camelize(attr);
+        const hasKey = key in this;
+
+        if (ENV !== PROD) {
+          lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
+        }
+
+        if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
+          throw new PropertyExistsException(key, this);
+        }
+
+        // @todo: may we should allow deletion by setting configurable: true
+        Object.defineProperty(this, key, {
+          get() {
+            return this[`_${attr}`];
+          },
+          set(value) {
+            this[`_${attr}`] = value;
+
+            this._props[key] = value;
+
+            if (hasKey) {
+              super[key] = value;
+            }
+
+            if (this._isConnected && this._hasRendered) {
+              if (ENV !== PROD) {
+                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${attr}`);
+              }
+
+              this.reRender();
+            }
+          },
+        });
+      });
+    }
   }
 
   /**
@@ -83,7 +133,31 @@ export default class BaseComponent extends HTMLElement {
     }
 
     if (!this._isConnected) {
+      this._isConnected = true;
+
+      const { constructor: { observedAttributes } } = this;
+
       this.initialClassName = this.className;
+
+      if (Array.isArray(observedAttributes)) {
+        if (ENV !== PROD) {
+          lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
+        }
+
+        observedAttributes.forEach((attr) => {
+          const key = camelize(attr);
+
+          if (this.hasAttribute(attr)) {
+            const value = getAttribute(this, attr);
+
+            this[key] = value;
+          }
+        });
+
+        if (ENV !== PROD) {
+          lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
+        }
+      }
     }
 
     this._appendStyles();
@@ -92,17 +166,19 @@ export default class BaseComponent extends HTMLElement {
     if (this.contextCallback) {
       this._makeContextReady();
     }
-
-    this._isConnected = true;
   }
 
   /**
    * Default behaviour is to re-render on attribute addition, change or removal.
    */
-  attributeChangedCallback() {
-    if (this._isConnected && this._hasRendered) {
-      this.render();
+  attributeChangedCallback(name, newValue, oldValue) {
+    if (ENV !== PROD) {
+      lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
     }
+
+    const key = camelize(name);
+
+    this[key] = toProp(newValue);
   }
 
   /**
@@ -159,7 +235,7 @@ export default class BaseComponent extends HTMLElement {
         lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
       }
 
-      const {_template: template} = this;
+      const { _template: template } = this;
 
       try {
         // At initial rendering -> collect the light DOM first
@@ -182,7 +258,7 @@ export default class BaseComponent extends HTMLElement {
           });
         }
 
-        const items = template(getAttributes(this), this.childrenFragment);
+        const items = template(this._props, this.childrenFragment);
         const renderFragment = document.createDocumentFragment();
 
         if (Array.isArray(items)) {

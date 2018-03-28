@@ -21,7 +21,7 @@ const getColumnsCount = ({ length }) => {
 const rowItem = ({ columns, col, isWide }) => html`
   <div class="m-header-sub-navigation__row m-header-sub-navigation__row--col-${col || getColumnsCount(columns)}">
 
-  ${columns && columns.map(({ links, title, url }) => html`
+  ${Array.isArray(columns) && columns.map(({ links, title, url }) => html`
     <div class="m-header-sub-navigation__block ${isWide ? 'm-header-sub-navigation__block--wide' : ''}">
       <strong class="m-header-sub-navigation__category">
         ${url ? html`<a class="m-header-sub-navigation__category__link" href="${url}">${title}</a>` : title}

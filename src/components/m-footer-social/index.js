@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import template from './_template';
@@ -12,20 +11,8 @@ class AXAFooterSocial extends BaseComponentGlobal {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.renderWCNode();
-  }
-
-  attributeChangedCallback() {
-    this.renderWCNode();
-    this.render();
-  }
-
-  renderWCNode() {
-    const inline = getAttribute(this, 'inline');
-    const light = getAttribute(this, 'light');
+  willRenderCallback() {
+    const { inline, light } = this;
 
     this.className = classnames(this.initialClassName, 'm-footer-social', {
       'm-footer-social--inline': inline,

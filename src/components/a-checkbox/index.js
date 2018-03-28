@@ -63,7 +63,7 @@ class AXACheckbox extends BaseComponentGlobal {
   _upgradeProperty(prop) {
     if (Object.prototype.hasOwnProperty.call(this, prop)) {
       const value = this[prop];
-      delete this[prop];
+      // delete this[prop];
       this[prop] = value;
     }
   }

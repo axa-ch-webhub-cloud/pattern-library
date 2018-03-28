@@ -34,7 +34,7 @@ function mobileNav(items, parent) {
       `}
       <ul class="m-header-mobile-navigation__list">
         ${parent && mobileNavItem({ ...parent, name: 'index page', items: null })}
-        ${items.map(mobileNavItem)}
+        ${Array.isArray(items) && items.map(mobileNavItem)}
       </ul>
     </div>
   `;

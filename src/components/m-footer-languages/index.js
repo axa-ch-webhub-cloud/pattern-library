@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import template from './_template';
@@ -13,7 +12,7 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const inline = getAttribute(this, 'inline');
+    const { inline } = this;
 
     this.className = classnames(this.initialClassName, 'm-footer-languages', {
       'm-footer-languages--inline': inline,
