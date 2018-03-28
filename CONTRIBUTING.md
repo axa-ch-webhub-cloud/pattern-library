@@ -97,7 +97,7 @@ There are a few key principles you have to know:
    - a child could render before it's parent
    - this leads to **FOUC**
    - in short - order of rendering is **non-deterministic**
-- HTML attributes (always `'string'`) VS DOM properties (first class props)
+- HTML attributes (always `'string'`) VS DOM properties ([first class props](#first-class-props))
 - [Key Terms](#key-terms)
 - [Lifecycle phases](#lifecycle-phases)
 
