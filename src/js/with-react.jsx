@@ -1,6 +1,11 @@
 import dasherize from './dasherize';
 import on from './on';
 
+const PROP_BLACKLIST = [
+  'children', // children are never passed as props, instead as real DOM children
+  'style', // @todo: discuss if we need style, cause we normally use BEM
+];
+
 /**
  * Provides a partially applied function which let's you wrap any WebComponent with React.
  * - it supports first-class props for web components
@@ -48,7 +53,7 @@ const withReact = (React, { pure = true } = {}) => (WebComponent) => {
       const { wcNode } = this;
 
       Object.keys(props).forEach((key) => {
-        if (key === 'children' || key === 'style') {
+        if (PROP_BLACKLIST.indexOf(key) !== -1) {
           return;
         }
 
