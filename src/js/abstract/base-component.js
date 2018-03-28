@@ -78,7 +78,7 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   connectedCallback() {
-    if (ENV !== 'production') {
+    if (ENV !== 'PROD') {
       lifecycleLogger(this.logLifecycle)(`\n^^^ connectedCallback -> ${this.nodeName}#${this._id}`);
     }
 
@@ -111,7 +111,7 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   disconnectedCallback() {
-    if (ENV !== 'production') {
+    if (ENV !== 'PROD') {
       lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
     }
 
@@ -148,14 +148,14 @@ export default class BaseComponent extends HTMLElement {
   render() { // eslint-disable-line
     const { _hasRendered: initial } = this;
 
-    if (ENV !== 'production') {
+    if (ENV !== 'PROD') {
       lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
     }
 
     this.willRenderCallback(!initial);
 
     if (this._hasTemplate) {
-      if (ENV !== 'production') {
+      if (ENV !== 'PROD') {
         lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
       }
 
@@ -225,7 +225,7 @@ export default class BaseComponent extends HTMLElement {
 
     this._hasRendered = true;
 
-    if (ENV !== 'production') {
+    if (ENV !== 'PROD') {
       lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
     }
 
@@ -325,7 +325,7 @@ export default class BaseComponent extends HTMLElement {
    * Provides an opt-in contextual scope for hierarchy-agnostic child components.
    */
   enableContext() {
-    if (ENV !== 'production') {
+    if (ENV !== 'PROD') {
       lifecycleLogger(this.logLifecycle)(`enableContext -> ${this.nodeName}#${this._id}`);
     }
 
@@ -344,7 +344,7 @@ export default class BaseComponent extends HTMLElement {
    * @param name
    */
   selectContext(name) {
-    if (ENV !== 'production') {
+    if (ENV !== 'PROD') {
       lifecycleLogger(this.logLifecycle)(`selectContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
     }
 
@@ -355,7 +355,7 @@ export default class BaseComponent extends HTMLElement {
     if (this.contextNode) {
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {
-        if (ENV !== 'production') {
+        if (ENV !== 'PROD') {
           lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
         }
 

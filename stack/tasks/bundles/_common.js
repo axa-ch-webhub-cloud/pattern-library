@@ -24,7 +24,7 @@ module.exports = {
       }),
       replace({
         exclude: 'node_modules/**',
-        ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+        ENV,
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
     ],
