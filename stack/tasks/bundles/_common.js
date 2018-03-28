@@ -23,9 +23,10 @@ module.exports = {
         exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
       }),
       replace({
-        ...constants.ENV,
         exclude: 'node_modules/**',
-        ENV,
+        ENV: JSON.stringify(ENV),
+        DEV: JSON.stringify(constants.ENV.DEV),
+        PROD: JSON.stringify(constants.ENV.PROD),
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
     ],
