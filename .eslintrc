@@ -22,7 +22,9 @@
     "MutationObserver": true,
     "document": true,
     "window": true,
-    "ENV": true
+    "ENV": true,
+    "PROD": true,
+    "DEV": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
