@@ -221,6 +221,45 @@ Invoked when the custom element is disconnected from the document's DOM.
 
 The render loop makes sure that upon each [`attributeChangedCallback()`](#attributechangedcallbackname-oldvalue-newvalue) invocation or any observed [property `setter()`](#property-setter) invocation that the flattened DOM is recomputed and that [`willRenderCallback()`](#willrendercallbackinitial) and [`didRenderCallback()`](#didrendercallbackinitial) lifecycle hooks are called respectively.
 
+## Integration
+
+The goal is that custom elements can be shared across frameworks and libraries like Angular, React, Vue, you name it. To ease this process we provide generic wrapper functions.
+
+### `withReact()`
+
+To turn any custom element into a working React Component, you just need to follow these steps:
+
+1. `import` React
+2. `import` withReact
+3. `import` any web components you need
+4. bind `withReact` to you `import`ed React version
+   - and may pass optional options
+5. wrap all your needed web components
+6. use them like regular React components in your app
+
+   **Note:** events work similiar to React's standard events, but each web components could trigger custom events. Make sure to check the out the web-components documentation itself!
+
+```js
+// import your dependencies - 1, 2, and 3
+import React from 'react';
+import withReact from '@axa-ch/patterns-library/src/js/with-react';
+import AXAButton from '@axa-ch/patterns-library/dist/components/m-button';
+
+// 4. bind withReact to your imported Reat version
+// and optionally pass options
+const withReactBound = withReact(React, {
+  pure: true,
+})
+
+// 5. wrap your need web components
+const AXAButtonReact = withReactBound(AXAButton);
+
+// 6. use them in your app like regular React components
+const MyApp = ({ color, onClick }) => (
+  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
+);
+```
+
 # How do we release a new version
 
 Please run `npm run release` and follow the steps in the wizard.
