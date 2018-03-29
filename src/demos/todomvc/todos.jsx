@@ -97,7 +97,7 @@ class Todos extends Component {
     const completedCount = todos.length - activeTodoCount;
 
     return [
-      <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} key={0} />,
+      <TodoHeader newTodo={state.newTodo} editing={state.editing} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} key={0} />,
       <TodosList
         shownTodos={shownTodos}
         onToggle={this.toggle}

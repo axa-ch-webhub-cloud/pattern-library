@@ -10,6 +10,7 @@ const AXAHeaderMainReact = withReactBound(AXAHeaderMain);
 const AXAHeaderLogoReact = withReactBound(AXAHeaderLogo);
 
 const TodoHeader = ({
+  editing,
   newTodo,
   handleNewTodoKeyDown,
   handleChange,
@@ -19,12 +20,13 @@ const TodoHeader = ({
       <AXAHeaderLogoReact />
       <h1 className="m-todo-header__title">Todos</h1>
       <input
+        ref={input => input && !editing && input.focus()}
         className="m-todo-header__new"
         placeholder="What needs to be done?"
         value={newTodo}
         onKeyDown={handleNewTodoKeyDown}
         onChange={handleChange}
-        autoFocus={true}
+        autoFocus={!editing}
       />
     </AXAHeaderMainReact>
   </AXAHeaderReact>
