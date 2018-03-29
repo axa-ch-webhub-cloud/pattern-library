@@ -101,9 +101,9 @@ class Todos extends Component {
         onSave={this.save}
         onCancel={this.cancel}
       />,
-      ((activeTodoCount || completedCount) && (
+      ((activeTodoCount || completedCount) ? (
         <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} />
-      )),
+      ) : null),
     ];
   }
 }
