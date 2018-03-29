@@ -14,19 +14,37 @@ class Input extends Component {
   constructor(props, context) {
     super(props, context);
 
+    this.onBlur = this.onBlur.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.handleRef = this.handleRef.bind(this);
+
+    this.state = {
+      reFocus: false,
+    };
   }
 
-  componentDidUpdate() {
-    const { props: { editing }, input } = this;
+  onBlur() {
+    const { state: { reFocus } } = this;
 
-    if (input && !editing) {
-      input.autofocus = !editing;
+    if (reFocus === true) {
+      this.setState({
+        reFocus: false,
+      });
 
       setTimeout(() => {
-        input.focus();
-      }, 200);
+        this.input.focus();
+      }, 10);
     }
+  }
+
+  onChange(event) {
+    const { props: { onChange } } = this;
+
+    this.setState({
+      reFocus: true,
+    });
+
+    onChange(event);
   }
 
   handleRef(input) {
@@ -34,12 +52,15 @@ class Input extends Component {
   }
 
   render() {
-    const { props, handleRef } = this;
+    const { handleRef } = this;
+    const { onChange, ...props } = this.props;
 
     return (
       <input
-        ref={handleRef}
         {...props}
+        ref={handleRef}
+        onBlur={this.onBlur}
+        onChange={this.onChange}
       />
     );
   }
