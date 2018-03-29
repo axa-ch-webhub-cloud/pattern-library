@@ -18,6 +18,7 @@ class Todos extends Component {
     this.clearCompleted = this.clearCompleted.bind(this);
     this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.nowShowing = this.nowShowing.bind(this);
 
     this.state = {
       nowShowing: ALL_TODOS,
@@ -76,6 +77,14 @@ class Todos extends Component {
     this.props.model.clearCompleted();
   }
 
+  nowShowing(event) {
+    const { detail: { state } } = event;
+
+    this.setState({
+      nowShowing: state,
+    });
+  }
+
   render() {
     const { props: { model: { todos } } } = this;
     const { state } = this;
@@ -110,7 +119,7 @@ class Todos extends Component {
         />
 
         {(activeTodoCount || completedCount) ? (
-          <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} key={2} />
+          <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} onNowShowing={this.nowShowing} key={2} />
         ) : null}
       </div>
     );

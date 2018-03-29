@@ -1,5 +1,6 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
+import getAttribute from '../../../js/get-attribute';
 import { subscribe } from '../../../js/pubsub';
 import DropDown from '../../m-dropdown/js/drop-down';
 
@@ -51,8 +52,10 @@ export default class FooterLinks {
     }
   }
 
-  handleClick(event) {
-    const cancelled = fire(this.wcNode, 'axa-click', {}, { bubbles: true, cancelable: true, composed: true });
+  handleClick(event, delegateTarget) {
+    const index = getAttribute(delegateTarget, 'index');
+    const { wcNode: { items } } = this;
+    const cancelled = fire(this.wcNode, 'axa-click', items[index], { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();

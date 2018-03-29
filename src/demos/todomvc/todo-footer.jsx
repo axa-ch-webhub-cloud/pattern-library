@@ -31,6 +31,7 @@ const TodoFooter = ({
   completedCount,
   onClearCompleted,
   nowShowing,
+  onNowShowing,
 }) => {
   const activeTodoWord = pluralize(count, 'item');
   const selected = item => ({
@@ -42,10 +43,7 @@ const TodoFooter = ({
   return (
     <AXAFooterReact>
       <AXAFooterMainReact>
-        <AXAFooterLinksReact title={title} items={items.map(selected)} onAxaClick={(event) => {
-          event.preventDefault();
-          console.log(`footer link ${event.type}`);
-        }} />
+        <AXAFooterLinksReact title={title} items={items.map(selected)} onAxaClick={onNowShowing} />
       </AXAFooterMainReact>
 
       <AXAFooterSubReact>
