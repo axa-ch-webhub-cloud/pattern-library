@@ -125,19 +125,19 @@ class TodoItem extends Component {
           <AXAButtonReact onClick={() => onDestroy(todo)}>
             <AXAIconReact icon="cross-gap" classes="m-todo__destroy-icon" />
           </AXAButtonReact>
-        </div>
 
-        {editing ?
-          <input
-            ref={this.handleRef}
-            className="m-todo__input m-todo__edit"
-            id={htmlFor}
-            value={state.editText}
-            onBlur={this.handleSubmit}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-          />
-          : null}
+          {editing ?
+            <input
+              ref={this.handleRef}
+              className="m-todo__edit"
+              id={htmlFor}
+              value={state.editText}
+              onBlur={this.handleSubmit}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+            />
+            : null}
+        </div>
       </li>
     );
   }

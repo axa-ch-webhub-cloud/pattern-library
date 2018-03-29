@@ -18,21 +18,7 @@
   }
 }
 
-.m-todo-header__title {
-  @include typo-small-module-title--publico();
-
-  @include respond-down(sm) {
-    display: none;
-  }
-}
-
-.m-todo-header__new {
-  margin-left: 20px;
-
-  flex-grow: 1;
-}
-
-.m-todo__input {
+%a-todo__input {
   @include typo-text-longer();
 
   display: block;
@@ -40,6 +26,8 @@
   padding: 5px 15px;
   border: 2px solid $color-prim-gray-wild-sand;
   background: $color-prim-white;
+
+  transition: color 0.2s ease, border-color 0.2s ease;
 
   &::placeholder {
     color: $color-prim-gray-dusty;
@@ -50,25 +38,66 @@
     display: none;
   }
 
+  &:focus {
+    outline: none;
+    border-color: $color-prim-blue-deep-sapphire;
+    color: $color-prim-blue-deep-sapphire;
+  }
+
   @include respond-up(md) {
     padding: 10px 20px;
   }
 }
 
+.m-todo-header__title {
+  @include typo-small-module-title--publico();
+
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+.m-todo-header__new {
+  @extend %a-todo__input;
+
+  margin-left: 20px;
+
+  flex-grow: 1;
+}
+
 .m-todo__list {
+  $vr-paddings:
+    (
+      // Extra small screen / phone
+      xs: $vr-base * 1, // 10px
+      // Small screen / phone
+      // sm: 40px,
+      // Medium screen / tablet
+      md: $vr-base * 2, // 20px
+    );
+
   @include unstyle-list();
   @include make-container();
   @include make-container-max-widths();
+  @include vr-pad-items($vr-paddings, $vr-paddings);
+
+  display: block;
+
+  > * {
+    @include vr-margin-item($vr-paddings);
+  }
 }
 
 .m-todo__item {
   @include typo-text-longer();
 
-  position: relative;
+  display: block;
 }
 
 .m-todo__wrap {
   @include make-row(null);
+
+  position: relative;
 
   align-items: center;
 }
@@ -96,6 +125,8 @@
 }
 
 .m-todo__edit {
+  @extend %a-todo__input;
+
   $left: 45px;
   $zIndex: 10;
 
