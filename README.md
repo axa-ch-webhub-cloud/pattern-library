@@ -93,6 +93,8 @@ all the possible fonts avaiable. The index.css contains all the basic page setti
 
 ## Developers Guide:
 
+Curious to know about webcomponent's lifecycle and our development approach?
+
 Please see our [contribution file](./CONTRIBUTING.md).
 
 ### Publish / Subscribe between webcomponents
