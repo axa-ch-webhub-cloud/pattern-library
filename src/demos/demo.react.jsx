@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import withReact from '../js/with-react';
 import AXAButton from '../components/m-button';
 
+import './todomvc/app';
+
 const AXAButtonReact = withReact(React)(AXAButton);
 
 // components are loaded already in the body cause this demo is a the end of the body
