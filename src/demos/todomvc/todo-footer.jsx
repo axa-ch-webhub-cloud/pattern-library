@@ -21,7 +21,7 @@ const AXAFooterLegalsReact = withReactBound(AXAFooterLegals);
 const footerItems = [
   { name: 'All', url: '#', state: ALL_TODOS },
   { name: 'Active', url: '#active', state: ACTIVE_TODOS },
-  { name: 'completed', url: '#completed', state: COMPLETED_TODOS },
+  { name: 'Completed', url: '#completed', state: COMPLETED_TODOS },
 ];
 
 const TodoFooter = ({
