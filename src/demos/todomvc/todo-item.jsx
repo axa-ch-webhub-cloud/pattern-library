@@ -76,9 +76,10 @@ class TodoItem extends Component {
 
   handleEdit() {
     const { props } = this;
+    const { todo } = props;
 
-    props.onEdit();
-    this.setState({ editText: props.todo.title });
+    props.onEdit(todo);
+    this.setState({ editText: todo.title });
   }
 
   handleChange(event) {
