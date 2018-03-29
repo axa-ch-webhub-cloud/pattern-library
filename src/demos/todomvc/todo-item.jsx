@@ -122,7 +122,7 @@ class TodoItem extends Component {
             {title}
           </label>
 
-          <AXAButtonReact onClick={() => onDestroy(todo)} color="red" size="md" motion>
+          <AXAButtonReact onAxaclick={(event) => { console.log('click button', event); onDestroy(todo); }} color="red" size="md" motion>
             <AXAIconReact icon="cross-gap" classes="m-todo__destroy-icon" />
           </AXAButtonReact>
 

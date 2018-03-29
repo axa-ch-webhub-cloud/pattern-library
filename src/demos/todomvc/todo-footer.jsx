@@ -42,7 +42,10 @@ const TodoFooter = ({
   return (
     <AXAFooterReact>
       <AXAFooterMainReact>
-        <AXAFooterLinksReact title={title} items={items.map(selected)} />
+        <AXAFooterLinksReact title={title} items={items.map(selected)} onAxaclick={(event) => {
+          event.preventDefault();
+          console.log(`footer link ${event.type}`);
+        }} />
       </AXAFooterMainReact>
 
       <AXAFooterSubReact>
@@ -52,7 +55,7 @@ const TodoFooter = ({
           </span>
 
           {hasCompleted &&
-            <AXAButtonReact onClick={onClearCompleted} color="white" size="sm" motion arrow ghost>Clear Completed</AXAButtonReact>
+            <AXAButtonReact onAxaclick={onClearCompleted} color="white" size="sm" motion arrow ghost>Clear Completed</AXAButtonReact>
           }
         </AXAFooterLegalsReact>
       </AXAFooterSubReact>
