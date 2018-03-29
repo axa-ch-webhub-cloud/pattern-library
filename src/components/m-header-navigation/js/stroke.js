@@ -87,8 +87,7 @@ class Stroke extends UiEvents {
     if (has(node, this.options.activeClass)) {
       this._activeNode = node;
 
-      add(node, this.options.activeOpenClass);
-      add(node, this.options.activeMoveClass);
+      add(node, this.options.activeOpenClass, this.options.activeMoveClass);
     }
 
     requestAnimationFrame(() => {
@@ -135,8 +134,7 @@ class Stroke extends UiEvents {
     this._offMoving();
 
     if (this._activeNode) {
-      remove(this._activeNode, this.options.activeMoveClass);
-      remove(this._activeNode, this.options.activeOpenClass);
+      remove(this._activeNode, this.options.activeMoveClass, this.options.activeOpenClass);
       this._activeNode = null;
     }
 
@@ -149,8 +147,7 @@ class Stroke extends UiEvents {
       remove(this._list, this.options.interactiveClass);
 
       requestAnimationFrame(() => {
-        remove(this._stroke, this.options.moveClass);
-        remove(this._stroke, this.options.enterClass);
+        remove(this._stroke, this.options.moveClass, this.options.enterClass);
         remove(_node, this.options.activeOpenClass);
       });
 
