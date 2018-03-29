@@ -13,7 +13,6 @@ const PROP_BLACKLIST = [
  *
  * @link https://github.com/webcomponents/react-integration - inspired by react-integration
  * @param React
- * @param {Boolean} [options.pure=true] - Is this a pure component?
  * @returns {function(*)}
  *
  * @example <caption>How to use</caption>
@@ -21,13 +20,15 @@ const PROP_BLACKLIST = [
  * import withReact from '@axa-ch/patterns-library/src/js/with-react';
  * import AXAButton from '@axa-ch/patterns-library/dist/components/m-button'
  *
- * const AXAButtonReact = withReact(React)(AXAButton);
+ * const AXAButtonReact = withReact(React)(AXAButton, {
+ *   pure: true,
+ * });
  *
  * const MyApp = ({ color, onClick }) => (
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = (React, { pure = true } = {}) => (WebComponent) => {
+const withReact = React => (WebComponent, { pure = true } = {}) => {
   const { name } = WebComponent;
   const displayName = `${name}React`;
   const WCTagName = dasherize(WebComponent.name);
