@@ -49,10 +49,14 @@
 }
 
 .m-todo__toggle {
+  @include size(40px);
 
+  margin-right: 20px;
 }
 
 .m-todo__label {
+  flex-grow: 1;
+
   &.is-todo-completed {
     text-decoration: line-through;
   }
