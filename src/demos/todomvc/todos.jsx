@@ -10,6 +10,7 @@ class Todos extends Component {
   constructor(props, context) {
     super(props, context);
 
+    this.toggleAll = this.toggleAll.bind(this);
     this.toggle = this.toggle.bind(this);
     this.destroy = this.destroy.bind(this);
     this.edit = this.edit.bind(this);
@@ -24,6 +25,7 @@ class Todos extends Component {
       nowShowing: ALL_TODOS,
       editing: null,
       newTodo: '',
+      toggleAll: false,
     };
   }
 
@@ -47,9 +49,13 @@ class Todos extends Component {
   }
 
   toggleAll(event) {
-    const { target: { checked } } = event;
+    const { state: { toggleAll } } = this;
 
-    this.props.model.toggleAll(checked);
+    event.preventDefault();
+
+    this.props.model.toggleAll(!toggleAll);
+
+    this.setState({ toggleAll: !toggleAll });
   }
 
   toggle(todoToToggle) {
@@ -107,7 +113,7 @@ class Todos extends Component {
 
     return (
       <div>
-        <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} key={0} />
+        <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} toggleAll={this.toggleAll} key={0} />
 
         <TodosList
           shownTodos={shownTodos}

@@ -70,10 +70,11 @@ const TodoHeader = ({
   newTodo,
   handleNewTodoKeyDown,
   handleChange,
+  toggleAll,
 }) => (
   <AXAHeaderReact>
     <AXAHeaderMainReact firstLeft>
-      <AXAHeaderLogoReact />
+      <AXAHeaderLogoReact onAxaClick={toggleAll} />
       <h1 className="m-todo-header__title">Todos</h1>
 
       <Input

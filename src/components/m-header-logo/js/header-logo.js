@@ -1,16 +1,15 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
 
-class Button {
+class HeaderLogo {
   static DEFAULTS = {
-    button: '.js-button',
-  };
+    link: '.js-header-logo__link',
+  }
 
   constructor(wcNode, options = {}) {
     this.wcNode = wcNode;
-
     this.options = {
-      ...Button.DEFAULTS,
+      ...HeaderLogo.DEFAULTS,
       ...options,
     };
 
@@ -20,7 +19,7 @@ class Button {
   }
 
   init() {
-    this.button = this.wcNode.querySelector(this.options.button);
+    this.link = this.wcNode.querySelector(this.options.link);
 
     this.on();
   }
@@ -28,15 +27,7 @@ class Button {
   on() {
     this.off();
 
-    this.unClick = on(this.button, 'click', this.handleClick, {
-      passive: false,
-    });
-  }
-
-  off() {
-    if (this.unClick) {
-      this.unClick();
-    }
+    this.unClick = on(this.link, 'click', this.handleClick, { passive: false });
   }
 
   handleClick(event) {
@@ -47,23 +38,20 @@ class Button {
     }
   }
 
+  off() {
+    if (this.unClick) {
+      this.unClick();
+    }
+  }
+
   destroy() {
     this.off();
 
-    if (this.button) {
-      delete this.button;
-    }
-
-    if (this.wcNode) {
-      delete this.wcNode;
-    }
-
-    if (this.options) {
-      delete this.options;
-    }
-
+    delete this.link;
+    delete this.wcNode;
+    delete this.options;
     delete this.handleClick;
   }
 }
 
-export default Button;
+export default HeaderLogo;

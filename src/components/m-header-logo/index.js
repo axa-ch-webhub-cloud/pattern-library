@@ -4,6 +4,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
+import HeaderLogo from './js/header-logo';
 
 class AXAHeaderLogo extends BaseComponentGlobal {
   static get observedAttributes() { return ['alt', 'href', 'src']; }
@@ -16,6 +17,21 @@ class AXAHeaderLogo extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} m-header-logo`;
+  }
+
+  didRenderCallback() {
+    if (this.logo) {
+      this.logo.destroy();
+    }
+
+    this.logo = new HeaderLogo(this);
+  }
+
+  disconnectedCallback() {
+    if (this.logo) {
+      this.logo.destroy();
+      delete this.logo;
+    }
   }
 }
 
