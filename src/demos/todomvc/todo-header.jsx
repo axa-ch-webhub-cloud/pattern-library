@@ -50,27 +50,23 @@ const TodoHeader = ({
   newTodo,
   handleNewTodoKeyDown,
   handleChange,
-}) => {
-  console.log('render todo header');
+}) => (
+  <AXAHeaderReact>
+    <AXAHeaderMainReact firstLeft>
+      <AXAHeaderLogoReact />
+      <h1 className="m-todo-header__title">Todos</h1>
 
-  return (
-    <AXAHeaderReact>
-      <AXAHeaderMainReact firstLeft>
-        <AXAHeaderLogoReact />
-        <h1 className="m-todo-header__title">Todos</h1>
-
-        <Input
-          className="m-todo-header__new"
-          placeholder="What needs to be done?"
-          editing={editing}
-          value={newTodo}
-          onKeyDown={handleNewTodoKeyDown}
-          onChange={handleChange}
-          autoFocus={!editing}
-        />
-      </AXAHeaderMainReact>
-    </AXAHeaderReact>
-  );
-}
+      <Input
+        className="m-todo-header__new"
+        placeholder="What needs to be done?"
+        editing={editing}
+        value={newTodo}
+        onKeyDown={handleNewTodoKeyDown}
+        onChange={handleChange}
+        autoFocus={!editing}
+      />
+    </AXAHeaderMainReact>
+  </AXAHeaderReact>
+);
 
 export default TodoHeader;
