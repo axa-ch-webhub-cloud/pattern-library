@@ -40,7 +40,7 @@ class Button {
   }
 
   handleClick(event) {
-    const cancelled = fire(this.wcNode, 'axaclick', {}, { bubbles: true, cancelable: true, composed: true });
+    const cancelled = fire(this.wcNode, 'axa-click', {}, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();

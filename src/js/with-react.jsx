@@ -67,7 +67,7 @@ const withReact = React => (WebComponent, { pure = true, passive = false } = {})
             eventCache[key]();
           }
 
-          const eventName = key.substring(2).toLowerCase();
+          const eventName = dasherize(`${keyFrom2}${key.substring(3)}`);
 
           eventCache[key] = on(wcNode, eventName, props[key], { passive });
         } else {
