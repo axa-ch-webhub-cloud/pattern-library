@@ -67,7 +67,6 @@ class Input extends Component {
 }
 
 const TodoHeader = ({
-  editing,
   newTodo,
   handleNewTodoKeyDown,
   handleChange,
@@ -80,11 +79,10 @@ const TodoHeader = ({
       <Input
         className="m-todo-header__new"
         placeholder="What needs to be done?"
-        editing={editing}
         value={newTodo}
         onKeyDown={handleNewTodoKeyDown}
         onChange={handleChange}
-        autoFocus={!editing}
+        autoFocus={true}
       />
     </AXAHeaderMainReact>
   </AXAHeaderReact>
