@@ -35,8 +35,6 @@ class Todos extends Component {
       return;
     }
 
-    console.log('handleNewTodoKeyDown', event);
-
     event.preventDefault();
 
     const val = this.state.newTodo.trim();
