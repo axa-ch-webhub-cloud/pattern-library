@@ -14,7 +14,6 @@ class TodoItem extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.onClick = this.onClick.bind(this);
     this.handleRef = this.handleRef.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEdit = this.handleEdit.bind(this);

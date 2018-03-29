@@ -31,7 +31,7 @@ const TodoFooter = ({
   onClearCompleted,
   nowShowing,
 }) => {
-  const activeTodoWord = pluralize(this.props.count, 'item');
+  const activeTodoWord = pluralize(count, 'item');
   const selected = item => ({
     ...item,
     selected: item.state === nowShowing,

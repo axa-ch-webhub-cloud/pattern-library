@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoHeader from './todo-header';
 import TodosList from './todos-list';
 import TodoFooter from './todo-footer';
 import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
@@ -15,6 +16,8 @@ class Todos extends Component {
     this.save = this.save.bind(this);
     this.cancel = this.cancel.bind(this);
     this.clearCompleted = this.clearCompleted.bind(this);
+    this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       nowShowing: ALL_TODOS,
@@ -31,6 +34,8 @@ class Todos extends Component {
     if (event.keyCode !== ENTER_KEY) {
       return;
     }
+
+    console.log('handleNewTodoKeyDown', event);
 
     event.preventDefault();
 
@@ -92,6 +97,7 @@ class Todos extends Component {
     const completedCount = todos.length - activeTodoCount;
 
     return [
+      <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} key={0} />,
       <TodosList
         shownTodos={shownTodos}
         onToggle={this.toggle}
@@ -100,9 +106,10 @@ class Todos extends Component {
         editing={state.editing}
         onSave={this.save}
         onCancel={this.cancel}
+        key={1}
       />,
       ((activeTodoCount || completedCount) ? (
-        <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} />
+        <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} key={2} />
       ) : null),
     ];
   }

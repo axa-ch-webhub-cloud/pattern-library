@@ -7,8 +7,8 @@ const TodosList = ({
   ...props,
 }) => Array.isArray(shownTodos) && shownTodos.length ? (
   <ul className="m-todo__list">
-    {shownTodos.map(({ id, ...todo }) => (
-      <TodoItem {...todo} {...props} editing={editing === id} id={id} key={todo.id} />
+    {shownTodos.map(todo => (
+      <TodoItem todo={todo} {...props} editing={editing === todo.id} id={todo.id} key={todo.id} />
     ))}
   </ul>
 ) : null;
