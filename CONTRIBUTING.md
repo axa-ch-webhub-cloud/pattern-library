@@ -95,7 +95,7 @@ There are a few key principles you have to know:
 - Custom Elements are **asynchronous**, which means
    - they only render if their definition (JS) is ready
    - a child could render before it's parent
-   - this leads to **FOUC**
+   - this leads to [**FOUC** (flash of unstyled content)](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
    - in short - order of rendering is **non-deterministic**
 - HTML attributes (always `'string'`) VS DOM properties ([first class props](#first-class-props))
 - [Key Terms](#key-terms)
