@@ -56,7 +56,6 @@ class Todos extends Component {
   }
 
   destroy(todo) {
-    console.log(todo);
     this.props.model.destroy(todo);
   }
 

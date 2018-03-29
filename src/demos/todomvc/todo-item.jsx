@@ -20,6 +20,7 @@ class TodoItem extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleDestroy = this.handleDestroy.bind(this);
 
     this.state = {
       editText: props.todo.title,
@@ -102,9 +103,15 @@ class TodoItem extends Component {
     }
   }
 
+  handleDestroy(event) {
+    const { props: { todo, onDestroy } } = this;
+
+    onDestroy(todo);
+  }
+
   render() {
     const { props, state } = this;
-    const { todo, editing, onToggle, onDestroy } = props;
+    const { todo, editing, onToggle } = props;
     const { title, completed, id } = todo;
     const htmlFor = `m-todo-${id}`;
 
@@ -122,7 +129,7 @@ class TodoItem extends Component {
             {title}
           </label>
 
-          <AXAButtonReact onAxaclick={(event) => { console.log('click button', event); onDestroy(todo); }} color="red" size="md" motion>
+          <AXAButtonReact onAxaclick={this.handleDestroy} color="red" size="md" motion>
             <AXAIconReact icon="cross-gap" classes="m-todo__destroy-icon" />
           </AXAButtonReact>
 

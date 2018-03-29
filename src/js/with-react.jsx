@@ -28,11 +28,10 @@ const PROP_BLACKLIST = [
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = React => (WebComponent, { pure = true } = {}) => {
+const withReact = React => (WebComponent, { pure = true, passive = false } = {}) => {
   const { name } = WebComponent;
   const displayName = `${name}React`;
   const WCTagName = dasherize(WebComponent.name);
-  const eventCache = {};
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
@@ -44,6 +43,8 @@ const withReact = React => (WebComponent, { pure = true } = {}) => {
       super(props);
 
       this.handleRef = this.handleRef.bind(this);
+
+      this._eventCache = {};
     }
 
     componentDidMount() {
@@ -51,7 +52,7 @@ const withReact = React => (WebComponent, { pure = true } = {}) => {
     }
 
     componentWillReceiveProps(props) {
-      const { wcNode } = this;
+      const { wcNode, _eventCache: eventCache } = this;
 
       Object.keys(props).forEach((key) => {
         if (PROP_BLACKLIST.indexOf(key) !== -1) {
@@ -66,7 +67,9 @@ const withReact = React => (WebComponent, { pure = true } = {}) => {
             eventCache[key]();
           }
 
-          eventCache[key] = on(wcNode, key.substring(2).toLowerCase(), props[key]);
+          const eventName = key.substring(2).toLowerCase();
+
+          eventCache[key] = on(wcNode, eventName, props[key], { passive });
         } else {
           // set properties by DOM property API's - not HTML setAttribute -> first class props
           wcNode[key] = props[key];
@@ -75,12 +78,16 @@ const withReact = React => (WebComponent, { pure = true } = {}) => {
     }
 
     componentWillUnmount() {
+      const { _eventCache: eventCache } = this;
+
       // clean up bound custom events
       Object.keys(eventCache).forEach((key) => {
         if (eventCache[key]) {
           eventCache[key]();
         }
       });
+
+      delete this.wcNode;
     }
 
     handleRef(wcNode) {

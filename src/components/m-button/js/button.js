@@ -28,8 +28,6 @@ class Button {
   on() {
     this.off();
 
-    console.log(this.button);
-
     this.unClick = on(this.button, 'click', this.handleClick, {
       passive: false,
     });
@@ -42,11 +40,7 @@ class Button {
   }
 
   handleClick(event) {
-    console.log('button click', this.wcNode);
-
-    const cancelled = fire(this.wcNode, 'axaclick', {}, { bubbles: true, cancelable: true });
-
-    console.log('button click', cancelled);
+    const cancelled = fire(this.wcNode, 'axaclick', {}, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();

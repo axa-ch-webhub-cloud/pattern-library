@@ -51,8 +51,8 @@ export default class FooterLinks {
     }
   }
 
-  handleClick(event, delegateTarget) {
-    const cancelled = fire(this.wcNode, 'axaclick', {}, { bubbles: true, cancelable: true });
+  handleClick(event) {
+    const cancelled = fire(this.wcNode, 'axaclick', {}, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();
