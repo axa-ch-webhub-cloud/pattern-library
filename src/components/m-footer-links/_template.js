@@ -10,7 +10,7 @@ export default function ({ title, items }) {
     <ul class="m-footer-links__list">
       ${Array.isArray(items) && items.map(({ name, url }) => html`
         <li class="m-footer-links__list-item">
-          <a class="m-footer-links__link" href="${url}">${name}</a>
+          <a class="m-footer-links__link js-footer-links__link" href="${url}">${name}</a>
         </li>
       `)}
     </ul>
