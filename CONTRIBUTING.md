@@ -234,10 +234,10 @@ To turn any custom element into a working React Component, you just need to foll
 3. `import` any web components you need
 4. bind `withReact` to you `import`ed React version
 5. wrap all your needed web components
-   - and may pass optional options
+   - and may pass optional options for type of component or event init options
 6. use them like regular React components in your app
 
-   **Note:** events work similiar to React's standard events, but each web components could trigger custom events. Make sure to check them out at the web-components documentation itself!
+   **Note:** events work similar to React's standard events, but each web components could trigger custom events. Make sure to check them out at the web-components documentation itself!
 
 ```js
 // import your dependencies - 1, 2, and 3
@@ -252,11 +252,14 @@ const withReactBound = withReact(React)
 // and optionally pass options
 const AXAButtonReact = withReactBound(AXAButton, {
   pure: true,
+  // event init options are also supported
+  passive: false,
 });
 
 // 6. use them in your app like regular React components
+// note the custom event axa-click - camelcased and on-prefixed in React
 const MyApp = ({ color, onClick }) => (
-  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
+  <AXAButtonReact color={color} onAxaClick={onClick}>Hello World</AXAButtonReact>
 );
 ```
 
