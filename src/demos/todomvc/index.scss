@@ -1,6 +1,8 @@
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/respond";
+@import "../../styles/mixins/size";
 @import "../../styles/mixins/unstyle-list";
+@import "../../styles/grid/grid-mixins";
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
 
@@ -32,6 +34,8 @@
 
 .m-todo__list {
   @include unstyle-list();
+  @include make-container();
+  @include make-container-max-widths();
 }
 
 .m-todo__item {
@@ -41,7 +45,7 @@
 }
 
 .m-todo__wrap {
-
+  @include make-row(null);
 }
 
 .m-todo__toggle {
@@ -56,4 +60,8 @@
 
 .m-todo__edit {
 
+}
+
+.m-todo__destroy-icon {
+  @include size(20px);
 }

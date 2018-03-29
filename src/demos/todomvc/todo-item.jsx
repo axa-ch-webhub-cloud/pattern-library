@@ -123,7 +123,7 @@ class TodoItem extends Component {
           </label>
 
           <AXAButtonReact onClick={() => onDestroy(todo)}>
-            <AXAIconReact icon="cross-gap" />
+            <AXAIconReact icon="cross-gap" classes="m-todo__destroy-icon" />
           </AXAButtonReact>
         </div>
 
