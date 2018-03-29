@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import Todos from './todos';
 import TodoModel from './todo-model';
+import styles from './index.scss';
 
 const todoModel = new TodoModel('react-todos');
 
 const TodoApp = ({
   model,
 }) => (
-  <div className="m-todo">
+  <article className="o-todo">
     <Todos model={model} />
-  </div>
+  </article>
 );
 
 function render() {
@@ -24,6 +26,7 @@ function render() {
 todoModel.subscribe(render);
 
 document.addEventListener('DOMContentLoaded', () => {
+  BaseComponentGlobal.appendGlobalStyles(styles);
   render();
 });
 

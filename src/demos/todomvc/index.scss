@@ -1,0 +1,15 @@
+@import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
+
+.o-todo {
+  @include vr-pad-items();
+
+  display: block;
+
+  > * {
+    @include vr-margin-item();
+
+    display: block;
+  }
+}
+
+

@@ -94,22 +94,26 @@ class Todos extends Component {
     const activeTodoCount = todos.reduce((accum, todo) => todo.completed ? accum : accum + 1, 0);
     const completedCount = todos.length - activeTodoCount;
 
-    return [
-      <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} key={0} />,
-      <TodosList
-        shownTodos={shownTodos}
-        onToggle={this.toggle}
-        onDestroy={this.destroy}
-        onEdit={this.edit}
-        editing={state.editing}
-        onSave={this.save}
-        onCancel={this.cancel}
-        key={1}
-      />,
-      ((activeTodoCount || completedCount) ? (
-        <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} key={2} />
-      ) : null),
-    ];
+    return (
+      <div>
+        <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} key={0} />
+
+        <TodosList
+          shownTodos={shownTodos}
+          onToggle={this.toggle}
+          onDestroy={this.destroy}
+          onEdit={this.edit}
+          editing={state.editing}
+          onSave={this.save}
+          onCancel={this.cancel}
+          key={1}
+        />
+
+        {(activeTodoCount || completedCount) ? (
+          <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} key={2} />
+        ) : null}
+      </div>
+    );
   }
 }
 
