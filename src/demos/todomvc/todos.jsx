@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import TodosList from './todos-list';
+import TodoFooter from './todo-footer';
+import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
 
 const ENTER_KEY = 13;
-const app = app || {};
-
-app.ALL_TODOS = 'all';
-app.ACTIVE_TODOS = 'active';
-app.COMPLETED_TODOS = 'completed';
 
 class Todos extends Component {
   constructor(props, context) {
@@ -17,9 +14,10 @@ class Todos extends Component {
     this.edit = this.edit.bind(this);
     this.save = this.save.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.clearCompleted = this.clearCompleted.bind(this);
 
     this.state = {
-      nowShowing: app.ALL_TODOS,
+      nowShowing: ALL_TODOS,
       editing: null,
       newTodo: '',
     };
@@ -77,29 +75,36 @@ class Todos extends Component {
 
   render() {
     const { props: { model: { todos } } } = this;
+    const { state } = this;
 
     const shownTodos = todos.filter((todo) => {
-      switch (this.state.nowShowing) {
-        case app.ACTIVE_TODOS:
+      switch (state.nowShowing) {
+        case ACTIVE_TODOS:
           return !todo.completed;
-        case app.COMPLETED_TODOS:
+        case COMPLETED_TODOS:
           return todo.completed;
         default:
           return true;
       }
     });
 
-    return (
+    const activeTodoCount = todos.reduce((accum, todo) => todo.completed ? accum : accum + 1, 0);
+    const completedCount = todos.length - activeTodoCount;
+
+    return [
       <TodosList
         shownTodos={shownTodos}
         onToggle={this.toggle}
         onDestroy={this.destroy}
         onEdit={this.edit}
-        editing={this.state.editing}
+        editing={state.editing}
         onSave={this.save}
         onCancel={this.cancel}
-      />
-    );
+      />,
+      ((activeTodoCount || completedCount) && (
+        <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} />
+      )),
+    ];
   }
 }
 

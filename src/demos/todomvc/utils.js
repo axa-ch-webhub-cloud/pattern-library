@@ -33,3 +33,7 @@ export function store(namespace, data) {
 
   return (store && JSON.parse(store)) || [];
 }
+
+export const ALL_TODOS = 'all';
+export const ACTIVE_TODOS = 'active';
+export const COMPLETED_TODOS = 'completed';
