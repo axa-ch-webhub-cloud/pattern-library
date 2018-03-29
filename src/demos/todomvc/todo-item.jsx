@@ -130,7 +130,7 @@ class TodoItem extends Component {
         {editing ?
           <input
             ref={this.handleRef}
-            className="m-todo__edit"
+            className="m-todo__input m-todo__edit"
             id={htmlFor}
             value={state.editText}
             onBlur={this.handleSubmit}

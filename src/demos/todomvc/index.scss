@@ -32,6 +32,29 @@
   flex-grow: 1;
 }
 
+.m-todo__input {
+  @include typo-text-longer();
+
+  display: block;
+  width: 100%;
+  padding: 5px 15px;
+  border: 2px solid $color-prim-gray-wild-sand;
+  background: $color-prim-white;
+
+  &::placeholder {
+    color: $color-prim-gray-dusty;
+    opacity: 1;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  @include respond-up(md) {
+    padding: 10px 20px;
+  }
+}
+
 .m-todo__list {
   @include unstyle-list();
   @include make-container();
@@ -39,23 +62,33 @@
 }
 
 .m-todo__item {
-  @include typo-item-highlight();
+  @include typo-text-longer();
 
   position: relative;
 }
 
 .m-todo__wrap {
   @include make-row(null);
+
+  align-items: center;
 }
 
 .m-todo__toggle {
   @include size(40px);
 
   margin-right: 20px;
+
+  cursor: pointer;
 }
 
 .m-todo__label {
+  margin: 0;
+
   flex-grow: 1;
+
+  cursor: pointer;
+  white-space: pre-line;
+  word-break: break-all;
 
   &.is-todo-completed {
     text-decoration: line-through;
@@ -63,7 +96,27 @@
 }
 
 .m-todo__edit {
+  $left: 45px;
+  $zIndex: 10;
 
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: $left;
+  z-index: $zIndex;
+
+  width: calc(100% - #{$left});
+  padding-top: auto;
+  padding-bottom: auto;
+
+  @include respond-up(md) {
+    $left: 40px;
+
+    left: $left;
+
+    width: calc(100% - #{$left});
+  }
 }
 
 .m-todo__destroy-icon {

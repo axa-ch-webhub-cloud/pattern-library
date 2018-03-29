@@ -77,7 +77,7 @@ const TodoHeader = ({
       <h1 className="m-todo-header__title">Todos</h1>
 
       <Input
-        className="m-todo-header__new"
+        className="m-todo__input m-todo-header__new"
         placeholder="What needs to be done?"
         value={newTodo}
         onKeyDown={handleNewTodoKeyDown}
