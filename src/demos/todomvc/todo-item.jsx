@@ -127,7 +127,7 @@ class TodoItem extends Component {
 
         <input
           ref={this.handleRef}
-          className="edit"
+          className="m-todo__edit"
           id={htmlFor}
           value={state.editText}
           onBlur={this.handleSubmit}

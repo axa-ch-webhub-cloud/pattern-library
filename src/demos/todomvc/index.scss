@@ -1,3 +1,7 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/typo/typo-mixins";
 @import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
 
 .o-todo {
@@ -12,4 +16,38 @@
   }
 }
 
+.m-todo-header__title {
+  @include typo-small-module-title--publico();
 
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+.m-todo-header__new {
+  margin-left: 20px;
+
+  flex-grow: 1;
+}
+
+.m-todo__list {
+  @include unstyle-list();
+}
+
+.m-todo__item {
+  @include typo-item-highlight();
+
+  position: relative;
+}
+
+.m-todo__wrap {
+
+}
+
+.m-todo__toggle {
+
+}
+
+.m-todo__edit {
+
+}
