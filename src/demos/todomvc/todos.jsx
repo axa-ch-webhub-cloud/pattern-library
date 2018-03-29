@@ -80,6 +80,8 @@ class Todos extends Component {
   nowShowing(event) {
     const { detail: { state } } = event;
 
+    event.preventDefault();
+
     this.setState({
       nowShowing: state,
     });
