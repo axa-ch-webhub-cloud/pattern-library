@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import withReact from '../../js/with-react';
 import { pluralize, ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
 import AXAButton from '../../components/m-button';
@@ -36,6 +37,7 @@ const TodoFooter = ({
     ...item,
     selected: item.state === nowShowing,
   });
+  const hasCompleted = completedCount > 0;
 
   return (
     <AXAFooterReact>
@@ -45,12 +47,12 @@ const TodoFooter = ({
 
       <AXAFooterSubReact>
         <AXAFooterLegalsReact>
-          <span className="todo-count">
+          <span className={classnames('m-todo-footer__count', { 'm-todo-footer__count--completed': hasCompleted })}>
             <strong>{count}</strong> {activeTodoWord} left
           </span>
 
-          {completedCount > 0 &&
-            <AXAButtonReact onClick={onClearCompleted}>Clear Completed</AXAButtonReact>
+          {hasCompleted &&
+            <AXAButtonReact onClick={onClearCompleted} color="white" size="sm" motion arrow ghost>Clear Completed</AXAButtonReact>
           }
         </AXAFooterLegalsReact>
       </AXAFooterSubReact>

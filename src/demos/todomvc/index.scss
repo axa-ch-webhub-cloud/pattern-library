@@ -153,3 +153,7 @@
 .m-todo__destroy-icon {
   @include size(20px);
 }
+
+.m-todo-footer__count--completed {
+  margin-right: 20px;
+}
