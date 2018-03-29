@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import withReact from '../../js/with-react';
 import AXAButton from '../../components/m-button';
 import AXAIcon from '../../components/a-icon';
@@ -103,7 +104,8 @@ class TodoItem extends Component {
 
   render() {
     const { props, state } = this;
-    const { todo, onToggle, onDestroy, id } = props;
+    const { todo, onToggle, onDestroy } = props;
+    const { title, completed, id } = todo;
     const htmlFor = `m-todo-${id}`;
 
     return (
@@ -112,12 +114,12 @@ class TodoItem extends Component {
           <input
             className="m-todo__toggle"
             type="checkbox"
-            checked={todo.completed}
+            checked={completed}
             onChange={() => onToggle(todo)}
           />
 
-          <label onDoubleClick={this.handleEdit} htmlFor={htmlFor}>
-            {todo.title}
+          <label className={classnames('m-todo__label', { 'is-todo-completed': completed })} onDoubleClick={this.handleEdit} htmlFor={htmlFor}>
+            {title}
           </label>
 
           <AXAButtonReact onClick={() => onDestroy(todo)}>

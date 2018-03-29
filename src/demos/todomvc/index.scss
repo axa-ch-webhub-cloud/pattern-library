@@ -48,6 +48,12 @@
 
 }
 
+.m-todo__label {
+  &.is-todo-completed {
+    text-decoration: line-through;
+  }
+}
+
 .m-todo__edit {
 
 }
