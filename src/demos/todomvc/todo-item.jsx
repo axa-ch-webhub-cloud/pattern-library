@@ -104,7 +104,7 @@ class TodoItem extends Component {
 
   render() {
     const { props, state } = this;
-    const { todo, onToggle, onDestroy } = props;
+    const { todo, editing, onToggle, onDestroy } = props;
     const { title, completed, id } = todo;
     const htmlFor = `m-todo-${id}`;
 
@@ -127,15 +127,17 @@ class TodoItem extends Component {
           </AXAButtonReact>
         </div>
 
-        <input
-          ref={this.handleRef}
-          className="m-todo__edit"
-          id={htmlFor}
-          value={state.editText}
-          onBlur={this.handleSubmit}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-        />
+        {editing ?
+          <input
+            ref={this.handleRef}
+            className="m-todo__edit"
+            id={htmlFor}
+            value={state.editText}
+            onBlur={this.handleSubmit}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+          />
+          : null}
       </li>
     );
   }
