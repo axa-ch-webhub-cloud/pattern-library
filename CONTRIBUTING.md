@@ -205,6 +205,12 @@ example.exampleMessage = 'hello world';
 
 **Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason!
 
+#### `shouldComponentUpdate(newValue, oldValue)`
+
+`shouldComponentUpdate()` is invoked upon `attributeChangedCallback()` or Property `setter()` invocation to determine if rendering is necessary when new props are being received - it returns `true` if re-rendering is desireable, else `false`.
+
+**Important:** This does only a shallow comparison, if your need deal with more complex data, like objects or arrays either stick to immutable data structures or override this method to implement your own test.
+
 #### `willRenderCallback(initial)`
 
 Invoked before the custom element's [flattened DOM](#flattened-dom) will be rendered.
