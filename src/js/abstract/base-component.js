@@ -201,7 +201,7 @@ export default class BaseComponent extends HTMLElement {
 
   /**
    * A fast and simpler way to update multiple props in one go.
-   * Especially usefull for integrations and to prevent multiple re-renders.
+   * Especially useful for integrations and to prevent multiple re-renders.
    *
    * @param {{}} props - DOM properties to be updated.
    */
