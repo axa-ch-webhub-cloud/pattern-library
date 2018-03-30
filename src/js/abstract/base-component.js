@@ -90,7 +90,7 @@ export default class BaseComponent extends HTMLElement {
 
             // only update the value if it has actually changed
             // and only re-render if it has changed
-            if (this[name] === value) {
+            if (!this.shouldComponentUpdate(this[name], value)) {
               return;
             }
 
@@ -186,13 +186,25 @@ export default class BaseComponent extends HTMLElement {
 
     // only update the value if it has actually changed
     // and only re-render if it has changed
-    if (newValue === oldValue) {
+    if (!this.shouldComponentUpdate(newValue, oldValue)) {
       return;
     }
 
     const key = camelize(name);
 
     this[key] = toProp(newValue);
+  }
+
+  /**
+   * Check if a re-render is really necessary.
+   * Basic check does a shallow comparison.
+   *
+   * @param {*} newValue - the new value of an attribute.
+   * @param {*} oldValue - the existing value of an attribute.
+   * @returns {Boolean} - Returns `true` if attributes have changed, else `false`.
+   */
+  shouldComponentUpdate(newValue, oldValue) {
+    return newValue !== oldValue;
   }
 
   /**
