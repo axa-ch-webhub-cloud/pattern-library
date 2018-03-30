@@ -6,7 +6,6 @@ import { publish, subscribe } from '../pubsub';
 import debounce from '../debounce';
 import camelize from '../camelize';
 import dasherize from '../dasherize';
-import partition from '../array-partition';
 import maybe from '../maybe';
 import PropertyExistsException from './property-exists-exception';
 
@@ -64,6 +63,7 @@ export default class BaseComponent extends HTMLElement {
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
     this._props = {};
+    this._hasKeys = {};
     this.reRender = debounce(() => this.render(), 50);
 
     const { constructor: { observedAttributes } } = this;
@@ -81,6 +81,8 @@ export default class BaseComponent extends HTMLElement {
         if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
           throw new PropertyExistsException(key, this);
         }
+
+        this._hasKeys[key] = hasKey;
 
         // @todo: may we should allow deletion by setting configurable: true
         Object.defineProperty(this, key, {
@@ -207,11 +209,10 @@ export default class BaseComponent extends HTMLElement {
     const { constructor: { observedAttributes } } = this;
     const propsKeys = Object.keys(props);
     const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
-    const [observedProps, customProps] = propsKeys.reduce(partition(filter), [[], []]);
     let shouldUpdate = false;
 
-    observedProps.forEach((key) => {
-      const hasKey = key in this;
+    propsKeys.filter(filter).forEach((key) => {
+      const hasKey = this._hasKeys[key];
 
       if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
         throw new PropertyExistsException(key, this);
@@ -233,18 +234,6 @@ export default class BaseComponent extends HTMLElement {
       if (hasKey) {
         super[key] = value;
       }
-    });
-
-    customProps.forEach((key) => {
-      const hasKey = key in this;
-
-      if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
-        throw new PropertyExistsException(key, this);
-      }
-
-      const value = props[key];
-
-      this[key] = value;
     });
 
     if (shouldUpdate && this._isConnected && this._hasRendered) {

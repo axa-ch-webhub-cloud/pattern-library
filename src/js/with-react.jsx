@@ -1,10 +1,17 @@
 import dasherize from './dasherize';
+import partition from './array-partition';
 import on from './on';
 
 const PROP_BLACKLIST = [
   'children', // children are never passed as props, instead as real DOM children
   'style', // @todo: discuss if we need style, cause we normally use BEM
 ];
+const blackListFilter = key => PROP_BLACKLIST.indexOf(key) === -1;
+const isEventFilter = (key) => {
+  const keyFrom2 = key.charAt(2);
+
+  return key.indexOf('on') === 0 && keyFrom2 === keyFrom2.toUpperCase();
+};
 
 /**
  * Provides a partially applied function which let's you wrap any WebComponent with React.
@@ -53,28 +60,26 @@ const withReact = React => (WebComponent, { pure = true, passive = false } = {})
 
     componentWillReceiveProps(props) {
       const { wcNode, _eventCache: eventCache } = this;
+      const propsKeys = Object.keys(props);
+      const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
 
-      Object.keys(props).forEach((key) => {
-        if (PROP_BLACKLIST.indexOf(key) !== -1) {
-          return;
+      eventKeys.forEach((key) => {
+        if (eventCache[key]) {
+          eventCache[key]();
         }
 
-        const keyFrom2 = key.charAt(2);
+        const eventName = dasherize(key.substring(2));
 
-        // bind event handlers
-        if (key.indexOf('on') === 0 && keyFrom2 === keyFrom2.toUpperCase()) {
-          if (eventCache[key]) {
-            eventCache[key]();
-          }
-
-          const eventName = dasherize(`${keyFrom2}${key.substring(3)}`);
-
-          eventCache[key] = on(wcNode, eventName, props[key], { passive });
-        } else {
-          // set properties by DOM property API's - not HTML setAttribute -> first class props
-          wcNode[key] = props[key];
-        }
+        eventCache[key] = on(wcNode, eventName, props[key], { passive });
       });
+
+      const dataProps = dataKeys.filter(blackListFilter)
+        .reduce((data, key) => ({
+          ...data,
+          [key]: props[key],
+        }), {});
+
+      wcNode.batchProps(dataProps);
     }
 
     componentWillUnmount() {
