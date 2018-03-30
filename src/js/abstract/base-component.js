@@ -86,7 +86,15 @@ export default class BaseComponent extends HTMLElement {
             return this[`_${attr}`];
           },
           set(value) {
-            this[`_${attr}`] = value;
+            const name = `_${attr}`;
+
+            // only update the value if it has actually changed
+            // and only re-render if it has changed
+            if (this[name] === value) {
+              return;
+            }
+
+            this[name] = value;
 
             this._props[key] = value;
 
@@ -174,6 +182,12 @@ export default class BaseComponent extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     if (ENV !== PROD) {
       lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
+    }
+
+    // only update the value if it has actually changed
+    // and only re-render if it has changed
+    if (newValue === oldValue) {
+      return;
     }
 
     const key = camelize(name);
