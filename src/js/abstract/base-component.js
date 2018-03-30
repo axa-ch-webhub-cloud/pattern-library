@@ -99,7 +99,6 @@ export default class BaseComponent extends HTMLElement {
             }
 
             this[name] = value;
-
             this._props[key] = value;
 
             if (hasKey) {
@@ -161,8 +160,15 @@ export default class BaseComponent extends HTMLElement {
 
           if (this.hasAttribute(attr)) {
             const value = getAttribute(this, attr);
+            const hasKey = this._hasKeys[key];
+            const name = `_${key}`;
 
-            this[key] = value;
+            this[name] = value;
+            this._props[key] = value;
+
+            if (hasKey) {
+              super[key] = value;
+            }
           }
         });
 
