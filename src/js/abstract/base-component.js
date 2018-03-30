@@ -90,7 +90,7 @@ export default class BaseComponent extends HTMLElement {
 
             // only update the value if it has actually changed
             // and only re-render if it has changed
-            if (!this.shouldComponentUpdate(this[name], value)) {
+            if (!this.shouldUpdateCallback(this[name], value)) {
               return;
             }
 
@@ -186,7 +186,7 @@ export default class BaseComponent extends HTMLElement {
 
     // only update the value if it has actually changed
     // and only re-render if it has changed
-    if (!this.shouldComponentUpdate(newValue, oldValue)) {
+    if (!this.shouldUpdateCallback(newValue, oldValue)) {
       return;
     }
 
@@ -203,7 +203,8 @@ export default class BaseComponent extends HTMLElement {
    * @param {*} oldValue - the existing value of an attribute.
    * @returns {Boolean} - Returns `true` if attributes have changed, else `false`.
    */
-  shouldComponentUpdate(newValue, oldValue) {
+  // eslint-disable-next-line class-methods-use-this
+  shouldUpdateCallback(newValue, oldValue) {
     return newValue !== oldValue;
   }
 
