@@ -5,6 +5,8 @@ import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
 import debounce from '../debounce';
 import camelize from '../camelize';
+import dasherize from '../dasherize';
+import partition from '../array-partition';
 import maybe from '../maybe';
 import PropertyExistsException from './property-exists-exception';
 
@@ -83,10 +85,10 @@ export default class BaseComponent extends HTMLElement {
         // @todo: may we should allow deletion by setting configurable: true
         Object.defineProperty(this, key, {
           get() {
-            return this[`_${attr}`];
+            return this[`_${key}`];
           },
           set(value) {
-            const name = `_${attr}`;
+            const name = `_${key}`;
 
             // only update the value if it has actually changed
             // and only re-render if it has changed
@@ -104,7 +106,7 @@ export default class BaseComponent extends HTMLElement {
 
             if (this._isConnected && this._hasRendered) {
               if (ENV !== PROD) {
-                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${attr}`);
+                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
               }
 
               this.reRender();
@@ -193,6 +195,65 @@ export default class BaseComponent extends HTMLElement {
     const key = camelize(name);
 
     this[key] = toProp(newValue);
+  }
+
+  /**
+   * A fast and simpler way to update multiple props in one go.
+   * Especially usefull for integrations and to prevent multiple re-renders.
+   *
+   * @param {{}} props - DOM properties to be updated.
+   */
+  batchProps(props) {
+    const { constructor: { observedAttributes } } = this;
+    const propsKeys = Object.keys(props);
+    const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
+    const [observedProps, customProps] = propsKeys.reduce(partition(filter), [[], []]);
+    let shouldUpdate = false;
+
+    observedProps.forEach((key) => {
+      const hasKey = key in this;
+
+      if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
+        throw new PropertyExistsException(key, this);
+      }
+
+      const name = `_${key}`;
+      const value = props[key];
+      const oldValue = this[name];
+
+      if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
+        return;
+      }
+
+      shouldUpdate = true;
+
+      this[name] = value;
+      this._props[key] = value;
+
+      if (hasKey) {
+        super[key] = value;
+      }
+    });
+
+    customProps.forEach((key) => {
+      const hasKey = key in this;
+
+      if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
+        throw new PropertyExistsException(key, this);
+      }
+
+      const value = props[key];
+
+      this[key] = value;
+    });
+
+    if (shouldUpdate && this._isConnected && this._hasRendered) {
+      if (ENV !== PROD) {
+        lifecycleLogger(this.logLifecycle)(`\n---> batchProps for ${propsKeys.join(', ')}`);
+      }
+
+      this.render();
+    }
   }
 
   /**
