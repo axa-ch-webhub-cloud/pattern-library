@@ -226,6 +226,14 @@ export default class BaseComponent extends HTMLElement {
     }
   }
 
+  /**
+   * Props reducer for batch processing.
+   *
+   * @param {{}} props - The properties to be batch processed.
+   * @param {Boolean} shouldUpdate - Is re-render necessary?
+   * @param {String} key - the current property's key.
+   * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
+   */
   updateProp({ props, shouldUpdate }, key) {
     const hasKey = this._hasKeys[key];
 
