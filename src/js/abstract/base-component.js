@@ -215,32 +215,7 @@ export default class BaseComponent extends HTMLElement {
     const { constructor: { observedAttributes } } = this;
     const propsKeys = Object.keys(props);
     const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
-    let shouldUpdate = false;
-
-    propsKeys.filter(filter).forEach((key) => {
-      const hasKey = this._hasKeys[key];
-
-      if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
-        throw new PropertyExistsException(key, this);
-      }
-
-      const name = `_${key}`;
-      const value = props[key];
-      const oldValue = this[name];
-
-      if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
-        return;
-      }
-
-      shouldUpdate = true;
-
-      this[name] = value;
-      this._props[key] = value;
-
-      if (hasKey) {
-        super[key] = value;
-      }
-    });
+    const { shouldUpdate } = propsKeys.filter(filter).reduce(this.updateProp, { props, shouldUpdate: false });
 
     if (shouldUpdate && this._isConnected && this._hasRendered) {
       if (ENV !== PROD) {
@@ -249,6 +224,37 @@ export default class BaseComponent extends HTMLElement {
 
       this.render();
     }
+  }
+
+  updateProp({ props, shouldUpdate }, key) {
+    const hasKey = this._hasKeys[key];
+
+    if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
+      throw new PropertyExistsException(key, this);
+    }
+
+    const name = `_${key}`;
+    const value = props[key];
+    const oldValue = this[name];
+
+    if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
+      return {
+        props,
+        shouldUpdate: false,
+      };
+    }
+
+    this[name] = value;
+    this._props[key] = value;
+
+    if (hasKey) {
+      super[key] = value;
+    }
+
+    return {
+      props,
+      shouldUpdate: true,
+    };
   }
 
   /**
