@@ -1,8 +1,8 @@
-import on from '../../../js/on';
-import preventOverscroll from '../../../js/prevent-overscroll';
-import disableOverscroll from '../../../js/disable-overscroll';
-import { add, remove } from '../../../js/class-list';
-import { publish, subscribe } from '../../../js/pubsub';
+import on from 'js/on';
+import preventOverscroll from 'js/prevent-overscroll';
+import disableOverscroll from 'js/disable-overscroll';
+import { add, remove } from 'js/class-list';
+import { publish, subscribe } from 'js/pubsub';
 
 class HeaderMobile {
   static DEFAULTS = {

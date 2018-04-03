@@ -1,8 +1,10 @@
 import classnames from 'classnames';
+
+import BaseComponentGlobal from 'js/abstract/base-component-global';
+import wcdomready from 'js/wcdomready';
+
 import styles from './index.scss';
 import template from './_template';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
 
 class AXASubNavigation extends BaseComponentGlobal {
   static get observedAttributes() { return ['flyout', 'index-title', 'index-url', 'items']; }

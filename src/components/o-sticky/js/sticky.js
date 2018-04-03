@@ -1,8 +1,9 @@
+import Enum from 'js/enum';
+import { subscribe } from 'js/pubsub';
+import { add, remove } from 'js/class-list';
+import css from 'js/css';
+
 import StickySpy from './sticky-spy';
-import Enum from '../../../js/enum';
-import { subscribe } from '../../../js/pubsub';
-import { add, remove } from '../../../js/class-list';
-import css from '../../../js/css';
 
 const states = Enum('IS_IN_FLOW', 'IS_STICKY', 'IS_BOTTOM');
 

@@ -1,8 +1,9 @@
-import on from '../../js/on';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import on from 'js/on';
+import BaseComponentGlobal from 'js/abstract/base-component-global';
+import wcdomready from 'js/wcdomready';
+import CustomEvent from 'js/custom-event';
+
 import styles from './index.scss';
-import wcdomready from '../../js/wcdomready';
-import CustomEvent from '../../js/custom-event';
 
 const KEYCODE = {
   SPACE: 32,

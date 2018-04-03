@@ -1,6 +1,6 @@
-import on from '../../../js/on';
-import { add, remove } from '../../../js/class-list';
-import { subscribe } from '../../../js/pubsub';
+import on from 'js/on';
+import { add, remove } from 'js/class-list';
+import { subscribe } from 'js/pubsub';
 
 class HeaderMobileNavigation {
   static DEFAULTS = {

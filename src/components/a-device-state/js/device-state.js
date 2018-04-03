@@ -1,8 +1,8 @@
-import on from '../../../js/on';
-import { add } from '../../../js/class-list';
-import ownerWindow from '../../../js/owner-window';
-import throttle from '../../../js/throttle';
-import { publish, subscribe } from '../../../js/pubsub';
+import on from 'js/on';
+import { add } from 'js/class-list';
+import ownerWindow from 'js/owner-window';
+import throttle from 'js/throttle';
+import { publish, subscribe } from 'js/pubsub';
 
 const deviceStateClass = '.a-device-state';
 const regexWhiteSpace = /\s/g;

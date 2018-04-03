@@ -1,9 +1,9 @@
-import css from '../../../js/css';
-import on from '../../../js/on';
-import ownerWindow from '../../../js/owner-window';
-import { requestAnimationFrame, cancelAnimationFrame } from '../../../js/request-animation-frame';
-import { add, remove, has } from '../../../js/class-list';
-import UiEvents from '../../../js/ui-events';
+import css from 'js/css';
+import on from 'js/on';
+import ownerWindow from 'js/owner-window';
+import { requestAnimationFrame, cancelAnimationFrame } from 'js/request-animation-frame';
+import { add, remove, has } from 'js/class-list';
+import UiEvents from 'js/ui-events';
 
 class Stroke extends UiEvents {
   static DEFAULTS = {

@@ -1,9 +1,10 @@
 import classnames from 'classnames';
+import wcdomready from 'js/wcdomready';
+import BaseComponentGlobal from 'js/abstract/base-component-global';
+
 import styles from './index.scss';
 import template from './_template';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import DropDown from './js/drop-down';
-import wcdomready from '../../js/wcdomready';
 
 class AXADropdown extends BaseComponentGlobal {
   static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title']; }

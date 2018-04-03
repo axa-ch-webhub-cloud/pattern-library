@@ -1,16 +1,34 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": ["last 2 versions", "safari >= 8", "not ie <= 10"]
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 8",
+            "not ie <= 10"
+          ]
+        }
       }
-    }]
+    ]
   ],
   "plugins": [
-    ["nanohtml", {
-      "useImport": true
-    }],
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ]
+      }
+    ],
+    [
+      "nanohtml",
+      {
+        "useImport": true
+      }
+    ],
     "external-helpers",
     "transform-custom-element-classes",
     "transform-class-properties",

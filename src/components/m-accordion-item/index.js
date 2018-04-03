@@ -1,5 +1,5 @@
-import wcdomready from '../../js/wcdomready';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import wcdomready from 'js/wcdomready';
+import BaseComponentGlobal from 'js/abstract/base-component-global';
 import template from './_template';
 import styles from './index.scss';
 import AccordionItem from './js/accordion-item';

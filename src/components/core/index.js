@@ -1,4 +1,4 @@
-import wcdomready from '../../js/wcdomready';
+import wcdomready from 'js/wcdomready';
 
 class AXACore extends HTMLElement {
   connectedCallback() {

@@ -1,8 +1,8 @@
-import on from '../../../js/on';
-import getScrollTop from '../../../js/get-scroll-top';
-import remove from '../../../js/array-remove';
-import { publish, subscribe } from '../../../js/pubsub';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
+import on from 'js/on';
+import getScrollTop from 'js/get-scroll-top';
+import remove from 'js/array-remove';
+import { publish, subscribe } from 'js/pubsub';
+import { requestAnimationFrame } from 'js/request-animation-frame';
 
 let instance;
 let instanceCount = 0;

@@ -1,10 +1,12 @@
 import classnames from 'classnames';
+
+import BaseComponentGlobal from 'js/abstract/base-component-global';
+import wcdomready from 'js/wcdomready';
+
 import styles from './index.scss';
 import template from './_template';
 import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
   static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu']; }

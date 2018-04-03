@@ -1,8 +1,8 @@
 import classnames from 'classnames';
-import getAttribute from '../../js/get-attribute';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import getAttribute from 'js/get-attribute';
+import BaseComponentGlobal from 'js/abstract/base-component-global';
+import wcdomready from 'js/wcdomready';
 import styles from './index.scss';
-import wcdomready from '../../js/wcdomready';
 
 class AXAFooterLegals extends BaseComponentGlobal {
   static get observedAttributes() { return ['bottom']; }

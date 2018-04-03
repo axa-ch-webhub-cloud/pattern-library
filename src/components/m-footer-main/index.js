@@ -1,9 +1,10 @@
 import classnames from 'classnames';
-import getAttribute from '../../js/get-attribute';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import getAttribute from 'js/get-attribute';
+import BaseComponentGlobal from 'js/abstract/base-component-global';
+import wcdomready from 'js/wcdomready';
+
 import styles from './index.scss';
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAFooterMain extends BaseComponentGlobal {
   static get observedAttributes() { return ['light']; }

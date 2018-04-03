@@ -1,7 +1,7 @@
-import UiEvents from '../../../js/ui-events';
-import on from '../../../js/on';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
-import { add, remove } from '../../../js/class-list';
+import UiEvents from 'js/ui-events';
+import on from 'js/on';
+import { requestAnimationFrame } from 'js/request-animation-frame';
+import { add, remove } from 'js/class-list';
 
 class DropDown extends UiEvents {
   static DEFAULTS = {

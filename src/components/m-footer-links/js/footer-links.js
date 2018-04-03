@@ -1,4 +1,4 @@
-import { subscribe } from '../../../js/pubsub';
+import { subscribe } from 'js/pubsub';
 import DropDown from '../../m-dropdown/js/drop-down';
 
 const hasDropdownBreakpoints = 'xs';

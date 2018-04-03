@@ -1,7 +1,8 @@
+import Enum from 'js/enum';
+import { subscribe } from 'js/pubsub';
+import { add, remove } from 'js/class-list';
+
 import StickySpy from './sticky-spy';
-import Enum from '../../../js/enum';
-import { subscribe } from '../../../js/pubsub';
-import { add, remove } from '../../../js/class-list';
 
 const states = Enum('IS_IDLE', 'IS_ACTIVE');
 

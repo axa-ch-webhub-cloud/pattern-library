@@ -1,12 +1,12 @@
-import Enum from '../../../js/enum';
-import on from '../../../js/on';
-import ownerWindow from '../../../js/owner-window';
-import posY from '../../../js/pos-y';
-import scrollTo from '../../../js/scroll-to';
-import getScrollTop from '../../../js/get-scroll-top';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
-import { add, remove } from '../../../js/class-list';
-import { publish, subscribe } from '../../../js/pubsub';
+import Enum from 'js/enum';
+import on from 'js/on';
+import ownerWindow from 'js/owner-window';
+import posY from 'js/pos-y';
+import scrollTo from 'js/scroll-to';
+import getScrollTop from 'js/get-scroll-top';
+import { requestAnimationFrame } from 'js/request-animation-frame';
+import { add, remove } from 'js/class-list';
+import { publish, subscribe } from 'js/pubsub';
 
 const EVENTS = Enum('click', 'resize', 'keyup');
 

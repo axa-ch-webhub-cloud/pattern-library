@@ -1,14 +1,14 @@
-import UiEvents from '../../../js/ui-events';
-import on from '../../../js/on';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
+import UiEvents from 'js/ui-events';
+import on from 'js/on';
+import { requestAnimationFrame } from 'js/request-animation-frame';
 import {
   add,
   remove,
-} from '../../../js/class-list';
+} from 'js/class-list';
 import {
   publish,
   subscribe,
-} from '../../../js/pubsub';
+} from 'js/pubsub';
 
 class AccordionItem extends UiEvents {
   static DEFAULTS = {
