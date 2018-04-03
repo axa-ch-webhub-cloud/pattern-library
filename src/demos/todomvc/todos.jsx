@@ -126,9 +126,7 @@ class Todos extends Component {
           key={1}
         />
 
-        {(activeTodoCount || completedCount) ? (
-          <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} onNowShowing={this.nowShowing} key={2} />
-        ) : null}
+        <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} onNowShowing={this.nowShowing} key={2} />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 @import "../../styles/settings/colors";
+@import "../../components/m-footer-legals/settings/footer-legals";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/size";
 @import "../../styles/mixins/unstyle-list";
@@ -152,6 +153,34 @@
 
 .m-todo__destroy-icon {
   @include size(20px);
+}
+
+.m-todo-footer__help,
+.m-todo-footer__count {
+  position: relative;
+
+  display: inline-block;
+  padding: $footer-legals__link-padding-y $footer-legals__link-padding-x;
+  margin: -$footer-legals__link-padding-y 0;
+
+  color: $footer-legals__link-color;
+}
+
+.m-todo-footer__count {
+  // delimiter
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    display: block;
+    width: $footer-delimiter-width;
+    height: $footer-delimiter-height;
+    margin-top: ($footer-delimiter-height / -2);
+
+    content: '';
+    background: $footer-delimiter-bg;
+  }
 }
 
 .m-todo-footer__count--completed {

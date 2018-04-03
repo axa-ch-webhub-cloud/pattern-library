@@ -38,19 +38,28 @@ const TodoFooter = ({
     ...item,
     isActive: item.state === nowShowing,
   });
+  const hasLinks = count || completedCount;
   const hasCompleted = completedCount > 0;
 
   return (
     <AXAFooterReact>
-      <AXAFooterMainReact>
-        <AXAFooterLinksReact title={title} items={items.map(isActive)} onAxaClick={onNowShowing} />
-      </AXAFooterMainReact>
+      {hasLinks ?
+        <AXAFooterMainReact>
+          <AXAFooterLinksReact title={title} items={items.map(isActive)} onAxaClick={onNowShowing}/>
+        </AXAFooterMainReact>
+      : null}
 
       <AXAFooterSubReact>
         <AXAFooterLegalsReact>
-          <span className={classnames('m-todo-footer__count', { 'm-todo-footer__count--completed': hasCompleted })}>
-            <strong>{count}</strong> {activeTodoWord} left
+          <span className="m-todo-footer__help">
+            Double-click to edit a todo
           </span>
+
+          {hasLinks ?
+            <span className={classnames('m-todo-footer__count', { 'm-todo-footer__count--completed': hasCompleted })}>
+              <strong>{count}</strong> {activeTodoWord} left
+            </span>
+          : null }
 
           {hasCompleted &&
             <AXAButtonReact onAxaClick={onClearCompleted} color="white" size="sm" motion arrow ghost>Clear Completed</AXAButtonReact>
