@@ -248,7 +248,7 @@ To turn any custom element into a working React Component, you just need to foll
    - and may pass optional options for type of component or event init options
 6. use them like regular React components in your app
 
-   **Note:** events work similar to React's standard events, but each web components could trigger custom events. Make sure to check them out at the web-components documentation itself!
+   **Note:** events work similar to React's standard events, but each web components could trigger custom events like `axa-click` - camelcased and `on`-prefixed in React such as `onAxaClick={yourEventHandler}`. Make sure to check them out at the web-components documentation itself!
 
 ```js
 // import your dependencies - 1, 2, and 3
