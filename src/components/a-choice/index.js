@@ -6,7 +6,7 @@ import wcdomready from '../../js/wcdomready';
 import styles from './index.scss';
 import template from './_template';
 
-class AXARadio extends BaseComponentGlobal {
+class AXAChoice extends BaseComponentGlobal {
   static get observedAttributes() { return ['input-id', 'error', 'value', 'name', 'checked', 'disabled']; }
 
   constructor() {
@@ -18,18 +18,18 @@ class AXARadio extends BaseComponentGlobal {
 
     const { error, checked, disabled } = this;
 
-    const radioClasses = classnames(this.initialClassName, 'a-radio', {
-      'a-radio--error': error,
-      'a-radio--checked': checked,
-      'a-radio--disabled': disabled,
+    const choiceClasses = classnames(this.initialClassName, 'a-choice', {
+      'a-choice--error': error,
+      'a-choice--checked': checked,
+      'a-choice--disabled': disabled,
     });
 
-    this.className = radioClasses;
+    this.className = choiceClasses;
   }
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-radio', AXARadio);
+  window.customElements.define('axa-choice', AXAChoice);
 });
 
-export default AXARadio;
+export default AXAChoice;
