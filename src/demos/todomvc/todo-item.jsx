@@ -129,7 +129,7 @@ class TodoItem extends Component {
             {title}
           </label>
 
-          <AXAButtonReact onAxaClick={this.handleDestroy} color="red" size="md" motion ghost={completed}>
+          <AXAButtonReact onAxaClick={this.handleDestroy} color="red" size="md" motion ghost={!completed}>
             <AXAIconReact icon="cross-gap" classes="m-todo__destroy-icon" />
           </AXAButtonReact>
 
