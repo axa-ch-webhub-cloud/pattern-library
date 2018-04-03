@@ -215,7 +215,7 @@ export default class BaseComponent extends HTMLElement {
     const { constructor: { observedAttributes } } = this;
     const propsKeys = Object.keys(props);
     const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
-    const { shouldUpdate } = propsKeys.filter(filter).reduce(this.updateProp, { props, shouldUpdate: false });
+    const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
 
     if (shouldUpdate && this._isConnected && this._hasRendered) {
       if (ENV !== PROD) {
@@ -234,7 +234,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {String} key - the current property's key.
    * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
    */
-  updateProp({ props, shouldUpdate }, key) {
+  _reduceProps({ props, shouldUpdate }, key) {
     const hasKey = this._hasKeys[key];
 
     if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
