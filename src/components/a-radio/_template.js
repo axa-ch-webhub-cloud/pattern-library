@@ -16,6 +16,6 @@ export default function ({
       checked="${checked}" 
       value="${value}" 
       disabled="${disabled}">
-    <i class="a-radio__icon"></i>${childrenFragment}
+    <span class="a-radio__icon"></span>${childrenFragment}
   </label>`;
 }
