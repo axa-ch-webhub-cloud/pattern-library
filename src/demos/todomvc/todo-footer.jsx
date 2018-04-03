@@ -34,16 +34,16 @@ const TodoFooter = ({
   onNowShowing,
 }) => {
   const activeTodoWord = pluralize(count, 'item');
-  const selected = item => ({
+  const isActive = item => ({
     ...item,
-    selected: item.state === nowShowing,
+    isActive: item.state === nowShowing,
   });
   const hasCompleted = completedCount > 0;
 
   return (
     <AXAFooterReact>
       <AXAFooterMainReact>
-        <AXAFooterLinksReact title={title} items={items.map(selected)} onAxaClick={onNowShowing} />
+        <AXAFooterLinksReact title={title} items={items.map(isActive)} onAxaClick={onNowShowing} />
       </AXAFooterMainReact>
 
       <AXAFooterSubReact>

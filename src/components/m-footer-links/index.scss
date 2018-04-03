@@ -129,6 +129,7 @@
 
   color: $footer-links__link-color;
 
+  .is-footer-links__list-item-active > &,
   &:hover,
   &:active,
   &:focus {
