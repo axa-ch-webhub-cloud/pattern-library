@@ -4,9 +4,8 @@ import withReact from '../../js/with-react';
 import AXAButton from '../../components/m-button';
 import AXAIcon from '../../components/a-icon';
 
-const withReactBound = withReact(React);
-const AXAButtonReact = withReactBound(AXAButton);
-const AXAIconReact = withReactBound(AXAIcon);
+const AXAButtonReact = withReact(AXAButton);
+const AXAIconReact = withReact(AXAIcon);
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;

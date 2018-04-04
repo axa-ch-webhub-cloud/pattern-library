@@ -1,3 +1,4 @@
+import React from 'react';
 import dasherize from './dasherize';
 import partition from './array-partition';
 import on from './on';
@@ -14,20 +15,22 @@ const isEventFilter = (key) => {
 };
 
 /**
- * Provides a partially applied function which let's you wrap any WebComponent with React.
+ * Provides a function which let's you wrap any WebComponent with React.
  * - it supports first-class props for web components
  * - it handles custom events
  *
  * @link https://github.com/webcomponents/react-integration - inspired by react-integration
- * @param React
- * @returns {function(*)}
+ * @param WebComponent
+ * @param pure
+ * @param passive
+ * @returns {{displayName: *, new(*=): WebComponentWrapper, prototype: WebComponentWrapper}}
  *
  * @example <caption>How to use</caption>
  * import React from 'react';
  * import withReact from '@axa-ch/patterns-library/src/js/with-react';
  * import AXAButton from '@axa-ch/patterns-library/dist/components/m-button'
  *
- * const AXAButtonReact = withReact(React)(AXAButton, {
+ * const AXAButtonReact = withReact(AXAButton, {
  *   pure: true,
  * });
  *
@@ -35,7 +38,7 @@ const isEventFilter = (key) => {
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = React => (WebComponent, { pure = true, passive = false } = {}) => {
+const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const { name } = WebComponent;
   const displayName = `${name}React`;
   const WCTagName = dasherize(WebComponent.name);

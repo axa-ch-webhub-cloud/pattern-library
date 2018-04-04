@@ -9,14 +9,12 @@ import AXAFooterLinks from '../../components/m-footer-links';
 import AXAFooterSub from '../../components/m-footer-sub';
 import AXAFooterLegals from '../../components/m-footer-legals';
 
-const withReactBound = withReact(React);
-
-const AXAButtonReact = withReactBound(AXAButton);
-const AXAFooterReact = withReactBound(AXAFooter);
-const AXAFooterMainReact = withReactBound(AXAFooterMain);
-const AXAFooterLinksReact = withReactBound(AXAFooterLinks);
-const AXAFooterSubReact = withReactBound(AXAFooterSub);
-const AXAFooterLegalsReact = withReactBound(AXAFooterLegals);
+const AXAButtonReact = withReact(AXAButton);
+const AXAFooterReact = withReact(AXAFooter);
+const AXAFooterMainReact = withReact(AXAFooterMain);
+const AXAFooterLinksReact = withReact(AXAFooterLinks);
+const AXAFooterSubReact = withReact(AXAFooterSub);
+const AXAFooterLegalsReact = withReact(AXAFooterLegals);
 
 const footerItems = [
   { name: 'All', url: '#', state: ALL_TODOS },

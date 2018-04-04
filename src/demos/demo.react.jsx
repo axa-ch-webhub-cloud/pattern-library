@@ -5,7 +5,7 @@ import AXAButton from '../components/m-button';
 
 import './todomvc/app';
 
-const AXAButtonReact = withReact(React)(AXAButton);
+const AXAButtonReact = withReact(AXAButton);
 
 // components are loaded already in the body cause this demo is a the end of the body
 
