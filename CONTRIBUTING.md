@@ -255,7 +255,7 @@ import React from 'react';
 import withReact from '@axa-ch/patterns-library/src/js/with-react';
 import AXAButton from '@axa-ch/patterns-library/dist/components/m-button';
 
-// 4. wrap your need web components
+// 4. wrap your needed web components
 // and optionally pass options
 const AXAButtonReact = withReact(AXAButton, {
   pure: true,
