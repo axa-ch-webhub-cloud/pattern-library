@@ -17,16 +17,19 @@ class AXAFormGroup extends BaseComponentGlobal {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  willRenderCallback() {
     const { info } = this;
 
-    const formGroupClasses = classnames(this.initialClassName, 'm-form-group', {
+    this.className = classnames(this.initialClassName, 'm-form-group', {
       'm-form-group--info': info,
     });
+  }
 
-    this.className = formGroupClasses;
+  didRenderCallback() {
+    if (this.interaction) {
+      this.interaction.destroy();
+    }
+
     this.interaction = new FormGroup(this);
   }
 

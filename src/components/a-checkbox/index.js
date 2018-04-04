@@ -15,18 +15,14 @@ class AXACheckbox extends BaseComponentGlobal {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  willRenderCallback() {
     const { error, checked, disabled } = this;
 
-    const checkboxClasses = classnames(this.initialClassName, 'a-checkbox', {
+    this.className = classnames(this.initialClassName, 'a-checkbox', {
       'a-checkbox--error': error,
       'a-checkbox--checked': checked,
       'a-checkbox--disabled': disabled,
     });
-
-    this.className = checkboxClasses;
   }
 }
 

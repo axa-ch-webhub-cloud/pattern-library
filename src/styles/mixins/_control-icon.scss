@@ -1,14 +1,9 @@
 @import "../settings/colors";
 @import "../settings/controls";
-
-@mixin control-icon-size($width, $height: $width) {
-  width: $width;
-  height: $height;
-}
-
+@import "./size";
 
 @mixin control-icon($width, $height: $width) {
-  @include control-icon-size($width, $height);
+  @include size($width, $height);
 
   display: inline-flex;
   margin-right: 20px;
@@ -22,7 +17,7 @@
   cursor: pointer;
 
   &::after {
-    @include control-icon-size($control-icon-inner-size, $control-icon-inner-size);
+    @include size($control-icon-inner-size, $control-icon-inner-size);
 
     border: $control-border-width solid transparent;
     content: "";

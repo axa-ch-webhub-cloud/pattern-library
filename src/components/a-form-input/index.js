@@ -15,19 +15,15 @@ class AXAFormInput extends BaseComponentGlobal {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  willRenderCallback() {
     const { valid, inline, error, disabled } = this;
 
-    const inputClasses = classnames('a-form-input', this.initialClassName, {
+    this.className = classnames('a-form-input', this.initialClassName, {
       'a-form-input--valid': valid,
       'a-form-input--inline': inline,
       'a-form-input--error': error,
       'a-form-input--disabled': disabled,
     });
-
-    this.className = inputClasses;
   }
 }
 

@@ -13,18 +13,14 @@ class AXARadio extends BaseComponentGlobal {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  willRenderCallback() {
     const { error, checked, disabled } = this;
 
-    const radioClasses = classnames(this.initialClassName, 'a-radio', {
+    this.className = classnames(this.initialClassName, 'a-radio', {
       'a-radio--error': error,
       'a-radio--checked': checked,
       'a-radio--disabled': disabled,
     });
-
-    this.className = radioClasses;
   }
 }
 
