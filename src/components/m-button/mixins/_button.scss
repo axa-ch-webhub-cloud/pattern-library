@@ -67,21 +67,21 @@
 
   color: $color-button-text;
 
-  background: $color-button-bg;
+  background-color: $color-button-bg;
   border-color: $color-button-bg;
   border-bottom-color: $color-button-bg--hover;
 
   &:hover,
   &:active,
   &:focus {
-    background: $color-button-bg--hover;
+    background-color: $color-button-bg--hover;
     border-color: $color-button-bg--hover;
     color: $color-button-text;
   }
 
   &:disabled,
   &[disabled] {
-    background: $color-button-bg--disabled !important;
+    background-color: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
   }
 }
@@ -96,14 +96,14 @@
 
   color: $color-button-text--ghost;
 
-  background: $color-button-bg--ghost;
+  background-color: $color-button-bg--ghost;
   border-color: $color-button-bg;
 
   &:hover,
   &:active,
   &:focus {
     color: $color-button-text--ghost--hover;
-    background: $color-button-bg--ghost--hover;
+    background-color: $color-button-bg--ghost--hover;
 
     @if $color-button-bg--ghost--hover != transparent {
       border-color: $color-button-bg--ghost--hover;
@@ -203,6 +203,12 @@
 
     width: 0;
     height: 550px;
+
+    // fix iOS double tap for :hover
+    // 1. always make element visible by transparent border
+    // 2. never fill borders with the background color (important: never use short hand background, cause it will override the clipping)
+    border: 1px solid transparent;
+    background-clip: padding-box;
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
@@ -224,19 +230,19 @@
   $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
 
   &::after {
-    background: $color-button-bg--motion;
+    background-color: $color-button-bg--motion;
   }
 
   &:hover,
   &:focus {
-    background: $color-button-bg;
+    background-color: $color-button-bg;
 
     @if $color-button-text--motion--hover {
       color: $color-button-text--motion--hover;
     }
 
     &::after {
-      background: $color-button-bg--motion--hover;
+      background-color: $color-button-bg--motion--hover;
     }
   }
 }
