@@ -67,21 +67,21 @@
 
   color: $color-button-text;
 
-  background-color: $color-button-bg;
+  background: $color-button-bg;
   border-color: $color-button-bg;
   border-bottom-color: $color-button-bg--hover;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $color-button-bg--hover;
+    background: $color-button-bg--hover;
     border-color: $color-button-bg--hover;
     color: $color-button-text;
   }
 
   &:disabled,
   &[disabled] {
-    background-color: $color-button-bg--disabled !important;
+    background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
   }
 }
@@ -96,14 +96,14 @@
 
   color: $color-button-text--ghost;
 
-  background-color: $color-button-bg--ghost;
+  background: $color-button-bg--ghost;
   border-color: $color-button-bg;
 
   &:hover,
   &:active,
   &:focus {
     color: $color-button-text--ghost--hover;
-    background-color: $color-button-bg--ghost--hover;
+    background: $color-button-bg--ghost--hover;
 
     @if $color-button-bg--ghost--hover != transparent {
       border-color: $color-button-bg--ghost--hover;
@@ -226,19 +226,19 @@
   $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
 
   &::after {
-    background-color: $color-button-bg--motion;
+    background: $color-button-bg--motion;
   }
 
   &:hover,
   &:focus {
-    background-color: $color-button-bg;
+    background: $color-button-bg;
 
     @if $color-button-text--motion--hover {
       color: $color-button-text--motion--hover;
     }
 
     &::after {
-      background-color: $color-button-bg--motion--hover;
+      background: $color-button-bg--motion--hover;
     }
   }
 }
