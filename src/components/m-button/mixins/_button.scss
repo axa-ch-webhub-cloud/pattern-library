@@ -201,14 +201,10 @@
 
     display: block;
 
-    width: 0;
-    height: 550px;
-
     // fix iOS double tap for :hover
-    // 1. always make element visible by transparent border
-    // 2. never fill borders with the background color (important: never use short hand background, cause it will override the clipping)
-    border: 1px solid transparent;
-    background-clip: padding-box;
+    // zero width is considered hidden
+    width: 0.001px;
+    height: 550px;
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
