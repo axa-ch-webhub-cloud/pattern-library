@@ -3,6 +3,12 @@
   "rules": {
     "max-len": ["warn", 140, 2],
     "import/prefer-default-export": "off",
+    "indent": ["error", 2, {
+      "ignoredNodes": [
+        "TaggedTemplateExpression[tag.name=\"html\"]",
+        "TaggedTemplateExpression[tag.name=\"html\"] > TemplateLiteral ObjectExpression"
+      ]
+    }],
     "no-confusing-arrow": "off",
     "no-bitwise": "off",
     "no-param-reassign": ["error", { "props": false }],
