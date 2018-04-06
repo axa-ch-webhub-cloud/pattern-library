@@ -201,7 +201,9 @@
 
     display: block;
 
-    width: 0;
+    // fix iOS double tap for :hover
+    // zero width is considered hidden
+    width: 0.001px;
     height: 550px;
     content: '';
 
