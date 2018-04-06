@@ -1,5 +1,6 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
+import classnames from 'classnames';
 
 export default ({ items }) => [html`
   <button type="button" class="m-header-languages__drop-down-toggle js-dropdown__toggle">
@@ -8,9 +9,11 @@ export default ({ items }) => [html`
   </button>
 `, html`
   <ul class="m-header-languages__list">
-    ${Array.isArray(items) && items.map(({ url, name }, index) => html`
+    ${Array.isArray(items) && items.map(({ url = '', name, isActive }) => html`
       <li class="m-header-languages__list-item">
-        <a class="m-header-languages__list-link${index === 0 ? ' is-header-languages-active' : ''}" href="${url}">
+        <a class="${classnames('m-header-languages__list-link', {
+          'is-header-languages-active': isActive,
+        })}" href="${url}">
           ${raw(name)}
         </a>
       </li>
