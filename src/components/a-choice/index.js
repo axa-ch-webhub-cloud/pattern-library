@@ -1,12 +1,12 @@
 import classnames from 'classnames';
 
-import wcdomready from '../../js/wcdomready';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import wcdomready from '../../js/wcdomready';
 
 import styles from './index.scss';
 import template from './_template';
 
-class AXACheckbox extends BaseComponentGlobal {
+class AXAChoice extends BaseComponentGlobal {
   static get observedAttributes() {
     return ['input-id', 'error', 'value', 'name', 'checked', 'disabled'];
   }
@@ -18,16 +18,16 @@ class AXACheckbox extends BaseComponentGlobal {
   willRenderCallback() {
     const { error, checked, disabled } = this;
 
-    this.className = classnames(this.initialClassName, 'a-checkbox', {
-      'a-checkbox--error': error,
-      'a-checkbox--checked': checked,
-      'a-checkbox--disabled': disabled,
+    this.className = classnames(this.initialClassName, 'a-choice', {
+      'a-choice--error': error,
+      'a-choice--checked': checked,
+      'a-choice--disabled': disabled,
     });
   }
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-checkbox', AXACheckbox);
+  window.customElements.define('axa-choice', AXAChoice);
 });
 
-export default AXACheckbox;
+export default AXAChoice;

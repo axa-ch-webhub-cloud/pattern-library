@@ -1,28 +1,13 @@
-@import "../../styles/settings/colors";
+@import "../../styles/control/control-base";
 
 .a-checkbox {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: $color-prim-white;
-  border: 1px solid $color-prim-gray-dusty;
+  @include control-base();
 }
 
-.a-checkbox[hidden] {
-  display: none;
+.a-checkbox--error {
+  @include control-error();
 }
 
-.a-checkbox[checked] {
-  background: $color-prim-blue-azure;
-  border-color: $color-prim-blue-azure;
-}
-
-.a-checkbox[disabled] {
-  background: $color-prim-gray-dusty;
-  border-color: $color-prim-gray-dusty;
-}
-
-.a-checkbox[checked][disabled] {
-  background: $color-prim-gray-dusty;
-  border-color: $color-prim-gray-dusty;
+.a-checkbox--disabled {
+  @include control-disabled();
 }
