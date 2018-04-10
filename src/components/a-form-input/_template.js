@@ -1,7 +1,8 @@
 import html from 'nanohtml';
+import BaseComponent from '../../js/abstract/base-component';
 
 export default function ({
-  inputId,
+  inputId = BaseComponent.uuidv4(),
   type = 'text',
   placeholder = '',
   value = '',
@@ -11,8 +12,7 @@ export default function ({
   return html`<div class="a-form-input__wrapper">
       <input
           id="${inputId}"
-          class="a-form-input__input" 
-          type="radio"
+          class="a-form-input__input"
           name="${name}" 
           type="${type}" 
           placeholder="${placeholder}" 

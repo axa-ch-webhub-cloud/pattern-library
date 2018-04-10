@@ -4,6 +4,7 @@ import raw from 'nanohtml/raw';
 export default function ({
   label = '',
   info = '',
+  error = ''
 }, childrenFragment) {
   const openIcon = raw('<axa-icon id="info-open" classes="m-form-group__icon m-form-group__icon--open"></axa-icon>');
   const closeIcon = raw('<axa-icon id="info-close" classes="m-form-group__icon m-form-group__icon--close"></axa-icon>');
@@ -22,6 +23,7 @@ export default function ({
         </span>
         
         ${childrenFragment}
+        <span class="m-form-group__error">${error}</span>
       </label>`,
     html`
       <div class="m-form-group__info js-form-group__info">

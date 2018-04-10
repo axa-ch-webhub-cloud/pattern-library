@@ -1,9 +1,9 @@
 @import "../settings/colors";
 @import "../settings/base";
-@import "../settings/controls";
 @import "../functions/string-replace";
+@import "../mixins/visual-hidden";
+@import "./control-settings";
 @import "./control-icon";
-@import "./visual-hidden";
 @import "./control-transition";
 
 @mixin control-base($border-radius: 0) {
@@ -26,7 +26,7 @@
 
     display: inline-flex;
 
-    min-height: 20px;
+    min-height: $control-min-height;
 
     align-items: center;
 

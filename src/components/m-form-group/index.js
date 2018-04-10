@@ -10,7 +10,7 @@ import template from './_template';
 
 class AXAFormGroup extends BaseComponentGlobal {
   static get observedAttributes() {
-    return ['label', 'info'];
+    return ['label', 'info', 'error'];
   }
 
   constructor() {
@@ -18,10 +18,11 @@ class AXAFormGroup extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { info } = this;
+    const { info, error } = this;
 
     this.className = classnames(this.initialClassName, 'm-form-group', {
       'm-form-group--info': info,
+      'm-form-group--error': error,
     });
   }
 

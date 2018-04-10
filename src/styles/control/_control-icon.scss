@@ -1,6 +1,6 @@
 @import "../settings/colors";
-@import "../settings/controls";
-@import "./size";
+@import "./control-settings";
+@import "../mixins/size";
 
 @mixin control-icon($width, $height: $width) {
   @include size($width, $height);

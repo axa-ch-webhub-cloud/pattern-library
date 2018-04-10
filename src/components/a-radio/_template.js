@@ -1,7 +1,8 @@
 import html from 'nanohtml';
+import BaseComponent from '../../js/abstract/base-component';
 
 export default function ({
-  inputId,
+  inputId = BaseComponent.uuidv4(),
   value,
   name,
   checked = false,

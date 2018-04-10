@@ -31,9 +31,25 @@
   }
 }
 
+.m-form-group--error {
+  .m-form-group__error {
+    display: block;
+  }
+}
+
 .m-form-group__label-icon-wrapper {
   display: flex;
   width: $form-group-label-icon-wrapper-width;
+}
+
+.m-form-group__error {
+  @include typo-tag();
+
+  margin-top: 4px;
+
+  display: none;
+
+  color: $color-state-red-shy-tomato;
 }
 
 .m-form-group__label {
