@@ -4,7 +4,7 @@ import raw from 'nanohtml/raw';
 export default function ({
   label = '',
   info = '',
-  error = ''
+  error = '',
 }, childrenFragment) {
   const openIcon = raw('<axa-icon icon="info-open" classes="m-form-group__icon m-form-group__icon--open"></axa-icon>');
   const closeIcon = raw('<axa-icon icon="info-close" classes="m-form-group__icon m-form-group__icon--close"></axa-icon>');
