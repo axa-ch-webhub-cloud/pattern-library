@@ -29,10 +29,6 @@ class FormGroup extends UiEvents {
     this.options = options;
     this.wcNode = wcNode;
 
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-    this.toggleState = this.toggleState.bind(this);
-
     this.init();
   }
 
@@ -68,7 +64,7 @@ class FormGroup extends UiEvents {
   }
 
 
-  toggleState() {
+  toggleState = () => {
     if (this.isOpen) {
       this.close();
     } else {
@@ -120,7 +116,7 @@ class FormGroup extends UiEvents {
     });
   }
 
-  handleTransitionEnd(e) {
+  handleTransitionEnd = (e) => {
     if (e.propertyName === 'height') {
       e.target.style.height = '';
 
@@ -128,7 +124,7 @@ class FormGroup extends UiEvents {
     }
   }
 
-  handleToggleClick() {
+  handleToggleClick = () => {
     this.toggleState();
   }
 

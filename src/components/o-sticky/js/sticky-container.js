@@ -15,9 +15,6 @@ class StickyContainer {
     this.roodNode = wcNode;
     this.state = states.IS_IDLE;
 
-    this._active = this._active.bind(this);
-    this._idle = this._idle.bind(this);
-
     this.spy = StickySpy();
     this.spy.addContainer(wcNode);
 
@@ -41,7 +38,7 @@ class StickyContainer {
     }
   }
 
-  _active() {
+  _active = () => {
     if (this.state === states.IS_ACTIVE) {
       return;
     }
@@ -51,7 +48,7 @@ class StickyContainer {
     remove(this.roodNode, StickyContainer.DEFAULTS.isIdleClass);
   }
 
-  _idle() {
+  _idle = () => {
     if (this.state === states.IS_IDLE) {
       return;
     }

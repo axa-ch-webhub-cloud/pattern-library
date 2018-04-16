@@ -32,10 +32,6 @@ class AccordionItem extends UiEvents {
     this.options = options;
     this.wcNode = wcNode;
 
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-    this.toggleState = this.toggleState.bind(this);
-
     this.init();
   }
 
@@ -76,8 +72,7 @@ class AccordionItem extends UiEvents {
     }
   }
 
-
-  toggleState({ detail: node }) {
+  toggleState = ({ detail: node }) => {
     if (this.wcNode === node) {
       if (this.isOpen) {
         this.close();
@@ -133,7 +128,7 @@ class AccordionItem extends UiEvents {
     });
   }
 
-  handleTransitionEnd(e) {
+  handleTransitionEnd = (e) => {
     if (e.propertyName === 'height') {
       e.target.style.height = '';
 
@@ -155,7 +150,7 @@ class AccordionItem extends UiEvents {
     }
   }
 
-  handleToggleClick() {
+  handleToggleClick = () => {
     publish('accordion-item/toggle', this.wcNode, this._contextNode);
   }
 
