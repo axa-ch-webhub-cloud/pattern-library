@@ -10,6 +10,7 @@ export default function ({
   ghost,
   classes,
   motion,
+  gpu,
   arrow,
 }, childrenFragment) {
   const buttonClasses = classnames('m-button', classes, {
@@ -17,6 +18,7 @@ export default function ({
     [`m-button--${size}`]: size,
     'm-button--ghost': ghost,
     'm-button--motion': motion,
+    'm-button--gpu': gpu,
     'm-button--arrow': arrow,
   });
 
