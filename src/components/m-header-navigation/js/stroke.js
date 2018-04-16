@@ -38,9 +38,6 @@ class Stroke extends UiEvents {
     };
 
     this._isStatic = false;
-
-    this._handleResize = this._handleResize.bind(this);
-    this._handleTransitionEnd = this._handleTransitionEnd.bind(this);
   }
 
   init() {
@@ -199,7 +196,7 @@ class Stroke extends UiEvents {
     });
   }
 
-  _handleResize() {
+  _handleResize = () => {
     if (this.resizeTimeout) {
       cancelAnimationFrame(this.resizeTimeout);
       this.resizeTimeout = null;
@@ -217,7 +214,7 @@ class Stroke extends UiEvents {
     });
   }
 
-  _handleTransitionEnd(e) {
+  _handleTransitionEnd = (e) => {
     if (e.propertyName === 'left') {
       this._offMoving();
       this._handleStaticState(true);

@@ -21,8 +21,6 @@ class DropDown extends UiEvents {
 
     this.options = options;
     this.wcNode = wcNode;
-
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
   }
 
   onInteractive() {
@@ -69,7 +67,7 @@ class DropDown extends UiEvents {
     });
   }
 
-  handleTransitionEnd(e) {
+  handleTransitionEnd = (e) => {
     if (e.propertyName === 'height') {
       e.target.style.height = '';
 

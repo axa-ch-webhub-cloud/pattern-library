@@ -57,11 +57,9 @@ export default class BaseComponent extends HTMLElement {
   constructor(styles = '', template) {
     super();
 
-    this._makeContextReady = this._makeContextReady.bind(this);
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
     this._props = {};
-    this.render = this.render.bind(this);
     this.reRender = debounce(this.render, 50);
 
     const { constructor: { observedAttributes } } = this;
@@ -221,7 +219,7 @@ export default class BaseComponent extends HTMLElement {
    *
    * @return {type}  description
    */
-  render() { // eslint-disable-line
+  render = () => { // eslint-disable-line
     const { _hasRendered: initial } = this;
 
     if (ENV !== PROD) {
@@ -427,7 +425,7 @@ export default class BaseComponent extends HTMLElement {
     this.__selectedContext = name && name.toLowerCase();
   }
 
-  _makeContextReady({ detail: contextName } = {}) {
+  _makeContextReady = ({ detail: contextName } = {}) => {
     if (this.contextNode) {
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {

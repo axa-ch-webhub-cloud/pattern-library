@@ -9,12 +9,9 @@ class MyEventDemoReact extends React.Component {
     this.state = {
       isToggleOn: true,
     };
-
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     console.log('click');
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn,
