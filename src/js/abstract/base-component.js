@@ -60,7 +60,7 @@ export default class BaseComponent extends HTMLElement {
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
     this._props = {};
-    this.reRender = debounce(this.render, 50);
+    this.reRender = debounce(() => this.render(), 50);
 
     const { constructor: { observedAttributes } } = this;
 
@@ -219,7 +219,7 @@ export default class BaseComponent extends HTMLElement {
    *
    * @return {type}  description
    */
-  render = () => { // eslint-disable-line
+  render() { // eslint-disable-line
     const { _hasRendered: initial } = this;
 
     if (ENV !== PROD) {
