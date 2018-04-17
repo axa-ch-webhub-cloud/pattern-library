@@ -234,7 +234,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {String} key - the current property's key.
    * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
    */
-  _reduceProps({ props, shouldUpdate }, key) {
+  _reduceProps = ({ props, shouldUpdate }, key) => {
     const hasKey = this._hasKeys[key];
 
     if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
