@@ -1,5 +1,6 @@
 const outdent = require('outdent');
 const { exec } = require('child_process');
+
 const developTrunk = 'develop';
 const masterTrunk = 'master';
 
