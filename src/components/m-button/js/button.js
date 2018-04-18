@@ -1,6 +1,9 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
 
+/**
+ * @fires Button#axa-click
+ */
 class Button {
   static DEFAULTS = {
     button: '.js-button',
@@ -40,6 +43,12 @@ class Button {
   }
 
   handleClick(event) {
+    /**
+     * axa-click event.
+     *
+     * @event Button#axa-click
+     * @type {null}
+     */
     const cancelled = fire(this.wcNode, 'axa-click', null, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {

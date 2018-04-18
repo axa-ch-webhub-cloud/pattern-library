@@ -7,6 +7,9 @@ import DropDown from '../../m-dropdown/js/drop-down';
 const hasDropdownBreakpoints = 'xs';
 
 // @TODO: dependency to a-device-state not explicit
+/**
+ * @fires FooterLinks#axa-click
+ */
 export default class FooterLinks {
   static DEFAULTS = {
     link: 'js-footer-links__link',
@@ -56,6 +59,12 @@ export default class FooterLinks {
     // @todo: would be cool to be able to use props here, cause now it needs JSON.parse...
     const index = getAttribute(delegateTarget, 'index');
     const { wcNode: { items } } = this;
+    /**
+     * axa-click event.
+     *
+     * @event FooterLinks#axa-click
+     * @type {object}
+     */
     const cancelled = fire(this.wcNode, 'axa-click', items[index], { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
