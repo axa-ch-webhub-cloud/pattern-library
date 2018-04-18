@@ -4,6 +4,7 @@
     "max-len": ["warn", 140, 2],
     "import/prefer-default-export": "off",
     "indent": ["error", 2, {
+      "SwitchCase": 1,
       "ignoredNodes": [
         "TaggedTemplateExpression[tag.name=\"html\"]",
         "TaggedTemplateExpression[tag.name=\"html\"] > TemplateLiteral ObjectExpression"
