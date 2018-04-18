@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const rollup = require('rollup');
 const multiEntry = require('rollup-plugin-multi-entry');
 const resolve = require('rollup-plugin-node-resolve');

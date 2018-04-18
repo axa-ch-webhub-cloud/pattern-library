@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const outdent = require('outdent');
 const { exec } = require('child_process');
 const developTrunk = 'develop';

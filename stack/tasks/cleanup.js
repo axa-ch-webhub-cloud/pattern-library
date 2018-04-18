@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const del = require('del'); // eslint-disable-line import/no-extraneous-dependencies
 const constants = require('../constants');
 

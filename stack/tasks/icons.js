@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const SVGSpriter = require('svg-sprite');
 const fs = require('fs');
 const File = require('vinyl');

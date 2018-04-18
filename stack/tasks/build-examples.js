@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const dir = require('node-dir');
 const fs = require('fs');
 const { adaptSlashes } = require('../utils/adaptslashes.js');

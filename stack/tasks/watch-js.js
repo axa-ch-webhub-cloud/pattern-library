@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const nodemon = require('nodemon');
 const polyfill = require('./bundles/polyfill');
 const app = require('./bundles/app');

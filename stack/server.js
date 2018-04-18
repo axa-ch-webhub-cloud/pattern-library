@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const http = require('http');
 const constants = require('./constants');
 const express = require('express');
