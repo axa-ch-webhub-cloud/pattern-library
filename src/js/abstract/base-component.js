@@ -237,7 +237,7 @@ export default class BaseComponent extends HTMLElement {
       const { _template: template } = this;
 
       try {
-        // At notInitial rendering -> collect the light DOM first
+        // At initial rendering -> collect the light DOM first
         if (!notInitial) {
           const childrenFragment = document.createDocumentFragment();
           const lightDOMRefs = [];
