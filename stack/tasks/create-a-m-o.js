@@ -209,7 +209,7 @@ const createBoilerplate = (_name) => {
   } else {
     console.log(chalk.cyan(outdent`
 
-      I'm creating a ${mapElement[element]} called ${_name} for you...
+      I'm creating ${element === 'a' ? 'an' : 'a'} ${mapElement[element]} called ${_name} for you...
 
       `));
 
