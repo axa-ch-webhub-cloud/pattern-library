@@ -1,16 +1,13 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
 const outdent = require('outdent');
+const chalk = require('chalk');
 
 const CWD = process.cwd();
 
 process.stdin.setEncoding('utf8');
 
-// TODO, evaluate https://github.com/chalk/chalk
-
-// ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-  outdent`
+console.log(chalk.cyan(outdent`
 
     Hello Dear developer, thank you for contributing with us. 😊
 
@@ -26,8 +23,7 @@ console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
     A MOLECULE📘 is a not completely finished component and can be reused somewhere else. It must contain at least one ATOM📗.
 
     Now, please tell me what do you wan to create
-  `,
-);
+  `));
 
 let element = '';
 
@@ -42,18 +38,15 @@ const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.
 const camelCase = string => string.split(/[-_]+/).map(capitalizeFirstLetter).join('');
 
 const displayNameText = () => {
-  console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
-    outdent`
+  console.log(chalk.white(outdent`
 
     Please enter the name of the new ${mapElement[element]} ( something that make sense 😉 ).
 
-    `,
-  );
+    `));
 };
 
 const displayElementSelector = () => {
-  console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
-    outdent`
+  console.log(chalk.white(outdent`
 
       Press:
 
@@ -61,8 +54,7 @@ const displayElementSelector = () => {
       2 for MOLECULE 📘
       3 for ORGANISM 📙
 
-    `,
-  );
+    `));
 };
 
 const writeIndexJs = (path, _name) => {
@@ -211,30 +203,28 @@ const createBoilerplate = (_name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
 
   if (fs.existsSync(`${path}/index.js`)) {
-    console.log('\x1b[41m', '\x1b[36m', '\nComponent already exists. Please start over again 😥 \n'); //eslint-disable-line
+    console.log(chalk.cyan('\nComponent already exists. Please start over again 😥 \n')); //eslint-disable-line
     element = '';
     displayElementSelector();
   } else {
-    console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-      outdent`
+    console.log(chalk.cyan(outdent`
 
-      I'm creating a ${mapElement[element]} called ${_name} for you...
+      I'm creating ${element === 'a' ? 'an' : 'a'} ${mapElement[element]} called ${_name} for you...
 
-      `,
-    );
+      `));
+
     mkdirp(`${path}`, () => {
       writeIndexJs(path, _name);
       writeIndexScss(path, _name);
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
-      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-        outdent`
+      console.log(chalk.cyan(outdent`
 
           Created under ${path}
           happy Coding 😊
 
-        `,
-      );
+        `));
+
       process.exit(0);
     });
   }
