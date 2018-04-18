@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = ({ env }) => ({
   plugins: [
     require('autoprefixer')({ // eslint-disable-line
 
@@ -6,8 +6,8 @@ module.exports = {
     require('./stack/tasks/postcss-font-base64.js')({ // eslint-disable-line
 
     }),
-    require('cssnano')({ // eslint-disable-line
+    env === 'production' && require('cssnano')({ // eslint-disable-line
       preset: 'default',
     }),
   ],
-};
+});
