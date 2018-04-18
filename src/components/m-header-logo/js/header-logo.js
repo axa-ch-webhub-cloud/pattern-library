@@ -1,6 +1,9 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
 
+/**
+ * @fires HeaderLogo#axa-click
+ */
 class HeaderLogo {
   static DEFAULTS = {
     link: '.js-header-logo__link',
@@ -31,6 +34,12 @@ class HeaderLogo {
   }
 
   handleClick(event) {
+    /**
+     * axa-click event.
+     *
+     * @event HeaderLogo#axa-click
+     * @type {null}
+     */
     const cancelled = fire(this.wcNode, 'axa-click', null, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
