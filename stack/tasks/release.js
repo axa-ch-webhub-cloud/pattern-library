@@ -8,7 +8,6 @@ const masterTrunk = 'master';
 
 process.stdin.setEncoding('utf8');
 
-// ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 console.log(chalk.cyan(outdent`
 
   🚀  Hello Dear developer, welcome to the release assistent. 🚀
