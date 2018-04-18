@@ -43,7 +43,7 @@ waterfall([
 
         Please login:
 
-        npm login
+        ${chalk.bold('npm login')}
 
       `));
     }));
@@ -54,7 +54,7 @@ waterfall([
       if (stdout.trim().indexOf(whoami.trim()) === -1) {
         console.log(chalk.red(outdent`
 
-            Attention: Your account ${whoami} has no publisher rights. Please contact the administrator
+            Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
 
           `));
 
