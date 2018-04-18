@@ -493,6 +493,9 @@ export default class BaseComponent extends HTMLElement {
 function isSameNodeOnce(node) {
   const { isSameNode } = node;
 
+  // make sure to not create unlimited chain of monkey patches
+  node.isSameNode(node);
+
   node.isSameNode = isSameNodeStopMorp;
 
   function isSameNodeStopMorp() {
