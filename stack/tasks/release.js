@@ -249,7 +249,7 @@ process.stdin.on('readable', () => {
       step++; // eslint-disable-line no-plusplus
       break;
     case 'n':
-      console.log('closing..');
+      console.log('closing...');
       process.exit(0);
       break;
     case 'stable':
