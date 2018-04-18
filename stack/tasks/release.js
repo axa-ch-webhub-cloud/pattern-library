@@ -27,17 +27,11 @@ const handleError = (callback, errorCallback) => (error, ...args) => {
 };
 
 const handleSuccess = (callback, successCallback) => (error, ...args) => {
-  let returnValue;
-
   if (!error) {
-    returnValue = successCallback(error, ...args);
+    successCallback(error, ...args);
   }
 
-  if (returnValue) {
-    callback(error, returnValue, ...args);
-  } else {
-    callback(error, ...args);
-  }
+  callback(error, ...args);
 };
 
 waterfall([
@@ -54,7 +48,7 @@ waterfall([
       `));
     }));
   },
-  (whoami, callback) => {
+  (whoami, stderr, callback) => {
     // eslint-disable-next-line consistent-return
     exec('npm owner ls', handleError(callback, (error, stdout) => {
       if (stdout.trim().indexOf(whoami.trim()) === -1) {
@@ -179,14 +173,14 @@ const confirmedRelease = (type, version) => {
         `));
       }));
     },
-    (callback) => {
+    (stdout, stderr, callback) => {
       exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
         console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));
       }));
     },
-    (callback) => {
+    (stdout, stderr, callback) => {
       let command = `npm run bump-${version}`;
 
       if (type === 'unstable') {
@@ -199,10 +193,10 @@ const confirmedRelease = (type, version) => {
         `));
       }));
     },
-    (callback) => {
+    (stdout, stderr, callback) => {
       exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
     },
-    (callback) => {
+    (stdout, stderr, callback) => {
       exec(
         `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
         handleSuccess(callback, () => {
@@ -212,7 +206,7 @@ const confirmedRelease = (type, version) => {
         }),
       );
     },
-    (callback) => {
+    (stdout, stderr, callback) => {
       exec(
         `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
         handleSuccess(callback, () => {
