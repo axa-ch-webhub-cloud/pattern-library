@@ -1,5 +1,7 @@
 const outdent = require('outdent');
 const { exec } = require('child_process');
+const waterfall = require('async-waterfall');
+const chalk = require('chalk');
 
 const developTrunk = 'develop';
 const masterTrunk = 'master';
@@ -7,8 +9,7 @@ const masterTrunk = 'master';
 process.stdin.setEncoding('utf8');
 
 // ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-  outdent`
+console.log(chalk.cyan(outdent`
 
   🚀  Hello Dear developer, welcome to the release assistent. 🚀
 
@@ -16,86 +17,99 @@ console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
 
   I'm getting some information....
 
-  `,
-);
+  `));
 
-exec(
-  'npm whoami',
-  (error, whoami) => {
-    if (error !== null) {
-      console.log('\x1b[40m', '\x1b[31m', // eslint-disable-line
-        outdent`
+const handleError = (callback, errorCallback) => (error, ...args) => {
+  if (error) {
+    errorCallback(error, ...args);
+  }
 
-          Attention: You are currently not logged into npm. I will abort the action
+  callback(error, ...args);
+};
 
-          Please login:
+const handleSuccess = (callback, successCallback) => (error, ...args) => {
+  let returnValue;
 
-          npm login
+  if (!error) {
+    returnValue = successCallback(error, ...args);
+  }
 
-        `,
-      );
-      process.exit(1);
-    }
-    exec(
-      'npm owner ls',
-      (_error, stdout) => {
-        if (stdout.trim().indexOf(whoami.trim()) === -1) {
-          console.log('\x1b[40m', '\x1b[31m', // eslint-disable-line
-            outdent`
+  if (returnValue) {
+    callback(error, returnValue, ...args);
+  } else {
+    callback(error, ...args);
+  }
+};
 
-              Attention: Your account ${whoami} has no publisher rights. Please contact the administrator
+waterfall([
+  (callback) => {
+    exec('npm whoami', handleError(callback, () => {
+      console.log(chalk.red(outdent`
 
-            `,
-          );
-          process.exit(1);
-        }
-        console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-          outdent`
+        Attention: You are currently not logged into npm. I will abort the action
 
-            You are currently logged in as:
-          `,
-        );
-        console.log('\x1b[40m', '\x1b[33m', whoami.trim());
-        console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-          outdent`
+        Please login:
 
-            Would you like to continue?
-          `,
-        );
-        console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
-          outdent`
+        npm login
 
-            y: yes
-            n: no
-
-          `,
-        );
-      },
-    );
+      `));
+    }));
   },
-);
+  (whoami, callback) => {
+    // eslint-disable-next-line consistent-return
+    exec('npm owner ls', handleError(callback, (error, stdout) => {
+      if (stdout.trim().indexOf(whoami.trim()) === -1) {
+        console.log(chalk.red(outdent`
 
+            Attention: Your account ${whoami} has no publisher rights. Please contact the administrator
+
+          `));
+
+        return callback(true);
+      }
+
+      console.log(chalk.cyan(outdent`
+
+          You are currently logged in as:
+        `));
+
+      console.log(chalk.yellow(whoami.trim()));
+
+      console.log(chalk.cyan(outdent`
+
+          Would you like to continue?
+        `));
+
+      console.log(chalk.yellow(outdent`
+
+          y: yes
+          n: no
+
+        `));
+    }));
+  },
+], (error) => {
+  if (error) {
+    process.exit(1);
+  }
+});
 
 const determineStable = () => {
-  console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-    outdent`
+  console.log(chalk.cyan(outdent`
 
       Do you want to release a stable version or unstable (beta postfixed)?
-    `,
-  );
-  console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
-    outdent`
+    `));
+
+  console.log(chalk.yellow(outdent`
 
       stable: for stable
       unstable: for unstable
 
-    `,
-  );
+    `));
 };
 
 const prerelease = (what) => {
-  console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-    outdent`
+  console.log(chalk.cyan(outdent`
 
       Ok, we will release a ${what} version!
 
@@ -108,23 +122,20 @@ const prerelease = (what) => {
       ${what === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
 
       Select:
-    `,
-  );
-  console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
-    outdent`
+    `));
+
+  console.log(chalk.yellow(outdent`
 
       ${what === 'unstable' ? 'beta: for beta release of current branch. Reccomended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
 
-    `,
-  );
+    `));
 };
 
 const release = (version) => {
-  console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-    outdent`
+  console.log(chalk.cyan(outdent`
 
       Ok, we will release a ${version} version!
 
@@ -137,19 +148,20 @@ const release = (version) => {
       5. fast-foward merge ${developTrunk} into ${masterTrunk} and push
 
       Please confirm that you want to proceed
-    `,
-  );
-  console.log('\x1b[40m', '\x1b[33m', '\nproceed: to proceed with the above described steps. This operation cannot be undone!');
+    `));
+
+  console.log(chalk.yellow('\nproceed: to proceed with the above described steps. This operation cannot be undone!'));
 };
 
 const generalCleanupHandling = (exitcode) => {
   exec(
     `git checkout ${developTrunk} && git branch -D release-tmp`,
-    (_error4) => {
-      if (_error4) {
-        console.log('\x1b[40m', '\x1b[31m', _error4);
+    (error) => {
+      if (error) {
+        console.log(chalk.red(error));
         process.exit(1);
       }
+
       process.exit(exitcode);
     },
   );
@@ -160,93 +172,68 @@ const confirmedRelease = (type, version) => {
     return;
   }
 
-  exec(
-    `git checkout ${developTrunk} && git pull && git checkout -b release-tmp`,
-    (_error1) => {
-      if (_error1) {
-        console.log('\x1b[40m', '\x1b[31m', _error1);
-        generalCleanupHandling(1);
-      }
-      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-        outdent`
+  waterfall([
+    (callback) => {
+      exec(`git checkout ${developTrunk} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
           Step 1 complete...
-        `,
-      );
+        `));
+      }));
+    },
+    (callback) => {
+      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
+          Step 2 complete...
+        `));
+      }));
+    },
+    (callback) => {
+      let command = `npm run bump-${version}`;
+
+      if (type === 'unstable') {
+        command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+      }
+
+      exec(command, handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
+          Step 3 complete...
+        `));
+      }));
+    },
+    (callback) => {
+      exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
+    },
+    (callback) => {
       exec(
-        'npm run build && git add ./dist ./docs && git commit -m"rebuild"',
-        (_error2) => {
-          if (_error2) {
-            console.log('\x1b[40m', '\x1b[31m', _error2);
-            generalCleanupHandling(1);
-          }
-          console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-            outdent`
-              Step 2 complete...
-            `,
-          );
-          let command = `npm run bump-${version}`;
-          if (type === 'unstable') {
-            command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
-          }
-          exec(
-            command,
-            (_error3) => {
-              if (_error3) {
-                console.log('\x1b[40m', '\x1b[31m', _error3);
-                generalCleanupHandling(1);
-              }
-              console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-                outdent`
-                  Step 3 complete...
-                `,
-              );
-              exec(
-                `npm publish ${version === 'beta' ? ' --tag beta' : ''}`,
-                (_error4) => {
-                  if (_error4) {
-                    console.log('\x1b[40m', '\x1b[31m', _error4);
-                    generalCleanupHandling(1);
-                  }
-                  exec(
-                    `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
-                    (_error5) => {
-                      if (_error5) {
-                        console.log('\x1b[40m', '\x1b[31m', _error5);
-                        generalCleanupHandling(1);
-                      }
-                      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-                        outdent`
-                          Step 4 complete...
-                        `,
-                      );
-
-                      exec(
-                        `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
-                        (_error6) => {
-                          if (_error6) {
-                            console.log('\x1b[40m', '\x1b[31m', _error6);
-                            generalCleanupHandling(1);
-                          }
-                          console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-                            outdent`
-
-                          Step 5 complete! Publishing done successfully. Have fun!
-
-                        `,
-                          );
-                          generalCleanupHandling(0);
-                        },
-                      );
-                    },
-                  );
-                },
-              );
-            },
-          );
-        },
+        `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
+        handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
+            Step 4 complete...
+          `));
+        }),
       );
     },
-  );
+    (callback) => {
+      exec(
+        `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
+        handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
+
+            Step 5 complete! Publishing done successfully. Have fun!
+
+          `));
+        }),
+      );
+    },
+  ], (error) => {
+    if (error) {
+      console.log(chalk.red(error));
+
+      generalCleanupHandling(1);
+    } else {
+      generalCleanupHandling(0);
+    }
+  });
 };
 
 let step = 0;
@@ -258,12 +245,13 @@ process.stdin.on('readable', () => {
   if (chunk === null) {
     return;
   }
+
   switch (chunk.trim()) {
     case 'y':
       if (step > 0) {
         return;
       }
-      console.log('\x1b[40m', '\x1b[36m', '\nOk, let\'s do it 😎 👍');
+      console.log(chalk.cyan('\nOk, let\'s do it 😎 👍'));
       determineStable();
       step++; // eslint-disable-line no-plusplus
       break;
@@ -327,7 +315,7 @@ process.stdin.on('readable', () => {
       step++; // eslint-disable-line no-plusplus
       break;
     default:
-      console.log('\x1b[40m', '\x1b[36m', 'Command not understood. Try again or press \'n\' to abort');
+      console.log(chalk.cyan('Command not understood. Try again or press \'n\' to abort'));
       break;
   }
 });
