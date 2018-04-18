@@ -1,3 +1,4 @@
+import nanomorph from 'nanomorph';
 import getAttribute from '../get-attribute';
 import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
@@ -220,29 +221,31 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   render() { // eslint-disable-line
-    const { _hasRendered: initial } = this;
+    const { _hasRendered: notInitial } = this;
 
     if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!notInitial}`);
     }
 
-    this.willRenderCallback(!initial);
+    this.willRenderCallback(!notInitial);
 
     if (this._hasTemplate) {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
+        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!notInitial}`);
       }
 
       const { _template: template } = this;
 
       try {
-        // At initial rendering -> collect the light DOM first
-        if (!this._hasRendered) {
+        // At notInitial rendering -> collect the light DOM first
+        if (!notInitial) {
           const childrenFragment = document.createDocumentFragment();
           const lightDOMRefs = [];
 
           while (this.firstChild) {
             lightDOMRefs.push(this.firstChild);
+            // Another piece of code is managing that part of the DOM tree.
+            isSameNodeOnce(this.firstChild);
             childrenFragment.appendChild(this.firstChild);
           }
 
@@ -250,6 +253,9 @@ export default class BaseComponent extends HTMLElement {
           this.childrenFragment = childrenFragment;
         } else { // Reuse the light DOM for subsequent rendering
           this._lightDOMRefs.forEach((ref) => {
+            // Another piece of code is managing that part of the DOM tree.
+            isSameNodeOnce(ref);
+
             // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
             // so we can always reuse this
             this.childrenFragment.appendChild(ref);
@@ -278,13 +284,22 @@ export default class BaseComponent extends HTMLElement {
           renderFragment.appendChild(items);
         }
 
-        // rebuild the whole DOM subtree
-        // @todo: this will break/disconnect previous DOM references, associated events and stuff like that
-        // @todo: may need to be improved by DOM diffing, JSX, whatever
-        while (this.firstChild) {
-          this.removeChild(this.firstChild);
+        if (!notInitial) {
+          super.appendChild(renderFragment);
+        } else {
+          const wcClone = this.cloneNode(false);
+
+          if (ENV !== PROD) {
+            lifecycleLogger(this.logLifecycle)(`+++ incremental update -> ${this.nodeName}#${this._id}\n`);
+          }
+
+          wcClone._morphing = true;
+          wcClone.appendChild(renderFragment);
+
+          this._morphing = true;
+          nanomorph(this, wcClone);
+          this._morphing = false;
         }
-        super.appendChild(renderFragment);
       } catch (err) {
         if (err.message !== THROWED_ERROR) {
           console.error( // eslint-disable-line
@@ -300,10 +315,10 @@ export default class BaseComponent extends HTMLElement {
     this._hasRendered = true;
 
     if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!notInitial}`);
     }
 
-    this.didRenderCallback(!initial);
+    this.didRenderCallback(!notInitial);
   }
 
   /**
@@ -384,7 +399,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {Element} node
    */
   appendChild(node) {
-    if (!this._hasTemplate || !this._hasRendered) {
+    if (this._morphing || !this._hasTemplate || !this._hasRendered) {
       super.appendChild(node);
       return;
     }
@@ -466,5 +481,23 @@ export default class BaseComponent extends HTMLElement {
       let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
       return v.toString(16);
     });
+  }
+}
+
+/**
+ * Make sure that another piece of code is/can managing that part of the DOM tree.
+ *
+ * @link https://github.com/choojs/nanomorph#caching-dom-elements
+ * @param node
+ */
+function isSameNodeOnce(node) {
+  const { isSameNode } = node;
+
+  node.isSameNode = isSameNodeStopMorp;
+
+  function isSameNodeStopMorp() {
+    node.isSameNode = isSameNode;
+
+    return true;
   }
 }
