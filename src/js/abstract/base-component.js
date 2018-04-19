@@ -256,9 +256,11 @@ export default class BaseComponent extends HTMLElement {
             // Another piece of code is managing that part of the DOM tree.
             isSameNodeOnce(ref);
 
+            const isLive = this.contains(ref);
+
             // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
             // so we can always reuse this
-            this.childrenFragment.appendChild(ref);
+            this.childrenFragment.appendChild(isLive ? ref.cloneNode(false) : ref);
           });
         }
 
