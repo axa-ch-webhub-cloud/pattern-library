@@ -5,7 +5,13 @@ const chalk = require('chalk');
 
 const DEVELOP_TRUNK = 'develop';
 const MASTER_TRUNK = 'master';
+const STABLE = 'stable';
+const UNSTABLE = 'unstable';
 const HOTFIX = 'hotfix';
+const MAJOR = 'major';
+const MINOR = 'minor';
+const PATCH = 'patch';
+const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
@@ -127,17 +133,17 @@ const prerelease = (type) => {
       Choose which version label you want to bump.
 
       Remember:
-      ${type === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
-      ${type === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
-      ${type === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
-      ${type === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
+      ${type === UNSTABLE ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
+      ${type === UNSTABLE ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
+      ${type === UNSTABLE ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
+      ${type === UNSTABLE ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
 
       Select:
     `));
 
   console.log(chalk.yellow(outdent`
 
-      ${type === 'unstable' ? 'beta: for beta release of current branch. Recommended' : ''}
+      ${type === UNSTABLE ? 'beta: for beta release of current branch. Recommended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
@@ -195,7 +201,7 @@ const generalCleanupHandling = (exitcode) => {
 };
 
 const confirmedRelease = (type, version) => {
-  if (type === 'stable' && version === 'beta') {
+  if (type === STABLE && version === BETA) {
     return;
   }
 
@@ -220,8 +226,8 @@ const confirmedRelease = (type, version) => {
       (stdout, stderr, callback) => {
         let command = `npm run bump-${version}`;
 
-        if (type === 'unstable') {
-          command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+        if (type === UNSTABLE) {
+          command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
         }
 
         exec(command, handleSuccess(callback, () => {
@@ -231,7 +237,7 @@ const confirmedRelease = (type, version) => {
         }));
       },
       (stdout, stderr, callback) => {
-        exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
+        exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
       },
       (stdout, stderr, callback) => {
         exec(
@@ -263,8 +269,8 @@ const confirmedRelease = (type, version) => {
       (stdout, stderr, callback) => {
         let command = `npm run bump-${version}`;
 
-        if (type === 'unstable') {
-          command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+        if (type === UNSTABLE) {
+          command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
         }
 
         exec(command, handleSuccess(callback, () => {
@@ -274,7 +280,7 @@ const confirmedRelease = (type, version) => {
         }));
       },
       (stdout, stderr, callback) => {
-        exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
+        exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
       },
       (stdout, stderr, callback) => {
         exec(
@@ -340,19 +346,19 @@ process.stdin.on('readable', () => {
       console.log('closing...');
       process.exit(0);
       break;
-    case 'stable':
+    case STABLE:
       if (step !== 1) {
         return;
       }
-      releaseType = 'stable';
+      releaseType = STABLE;
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'unstable':
+    case UNSTABLE:
       if (step !== 1) {
         return;
       }
-      releaseType = 'unstable';
+      releaseType = UNSTABLE;
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
@@ -364,35 +370,35 @@ process.stdin.on('readable', () => {
       reallyHotfix();
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'major':
+    case MAJOR:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'major';
+      releaseVersion = MAJOR;
       release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'beta':
+    case MINOR:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'beta';
+      releaseVersion = MINOR;
       release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'minor':
+    case PATCH:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'minor';
+      releaseVersion = PATCH;
       release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'patch':
+    case BETA:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'patch';
+      releaseVersion = BETA;
       release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
