@@ -208,7 +208,7 @@ const confirmedRelease = (type, version) => {
     },
     (stdout, stderr, callback) => {
       exec(
-        `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
+        `git checkout ${masterTrunk} && git merge --no-ff ${developTrunk} && git push && git push --tags`,
         handleSuccess(callback, () => {
           console.log(chalk.cyan(outdent`
 
