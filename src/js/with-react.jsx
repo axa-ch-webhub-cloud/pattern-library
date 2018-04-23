@@ -41,7 +41,7 @@ const isEventFilter = (key) => {
 const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const { name } = WebComponent;
   const displayName = `${name}React`;
-  const WCTagName = dasherize(WebComponent.name);
+  const WCTagName = dasherize(name);
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
