@@ -57,8 +57,10 @@ waterfall([
   },
   (whoami, stderr, callback) => {
     // eslint-disable-next-line consistent-return
-    exec('npm owner ls', handleError(callback, (error, stdout) => {
-      if (stdout.trim().indexOf(whoami.trim()) === -1) {
+    exec('npm owner ls', (error, stdout) => {
+      const hasError = error || stdout.trim().indexOf(whoami.trim()) === -1;
+
+      if (hasError) {
         console.log(chalk.red(outdent`
 
             Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
@@ -86,7 +88,9 @@ waterfall([
           n: no
 
         `));
-    }));
+
+      callback(null, whoami);
+    });
   },
 ], (error) => {
   if (error) {
