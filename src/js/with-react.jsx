@@ -1,4 +1,5 @@
 import React from 'react';
+import functionName from './function-name';
 import dasherize from './dasherize';
 import partition from './array-partition';
 import on from './on';
@@ -39,7 +40,7 @@ const isEventFilter = (key) => {
  * );
  */
 const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
-  const { name } = WebComponent;
+  const name = functionName(WebComponent);
   const displayName = `${name}React`;
   const WCTagName = dasherize(name);
   const Component = pure ? React.PureComponent : React.Component;
