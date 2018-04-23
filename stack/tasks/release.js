@@ -205,93 +205,54 @@ const confirmedRelease = (type, version) => {
     return;
   }
 
-  let releaseSteps;
-
-  if (type === HOTFIX) {
-    releaseSteps = [
-      (callback) => {
-        exec(`git checkout ${MASTER_TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
+  const isHotfix = type === HOTFIX;
+  const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+  let releaseSteps = [
+    (callback) => {
+      exec(`git checkout ${TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
             Step 1 complete...
           `));
-        }));
-      },
-      (stdout, stderr, callback) => {
-        exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
+      }));
+    },
+    (stdout, stderr, callback) => {
+      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));
-        }));
-      },
-      (stdout, stderr, callback) => {
-        let command = `npm run bump-${version}`;
+      }));
+    },
+    (stdout, stderr, callback) => {
+      let command = `npm run bump-${version}`;
 
-        if (type === UNSTABLE) {
-          command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
-        }
+      if (type === UNSTABLE) {
+        command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
+      }
 
-        exec(command, handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
+      exec(command, handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
           Step 3 complete...
         `));
-        }));
-      },
-      (stdout, stderr, callback) => {
-        exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
-      },
-      (stdout, stderr, callback) => {
-        exec(
-          `git checkout ${MASTER_TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
-          handleSuccess(callback, () => {
-            console.log(chalk.cyan(outdent`
+      }));
+    },
+    (stdout, stderr, callback) => {
+      exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
+    },
+    (stdout, stderr, callback) => {
+      exec(
+        `git checkout ${TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
+        handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
             Step 4 complete...
           `));
-          }),
-        );
-      },
-    ];
-  } else {
+        }),
+      );
+    },
+  ];
+
+  if (!isHotfix) {
     releaseSteps = [
-      (callback) => {
-        exec(`git checkout ${DEVELOP_TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
-          Step 1 complete...
-        `));
-        }));
-      },
-      (stdout, stderr, callback) => {
-        exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
-          Step 2 complete...
-        `));
-        }));
-      },
-      (stdout, stderr, callback) => {
-        let command = `npm run bump-${version}`;
-
-        if (type === UNSTABLE) {
-          command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
-        }
-
-        exec(command, handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
-          Step 3 complete...
-        `));
-        }));
-      },
-      (stdout, stderr, callback) => {
-        exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
-      },
-      (stdout, stderr, callback) => {
-        exec(
-          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
-          handleSuccess(callback, () => {
-            console.log(chalk.cyan(outdent`
-            Step 4 complete...
-          `));
-          }),
-        );
-      },
+      ...releaseSteps,
       (stdout, stderr, callback) => {
         exec(
           `git checkout ${MASTER_TRUNK} && git merge --no-ff ${DEVELOP_TRUNK} && git push && git push --tags`,
