@@ -109,7 +109,7 @@ const prerelease = (what) => {
       Choose which version label you want to bump.
 
       Remember:
-      ${what === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Reccomended step!' : ''}
+      ${what === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
       ${what === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
       ${what === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
       ${what === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
@@ -119,7 +119,7 @@ const prerelease = (what) => {
 
   console.log(chalk.yellow(outdent`
 
-      ${what === 'unstable' ? 'beta: for beta release of current branch. Reccomended' : ''}
+      ${what === 'unstable' ? 'beta: for beta release of current branch. Recommended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
