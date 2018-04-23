@@ -3,8 +3,9 @@ const { exec } = require('child_process');
 const waterfall = require('async-waterfall');
 const chalk = require('chalk');
 
-const developTrunk = 'develop';
-const masterTrunk = 'master';
+const DEVELOP_TRUNK = 'develop';
+const MASTER_TRUNK = 'master';
+const HOTFIX = 'hotfix';
 
 process.stdin.setEncoding('utf8');
 
@@ -97,29 +98,46 @@ const determineStable = () => {
 
       stable: for stable
       unstable: for unstable
+      hotfix: for an urgent bug fix to be merged directly into master
 
     `));
 };
 
-const prerelease = (what) => {
+const reallyHotfix = () => {
+  console.log(chalk.red(outdent`
+
+      Have you merged all your urgent ${chalk.bold('hotfix/*')} branches into ${MASTER_TRUNK}?
+      
+      Note: this has to be done by finger tips:)
+    `));
+
+  console.log(chalk.yellow(outdent`
+
+    y: yes
+    n: no
+
+  `));
+};
+
+const prerelease = (type) => {
   console.log(chalk.cyan(outdent`
 
-      Ok, we will release a ${what} version!
+      Ok, we will release a ${type} version!
 
       Choose which version label you want to bump.
 
       Remember:
-      ${what === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
-      ${what === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
-      ${what === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
-      ${what === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
+      ${type === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
+      ${type === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
+      ${type === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
+      ${type === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
 
       Select:
     `));
 
   console.log(chalk.yellow(outdent`
 
-      ${what === 'unstable' ? 'beta: for beta release of current branch. Recommended' : ''}
+      ${type === 'unstable' ? 'beta: for beta release of current branch. Recommended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
@@ -127,28 +145,44 @@ const prerelease = (what) => {
     `));
 };
 
-const release = (version) => {
-  console.log(chalk.cyan(outdent`
+const release = (type, version) => {
+  if (type === HOTFIX) {
+    console.log(chalk.cyan(outdent`
+
+      Ok, we will release a ${type} version!
+
+      I will do now the following:
+
+      1. build the dist folder
+      2. bump the desired version
+      3. publish to npm
+      4. ${chalk.red.bold(`Don't forget to merges your hotfix branches into ${DEVELOP_TRUNK} too`)}
+
+      Please confirm that you want to proceed
+    `));
+  } else {
+    console.log(chalk.cyan(outdent`
 
       Ok, we will release a ${version} version!
 
       I will do now the following:
 
-      1. pull the ${developTrunk} branch
+      1. pull the ${DEVELOP_TRUNK} branch
       2. build the dist folder
       3. bump the desired version
       4. publish to npm
-      5. fast-foward merge ${developTrunk} into ${masterTrunk} and push
+      5. fast-foward merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
 
       Please confirm that you want to proceed
     `));
+  }
 
   console.log(chalk.yellow('\nproceed: to proceed with the above described steps. This operation cannot be undone!'));
 };
 
 const generalCleanupHandling = (exitcode) => {
   exec(
-    `git checkout ${developTrunk} && git branch -D release-tmp`,
+    `git checkout ${DEVELOP_TRUNK} && git branch -D release-tmp`,
     (error) => {
       if (error) {
         console.log(chalk.red(error));
@@ -165,60 +199,109 @@ const confirmedRelease = (type, version) => {
     return;
   }
 
-  waterfall([
-    (callback) => {
-      exec(`git checkout ${developTrunk} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
-          Step 1 complete...
-        `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
+  let releaseSteps;
+
+  if (type === HOTFIX) {
+    releaseSteps = [
+      (callback) => {
+        exec(`git checkout ${MASTER_TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
+            Step 1 complete...
+          `));
+        }));
+      },
+      (stdout, stderr, callback) => {
+        exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      let command = `npm run bump-${version}`;
+        }));
+      },
+      (stdout, stderr, callback) => {
+        let command = `npm run bump-${version}`;
 
-      if (type === 'unstable') {
-        command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
-      }
+        if (type === 'unstable') {
+          command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+        }
 
-      exec(command, handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
+        exec(command, handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
           Step 3 complete...
         `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
-    },
-    (stdout, stderr, callback) => {
-      exec(
-        `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
-        handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
+        }));
+      },
+      (stdout, stderr, callback) => {
+        exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
+      },
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${MASTER_TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
             Step 4 complete...
           `));
-        }),
-      );
-    },
-    (stdout, stderr, callback) => {
-      exec(
-        `git checkout ${masterTrunk} && git merge --no-ff ${developTrunk} && git push && git push --tags`,
-        handleSuccess(callback, () => {
+          }),
+        );
+      },
+    ];
+  } else {
+    releaseSteps = [
+      (callback) => {
+        exec(`git checkout ${DEVELOP_TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
           console.log(chalk.cyan(outdent`
+          Step 1 complete...
+        `));
+        }));
+      },
+      (stdout, stderr, callback) => {
+        exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
+          Step 2 complete...
+        `));
+        }));
+      },
+      (stdout, stderr, callback) => {
+        let command = `npm run bump-${version}`;
+
+        if (type === 'unstable') {
+          command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+        }
+
+        exec(command, handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
+          Step 3 complete...
+        `));
+        }));
+      },
+      (stdout, stderr, callback) => {
+        exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
+      },
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
+            Step 4 complete...
+          `));
+          }),
+        );
+      },
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${MASTER_TRUNK} && git merge --no-ff ${DEVELOP_TRUNK} && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
 
             Step 5 complete! Publishing done successfully. Have fun!
 
           `));
-        }),
-      );
-    },
-  ], (error) => {
+          }),
+        );
+      },
+    ];
+  }
+
+  waterfall(releaseSteps, (error) => {
     if (error) {
       console.log(chalk.red(error));
 
@@ -245,7 +328,12 @@ process.stdin.on('readable', () => {
         return;
       }
       console.log(chalk.cyan('\nOk, let\'s do it 😎 👍'));
-      determineStable();
+
+      if (releaseType === HOTFIX) {
+        prerelease(releaseType);
+      } else {
+        determineStable();
+      }
       step++; // eslint-disable-line no-plusplus
       break;
     case 'n':
@@ -268,12 +356,20 @@ process.stdin.on('readable', () => {
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
+    case HOTFIX:
+      if (step !== 1) {
+        return;
+      }
+      releaseType = HOTFIX;
+      reallyHotfix();
+      step++; // eslint-disable-line no-plusplus
+      break;
     case 'major':
       if (step !== 2) {
         return;
       }
       releaseVersion = 'major';
-      release(releaseVersion);
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
     case 'beta':
@@ -281,7 +377,7 @@ process.stdin.on('readable', () => {
         return;
       }
       releaseVersion = 'beta';
-      release(releaseVersion);
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
     case 'minor':
@@ -289,7 +385,7 @@ process.stdin.on('readable', () => {
         return;
       }
       releaseVersion = 'minor';
-      release(releaseVersion);
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
     case 'patch':
@@ -297,7 +393,7 @@ process.stdin.on('readable', () => {
         return;
       }
       releaseVersion = 'patch';
-      release(releaseVersion);
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
     case 'proceed':
