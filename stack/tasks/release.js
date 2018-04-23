@@ -17,7 +17,7 @@ process.stdin.setEncoding('utf8');
 
 console.log(chalk.cyan(outdent`
 
-  🚀  Hello Dear developer, welcome to the release assistent. 🚀
+  🚀  Hello Dear developer, welcome to the release assistant. 🚀
 
   !! Please make sure you have no changes to be commited !!
 
