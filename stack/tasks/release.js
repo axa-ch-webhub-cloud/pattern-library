@@ -3,14 +3,21 @@ const { exec } = require('child_process');
 const waterfall = require('async-waterfall');
 const chalk = require('chalk');
 
-const developTrunk = 'develop';
-const masterTrunk = 'master';
+const DEVELOP_TRUNK = 'develop';
+const MASTER_TRUNK = 'master';
+const STABLE = 'stable';
+const UNSTABLE = 'unstable';
+const HOTFIX = 'hotfix';
+const MAJOR = 'major';
+const MINOR = 'minor';
+const PATCH = 'patch';
+const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
 console.log(chalk.cyan(outdent`
 
-  🚀  Hello Dear developer, welcome to the release assistent. 🚀
+  🚀  Hello Dear developer, welcome to the release assistant. 🚀
 
   !! Please make sure you have no changes to be commited !!
 
@@ -97,29 +104,46 @@ const determineStable = () => {
 
       stable: for stable
       unstable: for unstable
+      hotfix: for an urgent bug fix to be merged directly into master
 
     `));
 };
 
-const prerelease = (what) => {
+const reallyHotfix = () => {
+  console.log(chalk.red(outdent`
+
+      Have you merged all your urgent ${chalk.bold('hotfix/*')} branches into ${MASTER_TRUNK}?
+      
+      Note: this has to be done by finger tips:)
+    `));
+
+  console.log(chalk.yellow(outdent`
+
+    y: yes
+    n: no
+
+  `));
+};
+
+const prerelease = (type) => {
   console.log(chalk.cyan(outdent`
 
-      Ok, we will release a ${what} version!
+      Ok, we will release a ${type} version!
 
       Choose which version label you want to bump.
 
       Remember:
-      ${what === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Reccomended step!' : ''}
-      ${what === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
-      ${what === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
-      ${what === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
+      ${type === UNSTABLE ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
+      ${type === UNSTABLE ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
+      ${type === UNSTABLE ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
+      ${type === UNSTABLE ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
 
       Select:
     `));
 
   console.log(chalk.yellow(outdent`
 
-      ${what === 'unstable' ? 'beta: for beta release of current branch. Reccomended' : ''}
+      ${type === UNSTABLE ? 'beta: for beta release of current branch. Recommended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
@@ -127,28 +151,44 @@ const prerelease = (what) => {
     `));
 };
 
-const release = (version) => {
-  console.log(chalk.cyan(outdent`
+const release = (type, version) => {
+  if (type === HOTFIX) {
+    console.log(chalk.cyan(outdent`
+
+      Ok, we will release a ${type} version!
+
+      I will do now the following:
+
+      1. build the dist folder
+      2. bump the desired version
+      3. publish to npm
+      4. ${chalk.red.bold(`Don't forget to merges your hotfix branches into ${DEVELOP_TRUNK} too`)}
+
+      Please confirm that you want to proceed
+    `));
+  } else {
+    console.log(chalk.cyan(outdent`
 
       Ok, we will release a ${version} version!
 
       I will do now the following:
 
-      1. pull the ${developTrunk} branch
+      1. pull the ${DEVELOP_TRUNK} branch
       2. build the dist folder
       3. bump the desired version
       4. publish to npm
-      5. fast-foward merge ${developTrunk} into ${masterTrunk} and push
+      5. fast-foward merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
 
       Please confirm that you want to proceed
     `));
+  }
 
   console.log(chalk.yellow('\nproceed: to proceed with the above described steps. This operation cannot be undone!'));
 };
 
 const generalCleanupHandling = (exitcode) => {
   exec(
-    `git checkout ${developTrunk} && git branch -D release-tmp`,
+    `git checkout ${DEVELOP_TRUNK} && git branch -D release-tmp`,
     (error) => {
       if (error) {
         console.log(chalk.red(error));
@@ -161,16 +201,18 @@ const generalCleanupHandling = (exitcode) => {
 };
 
 const confirmedRelease = (type, version) => {
-  if (type === 'stable' && version === 'beta') {
+  if (type === STABLE && version === BETA) {
     return;
   }
 
-  waterfall([
+  const isHotfix = type === HOTFIX;
+  const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+  let releaseSteps = [
     (callback) => {
-      exec(`git checkout ${developTrunk} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
+      exec(`git checkout ${TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
         console.log(chalk.cyan(outdent`
-          Step 1 complete...
-        `));
+            Step 1 complete...
+          `));
       }));
     },
     (stdout, stderr, callback) => {
@@ -183,8 +225,8 @@ const confirmedRelease = (type, version) => {
     (stdout, stderr, callback) => {
       let command = `npm run bump-${version}`;
 
-      if (type === 'unstable') {
-        command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
+      if (type === UNSTABLE) {
+        command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
       }
 
       exec(command, handleSuccess(callback, () => {
@@ -194,11 +236,11 @@ const confirmedRelease = (type, version) => {
       }));
     },
     (stdout, stderr, callback) => {
-      exec(`npm publish ${version === 'beta' ? ' --tag beta' : ''}`, callback);
+      exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
     },
     (stdout, stderr, callback) => {
       exec(
-        `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
+        `git checkout ${TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
         handleSuccess(callback, () => {
           console.log(chalk.cyan(outdent`
             Step 4 complete...
@@ -206,19 +248,27 @@ const confirmedRelease = (type, version) => {
         }),
       );
     },
-    (stdout, stderr, callback) => {
-      exec(
-        `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
-        handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
+  ];
+
+  if (!isHotfix) {
+    releaseSteps = [
+      ...releaseSteps,
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${MASTER_TRUNK} && git merge --no-ff ${DEVELOP_TRUNK} && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
 
             Step 5 complete! Publishing done successfully. Have fun!
 
           `));
-        }),
-      );
-    },
-  ], (error) => {
+          }),
+        );
+      },
+    ];
+  }
+
+  waterfall(releaseSteps, (error) => {
     if (error) {
       console.log(chalk.red(error));
 
@@ -245,59 +295,72 @@ process.stdin.on('readable', () => {
         return;
       }
       console.log(chalk.cyan('\nOk, let\'s do it 😎 👍'));
-      determineStable();
+
+      if (releaseType === HOTFIX) {
+        prerelease(releaseType);
+      } else {
+        determineStable();
+      }
       step++; // eslint-disable-line no-plusplus
       break;
     case 'n':
       console.log('closing...');
       process.exit(0);
       break;
-    case 'stable':
+    case STABLE:
       if (step !== 1) {
         return;
       }
-      releaseType = 'stable';
+      releaseType = STABLE;
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'unstable':
+    case UNSTABLE:
       if (step !== 1) {
         return;
       }
-      releaseType = 'unstable';
+      releaseType = UNSTABLE;
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'major':
-      if (step !== 2) {
+    case HOTFIX:
+      if (step !== 1) {
         return;
       }
-      releaseVersion = 'major';
-      release(releaseVersion);
+      releaseType = HOTFIX;
+      reallyHotfix();
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'beta':
+    case MAJOR:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'beta';
-      release(releaseVersion);
+      releaseVersion = MAJOR;
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'minor':
+    case MINOR:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'minor';
-      release(releaseVersion);
+      releaseVersion = MINOR;
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'patch':
+    case PATCH:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'patch';
-      release(releaseVersion);
+      releaseVersion = PATCH;
+      release(releaseType, releaseVersion);
+      step++; // eslint-disable-line no-plusplus
+      break;
+    case BETA:
+      if (step !== 2) {
+        return;
+      }
+      releaseVersion = BETA;
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
     case 'proceed':
