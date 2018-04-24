@@ -181,7 +181,8 @@ const release = (type, version) => {
       2. build the dist folder
       3. bump the desired version
       4. publish to npm
-      5. fast-foward merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
+      5. merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
+      6. sync ${DEVELOP_TRUNK} with ${MASTER_TRUNK} again
 
       Please confirm that you want to proceed
     `));
@@ -263,7 +264,18 @@ const confirmedRelease = (type, version) => {
           handleSuccess(callback, () => {
             console.log(chalk.cyan(outdent`
 
-            Step 5 complete! Publishing done successfully. Have fun!
+            Step 5 complete...
+          `));
+          }),
+        );
+      },
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only ${MASTER_TRUNK} && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
+
+            Step 6 complete! Publishing done successfully. Have fun!
 
           `));
           }),
