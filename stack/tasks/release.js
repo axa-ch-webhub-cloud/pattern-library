@@ -57,8 +57,10 @@ waterfall([
   },
   (whoami, stderr, callback) => {
     // eslint-disable-next-line consistent-return
-    exec('npm owner ls', handleError(callback, (error, stdout) => {
-      if (stdout.trim().indexOf(whoami.trim()) === -1) {
+    exec('npm owner ls', (error, stdout) => {
+      const hasError = error || stdout.trim().indexOf(whoami.trim()) === -1;
+
+      if (hasError) {
         console.log(chalk.red(outdent`
 
             Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
@@ -86,7 +88,9 @@ waterfall([
           n: no
 
         `));
-    }));
+
+      callback(null, whoami);
+    });
   },
 ], (error) => {
   if (error) {
@@ -177,7 +181,8 @@ const release = (type, version) => {
       2. build the dist folder
       3. bump the desired version
       4. publish to npm
-      5. fast-foward merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
+      5. merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
+      6. sync ${DEVELOP_TRUNK} with ${MASTER_TRUNK} again
 
       Please confirm that you want to proceed
     `));
@@ -259,7 +264,18 @@ const confirmedRelease = (type, version) => {
           handleSuccess(callback, () => {
             console.log(chalk.cyan(outdent`
 
-            Step 5 complete! Publishing done successfully. Have fun!
+            Step 5 complete...
+          `));
+          }),
+        );
+      },
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only ${MASTER_TRUNK} && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
+
+            Step 6 complete! Publishing done successfully. Have fun!
 
           `));
           }),
