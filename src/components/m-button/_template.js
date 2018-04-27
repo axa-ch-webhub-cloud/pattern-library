@@ -3,18 +3,18 @@ import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
 export default function ({
-                           tag = 'button',
-                           color,
-                           url = '#',
-                           size,
-                           ghost,
-                           classes,
-                           motion,
-                           gpu,
-                           arrow,
-                           icon,
-                           reverse = false,
-                         }, childrenFragment) {
+  tag = 'button',
+  color,
+  url = '#',
+  size,
+  ghost,
+  classes,
+  motion,
+  gpu,
+  arrow,
+  icon,
+  reverse = false,
+}, childrenFragment) {
   const buttonClasses = classnames('m-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
@@ -29,7 +29,7 @@ export default function ({
   let buttonIcon;
 
   const iconClasses = classnames('m-button__icon', {
-    'm-button__icon--reverse': reverse
+    'm-button__icon--reverse': reverse,
   });
 
   if (icon) {
