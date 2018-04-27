@@ -12,6 +12,14 @@
 
 .m-button__icon {
   @include button__icon();
+
+  &:not(.m-button__icon--reverse) {
+    @include button__icon-left();
+  }
+
+  &.m-button__icon--reverse {
+    @include button__icon-right();
+  }
 }
 
 .m-button__arrow {
@@ -72,10 +80,40 @@
   @include button--arrow-adjust();
 }
 
+.m-button--icon {
+  &:not(.m-button--reverse) {
+    @include button--icon-adjust();
+  }
+
+  &.m-button--reverse {
+    @include button--icon-adjust--reverse();
+  }
+}
+
 .m-button--x-pad-20 {
   $x-pad: 20px;
 
   @include button--x-padding($x-pad);
+
+  .m-button--icon {
+    &:not(.m-button--reverse) {
+      @include button--icon-adjust($x-pad);
+    }
+
+    &.m-button--reverse {
+      @include button--icon-adjust--reverse($x-pad);
+    }
+  }
+
+  .m-button__icon {
+    &:not(.m-button__icon--reverse) {
+      @include button__icon-left($x-pad);
+    }
+
+    &.m-button__icon--reverse {
+      @include button__icon-right($x-pad);
+    }
+  }
 
   &.m-button--arrow {
     @include button--arrow-adjust($x-pad);
@@ -90,6 +128,26 @@
   $x-pad: 40px;
 
   @include button--x-padding($x-pad);
+
+  .m-button--icon {
+    &:not(.m-button--reverse) {
+      @include button--icon-adjust($x-pad);
+    }
+
+    &.m-button--reverse {
+      @include button--icon-adjust--reverse($x-pad);
+    }
+  }
+
+  .m-button__icon {
+    &:not(.m-button__icon--reverse) {
+      @include button__icon-left($x-pad);
+    }
+
+    &.m-button__icon--reverse {
+      @include button__icon-right($x-pad);
+    }
+  }
 
   &.m-button--arrow {
     @include button--arrow-adjust($x-pad);
@@ -111,8 +169,26 @@
     @include button--arrow-adjust--lg();
   }
 
+  &.m-button--icon {
+    &:not(.m-button--reverse) {
+      @include button--icon-adjust--lg();
+    }
+
+    &.m-button--reverse {
+      @include button--icon-adjust--reverse--lg();
+    }
+  }
+
   .m-button__icon {
     @include button__icon--lg();
+
+    &:not(.m-button__icon--reverse) {
+      @include button__icon-left();
+    }
+
+    &.m-button__icon--reverse {
+      @include button__icon-right();
+    }
   }
 
   .m-button__arrow {
