@@ -221,7 +221,7 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   render() { // eslint-disable-line
-    const initial = this._hasRendered;
+    const initial = !this._hasRendered;
 
     if (ENV !== PROD) {
       lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
