@@ -298,12 +298,12 @@ export default class BaseComponent extends HTMLElement {
             lifecycleLogger(this.logLifecycle)(`+++ incremental update -> ${this.nodeName}#${this._id}\n`);
           }
 
-          wcClone._morphing = true;
+          wcClone._isMorphing = true;
           wcClone.appendChild(renderFragment);
 
-          this._morphing = true;
+          this._isMorphing = true;
           nanomorph(this, wcClone);
-          this._morphing = false;
+          this._isMorphing = false;
         }
       } catch (err) {
         if (err.message !== THROWED_ERROR) {
@@ -402,7 +402,7 @@ export default class BaseComponent extends HTMLElement {
    * Monkey patch `childNodes` API to re-rendering.
    */
   get childNodes() {
-    if (this._morphing || !this._hasTemplate || !this._hasRendered) {
+    if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
       return super.childNodes;
     }
 
@@ -415,7 +415,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {Element} node
    */
   appendChild(node) {
-    if (this._morphing || !this._hasTemplate || !this._hasRendered) {
+    if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
       super.appendChild(node);
       return;
     }
