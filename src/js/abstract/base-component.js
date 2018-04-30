@@ -221,24 +221,24 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   render() { // eslint-disable-line
-    const { _hasRendered: notInitial } = this;
+    const initial = this._hasRendered;
 
     if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!notInitial}`);
+      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
     }
 
-    this.willRenderCallback(!notInitial);
+    this.willRenderCallback(initial);
 
     if (this._hasTemplate) {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!notInitial}`);
+        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
       }
 
       const { _template: template } = this;
 
       try {
         // At initial rendering -> collect the light DOM first
-        if (!notInitial) {
+        if (initial) {
           const childrenFragment = document.createDocumentFragment();
           const lightDOMRefs = [];
 
@@ -289,7 +289,7 @@ export default class BaseComponent extends HTMLElement {
           renderFragment.appendChild(items);
         }
 
-        if (!notInitial) {
+        if (initial) {
           super.appendChild(renderFragment);
         } else {
           const wcClone = this.cloneNode(false);
@@ -320,10 +320,10 @@ export default class BaseComponent extends HTMLElement {
     this._hasRendered = true;
 
     if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!notInitial}`);
+      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
     }
 
-    this.didRenderCallback(!notInitial);
+    this.didRenderCallback(initial);
   }
 
   /**
