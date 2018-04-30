@@ -253,16 +253,17 @@ export default class BaseComponent extends HTMLElement {
           this.childrenFragment = childrenFragment;
         } else { // Reuse the light DOM for subsequent rendering
           this._lightDOMRefs.forEach((ref) => {
-            // Another piece of code is managing that part of the DOM tree.
-            isSameNodeOnce(ref);
-
             // Important: Once the light DOM is live it shouldn't be moved out
             // instead make sure to clone it for incremental updates
-            const isLive = this.contains(ref);
+            const refClone = ref.cloneNode(false);
+
+            // Another piece of code is managing that part of the DOM tree.
+            isSameNodeOnce(ref);
+            isSameNodeOnce(refClone);
 
             // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
             // so we can always reuse this
-            this.childrenFragment.appendChild(isLive ? ref.cloneNode(false) : ref);
+            this.childrenFragment.appendChild(refClone);
           });
         }
 
@@ -506,14 +507,9 @@ export default class BaseComponent extends HTMLElement {
  * @param node
  */
 function isSameNodeOnce(node) {
-  // make sure to not create unlimited chain of monkey patches
-  node.isSameNode(node);
+  node.isSameNode = isSameNodeStopMorph;
 
-  node.isSameNode = isSameNodeStopMorp;
-
-  function isSameNodeStopMorp() {
-    delete node.isSameNode;
-
+  function isSameNodeStopMorph() {
     return true;
   }
 }
