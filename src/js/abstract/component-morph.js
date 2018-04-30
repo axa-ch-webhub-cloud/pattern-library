@@ -59,7 +59,11 @@ function walk(newNode, oldNode) {
   }
 
   morph(newNode, oldNode);
-  updateChildren(newNode, oldNode);
+
+  if (!oldNode.skipChildren && !oldNode.skipChildren()) {
+    updateChildren(newNode, oldNode);
+  }
+
   return oldNode;
 }
 

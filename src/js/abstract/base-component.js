@@ -1,4 +1,4 @@
-import nanomorph from 'nanomorph';
+import nanomorph from './component-morph';
 import getAttribute from '../get-attribute';
 import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
@@ -399,17 +399,6 @@ export default class BaseComponent extends HTMLElement {
   }
 
   /**
-   * Monkey patch `childNodes` API to re-rendering.
-   */
-  get childNodes() {
-    if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
-      return super.childNodes;
-    }
-
-    return [];
-  }
-
-  /**
    * Monkey patch `appendChild` API to re-rendering.
    *
    * @param {Element} node
@@ -423,6 +412,15 @@ export default class BaseComponent extends HTMLElement {
     this._lightDOMRefs.push(node);
 
     this.render();
+  }
+
+  /**
+   * Only morph children of current custom element, not any other custom element.
+   *
+   * @returns {boolean}
+   */
+  skipChildren() {
+    return !this._isMorphing;
   }
 
   // @TODO: atm no data can be shared by enabling context, though this could be necessary
