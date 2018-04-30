@@ -17,6 +17,7 @@ module.exports = {
         jsnext: true,
         main: true,
         browser: true,
+        preferBuiltins: false,
       }),
       commonjs({
         include: 'node_modules/**',

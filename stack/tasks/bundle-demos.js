@@ -23,6 +23,7 @@ async function buildComponents() {
         jsnext: true,
         main: true,
         browser: true,
+        preferBuiltins: false,
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
       commonjs({
