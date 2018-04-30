@@ -170,7 +170,7 @@ export default class BaseComponent extends HTMLElement {
   /**
    * Default behaviour is to re-render on attribute addition, change or removal.
    */
-  attributeChangedCallback(name, newValue, oldValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     if (ENV !== PROD) {
       lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
     }
