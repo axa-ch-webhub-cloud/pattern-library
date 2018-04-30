@@ -506,6 +506,7 @@ export default class BaseComponent extends HTMLElement {
  * @link https://github.com/choojs/nanomorph#caching-dom-elements
  * @param node
  */
+// @todo: ideally this code is only attached during morphing phase
 function isSameNodeOnce(node) {
   node.isSameNode = isSameNodeStopMorph;
 
