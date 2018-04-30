@@ -1,4 +1,5 @@
 import nanomorph from './component-morph';
+import { isSameNodeOnce, clearIsSameNode } from './is-same-node-once';
 import getAttribute from '../get-attribute';
 import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
@@ -244,8 +245,6 @@ export default class BaseComponent extends HTMLElement {
 
           while (this.firstChild) {
             lightDOMRefs.push(this.firstChild);
-            // Another piece of code is managing that part of the DOM tree.
-            isSameNodeOnce(this.firstChild);
             childrenFragment.appendChild(this.firstChild);
           }
 
@@ -303,6 +302,7 @@ export default class BaseComponent extends HTMLElement {
 
           this._isMorphing = true;
           nanomorph(this, wcClone);
+          clearIsSameNode();
           this._isMorphing = false;
         }
       } catch (err) {
@@ -495,20 +495,5 @@ export default class BaseComponent extends HTMLElement {
       let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
       return v.toString(16);
     });
-  }
-}
-
-/**
- * Make sure that another piece of code is/can managing that part of the DOM tree.
- *
- * @link https://github.com/choojs/nanomorph#caching-dom-elements
- * @param node
- */
-// @todo: ideally this code is only attached during morphing phase
-function isSameNodeOnce(node) {
-  node.isSameNode = isSameNodeStopMorph;
-
-  function isSameNodeStopMorph() {
-    return true;
   }
 }
