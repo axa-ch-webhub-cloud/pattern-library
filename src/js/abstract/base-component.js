@@ -398,6 +398,17 @@ export default class BaseComponent extends HTMLElement {
   }
 
   /**
+   * Monkey patch `childNodes` API to re-rendering.
+   */
+  get childNodes() {
+    if (this._morphing) {
+      return super.childNodes;
+    }
+
+    return [];
+  }
+
+  /**
    * Monkey patch `appendChild` API to re-rendering.
    *
    * @param {Element} node
