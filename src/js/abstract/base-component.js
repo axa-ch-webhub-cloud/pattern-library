@@ -401,7 +401,7 @@ export default class BaseComponent extends HTMLElement {
    * Monkey patch `childNodes` API to re-rendering.
    */
   get childNodes() {
-    if (this._morphing) {
+    if (this._morphing || !this._hasTemplate || !this._hasRendered) {
       return super.childNodes;
     }
 
