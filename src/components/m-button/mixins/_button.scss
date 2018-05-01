@@ -113,12 +113,6 @@
   }
 }
 
-@mixin button--generic-icon() {
-  display: inline-flex;
-
-  padding-right: 0;
-}
-
 @mixin button--sm() {
   @include typo-legals--semibold();
 
@@ -135,16 +129,35 @@
   padding-bottom: $button-padding-top-bottom-lg;
 }
 
-@mixin button__icon($x-padding: $button-x-padding-default) {
-  $local-padding: 8px;
+@mixin button--generic-icon--sm($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding + $button-sm-height;
+}
+
+@mixin button--generic-icon($x-padding: $button-x-padding-default) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding + $button-md-height;
+}
+
+@mixin button--generic-icon--lg($x-padding: $button-x-padding-default) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding + $button-lg-height;
+}
+
+@mixin button__icon() {
+  $local-padding: 8px;
 
   @include size($button-md-height);
 
-  margin-left: $x-padding;
+  position: absolute;
 
-  margin-top: - $x-padding / 2;
-  margin-bottom: - $x-padding / 2;
+  top: 0;
+  right: 0;
+
+  margin-top: - $button-border-width;
+  margin-bottom: 0;
+
+  height: calc(100% + #{$button-border-width});
 
   padding: $local-padding;
 
@@ -158,10 +171,11 @@
 
   @include size($button-sm-height);
 
-  margin-top: -$button-padding-top-bottom-sm - $local-padding;
-  margin-bottom: -$button-padding-top-bottom-sm - $local-padding;
+  height: calc(100% + #{$button-border-width--sm});
 
   padding: $local-padding;
+
+  margin-top: - $button-border-width--sm;
 
   border-left: $button-border-width--sm solid currentColor;
 }
@@ -171,8 +185,7 @@
 
   @include size($button-lg-height);
 
-  margin-top: -$button-padding-top-bottom-sm - $local-padding;
-  margin-bottom: -$button-padding-top-bottom-sm - $local-padding;
+  height: calc(100% + #{$button-border-width});
 
   padding: $local-padding;
 }

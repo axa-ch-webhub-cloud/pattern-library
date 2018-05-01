@@ -110,6 +110,10 @@
   .m-button__icon {
     @include button__icon--sm();
   }
+
+  &.m-button--generic-icon {
+    @include button--generic-icon--sm();
+  }
 }
 
 .m-button--lg {
@@ -125,5 +129,9 @@
 
   .m-button__arrow {
     @include button__arrow--lg();
+  }
+
+  &.m-button--generic-icon {
+    @include button--generic-icon--lg();
   }
 }
