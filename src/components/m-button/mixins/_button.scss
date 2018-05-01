@@ -150,7 +150,7 @@
 
   box-sizing: border-box;
 
-  border-left: $button-border-width solid $color-prim-white;
+  border-left: $button-border-width solid currentColor;
 }
 
 @mixin button__icon--sm() {
@@ -163,7 +163,7 @@
 
   padding: $local-padding;
 
-  border-left: $button-border-width--sm solid $color-prim-white;
+  border-left: $button-border-width--sm solid currentColor;
 }
 
 @mixin button__icon--lg() {
