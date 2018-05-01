@@ -1,3 +1,5 @@
+import nanomorph from './component-morph';
+import { isSameNodeOnce, clearIsSameNode } from './is-same-node-once';
 import getAttribute from '../get-attribute';
 import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
@@ -169,7 +171,7 @@ export default class BaseComponent extends HTMLElement {
   /**
    * Default behaviour is to re-render on attribute addition, change or removal.
    */
-  attributeChangedCallback(name, newValue, oldValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     if (ENV !== PROD) {
       lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
     }
@@ -220,24 +222,24 @@ export default class BaseComponent extends HTMLElement {
    * @return {type}  description
    */
   render() { // eslint-disable-line
-    const { _hasRendered: initial } = this;
+    const initial = !this._hasRendered;
 
     if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
     }
 
-    this.willRenderCallback(!initial);
+    this.willRenderCallback(initial);
 
     if (this._hasTemplate) {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${!this._hasRendered}`);
+        lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
       }
 
       const { _template: template } = this;
 
       try {
         // At initial rendering -> collect the light DOM first
-        if (!this._hasRendered) {
+        if (initial) {
           const childrenFragment = document.createDocumentFragment();
           const lightDOMRefs = [];
 
@@ -250,9 +252,17 @@ export default class BaseComponent extends HTMLElement {
           this.childrenFragment = childrenFragment;
         } else { // Reuse the light DOM for subsequent rendering
           this._lightDOMRefs.forEach((ref) => {
+            // Important: Once the light DOM is live it shouldn't be moved out
+            // instead make sure to clone it for incremental updates
+            const refClone = ref.cloneNode(false);
+
+            // Another piece of code is managing that part of the DOM tree.
+            isSameNodeOnce(ref);
+            isSameNodeOnce(refClone);
+
             // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
             // so we can always reuse this
-            this.childrenFragment.appendChild(ref);
+            this.childrenFragment.appendChild(refClone);
           });
         }
 
@@ -278,13 +288,23 @@ export default class BaseComponent extends HTMLElement {
           renderFragment.appendChild(items);
         }
 
-        // rebuild the whole DOM subtree
-        // @todo: this will break/disconnect previous DOM references, associated events and stuff like that
-        // @todo: may need to be improved by DOM diffing, JSX, whatever
-        while (this.firstChild) {
-          this.removeChild(this.firstChild);
+        if (initial) {
+          super.appendChild(renderFragment);
+        } else {
+          const wcClone = this.cloneNode(false);
+
+          if (ENV !== PROD) {
+            lifecycleLogger(this.logLifecycle)(`+++ incremental update -> ${this.nodeName}#${this._id}\n`);
+          }
+
+          wcClone._isMorphing = true;
+          wcClone.appendChild(renderFragment);
+
+          this._isMorphing = true;
+          nanomorph(this, wcClone);
+          clearIsSameNode();
+          this._isMorphing = false;
         }
-        super.appendChild(renderFragment);
       } catch (err) {
         if (err.message !== THROWED_ERROR) {
           console.error( // eslint-disable-line
@@ -300,10 +320,10 @@ export default class BaseComponent extends HTMLElement {
     this._hasRendered = true;
 
     if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${!initial}`);
+      lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
     }
 
-    this.didRenderCallback(!initial);
+    this.didRenderCallback(initial);
   }
 
   /**
@@ -384,7 +404,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {Element} node
    */
   appendChild(node) {
-    if (!this._hasTemplate || !this._hasRendered) {
+    if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
       super.appendChild(node);
       return;
     }
@@ -392,6 +412,15 @@ export default class BaseComponent extends HTMLElement {
     this._lightDOMRefs.push(node);
 
     this.render();
+  }
+
+  /**
+   * Only morph children of current custom element, not any other custom element.
+   *
+   * @returns {boolean}
+   */
+  skipChildren() {
+    return !this._isMorphing;
   }
 
   // @TODO: atm no data can be shared by enabling context, though this could be necessary

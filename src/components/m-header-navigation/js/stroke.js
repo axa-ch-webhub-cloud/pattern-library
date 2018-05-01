@@ -227,7 +227,9 @@ class Stroke extends UiEvents {
     this._offMoving();
 
     if (this._stroke) {
-      this._stroke.parentNode.removeChild(this._stroke);
+      if (this._stroke.parentNode) {
+        this._stroke.parentNode.removeChild(this._stroke);
+      }
       delete this._stroke;
     }
 
