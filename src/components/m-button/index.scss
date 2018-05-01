@@ -8,6 +8,10 @@
   @include button();
   @include button--fix-a-tag();
   @include button--color();
+
+  &.m-button--generic-icon {
+    @include button--generic-icon();
+  }
 }
 
 .m-button__icon {
@@ -102,6 +106,10 @@
 
 .m-button--sm {
   @include button--sm();
+
+  .m-button__icon {
+    @include button__icon--sm();
+  }
 }
 
 .m-button--lg {

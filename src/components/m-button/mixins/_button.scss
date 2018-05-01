@@ -20,7 +20,7 @@
 
   position: relative;
 
-  padding: 10px $x-padding;
+  padding: $button-padding-top-bottom-md $x-padding;
   border-width: $button-border-width;
   border-style: solid;
 
@@ -113,11 +113,17 @@
   }
 }
 
+@mixin button--generic-icon() {
+  display: inline-flex;
+
+  padding-right: 0;
+}
+
 @mixin button--sm() {
   @include typo-legals--semibold();
 
-  padding-top: 5.5px;
-  padding-bottom: 5.5px;
+  padding-top: $button-padding-top-bottom-sm;
+  padding-bottom: $button-padding-top-bottom-sm;
 
   border-width: $button-border-width--sm;
 }
@@ -125,20 +131,50 @@
 @mixin button--lg() {
   @include typo-secondary-text--semibold();
 
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: $button-padding-top-bottom-lg;
+  padding-bottom: $button-padding-top-bottom-lg;
 }
 
-@mixin button__icon() {
-  @include icon($button__icon-width);
+@mixin button__icon($x-padding: $button-x-padding-default) {
+  $local-padding: 8px;
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
-  padding: 10px;
+  @include size($button-md-height);
 
-  border-left: 1px solid rgba($color-prim-white, 0.2);
+  margin-left: $x-padding;
+
+  margin-top: - $x-padding / 2;
+  margin-bottom: - $x-padding / 2;
+
+  padding: $local-padding;
+
+  box-sizing: border-box;
+
+  border-left: $button-border-width solid $color-prim-white;
+}
+
+@mixin button__icon--sm() {
+  $local-padding: 5px;
+
+  @include size($button-sm-height);
+
+  margin-top: -$button-padding-top-bottom-sm - $local-padding;
+  margin-bottom: -$button-padding-top-bottom-sm - $local-padding;
+
+  padding: $local-padding;
+
+  border-left: $button-border-width--sm solid $color-prim-white;
 }
 
 @mixin button__icon--lg() {
-  @include size($button__icon-width--lg);
+  $local-padding: 11px;
+
+  @include size($button-lg-height);
+
+  margin-top: -$button-padding-top-bottom-sm - $local-padding;
+  margin-bottom: -$button-padding-top-bottom-sm - $local-padding;
+
+  padding: $local-padding;
 }
 
 @mixin button__arrow() {
