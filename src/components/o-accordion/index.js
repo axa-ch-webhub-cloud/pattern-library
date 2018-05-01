@@ -1,10 +1,11 @@
 import wcdomready from '../../js/wcdomready';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import template from './_template';
+import styles from './index.scss';
 
 class AXAAccordion extends BaseComponentGlobal {
   constructor() {
-    super('', template);
+    super(styles, template);
 
     this.enableContext();
   }
@@ -15,7 +16,7 @@ class AXAAccordion extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-accordion js-accordion`;
+    this.className = `${this.initialClassName} o-accordion js-accordion`;
   }
 
   disconnectedCallback() {
