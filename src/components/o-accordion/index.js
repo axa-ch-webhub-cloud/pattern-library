@@ -16,7 +16,7 @@ class AXAAccordion extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName} m-accordion js-accordion`;
+    this.className = `${this.initialClassName} o-accordion js-accordion`;
   }
 
   disconnectedCallback() {

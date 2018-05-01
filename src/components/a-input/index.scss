@@ -2,9 +2,9 @@
 @import "../../styles/control/control-settings";
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/control/control-transition";
-@import "./settings/form-input";
+@import "./settings/input";
 
-.a-form-input {
+.a-input {
   display: block;
 
   width: 100%;
@@ -18,12 +18,12 @@
   }
 }
 
-.a-form-input__wrapper {
+.a-input__wrapper {
   display: flex;
   width: 100%;
 }
 
-.a-form-input__input {
+.a-input__input {
   @include control-transition();
   @include typo-tag();
 
@@ -31,7 +31,7 @@
 
   height: $control-size;
 
-  padding: $form-input-padding;
+  padding: $input-padding;
 
   align-items: center;
 
@@ -51,7 +51,7 @@
   &:hover,
   &:active,
   &:focus {
-    &:not([disabled]):not(:disabled):not(.a-form-input--error) {
+    &:not([disabled]):not(:disabled):not(.a-input--error) {
       border-color: $control-border-color--active;
     }
   }
@@ -62,19 +62,19 @@
   }
 }
 
-.a-form-input--error {
-  .a-form-input__input {
+.a-input--error {
+  .a-input__input {
     border-color: $control-border-color--error;
   }
 }
 
-.a-form-input--valid {
-  .a-form-input__valid-icon {
+.a-input--valid {
+  .a-input__valid-icon {
     display: inline-flex;
   }
 }
 
-.a-form-input--inline {
+.a-input--inline {
   display: inline-block;
 
   width: auto;
@@ -82,14 +82,14 @@
   vertical-align: middle;
 
   & + & {
-    margin-left: $form-input-inline-margin--mobile;
+    margin-left: $input-inline-margin--mobile;
 
     @include respond-up(md) {
-      margin-left: $form-input-inline-margin;
+      margin-left: $input-inline-margin;
     }
   }
 
-  .a-form-input__wrapper {
+  .a-input__wrapper {
     display: inline-block;
 
     width: auto;
@@ -98,10 +98,10 @@
   }
 }
 
-.a-form-input__valid-icon {
+.a-input__valid-icon {
   display: none;
 
-  width: $form-input-icon-size;
+  width: $input-icon-size;
 
   align-items: center;
   justify-content: center;
@@ -111,8 +111,8 @@
 
   &::before {
     display: block;
-    width: $form-input-icon-before-width;
-    height: $form-input-icon-before-height;
+    width: $input-icon-before-width;
+    height: $input-icon-before-height;
 
     content: "";
 
