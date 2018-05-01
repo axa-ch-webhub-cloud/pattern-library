@@ -5,6 +5,7 @@ import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
 import debounce from '../debounce';
 import camelize from '../camelize';
+import dasherize from '../dasherize';
 import maybe from '../maybe';
 import PropertyExistsException from './property-exists-exception';
 
@@ -62,6 +63,7 @@ export default class BaseComponent extends HTMLElement {
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
     this._props = {};
+    this._hasKeys = {};
     this.reRender = debounce(() => this.render(), 50);
 
     const { constructor: { observedAttributes } } = this;
@@ -80,14 +82,23 @@ export default class BaseComponent extends HTMLElement {
           throw new PropertyExistsException(key, this);
         }
 
+        this._hasKeys[key] = hasKey;
+
         // @todo: may we should allow deletion by setting configurable: true
         Object.defineProperty(this, key, {
           get() {
-            return this[`_${attr}`];
+            return this[`_${key}`];
           },
           set(value) {
-            this[`_${attr}`] = value;
+            const name = `_${key}`;
 
+            // only update the value if it has actually changed
+            // and only re-render if it has changed
+            if (!this.shouldUpdateCallback(this[name], value)) {
+              return;
+            }
+
+            this[name] = value;
             this._props[key] = value;
 
             if (hasKey) {
@@ -96,7 +107,7 @@ export default class BaseComponent extends HTMLElement {
 
             if (this._isConnected && this._hasRendered) {
               if (ENV !== PROD) {
-                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${attr}`);
+                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
               }
 
               this.reRender();
@@ -149,8 +160,15 @@ export default class BaseComponent extends HTMLElement {
 
           if (this.hasAttribute(attr)) {
             const value = getAttribute(this, attr);
+            const hasKey = this._hasKeys[key];
+            const name = `_${key}`;
 
-            this[key] = value;
+            this[name] = value;
+            this._props[key] = value;
+
+            if (hasKey) {
+              super[key] = value;
+            }
           }
         });
 
@@ -176,9 +194,88 @@ export default class BaseComponent extends HTMLElement {
       lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
     }
 
+    // only update the value if it has actually changed
+    // and only re-render if it has changed
+    if (!this.shouldUpdateCallback(newValue, oldValue)) {
+      return;
+    }
+
     const key = camelize(name);
 
     this[key] = toProp(newValue);
+  }
+
+  /**
+   * A fast and simpler way to update multiple props in one go.
+   * Especially useful for integrations and to prevent multiple re-renders.
+   *
+   * @param {{}} props - DOM properties to be updated.
+   */
+  batchProps(props) {
+    const { constructor: { observedAttributes } } = this;
+    const propsKeys = Object.keys(props);
+    const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
+    const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
+
+    if (shouldUpdate && this._isConnected && this._hasRendered) {
+      if (ENV !== PROD) {
+        lifecycleLogger(this.logLifecycle)(`\n---> batchProps for ${propsKeys.join(', ')}`);
+      }
+
+      this.render();
+    }
+  }
+
+  /**
+   * Props reducer for batch processing.
+   *
+   * @param {{}} props - The properties to be batch processed.
+   * @param {Boolean} shouldUpdate - Is re-render necessary?
+   * @param {String} key - the current property's key.
+   * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
+   */
+  _reduceProps = ({ props, shouldUpdate }, key) => {
+    const hasKey = this._hasKeys[key];
+
+    if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
+      throw new PropertyExistsException(key, this);
+    }
+
+    const name = `_${key}`;
+    const value = props[key];
+    const oldValue = this[name];
+
+    if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
+      return {
+        props,
+        shouldUpdate: false,
+      };
+    }
+
+    this[name] = value;
+    this._props[key] = value;
+
+    if (hasKey) {
+      super[key] = value;
+    }
+
+    return {
+      props,
+      shouldUpdate: true,
+    };
+  }
+
+  /**
+   * Check if a re-render is really necessary.
+   * Basic check does a shallow comparison.
+   *
+   * @param {*} newValue - the new value of an attribute.
+   * @param {*} oldValue - the existing value of an attribute.
+   * @returns {Boolean} - Returns `true` if attributes have changed, else `false`.
+   */
+  // eslint-disable-next-line class-methods-use-this
+  shouldUpdateCallback(newValue, oldValue) {
+    return newValue !== oldValue;
   }
 
   /**

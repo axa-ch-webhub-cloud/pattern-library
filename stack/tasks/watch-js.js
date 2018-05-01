@@ -9,7 +9,7 @@ const SRC_COMPONENTS = 'src/components/';
 let started = false;
 
 nodemon({
-  ext: 'js,scss',
+  ext: 'js,jsx,scss',
   watch: './src',
   script: './stack/server',
   args: ['DEV'],

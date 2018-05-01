@@ -14,7 +14,7 @@ export default function ({
   arrow,
   icon = '',
 }, childrenFragment) {
-  const buttonClasses = classnames('m-button', classes, {
+  const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
     'm-button--ghost': ghost,
