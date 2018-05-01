@@ -212,7 +212,7 @@ export default class BaseComponent extends HTMLElement {
    * @param {{}} props - DOM properties to be updated.
    */
   batchProps(props) {
-    const { constructor: { observedAttributes } } = this;
+    const { constructor: { observedAttributes = [] } } = this;
     const propsKeys = Object.keys(props);
     const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
     const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
