@@ -8,6 +8,7 @@ class DropDown extends UiEvents {
     containerClass: '.js-dropdown',
     toggleClass: 'js-dropdown__toggle',
     isOpenClass: 'is-dropdown-open',
+    isAnimatingClass: 'is-dropdown-animating',
   }
 
   constructor(wcNode, options) {
@@ -21,8 +22,7 @@ class DropDown extends UiEvents {
 
     this.options = options;
     this.wcNode = wcNode;
-
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+    this.isOpen = false;
   }
 
   onInteractive() {
@@ -41,6 +41,13 @@ class DropDown extends UiEvents {
     const { parentNode } = node;
     const { lastElementChild } = parentNode;
 
+    if (this.isOpen) {
+      return;
+    }
+    this.isOpen = true;
+
+    add(parentNode, this.options.isAnimatingClass);
+
     lastElementChild.style.overflow = 'scroll';
     const { scrollHeight } = lastElementChild;
     lastElementChild.style.overflow = '';
@@ -57,7 +64,14 @@ class DropDown extends UiEvents {
     const { lastElementChild } = parentNode;
     const { scrollHeight } = lastElementChild;
 
-    this.offInteractive();
+    if (!this.isOpen) {
+      return;
+    }
+    this.isOpen = false;
+
+    this.onInteractive();
+
+    add(parentNode, this.options.isAnimatingClass);
 
     requestAnimationFrame(() => {
       lastElementChild.style.height = `${scrollHeight}px`;
@@ -69,11 +83,15 @@ class DropDown extends UiEvents {
     });
   }
 
-  handleTransitionEnd(e) {
+  handleTransitionEnd = (e) => {
     if (e.propertyName === 'height') {
-      e.target.style.height = '';
+      if (this.isOpen) {
+        e.target.style.height = '';
+      }
 
       this.offInteractive();
+
+      remove(this.wcNode, this.options.isAnimatingClass);
     }
   }
 

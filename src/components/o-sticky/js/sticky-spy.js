@@ -28,10 +28,6 @@ class StickySpy {
     this.isDirectionFrozen = false;
     this.containerNodes = [];
 
-    this._change = this._change.bind(this);
-    this._freezeDirection = this._freezeDirection.bind(this);
-    this._thawDirection = this._thawDirection.bind(this);
-
     this._on();
   }
 
@@ -63,7 +59,7 @@ class StickySpy {
     }
   }
 
-  _change({ type } = {}) {
+  _change = ({ type } = {}) => {
     if (criticalEvents.indexOf(type) >= 0) {
       this.forceRepaint = true;
     }
@@ -105,12 +101,12 @@ class StickySpy {
     });
   }
 
-  _freezeDirection() {
+  _freezeDirection = () => {
     this.isDirectionFrozen = true;
     this.lastDirection = -1;
   }
 
-  _thawDirection() {
+  _thawDirection = () => {
     this.isDirectionFrozen = false;
   }
 

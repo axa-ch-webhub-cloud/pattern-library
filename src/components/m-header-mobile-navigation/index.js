@@ -1,32 +1,46 @@
 import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import HeaderMobileNavigation from './js/header-mobile-navigation';
-import getAttribute from '../../js/get-attribute';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {
+  static get observedAttributes() { return ['items', 'relative']; }
+
   constructor() {
     super(styles, template);
 
     this.selectContext('axa-header');
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    const relative = getAttribute(this, 'relative');
-
-    this.className = classnames(this.initialClassName, 'm-header-mobile-navigation', {
-      'm-header-mobile-navigation--relative': relative,
-    });
-
-    this.interaction = new HeaderMobileNavigation(this);
+  contextCallback(contextNode) {
+    if (this.interaction) {
+      this.interaction.contextNode = contextNode;
+    }
   }
 
-  contextCallback(contextNode) {
-    this.interaction.contextNode = contextNode;
+  willRenderCallback() {
+    const { gpu, relative } = this;
+
+    this.className = classnames(this.initialClassName, 'm-header-mobile-navigation', {
+      'm-header-mobile-navigation--gpu': gpu,
+      'm-header-mobile-navigation--relative': relative,
+    });
+  }
+
+  didRenderCallback() {
+    const { contextNode } = this;
+
+    if (this.interaction) {
+      this.interaction.destroy();
+    }
+
+    this.interaction = new HeaderMobileNavigation(this);
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
   }
 
   disconnectedCallback() {

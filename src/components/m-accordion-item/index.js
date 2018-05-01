@@ -1,10 +1,12 @@
 import wcdomready from '../../js/wcdomready';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import template from './_template';
 import styles from './index.scss';
 import AccordionItem from './js/accordion-item';
 
 class AXAAccordionItem extends BaseComponentGlobal {
+  static get observedAttributes() { return ['icon', 'header', 'header-secondary', 'header-color', 'multiple']; }
+
   constructor() {
     super(styles, template);
 

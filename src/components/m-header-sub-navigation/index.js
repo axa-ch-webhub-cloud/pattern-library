@@ -1,23 +1,22 @@
 import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXASubNavigation extends BaseComponentGlobal {
+  static get observedAttributes() { return ['flyout', 'index-title', 'index-url', 'items']; }
+
   constructor() {
     super(styles, template);
   }
 
-  render() {
-    super.render();
+  willRenderCallback() {
+    const { flyout } = this;
 
-    const flyout = this.hasAttribute('flyout');
-    const classes = classnames(this.initialClassName, 'm-header-sub-navigation js-header-sub-navigation', {
+    this.className = classnames(this.initialClassName, 'm-header-sub-navigation js-header-sub-navigation', {
       'm-header-sub-navigation--flyout': flyout,
     });
-
-    this.className = classes;
   }
 }
 

@@ -23,10 +23,6 @@ class HeaderMobile {
 
     this.opened = [];
 
-    this.handleCloseClick = this.handleCloseClick.bind(this);
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-
     this.init();
   }
 
@@ -88,14 +84,14 @@ class HeaderMobile {
     }
   }
 
-  open() {
+  open = () => {
     add(document.body, this.options.isBodyFrozen);
     add(this.wcNode, this.options.isMenuOpenClass);
 
     this.on();
   }
 
-  close() {
+  close = () => {
     this.off();
 
     if (this.unTransitionEndBackdrop) {
@@ -119,7 +115,7 @@ class HeaderMobile {
     remove(document.body, this.options.isBodyFrozen);
   }
 
-  handleCloseClick() {
+  handleCloseClick = () => {
     publish('header-mobile/close', null, this._contextNode);
   }
 

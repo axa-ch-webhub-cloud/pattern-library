@@ -20,7 +20,7 @@
 
   position: relative;
 
-  padding: 10px $x-padding;
+  padding: $button-padding-top-bottom-md $x-padding;
   border-width: $button-border-width;
   border-style: solid;
 
@@ -116,8 +116,8 @@
 @mixin button--sm() {
   @include typo-legals--semibold();
 
-  padding-top: 5.5px;
-  padding-bottom: 5.5px;
+  padding-top: $button-padding-top-bottom-sm;
+  padding-bottom: $button-padding-top-bottom-sm;
 
   border-width: $button-border-width--sm;
 }
@@ -125,20 +125,69 @@
 @mixin button--lg() {
   @include typo-secondary-text--semibold();
 
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: $button-padding-top-bottom-lg;
+  padding-bottom: $button-padding-top-bottom-lg;
+}
+
+@mixin button--generic-icon--sm($x-padding: $button-x-padding-default) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding + $button-sm-height;
+}
+
+@mixin button--generic-icon($x-padding: $button-x-padding-default) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding + $button-md-height;
+}
+
+@mixin button--generic-icon--lg($x-padding: $button-x-padding-default) {
+  $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
+  padding-right: $x-padding + $button-lg-height;
 }
 
 @mixin button__icon() {
-  @include icon($button__icon-width);
+  $local-padding: 8px;
 
-  padding: 10px;
+  @include size($button-md-height);
 
-  border-left: 1px solid rgba($color-prim-white, 0.2);
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  margin-top: - $button-border-width;
+  margin-bottom: 0;
+
+  height: calc(100% + #{$button-border-width});
+
+  padding: $local-padding;
+
+  box-sizing: border-box;
+
+  border-left: $button-border-width solid currentColor;
+}
+
+@mixin button__icon--sm() {
+  $local-padding: 5px;
+
+  @include size($button-sm-height);
+
+  height: calc(100% + #{$button-border-width--sm});
+
+  padding: $local-padding;
+
+  margin-top: - $button-border-width--sm;
+
+  border-left: $button-border-width--sm solid currentColor;
 }
 
 @mixin button__icon--lg() {
-  @include size($button__icon-width--lg);
+  $local-padding: 11px;
+
+  @include size($button-lg-height);
+
+  height: calc(100% + #{$button-border-width});
+
+  padding: $local-padding;
 }
 
 @mixin button__arrow() {
@@ -182,9 +231,11 @@
   animation-name: fadeOutRightInLeft;
 }
 
-@mixin button--motion() {
+@mixin button--gpu() {
   @include hardware-accelerate();
+}
 
+@mixin button--motion() {
   z-index: $button__motion-z-index;
 
   overflow: hidden;

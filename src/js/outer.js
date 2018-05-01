@@ -1,5 +1,5 @@
 import on from './on';
-import outerIOSShame from './outer-ios-SHAME';
+import outerIOSShame from './shame/outer-ios-SHAME';
 
 /**
  * With outside events you can bind to an event that will be triggered only when a specific “originating” event occurs outside the element in question.

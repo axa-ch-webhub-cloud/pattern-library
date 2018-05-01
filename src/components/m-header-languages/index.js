@@ -1,4 +1,4 @@
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -7,6 +7,8 @@ import DropDown from '../m-dropdown/js/drop-down';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderLanguages extends BaseComponentGlobal {
+  static get observedAttributes() { return ['items']; }
+
   constructor() {
     super(styles, template);
   }
@@ -15,6 +17,12 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} m-header-languages js-dropdown`;
+  }
+
+  didRenderCallback() {
+    if (this.dropDown) {
+      this.dropDown.destroy();
+    }
 
     this.dropDown = new DropDown(this, {
       containerClass: null,

@@ -3,6 +3,13 @@
   "rules": {
     "max-len": ["warn", 140, 2],
     "import/prefer-default-export": "off",
+    "indent": ["error", 2, {
+      "SwitchCase": 1,
+      "ignoredNodes": [
+        "TaggedTemplateExpression[tag.name=\"html\"]",
+        "TaggedTemplateExpression[tag.name=\"html\"] > TemplateLiteral ObjectExpression"
+      ]
+    }],
     "no-confusing-arrow": "off",
     "no-bitwise": "off",
     "no-param-reassign": ["error", { "props": false }],
@@ -21,7 +28,10 @@
     "XMLHttpRequest": true,
     "MutationObserver": true,
     "document": true,
-    "window": true
+    "window": true,
+    "ENV": true,
+    "PROD": true,
+    "DEV": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

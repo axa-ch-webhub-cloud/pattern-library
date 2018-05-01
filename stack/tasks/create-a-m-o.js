@@ -1,16 +1,13 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
 const outdent = require('outdent');
+const chalk = require('chalk');
 
 const CWD = process.cwd();
 
 process.stdin.setEncoding('utf8');
 
-// TODO, evaluate https://github.com/chalk/chalk
-
-// ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-  outdent`
+console.log(chalk.cyan(outdent`
 
     Hello Dear developer, thank you for contributing with us. 😊
 
@@ -19,15 +16,14 @@ console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
     You can choose between ATOM📗, MOLECULE📘 or ORGANISM📙.
 
     As a general guideline, an ATOM📗 is indivisible and is the smallest component.
-    It won't make sense to use it on its own, but is an essential builing block. An ATOM📗 should not have dependencies to other elements
+    It won't make sense to use it on its own, but is an essential building block. An ATOM📗 should not have dependencies to other elements
 
     An ORGANISM📙 is the finished and ready to use component. It must have at least one element as dependency.
 
-    A MOLECULE📘 is a not completly finished component and can be resused somewhere else. It must contain at least one ATOM📗.
+    A MOLECULE📘 is a not completely finished component and can be reused somewhere else. It must contain at least one ATOM📗.
 
     Now, please tell me what do you wan to create
-  `,
-);
+  `));
 
 let element = '';
 
@@ -42,18 +38,15 @@ const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.
 const camelCase = string => string.split(/[-_]+/).map(capitalizeFirstLetter).join('');
 
 const displayNameText = () => {
-  console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
-    outdent`
+  console.log(chalk.white(outdent`
 
     Please enter the name of the new ${mapElement[element]} ( something that make sense 😉 ).
 
-    `,
-  );
+    `));
 };
 
 const displayElementSelector = () => {
-  console.log('\x1b[40m', '\x1b[37m', // eslint-disable-line
-    outdent`
+  console.log(chalk.white(outdent`
 
       Press:
 
@@ -61,8 +54,7 @@ const displayElementSelector = () => {
       2 for MOLECULE 📘
       3 for ORGANISM 📙
 
-    `,
-  );
+    `));
 };
 
 const writeIndexJs = (path, _name) => {
@@ -70,7 +62,7 @@ const writeIndexJs = (path, _name) => {
 
   fs.writeFileSync(
     `${path}/index.js`,
-    outdent`import { BaseComponentGlobal } from '../_abstract/component-types';
+    outdent`import BaseComponentGlobal from '../../js/abstract/base-component-global';
       // import the styles used for this component
       import styles from './index.scss';
       // import the template used for this component
@@ -78,6 +70,10 @@ const writeIndexJs = (path, _name) => {
       import wcdomready from '../../js/wcdomready';
 
       class ${className} extends BaseComponentGlobal {
+        // Specify observed attributes so that attributeChangedCallback will work,
+        // this is essential for external re-rendering trigger.
+        static get observedAttributes() { return []; }
+
         constructor() {
           super(styles, template);
 
@@ -98,6 +94,20 @@ const writeIndexJs = (path, _name) => {
           // Your DOM interaction here, but keep it decoupled.
           // If you don't have any, just remove this function
         }
+        
+        // You have some special logic? Or need to update the web-components DOM node itself?
+        // Then don't forget to make sure that incremental rendering works properly.
+        // attributeChangedCallback(name, oldValue, newValue) {
+        //   super.attributeChangedCallback(name, oldValue, newValue);
+        // }
+        
+        // You may want to update stuff before rendering.
+        // willRenderCallback(initial) {
+        // }
+        
+        // You may want to update staff after rendering
+        // didRenderCallback(initial) {
+        // }
 
         disconnectedCallback() {
           super.disconnectedCallback();
@@ -193,30 +203,28 @@ const createBoilerplate = (_name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
 
   if (fs.existsSync(`${path}/index.js`)) {
-    console.log('\x1b[41m', '\x1b[36m', '\nComponent already exists. Please start over again 😥 \n'); //eslint-disable-line
+    console.log(chalk.cyan('\nComponent already exists. Please start over again 😥 \n')); //eslint-disable-line
     element = '';
     displayElementSelector();
   } else {
-    console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-      outdent`
+    console.log(chalk.cyan(outdent`
 
-      I'm creating a ${mapElement[element]} called ${_name} for you...
+      I'm creating ${element === 'a' ? 'an' : 'a'} ${mapElement[element]} called ${_name} for you...
 
-      `,
-    );
+      `));
+
     mkdirp(`${path}`, () => {
       writeIndexJs(path, _name);
       writeIndexScss(path, _name);
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
-      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-        outdent`
+      console.log(chalk.cyan(outdent`
 
           Created under ${path}
           happy Coding 😊
 
-        `,
-      );
+        `));
+
       process.exit(0);
     });
   }

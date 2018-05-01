@@ -2,6 +2,7 @@ import { add, remove } from '../../../js/class-list';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import forceRepaint from '../../../js/force-repaint';
 import UiEvents from '../../../js/ui-events';
+import isEdge from '../../../js/shame/is-edge-SHAME';
 
 class HeaderNavigation extends UiEvents {
   static DEFAULTS = {
@@ -40,18 +41,20 @@ class HeaderNavigation extends UiEvents {
 
     add(parentNode, this.options.openClass);
 
-    // @todo: can we fix this Edge problem better?
-    requestAnimationFrame(() => {
-      // Edge 16 won't repaint -> force it
-      // see https://github.com/axa-ch/patterns-library/issues/304
-      forceRepaint(parentNode.querySelector(this.options.subNavi));
-
+    if (isEdge) {
+      // @todo: can we fix this Edge problem better?
       requestAnimationFrame(() => {
-        // Edge 16 won't repaint -> force it again!
-        // see https://github.com/axa-ch/patterns-library/issues/367
+        // Edge 16 won't repaint -> force it
+        // see https://github.com/axa-ch/patterns-library/issues/304
         forceRepaint(parentNode.querySelector(this.options.subNavi));
+
+        requestAnimationFrame(() => {
+          // Edge 16 won't repaint -> force it again!
+          // see https://github.com/axa-ch/patterns-library/issues/367
+          forceRepaint(parentNode.querySelector(this.options.subNavi));
+        });
       });
-    });
+    }
   }
 
   move(node, lastNode) {
@@ -60,9 +63,11 @@ class HeaderNavigation extends UiEvents {
     remove(lastNode.parentNode, this.options.openClass);
     add(parentNode, this.options.openClass);
 
-    // Edge 16 won't repaint -> force it
-    // see https://github.com/axa-ch/patterns-library/issues/304
-    forceRepaint(parentNode.querySelector(this.options.subNavi));
+    if (isEdge) {
+      // Edge 16 won't repaint -> force it
+      // see https://github.com/axa-ch/patterns-library/issues/304
+      forceRepaint(parentNode.querySelector(this.options.subNavi));
+    }
   }
 
   leave(node) {

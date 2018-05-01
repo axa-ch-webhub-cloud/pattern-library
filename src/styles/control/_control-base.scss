@@ -1,0 +1,89 @@
+@import "../settings/colors";
+@import "../settings/base";
+@import "../functions/string-replace";
+@import "../mixins/visual-hidden";
+@import "./control-settings";
+@import "./control-icon";
+@import "./control-transition";
+
+@mixin control-base($border-radius: 0) {
+  $parent: &;
+
+  &:hover:not(#{$parent}--disabled):not(#{$parent}--error) {
+    color: $color-axa-blue;
+
+    #{$parent}__icon {
+      border-color: $color-axa-blue;
+
+      &::after {
+        border-color: $color-axa-blue;
+      }
+    }
+  }
+
+  #{$parent}__wrapper {
+    position: relative;
+
+    display: inline-flex;
+
+    min-height: $control-min-height;
+
+    align-items: center;
+
+    line-height: $line-height-base;
+  }
+
+  #{$parent}__input {
+    @include visual-hidden();
+
+    &:focus + #{$parent}__icon {
+      border-color: $color-axa-blue;
+
+      &::after {
+        border-color: $color-axa-blue;
+      }
+    }
+
+    &:checked + #{$parent}__icon,
+    &[checked] + #{$parent}__icon {
+      &::after {
+        border-color: $color-axa-blue;
+        background-color: $color-axa-blue;
+      }
+    }
+
+    &:disabled + #{$parent}__icon,
+    &[disabled] + #{$parent}__icon {
+      cursor: default;
+      border-color: $color-prim-gray-dusty;
+
+      &::after {
+        border-color: transparent;
+      }
+    }
+  }
+
+  #{$parent}__icon {
+    @include control-transition();
+    @include control-icon($control-icon-size);
+    border-radius: $border-radius;
+
+    &::after {
+      border-radius: $border-radius;
+    }
+  }
+}
+
+@mixin control-error() {
+  $parent: &;
+  $control: string-replace(#{$parent}, '--error', '');
+  color: $color-state-red-shy-tomato;
+
+  #{$control}__icon {
+    border-color: $color-state-red-shy-tomato;
+  }
+}
+
+@mixin control-disabled() {
+  color: $color-prim-gray-dusty;
+}

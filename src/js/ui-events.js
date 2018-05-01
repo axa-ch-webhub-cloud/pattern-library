@@ -48,10 +48,6 @@ class UiEvents {
    * @param {UiEvents.DEFAULTS} options - Options ovvering the defaults.
    */
   constructor(wcNode, options = {}) {
-    this._handleClick = this._handleClick.bind(this);
-    this._handleClose = this._handleClose.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-
     this._init(wcNode, options);
   }
 
@@ -126,7 +122,7 @@ class UiEvents {
     delete this._lastToggleNode;
   }
 
-  _handleClick(e, toggleNode) {
+  _handleClick = (e, toggleNode) => {
     if (this.shouldPreventDefault(toggleNode || e.currentTarget)) {
       e.preventDefault();
     }
@@ -150,7 +146,7 @@ class UiEvents {
     }
   }
 
-  _handleClose(e, closeNode) {
+  _handleClose = (e, closeNode) => {
     if (this.shouldPreventDefault(closeNode || e.currentTarget)) {
       e.preventDefault();
     }
@@ -158,7 +154,7 @@ class UiEvents {
     this._close();
   }
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     const isEscape = e.key === EVENTS.ESCAPE || e.key === EVENTS.ESC || e.keyCode === 27;
 
     if (isEscape) {
@@ -198,10 +194,10 @@ class UiEvents {
    * Optionally overwrite this public method, it get's triggered as soon as your component moves from one **interactive** view to another.
    *
    * @param {Element} toggleNode - The DOM node upon which an event occurred.
+   * @param {Element} lastToggleNode - The last DOM node upon which an event occurred.
    */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
-  move(toggleNode, lastToggleNode) {
-  }
+  move(toggleNode, lastToggleNode) {}
 
   /**
    * Overwrite this public method, it get's trigger as soon as your component get's **non-interactive**.

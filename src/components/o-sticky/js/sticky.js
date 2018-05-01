@@ -21,8 +21,6 @@ class Sticky {
     this.state = states.IS_IN_FLOW;
     this.lastDirection = 0;
 
-    this._update = this._update.bind(this);
-
     this.placeholder = wcNode.querySelector(Sticky.DEFAULTS.placeholderClass);
     this.box = wcNode.querySelector(Sticky.DEFAULTS.boxClass);
 
@@ -52,7 +50,7 @@ class Sticky {
     }
   }
 
-  _update({ detail }) {
+  _update = ({ detail }) => {
     const { containerBottom, direction, forceRepaint } = detail;
     const { wcNode, state, lastDirection } = this;
     const hasDirectionChanged = direction !== lastDirection;

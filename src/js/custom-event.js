@@ -7,7 +7,7 @@
 
 const CustomEvent = (function () {
   try {
-    const ce = new window.CustomEvent('test');
+    const ce = new window.CustomEvent('test', { cancelable: true });
     ce.preventDefault();
     if (ce.defaultPrevented !== true) {
       // IE has problems with .preventDefault() on custom events

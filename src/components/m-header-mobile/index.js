@@ -1,4 +1,4 @@
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -7,6 +7,8 @@ import wcdomready from '../../js/wcdomready';
 import HeaderMobile from './js/header-mobile';
 
 class AXAHeaderMobile extends BaseComponentGlobal {
+  static get observedAttributes() { return ['offcanvas']; }
+
   constructor() {
     super(styles, template);
 
@@ -20,19 +22,35 @@ class AXAHeaderMobile extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} m-header-mobile`;
-
-    this.interaction = new HeaderMobile(this);
   }
 
   contextCallback(contextNode) {
-    this.interaction.contextNode = contextNode;
+    if (this.interaction) {
+      this.interaction.contextNode = contextNode;
+    }
+  }
+
+  didRenderCallback() {
+    if (this.interaction) {
+      this.interaction.destroy();
+    }
+
+    this.interaction = new HeaderMobile(this);
+
+    const { contextNode } = this;
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    this.interaction.destroy();
-    delete this.interaction;
+    if (this.interaction) {
+      this.interaction.destroy();
+      delete this.interaction;
+    }
   }
 }
 

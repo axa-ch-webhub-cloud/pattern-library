@@ -15,7 +15,7 @@ function fire(eventTarget, eventName, eventObject, eventInit = {}) {
   });
 
   // Dispatch the event.
-  eventTarget.dispatchEvent(event);
+  return eventTarget.dispatchEvent(event);
 }
 
 export default fire;

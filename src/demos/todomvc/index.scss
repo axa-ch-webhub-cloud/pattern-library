@@ -1,0 +1,188 @@
+@import "../../styles/settings/colors";
+@import "../../components/m-footer-legals/settings/footer-legals";
+@import "../../styles/mixins/respond";
+@import "../../styles/mixins/size";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/grid/grid-mixins";
+@import "../../styles/typo/typo-mixins";
+@import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
+
+.o-todo {
+  @include vr-pad-items();
+
+  display: block;
+
+  > * {
+    @include vr-margin-item();
+
+    display: block;
+  }
+}
+
+%a-todo__input {
+  @include typo-text-longer();
+
+  display: block;
+  width: 100%;
+  padding: 5px 15px;
+  border: 2px solid $color-prim-gray-wild-sand;
+  background: $color-prim-white;
+
+  transition: color 0.2s ease, border-color 0.2s ease;
+
+  &::placeholder {
+    color: $color-prim-gray-dusty;
+    opacity: 1;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-prim-blue-deep-sapphire;
+    color: $color-prim-blue-deep-sapphire;
+  }
+
+  @include respond-up(md) {
+    padding: 10px 20px;
+  }
+}
+
+.m-todo-header__title {
+  @include typo-small-module-title--publico();
+
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+.m-todo-header__new {
+  @extend %a-todo__input;
+
+  margin-left: 20px;
+
+  flex-grow: 1;
+}
+
+.m-todo__list {
+  $vr-paddings:
+    (
+      // Extra small screen / phone
+      xs: $vr-base * 1, // 10px
+      // Small screen / phone
+      // sm: 40px,
+      // Medium screen / tablet
+      md: $vr-base * 2, // 20px
+    );
+
+  @include unstyle-list();
+  @include make-container();
+  @include make-container-max-widths();
+  @include vr-pad-items($vr-paddings, $vr-paddings);
+
+  display: block;
+
+  > * {
+    @include vr-margin-item($vr-paddings);
+  }
+}
+
+.m-todo__item {
+  @include typo-text-longer();
+
+  display: block;
+}
+
+.m-todo__wrap {
+  @include make-row(null);
+
+  position: relative;
+
+  align-items: center;
+}
+
+.m-todo__toggle {
+  @include size(40px);
+
+  margin-right: 20px;
+
+  cursor: pointer;
+}
+
+.m-todo__label {
+  margin: 0 20px 0 0;
+
+  flex: 1;
+
+  cursor: pointer;
+  white-space: pre-line;
+  word-break: break-all;
+
+  &.is-todo-completed {
+    text-decoration: line-through;
+  }
+}
+
+.m-todo__edit {
+  @extend %a-todo__input;
+
+  $left: 45px;
+  $zIndex: 10;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: $left;
+  z-index: $zIndex;
+
+  width: calc(100% - #{$left});
+  padding-top: auto;
+  padding-bottom: auto;
+
+  @include respond-up(md) {
+    $left: 40px;
+
+    left: $left;
+
+    width: calc(100% - #{$left});
+  }
+}
+
+.m-todo__destroy-icon {
+  @include size(20px);
+}
+
+.m-todo-footer__help,
+.m-todo-footer__count {
+  position: relative;
+
+  display: inline-block;
+  padding: $footer-legals__link-padding-y $footer-legals__link-padding-x;
+  margin: -$footer-legals__link-padding-y 0;
+
+  color: $footer-legals__link-color;
+}
+
+.m-todo-footer__count {
+  // delimiter
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    display: block;
+    width: $footer-delimiter-width;
+    height: $footer-delimiter-height;
+    margin-top: ($footer-delimiter-height / -2);
+
+    content: '';
+    background: $footer-delimiter-bg;
+  }
+}
+
+.m-todo-footer__count--completed {
+  margin-right: 20px;
+}
