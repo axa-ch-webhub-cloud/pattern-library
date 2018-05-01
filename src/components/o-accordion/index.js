@@ -1,11 +1,10 @@
 import wcdomready from '../../js/wcdomready';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import template from './_template';
-import styles from './index.scss';
 
 class AXAAccordion extends BaseComponentGlobal {
   constructor() {
-    super(styles, template);
+    super('', template);
 
     this.enableContext();
   }

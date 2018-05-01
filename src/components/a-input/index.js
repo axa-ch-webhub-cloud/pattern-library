@@ -6,7 +6,7 @@ import wcdomready from '../../js/wcdomready';
 import styles from './index.scss';
 import template from './_template';
 
-class AXAFormInput extends BaseComponentGlobal {
+class AXAInput extends BaseComponentGlobal {
   static get observedAttributes() {
     return ['valid', 'inline', 'error', 'disabled', 'input-id', 'type', 'placeholder', 'value', 'name'];
   }
@@ -28,7 +28,7 @@ class AXAFormInput extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-input', AXAFormInput);
+  window.customElements.define('axa-input', AXAInput);
 });
 
-export default AXAFormInput;
+export default AXAInput;
