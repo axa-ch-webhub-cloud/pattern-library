@@ -53,8 +53,6 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     constructor(props) {
       super(props);
 
-      this.handleRef = this.handleRef.bind(this);
-
       this._eventCache = {};
     }
 
@@ -99,7 +97,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       delete this.wcNode;
     }
 
-    handleRef(wcNode) {
+    handleRef = (wcNode) => {
       this.wcNode = wcNode;
     }
 
