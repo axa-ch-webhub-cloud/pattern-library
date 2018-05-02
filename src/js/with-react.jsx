@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import functionName from './function-name';
 import dasherize from './dasherize';
 import partition from './array-partition';
@@ -19,7 +18,6 @@ const isEventFilter = (key) => {
 /**
  * Provides a function which let's you wrap any WebComponent with React.
  * - it supports first-class props for web components
- * - it updates children
  * - it handles custom events
  *
  * @link https://github.com/webcomponents/react-integration - inspired by react-integration
