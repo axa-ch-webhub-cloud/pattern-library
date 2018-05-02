@@ -53,16 +53,19 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     constructor(props) {
       super(props);
 
-      this.handleRef = this.handleRef.bind(this);
-
       this._eventCache = {};
     }
 
     componentDidMount() {
-      this.componentWillReceiveProps(this.props);
+      this.updateWebComponentProps(this.props);
     }
 
-    componentWillReceiveProps(props) {
+    componentDidUpdate() {
+      this.updateWebComponentProps(this.props);
+    }
+
+    // eslint-disable-next-line react/sort-comp
+    updateWebComponentProps(props) {
       const { wcNode, _eventCache: eventCache } = this;
       const propsKeys = Object.keys(props);
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
@@ -99,13 +102,13 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       delete this.wcNode;
     }
 
-    handleRef(wcNode) {
+    handleRef = (wcNode) => {
       this.wcNode = wcNode;
     }
 
     render() {
-      const { props } = this;
-      const { children } = props;
+      // eslint-disable-next-line react/prop-types
+      const { props: { children } } = this;
 
       return (
         <WCTagName ref={this.handleRef}>{children}</WCTagName>
