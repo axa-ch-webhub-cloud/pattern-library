@@ -60,7 +60,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     }
 
     componentDidMount() {
-      this.updateWebComponent(this.props);
+      this.updateWebComponentProps(this.props);
     }
 
     componentDidUpdate() {
@@ -69,13 +69,13 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       const slotClone = slot.cloneNode(false);
 
       ReactDOM.render(children, slotClone, () => {
-        this.updateWebComponent(props);
+        this.updateWebComponentProps(props);
         wcNode.updateLightDOM(slotClone.childNodes);
       });
     }
 
     // eslint-disable-next-line react/sort-comp
-    updateWebComponent(props) {
+    updateWebComponentProps(props) {
       const { wcNode, _eventCache: eventCache } = this;
       const propsKeys = Object.keys(props);
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
