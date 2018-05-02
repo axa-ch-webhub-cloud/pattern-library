@@ -7,6 +7,10 @@ let sameNodeCache = [];
  * @param node
  */
 export function isSameNodeOnce(node) {
+  // @todo: react updates break if we do this!
+  return;
+
+  /* eslint-disable no-unreachable */
   node.isSameNode = isSameNodeStopMorph;
 
   sameNodeCache.push(node);
