@@ -30,6 +30,13 @@ class MyEventDemoReact extends React.Component {
         <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
       </axa-button>,
       <AXAButtonReact onAxaClick={this.handleClick} key={1}>{this.state.isToggleOn ? 'ON' : 'OFF'}</AXAButtonReact>,
+      <AXAButtonReact onAxaClick={this.handleClick} key={2}>
+        <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
+        <p>
+          <em>foo</em>
+          <strong>bar</strong>
+        </p>
+      </AXAButtonReact>,
     ]);
   }
 }
