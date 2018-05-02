@@ -68,6 +68,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       const { children } = props;
       const slotClone = slot.cloneNode(false);
 
+      // @todo: this rebuilds the children's DOM tree every time, NO DIFFING
       ReactDOM.render(children, slotClone, () => {
         this.updateWebComponentProps(props);
         wcNode.updateLightDOM(slotClone.childNodes);
