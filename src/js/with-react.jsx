@@ -56,7 +56,6 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       super(props);
 
       this._eventCache = {};
-      this.slot = document.createElement('div');
     }
 
     componentDidMount() {
@@ -64,15 +63,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     }
 
     componentDidUpdate() {
-      const { props, slot, wcNode } = this;
-      const { children } = props;
-      const slotClone = slot.cloneNode(false);
-
-      // @todo: this rebuilds the children's DOM tree every time, NO DIFFING
-      ReactDOM.render(children, slotClone, () => {
-        this.updateWebComponentProps(props);
-        wcNode.updateLightDOM(slotClone.childNodes);
-      });
+      this.updateWebComponentProps(this.props);
     }
 
     // eslint-disable-next-line react/sort-comp
