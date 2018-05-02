@@ -87,6 +87,189 @@ This script will:
     - `index.js` - define your custom element here, by extending our provided JS classes.
     - `index.scss` - here goes your CSS.
 
+## Custom Elements
+
+We stick to the [Custom Elements V1 spec](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements).
+
+There are a few key principles you have to know:
+- Custom Elements are **asynchronous**, which means
+   - they only render if their definition (JS) is ready
+   - a child could render before it's parent
+   - this leads to [**FOUC** (flash of unstyled content)](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
+   - in short - order of rendering is **non-deterministic**
+- HTML attributes (always `'string'`) VS DOM properties ([first class props](#first-class-props))
+- [Key Terms](#key-terms)
+- [Lifecycle phases](#lifecycle-phases)
+
+### Key Terms
+
+The following key terms are crucial for efficient web component development!
+
+#### Light DOM
+
+The light DOM are the provided children from the users of your component (light meaning easy to digest).
+
+```html
+ <axa-example>
+  <div>This is some light DOM for axa-example</div>
+ </axa-example>
+```
+
+#### Local DOM
+
+The local DOM is the DOM tree rendered by the component itself (in our case provided by `_template.js`).
+
+```js
+export default function(props, childrenFragment) {
+  return nanohtml`<article>
+    ${childrenFragment} <!-- light DOM injection point -->
+  </article>`;
+}
+```
+
+#### Flattened DOM
+
+The flattened DOM is the final product where the user's light DOM is injected into the Components local DOM.
+
+```html
+<axa-example>
+  <article>
+    <div>This is some light DOM for axa-example</div> <!-- light DOM injection point -->
+  </article>
+</axa-example>
+```
+
+#### First Class Props
+
+First class props means that a property can be of any type of:
+
+- `'string'`
+- `true` or `false`
+- `0` to `Infinty`
+- `{ foo: 'bar'}`
+- `[1, 2, 3]`
+- `null`
+- `undefined`
+
+### Lifecycle Phases
+
+A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) undergoes various states, from construction, to DOM manipulation, to destruction - it's [lifecycle](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks). It's important to know that only at certain phases DOM manipulation is possible.
+
+**Note:** We provide a few additional lifecycle methods to ease development.
+
+#### `constructor()`
+
+The constructor can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
+It always starts by calling `super()` so that the correct prototype chain is established.
+
+#### `connectedCallback()`
+
+Invoked when the custom element is first connected to the document's DOM.
+
+#### `contextCallback(contextNode)`
+
+In case your custom element needs to communicate with a child or parent you are likely in the need of contexts.
+
+#### `attributeChangedCallback(name, oldValue, newValue)`
+
+Invoked when one of the custom element's attributes is added, removed, or changed.
+
+**IMPORTANT:**
+- attributes are always of type `'string'` and have to be parsed by `JSON.parse()` to provide proper [first class props](#first-class-props)
+- a static `observedAttributes()` getter must be defined to make this callback work!
+
+```js
+static get observedAttributes() { return ['foo', 'bar']; }
+```
+
+#### Property `setter()`
+
+All observed attributes defined by static `observedAttributes()` getter will be automatically turned in camelcased getter/setter properties, like:
+
+```js
+class AXAExample extends BaseComponentGlobal {
+  static get observedAttributes() { return ['foo', 'example-message']; }
+}
+```
+
+```html
+<axa-example foo="bar" example-message="hello world"></axa-example>
+```
+
+```js
+const example = document.createElement('axa-example');
+
+example.foo = 'bar';
+example.exampleMessage = 'hello world';
+```
+
+**Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason!
+
+#### `batchProps(props)`
+
+A fast and simpler way to update multiple props in one go.
+Especially useful for integrations and to prevent multiple or delayed re-renders.
+
+#### `shouldUpdateCallback(newValue, oldValue)`
+
+`shouldUpdateCallback()` is invoked upon `attributeChangedCallback()` or Property `setter()` invocation to determine if rendering is necessary when new props are being received - it returns `true` if re-rendering is desireable, else `false`.
+
+**Important:** This does only a shallow comparison, if you need to deal with more complex data, like objects or arrays either stick to immutable data structures or override this method to implement your own test.
+
+#### `willRenderCallback(initial)`
+
+Invoked before the custom element's [flattened DOM](#flattened-dom) will be rendered.
+
+#### `didRenderCallback(initial)`
+
+Invoked after the custom element's [flattened DOM](#flattened-dom) has rendered.
+
+#### `disconnectedCallback()`
+
+Invoked when the custom element is disconnected from the document's DOM.
+
+#### Render Loop
+
+The render loop makes sure that upon each [`attributeChangedCallback()`](#attributechangedcallbackname-oldvalue-newvalue) invocation or any observed [property `setter()`](#property-setter) invocation that the flattened DOM is recomputed and that [`willRenderCallback()`](#willrendercallbackinitial) and [`didRenderCallback()`](#didrendercallbackinitial) lifecycle hooks are called respectively.
+
+## Integration
+
+The goal is that custom elements can be shared across frameworks and libraries like Angular, React, Vue, you name it. To ease this process we provide generic wrapper functions.
+
+### `withReact()`
+
+To turn any custom element into a working React Component, you just need to follow these steps:
+
+1. `import` React
+2. `import` withReact
+3. `import` any web components you need
+4. wrap all your needed web components
+   - and may pass optional options for type of component or event init options
+5. use them like regular React components in your app
+
+   **Note:** events work similar to React's standard events, but each web components could trigger custom events like `axa-click` - camelcased and `on`-prefixed in React such as `onAxaClick={yourEventHandler}`. Make sure to check them out at the web-components documentation itself!
+
+```js
+// import your dependencies - 1, 2, and 3
+import React from 'react';
+import withReact from '@axa-ch/patterns-library/src/js/with-react';
+import AXAButton from '@axa-ch/patterns-library/dist/components/m-button';
+
+// 4. wrap your needed web components
+// and optionally pass options
+const AXAButtonReact = withReact(AXAButton, {
+  pure: true,
+  // event init options are also supported
+  passive: false,
+});
+
+// 5. use them in your app like regular React components
+// note the custom event axa-click - camelcased and on-prefixed in React
+const MyApp = ({ color, onClick }) => (
+  <AXAButtonReact color={color} onAxaClick={onClick}>Hello World</AXAButtonReact>
+);
+```
+
 # How do we release a new version
 
 Please run `npm run release` and follow the steps in the wizard.

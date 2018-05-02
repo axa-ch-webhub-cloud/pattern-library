@@ -20,12 +20,6 @@ class HeaderMobileNavigation {
     this.isOpen = false;
     this.opened = [];
 
-    this.handleCategoryClick = this.handleCategoryClick.bind(this);
-    this.handleBackClick = this.handleBackClick.bind(this);
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-    this.fadeFinish = this.fadeFinish.bind(this);
-
     this.init();
   }
 
@@ -81,15 +75,15 @@ class HeaderMobileNavigation {
     }
   }
 
-  open() {
+  open = () => {
     this.isOpen = true;
   }
 
-  close() {
+  close = () => {
     this.isOpen = false;
   }
 
-  fadeFinish() {
+  fadeFinish = () => {
     if (this.isOpen) {
       return;
     }
@@ -105,7 +99,7 @@ class HeaderMobileNavigation {
     }
   }
 
-  handleCategoryClick(e, delegateTarget) {
+  handleCategoryClick = (e, delegateTarget) => {
     if (!this.options.preventDefault) {
       e.preventDefault();
     }
@@ -127,7 +121,7 @@ class HeaderMobileNavigation {
     }
   }
 
-  handleBackClick(e) {
+  handleBackClick = (e) => {
     if (!this.options.preventDefault) {
       e.preventDefault();
     }

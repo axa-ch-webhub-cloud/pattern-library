@@ -159,8 +159,8 @@
   }
 }
 
-@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: 'is-dropdown-open') {
-  // @include hardware-accelerate(); Chrome has an issue
+@mixin dropdown-icon($size: $dropdown__icon-size, $right: $dropdown__frame-x-padding, $color: $dropdown__icon-color, $is-open-class: $dropdown-is-open) {
+  //  Chrome has an issue
   @include icon($size);
 
   position: absolute;
@@ -177,9 +177,13 @@
   }
 }
 
-@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: 'is-dropdown-open') {
-  // @include hardware-accelerate(); chrome has an issue
+@mixin dropdown-icon--gpu($is-animating-class: $dropdown-is-animating) {
+  @at-root .#{$is-animating-class}#{&} {
+    @include hardware-accelerate();
+  }
+}
 
+@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: $dropdown-is-open) {
   position: absolute;
   top: 100%;
   z-index: $zindex;
@@ -192,6 +196,12 @@
 
   .#{$is-open-class} > & {
     height: auto;
+  }
+}
+
+@mixin dropdown-content--gpu($is-animating-class: $dropdown-is-animating) {
+  @at-root .#{$is-animating-class}#{&} {
+    @include hardware-accelerate();
   }
 }
 

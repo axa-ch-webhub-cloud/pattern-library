@@ -1,251 +1,298 @@
 const outdent = require('outdent');
 const { exec } = require('child_process');
-const developTrunk = 'develop';
-const masterTrunk = 'master';
+const waterfall = require('async-waterfall');
+const chalk = require('chalk');
+
+const DEVELOP_TRUNK = 'develop';
+const MASTER_TRUNK = 'master';
+const STABLE = 'stable';
+const UNSTABLE = 'unstable';
+const HOTFIX = 'hotfix';
+const MAJOR = 'major';
+const MINOR = 'minor';
+const PATCH = 'patch';
+const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
-// ref: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-  outdent`
+console.log(chalk.cyan(outdent`
 
-  🚀  Hello Dear developer, welcome to the release assistent. 🚀
+  🚀  Hello Dear developer, welcome to the release assistant. 🚀
 
   !! Please make sure you have no changes to be commited !!
 
   I'm getting some information....
 
-  `,
-);
+  `));
 
-exec(
-  'npm whoami',
-  (error, whoami) => {
-    if (error !== null) {
-      console.log('\x1b[40m', '\x1b[31m', // eslint-disable-line
-        outdent`
+const handleError = (callback, errorCallback) => (error, ...args) => {
+  if (error) {
+    errorCallback(error, ...args);
+  }
 
-          Attention: You are currently not logged into npm. I will abort the action
+  callback(error, ...args);
+};
 
-          Please login:
+const handleSuccess = (callback, successCallback) => (error, ...args) => {
+  if (!error) {
+    successCallback(error, ...args);
+  }
 
-          npm login
+  callback(error, ...args);
+};
 
-        `,
-      );
-      process.exit(1);
-    }
-    exec(
-      'npm owner ls',
-      (_error, stdout) => {
-        if (stdout.trim().indexOf(whoami.trim()) === -1) {
-          console.log('\x1b[40m', '\x1b[31m', // eslint-disable-line
-            outdent`
+waterfall([
+  (callback) => {
+    exec('npm whoami', handleError(callback, () => {
+      console.log(chalk.red(outdent`
 
-              Attention: Your account ${whoami} has no publisher rights. Please contact the administrator
+        Attention: You are currently not logged into npm. I will abort the action
 
-            `,
-          );
-          process.exit(1);
-        }
-        console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-          outdent`
+        Please login:
 
-            You are currently logged in as:
-          `,
-        );
-        console.log('\x1b[40m', '\x1b[33m', whoami.trim());
-        console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-          outdent`
+        ${chalk.bold('npm login')}
 
-            Would you like to continue?
-          `,
-        );
-        console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
-          outdent`
-
-            y: yes
-            n: no
-
-          `,
-        );
-      },
-    );
+      `));
+    }));
   },
-);
+  (whoami, stderr, callback) => {
+    // eslint-disable-next-line consistent-return
+    exec('npm owner ls', (error, stdout) => {
+      const hasError = error || stdout.trim().indexOf(whoami.trim()) === -1;
 
+      if (hasError) {
+        console.log(chalk.red(outdent`
+
+            Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
+
+          `));
+
+        return callback(true);
+      }
+
+      console.log(chalk.cyan(outdent`
+
+          You are currently logged in as:
+        `));
+
+      console.log(chalk.yellow(whoami.trim()));
+
+      console.log(chalk.cyan(outdent`
+
+          Would you like to continue?
+        `));
+
+      console.log(chalk.yellow(outdent`
+
+          y: yes
+          n: no
+
+        `));
+
+      callback(null, whoami);
+    });
+  },
+], (error) => {
+  if (error) {
+    process.exit(1);
+  }
+});
 
 const determineStable = () => {
-  console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-    outdent`
+  console.log(chalk.cyan(outdent`
 
       Do you want to release a stable version or unstable (beta postfixed)?
-    `,
-  );
-  console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
-    outdent`
+    `));
+
+  console.log(chalk.yellow(outdent`
 
       stable: for stable
       unstable: for unstable
+      hotfix: for an urgent bug fix to be merged directly into master
 
-    `,
-  );
+    `));
 };
 
-const prerelease = (what) => {
-  console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-    outdent`
+const reallyHotfix = () => {
+  console.log(chalk.red(outdent`
 
-      Ok, we will release a ${what} version!
+      Have you merged all your urgent ${chalk.bold('hotfix/*')} branches into ${MASTER_TRUNK}?
+      
+      Note: this has to be done by finger tips:)
+    `));
+
+  console.log(chalk.yellow(outdent`
+
+    y: yes
+    n: no
+
+  `));
+};
+
+const prerelease = (type) => {
+  console.log(chalk.cyan(outdent`
+
+      Ok, we will release a ${type} version!
 
       Choose which version label you want to bump.
 
       Remember:
-      ${what === 'unstable' ? 'BETA (prerelease) this increases the beta version of a patch. Reccomended step!' : ''}
-      ${what === 'unstable' ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
-      ${what === 'unstable' ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
-      ${what === 'unstable' ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
+      ${type === UNSTABLE ? 'BETA (prerelease) this increases the beta version of a patch. Recommended step!' : ''}
+      ${type === UNSTABLE ? 'MAJOR BETA (premajor)' : 'MAJOR'} version when you make incompatible API changes,
+      ${type === UNSTABLE ? 'MINOR BETA (preminor)' : 'MINOR'} version when you add functionality in a backwards-compatible manner, and
+      ${type === UNSTABLE ? 'PATCH BETA (prepatch)' : 'PATCH'} version when you make backwards-compatible bug fixes.
 
       Select:
-    `,
-  );
-  console.log('\x1b[40m', '\x1b[33m', // eslint-disable-line
-    outdent`
+    `));
 
-      ${what === 'unstable' ? 'beta: for beta release of current branch. Reccomended' : ''}
+  console.log(chalk.yellow(outdent`
+
+      ${type === UNSTABLE ? 'beta: for beta release of current branch. Recommended' : ''}
       major: for incompatible API changes
       minor: new functionality in a backwards-compatible manner
       patch: for backwards-compatible bug fixes
 
-    `,
-  );
+    `));
 };
 
-const release = (version) => {
-  console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-    outdent`
+const release = (type, version) => {
+  if (type === HOTFIX) {
+    console.log(chalk.cyan(outdent`
+
+      Ok, we will release a ${type} version!
+
+      I will do now the following:
+
+      1. build the dist folder
+      2. bump the desired version
+      3. publish to npm
+      4. ${chalk.red.bold(`Don't forget to merges your hotfix branches into ${DEVELOP_TRUNK} too`)}
+
+      Please confirm that you want to proceed
+    `));
+  } else {
+    console.log(chalk.cyan(outdent`
 
       Ok, we will release a ${version} version!
 
       I will do now the following:
 
-      1. pull the ${developTrunk} branch
+      1. pull the ${DEVELOP_TRUNK} branch
       2. build the dist folder
       3. bump the desired version
       4. publish to npm
-      5. fast-foward merge ${developTrunk} into ${masterTrunk} and push
+      5. merge ${DEVELOP_TRUNK} into ${MASTER_TRUNK} and push
+      6. sync ${DEVELOP_TRUNK} with ${MASTER_TRUNK} again
 
       Please confirm that you want to proceed
-    `,
-  );
-  console.log('\x1b[40m', '\x1b[33m', '\nproceed: to proceed with the above described steps. This operation cannot be undone!');
+    `));
+  }
+
+  console.log(chalk.yellow('\nproceed: to proceed with the above described steps. This operation cannot be undone!'));
 };
 
 const generalCleanupHandling = (exitcode) => {
   exec(
-    `git checkout ${developTrunk} && git branch -D release-tmp`,
-    (_error4) => {
-      if (_error4) {
-        console.log('\x1b[40m', '\x1b[31m', _error4);
+    `git checkout ${DEVELOP_TRUNK} && git branch -D release-tmp`,
+    (error) => {
+      if (error) {
+        console.log(chalk.red(error));
         process.exit(1);
       }
+
       process.exit(exitcode);
     },
   );
 };
 
 const confirmedRelease = (type, version) => {
-  if (type === 'stable' && version === 'beta') {
+  if (type === STABLE && version === BETA) {
     return;
   }
 
-  exec(
-    `git checkout ${developTrunk} && git pull && git checkout -b release-tmp`,
-    (_error1) => {
-      if (_error1) {
-        console.log('\x1b[40m', '\x1b[31m', _error1);
-        generalCleanupHandling(1);
+  const isHotfix = type === HOTFIX;
+  const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+  let releaseSteps = [
+    (callback) => {
+      exec(`git checkout ${TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
+            Step 1 complete...
+          `));
+      }));
+    },
+    (stdout, stderr, callback) => {
+      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
+          Step 2 complete...
+        `));
+      }));
+    },
+    (stdout, stderr, callback) => {
+      let command = `npm run bump-${version}`;
+
+      if (type === UNSTABLE) {
+        command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
       }
-      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-        outdent`
-          Step 1 complete...
-        `,
-      );
+
+      exec(command, handleSuccess(callback, () => {
+        console.log(chalk.cyan(outdent`
+          Step 3 complete...
+        `));
+      }));
+    },
+    (stdout, stderr, callback) => {
+      exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
+    },
+    (stdout, stderr, callback) => {
       exec(
-        'npm run build && git add ./dist ./docs && git commit -m"rebuild"',
-        (_error2) => {
-          if (_error2) {
-            console.log('\x1b[40m', '\x1b[31m', _error2);
-            generalCleanupHandling(1);
-          }
-          console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-            outdent`
-              Step 2 complete...
-            `,
-          );
-          let command = `npm run bump-${version}`;
-          if (type === 'unstable') {
-            command = `npm run bump-${version === 'beta' ? '' : `${version}-`}beta`;
-          }
-          exec(
-            command,
-            (_error3) => {
-              if (_error3) {
-                console.log('\x1b[40m', '\x1b[31m', _error3);
-                generalCleanupHandling(1);
-              }
-              console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-                outdent`
-                  Step 3 complete...
-                `,
-              );
-              exec(
-                `npm publish ${version === 'beta' ? ' --tag beta' : ''}`,
-                (_error4) => {
-                  if (_error4) {
-                    console.log('\x1b[40m', '\x1b[31m', _error4);
-                    generalCleanupHandling(1);
-                  }
-                  exec(
-                    `git checkout ${developTrunk} && git merge --ff-only release-tmp && git push && git push --tags`,
-                    (_error5) => {
-                      if (_error5) {
-                        console.log('\x1b[40m', '\x1b[31m', _error5);
-                        generalCleanupHandling(1);
-                      }
-                      console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-                        outdent`
-                          Step 4 complete...
-                        `,
-                      );
-
-                      exec(
-                        `git checkout ${masterTrunk} && git merge --ff-only ${developTrunk} && git push && git push --tags`,
-                        (_error6) => {
-                          if (_error6) {
-                            console.log('\x1b[40m', '\x1b[31m', _error6);
-                            generalCleanupHandling(1);
-                          }
-                          console.log('\x1b[40m', '\x1b[36m', // eslint-disable-line
-                            outdent`
-
-                          Step 5 complete! Publishing done successfully. Have fun!
-
-                        `,
-                          );
-                          generalCleanupHandling(0);
-                        },
-                      );
-                    },
-                  );
-                },
-              );
-            },
-          );
-        },
+        `git checkout ${TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
+        handleSuccess(callback, () => {
+          console.log(chalk.cyan(outdent`
+            Step 4 complete...
+          `));
+        }),
       );
     },
-  );
+  ];
+
+  if (!isHotfix) {
+    releaseSteps = [
+      ...releaseSteps,
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${MASTER_TRUNK} && git merge --no-ff ${DEVELOP_TRUNK} && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
+
+            Step 5 complete...
+          `));
+          }),
+        );
+      },
+      (stdout, stderr, callback) => {
+        exec(
+          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only ${MASTER_TRUNK} && git push && git push --tags`,
+          handleSuccess(callback, () => {
+            console.log(chalk.cyan(outdent`
+
+            Step 6 complete! Publishing done successfully. Have fun!
+
+          `));
+          }),
+        );
+      },
+    ];
+  }
+
+  waterfall(releaseSteps, (error) => {
+    if (error) {
+      console.log(chalk.red(error));
+
+      generalCleanupHandling(1);
+    } else {
+      generalCleanupHandling(0);
+    }
+  });
 };
 
 let step = 0;
@@ -257,65 +304,79 @@ process.stdin.on('readable', () => {
   if (chunk === null) {
     return;
   }
+
   switch (chunk.trim()) {
     case 'y':
       if (step > 0) {
         return;
       }
-      console.log('\x1b[40m', '\x1b[36m', '\nOk, let\'s do it 😎 👍');
-      determineStable();
+      console.log(chalk.cyan('\nOk, let\'s do it 😎 👍'));
+
+      if (releaseType === HOTFIX) {
+        prerelease(releaseType);
+      } else {
+        determineStable();
+      }
       step++; // eslint-disable-line no-plusplus
       break;
     case 'n':
-      console.log('closing..');
+      console.log('closing...');
       process.exit(0);
       break;
-    case 'stable':
+    case STABLE:
       if (step !== 1) {
         return;
       }
-      releaseType = 'stable';
+      releaseType = STABLE;
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'unstable':
+    case UNSTABLE:
       if (step !== 1) {
         return;
       }
-      releaseType = 'unstable';
+      releaseType = UNSTABLE;
       prerelease(releaseType);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'major':
-      if (step !== 2) {
+    case HOTFIX:
+      if (step !== 1) {
         return;
       }
-      releaseVersion = 'major';
-      release(releaseVersion);
+      releaseType = HOTFIX;
+      reallyHotfix();
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'beta':
+    case MAJOR:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'beta';
-      release(releaseVersion);
+      releaseVersion = MAJOR;
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'minor':
+    case MINOR:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'minor';
-      release(releaseVersion);
+      releaseVersion = MINOR;
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
-    case 'patch':
+    case PATCH:
       if (step !== 2) {
         return;
       }
-      releaseVersion = 'patch';
-      release(releaseVersion);
+      releaseVersion = PATCH;
+      release(releaseType, releaseVersion);
+      step++; // eslint-disable-line no-plusplus
+      break;
+    case BETA:
+      if (step !== 2) {
+        return;
+      }
+      releaseVersion = BETA;
+      release(releaseType, releaseVersion);
       step++; // eslint-disable-line no-plusplus
       break;
     case 'proceed':
@@ -326,7 +387,7 @@ process.stdin.on('readable', () => {
       step++; // eslint-disable-line no-plusplus
       break;
     default:
-      console.log('\x1b[40m', '\x1b[36m', 'Command not understood. Try again or press \'n\' to abort');
+      console.log(chalk.cyan('Command not understood. Try again or press \'n\' to abort'));
       break;
   }
 });

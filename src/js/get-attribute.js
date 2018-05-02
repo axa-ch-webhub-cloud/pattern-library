@@ -1,4 +1,4 @@
-const regexJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\r\n])*[\]}])\s*$/;
+import toProp from './to-prop';
 
 /**
  * Get an HTML attribute's value by it's name.
@@ -22,16 +22,7 @@ function getAttribute(node, name) {
     value = node.getAttribute(name);
   }
 
-  if (!value || name === value) {
-    value = true;
-  } else if (regexJson.test(value)) {
-    try {
-      value = JSON.parse(value);
-    } catch (error) {
-      // eslint-disable-next-line
-      console.error(`Attribute ${node} has an error:\n${error}\n`, value);
-    }
-  }
+  value = toProp(value, name);
 
   return value;
 }

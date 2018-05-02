@@ -1,0 +1,27 @@
+@import "../settings/colors";
+@import "./control-settings";
+@import "../mixins/size";
+
+@mixin control-icon($width, $height: $width) {
+  @include size($width, $height);
+
+  display: inline-flex;
+  margin-right: 20px;
+
+  justify-content: center;
+  align-items: center;
+
+  background: $color-bg--white;
+  border: 1px solid $color-prim-gray-dusty;
+
+  cursor: pointer;
+
+  &::after {
+    @include size($control-icon-inner-size, $control-icon-inner-size);
+
+    border: $control-border-width solid transparent;
+    content: "";
+  }
+}
+
+

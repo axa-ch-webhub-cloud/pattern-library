@@ -1,23 +1,22 @@
 import classnames from 'classnames';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
-import getAttribute from '../../js/get-attribute';
 
 class AXAHeaderMain extends BaseComponentGlobal {
+  static get observedAttributes() { return ['first-left']; }
+
   constructor() {
     super(styles, template);
 
     this.enableContext();
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    const firstLeft = getAttribute('first-left');
+  willRenderCallback() {
+    const { firstLeft } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-main', {
       'm-header-main--first-left': firstLeft,

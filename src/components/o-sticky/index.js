@@ -1,7 +1,6 @@
 import classnames from 'classnames';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
-import getAttribute from '../../js/get-attribute';
 import stylesStickyContainer from './scss/sticky-container.scss';
 import stylesSticky from './scss/sticky.scss';
 import templateSticky from './sticky.template';
@@ -9,6 +8,8 @@ import Sticky from './js/sticky';
 import StickyContainer from './js/sticky-container';
 
 class AXAStickyContainer extends BaseComponentGlobal {
+  static get observedAttributes() { return ['debug']; }
+
   constructor() {
     super(stylesStickyContainer);
 
@@ -18,7 +19,7 @@ class AXAStickyContainer extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    const debug = getAttribute(this, 'debug');
+    const { debug } = this;
 
     this.className = classnames(this.initialClassName, 'o-sticky-container js-sticky-container', {
       'o-sticky-container--debug': debug,
@@ -28,37 +29,55 @@ class AXAStickyContainer extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.stickyContainer.destroy();
-    delete this.stickyContainer;
+    if (this.stickyContainer) {
+      this.stickyContainer.destroy();
+      delete this.stickyContainer;
+    }
   }
 }
 
 class AXASticky extends BaseComponentGlobal {
+  static get observedAttributes() { return ['debug']; }
+
   constructor() {
     super(stylesSticky, templateSticky);
 
     this.selectContext('axa-sticky-container');
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    const debug = getAttribute(this, 'debug');
+  willRenderCallback() {
+    const { debug } = this;
 
     this.className = classnames(this.initialClassName, 'o-sticky js-sticky', {
       'o-sticky--debug': debug,
     });
+  }
+
+  didRenderCallback() {
+    if (this.sticky) {
+      this.sticky.destroy();
+    }
 
     this.sticky = new Sticky(this);
+
+    const { contextNode } = this;
+
+    if (contextNode) {
+      this.contextCallback(contextNode);
+    }
   }
 
   contextCallback(contextNode) {
-    this.sticky.contextNode = contextNode;
+    if (this.sticky) {
+      this.sticky.contextNode = contextNode;
+    }
   }
 
   disconnectedCallback() {
-    this.sticky.destroy();
-    delete this.sticky;
+    if (this.sticky) {
+      this.sticky.destroy();
+      delete this.sticky;
+    }
   }
 }
 

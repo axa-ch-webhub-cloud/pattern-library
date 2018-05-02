@@ -1,18 +1,31 @@
 import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
-import getAttribute from '../../js/get-attribute';
 
 class AXADropdown extends BaseComponentGlobal {
+  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title']; }
+
   constructor() {
     super(styles, template);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  willRenderCallback() {
+    const { inFlow, size, gpu } = this;
+
+    this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
+      'm-dropdown--in-flow': inFlow,
+      'm-dropdown--gpu': gpu,
+      [`m-dropdown--${size}`]: size,
+    });
+  }
+
+  didRenderCallback() {
+    if (this.dropDown) {
+      this.dropDown.destroy();
+    }
 
     this.dropDown = new DropDown(this, {
       containerClass: null,
@@ -20,20 +33,10 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.dropDown.destroy();
-    delete this.dropDown;
-  }
-
-  render() {
-    super.render();
-
-    const inFlow = this.hasAttribute('in-flow');
-    const size = getAttribute('size');
-
-    this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
-      'm-dropdown--in-flow': inFlow,
-      [`m-dropdown--${size}`]: size,
-    });
+    if (this.dropDown) {
+      this.dropDown.destroy();
+      delete this.dropDown;
+    }
   }
 }
 

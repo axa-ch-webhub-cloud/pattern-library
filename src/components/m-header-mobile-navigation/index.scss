@@ -32,8 +32,6 @@
   background: $color-prim-white;
 
   & & {
-    @include hardware-accelerate();
-
     position: absolute;
     left: 0;
     right: 0;
@@ -42,9 +40,7 @@
 
     min-height: 100%;
 
-    // fix iOS landscape render issue
-    // https://github.com/axa-ch/patterns-library/issues/291
-    transform: translate3d(110%, 0, 0);
+    transform: translateX(110%);
     transition: transform 0.2s ease;
 
     @include respond-up(sm) {
@@ -54,7 +50,23 @@
   }
 
   .is-header-mobile-navigation-nav-open > & {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
+  }
+}
+
+.m-header-mobile-navigation--gpu {
+  .m-header-mobile-navigation__nav {
+    & & {
+      @include hardware-accelerate();
+
+      // fix iOS landscape render issue
+      // https://github.com/axa-ch/patterns-library/issues/291
+      transform: translate3d(110%, 0, 0);
+    }
+
+    .is-header-mobile-navigation-nav-open > & {
+      transform: translate3d(0, 0, 0);
+    }
   }
 }
 

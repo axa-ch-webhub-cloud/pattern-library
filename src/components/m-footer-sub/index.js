@@ -1,4 +1,4 @@
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import template from './_template';
 import wcdomready from '../../js/wcdomready';

@@ -1,16 +1,27 @@
 import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
-import { BaseComponentGlobal } from '../_abstract/component-types';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooterLegals extends BaseComponentGlobal {
+  static get observedAttributes() { return ['bottom']; }
+
   constructor() {
     super(styles);
   }
 
   connectedCallback() {
     super.connectedCallback();
+
+    this.render();
+  }
+
+  attributeChangedCallback() {
+    this.render();
+  }
+
+  render() {
     const bottom = getAttribute(this, 'bottom');
 
     this.className = classnames(this.initialClassName, 'm-footer-legals', {

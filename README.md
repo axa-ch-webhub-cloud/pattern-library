@@ -67,8 +67,7 @@ Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vu
 
 __this code snipped is tested on FF, IE11, EDGE, Chrome, Safari, Mobile Chrome, Mobile Safari__
 
-Here an example on how to use the component button and typo in your project. The component Typo is used to show you
-all the possible fonts avaiable. The index.css contains all the basic page settings
+Here an example on how to use the component button and typo in your project. The component Typo is used to show you all the possible fonts avaiable. The index.css contains all the basic page settings
 
 ```html
 <html>
@@ -91,7 +90,65 @@ all the possible fonts avaiable. The index.css contains all the basic page setti
 </html>
 ```
 
+## Usage guide - With React and wrapped Webcomponents
+
+
+__this code snipped is tested on FF, IE11, EDGE, Chrome, Safari, Mobile Chrome, Mobile Safari__
+
+Here an example on how to wrap very easly a webcomponent ready for react. It behaves like a real react component!
+
+Please check also out the todomvc demo app under `src/demos/todomvc`
+
+```html
+<article style="margin-bottom: 100px;">
+  <h1>Demo on how to pass a callback function:</h1>
+  <div class="my-event-demo-react"></div>
+</article>
+```
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import withReact from '../js/with-react';
+import AXAButton from '../components/m-button';
+
+import './todomvc/app';
+
+const AXAButtonReact = withReact(AXAButton);
+
+// components are loaded already in the body cause this demo is a the end of the body
+
+class MyEventDemoReact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleOn: true,
+    };
+  }
+
+  handleClick = () => {
+    console.log('click');
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn,
+    }));
+  }
+
+  render() {
+    return ([
+      <AXAButtonReact onAxaClick={this.handleClick} key={1}>{this.state.isToggleOn ? 'ON' : 'OFF'}</AXAButtonReact>,
+    ]);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(<MyEventDemoReact />, document.querySelector('.my-event-demo-react'));
+});
+
+```
+
 ## Developers Guide:
+
+Curious to know about webcomponent's lifecycle and our development approach?
 
 Please see our [contribution file](./CONTRIBUTING.md).
 

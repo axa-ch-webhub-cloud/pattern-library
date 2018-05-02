@@ -24,12 +24,6 @@ class Burger {
     };
     this.isOpen = false;
 
-    this._handleBurgerClick = this._handleBurgerClick.bind(this);
-    this._handleResize = this._handleResize.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-
     this.init();
   }
 
@@ -89,7 +83,7 @@ class Burger {
     this.offContextEnabled();
   }
 
-  _handleBurgerClick(e) {
+  _handleBurgerClick = (e) => {
     e.preventDefault();
 
     if (this.isOpen) {
@@ -99,11 +93,11 @@ class Burger {
     }
   }
 
-  _handleResize() {
+  _handleResize = () => {
     this.close();
   }
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     const { key, keyCode } = e;
     const isEscape = key === EVENTS.ESCAPE || key === EVENTS.ESC || keyCode === 27;
 
@@ -114,7 +108,7 @@ class Burger {
     }
   }
 
-  open(e) {
+  open = (e) => {
     if (this.isOpen) {
       return;
     }
@@ -144,7 +138,7 @@ class Burger {
     }
   }
 
-  close(e) {
+  close = (e) => {
     if (!this.isOpen) {
       return;
     }

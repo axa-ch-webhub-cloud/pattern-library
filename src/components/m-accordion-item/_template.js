@@ -1,7 +1,7 @@
 import html from 'nanohtml';
 import classnames from 'classnames';
 
-export default ({ header, headerSecondary, headerColor, icon }, childrenFragment) => {
+export default ({ header, headerSecondary, headerColor, icon = '' }, childrenFragment) => {
   const headerPrimaryClasses = classnames('m-accordion-item__heading', 'm-accordion-item__heading--primary', {
     [`m-accordion-item__heading--${headerColor}`]: headerColor,
     'm-accordion-item__heading--with-secondary': headerSecondary,

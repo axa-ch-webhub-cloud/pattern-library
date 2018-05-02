@@ -1,0 +1,124 @@
+@import "../../styles/settings/colors";
+@import "../../styles/control/control-settings";
+@import "../../styles/typo/typo-mixins";
+@import "../../styles/control/control-transition";
+@import "./settings/input";
+
+.a-input {
+  display: block;
+
+  width: 100%;
+
+  &:not(:first-child) {
+    margin-top: 5px;
+
+    @include respond-up(md) {
+      margin-top: 10px;
+    }
+  }
+}
+
+.a-input__wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.a-input__input {
+  @include control-transition();
+  @include typo-tag();
+
+  display: inline-flex;
+
+  height: $control-size;
+
+  padding: $input-padding;
+
+  align-items: center;
+
+  flex: 1;
+
+  color: $color-prim-gray-mine-shaft;
+  background: $color-bg--white;
+  outline: none;
+  border: $control-border-width solid $control-border-color;
+
+  appearance: none;
+
+  &::placeholder {
+    color: $color-prim-gray-dusty;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    &:not([disabled]):not(:disabled):not(.a-input--error) {
+      border-color: $control-border-color--active;
+    }
+  }
+
+  &[disabled],
+  :disabled {
+    background-color: $color-bg--gray;
+  }
+}
+
+.a-input--error {
+  .a-input__input {
+    border-color: $control-border-color--error;
+  }
+}
+
+.a-input--valid {
+  .a-input__valid-icon {
+    display: inline-flex;
+  }
+}
+
+.a-input--inline {
+  display: inline-block;
+
+  width: auto;
+
+  vertical-align: middle;
+
+  & + & {
+    margin-left: $input-inline-margin--mobile;
+
+    @include respond-up(md) {
+      margin-left: $input-inline-margin;
+    }
+  }
+
+  .a-input__wrapper {
+    display: inline-block;
+
+    width: auto;
+
+    vertical-align: middle;
+  }
+}
+
+.a-input__valid-icon {
+  display: none;
+
+  width: $input-icon-size;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  &::before {
+    display: block;
+    width: $input-icon-before-width;
+    height: $input-icon-before-height;
+
+    content: "";
+
+    border: solid $color-state-green-malachite;
+    border-width: 0 2px 2px 0;
+
+    transform: rotate(45deg);
+  }
+}

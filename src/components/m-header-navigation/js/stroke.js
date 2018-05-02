@@ -38,9 +38,6 @@ class Stroke extends UiEvents {
     };
 
     this._isStatic = false;
-
-    this._handleResize = this._handleResize.bind(this);
-    this._handleTransitionEnd = this._handleTransitionEnd.bind(this);
   }
 
   init() {
@@ -87,8 +84,7 @@ class Stroke extends UiEvents {
     if (has(node, this.options.activeClass)) {
       this._activeNode = node;
 
-      add(node, this.options.activeOpenClass);
-      add(node, this.options.activeMoveClass);
+      add(node, this.options.activeOpenClass, this.options.activeMoveClass);
     }
 
     requestAnimationFrame(() => {
@@ -135,8 +131,7 @@ class Stroke extends UiEvents {
     this._offMoving();
 
     if (this._activeNode) {
-      remove(this._activeNode, this.options.activeMoveClass);
-      remove(this._activeNode, this.options.activeOpenClass);
+      remove(this._activeNode, this.options.activeMoveClass, this.options.activeOpenClass);
       this._activeNode = null;
     }
 
@@ -149,8 +144,7 @@ class Stroke extends UiEvents {
       remove(this._list, this.options.interactiveClass);
 
       requestAnimationFrame(() => {
-        remove(this._stroke, this.options.moveClass);
-        remove(this._stroke, this.options.enterClass);
+        remove(this._stroke, this.options.moveClass, this.options.enterClass);
         remove(_node, this.options.activeOpenClass);
       });
 
@@ -202,7 +196,7 @@ class Stroke extends UiEvents {
     });
   }
 
-  _handleResize() {
+  _handleResize = () => {
     if (this.resizeTimeout) {
       cancelAnimationFrame(this.resizeTimeout);
       this.resizeTimeout = null;
@@ -220,7 +214,7 @@ class Stroke extends UiEvents {
     });
   }
 
-  _handleTransitionEnd(e) {
+  _handleTransitionEnd = (e) => {
     if (e.propertyName === 'left') {
       this._offMoving();
       this._handleStaticState(true);
@@ -230,8 +224,12 @@ class Stroke extends UiEvents {
   destroy() {
     super.destroy();
 
+    this._offMoving();
+
     if (this._stroke) {
-      this._stroke.parentNode.removeChild(this._stroke);
+      if (this._stroke.parentNode) {
+        this._stroke.parentNode.removeChild(this._stroke);
+      }
       delete this._stroke;
     }
 
