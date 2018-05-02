@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import functionName from './function-name';
 import dasherize from './dasherize';
 import partition from './array-partition';
@@ -18,6 +19,7 @@ const isEventFilter = (key) => {
 /**
  * Provides a function which let's you wrap any WebComponent with React.
  * - it supports first-class props for web components
+ * - it updates children
  * - it handles custom events
  *
  * @link https://github.com/webcomponents/react-integration - inspired by react-integration
@@ -54,13 +56,26 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       super(props);
 
       this._eventCache = {};
+      this.slot = document.createElement('div');
     }
 
     componentDidMount() {
-      this.componentWillReceiveProps(this.props);
+      this.updateWebComponent(this.props);
     }
 
-    componentWillReceiveProps(props) {
+    componentDidUpdate() {
+      const { props, slot, wcNode } = this;
+      const { children } = props;
+      const slotClone = slot.cloneNode(false);
+
+      ReactDOM.render(children, slotClone, () => {
+        this.updateWebComponent(props);
+        wcNode.updateLightDOM(slotClone.childNodes);
+      });
+    }
+
+    // eslint-disable-next-line react/sort-comp
+    updateWebComponent(props) {
       const { wcNode, _eventCache: eventCache } = this;
       const propsKeys = Object.keys(props);
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
@@ -102,8 +117,8 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     }
 
     render() {
-      const { props } = this;
-      const { children } = props;
+      // eslint-disable-next-line react/prop-types
+      const { props: { children } } = this;
 
       return (
         <WCTagName ref={this.handleRef}>{children}</WCTagName>

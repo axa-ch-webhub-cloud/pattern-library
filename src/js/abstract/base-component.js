@@ -206,6 +206,24 @@ export default class BaseComponent extends HTMLElement {
   }
 
   /**
+   * Update the light-DOM of the Custom Element.
+   * **Important:** We need this because we don't use shadow-DOM - thus we need to sync integrations manually.
+   *
+   * @param childNodes
+   */
+  updateLightDOM(childNodes) {
+    const { _lightDOMRefs } = this;
+    const nextLightDomRefs = Array.from(childNodes);
+
+    _lightDOMRefs.forEach((lightNode, index) => {
+      const nextLightDom = nextLightDomRefs[index];
+      lightNode.parentNode.replaceChild(nextLightDom, lightNode);
+
+      _lightDOMRefs[index] = nextLightDom;
+    });
+  }
+
+  /**
    * A fast and simpler way to update multiple props in one go.
    * Especially useful for integrations and to prevent multiple re-renders.
    *
