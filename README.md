@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 AEM Design Importer is used sometimes to deploy on www.axa.ch custom applications. In order to prepare it for the design importer, the Webcomponent MUST be declared differently. We will provide in future a script that does the conversion automatically, but for the moment is a manual job.
 
-If we have a webcomponent called `<axa-button motion></axa-button>` and want to be able to use it in the AEM design importer, then we simply have to declare it using this template: `<div data-axa-wc-element="[NAME_OF_WEBCOMPONENT]" [REST_OF_ATTRIBUTES]>`. In our example, the button will be: `<div data-axa-wc-element="axa-button" motion>`.
+If we have a webcomponent called `<axa-button motion>Foo</axa-button>` and want to be able to use it in the AEM design importer, then we simply have to declare it using this template: `<div data-axa-wc-element="[NAME_OF_WEBCOMPONENT]" [REST_OF_ATTRIBUTES]>[INNER_CHILDS]</div>`. In our example, the button will be: `<div data-axa-wc-element="axa-button" motion>Foo</div>`.
 
 *Keep in mind, this special way of declaring webcomponents is ONLY VALID for AXA AEM DESIGN IMPORTER. It wont work with other AEM implementations. To clarify: Webcomponents work in AEM normally. This special rule applies only for the Design Importer*
 
