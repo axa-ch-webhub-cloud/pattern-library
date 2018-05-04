@@ -1,4 +1,5 @@
 import nanomorph from './component-morph';
+import { isSameNodeOnce, clearIsSameNode } from './is-same-node-once';
 import getAttribute from '../get-attribute';
 import toProp from '../to-prop';
 import { publish, subscribe } from '../pubsub';
@@ -350,7 +351,11 @@ export default class BaseComponent extends HTMLElement {
           this._lightDOMRefs.forEach((ref) => {
             // Important: Once the light DOM is live it shouldn't be moved out
             // instead make sure to clone it for incremental updates
-            const refClone = ref.cloneNode(false);
+            const refClone = ref.cloneNode(true);
+
+            // Another piece of code is managing that part of the DOM tree.
+            isSameNodeOnce(ref);
+            isSameNodeOnce(refClone);
 
             // Note: DocumentFragments always get emptied after being appended to another document (they get moved)
             // so we can always reuse this
@@ -394,6 +399,7 @@ export default class BaseComponent extends HTMLElement {
 
           this._isMorphing = true;
           nanomorph(this, wcClone);
+          clearIsSameNode();
           this._isMorphing = false;
         }
       } catch (err) {
