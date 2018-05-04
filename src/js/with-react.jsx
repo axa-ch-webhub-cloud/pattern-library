@@ -1,6 +1,5 @@
 import React from 'react';
-import functionName from './function-name';
-import dasherize from './dasherize';
+import camelize from './camelize';
 import partition from './array-partition';
 import on from './on';
 
@@ -40,9 +39,9 @@ const isEventFilter = (key) => {
  * );
  */
 const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
-  const name = functionName(WebComponent);
-  const displayName = `${name}React`;
-  const WCTagName = dasherize(name);
+  const { tagName } = (new WebComponent());
+  const displayName = `${camelize(tagName)}React`;
+  const WCTagName = tagName;
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
@@ -108,10 +107,10 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     render() {
       // eslint-disable-next-line react/prop-types
-      const { props: { children } } = this;
+      const { props: { children }, handleRef } = this;
 
       return (
-        <WCTagName ref={this.handleRef}>{children}</WCTagName>
+        <WCTagName ref={handleRef}>{children}</WCTagName>
       );
     }
   };
