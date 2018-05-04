@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import withReact from '../js/with-react';
 import AXAButton from '../components/m-button';
+import wcdomready from '../js/wcdomready';
 
 import './todomvc/app';
 
@@ -30,10 +31,17 @@ class MyEventDemoReact extends React.Component {
         <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
       </axa-button>,
       <AXAButtonReact onAxaClick={this.handleClick} key={1}>{this.state.isToggleOn ? 'ON' : 'OFF'}</AXAButtonReact>,
+      <AXAButtonReact onAxaClick={this.handleClick} key={2}>
+        <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
+        <p>
+          <em>foo {this.state.isToggleOn ? 'is cool' : 'is fui'}</em>
+          <strong>bar {this.state.isToggleOn ? 'YES' : 'NO'}</strong>
+        </p>
+      </AXAButtonReact>,
     ]);
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+wcdomready(() => {
   ReactDOM.render(<MyEventDemoReact />, document.querySelector('.my-event-demo-react'));
 });
