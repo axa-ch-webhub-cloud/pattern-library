@@ -1,3 +1,4 @@
+const TEXT_NODE = 3;
 let sameNodeCache = [];
 
 /**
@@ -7,8 +8,10 @@ let sameNodeCache = [];
  * @param node
  */
 export function isSameNodeOnce(node) {
-  // @todo: react updates break if we do this!
-  return;
+  // @todo: react text-node updates break if we do this!
+  if (node.nodeType === TEXT_NODE) {
+    return;
+  }
 
   /* eslint-disable no-unreachable */
   node.isSameNode = isSameNodeStopMorph;
