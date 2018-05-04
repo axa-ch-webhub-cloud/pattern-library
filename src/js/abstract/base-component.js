@@ -351,7 +351,7 @@ export default class BaseComponent extends HTMLElement {
           this._lightDOMRefs.forEach((ref) => {
             // Important: Once the light DOM is live it shouldn't be moved out
             // instead make sure to clone it for incremental updates
-            const refClone = ref.cloneNode(false);
+            const refClone = ref.cloneNode(true);
 
             // Another piece of code is managing that part of the DOM tree.
             isSameNodeOnce(ref);

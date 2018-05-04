@@ -8,6 +8,7 @@ let sameNodeCache = [];
  * @param node
  */
 export function isSameNodeOnce(node) {
+  return;
   // @todo: react text-node updates break if we do this!
   if (node.nodeType === TEXT_NODE) {
     return;
