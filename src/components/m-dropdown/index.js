@@ -6,7 +6,7 @@ import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
 
 class AXADropdown extends BaseComponentGlobal {
-  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title']; }
+  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value']; }
 
   constructor() {
     super(styles, template);
