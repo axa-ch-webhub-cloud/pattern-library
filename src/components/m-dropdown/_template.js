@@ -4,13 +4,13 @@ import classnames from 'classnames';
 
 const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
-const nativeSelect = ({ items, size, value, placeholder }) => html`<div class="${classnames('m-dropdown__select-wrap', {
+const nativeSelect = ({ title, items, size, value }) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,
   })}" tabindex="0">
     <select class="${classnames('m-dropdown__select', {
       [`m-dropdown__select--${size}`]: size,
     })}">
-    ${placeholder && html`<option value="" disabled hidden selected>${placeholder}</option>`}
+    ${title && html`<option value="" disabled hidden selected>${title}</option>`}
     ${Array.isArray(items) &&
       items.map(({ name, value: itemValue, url }) =>
         html`<option value="${itemValue}" data-url="${url}" ${
