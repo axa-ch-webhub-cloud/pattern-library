@@ -10,7 +10,7 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
     <select class="${classnames('m-dropdown__select', {
       [`m-dropdown__select--${size}`]: size,
     })}">
-    ${title && html`<option value="" disabled hidden selected>${title}</option>`}
+    ${title && html`<option value="" disabled hidden selected class="m-dropdown__select-option--hidden" >${title}</option>`}
     ${Array.isArray(items) &&
       items.map(({ name, value: itemValue, url }) =>
         html`<option value="${itemValue}" data-url="${url}" ${

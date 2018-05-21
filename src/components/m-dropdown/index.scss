@@ -38,6 +38,10 @@
   @include dropdown-select-icon();
 }
 
+.m-dropdown__select-option--hidden {
+  display: hidden;
+}
+
 // js enhanced dropdown
 .m-dropdown__toggle {
   @include button-reset();
