@@ -1,6 +1,6 @@
 import React from 'react';
-import functionName from './function-name';
 import dasherize from './dasherize';
+import camelize from './camelize';
 import partition from './array-partition';
 import on from './on';
 
@@ -40,9 +40,8 @@ const isEventFilter = (key) => {
  * );
  */
 const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
-  const name = functionName(WebComponent);
-  const displayName = `${name}React`;
-  const WCTagName = dasherize(name);
+  let displayName = '';
+  let WCTagName;
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
@@ -108,10 +107,23 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     render() {
       // eslint-disable-next-line react/prop-types
-      const { props: { children } } = this;
+      const { props: { children }, handleRef } = this;
+
+      // IMPORTANT:
+      // the Custom Element can only be instantiated as soon as it is registered in CustomElementRegistry
+      // which in turn is deferred after DOMReady
+      // hence it's tagName can only be resolved lazily
+      // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry
+      if (!WCTagName) {
+        const node = new WebComponent();
+        const tagName = node.tagName.toLowerCase();
+
+        displayName = `${camelize(tagName)}React`;
+        WCTagName = tagName;
+      }
 
       return (
-        <WCTagName ref={this.handleRef}>{children}</WCTagName>
+        <WCTagName ref={handleRef}>{children}</WCTagName>
       );
     }
   };

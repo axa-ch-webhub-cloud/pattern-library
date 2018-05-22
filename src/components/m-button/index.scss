@@ -8,10 +8,6 @@
   @include button();
   @include button--fix-a-tag();
   @include button--color();
-
-  &.m-button--generic-icon {
-    @include button--generic-icon();
-  }
 }
 
 .m-button__icon {
@@ -70,6 +66,10 @@
       @include button__arrow--motion();
     }
   }
+}
+
+.m-button--generic-icon {
+  @include button--generic-icon();
 }
 
 .m-button--arrow {
