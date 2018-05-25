@@ -29,13 +29,14 @@
       background-color: $color-bg--white;
     }
   }
+
   &[disabled] {
     .a-choice__input--controlled + .a-choice__label {
       cursor: default;
       color: $color-prim-gray-dusty;
       border-color: $color-prim-gray-silver;
     }
-  }    
+  }
 }
 
 .a-choice__label {
@@ -67,12 +68,12 @@
       color: $color-axa-blue;
       background-color: $color-bg--white;
     }
-  
+
     &:disabled + .a-choice__label,
     &[disabled] + .a-choice__label {
       cursor: default;
       color: $color-prim-gray-dusty;
       border-color: $color-prim-gray-silver;
-    }  
+    }
   }
 }
