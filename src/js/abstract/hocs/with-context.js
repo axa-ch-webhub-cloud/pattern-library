@@ -1,11 +1,8 @@
-import maybe from '../../maybe';
+import { lifecycleLogger } from './with-lifecycle';
 import {
   publish,
   subscribe,
 } from '../../pubsub';
-
-// eslint-disable-next-line
-const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
 const withContext = Base =>
   class extends Base {

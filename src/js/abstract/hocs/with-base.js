@@ -1,8 +1,8 @@
 import camelize from '../../camelize';
 import debounce from '../../debounce';
 import getAttribute from '../../get-attribute';
-import maybe from '../../maybe';
 import PropertyExistsException from '../property-exists-exception';
+import { lifecycleLogger } from './with-lifecycle';
 
 const THROWED_ERROR = 'throwed';
 const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
@@ -14,7 +14,6 @@ const getId = (nodeName) => {
 
   return ++ids[nodeName]; // eslint-disable-line no-plusplus
 };
-const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
 const withBase = Base =>
   class extends Base {

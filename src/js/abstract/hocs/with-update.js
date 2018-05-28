@@ -1,9 +1,5 @@
-import camelize from '../../camelize';
 import toProp from '../../to-prop';
-import maybe from '../../maybe';
-
-// eslint-disable-next-line
-const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
+import { lifecycleLogger } from './with-lifecycle';
 
 const withUpdate = Base =>
   class extends Base {
