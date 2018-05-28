@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import React, { createElement } from 'react';
 import dasherize from './dasherize';
 import camelize from './camelize';
 import partition from './array-partition';
