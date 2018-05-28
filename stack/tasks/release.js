@@ -221,7 +221,7 @@ const confirmedRelease = (type, version) => {
       }));
     },
     (stdout, stderr, callback) => {
-      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
+      exec('npm run build && git add ./dist ./docs ./lib && git commit -m"rebuild"', handleSuccess(callback, () => {
         console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));
