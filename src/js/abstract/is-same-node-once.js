@@ -10,9 +10,11 @@ let sameNodeCache = [];
 export function isSameNodeOnce(node) {
   return;
   // @todo: react text-node updates break if we do this!
+  /* eslint-disable */
   if (node.nodeType === TEXT_NODE) {
     return;
   }
+  /* eslint-enable */
 
   /* eslint-disable no-unreachable */
   node.isSameNode = isSameNodeStopMorph;
