@@ -1,4 +1,4 @@
-import React from 'react';
+import { createElement } from 'react';
 import dasherize from './dasherize';
 import camelize from './camelize';
 import partition from './array-partition';
@@ -122,9 +122,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
         WCTagName = tagName;
       }
 
-      return (
-        <WCTagName ref={handleRef}>{children}</WCTagName>
-      );
+      return createElement(WCTagName, { ref: handleRef }, children);
     }
   };
 };
