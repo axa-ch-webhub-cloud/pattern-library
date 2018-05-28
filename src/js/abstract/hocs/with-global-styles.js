@@ -1,6 +1,6 @@
 const memory = {};
 
-export const withGlobalStyles = Base =>
+const withGlobalStyles = Base =>
   class extends Base {
     _appendStyles() {
       this.appendGlobalStyles(this._styles, this.nodeName);
@@ -27,3 +27,5 @@ export const withGlobalStyles = Base =>
       }
     }
   };
+
+export default withGlobalStyles;

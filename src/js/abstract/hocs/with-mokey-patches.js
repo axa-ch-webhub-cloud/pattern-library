@@ -1,4 +1,4 @@
-export const withMokeyPatches = Base =>
+const withMokeyPatches = Base =>
   class extends Base {
     /**
      * Monkey patch `innerText` API to re-rendering.
@@ -72,3 +72,5 @@ export const withMokeyPatches = Base =>
       this.render();
     }
   };
+
+export default withMokeyPatches;

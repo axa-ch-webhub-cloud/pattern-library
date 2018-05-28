@@ -16,7 +16,7 @@ const getId = (nodeName) => {
 };
 const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
-export const withBase = Base =>
+const withBase = Base =>
   class extends Base {
     constructor(styles = '', template) {
       super();
@@ -219,3 +219,4 @@ export const withBase = Base =>
     }
   };
 
+export default withBase;

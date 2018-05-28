@@ -1,9 +1,9 @@
 import maybe from '../../maybe';
 
 // eslint-disable-next-line
-const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
+export const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
-export const withLifecycle = Base =>
+const withLifecycle = Base =>
   class extends Base {
     render() {
       const { _hasRendered: initial } = this;
@@ -49,3 +49,5 @@ export const withLifecycle = Base =>
       }
     }
   };
+
+export default withLifecycle;

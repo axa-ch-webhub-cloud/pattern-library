@@ -7,7 +7,7 @@ import {
 // eslint-disable-next-line
 const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
-export const withContext = Base =>
+const withContext = Base =>
   class extends Base {
     connectedCallback() {
       if (super.connectedCallback) {
@@ -101,3 +101,5 @@ export const withContext = Base =>
       }
     }
   };
+
+export default withContext;

@@ -5,7 +5,7 @@ import maybe from '../../maybe';
 // eslint-disable-next-line
 const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
 
-export const withUpdate = Base =>
+const withUpdate = Base =>
   class extends Base {
     /**
      * Default behaviour is to re-render on attribute addition, change or removal.
@@ -20,3 +20,5 @@ export const withUpdate = Base =>
       this[key] = toProp(newValue);
     }
   };
+
+export default withUpdate;

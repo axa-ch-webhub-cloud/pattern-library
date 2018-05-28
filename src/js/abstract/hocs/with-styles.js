@@ -1,4 +1,4 @@
-export const withStyles = Base =>
+const withStyles = Base =>
   class extends Base {
     /**
      * _appendStyles - description
@@ -25,3 +25,5 @@ export const withStyles = Base =>
       this._appendStyles();
     }
   };
+
+export default withStyles
