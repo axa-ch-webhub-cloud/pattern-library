@@ -22,3 +22,6 @@ export default class BaseComponentShadow extends BaseComponent {
     this.render();
   }
 }
+
+
+// This seems not up to date
