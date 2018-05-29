@@ -70,6 +70,8 @@ const writeIndexJs = (path, _name) => {
       import wcdomready from '../../js/wcdomready';
 
       class ${className} extends BaseComponentGlobal {
+        static tagName = 'axa-${_name}'
+
         // Specify observed attributes so that attributeChangedCallback will work,
         // this is essential for external re-rendering trigger.
         static get observedAttributes() { return []; }
@@ -122,7 +124,7 @@ const writeIndexJs = (path, _name) => {
       }
 
       wcdomready(() => {
-        window.customElements.define('axa-${_name}', ${className});
+        window.customElements.define(${className}.tagName, ${className});
       });
 
       export default ${className};
