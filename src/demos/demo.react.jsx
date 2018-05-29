@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import withReact from '../js/with-react';
 import AXAButton from '../components/m-button';
-import wcdomready from '../js/wcdomready';
 
 import './todomvc/app';
 
@@ -42,6 +41,6 @@ class MyEventDemoReact extends React.Component {
   }
 }
 
-wcdomready(() => {
+document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<MyEventDemoReact />, document.querySelector('.my-event-demo-react'));
 });

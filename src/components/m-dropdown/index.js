@@ -6,6 +6,8 @@ import DropDown from './js/drop-down';
 import wcdomready from '../../js/wcdomready';
 
 class AXADropdown extends BaseComponentGlobal {
+  static tagName = 'axa-dropdown'
+
   static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value']; }
 
   constructor() {
@@ -41,7 +43,7 @@ class AXADropdown extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-dropdown', AXADropdown);
+  window.customElements.define(AXADropdown.tagName, AXADropdown);
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });

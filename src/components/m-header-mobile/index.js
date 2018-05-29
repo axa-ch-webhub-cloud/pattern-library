@@ -7,6 +7,8 @@ import wcdomready from '../../js/wcdomready';
 import HeaderMobile from './js/header-mobile';
 
 class AXAHeaderMobile extends BaseComponentGlobal {
+  static tagName = 'axa-header-mobile'
+
   static get observedAttributes() { return ['offcanvas']; }
 
   constructor() {
@@ -55,7 +57,7 @@ class AXAHeaderMobile extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-mobile', AXAHeaderMobile);
+  window.customElements.define(AXAHeaderMobile.tagName, AXAHeaderMobile);
 });
 
 export default AXAHeaderMobile;

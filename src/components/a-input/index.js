@@ -7,6 +7,8 @@ import styles from './index.scss';
 import template from './_template';
 
 class AXAInput extends BaseComponentGlobal {
+  static tagName = 'axa-input'
+
   static get observedAttributes() {
     return ['valid', 'inline', 'error', 'disabled', 'input-id', 'type', 'placeholder', 'value', 'name'];
   }
@@ -28,7 +30,7 @@ class AXAInput extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-input', AXAInput);
+  window.customElements.define(AXAInput.tagName, AXAInput);
 });
 
 export default AXAInput;

@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXATypo extends BaseComponentGlobal {
+  static tagName = 'axa-typo'
+
   constructor() {
     super(styles, template);
   }
@@ -21,7 +23,7 @@ class AXATypo extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-typo', AXATypo);
+  window.customElements.define(AXATypo.tagName, AXATypo);
 });
 
 export default AXATypo;

@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooterMain extends BaseComponentGlobal {
+  static tagName = 'axa-footer-main'
+
   static get observedAttributes() { return ['light']; }
 
   constructor() {
@@ -32,7 +34,7 @@ class AXAFooterMain extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-footer-main', AXAFooterMain);
+  window.customElements.define(AXAFooterMain.tagName, AXAFooterMain);
 });
 
 export default AXAFooterMain;

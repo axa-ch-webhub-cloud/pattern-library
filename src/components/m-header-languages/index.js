@@ -7,6 +7,8 @@ import DropDown from '../m-dropdown/js/drop-down';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderLanguages extends BaseComponentGlobal {
+  static tagName = 'axa-header-languages'
+
   static get observedAttributes() { return ['items']; }
 
   constructor() {
@@ -38,7 +40,7 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-languages', AXAHeaderLanguages);
+  window.customElements.define(AXAHeaderLanguages.tagName, AXAHeaderLanguages);
 });
 
 export default AXAHeaderLanguages;

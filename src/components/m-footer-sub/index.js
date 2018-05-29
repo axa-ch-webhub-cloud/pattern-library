@@ -4,6 +4,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooterSub extends BaseComponentGlobal {
+  static tagName = 'axa-footer-sub'
+
   constructor() {
     super(styles, template);
   }
@@ -16,7 +18,7 @@ class AXAFooterSub extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-footer-sub', AXAFooterSub);
+  window.customElements.define(AXAFooterSub.tagName, AXAFooterSub);
 });
 
 export default AXAFooterSub;
