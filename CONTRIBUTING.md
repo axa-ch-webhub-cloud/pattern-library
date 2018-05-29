@@ -93,7 +93,7 @@ We stick to the [Custom Elements V1 spec](https://html.spec.whatwg.org/multipage
 
 There are a few key principles you have to know:
 - Custom Elements are **asynchronous**, which means
-   - they only render if their definition (JS) is ready
+   - they only render if their definition (JS) is ready - [CustomElementRegistry API](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry)
    - a child could render before it's parent
    - this leads to [**FOUC** (flash of unstyled content)](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
    - in short - order of rendering is **non-deterministic**
@@ -234,7 +234,7 @@ The render loop makes sure that upon each [`attributeChangedCallback()`](#attrib
 
 ## Integration
 
-The goal is that custom elements can be shared across frameworks and libraries like Angular, React, Vue, you name it. To ease this process we provide generic wrapper functions.
+The goal is that custom elements can be shared across frameworks and libraries like Angular, React, Vue, you name it. To ease this process we set a static `tagName` property for each custom element and provide generic wrapper functions.
 
 ### `withReact()`
 
