@@ -3,9 +3,11 @@ import classnames from 'classnames';
 import withReact from '../../js/with-react';
 import AXAButton from '../../components/m-button';
 import AXAIcon from '../../components/a-icon';
+import AXACheckbox from '../../components/a-checkbox';
 
 const AXAButtonReact = withReact(AXAButton);
 const AXAIconReact = withReact(AXAIcon);
+const AXACheckboxReact = withReact(AXACheckbox);
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;
@@ -117,9 +119,12 @@ class TodoItem extends Component {
     return (
       <li className="m-todo__item">
         <div className="m-todo__wrap">
+          <AXACheckboxReact checked={completed} name="completed" onChange={() => onToggle(todo)} />
+
           <input
             className="m-todo__toggle"
             type="checkbox"
+            name="completed"
             checked={completed}
             onChange={() => onToggle(todo)}
           />

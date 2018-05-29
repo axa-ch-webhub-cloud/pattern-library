@@ -7,6 +7,8 @@ import wcdomready from '../../js/wcdomready';
 import HeaderLogo from './js/header-logo';
 
 class AXAHeaderLogo extends BaseComponentGlobal {
+  static tagName = 'axa-header-logo'
+
   static get observedAttributes() { return ['alt', 'href', 'src']; }
 
   constructor() {
@@ -36,7 +38,7 @@ class AXAHeaderLogo extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-logo', AXAHeaderLogo);
+  window.customElements.define(AXAHeaderLogo.tagName, AXAHeaderLogo);
 });
 
 export default AXAHeaderLogo;

@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.130",
+  "version": "2.0.1-beta.132",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -32,7 +32,7 @@
     "build-icons-prod": "node stack/tasks/icons.js PROD",
     "build-dev": "node stack/tasks/cleanup.js DEV && npm run build-css-dev && npm run build-html-dev && npm run build-js-dev && npm run build-icons-dev",
     "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/build-examples.js PROD && npm run build-css-prod && npm run build-js-prod && npm run build-lib && npm run build-icons-prod && node stack/tasks/copy-dist-to-docs.js",
-    "build-lib": "babel src --out-dir lib --ignore src/demos",
+    "build-lib": "babel src --out-dir lib --ignore src/demos --plugins transform-runtime",
     "release": "node ./stack/tasks/release.js",
     "bump-major": "npm run test && npmversion --increment major",
     "bump-minor": "npm run test && npmversion --increment minor",
@@ -88,6 +88,7 @@
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "~1.6.1",
     "babel-preset-react": "^6.24.1",
     "chalk": "^2.4.0",
@@ -135,6 +136,7 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^1.0.18",
+    "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
     "core-js": "~2.5.1",
     "innersvg-polyfill": "0.0.2",

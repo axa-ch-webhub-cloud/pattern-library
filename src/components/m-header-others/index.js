@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderOthers extends BaseComponentGlobal {
+  static tagName = 'axa-header-others'
+
   static get observedAttributes() { return ['items']; }
 
   constructor() {
@@ -20,7 +22,7 @@ class AXAHeaderOthers extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-others', AXAHeaderOthers);
+  window.customElements.define(AXAHeaderOthers.tagName, AXAHeaderOthers);
 });
 
 export default AXAHeaderOthers;

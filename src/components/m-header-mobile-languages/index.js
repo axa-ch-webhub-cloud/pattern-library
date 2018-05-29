@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileLanguages extends BaseComponentGlobal {
+  static tagName = 'axa-header-mobile-languages'
+
   static get observedAttributes() { return ['items']; }
 
   constructor() {
@@ -20,7 +22,7 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-mobile-languages', AXAHeaderMobileLanguages);
+  window.customElements.define(AXAHeaderMobileLanguages.tagName, AXAHeaderMobileLanguages);
 });
 
 export default AXAHeaderMobileLanguages;

@@ -3,6 +3,8 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeader extends BaseComponentGlobal {
+  static tagName = 'axa-header'
+
   constructor() {
     super(styles);
 
@@ -17,7 +19,7 @@ class AXAHeader extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header', AXAHeader);
+  window.customElements.define(AXAHeader.tagName, AXAHeader);
 });
 
 export default AXAHeader;

@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMeta extends BaseComponentGlobal {
+  static tagName = 'axa-header-meta'
+
   constructor() {
     super(styles, template);
   }
@@ -18,7 +20,7 @@ class AXAHeaderMeta extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-meta', AXAHeaderMeta);
+  window.customElements.define(AXAHeaderMeta.tagName, AXAHeaderMeta);
 });
 
 export default AXAHeaderMeta;

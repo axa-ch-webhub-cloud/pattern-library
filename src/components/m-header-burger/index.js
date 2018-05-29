@@ -7,6 +7,8 @@ import wcdomready from '../../js/wcdomready';
 import Burger from './js/burger';
 
 class AXAHeaderBurger extends BaseComponentGlobal {
+  static tagName = 'axa-header-burger'
+
   constructor() {
     super(styles, template);
 
@@ -33,7 +35,7 @@ class AXAHeaderBurger extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-burger', AXAHeaderBurger);
+  window.customElements.define(AXAHeaderBurger.tagName, AXAHeaderBurger);
 });
 
 export default AXAHeaderBurger;
