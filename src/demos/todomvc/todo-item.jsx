@@ -119,7 +119,7 @@ class TodoItem extends Component {
     return (
       <li className="m-todo__item">
         <div className="m-todo__wrap">
-          <AXACheckboxReact checked={completed} name="completed" />
+          <AXACheckboxReact checked={completed} name="completed" onChange={() => onToggle(todo)} />
 
           <input
             className="m-todo__toggle"
