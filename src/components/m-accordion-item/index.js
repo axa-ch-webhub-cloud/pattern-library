@@ -5,6 +5,8 @@ import styles from './index.scss';
 import AccordionItem from './js/accordion-item';
 
 class AXAAccordionItem extends BaseComponentGlobal {
+  static tagName = 'axa-accordion-item'
+
   static get observedAttributes() { return ['icon', 'header', 'header-secondary', 'header-color', 'multiple']; }
 
   constructor() {
@@ -34,7 +36,7 @@ class AXAAccordionItem extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-accordion-item', AXAAccordionItem);
+  window.customElements.define(AXAAccordionItem.tagName, AXAAccordionItem);
 });
 
 export default AXAAccordionItem;

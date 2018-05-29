@@ -7,6 +7,8 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
+  static tagName = 'axa-header-navigation'
+
   static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu']; }
 
   constructor() {
@@ -70,7 +72,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-navigation', AXAHeaderNavigation);
+  window.customElements.define(AXAHeaderNavigation.tagName, AXAHeaderNavigation);
 });
 
 export default AXAHeaderNavigation;

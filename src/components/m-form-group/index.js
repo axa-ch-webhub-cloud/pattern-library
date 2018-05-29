@@ -9,6 +9,8 @@ import styles from './index.scss';
 import template from './_template';
 
 class AXAFormGroup extends BaseComponentGlobal {
+  static tagName = 'axa-form-group'
+
   static get observedAttributes() {
     return ['label', 'info', 'error'];
   }
@@ -43,7 +45,7 @@ class AXAFormGroup extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-form-group', AXAFormGroup);
+  window.customElements.define(AXAFormGroup.tagName, AXAFormGroup);
 });
 
 export default AXAFormGroup;

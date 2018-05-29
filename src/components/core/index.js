@@ -1,6 +1,8 @@
 import wcdomready from '../../js/wcdomready';
 
 class AXACore extends HTMLElement {
+  static tagName = 'axa-core'
+
   connectedCallback() {
     const iconPath = this.getAttribute('icons-path');
     if (iconPath) {
@@ -18,7 +20,7 @@ class AXACore extends HTMLElement {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-core', AXACore);
+  window.customElements.define(AXACore.tagName, AXACore);
 });
 
 export default AXACore;

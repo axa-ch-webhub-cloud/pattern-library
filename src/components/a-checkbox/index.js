@@ -7,6 +7,8 @@ import styles from './index.scss';
 import template from './_template';
 
 class AXACheckbox extends BaseComponentGlobal {
+  static tagName = 'axa-checkbox'
+
   static get observedAttributes() {
     return ['input-id', 'error', 'value', 'name', 'checked', 'disabled'];
   }
@@ -27,7 +29,7 @@ class AXACheckbox extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-checkbox', AXACheckbox);
+  window.customElements.define(AXACheckbox.tagName, AXACheckbox);
 });
 
 export default AXACheckbox;

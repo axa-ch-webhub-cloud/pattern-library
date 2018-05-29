@@ -4,6 +4,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAIcon extends BaseComponentGlobal {
+  static tagName = 'axa-icon'
+
   // Specify observed attributes so that
   // attributeChangedCallback will work
   static get observedAttributes() { return ['icon', 'classes']; }
@@ -14,7 +16,7 @@ class AXAIcon extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-icon', AXAIcon);
+  window.customElements.define(AXAIcon.tagName, AXAIcon);
 });
 
 export default AXAIcon;

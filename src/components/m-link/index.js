@@ -4,6 +4,8 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXALink extends BaseComponentGlobal {
+  static tagName = 'axa-link'
+
   static get observedAttributes() { return ['color', 'size', 'motion', 'arrow', 'href', 'listed', 'icon', 'deco']; }
 
   constructor() {
@@ -12,7 +14,7 @@ class AXALink extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-link', AXALink);
+  window.customElements.define(AXALink.tagName, AXALink);
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });

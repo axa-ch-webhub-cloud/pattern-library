@@ -4,6 +4,8 @@ import template from './_template';
 import styles from './index.scss';
 
 class AXAAccordion extends BaseComponentGlobal {
+  static tagName = 'axa-accordion'
+
   constructor() {
     super(styles, template);
 
@@ -25,7 +27,7 @@ class AXAAccordion extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-accordion', AXAAccordion);
+  window.customElements.define(AXAAccordion.tagName, AXAAccordion);
 });
 
 export default AXAAccordion;

@@ -5,6 +5,8 @@ import wcdomready from '../../js/wcdomready';
 import Button from './js/button';
 
 class AXAButton extends BaseComponentGlobal {
+  static tagName = 'axa-button'
+
   static get observedAttributes() { return ['arrow', 'classes', 'color', 'ghost', 'motion', 'size', 'tag', 'href', 'icon']; }
 
   constructor() {
@@ -28,7 +30,7 @@ class AXAButton extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-button', AXAButton);
+  window.customElements.define(AXAButton.tagName, AXAButton);
 
   BaseComponentGlobal.appendGlobalStyles(styles);
 });
