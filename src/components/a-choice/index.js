@@ -10,7 +10,7 @@ class AXAChoice extends BaseComponentGlobal {
   static tagName = 'axa-choice'
 
   static get observedAttributes() {
-    return ['input-id', 'error', 'value', 'name', 'checked', 'disabled'];
+    return ['input-id', 'error', 'value', 'name', 'checked', 'disabled', 'controlled'];
   }
 
   constructor() {
