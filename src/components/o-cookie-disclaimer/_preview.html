@@ -1,4 +1,4 @@
-<axa-cookie-disclaimer button-name="Akzeptieren" title="This Website uses cookies" href="https://axa.ch/de/informationen/datenschutz.html" link-title="Data protection" classes="o-cookie-disclaimer">
+<axa-cookie-disclaimer fixed button-name="Akzeptieren" title="This Website uses cookies" href="https://axa.ch/de/informationen/datenschutz.html" link-title="Data protection" classes="o-cookie-disclaimer">
   <p>
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
       tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -23,5 +23,5 @@
 <script>
 const time = localStorage.getItem('axa-ch-cookie-disclaimer-accepted');
 document.querySelector('.js-only-for-demo-local-storage').innerHTML =
-  time ? 'Accepted the cookie at: <b>' + new Date(+time).toLocaleString() + '</b>. Please delete local storage entry or all cache data from the browser in order to see it again' : ''
+  time ? 'Accepted the disclaimer at: <b>' + new Date(+time).toLocaleString() + '</b>. Please delete local storage entry or all cache data from the browser in order to see it again' : ''
 </script>

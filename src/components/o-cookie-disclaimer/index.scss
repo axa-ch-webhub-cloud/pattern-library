@@ -2,13 +2,13 @@
 @import "../../styles/settings/base";
 @import "../../styles/mixins/respond";
 
-$padding-top-bottom: 20px !default;
-$left-distance-button: 30px !default;
-$z-index: 2000;
+$cookie-container-padding-top-bottom: 20px !default;
+$cookie-container-left-distance-button: 30px !default;
+$cookie-container-z-index: 2000;
 
 .o-cookie-disclaimer {
-  padding-top: $padding-top-bottom;
-  padding-bottom: $padding-top-bottom;
+  padding-top: $cookie-container-padding-top-bottom;
+  padding-bottom: $cookie-container-padding-top-bottom;
 
   background-color: $color-prim-gray-scorpion;
   color: $color-prim-white;
@@ -28,7 +28,7 @@ $z-index: 2000;
 }
 
 .o-cookie-disclaimer--fixed {
-  z-index: $z-index;
+  z-index: $cookie-container-z-index;
 
   position: fixed;
   bottom: 0;
@@ -55,11 +55,11 @@ $z-index: 2000;
   text-align: center;
 
   @include respond-up(md) {
-    width: calc(30% - #{$left-distance-button});
+    width: calc(30% - #{$cookie-container-left-distance-button});
 
     margin-top: 0;
 
-    margin-left: $left-distance-button;
+    margin-left: $cookie-container-left-distance-button;
 
     text-align: left;
   }
