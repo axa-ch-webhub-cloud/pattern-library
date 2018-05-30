@@ -16,7 +16,7 @@ export default ({
         <axa-link color="white" href="${href}" arrow>${linkTitle}</axa-link>
       </div>
       <div class="o-cookie-disclaimer__container o-cookie-disclaimer__container--rx">
-        <axa-button ghost color="white" tag="button">${buttonName}</axa-button>
+        <axa-button ghost classes="js-cookie-disclaimer__button" color="white" tag="button">${buttonName}</axa-button>
       </div>
     </axa-container>
   </article>

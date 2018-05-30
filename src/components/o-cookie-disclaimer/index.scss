@@ -3,6 +3,7 @@
 @import "../../styles/mixins/respond";
 
 $padding-top-bottom: 20px !default;
+$left-distance-button: 30px !default;
 $z-index: 2000;
 
 .o-cookie-disclaimer {
@@ -54,6 +55,12 @@ $z-index: 2000;
   text-align: center;
 
   @include respond-up(md) {
-    width: 30%;
+    width: calc(30% - #{$left-distance-button});
+
+    margin-top: 0;
+
+    margin-left: $left-distance-button;
+
+    text-align: left;
   }
 }

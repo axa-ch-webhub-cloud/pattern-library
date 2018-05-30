@@ -5,6 +5,8 @@ import styles from './index.scss';
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
+import DisclaimerHandler from './js/disclaimer-handler';
+
 class AXACookieDisclaimer extends BaseComponentGlobal {
   static tagName = 'axa-cookie-disclaimer'
 
@@ -15,6 +17,7 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
+    this.disclaimerHandler = new DisclaimerHandler(this);
     // does this provide context (See docs for context) ?
     // this.enableContext()
 
@@ -53,10 +56,21 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
     // Don't forget to cleanup :)
   }
 
+  render() {
+    if (this.disclaimerHandler.hasAccepted()) {
+      this.disclaimerHandler.cleanupWcNode();
+    } else {
+      super.render();
+    }
+  }
+
   // Do you consume context?
   // contextCallback(contextNode) {
   //   contextNode is now available.
   // }
+  didRenderCallback() {
+    this.disclaimerHandler.init();
+  }
 }
 
 wcdomready(() => {
