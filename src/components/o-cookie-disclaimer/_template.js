@@ -4,8 +4,6 @@ export default ({
   classes,
   buttonName,
   title,
-  linkTitle,
-  href,
   fixed = false,
 }, childrenFragment) => html`
   <article class="${classes} ${fixed ? 'o-cookie-disclaimer--fixed' : ''}">
@@ -13,7 +11,6 @@ export default ({
       <div class="o-cookie-disclaimer__container o-cookie-disclaimer__container--lx">
         <h1 class="o-cookie-disclaimer__title">${title}</h1>
         ${childrenFragment}
-        <axa-link color="white" href="${href}" arrow>${linkTitle}</axa-link>
       </div>
       <div class="o-cookie-disclaimer__container o-cookie-disclaimer__container--rx">
         <axa-button ghost classes="js-cookie-disclaimer__button" color="white" tag="button">${buttonName}</axa-button>
