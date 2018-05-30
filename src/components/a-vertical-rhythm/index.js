@@ -6,6 +6,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAVerticalRhythm extends BaseComponentGlobal {
+  static tagName = 'axa-vertical-rhythm'
+
   constructor() {
     super(styles, template);
   }
@@ -18,7 +20,7 @@ class AXAVerticalRhythm extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-vertical-rhythm', AXAVerticalRhythm);
+  window.customElements.define(AXAVerticalRhythm.tagName, AXAVerticalRhythm);
 });
 
 export default AXAVerticalRhythm;

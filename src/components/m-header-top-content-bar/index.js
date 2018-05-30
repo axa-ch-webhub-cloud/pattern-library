@@ -3,7 +3,9 @@ import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
-class AXATopContentBar extends BaseComponentGlobal {
+class AXAHeaderTopContentBar extends BaseComponentGlobal {
+  static tagName = 'axa-header-top-content-bar'
+
   static get observedAttributes() { return ['type']; }
 
   constructor() {
@@ -18,7 +20,7 @@ class AXATopContentBar extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-top-content-bar', AXATopContentBar);
+  window.customElements.define(AXAHeaderTopContentBar.tagName, AXAHeaderTopContentBar);
 });
 
-export default AXATopContentBar;
+export default AXAHeaderTopContentBar;

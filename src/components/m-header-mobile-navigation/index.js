@@ -6,6 +6,8 @@ import HeaderMobileNavigation from './js/header-mobile-navigation';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {
+  static tagName = 'axa-header-mobile-navigation'
+
   static get observedAttributes() { return ['items', 'relative']; }
 
   constructor() {
@@ -52,7 +54,7 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-mobile-navigation', AXAHeaderMobileNavigation);
+  window.customElements.define(AXAHeaderMobileNavigation.tagName, AXAHeaderMobileNavigation);
 });
 
 export default AXAHeaderMobileNavigation;

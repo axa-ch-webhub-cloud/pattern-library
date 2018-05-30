@@ -7,6 +7,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMain extends BaseComponentGlobal {
+  static tagName = 'axa-header-main'
+
   static get observedAttributes() { return ['first-left']; }
 
   constructor() {
@@ -25,7 +27,7 @@ class AXAHeaderMain extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-main', AXAHeaderMain);
+  window.customElements.define(AXAHeaderMain.tagName, AXAHeaderMain);
 });
 
 export default AXAHeaderMain;

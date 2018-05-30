@@ -5,6 +5,8 @@ import styles from './index.scss';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooterLegals extends BaseComponentGlobal {
+  static tagName = 'axa-footer-legals'
+
   static get observedAttributes() { return ['bottom']; }
 
   constructor() {
@@ -31,7 +33,7 @@ class AXAFooterLegals extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-footer-legals', AXAFooterLegals);
+  window.customElements.define(AXAFooterLegals.tagName, AXAFooterLegals);
 });
 
 export default AXAFooterLegals;

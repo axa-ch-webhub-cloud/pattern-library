@@ -5,6 +5,8 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import wcdomready from '../../js/wcdomready';
 
 class AXASubNavigation extends BaseComponentGlobal {
+  static tagName = 'axa-header-sub-navigation'
+
   static get observedAttributes() { return ['flyout', 'index-title', 'index-url', 'items']; }
 
   constructor() {
@@ -21,7 +23,7 @@ class AXASubNavigation extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-header-sub-navigation', AXASubNavigation);
+  window.customElements.define(AXASubNavigation.tagName, AXASubNavigation);
 });
 
 export default AXASubNavigation;

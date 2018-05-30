@@ -5,6 +5,8 @@ import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
 class AXAFooterSocial extends BaseComponentGlobal {
+  static tagName = 'axa-footer-social'
+
   static get observedAttributes() { return ['inline', 'items', 'light', 'title']; }
 
   constructor() {
@@ -22,7 +24,7 @@ class AXAFooterSocial extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-footer-social', AXAFooterSocial);
+  window.customElements.define(AXAFooterSocial.tagName, AXAFooterSocial);
 });
 
 export default AXAFooterSocial;

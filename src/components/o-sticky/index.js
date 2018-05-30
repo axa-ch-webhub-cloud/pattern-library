@@ -8,6 +8,8 @@ import Sticky from './js/sticky';
 import StickyContainer from './js/sticky-container';
 
 class AXAStickyContainer extends BaseComponentGlobal {
+  static tagName = 'axa-sticky-container'
+
   static get observedAttributes() { return ['debug']; }
 
   constructor() {
@@ -37,6 +39,8 @@ class AXAStickyContainer extends BaseComponentGlobal {
 }
 
 class AXASticky extends BaseComponentGlobal {
+  static tagName = 'axa-sticky'
+
   static get observedAttributes() { return ['debug']; }
 
   constructor() {
@@ -82,8 +86,8 @@ class AXASticky extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-sticky-container', AXAStickyContainer);
-  window.customElements.define('axa-sticky', AXASticky);
+  window.customElements.define(AXAStickyContainer.tagName, AXAStickyContainer);
+  window.customElements.define(AXASticky.tagName, AXASticky);
 });
 
 export default {

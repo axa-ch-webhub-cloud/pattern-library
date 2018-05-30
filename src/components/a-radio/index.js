@@ -7,6 +7,8 @@ import styles from './index.scss';
 import template from './_template';
 
 class AXARadio extends BaseComponentGlobal {
+  static tagName = 'axa-radio'
+
   static get observedAttributes() { return ['input-id', 'error', 'value', 'name', 'checked', 'disabled']; }
 
   constructor() {
@@ -25,7 +27,7 @@ class AXARadio extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-radio', AXARadio);
+  window.customElements.define(AXARadio.tagName, AXARadio);
 });
 
 export default AXARadio;

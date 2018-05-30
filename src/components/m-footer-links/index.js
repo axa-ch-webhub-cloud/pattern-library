@@ -6,6 +6,8 @@ import wcdomready from '../../js/wcdomready';
 import FooterLinks from './js/footer-links';
 
 class AXAFooterLinks extends BaseComponentGlobal {
+  static tagName = 'axa-footer-links'
+
   static get observedAttributes() { return ['cols', 'items', 'title']; }
 
   constructor() {
@@ -42,7 +44,7 @@ class AXAFooterLinks extends BaseComponentGlobal {
 }
 
 wcdomready(() => {
-  window.customElements.define('axa-footer-links', AXAFooterLinks);
+  window.customElements.define(AXAFooterLinks.tagName, AXAFooterLinks);
 });
 
 export default AXAFooterLinks;
