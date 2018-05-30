@@ -1,11 +1,14 @@
+import on from '../../../js/on';
+
 const _global = window || global;
 
 class DisclaimerHandler {
   constructor(wcNode) {
     this.wcNode = wcNode;
+    this._off = null;
   }
   init() {
-    this.wcNode.querySelector('.js-cookie-disclaimer__button').addEventListener('click', () => {
+    this._off = on(this.wcNode.querySelector('.js-cookie-disclaimer__button'), 'click', () => {
       this.cleanupWcNode();
       const { localStorage } = _global;
       if (localStorage) {
@@ -20,6 +23,15 @@ class DisclaimerHandler {
   hasAccepted() {
     const { localStorage } = _global;
     return !!localStorage.getItem('axa-ch-cookie-disclaimer-accepted');
+  }
+  destroy() {
+    if (typeof this._off === 'function') {
+      this._off();
+    }
+    delete this.wcNode;
+  }
+  get off() {
+    return this._off;
   }
 }
 export default DisclaimerHandler;

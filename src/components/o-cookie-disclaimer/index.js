@@ -53,7 +53,8 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Don't forget to cleanup :)
+    this.disclaimerHandler.destroy();
+    delete this.disclaimerHandler;
   }
 
   render() {
