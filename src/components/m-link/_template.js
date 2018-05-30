@@ -9,6 +9,7 @@ export default function ({
   href = '#',
   listed,
   icon,
+  iconsPathPrefix = 'true',
   deco,
 }, childrenFragment) {
   const classes = classnames('m-link', {
@@ -22,9 +23,9 @@ export default function ({
   });
 
   return html`<a href="${href}" class="${classes}">
-      ${icon && html`<axa-icon icon="${icon}" classes="m-link__icon"></axa-icon>`}
-      ${listed && html`<axa-icon icon="arrow" classes="m-link__listed"></axa-icon>`}
+      ${icon && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="${icon}" classes="m-link__icon"></axa-icon>`}
+      ${listed && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="arrow" classes="m-link__listed"></axa-icon>`}
       ${childrenFragment}
-      ${arrow && html`<axa-icon icon="arrow" classes="m-link__arrow"></axa-icon>`}
+      ${arrow && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="arrow" classes="m-link__arrow"></axa-icon>`}
     </a>`;
 }
