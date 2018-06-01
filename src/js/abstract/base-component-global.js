@@ -29,7 +29,7 @@ export default class BaseComponentGlobal extends BaseComponent {
         const styleText = document.createTextNode(styles);
         styleNode.appendChild(styleText);
         styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
-        document.querySelector('head').appendChild(styleNode);
+        document.querySelector('head').insertAdjacentElement('afterbegin', styleNode);
         memory[styles] = true;
       }
     }
