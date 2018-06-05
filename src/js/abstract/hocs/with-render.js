@@ -1,6 +1,6 @@
-import lifecycleLogger from './lifecycle-logger';
-import { clearIsSameNode, isSameNodeOnce } from '../is-same-node-once';
-import nanomorph from '../component-morph';
+import lifecycleLogger from '../utils/lifecycle-logger';
+import { clearIsSameNode, isSameNodeOnce } from '../utils/is-same-node-once';
+import nanomorph from '../utils/component-morph';
 
 const withRender = Base =>
   /**

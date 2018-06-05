@@ -1,5 +1,5 @@
-import PropertyExistsException from '../property-exists-exception';
-import lifecycleLogger from './lifecycle-logger';
+import PropertyExistsException from '../utils/property-exists-exception';
+import lifecycleLogger from '../utils/lifecycle-logger';
 import dasherize from '../../dasherize';
 import toProp from '../../to-prop';
 import camelize from '../../camelize';

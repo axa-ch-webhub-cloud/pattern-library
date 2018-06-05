@@ -1,5 +1,5 @@
 import { publish, subscribe } from '../../pubsub';
-import lifecycleLogger from './lifecycle-logger';
+import lifecycleLogger from '../utils/lifecycle-logger';
 
 const withContext = Base =>
   class Context extends Base {

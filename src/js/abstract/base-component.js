@@ -1,4 +1,4 @@
-import lifecycleLogger from './hocs/lifecycle-logger';
+import lifecycleLogger from './utils/lifecycle-logger';
 
 import withContext from './hocs/with-context';
 import withMonkeyPatches from './hocs/with-monkey-patches';
