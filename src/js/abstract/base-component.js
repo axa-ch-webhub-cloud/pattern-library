@@ -182,10 +182,6 @@ export default withContext(withMonkeyPatches(class BaseComponent extends HTMLEle
 
     this._appendStyles();
     this.render();
-
-    if (this.contextCallback) {
-      this._makeContextReady();
-    }
   }
 
   /**
@@ -288,10 +284,6 @@ export default withContext(withMonkeyPatches(class BaseComponent extends HTMLEle
   disconnectedCallback() {
     if (ENV !== PROD) {
       lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
-    }
-
-    if (this.unContextEnabled) {
-      this.unContextEnabled();
     }
 
     this._isConnected = false;

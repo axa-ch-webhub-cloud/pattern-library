@@ -3,6 +3,36 @@ import lifecycleLogger from './lifecycle-logger';
 
 const withContext = Base =>
   class Context extends Base {
+    /**
+     * connectedCallback - description
+     *
+     * @return {type}  description
+     */
+    connectedCallback() {
+      if (super.connectedCallback) {
+        super.connectedCallback();
+      }
+
+      if (this.contextCallback) {
+        this._makeContextReady();
+      }
+    }
+
+    /**
+     * disconnectedCallback - description
+     *
+     * @return {type}  description
+     */
+    disconnectedCallback() {
+      if (super.disconnectedCallback) {
+        super.disconnectedCallback();
+      }
+
+      if (this.unContextEnabled) {
+        this.unContextEnabled();
+      }
+    }
+
     // @TODO: atm no data can be shared by enabling context, though this could be necessary
     /**
      * Provides an opt-in contextual scope for hierarchy-agnostic child components.
