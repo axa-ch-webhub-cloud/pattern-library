@@ -4,6 +4,7 @@ import withContext from './hocs/with-context';
 import withMonkeyPatches from './hocs/with-monkey-patches';
 import withUpdate from './hocs/with-update';
 import withRender from './hocs/with-render';
+import withStyles from './hocs/with-styles';
 
 const ids = {};
 const getId = (nodeName) => {
@@ -14,7 +15,7 @@ const getId = (nodeName) => {
   return ++ids[nodeName]; // eslint-disable-line no-plusplus
 };
 
-export default withContext(withMonkeyPatches(withUpdate(withRender(class BaseComponent extends HTMLElement {
+export default withContext(withMonkeyPatches(withUpdate(withRender(withStyles(class BaseComponent extends HTMLElement {
   constructor(styles = '', template) {
     super();
 
@@ -50,8 +51,6 @@ export default withContext(withMonkeyPatches(withUpdate(withRender(class BaseCom
     if (!this._isConnected) {
       this._isConnected = true;
     }
-
-    this._appendStyles();
   }
 
   /**
@@ -66,23 +65,6 @@ export default withContext(withMonkeyPatches(withUpdate(withRender(class BaseCom
 
     this._isConnected = false;
   }
-  /**
-   * _appendStyles - description
-   *
-   * @return {type}  description
-   */
-  _appendStyles(el = this) {
-    if (this._styles) {
-      const styleNode = document.createElement('style');
-      const styleText = document.createTextNode(this._styles);
-      styleNode.appendChild(styleText);
-      if (el.insertAdjacentElement) {
-        el.insertAdjacentElement('afterbegin', styleNode);
-      } else {
-        el.appendChild(styleNode);
-      }
-    }
-  }
 
   static uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -90,4 +72,4 @@ export default withContext(withMonkeyPatches(withUpdate(withRender(class BaseCom
       return v.toString(16);
     });
   }
-}))));
+})))));
