@@ -1,18 +1,12 @@
 import nanomorph from './component-morph';
 import { isSameNodeOnce, clearIsSameNode } from './is-same-node-once';
-import getAttribute from '../get-attribute';
-import toProp from '../to-prop';
-import debounce from '../debounce';
-import camelize from '../camelize';
-import dasherize from '../dasherize';
 import lifecycleLogger from './hocs/lifecycle-logger';
 
-import PropertyExistsException from './property-exists-exception';
 import withContext from './hocs/with-context';
 import withMonkeyPatches from './hocs/with-monkey-patches';
+import withUpdate from './hocs/with-update';
 
 const THROWED_ERROR = 'throwed';
-const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
 const ids = {};
 const getId = (nodeName) => {
   if (!(nodeName in ids)) {
@@ -58,66 +52,12 @@ const getId = (nodeName) => {
  * </axa-example>
  * ```
  */
-export default withContext(withMonkeyPatches(class BaseComponent extends HTMLElement {
+export default withContext(withMonkeyPatches(withUpdate(class BaseComponent extends HTMLElement {
   constructor(styles = '', template) {
     super();
 
     this._initialise(styles, template);
     this._id = getId(this.nodeName);
-    this._props = {};
-    this._hasKeys = {};
-    this.reRender = debounce(() => this.render(), 50);
-
-    const { constructor: { observedAttributes } } = this;
-
-    // add DOM property getters/setters for related attributes
-    if (Array.isArray(observedAttributes)) {
-      observedAttributes.forEach((attr) => {
-        const key = camelize(attr);
-        const hasKey = key in this;
-
-        if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
-        }
-
-        if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
-          throw new PropertyExistsException(key, this);
-        }
-
-        this._hasKeys[key] = hasKey;
-
-        // @todo: may we should allow deletion by setting configurable: true
-        Object.defineProperty(this, key, {
-          get() {
-            return this[`_${key}`];
-          },
-          set(value) {
-            const name = `_${key}`;
-
-            // only update the value if it has actually changed
-            // and only re-render if it has changed
-            if (!this.shouldUpdateCallback(this[name], value)) {
-              return;
-            }
-
-            this[name] = value;
-            this._props[key] = value;
-
-            if (hasKey) {
-              super[key] = value;
-            }
-
-            if (this._isConnected && this._hasRendered) {
-              if (ENV !== PROD) {
-                lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
-              }
-
-              this.reRender();
-            }
-          },
-        });
-      });
-    }
   }
 
   /**
@@ -147,133 +87,9 @@ export default withContext(withMonkeyPatches(class BaseComponent extends HTMLEle
 
     if (!this._isConnected) {
       this._isConnected = true;
-
-      const { constructor: { observedAttributes } } = this;
-
-      this.initialClassName = this.className;
-
-      if (Array.isArray(observedAttributes)) {
-        if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
-        }
-
-        observedAttributes.forEach((attr) => {
-          const key = camelize(attr);
-
-          if (this.hasAttribute(attr)) {
-            const value = getAttribute(this, attr);
-            const hasKey = this._hasKeys[key];
-            const name = `_${key}`;
-
-            this[name] = value;
-            this._props[key] = value;
-
-            if (hasKey) {
-              super[key] = value;
-            }
-          }
-        });
-
-        if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
-        }
-      }
     }
 
     this._appendStyles();
-    this.render();
-  }
-
-  /**
-   * Default behaviour is to re-render on attribute addition, change or removal.
-   */
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
-    }
-
-    // only update the value if it has actually changed
-    // and only re-render if it has changed
-    if (!this.shouldUpdateCallback(newValue, oldValue)) {
-      return;
-    }
-
-    const key = camelize(name);
-
-    this[key] = toProp(newValue);
-  }
-
-  /**
-   * A fast and simpler way to update multiple props in one go.
-   * Especially useful for integrations and to prevent multiple re-renders.
-   *
-   * @param {{}} props - DOM properties to be updated.
-   */
-  batchProps(props) {
-    const { constructor: { observedAttributes = [] } } = this;
-    const propsKeys = Object.keys(props);
-    const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
-    const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
-
-    if (shouldUpdate && this._isConnected && this._hasRendered) {
-      if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`\n---> batchProps for ${propsKeys.join(', ')}`);
-      }
-
-      this.render();
-    }
-  }
-
-  /**
-   * Props reducer for batch processing.
-   *
-   * @param {{}} props - The properties to be batch processed.
-   * @param {Boolean} shouldUpdate - Is re-render necessary?
-   * @param {String} key - the current property's key.
-   * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
-   */
-  _reduceProps = ({ props, shouldUpdate }, key) => {
-    const hasKey = this._hasKeys[key];
-
-    if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
-      throw new PropertyExistsException(key, this);
-    }
-
-    const name = `_${key}`;
-    const value = props[key];
-    const oldValue = this[name];
-
-    if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
-      return {
-        props,
-        shouldUpdate: false,
-      };
-    }
-
-    this[name] = value;
-    this._props[key] = value;
-
-    if (hasKey) {
-      super[key] = value;
-    }
-
-    return {
-      props,
-      shouldUpdate: true,
-    };
-  }
-
-  /**
-   * Check if a re-render is really necessary.
-   * Basic check does a shallow comparison.
-   *
-   * @param {*} newValue - the new value of an attribute.
-   * @param {*} oldValue - the existing value of an attribute.
-   * @returns {Boolean} - Returns `true` if attributes have changed, else `false`.
-   */
-  // eslint-disable-next-line class-methods-use-this
-  shouldUpdateCallback(newValue, oldValue) {
-    return newValue !== oldValue;
   }
 
   /**
@@ -433,19 +249,10 @@ export default withContext(withMonkeyPatches(class BaseComponent extends HTMLEle
    */
   didRenderCallback(initial) {} // eslint-disable-line
 
-  /**
-   * Only morph children of current custom element, not any other custom element.
-   *
-   * @returns {boolean}
-   */
-  skipChildren() {
-    return !this._isMorphing;
-  }
-
   static uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
       return v.toString(16);
     });
   }
-}));
+})));
