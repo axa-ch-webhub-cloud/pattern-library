@@ -2,12 +2,13 @@ import nanomorph from './component-morph';
 import { isSameNodeOnce, clearIsSameNode } from './is-same-node-once';
 import getAttribute from '../get-attribute';
 import toProp from '../to-prop';
-import { publish, subscribe } from '../pubsub';
 import debounce from '../debounce';
 import camelize from '../camelize';
 import dasherize from '../dasherize';
-import maybe from '../maybe';
+import lifecycleLogger from './hocs/lifecycle-logger';
+
 import PropertyExistsException from './property-exists-exception';
+import withContext from './hocs/with-context';
 
 const THROWED_ERROR = 'throwed';
 const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
@@ -19,7 +20,7 @@ const getId = (nodeName) => {
 
   return ++ids[nodeName]; // eslint-disable-line no-plusplus
 };
-const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
+
 
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
@@ -56,7 +57,7 @@ const lifecycleLogger = maybe((...args) => console.log(...args))()(true);
  * </axa-example>
  * ```
  */
-export default class BaseComponent extends HTMLElement {
+export default withContext(class BaseComponent extends HTMLElement {
   constructor(styles = '', template) {
     super();
 
@@ -520,77 +521,10 @@ export default class BaseComponent extends HTMLElement {
     return !this._isMorphing;
   }
 
-  // @TODO: atm no data can be shared by enabling context, though this could be necessary
-  /**
-   * Provides an opt-in contextual scope for hierarchy-agnostic child components.
-   */
-  enableContext() {
-    if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`enableContext -> ${this.nodeName}#${this._id}`);
-    }
-
-    const contextName = this.nodeName.toLowerCase();
-
-    this.__isContext = true;
-    this.__contextName = contextName;
-
-    // publish context/enabled with contextual node name
-    publish('context/enabled', contextName);
-  }
-
-  /**
-   * Opt-in to select a specific context by component name.
-   *
-   * @param name
-   */
-  selectContext(name) {
-    if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`selectContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
-    }
-
-    this.__selectedContext = name && name.toLowerCase();
-  }
-
-  _makeContextReady = ({ detail: contextName } = {}) => {
-    if (this.contextNode) {
-      clearTimeout(this.timeoutId);
-      this.timeoutId = setTimeout(() => {
-        if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
-        }
-
-        this.contextCallback(this.contextNode, contextName);
-      }, 10);
-    }
-
-    if (this.unContextEnabled) {
-      this.unContextEnabled();
-    }
-
-    this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
-  }
-
-  /**
-   * Returns contextual scope, if defined by any parent component.
-   *
-   * @returns {ContextNode|Boolean} - Returns an associated context node if found, else `false`.
-   */
-  get contextNode() {
-    const { __selectedContext } = this;
-    let { parentNode } = this;
-
-    while (parentNode && (!parentNode.__isContext || (__selectedContext && __selectedContext !== parentNode.__contextName))) {
-      // eslint-disable-next-line prefer-destructuring
-      parentNode = parentNode.parentNode;
-    }
-
-    return (parentNode && parentNode.__isContext) ? parentNode : false;
-  }
-
   static uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); // eslint-disable-line
       return v.toString(16);
     });
   }
-}
+});
