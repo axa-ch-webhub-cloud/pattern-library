@@ -98,9 +98,7 @@ const withUpdate = Base =>
             if (this.hasAttribute(attr)) {
               const value = getAttribute(this, attr);
               const hasKey = this._hasKeys[key];
-              const name = `_${key}`;
 
-              this[name] = value;
               this._props[key] = value;
 
               if (hasKey) {
