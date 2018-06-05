@@ -39,6 +39,13 @@ const withRender = Base =>
    * ```
    */
   class Render extends Base {
+    constructor() {
+      super();
+
+      // hook into updated
+      this.updated = this.render;
+    }
+
     /**
      * render - method can be overwritten and is called right after the component is connected
      * @TODO how to deal with re-renders, e.g. triggered by `attributeChangedCallback` or observed DOM

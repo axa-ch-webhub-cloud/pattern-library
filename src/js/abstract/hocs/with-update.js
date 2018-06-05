@@ -15,7 +15,7 @@ const withUpdate = Base =>
 
       this._props = {};
       this._hasKeys = {};
-      this.reRender = debounce(() => this.render(), 50);
+      this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
       const { constructor: { observedAttributes } } = this;
 
       // add DOM property getters/setters for related attributes
@@ -37,20 +37,18 @@ const withUpdate = Base =>
           // @todo: may we should allow deletion by setting configurable: true
           Object.defineProperty(this, key, {
             get() {
-              return this[`_${key}`];
+              return this._props[key];
             },
             set(value) {
-              const name = `_${key}`;
-
               // only update the value if it has actually changed
               // and only re-render if it has changed
-              if (!this.shouldUpdateCallback(this[name], value)) {
+              if (!this.shouldUpdateCallback(this._props[key], value)) {
                 return;
               }
 
-              this[name] = value;
               this._props[key] = value;
 
+              // sync DOM property if in white list
               if (hasKey) {
                 super[key] = value;
               }
@@ -60,7 +58,7 @@ const withUpdate = Base =>
                   lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
                 }
 
-                this.reRender();
+                this.updatedDebounced();
               }
             },
           });
@@ -117,7 +115,9 @@ const withUpdate = Base =>
         }
       }
 
-      this.render();
+      if (this.updated) {
+        this.updated();
+      }
     }
 
     /**
@@ -145,7 +145,7 @@ const withUpdate = Base =>
      *
      * @param {{}} props - DOM properties to be updated.
      */
-    batchProps(props) {
+    setProps(props) {
       const { constructor: { observedAttributes = [] } } = this;
       const propsKeys = Object.keys(props);
       const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
@@ -156,7 +156,9 @@ const withUpdate = Base =>
           lifecycleLogger(this.logLifecycle)(`\n---> batchProps for ${propsKeys.join(', ')}`);
         }
 
-        this.render();
+        if (this.updated) {
+          this.updated();
+        }
       }
     }
 
