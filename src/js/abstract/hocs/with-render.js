@@ -48,19 +48,6 @@ const withRender = Base =>
     }
 
     /**
-     * connectedCallback - description
-     *
-     * @return {type}  description
-     */
-    connectedCallback() {
-      if (!this._isConnected) {
-        this._isConnected = true;
-      }
-
-      this.render();
-    }
-
-    /**
      * render - method can be overwritten and is called right after the component is connected
      * @TODO how to deal with re-renders, e.g. triggered by `attributeChangedCallback` or observed DOM
      *
