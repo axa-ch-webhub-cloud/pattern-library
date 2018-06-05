@@ -1,6 +1,7 @@
 import lifecycleLogger from '../utils/lifecycle-logger';
 import { clearIsSameNode, isSameNodeOnce } from '../utils/is-same-node-once';
 import nanomorph from '../utils/component-morph';
+import TemplateNoStringReturnException from '../utils/template-no-string-return-exception';
 
 const withRender = Base =>
   /**
@@ -106,15 +107,7 @@ const withRender = Base =>
             });
           } else if (items) {
             if (typeof items === 'string') {
-              const err = new Error(THROWED_ERROR);
-              // @TODO: implement log system
-              console.error( // eslint-disable-line
-                `\n%cWeb Component %c${this.nodeName}%c#${this._id} does not accept string as a return from a template. Maybe use bel?\n\nStack Trace: ${err.stack}\n`, // eslint-disable-line
-                'color: #580000; font-size: 14px; line-height:16px;',
-                'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
-                'color: #580000; font-size: 14px; line-height:16px;',
-              );
-              throw err;
+              throw new TemplateNoStringReturnException(this);
             }
             renderFragment.appendChild(items);
           }
@@ -137,14 +130,7 @@ const withRender = Base =>
             this._isMorphing = false;
           }
         } catch (err) {
-          if (err.message !== THROWED_ERROR) {
-            console.error( // eslint-disable-line
-              `\n%cWeb Component %c${this.nodeName}%c#${this._id} has an error while loading its template:\n${err}\n\nStack Trace: ${err.stack}\n`,
-              'color: #580000; font-size: 14px; line-height:16px;',
-              'background: #8b0000; color: #FFF; font-size: 14px; line-height:16px;',
-              'color: #580000; font-size: 14px; line-height:16px;',
-            );
-          }
+          console.error(err);
         }
       }
 
