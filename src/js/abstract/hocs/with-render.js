@@ -40,11 +40,24 @@ const withRender = Base =>
    * ```
    */
   class Render extends Base {
-    constructor() {
-      super();
+    constructor(...args) {
+      super(...args);
 
       // hook into updated
       this.updated = this.render;
+    }
+
+    /**
+     * connectedCallback - description
+     *
+     * @return {type}  description
+     */
+    connectedCallback() {
+      if (!this._isConnected) {
+        this._isConnected = true;
+      }
+
+      this.render();
     }
 
     /**

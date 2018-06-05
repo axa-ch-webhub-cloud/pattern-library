@@ -10,8 +10,8 @@ const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
 
 const withUpdate = Base =>
   class Update extends Base {
-    constructor() {
-      super();
+    constructor(...args) {
+      super(...args);
 
       this._props = {};
       this._hasKeys = {};
