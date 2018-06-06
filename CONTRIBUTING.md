@@ -286,7 +286,7 @@ Adds the ability to provide and consume contextual data.
 
 #### `withMonkeyPatch()`
 
-Guarantees that updates to the custom element's children do not mess up the [**Flattened DOM**](#flattened-dom) and keeps it'S [**Local DOM**](#local-dom) untouched.
+Guarantees that updates to the custom element's children do not mess up the [**Flattened DOM**](#flattened-dom) and keeps it's [**Local DOM**](#local-dom) untouched.
 
 **Note:** this is obsolete if `ShadowDOM` is enabled.
 
