@@ -17,12 +17,14 @@ const withShadow = Base =>
 
       this._shadowRoot = shadowRoot;
 
-      // proxy _appendStyles of withStyles to append to shadow root
+      // cache class _appendStyles of withStyles to append to shadow root
       this._appendStylesProxy = this._appendStyles;
-      this._appendStyles = () => {
-        this._appendStylesProxy(this._shadowRoot);
-      };
     }
+
+    // proxy _appendStyles of withStyles to append to shadow root
+    _appendStyles = () => {
+      this._appendStylesProxy(this._shadowRoot);
+    };
   };
 
 export default withShadow;
