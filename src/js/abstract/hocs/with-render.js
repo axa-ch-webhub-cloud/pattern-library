@@ -5,8 +5,8 @@ import TemplateNoStringReturnException from '../utils/template-no-string-return-
 
 const withRender = Base =>
   /**
-   * Base class {BaseComponent}. This class checks if a template is set in the custom element
-   * and if yes appends it. It also appends custom styles to the top of the dom tree.
+   * Adds the ability to render external DOM-based templates,
+   * applies changes incrementally by DOM-morphing and provides additional lifecycle hooks.
    *
    * **Light DOM**
    * The light DOM are the provided children from the users of your component (light meaning easy to digest).
