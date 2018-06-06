@@ -48,10 +48,7 @@ const withRender = Base =>
     }
 
     /**
-     * render - method can be overwritten and is called right after the component is connected
-     * @TODO how to deal with re-renders, e.g. triggered by `attributeChangedCallback` or observed DOM
-     *
-     * @return {type}  description
+     * render - method can be overwritten and is called right after the component is connected.
      */
     render() { // eslint-disable-line
       const initial = !this._hasRendered;
