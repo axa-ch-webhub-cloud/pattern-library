@@ -39,7 +39,7 @@ const withRender = Base =>
    * </axa-example>
    * ```
    */
-  class Render extends Base {
+  class WithRender extends Base {
     constructor(...args) {
       super(...args);
 

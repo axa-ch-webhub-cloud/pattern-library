@@ -4,7 +4,7 @@ const withMonkeyPatches = Base =>
    *
    * **Note:** this is obsolete if `ShadowDOM` is enabled.
    */
-  class MonkeyPatches extends Base {
+  class WithMonkeyPatches extends Base {
     /**
      * Monkey patch `innerText` API to re-rendering.
      *

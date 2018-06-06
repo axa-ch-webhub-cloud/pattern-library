@@ -5,7 +5,7 @@ const withContext = Base =>
   /**
    * Adds the ability to provide and consume contextual data.
    */
-  class Context extends Base {
+  class WithContext extends Base {
     /**
      * connectedCallback - description
      *
