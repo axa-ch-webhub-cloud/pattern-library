@@ -1,17 +1,24 @@
 const withShadow = Base =>
   class WithShadow extends Base {
+    constructor(...args) {
+      super(...args);
+
+      const mode = 'open';
+      const shadowRoot = this.attachShadow({ mode });
+
+      this._shadowRoot = shadowRoot;
+    }
     /**
      * Attach shadow DOM upon connect.
      *
      * @param {String} [mode='open']
      */
-    connectedCallback(mode = 'open') {
+    connectedCallback() {
       if (super.connectedCallback) {
         super.connectedCallback();
       }
 
-      const shadowRoot = this.attachShadow({ mode });
-      this._appendStyles(shadowRoot);
+      this._appendStyles(this._shadowRoot);
     }
   };
 
