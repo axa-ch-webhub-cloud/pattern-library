@@ -1,3 +1,45 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [First things first](#first-things-first)
+- [Crafting a new component](#crafting-a-new-component)
+  - [Conventions](#conventions)
+    - [Types of Components](#types-of-components)
+    - [CSS](#css)
+    - [JS](#js)
+    - [HTML](#html)
+  - [Scaffolding](#scaffolding)
+  - [Custom Elements](#custom-elements)
+    - [Key Terms](#key-terms)
+      - [Light DOM](#light-dom)
+      - [Local DOM](#local-dom)
+      - [Flattened DOM](#flattened-dom)
+      - [First Class Props](#first-class-props)
+    - [Lifecycle Phases](#lifecycle-phases)
+      - [`constructor()`](#constructor)
+      - [`connectedCallback()`](#connectedcallback)
+      - [`contextCallback(contextNode)`](#contextcallbackcontextnode)
+      - [`attributeChangedCallback(name, oldValue, newValue)`](#attributechangedcallbackname-oldvalue-newvalue)
+      - [Property `setter()`](#property-setter)
+      - [`setProps(props)`](#setpropsprops)
+      - [`shouldUpdateCallback(newValue, oldValue)`](#shouldupdatecallbacknewvalue-oldvalue)
+      - [`willRenderCallback(initial)`](#willrendercallbackinitial)
+      - [`didRenderCallback(initial)`](#didrendercallbackinitial)
+      - [`disconnectedCallback()`](#disconnectedcallback)
+      - [Render Loop](#render-loop)
+    - [Higher Order Class](#higher-order-class)
+      - [`withContext()`](#withcontext)
+      - [`withMonkeyPatch()`](#withmonkeypatch)
+      - [`withRender()`](#withrender)
+      - [`withStyles()`](#withstyles)
+      - [`withUpdate()`](#withupdate)
+  - [Integration](#integration)
+    - [`withReact()`](#withreact)
+- [How do we release a new version](#how-do-we-release-a-new-version)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # First things first
 
 Setup your IDE to properly integrate with:
