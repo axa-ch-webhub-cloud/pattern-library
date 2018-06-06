@@ -12,7 +12,7 @@ import withStyles from './hocs/with-styles';
  * and if yes appends it. It also appends custom styles to the top of the dom tree.
  */
 class BaseComponent extends HTMLElement {
-  constructor({ styles = '', template, ...options }) {
+  constructor({ styles = '', template, ...options } = {}) {
     super(options);
 
     this._initialise(styles, template);
