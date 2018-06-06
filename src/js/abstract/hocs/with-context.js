@@ -54,7 +54,7 @@ const withContext = Base =>
     /**
      * Opt-in to select a specific context by component name.
      *
-     * @param name
+     * @param {String} name - `nodeName` of the desired contextual node.
      */
     selectContext(name) {
       if (ENV !== PROD) {
@@ -64,6 +64,12 @@ const withContext = Base =>
       this.__selectedContext = name && name.toLowerCase();
     }
 
+    /**
+     * Poll `contextNode` until it is available.
+     *
+     * @param contextName - Lowercase `nodeName` of the contextual node.
+     * @private
+     */
     _makeContextReady = ({ detail: contextName } = {}) => {
       if (this.contextNode) {
         clearTimeout(this.timeoutId);
