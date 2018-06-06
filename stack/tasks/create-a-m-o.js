@@ -77,7 +77,7 @@ const writeIndexJs = (path, _name) => {
         static get observedAttributes() { return ['classes']; }
 
         constructor() {
-          super(styles, template);
+          super({ styles, template });
 
           // does this provide context (See docs for context) ?
           // this.provideContext()

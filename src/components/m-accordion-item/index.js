@@ -10,7 +10,7 @@ class AXAAccordionItem extends BaseComponentGlobal {
   static get observedAttributes() { return ['icon', 'header', 'header-secondary', 'header-color', 'multiple']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
     this.consumeContext('axa-accordion');
   }

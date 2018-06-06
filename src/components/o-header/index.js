@@ -6,7 +6,7 @@ class AXAHeader extends BaseComponentGlobal {
   static tagName = 'axa-header'
 
   constructor() {
-    super(styles);
+    super({ styles });
 
     this.provideContext();
   }

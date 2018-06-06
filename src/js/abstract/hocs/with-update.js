@@ -13,8 +13,8 @@ const withUpdate = Base =>
    * Adds attribute observation and enables **First Class Props**.
    */
   class WithUpdate extends Base {
-    constructor(...args) {
-      super(...args);
+    constructor(options) {
+      super(options);
 
       this._props = {};
       this._hasKeys = {};

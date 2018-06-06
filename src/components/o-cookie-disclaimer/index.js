@@ -15,7 +15,7 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
   static get observedAttributes() { return ['classes', 'button-name', 'title', 'fixed']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
     this.disclaimerHandler = new DisclaimerHandler(this);
     // does this provide context (See docs for context) ?

@@ -12,7 +12,7 @@ class AXAHeaderMobile extends BaseComponentGlobal {
   static get observedAttributes() { return ['offcanvas']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
     this.consumeContext('axa-header');
   }

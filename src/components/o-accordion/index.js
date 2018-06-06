@@ -7,7 +7,7 @@ class AXAAccordion extends BaseComponentGlobal {
   static tagName = 'axa-accordion'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
     this.provideContext();
   }

@@ -10,7 +10,7 @@ class AXAHeaderBurger extends BaseComponentGlobal {
   static tagName = 'axa-header-burger'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
     this.consumeContext('axa-header');
   }

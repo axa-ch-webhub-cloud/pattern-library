@@ -12,7 +12,7 @@ class AXAHeaderLogo extends BaseComponentGlobal {
   static get observedAttributes() { return ['alt', 'href', 'src']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   connectedCallback() {
