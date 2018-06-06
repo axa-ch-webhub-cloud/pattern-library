@@ -14,15 +14,18 @@ const withStyles = Base =>
     }
 
     /**
-     * _appendStyles - description
+     * Append styles as inline `<style>` tag.
      *
-     * @return {type}  description
+     * @param {Element} [el=this] - The DOM Element where to append the CSS styles.
+     * @private
      */
     _appendStyles(el = this) {
       if (this._styles) {
         const styleNode = document.createElement('style');
         const styleText = document.createTextNode(this._styles);
+
         styleNode.appendChild(styleText);
+
         if (el.insertAdjacentElement) {
           el.insertAdjacentElement('afterbegin', styleNode);
         } else {
