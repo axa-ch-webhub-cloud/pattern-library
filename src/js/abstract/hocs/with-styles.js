@@ -3,6 +3,11 @@ const withStyles = Base =>
    * Appends an optional custom element's stylesheet to the document.
    */
   class WithStyles extends Base {
+    constructor({ styles = '', ...options } = {}) {
+      super(options);
+
+      this._styles = styles;
+    }
     /**
      * connectedCallback - description
      *

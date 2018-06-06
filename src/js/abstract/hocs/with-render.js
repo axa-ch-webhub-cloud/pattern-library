@@ -40,8 +40,12 @@ const withRender = Base =>
    * ```
    */
   class WithRender extends Base {
-    constructor(options) {
+    constructor({ template, ...options } = {}) {
       super(options);
+
+      this._template = template;
+      this._hasTemplate = !!template;
+      this._hasRendered = false;
 
       // hook into withUpdate's updated call
       this.updated = this.render;

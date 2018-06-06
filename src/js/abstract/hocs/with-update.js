@@ -16,6 +16,7 @@ const withUpdate = Base =>
     constructor(options) {
       super(options);
 
+      this._isConnected = false;
       this._props = {};
       this._hasKeys = {};
       this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
@@ -223,6 +224,20 @@ const withUpdate = Base =>
     skipChildren() {
       return !this._isMorphing;
     }
+
+    /**
+     * disconnectedCallback - description
+     *
+     * @return {type}  description
+     */
+    disconnectedCallback() {
+      if (ENV !== PROD) {
+        lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
+      }
+
+      this._isConnected = false;
+    }
+
   };
 
 export default withUpdate;

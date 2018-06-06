@@ -12,54 +12,10 @@ import withStyles from './hocs/with-styles';
  * and if yes appends it. It also appends custom styles to the top of the dom tree.
  */
 class BaseComponent extends HTMLElement {
-  constructor({ styles = '', template, ...options } = {}) {
+  constructor(options) {
     super(options);
 
-    this._initialise(styles, template);
     this._id = getId(this.nodeName);
-  }
-
-  /**
-   * _initialise - description
-   *
-   * @param  {type} styles description
-   * @param  {type} template description
-   * @return {type}        description
-   */
-  _initialise(styles, template = null) {
-    this._styles = styles;
-    this._template = template;
-    this._hasTemplate = !!template;
-    this._hasRendered = false;
-    this._isConnected = false;
-  }
-
-  /**
-   * connectedCallback - description
-   *
-   * @return {type}  description
-   */
-  connectedCallback() {
-    if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`\n^^^ connectedCallback -> ${this.nodeName}#${this._id}`);
-    }
-
-    if (!this._isConnected) {
-      this._isConnected = true;
-    }
-  }
-
-  /**
-   * disconnectedCallback - description
-   *
-   * @return {type}  description
-   */
-  disconnectedCallback() {
-    if (ENV !== PROD) {
-      lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
-    }
-
-    this._isConnected = false;
   }
 
   static uuidv4() {
