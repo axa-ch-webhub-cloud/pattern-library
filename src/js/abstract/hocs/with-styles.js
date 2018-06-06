@@ -1,4 +1,7 @@
 const withStyles = Base =>
+  /**
+   * Appends an optional custom element's stylesheet to the document.
+   */
   class Styles extends Base {
     /**
      * connectedCallback - description

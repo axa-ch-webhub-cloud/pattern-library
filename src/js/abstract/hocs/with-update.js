@@ -9,6 +9,9 @@ import getAttribute from '../../get-attribute';
 const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
 
 const withUpdate = Base =>
+  /**
+   * Adds attribute observation and enables **First Class Props**.
+   */
   class Update extends Base {
     constructor(...args) {
       super(...args);

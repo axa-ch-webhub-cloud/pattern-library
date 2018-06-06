@@ -2,6 +2,9 @@ import { publish, subscribe } from '../../pubsub';
 import lifecycleLogger from '../utils/lifecycle-logger';
 
 const withContext = Base =>
+  /**
+   * Adds the ability to provide and consume contextual data.
+   */
   class Context extends Base {
     /**
      * connectedCallback - description

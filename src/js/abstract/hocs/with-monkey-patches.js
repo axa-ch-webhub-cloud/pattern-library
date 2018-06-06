@@ -1,4 +1,9 @@
 const withMonkeyPatches = Base =>
+  /**
+   * Guarantees that updates to the custom element's children do not mess up the **Flattened DOM** and keeps it's **Local DOM** untouched
+   *
+   * **Note:** this is obsolete if `ShadowDOM` is enabled.
+   */
   class MonkeyPatches extends Base {
     /**
      * Monkey patch `innerText` API to re-rendering.
