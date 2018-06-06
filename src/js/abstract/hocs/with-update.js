@@ -122,7 +122,7 @@ const withUpdate = Base =>
     }
 
     /**
-     * Default behaviour is to re-render on attribute addition, change or removal.
+     * Default behaviour is to update on attribute addition, change or removal.
      */
     attributeChangedCallback(name, oldValue, newValue) {
       if (ENV !== PROD) {
