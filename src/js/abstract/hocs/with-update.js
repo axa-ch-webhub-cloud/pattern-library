@@ -154,7 +154,7 @@ const withUpdate = Base =>
 
       if (shouldUpdate && this._isConnected && this._hasRendered) {
         if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`\n---> batchProps for ${propsKeys.join(', ')}`);
+          lifecycleLogger(this.logLifecycle)(`\n---> setProps for ${propsKeys.join(', ')}`);
         }
 
         if (this.updated) {
