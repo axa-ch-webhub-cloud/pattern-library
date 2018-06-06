@@ -1,3 +1,4 @@
+import getId from './utils/get-id';
 import lifecycleLogger from './utils/lifecycle-logger';
 
 import withContext from './hocs/with-context';
@@ -5,15 +6,6 @@ import withMonkeyPatches from './hocs/with-monkey-patches';
 import withUpdate from './hocs/with-update';
 import withRender from './hocs/with-render';
 import withStyles from './hocs/with-styles';
-
-const ids = {};
-const getId = (nodeName) => {
-  if (!(nodeName in ids)) {
-    ids[nodeName] = 0;
-  }
-
-  return ++ids[nodeName]; // eslint-disable-line no-plusplus
-};
 
 // eslint-disable-next-line function-paren-newline
 export default withContext(withMonkeyPatches(withUpdate(withRender(withStyles(
