@@ -8,7 +8,7 @@ class AXAHeader extends BaseComponentGlobal {
   constructor() {
     super(styles);
 
-    this.enableContext();
+    this.provideContext();
   }
 
   connectedCallback() {

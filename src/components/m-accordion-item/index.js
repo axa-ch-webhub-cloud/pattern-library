@@ -12,7 +12,7 @@ class AXAAccordionItem extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.selectContext('axa-accordion');
+    this.consumeContext('axa-accordion');
   }
 
   connectedCallback() {

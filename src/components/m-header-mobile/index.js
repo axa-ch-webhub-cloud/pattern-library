@@ -14,7 +14,7 @@ class AXAHeaderMobile extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.selectContext('axa-header');
+    this.consumeContext('axa-header');
   }
 
   /**

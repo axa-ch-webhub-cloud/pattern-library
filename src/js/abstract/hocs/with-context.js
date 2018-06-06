@@ -40,9 +40,9 @@ const withContext = Base =>
     /**
      * Provides an opt-in contextual scope for hierarchy-agnostic child components.
      */
-    enableContext() {
+    provideContext() {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`enableContext -> ${this.nodeName}#${this._id}`);
+        lifecycleLogger(this.logLifecycle)(`provideContext -> ${this.nodeName}#${this._id}`);
       }
 
       const contextName = this.nodeName.toLowerCase();
@@ -51,7 +51,7 @@ const withContext = Base =>
       this.__contextName = contextName;
 
       // publish context/enabled with contextual node name
-      publish('context/enabled', contextName);
+      publish('context/available', contextName);
     }
 
     /**
@@ -59,12 +59,12 @@ const withContext = Base =>
      *
      * @param {String} name - `nodeName` of the desired contextual node.
      */
-    selectContext(name) {
+    consumeContext(name) {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`selectContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
+        lifecycleLogger(this.logLifecycle)(`consumeContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
       }
 
-      this.__selectedContext = name && name.toLowerCase();
+      this.__consumedContext = name && name.toLowerCase();
     }
 
     /**
@@ -89,7 +89,7 @@ const withContext = Base =>
         this.unContextEnabled();
       }
 
-      this.unContextEnabled = subscribe('context/enabled', this._makeContextReady);
+      this.unContextEnabled = subscribe('context/available', this._makeContextReady);
     }
 
     /**
@@ -98,10 +98,10 @@ const withContext = Base =>
      * @returns {ContextNode|Boolean} - Returns an associated context node if found, else `false`.
      */
     get contextNode() {
-      const { __selectedContext } = this;
+      const { __consumedContext } = this;
       let { parentNode } = this;
 
-      while (parentNode && (!parentNode.__isContext || (__selectedContext && __selectedContext !== parentNode.__contextName))) {
+      while (parentNode && (!parentNode.__isContext || (__consumedContext && __consumedContext !== parentNode.__contextName))) {
         // eslint-disable-next-line prefer-destructuring
         parentNode = parentNode.parentNode;
       }

@@ -14,7 +14,7 @@ class AXAHeaderMain extends BaseComponentGlobal {
   constructor() {
     super(styles, template);
 
-    this.enableContext();
+    this.provideContext();
   }
 
   willRenderCallback() {

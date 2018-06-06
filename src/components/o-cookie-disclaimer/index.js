@@ -19,10 +19,10 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
 
     this.disclaimerHandler = new DisclaimerHandler(this);
     // does this provide context (See docs for context) ?
-    // this.enableContext()
+    // this.provideContext()
 
     // or do you want to consume a specific context
-    // this.selectContext('axa-context-provider');
+    // this.consumeContext('axa-context-provider');
   }
 
   /**
