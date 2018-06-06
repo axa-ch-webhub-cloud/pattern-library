@@ -32,6 +32,7 @@
       - [`withContext()`](#withcontext)
       - [`withMonkeyPatch()`](#withmonkeypatch)
       - [`withRender()`](#withrender)
+      - [`withShadow()`](#withshadow)
       - [`withStyles()`](#withstyles)
       - [`withUpdate()`](#withupdate)
   - [Integration](#integration)
@@ -295,6 +296,10 @@ Guarantees that updates to the custom element's children do not mess up the [**F
 #### `withRender()`
 
 Adds the ability to render external DOM-based templates, applies changes incrementally by DOM-morphing and provides additional lifecycle hooks.
+
+#### `withShadow()`
+
+Attaches a shadow DOM to the custom element.
 
 #### `withStyles()`
 
