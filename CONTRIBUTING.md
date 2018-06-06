@@ -205,7 +205,7 @@ example.exampleMessage = 'hello world';
 
 **Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason!
 
-#### `batchProps(props)`
+#### `setProps(props)`
 
 A fast and simpler way to update multiple props in one go.
 Especially useful for integrations and to prevent multiple or delayed re-renders.
