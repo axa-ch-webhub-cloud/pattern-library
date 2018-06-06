@@ -232,6 +232,34 @@ Invoked when the custom element is disconnected from the document's DOM.
 
 The render loop makes sure that upon each [`attributeChangedCallback()`](#attributechangedcallbackname-oldvalue-newvalue) invocation or any observed [property `setter()`](#property-setter) invocation that the flattened DOM is recomputed and that [`willRenderCallback()`](#willrendercallbackinitial) and [`didRenderCallback()`](#didrendercallbackinitial) lifecycle hooks are called respectively.
 
+### Higher Order Class
+
+Under the hood we defined following encapsulated higher order classes.
+
+**Note:** all of these are already composed to `BaseComponnet` class.
+
+#### `withContext()`
+
+Adds the ability to provide and consume contextual data.
+
+#### `withMonkeyPatch()`
+
+Guarantees that updates to the custom element's children do not mess up the [**Flattened DOM**](#flattened-dom) and keeps it'S [**Local DOM**](#local-dom) untouched.
+
+**Note:** this is obsolete if `ShadowDOM` is enabled.
+
+#### `withRender()`
+
+Adds the ability to render external DOM-based templates, applies changes incrementally by DOM-morphing and provides additional lifecycle hooks.
+
+#### `withStyles()`
+
+Appends an optional custom element's stylesheet to the document.
+
+#### `withUpdate()`
+
+Adds attribute observation and enables [**First Class Props**](#first-class-props).
+
 ## Integration
 
 The goal is that custom elements can be shared across frameworks and libraries like Angular, React, Vue, you name it. To ease this process we set a static `tagName` property for each custom element and provide generic wrapper functions.
