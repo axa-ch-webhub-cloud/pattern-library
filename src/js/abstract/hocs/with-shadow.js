@@ -7,18 +7,12 @@ const withShadow = Base =>
       const shadowRoot = this.attachShadow({ mode });
 
       this._shadowRoot = shadowRoot;
-    }
-    /**
-     * Attach shadow DOM upon connect.
-     *
-     * @param {String} [mode='open']
-     */
-    connectedCallback() {
-      if (super.connectedCallback) {
-        super.connectedCallback();
-      }
 
-      this._appendStyles(this._shadowRoot);
+      // proxy _appendStyles of withStyles to append to shadow root
+      this._appendStylesProxy = this._appendStyles;
+      this._appendStyles = () => {
+        this._appendStylesProxy(this._shadowRoot);
+      };
     }
   };
 
