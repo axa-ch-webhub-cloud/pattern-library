@@ -43,7 +43,7 @@ const withRender = Base =>
     constructor(...args) {
       super(...args);
 
-      // hook into updated
+      // hook into withUpdate's updated call
       this.updated = this.render;
     }
 
