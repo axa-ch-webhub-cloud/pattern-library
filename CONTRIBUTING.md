@@ -280,6 +280,8 @@ Under the hood we defined following encapsulated higher order classes.
 
 **Note:** all of these are already composed to `BaseComponnet` class.
 
+**Caution:** consider that all possible combinations have to be interchangeable and that they result in a [**Factorial**](https://en.wikipedia.org/wiki/Factorial) set of permutations - i.e. our `6` HOCs correlate to `6!` = `720` permutations.
+
 #### `withContext()`
 
 Adds the ability to provide and consume contextual data.
