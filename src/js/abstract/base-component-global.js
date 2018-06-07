@@ -29,6 +29,8 @@ export default class BaseComponentGlobal extends BaseComponent {
       const styleNode = document.createElement('style');
       const styleText = document.createTextNode(styles);
 
+      memory[nodeName] = true;
+
       styleNode.appendChild(styleText);
       styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
 
@@ -43,8 +45,6 @@ export default class BaseComponentGlobal extends BaseComponent {
       }
 
       target.appendChild(styleNode);
-
-      memory[nodeName] = true;
     }
   }
 }
