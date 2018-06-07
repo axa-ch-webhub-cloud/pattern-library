@@ -1,7 +1,6 @@
 import BaseComponent from './base-component';
 
 const memory = {};
-let styleTags;
 
 /**
  * Base class {BaseComponentGlobal}. This class extends the {BaseComponent} and
@@ -25,7 +24,7 @@ export default class BaseComponentGlobal extends BaseComponent {
    */
   static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
     if (styles && !memory[nodeName]) {
-      let target = document.head.lastChild;
+      const { head } = document;
       const styleNode = document.createElement('style');
       const styleText = document.createTextNode(styles);
 
@@ -34,20 +33,8 @@ export default class BaseComponentGlobal extends BaseComponent {
       styleNode.appendChild(styleText);
       styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
 
-      // It's super important that each components CSS is evaluated after our reboot.css
-      // Especially regarding integration this should prevent breaking our cascade.
-      if (!styleTags) {
-        styleTags = document.getElementsByTagName('style');
-      }
-
-      const { length } = styleTags;
-
-      if (length) {
-        target = styleTags[length - 1];
-      }
-
-      // append directly after the last found style node
-      target.parentNode.insertBefore(styleNode, target.nextSibling);
+      // append directly to head
+      head.appendChild(styleNode);
     }
   }
 }
