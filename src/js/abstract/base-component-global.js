@@ -20,11 +20,11 @@ export default class BaseComponentGlobal extends BaseComponent {
    * append the custom element into the dom
    *
    * @param  {type} styles description
-   * @param  {type} nodeName description
+   * @param  {type} [nodeName=UUID] description
    * @return {type}        description
    */
   static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
-    if (styles && !memory[styles]) {
+    if (styles && !memory[nodeName]) {
       let target = document.head;
       const styleNode = document.createElement('style');
       const styleText = document.createTextNode(styles);
@@ -44,7 +44,7 @@ export default class BaseComponentGlobal extends BaseComponent {
 
       target.appendChild(styleNode);
 
-      memory[styles] = true;
+      memory[nodeName] = true;
     }
   }
 }
