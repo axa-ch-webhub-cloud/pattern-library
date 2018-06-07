@@ -7,7 +7,7 @@ class AXAFooterSub extends BaseComponentGlobal {
   static tagName = 'axa-footer-sub'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   connectedCallback() {

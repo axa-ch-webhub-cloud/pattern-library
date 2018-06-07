@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.132",
+  "version": "2.0.1-beta.139",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -9,6 +9,7 @@
     "test-editorconfig": "editorconfig-checker src",
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
+    "toc": "doctoc CONTRIBUTING.md --title '**Table of Contents**'",
     "start": "npm run serve-build-prod",
     "new": "node stack/tasks/create-a-m-o.js",
     "server": "node stack/server.js",
@@ -97,6 +98,7 @@
     "cross-env": "^5.1.1",
     "cssnano": "^3.10.0",
     "del": "~3.0.0",
+    "doctoc": "^1.3.1",
     "editorconfig-checker": "^1.1.5",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",

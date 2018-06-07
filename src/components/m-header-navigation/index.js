@@ -12,9 +12,9 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
-    this.selectContext('axa-header-main');
+    this.consumeContext('axa-header-main');
   }
 
   contextCallback(contextNode) {

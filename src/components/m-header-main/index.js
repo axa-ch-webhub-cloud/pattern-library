@@ -12,9 +12,9 @@ class AXAHeaderMain extends BaseComponentGlobal {
   static get observedAttributes() { return ['first-left']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
-    this.enableContext();
+    this.provideContext();
   }
 
   willRenderCallback() {

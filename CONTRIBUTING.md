@@ -1,3 +1,46 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [First things first](#first-things-first)
+- [Crafting a new component](#crafting-a-new-component)
+  - [Conventions](#conventions)
+    - [Types of Components](#types-of-components)
+    - [CSS](#css)
+    - [JS](#js)
+    - [HTML](#html)
+  - [Scaffolding](#scaffolding)
+  - [Custom Elements](#custom-elements)
+    - [Key Terms](#key-terms)
+      - [Light DOM](#light-dom)
+      - [Local DOM](#local-dom)
+      - [Flattened DOM](#flattened-dom)
+      - [First Class Props](#first-class-props)
+    - [Lifecycle Phases](#lifecycle-phases)
+      - [`constructor()`](#constructor)
+      - [`connectedCallback()`](#connectedcallback)
+      - [`contextCallback(contextNode)`](#contextcallbackcontextnode)
+      - [`attributeChangedCallback(name, oldValue, newValue)`](#attributechangedcallbackname-oldvalue-newvalue)
+      - [Property `setter()`](#property-setter)
+      - [`setProps(props)`](#setpropsprops)
+      - [`shouldUpdateCallback(newValue, oldValue)`](#shouldupdatecallbacknewvalue-oldvalue)
+      - [`willRenderCallback(initial)`](#willrendercallbackinitial)
+      - [`didRenderCallback(initial)`](#didrendercallbackinitial)
+      - [`disconnectedCallback()`](#disconnectedcallback)
+      - [Render Loop](#render-loop)
+    - [Higher Order Class](#higher-order-class)
+      - [`withContext()`](#withcontext)
+      - [`withMonkeyPatch()`](#withmonkeypatch)
+      - [`withRender()`](#withrender)
+      - [`withShadow()`](#withshadow)
+      - [`withStyles()`](#withstyles)
+      - [`withUpdate()`](#withupdate)
+  - [Integration](#integration)
+    - [`withReact()`](#withreact)
+- [How do we release a new version](#how-do-we-release-a-new-version)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # First things first
 
 Setup your IDE to properly integrate with:
@@ -205,7 +248,7 @@ example.exampleMessage = 'hello world';
 
 **Note:** Be careful of choosing your attribute names, never overwrite existing standard attributes without good reason!
 
-#### `batchProps(props)`
+#### `setProps(props)`
 
 A fast and simpler way to update multiple props in one go.
 Especially useful for integrations and to prevent multiple or delayed re-renders.
@@ -231,6 +274,40 @@ Invoked when the custom element is disconnected from the document's DOM.
 #### Render Loop
 
 The render loop makes sure that upon each [`attributeChangedCallback()`](#attributechangedcallbackname-oldvalue-newvalue) invocation or any observed [property `setter()`](#property-setter) invocation that the flattened DOM is recomputed and that [`willRenderCallback()`](#willrendercallbackinitial) and [`didRenderCallback()`](#didrendercallbackinitial) lifecycle hooks are called respectively.
+
+### Higher Order Class
+
+Under the hood we defined following encapsulated higher order classes.
+
+**Note:** all of these are already composed to `BaseComponnet` class.
+
+**Caution:** consider that all possible combinations have to be interchangeable and that they result in a [**Factorial**](https://en.wikipedia.org/wiki/Factorial) set of permutations - i.e. our `6` HOCs correlate to `6!` = `720` permutations.
+
+#### `withContext()`
+
+Adds the ability to provide and consume contextual data.
+
+#### `withMonkeyPatch()`
+
+Guarantees that updates to the custom element's children do not mess up the [**Flattened DOM**](#flattened-dom) and keeps it's [**Local DOM**](#local-dom) untouched.
+
+**Note:** this is obsolete if `ShadowDOM` is enabled.
+
+#### `withRender()`
+
+Adds the ability to render external DOM-based templates, applies changes incrementally by DOM-morphing and provides additional lifecycle hooks.
+
+#### `withShadow()`
+
+Attaches a shadow DOM to the custom element.
+
+#### `withStyles()`
+
+Appends an optional custom element's stylesheet to the document.
+
+#### `withUpdate()`
+
+Adds attribute observation and enables [**First Class Props**](#first-class-props).
 
 ## Integration
 

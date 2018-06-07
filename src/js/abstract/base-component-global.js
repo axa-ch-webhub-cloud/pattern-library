@@ -10,7 +10,7 @@ const memory = {};
  * The style will be included only once in the DOM and is insert in the head of the main document.
  */
 export default class BaseComponentGlobal extends BaseComponent {
-  _appendStyles() {
+  _appendStyles = () => {
     BaseComponentGlobal.appendGlobalStyles(this._styles, this.nodeName);
   }
 
@@ -19,19 +19,21 @@ export default class BaseComponentGlobal extends BaseComponent {
    * append the custom element into the dom
    *
    * @param  {type} styles description
-   * @param  {type} nodeName description
+   * @param  {type} [nodeName=UUID] description
    * @return {type}        description
    */
   static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
-    if (styles) {
-      if (!memory[styles]) {
-        const styleNode = document.createElement('style');
-        const styleText = document.createTextNode(styles);
-        styleNode.appendChild(styleText);
-        styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
-        document.querySelector('head').appendChild(styleNode);
-        memory[styles] = true;
-      }
+    if (styles && !memory[nodeName]) {
+      const styleNode = document.createElement('style');
+      const styleText = document.createTextNode(styles);
+
+      memory[nodeName] = true;
+
+      styleNode.appendChild(styleText);
+      styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
+
+      // append directly to head
+      document.head.appendChild(styleNode);
     }
   }
 }

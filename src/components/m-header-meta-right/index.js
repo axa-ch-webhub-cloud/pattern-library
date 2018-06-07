@@ -9,7 +9,7 @@ class AXAHeaderMetaRight extends BaseComponentGlobal {
   static tagName = 'axa-header-meta-right'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   connectedCallback() {

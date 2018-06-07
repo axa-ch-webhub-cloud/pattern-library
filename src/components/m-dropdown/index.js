@@ -11,7 +11,7 @@ class AXADropdown extends BaseComponentGlobal {
   static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   willRenderCallback() {

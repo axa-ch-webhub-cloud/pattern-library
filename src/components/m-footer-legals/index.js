@@ -10,7 +10,7 @@ class AXAFooterLegals extends BaseComponentGlobal {
   static get observedAttributes() { return ['bottom']; }
 
   constructor() {
-    super(styles);
+    super({ styles });
   }
 
   connectedCallback() {

@@ -1,0 +1,68 @@
+@import "../../styles/settings/colors";
+@import "../../styles/settings/base";
+@import "../../styles/mixins/respond";
+
+$cookie-container-padding-top-bottom: 20px !default;
+$cookie-container-left-distance-button: 30px !default;
+$cookie-container-z-index: 2000;
+
+.o-cookie-disclaimer {
+  padding-top: $cookie-container-padding-top-bottom;
+  padding-bottom: $cookie-container-padding-top-bottom;
+
+  background-color: $color-prim-gray-scorpion;
+  color: $color-prim-white;
+
+  p {
+    margin-top: 0;
+  }
+
+  .o-container {
+    @include respond-up(md) {
+      display: flex;
+
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.o-cookie-disclaimer--fixed {
+  z-index: $cookie-container-z-index;
+
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+}
+
+.o-cookie-disclaimer__title {
+  text-transform: uppercase;
+
+  font-size: $font-size-base;
+}
+
+.o-cookie-disclaimer__container {
+  width: 100%;
+}
+
+.o-cookie-disclaimer__container--lx {
+  @include respond-up(md) {
+    width: 70%;
+  }
+}
+
+.o-cookie-disclaimer__container--rx {
+  margin-top: $margin-top-base;
+  text-align: center;
+
+  @include respond-up(md) {
+    width: calc(30% - #{$cookie-container-left-distance-button});
+
+    margin-top: 0;
+
+    margin-left: $cookie-container-left-distance-button;
+
+    text-align: left;
+  }
+}

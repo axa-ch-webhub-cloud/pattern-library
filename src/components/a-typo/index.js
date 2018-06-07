@@ -9,7 +9,7 @@ class AXATypo extends BaseComponentGlobal {
   static tagName = 'axa-typo'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   /**

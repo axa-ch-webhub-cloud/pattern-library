@@ -74,16 +74,16 @@ const writeIndexJs = (path, _name) => {
 
         // Specify observed attributes so that attributeChangedCallback will work,
         // this is essential for external re-rendering trigger.
-        static get observedAttributes() { return []; }
+        static get observedAttributes() { return ['classes']; }
 
         constructor() {
-          super(styles, template);
+          super({ styles, template });
 
           // does this provide context (See docs for context) ?
-          // this.enableContext()
+          // this.provideContext()
 
           // or do you want to consume a specific context
-          // this.selectContext('axa-context-provider');
+          // this.consumeContext('axa-context-provider');
         }
 
         /**
@@ -96,17 +96,17 @@ const writeIndexJs = (path, _name) => {
           // Your DOM interaction here, but keep it decoupled.
           // If you don't have any, just remove this function
         }
-        
+
         // You have some special logic? Or need to update the web-components DOM node itself?
         // Then don't forget to make sure that incremental rendering works properly.
         // attributeChangedCallback(name, oldValue, newValue) {
         //   super.attributeChangedCallback(name, oldValue, newValue);
         // }
-        
+
         // You may want to update stuff before rendering.
         // willRenderCallback(initial) {
         // }
-        
+
         // You may want to update staff after rendering
         // didRenderCallback(initial) {
         // }
