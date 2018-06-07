@@ -28,7 +28,7 @@
       - [`didRenderCallback(initial)`](#didrendercallbackinitial)
       - [`disconnectedCallback()`](#disconnectedcallback)
       - [Render Loop](#render-loop)
-    - [Higher Order Class](#higher-order-class)
+    - [Higher Order Classes](#higher-order-classes)
       - [`withContext()`](#withcontext)
       - [`withMonkeyPatch()`](#withmonkeypatch)
       - [`withRender()`](#withrender)
