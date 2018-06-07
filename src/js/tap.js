@@ -19,6 +19,13 @@ const TAP_THRESHOLD = 150;
 const TAP_PRECISION = 60 / 2;
 const getPointer = event => event.targetTouches ? event.targetTouches[0] : event;
 
+// patch addEventListener
+if (!window.__hasTapProxy) {
+  window.__hasTapProxy = true;
+  prototype.addEventListener = addEventListenerProxy;
+  prototype.removeEventListener = removeEventListenerProxy;
+}
+
 // eslint-disable-next-line consistent-return
 function addEventListenerProxy(eventType, ...args) {
   const eventTarget = this;
@@ -147,7 +154,3 @@ function removeEventListenerProxy(eventType, ...args) {
     eventTarget.__offDown();
   }
 }
-
-// patch addEventListener
-prototype.addEventListener = addEventListenerProxy;
-prototype.removeEventListener = removeEventListenerProxy;
