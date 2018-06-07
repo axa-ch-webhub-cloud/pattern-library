@@ -275,7 +275,7 @@ Invoked when the custom element is disconnected from the document's DOM.
 
 The render loop makes sure that upon each [`attributeChangedCallback()`](#attributechangedcallbackname-oldvalue-newvalue) invocation or any observed [property `setter()`](#property-setter) invocation that the flattened DOM is recomputed and that [`willRenderCallback()`](#willrendercallbackinitial) and [`didRenderCallback()`](#didrendercallbackinitial) lifecycle hooks are called respectively.
 
-### Higher Order Class
+### Higher Order Classes
 
 Under the hood we defined following encapsulated higher order classes.
 
