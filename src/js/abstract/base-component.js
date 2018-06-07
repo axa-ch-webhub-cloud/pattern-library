@@ -1,11 +1,13 @@
 import getId from './utils/get-id';
-import lifecycleLogger from './utils/lifecycle-logger';
+import compose from '../compose';
 
 import withContext from './hocs/with-context';
 import withMonkeyPatches from './hocs/with-monkey-patches';
 import withUpdate from './hocs/with-update';
 import withRender from './hocs/with-render';
 import withStyles from './hocs/with-styles';
+
+const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRender, withStyles);
 
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
@@ -26,4 +28,4 @@ class BaseComponent extends HTMLElement {
   }
 }
 
-export default withContext(withMonkeyPatches(withUpdate(withRender(withStyles(BaseComponent)))));
+export default withAllHocs(BaseComponent);
