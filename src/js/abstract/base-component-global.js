@@ -36,8 +36,10 @@ export default class BaseComponentGlobal extends BaseComponent {
         styleTags = document.getElementsByTagName('style');
       }
 
-      if (styleTags.length) {
-        target = Array.from(styleTags).pop().parentNode;
+      const { length } = styleTags;
+
+      if (length) {
+        target = styleTags[length - 1].parentNode;
       }
 
       target.appendChild(styleNode);
