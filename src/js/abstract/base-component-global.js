@@ -1,6 +1,7 @@
 import BaseComponent from './base-component';
 
 const memory = {};
+let styleTags;
 
 /**
  * Base class {BaseComponentGlobal}. This class extends the {BaseComponent} and
@@ -23,15 +24,25 @@ export default class BaseComponentGlobal extends BaseComponent {
    * @return {type}        description
    */
   static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
-    if (styles) {
-      if (!memory[styles]) {
-        const styleNode = document.createElement('style');
-        const styleText = document.createTextNode(styles);
-        styleNode.appendChild(styleText);
-        styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
-        document.querySelector('head').insertAdjacentElement('afterbegin', styleNode);
-        memory[styles] = true;
+    if (styles && !memory[styles]) {
+      let target = document.head;
+      const styleNode = document.createElement('style');
+      const styleText = document.createTextNode(styles);
+
+      styleNode.appendChild(styleText);
+      styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
+
+      if (!styleTags) {
+        styleTags = document.getElementsByTagName('style');
       }
+
+      if (styleTags.length) {
+        target = Array.from(styleTags).pop().parentNode;
+      }
+
+      target.appendChild(styleNode);
+
+      memory[styles] = true;
     }
   }
 }
