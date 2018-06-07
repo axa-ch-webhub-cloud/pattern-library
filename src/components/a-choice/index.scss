@@ -43,8 +43,7 @@
 .a-choice__input {
   @include visual-hidden();
 
-  &:checked + .a-choice__label,
-  &[checked] + .a-choice__label {
+  &:checked + .a-choice__label {
     @include typo-tag(Bold);
     border-color: $color-axa-blue;
     color: $color-axa-blue;

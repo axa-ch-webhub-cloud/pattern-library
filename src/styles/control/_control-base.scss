@@ -44,8 +44,7 @@
       }
     }
 
-    &:checked + #{$parent}__icon,
-    &[checked] + #{$parent}__icon {
+    &:checked + #{$parent}__icon {
       &::after {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
