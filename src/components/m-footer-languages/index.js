@@ -10,7 +10,7 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   static get observedAttributes() { return ['inline', 'items', 'short', 'title']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   willRenderCallback() {

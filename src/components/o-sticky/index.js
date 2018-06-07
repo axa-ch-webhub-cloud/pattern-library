@@ -13,9 +13,9 @@ class AXAStickyContainer extends BaseComponentGlobal {
   static get observedAttributes() { return ['debug']; }
 
   constructor() {
-    super(stylesStickyContainer);
+    super({ styles: stylesStickyContainer });
 
-    this.enableContext();
+    this.provideContext();
   }
 
   connectedCallback() {
@@ -44,9 +44,9 @@ class AXASticky extends BaseComponentGlobal {
   static get observedAttributes() { return ['debug']; }
 
   constructor() {
-    super(stylesSticky, templateSticky);
+    super({ styles: stylesSticky, template: templateSticky });
 
-    this.selectContext('axa-sticky-container');
+    this.consumeContext('axa-sticky-container');
   }
 
   willRenderCallback() {

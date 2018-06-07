@@ -11,9 +11,9 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   static get observedAttributes() { return ['items', 'relative']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
 
-    this.selectContext('axa-header');
+    this.consumeContext('axa-header');
   }
 
   contextCallback(contextNode) {

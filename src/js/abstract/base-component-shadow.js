@@ -1,5 +1,7 @@
 import BaseComponent from './base-component';
 
+import withShadow from './hocs/with-shadow';
+
 /**
  * Base class {BaseComponentShadow}. This class extends the {BaseComponent} and
  * applies a shadow dom to it. Please be aware that only a few browser
@@ -9,16 +11,4 @@ import BaseComponent from './base-component';
  *
  * https://caniuse.com/#feat=shadowdom
  */
-export default class BaseComponentShadow extends BaseComponent {
-  /**
-   * connectedCallback - description
-   *
-   * @param  {type} mode = 'open' description
-   * @return {type}               description
-   */
-  connectedCallback(mode = 'open') {
-    const shadowRoot = this.attachShadow({ mode });
-    this._appendStyles(shadowRoot);
-    this.render();
-  }
-}
+export default withShadow(BaseComponent);

@@ -11,7 +11,7 @@ class AXAIcon extends BaseComponentGlobal {
   static get observedAttributes() { return ['icon', 'classes', 'path-prefix']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 }
 

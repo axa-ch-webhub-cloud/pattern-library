@@ -9,7 +9,7 @@ class AXAContainer extends BaseComponentGlobal {
   static tagName = 'axa-container'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 }
 

@@ -14,7 +14,7 @@ class AXACheckbox extends BaseComponentGlobal {
   }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   willRenderCallback() {

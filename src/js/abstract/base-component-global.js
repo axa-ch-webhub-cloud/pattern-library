@@ -10,7 +10,7 @@ const memory = {};
  * The style will be included only once in the DOM and is insert in the head of the main document.
  */
 export default class BaseComponentGlobal extends BaseComponent {
-  _appendStyles() {
+  _appendStyles = () => {
     BaseComponentGlobal.appendGlobalStyles(this._styles, this.nodeName);
   }
 

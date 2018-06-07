@@ -7,7 +7,7 @@ import debounce from './debounce';
 const subscriptions = {};
 
 /* const logMaybe = maybe(console.log)(toEqual);
-const logContext = logMaybe('context/enabled'); */
+const logContext = logMaybe('context/available'); */
 
 /**
  * Publish a message regarding a given topic.
