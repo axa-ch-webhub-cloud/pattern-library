@@ -43,16 +43,14 @@
 .a-choice__input {
   @include visual-hidden();
 
-  &:checked + .a-choice__label,
-  &[checked] + .a-choice__label {
+  &:checked + .a-choice__label {
     @include typo-tag(Bold);
     border-color: $color-axa-blue;
     color: $color-axa-blue;
     background-color: $color-bg--white;
   }
 
-  &:disabled + .a-choice__label,
-  &[disabled] + .a-choice__label {
+  &:disabled + .a-choice__label {
     cursor: default;
     color: $color-prim-gray-dusty;
     border-color: $color-prim-gray-silver;

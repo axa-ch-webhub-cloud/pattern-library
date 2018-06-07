@@ -38,8 +38,7 @@
     outline: none;
   }
 
-  &:disabled,
-  &[disabled] {
+  &:disabled {
     cursor: default !important;
   }
 }
@@ -79,8 +78,7 @@
     color: $color-button-text;
   }
 
-  &:disabled,
-  &[disabled] {
+  &:disabled {
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
   }
