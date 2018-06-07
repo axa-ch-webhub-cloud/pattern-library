@@ -24,7 +24,6 @@ export default class BaseComponentGlobal extends BaseComponent {
    */
   static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
     if (styles && !memory[nodeName]) {
-      const { head } = document;
       const styleNode = document.createElement('style');
       const styleText = document.createTextNode(styles);
 
@@ -34,7 +33,7 @@ export default class BaseComponentGlobal extends BaseComponent {
       styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
 
       // append directly to head
-      head.appendChild(styleNode);
+      document.head.appendChild(styleNode);
     }
   }
 }
