@@ -34,6 +34,8 @@ export default class BaseComponentGlobal extends BaseComponent {
       styleNode.appendChild(styleText);
       styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
 
+      // It's super important that each components CSS is evaluated after our reboot.css
+      // Especially regarding integration this should prevent breaking our cascade.
       if (!styleTags) {
         styleTags = document.getElementsByTagName('style');
       }
