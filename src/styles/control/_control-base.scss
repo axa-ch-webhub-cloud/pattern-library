@@ -52,8 +52,7 @@
       }
     }
 
-    &:disabled + #{$parent}__icon,
-    &[disabled] + #{$parent}__icon {
+    &:disabled + #{$parent}__icon {
       cursor: default;
       border-color: $color-prim-gray-dusty;
 

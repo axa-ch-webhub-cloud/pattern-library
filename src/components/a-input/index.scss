@@ -51,13 +51,12 @@
   &:hover,
   &:active,
   &:focus {
-    &:not([disabled]):not(:disabled):not(.a-input--error) {
+    &:not(:disabled):not(.a-input--error) {
       border-color: $control-border-color--active;
     }
   }
 
-  &[disabled],
-  :disabled {
+  &:disabled {
     background-color: $color-bg--gray;
   }
 }
