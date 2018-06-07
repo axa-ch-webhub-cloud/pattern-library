@@ -25,7 +25,7 @@ export default class BaseComponentGlobal extends BaseComponent {
    */
   static appendGlobalStyles(styles, nodeName = BaseComponent.uuidv4()) {
     if (styles && !memory[nodeName]) {
-      let target = document.head;
+      let target = document.head.lastChild;
       const styleNode = document.createElement('style');
       const styleText = document.createTextNode(styles);
 
@@ -43,10 +43,11 @@ export default class BaseComponentGlobal extends BaseComponent {
       const { length } = styleTags;
 
       if (length) {
-        target = styleTags[length - 1].parentNode;
+        target = styleTags[length - 1];
       }
 
-      target.appendChild(styleNode);
+      // append directly after the last found style node
+      target.parentNode.insertBefore(styleNode, target.nextSibling);
     }
   }
 }
