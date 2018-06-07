@@ -15,8 +15,6 @@ class AXALink extends BaseComponentGlobal {
 
 wcdomready(() => {
   window.customElements.define(AXALink.tagName, AXALink);
-
-  BaseComponentGlobal.appendGlobalStyles(styles);
 });
 
 export default AXALink;
