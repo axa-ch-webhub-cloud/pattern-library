@@ -11,12 +11,14 @@ class AXACore extends HTMLElement {
     const axaPLibConfig = {};
 
     if (attributes) {
-      const { iconsPath } = attributes;
+      const { iconsPath, onlyLoad } = attributes;
 
       if (iconsPath) {
         const httpObj = new XMLHttpRequest();
 
-        axaPLibConfig.iconsPath = iconsPath;
+        if (!onlyLoad) {
+          axaPLibConfig.iconsPath = iconsPath;
+        }
 
         httpObj.open('GET', iconsPath, true);
         httpObj.send();

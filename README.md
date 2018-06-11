@@ -84,6 +84,9 @@ Here an example on how to use the component button and typo in your project. The
 
     <axa-core icons-path="./assets/icons/icons.svg"></axa-core>
 
+    <!-- IF you need to load a bundled SVG and refer for your icons with #, then use: -->
+    <axa-core only-load="true" icons-path="./assets/icons/icons.svg"></axa-core>
+
     <axa-button>I'm a button</axa-button>
     <axa-typo></axa-typo>
   </body>
