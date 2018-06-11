@@ -33,7 +33,7 @@
     "build-icons-prod": "node stack/tasks/icons.js PROD",
     "build-dev": "node stack/tasks/cleanup.js DEV && npm run build-css-dev && npm run build-html-dev && npm run build-js-dev && npm run build-icons-dev",
     "build": "node stack/tasks/cleanup.js PROD && node stack/tasks/build.html.js PROD && node stack/tasks/build-examples.js PROD && npm run build-css-prod && npm run build-js-prod && npm run build-lib && npm run build-icons-prod && node stack/tasks/copy-dist-to-docs.js",
-    "build-lib": "babel src --out-dir lib --ignore src/demos --plugins transform-runtime",
+    "build-lib": "node stack/tasks/bundles/lib.js PROD",
     "release": "node ./stack/tasks/release.js",
     "bump-major": "npm run test && npmversion --increment major",
     "bump-minor": "npm run test && npmversion --increment minor",
