@@ -5,13 +5,22 @@ const replace = require('rollup-plugin-replace');
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
+const path = require('path');
 
 const constants = require('./../../constants');
 
 const ENV = process.argv[2]; // second element is the first argument.
 
 components.bundleLibFiles({
-  external: ['src/js', 'node_modules'],
+  external: (id, parent, isResolved) => {
+    let resolved = id;
+
+    if (parent && !isResolved) {
+      resolved = path.resolve(path.dirname(parent), id);
+    }
+
+    return !/\/components\/[amou]-.+\//.test(resolved) && !/\.scss$/i.test(resolved);
+  },
   plugins: [
     replace({
       ENV: JSON.stringify(ENV),
@@ -47,9 +56,7 @@ components.bundleLibFiles({
     resolve({
       jsnext: true,
       module: true,
-      preferBuiltins: false,
-      jail: 'src/components/**',
-      // only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external
+      only: [/^\.{0,2}\/|\.scss$/i], // eslint-disable-line
     }),
   ],
 });
