@@ -2,7 +2,6 @@ import html from 'nanohtml';
 
 // @todo: Icon sprite build adds directory structure to fragment identifiers (app only)
 const PATH_PREFIX_APP = '#src--assets--icons--';
-const FRAGMENT_SYMBOL = '#';
 
 export default ({
   icon,
@@ -20,11 +19,6 @@ export default ({
     path = '';
   } else if (typeof pathPrefix === 'string') {
     path = pathPrefix;
-  }
-
-  // check for hash symbol
-  if (path.substring(-1) !== FRAGMENT_SYMBOL) {
-    path = `${path}${FRAGMENT_SYMBOL}`;
   }
 
   return html`

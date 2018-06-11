@@ -36,13 +36,17 @@ module.exports = {
     format: 'iife',
     name: 'StyleGuideWebComponent',
   },
-  outputOptionsEsm: {
+  outputOptionsUmd: {
     format: 'umd',
     name: 'StyleGuideWebComponent',
   },
+  outputOptionsEs: {
+    format: 'es',
+    name: 'StyleGuideWebComponentLib',
+  },
   adaptSlashes: (file) => { // eslint-disable-line no-param-reassign
     const isExtendedLengthPath = /^\\\\\?\\/.test(file);
-    const hasNonAscii = /[^\u0000-\u0080]+/.test(file);
+    const hasNonAscii = /[^\u0000-\u0080]+/.test(file); // eslint-disable-line
     return (isExtendedLengthPath || hasNonAscii) ? file : file.replace(/\\/g, '/');
   },
 };
