@@ -44,16 +44,14 @@
       }
     }
 
-    &:checked + #{$parent}__icon,
-    &[checked] + #{$parent}__icon {
+    &:checked + #{$parent}__icon {
       &::after {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
       }
     }
 
-    &:disabled + #{$parent}__icon,
-    &[disabled] + #{$parent}__icon {
+    &:disabled + #{$parent}__icon {
       cursor: default;
       border-color: $color-prim-gray-dusty;
 

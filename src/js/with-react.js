@@ -91,7 +91,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
           [key]: props[key],
         }), {});
 
-      wcNode.batchProps(dataProps);
+      wcNode.setProps(dataProps);
     }
 
     componentWillUnmount() {

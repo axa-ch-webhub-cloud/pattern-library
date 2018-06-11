@@ -117,7 +117,7 @@ const reallyHotfix = () => {
   console.log(chalk.red(outdent`
 
       Have you merged all your urgent ${chalk.bold('hotfix/*')} branches into ${MASTER_TRUNK}?
-      
+
       Note: this has to be done by finger tips:)
     `));
 
@@ -221,7 +221,7 @@ const confirmedRelease = (type, version) => {
       }));
     },
     (stdout, stderr, callback) => {
-      exec('npm run build && git add ./dist ./docs ./lib && git commit -m"rebuild"', handleSuccess(callback, () => {
+      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
         console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));

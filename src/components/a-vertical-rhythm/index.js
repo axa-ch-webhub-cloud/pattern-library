@@ -9,7 +9,7 @@ class AXAVerticalRhythm extends BaseComponentGlobal {
   static tagName = 'axa-vertical-rhythm'
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   connectedCallback() {

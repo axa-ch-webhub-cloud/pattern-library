@@ -11,7 +11,7 @@ class AXAFooterLinks extends BaseComponentGlobal {
   static get observedAttributes() { return ['cols', 'items', 'title']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   connectedCallback() {

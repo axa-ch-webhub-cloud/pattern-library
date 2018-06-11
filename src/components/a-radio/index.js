@@ -12,7 +12,7 @@ class AXARadio extends BaseComponentGlobal {
   static get observedAttributes() { return ['input-id', 'error', 'value', 'name', 'checked', 'disabled']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   willRenderCallback() {

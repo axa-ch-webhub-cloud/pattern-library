@@ -10,7 +10,7 @@ class AXAButton extends BaseComponentGlobal {
   static get observedAttributes() { return ['arrow', 'classes', 'color', 'ghost', 'motion', 'size', 'tag', 'href', 'icon']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   didRenderCallback() {

@@ -11,7 +11,7 @@ class AXAFooterMain extends BaseComponentGlobal {
   static get observedAttributes() { return ['light']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   connectedCallback() {

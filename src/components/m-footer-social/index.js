@@ -10,7 +10,7 @@ class AXAFooterSocial extends BaseComponentGlobal {
   static get observedAttributes() { return ['inline', 'items', 'light', 'title']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   willRenderCallback() {

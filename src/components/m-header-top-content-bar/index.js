@@ -9,7 +9,7 @@ class AXAHeaderTopContentBar extends BaseComponentGlobal {
   static get observedAttributes() { return ['type']; }
 
   constructor() {
-    super(styles, template);
+    super({ styles, template });
   }
 
   willRenderCallback() {
