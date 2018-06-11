@@ -28,7 +28,7 @@ components.bundleLibFiles({
         // reboot is an external dependency and has to be used carfully from the
         // user of aletheia. Here we take it out for integration purposes (dont import twice)
         importer: function importer(url) {
-          if (url.match(/@axa-ch\/patterns-library\/.*\/reboot$/)) {
+          if (url.match(/\/.*\/reboot$/)) {
             return { contents: '' };
           }
           return null;

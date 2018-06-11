@@ -43,10 +43,11 @@ const reGetParentDirAndFileAndComponent = /\/components\/(?:[^/]+\/)+index\.js$/
 const bundleSingleFile = (filePath) => {
   const fPath = filePath.replace('/src/', ENV === constants.ENV.PROD ? `/${distFolder}/` : '/.tmp/');
   async function buildComponents() {
+    const { plugins } = customConfig || inputOptionsComponents;
     const bundleConfig = {
       ...customConfig || inputOptionsComponents,
       plugins: [
-        ...customConfig.plugins || inputOptionsComponents.plugins,
+        ...plugins,
       ],
       input: filePath,
     };
