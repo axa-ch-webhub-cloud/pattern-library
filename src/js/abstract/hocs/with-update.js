@@ -237,7 +237,6 @@ const withUpdate = Base =>
 
       this._isConnected = false;
     }
-
   };
 
 export default withUpdate;

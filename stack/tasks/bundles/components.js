@@ -13,6 +13,11 @@ const common = require('./_common');
 const ENV = process.argv[2]; // second element is the first argument.
 const CWD = process.cwd();
 
+const PROD_DIST = 'dist';
+const PROD_LIB = 'lib';
+
+let customConfig = null;
+let distFolder = PROD_DIST;
 
 const inputOptionsComponents = {
   ...common.inputOptions,
@@ -33,19 +38,16 @@ const inputOptionsComponents = {
   ],
 };
 
-const outputOptionsComponents = {
-  ...common.outputOptions,
-};
-
 const reGetParentDirAndFileAndComponent = /\/components\/(?:[^/]+\/)+index\.js$/;
 
 const bundleSingleFile = (filePath) => {
-  const fPath = filePath.replace('/src/', ENV === constants.ENV.PROD ? '/dist/' : '/.tmp/');
+  const fPath = filePath.replace('/src/', ENV === constants.ENV.PROD ? `/${distFolder}/` : '/.tmp/');
   async function buildComponents() {
+    const { plugins } = customConfig || inputOptionsComponents;
     const bundleConfig = {
-      ...inputOptionsComponents,
+      ...customConfig || inputOptionsComponents,
       plugins: [
-        ...inputOptionsComponents.plugins,
+        ...plugins,
       ],
       input: filePath,
     };
@@ -54,16 +56,24 @@ const bundleSingleFile = (filePath) => {
 
     console.log(fPath.replace('.js', '.css')); // eslint-disable-line
     console.log(`Bundled to: ${fPath}`); // eslint-disable-line
-    // or write the bundle to disk
-    await bundle.write({
-      ...outputOptionsComponents,
-      file: fPath,
-    });
-    if (ENV === constants.ENV.PROD) {
+
+    if (distFolder === PROD_LIB) {
       await bundle.write({
-        ...common.outputOptionsEsm,
-        file: fPath.replace('.js', '.umd.js'),
+        ...common.outputOptionsEs,
+        file: fPath,
       });
+    } else {
+      // or write the bundle to disk
+      await bundle.write({
+        ...common.outputOptions,
+        file: fPath,
+      });
+      if (ENV === constants.ENV.PROD) {
+        await bundle.write({
+          ...common.outputOptionsUmd,
+          file: fPath.replace('.js', '.umd.js'),
+        });
+      }
     }
   }
   buildComponents();
@@ -84,7 +94,14 @@ const bundleAllFiles = () => {
   });
 };
 
+const bundleLibFiles = (_customConfig = null) => {
+  customConfig = _customConfig;
+  distFolder = _customConfig ? PROD_LIB : PROD_DIST;
+  bundleAllFiles();
+};
+
 module.exports = {
   bundleAllFiles,
   bundleSingleFile,
+  bundleLibFiles,
 };

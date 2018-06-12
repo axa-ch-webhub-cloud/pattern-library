@@ -78,11 +78,14 @@ Here an example on how to use the component button and typo in your project. The
 
     <script src="http://localhost:8080/node_modules/patterns-library/dist/app/es6-polyfills.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/app/webcomponents-lite.js"></script>
-    <script src="http://localhost:8080/node_modules/patterns-library/dist/components/core/index.js"></script>
+    <script src="http://localhost:8080/node_modules/patterns-library/dist/components/u-core/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/m-button/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/a-typo/index.js"></script>
 
     <axa-core icons-path="./assets/icons/icons.svg"></axa-core>
+
+    <!-- IF you need to load a bundled SVG and refer for your icons with #, then use: -->
+    <axa-core only-load="true" icons-path="./assets/icons/icons.svg"></axa-core>
 
     <axa-button>I'm a button</axa-button>
     <axa-typo></axa-typo>
