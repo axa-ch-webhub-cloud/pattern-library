@@ -51,6 +51,7 @@ components.bundleLibFiles({
       exclude: [
         'node_modules/**',
       ],
+      plugins: ['transform-runtime'],
       runtimeHelpers: true,
     }),
     resolve({
