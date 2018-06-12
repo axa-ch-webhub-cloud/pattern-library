@@ -15,6 +15,10 @@
     "transform-custom-element-classes",
     "transform-class-properties",
     "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    ["inline-replace-variables", {
+      "DEV": "DEV",
+      "PROD": "PROD"
+    }]
   ]
 }
