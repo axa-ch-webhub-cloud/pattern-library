@@ -11,7 +11,7 @@ const htmlLang = nsh.getLanguage('html');
 const cssLang = nsh.getLanguage('css');
 const highlightStyles = nsh.getStyles();
 
-const ENV = process.argv[2]; // second element is the first argument.
+const ENV = process.env.NODE_ENV; // second element is the first argument.
 const CWD = process.cwd();
 
 const ATOMS = 'atoms';
