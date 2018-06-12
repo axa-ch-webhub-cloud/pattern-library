@@ -17,8 +17,17 @@
     "transform-es2015-destructuring",
     "transform-object-rest-spread",
     ["inline-replace-variables", {
-      "DEV": "DEV",
-      "PROD": "PROD"
+      "ENV": {
+        "type": "node",
+        "replacement": "process.env.NODE_ENV"
+      },
+      "DEV": "development",
+      "PROD": "production"
+    }],
+    ["transform-inline-environment-variables", {
+      "include": [
+        "NODE_ENV"
+      ]
     }]
   ]
 }
