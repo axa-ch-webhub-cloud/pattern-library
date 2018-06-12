@@ -3,7 +3,7 @@ const rollup = require('rollup');
 const constants = require('../../constants');
 const common = require('./_common');
 
-const ENV = process.argv[2]; // second element is the first argument.
+const ENV = process.env.NODE_ENV; // second element is the first argument.
 const CWD = process.cwd();
 
 // @TODO: dry principle with buildApp

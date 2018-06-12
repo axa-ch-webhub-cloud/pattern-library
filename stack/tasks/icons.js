@@ -7,7 +7,7 @@ const glob = require('glob');
 const constants = require('../constants');
 
 const CWD = process.cwd();
-const ENV = process.argv[2];
+const ENV = process.env.NODE_ENV;
 
 const destAssets = ENV === constants.ENV.PROD ? 'dist/assets' : '.tmp/assets';
 
