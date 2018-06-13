@@ -1,5 +1,7 @@
 const outdent = require('outdent');
 const { exec } = require('child_process');
+const execa = require('execa');
+const promiseSeries = require('promise.series')
 const waterfall = require('async-waterfall');
 const chalk = require('chalk');
 // eslint-disable-next-line import/no-dynamic-require
@@ -27,25 +29,10 @@ console.log(chalk.cyan(outdent`
 
   `));
 
-const handleError = (callback, errorCallback) => (error, ...args) => {
-  if (error) {
-    errorCallback(error, ...args);
-  }
-
-  callback(error, ...args);
-};
-
-const handleSuccess = (callback, successCallback) => (error, ...args) => {
-  if (!error) {
-    successCallback(error, ...args);
-  }
-
-  callback(error, ...args);
-};
-
-waterfall([
-  (callback) => {
-    exec('npm whoami', handleError(callback, () => {
+promiseSeries([
+  () => execa('npm', ['whoami'])
+    .then(({ stdout }) => stdout)
+    .catch((reason) => {
       console.log(chalk.red(outdent`
 
         Attention: You are currently not logged into npm. I will abort the action
@@ -55,36 +42,39 @@ waterfall([
         ${chalk.bold('npm login')}
 
       `));
-    }));
-  },
-  (whoami, stderr, callback) => {
-    // eslint-disable-next-line consistent-return
-    exec('npm owner ls', (error, stdout) => {
-      const hasError = error || stdout.trim().indexOf(whoami.trim()) === -1;
 
-      let isNew;
-      try {
-        isNew = error.message.indexOf('404 Not found') > -1;
-      } catch (e) {
-        isNew = false;
-      }
+      throw reason;
+    }),
+  whoami => execa('npm', ['owner', 'ls'])
+    .then(({ stdout }) => {
+      const hasOwnership = stdout.trim().indexOf(whoami.trim()) > -1;
 
-      if (hasError && !isNew) {
+      if (!hasOwnership) {
         console.log(chalk.red(outdent`
             Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
           `));
 
-        return callback(hasError);
+        throw new Error('401 UNAUTHORIZED');
       }
+    })
+    .catch((reason) => {
+      try {
+        const isNew = reason.message.indexOf('404 Not found') > -1;
 
-      if (isNew) {
-        console.log(chalk.yellow(outdent`
+        if (isNew) {
+          console.log(chalk.yellow(outdent`
             ATTENTION: Package ${chalk.bold(pkj.name)} does not exist yet on NPM!
             We will try to create it for you. Be aware to have @axa-ch as scope in your package.json!
             Your current version defined in the package.json is ${chalk.bold(pkj.version)}.
           `));
-      }
 
+          return;
+        }
+      } catch (e) {}
+
+      throw reason;
+    })
+    .then(() => {
       console.log(chalk.cyan(outdent`
 
           You are currently logged in as:
@@ -103,15 +93,30 @@ waterfall([
           n: no
 
         `));
+    }),
+]).then(() => {
+  // process.exit(0);
+}).catch((reason) => {
+  console.log(reason)
 
-      callback(null, whoami);
-    });
-  },
-], (error) => {
-  if (error) {
-    process.exit(1);
-  }
+  process.exit(1);
 });
+
+const handleError = (callback, errorCallback) => (error, ...args) => {
+  if (error) {
+    errorCallback(error, ...args);
+  }
+
+  callback(error, ...args);
+};
+
+const handleSuccess = (callback, successCallback) => (error, ...args) => {
+  if (!error) {
+    successCallback(error, ...args);
+  }
+
+  callback(error, ...args);
+};
 
 const determineStable = () => {
   console.log(chalk.cyan(outdent`
