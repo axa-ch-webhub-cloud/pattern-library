@@ -1,0 +1,43 @@
+@import "../../styles/settings/colors";
+
+$datepicke-height: 322px !default;
+$datepicke-width: 309px !default;
+
+.m-datepicker {
+  display: block;
+  height: $datepicke-height;
+  width: $datepicke-width;
+  border: 1px solid $color-prim-black;
+  text-transform: uppercase;
+}
+
+.m-datepicker__button {
+  position: absolute;
+  bottom: 19px;
+}
+
+.m-datepicker__dropdown {
+
+}
+
+.m-datepicker__article {
+  padding-top: 21px;
+  // padding-right: 29px;
+}
+
+.m-datepicker__dropdown__month {
+  // Klasse überschreiben
+  height: 36px;
+  width: 141px;
+  // schon ein element anzeigen
+  margin-left: 32px;
+}
+
+
+.m-datepicker__dropdown__year {
+  float: right;
+  margin-right: 29px;
+  // Klasse überschreiben
+  // height: 36px;
+  // width: 89px;
+}
