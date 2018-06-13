@@ -2,6 +2,8 @@ const outdent = require('outdent');
 const { exec } = require('child_process');
 const waterfall = require('async-waterfall');
 const chalk = require('chalk');
+// eslint-disable-next-line import/no-dynamic-require
+const pkj = require(`${process.cwd()}/package.json`);
 
 const DEVELOP_TRUNK = 'develop';
 const MASTER_TRUNK = 'master';
@@ -60,14 +62,27 @@ waterfall([
     exec('npm owner ls', (error, stdout) => {
       const hasError = error || stdout.trim().indexOf(whoami.trim()) === -1;
 
-      if (hasError) {
+      let isNew;
+      try {
+        isNew = error.message.indexOf('404 Not found') > -1;
+      } catch (e) {
+        isNew = false;
+      }
+
+      if (hasError && !isNew) {
         console.log(chalk.red(outdent`
-
             Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
-
           `));
 
-        return callback(true);
+        return callback(hasError);
+      }
+
+      if (isNew) {
+        console.log(chalk.yellow(outdent`
+            ATTENTION: Package ${chalk.bold(pkj.name)} does not exist yet on NPM!
+            We will try to create it for you. Be aware to have @axa-ch as scope in your package.json!
+            Your current version defined in the package.json is ${chalk.bold(pkj.version)}.
+          `));
       }
 
       console.log(chalk.cyan(outdent`
