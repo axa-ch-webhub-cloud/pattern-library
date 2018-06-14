@@ -1,8 +1,6 @@
 const outdent = require('outdent');
-const { exec } = require('child_process');
 const execa = require('execa');
-const promiseSeries = require('promise.series')
-const waterfall = require('async-waterfall');
+const promiseSeries = require('promise.series');
 const chalk = require('chalk');
 // eslint-disable-next-line import/no-dynamic-require
 const pkj = require(`${process.cwd()}/package.json`);
@@ -21,7 +19,9 @@ const BETA = 'beta';
 process.stdin.setEncoding('utf8');
 
 const execaPipeError = (...args) => {
-  const exec = execa(...args);
+  const isCommand = args.length === 1;
+  const command = isCommand ? args[0].split(/\s+/) : args;
+  const exec = execa(command);
 
   exec.stderr.pipe(process.stderr);
 
@@ -41,7 +41,7 @@ console.log(chalk.cyan(outdent`
   `));
 
 promiseSeries([
-  () => execaPipeError('npm', ['whoami'])
+  () => execaPipeError('npm whoami')
     .then(({ stdout }) => stdout)
     .catch((reason) => {
       console.log(chalk.red(outdent`
@@ -56,7 +56,7 @@ promiseSeries([
 
       throw reason;
     }),
-  whoami => execaPipeError('npm', ['owner', 'ls'])
+  whoami => execaPipeError('npm owner ls')
     .then(({ stdout }) => {
       const hasOwnership = stdout.trim().indexOf(whoami.trim()) > -1;
 
@@ -81,7 +81,9 @@ promiseSeries([
 
           return;
         }
-      } catch (e) {}
+      } catch (error) {
+        throw error;
+      }
 
       throw reason;
     })
@@ -112,22 +114,6 @@ promiseSeries([
 
   process.exit(1);
 });
-
-const handleError = (callback, errorCallback) => (error, ...args) => {
-  if (error) {
-    errorCallback(error, ...args);
-  }
-
-  callback(error, ...args);
-};
-
-const handleSuccess = (callback, successCallback) => (error, ...args) => {
-  if (!error) {
-    successCallback(error, ...args);
-  }
-
-  callback(error, ...args);
-};
 
 const determineStable = () => {
   console.log(chalk.cyan(outdent`
@@ -223,17 +209,15 @@ const release = (type, version) => {
 };
 
 const generalCleanupHandling = (exitcode) => {
-  exec(
-    `git checkout ${DEVELOP_TRUNK} && git branch -D ${RELEASE_TMP}`,
-    (error) => {
-      if (error) {
-        console.log(chalk.red(error));
-        process.exit(1);
-      }
-
-      process.exit(exitcode);
-    },
-  );
+  execaSeries([
+    `git checkout ${DEVELOP_TRUNK}`,
+    `git branch -D ${RELEASE_TMP}`,
+  ]).then(() => {
+    process.exit(exitcode);
+  }).catch((reason) => {
+    console.error(chalk.red(reason));
+    process.exit(1);
+  });
 };
 
 const confirmedRelease = (type, version) => {
@@ -244,93 +228,80 @@ const confirmedRelease = (type, version) => {
   const isHotfix = type === HOTFIX;
   const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
 
-  execaSeries([
-    ['git', 'checkout', TRUNK],
-    ['git', 'pull'],
-    ['git', 'checkout', '-b', RELEASE_TMP],
-  ]);
-
   let releaseSteps = [
-    (callback) => {
-      exec(`git checkout ${TRUNK} && git pull && git checkout -b ${RELEASE_TMP}`, handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
-            Step 1 complete...
-          `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
+    () => execaSeries([
+      `git checkout ${TRUNK}`,
+      'git pull',
+      `git checkout -b ${RELEASE_TMP}`,
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
+          Step 1 complete...
+        `));
+    }),
+    () => execaSeries([
+      'npm run build',
+      'git add ./dist ./docs',
+      'git commit -m"rebuild"',
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      let command = `npm run bump-${version}`;
-
-      if (type === UNSTABLE) {
-        command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
-      }
-
-      exec(command, handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
+    }),
+    () => execaSeries([
+      type === UNSTABLE ? `npm run bump-${version === BETA ? '' : `${version}-`}beta` : `npm run bump-${version}`,
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
           Step 3 complete...
         `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
-    },
-    (stdout, stderr, callback) => {
-      exec(
-        `git checkout ${TRUNK} && git merge --ff-only ${RELEASE_TMP} && git push && git push --tags`,
-        handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
-            Step 4 complete...
-          `));
-        }),
-      );
-    },
+    }),
+    () => execaSeries([
+      `npm publish ${version === BETA ? ' --tag beta' : ''}`,
+      `git checkout ${TRUNK}`,
+      `git merge --ff-only ${RELEASE_TMP}`,
+      'git push && git push --tags',
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
+          Step 4 complete...
+        `));
+    }),
   ];
 
   if (!isHotfix) {
     releaseSteps = [
       ...releaseSteps,
-      (stdout, stderr, callback) => {
-        exec(
-          `git checkout ${MASTER_TRUNK} && git merge --no-ff ${DEVELOP_TRUNK} && git push && git push --tags`,
-          handleSuccess(callback, () => {
-            console.log(chalk.cyan(outdent`
-
+      () => execaSeries([
+        `git checkout ${MASTER_TRUNK}`,
+        `git merge --no-ff ${DEVELOP_TRUNK}`,
+        'git push',
+        'git push --tags',
+      ]).then(() => {
+        console.log(chalk.cyan(outdent`
             Step 5 complete...
           `));
-          }),
-        );
-      },
-      (stdout, stderr, callback) => {
-        exec(
-          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only ${MASTER_TRUNK} && git push && git push --tags`,
-          handleSuccess(callback, () => {
-            console.log(chalk.cyan(outdent`
-
+      }),
+      () => execaSeries([
+        `git checkout ${DEVELOP_TRUNK}`,
+        `git merge --ff-only ${MASTER_TRUNK}`,
+        'git push',
+        'git push --tags',
+      ]).then(() => {
+        console.log(chalk.cyan(outdent`
             Step 6 complete! Publishing done successfully. Have fun!
 
           `));
-          }),
-        );
-      },
+      }),
     ];
   }
 
-  waterfall(releaseSteps, (error) => {
-    if (error) {
-      console.log(chalk.red(error));
+  promiseSeries(releaseSteps)
+    .then(() => {
+      generalCleanupHandling(0);
+    })
+    .catch((reason) => {
+      console.error(chalk.red(reason));
 
       generalCleanupHandling(1);
-    } else {
-      generalCleanupHandling(0);
-    }
-  });
+    });
 };
 
 let step = 0;
