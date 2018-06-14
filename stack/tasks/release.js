@@ -28,17 +28,12 @@ const execaPipeError = (...args) => {
 
   return exec
     .then((result) => {
-      const { stdout, stderr, error } = result || {};
-      const hasError = error || (stderr !== stdout && stderr);
-
-      if (hasError) {
-        throw hasError;
-      }
+      console.log(`>>> resolved | ${command} ${options.join(' ')}`);
 
       return result;
     })
     .catch((reason) => {
-      console.error(reason);
+      console.log(`>>> rejected | ${command} ${options.join(' ')}`);
 
       throw reason;
     });
