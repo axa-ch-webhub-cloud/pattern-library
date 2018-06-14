@@ -259,7 +259,8 @@ const confirmedRelease = (type, version) => {
       `npm publish ${version === BETA ? ' --tag beta' : ''}`,
       `git checkout ${TRUNK}`,
       `git merge --ff-only ${RELEASE_TMP}`,
-      'git push && git push --tags',
+      'git push',
+      'git push --tags',
     ]).then(() => {
       console.log(chalk.cyan(outdent`
           Step 4 complete...
