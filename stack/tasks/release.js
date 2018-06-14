@@ -246,7 +246,7 @@ const confirmedRelease = (type, version) => {
 
   let releaseSteps = [
     () => execaSeries([
-      `git checkout ${TRUNK}`,
+      `git checkout ${TRUNK} --quiet`,
       'git pull',
       `git checkout -b ${RELEASE_TMP}`,
     ]).then(() => {
