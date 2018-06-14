@@ -255,7 +255,7 @@ const confirmedRelease = (type, version) => {
         `));
     }),
     () => execaSeries([
-      'npm run test',
+      // 'npm run test',
       'npm run build',
       'git add ./dist ./docs',
       'git commit -m"rebuild"',
