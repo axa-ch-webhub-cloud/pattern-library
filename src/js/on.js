@@ -22,13 +22,13 @@ const eventNameMap = {
  */
 function on(eventTarget, eventName, className, func, { capture = false, passive = true } = {}) {
   if (eventNameMap[eventName]) {
-    /* eslint-disable */
+    /* eslint-disable no-param-reassign */
     eventName = eventNameMap[eventName];
     /* eslint-enable */
   }
 
   if (!eventTarget || !eventName) {
-    return null;
+    return null
   }
 
   const typeClassName = typeof className;
