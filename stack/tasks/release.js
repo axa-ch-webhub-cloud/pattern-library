@@ -248,7 +248,7 @@ const confirmedRelease = (type, version) => {
     () => execaSeries([
       `git checkout ${TRUNK} --quiet`,
       'git pull',
-      `git checkout -b ${RELEASE_TMP}`,
+      `git checkout -b ${RELEASE_TMP}  --quiet`,
     ]).then(() => {
       console.log(chalk.cyan(outdent`
           Step 1 complete...
@@ -273,7 +273,7 @@ const confirmedRelease = (type, version) => {
     }),
     () => execaSeries([
       `npm publish ${version === BETA ? ' --tag beta' : ''}`,
-      `git checkout ${TRUNK}`,
+      `git checkout ${TRUNK} --quiet`,
       `git merge --ff-only ${RELEASE_TMP}`,
       'git push',
       'git push --tags',
@@ -288,7 +288,7 @@ const confirmedRelease = (type, version) => {
     releaseSteps = [
       ...releaseSteps,
       () => execaSeries([
-        `git checkout ${MASTER_TRUNK}`,
+        `git checkout ${MASTER_TRUNK} --quiet`,
         `git merge --no-ff ${DEVELOP_TRUNK}`,
         'git push',
         'git push --tags',
@@ -298,7 +298,7 @@ const confirmedRelease = (type, version) => {
           `));
       }),
       () => execaSeries([
-        `git checkout ${DEVELOP_TRUNK}`,
+        `git checkout ${DEVELOP_TRUNK} --quiet`,
         `git merge --ff-only ${MASTER_TRUNK}`,
         'git push',
         'git push --tags',
