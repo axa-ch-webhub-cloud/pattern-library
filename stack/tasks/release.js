@@ -24,8 +24,6 @@ const execaPipeError = (...args) => {
   const [command, ...options] = params;
   const exec = execa(command, options);
 
-  // exec.stderr.pipe(process.stderr);
-
   return exec
     .then((result) => {
       console.log(`>>> resolved | ${command} ${options.join(' ')}`);
