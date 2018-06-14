@@ -28,6 +28,8 @@ const execaPipeError = (...args) => {
   return exec;
 };
 
+const execaSeries = (...args) => promiseSeries(args.map(arg => () => execaPipeError(...arg)));
+
 console.log(chalk.cyan(outdent`
 
   🚀  Hello Dear developer, welcome to the release assistant. 🚀
@@ -241,6 +243,13 @@ const confirmedRelease = (type, version) => {
 
   const isHotfix = type === HOTFIX;
   const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+
+  execaSeries([
+    ['git', 'checkout', TRUNK],
+    ['git', 'pull'],
+    ['git', 'checkout', '-b', RELEASE_TMP],
+  ]);
+
   let releaseSteps = [
     (callback) => {
       exec(`git checkout ${TRUNK} && git pull && git checkout -b ${RELEASE_TMP}`, handleSuccess(callback, () => {
