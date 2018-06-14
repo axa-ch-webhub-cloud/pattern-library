@@ -20,15 +20,16 @@ process.stdin.setEncoding('utf8');
 
 const execaPipeError = (...args) => {
   const isCommand = args.length === 1;
-  const command = isCommand ? args[0].split(/\s+/) : args;
-  const exec = execa(...command);
+  const params = isCommand ? args[0].split(/\s+/) : args;
+  const [command, ...options] = params;
+  const exec = execa(command, options);
 
   exec.stderr.pipe(process.stderr);
 
   return exec;
 };
 
-const execaSeries = (...args) => promiseSeries(args.map(arg => () => execaPipeError(...arg)));
+const execaSeries = (args) => promiseSeries(args.map(arg => () => execaPipeError(arg)));
 
 console.log(chalk.cyan(outdent`
 
