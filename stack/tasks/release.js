@@ -1,10 +1,13 @@
 const outdent = require('outdent');
-const { exec } = require('child_process');
-const waterfall = require('async-waterfall');
+const execa = require('execa');
+const promiseSeries = require('promise.series');
 const chalk = require('chalk');
+// eslint-disable-next-line import/no-dynamic-require
+const pkj = require(`${process.cwd()}/package.json`);
 
 const DEVELOP_TRUNK = 'develop';
 const MASTER_TRUNK = 'master';
+const RELEASE_TMP = 'release-tmp';
 const STABLE = 'stable';
 const UNSTABLE = 'unstable';
 const HOTFIX = 'hotfix';
@@ -14,6 +17,19 @@ const PATCH = 'patch';
 const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
+
+const execaPipeError = (...args) => {
+  const isCommand = args.length === 1;
+  const params = isCommand ? args[0].split(/\s+/) : args;
+  const [command, ...options] = params;
+  const exec = execa(command, options);
+
+  exec.stderr.pipe(process.stderr);
+
+  return exec;
+};
+
+const execaSeries = args => promiseSeries(args.map(arg => () => execaPipeError(arg)));
 
 console.log(chalk.cyan(outdent`
 
@@ -25,25 +41,10 @@ console.log(chalk.cyan(outdent`
 
   `));
 
-const handleError = (callback, errorCallback) => (error, ...args) => {
-  if (error) {
-    errorCallback(error, ...args);
-  }
-
-  callback(error, ...args);
-};
-
-const handleSuccess = (callback, successCallback) => (error, ...args) => {
-  if (!error) {
-    successCallback(error, ...args);
-  }
-
-  callback(error, ...args);
-};
-
-waterfall([
-  (callback) => {
-    exec('npm whoami', handleError(callback, () => {
+promiseSeries([
+  () => execaPipeError('npm whoami')
+    .then(({ stdout }) => stdout)
+    .catch((reason) => {
       console.log(chalk.red(outdent`
 
         Attention: You are currently not logged into npm. I will abort the action
@@ -53,23 +54,41 @@ waterfall([
         ${chalk.bold('npm login')}
 
       `));
-    }));
-  },
-  (whoami, stderr, callback) => {
-    // eslint-disable-next-line consistent-return
-    exec('npm owner ls', (error, stdout) => {
-      const hasError = error || stdout.trim().indexOf(whoami.trim()) === -1;
 
-      if (hasError) {
+      throw reason;
+    }),
+  whoami => execaPipeError('npm owner ls')
+    .then(({ stdout }) => {
+      const hasOwnership = stdout.trim().indexOf(whoami.trim()) > -1;
+
+      if (!hasOwnership) {
         console.log(chalk.red(outdent`
-
             Attention: Your account ${chalk.bold(whoami)} has no publisher rights. Please contact the administrator
-
           `));
 
-        return callback(true);
+        throw new Error('401 UNAUTHORIZED');
+      }
+    })
+    .catch((reason) => {
+      try {
+        const isNew = reason.message.indexOf('404 Not found') > -1;
+
+        if (isNew) {
+          console.log(chalk.yellow(outdent`
+            ATTENTION: Package ${chalk.bold(pkj.name)} does not exist yet on NPM!
+            We will try to create it for you. Be aware to have @axa-ch as scope in your package.json!
+            Your current version defined in the package.json is ${chalk.bold(pkj.version)}.
+          `));
+
+          return;
+        }
+      } catch (error) {
+        throw error;
       }
 
+      throw reason;
+    })
+    .then(() => {
       console.log(chalk.cyan(outdent`
 
           You are currently logged in as:
@@ -88,14 +107,13 @@ waterfall([
           n: no
 
         `));
+    }),
+]).then(() => {
+  // process.exit(0);
+}).catch((reason) => {
+  console.error(reason);
 
-      callback(null, whoami);
-    });
-  },
-], (error) => {
-  if (error) {
-    process.exit(1);
-  }
+  process.exit(1);
 });
 
 const determineStable = () => {
@@ -192,17 +210,15 @@ const release = (type, version) => {
 };
 
 const generalCleanupHandling = (exitcode) => {
-  exec(
-    `git checkout ${DEVELOP_TRUNK} && git branch -D release-tmp`,
-    (error) => {
-      if (error) {
-        console.log(chalk.red(error));
-        process.exit(1);
-      }
-
-      process.exit(exitcode);
-    },
-  );
+  execaSeries([
+    `git checkout ${DEVELOP_TRUNK}`,
+    `git branch -D ${RELEASE_TMP}`,
+  ]).then(() => {
+    process.exit(exitcode);
+  }).catch((reason) => {
+    console.error(chalk.red(reason));
+    process.exit(1);
+  });
 };
 
 const confirmedRelease = (type, version) => {
@@ -212,87 +228,82 @@ const confirmedRelease = (type, version) => {
 
   const isHotfix = type === HOTFIX;
   const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+
   let releaseSteps = [
-    (callback) => {
-      exec(`git checkout ${TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
-            Step 1 complete...
-          `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      exec('npm run build && git add ./dist ./docs && git commit -m"rebuild"', handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
+    () => execaSeries([
+      `git checkout ${TRUNK}`,
+      'git pull',
+      `git checkout -b ${RELEASE_TMP}`,
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
+          Step 1 complete...
+        `));
+    }),
+    () => execaSeries([
+      'npm run build',
+      'git add ./dist ./docs',
+      'git commit -m"rebuild"',
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
           Step 2 complete...
         `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      let command = `npm run bump-${version}`;
-
-      if (type === UNSTABLE) {
-        command = `npm run bump-${version === BETA ? '' : `${version}-`}beta`;
-      }
-
-      exec(command, handleSuccess(callback, () => {
-        console.log(chalk.cyan(outdent`
+    }),
+    () => execaSeries([
+      type === UNSTABLE ? `npm run bump-${version === BETA ? '' : `${version}-`}beta` : `npm run bump-${version}`,
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
           Step 3 complete...
         `));
-      }));
-    },
-    (stdout, stderr, callback) => {
-      exec(`npm publish ${version === BETA ? ' --tag beta' : ''}`, callback);
-    },
-    (stdout, stderr, callback) => {
-      exec(
-        `git checkout ${TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
-        handleSuccess(callback, () => {
-          console.log(chalk.cyan(outdent`
-            Step 4 complete...
-          `));
-        }),
-      );
-    },
+    }),
+    () => execaSeries([
+      `npm publish ${version === BETA ? ' --tag beta' : ''}`,
+      `git checkout ${TRUNK}`,
+      `git merge --ff-only ${RELEASE_TMP}`,
+      'git push',
+      'git push --tags',
+    ]).then(() => {
+      console.log(chalk.cyan(outdent`
+          Step 4 complete...
+        `));
+    }),
   ];
 
   if (!isHotfix) {
     releaseSteps = [
       ...releaseSteps,
-      (stdout, stderr, callback) => {
-        exec(
-          `git checkout ${MASTER_TRUNK} && git merge --no-ff ${DEVELOP_TRUNK} && git push && git push --tags`,
-          handleSuccess(callback, () => {
-            console.log(chalk.cyan(outdent`
-
+      () => execaSeries([
+        `git checkout ${MASTER_TRUNK}`,
+        `git merge --no-ff ${DEVELOP_TRUNK}`,
+        'git push',
+        'git push --tags',
+      ]).then(() => {
+        console.log(chalk.cyan(outdent`
             Step 5 complete...
           `));
-          }),
-        );
-      },
-      (stdout, stderr, callback) => {
-        exec(
-          `git checkout ${DEVELOP_TRUNK} && git merge --ff-only ${MASTER_TRUNK} && git push && git push --tags`,
-          handleSuccess(callback, () => {
-            console.log(chalk.cyan(outdent`
-
+      }),
+      () => execaSeries([
+        `git checkout ${DEVELOP_TRUNK}`,
+        `git merge --ff-only ${MASTER_TRUNK}`,
+        'git push',
+        'git push --tags',
+      ]).then(() => {
+        console.log(chalk.cyan(outdent`
             Step 6 complete! Publishing done successfully. Have fun!
 
           `));
-          }),
-        );
-      },
+      }),
     ];
   }
 
-  waterfall(releaseSteps, (error) => {
-    if (error) {
-      console.log(chalk.red(error));
+  promiseSeries(releaseSteps)
+    .then(() => {
+      generalCleanupHandling(0);
+    })
+    .catch((reason) => {
+      console.error(chalk.red(reason));
 
       generalCleanupHandling(1);
-    } else {
-      generalCleanupHandling(0);
-    }
-  });
+    });
 };
 
 let step = 0;
