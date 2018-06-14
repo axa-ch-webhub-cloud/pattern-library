@@ -29,7 +29,7 @@ const execaPipeError = (...args) => {
   return exec;
 };
 
-const execaSeries = (args) => promiseSeries(args.map(arg => () => execaPipeError(arg)));
+const execaSeries = args => promiseSeries(args.map(arg => () => execaPipeError(arg)));
 
 console.log(chalk.cyan(outdent`
 
