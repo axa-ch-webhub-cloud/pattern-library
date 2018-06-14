@@ -26,7 +26,11 @@ const execaPipeError = (...args) => {
 
   // exec.stderr.pipe(process.stderr);
 
-  return exec;
+  return exec.catch((reason) => {
+    console.error(reason);
+
+    throw reason;
+  });
 };
 
 const execaSeries = args => promiseSeries(args.map(arg => () => execaPipeError(arg)));
