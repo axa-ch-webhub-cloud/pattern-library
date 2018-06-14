@@ -9,6 +9,7 @@ const pkj = require(`${process.cwd()}/package.json`);
 
 const DEVELOP_TRUNK = 'develop';
 const MASTER_TRUNK = 'master';
+const RELEASE_TMP = 'release-tmp';
 const STABLE = 'stable';
 const UNSTABLE = 'unstable';
 const HOTFIX = 'hotfix';
@@ -221,7 +222,7 @@ const release = (type, version) => {
 
 const generalCleanupHandling = (exitcode) => {
   exec(
-    `git checkout ${DEVELOP_TRUNK} && git branch -D release-tmp`,
+    `git checkout ${DEVELOP_TRUNK} && git branch -D ${RELEASE_TMP}`,
     (error) => {
       if (error) {
         console.log(chalk.red(error));
@@ -242,7 +243,7 @@ const confirmedRelease = (type, version) => {
   const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
   let releaseSteps = [
     (callback) => {
-      exec(`git checkout ${TRUNK} && git pull && git checkout -b release-tmp`, handleSuccess(callback, () => {
+      exec(`git checkout ${TRUNK} && git pull && git checkout -b ${RELEASE_TMP}`, handleSuccess(callback, () => {
         console.log(chalk.cyan(outdent`
             Step 1 complete...
           `));
@@ -273,7 +274,7 @@ const confirmedRelease = (type, version) => {
     },
     (stdout, stderr, callback) => {
       exec(
-        `git checkout ${TRUNK} && git merge --ff-only release-tmp && git push && git push --tags`,
+        `git checkout ${TRUNK} && git merge --ff-only ${RELEASE_TMP} && git push && git push --tags`,
         handleSuccess(callback, () => {
           console.log(chalk.cyan(outdent`
             Step 4 complete...
