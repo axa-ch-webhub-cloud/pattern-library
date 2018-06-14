@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist && rimraf lib && rimraf docs",
     "clean-dev": "rimraf .tmp",
-    "test": "parallelshell 'npm run test-eslint' 'npm run test-stylelint'",
+    "test": "npm run test-eslint && npm run test-stylelint",
     "test-editorconfig": "editorconfig-checker src",
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
