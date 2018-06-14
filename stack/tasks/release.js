@@ -28,8 +28,8 @@ const execaPipeError = (...args) => {
 
   return exec
     .then((result) => {
-      const { stderr, error } = result || {};
-      const hasError = error || stderr;
+      const { stdout, stderr, error } = result || {};
+      const hasError = error || (stderr !== stdout && stderr);
 
       if (hasError) {
         throw hasError;
