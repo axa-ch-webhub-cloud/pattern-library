@@ -19,6 +19,14 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
+const execaPipeError = (...args) => {
+  const exec = execa(...args);
+
+  exec.stderr.pipe(process.stderr);
+
+  return exec;
+};
+
 console.log(chalk.cyan(outdent`
 
   🚀  Hello Dear developer, welcome to the release assistant. 🚀
@@ -30,7 +38,7 @@ console.log(chalk.cyan(outdent`
   `));
 
 promiseSeries([
-  () => execa('npm', ['whoami'])
+  () => execaPipeError('npm', ['whoami'])
     .then(({ stdout }) => stdout)
     .catch((reason) => {
       console.log(chalk.red(outdent`
@@ -45,7 +53,7 @@ promiseSeries([
 
       throw reason;
     }),
-  whoami => execa('npm', ['owner', 'ls'])
+  whoami => execaPipeError('npm', ['owner', 'ls'])
     .then(({ stdout }) => {
       const hasOwnership = stdout.trim().indexOf(whoami.trim()) > -1;
 
@@ -97,7 +105,7 @@ promiseSeries([
 ]).then(() => {
   // process.exit(0);
 }).catch((reason) => {
-  console.log(reason)
+  console.error(reason);
 
   process.exit(1);
 });
