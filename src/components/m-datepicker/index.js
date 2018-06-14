@@ -13,8 +13,7 @@ class AXADatepicker extends BaseComponentGlobal {
   static get observedAttributes() { return ['classes', 'button-ok', 'button-cancel']; }
 
   constructor() {
-    super(styles, template);
-
+    super({ styles, template });
     // does this provide context (See docs for context) ?
     // this.enableContext()
 

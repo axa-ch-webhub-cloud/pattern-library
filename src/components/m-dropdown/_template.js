@@ -22,16 +22,21 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
     })}">${raw(arrowIcon)}</div>
   </div>`;
 
-const enhancedSelect = ({ title, items, size }) => [
+const getTitle = (value, items, title) => {
+  const selected = items.filter(item => item.value === value);
+  return selected.length === 1 ? selected[0].name : title;
+};
+
+const enhancedSelect = ({ title, items, size, value }) => [
   html`<button type="button" class="${classnames('m-dropdown__toggle js-dropdown__toggle', {
     [`m-dropdown__toggle--${size}`]: size,
   })}">
-    ${title}${raw(arrowIcon)}
+    ${getTitle(value, items, title) || ''}${raw(arrowIcon)}
   </button>`,
   html`<ul class="m-dropdown__content">
-    ${Array.isArray(items) && items.map(({ name, url }) => html`
+    ${Array.isArray(items) && items.map(({ name, url, value: itemValue }) => html`
       <li class="m-dropdown__item">
-        <a class="m-dropdown__link" href="${url}">${name}</a>
+        <a class="m-dropdown__link js-dropdown__link" data-selected="${itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
       </li>
   `)}
   </ul>`,

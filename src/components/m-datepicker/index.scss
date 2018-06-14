@@ -3,41 +3,49 @@
 $datepicke-height: 322px !default;
 $datepicke-width: 309px !default;
 
+
 .m-datepicker {
   display: block;
+}
+
+.m-datepicker__article {
+  padding: 20px 30px;
   height: $datepicke-height;
   width: $datepicke-width;
-  border: 1px solid $color-prim-black;
+  border: solid 1px $color-prim-gray-silver;
+  box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
+  position: relative;
+}
+
+.m-datepicker__dropdown {
+  margin-bottom: 20px;
+}
+
+.m-datepicker__dropdown__year {
+  float: right;
+}
+
+.m-datepicker__weekdays {
+  display: flex;
+
+  flex-wrap: wrap;
+  background-color: $color-axa-blue;
+  color: $color-prim-white;
+}
+
+.m-datepicker__weekdays__day {
+  margin: 8px;
+
+  flex-direction: column;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .m-datepicker__button {
   position: absolute;
-  bottom: 19px;
+  bottom: 20px;
 }
 
-.m-datepicker__dropdown {
-
-}
-
-.m-datepicker__article {
-  padding-top: 21px;
-  // padding-right: 29px;
-}
-
-.m-datepicker__dropdown__month {
-  // Klasse überschreiben
-  height: 36px;
-  width: 141px;
-  // schon ein element anzeigen
-  margin-left: 32px;
-}
-
-
-.m-datepicker__dropdown__year {
+.m-datepicker__button__Ok {
   float: right;
-  margin-right: 29px;
-  // Klasse überschreiben
-  // height: 36px;
-  // width: 89px;
 }

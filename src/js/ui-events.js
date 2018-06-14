@@ -3,7 +3,7 @@ import on from './on';
 import getAttribute from './get-attribute';
 import outer from './outer';
 
-const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
+export const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc');
 
 /**
  * This is the data attribute that can be set on a DOM element and enforces prevent default.
@@ -214,6 +214,10 @@ class UiEvents {
 
     delete this._wcNode;
     delete this._options;
+  }
+
+  get lastToggleNode() {
+    return this._lastToggleNode;
   }
 }
 
