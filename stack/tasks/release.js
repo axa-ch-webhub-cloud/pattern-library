@@ -21,7 +21,7 @@ process.stdin.setEncoding('utf8');
 const execaPipeError = (...args) => {
   const isCommand = args.length === 1;
   const command = isCommand ? args[0].split(/\s+/) : args;
-  const exec = execa(command);
+  const exec = execa(...command);
 
   exec.stderr.pipe(process.stderr);
 
