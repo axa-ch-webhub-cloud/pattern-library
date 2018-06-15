@@ -119,7 +119,7 @@ class UiEvents {
       this._unCloseEscape();
     }
 
-    delete this._lastToggleNode;
+    this.deleteLastToggleNode();
   }
 
   _handleClick = (e, toggleNode) => {
@@ -170,7 +170,7 @@ class UiEvents {
 
       this._offInteractive();
 
-      delete this._lastToggleNode;
+      this.deleteLastToggleNode();
     }
   }
 
@@ -218,6 +218,10 @@ class UiEvents {
 
   get lastToggleNode() {
     return this._lastToggleNode;
+  }
+
+  deleteLastToggleNode() {
+    delete this._lastToggleNode;
   }
 }
 

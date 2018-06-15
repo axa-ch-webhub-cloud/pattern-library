@@ -34,9 +34,9 @@ const enhancedSelect = ({ title, items, size, value }) => [
     ${getTitle(value, items, title) || ''}${raw(arrowIcon)}
   </button>`,
   html`<ul class="m-dropdown__content">
-    ${Array.isArray(items) && items.map(({ name, url, value: itemValue }) => html`
+    ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => html`
       <li class="m-dropdown__item">
-        <a class="m-dropdown__link js-dropdown__link" data-selected="${itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
+        <a class="m-dropdown__link js-dropdown__link" data-index="${index}" data-selected="${itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
       </li>
   `)}
   </ul>`,

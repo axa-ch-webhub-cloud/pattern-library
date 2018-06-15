@@ -31,7 +31,6 @@ class DropDown extends UiEvents {
 
   onInteractive() {
     this.offInteractive();
-
     this.unTransitionEnd = on(this.wcNode, 'transitionend', this.handleTransitionEnd);
   }
 
@@ -80,14 +79,13 @@ class DropDown extends UiEvents {
     const { lastElementChild } = parentNode;
     const { scrollHeight } = lastElementChild;
 
-    console.log('leave', node, this.isOpen)
-
     if (!this.isOpen) {
       return;
     }
     this.isOpen = false;
 
     this.onInteractive();
+    this.onClicks();
 
     add(parentNode, this.options.isAnimatingClass);
 
@@ -108,6 +106,7 @@ class DropDown extends UiEvents {
   }
 
   handleTransitionEnd = (e) => {
+    console.log(this)
     if (e.propertyName === 'height') {
       this._removeHeightOnElement(e.target);
 
@@ -120,7 +119,7 @@ class DropDown extends UiEvents {
   handleClick = (e) => {
     e.preventDefault();
     this.offClicks();
-    this.leave(this.lastToggleNode);
+    this.wcNode.setAttribute('value', +e.target.dataset.index);
   }
 
   reset() {
