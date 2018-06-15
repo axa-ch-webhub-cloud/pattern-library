@@ -1,7 +1,15 @@
 @import "../../styles/settings/colors";
 
-$datepicke-height: 322px !default;
-$datepicke-width: 309px !default;
+$datepicker-height: 322px !default;
+$datepicker-width: 309px !default;
+
+$datepicker-margin-top-bottom: 20px !default;
+$datepicker-margin-left-right: 30px !default;
+
+$datepicker-padding-top-bottom: 20px !default;
+$datepicker-padding-left-right: 30px !default;
+
+$datepicker-border-width: 1px !default;
 
 
 .m-datepicker {
@@ -11,15 +19,15 @@ $datepicke-width: 309px !default;
 .m-datepicker__article {
   position: relative;
 
-  padding: 20px 30px;
-  height: $datepicke-height;
-  width: $datepicke-width;
-  border: solid 1px $color-prim-gray-silver;
+  padding: $datepicker-padding-top-bottom $datepicker-padding-left-right;
+  height: $datepicker-height;
+  width: $datepicker-width;
+  border: solid $datepicker-border-width $color-prim-gray-silver;
   box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
 }
 
 .m-datepicker__dropdown {
-  margin-bottom: 20px;
+  margin-bottom: $datepicker-margin-top-bottom;
 }
 
 .m-datepicker__dropdown__year {
@@ -28,22 +36,43 @@ $datepicke-width: 309px !default;
 
 .m-datepicker__weekdays {
   display: flex;
+  margin: 0 (-$datepicker-margin-left-right);
+  padding-left: $datepicker-padding-left-right;
+  padding-right: $datepicker-padding-left-right;
 
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: $color-axa-blue;
   color: $color-prim-white;
 }
 
 .m-datepicker__weekdays__day {
-  margin: 8px;
-
-  flex-direction: column;
-  text-align: center;
+  margin-top: 0;
   text-transform: uppercase;
 }
 
+.m-datepicker__body {
+  display: flex;
+
+  flex-wrap: wrap;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+.grid-item {
+  border: 1px solid black;
+  text-align: center;
+}
+
 .m-datepicker__button {
-  position: relative;
+  position: absolute;
+  bottom: $datepicker-margin-top-bottom;
+
+  width: calc(100% - #{$datepicker-padding-left-right * 2 + 1});
 }
 
 .m-datepicker__button__Ok {

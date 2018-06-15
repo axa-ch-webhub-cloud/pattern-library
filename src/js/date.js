@@ -30,11 +30,19 @@ export const getSpecificYears = (maxYears, futureYears) => {
 
 export const getLocalWeekdayArray = (locale = 'en-uk') => {
   const finalArray = [];
+  const objDate = new Date();
+  let currentWeekDay = objDate.getDay();
+  let currentDay = objDate.getDate();
+
+  while (currentWeekDay !== 1) {
+    currentDay += 1;
+    objDate.setDate(currentDay);
+    currentWeekDay = objDate.getDay();
+  }
+
   [...Array(7).keys()].forEach((index) => {
-    const objDate = new Date();
-    objDate.setDate(index);
-    finalArray.push(objDate.toLocaleString(locale, { weekday: 'narrow' }));
-    console.log(finalArray);
+    objDate.setDate(currentDay + index);
+    finalArray.push(objDate.toLocaleString(locale, { weekday: 'long' }).slice(0, 2));
   });
   return finalArray;
 };
