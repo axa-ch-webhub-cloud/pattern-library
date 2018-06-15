@@ -1,13 +1,13 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.153",
+  "version": "2.0.1-beta.155",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
   "scripts": {
     "clean": "rimraf dist && rimraf lib && rimraf docs",
     "clean-dev": "rimraf .tmp",
-    "test": "parallelshell 'npm run test-eslint' 'npm run test-stylelint'",
+    "test": "npm run test-eslint && npm run test-stylelint",
     "test-editorconfig": "editorconfig-checker src",
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
