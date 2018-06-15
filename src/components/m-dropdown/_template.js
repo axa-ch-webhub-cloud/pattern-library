@@ -23,7 +23,13 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
   </div>`;
 
 const getTitle = (value, items, title) => {
-  const selected = items.filter(item => item.value === value);
+  const selected = items.filter((item, index) => {
+    let { value: _value } = item;
+    if (typeof _value === 'undefined') {
+      _value = index;
+    }
+    return `${_value}` === `${value}`;
+  });
   return selected.length === 1 ? selected[0].name : title;
 };
 
@@ -36,7 +42,7 @@ const enhancedSelect = ({ title, items, size, value }) => [
   html`<ul class="m-dropdown__content">
     ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => html`
       <li class="m-dropdown__item">
-        <a class="m-dropdown__link js-dropdown__link" data-index="${index}" data-selected="${itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
+        <a class="m-dropdown__link js-dropdown__link" data-index="${itemValue || index}" data-selected="${itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
       </li>
   `)}
   </ul>`,

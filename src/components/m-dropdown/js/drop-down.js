@@ -106,7 +106,6 @@ class DropDown extends UiEvents {
   }
 
   handleTransitionEnd = (e) => {
-    console.log(this)
     if (e.propertyName === 'height') {
       this._removeHeightOnElement(e.target);
 
@@ -119,7 +118,15 @@ class DropDown extends UiEvents {
   handleClick = (e) => {
     e.preventDefault();
     this.offClicks();
-    this.wcNode.setAttribute('value', +e.target.dataset.index);
+    const isTheSame = this.wcNode.getAttribute('value') === e.target.dataset.index;
+
+    if (isTheSame) {
+      this.leave(this.lastToggleNode);
+      this.deleteLastToggleNode();
+    } else {
+      const { index } = e.target.dataset;
+      this.wcNode.setAttribute('value', index);
+    }
   }
 
   reset() {
