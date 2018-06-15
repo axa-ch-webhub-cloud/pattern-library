@@ -18,10 +18,15 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
-const execaPipeError = (...args) => {
-  const isCommand = args.length === 1;
-  const params = isCommand ? args[0].split(/\s+/) : args;
+const execaPipeError = (file, ...args) => {
+  if (typeof file !== 'string') {
+    return Promise.reoslve();
+  }
+
+  const isCommand = args.length === 0;
+  const params = isCommand ? file.split(/\s+/) : [file, ...args];
   const [command, ...options] = params;
+
   const exec = execa(command, options);
 
   return exec
@@ -236,6 +241,8 @@ const confirmedRelease = (type, version) => {
 
   const isHotfix = type === HOTFIX;
   const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+  const { scripts } = pkj;
+  const hasTestScript = scripts.test;
 
   let releaseSteps = [
     () => execaSeries([
@@ -248,7 +255,7 @@ const confirmedRelease = (type, version) => {
         `));
     }),
     () => execaSeries([
-      // 'npm run test',
+      hasTestScript && 'npm run test',
       'npm run build',
       'git add ./dist ./docs',
       'git commit -m"rebuild"',
