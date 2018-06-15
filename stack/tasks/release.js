@@ -19,10 +19,6 @@ const BETA = 'beta';
 process.stdin.setEncoding('utf8');
 
 const execaPipeError = (file, ...args) => {
-  if (typeof file !== 'string') {
-    return Promise.reoslve();
-  }
-
   const isCommand = args.length === 0;
   const params = isCommand ? file.split(/\s+/) : [file, ...args];
   const [command, ...options] = params;
@@ -42,7 +38,9 @@ const execaPipeError = (file, ...args) => {
     });
 };
 
-const execaSeries = args => promiseSeries(args.map(arg => () => execaPipeError(arg)));
+const execaSeries = args => promiseSeries(args
+  .filter(arg => typeof arg === 'string' && arg.length)
+  .map(arg => () => execaPipeError(arg)));
 
 console.log(chalk.cyan(outdent`
 
