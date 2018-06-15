@@ -1,6 +1,6 @@
 const ENV = {
-  DEV: 'DEV',
-  PROD: 'PROD',
+  DEV: 'development',
+  PROD: 'production',
 };
 
 module.exports = {

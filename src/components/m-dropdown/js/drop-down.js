@@ -1,4 +1,4 @@
-import UiEvents from '../../../js/ui-events';
+import UiEvents, { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import { add, remove } from '../../../js/class-list';
@@ -9,6 +9,7 @@ class DropDown extends UiEvents {
     toggleClass: 'js-dropdown__toggle',
     isOpenClass: 'is-dropdown-open',
     isAnimatingClass: 'is-dropdown-animating',
+    selectClass: 'js-dropdown__link',
   }
 
   constructor(wcNode, options) {
@@ -23,17 +24,30 @@ class DropDown extends UiEvents {
     this.options = options;
     this.wcNode = wcNode;
     this.isOpen = false;
+
+    this.unClicks = [];
+    this.elements = [].slice.call(this.wcNode.querySelectorAll(`.${this.options.selectClass}`));
   }
 
   onInteractive() {
     this.offInteractive();
-
     this.unTransitionEnd = on(this.wcNode, 'transitionend', this.handleTransitionEnd);
+  }
+
+  onClicks() {
+    this.offClicks();
+    this.elements.forEach(elem => this.unClicks.push(on(elem, EVENTS.CLICK, '', this.handleClick, { capture: true, passive: false })));
   }
 
   offInteractive() {
     if (this.unTransitionEnd) {
       this.unTransitionEnd();
+    }
+  }
+
+  offClicks() {
+    if (this.unClicks) {
+      this.unClicks.forEach(off => off());
     }
   }
 
@@ -53,6 +67,7 @@ class DropDown extends UiEvents {
     lastElementChild.style.overflow = '';
 
     this.onInteractive();
+    this.onClicks();
 
     lastElementChild.style.height = `${scrollHeight}px`;
 
@@ -70,6 +85,7 @@ class DropDown extends UiEvents {
     this.isOpen = false;
 
     this.onInteractive();
+    this.onClicks();
 
     add(parentNode, this.options.isAnimatingClass);
 
@@ -83,15 +99,33 @@ class DropDown extends UiEvents {
     });
   }
 
+  _removeHeightOnElement(node) {
+    if (this.isOpen) {
+      node.style.height = '';
+    }
+  }
+
   handleTransitionEnd = (e) => {
     if (e.propertyName === 'height') {
-      if (this.isOpen) {
-        e.target.style.height = '';
-      }
+      this._removeHeightOnElement(e.target);
 
       this.offInteractive();
 
       remove(this.wcNode, this.options.isAnimatingClass);
+    }
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    this.offClicks();
+    const isTheSame = this.wcNode.getAttribute('value') === e.target.dataset.index;
+
+    if (isTheSame) {
+      this.leave(this.lastToggleNode);
+      this.deleteLastToggleNode();
+    } else {
+      const { index } = e.target.dataset;
+      this.wcNode.setAttribute('value', index);
     }
   }
 

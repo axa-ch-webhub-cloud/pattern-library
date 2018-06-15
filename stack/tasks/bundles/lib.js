@@ -1,15 +1,10 @@
 const components = require('./components');
 const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
-const replace = require('rollup-plugin-replace');
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 const path = require('path');
-
-const constants = require('./../../constants');
-
-const ENV = process.argv[2]; // second element is the first argument.
 
 components.bundleLibFiles({
   external: (id, parent, isResolved) => {
@@ -22,11 +17,6 @@ components.bundleLibFiles({
     return !/\/components\/[amou]-.+\//.test(resolved) && !/\.scss$/i.test(resolved);
   },
   plugins: [
-    replace({
-      ENV: JSON.stringify(ENV),
-      DEV: JSON.stringify(constants.ENV.DEV),
-      PROD: JSON.stringify(constants.ENV.PROD),
-    }),
     sass({
       insert: true,
       include: ['**/*.scss'],
@@ -51,6 +41,7 @@ components.bundleLibFiles({
       exclude: [
         'node_modules/**',
       ],
+      plugins: ['transform-runtime'],
       runtimeHelpers: true,
     }),
     resolve({

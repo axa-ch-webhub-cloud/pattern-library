@@ -22,7 +22,7 @@ const eventNameMap = {
  */
 function on(eventTarget, eventName, className, func, { capture = false, passive = true } = {}) {
   if (eventNameMap[eventName]) {
-    /* eslint-disable */
+    /* eslint-disable no-param-reassign */
     eventName = eventNameMap[eventName];
     /* eslint-enable */
   }
