@@ -5,6 +5,8 @@ import styles from './index.scss';
 import template from './_template';
 import wcdomready from '../../js/wcdomready';
 
+console.log('\n🚫 Datepicker is not ready to be used. Coming soon 🚫\n');
+
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
 
