@@ -1,12 +1,10 @@
 import html from 'nanohtml';
 import {
   getAllLocaleMonthsArray,
-  getCurrentLocaleMonth,
   getSpecificYears,
-  getLocalWeekdayArray, } from '../../js/date';
+  getLocalWeekdayArray } from '../../js/date';
 // tolocaldatestring()
-
-
+/* eslint-disable */
 export default ({
   classes,
   buttonOk,
@@ -24,7 +22,7 @@ export default ({
         ">
         </axa-dropdown>
         <axa-dropdown class="m-datepicker__dropdown__year" size="sm" value="${new Date().getFullYear()}" items="
-          ${JSON.stringify(getSpecificYears(maxYears, futureYears).map((year, index) => {
+          ${JSON.stringify(getSpecificYears(maxYears, futureYears).map((year) => {
             return { name: year, url: '#', value: year };
           }))}
         ">
@@ -40,3 +38,4 @@ export default ({
       </div>
   </article>
 `;
+/* eslint-enable */

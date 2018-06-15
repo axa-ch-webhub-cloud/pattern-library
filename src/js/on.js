@@ -28,7 +28,7 @@ function on(eventTarget, eventName, className, func, { capture = false, passive 
   }
 
   if (!eventTarget || !eventName) {
-    return null
+    return null;
   }
 
   const typeClassName = typeof className;
