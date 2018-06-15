@@ -9,12 +9,13 @@ $datepicke-width: 309px !default;
 }
 
 .m-datepicker__article {
+  position: relative;
+
   padding: 20px 30px;
   height: $datepicke-height;
   width: $datepicke-width;
   border: solid 1px $color-prim-gray-silver;
   box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
-  position: relative;
 }
 
 .m-datepicker__dropdown {
@@ -42,10 +43,10 @@ $datepicke-width: 309px !default;
 }
 
 .m-datepicker__button {
-  position: absolute;
-  bottom: 20px;
+  position: relative;
 }
 
 .m-datepicker__button__Ok {
-  float: right;
+  position: absolute;
+  right: 0;
 }
