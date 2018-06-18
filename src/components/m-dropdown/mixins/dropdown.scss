@@ -8,7 +8,7 @@
   position: relative;
 }
 
-@mixin dropdown-frame($icon-class: "m-dropdown__icon") {
+@mixin dropdown-frame($icon-class: 'm-dropdown__icon') {
   $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
 
   padding: $dropdown__frame-y-padding $padding-right $dropdown__frame-y-padding $dropdown__frame-x-padding;
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-@mixin dropdown-select($icon-class: "m-dropdown__icon", $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
+@mixin dropdown-select($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
   display: block;
   box-sizing: border-box;
 
@@ -56,7 +56,7 @@
   margin-right: -120%;
 
   line-height: $height; /* not ideal, firefox is buggy here - see fix at the bottom */
-  text-indent: $indent;  /* not ideal, firefox is buggy here - see fix at the bottom */
+  text-indent: $indent;	/* not ideal, firefox is buggy here - see fix at the bottom */
   vertical-align: middle;
   cursor: pointer;
 
@@ -124,7 +124,7 @@
   }
 }
 
-@mixin dropdown-select-icon($icon-class: "m-dropdown__icon", $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
+@mixin dropdown-select-icon($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
   display: block;
   float: right;
   height: $height;
