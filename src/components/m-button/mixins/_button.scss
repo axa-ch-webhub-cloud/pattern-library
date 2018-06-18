@@ -140,19 +140,19 @@
   padding-bottom: $button-padding-top-bottom-lg;
 }
 
-@mixin button--generic-icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
+@mixin button--icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   padding-right: $x-padding + $button-height;
   overflow: hidden;
 }
 
-@mixin button--generic-icon--sm($x-padding: $button-x-padding-default) {
-  @include button--generic-icon($x-padding, $button-sm-height);
+@mixin button--icon--sm($x-padding: $button-x-padding-default) {
+  @include button--icon($x-padding, $button-sm-height);
 }
 
-@mixin button--generic-icon--lg($x-padding: $button-x-padding-default) {
-  @include button--generic-icon($x-padding, $button-lg-height);
+@mixin button--icon--lg($x-padding: $button-x-padding-default) {
+  @include button--icon($x-padding, $button-lg-height);
 }
 
 @mixin button__icon() {

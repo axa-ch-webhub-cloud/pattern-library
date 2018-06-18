@@ -68,8 +68,8 @@
   }
 }
 
-.m-button--generic-icon {
-  @include button--generic-icon();
+.m-button--icon {
+  @include button--icon();
 }
 
 .m-button--arrow {
@@ -111,8 +111,8 @@
     @include button__icon--sm();
   }
 
-  &.m-button--generic-icon {
-    @include button--generic-icon--sm();
+  &.m-button--icon {
+    @include button--icon--sm();
   }
 }
 
@@ -131,8 +131,8 @@
     @include button__arrow--lg();
   }
 
-  &.m-button--generic-icon {
-    @include button--generic-icon--lg();
+  &.m-button--icon {
+    @include button--icon--lg();
   }
 }
 

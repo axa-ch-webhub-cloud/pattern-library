@@ -26,7 +26,7 @@ export default function ({
     'm-button--motion': motion,
     'm-button--gpu': gpu,
     'm-button--arrow': arrow,
-    'm-button--generic-icon': icon && !arrow,
+    'm-button--icon': icon && !arrow,
   });
 
   let arrowIcon;
