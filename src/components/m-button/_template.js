@@ -1,6 +1,7 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
+import isEmptyFragment from '../../js/is-empty-fragment';
 
 const DISABLED = 'disabled';
 const ARIA_DISABLED = 'aria-disabled';
@@ -19,6 +20,9 @@ export default function ({
   target = '_self',
   disabled = false,
 }, childrenFragment) {
+  const noChildren = isEmptyFragment(childrenFragment);
+  const hasIcon = icon && !arrow;
+  const hasOnlyIcon = hasIcon && !noChildren;
   const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
@@ -26,7 +30,8 @@ export default function ({
     'm-button--motion': motion,
     'm-button--gpu': gpu,
     'm-button--arrow': arrow,
-    'm-button--icon': icon && !arrow,
+    'm-button--icon': hasIcon,
+    'm-button--icon--only': hasOnlyIcon,
   });
 
   let arrowIcon;
@@ -34,7 +39,11 @@ export default function ({
   if (arrow) {
     arrowIcon = raw('<axa-icon icon="arrow" classes="m-button__arrow"></axa-icon>');
   } else if (icon) {
-    genericIcon = raw(`<axa-icon icon="${icon}" classes="m-button__icon"></axa-icon>`);
+    const iconCLasses = classnames('m-button__icon', {
+      'm-button__icon--only': hasOnlyIcon,
+    });
+
+    genericIcon = raw(`<axa-icon icon="${icon}" classes="${iconCLasses}"></axa-icon>`);
   }
 
   if (tag.toLowerCase() === 'a' && disabled) {
