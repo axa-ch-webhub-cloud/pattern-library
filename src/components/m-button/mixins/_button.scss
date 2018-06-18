@@ -177,6 +177,11 @@
   border-left: $button-border-width solid currentColor;
 }
 
+@mixin button__icon--only() {
+  position: relative;
+  border-left: none;
+}
+
 @mixin button__icon--sm() {
   $local-padding: 5px;
 

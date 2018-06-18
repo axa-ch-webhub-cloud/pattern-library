@@ -14,6 +14,10 @@
   @include button__icon();
 }
 
+.m-button__icon--only {
+  @include button__icon--only();
+}
+
 .m-button__arrow {
   @include button__arrow();
   @include button__arrow-right();
@@ -70,6 +74,10 @@
 
 .m-button--icon {
   @include button--icon();
+}
+
+.m-button--icon--only {
+  @include button--icon--only();
 }
 
 .m-button--arrow {
