@@ -31,8 +31,6 @@ class AXAButton extends BaseComponentGlobal {
 
 wcdomready(() => {
   window.customElements.define(AXAButton.tagName, AXAButton);
-
-  BaseComponentGlobal.appendGlobalStyles(styles);
 });
 
 export default AXAButton;
