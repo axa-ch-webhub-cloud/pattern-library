@@ -131,7 +131,6 @@
     "npm-watch": "^0.3.0",
     "npmversion": "~1.4.0",
     "outdent": "^0.4.1",
-    "parallelshell": "~3.0.2",
     "postcss": "^6.0.14",
     "postcss-cli": "^4.1.1",
     "promise.series": "^0.2.0",
