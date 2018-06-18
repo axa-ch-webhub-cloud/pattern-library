@@ -44,8 +44,6 @@ class AXADropdown extends BaseComponentGlobal {
 
 wcdomready(() => {
   window.customElements.define(AXADropdown.tagName, AXADropdown);
-
-  BaseComponentGlobal.appendGlobalStyles(styles);
 });
 
 export default AXADropdown;
