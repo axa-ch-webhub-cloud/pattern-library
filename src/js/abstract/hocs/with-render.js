@@ -145,6 +145,15 @@ const withRender = Base =>
     }
 
     /**
+     * Only morph children of current custom element, not any other custom element.
+     *
+     * @returns {boolean}
+     */
+    skipChildren() {
+      return !this._isMorphing;
+    }
+
+    /**
      * Optionally overwrite this public method, it get's triggered as soon as your component will render.
      * Here you will cleanup your lost DOM references or their associated events or stuff like that.
      *
