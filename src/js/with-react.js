@@ -151,7 +151,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       // eslint-disable-next-line react/prop-types
       const { props: { children }, handleRef } = this;
 
-      return createElement(tagName, { ref: handleRef }, children);
+      return createElement(tagName, { ref: handleRef, className: 'is-custom-element-disconnected' }, children);
     }
   };
 };
