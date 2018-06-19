@@ -170,7 +170,7 @@ const writeIndexScss = (path, _name) => {
 const writePreviewAndHtml = (path, _name) => {
   fs.writeFileSync(
     `${path}/_preview.html`,
-    outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
+    outdent`<axa-${_name} class="is-custom-element-disconnected" classes="${element}-${_name}"></axa-${_name}>
     `
     , handleError,
   );
