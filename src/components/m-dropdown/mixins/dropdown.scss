@@ -145,7 +145,7 @@
     position: relative;
     right: auto;
   }
-  
+
   @include target(moz) {
     /* Fix Firefox doubles text-indent value */
     margin-left: ($indent / 2);
