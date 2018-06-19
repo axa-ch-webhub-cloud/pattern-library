@@ -1,3 +1,9 @@
+/// Prevent Custom-Element's intrinsic FOUC caused by it's asynchronous nature.
+///
+/// **Important:**
+/// - All elements dimensions, layout, etc. shall not be affected
+/// - This class needs to be kept in sync with it's element's connected state
+/// - This CSS needs to before any custom element, otherwise it's useless and won't work
 .is-custom-element-disconnected {
   visibility: hidden;
 }
