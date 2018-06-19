@@ -1,3 +1,7 @@
+import { add, remove } from '../../css';
+
+const IS_DISCONNECTED_CLASS = 'is-custom-element-disconnected';
+
 const withStyles = Base =>
   /**
    * Appends an optional custom element's stylesheet to the document.
@@ -18,7 +22,17 @@ const withStyles = Base =>
         super.connectedCallback();
       }
 
+      remove(this, IS_DISCONNECTED_CLASS);
+
       this._appendStyles();
+    }
+
+    disconnectedCallback() {
+      if (super.disconnectedCallback) {
+        super.disconnectedCallback();
+      }
+
+      add(this, IS_DISCONNECTED_CLASS);
     }
 
     /**
