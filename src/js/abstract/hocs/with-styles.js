@@ -1,4 +1,4 @@
-import { add, remove } from '../../css';
+import { add, remove } from '../../class-list';
 
 const IS_DISCONNECTED_CLASS = 'is-custom-element-disconnected';
 
