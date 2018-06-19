@@ -129,7 +129,7 @@
   float: right;
   height: $height;
   padding: 0 $indent;
-  margin-left: -100%;
+  margin-left: $indent;
 
   pointer-events: none;
 
@@ -144,6 +144,11 @@
   .#{$icon-class} {
     position: relative;
     right: auto;
+  }
+  
+  @include target(moz) {
+    /* Fix Firefox doubles text-indent value */
+    margin-left: ($indent / 2);
   }
 }
 
