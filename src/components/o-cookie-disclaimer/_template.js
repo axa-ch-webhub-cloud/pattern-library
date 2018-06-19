@@ -7,13 +7,12 @@ export default ({
   fixed = false,
 }, childrenFragment) => html`
   <article class="${classes} ${fixed ? 'o-cookie-disclaimer--fixed' : ''}">
-    <axa-container>
-      <div class="o-cookie-disclaimer__container o-cookie-disclaimer__container--lx">
+    <axa-container class="is-custom-element-disconnected"> <div class="o-cookie-disclaimer__container o-cookie-disclaimer__container--lx">
         <h1 class="o-cookie-disclaimer__title">${title}</h1>
         ${childrenFragment}
       </div>
       <div class="o-cookie-disclaimer__container o-cookie-disclaimer__container--rx">
-        <axa-button ghost classes="js-cookie-disclaimer__button" color="white" tag="button">${buttonName}</axa-button>
+        <axa-button class="is-custom-element-disconnected" ghost classes="js-cookie-disclaimer__button" color="white" tag="button">${buttonName}</axa-button>
       </div>
     </axa-container>
   </article>

@@ -67,13 +67,13 @@ export default ({
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
   return html`
     <article class="${classes} m-datepicker__article">
-      <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
+      <axa-dropdown class="is-custom-element-disconnected" data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
         size="sm" value="${startDate.month}"
         items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
           name: month, url: '#', value: index,
         })))}">
       </axa-dropdown>
-      <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
+      <axa-dropdown class="is-custom-element-disconnected" data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
         size="sm" value="${startDate.year}"
         items="${JSON.stringify(specificYears.map(year => ({
           name: year, url: '#', value: year,
@@ -84,9 +84,9 @@ export default ({
       </div>
       <axa-datepicker-body allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}"class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
       <div class="m-datepicker__button">
-        <axa-button classes="m-datepicker__button__borderless" class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
+        <axa-button class="is-custom-element-disconnected" classes="m-datepicker__button__borderless" class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
           tag="button" ghost>${buttonCancel}</axa-button>
-        <axa-button classes="m-datepicker__button__borderless" class="m-datepicker__button__Ok js-datepicker__button__Ok"
+        <axa-button class="is-custom-element-disconnected" classes="m-datepicker__button__borderless" class="m-datepicker__button__Ok js-datepicker__button__Ok"
           tag="button" ghost>${buttonOk}</axa-button>
       </div>
     </article>

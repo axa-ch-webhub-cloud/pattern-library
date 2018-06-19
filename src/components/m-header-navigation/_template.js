@@ -10,7 +10,7 @@ const submenuItem = ({ url = '', name = '', items, classes, isActive, simplemenu
         'is-header-navigation-active': isActive,
         'm-header-navigation__list-link--hyphenate': hyphenate,
       })}" href="${url}">${raw(name)}</a>
-      ${Array.isArray(items) ? html`<axa-header-sub-navigation index-title="${name}" index-url="${url}" items='${JSON.stringify(items)}' flyout>
+      ${Array.isArray(items) ? html`<axa-header-sub-navigation class="is-custom-element-disconnected" index-title="${name}" index-url="${url}" items='${JSON.stringify(items)}' flyout>
         </axa-header-sub-navigation>` : ''}
     </li>
 `;

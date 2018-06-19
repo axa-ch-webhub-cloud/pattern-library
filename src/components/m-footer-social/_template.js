@@ -8,7 +8,7 @@ export default function ({ title, items = [] }) {
       ${Array.isArray(items) && items.map(({ name, url }) => html`
         <li class="m-footer-social__list-item">
           <a href="${url}" class="m-footer-social__link">
-            <axa-icon icon="${name}" classes="m-footer-social__icon"></axa-icon>
+            <axa-icon class="is-custom-element-disconnected" icon="${name}" classes="m-footer-social__icon"></axa-icon>
           </a>
         </li>
       `)}

@@ -1,7 +1,7 @@
 import html from 'nanohtml';
 import classnames from 'classnames';
 
-const arrowIcon = (iconsPathPrefix = 'true') => [html`<axa-icon icon="angle-bracket-down" path-prefix="${iconsPathPrefix}" classes="m-dropdown__icon"></axa-icon>`];
+const arrowIcon = (iconsPathPrefix = 'true') => [html`<axa-icon class="is-custom-element-disconnected" icon="angle-bracket-down" path-prefix="${iconsPathPrefix}" classes="m-dropdown__icon"></axa-icon>`];
 
 const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,

@@ -135,7 +135,7 @@
 
   background: $dropdown__frame-bg;
 
-  /* fix missing height of wrapping root node of <axa-icon> */
+  /* fix missing height of wrapping root node of <axa-icon class="is-custom-element-disconnected"> */
   > * {
     display: block;
     height: 100%;

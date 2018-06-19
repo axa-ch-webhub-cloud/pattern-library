@@ -10,8 +10,8 @@ export default ({ header, headerSecondary, headerColor, icon = '' }, childrenFra
     'm-accordion-item__header--with-icon': icon,
   });
 
-  const iconToRender = html`<axa-icon icon="${icon}" classes="m-accordion-item__icon"></axa-icon>`;
-  const chevron = html`<axa-icon icon="chevron-down" classes="m-accordion-item__chevron"></axa-icon>`;
+  const iconToRender = html`<axa-icon class="is-custom-element-disconnected" icon="${icon}" classes="m-accordion-item__icon"></axa-icon>`;
+  const chevron = html`<axa-icon class="is-custom-element-disconnected" icon="chevron-down" classes="m-accordion-item__chevron"></axa-icon>`;
 
   return [
     html`<div class="${headerClasses}">

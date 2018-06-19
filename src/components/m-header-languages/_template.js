@@ -5,7 +5,7 @@ import classnames from 'classnames';
 export default ({ items }) => [html`
   <button type="button" class="m-header-languages__drop-down-toggle js-dropdown__toggle">
     ${Array.isArray(items) && items[0].name}
-    <axa-icon icon="angle-bracket-down" classes="m-header-languages__drop-down-icon"></axa-icon>
+    <axa-icon class="is-custom-element-disconnected" icon="angle-bracket-down" classes="m-header-languages__drop-down-icon"></axa-icon>
   </button>
 `, html`
   <ul class="m-header-languages__list">

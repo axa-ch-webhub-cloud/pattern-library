@@ -51,7 +51,7 @@ export default ({ items, indexUrl, indexTitle }) => {
             <a class="m-header-sub-navigation__index-link js-header-navigation-close" href="${indexUrl}">${indexTitle}</a>
             <button type="button" class="m-header-sub-navigation__index-close js-header-navigation-close">
               Close
-              <axa-icon icon="cross-gap" classes="m-header-sub-navigation__index-close__icon"></axa-icon>
+              <axa-icon class="is-custom-element-disconnected" icon="cross-gap" classes="m-header-sub-navigation__index-close__icon"></axa-icon>
             </button>
           </div>
         </div>`);

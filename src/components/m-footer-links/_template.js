@@ -1,7 +1,7 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
-const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-footer-links__category__icon"></axa-icon>';
+const arrowIcon = '<axa-icon class="is-custom-element-disconnected" icon="angle-bracket-down" classes="m-footer-links__category__icon"></axa-icon>';
 
 export default function ({ title, items }) {
   return html`<div class="m-footer-links__block js-dropdown">
