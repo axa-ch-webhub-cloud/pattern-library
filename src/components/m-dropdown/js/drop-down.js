@@ -33,7 +33,6 @@ class DropDown extends UiEvents {
 
   onClicks() {
     this.offClicks();
-    // this.elements.forEach(elem => this.unClicks.push(on(elem, EVENTS.CLICK, '', this.handleClick, { capture: true, passive: false })));
     this.unClickEnd = on(this.wcNode, EVENTS.CLICK, this.options.selectClass, this.handleClick, { capture: true, passive: false });
   }
 
