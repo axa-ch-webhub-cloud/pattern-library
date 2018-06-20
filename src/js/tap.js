@@ -8,15 +8,13 @@ import on from './on';
 import fire from './fire';
 
 const hasSupport = document.createEvent !== 'function'; // no tap events here
-const { prototype } = Node;
-const _addEventListener = prototype.addEventListener;
-const _removeEventListener = prototype.removeEventListener;
-const pointerdown = 'touchstart pointerdown MSPointerDown mousedown';
-const pointermove = 'touchmove pointermove MSPointerMove mousemove';
-const pointerup = 'touchend pointerup MSPointerUp mouseup';
-const regexPointer = /touch|pointer/;
+const { prototype: { addEventListener, removeEventListener }, prototype } = Node;
+const POINTER_DOWN = 'touchstart pointerdown MSPointerDown mousedown';
+const POINTER_MOVE = 'touchmove pointermove MSPointerMove mousemove';
+const POINTER_UP = 'touchend pointerup MSPointerUp mouseup';
 const TAP_THRESHOLD = 150;
 const TAP_PRECISION = 60 / 2;
+const regexPointer = /touch|pointer/;
 const getPointer = event => event.targetTouches ? event.targetTouches[0] : event;
 
 // patch addEventListener
@@ -27,7 +25,7 @@ if (!window.__hasTapProxy) {
 }
 
 // eslint-disable-next-line consistent-return
-function addEventListenerProxy(eventType, ...args) {
+function addEventListenerProxy(eventType, eventListener, options) {
   const eventTarget = this;
   const isTap = eventType === 'tap';
 
@@ -35,13 +33,11 @@ function addEventListenerProxy(eventType, ...args) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
-  _addEventListener.call(eventTarget, eventType, ...args);
+  addEventListener.call(eventTarget, eventType, eventListener, options);
 
   if (!hasSupport || !isTap) {
     return;
   }
-
-  console.log(`>>> proxy ${eventType}`);
 
   const { ownerDocument: { documentElement } } = eventTarget;
   let wasPointer = false;
@@ -52,11 +48,17 @@ function addEventListenerProxy(eventType, ...args) {
   let cachedY;
   let currentX;
   let currentY;
-
-  // cache offDown
-  this.__offDown = on(eventTarget, pointerdown, downHandler);
   let offMove;
   let offUp;
+
+  // cache off handlers
+  off(eventTarget);
+  this.__offClick = on(eventTarget, 'click', clickBuster, { passive: false });
+  this.__offDown = on(eventTarget, POINTER_DOWN, downHandler, options);
+
+  function clickBuster(event) {
+    event.preventDefault();
+  }
 
   function downHandler(event) {
     const { type, timeStamp, pointerId } = event;
@@ -80,8 +82,8 @@ function addEventListenerProxy(eventType, ...args) {
     currentY = cachedY = pageY;
 
     // bind move and up events
-    offMove = on(documentElement, pointermove, moveHandler);
-    offUp = on(documentElement, pointerup, upHandler);
+    offMove = on(documentElement, POINTER_MOVE, moveHandler, options);
+    offUp = on(documentElement, POINTER_UP, upHandler, options);
   }
 
   function moveHandler(event) {
@@ -110,12 +112,12 @@ function addEventListenerProxy(eventType, ...args) {
     if (wasPointer && type.indexOf('mouse') !== -1) {
       return;
     }
-    wasPointer = false;
 
     if (!isSamePointer(event)) {
       return;
     }
     cachedPointerId = undefined;
+    wasPointer = false;
 
     const timeDiff = (timeStamp || +(new Date())) - downTimestamp;
     const isValidThreshold = timeDiff < TAP_THRESHOLD;
@@ -124,10 +126,15 @@ function addEventListenerProxy(eventType, ...args) {
       cachedY >= currentY - TAP_PRECISION &&
       cachedY <= currentY + TAP_PRECISION;
 
-    offMove();
-    offMove = null;
-    offUp();
-    offUp = null;
+    if (offMove) {
+      offMove();
+      offMove = null;
+    }
+
+    if (offUp) {
+      offUp();
+      offUp = null;
+    }
 
     if (isValidThreshold && isValidPrecision) {
       fire(target, eventType, event, { bubbles: true, cancelable: true });
@@ -136,7 +143,7 @@ function addEventListenerProxy(eventType, ...args) {
 }
 
 // eslint-disable-next-line consistent-return
-function removeEventListenerProxy(eventType, ...args) {
+function removeEventListenerProxy(eventType, eventListener, options) {
   const eventTarget = this;
   const isTap = eventType === 'tap';
 
@@ -144,13 +151,21 @@ function removeEventListenerProxy(eventType, ...args) {
     eventType = 'click'; // eslint-disable-line no-param-reassign
   }
 
-  _removeEventListener.call(eventTarget, eventType, ...args);
+  removeEventListener.call(eventTarget, eventType, eventListener, options);
 
   if (!hasSupport || !isTap) {
     return;
   }
 
-  if (eventTarget.__offDown) {
-    eventTarget.__offDown();
+  off(eventTarget);
+}
+
+function off(node) {
+  if (node.__offDown) {
+    node.__offDown();
+  }
+
+  if (node.__offClick) {
+    node.__offClick();
   }
 }
