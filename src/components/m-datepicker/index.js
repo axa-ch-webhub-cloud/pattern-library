@@ -5,7 +5,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
-console.log('\n🚫 Datepicker is not ready to be used. Coming soon 🚫\n');
+import Datepicker from './js/datepicker';
 
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
@@ -16,6 +16,8 @@ class AXADatepicker extends BaseComponentGlobal {
 
   constructor() {
     super({ styles, template });
+
+    this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?
     // this.enableContext()
 

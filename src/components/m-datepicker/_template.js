@@ -32,26 +32,7 @@ export default ({
       ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
       <div class="m-datepicker__body" data-calendar-area="month"></div>
-      <div class="grid-container">
-  <div class="grid-item">1</div>
-  <div class="grid-item">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item">6</div>
-  <div class="grid-item">7</div>
-  <div class="grid-item">8</div>
-  <div class="grid-item">9</div>
-  <div class="grid-item">1</div>
-  <div class="grid-item">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item">6</div>
-  <div class="grid-item">7</div>
-  <div class="grid-item">8</div>
-  <div class="grid-item">9</div>
-</div>
+      <div class="m-datepicker__calenderBody"></div>
       <div class="m-datepicker__button">
         <axa-button class="m-datepicker__button__Cancle" tag="button" size="sm" ghost="">${buttonCancel}</axa-button>
         <axa-button class="m-datepicker__button__Ok" tag="button" size="sm" ghost="">${buttonOk}</axa-button>

@@ -79,3 +79,21 @@ $datepicker-border-width: 1px !default;
   position: absolute;
   right: 0;
 }
+
+.structure {
+  width: 40px;
+  height: 40px;
+  float: left;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.current {
+  background-color: green;
+}
+
+.today {
+  background-color: blue;
+}
