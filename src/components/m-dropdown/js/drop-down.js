@@ -9,7 +9,7 @@ class DropDown extends UiEvents {
     toggleClass: 'js-dropdown__toggle',
     isOpenClass: 'is-dropdown-open',
     isAnimatingClass: 'is-dropdown-animating',
-    selectClass: 'js-dropdown__link',
+    selectClass: 'js-dropdown__content',
   }
 
   constructor(wcNode, options) {
@@ -24,9 +24,6 @@ class DropDown extends UiEvents {
     this.options = options;
     this.wcNode = wcNode;
     this.isOpen = false;
-
-    this.unClicks = [];
-    this.elements = [].slice.call(this.wcNode.querySelectorAll(`.${this.options.selectClass}`));
   }
 
   onInteractive() {
@@ -36,7 +33,8 @@ class DropDown extends UiEvents {
 
   onClicks() {
     this.offClicks();
-    this.elements.forEach(elem => this.unClicks.push(on(elem, EVENTS.CLICK, '', this.handleClick, { capture: true, passive: false })));
+    // this.elements.forEach(elem => this.unClicks.push(on(elem, EVENTS.CLICK, '', this.handleClick, { capture: true, passive: false })));
+    this.unClickEnd = on(this.wcNode, EVENTS.CLICK, this.options.selectClass, this.handleClick, { capture: true, passive: false });
   }
 
   offInteractive() {
@@ -46,8 +44,8 @@ class DropDown extends UiEvents {
   }
 
   offClicks() {
-    if (this.unClicks) {
-      this.unClicks.forEach(off => off());
+    if (this.unClickEnd) {
+      this.unClickEnd();
     }
   }
 
