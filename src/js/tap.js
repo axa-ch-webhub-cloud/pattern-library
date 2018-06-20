@@ -70,6 +70,9 @@ function addEventListenerProxy(eventType, eventListener, options) {
   this.__offsClick = __offsClick;
   this.__offsDown = __offsDown;
 
+  console.log(`>>> addEventListenerProxy ${__offsClick.length} ${__offsDown.length}`);
+  console.log(eventTarget, __offsDown);
+
   function clickBuster(event) {
     event.preventDefault();
   }
@@ -185,6 +188,11 @@ function removeEventListenerProxy(eventType, eventListener, options) {
   }
 
   offAll(eventTarget, eventListener);
+
+  const { __offsDown = [], __offsClick = [] } = eventTarget;
+
+  console.log(`<<< removeEventListenerProxy ${__offsClick.length} ${__offsDown.length}`, eventTarget);
+  console.trace();
 }
 
 function offAll(node, eventListener) {
@@ -199,14 +207,14 @@ function offAll(node, eventListener) {
   };
 
   if (Array.isArray(__offsDown)) {
-    console.log('off down', node);
+    console.log('off down');
 
     __offsDown.filter(findListener)
       .forEach(offItem(__offsDown));
   }
 
   if (Array.isArray(__offsClick)) {
-    console.log('off click', node);
+    console.log('off click');
 
     __offsClick.filter(findListener)
       .forEach(offItem(__offsClick));
