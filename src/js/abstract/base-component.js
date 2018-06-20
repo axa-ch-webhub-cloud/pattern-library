@@ -6,8 +6,9 @@ import withMonkeyPatches from './hocs/with-monkey-patches';
 import withUpdate from './hocs/with-update';
 import withRender from './hocs/with-render';
 import withStyles from './hocs/with-styles';
+import withoutFouc from './hocs/without-fouc';
 
-const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRender, withStyles);
+const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRender, withStyles, withoutFouc);
 
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
