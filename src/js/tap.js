@@ -6,6 +6,7 @@
  */
 import on from './on';
 import fire from './fire';
+import remove from './array-remove';
 
 const hasSupport = document.createEvent !== 'function'; // no tap events here
 const { prototype: { addEventListener, removeEventListener }, prototype } = Node;
@@ -52,9 +53,22 @@ function addEventListenerProxy(eventType, eventListener, options) {
   let offUp;
 
   // cache off handlers
-  off(eventTarget);
-  this.__offClick = on(eventTarget, 'click', clickBuster, { passive: false });
-  this.__offDown = on(eventTarget, POINTER_DOWN, downHandler, options);
+  const { __offsClick = [], __offsDown = [] } = this;
+
+  offAll(eventTarget, eventListener);
+
+  __offsClick.push({
+    handler: eventListener,
+    off: on(eventTarget, 'click', clickBuster, { passive: false }),
+  });
+
+  __offsDown.push({
+    handler: eventListener,
+    off: on(eventTarget, POINTER_DOWN, downHandler, options),
+  });
+
+  this.__offsClick = __offsClick;
+  this.__offsDown = __offsDown;
 
   function clickBuster(event) {
     event.preventDefault();
@@ -63,6 +77,8 @@ function addEventListenerProxy(eventType, eventListener, options) {
   function downHandler(event) {
     const { type, timeStamp, pointerId } = event;
     const { pageX, pageY } = getPointer(event);
+
+    console.log(`down ${type}`);
 
     // skip mouse events if a touch event was dispatched on start
     if (wasPointer && type.indexOf('mouse') !== -1) {
@@ -82,13 +98,20 @@ function addEventListenerProxy(eventType, eventListener, options) {
     currentY = cachedY = pageY;
 
     // bind move and up events
-    offMove = on(documentElement, POINTER_MOVE, moveHandler, options);
-    offUp = on(documentElement, POINTER_UP, upHandler, options);
+    if (!offMove) {
+      offMove = on(documentElement, POINTER_MOVE, moveHandler, options);
+    }
+
+    if (!offUp) {
+      offUp = on(documentElement, POINTER_UP, upHandler, options);
+    }
   }
 
   function moveHandler(event) {
     const { type } = event;
     const { pageX, pageY } = getPointer(event);
+
+    console.log(`move ${type}`);
 
     // skip mouse events if a touch event was dispatched on start
     if (wasPointer && type.indexOf('mouse') !== -1) {
@@ -106,6 +129,8 @@ function addEventListenerProxy(eventType, eventListener, options) {
 
   function upHandler(event) {
     const { type, timeStamp, target } = event;
+
+    console.log(`up ${type}`);
 
     // skip mouse events if a touch event was dispatched on start
     // and reset wasPointer
@@ -138,6 +163,8 @@ function addEventListenerProxy(eventType, eventListener, options) {
 
     if (isValidThreshold && isValidPrecision) {
       fire(target, eventType, event, { bubbles: true, cancelable: true });
+    } else {
+      console.log('!!! upHandler not valid !!!');
     }
   }
 }
@@ -157,15 +184,31 @@ function removeEventListenerProxy(eventType, eventListener, options) {
     return;
   }
 
-  off(eventTarget);
+  offAll(eventTarget, eventListener);
 }
 
-function off(node) {
-  if (node.__offDown) {
-    node.__offDown();
+function offAll(node, eventListener) {
+  const { __offsDown, __offsClick } = node;
+  const findListener = ({ handler }) => handler === eventListener;
+  const offItem = arr => (item) => {
+    const { off } = item;
+    console.log('off item');
+
+    off();
+    remove(arr, item);
+  };
+
+  if (Array.isArray(__offsDown)) {
+    console.log('off down', node);
+
+    __offsDown.filter(findListener)
+      .forEach(offItem(__offsDown));
   }
 
-  if (node.__offClick) {
-    node.__offClick();
+  if (Array.isArray(__offsClick)) {
+    console.log('off click', node);
+
+    __offsClick.filter(findListener)
+      .forEach(offItem(__offsClick));
   }
 }
