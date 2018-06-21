@@ -2,6 +2,7 @@
 @import "../../styles/mixins/unstyle-list";
 @import "../../styles/grid/grid-mixins";
 @import "../../styles/typo/typo-mixins";
+@import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
 
 .o-error-page {
   display: block;
@@ -14,6 +15,7 @@
 .o-error-page__container {
   @include make-container();
   @include make-container-max-widths();
+  @include vr-pad-items();
 }
 
 .o-error-page__status {
@@ -22,10 +24,26 @@
 
 .o-error-page__title {
   @include typo-slice-title--publico();
+
+  margin-top: 5px;
+
+  @include respond-up(sm) {
+    margin-top: 0;
+  }
 }
 
 .o-error-page__message {
   @include typo-text();
+
+  margin-top: 40px;
+
+  @include respond-up(sm) {
+    margin-top: 50px;
+  }
+
+  @include respond-up(md) {
+    margin-top: 40px;
+  }
 }
 
 .o-error-page__message--semibold {
