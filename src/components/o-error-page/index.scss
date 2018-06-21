@@ -104,3 +104,17 @@
     margin-top: 25px;
   }
 }
+
+.o-error-page__discover {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  color: $color-prim-gray-mine-shaft;
+  background: $color-prim-white;
+}
+
+.o-error-page__discover-text {
+  @include make-container();
+  @include make-container-max-widths();
+}

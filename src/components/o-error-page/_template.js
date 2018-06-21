@@ -10,11 +10,12 @@ export default ({
   items,
   ctaHref,
   ctaTitle,
-}) => {
+}, childrenFragment) => {
   const hasItems = Array.isArray(items) && items.length;
+  const hasChildren = childrenFragment && childrenFragment.childElementCount;
 
-  return html`
-    <article class='o-error-page__container'>
+  const errorPage = html`
+    <article class="o-error-page__container">
       <h4 class="o-error-page__status">${status}</h4>
       <h1 class="o-error-page__title">${title}</h1>
   
@@ -31,4 +32,15 @@ export default ({
       `) || null}
     </article>
   `;
+
+  if (!hasChildren) {
+    return errorPage;
+  }
+
+  return [
+    errorPage,
+    html`<arcticle class="o-error-page__discover">
+      <p class="o-error-page__discover-text">${childrenFragment}</p>
+    </arcticle>`,
+  ];
 };
