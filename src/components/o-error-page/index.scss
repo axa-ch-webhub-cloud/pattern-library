@@ -12,6 +12,14 @@
   text-align: center;
 }
 
+.o-error-page--pacific {
+  background: $color-sec-blue-pacific;
+}
+
+.o-error-page--teal {
+  background: $color-sec-blue-teal;
+}
+
 .o-error-page__container {
   @include make-container();
   @include make-container-max-widths();

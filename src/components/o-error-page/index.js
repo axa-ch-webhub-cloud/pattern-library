@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 // import the styles used for this component
 import styles from './index.scss';
@@ -14,49 +15,18 @@ class AXAErrorPage extends BaseComponentGlobal {
 
   constructor() {
     super({ styles, template });
-
-    // does this provide context (See docs for context) ?
-    // this.provideContext()
-
-    // or do you want to consume a specific context
-    // this.consumeContext('axa-context-provider');
   }
 
   /**
    * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
    */
-  connectedCallback() {
-    super.connectedCallback();
+  willRenderCallback() {
+    const { background } = this;
 
-    this.className = `${this.initialClassName} o-error-page`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+    this.className = classnames(this.initialClassName, 'o-error-page', {
+      [`o-error-page--${background}`]: background,
+    });
   }
-
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
-
-  // You may want to update stuff before rendering.
-  // willRenderCallback(initial) {
-  // }
-
-  // You may want to update staff after rendering
-  // didRenderCallback(initial) {
-  // }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Don't forget to cleanup :)
-  }
-
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
 }
 
 wcdomready(() => {
