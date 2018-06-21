@@ -54,3 +54,21 @@
   @include unstyle-list();
   @include typo-text-longer();
 }
+
+.o-error-page__cta {
+  display: block;
+
+  margin-top: 30px;
+
+  @include respond-up(sm) {
+    margin-top: 40px;
+  }
+
+  @include respond-up(md) {
+    margin-top: 20px;
+  }
+
+  @include respond-up(lg) {
+    margin-top: 25px;
+  }
+}

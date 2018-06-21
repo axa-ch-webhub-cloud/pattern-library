@@ -26,7 +26,7 @@ export default ({
       `) || null}
       
       ${(ctaHref && ctaTitle && html`
-        <axa-button href="${ctaHref}" tag="a" color="white" ghost motion>${ctaTitle}</axa-button>
+        <axa-button class="o-error-page__cta" href="${ctaHref}" tag="a" color="white" ghost motion>${ctaTitle}</axa-button>
       `) || null}
     </article>
   `;
