@@ -3,7 +3,7 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
 export default ({
-  code,
+  code, // eslint-disable-line
   status,
   title,
   message,
