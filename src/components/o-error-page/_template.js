@@ -13,9 +13,6 @@ export default ({
 }) => {
   const hasItems = Array.isArray(items) && items.length;
 
-  console.log(typeof items, hasItems);
-  console.log(items);
-
   return html`
     <article class='o-error-page__container'>
       <h4 class="o-error-page__status">${status}</h4>
