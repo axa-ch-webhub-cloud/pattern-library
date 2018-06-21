@@ -1,0 +1,55 @@
+<axa-error-page
+  code="401"
+  status="401 Error"
+  title="Authorization required"
+  message="You are not authorized to access the page without being logged-in. 
+    Please, go to login page and use your credentials.
+    You may also clear your site cache, check your logs for errors or try to log again."
+  cta-href="https://www.axa.ch"
+  cta-title="Go to login page"
+></axa-error-page>
+
+<hr/>
+
+<axa-error-page
+  code="403"
+  status="403 Error"
+  title="Access forbidden"
+  message="You don't have access on this server. It is either read-protected or not readable by the server.
+We suggest you to try one of these:"
+  items='[
+    "Check the URL for errors",
+    "Check the credentials you supplied"
+  ]'
+  cta-href="https://www.axa.ch"
+  cta-title="Go to login page"
+></axa-error-page>
+
+<hr/>
+
+<axa-error-page
+  code="404"
+  status="404 Error"
+  title="Page was not found"
+  message="The page you are looking for is not available or no longer exists.
+Try to reload the page, or, if you have a few minutes, have a look to our last contents."
+  cta-href="https://www.axa.ch"
+  cta-title="Go to login page"
+></axa-error-page>
+
+<hr/>
+
+<axa-error-page
+  code="500"
+  status="500 - Internal Server Error"
+  title="Oops, something went wrong!"
+  message="lt seems like the server encountered a problem. We suggest you to try one of these:"
+  items='[
+    "Refresh your page",
+    "Check if your internet connexion is working. If not, restart it and try loading  this page again.",
+    "Check the Service Status page: https://example.com",
+    "Contact your IT department:  example@gmail.com"
+  ]'
+  cta-href="https://www.axa.ch"
+  cta-title="Go to login page"
+></axa-error-page>
