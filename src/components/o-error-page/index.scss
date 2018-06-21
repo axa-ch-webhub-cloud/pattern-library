@@ -18,6 +18,16 @@
   @include vr-pad-items();
 }
 
+.o-error-page__status,
+.o-error-page__title,
+.o-error-page__message {
+  @include respond-up(md) {
+    @include make-col-ready();
+    @include make-col(10);
+    @include make-col-offset(1);
+  }
+}
+
 .o-error-page__status {
   @include typo-secondary-text();
 }
@@ -36,6 +46,7 @@
   @include typo-text();
 
   margin-top: 40px;
+  white-space: pre-line;
 
   @include respond-up(sm) {
     margin-top: 50px;
@@ -51,8 +62,21 @@
 }
 
 .o-error-page__list {
-  @include unstyle-list();
   @include typo-text-longer();
+
+  text-align: left;
+
+  @include respond-up(md) {
+    @include make-col-ready();
+    @include make-col(8);
+    @include make-col-offset(2);
+  }
+}
+
+.o-error-page__list-item {
+  @include vr-reset-item();
+
+  margin-top: 16px;
 }
 
 .o-error-page__cta {

@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 
 export default ({
   code,
@@ -12,12 +13,15 @@ export default ({
 }) => {
   const hasItems = Array.isArray(items) && items.length;
 
+  console.log(typeof items, hasItems);
+  console.log(items);
+
   return html`
     <article class='o-error-page__container'>
       <h4 class="o-error-page__status">${status}</h4>
       <h1 class="o-error-page__title">${title}</h1>
   
-      <p class="${classnames('o-error-page__message', { 'o-error-page__message--semibold': hasItems })}">${message}</p>
+      <p class="${classnames('o-error-page__message', { 'o-error-page__message--semibold': hasItems })}">${raw(message)}</p>
       
       ${(hasItems && html`
         <ul class="o-error-page__list">
