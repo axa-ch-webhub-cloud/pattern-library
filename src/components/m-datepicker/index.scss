@@ -1,6 +1,6 @@
 @import "../../styles/settings/colors";
 
-$datepicker-height: 322px !default;
+$datepicker-height: 390px !default;
 $datepicker-width: 309px !default;
 
 $datepicker-margin-top-bottom: 20px !default;
@@ -11,9 +11,13 @@ $datepicker-padding-left-right: 30px !default;
 
 $datepicker-border-width: 1px !default;
 
+$with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $datepicker-border-width * 2) / 7;
+
 
 .m-datepicker {
   display: block;
+
+  box-sizing: border-box;
 }
 
 .m-datepicker__article {
@@ -47,7 +51,10 @@ $datepicker-border-width: 1px !default;
 }
 
 .m-datepicker__weekdays__day {
+  width: $with-one-seventh;
+
   margin-top: 0;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -55,17 +62,6 @@ $datepicker-border-width: 1px !default;
   display: flex;
 
   flex-wrap: wrap;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  padding-top: 20px;
-  padding-bottom: 30px;
-}
-.grid-item {
-  border: 1px solid black;
-  text-align: center;
 }
 
 .m-datepicker__button {
@@ -80,20 +76,51 @@ $datepicker-border-width: 1px !default;
   right: 0;
 }
 
-.structure {
-  width: 40px;
-  height: 40px;
-  float: left;
+.m-datepicker__calender-body {
+  padding-top: 10px;
+  display: flex;
+
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
-.grey {
-  background-color: grey;
+.m-datepicker__calender-body__cell {
+  width: $with-one-seventh;
+  height: $with-one-seventh;
+
+  padding-left: 0;
+  padding-right: 0;
+
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
 }
 
-.current {
-  background-color: green;
+.m-datepicker__calender-body__cell:focus {
+  outline: none;
 }
 
-.today {
-  background-color: blue;
+.m-datepicker__calender-body__not-current-month {
+  color: $color-prim-gray-silver;
+}
+
+.m-datepicker__calender-body__current-month:hover {
+  box-shadow: 0 0 0 3px $color-axa-blue inset;
+  background-color: $color-prim-white;
+  color: $color-prim-gray-mine-shaft;
+}
+
+.m-datepicker__calender-body__current-month {
+  color: $color-prim-gray-mine-shaft;
+}
+
+.m-datepicker__calender-body__today {
+  background-color: $color-axa-blue;
+  color: $color-prim-white;
+}
+
+.m-datepicker__calender-body__selected-day {
+  background-color: $color-prim-white;
+  box-shadow: 0 0 0 3px $color-axa-blue inset;
+  color: $color-prim-gray-mine-shaft;
 }

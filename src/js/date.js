@@ -46,3 +46,26 @@ export const getLocalWeekdayArray = (locale = 'en-uk') => {
   });
   return finalArray;
 };
+
+export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
+  const weekday = date.toLocaleString(locale, { weekday: 'long' });
+  let weekdayIndex = null;
+
+  const objDate = new Date();
+  let currentWeekDay = objDate.getDay();
+  let currentDay = objDate.getDate();
+
+  while (currentWeekDay !== 1) {
+    currentDay += 1;
+    objDate.setDate(currentDay);
+    currentWeekDay = objDate.getDay();
+  }
+
+  [...Array(7).keys()].forEach((index) => {
+    objDate.setDate(currentDay + index);
+    if (weekday === objDate.toLocaleString(locale, { weekday: 'long' })) {
+      weekdayIndex = index;
+    }
+  });
+  return weekdayIndex;
+};

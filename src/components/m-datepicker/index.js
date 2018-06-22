@@ -55,11 +55,13 @@ class AXADatepicker extends BaseComponentGlobal {
 
     // Don't forget to cleanup :)
   }
-
   // Do you consume context?
   // contextCallback(contextNode) {
   //   contextNode is now available.
   // }
+  didRenderCallback() {
+    this.datepicker.init();
+  }
 }
 
 defineOnce(AXADatepicker.tagName, AXADatepicker);
