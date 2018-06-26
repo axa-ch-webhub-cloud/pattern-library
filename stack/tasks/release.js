@@ -1,5 +1,6 @@
 const outdent = require('outdent');
 const execa = require('execa');
+const fkill = require('fkill');
 const promiseSeries = require('promise.series');
 const chalk = require('chalk');
 // eslint-disable-next-line import/no-dynamic-require
@@ -29,12 +30,16 @@ const execaPipeError = (file, ...rest) => {
 
   return exec
     .then((result) => {
-      console.log(`>>> resolved | ${command} ${args.join(' ')}`);
+      console.log(`>>> resolved ${exec.pid} | ${command} ${args.join(' ')}`);
+
+      fkill(exec.pid, { force: true });
 
       return result;
     })
     .catch((reason) => {
-      console.log(`>>> rejected | ${command} ${args.join(' ')}`);
+      console.log(`>>> rejected ${exec.pid} | ${command} ${args.join(' ')}`);
+
+      fkill(exec.pid, { force: true });
 
       throw reason;
     });
