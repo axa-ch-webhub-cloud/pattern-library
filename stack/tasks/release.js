@@ -18,21 +18,24 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
-const execaPipeError = (file, ...args) => {
-  const isCommand = args.length === 0;
-  const params = isCommand ? file.split(/\s+/) : [file, ...args];
-  const [command, ...options] = params;
+const execaPipeError = (file, ...rest) => {
+  const isCommand = rest.length === 0;
+  const params = isCommand ? file.split(/\s+/) : [file, ...rest];
+  const [command, ...args] = params;
 
-  const exec = execa(command, options);
+  const exec = execa(command, args, {
+    detached: true,
+    stdio: 'ignore',
+  });
 
   return exec
     .then((result) => {
-      console.log(`>>> resolved | ${command} ${options.join(' ')}`);
+      console.log(`>>> resolved | ${command} ${args.join(' ')}`);
 
       return result;
     })
     .catch((reason) => {
-      console.log(`>>> rejected | ${command} ${options.join(' ')}`);
+      console.log(`>>> rejected | ${command} ${args.join(' ')}`);
 
       throw reason;
     });
