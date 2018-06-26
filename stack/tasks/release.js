@@ -24,7 +24,6 @@ const execaPipeError = (file, ...rest) => {
   const [command, ...args] = params;
 
   const exec = execa(command, args, {
-    detached: true,
     stdio: 'ignore',
   });
 
