@@ -1,8 +1,5 @@
 import on from '../../../js/on';
 import { NotCurrentMonth, CurrentMonth, Today, SelectedDay } from './cells';
-// import { publish, subscribe } from '../../../js/pubsub';
-// import Enum from '../../../js/enum';
-// const EVENTS = Enum('change');
 import { getNumericWeekday } from '../../../js/date';
 
 export default class Datepicker {
@@ -14,7 +11,7 @@ export default class Datepicker {
     this.container = document.createElement('div');
   }
 
-  init(year = new Date().getFullYear(), month = new Date(2018, 6).getMonth()) {
+  init(year = new Date().getFullYear(), month = new Date(2018, 5).getMonth()) {
     this.dropDownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
     this.dropDownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
 
@@ -27,8 +24,8 @@ export default class Datepicker {
     this.lastDayOfLastMonth = new Date(year, month, 0);
     this.firstDayOfNextMonth = new Date(year, month + 1, 1);
 
-    console.log(this.lastDayOfLastMonth);
-    console.log(this.firstDayOfNextMonth);
+    // console.log(this.lastDayOfLastMonth);
+    // console.log(this.firstDayOfNextMonth);
 
     this.selected = null;
 
@@ -41,14 +38,16 @@ export default class Datepicker {
         element.innerHTML = this.lastDayOfLastMonth.getDate() - (((getNumericWeekday('en-uk', this.firstDayOfMonth) - 1) - index));
         return new NotCurrentMonth(element);
       }
-
-      // if (year + month + (index + 1) === this.today.getFullYear + this.today.getMonth + this.today.getDate) {
-      //   return new Today(element);
-      // }
-      if (index === 25) {
-        element.innerHTML = ((index - getNumericWeekday('en-uk', this.firstDayOfMonth)) + 1);
+      console.log('so' + new Date(year, month, (index + 1)));
+      console.log(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()));
+      if (new Date(year, month, (index + 1)) === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
+        console.log('save');
         return new Today(element);
       }
+      // if (index === 25) {
+      //   element.innerHTML = ((index - getNumericWeekday('en-uk', this.firstDayOfMonth)) + 1);
+      //   return new Today(element);
+      // }
 
       if (index + 1 === this.selected) {
         return new SelectedDay(element);
@@ -78,26 +77,4 @@ export default class Datepicker {
       });
     });
   }
-  // on() {
-  //   this.off();
-  //
-  //   this._unDropdownYearChange = on(this.dropDownYear, EVENTS.CHANGE, () => { publish('dropdown-year/change'); console.log('hallo'); });
-  //   this._unDropdownMonthChange = on(this.dropDownMonth, EVENTS.CHANGE, () => publish('dropdown-month/change'));
-  // }
-  //
-  // off() {
-  //   if (this._unDropdownYearChange) {
-  //     this._unDropdownYearChange();
-  //   }
-  //
-  //   if (this._unDropdownMonthChange) {
-  //     this._unDropdownYearChange();
-  //   }
-  //
-  //   this.offContextEnabled();
-  // }
-  // onContextEnabled() {
-  //   this.unSubscribeOpen = subscribe('dropdown-year/change', 'this.open');
-  //   this.unSubscribeClose = subscribe('dropdown-month/change', 'this.close');
-  // }
 }

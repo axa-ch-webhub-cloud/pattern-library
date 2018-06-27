@@ -33,12 +33,20 @@ export const getLocalWeekdayArray = (locale = 'en-uk') => {
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
   let currentDay = objDate.getDate();
+  const lastDayOfMonth = new Date(objDate.getFullYear(), objDate.getMonth() + 1, 0).getDate();
 
   while (currentWeekDay !== 1) {
-    currentDay += 1;
+    if (currentDay < lastDayOfMonth) {
+      currentDay += 1;
+    } else {
+      currentDay = 1;
+      objDate.setMonth(objDate.getMonth() + 1);
+    }
     objDate.setDate(currentDay);
+
     currentWeekDay = objDate.getDay();
   }
+
 
   [...Array(7).keys()].forEach((index) => {
     objDate.setDate(currentDay + index);
@@ -48,16 +56,22 @@ export const getLocalWeekdayArray = (locale = 'en-uk') => {
 };
 
 export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
-  const weekday = date.toLocaleString(locale, { weekday: 'long' });
-  let weekdayIndex = null;
-
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
   let currentDay = objDate.getDate();
+  const weekday = date.toLocaleString(locale, { weekday: 'long' });
+  let weekdayIndex = null;
+  const lastDayOfMonth = new Date(objDate.getFullYear(), objDate.getMonth() + 1, 0).getDate();
 
   while (currentWeekDay !== 1) {
-    currentDay += 1;
+    if (currentDay < lastDayOfMonth) {
+      currentDay += 1;
+    } else {
+      currentDay = 1;
+      objDate.setMonth(objDate.getMonth() + 1);
+    }
     objDate.setDate(currentDay);
+
     currentWeekDay = objDate.getDay();
   }
 
