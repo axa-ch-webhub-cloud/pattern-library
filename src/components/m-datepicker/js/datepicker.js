@@ -24,30 +24,23 @@ export default class Datepicker {
     this.lastDayOfLastMonth = new Date(year, month, 0);
     this.firstDayOfNextMonth = new Date(year, month + 1, 1);
 
-    // console.log(this.lastDayOfLastMonth);
-    // console.log(this.firstDayOfNextMonth);
-
     this.selected = null;
 
     this.elements.map((index) => {
       const element = document.createElement('button');
       this.container.appendChild(element);
-      element.innerHTML = index + 1;
+
       if (getNumericWeekday('en-uk', this.firstDayOfMonth) > 0
           && index < getNumericWeekday('en-uk', this.firstDayOfMonth)) {
         element.innerHTML = this.lastDayOfLastMonth.getDate() - (((getNumericWeekday('en-uk', this.firstDayOfMonth) - 1) - index));
         return new NotCurrentMonth(element);
       }
-      console.log('so' + new Date(year, month, (index + 1)));
-      console.log(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()));
-      if (new Date(year, month, (index + 1)) === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
-        console.log('save');
+
+      if (new Date(year, month, ((index + 1) - getNumericWeekday('en-uk', this.firstDayOfMonth))).getTime()
+      === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()).getTime()) {
+        element.innerHTML = ((index - getNumericWeekday('en-uk', this.firstDayOfMonth)) + 1);
         return new Today(element);
       }
-      // if (index === 25) {
-      //   element.innerHTML = ((index - getNumericWeekday('en-uk', this.firstDayOfMonth)) + 1);
-      //   return new Today(element);
-      // }
 
       if (index + 1 === this.selected) {
         return new SelectedDay(element);
