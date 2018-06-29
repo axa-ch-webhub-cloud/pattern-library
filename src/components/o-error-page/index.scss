@@ -1,0 +1,120 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/unstyle-list";
+@import "../../styles/grid/grid-mixins";
+@import "../../styles/typo/typo-mixins";
+@import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
+
+.o-error-page {
+  display: block;
+
+  color: $color-prim-white;
+  background: $color-prim-blue-dark-indigo;
+  text-align: center;
+}
+
+.o-error-page--pacific {
+  background: $color-sec-blue-pacific;
+}
+
+.o-error-page--teal {
+  background: $color-sec-blue-teal;
+}
+
+.o-error-page__container {
+  @include make-container();
+  @include make-container-max-widths();
+  @include vr-pad-items();
+}
+
+.o-error-page__status,
+.o-error-page__title,
+.o-error-page__message {
+  @include respond-up(md) {
+    @include make-col-ready();
+    @include make-col(10);
+    @include make-col-offset(1);
+  }
+}
+
+.o-error-page__status {
+  @include typo-secondary-text();
+}
+
+.o-error-page__title {
+  @include typo-slice-title--publico();
+
+  margin-top: 5px;
+
+  @include respond-up(sm) {
+    margin-top: 0;
+  }
+}
+
+.o-error-page__message {
+  @include typo-text();
+
+  margin-top: 40px;
+  white-space: pre-line;
+
+  @include respond-up(sm) {
+    margin-top: 50px;
+  }
+
+  @include respond-up(md) {
+    margin-top: 40px;
+  }
+}
+
+.o-error-page__message--semibold {
+  @include typo-text--semibold();
+}
+
+.o-error-page__list {
+  @include typo-text-longer();
+
+  text-align: left;
+
+  @include respond-up(md) {
+    @include make-col-ready();
+    @include make-col(8);
+    @include make-col-offset(2);
+  }
+}
+
+.o-error-page__list-item {
+  @include vr-reset-item();
+
+  margin-top: 16px;
+}
+
+.o-error-page__cta {
+  display: block;
+
+  margin-top: 30px;
+
+  @include respond-up(sm) {
+    margin-top: 40px;
+  }
+
+  @include respond-up(md) {
+    margin-top: 20px;
+  }
+
+  @include respond-up(lg) {
+    margin-top: 25px;
+  }
+}
+
+.o-error-page__discover {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  color: $color-prim-gray-mine-shaft;
+  background: $color-prim-white;
+}
+
+.o-error-page__discover-text {
+  @include make-container();
+  @include make-container-max-widths();
+}
