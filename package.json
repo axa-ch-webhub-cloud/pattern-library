@@ -91,7 +91,7 @@
     "npm": "~5.4.2"
   },
   "author": "Luca Mele",
-  "license": "MIT",
+  "license": "Copyright 2017 AXA Versicherungen AG",
   "devDependencies": {
     "autoprefixer": "^7.2.3",
     "babel-cli": "^6.26.0",
