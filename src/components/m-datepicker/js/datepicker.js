@@ -111,6 +111,7 @@ export default class Datepicker {
         //   console.log('up');
         //   console.log(this.date.getMonth());
         // }
+        // TODO evt different classes for last month and next month!!!!
       }
     });
   }
