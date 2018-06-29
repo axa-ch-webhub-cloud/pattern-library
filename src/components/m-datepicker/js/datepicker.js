@@ -1,3 +1,4 @@
+import { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import { NotCurrentMonth, CurrentMonth, Today, SelectedDay } from './cells';
 import { getNumericWeekday } from '../../../js/date';
@@ -8,8 +9,8 @@ export default class Datepicker {
     this.cellAmount = 42;
     this.elements = [...Array(this.cellAmount).keys()];
 
-    this.container = document.createElement('div');
     this.selectedDate = null;
+    this.selected = null;
   }
 
   init(year = new Date().getFullYear(), month = new Date(2018, 5).getMonth()) {
@@ -25,11 +26,17 @@ export default class Datepicker {
     this.lastDayOfLastMonth = new Date(year, month, 0);
     this.firstDayOfNextMonth = new Date(year, month + 1, 1);
 
+    this.mapElements(year, month);
+    this.appendCalenderBody();
+    this.listenToCells();
+    this.listenToButtons();
+    this.wcNode.querySelector('.js-datepicker__dropdown__month').setAttribute('value', month);
+  }
+
+  mapElements(year, month) {
     const numericWeekdayFirstDayOfMonth = getNumericWeekday('en-uk', this.firstDayOfMonth);
     const dateLastDayOfMonth = this.lastDayOfMonth.getDate();
-
-    this.selected = null;
-
+    this.container = document.createElement('div');
     this.elements.map((index) => {
       const element = document.createElement('button');
       this.container.appendChild(element);
@@ -58,29 +65,53 @@ export default class Datepicker {
        + (index - dateLastDayOfMonth - numericWeekdayFirstDayOfMonth);
       return new NotCurrentMonth(element);
     });
+  }
 
-
+  appendCalenderBody() {
     const el = this.wcNode.querySelector('.js-datepicker__calender-body');
+    el.innerHTML = '';
     el.appendChild(this.container);
-    // TODO use capture instead
-    [].slice.call(this.wcNode.querySelectorAll('.js-datepicker__calender-body__current-month')).forEach((cell) => {
-      on(cell, 'click', () => {
-        if (this.selected !== null) {
-          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
-        }
-        cell.classList.add('m-datepicker__calender-body__selected-day');
-        this.selected = cell;
-      });
-    });
-    // TODO querySelectorAll
-    on(this.wcNode.querySelector('.js-datepicker__calender-body__not-current-month'), 'click', () => {
-      console.log('notcurrent');
-    });
+  }
+
+  listenToCells() {
+    this.unClickEnd = on(
+      this.wcNode, EVENTS.CLICK, 'm-datepicker__calender-body__cell',
+      this.handleClick, {
+        capture: true, passive: false,
+      },
+    );
+  }
+
+  listenToButtons() {
     on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), 'click', () => {
       console.log('cancle');
     });
     on(this.wcNode.querySelector('.js-datepicker__button__Ok'), 'click', () => {
       console.log('okbutton');
+    });
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    [].slice.call(e.target.classList).forEach((elementClass) => {
+      if (elementClass === 'm-datepicker__calender-body__current-month') {
+        if (this.selected !== null) {
+          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+        }
+        e.target.classList.add('m-datepicker__calender-body__selected-day');
+        this.selected = e.target;
+      }
+      if (elementClass === 'm-datepicker__calender-body__not-current-month') {
+        // if (e.target.innerHTML > 15) {
+        //   this.init(2018, this.date.getMonth() - 1);
+        //   console.log(this.date.getMonth());
+        //   console.log('down');
+        // } else {
+        //   this.init(2018, this.date.getMonth() + 1);
+        //   console.log('up');
+        //   console.log(this.date.getMonth());
+        // }
+      }
     });
   }
 }
