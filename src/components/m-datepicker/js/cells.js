@@ -8,6 +8,7 @@ export class NotCurrentMonth extends Cell {
   constructor(el) {
     super(el);
     el.classList.add('m-datepicker__calender-body__not-current-month');
+    el.classList.add('js-datepicker__calender-body__not-current-month');
   }
 }
 
@@ -15,6 +16,7 @@ export class CurrentMonth extends Cell {
   constructor(el) {
     super(el);
     el.classList.add('m-datepicker__calender-body__current-month');
+    el.classList.add('js-datepicker__calender-body__current-month');
   }
 }
 

@@ -9,6 +9,7 @@ export default class Datepicker {
     this.elements = [...Array(this.cellAmount).keys()];
 
     this.container = document.createElement('div');
+    this.selectedDate = null;
   }
 
   init(year = new Date().getFullYear(), month = new Date(2018, 5).getMonth()) {
@@ -24,21 +25,23 @@ export default class Datepicker {
     this.lastDayOfLastMonth = new Date(year, month, 0);
     this.firstDayOfNextMonth = new Date(year, month + 1, 1);
 
+    const numericWeekdayFirstDayOfMonth = getNumericWeekday('en-uk', this.firstDayOfMonth);
+    const dateLastDayOfMonth = this.lastDayOfMonth.getDate();
+
     this.selected = null;
 
     this.elements.map((index) => {
       const element = document.createElement('button');
       this.container.appendChild(element);
 
-      if (getNumericWeekday('en-uk', this.firstDayOfMonth) > 0
-          && index < getNumericWeekday('en-uk', this.firstDayOfMonth)) {
-        element.innerHTML = this.lastDayOfLastMonth.getDate() - (((getNumericWeekday('en-uk', this.firstDayOfMonth) - 1) - index));
+      if (numericWeekdayFirstDayOfMonth > 0 && index < numericWeekdayFirstDayOfMonth) {
+        element.innerHTML = this.lastDayOfLastMonth.getDate() - (((numericWeekdayFirstDayOfMonth - 1) - index));
         return new NotCurrentMonth(element);
       }
 
-      if (new Date(year, month, ((index + 1) - getNumericWeekday('en-uk', this.firstDayOfMonth))).getTime()
+      if (new Date(year, month, ((index + 1) - numericWeekdayFirstDayOfMonth)).getTime()
       === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()).getTime()) {
-        element.innerHTML = ((index - getNumericWeekday('en-uk', this.firstDayOfMonth)) + 1);
+        element.innerHTML = ((index - numericWeekdayFirstDayOfMonth) + 1);
         return new Today(element);
       }
 
@@ -46,13 +49,13 @@ export default class Datepicker {
         return new SelectedDay(element);
       }
 
-      if (index - getNumericWeekday('en-uk', this.firstDayOfMonth) < this.lastDayOfMonth.getDate()) {
-        element.innerHTML = ((index - getNumericWeekday('en-uk', this.firstDayOfMonth)) + 1);
+      if (index - numericWeekdayFirstDayOfMonth < dateLastDayOfMonth) {
+        element.innerHTML = ((index - numericWeekdayFirstDayOfMonth) + 1);
         return new CurrentMonth(element);
       }
 
       element.innerHTML = this.firstDayOfNextMonth.getDate()
-       + (index - this.lastDayOfMonth.getDate() - getNumericWeekday('en-uk', this.firstDayOfMonth));
+       + (index - dateLastDayOfMonth - numericWeekdayFirstDayOfMonth);
       return new NotCurrentMonth(element);
     });
 
@@ -60,7 +63,7 @@ export default class Datepicker {
     const el = this.wcNode.querySelector('.js-datepicker__calender-body');
     el.appendChild(this.container);
     // TODO use capture instead
-    [].slice.call(this.wcNode.querySelectorAll('.m-datepicker__calender-body__current-month')).forEach((cell) => {
+    [].slice.call(this.wcNode.querySelectorAll('.js-datepicker__calender-body__current-month')).forEach((cell) => {
       on(cell, 'click', () => {
         if (this.selected !== null) {
           this.selected.classList.remove('m-datepicker__calender-body__selected-day');
@@ -68,6 +71,16 @@ export default class Datepicker {
         cell.classList.add('m-datepicker__calender-body__selected-day');
         this.selected = cell;
       });
+    });
+    // TODO querySelectorAll
+    on(this.wcNode.querySelector('.js-datepicker__calender-body__not-current-month'), 'click', () => {
+      console.log('notcurrent');
+    });
+    on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), 'click', () => {
+      console.log('cancle');
+    });
+    on(this.wcNode.querySelector('.js-datepicker__button__Ok'), 'click', () => {
+      console.log('okbutton');
     });
   }
 }
