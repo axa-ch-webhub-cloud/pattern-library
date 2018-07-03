@@ -7,7 +7,7 @@ const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
 timer.start();
 
-execFile(npmCmd, ['whoami'], { env: process.env }, (error, stdout, stderr) => {
+execFile(npmCmd, ['whoami'], (error, stdout, stderr) => {
   timer.stop();
   console.log('Message received in', timer.diff() / 1000000, 'ms');
   if (error) {
