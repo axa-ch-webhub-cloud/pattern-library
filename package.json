@@ -55,7 +55,8 @@
     "bump-patch-beta": "npm run test && npmversion --increment patch --preid beta --force-preid",
     "xprebump-beta": "npm run test",
     "bump-beta": "npm run test && npmversion --increment prerelease --preid beta --force-preid",
-    "test-child-spawn": "node ./stack/tasks/test-child-spawn.js"
+    "test-child-spawn": "node ./stack/tasks/test-child-spawn.js",
+    "test-child-spawn-nodejs": "node ./stack/tasks/test-child-spawn-nodejs.js"
   },
   "watch": {
     "build-css-dev": {
