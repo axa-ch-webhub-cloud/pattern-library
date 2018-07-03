@@ -19,6 +19,10 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
+const fkillCatch = (reason) => {
+  console.error(reason);
+};
+
 const execaPipeError = (file, ...rest) => {
   const isCommand = rest.length === 0;
   const params = isCommand ? file.split(/\s+/) : [file, ...rest];
@@ -32,14 +36,14 @@ const execaPipeError = (file, ...rest) => {
     .then((result) => {
       console.log(`>>> resolved ${exec.pid} | ${command} ${args.join(' ')}`);
 
-      fkill(exec.pid, { force: true });
+      fkill(exec.pid, { force: true }).catch(fkillCatch);
 
       return result;
     })
     .catch((reason) => {
       console.log(`>>> rejected ${exec.pid} | ${command} ${args.join(' ')}`);
 
-      fkill(exec.pid, { force: true });
+      fkill(exec.pid, { force: true }).catch(fkillCatch);
 
       throw reason;
     });
