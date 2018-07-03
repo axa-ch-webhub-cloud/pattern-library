@@ -13,14 +13,15 @@ execa('npm', ['whoami']).then(({stdout}) => {
   console.log('Message received in', timer.diff() / 1000000, 'ms');
   console.error(reason);
 }).then(() => {
-  timer.start();
+  const timer2 = precise();
+  timer2.start();
   execa('git', ['status']).then(({stdout}) => {
-    timer.stop();
-    console.log('Message received in', timer.diff() / 1000000, 'ms');
+    timer2.stop();
+    console.log('Message received in', timer2.diff() / 1000000, 'ms');
     console.log(stdout);
   }).catch(reason => {
-    timer.stop();
-    console.log('Message received in', timer.diff() / 1000000, 'ms');
+    timer2.stop();
+    console.log('Message received in', timer2.diff() / 1000000, 'ms');
     console.error(reason);
   })
 })
