@@ -2,10 +2,10 @@ const { execFile } = require('child_process');
 const precise = require('precise');
 const timer = precise();
 
-timer.start();
-
 // Node does not support PATHEXT on Windows
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+
+timer.start();
 
 execFile(npmCmd, ['whoami'], { env: process.env }, (error, stdout, stderr) => {
   timer.stop();
