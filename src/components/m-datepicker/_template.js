@@ -35,8 +35,10 @@ export default ({
       <div class="m-datepicker__calender-body"></div>
       <div class="m-datepicker__calender-body js-datepicker__calender-body"></div>
       <div class="m-datepicker__button">
-        <axa-button class="m-datepicker__button__Cancel js-datepicker__button__Cancel" tag="button" size="sm" ghost="">${buttonCancel}</axa-button>
-        <axa-button class="m-datepicker__button__Ok js-datepicker__button__Ok" tag="button" size="sm" ghost="">${buttonOk}</axa-button>
+        <axa-button class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
+          tag="button" size="sm" ghost="">${buttonCancel}</axa-button>
+        <axa-button class="m-datepicker__button__Ok js-datepicker__button__Ok"
+          tag="button" size="sm" ghost="">${buttonOk}</axa-button>
       </div>
   </article>
 `;

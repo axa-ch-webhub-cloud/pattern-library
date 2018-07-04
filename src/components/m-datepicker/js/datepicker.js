@@ -1,6 +1,6 @@
 import { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
-import { NotCurrentMonth, CurrentMonth, Today, SelectedDay } from './cells';
+import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 import { getNumericWeekday } from '../../../js/date';
 
 export default class Datepicker {
@@ -13,7 +13,7 @@ export default class Datepicker {
     this.selected = null;
   }
 
-  init(year = new Date().getFullYear(), month = new Date(2018, 5).getMonth()) {
+  init(year = new Date().getFullYear(), month = new Date(2018, 6).getMonth()) {
     this.dropDownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
     this.dropDownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
 
@@ -43,11 +43,12 @@ export default class Datepicker {
 
       if (numericWeekdayFirstDayOfMonth > 0 && index < numericWeekdayFirstDayOfMonth) {
         element.innerHTML = this.lastDayOfLastMonth.getDate() - (((numericWeekdayFirstDayOfMonth - 1) - index));
-        return new NotCurrentMonth(element);
+        return new LastMonth(element);
       }
 
-      if (new Date(year, month, ((index + 1) - numericWeekdayFirstDayOfMonth)).getTime()
-      === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()).getTime()) {
+      if ((new Date(year, month, ((index + 1) - numericWeekdayFirstDayOfMonth)).getTime()
+      === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()).getTime())
+    && ((index - numericWeekdayFirstDayOfMonth) < this.today.getDate())) {
         element.innerHTML = ((index - numericWeekdayFirstDayOfMonth) + 1);
         return new Today(element);
       }
@@ -63,7 +64,8 @@ export default class Datepicker {
 
       element.innerHTML = this.firstDayOfNextMonth.getDate()
        + (index - dateLastDayOfMonth - numericWeekdayFirstDayOfMonth);
-      return new NotCurrentMonth(element);
+      // return new NotCurrentMonth(element);
+      return new NextMonth(element);
     });
   }
 
@@ -74,12 +76,18 @@ export default class Datepicker {
   }
 
   listenToCells() {
+    this.offClicks();
     this.unClickEnd = on(
       this.wcNode, EVENTS.CLICK, 'm-datepicker__calender-body__cell',
       this.handleClick, {
         capture: true, passive: false,
       },
     );
+  }
+  offClicks() {
+    if (this.unClickEnd) {
+      this.unClickEnd();
+    }
   }
 
   listenToButtons() {
@@ -100,18 +108,10 @@ export default class Datepicker {
         }
         e.target.classList.add('m-datepicker__calender-body__selected-day');
         this.selected = e.target;
-      }
-      if (elementClass === 'm-datepicker__calender-body__not-current-month') {
-        // if (e.target.innerHTML > 15) {
-        //   this.init(2018, this.date.getMonth() - 1);
-        //   console.log(this.date.getMonth());
-        //   console.log('down');
-        // } else {
-        //   this.init(2018, this.date.getMonth() + 1);
-        //   console.log('up');
-        //   console.log(this.date.getMonth());
-        // }
-        // TODO evt different classes for last month and next month!!!!
+      } else if (elementClass === 'js-datepicker__calender-body__next-month') {
+        this.init(2018, this.date.getMonth() + 1);
+      } else if (elementClass === 'js-datepicker__calender-body__last-month') {
+        this.init(2018, this.date.getMonth() - 1);
       }
     });
   }

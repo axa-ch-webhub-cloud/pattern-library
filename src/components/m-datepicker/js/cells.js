@@ -4,11 +4,19 @@ export class Cell {
   }
 }
 
-export class NotCurrentMonth extends Cell {
+export class NextMonth extends Cell {
   constructor(el) {
     super(el);
     el.classList.add('m-datepicker__calender-body__not-current-month');
-    el.classList.add('js-datepicker__calender-body__not-current-month');
+    el.classList.add('js-datepicker__calender-body__next-month');
+  }
+}
+
+export class LastMonth extends Cell {
+  constructor(el) {
+    super(el);
+    el.classList.add('m-datepicker__calender-body__not-current-month');
+    el.classList.add('js-datepicker__calender-body__last-month');
   }
 }
 
