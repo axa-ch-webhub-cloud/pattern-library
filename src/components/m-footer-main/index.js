@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 
@@ -32,6 +33,6 @@ class AXAFooterMain extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAFooterMain.tagName, AXAFooterMain);
+defineOnce(AXAFooterMain.tagName, AXAFooterMain);
 
 export default AXAFooterMain;

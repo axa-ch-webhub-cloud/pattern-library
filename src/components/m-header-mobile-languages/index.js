@@ -1,4 +1,5 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -20,6 +21,6 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAHeaderMobileLanguages.tagName, AXAHeaderMobileLanguages);
+defineOnce(AXAHeaderMobileLanguages.tagName, AXAHeaderMobileLanguages);
 
 export default AXAHeaderMobileLanguages;

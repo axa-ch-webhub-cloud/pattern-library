@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 
@@ -21,6 +22,6 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAFooterLanguages.tagName, AXAFooterLanguages);
+defineOnce(AXAFooterLanguages.tagName, AXAFooterLanguages);
 
 export default AXAFooterLanguages;

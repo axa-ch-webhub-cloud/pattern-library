@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 import FooterLinks from './js/footer-links';
@@ -42,6 +43,6 @@ class AXAFooterLinks extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAFooterLinks.tagName, AXAFooterLinks);
+defineOnce(AXAFooterLinks.tagName, AXAFooterLinks);
 
 export default AXAFooterLinks;

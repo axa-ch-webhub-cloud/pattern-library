@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import DropDown from './js/drop-down';
 
 class AXADropdown extends BaseComponentGlobal {
@@ -41,6 +42,6 @@ class AXADropdown extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXADropdown.tagName, AXADropdown);
+defineOnce(AXADropdown.tagName, AXADropdown);
 
 export default AXADropdown;

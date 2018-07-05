@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import HeaderMobileNavigation from './js/header-mobile-navigation';
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {
@@ -52,6 +53,6 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAHeaderMobileNavigation.tagName, AXAHeaderMobileNavigation);
+defineOnce(AXAHeaderMobileNavigation.tagName, AXAHeaderMobileNavigation);
 
 export default AXAHeaderMobileNavigation;

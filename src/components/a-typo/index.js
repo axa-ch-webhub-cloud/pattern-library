@@ -1,4 +1,5 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -21,6 +22,6 @@ class AXATypo extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXATypo.tagName, AXATypo);
+defineOnce(AXATypo.tagName, AXATypo);
 
 export default AXATypo;

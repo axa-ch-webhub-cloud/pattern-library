@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -25,6 +26,6 @@ class AXAHeaderMain extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAHeaderMain.tagName, AXAHeaderMain);
+defineOnce(AXAHeaderMain.tagName, AXAHeaderMain);
 
 export default AXAHeaderMain;

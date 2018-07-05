@@ -1,4 +1,5 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 
 class AXAFooter extends BaseComponentGlobal {
   static tagName = 'axa-footer'
@@ -10,6 +11,6 @@ class AXAFooter extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAFooter.tagName, AXAFooter);
+defineOnce(AXAFooter.tagName, AXAFooter);
 
 export default AXAFooter;

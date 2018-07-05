@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 
 class AXAFooterLegals extends BaseComponentGlobal {
@@ -31,6 +32,6 @@ class AXAFooterLegals extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAFooterLegals.tagName, AXAFooterLegals);
+defineOnce(AXAFooterLegals.tagName, AXAFooterLegals);
 
 export default AXAFooterLegals;

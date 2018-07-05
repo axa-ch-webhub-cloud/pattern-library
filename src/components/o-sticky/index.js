@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import stylesStickyContainer from './scss/sticky-container.scss';
 import stylesSticky from './scss/sticky.scss';
 import templateSticky from './sticky.template';
@@ -85,8 +86,8 @@ class AXASticky extends BaseComponentGlobal {
 }
 
 
-window.customElements.define(AXAStickyContainer.tagName, AXAStickyContainer);
-window.customElements.define(AXASticky.tagName, AXASticky);
+defineOnce(AXAStickyContainer.tagName, AXAStickyContainer);
+defineOnce(AXASticky.tagName, AXASticky);
 
 export default {
   AXASticky,

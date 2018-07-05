@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 
@@ -24,6 +25,6 @@ class AXARadio extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXARadio.tagName, AXARadio);
+defineOnce(AXARadio.tagName, AXARadio);
 
 export default AXARadio;

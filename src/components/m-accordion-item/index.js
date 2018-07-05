@@ -1,4 +1,5 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import template from './_template';
 import styles from './index.scss';
 import AccordionItem from './js/accordion-item';
@@ -34,6 +35,6 @@ class AXAAccordionItem extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAAccordionItem.tagName, AXAAccordionItem);
+defineOnce(AXAAccordionItem.tagName, AXAAccordionItem);
 
 export default AXAAccordionItem;

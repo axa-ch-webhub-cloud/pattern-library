@@ -1,6 +1,7 @@
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 
 class AXALink extends BaseComponentGlobal {
   static tagName = 'axa-link'
@@ -12,6 +13,6 @@ class AXALink extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXALink.tagName, AXALink);
+defineOnce(AXALink.tagName, AXALink);
 
 export default AXALink;

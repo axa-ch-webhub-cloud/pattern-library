@@ -1,5 +1,6 @@
 import styles from './index.scss';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 
 class AXAHeader extends BaseComponentGlobal {
   static tagName = 'axa-header'
@@ -17,6 +18,6 @@ class AXAHeader extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAHeader.tagName, AXAHeader);
+defineOnce(AXAHeader.tagName, AXAHeader);
 
 export default AXAHeader;

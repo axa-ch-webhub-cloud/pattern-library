@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 
@@ -27,6 +28,6 @@ class AXAInput extends BaseComponentGlobal {
   }
 }
 
-window.customElements.define(AXAInput.tagName, AXAInput);
+defineOnce(AXAInput.tagName, AXAInput);
 
 export default AXAInput;
