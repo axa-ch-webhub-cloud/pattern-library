@@ -39,15 +39,23 @@ Then, you can add the component of your choice simply by importing the `index.js
 
 Import the button via `import '@axa-ch/patterns-library/dist/components/m-button'` in your `index.js` to be able to use the button. Wherever you want, add `<axa-button>Hello</axa-button>` in your html and like magic, the button will work!
 
-If a component has dependecies to other components, you will have to add them as well. The button in the example above actually has a dependency to `a-icon`. So we will have to include it as well. **Remember, a molecule or an organism will always have dependecies to other components.** These components will work also by adding them directly with the `<script src='@axa-ch/patterns-library/dist/components/m-button'></script>` tag.
+If a component has dependencies to other components, you will have to add them as well. The button in the example above actually has a dependency to `a-icon`. So we will have to include it as well. **Remember, a molecule or an organism will always have dependencies to other components.** These components will work also by adding them directly with the `<script src='@axa-ch/patterns-library/dist/components/m-button'></script>` tag.
 
-To use the webcomponents with older browsers, import the polyfills which are available under
-`<script src="node_modules/@axa-ch/patterns-library/dist/app/webcomponents-lite.js"></script>`
+To use the webcomponents with older browsers, import the polyfills which are available under:
+```js
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
+```
+
+or:
+
+```html
+<script src="node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-ce.js"></script>
+```
 
 A quick overview what they do:
-`webcomponents-lite.js` includes all the polyfills needed for ES6 ready browsers and includes polyfills for all 4 parts of the webcomponents specs.
+`webcomponents-ce.js` includes Custom-Elements polyfill of the 4 parts of the webcomponents specs.
 `es6-polyfills.js` are all the polyfills needed for ie11.
-Alternativly to `webcomponents-lite.js`, `webcomponents-loader.js` loads the polyfills that is needed asynchronously via AJAX.
+Alternatively to `webcomponents-ce.js`, `webcomponents-lite.js` loads all and`webcomponents-loader.js` loads the polyfills that is needed asynchronously via AJAX.
 
 If you are using your own framework, be aware to convert the webcponents to a component for your framework (simple components like `m-button` does not need to be converted):
 
@@ -77,7 +85,7 @@ Here an example on how to use the component button and typo in your project. The
   <body>
 
     <script src="http://localhost:8080/node_modules/patterns-library/dist/app/es6-polyfills.js"></script>
-    <script src="http://localhost:8080/node_modules/patterns-library/dist/app/webcomponents-lite.js"></script>
+    <script src="http://localhost:8080/node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-ce.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/u-core/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/m-button/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/a-typo/index.js"></script>
