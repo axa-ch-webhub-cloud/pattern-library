@@ -67,7 +67,6 @@ const writeIndexJs = (path, _name) => {
       import styles from './index.scss';
       // import the template used for this component
       import template from './_template';
-      import wcdomready from '../../js/wcdomready';
 
       class ${className} extends BaseComponentGlobal {
         static tagName = 'axa-${_name}'
@@ -123,9 +122,7 @@ const writeIndexJs = (path, _name) => {
         // }
       }
 
-      wcdomready(() => {
-        window.customElements.define(${className}.tagName, ${className});
-      });
+      window.customElements.define(${className}.tagName, ${className});
 
       export default ${className};
 
