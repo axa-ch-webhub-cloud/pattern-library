@@ -3,7 +3,6 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 import HeaderMobile from './js/header-mobile';
 
 class AXAHeaderMobile extends BaseComponentGlobal {
@@ -56,8 +55,6 @@ class AXAHeaderMobile extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderMobile.tagName, AXAHeaderMobile);
-});
+window.customElements.define(AXAHeaderMobile.tagName, AXAHeaderMobile);
 
 export default AXAHeaderMobile;

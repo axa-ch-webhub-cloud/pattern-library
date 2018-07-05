@@ -1,8 +1,6 @@
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
-
 import styles from './index.scss';
 import template from './_template';
 
@@ -28,8 +26,6 @@ class AXAChoice extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAChoice.tagName, AXAChoice);
-});
+window.customElements.define(AXAChoice.tagName, AXAChoice);
 
 export default AXAChoice;

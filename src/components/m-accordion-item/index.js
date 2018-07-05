@@ -1,4 +1,3 @@
-import wcdomready from '../../js/wcdomready';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import template from './_template';
 import styles from './index.scss';
@@ -35,8 +34,6 @@ class AXAAccordionItem extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAAccordionItem.tagName, AXAAccordionItem);
-});
+window.customElements.define(AXAAccordionItem.tagName, AXAAccordionItem);
 
 export default AXAAccordionItem;

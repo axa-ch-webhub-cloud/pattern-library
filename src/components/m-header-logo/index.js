@@ -3,7 +3,6 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 import HeaderLogo from './js/header-logo';
 
 class AXAHeaderLogo extends BaseComponentGlobal {
@@ -37,8 +36,6 @@ class AXAHeaderLogo extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderLogo.tagName, AXAHeaderLogo);
-});
+window.customElements.define(AXAHeaderLogo.tagName, AXAHeaderLogo);
 
 export default AXAHeaderLogo;

@@ -4,7 +4,6 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAErrorPage extends BaseComponentGlobal {
   static tagName = 'axa-error-page'
@@ -29,8 +28,6 @@ class AXAErrorPage extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAErrorPage.tagName, AXAErrorPage);
-});
+window.customElements.define(AXAErrorPage.tagName, AXAErrorPage);
 
 export default AXAErrorPage;

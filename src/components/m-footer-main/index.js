@@ -3,7 +3,6 @@ import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAFooterMain extends BaseComponentGlobal {
   static tagName = 'axa-footer-main'
@@ -33,8 +32,6 @@ class AXAFooterMain extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAFooterMain.tagName, AXAFooterMain);
-});
+window.customElements.define(AXAFooterMain.tagName, AXAFooterMain);
 
 export default AXAFooterMain;

@@ -3,7 +3,6 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderSearch extends BaseComponentGlobal {
   static tagName = 'axa-header-search'
@@ -24,8 +23,6 @@ class AXAHeaderSearch extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderSearch.tagName, AXAHeaderSearch);
-});
+window.customElements.define(AXAHeaderSearch.tagName, AXAHeaderSearch);
 
 export default AXAHeaderSearch;

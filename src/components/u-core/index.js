@@ -1,4 +1,3 @@
-import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
 
 const axaPLibDefaults = {};
@@ -39,8 +38,6 @@ class AXACore extends HTMLElement {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXACore.tagName, AXACore);
-});
+window.customElements.define(AXACore.tagName, AXACore);
 
 export default AXACore;

@@ -1,5 +1,4 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
 
 class AXAFooter extends BaseComponentGlobal {
   static tagName = 'axa-footer'
@@ -11,8 +10,6 @@ class AXAFooter extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAFooter.tagName, AXAFooter);
-});
+window.customElements.define(AXAFooter.tagName, AXAFooter);
 
 export default AXAFooter;

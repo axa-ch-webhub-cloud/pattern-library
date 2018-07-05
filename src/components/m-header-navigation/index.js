@@ -4,7 +4,6 @@ import template from './_template';
 import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-navigation'
@@ -71,8 +70,6 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderNavigation.tagName, AXAHeaderNavigation);
-});
+window.customElements.define(AXAHeaderNavigation.tagName, AXAHeaderNavigation);
 
 export default AXAHeaderNavigation;

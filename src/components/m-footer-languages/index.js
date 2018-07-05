@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAFooterLanguages extends BaseComponentGlobal {
   static tagName = 'axa-footer-languages'
@@ -22,8 +21,6 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAFooterLanguages.tagName, AXAFooterLanguages);
-});
+window.customElements.define(AXAFooterLanguages.tagName, AXAFooterLanguages);
 
 export default AXAFooterLanguages;

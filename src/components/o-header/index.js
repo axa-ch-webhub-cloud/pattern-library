@@ -1,6 +1,5 @@
 import styles from './index.scss';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeader extends BaseComponentGlobal {
   static tagName = 'axa-header'
@@ -18,8 +17,6 @@ class AXAHeader extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeader.tagName, AXAHeader);
-});
+window.customElements.define(AXAHeader.tagName, AXAHeader);
 
 export default AXAHeader;

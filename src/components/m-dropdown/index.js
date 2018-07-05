@@ -3,7 +3,6 @@ import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import DropDown from './js/drop-down';
-import wcdomready from '../../js/wcdomready';
 
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
@@ -42,8 +41,6 @@ class AXADropdown extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXADropdown.tagName, AXADropdown);
-});
+window.customElements.define(AXADropdown.tagName, AXADropdown);
 
 export default AXADropdown;

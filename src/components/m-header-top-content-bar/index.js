@@ -1,7 +1,6 @@
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderTopContentBar extends BaseComponentGlobal {
   static tagName = 'axa-header-top-content-bar'
@@ -19,8 +18,6 @@ class AXAHeaderTopContentBar extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderTopContentBar.tagName, AXAHeaderTopContentBar);
-});
+window.customElements.define(AXAHeaderTopContentBar.tagName, AXAHeaderTopContentBar);
 
 export default AXAHeaderTopContentBar;

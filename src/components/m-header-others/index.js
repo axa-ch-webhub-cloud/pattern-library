@@ -3,7 +3,6 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderOthers extends BaseComponentGlobal {
   static tagName = 'axa-header-others'
@@ -21,8 +20,6 @@ class AXAHeaderOthers extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderOthers.tagName, AXAHeaderOthers);
-});
+window.customElements.define(AXAHeaderOthers.tagName, AXAHeaderOthers);
 
 export default AXAHeaderOthers;
