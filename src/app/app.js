@@ -1,3 +1,4 @@
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
 import wcdomready from '../js/wcdomready';
 
 console.log('🚀 patterns library 🚀');
