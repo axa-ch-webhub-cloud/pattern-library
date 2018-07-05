@@ -85,7 +85,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     updateWebComponentProps() {
       const { wcNode, _eventCache: eventCache, props, state: isDefined } = this;
 
-      // only path if custom element is defiend and avoid type error of
+      // only patch if custom element is defined and avoid type error of
       // TypeError: wcNode.setProps is not a function
       if (!isDefined) {
         return;
