@@ -18,7 +18,7 @@
     "postinstall": "npm rebuild node-sass",
     "watch": "cross-env NODE_ENV=development concurrently \"npm run watch-scss\" \"npm run watch-js\" \"npm run watch-html\" \"npm run watch-svg\"",
     "watch-scss": "npm-watch build-css-dev",
-    "watch-js": "node node stack/tasks/watch-js.js",
+    "watch-js": "node stack/tasks/watch-js.js",
     "watch-html": "npm-watch build-html-dev",
     "watch-svg": "npm-watch build-icons-dev",
     "serve": "concurrently \"npm run server\" \"npm run watch\" \"npm run bundle-demos-dev\"",
