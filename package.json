@@ -153,7 +153,7 @@
     "vinyl": "^2.1.0"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^1.0.18",
+    "@webcomponents/webcomponentsjs": "^2.0.2",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
     "core-js": "~2.5.1",
