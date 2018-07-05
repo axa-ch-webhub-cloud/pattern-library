@@ -101,6 +101,8 @@ Here an example on how to use the component button and typo in your project. The
 </html>
 ```
 
+Checkout a small page build just with webcomponents: https://github.com/axa-ch/patterns-library-examples/blob/master/native/index.html
+
 ## Usage guide - With React and wrapped Webcomponents
 
 
