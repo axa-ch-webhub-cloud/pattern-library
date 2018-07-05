@@ -63,6 +63,7 @@ const writeIndexJs = (path, _name) => {
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import BaseComponentGlobal from '../../js/abstract/base-component-global';
+      import defineOnce from '../../js/define-once';
       // import the styles used for this component
       import styles from './index.scss';
       // import the template used for this component
@@ -122,7 +123,7 @@ const writeIndexJs = (path, _name) => {
         // }
       }
 
-      window.customElements.define(${className}.tagName, ${className});
+      defineOnce(${className}.tagName, ${className});
 
       export default ${className};
 
