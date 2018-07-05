@@ -29,7 +29,7 @@
     "build-css-dev": "concurrently \"node-sass src/index.scss -o .tmp/\" \"node-sass src/sg.scss -o .tmp/\"",
     "build-css-prod": "concurrently \"node-sass src/index.scss -o dist/\" \"node-sass src/sg.scss -o dist/\"",
     "postbuild-css-prod": "postcss dist/index.css -o dist/index.css",
-    "build-js-dev": "concurrently \"node stack/tasks/watch-js.js\"",
+    "build-js-dev": "node stack/tasks/watch-js.js",
     "build-html-dev": "concurrently \"node stack/tasks/build.html.js\" \"node stack/tasks/build-examples.js\"",
     "build-js-prod": "npm run bundle-prod",
     "build-icons-dev": "node stack/tasks/icons.js",
