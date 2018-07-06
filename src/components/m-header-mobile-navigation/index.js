@@ -2,8 +2,8 @@ import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import HeaderMobileNavigation from './js/header-mobile-navigation';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-mobile-navigation'
@@ -53,8 +53,6 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderMobileNavigation.tagName, AXAHeaderMobileNavigation);
-});
+defineOnce(AXAHeaderMobileNavigation.tagName, AXAHeaderMobileNavigation);
 
 export default AXAHeaderMobileNavigation;

@@ -1,9 +1,9 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMobileLanguages extends BaseComponentGlobal {
   static tagName = 'axa-header-mobile-languages'
@@ -21,8 +21,6 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderMobileLanguages.tagName, AXAHeaderMobileLanguages);
-});
+defineOnce(AXAHeaderMobileLanguages.tagName, AXAHeaderMobileLanguages);
 
 export default AXAHeaderMobileLanguages;

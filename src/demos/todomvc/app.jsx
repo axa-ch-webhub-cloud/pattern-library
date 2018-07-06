@@ -19,14 +19,11 @@ const TodoApp = ({
 function render() {
   ReactDOM.render(
     <TodoApp model={todoModel} />,
-    document.getElementsByClassName('my-todo-demo-react')[0],
+    document.getElementById('my-todo-demo-react'),
   );
 }
 
 todoModel.subscribe(render);
 
-document.addEventListener('DOMContentLoaded', () => {
-  BaseComponentGlobal.appendGlobalStyles(styles);
-  render();
-});
-
+BaseComponentGlobal.appendGlobalStyles(styles);
+render();

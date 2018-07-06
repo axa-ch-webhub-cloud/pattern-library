@@ -1,7 +1,7 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAIcon extends BaseComponentGlobal {
   static tagName = 'axa-icon'
@@ -15,8 +15,9 @@ class AXAIcon extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAIcon.tagName, AXAIcon);
+document.addEventListener('DOMContentLoaded', () => {
+  defineOnce(AXAIcon.tagName, AXAIcon);
 });
+
 
 export default AXAIcon;

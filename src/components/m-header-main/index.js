@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 
 class AXAHeaderMain extends BaseComponentGlobal {
   static tagName = 'axa-header-main'
@@ -26,8 +26,6 @@ class AXAHeaderMain extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAHeaderMain.tagName, AXAHeaderMain);
-});
+defineOnce(AXAHeaderMain.tagName, AXAHeaderMain);
 
 export default AXAHeaderMain;

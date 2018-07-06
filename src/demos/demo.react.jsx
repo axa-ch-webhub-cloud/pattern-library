@@ -41,6 +41,4 @@ class MyEventDemoReact extends React.Component {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<MyEventDemoReact />, document.querySelector('.my-event-demo-react'));
-});
+ReactDOM.render(<MyEventDemoReact />, document.getElementById('my-event-demo-react'));

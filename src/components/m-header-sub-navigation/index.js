@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
+import defineOnce from '../../js/define-once';
 
 class AXASubNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-sub-navigation'
@@ -22,8 +22,6 @@ class AXASubNavigation extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXASubNavigation.tagName, AXASubNavigation);
-});
+defineOnce(AXASubNavigation.tagName, AXASubNavigation);
 
 export default AXASubNavigation;
