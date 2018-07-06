@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
-import wcdomready from '../../js/wcdomready';
 
 class AXAFooterLegals extends BaseComponentGlobal {
   static tagName = 'axa-footer-legals'
@@ -32,8 +32,6 @@ class AXAFooterLegals extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAFooterLegals.tagName, AXAFooterLegals);
-});
+defineOnce(AXAFooterLegals.tagName, AXAFooterLegals);
 
 export default AXAFooterLegals;

@@ -3,6 +3,8 @@ import { clearIsSameNode, isSameNodeOnce } from '../utils/is-same-node-once';
 import nanomorph from '../utils/component-morph';
 import TemplateNoStringReturnException from '../utils/template-no-string-return-exception';
 
+const hasFragmentChildren = !!document.createDocumentFragment().children;
+
 const withRender = Base =>
   /**
    * Adds the ability to render external DOM-based templates,
@@ -97,6 +99,12 @@ const withRender = Base =>
               // so we can always reuse this
               this.childrenFragment.appendChild(refClone);
             });
+          }
+
+          // IE11 does not support children on fragments
+          // ref: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10060579/
+          if (!hasFragmentChildren) {
+            this.childrenFragment.children = Array.from(this.childrenFragment.childNodes).filter(node => node.nodeType === 1);
           }
 
           const items = template(this._props, this.childrenFragment);

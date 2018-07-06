@@ -1,10 +1,8 @@
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
-
+import defineOnce from '../../js/define-once';
 import FormGroup from './js/form-group';
-
 import styles from './index.scss';
 import template from './_template';
 
@@ -44,8 +42,6 @@ class AXAFormGroup extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAFormGroup.tagName, AXAFormGroup);
-});
+defineOnce(AXAFormGroup.tagName, AXAFormGroup);
 
 export default AXAFormGroup;

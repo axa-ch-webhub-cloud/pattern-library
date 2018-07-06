@@ -53,10 +53,6 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
-    static get displayName() {
-      return displayName;
-    }
-
     constructor(props) {
       super(props);
 
@@ -128,6 +124,10 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     handleRef = (wcNode) => {
       this.wcNode = wcNode;
+    }
+
+    static get displayName() {
+      return displayName;
     }
 
     render() {

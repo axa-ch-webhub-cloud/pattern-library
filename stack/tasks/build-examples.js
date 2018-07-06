@@ -118,7 +118,7 @@ dir.files(`${CWD}/src/demos`, (err, allFiles) => {
   allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
   const demoHtmls = allFiles.filter(_file => _file.match(reGetDemosHtml));
   demoHtmls.forEach((_file) => {
-    pageHtml[REACT].push(`<script src="./app/all-demos.js"></script>${fs.readFileSync(_file, 'utf8')}`);
+    pageHtml[REACT].push(`${fs.readFileSync(_file, 'utf8')}<script src="./app/all-demos.js"></script>`);
   });
 });
 
@@ -195,8 +195,8 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
 
   createAmoPage(indexHtml, imports, styles, ORGANISMS, filePath);
   createAmoPage(indexHtml, imports, styles, MOLECULES, filePath);
-  createAmoPage(indexHtml, imports, styles, REACT, filePath);
   createAmoPage(indexHtml, imports, styles, ATOMS, filePath);
+  createAmoPage(indexHtml, imports, styles, REACT, filePath);
 
   const _indexHtml = indexHtml
     .replace(/<!-- {CUT AND INJECT INDEX HTML HERE} -->/g, `
