@@ -53,6 +53,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
+    // eslint-disable-next-line react/sort-comp
     static get displayName() {
       return displayName;
     }
