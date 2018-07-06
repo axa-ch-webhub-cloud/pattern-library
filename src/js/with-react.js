@@ -53,24 +53,37 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
+    // eslint-disable-next-line react/sort-comp
+    static get displayName() {
+      return displayName;
+    }
+
     constructor(props) {
       super(props);
 
       this._eventCache = {};
 
-      this.state = {
-        isDefined: false,
-      };
-
       // make sure that the custom element is ready
-      // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined
-      customElements.whenDefined(tagName).then(() => {
-        this.setState({ isDefined: true });
-      });
+      // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/get
+      const isDefined = !!customElements.get(tagName);
+
+      this.state = {
+        isDefined,
+      };
     }
 
     componentDidMount() {
-      this.updateWebComponentProps();
+      const { state: { isDefined } } = this;
+
+      if (isDefined) {
+        this.updateWebComponentProps();
+      } else {
+        // make sure that the custom element is ready
+        // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined
+        customElements.whenDefined(tagName).then(() => {
+          this.setState({ isDefined: true });
+        });
+      }
     }
 
     componentDidUpdate() {
@@ -124,10 +137,6 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     handleRef = (wcNode) => {
       this.wcNode = wcNode;
-    }
-
-    static get displayName() {
-      return displayName;
     }
 
     render() {
