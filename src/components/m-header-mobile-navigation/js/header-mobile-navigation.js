@@ -84,7 +84,7 @@ class HeaderMobileNavigation {
   }
 
   fadeFinish = () => {
-    if (this.isOpen) {
+    if (this.isOpen || !this.opened) {
       return;
     }
 

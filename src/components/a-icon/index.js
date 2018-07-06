@@ -15,6 +15,9 @@ class AXAIcon extends BaseComponentGlobal {
   }
 }
 
-defineOnce(AXAIcon.tagName, AXAIcon);
+document.addEventListener('DOMContentLoaded', () => {
+  defineOnce(AXAIcon.tagName, AXAIcon);
+});
+
 
 export default AXAIcon;
