@@ -15,9 +15,10 @@ class AXAIcon extends BaseComponentGlobal {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  defineOnce(AXAIcon.tagName, AXAIcon);
-});
+// TODO: add again listsner in comment asap 515 is fixed
+// document.addEventListener('DOMContentLoaded', () => {
+defineOnce(AXAIcon.tagName, AXAIcon);
+// });
 
 
 export default AXAIcon;
