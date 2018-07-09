@@ -140,6 +140,9 @@ There are a few key principles you have to know:
    - a child could render before it's parent
    - this leads to [**FOUC** (flash of unstyled content)](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
    - in short - order of rendering is **non-deterministic**
+   - though order of definition and Custom Element declaration is key
+     1. first custom elements like `<axa-foo>...</axa-foo>` 
+     2. last it's definition by JS (at end of body)
 - HTML attributes (always `'string'`) VS DOM properties ([first class props](#first-class-props))
 - [Key Terms](#key-terms)
 - [Lifecycle phases](#lifecycle-phases)
