@@ -1,5 +1,5 @@
-import wcdomready from '../../js/wcdomready';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import template from './_template';
 import styles from './index.scss';
 
@@ -26,8 +26,6 @@ class AXAAccordion extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAAccordion.tagName, AXAAccordion);
-});
+defineOnce(AXAAccordion.tagName, AXAAccordion);
 
 export default AXAAccordion;

@@ -11,14 +11,12 @@
       }(document);
     </script>
     <script src="app/es6-polyfills.js"></script>
-    <script src="app/webcomponents-lite.js"></script>
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./sg.css">
 
   </head>
   <body class="a-device-state a-device-state--debug">
 
-    <script src="components/u-core/index.js"></script>
     <axa-core only-load="true" icons-path="./assets/icons/icons.svg"></axa-core>
 
     <header class="sg-header">
@@ -53,6 +51,12 @@
     ,{
       "links": [
         {"name": "Cookie-disclaimer", "url": "organisms.html#o-cookie-disclaimer"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Error-page", "url": "organisms.html#o-error-page"}
       ]
     }
 
@@ -355,6 +359,8 @@
 
     ,{"name": "Cookie-disclaimer", "url": "organisms.html#o-cookie-disclaimer"}
 
+    ,{"name": "Error-page", "url": "organisms.html#o-error-page"}
+
     ,{"name": "Footer", "url": "organisms.html#o-footer"}
 
     ,{"name": "Header", "url": "organisms.html#o-header"}
@@ -453,8 +459,10 @@
       </axa-header>
     </header>
 
-    <!-- {CUT AND INJECT INDEX HTML HERE} -->
+    <script src="./app/app.js"></script>
+    <script src="components/u-core/index.js"></script>
 
+    <!-- {CUT AND INJECT INDEX HTML HERE} -->
     
       <style>
         .syntaxhighlighter a,
@@ -767,17 +775,15 @@
 }
 
       </style>
-      <script src="./app/all-demos.js"></script><article style="margin-bottom: 100px;">
+      <article style="margin-bottom: 100px;">
   <h1>Demo on how to pass a callback function:</h1>
-  <div class="my-event-demo-react"></div>
+  <div id="my-event-demo-react"></div>
 
   <h1>Demo TodoMVC:</h1>
-  <div class="my-todo-demo-react"></div>
+  <div id="my-todo-demo-react"></div>
 </article>
-
+<script src="./app/all-demos.js"></script>
       
-
-    <script src="./app/app.js"></script>
     <script src="components/a-checkbox/index.js"></script>
 <script src="components/a-choice/index.js"></script>
 <script src="components/a-device-state/index.js"></script>
@@ -816,6 +822,7 @@
 <script src="components/o-accordion/index.js"></script>
 <script src="components/o-container/index.js"></script>
 <script src="components/o-cookie-disclaimer/index.js"></script>
+<script src="components/o-error-page/index.js"></script>
 <script src="components/o-footer/index.js"></script>
 <script src="components/o-header/index.js"></script>
 <script src="components/o-sticky/index.js"></script>

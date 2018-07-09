@@ -1,3 +1,5 @@
+/* globals customElements */
+
 import React, { createElement } from 'react';
 import dasherize from './dasherize';
 import camelize from './camelize';
@@ -51,6 +53,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
+    // eslint-disable-next-line react/sort-comp
     static get displayName() {
       return displayName;
     }
@@ -59,19 +62,44 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       super(props);
 
       this._eventCache = {};
+
+      // make sure that the custom element is ready
+      // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/get
+      const isDefined = !!customElements.get(tagName);
+
+      this.state = {
+        isDefined,
+      };
     }
 
     componentDidMount() {
-      this.updateWebComponentProps(this.props);
+      const { state: { isDefined } } = this;
+
+      if (isDefined) {
+        this.updateWebComponentProps();
+      } else {
+        // make sure that the custom element is ready
+        // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined
+        customElements.whenDefined(tagName).then(() => {
+          this.setState({ isDefined: true });
+        });
+      }
     }
 
     componentDidUpdate() {
-      this.updateWebComponentProps(this.props);
+      this.updateWebComponentProps();
     }
 
     // eslint-disable-next-line react/sort-comp
-    updateWebComponentProps(props) {
-      const { wcNode, _eventCache: eventCache } = this;
+    updateWebComponentProps() {
+      const { wcNode, _eventCache: eventCache, props, state: isDefined } = this;
+
+      // only patch if custom element is defined and avoid type error of
+      // TypeError: wcNode.setProps is not a function
+      if (!isDefined) {
+        return;
+      }
+
       const propsKeys = Object.keys(props);
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
 

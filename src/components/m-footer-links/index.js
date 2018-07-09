@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
-import wcdomready from '../../js/wcdomready';
 import FooterLinks from './js/footer-links';
 
 class AXAFooterLinks extends BaseComponentGlobal {
@@ -43,8 +43,6 @@ class AXAFooterLinks extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAFooterLinks.tagName, AXAFooterLinks);
-});
+defineOnce(AXAFooterLinks.tagName, AXAFooterLinks);
 
 export default AXAFooterLinks;

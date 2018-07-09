@@ -1,8 +1,7 @@
 import classnames from 'classnames';
 
-import wcdomready from '../../js/wcdomready';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-
+import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 
@@ -28,8 +27,6 @@ class AXACheckbox extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXACheckbox.tagName, AXACheckbox);
-});
+defineOnce(AXACheckbox.tagName, AXACheckbox);
 
 export default AXACheckbox;

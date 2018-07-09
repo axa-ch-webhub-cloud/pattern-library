@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import wcdomready from '../../js/wcdomready';
+import defineOnce from '../../js/define-once';
 import Button from './js/button';
 
 class AXAButton extends BaseComponentGlobal {
@@ -29,10 +29,6 @@ class AXAButton extends BaseComponentGlobal {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXAButton.tagName, AXAButton);
-
-  BaseComponentGlobal.appendGlobalStyles(styles);
-});
+defineOnce(AXAButton.tagName, AXAButton);
 
 export default AXAButton;

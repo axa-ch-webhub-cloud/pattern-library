@@ -18,18 +18,29 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
-const execaPipeError = (...args) => {
-  const isCommand = args.length === 1;
-  const params = isCommand ? args[0].split(/\s+/) : args;
+const execaPipeError = (file, ...args) => {
+  const isCommand = args.length === 0;
+  const params = isCommand ? file.split(/\s+/) : [file, ...args];
   const [command, ...options] = params;
+
   const exec = execa(command, options);
 
-  exec.stderr.pipe(process.stderr);
+  return exec
+    .then((result) => {
+      console.log(`>>> resolved | ${command} ${options.join(' ')}`);
 
-  return exec;
+      return result;
+    })
+    .catch((reason) => {
+      console.log(`>>> rejected | ${command} ${options.join(' ')}`);
+
+      throw reason;
+    });
 };
 
-const execaSeries = args => promiseSeries(args.map(arg => () => execaPipeError(arg)));
+const execaSeries = args => promiseSeries(args
+  .filter(arg => typeof arg === 'string' && arg.length)
+  .map(arg => () => execaPipeError(arg)));
 
 console.log(chalk.cyan(outdent`
 
@@ -228,18 +239,21 @@ const confirmedRelease = (type, version) => {
 
   const isHotfix = type === HOTFIX;
   const TRUNK = isHotfix ? MASTER_TRUNK : DEVELOP_TRUNK;
+  const { scripts } = pkj;
+  const hasTestScript = scripts.test;
 
   let releaseSteps = [
     () => execaSeries([
-      `git checkout ${TRUNK}`,
+      `git checkout ${TRUNK} --quiet`,
       'git pull',
-      `git checkout -b ${RELEASE_TMP}`,
+      `git checkout -b ${RELEASE_TMP}  --quiet`,
     ]).then(() => {
       console.log(chalk.cyan(outdent`
           Step 1 complete...
         `));
     }),
     () => execaSeries([
+      hasTestScript && 'npm run test',
       'npm run build',
       'git add ./dist ./docs',
       'git commit -m"rebuild"',
@@ -257,7 +271,7 @@ const confirmedRelease = (type, version) => {
     }),
     () => execaSeries([
       `npm publish ${version === BETA ? ' --tag beta' : ''}`,
-      `git checkout ${TRUNK}`,
+      `git checkout ${TRUNK} --quiet`,
       `git merge --ff-only ${RELEASE_TMP}`,
       'git push',
       'git push --tags',
@@ -272,7 +286,7 @@ const confirmedRelease = (type, version) => {
     releaseSteps = [
       ...releaseSteps,
       () => execaSeries([
-        `git checkout ${MASTER_TRUNK}`,
+        `git checkout ${MASTER_TRUNK} --quiet`,
         `git merge --no-ff ${DEVELOP_TRUNK}`,
         'git push',
         'git push --tags',
@@ -282,7 +296,7 @@ const confirmedRelease = (type, version) => {
           `));
       }),
       () => execaSeries([
-        `git checkout ${DEVELOP_TRUNK}`,
+        `git checkout ${DEVELOP_TRUNK} --quiet`,
         `git merge --ff-only ${MASTER_TRUNK}`,
         'git push',
         'git push --tags',

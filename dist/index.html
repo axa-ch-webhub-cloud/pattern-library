@@ -11,14 +11,12 @@
       }(document);
     </script>
     <script src="app/es6-polyfills.js"></script>
-    <script src="app/webcomponents-lite.js"></script>
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./sg.css">
 
   </head>
   <body class="a-device-state a-device-state--debug">
 
-    <script src="components/u-core/index.js"></script>
     <axa-core only-load="true" icons-path="./assets/icons/icons.svg"></axa-core>
 
     <header class="sg-header">
@@ -53,6 +51,12 @@
     ,{
       "links": [
         {"name": "Cookie-disclaimer", "url": "organisms.html#o-cookie-disclaimer"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Error-page", "url": "organisms.html#o-error-page"}
       ]
     }
 
@@ -355,6 +359,8 @@
 
     ,{"name": "Cookie-disclaimer", "url": "organisms.html#o-cookie-disclaimer"}
 
+    ,{"name": "Error-page", "url": "organisms.html#o-error-page"}
+
     ,{"name": "Footer", "url": "organisms.html#o-footer"}
 
     ,{"name": "Header", "url": "organisms.html#o-header"}
@@ -453,6 +459,9 @@
       </axa-header>
     </header>
 
+    <script src="./app/app.js"></script>
+    <script src="components/u-core/index.js"></script>
+
     
     <article class="o-sg-section o-sg-section--padded o-sg-section__atomic-category">
       <h1>Welcome to the patterns library!</h1>
@@ -471,7 +480,6 @@
       <h2>We embrace the atomic design to split our components!</h2>
     </article>
       
-
     
       <style>
         .syntaxhighlighter a,
@@ -786,8 +794,6 @@
       </style>
       
       
-
-    <script src="./app/app.js"></script>
     <script src="components/a-checkbox/index.js"></script>
 <script src="components/a-choice/index.js"></script>
 <script src="components/a-device-state/index.js"></script>
@@ -826,6 +832,7 @@
 <script src="components/o-accordion/index.js"></script>
 <script src="components/o-container/index.js"></script>
 <script src="components/o-cookie-disclaimer/index.js"></script>
+<script src="components/o-error-page/index.js"></script>
 <script src="components/o-footer/index.js"></script>
 <script src="components/o-header/index.js"></script>
 <script src="components/o-sticky/index.js"></script>

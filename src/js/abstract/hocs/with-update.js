@@ -217,15 +217,6 @@ const withUpdate = Base =>
     }
 
     /**
-     * Only morph children of current custom element, not any other custom element.
-     *
-     * @returns {boolean}
-     */
-    skipChildren() {
-      return !this._isMorphing;
-    }
-
-    /**
      * disconnectedCallback - description
      *
      * @return {type}  description

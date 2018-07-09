@@ -1,5 +1,5 @@
-import wcdomready from '../../js/wcdomready';
 import getAttributes from '../../js/get-attributes';
+import defineOnce from '../../js/define-once';
 
 const axaPLibDefaults = {};
 
@@ -39,8 +39,6 @@ class AXACore extends HTMLElement {
   }
 }
 
-wcdomready(() => {
-  window.customElements.define(AXACore.tagName, AXACore);
-});
+defineOnce(AXACore.tagName, AXACore);
 
 export default AXACore;
