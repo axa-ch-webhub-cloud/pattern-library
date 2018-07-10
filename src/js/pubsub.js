@@ -107,7 +107,7 @@ function onsubscribe(_topic) {
 on(document, 'pubsub/onsubscribe', flush);
 
 /**
- * Flush publish cache as soon as any given topic has subscribtions.
+ * Flush publish cache as soon as any given topic has subscriptions.
  *
  * @param {String} topic - A string defining the topic to subscribe to.
  */
