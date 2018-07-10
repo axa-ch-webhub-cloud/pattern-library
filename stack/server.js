@@ -3,13 +3,14 @@ const constants = require('./constants');
 const express = require('express');
 const readline = require('readline');
 const compression = require('compression');
+// eslint-disable-next-line no-unused-vars
 const slow = require('connect-slow');
 
 const ENV = process.env.NODE_ENV; // second element is the first argument.
 
 const app = express();
 
-app.use(slow());
+// app.use(slow());
 
 if (ENV === constants.ENV.PROD) {
   app.use(compression({ filter: shouldCompress }));
