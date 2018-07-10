@@ -4,7 +4,8 @@ import debounce from './debounce';
 // import maybe, { toEqual } from './maybe';
 
 // @TODO: this local variable isn't shared between redundant module instance
-const subscriptions = {};
+window.__subscriptions = window.__subscriptions || {};
+const subscriptions = window.__subscriptions;
 
 /* const logMaybe = maybe(console.log)(toEqual);
 const logContext = logMaybe('context/available'); */
