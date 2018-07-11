@@ -1,4 +1,4 @@
-import { EVENTS } from '../../../js/ui-events';
+import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 import { getNumericWeekday } from '../../../js/date';
@@ -29,6 +29,7 @@ export default class Datepicker {
     this.mapElements(year, month);
     this.appendCalenderBody();
     this.listenToCells();
+    this.listenToDropdowns();
     this.listenToButtons();
     this.wcNode.querySelector('.js-datepicker__dropdown__month').setAttribute('value', month);
   }
@@ -84,6 +85,16 @@ export default class Datepicker {
     );
   }
 
+  listenToDropdowns() {
+    // TODO add offListenToDropdowns
+    on(
+      this.wcNode, AXA_EVENTS.AXA_CHANGE, '',
+      this.handleDropdownChange, {
+        capture: true, passive: false,
+      },
+    );
+  }
+
   offClicks() {
     if (this.unClickEnd) {
       this.unClickEnd();
@@ -97,6 +108,11 @@ export default class Datepicker {
     on(this.wcNode.querySelector('.js-datepicker__button__Ok'), 'click', () => {
       console.log('okbutton');
     });
+  }
+
+  handleDropdownChange = (e) => {
+    e.preventDefault();
+    console.log(e, e.target.value);
   }
 
   handleClick = (e) => {
