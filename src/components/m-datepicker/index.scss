@@ -32,10 +32,26 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $da
 
 .m-datepicker__dropdown {
   margin-bottom: $datepicker-margin-top-bottom;
+
+  // text-align: left;
+
+  .m-dropdown__toggle {
+    padding-left: 10px;
+  }
 }
 
 .m-datepicker__dropdown__year {
   float: right;
+
+  .m-dropdown__toggle {
+    width: 92px;
+  }
+}
+
+.m-datepicker__dropdown__month {
+  .m-dropdown__toggle {
+    width: 142px;
+  }
 }
 
 .m-datepicker__weekdays {
