@@ -156,6 +156,7 @@
     "@webcomponents/webcomponentsjs": "^2.0.2",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
+    "connect-slow": "^0.4.0",
     "core-js": "~2.5.1",
     "innersvg-polyfill": "0.0.2",
     "nanohtml": "^1.2.2",
