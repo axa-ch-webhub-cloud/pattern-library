@@ -48,7 +48,7 @@ export default class Datepicker {
 
       if ((new Date(year, month, ((index + 1) - numericWeekdayFirstDayOfMonth)).getTime()
       === new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()).getTime())
-    && ((index - numericWeekdayFirstDayOfMonth) < this.today.getDate())) {
+      && ((index - numericWeekdayFirstDayOfMonth) < this.today.getDate())) {
         element.innerHTML = ((index - numericWeekdayFirstDayOfMonth) + 1);
         return new Today(element);
       }
@@ -64,7 +64,6 @@ export default class Datepicker {
 
       element.innerHTML = this.firstDayOfNextMonth.getDate()
        + (index - dateLastDayOfMonth - numericWeekdayFirstDayOfMonth);
-      // return new NotCurrentMonth(element);
       return new NextMonth(element);
     });
   }
@@ -84,6 +83,7 @@ export default class Datepicker {
       },
     );
   }
+
   offClicks() {
     if (this.unClickEnd) {
       this.unClickEnd();
@@ -110,8 +110,22 @@ export default class Datepicker {
         this.selected = e.target;
       } else if (elementClass === 'js-datepicker__calender-body__next-month') {
         this.init(2018, this.date.getMonth() + 1);
+        if (this.selected !== null) {
+          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+        }
+        e.target.classList.add('m-datepicker__calender-body__selected-day');
+        this.selected = e.target;
+        console.log(e.target, e.target.classList);
+        // TODO wenn the month chnages, the day wich is klicked should be selected after the month has changed.
       } else if (elementClass === 'js-datepicker__calender-body__last-month') {
         this.init(2018, this.date.getMonth() - 1);
+        if (this.selected !== null) {
+          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+        }
+        e.target.classList.add('m-datepicker__calender-body__selected-day');
+        this.selected = e.target;
+        console.log(e.target, e.target.classList);
+        // TODO wenn the month changes, the day wich is klicked should be selected after the month has changed.
       }
     });
   }
