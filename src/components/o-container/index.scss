@@ -1,7 +1,5 @@
-@import "../../styles/grid/grid-mixins";
+@import "../../styles/grid/grid-container";
 
 .o-container {
-  @include make-container();
-  @include make-container-max-widths();
   display: block;
 }

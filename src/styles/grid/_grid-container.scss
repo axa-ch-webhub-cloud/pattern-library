@@ -1,0 +1,17 @@
+@import "./grid-mixins";
+
+/// Container widths
+///
+/// Set the container width, and override it for fixed navbars in media queries.
+.u-container {
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+/// Fluid container
+///
+/// Utilizes the mixin meant for fixed width containers, but with 100% width for
+/// fluid, full width layouts.
+.u-container-fluid {
+  @include make-container();
+}
