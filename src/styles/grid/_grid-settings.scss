@@ -33,3 +33,6 @@ $container-max-widths:
     lg: 960px,
     xl: 1140px
   ) !default;
+
+/// Utility base class name of columns
+$grid-col-class: 'u-col';
