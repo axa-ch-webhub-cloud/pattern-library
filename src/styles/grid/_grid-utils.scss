@@ -1,43 +1,38 @@
 @import "./grid-settings";
 @import "./grid-mixins";
-@import "../mixins/respond";
+@import "./grid-framework";
 
-// Container widths
-//
-// Set the container width, and override it for fixed navbars in media queries.
+/// Container widths
+///
+/// Set the container width, and override it for fixed navbars in media queries.
 .u-container {
   @include make-container();
   @include make-container-max-widths();
 }
 
-// Fluid container
-//
-// Utilizes the mixin meant for fixed width containers, but with 100% width for
-// fluid, full width layouts.
+/// Fluid container
+///
+/// Utilizes the mixin meant for fixed width containers, but with 100% width for
+/// fluid, full width layouts.
 .u-container--fluid {
   @include make-container();
 }
 
-// Row
-//
-// Rows contain and clear the floats of your columns.
+/// Row
+///
+/// Rows contain and clear the floats of your columns.
 .u-row {
   @include make-row();
 }
 
-// Remove the negative margin from default .row, then the horizontal padding
-// from all immediate children columns (to prevent runaway style inheritance).
+/// Remove the negative margin from default .row, then the horizontal padding
+/// from all immediate children columns (to prevent runaway style inheritance).
 .u-no-gutters {
   @include no-gutters();
 }
 
-.u-col {
-  @include make-col-ready();
-  @include reset-col();
-}
+/// Columns
+///
+/// Common styles for small and large grid columns
 
-@for $grid-column from 1 through $grid-columns {
-  .u-col-#{$grid-column} {
-    @include make-col($grid-column);
-  }
-}
+@include make-grid-columns();

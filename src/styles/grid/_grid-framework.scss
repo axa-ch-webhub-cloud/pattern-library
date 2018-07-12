@@ -1,7 +1,7 @@
-// Framework grid generation
-//
-// Used only by Bootstrap to generate the correct number of grid classes given
-// any value of `$grid-columns`.
+/// Framework grid generation
+///
+/// Used only by Bootstrap to generate the correct number of grid classes given
+/// any value of `$grid-columns`.
 
 @import "./grid-settings";
 @import "./grid-functions";
