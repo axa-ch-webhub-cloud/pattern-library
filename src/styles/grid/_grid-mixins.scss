@@ -41,12 +41,12 @@
   margin-left: $gutter-width;
 }
 
-@mixin no-gutters($col-class: $grid-col-class) {
+@mixin no-gutters() {
   margin-right: 0;
   margin-left: 0;
 
-  > .#{$col-class},
-  > [class*="#{$col-class}"] {
+  > .u-col,
+  > [class*="u-col"] {
     padding-right: 0;
     padding-left: 0;
   }
