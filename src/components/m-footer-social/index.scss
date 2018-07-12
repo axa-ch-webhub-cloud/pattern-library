@@ -13,6 +13,7 @@
   @include make-col(4);
 
   display: block;
+  text-align: left;
 
   // if only child -> width based on content
   &:first-child:last-child {
