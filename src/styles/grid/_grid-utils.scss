@@ -14,7 +14,7 @@
 ///
 /// Utilizes the mixin meant for fixed width containers, but with 100% width for
 /// fluid, full width layouts.
-.u-container--fluid {
+.u-container-fluid {
   @include make-container();
 }
 
