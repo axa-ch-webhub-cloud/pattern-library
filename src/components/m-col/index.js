@@ -4,6 +4,13 @@ import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 
+const reModifiers = /(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|first|last))?/;
+const validModifiers = (modifier) => {
+  const type = typeof modifier;
+
+  return type === 'number' || (type === 'string' && reModifiers.test(modifier));
+};
+
 class AXACol extends BaseComponentGlobal {
   static tagName = 'axa-col'
 
@@ -39,12 +46,12 @@ class AXACol extends BaseComponentGlobal {
     }
 
     /* eslint-disable no-shadow */
-    size = size.map(size => `u-col-${size}`);
-    order = order.map(order => `u-order-${order}`);
-    offset = offset.map(offset => `u-offset-${offset}`);
+    size = size.filter(validModifiers).map(size => `u-col-${size}`);
+    order = order.filter(validModifiers).map(order => `u-order-${order}`);
+    offset = offset.filter(validModifiers).map(offset => `u-offset-${offset}`);
     /* eslint-enable no-shadow */
 
-    this.className = classnames('m-col', 'u-col', this.initialClassname, classes, size, order, offset);
+    this.className = classnames('m-col', 'u-col', classes, size, order, offset);
   }
 }
 
