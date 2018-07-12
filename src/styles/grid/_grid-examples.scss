@@ -1,0 +1,24 @@
+@import "../settings/colors";
+
+.grid-examples {
+  /* stylelint-disable selector-type-no-unknown */
+  axa-container {
+    background: $color-sec-pink-cotton-candy;
+  }
+
+  axa-row {
+    margin-top: 10px;
+    background: $color-sec-green-acid;
+  }
+
+  axa-col {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: solid 1px $color-sec-green-viridian;
+    background: $color-sec-green-greyjoy;
+  }
+
+  axa-col axa-col {
+    background: $color-sec-green-aqua;
+  }
+}
