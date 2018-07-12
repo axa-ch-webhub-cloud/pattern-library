@@ -13,6 +13,7 @@
   background: $header-sub-navigation-bg;
   border-bottom: $header-sub-navigation-border-width solid $header-sub-navigation-border-color;
   box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.3);
+  text-align: left;
 
   .is-header-sub-navigation-open & {
     display: block;
