@@ -143,6 +143,8 @@ const writeIndexScss = (path, _name) => {
     outdent`
       .${element}-${_name} {
         display: block;
+        
+        // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
       }
 
     `
