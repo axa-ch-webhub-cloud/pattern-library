@@ -4,6 +4,7 @@ import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 
+const reWhiteSpace = /\s+/;
 const reModifiers = /(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|first|last))?/;
 const validModifiers = (modifier) => {
   const type = typeof modifier;
@@ -31,18 +32,18 @@ class AXACol extends BaseComponentGlobal {
   // You may want to update stuff before rendering.
   willRenderCallback() {
     const { classes } = this;
-    let { size, order, offset } = this;
+    let { size = '', order = '', offset = '' } = this;
 
     if (!Array.isArray(size)) {
-      size = [size];
+      size = size.split(reWhiteSpace);
     }
 
     if (!Array.isArray(order)) {
-      order = [order];
+      order = order.split(reWhiteSpace);
     }
 
     if (!Array.isArray(offset)) {
-      offset = [offset];
+      offset = offset.split(reWhiteSpace);
     }
 
     /* eslint-disable no-shadow */
