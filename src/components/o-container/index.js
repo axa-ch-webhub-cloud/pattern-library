@@ -13,6 +13,12 @@ class AXAContainer extends BaseComponentGlobal {
   constructor() {
     super({ styles, template });
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.className = `${this.initialClassName} o-container`;
+  }
 }
 
 defineOnce(AXAContainer.tagName, AXAContainer);

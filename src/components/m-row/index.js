@@ -19,7 +19,7 @@ class AXARow extends BaseComponentGlobal {
   willRenderCallback() {
     const { noGutters, classes } = this;
 
-    this.className = classnames('m-row', 'u-row', this.initialClassname, classes, { 'u-no-gutters': noGutters });
+    this.className = classnames('m-row', 'u-row', this.initialClassName, classes, { 'u-no-gutters': noGutters });
   }
 }
 
