@@ -41,6 +41,17 @@
   margin-left: $gutter-width;
 }
 
+@mixin no-gutters($col-class: $grid-col-class) {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .#{$col-class},
+  > [class*="#{$col-class}"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 /// For each grid-tier, define the maximum width of the container in a media query.
 /// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
