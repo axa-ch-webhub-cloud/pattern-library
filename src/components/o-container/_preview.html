@@ -24,6 +24,10 @@
     border: solid 1px #668980;
     background: #9fbeaf;
   }
+
+  .grid-examples axa-col axa-col {
+    background: #9fd9b4;
+  }
 </style>
 
 <div class="grid-examples">
@@ -209,6 +213,24 @@
     <axa-row>
       <axa-col size="sm-6 md-5 lg-6">.u-col-sm-6 .u-col-md-5 .u-col-lg-6</axa-col>
       <axa-col size="sm-6 md-5 lg-6" offset="md-2 lg-0">.u-col-sm-6 .u-col-md-5 .u-offset-md-2 .u-col-lg-6 .u-offset-lg-0</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <!-- Nesting -->
+
+  <axa-container>
+    <axa-row>
+      <axa-col size="sm-9">
+        Level 1: .u-col-sm-9
+        <axa-row>
+          <axa-col size="8 sm-6">
+            Level 2: .u-col-8 .u-col-sm-6
+          </axa-col>
+          <axa-col size="4 sm-6">
+            Level 2: .u-col-4 .u-col-sm-6
+          </axa-col>
+        </axa-row>
+      </axa-col>
     </axa-row>
   </axa-container>
 </div>
