@@ -48,6 +48,9 @@
 ///
 ///    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 ///    576px
+///
+/// @param {string} $name - Breakpoint name to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
   $min: map-get($breakpoints, $name);
 
@@ -63,10 +66,13 @@
 ///
 ///    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 ///    767.98px
+///
+/// @param {string} $name - Breakpoint name to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $next: breakpoint-next($name, $breakpoints);
 
-  @return if($next, breakpoint-min($next, $breakpoints) - .02px, null);
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02px, null);
 }
 
 /// Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
@@ -76,6 +82,9 @@
 ///    ""  (Returns a blank string)
 ///    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 ///    "-sm"
+///
+/// @param {string} $name - Breakpoint name to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
   @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
 }
