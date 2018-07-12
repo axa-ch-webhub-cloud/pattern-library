@@ -7,3 +7,208 @@
     </axa-col>
   </axa-row>
 </axa-container>
+
+<style>
+  .grid-examples axa-container {
+    background: #fad6de;
+  }
+
+  .grid-examples axa-row {
+    margin-top: 10px;
+    background: #f0ff93;
+  }
+
+  .grid-examples axa-col {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: solid 1px #668980;
+    background: #9fbeaf;
+  }
+</style>
+
+<div class="grid-examples">
+  <axa-container>
+    <axa-row>
+      <axa-col>Col 1 of 2</axa-col>
+      <axa-col>Col 2 of 2</axa-col>
+    </axa-row>
+
+    <axa-row>
+      <axa-col>Col 1 of 3</axa-col>
+      <axa-col>Col 2 of 3</axa-col>
+      <axa-col>Col 3 of 3</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col size="sm">Col 1</axa-col>
+      <axa-col size="sm">Col 2</axa-col>
+      <axa-col size="sm">Col 3</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col>Column</axa-col>
+      <axa-col>Column</axa-col>
+      <div style="width: 100%;"></div>
+      <axa-col>Column</axa-col>
+      <axa-col>Column</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col>
+        1 of 3
+      </axa-col>
+      <axa-col size="6">
+        2 of 3 (wider)
+      </axa-col>
+      <axa-col>
+        3 of 3
+      </axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col>
+        1 of 3
+      </axa-col>
+      <axa-col size="5">
+        2 of 3 (wider)
+      </axa-col>
+      <axa-col>
+        3 of 3
+      </axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row class="justify-content-md-center">
+      <axa-col size="lg-2" classes="u-col">
+        1 of 3
+      </axa-col>
+      <axa-col size="md-auto">
+        Variable width content
+      </axa-col>
+      <axa-col size="lg-2" classes="u-col">
+        3 of 3
+      </axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col>
+        1 of 3
+      </axa-col>
+      <axa-col size="md-auto">
+        Variable width content
+      </axa-col>
+      <axa-col size="lg-2" classes="u-col">
+        3 of 3
+      </axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col>col</axa-col>
+      <axa-col>col</axa-col>
+      <axa-col>col</axa-col>
+      <axa-col>col</axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col size="8">col-8</axa-col>
+      <axa-col size="4">col-4</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col size="sm-8">col-sm-8</axa-col>
+      <axa-col size="sm-4">col-sm-4</axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col size="sm">col-sm</axa-col>
+      <axa-col size="sm">col-sm</axa-col>
+      <axa-col size="sm">col-sm</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <axa-row>
+      <axa-col size="12 md-8">.u-col-12 .u-col-md-8</axa-col>
+      <axa-col size="6 md-4">.u-col-6 .u-col-md-4</axa-col>
+    </axa-row>
+
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+    <axa-row>
+      <axa-col size="6 md-4">.u-col-6 .u-col-md-4</axa-col>
+      <axa-col size="6 md-4">.u-col-6 .u-col-md-4</axa-col>
+      <axa-col size="6 md-4">.u-col-6 .u-col-md-4</axa-col>
+    </axa-row>
+
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <axa-row>
+      <axa-col size="6">.u-col-6</axa-col>
+      <axa-col size="6">.u-col-6</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <!-- Reordering -->
+
+  <axa-container>
+    <axa-row>
+      <axa-col>
+        First, but unordered
+      </axa-col>
+      <axa-col order="12">
+        Second, but last
+      </axa-col>
+      <axa-col order="1">
+        Third, but first
+      </axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col order="last">
+        First, but last
+      </axa-col>
+      <axa-col>
+        Second, but unordered
+      </axa-col>
+      <axa-col order="first">
+        Third, but first
+      </axa-col>
+    </axa-row>
+  </axa-container>
+
+  <!-- Offset Columns -->
+
+  <axa-container>
+    <axa-row>
+      <axa-col size="md-4">.u-col-md-4</axa-col>
+      <axa-col size="md-4" offset="md-4">.u-col-md-4 .u-offset-md-4</axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col size="md-3" offset="md-3">.u-col-md-3 .u-offset-md-3</axa-col>
+      <axa-col size="md-3" offset="md-3">.u-col-md-3 .u-offset-md-3</axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col size="md-6" offset="md-3">.u-col-md-6 .u-offset-md-3</axa-col>
+    </axa-row>
+  </axa-container>
+
+  <axa-container>
+    <axa-row>
+      <axa-col size="sm-5 md-6">.u-col-sm-5 .u-col-md-6</axa-col>
+      <axa-col size="sm-5 md-6" offset="sm-2 md-0">.u-col-sm-5 .u-offset-sm-2 .u-col-md-6 .u-offset-md-0</axa-col>
+    </axa-row>
+
+    <axa-row>
+      <axa-col size="sm-6 md-5 lg-6">.u-col-sm-6 .u-col-md-5 .u-col-lg-6</axa-col>
+      <axa-col size="sm-6 md-5 lg-6" offset="md-2 lg-0">.u-col-sm-6 .u-col-md-5 .u-offset-md-2 .u-col-lg-6 .u-offset-lg-0</axa-col>
+    </axa-row>
+  </axa-container>
+</div>
