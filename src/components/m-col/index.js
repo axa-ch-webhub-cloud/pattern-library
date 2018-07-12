@@ -11,6 +11,17 @@ const validModifiers = (modifier) => {
 
   return type === 'number' || (type === 'string' && reModifiers.test(modifier));
 };
+const toArray = (modifier) => {
+  if (Array.isArray(modifier)) {
+    return modifier;
+  }
+
+  if (typeof modifier === 'string') {
+    return modifier.split(reWhiteSpace);
+  }
+
+  return [modifier];
+};
 
 class AXACol extends BaseComponentGlobal {
   static tagName = 'axa-col'
@@ -34,17 +45,9 @@ class AXACol extends BaseComponentGlobal {
     const { classes } = this;
     let { size = '', order = '', offset = '' } = this;
 
-    if (!Array.isArray(size)) {
-      size = size.split(reWhiteSpace);
-    }
-
-    if (!Array.isArray(order)) {
-      order = order.split(reWhiteSpace);
-    }
-
-    if (!Array.isArray(offset)) {
-      offset = offset.split(reWhiteSpace);
-    }
+    size = toArray(size);
+    order = toArray(order);
+    offset = toArray(offset);
 
     /* eslint-disable no-shadow */
     size = size.filter(validModifiers).map(size => `u-col-${size}`);
