@@ -51,7 +51,7 @@ class AXACol extends BaseComponentGlobal {
     offset = offset.filter(validModifiers).map(offset => `u-offset-${offset}`);
     /* eslint-enable no-shadow */
 
-    this.className = classnames('m-col', 'u-col', classes, size, order, offset);
+    this.className = classnames('m-col', { 'u-col': !size || !size.length }, classes, size, order, offset);
   }
 }
 
