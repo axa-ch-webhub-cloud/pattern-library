@@ -147,6 +147,7 @@
       "ignoreAtRules": ["if", "else"]
     } ],
     "at-rule-no-unknown": null,
+    "selector-type-no-unknown": null,
     "declaration-empty-line-before": null,
     "block-closing-brace-newline-after": ["always", {
       "ignoreAtRules": ["if", "else"]

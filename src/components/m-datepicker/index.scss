@@ -13,10 +13,6 @@ $datepicker-dropdown-year-width: 88px !default;
 $datepicker-dropdown-month-width: 146px !default;
 $datepicker-dropdown-padding-left: 10px !default;
 
-$datepicker-cell-border-radius: 100px !default;
-
-$datepicker-calender-body-padding-top: 5px !default;
-
 $datepicker-border-width: 1px !default;
 
 $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $datepicker-border-width * 2) / 7;
@@ -100,53 +96,4 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $da
 .m-datepicker__button__Ok {
   position: absolute;
   right: 0;
-}
-
-.m-datepicker__calender-body {
-  padding-top: $datepicker-calender-body-padding-top;
-  display: flex;
-
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.m-datepicker__calender-body__cell {
-  width: $with-one-seventh;
-  height: $with-one-seventh;
-
-  padding-left: 0;
-  padding-right: 0;
-
-  border-radius: $datepicker-cell-border-radius;
-  cursor: pointer;
-  border: none;
-}
-
-.m-datepicker__calender-body__cell:focus {
-  outline: none;
-}
-
-.m-datepicker__calender-body__not-current-month {
-  color: $color-prim-gray-silver;
-}
-
-.m-datepicker__calender-body__current-month:hover {
-  box-shadow: 0 0 0 3px $color-axa-blue inset;
-  background-color: $color-prim-white;
-  color: $color-prim-gray-mine-shaft;
-}
-
-.m-datepicker__calender-body__current-month {
-  color: $color-prim-gray-mine-shaft;
-}
-
-.m-datepicker__calender-body__today {
-  background-color: $color-axa-blue;
-  color: $color-prim-white;
-}
-
-.m-datepicker__calender-body__selected-day {
-  background-color: $color-prim-white;
-  box-shadow: 0 0 0 3px $color-axa-blue inset;
-  color: $color-prim-gray-mine-shaft;
 }
