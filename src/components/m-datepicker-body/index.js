@@ -1,5 +1,6 @@
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import getAttribute from '../../js/get-attribute';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -11,7 +12,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'locale', 'value', 'index']; }
+  static get observedAttributes() { return ['classes', 'locale', 'value', 'index', 'year', 'month']; }
 
   constructor() {
     super({ styles, template });
@@ -61,8 +62,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
   // }
 
   didRenderCallback() {
-    // TODO see if it has to be today and if so pass here value
-    this.datepickerBody.init(this);
+    this.datepickerBody.init(getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, getAttribute(this, 'month') || undefined);
   }
 }
 

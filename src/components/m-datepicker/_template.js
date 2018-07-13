@@ -18,13 +18,13 @@ export default ({
 }) => html`
   <article class="${classes} m-datepicker__article">
     <div class="">
-      <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
+      <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
         size="sm" value="${new Date().getMonth()}"
         items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
           name: month, url: '#', value: index,
         })))}">
       </axa-dropdown>
-      <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
+      <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
         size="sm" value="${new Date().getFullYear()}"
         items="${JSON.stringify(getSpecificYears(maxYears, futureYears).map(year => ({
           name: year, url: '#', value: year,
@@ -34,7 +34,7 @@ export default ({
     <div class="m-datepicker__weekdays">
       ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
     </div>
-    <axa-datepicker-body locale="${locale}"></axa-datepicker-body>
+    <axa-datepicker-body class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
     <div class="m-datepicker__button">
       <axa-button class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
         tag="button" size="sm" ghost="">${buttonCancel}</axa-button>

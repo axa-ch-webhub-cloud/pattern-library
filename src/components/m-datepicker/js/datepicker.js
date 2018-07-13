@@ -24,13 +24,15 @@ export default class Datepicker {
 
     // this.mapElements(year, month);
     // this.appendCalenderBody();
-    // this.listenToDropdowns();
+    this.listenToDropdowns();
     // this.listenToButtons();
 
 
     // TEMP VAR
     this.maxYears = 2;
     this.futureYears = false;
+
+    this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
 
 
     // this.wcNode.querySelector('.js-datepicker__dropdown__month').setAttribute('value', month);
@@ -82,10 +84,11 @@ export default class Datepicker {
 
   handleDropdownChange = (e) => {
     e.preventDefault();
-    if (e.target.value > 11) {
-      this.init(e.target.value, this.date.getMonth());
+    const { dataset } = e.target;
+    if (dataset.month) {
+      this.datepickerBody.setAttribute('month', e.target.value);
     } else {
-      this.init(this.date.getFullYear(), e.target.value);
+      this.datepickerBody.setAttribute('year', e.target.value);
     }
     console.log(`${e.target.value} dropdownchange ${this.date}`);
   }

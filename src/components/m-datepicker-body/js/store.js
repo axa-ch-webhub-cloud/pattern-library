@@ -10,9 +10,7 @@ const today = new Date();
 
 let cells = [];
 
-export const initCells = (locale) => {
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth();
+export const initCells = (locale, year = new Date().getFullYear(), month = new Date().getMonth()) => {
   // const date = new Date(year, month);
   const firstDayOfMonth = new Date(year, month, 1);
   const lastDayOfMonth = new Date(year, month + 1, 0);

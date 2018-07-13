@@ -9,8 +9,8 @@ export default class DatepickerBody {
     this.selected = null;
   }
 
-  init() {
-    initCells();
+  init(locale, year, month) {
+    initCells(locale, year, month);
     this.listenToCells();
   }
 
@@ -39,9 +39,14 @@ export default class DatepickerBody {
 
     if (cell instanceof CurrentMonth) {
       this.handleCurrentMonth(index, cell);
-      this.wcNode.setAttribute('value', cell.getText());
-      this.wcNode.setAttribute('index', index);
+    } else if (cell instanceof NextMonth) {
+      console.log('HERE logic next month');
+    } else if (cell instanceof LastMonth) {
+      console.log('HERE logic last month');
     }
+
+    this.wcNode.setAttribute('value', cell.getText());
+    this.wcNode.setAttribute('index', index);
   }
 
   handleCurrentMonth(index, cell) {
