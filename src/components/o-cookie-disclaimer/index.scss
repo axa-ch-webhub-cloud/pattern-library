@@ -17,7 +17,7 @@ $cookie-container-z-index: 2000;
     margin-top: 0;
   }
 
-  .o-container {
+  .u-container {
     @include respond-up(md) {
       display: flex;
 
