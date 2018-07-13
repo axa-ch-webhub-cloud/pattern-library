@@ -11,10 +11,12 @@ export default ({
   buttonOk,
   buttonCancel,
   locale = 'ch-de',
+  value = 'iso',
   maxYears = 2,
   futureYears = false,
 }) => html`
   <article class="${classes} m-datepicker__article">
+  ${futureYears}
       <div class="">
         <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
           size="sm" value="${new Date().getMonth()}"
