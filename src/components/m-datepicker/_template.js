@@ -11,8 +11,8 @@ export default ({
   buttonOk,
   buttonCancel,
   locale = 'ch-de',
-  maxYears = 50,
-  futureYears = true,
+  maxYears = 2,
+  futureYears = false,
 }) => html`
   <article class="${classes} m-datepicker__article">
       <div class="">

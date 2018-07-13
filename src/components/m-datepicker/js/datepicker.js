@@ -9,15 +9,16 @@ export default class Datepicker {
     this.cellAmount = 42;
     this.elements = [...Array(this.cellAmount).keys()];
 
-    this.selectedDate = null;
+    // this.selectedDate = null;
     this.selected = null;
-  }
-
-  init(year = new Date().getFullYear(), month = new Date(2018, 6).getMonth()) {
-    this.dropDownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
-    this.dropDownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
 
     this.today = new Date();
+  }
+
+  init(year = new Date().getFullYear(), month = new Date().getMonth()) {
+    console.log(`year aus init ${year}`);
+    this.dropDownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
+    this.dropDownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
 
     this.date = new Date(year, month);
     this.firstDayOfMonth = new Date(year, month, 1);
@@ -31,7 +32,15 @@ export default class Datepicker {
     this.listenToCells();
     this.listenToDropdowns();
     this.listenToButtons();
+
+
+    // TEMP VAR
+    this.maxYears = 2;
+    this.futureYears = false;
+
+
     this.wcNode.querySelector('.js-datepicker__dropdown__month').setAttribute('value', month);
+    this.wcNode.querySelector('.js-datepicker__dropdown__year').setAttribute('value', year);
   }
 
   mapElements(year, month) {
@@ -85,9 +94,15 @@ export default class Datepicker {
     );
   }
 
+  offClicks() {
+    if (this.unClickEnd) {
+      this.unClickEnd();
+    }
+  }
+
   listenToDropdowns() {
-    // TODO add offListenToDropdowns
-    on(
+    this.offListenToDropdowns();
+    this.unDropdownListenerEnd = on(
       this.wcNode, AXA_EVENTS.AXA_CHANGE, '',
       this.handleDropdownChange, {
         capture: true, passive: false,
@@ -95,54 +110,99 @@ export default class Datepicker {
     );
   }
 
-  offClicks() {
-    if (this.unClickEnd) {
-      this.unClickEnd();
+  offListenToDropdowns() {
+    if (this.unDropdownListenerEnd) {
+      this.unDropdownListenerEnd();
     }
   }
 
   listenToButtons() {
-    on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), 'click', () => {
-      console.log('cancle');
+    this.offListenToButtons();
+    this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), 'click', () => {
+      // console.log('cancle');
+      // console.log(this.selected, this.date);
     });
-    on(this.wcNode.querySelector('.js-datepicker__button__Ok'), 'click', () => {
-      console.log('okbutton');
+    this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), 'click', () => {
+      // console.log('okbutton');
+      // console.log(this.date, this.selected);
     });
+  }
+
+  offListenToButtons() {
+    if (this.unCancelButtonListenerEnd) {
+      this.unCancelButtonListenerEnd();
+    }
+    if (this.unOkButtonListenerEnd) {
+      this.unOkButtonListenerEnd();
+    }
   }
 
   handleDropdownChange = (e) => {
     e.preventDefault();
-    console.log(e, e.target.value);
+    if (e.target.value > 11) {
+      this.init(e.target.value, this.date.getMonth());
+    } else {
+      this.init(this.date.getFullYear(), e.target.value);
+    }
+    console.log(`${e.target.value} dropdownchange ${this.date}`);
   }
 
   handleClick = (e) => {
     e.preventDefault();
     [].slice.call(e.target.classList).forEach((elementClass) => {
       if (elementClass === 'm-datepicker__calender-body__current-month') {
-        if (this.selected !== null) {
-          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
-        }
-        e.target.classList.add('m-datepicker__calender-body__selected-day');
-        this.selected = e.target;
+        this.handleCurrentMonth(e);
       } else if (elementClass === 'js-datepicker__calender-body__next-month') {
-        this.init(2018, this.date.getMonth() + 1);
-        if (this.selected !== null) {
-          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+        if (this.futureYears === true &&
+          (new Date(this.today.getFullYear() + (this.maxYears - 1), 11, 1) <= this.date)) {
+          console.log('true und max', this.date);
+        } else if (this.futureYears === false &&
+          (new Date(this.today.getFullYear(), 11, 1) <= this.date)) {
+          console.log('false und max');
+        } else {
+          this.handleNextMonth();
         }
-        e.target.classList.add('m-datepicker__calender-body__selected-day');
-        this.selected = e.target;
-        console.log(e.target, e.target.classList);
-        // TODO wenn the month chnages, the day wich is klicked should be selected after the month has changed.
       } else if (elementClass === 'js-datepicker__calender-body__last-month') {
-        this.init(2018, this.date.getMonth() - 1);
-        if (this.selected !== null) {
-          this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+        if (this.futureYears === false &&
+          (new Date(this.today.getFullYear() - (this.maxYears - 1), 0, 1) >= this.date)) {
+          console.log('false und min');
+        } else if (this.futureYears === true &&
+          (new Date(this.today.getFullYear(), 0, 1) >= this.date)) {
+          console.log('true und min');
+        } else {
+          this.handleLastMonth();
         }
-        e.target.classList.add('m-datepicker__calender-body__selected-day');
-        this.selected = e.target;
-        console.log(e.target, e.target.classList);
-        // TODO wenn the month changes, the day wich is klicked should be selected after the month has changed.
       }
     });
+  }
+
+  handleCurrentMonth(e) {
+    if (this.selected !== null) {
+      this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+    }
+    e.target.classList.add('m-datepicker__calender-body__selected-day');
+    this.selected = e.target;
+  }
+
+  handleLastMonth() {
+    if (this.date.getMonth() === 0) {
+      this.init(this.date.getFullYear() - 1, this.date.getMonth() - 1);
+    } else {
+      this.init(this.date.getFullYear(), this.date.getMonth() - 1);
+    }
+    // if (this.selected !== null) {
+    //   this.selected.classList.remove('m-datepicker__calender-body__selected-day');
+    // }
+    // e.target.classList.add('m-datepicker__calender-body__selected-day');
+    // this.selected = e.target;
+    // console.log(e.target, e.target.classList);
+  }
+
+  handleNextMonth() {
+    if (this.date.getMonth() === 11) {
+      this.init((this.date.getFullYear() + 1), this.date.getMonth() + 1);
+    } else {
+      this.init(this.date.getFullYear(), this.date.getMonth() + 1);
+    }
   }
 }
