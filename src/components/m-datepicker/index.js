@@ -7,13 +7,15 @@ import template from './_template';
 
 import Datepicker from './js/datepicker';
 
+import getAttribute from '../../js/get-attribute';
+
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
   static get observedAttributes() {
-    return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'selected-index', 'start-year', 'start-month', 'lower-end-year', 'higher-end-year'];
+    return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'selected-index', 'start-year', 'start-month', 'lower-end-year', 'higher-end-year', 'output-iso'];
   }
 
   constructor() {
@@ -63,7 +65,7 @@ class AXADatepicker extends BaseComponentGlobal {
   // }
   didRenderCallback() {
     // TODO see if it has to be today and if so pass here value
-    this.datepicker.init();
+    this.datepicker.init(getAttribute(this, 'output-iso'));
   }
 }
 

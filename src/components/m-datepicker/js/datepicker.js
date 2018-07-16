@@ -4,30 +4,15 @@ import on from '../../../js/on';
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
-    // this.cellAmount = 42;
-    // this.elements = [...Array(this.cellAmount).keys()];
-
-    // this.selectedDate = null
-
-    // this.today = new Date();
   }
 
-  init() {
+  init(outputIso) {
+    this.outputIso = outputIso;
     this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
     this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
     this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
-    // this.firstDayOfMonth = new Date(year, month, 1);
-    // this.lastDayOfMonth = new Date(year, month + 1, 0);
-
-    // this.lastDayOfLastMonth = new Date(year, month, 0);
-    // this.firstDayOfNextMonth = new Date(year, month + 1, 1);
-
     this.listenToChanges();
-    // this.listenToDatepickerBody();
-
-    // TEMP VAR
-    // this.maxYears = 2;
-    // this.futureYears = false;
+    this.listenToButtons();
   }
 
   listenToChanges() {
@@ -69,10 +54,28 @@ export default class Datepicker {
     this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), EVENTS.CLICK, () => {
       // console.log('cancle');
       // console.log(this.selected, this.date);
+      // TODO: Axa change event for cancel
     });
     this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
       // console.log('okbutton');
       // console.log(this.date, this.selected);
+      // TODO: Axa change event for click
+      const year = this.datepickerBody.getAttribute('year');
+      const month = this.datepickerBody.getAttribute('month');
+      const value = this.datepickerBody.getAttribute('value');
+      const locale = this.datepickerBody.getAttribute('locale');
+
+      const choosenDate = new Date();
+      if (this.outputIso) {
+        console.log('EVENT TO BE SENT: ', choosenDate.getTime());
+      } else {
+        choosenDate.setMonth(month);
+        choosenDate.setFullYear(year);
+        if (value) {
+          choosenDate.setDate(value);
+        }
+        console.log('EVENT TO BE SENT: ', choosenDate.toLocaleString(locale));
+      }
     });
   }
 
@@ -124,31 +127,4 @@ export default class Datepicker {
       this.dropdownYear.setAttribute('value', year);
     }
   }
-
-    // [].slice.call(e.target.classList).forEach((elementClass) => {
-
-      // if (elementClass === 'm-datepicker__calender-body__current-month') {
-      //   this.handleCurrentMonth(e);
-      // } else if (elementClass === 'js-datepicker__calender-body__next-month') {
-      //   if (this.futureYears === true &&
-      //     (new Date(this.today.getFullYear() + (this.maxYears - 1), 11, 1) <= this.date)) {
-      //     console.log('true und max', this.date);
-      //   } else if (this.futureYears === false &&
-      //     (new Date(this.today.getFullYear(), 11, 1) <= this.date)) {
-      //     console.log('false und max');
-      //   } else {
-      //     this.handleNextMonth();
-      //   }
-      // } else if (elementClass === 'js-datepicker__calender-body__last-month') {
-      //   if (this.futureYears === false &&
-      //     (new Date(this.today.getFullYear() - (this.maxYears - 1), 0, 1) >= this.date)) {
-      //     console.log('false und min');
-      //   } else if (this.futureYears === true &&
-      //     (new Date(this.today.getFullYear(), 0, 1) >= this.date)) {
-      //     console.log('true und min');
-      //   } else {
-      //     this.handleLastMonth();
-      //   }
-      // }
-    // });
 }

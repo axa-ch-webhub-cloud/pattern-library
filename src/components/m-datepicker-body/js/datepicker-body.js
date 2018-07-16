@@ -1,6 +1,6 @@
 import { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
-import { getCell, setCell, initCells } from '../../m-datepicker-body/js/store';
+import Store from './store';
 import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 
 export default class DatepickerBody {
@@ -12,26 +12,30 @@ export default class DatepickerBody {
   }
 
   init(index, locale, year, month) {
-    initCells(locale, year, month);
+    this._store = new Store(locale, year, month);
     this.rePaintCells(index);
     this.listenToCells();
     this.index = index;
     this.locale = locale;
 
-    if (year) {
-      this.date = new Date(year, this.date.getMonth());
+    if (month || month === 0) {
+      this.date.setMonth(month);
     }
 
-    if (month) {
-      this.date = new Date(this.date.getFullYear(), month);
+    if (year) {
+      this.date.setFullYear(year);
     }
+  }
+
+  get store() {
+    return this._store;
   }
 
   rePaintCells(index) {
     if (!index && index !== 0) {
       return;
     }
-    const cell = getCell(index);
+    const cell = this._store.getCell(index);
     if (cell instanceof CurrentMonth) {
       this.handleCurrentMonth(index, cell);
     }
@@ -62,7 +66,7 @@ export default class DatepickerBody {
       return;
     }
 
-    const cell = getCell(index);
+    const cell = this._store.getCell(index);
 
     if (cell instanceof NextMonth) {
       // TODO -> Feature logic needs to be implemented
@@ -81,11 +85,11 @@ export default class DatepickerBody {
       const isToday = this.selected.getIsToday();
       const lastText = this.selected.getText();
       const lastcell = isToday ? new Today(lastText, lastIndex, isToday) : new CurrentMonth(lastText, lastIndex, isToday);
-      setCell(lastIndex, lastcell);
+      this._store.setCell(lastIndex, lastcell);
     }
 
     const newcell = new SelectedDay(cell.getText(), cell.getIndex(), cell.getIsToday());
-    setCell(index, newcell);
+    this._store.setCell(index, newcell);
     this.selected = newcell;
   }
 
