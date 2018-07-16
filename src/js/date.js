@@ -62,7 +62,7 @@ export const getLocalWeekdayArray = (locale = 'en-uk') => {
 
   [...Array(7).keys()].forEach((index) => {
     objDate.setDate(currentDay + index);
-    finalArray.push(objDate.toLocaleString(locale, { weekday: 'long' }).slice(0, 2));
+    finalArray.push(objDate.toLocaleString(locale, { weekday: 'long' }).replace(/[^ -~]/g, '').substring(0, 2));
   });
   return finalArray;
 };

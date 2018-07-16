@@ -13,6 +13,7 @@ export default class DatepickerBody {
 
   init(index, locale, year, month) {
     this._store = new Store(locale, year, month);
+    this.selected = null;
     this.rePaintCells(index);
     this.listenToCells();
     this.index = index;

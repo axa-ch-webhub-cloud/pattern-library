@@ -52,14 +52,9 @@ export default class Datepicker {
   listenToButtons() {
     this.offListenToButtons();
     this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), EVENTS.CLICK, () => {
-      // console.log('cancle');
-      // console.log(this.selected, this.date);
       // TODO: Axa change event for cancel
     });
     this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
-      // console.log('okbutton');
-      // console.log(this.date, this.selected);
-      // TODO: Axa change event for click
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
       const value = this.datepickerBody.getAttribute('value');
@@ -67,14 +62,18 @@ export default class Datepicker {
 
       const choosenDate = new Date();
       if (this.outputIso) {
-        console.log('EVENT TO BE SENT: ', choosenDate.getTime());
+        // TODO: Axa change event for click
+        // eslint-disable-next-line
+        alert(choosenDate.getTime());
       } else {
         choosenDate.setMonth(month);
         choosenDate.setFullYear(year);
         if (value) {
           choosenDate.setDate(value);
         }
-        console.log('EVENT TO BE SENT: ', choosenDate.toLocaleString(locale));
+        // TODO: Axa change event for click
+        // eslint-disable-next-line
+        alert(choosenDate.toLocaleString(locale));
       }
     });
   }
