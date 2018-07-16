@@ -61,16 +61,18 @@ export default class Datepicker {
       const locale = this.datepickerBody.getAttribute('locale');
 
       const choosenDate = new Date();
+
+      choosenDate.setMonth(month);
+      choosenDate.setFullYear(year);
+      if (value) {
+        choosenDate.setDate(value);
+      }
+
       if (this.outputIso) {
         // TODO: Axa change event for click
         // eslint-disable-next-line
         alert(choosenDate.getTime());
       } else {
-        choosenDate.setMonth(month);
-        choosenDate.setFullYear(year);
-        if (value) {
-          choosenDate.setDate(value);
-        }
         // TODO: Axa change event for click
         // eslint-disable-next-line
         alert(choosenDate.toLocaleString(locale));
