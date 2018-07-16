@@ -1,3 +1,5 @@
+export const DEFAULT_NEW_YEARS = 10;
+
 export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
   const finalArray = [];
   [...Array(12).keys()].forEach((index) => {
@@ -13,18 +15,28 @@ export const getCurrentLocaleMonth = (locale = 'en-uk') => {
   return objDate.toLocaleString(locale, { month: 'long' });
 };
 
-export const getSpecificYears = (maxYears, futureYears) => {
-  const currentYear = new Date().getFullYear();
+export const getSpecificYears = (yearsRange) => {
+  let { lowerEndYear, higherEndYear } = yearsRange;
   const finalArray = [];
-  if (futureYears) {
-    for (let i = 0; i < maxYears; i++) {
-      finalArray.push(currentYear + i);
-    }
-  } else {
-    for (let i = 0; i < maxYears; i++) {
-      finalArray.push(currentYear - i);
-    }
+
+  const date = new Date();
+
+  if (!lowerEndYear) {
+    lowerEndYear = date.getFullYear();
   }
+
+  date.setFullYear(lowerEndYear);
+
+  if (!higherEndYear) {
+    higherEndYear = date.getFullYear() + DEFAULT_NEW_YEARS;
+  }
+
+  while (higherEndYear >= date.getFullYear()) {
+    const year = date.getFullYear();
+    finalArray.push(year);
+    date.setFullYear(year + 1);
+  }
+
   return finalArray;
 };
 

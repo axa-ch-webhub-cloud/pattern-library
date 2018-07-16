@@ -45,7 +45,6 @@ class AXADatepickerBody extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    console.log('willRenderCallback', getAttribute(this, 'month'), getAttribute(this, 'year'))
     this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, getAttribute(this, 'month') || undefined);
   }
 

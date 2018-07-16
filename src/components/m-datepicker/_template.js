@@ -2,44 +2,96 @@ import html from 'nanohtml';
 import {
   getAllLocaleMonthsArray,
   getSpecificYears,
+  DEFAULT_NEW_YEARS,
   getLocalWeekdayArray,
 } from '../../js/date';
 
+const TODAY = 'TODAY';
+
 // tolocaldatestring()
+const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
+  let { lowerEndYear, higherEndYear } = yearsRange;
+
+  const date = new Date();
+
+  if (!lowerEndYear) {
+    lowerEndYear = date.getFullYear();
+  }
+
+  date.setFullYear(lowerEndYear);
+
+  if (!higherEndYear) {
+    higherEndYear = date.getFullYear() + DEFAULT_NEW_YEARS;
+  }
+
+  if (startMonth !== TODAY) {
+    date.setMonth(startMonth);
+  }
+
+  if (startYear !== TODAY) {
+    date.setFullYear(startYear);
+  }
+
+  const year = date.getFullYear();
+
+  if (year < lowerEndYear) {
+    return {
+      year: lowerEndYear,
+      month: 0,
+    };
+  }
+
+  if (year > higherEndYear) {
+    return {
+      year: higherEndYear,
+      month: 11,
+    };
+  }
+
+  return {
+    year,
+    month: date.getMonth(),
+  };
+};
 
 export default ({
   classes,
   buttonOk,
   buttonCancel,
-  locale = 'ch-de',
-  value = 'iso',
-  maxYears = 2,
-  futureYears = false,
-}) => html`
-  <article class="${classes} m-datepicker__article">
-    <div class="">
-      <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
-        size="sm" value="${new Date().getMonth()}"
-        items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
-          name: month, url: '#', value: index,
-        })))}">
-      </axa-dropdown>
-      <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
-        size="sm" value="${new Date().getFullYear()}"
-        items="${JSON.stringify(getSpecificYears(maxYears, futureYears).map(year => ({
-          name: year, url: '#', value: year,
-        })))}">
-      </axa-dropdown>
-    </div>
-    <div class="m-datepicker__weekdays">
-      ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
-    </div>
-    <axa-datepicker-body class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
-    <div class="m-datepicker__button">
-      <axa-button class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
-        tag="button" size="sm" ghost="">${buttonCancel}</axa-button>
-      <axa-button class="m-datepicker__button__Ok js-datepicker__button__Ok"
-        tag="button" size="sm" ghost="">${buttonOk}</axa-button>
-    </div>
-  </article>
-`;
+  locale = 'en-uk',
+  // value = 'iso',
+  startYear = TODAY,
+  startMonth = TODAY,
+  lowerEndYear,
+  higherEndYear,
+}) => {
+  const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
+  return html`
+    <article class="${classes} m-datepicker__article">
+      <div class="">
+        <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
+          size="sm" value="${startDate.month}"
+          items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
+            name: month, url: '#', value: index,
+          })))}">
+        </axa-dropdown>
+        <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
+          size="sm" value="${startDate.year}"
+          items="${JSON.stringify(getSpecificYears({ lowerEndYear, higherEndYear }).map(year => ({
+            name: year, url: '#', value: year,
+          })))}">
+        </axa-dropdown>
+      </div>
+      <div class="m-datepicker__weekdays">
+        ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
+      </div>
+      <axa-datepicker-body year="${startDate.year}" month="${startDate.month}" class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
+      <div class="m-datepicker__button">
+        <axa-button class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
+          tag="button" size="sm" ghost="">${buttonCancel}</axa-button>
+        <axa-button class="m-datepicker__button__Ok js-datepicker__button__Ok"
+          tag="button" size="sm" ghost="">${buttonOk}</axa-button>
+      </div>
+    </article>
+  `;
+};

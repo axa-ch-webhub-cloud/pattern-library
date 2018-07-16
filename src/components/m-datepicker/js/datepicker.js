@@ -12,8 +12,7 @@ export default class Datepicker {
     // this.today = new Date();
   }
 
-  init(year = new Date().getFullYear(), month = new Date().getMonth()) {
-    this.date = new Date(year, month);
+  init() {
     this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
     this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
     this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
@@ -89,7 +88,7 @@ export default class Datepicker {
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
     const { target } = e;
-    const month = target.getAttribute('month');
+    const month = target.getAttribute('value');
 
     // or if a dropdown changes, update the datepicker body
     if (month || month === 0) {
@@ -100,7 +99,7 @@ export default class Datepicker {
   handleChangeDropdownYear = (e) => {
     e.preventDefault();
     const { target } = e;
-    const year = target.getAttribute('year');
+    const year = target.getAttribute('value');
 
     if (year || year === 0) {
       this.datepickerBody.setAttribute('year', year);
@@ -110,8 +109,12 @@ export default class Datepicker {
   handleChangeDatepickerBody = (e) => {
     e.preventDefault();
     const { target } = e;
-    const month = target.getAttribute('month');
-    const year = target.getAttribute('year');
+    this.changeDropDowns(target);
+  }
+
+  changeDropDowns(node) {
+    const month = node.getAttribute('month');
+    const year = node.getAttribute('year');
 
     if (month || month === 0) {
       this.dropdownMonth.setAttribute('value', month);
