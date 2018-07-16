@@ -14,7 +14,7 @@ export default class DatepickerBody {
   init(index, locale, year, month) {
     this._store = new Store(locale, year, month);
     this.selected = null;
-    this.rePaintCells(index);
+    this.prepareCells(index);
     this.listenToCells();
     this.index = index;
     this.locale = locale;
@@ -32,7 +32,7 @@ export default class DatepickerBody {
     return this._store;
   }
 
-  rePaintCells(index) {
+  prepareCells(index) {
     if (!index && index !== 0) {
       return;
     }
@@ -72,12 +72,19 @@ export default class DatepickerBody {
     if (cell instanceof NextMonth) {
       // TODO -> Feature logic needs to be implemented
       this.updateDate(this.date.getMonth() + 1);
+      this.cleanupValueIndex();
     } else if (cell instanceof LastMonth) {
       this.updateDate(this.date.getMonth() - 1);
+      this.cleanupValueIndex();
     } else {
       this.wcNode.setAttribute('value', cell.getText());
       this.wcNode.setAttribute('index', index);
     }
+  }
+
+  cleanupValueIndex() {
+    this.wcNode.removeAttribute('index');
+    this.wcNode.removeAttribute('value');
   }
 
   handleCurrentMonth(index, cell) {
