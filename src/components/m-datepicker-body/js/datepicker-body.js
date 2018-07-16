@@ -3,9 +3,6 @@ import on from '../../../js/on';
 import { getCell, setCell, initCells } from '../../m-datepicker-body/js/store';
 import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 
-const LAST_MONTH_OF_YEAR = 11;
-const FIRST_MONTH_OF_YEAR = 0;
-
 export default class DatepickerBody {
   constructor(wcNode) {
     this.wcNode = wcNode;
