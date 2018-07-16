@@ -66,7 +66,7 @@ export default ({
   higherEndYear,
 }) => {
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
-  const specificYears = getSpecificYears({ lowerEndYear, higherEndYear })
+  const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
   return html`
     <article class="${classes} m-datepicker__article">
       <div class="">
