@@ -14,7 +14,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'locale', 'value', 'index', 'year', 'month']; }
+  static get observedAttributes() { return ['classes', 'locale', 'value', 'index', 'year', 'month', 'allowed-years']; }
 
   constructor() {
     super({ styles, template });
@@ -47,7 +47,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
   willRenderCallback() {
     let month = getAttribute(this, 'month');
     month = (month || month === 0) ? month : undefined;
-    this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, month);
+    this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, month, getAttribute(this, 'allowed-years'));
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

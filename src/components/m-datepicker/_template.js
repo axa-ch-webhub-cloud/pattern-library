@@ -66,6 +66,7 @@ export default ({
   higherEndYear,
 }) => {
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
+  const specificYears = getSpecificYears({ lowerEndYear, higherEndYear })
   return html`
     <article class="${classes} m-datepicker__article">
       <div class="">
@@ -77,7 +78,7 @@ export default ({
         </axa-dropdown>
         <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
           size="sm" value="${startDate.year}"
-          items="${JSON.stringify(getSpecificYears({ lowerEndYear, higherEndYear }).map(year => ({
+          items="${JSON.stringify(specificYears.map(year => ({
             name: year, url: '#', value: year,
           })))}">
         </axa-dropdown>
@@ -85,7 +86,7 @@ export default ({
       <div class="m-datepicker__weekdays">
         ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
-      <axa-datepicker-body year="${startDate.year}" month="${startDate.month}" class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
+      <axa-datepicker-body allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
       <div class="m-datepicker__button">
         <axa-button class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
           tag="button" size="sm" ghost="">${buttonCancel}</axa-button>

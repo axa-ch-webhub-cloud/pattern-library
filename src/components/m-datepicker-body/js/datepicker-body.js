@@ -11,12 +11,13 @@ export default class DatepickerBody {
     this.date = new Date();
   }
 
-  init(index, locale, year, month) {
+  init(index, locale, year, month, allowedYears) {
     this._store = new Store(locale, year, month);
     this.selected = null;
     this.prepareCells(index);
     this.listenToCells();
     this.index = index;
+    this.allowedYears = allowedYears;
     this.locale = locale;
 
     if (month || month === 0) {
@@ -107,7 +108,12 @@ export default class DatepickerBody {
 
     this.date.setMonth(value);
 
-    this.wcNode.setAttribute('year', this.date.getFullYear());
+    const year = this.date.getFullYear();
+    if (this.allowedYears && !~this.allowedYears.indexOf(year)) {
+      return;
+    }
+
+    this.wcNode.setAttribute('year', year);
     this.wcNode.setAttribute('month', this.date.getMonth());
   }
 }
