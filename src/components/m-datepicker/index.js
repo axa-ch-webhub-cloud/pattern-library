@@ -63,7 +63,7 @@ class AXADatepicker extends BaseComponentGlobal {
   // }
   didRenderCallback() {
     // TODO see if it has to be today and if so pass here value
-    this.datepicker.init(this);
+    this.datepicker.init();
   }
 }
 

@@ -22,6 +22,7 @@ export const initCells = (locale, year = new Date().getFullYear(), month = new D
 
   const numericWeekdayFirstDayOfMonth = getNumericWeekday(locale, firstDayOfMonth);
 
+  // TODO here some semplification needed
   cells = [...Array(TOTAL_CELLS).keys()].map((index) => {
     if (numericWeekdayFirstDayOfMonth > 0 && index < numericWeekdayFirstDayOfMonth) {
       return new LastMonth(lastDayOfLastMonth.getDate() - (((numericWeekdayFirstDayOfMonth - 1) - index)), index);

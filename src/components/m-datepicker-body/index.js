@@ -6,6 +6,8 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import DatepickerBody from './js/datepicker-body';
+import fire from '../../js/fire';
+import { AXA_EVENTS } from '../../js/ui-events';
 
 class AXADatepickerBody extends BaseComponentGlobal {
   static tagName = 'axa-datepicker-body'
@@ -36,33 +38,22 @@ class AXADatepickerBody extends BaseComponentGlobal {
     // If you don't have any, just remove this function
   }
 
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
-
-  // You may want to update stuff before rendering.
-  // willRenderCallback(initial) {
-  // }
-
-  // You may want to update staff after rendering
-  // didRenderCallback(initial) {
-  // }
-
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Don't forget to cleanup :)
+    // TODO Don't forget to cleanup :)
   }
 
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
+  willRenderCallback() {
+    console.log('willRenderCallback', getAttribute(this, 'month'), getAttribute(this, 'year'))
+    this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, getAttribute(this, 'month') || undefined);
+  }
 
-  didRenderCallback() {
-    this.datepickerBody.init(getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, getAttribute(this, 'month') || undefined);
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    if ((name === 'month' || name === 'year') && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null && oldValue !== null) {
+      fire(this, AXA_EVENTS.AXA_CHANGE, null, { bubbles: true, cancelable: true, composed: true });
+    }
   }
 }
 

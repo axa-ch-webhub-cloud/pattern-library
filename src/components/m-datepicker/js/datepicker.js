@@ -4,70 +4,74 @@ import on from '../../../js/on';
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
-    this.cellAmount = 42;
-    this.elements = [...Array(this.cellAmount).keys()];
+    // this.cellAmount = 42;
+    // this.elements = [...Array(this.cellAmount).keys()];
 
     // this.selectedDate = null
 
-    this.today = new Date();
+    // this.today = new Date();
   }
 
   init(year = new Date().getFullYear(), month = new Date().getMonth()) {
-    console.log(`year aus init ${year}`);
-
     this.date = new Date(year, month);
-    this.firstDayOfMonth = new Date(year, month, 1);
-    this.lastDayOfMonth = new Date(year, month + 1, 0);
+    this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
+    this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
+    this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
+    // this.firstDayOfMonth = new Date(year, month, 1);
+    // this.lastDayOfMonth = new Date(year, month + 1, 0);
 
-    this.lastDayOfLastMonth = new Date(year, month, 0);
-    this.firstDayOfNextMonth = new Date(year, month + 1, 1);
+    // this.lastDayOfLastMonth = new Date(year, month, 0);
+    // this.firstDayOfNextMonth = new Date(year, month + 1, 1);
 
-    // this.mapElements(year, month);
-    // this.appendCalenderBody();
-    this.listenToDropdowns();
-    // this.listenToButtons();
-
+    this.listenToChanges();
+    // this.listenToDatepickerBody();
 
     // TEMP VAR
-    this.maxYears = 2;
-    this.futureYears = false;
-
-    this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
-
-
-    // this.wcNode.querySelector('.js-datepicker__dropdown__month').setAttribute('value', month);
-    // this.wcNode.querySelector('.js-datepicker__dropdown__year').setAttribute('value', year);
+    // this.maxYears = 2;
+    // this.futureYears = false;
   }
 
-  appendCalenderBody() {
-    const el = this.wcNode.querySelector('.js-datepicker__calender-body');
-    el.innerHTML = '';
-    el.appendChild(this.container);
-  }
-
-  listenToDropdowns() {
-    this.offListenToDropdowns();
-    this.unDropdownListenerEnd = on(
-      this.wcNode, AXA_EVENTS.AXA_CHANGE, '',
-      this.handleDropdownChange, {
+  listenToChanges() {
+    this.offListenToChangess();
+    this.unListenToDropdownMonth = on(
+      this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '',
+      this.handleChangeDropdownMonth, {
+        capture: true, passive: false,
+      },
+    );
+    this.unListenToDropdownYear = on(
+      this.dropdownYear, AXA_EVENTS.AXA_CHANGE, '',
+      this.handleChangeDropdownYear, {
+        capture: true, passive: false,
+      },
+    );
+    this.unListenToDatepickerBody = on(
+      this.datepickerBody, AXA_EVENTS.AXA_CHANGE, '',
+      this.handleChangeDatepickerBody, {
         capture: true, passive: false,
       },
     );
   }
 
-  offListenToDropdowns() {
-    if (this.unDropdownListenerEnd) {
-      this.unDropdownListenerEnd();
+  offListenToChangess() {
+    if (this.unListenToDropdownMonth) {
+      this.unListenToDropdownMonth();
+    }
+    if (this.unListenToDropdownYear) {
+      this.unListenToDropdownYear();
+    }
+    if (this.unListenToDatepickerBody) {
+      this.unListenToDatepickerBody();
     }
   }
 
   listenToButtons() {
     this.offListenToButtons();
-    this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), 'click', () => {
+    this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), EVENTS.CLICK, () => {
       // console.log('cancle');
       // console.log(this.selected, this.date);
     });
-    this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), 'click', () => {
+    this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
       // console.log('okbutton');
       // console.log(this.date, this.selected);
     });
@@ -82,17 +86,41 @@ export default class Datepicker {
     }
   }
 
-  handleDropdownChange = (e) => {
+  handleChangeDropdownMonth = (e) => {
     e.preventDefault();
-    const { dataset } = e.target;
-    if (dataset.month) {
-      this.datepickerBody.setAttribute('month', e.target.value);
-    } else {
-      this.datepickerBody.setAttribute('year', e.target.value);
+    const { target } = e;
+    const month = target.getAttribute('month');
+
+    // or if a dropdown changes, update the datepicker body
+    if (month || month === 0) {
+      this.datepickerBody.setAttribute('month', month);
     }
-    console.log(`${e.target.value} dropdownchange ${this.date}`);
   }
 
+  handleChangeDropdownYear = (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const year = target.getAttribute('year');
+
+    if (year || year === 0) {
+      this.datepickerBody.setAttribute('year', year);
+    }
+  }
+
+  handleChangeDatepickerBody = (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const month = target.getAttribute('month');
+    const year = target.getAttribute('year');
+
+    if (month || month === 0) {
+      this.dropdownMonth.setAttribute('value', month);
+    }
+
+    if (year || year === 0) {
+      this.dropdownYear.setAttribute('value', year);
+    }
+  }
 
     // [].slice.call(e.target.classList).forEach((elementClass) => {
 
@@ -120,26 +148,4 @@ export default class Datepicker {
       //   }
       // }
     // });
-
-  handleLastMonth() {
-    if (this.date.getMonth() === 0) {
-      this.init(this.date.getFullYear() - 1, this.date.getMonth() - 1);
-    } else {
-      this.init(this.date.getFullYear(), this.date.getMonth() - 1);
-    }
-    // if (this.selected !== null) {
-    //   this.selected.classList.remove('m-datepicker__calender-body__selected-day');
-    // }
-    // e.target.classList.add('m-datepicker__calender-body__selected-day');
-    // this.selected = e.target;
-    // console.log(e.target, e.target.classList);
-  }
-
-  handleNextMonth() {
-    if (this.date.getMonth() === 11) {
-      this.init((this.date.getFullYear() + 1), this.date.getMonth() + 1);
-    } else {
-      this.init(this.date.getFullYear(), this.date.getMonth() + 1);
-    }
-  }
 }

@@ -3,15 +3,41 @@ import on from '../../../js/on';
 import { getCell, setCell, initCells } from '../../m-datepicker-body/js/store';
 import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 
+const LAST_MONTH_OF_YEAR = 11;
+const FIRST_MONTH_OF_YEAR = 0;
+
 export default class DatepickerBody {
   constructor(wcNode) {
     this.wcNode = wcNode;
     this.selected = null;
+
+    this.date = new Date();
   }
 
-  init(locale, year, month) {
+  init(index, locale, year, month) {
     initCells(locale, year, month);
+    this.rePaintCells(index);
     this.listenToCells();
+    this.index = index;
+    this.locale = locale;
+
+    if (year) {
+      this.date = new Date(year, this.date.getMonth());
+    }
+
+    if (month) {
+      this.date = new Date(this.date.getFullYear(), month);
+    }
+  }
+
+  rePaintCells(index) {
+    if (!index && index !== 0) {
+      return;
+    }
+    const cell = getCell(index);
+    if (cell instanceof CurrentMonth) {
+      this.handleCurrentMonth(index, cell);
+    }
   }
 
   listenToCells() {
@@ -35,18 +61,21 @@ export default class DatepickerBody {
     const { dataset } = e.target;
     const index = +dataset.index;
 
-    const cell = getCell(index);
-
-    if (cell instanceof CurrentMonth) {
-      this.handleCurrentMonth(index, cell);
-    } else if (cell instanceof NextMonth) {
-      console.log('HERE logic next month');
-    } else if (cell instanceof LastMonth) {
-      console.log('HERE logic last month');
+    if (!index && index !== 0) {
+      return;
     }
 
-    this.wcNode.setAttribute('value', cell.getText());
-    this.wcNode.setAttribute('index', index);
+    const cell = getCell(index);
+
+    if (cell instanceof NextMonth) {
+      // TODO -> Feature logic needs to be implemented
+      this.updateDate(this.date.getMonth() + 1);
+    } else if (cell instanceof LastMonth) {
+      this.updateDate(this.date.getMonth() - 1);
+    } else {
+      this.wcNode.setAttribute('value', cell.getText());
+      this.wcNode.setAttribute('index', index);
+    }
   }
 
   handleCurrentMonth(index, cell) {
@@ -61,5 +90,15 @@ export default class DatepickerBody {
     const newcell = new SelectedDay(cell.getText(), cell.getIndex(), cell.getIsToday());
     setCell(index, newcell);
     this.selected = newcell;
+  }
+
+  updateDate(value) {
+    const currentMonth = this.date.getMonth();
+    this.date = new Date(this.date.getFullYear(), currentMonth);
+
+    this.date.setMonth(value);
+
+    this.wcNode.setAttribute('year', this.date.getFullYear());
+    this.wcNode.setAttribute('month', this.date.getMonth());
   }
 }
