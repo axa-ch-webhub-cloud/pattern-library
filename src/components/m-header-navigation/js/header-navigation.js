@@ -1,8 +1,9 @@
 import { add, remove } from '../../../js/class-list';
 import { requestAnimationFrame } from '../../../js/request-animation-frame';
 import forceRepaint from '../../../js/force-repaint';
-import UiEvents from '../../../js/ui-events';
+import UiEvents, { EVENTS } from '../../../js/ui-events';
 import isEdge from '../../../js/shame/is-edge-SHAME';
+import on from '../../../js/on';
 
 class HeaderNavigation extends UiEvents {
   static DEFAULTS = {
@@ -10,6 +11,7 @@ class HeaderNavigation extends UiEvents {
     toggleClass: 'js-header-navigation__list-link',
     subNavi: '.js-header-sub-navigation',
     openClass: 'is-header-sub-navigation-open',
+    historyClass: 'js-header-navigation__list-link-history',
   };
 
   constructor(wcNode, options = {}) {
@@ -34,6 +36,14 @@ class HeaderNavigation extends UiEvents {
 
   init() {
     this.list = this.wcNode.querySelector(this.options.list);
+
+    this.unClickEnd = on(this.wcNode, EVENTS.CLICK, this.options.historyClass, this.handleClick, { capture: true, passive: false });
+  }
+
+  handleClick = (ev) => {
+    ev.preventDefault();
+    const { target } = ev;
+    window.history.pushState(null, null, target.getAttribute('href'));
   }
 
   enter(node) {
