@@ -3,11 +3,11 @@
 $datepicker-height: 385px !default;
 $datepicker-width: 309px !default;
 
-$datepicker-margin-top-bottom: 20px !default;
-$datepicker-margin-left-right: 30px !default;
+$datepicker-margin-y: 20px !default;
+$datepicker-margin-x: 30px !default;
 
-$datepicker-padding-top-bottom: 20px !default;
-$datepicker-padding-left-right: 30px !default;
+$datepicker-padding-y: 20px !default;
+$datepicker-padding-x: 30px !default;
 
 $datepicker-dropdown-year-width: 88px !default;
 $datepicker-dropdown-month-width: 146px !default;
@@ -15,7 +15,7 @@ $datepicker-dropdown-padding-left: 10px !default;
 
 $datepicker-border-width: 1px !default;
 
-$with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $datepicker-border-width * 2) / 7;
+$with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-border-width * 2) / 7;
 
 
 .m-datepicker {
@@ -27,7 +27,7 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $da
 .m-datepicker__article {
   position: relative;
 
-  padding: $datepicker-padding-top-bottom $datepicker-padding-left-right;
+  padding: $datepicker-padding-y $datepicker-padding-x;
   height: $datepicker-height;
   width: $datepicker-width;
   border: solid $datepicker-border-width $color-prim-gray-silver;
@@ -35,7 +35,7 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $da
 }
 
 .m-datepicker__dropdown {
-  margin-bottom: $datepicker-margin-top-bottom;
+  margin-bottom: $datepicker-margin-y;
 
   .m-dropdown__toggle {
     padding-left: $datepicker-dropdown-padding-left;
@@ -62,9 +62,9 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $da
 
 .m-datepicker__weekdays {
   display: flex;
-  margin: 0 (-$datepicker-margin-left-right);
-  padding-left: $datepicker-padding-left-right;
-  padding-right: $datepicker-padding-left-right;
+  margin: 0 (-$datepicker-margin-x);
+  padding-left: $datepicker-padding-x;
+  padding-right: $datepicker-padding-x;
 
   flex-direction: row;
   justify-content: space-between;
@@ -88,9 +88,9 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $da
 
 .m-datepicker__button {
   position: absolute;
-  bottom: $datepicker-margin-top-bottom;
+  bottom: $datepicker-margin-y;
 
-  width: calc(100% - #{$datepicker-padding-left-right * 2 + 1});
+  width: calc(100% - #{$datepicker-padding-x * 2 + 1});
 }
 
 .m-datepicker__button__Ok {
