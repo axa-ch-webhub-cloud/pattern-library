@@ -1,0 +1,78 @@
+/// Framework grid generation
+///
+/// Used only by Bootstrap to generate the correct number of grid classes given
+/// any value of `$grid-columns`.
+/// @link https://getbootstrap.com/docs/4.0/layout/grid/ and explained at
+
+@import "./grid-settings";
+@import "./grid-functions";
+@import "./grid-mixins";
+@import "../mixins/respond";
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+
+    width: 100%;
+    min-height: 1px; // Prevent columns from collapsing when empty
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      .u-col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+
+    .u-col#{$infix},
+    .u-col#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    @include respond-up($breakpoint, $breakpoints) {
+      // Provide basic `.u-col-{bp}` classes for equal-width flexbox columns
+      .u-col#{$infix} {
+        max-width: 100%;
+
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+
+      .u-col#{$infix}-auto {
+        width: auto;
+        max-width: none; // Reset earlier grid tiers
+
+        flex: 0 0 auto;
+      }
+
+      @for $i from 1 through $columns {
+        .u-col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+
+      .u-order#{$infix}-first { order: -1; }
+
+      .u-order#{$infix}-last { order: $columns + 1; }
+
+      @for $i from 0 through $columns {
+        .u-order#{$infix}-#{$i} { order: $i; }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .u-offset-0
+          .u-offset#{$infix}-#{$i} {
+            @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}

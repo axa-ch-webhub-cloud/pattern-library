@@ -6,6 +6,14 @@
 
 .m-header-burger {
   display: block;
+
+  @include respond-down(md) {
+    margin-left: auto;
+
+    .m-header-search + & {
+      margin-left: 0;
+    }
+  }
 }
 
 .m-header-burger__button {

@@ -95,6 +95,10 @@ We stick to hyphenated atomic [BEM](http://getbem.com/) naming for CSS classes a
 
 **Note:** Never mix prefixes, the general rule is `.prefix-block__element--modifier`. States must include their corresponding block, like `.is|has-block-state`.
 
+**Warning:** Since we can't use shadow DOM we face two major CSS cascade issues:
+1. Namespacing - mitigate by atomic BEM
+2. [Inherited CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance#Inherited_properties) like `text-align` - [these](https://stackoverflow.com/questions/5612302/which-css-properties-are-inherited) you have to fix by yourself!
+
 ### JS
 
 To facilitate custom non-webcomponent integrations we stick to adaptive implementations of interactive JS code, i.e. we consider Web-Components barely as another DOM-Selector layer and pass those DOM-nodes to concrete implementations hosted within the `js/` sub folder. Which could then be called by any DOM-Selecting utility like `jQuery`, `document.querySelector`, you name it.

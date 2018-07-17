@@ -26,6 +26,7 @@
     "HTMLElement": true,
     "HTMLImports": true,
     "XMLHttpRequest": true,
+    "history": true,
     "MutationObserver": true,
     "document": true,
     "window": true,

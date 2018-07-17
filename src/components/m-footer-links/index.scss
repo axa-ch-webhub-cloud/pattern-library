@@ -13,6 +13,7 @@
 
   display: block;
   margin-left: 0 !important;
+  text-align: left;
 
   @include respond-down(md) {
     @include make-col(4);

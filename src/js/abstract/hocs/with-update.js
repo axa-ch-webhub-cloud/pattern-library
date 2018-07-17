@@ -138,7 +138,12 @@ const withUpdate = Base =>
 
       const key = camelize(name);
 
-      this[key] = toProp(newValue);
+      // add, update attribute
+      if (this.hasAttribute(name)) {
+        this[key] = toProp(newValue);
+      } else { // delete attribute
+        this[key] = null;
+      }
     }
 
     /**

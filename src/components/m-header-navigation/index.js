@@ -9,7 +9,7 @@ import defineOnce from '../../js/define-once';
 class AXAHeaderNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-navigation'
 
-  static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu']; }
+  static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu', 'history-api']; }
 
   constructor() {
     super({ styles, template });

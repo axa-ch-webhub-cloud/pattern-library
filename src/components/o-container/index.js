@@ -8,8 +8,16 @@ import template from './_template';
 class AXAContainer extends BaseComponentGlobal {
   static tagName = 'axa-container'
 
+  static get observedAttributes() { return ['fluid']; }
+
   constructor() {
     super({ styles, template });
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.className = `${this.initialClassName} o-container`;
   }
 }
 
