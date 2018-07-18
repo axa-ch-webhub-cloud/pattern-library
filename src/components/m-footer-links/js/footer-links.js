@@ -2,6 +2,7 @@ import on from '../../../js/on';
 import fire from '../../../js/fire';
 import getAttribute from '../../../js/get-attribute';
 import { subscribe } from '../../../js/pubsub';
+import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 import DropDown from '../../m-dropdown/js/drop-down';
 
 const hasDropdownBreakpoints = 'xs';
@@ -42,7 +43,7 @@ export default class FooterLinks {
       }
     });
 
-    this.unClick = on(this.wcNode, 'click', this.options.link, this.handleClick, { passive: false });
+    this.unClick = on(this.wcNode, EVENTS.CLICK, this.options.link, this.handleClick, { passive: false });
   }
 
   off() {
@@ -65,7 +66,7 @@ export default class FooterLinks {
      * @event FooterLinks#axa-click
      * @type {object}
      */
-    const cancelled = fire(this.wcNode, 'axa-click', items[index], { bubbles: true, cancelable: true, composed: true });
+    const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, items[index], { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();

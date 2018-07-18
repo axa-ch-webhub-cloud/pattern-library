@@ -1,5 +1,6 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
+import { AXA_EVENTS } from '../../../js/ui-events';
 
 /**
  * @fires Button#axa-click
@@ -49,7 +50,7 @@ class Button {
      * @event Button#axa-click
      * @type {null}
      */
-    const cancelled = fire(this.wcNode, 'axa-click', null, { bubbles: true, cancelable: true, composed: true });
+    const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, null, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();
