@@ -5,17 +5,23 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
-console.log('\n🚫 Datepicker is not ready to be used. Coming soon 🚫\n');
+import Datepicker from './js/datepicker';
+
+import getAttribute from '../../js/get-attribute';
 
 class AXADatepicker extends BaseComponentGlobal {
-  static tagName = 'axa-datepicker'
+  static tagName = 'axa-m-datepicker'
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'button-ok', 'button-cancel']; }
+  static get observedAttributes() {
+    return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'start-year', 'start-month', 'lower-end-year', 'higher-end-year', 'output-iso'];
+  }
 
   constructor() {
     super({ styles, template });
+
+    this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?
     // this.enableContext()
 
@@ -51,13 +57,16 @@ class AXADatepicker extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Don't forget to cleanup :)
+    // TODO Don't forget to cleanup :)
   }
-
   // Do you consume context?
   // contextCallback(contextNode) {
   //   contextNode is now available.
   // }
+  didRenderCallback() {
+    // TODO see if it has to be today and if so pass here value
+    this.datepicker.init(getAttribute(this, 'output-iso'));
+  }
 }
 
 defineOnce(AXADatepicker.tagName, AXADatepicker);

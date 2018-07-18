@@ -107,7 +107,7 @@ const withRender = Base =>
             this.childrenFragment.children = Array.from(this.childrenFragment.childNodes).filter(node => node.nodeType === 1);
           }
 
-          const items = template(this._props, this.childrenFragment);
+          const items = template(this._props, this.childrenFragment, this);
           const renderFragment = document.createDocumentFragment();
 
           if (Array.isArray(items)) {

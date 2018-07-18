@@ -1,5 +1,6 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
+import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 
 /**
  * @fires HeaderLogo#axa-click
@@ -30,7 +31,7 @@ class HeaderLogo {
   on() {
     this.off();
 
-    this.unClick = on(this.link, 'click', this.handleClick, { passive: false });
+    this.unClick = on(this.link, EVENTS.CLICK, this.handleClick, { passive: false });
   }
 
   handleClick(event) {
@@ -40,7 +41,7 @@ class HeaderLogo {
      * @event HeaderLogo#axa-click
      * @type {null}
      */
-    const cancelled = fire(this.wcNode, 'axa-click', null, { bubbles: true, cancelable: true, composed: true });
+    const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, null, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {
       event.preventDefault();
