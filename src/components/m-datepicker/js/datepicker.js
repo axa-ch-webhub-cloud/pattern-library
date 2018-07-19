@@ -1,5 +1,6 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
+import fire from '../../../js/fire';
 
 export default class Datepicker {
   constructor(wcNode) {
@@ -70,10 +71,12 @@ export default class Datepicker {
 
       if (this.outputIso) {
         // TODO: Axa change event for click
+        fire(this.wcNode, AXA_EVENTS.AXA_CLICK, choosenDate.getTime(), { bubbles: true, cancelable: true, composed: true });
         // eslint-disable-next-line
         alert(choosenDate.getTime());
       } else {
         // TODO: Axa change event for click
+        fire(this.wcNode, AXA_EVENTS.AXA_CLICK, choosenDate.toLocaleString(locale), { bubbles: true, cancelable: true, composed: true });
         // eslint-disable-next-line
         alert(choosenDate.toLocaleString(locale));
       }
