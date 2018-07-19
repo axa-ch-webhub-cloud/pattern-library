@@ -19,6 +19,8 @@
 }
 
 .a-input__wrapper {
+  position: relative;
+
   display: flex;
   width: 100%;
 }
@@ -89,6 +91,8 @@
   }
 
   .a-input__wrapper {
+    position: relative;
+
     display: inline-block;
 
     width: auto;
@@ -120,4 +124,24 @@
 
     transform: rotate(45deg);
   }
+}
+
+.a-input__icon__button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+
+  height: $input-icon-button-height;
+  width: $input-icon-button-width;
+  border: none;
+}
+
+.a-input__icon__button:hover {
+  cursor: pointer;
+}
+
+.a-input__icon {
+  height: $input-icon-height;
+  width: $input-icon-width;
+  fill: $color-axa-blue;
 }
