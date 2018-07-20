@@ -1,8 +1,8 @@
 @import "../../styles/settings/colors";
+@import "../../styles/settings/zindex";
+@import "../../styles/control/control-settings";
 
 $input-logo-padding-right: 20px !default;
-
-$datepicker-calender-z-index: 10 !default;
 
 .o-datepicker {
   position: relative;
@@ -13,8 +13,13 @@ $datepicker-calender-z-index: 10 !default;
 .o-datepicker__calender {
   position: absolute;
 
-  z-index: $datepicker-calender-z-index;
+  z-index: $zindex-popover;
 
   display: none;
   background-color: $color-prim-white;
+}
+
+.o-datepicker__calender--move-up {
+  // TODO $control-size !!!!! ausrechnen !!!!!!!!
+  top: -385px;
 }

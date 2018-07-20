@@ -1,6 +1,7 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
+import { getLocaleDayMonthYear } from '../../../js/date';
 
 export default class Datepicker {
   constructor(wcNode) {
@@ -75,7 +76,7 @@ export default class Datepicker {
       if (this.outputIso) {
         fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
       } else {
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.toLocaleString(locale), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: getLocaleDayMonthYear(locale, choosenDate), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
       }
     });
   }

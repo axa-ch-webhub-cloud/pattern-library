@@ -7,14 +7,16 @@ const OK = 'ok';
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
-    console.log(wcNode);
+    this._value = '';
   }
 
   init() {
     this.datepickerInput = this.wcNode.querySelector('.js-datepicker__input');
     this.datepickerCalender = this.wcNode.querySelector('.js-datepicker__calender');
     this.listenToButtons();
-    console.log(this.datepickerInput, this.datepickerCalender);
+    if (this.datepickerCalender && this.isItemInLowerHalf(this.datepickerInput)) {
+      this.datepickerCalender.classList.add('o-datepicker__calender--move-up');
+    }
   }
 
   listenToButtons() {
@@ -55,7 +57,7 @@ export default class Datepicker {
       return;
     }
     if (button === OK) {
-      // console.log('ok', value);
+      this._value = value;
     } else {
       // console.log('cancel');
     }
@@ -66,17 +68,30 @@ export default class Datepicker {
     this.displayDatepicker();
     // const { target } = e;
     // const value = target.getAttribute('value');
-    const rect = this.datepickerInput.getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left);
   }
 
   displayDatepicker() {
-    console.log(this.wcNode.getAttribute('open'));
     if (getAttribute(this.wcNode, 'open') === true) {
-      console.log('drin')
       this.wcNode.removeAttribute('open');
     } else {
       this.wcNode.setAttribute('open', true);
     }
+  }
+
+  isItemInLowerHalf(target) {
+    const { top, height } = target.getBoundingClientRect();
+    const toBottom = window.innerHeight - (top + (height / 2));
+    const toTop = top + (height / 2);
+
+    console.log(toTop, toBottom, toTop + toBottom);
+
+    if (toBottom >= toTop) {
+      return false;
+    }
+    return true;
+  }
+
+  get value() {
+    return this._value;
   }
 }
