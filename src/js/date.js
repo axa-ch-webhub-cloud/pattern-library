@@ -95,3 +95,8 @@ export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
   });
   return weekdayIndex;
 };
+
+export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
+  const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
+  return objDate;
+};

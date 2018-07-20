@@ -12,6 +12,9 @@ export default class Datepicker {
     this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
     this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
     this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
+    this.okButton = this.wcNode.querySelector('.js-datepicker__button__Ok');
+    this.cancelButton = this.wcNode.querySelector('.js-datepicker__button__Cancel');
+
     this.listenToChanges();
     this.listenToButtons();
   }
@@ -53,7 +56,7 @@ export default class Datepicker {
   listenToButtons() {
     this.offListenToButtons();
     this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), EVENTS.CLICK, () => {
-      // TODO: Axa change event for cancel
+      fire(this.cancelButton, AXA_EVENTS.AXA_CLICK, { value: '', button: 'cancel' }, { bubbles: true, cancelable: true, composed: true });
     });
     this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
       const year = this.datepickerBody.getAttribute('year');
@@ -70,15 +73,9 @@ export default class Datepicker {
       }
 
       if (this.outputIso) {
-        // TODO: Axa change event for click
-        fire(this.wcNode, AXA_EVENTS.AXA_CLICK, choosenDate.getTime(), { bubbles: true, cancelable: true, composed: true });
-        // eslint-disable-next-line
-        alert(choosenDate.getTime());
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
       } else {
-        // TODO: Axa change event for click
-        fire(this.wcNode, AXA_EVENTS.AXA_CLICK, choosenDate.toLocaleString(locale), { bubbles: true, cancelable: true, composed: true });
-        // eslint-disable-next-line
-        alert(choosenDate.toLocaleString(locale));
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.toLocaleString(locale), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
       }
     });
   }

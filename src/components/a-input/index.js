@@ -4,6 +4,7 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
+import Input from './js/input';
 
 class AXAInput extends BaseComponentGlobal {
   static tagName = 'axa-input'
@@ -14,6 +15,8 @@ class AXAInput extends BaseComponentGlobal {
 
   constructor() {
     super({ styles, template });
+
+    this.input = new Input(this);
   }
 
   willRenderCallback() {
@@ -25,6 +28,9 @@ class AXAInput extends BaseComponentGlobal {
       'a-input--error': error,
       'a-input--disabled': disabled,
     });
+  }
+  didRenderCallback() {
+    this.input.init();
   }
 }
 

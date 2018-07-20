@@ -7,7 +7,7 @@ export default ({
   open,
 }) => html`
   <article class=${classes}>
-    <axa-input classes="o-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" name="test-name" icon="datepicker" inline></axa-input>
+    <axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" name="test-name" icon="datepicker" inline></axa-input>
     ${open ? html`<axa-m-datepicker class="o-datepicker__calender js-datepicker__calender" button-ok="ok" button-cancel="abbrechen"></axa-m-datepicker>` : ''}
   </article>
 `;

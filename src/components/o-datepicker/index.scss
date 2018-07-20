@@ -1,5 +1,20 @@
-.o-datepicker {
-  display: block;
+@import "../../styles/settings/colors";
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+$input-logo-padding-right: 20px !default;
+
+$datepicker-calender-z-index: 10 !default;
+
+.o-datepicker {
+  position: relative;
+
+  display: block;
+}
+
+.o-datepicker__calender {
+  position: absolute;
+
+  z-index: $datepicker-calender-z-index;
+
+  display: none;
+  background-color: $color-prim-white;
 }

@@ -134,6 +134,7 @@
   height: $input-icon-button-height;
   width: $input-icon-button-width;
   border: none;
+  outline: none !important;
 }
 
 .a-input__icon__button:hover {
