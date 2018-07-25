@@ -13,7 +13,7 @@ export default function ({
   return html`<div class="a-input__wrapper">
       <input
           id="${inputId}"
-          class="a-input__input"
+          class="a-input__input js-input__input"
           name="${name}"
           type="${type}"
           placeholder="${placeholder}"

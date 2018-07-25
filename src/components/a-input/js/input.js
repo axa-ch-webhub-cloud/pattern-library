@@ -9,7 +9,9 @@ export default class Input {
 
   init() {
     this.iconButton = this.wcNode.querySelector('.js-input__icon__button');
+    this.inputfield = this.wcNode.querySelector('.js-input__input');
     this.listenToButtons();
+    this.listenToInputChange();
   }
 
   listenToButtons() {
@@ -22,6 +24,19 @@ export default class Input {
   offListenToButtons() {
     if (this.unIconButtonListenerEnd) {
       this.unIconButtonListenerEnd();
+    }
+  }
+
+  listenToInputChange() {
+    this.offListenToInputChange();
+    this.unInputListenerEnd = on(this.inputfield, EVENTS.KEYUP, () => {
+      fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
+    });
+  }
+
+  offListenToInputChange() {
+    if (this.unInputListenerEnd) {
+      this.unInputListenerEnd();
     }
   }
 }
