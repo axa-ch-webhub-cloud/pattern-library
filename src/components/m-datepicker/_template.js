@@ -59,7 +59,6 @@ export default ({
   buttonOk,
   buttonCancel,
   locale = 'en-uk',
-  // value = 'iso',
   startYear = TODAY,
   startMonth = TODAY,
   lowerEndYear,

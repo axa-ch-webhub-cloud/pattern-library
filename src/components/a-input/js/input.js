@@ -1,6 +1,7 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
+import getAttribute from '../../../js/get-attribute';
 
 export default class Input {
   constructor(wcNode) {
@@ -30,6 +31,12 @@ export default class Input {
   listenToInputChange() {
     this.offListenToInputChange();
     this.unInputListenerEnd = on(this.inputfield, EVENTS.KEYUP, () => {
+      if (getAttribute(this.wcNode, 'date')) {
+        this.validateInputForTypeDate();
+        // TODO on keydown
+        this.inputfield.value = this.inputfield.value.replace(/[^0-9./]+/, '');
+        console.log('lul');
+      }
       fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
     });
   }
@@ -38,5 +45,9 @@ export default class Input {
     if (this.unInputListenerEnd) {
       this.unInputListenerEnd();
     }
+  }
+
+  validateInputForTypeDate() {
+
   }
 }

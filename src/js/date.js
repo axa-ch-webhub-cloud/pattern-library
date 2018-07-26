@@ -100,3 +100,41 @@ export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
   const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   return objDate;
 };
+
+export const isDateValid = (locale = 'en-uk', inputValue = '') => {
+  console.log('date.js' + locale);
+  const date = new Date(inputValue);
+  let objDate = '';
+  const numeric = 'numeric';
+  const twoDigit = '2-digit';
+  const selectors = [numeric, twoDigit];
+  const filters = ['year', 'month', 'day'];
+  let options = {};
+  let valid = false;
+
+  filters.forEach((filter) => {
+    options[filter] = '';
+  });
+
+  const combinations = [];
+  selectors.forEach((el1) => {
+    selectors.forEach((el2) => {
+      options = ({
+        year: selectors[0],
+        month: el1,
+        day: el2,
+      });
+      combinations.push(options);
+    });
+  });
+
+  combinations.forEach((option) => {
+    objDate = date.toLocaleString(locale, option);
+    console.log(objDate, inputValue);
+    if (objDate === inputValue && date.getFullYear().toString().length === 4) {
+      console.log('richtig!!!!!');
+      valid = true;
+    }
+  });
+  return valid;
+};
