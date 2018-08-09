@@ -73,8 +73,7 @@
   .o-commercial-hero-cover__info {
     height: 100%;
     overflow: hidden;
-    padding-bottom: 10px;
-    margin: 140px 10px 0 10px;
+    margin: 140px 10px 30px 10px;
     flex: 1;
     background: $color-prim-white;
     @include respond-up(md) {
@@ -92,23 +91,28 @@
     @include word-break();
     @include typo_tag();
     text-transform: uppercase;
+    margin-top: 20px;
+    @include respond-up(lg) {
+      margin-top: 0px;
+    }
   }
 
   .o-commercial-hero-cover__title {
     @include word-break();
     @include typo-small-module-title--publico();
-    margin-top: 8px;
+    margin-top: 20px;
   }
 
   .o-commercial-hero-cover__text {
     @include word-break();
     @include typo-text-longer();
-    margin-top: 26px;
+    margin-top: 20px;
   }
 
   .o-commercial-hero-cover__button {
     @include typo-secondary-text--semibold();
-    margin-top: 23px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     display: block;
   }
 }
