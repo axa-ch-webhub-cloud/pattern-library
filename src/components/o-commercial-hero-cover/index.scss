@@ -92,7 +92,7 @@ $picture-z-index: -1;
     background: $color-prim-white;
 
     @include respond-up(md) {
-      margin: 140px 30px 0;
+      margin: 140px 30px 30px;
     }
 
     @include respond-up(lg) {
