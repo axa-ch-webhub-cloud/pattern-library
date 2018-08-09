@@ -8,10 +8,12 @@ import template from './_template';
 class AXACommercialHeroCover extends BaseComponentGlobal {
   static tagName = 'axa-commercial-hero-cover'
 
-  static get observedAttributes() { return ['src', 'alt', 'gradient', 'content-align']; }
+  static get observedAttributes() { return ['src', 'alt', 'gradient', 'content-align', 'picture-classes', 'hero-object-position']; }
 
   constructor() {
-    super({ styles, template });
+    super({
+      styles, template,
+    });
   }
 
   /**
@@ -21,6 +23,7 @@ class AXACommercialHeroCover extends BaseComponentGlobal {
     super.connectedCallback();
     this.className = `${this.initialClassName} o-commercial-hero-cover`;
   }
+
   disconnectedCallback() {
     super.disconnectedCallback();
   }
