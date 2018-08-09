@@ -8,7 +8,7 @@ export default ({
   heroObjectPosition = 'center',
   pictureClasses = '',
 }, childrenFragment) => html`
-  <header class="o-commercial-hero-cover__header ${gradient === 'white' ? 'gradient-white' : 'gradient-black'}">
+  <header class="o-commercial-hero-cover__header o-commercial-hero-cover__header__${gradient === 'white' ? 'gradient-white' : 'gradient-black'}">
     <picture class="m-picture o-commercial-hero-cover__picture">
       <img class="m-picture__image o-commercial-hero-cover__picture__image  ${pictureClasses}"
       src="${src}" alt="${alt}" data-object-fit="cover"

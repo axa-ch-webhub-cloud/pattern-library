@@ -22,6 +22,8 @@ $picture-z-index: -1;
     justify-content: flex-start;
     background: linear-gradient(180deg, transparent 200px, white 0);
 
+    color: $color-text;
+
     @include respond-up(md) {
       min-height: 341px;
     }
@@ -29,20 +31,14 @@ $picture-z-index: -1;
     @include respond-up(lg) {
       height: 490px;
 
-      &.gradient-white {
+      &.o-commercial-hero-cover__header__gradient-white {
         background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.2) 60%, $color-prim-white 100%);
-
-        .o-commercial-hero-cover__info {
-          color: $color-text;
-        }
       }
 
-      &.gradient-black {
+      &.o-commercial-hero-cover__header__gradient-black {
         background: linear-gradient(270deg, fade_out($color-prim-black, 1) 30%, fade_out($color-prim-black, 0.2) 60%, $color-prim-black 100%);
 
-        .o-commercial-hero-cover__info {
-          color: $color-text--highlight;
-        }
+        color: $color-text--highlight;
       }
     }
 
