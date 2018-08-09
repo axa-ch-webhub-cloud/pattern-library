@@ -9,7 +9,6 @@
 .o-commercial-hero-cover {
   display: block;
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
   .o-commercial-hero-cover__header {
     position: relative;
     min-height: 256px;
@@ -71,6 +70,24 @@
     overflow: hidden;
   }
 
+  .o-commercial-hero-cover__info {
+    height: 100%;
+    overflow: hidden;
+    padding-bottom: 10px;
+    margin: 140px 10px 0 10px;
+    flex: 1;
+    background: $color-prim-white;
+    @include respond-up(md) {
+      margin: 140px 30px 0 30px;
+    }
+    @include respond-up(lg) {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      background: transparent;
+    }
+  }
+
   .o-commercial-hero-cover__subtitle {
     @include word-break();
     @include typo_tag();
@@ -93,23 +110,6 @@
     @include typo-secondary-text--semibold();
     margin-top: 23px;
     display: block;
-  }
-
-  .o-commercial-hero-cover__info {
-    height: 100%;
-    overflow: hidden;
-    margin: 140px 10px 0 10px;
-    flex: 1;
-    background: $color-prim-white;
-    @include respond-up(md) {
-      margin: 140px 30px 0 30px;
-    }
-    @include respond-up(lg) {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      background: transparent;
-    }
   }
 }
 
