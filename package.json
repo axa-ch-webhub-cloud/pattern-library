@@ -158,8 +158,10 @@
     "classnames": "^2.2.5",
     "connect-slow": "^0.4.0",
     "core-js": "~2.5.1",
+    "objectFitPolyfill": "^2.0.5",
     "innersvg-polyfill": "0.0.2",
     "nanohtml": "^1.2.2",
+    "picturefill": "^3.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
