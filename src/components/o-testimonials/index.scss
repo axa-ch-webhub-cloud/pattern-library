@@ -1,0 +1,104 @@
+@import "../../styles/settings/colors";
+@import "../../styles/typo/typo-mixins";
+@import "../../styles/mixins/word-break";
+
+$padding-vertical-xs: 24px;
+$padding-vertical-md: 48px;
+$padding-vertical-lg: $padding-vertical-md;
+
+$margin-30: 30px;
+$title-margin-top-xs: 30px;
+$title-margin-top-sm: 50px;
+$subtitle-margin-top-xs: 20px;
+$content-margin-xs: 10px;
+$content-margin-sm: 40px;
+$navigator-margin-horizontal-xs: 20px;
+$navigator-margin-horizontal-sm: 30px;
+$navigator-margin-horizontal-lg: 90px;
+
+$arrow-width-xs: 8px;
+$arrow-height-xs: 16px;
+$arrow-width-sm: 15px;
+$arrow-height-sm: 30px;
+$arrow-border: 2px;
+
+.o-testimonials__background {
+  display: inline-block;
+  width: 100%;
+  background: $color-sec-green-viridian;
+  color: $color-prim-white;
+}
+
+.o-testimonials__title {
+  @include typo-small-module-title--publico();
+  text-align: center;
+  margin: $title-margin-top-xs $margin-30 0 $margin-30;
+  @include respond-up(sm) {
+    margin: $title-margin-top-sm $margin-30 0 $margin-30;
+  }
+}
+
+.o-testimonials__subtitle {
+  @include word-break();
+  @include typo-tag();
+  text-align: center;
+  margin: $subtitle-margin-top-xs $margin-30 0 $margin-30;
+}
+
+.o-testimonials__content {
+  position: relative;
+  width: 100%;
+  margin: $content-margin-xs;
+  @include respond-up(sm) {
+    margin: $content-margin-sm $margin-30 $content-margin-sm $margin-30;
+  }
+}
+
+.o-testimonials__arrow-left {
+  border: solid $color-prim-white;
+  border-width: $arrow-border 0 0 $arrow-border;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  padding: $arrow-width-xs;
+  height: $arrow-height-xs;
+  width: $arrow-width-xs;
+  @include respond-up(sm) {
+    padding: $arrow-width-sm;
+    height: $arrow-height-sm;
+    width: $arrow-width-sm;
+  }
+}
+
+.o-testimonials__arrow-right {
+  border: solid $color-prim-white;
+  border-width: $arrow-border 0 0 $arrow-border;
+  transform: rotate(135deg);
+  cursor: pointer;
+  padding: $arrow-width-xs;
+  height: $arrow-height-xs;
+  width: $arrow-width-xs;
+  @include respond-up(sm) {
+    padding: $arrow-width-sm;
+    height: $arrow-height-sm;
+    width: $arrow-width-sm;
+  }
+}
+
+.o-testimonials__navigator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 $navigator-margin-horizontal-xs;
+  @include respond-up(sm) {
+    margin: 0 $navigator-margin-horizontal-sm;
+  }
+  @include respond-up(lg) {
+    margin: 0 $navigator-margin-horizontal-lg;
+  }
+}
+
+.o-testimonials__item {
+  @include word-break();
+  @include typo-tag();
+  text-align: center;
+}
