@@ -1,0 +1,70 @@
+@import "../../styles/settings/colors";
+@import "../../styles/typo/typo-mixins";
+@import "../../styles/mixins/word-break";
+
+$padding-vertical-xs: 24px;
+$padding-vertical-md: 48px;
+$padding-vertical-lg: $padding-vertical-md;
+
+$padding-horizontal-xs: 15px;
+$padding-horizontal-md: 90px;
+$padding-horizontal-lg: $padding-horizontal-md;
+
+$margin-10: 10px;
+$margin-20: 20px;
+
+.o-policy-features {
+  display: block;
+  position: relative;
+}
+
+.o-policy-features__style-dark-indigo, .o-policy-features__style-default {
+  background: $color-prim-blue-dark-indigo;
+  color: $color-prim-white;
+}
+
+.o-policy-features__style-axa-blue {
+  background: $color-axa-blue;
+  color: $color-prim-white;
+}
+
+.o-policy-features__style-wild-sand {
+  background: $color-prim-gray-wild-sand;
+  color: $color-prim-gray-mine-shaft;
+}
+
+.o-policy-features__style-white {
+  background: $color-prim-white;
+  color: $color-prim-gray-mine-shaft;
+}
+
+.o-policy-features__title {
+  @include typo-small-module-title--publico();
+  text-align: center;
+}
+
+.o-policy-features__content {
+  padding: $padding-vertical-xs $padding-horizontal-xs $padding-vertical-xs $padding-horizontal-xs;
+  @include respond-up(sm) {
+    padding: $padding-vertical-md $padding-horizontal-md $padding-vertical-md $padding-horizontal-md;
+  }
+  @include respond-up(md) {
+    padding: $padding-vertical-lg $padding-horizontal-lg $padding-vertical-lg $padding-horizontal-lg;
+  }
+}
+
+.o-policy-features__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.o-policy-features__items > * {
+  flex-basis: 100%;
+  @include respond-up(md) {
+    flex-basis: 50%;
+  }
+  @include respond-up(lg) {
+    flex-basis: 25%;
+  }
+}
