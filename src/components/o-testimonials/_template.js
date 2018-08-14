@@ -8,11 +8,11 @@ export default ({
     ${title && html`<h3 class="o-testimonials__title">${title}</h3>`}
     ${subtitle && html`<p class="o-testimonials__subtitle">${subtitle}</p>`}
     <div class="o-testimonials__navigator">
-      <div class="o-testimonials__arrow-left"></div>
+      <div class="o-testimonials__arrow-left js-o-testimonials__arrow-left"></div>
       <div class="o-testimonials__content">
         ${childrenFragment}
       </div>
-      <div class="o-testimonials__arrow-right"></div>
+      <div class="o-testimonials__arrow-right js-o-testimonials__arrow-right"></div>
     </div>
   </article>
 `;
