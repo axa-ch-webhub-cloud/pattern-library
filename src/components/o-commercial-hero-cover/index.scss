@@ -43,7 +43,7 @@ $margin-30: 30px;
     height: $hero-large-height;
 
     &.o-commercial-hero-cover__header__gradient-white {
-      background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.2) 60%, $color-prim-white 100%);
+      background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
     }
 
     &.o-commercial-hero-cover__header__gradient-black {
@@ -117,7 +117,7 @@ $margin-30: 30px;
 
 .o-commercial-hero-cover__subtitle {
   @include word-break();
-  @include typo_tag();
+  @include typo_tag--semibold();
   text-transform: uppercase;
 }
 
