@@ -51,6 +51,16 @@ $margin-30: 30px;
 
       color: $color-text--highlight;
     }
+
+    &.o-commercial-hero-cover__header__gradient-white-inverted {
+      background: linear-gradient(90deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
+    }
+
+    &.o-commercial-hero-cover__header__gradient-black-inverted {
+      background: linear-gradient(90deg, fade_out($color-prim-black, 1) 30%, fade_out($color-prim-black, 0.2) 60%, $color-prim-black 100%);
+
+      color: $color-text--highlight;
+    }
   }
 
   @include respond-up(xl) {
