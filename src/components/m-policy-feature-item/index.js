@@ -6,10 +6,14 @@ import template from './_template';
 class AXAPolicyFeatureItem extends BaseComponentGlobal {
   static tagName = 'axa-policy-feature-item'
 
-  static get observedAttributes() { return ['classes', 'src', 'title', 'description']; }
+  static get observedAttributes() {
+    return ['classes', 'src', 'title', 'description'];
+  }
 
   constructor() {
-    super({ styles, template });
+    super({
+      styles, template,
+    });
   }
 
   connectedCallback() {
@@ -20,7 +24,6 @@ class AXAPolicyFeatureItem extends BaseComponentGlobal {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
   }
 }
 

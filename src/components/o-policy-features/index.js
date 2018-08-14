@@ -1,9 +1,9 @@
+import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
-import classnames from "classnames";
-import getAttribute from "../../js/get-attribute";
+import getAttribute from '../../js/get-attribute';
 
 class AXAPolicyFeatures extends BaseComponentGlobal {
   static tagName = 'axa-policy-features'
@@ -11,7 +11,9 @@ class AXAPolicyFeatures extends BaseComponentGlobal {
   static get observedAttributes() { return ['axa-style', 'title']; }
 
   constructor() {
-    super({ styles, template });
+    super({
+      styles, template,
+    });
   }
 
   connectedCallback() {
@@ -22,12 +24,11 @@ class AXAPolicyFeatures extends BaseComponentGlobal {
     if (STYLE_WHITELIST.indexOf(axaStyle) > -1) {
       allowedStyle = axaStyle;
     }
-    this.className = classnames(this.initialClassName, 'o-policy-features', 'o-policy-features__style-' + allowedStyle);
+    this.className = classnames(this.initialClassName, 'o-policy-features', `o-policy-features__style-${allowedStyle}`);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
   }
 }
 

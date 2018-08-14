@@ -20,6 +20,7 @@ $content-width-lg: 255px;
   height: $icon-height-sm;
   display: block;
   margin: $margin-50 auto 0 auto;
+
   @include respond-up(md) {
     width: $icon-width-md;
     height: $icon-height-md;
@@ -40,12 +41,15 @@ $content-width-lg: 255px;
 
 .m-policy-feature-item__content {
   margin: auto;
+
   @include respond-up(sm) {
     width: $content-width-sm;
   }
+
   @include respond-up(md) {
     width: $content-width-md;
   }
+
   @include respond-up(lg) {
     width: $content-width-lg;
   }
