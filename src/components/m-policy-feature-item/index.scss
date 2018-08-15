@@ -2,28 +2,29 @@
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/mixins/word-break";
 
-$icon-height-sm: 42px;
-$icon-width-sm: $icon-height-sm;
-$icon-height-md: 96px;
-$icon-width-md: $icon-height-md;
-$margin-50: 50px;
-$content-width-sm: 240px;
-$content-width-md: 210px;
-$content-width-lg: 255px;
+$policy-feature-item-icon-height-sm
+$policy-feature-item-icon-height-sm: 42px;
+$policy-feature-item-icon-width-sm: $policy-feature-item-icon-height-sm;
+$policy-feature-item-icon-height-md: 96px;
+$policy-feature-item-icon-width-md: $policy-feature-item-icon-height-md;
+$policy-feature-item-margin-50: 50px;
+$policy-feature-item-content-width-sm: 240px;
+$policy-feature-item-content-width-md: 210px;
+$policy-feature-item-content-width-lg: 255px;
 
 .m-policy-feature-item {
   display: block;
 }
 
 .m-policy-feature-item__icon {
-  width: $icon-width-sm;
-  height: $icon-height-sm;
+  width: $policy-feature-item-icon-width-sm;
+  height: $policy-feature-item-icon-height-sm;
   display: block;
-  margin: $margin-50 auto 0 auto;
+  margin: $policy-feature-item-margin-50 auto 0 auto;
 
   @include respond-up(md) {
-    width: $icon-width-md;
-    height: $icon-height-md;
+    width: $policy-feature-item-icon-width-md;
+    height: $policy-feature-item-icon-height-md;
   }
 }
 
@@ -43,14 +44,14 @@ $content-width-lg: 255px;
   margin: auto;
 
   @include respond-up(sm) {
-    width: $content-width-sm;
+    width: $policy-feature-item-content-width-sm;
   }
 
   @include respond-up(md) {
-    width: $content-width-md;
+    width: $policy-feature-item-content-width-md;
   }
 
   @include respond-up(lg) {
-    width: $content-width-lg;
+    width: $policy-feature-item-content-width-lg;
   }
 }

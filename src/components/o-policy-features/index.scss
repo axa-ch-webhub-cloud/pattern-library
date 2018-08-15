@@ -2,16 +2,16 @@
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/mixins/word-break";
 
-$padding-vertical-xs: 24px;
-$padding-vertical-md: 48px;
-$padding-vertical-lg: $padding-vertical-md;
+$policy-features-padding-vertical-xs: 24px;
+$policy-features-padding-vertical-md: 48px;
+$policy-features-padding-vertical-lg: $policy-features-padding-vertical-md;
 
-$padding-horizontal-xs: 15px;
-$padding-horizontal-md: 90px;
-$padding-horizontal-lg: $padding-horizontal-md;
+$policy-features-padding-horizontal-xs: 15px;
+$policy-features-padding-horizontal-md: 90px;
+$policy-features-padding-horizontal-lg: $policy-features-padding-horizontal-md;
 
-$margin-10: 10px;
-$margin-20: 20px;
+$policy-features-margin-10: 10px;
+$policy-features-margin-20: 20px;
 
 .o-policy-features {
   position: relative;
@@ -46,14 +46,14 @@ $margin-20: 20px;
 }
 
 .o-policy-features__content {
-  padding: $padding-vertical-xs $padding-horizontal-xs $padding-vertical-xs $padding-horizontal-xs;
+  padding: $policy-features-padding-vertical-xs $policy-features-padding-horizontal-xs $policy-features-padding-vertical-xs $policy-features-padding-horizontal-xs;
 
   @include respond-up(sm) {
-    padding: $padding-vertical-md $padding-horizontal-md $padding-vertical-md $padding-horizontal-md;
+    padding: $policy-features-padding-vertical-md $policy-features-padding-horizontal-md $policy-features-padding-vertical-md $policy-features-padding-horizontal-md;
   }
 
   @include respond-up(md) {
-    padding: $padding-vertical-lg $padding-horizontal-lg $padding-vertical-lg $padding-horizontal-lg;
+    padding: $policy-features-padding-vertical-lg $policy-features-padding-horizontal-lg $policy-features-padding-vertical-lg $policy-features-padding-horizontal-lg;
   }
 }
 
