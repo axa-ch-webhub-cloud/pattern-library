@@ -36,8 +36,6 @@ class Testimonials extends UiEvents {
     this.slider = this.wcNode.querySelector(this.options.slider);
     this.autoRotateTimeInMiliseconds = this.slider.getAttribute('data-auto-rotate-time');
     this.autoRotateEnabled = this.slider.getAttribute('data-auto-rotate-enabled');
-    console.log(this.slider.getAttribute('data-auto-rotate-enabled'));
-    console.log(this.autoRotateEnabled);
     this.hideAllSlides();
     if (this.slides.length < 2) {
       this.hideControls();
