@@ -34,8 +34,7 @@ export default class Input {
       if (getAttribute(this.wcNode, 'date')) {
         this.validateInputForTypeDate();
         // TODO on keydown
-        this.inputfield.value = this.inputfield.value.replace(/[^0-9./]+/, '');
-        console.log('lul');
+        this.inputfield.value = this.inputfield.value.replace(/[^0-9./-]+/, '');
       }
       fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
     });

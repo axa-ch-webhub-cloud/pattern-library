@@ -102,8 +102,18 @@ export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
 };
 
 export const isDateValid = (locale = 'en-uk', inputValue = '') => {
-  console.log('date.js' + locale);
-  const date = new Date(inputValue);
+  let splittedInput = [];
+  let orderedInput = [];
+  let date = null;
+
+  if (locale === 'de-ch') {
+    splittedInput = inputValue.split('.');
+    orderedInput = [splittedInput[1], splittedInput[0], splittedInput[2]];
+    date = new Date(orderedInput.join('.'));
+  } else {
+    date = new Date(inputValue);
+  }
+  console.log(date);
   let objDate = '';
   const numeric = 'numeric';
   const twoDigit = '2-digit';
@@ -119,15 +129,16 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
   const combinations = [];
   selectors.forEach((el1) => {
     selectors.forEach((el2) => {
-      options = ({
-        year: selectors[0],
-        month: el1,
-        day: el2,
+      selectors.forEach((el3) => {
+        options = ({
+          year: el1,
+          month: el2,
+          day: el3,
+        });
+        combinations.push(options);
       });
-      combinations.push(options);
     });
   });
-
   combinations.forEach((option) => {
     objDate = date.toLocaleString(locale, option);
     console.log(objDate, inputValue);
