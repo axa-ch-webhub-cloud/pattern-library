@@ -7,7 +7,7 @@ class AXAPolicyFeatureItem extends BaseComponentGlobal {
   static tagName = 'axa-policy-feature-item'
 
   static get observedAttributes() {
-    return ['classes', 'src', 'title', 'description'];
+    return ['classes', 'src', 'alt', 'title', 'description'];
   }
 
   constructor() {
