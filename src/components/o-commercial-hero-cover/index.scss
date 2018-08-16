@@ -11,8 +11,6 @@ $hero-mobile-height: 256px;
 $hero-medium-height: 376px;
 $hero-large-height: 490px;
 $hero-xl-height: 560px;
-$margin-top-section-xl: 90px;
-$margin-top-section-large: 60px;
 $margin-info-mobile: 140px;
 $margin-10: 10px;
 $margin-20: 20px;
@@ -43,11 +41,21 @@ $margin-30: 30px;
     height: $hero-large-height;
 
     &.o-commercial-hero-cover__header__gradient-white {
-      background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.2) 60%, $color-prim-white 100%);
+      background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
     }
 
     &.o-commercial-hero-cover__header__gradient-black {
       background: linear-gradient(270deg, fade_out($color-prim-black, 1) 30%, fade_out($color-prim-black, 0.2) 60%, $color-prim-black 100%);
+
+      color: $color-text--highlight;
+    }
+
+    &.o-commercial-hero-cover__header__gradient-white-inverted {
+      background: linear-gradient(90deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
+    }
+
+    &.o-commercial-hero-cover__header__gradient-black-inverted {
+      background: linear-gradient(90deg, fade_out($color-prim-black, 1) 30%, fade_out($color-prim-black, 0.2) 60%, $color-prim-black 100%);
 
       color: $color-text--highlight;
     }
@@ -117,7 +125,7 @@ $margin-30: 30px;
 
 .o-commercial-hero-cover__subtitle {
   @include word-break();
-  @include typo_tag();
+  @include typo_tag--semibold();
   text-transform: uppercase;
 }
 
@@ -125,11 +133,11 @@ $margin-30: 30px;
   margin-top: $margin-20;
 
   @include respond-up(lg) {
-    margin-top: $margin-top-section-large;
-  }
+    margin: 0;
+    display: flex;
 
-  @include respond-up(xl) {
-    margin-top: $margin-top-section-xl;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -152,3 +160,11 @@ $margin-30: 30px;
   display: block;
 }
 
+.o-commercial-hero-cover__full-height-flex {
+  height: 100%;
+  display: flex;
+}
+
+.o-commercial-hero-cover__flex {
+  display: flex;
+}
