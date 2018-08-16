@@ -8,7 +8,7 @@ import template from './_template';
 class AXAContainer extends BaseComponentGlobal {
   static tagName = 'axa-container'
 
-  static get observedAttributes() { return ['fluid']; }
+  static get observedAttributes() { return ['fluid', 'classes']; }
 
   constructor() {
     super({ styles, template });

@@ -11,8 +11,6 @@ $hero-mobile-height: 256px;
 $hero-medium-height: 376px;
 $hero-large-height: 490px;
 $hero-xl-height: 560px;
-$margin-top-section-xl: 90px;
-$margin-top-section-large: 60px;
 $margin-info-mobile: 140px;
 $margin-10: 10px;
 $margin-20: 20px;
@@ -135,11 +133,11 @@ $margin-30: 30px;
   margin-top: $margin-20;
 
   @include respond-up(lg) {
-    margin-top: $margin-top-section-large;
-  }
+    margin: 0;
+    display: flex;
 
-  @include respond-up(xl) {
-    margin-top: $margin-top-section-xl;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -162,3 +160,11 @@ $margin-30: 30px;
   display: block;
 }
 
+.o-commercial-hero-cover__full-height-flex {
+  height: 100%;
+  display: flex;
+}
+
+.o-commercial-hero-cover__flex {
+  display: flex;
+}

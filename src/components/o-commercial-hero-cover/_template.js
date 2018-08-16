@@ -14,9 +14,9 @@ export default ({
       src="${src}" alt="${alt}" data-object-fit="cover"
       data-object-position="${heroObjectPosition}">
     </picture>
-    <axa-container class="o-commercial-hero-cover__info">
+    <axa-container class="o-commercial-hero-cover__info" classes="o-commercial-hero-cover__full-height-flex">
       <axa-row>
-        <axa-col size="sm-12 lg-6" order="${contentAlign === 'left' ? '0' : '1'}">
+        <axa-col size="sm-12 lg-6" order="${contentAlign === 'left' ? '0' : '1'}" classes="o-commercial-hero-cover__flex">
           ${childrenFragment.querySelector('.js-commercial-hero-cover__first') || childrenFragment}
         </axa-col> 
         <axa-col size="sm-12 lg-6">
