@@ -14,9 +14,11 @@ $datepicker-dropdown-month-width: 146px !default;
 $datepicker-dropdown-padding-left: 10px !default;
 
 $datepicker-border-width: 1px !default;
+$datepicker-padding-x: 30px !default;
 
 $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-border-width * 2) / 7;
 
+$datepicker-distance-number-to-border: 10px !default;
 
 .m-datepicker {
   display: block;
@@ -90,10 +92,20 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-
   position: absolute;
   bottom: $datepicker-margin-y;
 
-  width: calc(100% - #{$datepicker-padding-x * 2 + 1});
+  width: calc(100% - #{$datepicker-padding-x * 2 + $datepicker-distance-number-to-border * 2});
+  margin-left: $datepicker-distance-number-to-border;
 }
 
 .m-datepicker__button__Ok {
   position: absolute;
   right: 0;
+}
+
+.m-datepicker__button__borderless {
+  padding: 0;
+  border-style: none;
+}
+
+.m-datepicker__button__borderless:hover {
+  opacity: 0.5;
 }
