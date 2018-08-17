@@ -31,11 +31,10 @@ export default class Input {
   listenToInputChange() {
     this.offListenToInputChange();
     this.unInputListenerEnd = on(this.inputfield, EVENTS.KEYUP, () => {
-      if (getAttribute(this.wcNode, 'date')) {
-        this.validateInputForTypeDate();
-        // TODO on keydown
-        this.inputfield.value = this.inputfield.value.replace(/[^0-9./-]+/, '');
-      }
+      // if (getAttribute(this.wcNode, 'date')) {
+      //   this.inputfield.value = this.inputfield.value.replace(/[^0-9./-]+/, '');
+      // }
+      // console.log('fire')
       fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
     });
   }
@@ -44,9 +43,5 @@ export default class Input {
     if (this.unInputListenerEnd) {
       this.unInputListenerEnd();
     }
-  }
-
-  validateInputForTypeDate() {
-
   }
 }

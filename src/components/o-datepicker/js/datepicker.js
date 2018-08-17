@@ -1,7 +1,7 @@
 import { AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
-import { isDateValid } from '../../../js/date';
+import { isDateValid, getLocaleDayMonthYear } from '../../../js/date';
 
 const OK = 'ok';
 
@@ -10,6 +10,7 @@ export default class Datepicker {
     this.wcNode = wcNode;
     this._value = '';
     this._locale = '';
+    this._localValue = '';
   }
 
   init() {
@@ -66,7 +67,7 @@ export default class Datepicker {
 
   handleClickDatepickerCalender = (e) => {
     e.preventDefault();
-
+    // getLocaleDayMonthYear(locale, choosenDate)
     const { detail } = e;
     if (!detail) {
       return;
@@ -77,6 +78,8 @@ export default class Datepicker {
     }
     if (button === OK) {
       this._value = value;
+      console.log('d.js' + value);
+      this._localeValue = getLocaleDayMonthYear(this._locale, this._value);
     } else {
       // console.log('cancel');
     }
@@ -91,12 +94,9 @@ export default class Datepicker {
   handleInputChange = (e) => {
     e.preventDefault();
     const { detail } = e;
-    console.log(this._locale);
     if (isDateValid(this._locale, detail)) {
       console.log('gueltig');
       const date = new Date(detail);
-      this.wcNode.setAttribute('start-month', date.getMonth());
-      this.wcNode.setAttribute('start-year', date.getFullYear());
     } else {
       console.log('ungueltig');
     }
@@ -107,6 +107,11 @@ export default class Datepicker {
       this.wcNode.removeAttribute('open');
     } else {
       this.wcNode.setAttribute('open', true);
+      // if (inputValid) {
+      //   this.wcNode.datepicker.setAttribute('start-month', date.getMonth());
+      //   this.wcNode.datepicker.setAttribute('start-year', date.getFullYear());
+      // }
+      //
     }
   }
 
@@ -115,12 +120,14 @@ export default class Datepicker {
     const toBottom = window.innerHeight - (top + (height / 2));
     const toTop = top + (height / 2);
 
-    // console.log(toTop, toBottom, toTop + toBottom);
-
     if (toBottom >= toTop) {
       return false;
     }
     return true;
+  }
+
+  get localeValue() {
+    return this._localeValue;
   }
 
   get value() {

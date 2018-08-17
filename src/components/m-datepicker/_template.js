@@ -24,11 +24,11 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
     higherEndYear = date.getFullYear() + DEFAULT_NEW_YEARS;
   }
 
-  if (startMonth !== TODAY) {
+  if (startMonth !== TODAY && startMonth) {
     date.setMonth(startMonth);
   }
 
-  if (startYear !== TODAY) {
+  if (startYear !== TODAY && startYear) {
     date.setFullYear(startYear);
   }
 

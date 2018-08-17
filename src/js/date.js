@@ -1,6 +1,7 @@
 export const DEFAULT_NEW_YEARS = 10;
 
 export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
+  console.log(locale);
   const finalArray = [];
   [...Array(12).keys()].forEach((index) => {
     const objDate = new Date();
@@ -113,7 +114,7 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
   } else {
     date = new Date(inputValue);
   }
-  console.log(date);
+
   let objDate = '';
   const numeric = 'numeric';
   const twoDigit = '2-digit';

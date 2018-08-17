@@ -62,8 +62,6 @@ export default class Datepicker {
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
       const value = this.datepickerBody.getAttribute('value');
-      console.log(value);
-      // const locale = this.datepickerBody.getAttribute('locale');
 
       if (value) {
         const choosenDate = new Date();

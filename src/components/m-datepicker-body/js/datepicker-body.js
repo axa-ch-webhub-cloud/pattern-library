@@ -103,9 +103,7 @@ export default class DatepickerBody {
   }
 
   updateDate(value) {
-    const currentMonth = this.date.getMonth();
-    this.date = new Date(this.date.getFullYear(), currentMonth);
-
+    this.date = new Date(this.date.getFullYear(), this.date.getMonth());
     this.date.setMonth(value);
 
     const year = this.date.getFullYear();

@@ -52,13 +52,18 @@ $datepicker-calender-body-padding-top: 5px !default;
   color: $color-prim-gray-mine-shaft;
 }
 
-.m-datepicker-body__today {
+.m-datepicker-body__current-month:hover.m-datepicker-body__selected-day {
   background-color: $color-axa-blue;
   color: $color-prim-white;
 }
 
 .m-datepicker-body__selected-day {
+  background-color: $color-axa-blue;
+  color: $color-prim-white;
+}
+
+.m-datepicker-body__today {
+  box-shadow: 0 0 0 3px $color-axa-red inset;
   background-color: $color-prim-white;
-  box-shadow: 0 0 0 3px $color-axa-blue inset;
   color: $color-prim-gray-mine-shaft;
 }
