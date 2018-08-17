@@ -1,6 +1,6 @@
-import Swipe from './swipe';
+import Swipe from '../../../js/swipe';
 import on from '../../../js/on';
-import UiEvents from '../../../js/ui-events';
+import UiEvents, { EVENTS } from '../../../js/ui-events';
 
 class Testimonials extends UiEvents {
   static DEFAULTS = {
@@ -47,8 +47,8 @@ class Testimonials extends UiEvents {
 
   on() {
     this.off();
-    this.controlLeftClicked = on(this.controlLeft, 'click', this.handleControlLeftClicked);
-    this.controlRightClicked = on(this.controlRight, 'click', this.handleControlRightClicked);
+    this.controlLeftClicked = on(this.controlLeft, EVENTS.CLICK, this.handleControlLeftClicked);
+    this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.handleControlRightClicked);
   }
 
   off() {
