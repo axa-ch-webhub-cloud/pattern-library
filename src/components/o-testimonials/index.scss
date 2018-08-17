@@ -52,6 +52,7 @@ $o-testimonials-arrow-border: 2px;
 
   width: 100%;
   margin: $o-testimonials-content-margin-xs;
+  overflow: hidden;
 
   @include respond-up(sm) {
     margin: $o-testimonials-content-margin-sm $o-testimonials-margin-30 $o-testimonials-content-margin-sm $o-testimonials-margin-30;
@@ -111,16 +112,36 @@ $o-testimonials-arrow-border: 2px;
   @include word-break();
   @include typo-tag();
   text-align: center;
-
-  animation: opac 0.8s;
 }
 
-@keyframes opac {
+.o-testimonials__item_animation_left {
+  animation: fromLeft 0.8s;
+}
+
+.o-testimonials__item_animation_right {
+  animation: fromRight 0.8s;
+}
+
+@keyframes fromRight {
   from {
     opacity: 0;
+    transform: translate(100%, 0);
   }
 
   to {
     opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fromLeft {
+  from {
+    opacity: 0;
+    transform: translate(-100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }

@@ -103,6 +103,13 @@ class Testimonials extends UiEvents {
     } else {
       this.slideIndex = this.slideIndex + positionDifference;
     }
+    this.slides[this.slideIndex].classList.remove('o-testimonials__item_animation_left');
+    this.slides[this.slideIndex].classList.remove('o-testimonials__item_animation_right');
+    if (positionDifference < 0) {
+      this.slides[this.slideIndex].classList.add('o-testimonials__item_animation_left');
+    } else {
+      this.slides[this.slideIndex].classList.add('o-testimonials__item_animation_right');
+    }
     this.slides[this.slideIndex].style.display = 'block';
     this.autoRotate();
   }
