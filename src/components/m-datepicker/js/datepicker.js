@@ -1,7 +1,6 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
-import { getLocaleDayMonthYear } from '../../../js/date';
 
 export default class Datepicker {
   constructor(wcNode) {
@@ -21,7 +20,7 @@ export default class Datepicker {
   }
 
   listenToChanges() {
-    this.offListenToChangess();
+    this.offListenToChanges();
     this.unListenToDropdownMonth = on(
       this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '',
       this.handleChangeDropdownMonth, {
@@ -42,7 +41,7 @@ export default class Datepicker {
     );
   }
 
-  offListenToChangess() {
+  offListenToChanges() {
     if (this.unListenToDropdownMonth) {
       this.unListenToDropdownMonth();
     }
@@ -63,20 +62,22 @@ export default class Datepicker {
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
       const value = this.datepickerBody.getAttribute('value');
-      const locale = this.datepickerBody.getAttribute('locale');
+      console.log(value);
+      // const locale = this.datepickerBody.getAttribute('locale');
 
-      const choosenDate = new Date();
-
-      choosenDate.setMonth(month);
-      choosenDate.setFullYear(year);
       if (value) {
-        choosenDate.setDate(value);
-      }
+        const choosenDate = new Date();
 
-      if (this.outputIso) {
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+        choosenDate.setMonth(month);
+        choosenDate.setFullYear(year);
+        choosenDate.setDate(value);
+        if (this.outputIso) {
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+        } else {
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate, button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+        }
       } else {
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: getLocaleDayMonthYear(locale, choosenDate), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: '', button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
       }
     });
   }
