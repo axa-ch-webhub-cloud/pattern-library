@@ -67,7 +67,7 @@ export default class Datepicker {
 
   handleClickDatepickerCalender = (e) => {
     e.preventDefault();
-    // getLocaleDayMonthYear(locale, choosenDate)
+
     const { detail } = e;
     if (!detail) {
       return;
@@ -78,7 +78,7 @@ export default class Datepicker {
     }
     if (button === OK) {
       this._value = value;
-      console.log('d.js' + value);
+      console.log(this._locale);
       this._localeValue = getLocaleDayMonthYear(this._locale, this._value);
     } else {
       // console.log('cancel');
