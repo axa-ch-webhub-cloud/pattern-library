@@ -1,0 +1,77 @@
+@import "../../styles/settings/colors";
+@import "../../styles/typo/typo-mixins";
+@import "../../styles/mixins/word-break";
+
+$policy-features-padding-vertical-xs: 24px;
+$policy-features-padding-vertical-md: 48px;
+$policy-features-padding-vertical-lg: $policy-features-padding-vertical-md;
+
+$policy-features-padding-horizontal-xs: 15px;
+$policy-features-padding-horizontal-md: 90px;
+$policy-features-padding-horizontal-lg: $policy-features-padding-horizontal-md;
+
+$policy-features-margin-10: 10px;
+$policy-features-margin-20: 20px;
+
+.o-policy-features {
+  position: relative;
+
+  display: block;
+}
+
+.o-policy-features__style-dark-indigo,
+.o-policy-features__style-default {
+  background: $color-prim-blue-dark-indigo;
+  color: $color-prim-white;
+}
+
+.o-policy-features__style-axa-blue {
+  background: $color-axa-blue;
+  color: $color-prim-white;
+}
+
+.o-policy-features__style-wild-sand {
+  background: $color-prim-gray-wild-sand;
+  color: $color-prim-gray-mine-shaft;
+}
+
+.o-policy-features__style-white {
+  background: $color-prim-white;
+  color: $color-prim-gray-mine-shaft;
+}
+
+.o-policy-features__title {
+  @include typo-small-module-title--publico();
+  text-align: center;
+}
+
+.o-policy-features__content {
+  padding: $policy-features-padding-vertical-xs $policy-features-padding-horizontal-xs $policy-features-padding-vertical-xs $policy-features-padding-horizontal-xs;
+
+  @include respond-up(sm) {
+    padding: $policy-features-padding-vertical-md $policy-features-padding-horizontal-md $policy-features-padding-vertical-md $policy-features-padding-horizontal-md;
+  }
+
+  @include respond-up(md) {
+    padding: $policy-features-padding-vertical-lg $policy-features-padding-horizontal-lg $policy-features-padding-vertical-lg $policy-features-padding-horizontal-lg;
+  }
+}
+
+.o-policy-features__items {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.o-policy-features__items > * {
+  flex-basis: 100%;
+
+  @include respond-up(md) {
+    flex-basis: 50%;
+  }
+
+  @include respond-up(lg) {
+    flex-basis: 25%;
+  }
+}
