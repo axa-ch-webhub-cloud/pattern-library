@@ -1,5 +1,6 @@
 import Swipe from '../../../js/swipe';
 import on from '../../../js/on';
+import getAttribute from '../../../js/get-attribute';
 import UiEvents, { EVENTS } from '../../../js/ui-events';
 
 class Testimonials extends UiEvents {
@@ -8,10 +9,11 @@ class Testimonials extends UiEvents {
     controlRight: '.js-o-testimonials__control-right',
     slides: '.js-o-testimonial__item',
     slider: '.js-o-testimonials',
+    autoRotateDisabled: 'auto-rotate-disabled',
+    autoRotateTime: 'auto-rotate-time',
   };
 
-  constructor(wcNode, options = {
-  }) {
+  constructor(wcNode, options = {}) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...Testimonials.DEFAULTS,
@@ -21,8 +23,6 @@ class Testimonials extends UiEvents {
     super(wcNode, options);
 
     this.slideIndex = 0;
-    this.autoRotateEnabled = true;
-    this.autoRotateTimeInMiliseconds = 5000;
     this.options = options;
     this.wcNode = wcNode;
 
@@ -34,8 +34,11 @@ class Testimonials extends UiEvents {
     this.controlLeft = this.wcNode.querySelector(this.options.controlLeft);
     this.controlRight = this.wcNode.querySelector(this.options.controlRight);
     this.slider = this.wcNode.querySelector(this.options.slider);
-    this.autoRotateTimeInMiliseconds = this.slider.getAttribute('data-auto-rotate-time');
-    this.autoRotateEnabled = this.slider.getAttribute('data-auto-rotate-enabled');
+    this.autoRotateDisabled = getAttribute(this.wcNode, this.options.autoRotateDisabled);
+    this.autoRotateTimeInMiliseconds = getAttribute(this.wcNode, this.options.autoRotateTime);
+    if (!this.autoRotateTimeInMiliseconds) {
+      this.autoRotateTimeInMiliseconds = 5000;
+    }
     this.hideAllSlides();
     if (this.slides.length < 2) {
       this.hideControls();
@@ -61,25 +64,25 @@ class Testimonials extends UiEvents {
   }
 
   initSwipe() {
-    const swiper = new Swipe(this.slider);
+    const swiper = new Swipe(this.wcNode);
     swiper.onLeft(() => {
-      this.autoRotateEnabled = false;
+      this.autoRotateDisabled = true;
       this.showSlide(+1);
     });
     swiper.onRight(() => {
-      this.autoRotateEnabled = false;
+      this.autoRotateDisabled = true;
       this.showSlide(-1);
     });
     swiper.run();
   }
 
   handleControlLeftClicked = () => {
-    this.autoRotateEnabled = false;
+    this.autoRotateDisabled = true;
     this.showSlide(-1);
   };
 
   handleControlRightClicked = () => {
-    this.autoRotateEnabled = false;
+    this.autoRotateDisabled = true;
     this.showSlide(+1);
   };
 
@@ -116,10 +119,10 @@ class Testimonials extends UiEvents {
 
   autoRotate() {
     // auto rotate until disabled
-    if (this.autoRotateEnabled === true || this.autoRotateEnabled === 'true') {
+    if (!this.autoRotateDisabled) {
       setTimeout(
         () => {
-          if (this.autoRotateEnabled === true || this.autoRotateEnabled === 'true') {
+          if (!this.autoRotateDisabled) {
             // if disabled meanwhile
             this.showSlide(+1);
           }
@@ -155,8 +158,6 @@ class Testimonials extends UiEvents {
     if (this.slider) {
       delete this.slider;
     }
-
-    delete this.handleClick;
   }
 }
 
