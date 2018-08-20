@@ -5,7 +5,7 @@ class Swipe {
   constructor(element) {
     this.xDown = null;
     this.yDown = null;
-    this.element = typeof (element) === 'string' ? document.querySelector(element) : element;
+    this.element = element;
     // 10% of the width is the threshold swipe
     this.DIFF_THRESHOLD = element.offsetWidth / 10;
     this.TIME_THRESHOLD = 200;
