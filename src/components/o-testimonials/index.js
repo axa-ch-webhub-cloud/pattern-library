@@ -7,7 +7,7 @@ import Testimonials from './js/testimonials';
 class AXATestimonials extends BaseComponentGlobal {
   static tagName = 'axa-testimonials';
 
-  static get observedAttributes() { return ['classes', 'title', 'subtitle', 'auto-rotate-enabled', 'auto-rotate-time']; }
+  static get observedAttributes() { return ['classes', 'title', 'subtitle', 'auto-rotate-disabled', 'auto-rotate-time']; }
 
   constructor() {
     super({
