@@ -4,22 +4,25 @@
 
 $o-testimonials-padding-vertical-xs: 24px;
 $o-testimonials-padding-vertical-md: 48px;
-$o-testimonials-padding-vertical-lg: $o-testimonials-padding-vertical-md;
 
 $o-testimonials-margin-30: 30px;
+$o-testimonials-margin-10: 10px;
+$o-testimonials-author-margin-top-xs: 10px;
+$o-testimonials-author-margin-top-lg: 20px;
 $o-testimonials-title-margin-top-xs: 30px;
 $o-testimonials-title-margin-top-sm: 50px;
 $o-testimonials-subtitle-margin-top-xs: 20px;
-$o-testimonials-content-margin-xs: 10px;
-$o-testimonials-content-margin-sm: 40px;
-$o-testimonials-navigator-margin-horizontal-xs: 20px;
-$o-testimonials-navigator-margin-horizontal-sm: 30px;
-$o-testimonials-navigator-margin-horizontal-lg: 90px;
+$o-testimonials-navigator-margin-bottom-xs: 30px;
+$o-testimonials-navigator-margin-bottom-sm: 50px;
+$o-testimonials-navigator-margin-top-xs: 10px;
+$o-testimonials-navigator-margin-horizontal-xs: 5px;
+$o-testimonials-navigator-margin-horizontal-sm: 15px;
+$o-testimonials-navigator-margin-horizontal-lg: 15px;
 
-$o-testimonials-arrow-width-xs: 8px;
-$o-testimonials-arrow-height-xs: 16px;
-$o-testimonials-arrow-width-sm: 15px;
-$o-testimonials-arrow-height-sm: 30px;
+$o-testimonials-arrow-width-xs: 6px;
+$o-testimonials-arrow-height-xs: 14px;
+$o-testimonials-arrow-width-sm: 10px;
+$o-testimonials-arrow-height-sm: 20px;
 $o-testimonials-arrow-border: 2px;
 
 .o-testimonials__background {
@@ -31,6 +34,7 @@ $o-testimonials-arrow-border: 2px;
 
 .o-testimonials__title {
   @include typo-small-module-title--publico();
+
   margin: $o-testimonials-title-margin-top-xs $o-testimonials-margin-30 0 $o-testimonials-margin-30;
   text-align: center;
 
@@ -41,7 +45,7 @@ $o-testimonials-arrow-border: 2px;
 
 .o-testimonials__subtitle {
   @include word-break();
-  @include typo-tag();
+  @include typo-secondary-text();
 
   margin: $o-testimonials-subtitle-margin-top-xs $o-testimonials-margin-30 0 $o-testimonials-margin-30;
   text-align: center;
@@ -51,11 +55,11 @@ $o-testimonials-arrow-border: 2px;
   position: relative;
 
   width: 100%;
-  margin: $o-testimonials-content-margin-xs;
+  margin: 0 $o-testimonials-margin-10;
   overflow: hidden;
 
   @include respond-up(sm) {
-    margin: $o-testimonials-content-margin-sm $o-testimonials-margin-30 $o-testimonials-content-margin-sm $o-testimonials-margin-30;
+    margin: 0 $o-testimonials-margin-30;
   }
 }
 
@@ -67,6 +71,7 @@ $o-testimonials-arrow-border: 2px;
   border-width: $o-testimonials-arrow-border 0 0 $o-testimonials-arrow-border;
   transform: rotate(-45deg);
   cursor: pointer;
+  background: transparent;
 
   @include respond-up(sm) {
     padding: $o-testimonials-arrow-width-sm;
@@ -83,6 +88,7 @@ $o-testimonials-arrow-border: 2px;
   border-width: $o-testimonials-arrow-border 0 0 $o-testimonials-arrow-border;
   transform: rotate(135deg);
   cursor: pointer;
+  background: transparent;
 
   @include respond-up(sm) {
     padding: $o-testimonials-arrow-width-sm;
@@ -91,10 +97,18 @@ $o-testimonials-arrow-border: 2px;
   }
 }
 
+.o-testimonials__arrow-right:focus {
+  outline: none;
+}
+
+.o-testimonials__arrow-left:focus {
+  outline: none;
+}
+
 .o-testimonials__navigator {
   display: flex;
 
-  margin: 0 $o-testimonials-navigator-margin-horizontal-xs;
+  margin: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-xs $o-testimonials-navigator-margin-horizontal-xs;
 
   flex-direction: row;
   align-items: center;
@@ -106,12 +120,39 @@ $o-testimonials-arrow-border: 2px;
   @include respond-up(lg) {
     margin: 0 $o-testimonials-navigator-margin-horizontal-lg;
   }
+
+  @include respond-up(sm) {
+    margin: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-sm $o-testimonials-navigator-margin-horizontal-xs;
+  }
 }
 
 .o-testimonials__item {
   @include word-break();
   @include typo-tag();
+
   text-align: center;
+}
+
+.o-testimonials__item-testimonial {
+  @include word-break();
+  @include typo-text();
+
+  text-align: center;
+}
+
+.o-testimonials__item-author {
+  @include word-break();
+  @include typo-legals();
+
+  display: block;
+  margin-top: $o-testimonials-author-margin-top-xs;
+  text-transform: uppercase;
+  text-align: center;
+  font-style: normal;
+
+  @include respond-up(lg) {
+    margin-top: $o-testimonials-author-margin-top-lg;
+  }
 }
 
 .o-testimonials__item_animation_left {
