@@ -107,6 +107,8 @@ $o-testimonials-author-position-bottom: -40px;
 
 .o-testimonials__navigator {
   display: flex;
+  overflow: hidden;
+  padding: 0 $o-testimonials-arrow-width-xs;
 
   margin: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-xs $o-testimonials-navigator-margin-horizontal-xs;
 

@@ -8,7 +8,7 @@ export default ({
     <axa-container>
         ${title && html`<h1 class="o-testimonials__title">${title}</h1>`}
         ${subtitle && html`<p class="o-testimonials__subtitle">${subtitle}</p>`}
-        <div class="o-testimonials__navigator">
+        <div class="o-testimonials__navigator js-o-testimonials__navigator">
           <button class="o-testimonials__arrow-left js-o-testimonials__control-left"></button>
           <div class="o-testimonials__content">
             ${childrenFragment}

@@ -1,7 +1,7 @@
 import Swipe from '../../../js/swipe';
 import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
-import UiEvents, { EVENTS } from '../../../js/ui-events';
+import UiEvents, { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 
 class Testimonials extends UiEvents {
   static DEFAULTS = {
@@ -9,11 +9,15 @@ class Testimonials extends UiEvents {
     controlRight: '.js-o-testimonials__control-right',
     slides: '.js-o-testimonial__item',
     slider: '.js-o-testimonials',
+    navigator: '.js-o-testimonials__navigator',
+    animationLeft: 'o-testimonials__item_animation_left',
+    animationRight: 'o-testimonials__item_animation_right',
     autoRotateDisabled: 'auto-rotate-disabled',
     autoRotateTime: 'auto-rotate-time',
   };
 
-  constructor(wcNode, options = {}) {
+  constructor(wcNode, options = {
+  }) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...Testimonials.DEFAULTS,
@@ -39,6 +43,7 @@ class Testimonials extends UiEvents {
     if (!this.autoRotateTimeInMiliseconds) {
       this.autoRotateTimeInMiliseconds = 5000;
     }
+    this.calculateContainerMinHeight();
     this.hideAllSlides();
     if (this.slides.length < 2) {
       this.hideControls();
@@ -48,10 +53,21 @@ class Testimonials extends UiEvents {
     this.initSwipe();
   }
 
+  calculateContainerMinHeight() {
+    // we need to set slider min height in case there are elements with different heights.
+    this.minHeight = 0;
+    for (let i = 0, { length } = this.slides; i < length; i++) {
+      this.minHeight = this.slides[i].clientHeight;
+    }
+    this.slider.querySelector(this.options.navigator).style.minHeight = `${this.minHeight}px`;
+  }
+
   on() {
     this.off();
-    this.controlLeftClicked = on(this.controlLeft, EVENTS.CLICK, this.handleControlLeftClicked);
-    this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.handleControlRightClicked);
+    this.controlLeftClicked = on(this.controlLeft, EVENTS.CLICK, this.goToPreviousSlide);
+    this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.goToNextSlide);
+    this.swipedLeft = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_LEFT, this.goToNextSlide);
+    this.swipedRight = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_RIGHT, this.goToPreviousSlide);
   }
 
   off() {
@@ -61,27 +77,25 @@ class Testimonials extends UiEvents {
     if (this.controlRightClicked) {
       this.controlRightClicked();
     }
+    if (this.swipedLeft) {
+      this.swipedLeft();
+    }
+    if (this.swipedRight) {
+      this.swipedRight();
+    }
   }
 
   initSwipe() {
     const swiper = new Swipe(this.wcNode);
-    swiper.onLeft(() => {
-      this.autoRotateDisabled = true;
-      this.showSlide(+1);
-    });
-    swiper.onRight(() => {
-      this.autoRotateDisabled = true;
-      this.showSlide(-1);
-    });
     swiper.run();
   }
 
-  handleControlLeftClicked = () => {
+  goToPreviousSlide = () => {
     this.autoRotateDisabled = true;
     this.showSlide(-1);
   };
 
-  handleControlRightClicked = () => {
+  goToNextSlide = () => {
     this.autoRotateDisabled = true;
     this.showSlide(+1);
   };
@@ -106,12 +120,12 @@ class Testimonials extends UiEvents {
     } else {
       this.slideIndex = this.slideIndex + positionDifference;
     }
-    this.slides[this.slideIndex].classList.remove('o-testimonials__item_animation_left');
-    this.slides[this.slideIndex].classList.remove('o-testimonials__item_animation_right');
+    this.slides[this.slideIndex].classList.remove(this.options.animationLeft);
+    this.slides[this.slideIndex].classList.remove(this.options.animationRight);
     if (positionDifference < 0) {
-      this.slides[this.slideIndex].classList.add('o-testimonials__item_animation_left');
+      this.slides[this.slideIndex].classList.add(this.options.animationLeft);
     } else {
-      this.slides[this.slideIndex].classList.add('o-testimonials__item_animation_right');
+      this.slides[this.slideIndex].classList.add(this.options.animationRight);
     }
     this.slides[this.slideIndex].style.display = 'block';
     this.autoRotate();

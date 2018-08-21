@@ -1,5 +1,6 @@
-import { EVENTS } from './ui-events';
+import { EVENTS, AXA_EVENTS } from './ui-events';
 import on from './on';
+import fire from './fire';
 
 class Swipe {
   constructor(element) {
@@ -19,28 +20,20 @@ class Swipe {
     });
   }
 
-  onLeft(callback) {
-    this.onLeft = callback;
-
-    return this;
+  onLeft() {
+    fire(this.element, AXA_EVENTS.AXA_SWIPE_LEFT, null, { bubbles: true, cancelable: true, composed: true });
   }
 
-  onRight(callback) {
-    this.onRight = callback;
-
-    return this;
+  onRight() {
+    fire(this.element, AXA_EVENTS.AXA_SWIPE_RIGHT, null, { bubbles: true, cancelable: true, composed: true });
   }
 
-  onUp(callback) {
-    this.onUp = callback;
-
-    return this;
+  onUp() {
+    fire(this.element, AXA_EVENTS.AXA_SWIPE_UP, null, { bubbles: true, cancelable: true, composed: true });
   }
 
-  onDown(callback) {
-    this.onDown = callback;
-
-    return this;
+  onDown() {
+    fire(this.element, AXA_EVENTS.AXA_SWIPE_DOWN, null, { bubbles: true, cancelable: true, composed: true });
   }
 
   handleTouchMove(evt) {

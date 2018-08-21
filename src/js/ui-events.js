@@ -9,6 +9,10 @@ export const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape',
 export const AXA_EVENTS = {
   AXA_CLICK: 'axa-click',
   AXA_CHANGE: 'axa-change',
+  AXA_SWIPE_UP: 'axa-swipe-up',
+  AXA_SWIPE_DOWN: 'axa-swipe-down',
+  AXA_SWIPE_LEFT: 'axa-swipe-left',
+  AXA_SWIPE_RIGHT: 'axa-swipe-right',
 };
 
 /**
