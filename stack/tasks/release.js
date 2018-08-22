@@ -1,5 +1,6 @@
 const outdent = require('outdent');
 const execa = require('execa');
+const fkill = require('fkill');
 const promiseSeries = require('promise.series');
 const chalk = require('chalk');
 // eslint-disable-next-line import/no-dynamic-require
@@ -18,21 +19,31 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
-const execaPipeError = (file, ...args) => {
-  const isCommand = args.length === 0;
-  const params = isCommand ? file.split(/\s+/) : [file, ...args];
-  const [command, ...options] = params;
+const fkillCatch = (reason) => {
+  console.error(reason);
+};
 
-  const exec = execa(command, options);
+const execaPipeError = (file, ...rest) => {
+  const isCommand = rest.length === 0;
+  const params = isCommand ? file.split(/\s+/) : [file, ...rest];
+  const [command, ...args] = params;
+
+  const exec = execa(command, args, {
+    stdio: 'ignore',
+  });
 
   return exec
     .then((result) => {
-      console.log(`>>> resolved | ${command} ${options.join(' ')}`);
+      console.log(`>>> resolved ${exec.pid} | ${command} ${args.join(' ')}`);
+
+      fkill(exec.pid, { force: true }).catch(fkillCatch);
 
       return result;
     })
     .catch((reason) => {
-      console.log(`>>> rejected | ${command} ${options.join(' ')}`);
+      console.log(`>>> rejected ${exec.pid} | ${command} ${args.join(' ')}`);
+
+      fkill(exec.pid, { force: true }).catch(fkillCatch);
 
       throw reason;
     });
