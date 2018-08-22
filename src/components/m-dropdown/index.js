@@ -4,8 +4,6 @@ import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import DropDown from './js/drop-down';
-import fire from '../../js/fire';
-import { AXA_EVENTS } from '../../js/ui-events';
 
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
