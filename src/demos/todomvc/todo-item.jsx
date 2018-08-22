@@ -4,10 +4,12 @@ import withReact from '../../js/with-react';
 import AXAButton from '../../components/m-button';
 import AXAIcon from '../../components/a-icon';
 import AXACheckbox from '../../components/a-checkbox';
+import AXADropDown from '../../components/m-dropdown';
 
 const AXAButtonReact = withReact(AXAButton);
 const AXAIconReact = withReact(AXAIcon);
 const AXACheckboxReact = withReact(AXACheckbox);
+const AXADropDownReact = withReact(AXADropDown);
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;
@@ -119,6 +121,15 @@ class TodoItem extends Component {
     return (
       <li className="m-todo__item">
         <div className="m-todo__wrap">
+          <AXADropDownReact
+            title="Switch status"
+            value={completed ? 'selected' : 'unselected'}
+            onAxaChange={(ev) => {
+              todo.completed = ev.detail === 'unselected';
+              onToggle(todo);
+            }}
+            items={[{ name: 'Selected', value: 'selected' }, { name: 'Unselected', value: 'unselected' }]}
+          />
           <AXACheckboxReact checked={completed} name="completed" onChange={() => onToggle(todo)} />
 
           <input
