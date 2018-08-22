@@ -42,13 +42,6 @@ class AXADropdown extends BaseComponentGlobal {
       delete this.dropDown;
     }
   }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    if (name === 'value' && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null && oldValue !== null) {
-      fire(this, AXA_EVENTS.AXA_CHANGE, null, { bubbles: true, cancelable: true, composed: true });
-    }
-  }
 }
 
 defineOnce(AXADropdown.tagName, AXADropdown);

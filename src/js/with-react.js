@@ -12,6 +12,10 @@ const PROP_BLACKLIST = [
 ];
 const blackListFilter = key => PROP_BLACKLIST.indexOf(key) === -1;
 const isEventFilter = (key) => {
+  if (!key) {
+    return false;
+  }
+
   const keyFrom2 = key.charAt(2);
 
   return key.indexOf('on') === 0 && keyFrom2 === keyFrom2.toUpperCase();
