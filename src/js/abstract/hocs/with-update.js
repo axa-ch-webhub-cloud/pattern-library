@@ -148,7 +148,7 @@ const withUpdate = Base =>
       }
 
       // if value is updated, we presume that an axa on change event have to be triggered
-      if (name === 'value' && newValue !== null && oldValue !== newValue) {
+      if (name === 'value' && newValue !== null) {
         fire(this, AXA_EVENTS.AXA_CHANGE, newValue, { bubbles: true, cancelable: true, composed: true });
       }
     }
