@@ -78,7 +78,7 @@ export default class Datepicker {
     }
     if (button === OK) {
       this._value = value;
-      console.log(this._locale);
+      console.log(this._value);
       this._localeValue = getLocaleDayMonthYear(this._locale, this._value);
     } else {
       // console.log('cancel');
@@ -88,17 +88,19 @@ export default class Datepicker {
 
   handleClickDatepickerInput = (e) => {
     e.preventDefault();
+    // const { detail } = e;
+    // if(valid)
     this.displayDatepicker();
   }
 
   handleInputChange = (e) => {
     e.preventDefault();
     const { detail } = e;
-    if (isDateValid(this._locale, detail)) {
-      console.log('gueltig');
-      const date = new Date(detail);
+    const validDate = isDateValid(this._locale, detail);
+    if (validDate) {
+      this._value = new Date(validDate);
     } else {
-      console.log('ungueltig');
+      this._value = '';
     }
   }
 

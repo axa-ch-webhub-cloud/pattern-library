@@ -18,7 +18,7 @@ export default class Input {
   listenToButtons() {
     this.offListenToButtons();
     this.unIconButtonListenerEnd = on(this.iconButton, EVENTS.CLICK, () => {
-      fire(this.iconButton, AXA_EVENTS.AXA_CLICK, '', { bubbles: true, cancelable: true, composed: true });
+      fire(this.iconButton, AXA_EVENTS.AXA_CLICK, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
     });
   }
 

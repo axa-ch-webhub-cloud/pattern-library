@@ -142,11 +142,12 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
   });
   combinations.forEach((option) => {
     objDate = date.toLocaleString(locale, option);
-    console.log(objDate, inputValue);
     if (objDate === inputValue && date.getFullYear().toString().length === 4) {
-      console.log('richtig!!!!!');
       valid = true;
     }
   });
-  return valid;
+  if (valid) {
+    return date;
+  }
+  return '';
 };
