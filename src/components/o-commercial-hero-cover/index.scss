@@ -107,7 +107,6 @@ $margin-30: 30px;
   overflow: hidden;
   margin: $margin-info-mobile $margin-10 $margin-30;
 
-  flex: 1;
   background: $color-prim-white;
 
   @include respond-up(md) {
@@ -166,4 +165,7 @@ $margin-30: 30px;
 
 .o-commercial-hero-cover__flex {
   display: flex;
+
+  justify-content: center;
+  flex-direction: column;
 }
