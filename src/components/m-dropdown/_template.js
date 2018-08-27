@@ -23,6 +23,9 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
   </div>`;
 
 const getTitle = (value, items, title) => {
+  if (!items) {
+    return title || '';
+  }
   const selected = items.filter((item, index) => {
     let { value: _value } = item;
     if (typeof _value === 'undefined') {

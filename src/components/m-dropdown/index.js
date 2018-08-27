@@ -4,8 +4,6 @@ import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import DropDown from './js/drop-down';
-import fire from '../../js/fire';
-import { AXA_EVENTS } from '../../js/ui-events';
 
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
@@ -40,13 +38,6 @@ class AXADropdown extends BaseComponentGlobal {
     if (this.dropDown) {
       this.dropDown.destroy();
       delete this.dropDown;
-    }
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    if (name === 'value' && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null && oldValue !== null) {
-      fire(this, AXA_EVENTS.AXA_CHANGE, null, { bubbles: true, cancelable: true, composed: true });
     }
   }
 }
