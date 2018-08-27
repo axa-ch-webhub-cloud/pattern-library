@@ -3,9 +3,7 @@
 @import "../../styles/mixins/word-break";
 
 $policy-feature-item-icon-height-sm: 42px;
-$policy-feature-item-icon-width-sm: $policy-feature-item-icon-height-sm;
 $policy-feature-item-icon-height-md: 96px;
-$policy-feature-item-icon-width-md: $policy-feature-item-icon-height-md;
 $policy-feature-item-margin-50: 50px;
 $policy-feature-item-content-width-sm: 240px;
 $policy-feature-item-content-width-md: 210px;
@@ -16,13 +14,11 @@ $policy-feature-item-content-width-lg: 255px;
 }
 
 .m-policy-feature-item__icon {
-  width: $policy-feature-item-icon-width-sm;
   height: $policy-feature-item-icon-height-sm;
   display: block;
   margin: $policy-feature-item-margin-50 auto 0 auto;
 
   @include respond-up(md) {
-    width: $policy-feature-item-icon-width-md;
     height: $policy-feature-item-icon-height-md;
   }
 }
