@@ -46,12 +46,12 @@ class Testimonials extends UiEvents {
       this.autoRotateTimeInMiliseconds = 5000;
     }
     this.calculateContainerMinHeight();
-    // if there is only 1 slide or the option to show all slides is enabled hide the slide controls.
-    if (this.slides.length < 2 || this.showAllInline) {
-      this.hideControls();
-    }
     // if show all inline is enabled no need to init swipe controls and hide/show slides.
     if (!this.showAllInline) {
+      // show if more than 1 slide and not inline.
+      if (this.slides.length > 1) {
+        this.showControls();
+      }
       this.hideAllSlides();
       this.showSlide(0);
       this.on();
@@ -112,9 +112,9 @@ class Testimonials extends UiEvents {
     }
   }
 
-  hideControls() {
-    this.controlRight.style.display = 'none';
-    this.controlLeft.style.display = 'none';
+  showControls() {
+    this.controlRight.style.display = 'block';
+    this.controlLeft.style.display = 'block';
   }
 
   showSlide(positionDifference) {
