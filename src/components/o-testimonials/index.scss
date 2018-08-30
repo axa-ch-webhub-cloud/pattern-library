@@ -167,6 +167,14 @@ $o-testimonials-author-position-bottom: -40px;
   animation: fromRight 0.8s;
 }
 
+axa-testimonials[show-all-inline="true"] .o-testimonials__item-author {
+  position: relative;
+
+  bottom: 0;
+
+  margin-bottom: 20px;
+}
+
 @keyframes fromRight {
   from {
     opacity: 0;

@@ -14,6 +14,7 @@ class Testimonials extends UiEvents {
     animationRight: 'o-testimonials__item_animation_right',
     autoRotateDisabled: 'auto-rotate-disabled',
     autoRotateTime: 'auto-rotate-time',
+    showAllInline: 'show-all-inline',
   };
 
   constructor(wcNode, options = {
@@ -40,17 +41,22 @@ class Testimonials extends UiEvents {
     this.slider = this.wcNode.querySelector(this.options.slider);
     this.autoRotateDisabled = getAttribute(this.wcNode, this.options.autoRotateDisabled);
     this.autoRotateTimeInMiliseconds = getAttribute(this.wcNode, this.options.autoRotateTime);
+    this.showAllInline = getAttribute(this.wcNode, this.options.showAllInline);
     if (!this.autoRotateTimeInMiliseconds) {
       this.autoRotateTimeInMiliseconds = 5000;
     }
     this.calculateContainerMinHeight();
-    this.hideAllSlides();
-    if (this.slides.length < 2) {
+    // if there is only 1 slide or the option to show all slides is enabled hide the slide controls.
+    if (this.slides.length < 2 || this.showAllInline) {
       this.hideControls();
     }
-    this.showSlide(0);
-    this.on();
-    this.initSwipe();
+    // if show all inline is enabled no need to init swipe controls and hide/show slides.
+    if (!this.showAllInline) {
+      this.hideAllSlides();
+      this.showSlide(0);
+      this.on();
+      this.initSwipe();
+    }
   }
 
   calculateContainerMinHeight() {
@@ -171,6 +177,18 @@ class Testimonials extends UiEvents {
 
     if (this.slider) {
       delete this.slider;
+    }
+
+    if (this.autoRotateDisabled) {
+      delete this.autoRotateDisabled;
+    }
+
+    if (this.autoRotateTimeInMiliseconds) {
+      delete this.autoRotateTimeInMiliseconds;
+    }
+
+    if (this.showAllInline) {
+      delete this.showAllInline;
     }
   }
 }
