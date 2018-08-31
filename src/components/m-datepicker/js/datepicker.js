@@ -2,6 +2,8 @@ import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
 
+export const OK = 'ok';
+
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
@@ -70,12 +72,12 @@ export default class Datepicker {
         choosenDate.setFullYear(year);
         choosenDate.setDate(value);
         if (this.outputIso) {
-          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: OK }, { bubbles: true, cancelable: true, composed: true });
         } else {
-          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate, button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate, button: OK }, { bubbles: true, cancelable: true, composed: true });
         }
       } else {
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: '', button: 'ok' }, { bubbles: true, cancelable: true, composed: true });
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: '', button: OK }, { bubbles: true, cancelable: true, composed: true });
       }
     });
   }

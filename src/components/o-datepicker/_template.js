@@ -8,7 +8,6 @@ export default ({
 }, documentFragment, wcNode) => {
   wcNode.datepicker.locale = locale;
   const { localeValue, value } = wcNode.datepicker;
-  console.log(wcNode, value ? value.getDate() : null);
 
   return html`
     <article class=${classes}>

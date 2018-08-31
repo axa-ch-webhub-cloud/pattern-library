@@ -2,8 +2,7 @@ import { AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
 import { isDateValid, getLocaleDayMonthYear } from '../../../js/date';
-
-const OK = 'ok';
+import { OK } from '../../m-datepicker/js/datepicker';
 
 export default class Datepicker {
   constructor(wcNode) {
@@ -78,7 +77,6 @@ export default class Datepicker {
     }
     if (button === OK) {
       this._value = value;
-      console.log(this._value);
       this._localeValue = getLocaleDayMonthYear(this._locale, this._value);
     } else {
       // console.log('cancel');
@@ -93,6 +91,7 @@ export default class Datepicker {
 
   handleInputChange = (e) => {
     e.preventDefault();
+    console.log('eeee')
     const { detail } = e;
     const validDate = isDateValid(this._locale, detail);
     if (validDate) {
