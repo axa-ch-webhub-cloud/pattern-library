@@ -108,10 +108,6 @@
     $weight: nth($allowedWeights, 1);
   }
 
-  @if index($allowedWeights, $weight) == null {
-    @warn "$weight #{$weight} not suggested for current typo";
-  }
-
   @if not map-has-key($font-weight-map, $weight) {
     @error "$weight #{$weight} not found in $font-weight-map.";
   }

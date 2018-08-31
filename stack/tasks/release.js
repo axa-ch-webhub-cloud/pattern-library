@@ -18,21 +18,31 @@ const BETA = 'beta';
 
 process.stdin.setEncoding('utf8');
 
-const execaPipeError = (file, ...args) => {
-  const isCommand = args.length === 0;
-  const params = isCommand ? file.split(/\s+/) : [file, ...args];
-  const [command, ...options] = params;
+const execaPipeError = (file, ...rest) => {
+  const isCommand = rest.length === 0;
+  const params = isCommand ? file.split(/\s+/) : [file, ...rest];
+  const [command, ...args] = params;
+  const env = {
+    // This is critical for running smooth on windows behind enterprise proxies
+    // issue: https://github.com/axa-ch/patterns-library/issues/503
+    // npm@4.4.0 introduce the usage of update-notifier, which can't deal with proxies
+    // and times out after 3 minutes
+    // https://github.com/nodejs/node/issues/21632
+    NO_UPDATE_NOTIFIER: true,
+  };
 
-  const exec = execa(command, options);
+  const exec = execa(command, args, {
+    env,
+  });
 
   return exec
     .then((result) => {
-      console.log(`>>> resolved | ${command} ${options.join(' ')}`);
+      console.log(`>>> resolved | ${command} ${args.join(' ')}`);
 
       return result;
     })
     .catch((reason) => {
-      console.log(`>>> rejected | ${command} ${options.join(' ')}`);
+      console.log(`>>> rejected | ${command} ${args.join(' ')}`);
 
       throw reason;
     });

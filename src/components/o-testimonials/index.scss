@@ -64,6 +64,7 @@ $o-testimonials-author-position-bottom: -40px;
 }
 
 .o-testimonials__arrow-left {
+  display: none;
   padding: $o-testimonials-arrow-width-xs;
   height: $o-testimonials-arrow-height-xs;
   width: $o-testimonials-arrow-width-xs;
@@ -81,6 +82,7 @@ $o-testimonials-author-position-bottom: -40px;
 }
 
 .o-testimonials__arrow-right {
+  display: none;
   height: $o-testimonials-arrow-height-xs;
   width: $o-testimonials-arrow-width-xs;
   padding: $o-testimonials-arrow-width-xs;
@@ -108,23 +110,19 @@ $o-testimonials-author-position-bottom: -40px;
 .o-testimonials__navigator {
   display: flex;
   overflow: hidden;
-  padding: 0 $o-testimonials-arrow-width-xs;
+  box-sizing: content-box;
 
-  margin: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-xs $o-testimonials-navigator-margin-horizontal-xs;
+  padding: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-xs $o-testimonials-navigator-margin-horizontal-xs;
 
   flex-direction: row;
   align-items: center;
 
-  @include respond-up(sm) {
-    margin: 0 $o-testimonials-navigator-margin-horizontal-sm;
-  }
-
   @include respond-up(lg) {
-    margin: 0 $o-testimonials-navigator-margin-horizontal-lg;
+    padding: 0 $o-testimonials-navigator-margin-horizontal-lg;
   }
 
   @include respond-up(sm) {
-    margin: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-sm $o-testimonials-navigator-margin-horizontal-xs;
+    padding: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-sm $o-testimonials-navigator-margin-horizontal-xs;
   }
 }
 
@@ -169,6 +167,14 @@ $o-testimonials-author-position-bottom: -40px;
 
 .o-testimonials__item_animation_right {
   animation: fromRight 0.8s;
+}
+
+.o-testimonials--show-all-inline .o-testimonials__item-author {
+  position: relative;
+
+  bottom: 0;
+
+  margin-bottom: 20px;
 }
 
 @keyframes fromRight {
