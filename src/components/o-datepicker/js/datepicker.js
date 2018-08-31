@@ -15,7 +15,7 @@ export default class Datepicker {
   init() {
     this.datepickerInput = this.wcNode.querySelector('.js-datepicker__input');
     this.datepickerCalender = this.wcNode.querySelector('.js-datepicker__calender');
-    this.datepicker = this.wcNode.querySelector('.o-datepicker');
+    this.datepicker = this.wcNode.querySelector('.js-datepicker');
     this.listenToButtons();
     this.listenToInput();
     if (this.datepickerCalender && this.isItemInLowerHalf(this.datepickerInput)) {
@@ -72,11 +72,13 @@ export default class Datepicker {
       return;
     }
     const { button, value } = detail;
+    console.log(button)
     if (!button) {
       return;
     }
     if (button === OK) {
       this._value = value;
+      console.log('dedede', value);
       this._localeValue = getLocaleDayMonthYear(this._locale, this._value);
     } else {
       // console.log('cancel');
@@ -111,13 +113,11 @@ export default class Datepicker {
 
   isItemInLowerHalf(target) {
     const { top, height } = target.getBoundingClientRect();
-    const toBottom = window.innerHeight - (top + (height / 2));
-    const toTop = top + (height / 2);
+    const calculation = top + (height / 2);
+    const toBottom = window.innerHeight - calculation;
+    const toTop = calculation;
 
-    if (toBottom >= toTop) {
-      return false;
-    }
-    return true;
+    return toBottom < toTop;
   }
 
   get localeValue() {

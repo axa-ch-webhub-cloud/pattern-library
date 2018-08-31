@@ -40,4 +40,9 @@ export default class Input {
       this.unInputListenerEnd();
     }
   }
+
+  destroy() {
+    this.offListenToInputChange();
+    this.offListenToButtons();
+  }
 }

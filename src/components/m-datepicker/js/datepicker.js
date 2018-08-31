@@ -63,14 +63,13 @@ export default class Datepicker {
     this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
-      const value = this.datepickerBody.getAttribute('value');
+      const day = this.datepickerBody.getAttribute('value');
 
-      if (value) {
-        const choosenDate = new Date();
+      if (day) {
+        const choosenDate = new Date(year, month, day);
 
-        choosenDate.setMonth(month);
-        choosenDate.setFullYear(year);
-        choosenDate.setDate(value);
+        console.log(choosenDate)
+
         if (this.outputIso) {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: OK }, { bubbles: true, cancelable: true, composed: true });
         } else {

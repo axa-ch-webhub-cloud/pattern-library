@@ -32,6 +32,9 @@ class AXAInput extends BaseComponentGlobal {
   didRenderCallback() {
     this.input.init();
   }
+  disconnectedCallback() {
+    this.input.destroy();
+  }
 }
 
 defineOnce(AXAInput.tagName, AXAInput);
