@@ -10,7 +10,7 @@ class AXAInput extends BaseComponentGlobal {
   static tagName = 'axa-input'
 
   static get observedAttributes() {
-    return ['valid', 'inline', 'error', 'disabled', 'input-id', 'type', 'placeholder', 'value', 'name', 'icon', 'date'];
+    return ['valid', 'inline', 'error', 'disabled', 'input-id', 'type', 'placeholder', 'value', 'name', 'icon'];
   }
 
   constructor() {
