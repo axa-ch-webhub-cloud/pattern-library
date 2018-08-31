@@ -65,10 +65,8 @@ export default ({
   lowerEndYear,
   higherEndYear,
 }) => {
-  console.log('dp', selectedDay);
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
-  console.log(getAllLocaleMonthsArray(locale));
   return html`
     <article class="${classes} m-datepicker__article">
       <div class="">

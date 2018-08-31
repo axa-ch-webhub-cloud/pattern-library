@@ -3,16 +3,11 @@ export const DEFAULT_NEW_YEARS = 10;
 export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
   const finalArray = [];
   const objDate = new Date();
-  // console.log('obj', objDate);
   objDate.setDate(1);
-  // console.log('obj2', objDate);
   [...Array(12).keys()].forEach((index) => {
     objDate.setMonth(index);
-    console.log(objDate, index);
     finalArray.push(objDate.toLocaleString(locale, { month: 'long' }));
   });
-  // console.log('finalArray', finalArray);
-  // console.log('objDate', objDate)
   return finalArray;
 };
 
