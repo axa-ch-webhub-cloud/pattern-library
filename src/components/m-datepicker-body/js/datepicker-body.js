@@ -3,17 +3,16 @@ import on from '../../../js/on';
 import Store from './store';
 import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 
-let selected = null;
-
 export default class DatepickerBody {
   constructor(wcNode) {
     this.wcNode = wcNode;
+    this.selected = null;
     this.date = new Date();
   }
 
   init(index, locale, year, month, day, allowedYears) {
-    console.log(day);
     this._store = new Store(locale, year, month);
+    this.selected = null;
     this.prepareCells(index);
     this.listenToCells();
     this.index = index;
@@ -34,9 +33,9 @@ export default class DatepickerBody {
   }
 
   prepareCells(index) {
-    if (selected && !index) {
-      const cell = new SelectedDay(selected.getText(), selected.getIndex(), selected.getIsToday());
-      this._store.setCell(selected.getIndex(), cell);
+    if (this.selected && !index) {
+      const cell = new SelectedDay(this.selected.getText(), this.selected.getIndex(), this.selected.getIsToday());
+      this._store.setCell(this.selected.getIndex(), cell);
     }
     if (!index && index !== 0) {
       return;
@@ -65,7 +64,7 @@ export default class DatepickerBody {
 
   handleClick = (e) => {
     e.preventDefault();
-    selected = null;
+    this.selected = null;
     const { dataset } = e.target;
     const index = +dataset.index;
 
@@ -92,10 +91,10 @@ export default class DatepickerBody {
   }
 
   handleCurrentMonth(index, cell) {
-    if (selected !== null) {
-      const lastIndex = selected.getIndex();
-      const isToday = selected.getIsToday();
-      const lastText = selected.getText();
+    if (this.selected !== null) {
+      const lastIndex = this.selected.getIndex();
+      const isToday = this.selected.getIsToday();
+      const lastText = this.selected.getText();
       // const lastcell = isToday ? new Today(lastText, lastIndex, isToday) : new CurrentMonth(lastText, lastIndex, isToday);
       const lastcell = new CurrentMonth(lastText, lastIndex, isToday);
       this._store.setCell(lastIndex, lastcell);
@@ -103,13 +102,9 @@ export default class DatepickerBody {
 
     const newcell = new SelectedDay(cell.getText(), cell.getIndex(), cell.getIsToday());
     this._store.setCell(index, newcell);
-    selected = newcell;
+    this.selected = newcell;
     if (!newcell.isToday) {
-      this._store.cells.map((c) => {
-        if (c instanceof Today) {
-          this._store.setCell(c.getIndex(), new CurrentMonth(c.getText(), c.getIndex(), true));
-        }
-      });
+      this._store.cells = this._store.cells.map(c => c instanceof Today ? new CurrentMonth(c.getText(), c.getIndex(), true) : c);
     }
   }
 
