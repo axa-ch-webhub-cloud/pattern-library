@@ -88,8 +88,6 @@ export default class Datepicker {
 
   handleClickDatepickerInput = (e) => {
     e.preventDefault();
-    // const { detail } = e;
-    // if(valid)
     this.displayDatepicker();
   }
 
@@ -109,11 +107,6 @@ export default class Datepicker {
       this.wcNode.removeAttribute('open');
     } else {
       this.wcNode.setAttribute('open', true);
-      // if (inputValid) {
-      //   this.wcNode.datepicker.setAttribute('start-month', date.getMonth());
-      //   this.wcNode.datepicker.setAttribute('start-year', date.getFullYear());
-      // }
-      //
     }
   }
 

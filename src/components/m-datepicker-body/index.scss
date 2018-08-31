@@ -42,28 +42,26 @@ $datepicker-calender-body-padding-top: 5px !default;
   color: $color-prim-gray-silver;
 }
 
-.m-datepicker-body__current-month:hover {
-  box-shadow: 0 0 0 3px $color-axa-blue inset;
-  background-color: $color-prim-white;
-  color: $color-prim-gray-mine-shaft;
-}
-
 .m-datepicker-body__current-month {
   color: $color-prim-gray-mine-shaft;
 }
 
-.m-datepicker-body__current-month:hover.m-datepicker-body__selected-day {
-  background-color: $color-axa-blue;
-  color: $color-prim-white;
-}
-
-.m-datepicker-body__selected-day {
-  background-color: $color-axa-blue;
-  color: $color-prim-white;
-}
-
-.m-datepicker-body__today {
-  box-shadow: 0 0 0 3px $color-axa-red inset;
+.m-datepicker-body__current-month:hover {
+  box-shadow: 0 0 0 3px $color-axa-blue inset;
   background-color: $color-prim-white;
   color: $color-prim-gray-mine-shaft;
+  opacity: 0.5;
+}
+
+.m-datepicker-body__current-month:hover.m-datepicker-body__selected-day,
+.m-datepicker-body__current-month:hover.m-datepicker-body__today {
+  background-color: $color-axa-blue;
+  color: $color-prim-white;
+  opacity: 1;
+}
+
+.m-datepicker-body__selected-day,
+.m-datepicker-body__today {
+  background-color: $color-axa-blue;
+  color: $color-prim-white;
 }
