@@ -11,7 +11,7 @@ const TODAY = 'TODAY';
 // tolocaldatestring()
 const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   let { lowerEndYear, higherEndYear } = yearsRange;
-
+  console.log('lower', lowerEndYear)
   const date = new Date();
 
   if (!lowerEndYear) {
@@ -24,11 +24,11 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
     higherEndYear = date.getFullYear() + DEFAULT_NEW_YEARS;
   }
 
-  if (startMonth !== TODAY && startMonth) {
+  if (startMonth !== TODAY) {
     date.setMonth(startMonth);
   }
 
-  if (startYear !== TODAY && startYear) {
+  if (startYear !== TODAY) {
     date.setFullYear(startYear);
   }
 
@@ -65,6 +65,7 @@ export default ({
   lowerEndYear,
   higherEndYear,
 }) => {
+  console.log(lowerEndYear, higherEndYear, startYear, startMonth);
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
   return html`
