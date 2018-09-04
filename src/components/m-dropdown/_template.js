@@ -7,14 +7,14 @@ const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon
 const nativeSelect = ({ title, items, size, value }) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,
   })}" tabindex="0">
-    <select class="${classnames('m-dropdown__select', {
+    <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', {
       [`m-dropdown__select--${size}`]: size,
     })}">
     ${title && html`<option value="" disabled hidden selected class="m-dropdown__select-option--hidden" >${title}</option>`}
     ${Array.isArray(items) &&
-      items.map(({ name, value: itemValue, url }) =>
-        html`<option value="${itemValue}" data-url="${url}" ${
-          itemValue === value ? 'selected' : ''
+      items.map(({ name, value: itemValue, url }, index) =>
+        html`<option value="${itemValue || index}" data-url="${url}" ${
+          (itemValue || index) === value ? 'selected' : ''
         }>${name}</option>`)}
     </select>
     <div class="${classnames('m-dropdown__select-icon', {
