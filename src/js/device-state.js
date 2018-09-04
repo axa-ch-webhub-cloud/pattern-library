@@ -37,12 +37,13 @@ export default class DeviceStateObserver {
   }
 
   triggerOnce() {
-    this.handleResize();
+    this.handleResize(true);
   }
 
-  handleResize = () => {
-    if (typeof this.callbackOnChange === 'function') {
-      this.callbackOnChange(this.getDeviceState(), this.hasStateChanged);
+  handleResize = (force = false) => {
+    const { hasStateChanged, content } = this.getContent();
+    if (typeof this.callbackOnChange === 'function' && (hasStateChanged || force)) {
+      this.callbackOnChange(this.getDeviceState(content));
     }
   }
 
@@ -54,7 +55,7 @@ export default class DeviceStateObserver {
     return accumulated;
   }
 
-  getDeviceState() {
+  getContent() {
     if (!this.window && this.node) {
       this.window = ownerWindow(this.node);
     }
@@ -74,11 +75,15 @@ export default class DeviceStateObserver {
       return false;
     }
 
-    this.hasStateChanged = content !== this.lastContent;
+    const hasStateChanged = content !== this.lastContent;
 
-    // now is really ready
     this.lastContent = content;
+    return {
+      hasStateChanged, content,
+    };
+  }
 
+  getDeviceState(content) {
     const state = content.replace(regexWhiteSpace, '')
       .replace(regexUnquote, '')
       .split(',')

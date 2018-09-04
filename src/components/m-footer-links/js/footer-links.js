@@ -35,10 +35,7 @@ export default class FooterLinks {
 
     const { wcNode } = this;
 
-    this.unsubscribe = this.deviceStateObserver.listen((state, hasStateChanged) => {
-      if (!hasStateChanged) {
-        return;
-      }
+    this.unsubscribe = this.deviceStateObserver.listen((state) => {
       const { breakpoint } = state;
       const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
 

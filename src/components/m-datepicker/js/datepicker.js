@@ -1,12 +1,16 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
+import DeviceStateObserver from '../../../js/device-state';
 
 export const OK = 'ok';
+
+const IS_NATIVE_WHEN = ['xs', 'sm'];
 
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
+    this.deviceStateObserver = new DeviceStateObserver();
   }
 
   init(outputIso) {
@@ -19,6 +23,28 @@ export default class Datepicker {
 
     this.listenToChanges();
     this.listenToButtons();
+    this.listenToDeviceStateChange();
+  }
+
+  listenToDeviceStateChange() {
+    this.offListenToDeviceStateChange();
+    this.unListenToDeviceStateChange = this.deviceStateObserver.listen((state) => {
+      if (!this.dropdownMonth || !this.dropdownYear) {
+        return;
+      }
+      const { breakpoint } = state;
+      const isNative = !!~IS_NATIVE_WHEN.indexOf(breakpoint);
+      this.dropdownMonth.setAttribute('native', isNative);
+      this.dropdownYear.setAttribute('native', isNative);
+    });
+
+    this.deviceStateObserver.triggerOnce();
+  }
+
+  offListenToDeviceStateChange() {
+    if (this.unListenToDeviceStateChange) {
+      this.unListenToDeviceStateChange();
+    }
   }
 
   listenToChanges() {
@@ -68,7 +94,7 @@ export default class Datepicker {
       if (day) {
         const choosenDate = new Date(year, month, day);
 
-        console.log(choosenDate)
+        console.log(choosenDate);
 
         if (this.outputIso) {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: OK }, { bubbles: true, cancelable: true, composed: true });

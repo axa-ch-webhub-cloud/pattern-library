@@ -59,7 +59,6 @@ export default ({
   startYear = TODAY,
   startMonth = TODAY,
   selectedDay = null,
-  native = true,
   lowerEndYear,
   higherEndYear,
 }) => {
@@ -68,20 +67,18 @@ export default ({
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
   return html`
     <article class="${classes} m-datepicker__article">
-      <div class="">
-        <axa-dropdown native=${native} data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
-          size="sm" value="${startDate.month}"
-          items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
-            name: month, url: '#', value: index,
-          })))}">
-        </axa-dropdown>
-        <axa-dropdown native=${native} data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
-          size="sm" value="${startDate.year}"
-          items="${JSON.stringify(specificYears.map(year => ({
-            name: year, url: '#', value: year,
-          })))}">
-        </axa-dropdown>
-      </div>
+      <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
+        size="sm" value="${startDate.month}"
+        items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
+          name: month, url: '#', value: index,
+        })))}">
+      </axa-dropdown>
+      <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
+        size="sm" value="${startDate.year}"
+        items="${JSON.stringify(specificYears.map(year => ({
+          name: year, url: '#', value: year,
+        })))}">
+      </axa-dropdown>
       <div class="m-datepicker__weekdays">
         ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
