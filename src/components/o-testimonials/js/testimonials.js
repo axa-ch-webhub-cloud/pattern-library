@@ -166,7 +166,6 @@ class Testimonials extends UiEvents {
   autoRotate() {
     // auto rotate until disabled
     if (!this.autoRotateDisabled) {
-
       clearTimeout(this.autoRotateTimer);
       this.autoRotateTimer = setTimeout(
         () => {
