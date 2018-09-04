@@ -8,10 +8,8 @@ import {
 
 const TODAY = 'TODAY';
 
-// tolocaldatestring()
 const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   let { lowerEndYear, higherEndYear } = yearsRange;
-  console.log('lower', lowerEndYear)
   const date = new Date();
 
   if (!lowerEndYear) {
