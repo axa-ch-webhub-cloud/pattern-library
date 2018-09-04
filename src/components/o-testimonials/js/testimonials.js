@@ -1,6 +1,7 @@
 import Swipe from '../../../js/swipe';
 import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
+import debounce from '../../../js/debounce';
 import ownerWindow from '../../../js/owner-window';
 import UiEvents, { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 
@@ -31,7 +32,6 @@ class Testimonials extends UiEvents {
     this.slideIndex = 0;
     this.options = options;
     this.wcNode = wcNode;
-    this.resizeTimer = undefined;
     this.autoRotateTimer = undefined;
 
     this.init();
@@ -77,7 +77,7 @@ class Testimonials extends UiEvents {
     this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.goToNextSlide);
     this.swipedLeft = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_LEFT, this.goToNextSlide);
     this.swipedRight = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_RIGHT, this.goToPreviousSlide);
-    this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, this._handleResize);
+    this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, debounce(this.setMinimumHeightOnResize, 300));
   }
 
   off() {
@@ -103,12 +103,6 @@ class Testimonials extends UiEvents {
     this.calculateContainerMinHeight();
     this.hideAllSlides();
     this.showSlide(+1);
-  }
-
-  _handleResize = () => {
-    // resize only if 300ms passed after the resize event stopped occurring
-    clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(this.setMinimumHeightOnResize, 300);
   }
 
   initSwipe() {
@@ -165,8 +159,7 @@ class Testimonials extends UiEvents {
 
   autoRotate() {
     // auto rotate until disabled
-    if (!this.autoRotateDisabled) {
-      clearTimeout(this.autoRotateTimer);
+    if (!this.autoRotateDisabled && this.autoRotateTimer !== undefined) {
       this.autoRotateTimer = setTimeout(
         () => {
           if (!this.autoRotateDisabled) {
@@ -220,10 +213,6 @@ class Testimonials extends UiEvents {
 
     if (this.autoRotateTimer) {
       delete this.autoRotateTimer;
-    }
-
-    if (this.resizeTimer) {
-      delete this.resizeTimer;
     }
   }
 }
