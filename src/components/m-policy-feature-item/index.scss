@@ -17,6 +17,8 @@ $policy-feature-item-content-width-lg: 255px;
   height: $policy-feature-item-icon-height-sm;
   display: block;
   margin: $policy-feature-item-margin-50 auto 0 auto;
+  max-width: 100%;
+  color: $color-prim-white;
 
   @include respond-up(md) {
     height: $policy-feature-item-icon-height-md;
