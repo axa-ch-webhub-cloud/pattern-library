@@ -1,4 +1,5 @@
 export const DEFAULT_NEW_YEARS = 10;
+export const TODAY = 'TODAY';
 
 export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
   const finalArray = [];

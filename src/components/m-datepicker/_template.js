@@ -4,9 +4,8 @@ import {
   getSpecificYears,
   DEFAULT_NEW_YEARS,
   getLocalWeekdayArray,
+  TODAY,
 } from '../../js/date';
-
-const TODAY = 'TODAY';
 
 const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   let { lowerEndYear, higherEndYear } = yearsRange;
@@ -63,7 +62,7 @@ export default ({
   lowerEndYear,
   higherEndYear,
 }) => {
-  console.log(lowerEndYear, higherEndYear, startYear, startMonth);
+  console.log(startYear, startMonth);
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
   return html`
