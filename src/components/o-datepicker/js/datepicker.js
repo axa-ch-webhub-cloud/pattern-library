@@ -3,6 +3,9 @@ import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
 import { isDateValid, getLocaleDayMonthYear } from '../../../js/date';
 import { OK } from '../../m-datepicker/js/datepicker';
+import observeDeviceState from '../../../js/device-state';
+
+const IS_NATIVE_WHEN = ['sm'];
 
 export default class Datepicker {
   constructor(wcNode) {
@@ -18,6 +21,7 @@ export default class Datepicker {
     this.datepicker = this.wcNode.querySelector('.js-datepicker');
     this.listenToButtons();
     this.listenToInput();
+    this.listenToDeviceStateChange();
     if (this.datepickerCalender && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalender.classList.add('o-datepicker__calender--move-up');
     }
@@ -62,6 +66,19 @@ export default class Datepicker {
     if (this.unListenToInputChange) {
       this.unListenToInputChange();
     }
+  }
+
+  listenToDeviceStateChange() {
+    // observeDeviceState((state) => {
+    //   console.log('deed');
+    //   this.wcNode.removeAttribute('open');
+    //   if (!this.datepickerCalender) {
+    //     return;
+    //   }
+    //   const { breakpoint } = state;
+    //   console.log('breakpoint', breakpoint);
+    //   this.datepickerCalender.setAttribute('native', !!~IS_NATIVE_WHEN.indexOf(breakpoint));
+    // });
   }
 
   handleClickDatepickerCalender = (e) => {

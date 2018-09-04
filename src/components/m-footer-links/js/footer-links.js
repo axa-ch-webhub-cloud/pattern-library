@@ -1,8 +1,8 @@
 import on from '../../../js/on';
 import fire from '../../../js/fire';
 import getAttribute from '../../../js/get-attribute';
-import { subscribe } from '../../../js/pubsub';
 import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
+import DeviceStateObserver from '../../../js/device-state';
 import DropDown from '../../m-dropdown/js/drop-down';
 
 const hasDropdownBreakpoints = 'xs';
@@ -23,6 +23,8 @@ export default class FooterLinks {
       ...options,
     };
 
+    this.deviceStateObserver = new DeviceStateObserver();
+
     this.handleClick = this.handleClick.bind(this);
 
     this.on();
@@ -31,17 +33,24 @@ export default class FooterLinks {
   on() {
     this.off();
 
-    this.unsubscribe = subscribe('device-state/change', (event) => {
-      const { detail: { breakpoint } } = event;
+    const { wcNode } = this;
+
+    this.unsubscribe = this.deviceStateObserver.listen((state, hasStateChanged) => {
+      if (!hasStateChanged) {
+        return;
+      }
+      const { breakpoint } = state;
       const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
 
       if (hasDropdown && !this.dropDown) {
-        this.dropDown = new DropDown(this.wcNode);
+        this.dropDown = new DropDown(wcNode);
       } else if (!hasDropdown && this.dropDown) {
         this.dropDown.destroy();
         delete this.dropDown;
       }
     });
+
+    this.deviceStateObserver.triggerOnce();
 
     this.unClick = on(this.wcNode, EVENTS.CLICK, this.options.link, this.handleClick, { passive: false });
   }
