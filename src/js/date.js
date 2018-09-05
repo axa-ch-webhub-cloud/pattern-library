@@ -130,14 +130,15 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)
-  const monthIndex = splittedBlueprint.indexOf(3);
-  const dayIndex = splittedBlueprint.indexOf(23);
-  const yearIndex = splittedBlueprint.indexOf(2017);
+  const monthIndex = splittedBlueprint.indexOf('3');
+  const dayIndex = splittedBlueprint.indexOf('23');
+  const yearIndex = splittedBlueprint.indexOf('2017');
 
   const dateUnderValidation = new Date(splittedValue[yearIndex], splittedValue[monthIndex], splittedValue[dayIndex]);
 
-  if (dateUnderValidation === inputValue && dateUnderValidation.getFullYear().toString().length === 4) {
+  // eslint-disable-next-line no-restricted-globals
+  if (dateUnderValidation instanceof Date && !isNaN(dateUnderValidation)) {
     return dateUnderValidation;
   }
-  return '';
+  return null;
 };
