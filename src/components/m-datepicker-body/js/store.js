@@ -6,14 +6,14 @@ const CELLS = 7;
 const TOTAL_CELLS = ROWS * CELLS;
 
 export default class Store {
-  constructor(locale, year = new Date().getFullYear(), month = new Date().getMonth()) {
+  constructor(locale, year = new Date().getFullYear(), month = new Date().getMonth(), day = null) {
     this.cells = [];
     this.today = new Date();
 
-    this.init(locale, year, month);
+    this.init(locale, year, month, day);
   }
 
-  init(locale, year, month) {
+  init(locale, year, month, day) {
     // const date = new Date(year, month);
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
@@ -23,7 +23,7 @@ export default class Store {
     const numericWeekdayFirstDayOfMonth = getNumericWeekday(locale, firstDayOfMonth);
     const todayYear = this.today.getFullYear();
     const todayMonth = this.today.getMonth();
-    const todayDate = this.today.getDate();
+    const todayDate = day || this.today.getDate();
 
     this.cells = [...Array(TOTAL_CELLS).keys()].map((index) => {
       if (index < numericWeekdayFirstDayOfMonth) {
@@ -31,9 +31,14 @@ export default class Store {
         return new LastMonth(dateText, index);
       }
 
-      const currentCellTime = new Date(year, month, ((index + 1) - numericWeekdayFirstDayOfMonth)).getTime();
+      const currentCellDate = new Date(year, month, ((index + 1) - numericWeekdayFirstDayOfMonth));
+      const currentCellTime = currentCellDate.getTime();
       // fot today we need to set year, month and date in order that current time is ignored.
       const todayTime = new Date(todayYear, todayMonth, todayDate).getTime();
+
+      if (day && currentCellDate.getDate() === todayDate && index - numericWeekdayFirstDayOfMonth < dateLastDayOfMonth) {
+        return new Today(((index - numericWeekdayFirstDayOfMonth) + 1), index, true);
+      }
 
       if (currentCellTime === todayTime && (index - numericWeekdayFirstDayOfMonth) < todayDate) {
         return new Today(((index - numericWeekdayFirstDayOfMonth) + 1), index, true);

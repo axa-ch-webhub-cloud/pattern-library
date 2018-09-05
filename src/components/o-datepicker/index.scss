@@ -1,5 +1,36 @@
-.o-datepicker {
-  display: block;
+@import "../../styles/settings/colors";
+@import "../../styles/settings/zindex";
+@import "../../styles/control/control-settings";
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+$input-logo-padding-right: 20px !default;
+
+.o-datepicker {
+  position: relative;
+
+  display: block;
+}
+
+.o-datepicker__calender {
+  position: absolute;
+
+  z-index: $zindex-popover;
+
+  display: none;
+  background-color: $color-prim-white;
+}
+
+.o-datepicker__input {
+  display: inline-block;
+  width: auto;
+  min-width: 150px;
+  vertical-align: middle;
+}
+
+.a-input__icon__button {
+  background-color: transparent;
+}
+
+.o-datepicker__calender--move-up {
+  // TODO $control-size !!!!! ausrechnen !!!!!!!!
+  top: -385px;
 }

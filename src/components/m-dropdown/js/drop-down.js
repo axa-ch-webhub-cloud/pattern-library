@@ -7,6 +7,7 @@ class DropDown extends UiEvents {
   static DEFAULTS = {
     containerClass: '.js-dropdown',
     toggleClass: 'js-dropdown__toggle',
+    nativeSelectClass: 'js-dropdown__native-select',
     isOpenClass: 'is-dropdown-open',
     isAnimatingClass: 'is-dropdown-animating',
     selectClass: 'js-dropdown__content',
@@ -24,6 +25,11 @@ class DropDown extends UiEvents {
     this.options = options;
     this.wcNode = wcNode;
     this.isOpen = false;
+
+    if (this.unInputEnd) {
+      this.unInputEnd();
+    }
+    this.unInputEnd = on(this.wcNode, EVENTS.CHANGE, this.options.nativeSelectClass, this.handleChange, { capture: true, passive: false });
   }
 
   onInteractive() {
@@ -123,6 +129,13 @@ class DropDown extends UiEvents {
     } else {
       const { index } = e.target.dataset;
       this.wcNode.setAttribute('value', index);
+    }
+  }
+
+  handleChange = (e) => {
+    e.preventDefault();
+    if (this.wcNode) {
+      this.wcNode.setAttribute('value', e.target.value);
     }
   }
 

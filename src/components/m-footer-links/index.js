@@ -31,7 +31,6 @@ class AXAFooterLinks extends BaseComponentGlobal {
     if (this.footerLinks) {
       this.footerLinks.destroy();
     }
-
     this.footerLinks = new FooterLinks(this);
   }
 
