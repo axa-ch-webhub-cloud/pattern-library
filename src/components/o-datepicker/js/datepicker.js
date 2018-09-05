@@ -109,8 +109,9 @@ export default class Datepicker {
     if (validDate) {
       this._value = validDate;
     } else {
-      this._value = '';
+      this._value = false;
     }
+    this.wcNode.setAttribute('value', this._value);
   }
 
   displayDatepicker() {

@@ -47,7 +47,7 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   }
 
   return {
-    year: todayYear,
+    year: startYear === TODAY ? todayYear : year,
     month: date.getMonth(),
   };
 };
