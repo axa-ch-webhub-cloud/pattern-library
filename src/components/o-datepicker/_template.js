@@ -16,7 +16,7 @@ export default ({
     :
         html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
       }
-      ${open ? html`<axa-m-datepicker selected-day="${value ? value.getDate() : null}" start-month="${value ? value.getMonth() : TODAY}" start-year="${value ? value.getFullYear() : TODAY}" class="o-datepicker__calender js-datepicker__calender" locale="${locale}" button-ok="bestätigen" button-cancel="abbrechen"></axa-m-datepicker>` : ''}
+      ${open ? html`<axa-m-datepicker selected-day="${value ? value.getDate() : null}" start-month="${value ? value.getMonth() - 1 : TODAY}" start-year="${value ? value.getFullYear() : TODAY}" class="o-datepicker__calender js-datepicker__calender" locale="${locale}" button-ok="bestätigen" button-cancel="abbrechen"></axa-m-datepicker>` : ''}
     </article>
   `;
 };
