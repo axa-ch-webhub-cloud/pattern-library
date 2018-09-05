@@ -46,7 +46,6 @@ class AXADatepickerBody extends BaseComponentGlobal {
     let month = getAttribute(this, 'month');
     month = (month || month === 0) ? month : undefined;
     let day = getAttribute(this, 'day');
-    console.log('day', day);
     day = (day || day === 0) ? day : undefined;
     this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, month, day, getAttribute(this, 'allowed-years'));
   }

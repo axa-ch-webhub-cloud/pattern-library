@@ -94,8 +94,6 @@ export default class Datepicker {
       if (day) {
         const choosenDate = new Date(year, month, day);
 
-        console.log(choosenDate);
-
         if (this.outputIso) {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: OK }, { bubbles: true, cancelable: true, composed: true });
         } else {

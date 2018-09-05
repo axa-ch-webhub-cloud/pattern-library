@@ -1,7 +1,6 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
-import getAttribute from '../../../js/get-attribute';
 
 export default class Input {
   constructor(wcNode) {
@@ -13,6 +12,7 @@ export default class Input {
     this.inputfield = this.wcNode.querySelector('.js-input__input');
     this.listenToButtons();
     this.listenToInputChange();
+    fire(this.inputfield, AXA_EVENTS.AXA_LOAD, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
   }
 
   listenToButtons() {

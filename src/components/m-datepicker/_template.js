@@ -62,7 +62,6 @@ export default ({
   lowerEndYear,
   higherEndYear,
 }) => {
-  console.log(startYear, startMonth);
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });
   return html`

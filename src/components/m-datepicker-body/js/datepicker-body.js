@@ -11,7 +11,7 @@ export default class DatepickerBody {
   }
 
   init(index, locale, year, month, day, allowedYears) {
-    this._store = new Store(locale, year, month);
+    this._store = new Store(locale, year, month, day);
     this.selected = null;
     this.prepareCells(index);
     this.listenToCells();

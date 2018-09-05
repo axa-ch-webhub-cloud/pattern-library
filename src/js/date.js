@@ -106,7 +106,7 @@ export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
   return objDate;
 };
 
-export const isDateValid = (locale = 'en-uk', inputValue = '') => {
+export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 2, 23);
 
@@ -118,7 +118,11 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
   const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(blueprint);
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
 
-  const usedSeperator = localisedBlueprintDateString.match(ALL_DATE_SEPERATORS);
+  const usedSeperator = localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
+
+  if (!usedSeperator) {
+    return null;
+  }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
   const splittedValue = inputValue.split(usedSeperator);

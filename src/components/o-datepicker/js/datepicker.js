@@ -1,7 +1,7 @@
 import { AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
-import { isDateValid, getLocaleDayMonthYear } from '../../../js/date';
+import { parseLocalisedDateIfValid, getLocaleDayMonthYear } from '../../../js/date';
 import { OK } from '../../m-datepicker/js/datepicker';
 
 export default class Datepicker {
@@ -56,11 +56,20 @@ export default class Datepicker {
         capture: true, passive: false,
       },
     );
+    this.unListenToInputLoad = on(
+      this.datepickerInput, AXA_EVENTS.AXA_LOAD, '',
+      this.handleInputChange, {
+        capture: true, passive: false,
+      },
+    );
   }
 
   offListenToInput() {
     if (this.unListenToInputChange) {
       this.unListenToInputChange();
+    }
+    if (this.unListenToInputLoad) {
+      this.unListenToInputLoad();
     }
   }
 
@@ -79,7 +88,7 @@ export default class Datepicker {
       this._value = value;
       this._localeValue = getLocaleDayMonthYear(this._locale, this._value);
     } else {
-      // console.log('cancel');
+      this._value = null;
     }
     this.displayDatepicker();
   }
@@ -92,8 +101,11 @@ export default class Datepicker {
   handleInputChange = (e) => {
     e.preventDefault();
     const { detail } = e;
-    const validDate = isDateValid(this._locale, detail);
-    console.log(validDate);
+    this.setDateValueOfString(detail);
+  }
+
+  setDateValueOfString(detail) {
+    const validDate = parseLocalisedDateIfValid(this._locale, detail);
     if (validDate) {
       this._value = validDate;
     } else {

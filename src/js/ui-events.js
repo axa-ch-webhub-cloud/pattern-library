@@ -8,6 +8,7 @@ export const EVENTS = Enum('click', 'change', 'keyup', 'enter', 'move', 'leave',
 // TODO use another system for ENUMs as this one does convert axa-change into AXA-CHANGE which is a problem when using it
 export const AXA_EVENTS = {
   AXA_CLICK: 'axa-click',
+  AXA_LOAD: 'axa-load',
   AXA_CHANGE: 'axa-change',
   AXA_SWIPE_UP: 'axa-swipe-up',
   AXA_SWIPE_DOWN: 'axa-swipe-down',
