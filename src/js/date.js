@@ -110,6 +110,10 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 2, 23);
 
+  if (!Intl.DateTimeFormat.supportedLocalesOf(locale).length) {
+    throw new Error(`locale not supported: ${locale}`);
+  }
+
   // find out which out of 4 valid seperator the current locale has
   const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(blueprint);
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
