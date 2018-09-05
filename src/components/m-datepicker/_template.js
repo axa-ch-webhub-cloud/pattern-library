@@ -10,6 +10,7 @@ import {
 const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   let { lowerEndYear, higherEndYear } = yearsRange;
   const date = new Date();
+  const todayYear = date.getFullYear();
 
   if (!lowerEndYear) {
     lowerEndYear = date.getFullYear();
@@ -46,7 +47,7 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   }
 
   return {
-    year,
+    year: todayYear,
     month: date.getMonth(),
   };
 };

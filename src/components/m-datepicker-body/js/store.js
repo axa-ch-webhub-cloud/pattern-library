@@ -1,4 +1,4 @@
-import { CurrentMonth, Today, LastMonth, NextMonth, SelectedDay } from './cells';
+import { CurrentMonth, Today, LastMonth, NextMonth } from './cells';
 import { getNumericWeekday } from '../../../js/date';
 
 const ROWS = 6;

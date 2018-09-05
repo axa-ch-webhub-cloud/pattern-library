@@ -104,7 +104,7 @@ export default class Datepicker {
     this.setDateValueOfString(detail);
   }
 
-  setDateValueOfString(detail) {
+  setDateValueOfString = (detail) => {
     const validDate = parseLocalisedDateIfValid(this._locale, detail);
     if (validDate) {
       this._value = validDate;

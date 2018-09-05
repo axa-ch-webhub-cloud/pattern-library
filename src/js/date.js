@@ -108,7 +108,7 @@ export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
 
 export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => {
   // year, monthIndex, day
-  const blueprint = new Date(2017, 2, 23);
+  const blueprint = new Date(2017, 10, 23);
 
   if (!Intl.DateTimeFormat.supportedLocalesOf(locale).length) {
     throw new Error(`locale not supported: ${locale}`);
@@ -130,7 +130,7 @@ export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => 
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)
-  const monthIndex = splittedBlueprint.indexOf('3');
+  const monthIndex = splittedBlueprint.indexOf('11');
   const dayIndex = splittedBlueprint.indexOf('23');
   const yearIndex = splittedBlueprint.indexOf('2017');
 
