@@ -153,4 +153,9 @@ export default class Datepicker {
       this.dropdownYear.setAttribute('value', year);
     }
   }
+
+  destroy() {
+    this.offListenToDeviceStateChange();
+    this.offListenToChanges();
+  }
 }

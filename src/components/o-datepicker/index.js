@@ -42,7 +42,7 @@ class AXADatepicker extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Don't forget to cleanup :)
+    this.datepicker.destroy();
   }
 
   didRenderCallback() {

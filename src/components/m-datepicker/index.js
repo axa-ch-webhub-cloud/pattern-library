@@ -57,7 +57,7 @@ class AXADatepicker extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // TODO Don't forget to cleanup :)
+    this.datepicker.destroy();
   }
   // Do you consume context?
   // contextCallback(contextNode) {

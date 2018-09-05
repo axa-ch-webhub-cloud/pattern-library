@@ -142,4 +142,9 @@ export default class Datepicker {
   set locale(locale) {
     this._locale = locale;
   }
+
+  destroy() {
+    this.offListenToButtons();
+    this.offListenToInput();
+  }
 }

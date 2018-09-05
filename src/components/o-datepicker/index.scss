@@ -22,7 +22,12 @@ $input-logo-padding-right: 20px !default;
 .o-datepicker__input {
   display: inline-block;
   width: auto;
+  min-width: 150px;
   vertical-align: middle;
+}
+
+.a-input__icon__button {
+  background-color: transparent;
 }
 
 .o-datepicker__calender--move-up {
