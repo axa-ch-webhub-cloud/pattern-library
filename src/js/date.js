@@ -2,7 +2,7 @@ export const DEFAULT_NEW_YEARS = 10;
 export const TODAY = 'TODAY';
 
 // https://en.wikipedia.org/wiki/Date_format_by_country
-const ALL_DATE_SEPERATORS = [' ', '.', '/', '-'];
+const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
 
 export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
   const finalArray = [];
@@ -118,15 +118,7 @@ export const isDateValid = (locale = 'en-uk', inputValue = '') => {
   const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(blueprint);
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
 
-  let usedSeperator = '';
-
-  for (let i = 0; i < ALL_DATE_SEPERATORS.length; i++) {
-    const { [i]: seperator } = ALL_DATE_SEPERATORS;
-    if (~localisedBlueprintDateString.indexOf(seperator)) {
-      usedSeperator = seperator;
-      break;
-    }
-  }
+  const usedSeperator = localisedBlueprintDateString.match(ALL_DATE_SEPERATORS);
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
   const splittedValue = inputValue.split(usedSeperator);
