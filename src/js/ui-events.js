@@ -3,11 +3,12 @@ import on from './on';
 import getAttribute from './get-attribute';
 import outer from './outer';
 
-export const EVENTS = Enum('click', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc', 'touchstart', 'touchmove', 'touchend', 'resize');
+export const EVENTS = Enum('click', 'change', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc', 'touchstart', 'touchmove', 'touchend', 'input', 'resize');
 
 // TODO use another system for ENUMs as this one does convert axa-change into AXA-CHANGE which is a problem when using it
 export const AXA_EVENTS = {
   AXA_CLICK: 'axa-click',
+  AXA_LOAD: 'axa-load',
   AXA_CHANGE: 'axa-change',
   AXA_SWIPE_UP: 'axa-swipe-up',
   AXA_SWIPE_DOWN: 'axa-swipe-down',

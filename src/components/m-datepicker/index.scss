@@ -1,4 +1,5 @@
 @import "../../styles/settings/colors";
+@import "../m-dropdown/mixins/dropdown";
 
 $datepicker-height: 385px !default;
 $datepicker-width: 309px !default;
@@ -14,9 +15,13 @@ $datepicker-dropdown-month-width: 146px !default;
 $datepicker-dropdown-padding-left: 10px !default;
 
 $datepicker-border-width: 1px !default;
+$datepicker-padding-x: 30px !default;
 
 $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-border-width * 2) / 7;
 
+$datepicker-distance-number-to-border: 10px !default;
+
+$datepicker-padding-left-native-dropdown: 8px !default;
 
 .m-datepicker {
   display: block;
@@ -32,6 +37,29 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-
   width: $datepicker-width;
   border: solid $datepicker-border-width $color-prim-gray-silver;
   box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
+
+  .m-dropdown__select-icon {
+    padding: 0 $datepicker-padding-left-native-dropdown;
+    margin-left: 0;
+  }
+
+  .m-dropdown__select {
+    option {
+      padding: 0;
+    }
+  }
+
+  .m-dropdown__select-wrap {
+    display: inline-block;
+  }
+
+  .m-dropdown__select {
+    @include dropdown-select($indent: 10px, $height: 40px);
+  }
+
+  .m-dropdown__select-icon {
+    @include dropdown-select-icon($indent: 10px, $height: 40px);
+  }
 }
 
 .m-datepicker__dropdown {
@@ -44,19 +72,28 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-
 }
 
 .m-datepicker__dropdown__year {
+  width: $datepicker-dropdown-year-width;
   float: right;
+  text-transform: uppercase;
 
-  .m-dropdown__toggle {
+  .m-dropdown__toggle,
+  .m-dropdown__content {
     width: $datepicker-dropdown-year-width;
   }
 }
 
 .m-datepicker__dropdown__month {
-  text-transform: uppercase;
+  width: $datepicker-dropdown-month-width;
 
-  .m-dropdown__toggle {
-    width: $datepicker-dropdown-month-width;
+  .m-dropdown__toggle,
+  .m-dropdown__content,
+  .m-dropdown__select {
     text-transform: uppercase;
+  }
+
+  .m-dropdown__toggle,
+  .m-dropdown__content {
+    width: $datepicker-dropdown-month-width;
   }
 }
 
@@ -90,10 +127,20 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-
   position: absolute;
   bottom: $datepicker-margin-y;
 
-  width: calc(100% - #{$datepicker-padding-x * 2 + 1});
+  width: calc(100% - #{$datepicker-padding-x * 2 + $datepicker-distance-number-to-border * 2});
+  margin-left: $datepicker-distance-number-to-border;
 }
 
 .m-datepicker__button__Ok {
   position: absolute;
   right: 0;
+}
+
+.m-datepicker__button__borderless {
+  padding: 0;
+  border-style: none;
+}
+
+.m-datepicker__button__borderless:hover {
+  opacity: 0.5;
 }

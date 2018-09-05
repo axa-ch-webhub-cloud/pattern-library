@@ -15,7 +15,7 @@ class AXADatepicker extends BaseComponentGlobal {
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
   static get observedAttributes() {
-    return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'start-year', 'start-month', 'lower-end-year', 'higher-end-year', 'output-iso'];
+    return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'start-year', 'start-month', 'selected-day', 'lower-end-year', 'higher-end-year', 'output-iso'];
   }
 
   constructor() {
@@ -57,7 +57,7 @@ class AXADatepicker extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // TODO Don't forget to cleanup :)
+    this.datepicker.destroy();
   }
   // Do you consume context?
   // contextCallback(contextNode) {
