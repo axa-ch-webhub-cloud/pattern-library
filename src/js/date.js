@@ -1,6 +1,9 @@
 export const DEFAULT_NEW_YEARS = 10;
 export const TODAY = 'TODAY';
 
+// https://en.wikipedia.org/wiki/Date_format_by_country
+const ALL_DATE_SEPERATORS = [' ', '.', '/', '-'];
+
 export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
   const finalArray = [];
   const objDate = new Date();
@@ -104,51 +107,37 @@ export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
 };
 
 export const isDateValid = (locale = 'en-uk', inputValue = '') => {
-  let splittedInput = [];
-  let orderedInput = [];
-  let date = null;
+  // year, monthIndex, day
+  const blueprint = new Date(2017, 2, 23);
 
-  if (locale === 'de-ch') {
-    splittedInput = inputValue.split('.');
-    orderedInput = [splittedInput[1], splittedInput[0], splittedInput[2]];
-    date = new Date(orderedInput.join('.'));
-  } else {
-    date = new Date(inputValue);
+  // find out which out of 4 valid seperator the current locale has
+  const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(blueprint);
+  const localisedBlueprintDateString = localisedBlueprintDate.toString();
+
+  let usedSeperator = '';
+
+  for (let i = 0; i < ALL_DATE_SEPERATORS.length; i++) {
+    const { [i]: seperator } = ALL_DATE_SEPERATORS;
+    if (~localisedBlueprintDateString.indexOf(seperator)) {
+      usedSeperator = seperator;
+      break;
+    }
   }
 
-  let objDate = '';
-  const numeric = 'numeric';
-  const twoDigit = '2-digit';
-  const selectors = [numeric, twoDigit];
-  const filters = ['year', 'month', 'day'];
-  let options = {};
-  let valid = false;
+  // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
+  const splittedValue = inputValue.split(usedSeperator);
+  const splittedBlueprint = localisedBlueprintDateString.split(usedSeperator);
 
-  filters.forEach((filter) => {
-    options[filter] = '';
-  });
+  // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
+  // in reading gives the actual month (index + 1)
+  const monthIndex = splittedBlueprint.indexOf(3);
+  const dayIndex = splittedBlueprint.indexOf(23);
+  const yearIndex = splittedBlueprint.indexOf(2017);
 
-  const combinations = [];
-  selectors.forEach((el1) => {
-    selectors.forEach((el2) => {
-      selectors.forEach((el3) => {
-        options = ({
-          year: el1,
-          month: el2,
-          day: el3,
-        });
-        combinations.push(options);
-      });
-    });
-  });
-  combinations.forEach((option) => {
-    objDate = date.toLocaleString(locale, option);
-    if (objDate === inputValue && date.getFullYear().toString().length === 4) {
-      valid = true;
-    }
-  });
-  if (valid) {
-    return date;
+  const dateUnderValidation = new Date(splittedValue[yearIndex], splittedValue[monthIndex], splittedValue[dayIndex]);
+
+  if (dateUnderValidation === inputValue && dateUnderValidation.getFullYear().toString().length === 4) {
+    return dateUnderValidation;
   }
   return '';
 };
