@@ -93,6 +93,7 @@ export default class Datepicker {
     e.preventDefault();
     const { detail } = e;
     const validDate = isDateValid(this._locale, detail);
+    console.log(validDate)
     if (validDate) {
       this._value = new Date(validDate);
     } else {
