@@ -1,4 +1,5 @@
 @import "../../styles/settings/colors";
+@import "../m-dropdown/mixins/dropdown";
 
 $datepicker-height: 385px !default;
 $datepicker-width: 309px !default;
@@ -20,7 +21,7 @@ $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-
 
 $datepicker-distance-number-to-border: 10px !default;
 
-$datepicker-padding-left-native-dropdown: 5px !default;
+$datepicker-padding-left-native-dropdown: 8px !default;
 
 .m-datepicker {
   display: block;
@@ -51,36 +52,48 @@ $datepicker-padding-left-native-dropdown: 5px !default;
   .m-dropdown__select-wrap {
     display: inline-block;
   }
+
+  .m-dropdown__select {
+    @include dropdown-select($indent: 10px, $height: 40px);
+  }
+
+  .m-dropdown__select-icon {
+    @include dropdown-select-icon($indent: 10px, $height: 40px);
+  }
 }
 
 .m-datepicker__dropdown {
   margin-bottom: $datepicker-margin-y;
 
-  .m-dropdown__toggle,
-  .m-dropdown__select-wrap {
+  .m-dropdown__toggle {
     padding-left: $datepicker-dropdown-padding-left;
     text-align: left;
   }
 }
 
 .m-datepicker__dropdown__year {
+  width: $datepicker-dropdown-year-width;
   float: right;
+  text-transform: uppercase;
 
   .m-dropdown__toggle,
-  .m-dropdown__select,
-  .m-dropdown__select-wrap {
+  .m-dropdown__content {
     width: $datepicker-dropdown-year-width;
   }
 }
 
 .m-datepicker__dropdown__month {
-  text-transform: uppercase;
+  width: $datepicker-dropdown-month-width;
 
   .m-dropdown__toggle,
-  .m-dropdown__select,
-  .m-dropdown__select-wrap {
-    width: $datepicker-dropdown-month-width;
+  .m-dropdown__content,
+  .m-dropdown__select {
     text-transform: uppercase;
+  }
+
+  .m-dropdown__toggle,
+  .m-dropdown__content {
+    width: $datepicker-dropdown-month-width;
   }
 }
 
