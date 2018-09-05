@@ -72,7 +72,6 @@ export default class Datepicker {
       return;
     }
     const { button, value } = detail;
-    console.log(button)
     if (!button) {
       return;
     }
