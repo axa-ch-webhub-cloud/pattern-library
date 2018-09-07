@@ -13,7 +13,7 @@ export default function ({
   gpu,
   arrow,
   icon = '',
-  target = '',
+  target = '_self',
 }, childrenFragment) {
   const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
