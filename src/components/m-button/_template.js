@@ -14,7 +14,9 @@ export default function ({
   arrow,
   icon = '',
   target = '_self',
+  disabled = false,
 }, childrenFragment) {
+  console.log('disabled', disabled)
   const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
@@ -40,7 +42,7 @@ export default function ({
     </a>`;
   }
 
-  return html`<button type="button" class="${buttonClasses}">
+  return html`<button type="button" class="${buttonClasses}" ${disabled}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </button>`;
