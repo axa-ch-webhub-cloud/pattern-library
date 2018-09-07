@@ -13,6 +13,7 @@ export default function ({
   gpu,
   arrow,
   icon = '',
+  target = '',
 }, childrenFragment) {
   const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
@@ -33,7 +34,7 @@ export default function ({
   }
 
   if (tag.toLowerCase() === 'a') {
-    return html`<a href="${href}" class="${buttonClasses}">
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}">
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </a>`;
