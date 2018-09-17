@@ -102,7 +102,8 @@ class Testimonials extends UiEvents {
     this.showAllSlides();
     this.calculateContainerMinHeight();
     this.hideAllSlides();
-    this.showSlide(+1);
+    clearTimeout(this.autoRotateTimer);
+    this.showSlide(0);
   }
 
   initSwipe() {
@@ -159,7 +160,7 @@ class Testimonials extends UiEvents {
 
   autoRotate() {
     // auto rotate until disabled
-    if (!this.autoRotateDisabled && this.autoRotateTimer !== undefined) {
+    if (!this.autoRotateDisabled) {
       this.autoRotateTimer = setTimeout(
         () => {
           if (!this.autoRotateDisabled) {
