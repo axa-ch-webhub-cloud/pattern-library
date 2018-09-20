@@ -50,6 +50,12 @@ class Button {
      * @event Button#axa-click
      * @type {null}
      */
+
+
+    if (this.button.getAttribute('aria-disabled')) {
+      event.preventDefault();
+    }
+
     const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, null, { bubbles: true, cancelable: true, composed: true });
 
     if (!cancelled) {

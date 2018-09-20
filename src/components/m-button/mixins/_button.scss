@@ -38,7 +38,8 @@
     outline: none;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled] {
     cursor: default !important;
   }
 }
@@ -78,9 +79,11 @@
     color: $color-button-text;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled] {
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
+    border-bottom-color: $color-prim-gray-silver !important;
   }
 }
 
