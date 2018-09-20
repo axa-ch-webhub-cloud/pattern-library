@@ -26,6 +26,10 @@ $o-testimonials-arrow-height-sm: 20px;
 $o-testimonials-arrow-border: 2px;
 $o-testimonials-author-position-bottom: -40px;
 
+.o-testimonials {
+  display: block;
+}
+
 .o-testimonials__background {
   display: inline-block;
   width: 100%;
