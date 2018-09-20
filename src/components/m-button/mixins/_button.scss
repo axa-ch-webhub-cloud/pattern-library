@@ -81,6 +81,7 @@
 
   &:disabled,
   &[aria-disabled] {
+    color: $color-button-text !important;
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
     border-bottom-color: $color-prim-gray-silver !important;
@@ -111,6 +112,11 @@
     } @else {
       border-color: $color-button-bg--hover;
     }
+  }
+
+  &:disabled,
+  &[aria-disabled] {
+    background-color: $color-button-bg--disabled !important;
   }
 }
 
