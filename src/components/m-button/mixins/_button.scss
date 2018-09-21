@@ -299,8 +299,24 @@
       background: $color-button-bg--motion--hover;
     }
   }
+
+  &:disabled {
+    &::after {
+      transform: none;
+      transition: none;
+      background-color: transparent;
+    }
+  }
 }
 
 @mixin button--motion--ghost() {
   background: transparent !important;
+
+  &:disabled {
+    &::after {
+      transform: none;
+      transition: none;
+      background-color: transparent;
+    }
+  }
 }
