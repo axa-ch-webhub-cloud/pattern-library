@@ -8,7 +8,7 @@ import DropDown from './js/drop-down';
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
 
-  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value']; }
+  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value', 'icons-path-prefix']; }
 
   constructor() {
     super({ styles, template });
