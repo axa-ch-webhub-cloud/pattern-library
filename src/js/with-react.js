@@ -123,6 +123,10 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
           [key]: props[key],
         }), {});
 
+      if (dataProps.className !== undefined) {
+        wcNode.initialClassName = dataProps.className;
+        wcNode.classList.add(dataProps.className);
+      }
       wcNode.setProps(dataProps);
     }
 
