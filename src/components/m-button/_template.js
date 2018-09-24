@@ -37,19 +37,18 @@ export default function ({
     genericIcon = raw(`<axa-icon icon="${icon}" classes="m-button__icon"></axa-icon>`);
   }
 
-  const innerHtmlATag = html`
-  ${childrenFragment}
-  ${arrowIcon || genericIcon}
-`;
-  if (tag.toLowerCase() === 'a' && !disabled) {
-    return html`<a href="${href}" target="${target}" class="${buttonClasses}">
-      ${innerHtmlATag}
-    </a>`;
-  } else if (tag.toLowerCase() === 'a' && disabled) {
+  if (tag.toLowerCase() === 'a' && disabled) {
     return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${ARIA_DISABLED} tabindex="-1">
-      ${innerHtmlATag}
+      ${childrenFragment}
+      ${arrowIcon || genericIcon}
+    </a>`;
+  } else if (tag.toLowerCase() === 'a') {
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}">
+      ${childrenFragment}
+      ${arrowIcon || genericIcon}
     </a>`;
   }
+
   return html`<button type="button" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
