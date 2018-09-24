@@ -232,6 +232,8 @@
 }
 
 @mixin button__arrow--motion() {
+  @include button--disabled();
+
   animation-duration: $button__arrow-motion-duration;
   animation-timing-function: $button__arrow-motion-easing;
   animation-fill-mode: both;
@@ -283,6 +285,8 @@
   $color-button-bg--motion--hover: get-color($button-color, $style, bg--motion--hover);
   $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
 
+  @include button--disabled();
+
   &::after {
     background: $color-button-bg--motion;
   }
@@ -299,19 +303,15 @@
       background: $color-button-bg--motion--hover;
     }
   }
-
-  &:disabled {
-    &::after {
-      transform: none;
-      transition: none;
-      background-color: transparent;
-    }
-  }
 }
 
 @mixin button--motion--ghost() {
-  background: transparent !important;
+  @include button--disabled();
 
+  background: transparent !important;
+}
+
+@mixin button--disabled {
   &:disabled {
     &::after {
       transform: none;
