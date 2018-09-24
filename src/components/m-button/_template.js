@@ -38,7 +38,7 @@ export default function ({
   }
 
   if (tag.toLowerCase() === 'a') {
-    return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${disabled ? html`${ARIA_DISABLED} tabindex="-1"` : ''}>
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${disabled ? raw`${ARIA_DISABLED} tabindex="-1"` : ''}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </a>`;
