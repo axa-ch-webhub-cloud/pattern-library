@@ -38,7 +38,8 @@
     outline: none;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled] {
     cursor: default !important;
   }
 }
@@ -78,9 +79,12 @@
     color: $color-button-text;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled] {
+    color: $color-button-text !important;
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
+    border-bottom-color: $color-prim-gray-silver !important;
   }
 }
 
@@ -108,6 +112,11 @@
     } @else {
       border-color: $color-button-bg--hover;
     }
+  }
+
+  &:disabled,
+  &[aria-disabled] {
+    background-color: $color-button-bg--disabled !important;
   }
 }
 
@@ -223,6 +232,8 @@
 }
 
 @mixin button__arrow--motion() {
+  @include button--disabled();
+
   animation-duration: $button__arrow-motion-duration;
   animation-timing-function: $button__arrow-motion-easing;
   animation-fill-mode: both;
@@ -274,6 +285,8 @@
   $color-button-bg--motion--hover: get-color($button-color, $style, bg--motion--hover);
   $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
 
+  @include button--disabled();
+
   &::after {
     background: $color-button-bg--motion;
   }
@@ -293,5 +306,17 @@
 }
 
 @mixin button--motion--ghost() {
+  @include button--disabled();
+
   background: transparent !important;
+}
+
+@mixin button--disabled {
+  &:disabled {
+    &::after {
+      transform: none;
+      transition: none;
+      background-color: transparent;
+    }
+  }
 }
