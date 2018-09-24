@@ -37,10 +37,17 @@ export default function ({
     genericIcon = raw(`<axa-icon icon="${icon}" classes="m-button__icon"></axa-icon>`);
   }
 
-  if (tag.toLowerCase() === 'a') {
-    return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${disabled ? raw`${ARIA_DISABLED} tabindex="-1"` : ''}>
-      ${childrenFragment}
-      ${arrowIcon || genericIcon}
+  const innerHtmlATag = html`
+  ${childrenFragment}
+  ${arrowIcon || genericIcon}
+`;
+  if (tag.toLowerCase() === 'a' && !disabled) {
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}">
+      ${innerHtmlATag}
+    </a>`;
+  } else if (tag.toLowerCase() === 'a' && disabled) {
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${ARIA_DISABLED} tabindex="-1">
+      ${innerHtmlATag}
     </a>`;
   }
   return html`<button type="button" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>

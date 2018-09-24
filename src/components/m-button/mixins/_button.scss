@@ -312,7 +312,8 @@
 }
 
 @mixin button--disabled {
-  &:disabled {
+  &:disabled,
+  &[aria-disabled] {
     &::after {
       transform: none;
       transition: none;
