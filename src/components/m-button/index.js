@@ -7,7 +7,7 @@ import Button from './js/button';
 class AXAButton extends BaseComponentGlobal {
   static tagName = 'axa-button'
 
-  static get observedAttributes() { return ['arrow', 'classes', 'color', 'ghost', 'motion', 'size', 'tag', 'href', 'icon', 'target']; }
+  static get observedAttributes() { return ['arrow', 'classes', 'color', 'ghost', 'motion', 'size', 'tag', 'href', 'icon', 'target', 'disabled']; }
 
   constructor() {
     super({ styles, template });
