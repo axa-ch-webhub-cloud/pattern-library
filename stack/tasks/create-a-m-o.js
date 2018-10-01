@@ -147,7 +147,7 @@ const writeIndexScss = (path, _name) => {
     outdent`
       .${element}-${_name} {
         display: block;
-        
+
         // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
       }
 
@@ -205,6 +205,24 @@ const updateReactExports = (_element, _name) => {
   );
 };
 
+const updateIndex = (_element, _name) => {
+  if (!reAMO.test(_element)) {
+    return;
+  }
+
+  const className = getClassName(_name);
+
+  fs.writeFileSync(
+    `${CWD}/src/index.js`,
+    outdent`
+
+      export { default as ${className} } from './components/${_element}-${_name}';
+    `,
+    { flag: 'a' },
+    handleError,
+  );
+};
+
 const createBoilerplate = (_name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
 
@@ -225,6 +243,7 @@ const createBoilerplate = (_name) => {
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
       updateReactExports(element, _name);
+      updateIndex(element, _name);
       console.log(chalk.cyan(outdent`
 
           Created under ${path}
