@@ -4,7 +4,7 @@ import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 
-class AXASubNavigation extends BaseComponentGlobal {
+class AXAHeaderSubNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-sub-navigation'
 
   static get observedAttributes() { return ['flyout', 'index-title', 'index-url', 'items']; }
@@ -22,6 +22,6 @@ class AXASubNavigation extends BaseComponentGlobal {
   }
 }
 
-defineOnce(AXASubNavigation.tagName, AXASubNavigation);
+defineOnce(AXAHeaderSubNavigation.tagName, AXAHeaderSubNavigation);
 
-export default AXASubNavigation;
+export default AXAHeaderSubNavigation;

@@ -4,6 +4,13 @@ const outdent = require('outdent');
 const chalk = require('chalk');
 
 const CWD = process.cwd();
+const reAMO = /^(?:a|m|o)$/;
+const handleError = (err) => {
+  if (err) {
+    console.error(err); // eslint-disable-line
+    process.exit(1);
+  }
+};
 
 process.stdin.setEncoding('utf8');
 
@@ -57,8 +64,10 @@ const displayElementSelector = () => {
     `));
 };
 
+const getClassName = _name => `AXA${camelCase(_name)}`;
+
 const writeIndexJs = (path, _name) => {
-  const className = `AXA${camelCase(_name)}`;
+  const className = getClassName(_name);
 
   fs.writeFileSync(
     `${path}/index.js`,
@@ -128,12 +137,7 @@ const writeIndexJs = (path, _name) => {
       export default ${className};
 
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
 };
 
@@ -148,12 +152,7 @@ const writeIndexScss = (path, _name) => {
       }
 
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
 };
 
@@ -162,23 +161,13 @@ const writePreviewAndHtml = (path, _name) => {
     `${path}/_preview.html`,
     outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
   fs.writeFileSync(
     `${path}/_example.html`,
     outdent`<!--Please create here a HTML example by using just default HTML tags-->
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
 };
 
@@ -191,13 +180,28 @@ const writeTemplateJs = (path) => {
         <article class=\${classes}>Ready to start</article>
       \`;
 
-    `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    `,
+    handleError,
+  );
+};
+
+const updateReactExports = (_element, _name) => {
+  if (!reAMO.test(_element)) {
+    return;
+  }
+
+  const className = getClassName(_name);
+  const classNameWC = `${className}WC`;
+
+  fs.writeFileSync(
+    `${CWD}/src/js/react-exports.js`,
+    outdent`
+
+      import ${classNameWC} from '../components/${_element}-${_name}/';
+      export const ${className} = withReact(${classNameWC});
+    `,
+    { flag: 'a' },
+    handleError,
   );
 };
 
@@ -220,6 +224,7 @@ const createBoilerplate = (_name) => {
       writeIndexScss(path, _name);
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
+      updateReactExports(element, _name);
       console.log(chalk.cyan(outdent`
 
           Created under ${path}
