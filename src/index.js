@@ -140,8 +140,13 @@ export const AXAHeader = _AXAHeader;
 import _AXAPolicyFeatures from './components/o-policy-features';
 export const AXAPolicyFeatures = _AXAPolicyFeatures;
 
-import _AXAStickyContainer from './components/o-sticky';
-export const AXAStickyContainer = _AXAStickyContainer;
+// @todo: cleanup sticky
+import {
+  AXASticky as _AXASticky,
+  AXAStickyContainer as _AXAStickyContainer,
+} from '../components/o-sticky';
+export const AXASticky = withReact(_AXASticky);
+export const AXAStickyContainer = withReact(_AXAStickyContainer);
 
 import _AXATestimonials from './components/o-testimonials';
 export const AXATestimonials = _AXATestimonials;
