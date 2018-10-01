@@ -39,7 +39,7 @@
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production concurrently \"node stack/tasks/build.html.js\" \"node stack/tasks/build-examples.js\" \"npm run build-css-prod\" \" npm run build-js-prod\" \"npm run build-lib\" \"npm run build-icons-prod\"",
     "postbuild": "node stack/tasks/copy-dist-to-docs.js",
-    "build-lib": "concurrently \"babel src/js --out-dir lib/js --plugins transform-runtime\" \"node stack/tasks/bundles/lib.js\"",
+    "build-lib": "concurrently \"babel src/js --out-dir lib/js --plugins transform-runtime\" \"node stack/tasks/bundles/lib.js\" && babel src/components/index.js --out-file lib/components/index.js",
     "release": "node ./stack/tasks/release.js",
     "xprebump-major": "npm run test",
     "bump-major": "npm run test && npmversion --increment major",
