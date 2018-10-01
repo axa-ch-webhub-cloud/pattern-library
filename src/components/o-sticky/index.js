@@ -7,7 +7,7 @@ import templateSticky from './sticky.template';
 import Sticky from './js/sticky';
 import StickyContainer from './js/sticky-container';
 
-class AXAStickyContainer extends BaseComponentGlobal {
+export class AXAStickyContainer extends BaseComponentGlobal {
   static tagName = 'axa-sticky-container'
 
   static get observedAttributes() { return ['debug']; }
@@ -38,7 +38,7 @@ class AXAStickyContainer extends BaseComponentGlobal {
   }
 }
 
-class AXASticky extends BaseComponentGlobal {
+export class AXASticky extends BaseComponentGlobal {
   static tagName = 'axa-sticky'
 
   static get observedAttributes() { return ['debug']; }
