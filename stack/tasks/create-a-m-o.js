@@ -4,6 +4,12 @@ const outdent = require('outdent');
 const chalk = require('chalk');
 
 const CWD = process.cwd();
+const handleError = (err) => {
+  if (err) {
+    console.error(err); // eslint-disable-line
+    process.exit(1);
+  }
+}
 
 process.stdin.setEncoding('utf8');
 
@@ -128,12 +134,7 @@ const writeIndexJs = (path, _name) => {
       export default ${className};
 
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
 };
 
@@ -148,12 +149,7 @@ const writeIndexScss = (path, _name) => {
       }
 
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
 };
 
@@ -162,23 +158,13 @@ const writePreviewAndHtml = (path, _name) => {
     `${path}/_preview.html`,
     outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
   fs.writeFileSync(
     `${path}/_example.html`,
     outdent`<!--Please create here a HTML example by using just default HTML tags-->
     `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    , handleError,
   );
 };
 
@@ -191,13 +177,8 @@ const writeTemplateJs = (path) => {
         <article class=\${classes}>Ready to start</article>
       \`;
 
-    `
-    , (err) => {
-      if (err) {
-        console.error(err); // eslint-disable-line
-        process.exit(1);
-      }
-    },
+    `,
+    handleError,
   );
 };
 
