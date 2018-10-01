@@ -2,8 +2,6 @@
 import withReact from './with-react'
 
 // re-export all wrapped custom elements
-//
-// ATOMS
 import AXACheckboxWC from '../components/a-checkbox/'
 export const AXACheckbox = withReact(AXACheckboxWC)
 
@@ -28,7 +26,6 @@ export const AXAVerticalRhythm = withReact(AXAVerticalRhythmWC)
 import AXATypoWC from '../components/a-typo/'
 export const AXATypo = withReact(AXATypoWC)
 
-// MOLECULES
 import AXAAccordionItemWC from '../components/m-accordion-item/'
 export const AXAAccordionItem = withReact(AXAAccordionItemWC)
 
@@ -122,8 +119,6 @@ export const AXAPolicyFeatureItem = withReact(AXAPolicyFeatureItemWC)
 import AXARowWC from '../components/m-row/'
 export const AXARow = withReact(AXARowWC)
 
-// ORGANISMS
-
 import AXAAccordionWC from '../components/o-accordion/'
 export const AXAAccordion = withReact(AXAAccordionWC)
 
@@ -151,6 +146,7 @@ export const AXAHeader = withReact(AXAHeaderWC)
 import AXAPolicyFeaturesWC from '../components/o-policy-features/'
 export const AXAPolicyFeatures = withReact(AXAPolicyFeaturesWC)
 
+// @todo: cleanup sticky
 import {
   AXASticky as AXAStickyWC,
   AXAStickyContainer as  AXAStickyContainerWC,
