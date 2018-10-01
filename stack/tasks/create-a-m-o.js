@@ -4,6 +4,7 @@ const outdent = require('outdent');
 const chalk = require('chalk');
 
 const CWD = process.cwd();
+const reAMO = /^(?:a|m|o)$/;
 const handleError = (err) => {
   if (err) {
     console.error(err); // eslint-disable-line
@@ -185,6 +186,10 @@ const writeTemplateJs = (path) => {
 };
 
 const updateReactExports = (element, _name) => {
+  if (!reAMO.test(element)) {
+    return;
+  }
+
   const className = getClassName(_name);
   const classNameWC = `${className}WC`;
 
