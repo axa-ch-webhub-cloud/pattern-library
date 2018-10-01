@@ -10,7 +10,7 @@ const handleError = (err) => {
     console.error(err); // eslint-disable-line
     process.exit(1);
   }
-}
+};
 
 process.stdin.setEncoding('utf8');
 
@@ -64,7 +64,7 @@ const displayElementSelector = () => {
     `));
 };
 
-const getClassName = (name) => `AXA${camelCase(name)}`;
+const getClassName = _name => `AXA${camelCase(_name)}`;
 
 const writeIndexJs = (path, _name) => {
   const className = getClassName(_name);
@@ -185,8 +185,8 @@ const writeTemplateJs = (path) => {
   );
 };
 
-const updateReactExports = (element, _name) => {
-  if (!reAMO.test(element)) {
+const updateReactExports = (_element, _name) => {
+  if (!reAMO.test(_element)) {
     return;
   }
 
@@ -197,13 +197,13 @@ const updateReactExports = (element, _name) => {
     `${CWD}/src/js/react-exports.js`,
     outdent`
 
-      import ${classNameWC} from '../components/${element}-${_name}/';
+      import ${classNameWC} from '../components/${_element}-${_name}/';
       export const ${className} = withReact(${classNameWC});
     `,
     { flag: 'a' },
     handleError,
   );
-}
+};
 
 const createBoilerplate = (_name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
