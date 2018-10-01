@@ -23,9 +23,6 @@ export const AXATypo = withReact(AXATypoWC)
 import AXAVerticalRhythmWC from '../components/a-vertical-rhythm/'
 export const AXAVerticalRhythm = withReact(AXAVerticalRhythmWC)
 
-import AXATypoWC from '../components/a-typo/'
-export const AXATypo = withReact(AXATypoWC)
-
 import AXAAccordionItemWC from '../components/m-accordion-item/'
 export const AXAAccordionItem = withReact(AXAAccordionItemWC)
 
