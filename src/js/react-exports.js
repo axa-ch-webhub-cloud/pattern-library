@@ -32,8 +32,9 @@ export const AXAButton = withReact(AXAButtonWC)
 import AXAColWC from '../components/m-col/'
 export const AXACol = withReact(AXAColWC)
 
-import AXADatepickerWC from '../components/m-datepicker/'
-export const AXADatepicker = withReact(AXADatepickerWC)
+// @todo: datepicker is used twice
+import AXAMDatepickerWC from '../components/m-datepicker/'
+export const AXAMDatepicker = withReact(AXAMDatepickerWC)
 
 import AXADatepickerBodyWC from '../components/m-datepicker-body/'
 export const AXADatepickerBody = withReact(AXADatepickerBodyWC)
