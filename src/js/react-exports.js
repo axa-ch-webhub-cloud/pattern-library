@@ -2,6 +2,7 @@
 import withReact from './with-react';
 
 // re-export all wrapped custom elements
+/* eslint-disable import/first, import/newline-after-import */
 import AXACheckboxWC from '../components/a-checkbox/';
 export const AXACheckbox = withReact(AXACheckboxWC);
 
@@ -147,7 +148,7 @@ export const AXAPolicyFeatures = withReact(AXAPolicyFeaturesWC);
 // @todo: cleanup sticky
 import {
   AXASticky as AXAStickyWC,
-  AXAStickyContainer as  AXAStickyContainerWC,
+  AXAStickyContainer as AXAStickyContainerWC,
 } from '../components/o-sticky/';
 export const AXASticky = withReact(AXAStickyWC);
 export const AXAStickyContainer = withReact(AXAStickyContainerWC);
