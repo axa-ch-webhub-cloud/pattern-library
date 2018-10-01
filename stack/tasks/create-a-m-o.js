@@ -64,7 +64,7 @@ const displayElementSelector = () => {
     `));
 };
 
-const getClassName = (name) => `AXA${camelCase(_name)}`;
+const getClassName = (name) => `AXA${camelCase(name)}`;
 
 const writeIndexJs = (path, _name) => {
   const className = getClassName(_name);
@@ -194,8 +194,9 @@ const updateReactExports = (element, _name) => {
   const classNameWC = `${className}WC`;
 
   fs.writeFileSync(
-    `$src/js/react-exports.js`,
+    `${CWD}/src/js/react-exports.js`,
     outdent`
+
       import ${classNameWC} from '../components/${element}-${_name}/';
       export const ${className} = withReact(${classNameWC});
     `,
