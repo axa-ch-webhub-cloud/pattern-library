@@ -1,152 +1,104 @@
 /* eslint-disable */
-import _AXACheckbox from './components/a-checkbox';
-export const AXACheckbox = _AXACheckbox;
+export { default as AXACheckbox } from './components/a-checkbox';
 
-import _AXAChoice from './components/a-choice';
-export const AXAChoice = _AXAChoice;
+export { default as AXAChoice } from './components/a-choice';
 
-import _AXAIcon from './components/a-icon';
-export const AXAIcon = _AXAIcon;
+export { default as AXAIcon } from './components/a-icon';
 
-import _AXAInput from './components/a-input';
-export const AXAInput = _AXAInput;
+export { default as AXAInput } from './components/a-input';
 
-import _AXARadio from './components/a-radio';
-export const AXARadio = _AXARadio;
+export { default as AXARadio } from './components/a-radio';
 
-import _AXATypo from './components/a-typo';
-export const AXATypo = _AXATypo;
+export { default as AXATypo } from './components/a-typo';
 
-import _AXAVerticalRhythm from './components/a-vertical-rhythm';
-export const AXAVerticalRhythm = _AXAVerticalRhythm;
+export { default as AXAVerticalRhythm } from './components/a-vertical-rhythm';
 
-import _AXAAccordionItem from './components/m-accordion-item';
-export const AXAAccordionItem = _AXAAccordionItem;
+export { default as AXAAccordionItem } from './components/m-accordion-item';
 
-import _AXAButton from './components/m-button';
-export const AXAButton = _AXAButton;
+export { default as AXAButton } from './components/m-button';
 
-import _AXACol from './components/m-col';
-export const AXACol = _AXACol;
+export { default as AXACol } from './components/m-col';
 
-import _AXAMDatepicker from './components/m-datepicker';
-export const AXAMDatepicker = _AXAMDatepicker;
+export { default as AXAMDatepicker } from './components/m-datepicker';
 
-import _AXADatepickerBody from './components/m-datepicker-body';
-export const AXADatepickerBody = _AXADatepickerBody;
+export { default as AXADatepickerBody } from './components/m-datepicker-body';
 
-import _AXADropdown from './components/m-dropdown';
-export const AXADropdown = _AXADropdown;
+export { default as AXADropdown } from './components/m-dropdown';
 
-import _AXAFooterLanguages from './components/m-footer-languages';
-export const AXAFooterLanguages = _AXAFooterLanguages;
+export { default as AXAFooterLanguages } from './components/m-footer-languages';
 
-import _AXAFooterLegals from './components/m-footer-legals';
-export const AXAFooterLegals = _AXAFooterLegals;
+export { default as AXAFooterLegals } from './components/m-footer-legals';
 
-import _AXAFooterLinks from './components/m-footer-links';
-export const AXAFooterLinks = _AXAFooterLinks;
+export { default as AXAFooterLinks } from './components/m-footer-links';
 
-import _AXAFooterMain from './components/m-footer-main';
-export const AXAFooterMain = _AXAFooterMain;
+export { default as AXAFooterMain } from './components/m-footer-main';
 
-import _AXAFooterSocial from './components/m-footer-social';
-export const AXAFooterSocial = _AXAFooterSocial;
+export { default as AXAFooterSocial } from './components/m-footer-social';
 
-import _AXAFooterSub from './components/m-footer-sub';
-export const AXAFooterSub = _AXAFooterSub;
+export { default as AXAFooterSub } from './components/m-footer-sub';
 
-import _AXAFormGroup from './components/m-form-group';
-export const AXAFormGroup = _AXAFormGroup;
+export { default as AXAFormGroup } from './components/m-form-group';
 
-import _AXAHeaderBurger from './components/m-header-burger';
-export const AXAHeaderBurger = _AXAHeaderBurger;
+export { default as AXAHeaderBurger } from './components/m-header-burger';
 
-import _AXAHeaderLanguages from './components/m-header-languages';
-export const AXAHeaderLanguages = _AXAHeaderLanguages;
+export { default as AXAHeaderLanguages } from './components/m-header-languages';
 
-import _AXAHeaderLogo from './components/m-header-logo';
-export const AXAHeaderLogo = _AXAHeaderLogo;
+export { default as AXAHeaderLogo } from './components/m-header-logo';
 
-import _AXAHeaderMain from './components/m-header-main';
-export const AXAHeaderMain = _AXAHeaderMain;
+export { default as AXAHeaderMain } from './components/m-header-main';
 
-import _AXAHeaderMeta from './components/m-header-meta';
-export const AXAHeaderMeta = _AXAHeaderMeta;
+export { default as AXAHeaderMeta } from './components/m-header-meta';
 
-import _AXAHeaderMetaRight from './components/m-header-meta-right';
-export const AXAHeaderMetaRight = _AXAHeaderMetaRight;
+export { default as AXAHeaderMetaRight } from './components/m-header-meta-right';
 
-import _AXAHeaderMobile from './components/m-header-mobile';
-export const AXAHeaderMobile = _AXAHeaderMobile;
+export { default as AXAHeaderMobile } from './components/m-header-mobile';
 
-import _AXAHeaderMobileLanguages from './components/m-header-mobile-languages';
-export const AXAHeaderMobileLanguages = _AXAHeaderMobileLanguages;
+export { default as AXAHeaderMobileLanguages } from './components/m-header-mobile-languages';
 
-import _AXAHeaderMobileNavigation from './components/m-header-mobile-navigation';
-export const AXAHeaderMobileNavigation = _AXAHeaderMobileNavigation;
+export { default as AXAHeaderMobileNavigation } from './components/m-header-mobile-navigation';
 
-import _AXAHeaderMobileOthers from './components/m-header-mobile-others';
-export const AXAHeaderMobileOthers = _AXAHeaderMobileOthers;
+export { default as AXAHeaderMobileOthers } from './components/m-header-mobile-others';
 
-import _AXAHeaderNavigation from './components/m-header-navigation';
-export const AXAHeaderNavigation = _AXAHeaderNavigation;
+export { default as AXAHeaderNavigation } from './components/m-header-navigation';
 
-import _AXAHeaderOthers from './components/m-header-others';
-export const AXAHeaderOthers = _AXAHeaderOthers;
+export { default as AXAHeaderOthers } from './components/m-header-others';
 
-import _AXAHeaderSearch from './components/m-header-search';
-export const AXAHeaderSearch = _AXAHeaderSearch;
+export { default as AXAHeaderSearch } from './components/m-header-search';
 
-import _AXAHeaderSubNavigation from './components/m-header-sub-navigation';
-export const AXAHeaderSubNavigation = _AXAHeaderSubNavigation;
+export { default as AXAHeaderSubNavigation } from './components/m-header-sub-navigation';
 
-import _AXAHeaderTopContentBar from './components/m-header-top-content-bar';
-export const AXAHeaderTopContentBar = _AXAHeaderTopContentBar;
+export { default as AXAHeaderTopContentBar } from './components/m-header-top-content-bar';
 
-import _AXALink from './components/m-link';
-export const AXALink = _AXALink;
+export { default as AXALink } from './components/m-link';
 
-import _AXAPolicyFeatureItem from './components/m-policy-feature-item';
-export const AXAPolicyFeatureItem = _AXAPolicyFeatureItem;
+export { default as AXAPolicyFeatureItem } from './components/m-policy-feature-item';
 
-import _AXARow from './components/m-row';
-export const AXARow = _AXARow;
+export { default as AXARow } from './components/m-row';
 
-import _AXAAccordion from './components/o-accordion';
-export const AXAAccordion = _AXAAccordion;
+export { default as AXAAccordion } from './components/o-accordion';
 
-import _AXACommercialHeroCover from './components/o-commercial-hero-cover';
-export const AXACommercialHeroCover = _AXACommercialHeroCover;
+export { default as AXACommercialHeroCover } from './components/o-commercial-hero-cover';
 
-import _AXAContainer from './components/o-container';
-export const AXAContainer = _AXAContainer;
+export { default as AXAContainer } from './components/o-container';
 
-import _AXACookieDisclaimer from './components/o-cookie-disclaimer';
-export const AXACookieDisclaimer = _AXACookieDisclaimer;
+export { default as AXACookieDisclaimer } from './components/o-cookie-disclaimer';
 
-import _AXADatepicker from './components/o-datepicker';
-export const AXADatepicker = _AXADatepicker;
+export { default as AXADatepicker } from './components/o-datepicker';
 
-import _AXAErrorPage from './components/o-error-page';
-export const AXAErrorPage = _AXAErrorPage;
+export { default as AXAErrorPage } from './components/o-error-page';
 
-import _AXAFooter from './components/o-footer';
-export const AXAFooter = _AXAFooter;
+export { default as AXAFooter } from './components/o-footer';
 
-import _AXAHeader from './components/o-header';
-export const AXAHeader = _AXAHeader;
+export { default as AXAHeader } from './components/o-header';
 
-import _AXAPolicyFeatures from './components/o-policy-features';
-export const AXAPolicyFeatures = _AXAPolicyFeatures;
+export { default as AXAPolicyFeatures } from './components/o-policy-features';
 
 // @todo: cleanup sticky
 import {
   AXASticky as _AXASticky,
   AXAStickyContainer as _AXAStickyContainer,
-} from '../components/o-sticky';
+} from './components/o-sticky';
 export const AXASticky = _AXASticky;
 export const AXAStickyContainer = _AXAStickyContainer;
 
-import _AXATestimonials from './components/o-testimonials';
-export const AXATestimonials = _AXATestimonials;
+export { default as AXATestimonials } from './components/o-testimonials';

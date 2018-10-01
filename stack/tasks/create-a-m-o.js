@@ -211,14 +211,12 @@ const updateIndex = (_element, _name) => {
   }
 
   const className = getClassName(_name);
-  const classNameWC = `_${className}`;
 
   fs.writeFileSync(
     `${CWD}/src/index.js`,
     outdent`
 
-      import ${classNameWC} from './components/${_element}-${_name}/';
-      export const ${className} = ${classNameWC};
+      export { default as ${className} } from './components/${_element}-${_name}';
     `,
     { flag: 'a' },
     handleError,
