@@ -63,8 +63,10 @@ const displayElementSelector = () => {
     `));
 };
 
+const getClassName = (name) => `AXA${camelCase(_name)}`;
+
 const writeIndexJs = (path, _name) => {
-  const className = `AXA${camelCase(_name)}`;
+  const className = getClassName(_name);
 
   fs.writeFileSync(
     `${path}/index.js`,
@@ -182,6 +184,21 @@ const writeTemplateJs = (path) => {
   );
 };
 
+const updateReactExports = (element, _name) => {
+  const className = getClassName(_name);
+  const classNameWC = `${className}WC`;
+
+  fs.writeFileSync(
+    `$src/js/react-exports.js`,
+    outdent`
+      import ${classNameWC} from '../components/${element}-${_name}/';
+      export const ${className} = withReact(${classNameWC});
+    `,
+    { flag: 'a' },
+    handleError,
+  );
+}
+
 const createBoilerplate = (_name) => {
   const path = `${CWD}/src/components/${element}-${_name}`;
 
@@ -201,6 +218,7 @@ const createBoilerplate = (_name) => {
       writeIndexScss(path, _name);
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
+      updateReactExports(element, _name);
       console.log(chalk.cyan(outdent`
 
           Created under ${path}
