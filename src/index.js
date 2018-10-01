@@ -145,8 +145,8 @@ import {
   AXASticky as _AXASticky,
   AXAStickyContainer as _AXAStickyContainer,
 } from '../components/o-sticky';
-export const AXASticky = withReact(_AXASticky);
-export const AXAStickyContainer = withReact(_AXAStickyContainer);
+export const AXASticky = _AXASticky;
+export const AXAStickyContainer = _AXAStickyContainer;
 
 import _AXATestimonials from './components/o-testimonials';
 export const AXATestimonials = _AXATestimonials;
