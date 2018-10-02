@@ -26,7 +26,8 @@
 
   // never show title on phones and phablets
   @include respond-down(md) {
-    display: none;
+    /* stylelint-disable-next-line declaration-no-important */
+    display: none !important;
   }
 }
 
