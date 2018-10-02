@@ -40,6 +40,7 @@
 
   &:disabled,
   &[aria-disabled] {
+    /* stylelint-disable-next-line declaration-no-important */
     cursor: default !important;
   }
 }
@@ -81,10 +82,12 @@
 
   &:disabled,
   &[aria-disabled] {
+    /* stylelint-disable declaration-no-important */
     color: $color-button-text !important;
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
     border-bottom-color: $color-prim-gray-silver !important;
+    /* stylelint-enable declaration-no-important */
   }
 }
 
@@ -116,6 +119,7 @@
 
   &:disabled,
   &[aria-disabled] {
+    /* stylelint-disable-next-line declaration-no-important */
     background-color: $color-button-bg--disabled !important;
   }
 }
@@ -308,6 +312,7 @@
 @mixin button--motion--ghost() {
   @include button--disabled();
 
+  /* stylelint-disable-next-line declaration-no-important */
   background: transparent !important;
 }
 
