@@ -67,7 +67,7 @@
   margin-top: $header-top-content-bar__button-margin-top;
 
   .m-header-mobile & {
-    margin-top: $header-top-content-bar__button-margin-top !important;
+    margin-top: $header-top-content-bar__button-margin-top;
   }
 
   @include respond-up(sm) {
