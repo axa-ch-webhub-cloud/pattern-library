@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
@@ -6,6 +8,9 @@ import styles from './index.scss';
 
 class AXAFooterLegals extends BaseComponentGlobal {
   static tagName = 'axa-footer-legals'
+  static propTypes = {
+    bottom: PropTypes.bool,
+  }
 
   static get observedAttributes() { return ['bottom']; }
 
