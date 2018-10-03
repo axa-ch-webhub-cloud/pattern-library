@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -9,6 +11,14 @@ import Datepicker from './js/datepicker';
 
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
+  static propTypes = {
+    classes: PropTypes.string,
+    locale: PropTypes.string,
+    open: PropTypes.bool,
+    lowerEndYear: PropTypes.number,
+    higherEndYear: PropTypes.number,
+    value: PropTypes.string,
+  }
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
