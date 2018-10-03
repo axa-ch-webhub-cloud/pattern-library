@@ -1,6 +1,12 @@
-function lazyFunction(f) {
+/**
+ * Make function application lazy.
+ *
+ * @param {function} func - The function to be executed lazily.
+ * @returns {function(...[*]=): *}
+ */
+function lazyFunction(func) {
   return function (...args) {
-    return f.apply(this, args);
+    return func.apply(this, args);
   };
 }
 
