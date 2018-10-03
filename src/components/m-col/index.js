@@ -10,7 +10,7 @@ const reWhiteSpace = /\s+/;
 const reSize = /\d+|(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|))?/;
 const reOrder = /\d+|first|last|(?:xs|sm|md|lg|xl)-(?:\d+|first|last)/;
 const reOffset = /\d+|(?:xs|sm|md|lg|xl)(?:-\d+)?/;
-const validModifiers = (reModifiers) => (modifier) => {
+const validModifiers = reModifiers => (modifier) => {
   const type = typeof modifier;
 
   return type === 'number' || (type === 'string' && reModifiers.test(modifier));
