@@ -7,7 +7,7 @@ import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 
 const reWhiteSpace = /\s+/;
-const reModifiers = /(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|first|last))?/;
+const reModifiers = /\d+|(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|first|last))?/;
 const validModifiers = (modifier) => {
   const type = typeof modifier;
 
@@ -28,8 +28,9 @@ const toArray = (modifier) => {
 const modifierProp = (props, propName, componentName) => {
   const prop = props[propName];
   const modifiers = toArray(prop);
-  if (modifiers.length !== modifiers.filter(validModifiers)) {
-    return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`. Validation failed.`);
+
+  if (modifiers.length !== modifiers.filter(validModifiers).length) {
+    return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`, expected \`number|xs|sm|md|lg|xl\` optionally followed by \`-(number|auto|first|last)\` - multiple modifiers separated by spaces.`);
   }
 };
 
