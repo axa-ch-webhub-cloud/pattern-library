@@ -1,3 +1,5 @@
+import { checkPropTypes } from 'prop-types';
+
 import PropertyExistsException from '../utils/property-exists-exception';
 import lifecycleLogger from '../utils/lifecycle-logger';
 import dasherize from '../../dasherize';
@@ -113,6 +115,8 @@ const withUpdate = Base =>
             }
           });
 
+          this.checkPropTypes();
+
           if (ENV !== PROD) {
             lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
           }
@@ -147,6 +151,8 @@ const withUpdate = Base =>
         this[key] = null;
       }
 
+      this.checkPropTypes();
+
       // if value is updated, we presume that an axa on change event have to be triggered
       if (name === 'value' && newValue !== null) {
         fire(this, AXA_EVENTS.AXA_CHANGE, newValue, { bubbles: true, cancelable: true, composed: true });
@@ -164,6 +170,8 @@ const withUpdate = Base =>
       const propsKeys = Object.keys(props);
       const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
       const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
+
+      this.checkPropTypes();
 
       if (shouldUpdate && this._isConnected && this._hasRendered) {
         if (ENV !== PROD) {
@@ -213,6 +221,17 @@ const withUpdate = Base =>
         props,
         shouldUpdate: true,
       };
+    }
+
+    /**
+     * Check types at runtime.
+     */
+    checkPropTypes() {
+      const { constructor: { propTypes, tagName } } = this;
+
+      if (propTypes) {
+        checkPropTypes(propTypes, this._props, 'prop', tagName);
+      }
     }
 
     /**
