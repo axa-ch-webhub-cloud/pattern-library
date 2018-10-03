@@ -1,4 +1,4 @@
-import { checkPropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import PropertyExistsException from '../utils/property-exists-exception';
 import lifecycleLogger from '../utils/lifecycle-logger';
@@ -230,7 +230,7 @@ const withUpdate = Base =>
       const { constructor: { propTypes, tagName } } = this;
 
       if (propTypes) {
-        checkPropTypes(propTypes, this._props, 'prop', tagName);
+        PropTypes.checkPropTypes(propTypes, this._props, 'prop', tagName);
       }
     }
 
