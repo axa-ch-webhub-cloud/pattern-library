@@ -15,7 +15,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     items: PropTypes.arrayOf(PropTypes.shape({
       url: PropTypes.string,
       name: PropTypes.string,
-      items: PropTypes.object,
+      items: PropTypes.array,
       classes: PropTypes.string,
       isActive: PropTypes.bool,
     })),
