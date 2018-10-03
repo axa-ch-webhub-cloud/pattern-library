@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -6,6 +8,10 @@ import styles from './index.scss';
 
 class AXARow extends BaseComponentGlobal {
   static tagName = 'axa-row'
+  static propTypes = {
+    classes: PropTypes.string,
+    noGutters: PropTypes.bool,
+  }
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
