@@ -10,7 +10,7 @@ import template from './_template';
 class AXAHeaderMobileLanguages extends BaseComponentGlobal {
   static tagName = 'axa-header-mobile-languages'
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shap({
+    items: PropTypes.arrayOf(PropTypes.shape({
       url: PropTypes.string,
       code: PropTypes.string,
       isActive: PropTypes.bool,

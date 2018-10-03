@@ -10,7 +10,7 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   static tagName = 'axa-footer-languages'
   static propTypes = {
     inline: PropTypes.bool,
-    items: PropTypes.arrayOf(PropTypes.shap({
+    items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       code: PropTypes.string,
       url: PropTypes.string,

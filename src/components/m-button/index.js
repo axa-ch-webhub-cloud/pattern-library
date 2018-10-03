@@ -18,7 +18,7 @@ class AXAButton extends BaseComponentGlobal {
     tag: PropTypes.oneOf(['a', 'button']),
     href: PropTypes.string,
     icon: PropTypes.string,
-    target: PropTypes.oneOf('_blank', '_self'),
+    target: PropTypes.oneOf(['_blank', '_self']),
     disabled: PropTypes.bool,
   }
 
