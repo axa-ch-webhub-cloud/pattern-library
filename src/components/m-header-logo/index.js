@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -8,6 +10,11 @@ import HeaderLogo from './js/header-logo';
 
 class AXAHeaderLogo extends BaseComponentGlobal {
   static tagName = 'axa-header-logo'
+  static propTypes = {
+    alt: PropTypes.string,
+    href: PropTypes.string,
+    src: PropTypes.string,
+  }
 
   static get observedAttributes() { return ['alt', 'href', 'src']; }
 
