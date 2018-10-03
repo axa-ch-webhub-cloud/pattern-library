@@ -10,7 +10,7 @@ import DropDown from './js/drop-down';
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
   static propTypes = {
-    'in-flow': PropTypes.bool,
+    inFlow: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       url: PropTypes.string,
@@ -20,7 +20,7 @@ class AXADropdown extends BaseComponentGlobal {
     size: PropTypes.oneOf(['sm']),
     title: PropTypes.string,
     value: PropTypes.string,
-    'icons-path-prefix': PropTypes.string,
+    iconsPathPrefix: PropTypes.string,
   }
 
   static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value', 'icons-path-prefix']; }

@@ -11,8 +11,8 @@ class AXAAccordionItem extends BaseComponentGlobal {
   static propTypes = {
     icon: PropTypes.string,
     header: PropTypes.string,
-    'header-secondary': PropTypes.string,
-    'header-color': PropTypes.oneOf(['blue']),
+    headerSecondary: PropTypes.string,
+    headerColor: PropTypes.oneOf(['blue']),
     multiple: PropTypes.bool,
   }
 

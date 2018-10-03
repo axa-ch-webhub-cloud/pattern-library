@@ -14,7 +14,7 @@ class AXAInput extends BaseComponentGlobal {
     inline: PropTypes.bool,
     error: PropTypes.string,
     disabled: PropTypes.bool,
-    'input-id': PropTypes.string,
+    inputId: PropTypes.string,
     type: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.string,

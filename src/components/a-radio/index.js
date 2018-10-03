@@ -9,7 +9,7 @@ import template from './_template';
 class AXARadio extends BaseComponentGlobal {
   static tagName = 'axa-radio'
   static propTypes = {
-    'input-id': PropTypes.string,
+    inputId: PropTypes.string,
     error: PropTypes.string,
     value: PropTypes.string,
     name: PropTypes.string,

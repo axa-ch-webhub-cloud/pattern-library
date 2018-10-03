@@ -9,7 +9,7 @@ import template from './_template';
 class AXACheckbox extends BaseComponentGlobal {
   static tagName = 'axa-checkbox'
   static propTypes = {
-    'input-id': PropTypes.string,
+    inputId: PropTypes.string,
     error: PropTypes.bool,
     value: PropTypes.bool,
     name: PropTypes.string,

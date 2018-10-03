@@ -10,7 +10,7 @@ class AXAIcon extends BaseComponentGlobal {
   static propTypes = {
     icon: PropTypes.string.isRequired,
     classes: PropTypes.string,
-    'path-prefix': PropTypes.string,
+    pathPrefix: PropTypes.string,
   }
 
   // Specify observed attributes so that
