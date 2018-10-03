@@ -1,12 +1,28 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import lazyFunction from '../../js/lazy-function';
 import HeaderMobileNavigation from './js/header-mobile-navigation';
+
+// eslint-disable-next-line no-use-before-define
+const lazyItemsShape = lazyFunction(() => itemsShape);
+const itemsShape = PropTypes.shape({
+  name: PropTypes.string,
+  url: PropTypes.string,
+  isActive: PropTypes.bool,
+  items: lazyItemsShape,
+});
 
 class AXAHeaderMobileNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-mobile-navigation'
+  static propTypes = {
+    items: PropTypes.arrayOf(itemsShape),
+    relative: PropTypes.bool,
+  }
 
   static get observedAttributes() { return ['items', 'relative']; }
 
