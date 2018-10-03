@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
@@ -8,6 +9,18 @@ import Input from './js/input';
 
 class AXAInput extends BaseComponentGlobal {
   static tagName = 'axa-input'
+  static propTypes = {
+    valid: PropTypes.bool,
+    inline: PropTypes.bool,
+    error: PropTypes.string,
+    disabled: PropTypes.bool,
+    'input-id': PropTypes.string,
+    type: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    name: PropTypes.string,
+    icon: PropTypes.string,
+  }
 
   static get observedAttributes() {
     return ['valid', 'inline', 'error', 'disabled', 'input-id', 'type', 'placeholder', 'value', 'name', 'icon'];
