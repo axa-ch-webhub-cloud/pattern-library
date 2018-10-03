@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -8,6 +10,13 @@ import DropDown from '../m-dropdown/js/drop-down';
 
 class AXAHeaderLanguages extends BaseComponentGlobal {
   static tagName = 'axa-header-languages'
+  static propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape({
+      url: PropTypes.string,
+      name: PropTypes.string,
+      isActive: PropTypes.bool,
+    })),
+  }
 
   static get observedAttributes() { return ['items']; }
 
