@@ -146,7 +146,7 @@ const withUpdate = Base =>
 
       // add, update attribute
       if (this.hasAttribute(name)) {
-        this[key] = toProp(newValue);
+        this[key] = toProp(newValue, name);
       } else { // delete attribute
         this[key] = null;
       }
