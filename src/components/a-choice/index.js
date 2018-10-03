@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
@@ -7,6 +8,14 @@ import template from './_template';
 
 class AXAChoice extends BaseComponentGlobal {
   static tagName = 'axa-choice'
+  static propTypes = {
+    'input-id': PropTypes.string,
+    error: PropTypes.bool,
+    value: PropTypes.bool,
+    name: PropTypes.string,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
+  }
 
   static get observedAttributes() {
     return ['input-id', 'error', 'value', 'name', 'checked', 'disabled'];
