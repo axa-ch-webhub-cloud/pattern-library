@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -8,6 +10,9 @@ import HeaderMobile from './js/header-mobile';
 
 class AXAHeaderMobile extends BaseComponentGlobal {
   static tagName = 'axa-header-mobile'
+  static propTypes = {
+    offcanvas: PropTypes.bool,
+  }
 
   static get observedAttributes() { return ['offcanvas']; }
 
