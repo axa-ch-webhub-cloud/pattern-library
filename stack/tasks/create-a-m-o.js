@@ -84,7 +84,9 @@ const writeIndexJs = (path, _name) => {
         static tagName = 'axa-${_name}'
         
         // specify runtime type-checking here, if you use custom attributes 
-        static propTypes = {}
+        static propTypes = {
+          classes: PropTypes.string,
+        }
 
         // Specify observed attributes so that attributeChangedCallback will work,
         // this is essential for external re-rendering trigger.
