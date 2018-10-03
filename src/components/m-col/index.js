@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -22,9 +24,23 @@ const toArray = (modifier) => {
 
   return [modifier];
 };
+// eslint-disable-next-line consistent-return
+const modifierProp = (props, propName, componentName) => {
+  const prop = props[propName];
+  const modifiers = toArray(prop);
+  if (modifiers.length !== modifiers.filter(validModifiers)) {
+    return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`. Validation failed.`);
+  }
+};
 
 class AXACol extends BaseComponentGlobal {
   static tagName = 'axa-col'
+  static propTypes = {
+    classes: PropTypes.string,
+    size: modifierProp,
+    order: modifierProp,
+    offset: modifierProp,
+  }
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
