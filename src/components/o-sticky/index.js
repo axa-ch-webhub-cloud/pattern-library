@@ -15,7 +15,9 @@ export class AXAStickyContainer extends BaseComponentGlobal {
     debug: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['debug']; }
+  static get observedAttributes() {
+    return ['debug'];
+  }
 
   constructor() {
     super({ styles: stylesStickyContainer });
@@ -49,7 +51,9 @@ export class AXASticky extends BaseComponentGlobal {
     debug: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['debug']; }
+  static get observedAttributes() {
+    return ['debug'];
+  }
 
   constructor() {
     super({ styles: stylesSticky, template: templateSticky });

@@ -23,7 +23,9 @@ class AXAErrorPage extends BaseComponentGlobal {
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['code', 'status', 'title', 'message', 'items', 'cta-href', 'cta-title', 'background']; }
+  static get observedAttributes() {
+    return ['code', 'status', 'title', 'message', 'items', 'cta-href', 'cta-title', 'background'];
+  }
 
   constructor() {
     super({ styles, template });

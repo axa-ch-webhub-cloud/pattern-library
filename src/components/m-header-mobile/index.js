@@ -14,7 +14,9 @@ class AXAHeaderMobile extends BaseComponentGlobal {
     offcanvas: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['offcanvas']; }
+  static get observedAttributes() {
+    return ['offcanvas'];
+  }
 
   constructor() {
     super({ styles, template });

@@ -17,7 +17,9 @@ class AXARadio extends BaseComponentGlobal {
     disabled: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['input-id', 'error', 'value', 'name', 'checked', 'disabled']; }
+  static get observedAttributes() {
+    return ['input-id', 'error', 'value', 'name', 'checked', 'disabled'];
+  }
 
   constructor() {
     super({ styles, template });

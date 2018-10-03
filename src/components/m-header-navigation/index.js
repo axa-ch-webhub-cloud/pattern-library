@@ -23,7 +23,9 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     historyApi: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu', 'history-api']; }
+  static get observedAttributes() {
+    return ['hyphenate', 'items', 'simplemenu', 'history-api'];
+  }
 
   constructor() {
     super({ styles, template });

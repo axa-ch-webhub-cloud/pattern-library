@@ -22,7 +22,9 @@ class AXAButton extends BaseComponentGlobal {
     disabled: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['arrow', 'classes', 'color', 'ghost', 'motion', 'size', 'tag', 'href', 'icon', 'target', 'disabled']; }
+  static get observedAttributes() {
+    return ['arrow', 'classes', 'color', 'ghost', 'motion', 'size', 'tag', 'href', 'icon', 'target', 'disabled'];
+  }
 
   constructor() {
     super({ styles, template });

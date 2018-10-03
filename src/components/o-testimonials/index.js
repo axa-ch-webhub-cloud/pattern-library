@@ -17,7 +17,9 @@ class AXATestimonials extends BaseComponentGlobal {
     showAllInline: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['classes', 'title', 'subtitle', 'auto-rotate-disabled', 'auto-rotate-time', 'show-all-inline']; }
+  static get observedAttributes() {
+    return ['classes', 'title', 'subtitle', 'auto-rotate-disabled', 'auto-rotate-time', 'show-all-inline'];
+  }
 
   constructor() {
     super({

@@ -20,7 +20,9 @@ class AXAFooterLanguages extends BaseComponentGlobal {
     title: PropTypes.string,
   }
 
-  static get observedAttributes() { return ['inline', 'items', 'short', 'title']; }
+  static get observedAttributes() {
+    return ['inline', 'items', 'short', 'title'];
+  }
 
   constructor() {
     super({ styles, template });

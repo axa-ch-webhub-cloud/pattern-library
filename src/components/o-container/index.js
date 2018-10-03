@@ -14,7 +14,9 @@ class AXAContainer extends BaseComponentGlobal {
     classes: PropTypes.string,
   }
 
-  static get observedAttributes() { return ['fluid', 'classes']; }
+  static get observedAttributes() {
+    return ['fluid', 'classes'];
+  }
 
   constructor() {
     super({ styles, template });

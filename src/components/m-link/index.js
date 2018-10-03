@@ -20,7 +20,9 @@ class AXALink extends BaseComponentGlobal {
     target: PropTypes.oneOf(['_blank', '_self']),
   }
 
-  static get observedAttributes() { return ['color', 'size', 'motion', 'arrow', 'href', 'listed', 'icon', 'deco', 'icons-path-prefix', 'target']; }
+  static get observedAttributes() {
+    return ['color', 'size', 'motion', 'arrow', 'href', 'listed', 'icon', 'deco', 'icons-path-prefix', 'target'];
+  }
 
   constructor() {
     super({ styles, template });

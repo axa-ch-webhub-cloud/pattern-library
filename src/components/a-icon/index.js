@@ -15,7 +15,9 @@ class AXAIcon extends BaseComponentGlobal {
 
   // Specify observed attributes so that
   // attributeChangedCallback will work
-  static get observedAttributes() { return ['icon', 'classes', 'path-prefix']; }
+  static get observedAttributes() {
+    return ['icon', 'classes', 'path-prefix'];
+  }
 
   constructor() {
     super({ styles, template });

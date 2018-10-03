@@ -15,7 +15,9 @@ class AXAHeaderMobileOthers extends BaseComponentGlobal {
     })),
   }
 
-  static get observedAttributes() { return ['items']; }
+  static get observedAttributes() {
+    return ['items'];
+  }
 
   constructor() {
     super({ styles, template });

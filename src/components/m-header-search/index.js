@@ -15,7 +15,9 @@ class AXAHeaderSearch extends BaseComponentGlobal {
     method: PropTypes.oneOf(['GET', 'POST']),
   }
 
-  static get observedAttributes() { return ['action', 'href', 'method']; }
+  static get observedAttributes() {
+    return ['action', 'href', 'method'];
+  }
 
   constructor() {
     super({ styles, template });

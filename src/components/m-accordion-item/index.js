@@ -16,7 +16,9 @@ class AXAAccordionItem extends BaseComponentGlobal {
     multiple: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['icon', 'header', 'header-secondary', 'header-color', 'multiple']; }
+  static get observedAttributes() {
+    return ['icon', 'header', 'header-secondary', 'header-color', 'multiple'];
+  }
 
   constructor() {
     super({ styles, template });

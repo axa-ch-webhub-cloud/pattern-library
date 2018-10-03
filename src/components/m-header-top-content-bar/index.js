@@ -11,7 +11,9 @@ class AXAHeaderTopContentBar extends BaseComponentGlobal {
     type: PropTypes.oneOf(['corporate', 'commercial', 'warning']),
   }
 
-  static get observedAttributes() { return ['type']; }
+  static get observedAttributes() {
+    return ['type'];
+  }
 
   constructor() {
     super({ styles, template });

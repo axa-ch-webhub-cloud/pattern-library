@@ -12,7 +12,9 @@ class AXAFooterLegals extends BaseComponentGlobal {
     bottom: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['bottom']; }
+  static get observedAttributes() {
+    return ['bottom'];
+  }
 
   constructor() {
     super({ styles });

@@ -26,7 +26,9 @@ class AXAHeaderSubNavigation extends BaseComponentGlobal {
     })),
   }
 
-  static get observedAttributes() { return ['flyout', 'index-title', 'index-url', 'items']; }
+  static get observedAttributes() {
+    return ['flyout', 'index-title', 'index-url', 'items'];
+  }
 
   constructor() {
     super({ styles, template });

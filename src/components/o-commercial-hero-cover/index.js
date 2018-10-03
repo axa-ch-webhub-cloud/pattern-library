@@ -18,7 +18,9 @@ class AXACommercialHeroCover extends BaseComponentGlobal {
     heroObjectPosition: PropTypes.string,
   }
 
-  static get observedAttributes() { return ['src', 'alt', 'gradient', 'content-align', 'picture-classes', 'hero-object-position']; }
+  static get observedAttributes() {
+    return ['src', 'alt', 'gradient', 'content-align', 'picture-classes', 'hero-object-position'];
+  }
 
   constructor() {
     super({

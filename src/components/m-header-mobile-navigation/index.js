@@ -24,7 +24,9 @@ class AXAHeaderMobileNavigation extends BaseComponentGlobal {
     relative: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['items', 'relative']; }
+  static get observedAttributes() {
+    return ['items', 'relative'];
+  }
 
   constructor() {
     super({ styles, template });

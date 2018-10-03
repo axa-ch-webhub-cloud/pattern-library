@@ -20,7 +20,9 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
 
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'button-name', 'title', 'fixed']; }
+  static get observedAttributes() {
+    return ['classes', 'button-name', 'title', 'fixed'];
+  }
 
   constructor() {
     super({ styles, template });

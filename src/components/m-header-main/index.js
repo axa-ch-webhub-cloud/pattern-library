@@ -14,7 +14,9 @@ class AXAHeaderMain extends BaseComponentGlobal {
     firstLeft: PropTypes.bool,
   }
 
-  static get observedAttributes() { return ['first-left']; }
+  static get observedAttributes() {
+    return ['first-left'];
+  }
 
   constructor() {
     super({ styles, template });
