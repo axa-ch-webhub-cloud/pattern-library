@@ -71,7 +71,9 @@ const writeIndexJs = (path, _name) => {
 
   fs.writeFileSync(
     `${path}/index.js`,
-    outdent`import BaseComponentGlobal from '../../js/abstract/base-component-global';
+    outdent`import PropTypes from 'prop-types';
+    
+      import BaseComponentGlobal from '../../js/abstract/base-component-global';
       import defineOnce from '../../js/define-once';
       // import the styles used for this component
       import styles from './index.scss';
@@ -80,10 +82,15 @@ const writeIndexJs = (path, _name) => {
 
       class ${className} extends BaseComponentGlobal {
         static tagName = 'axa-${_name}'
+        
+        // specify runtime type-checking here, if you use custom attributes 
+        static propTypes = {}
 
         // Specify observed attributes so that attributeChangedCallback will work,
         // this is essential for external re-rendering trigger.
-        static get observedAttributes() { return ['classes']; }
+        static get observedAttributes() {
+          return ['classes'];
+        }
 
         constructor() {
           super({ styles, template });
