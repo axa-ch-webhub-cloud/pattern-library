@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
@@ -7,6 +9,15 @@ import FooterLinks from './js/footer-links';
 
 class AXAFooterLinks extends BaseComponentGlobal {
   static tagName = 'axa-footer-links'
+  static propTypes = {
+    cols: PropTypes.number,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      url: PropTypes.string,
+      isActive: PropTypes.bool,
+    })),
+    title: PropTypes.string,
+  }
 
   static get observedAttributes() { return ['cols', 'items', 'title']; }
 
