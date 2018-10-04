@@ -20,12 +20,6 @@ class AXADatepicker extends BaseComponentGlobal {
     value: PropTypes.string,
   }
 
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  static get observedAttributes() {
-    return ['classes', 'locale', 'open', 'lower-end-year', 'higher-end-year', 'value'];
-  }
-
   constructor() {
     super({ styles, template });
 

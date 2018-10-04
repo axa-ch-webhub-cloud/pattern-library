@@ -13,10 +13,6 @@ class AXAFooterMain extends BaseComponentGlobal {
     light: PropTypes.bool,
   }
 
-  static get observedAttributes() {
-    return ['light'];
-  }
-
   constructor() {
     super({ styles, template });
   }

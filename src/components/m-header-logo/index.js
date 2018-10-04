@@ -16,10 +16,6 @@ class AXAHeaderLogo extends BaseComponentGlobal {
     src: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['alt', 'href', 'src'];
-  }
-
   constructor() {
     super({ styles, template });
   }

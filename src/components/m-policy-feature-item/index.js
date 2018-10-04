@@ -15,10 +15,6 @@ class AXAPolicyFeatureItem extends BaseComponentGlobal {
     description: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['classes', 'src', 'alt', 'title', 'description'];
-  }
-
   constructor() {
     super({
       styles, template,

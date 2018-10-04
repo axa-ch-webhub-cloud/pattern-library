@@ -19,10 +19,6 @@ class AXAFooterLinks extends BaseComponentGlobal {
     title: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['cols', 'items', 'title'];
-  }
-
   constructor() {
     super({ styles, template });
   }

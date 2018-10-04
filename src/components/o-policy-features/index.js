@@ -13,10 +13,6 @@ class AXAPolicyFeatures extends BaseComponentGlobal {
     title: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['axa-style', 'title'];
-  }
-
   constructor() {
     super({
       styles, template,

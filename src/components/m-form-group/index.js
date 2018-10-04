@@ -15,10 +15,6 @@ class AXAFormGroup extends BaseComponentGlobal {
     error: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['label', 'info', 'error'];
-  }
-
   constructor() {
     super({ styles, template });
   }

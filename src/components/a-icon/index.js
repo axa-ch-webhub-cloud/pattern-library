@@ -13,12 +13,6 @@ class AXAIcon extends BaseComponentGlobal {
     pathPrefix: PropTypes.string,
   }
 
-  // Specify observed attributes so that
-  // attributeChangedCallback will work
-  static get observedAttributes() {
-    return ['icon', 'classes', 'path-prefix'];
-  }
-
   constructor() {
     super({ styles, template });
   }

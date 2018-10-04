@@ -18,10 +18,6 @@ class AXAFooterSocial extends BaseComponentGlobal {
     title: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['inline', 'items', 'light', 'title'];
-  }
-
   constructor() {
     super({ styles, template });
   }

@@ -22,10 +22,6 @@ class AXAInput extends BaseComponentGlobal {
     icon: PropTypes.string,
   }
 
-  static get observedAttributes() {
-    return ['valid', 'inline', 'error', 'disabled', 'input-id', 'type', 'placeholder', 'value', 'name', 'icon'];
-  }
-
   constructor() {
     super({ styles, template });
 

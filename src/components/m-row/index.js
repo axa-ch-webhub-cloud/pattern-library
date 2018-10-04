@@ -13,12 +13,6 @@ class AXARow extends BaseComponentGlobal {
     noGutters: PropTypes.bool,
   }
 
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  static get observedAttributes() {
-    return ['classes', 'no-gutters'];
-  }
-
   constructor() {
     super({ styles });
   }
