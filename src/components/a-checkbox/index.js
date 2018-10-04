@@ -11,7 +11,7 @@ class AXACheckbox extends BaseComponentGlobal {
   static propTypes = {
     inputId: PropTypes.string,
     error: PropTypes.bool,
-    value: PropTypes.bool,
+    value: PropTypes.string,
     name: PropTypes.string,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
