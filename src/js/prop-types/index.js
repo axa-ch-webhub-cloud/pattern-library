@@ -1,3 +1,3 @@
-export localePropType from './locale-prop-type';
-export urlPropType from './url-prop-type';
-export valuePropType from './value-prop-type';
+export { default as localePropType } from './locale-prop-type';
+export { default as urlPropType } from './url-prop-type';
+export { default as valuePropType } from './value-prop-type';
