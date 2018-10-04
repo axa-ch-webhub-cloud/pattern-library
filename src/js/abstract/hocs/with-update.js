@@ -17,6 +17,13 @@ const withUpdate = Base =>
    * Adds attribute observation and enables **First Class Props**.
    */
   class WithUpdate extends Base {
+    static get observedAttributes() {
+      const { propTypes } = this;
+      const derivedAttributes = (propTypes && Object.keys(propTypes).map(dasherize)) || null;
+
+      return derivedAttributes;
+    }
+
     constructor(options) {
       super(options);
 
