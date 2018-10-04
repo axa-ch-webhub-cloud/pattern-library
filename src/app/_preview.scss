@@ -176,7 +176,8 @@ $colorlist:
   }
 
   .m-header-sub-navigation__block {
-    padding-top: 0;
+    /* stylelint-disable-next-line declaration-no-important */
+    padding-top: 0 !important;
 
     @each $current-color in $colorlist {
       $i: index($colorlist, $current-color);
