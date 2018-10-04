@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
-import urlPropType from '../../js/url-prop-type';
+import urlPropType from '../../js/prop-types/url-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
