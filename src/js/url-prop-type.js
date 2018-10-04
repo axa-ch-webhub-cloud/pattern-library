@@ -4,7 +4,8 @@ import getBaseURI from './get-base-uri';
 function requiredUrlPropType(props, propName, componentName) {
   try {
     // note older browsers will need the url-polyfill
-    window.URL(props[propName], getBaseURI());
+    // eslint-disable-next-line no-new
+    new window.URL(props[propName], getBaseURI());
   } catch (error) {
     return new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`, expected a valid URL. ${error.message}`);
   }
