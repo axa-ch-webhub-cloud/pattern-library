@@ -149,6 +149,7 @@
     "at-rule-no-unknown": null,
     "selector-type-no-unknown": null,
     "declaration-empty-line-before": null,
+    "declaration-no-important": true,
     "block-closing-brace-newline-after": ["always", {
       "ignoreAtRules": ["if", "else"]
     }],

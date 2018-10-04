@@ -12,7 +12,7 @@
   @include make-col(3);
 
   display: block;
-  margin-left: 0 !important;
+  margin-left: 0;
   text-align: left;
 
   @include respond-down(md) {
@@ -98,6 +98,7 @@
   }
 
   @include respond-up(sm) {
+    /* stylelint-disable-next-line declaration-no-important */
     height: auto !important;
   }
 }

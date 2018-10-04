@@ -240,7 +240,7 @@
   width: 100%;
   padding: $header-sub-navigation__list-item-y-padding 0;
 
-  line-height: $header-sub-navigation__list-item-line-height !important;
+  line-height: $header-sub-navigation__list-item-line-height;
 
   &.is-header-sub-navigation-active,
   &:hover,

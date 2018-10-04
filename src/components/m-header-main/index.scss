@@ -14,7 +14,7 @@
 
 .m-header-main__box {
   @include make-container();
-  @include make-container-max-widths();
+  @include make-container-max-widths($header-main-max-widths);
   @include make-row(null);
 
   height: 100%;
@@ -25,9 +25,5 @@
 
   .m-header-main--first-left > & > *:first-child + * {
     margin-left: auto;
-  }
-
-  @include respond-down(md) {
-    max-width: none !important;
   }
 }

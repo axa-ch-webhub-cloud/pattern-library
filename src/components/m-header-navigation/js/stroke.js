@@ -45,8 +45,14 @@ class Stroke extends UiEvents {
 
     this._list = this._contextNode.querySelector(this.options.list);
 
-    this._stroke = document.createElement('div');
-    this._stroke.className = this.options.strokeClass;
+    const stroke = this.wcNode && this.wcNode.querySelector(`.${this.options.strokeClass}`);
+
+    if (stroke) {
+      this._stroke = stroke;
+    } else {
+      this._stroke = document.createElement('div');
+      this._stroke.className = this.options.strokeClass;
+    }
 
     this._list.appendChild(this._stroke);
   }
