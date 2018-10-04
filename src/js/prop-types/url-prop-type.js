@@ -1,7 +1,8 @@
-import getBaseURI from './get-base-uri';
+import isRequiredHelper from './is-required-helper';
+import getBaseURI from '../get-base-uri';
 
 // eslint-disable-next-line consistent-return
-function requiredUrlPropType(props, propName, componentName) {
+function urlPropType(props, propName, componentName) {
   try {
     // note older browsers will need the url-polyfill
     // eslint-disable-next-line no-new
@@ -13,14 +14,4 @@ function requiredUrlPropType(props, propName, componentName) {
   return null;
 }
 
-function urlPropType(props, propName, componentName) {
-  if (props[propName] == null) {
-    return null;
-  }
-
-  return requiredUrlPropType(props, propName, componentName);
-}
-
-urlPropType.isRequired = requiredUrlPropType;
-
-export default urlPropType;
+export default isRequiredHelper(urlPropType);
