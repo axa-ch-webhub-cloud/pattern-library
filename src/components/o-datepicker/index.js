@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import localePropType from '../../js/prop-types/locale-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -13,7 +14,7 @@ class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
   static propTypes = {
     classes: PropTypes.string,
-    locale: PropTypes.string,
+    locale: localePropType,
     open: PropTypes.bool,
     lowerEndYear: PropTypes.number,
     higherEndYear: PropTypes.number,

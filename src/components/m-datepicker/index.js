@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import { TODAY } from '../../js/date';
+import localePropType from '../../js/prop-types/locale-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -23,7 +24,7 @@ class AXADatepicker extends BaseComponentGlobal {
     classes: PropTypes.string,
     buttonOk: PropTypes.string,
     buttonCancel: PropTypes.string,
-    locale: PropTypes.string,
+    locale: localePropType,
     value: PropTypes.string,
     startYear: startType,
     startMonth: startType,
