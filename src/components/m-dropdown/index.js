@@ -6,7 +6,9 @@ import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import urlPropType from '../../js/url-prop-type';
+import valuePropType from '../../js/value-prop-type';
 import DropDown from './js/drop-down';
+
 
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
@@ -15,12 +17,12 @@ class AXADropdown extends BaseComponentGlobal {
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       url: urlPropType,
-      value: PropTypes.string,
+      value: valuePropType,
     })),
     native: PropTypes.bool,
     size: PropTypes.oneOf(['sm']),
     title: PropTypes.string,
-    value: PropTypes.string,
+    value: valuePropType,
     iconsPathPrefix: PropTypes.string,
   }
 
