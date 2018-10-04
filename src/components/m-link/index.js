@@ -4,6 +4,7 @@ import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 
 class AXALink extends BaseComponentGlobal {
   static tagName = 'axa-link'
@@ -12,7 +13,7 @@ class AXALink extends BaseComponentGlobal {
     size: PropTypes.oneOf(['']),
     motion: PropTypes.bool,
     arrow: PropTypes.bool,
-    href: PropTypes.string,
+    href: urlPropType,
     listed: PropTypes.bool,
     icon: PropTypes.string,
     deco: PropTypes.bool,

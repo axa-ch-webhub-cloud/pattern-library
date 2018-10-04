@@ -4,6 +4,7 @@ import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 import Button from './js/button';
 
 class AXAButton extends BaseComponentGlobal {
@@ -16,7 +17,7 @@ class AXAButton extends BaseComponentGlobal {
     motion: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     tag: PropTypes.oneOf(['a', 'button']),
-    href: PropTypes.string,
+    href: urlPropType,
     icon: PropTypes.string,
     target: PropTypes.oneOf(['_blank', '_self']),
     disabled: PropTypes.bool,

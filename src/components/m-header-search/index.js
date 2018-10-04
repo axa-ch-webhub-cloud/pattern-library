@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -11,7 +12,7 @@ class AXAHeaderSearch extends BaseComponentGlobal {
   static tagName = 'axa-header-search'
   static propTypes = {
     action: PropTypes.string,
-    href: PropTypes.string,
+    href: urlPropType,
     method: PropTypes.oneOf(['GET', 'POST']),
   }
 

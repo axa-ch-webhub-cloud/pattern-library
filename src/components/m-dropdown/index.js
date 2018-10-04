@@ -5,6 +5,7 @@ import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 import DropDown from './js/drop-down';
 
 class AXADropdown extends BaseComponentGlobal {
@@ -13,7 +14,7 @@ class AXADropdown extends BaseComponentGlobal {
     inFlow: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
-      url: PropTypes.string,
+      url: urlPropType,
       value: PropTypes.string,
     })),
     native: PropTypes.bool,

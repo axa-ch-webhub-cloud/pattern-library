@@ -7,13 +7,14 @@ import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-navigation'
   static propTypes = {
     hyphenate: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string,
+      url: urlPropType,
       name: PropTypes.string,
       items: PropTypes.array,
       classes: PropTypes.string,

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -12,7 +13,7 @@ class AXAHeaderOthers extends BaseComponentGlobal {
   static propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
-      url: PropTypes.string,
+      url: urlPropType,
       isActive: PropTypes.bool,
     })),
   }

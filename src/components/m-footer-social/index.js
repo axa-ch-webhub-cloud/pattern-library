@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
 
@@ -12,7 +13,7 @@ class AXAFooterSocial extends BaseComponentGlobal {
     inline: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
-      url: PropTypes.string,
+      url: urlPropType,
     })),
     light: PropTypes.bool,
     title: PropTypes.string,

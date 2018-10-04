@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
 import FooterLinks from './js/footer-links';
@@ -13,7 +14,7 @@ class AXAFooterLinks extends BaseComponentGlobal {
     cols: PropTypes.number,
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
-      url: PropTypes.string,
+      url: urlPropType,
       isActive: PropTypes.bool,
     })),
     title: PropTypes.string,
