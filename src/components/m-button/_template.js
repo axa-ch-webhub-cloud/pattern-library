@@ -20,9 +20,10 @@ export default function ({
   target = '_self',
   disabled = false,
 }, childrenFragment) {
+  const isTagA = tag.toLowerCase() === 'a';
   const noChildren = isEmptyFragment(childrenFragment);
   const hasIcon = icon && !arrow;
-  const hasOnlyIcon = hasIcon && !noChildren;
+  const hasOnlyIcon = hasIcon && noChildren;
   const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
@@ -30,8 +31,8 @@ export default function ({
     'm-button--motion': motion,
     'm-button--gpu': gpu,
     'm-button--arrow': arrow,
-    'm-button--icon': hasIcon,
-    'm-button--icon--only': hasOnlyIcon,
+    'm-button--has-icon': hasIcon && !hasOnlyIcon,
+    'm-button--only-icon': hasOnlyIcon,
   });
 
   let arrowIcon;
@@ -39,19 +40,20 @@ export default function ({
   if (arrow) {
     arrowIcon = raw('<axa-icon icon="arrow" classes="m-button__arrow"></axa-icon>');
   } else if (icon) {
-    const iconCLasses = classnames('m-button__icon', {
+    const iconCLasses = classnames({
+      'm-button__icon': !hasOnlyIcon,
       'm-button__icon--only': hasOnlyIcon,
     });
 
     genericIcon = raw(`<axa-icon icon="${icon}" classes="${iconCLasses}"></axa-icon>`);
   }
 
-  if (tag.toLowerCase() === 'a' && disabled) {
+  if (isTagA && disabled) {
     return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${ARIA_DISABLED} tabindex="-1">
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </a>`;
-  } else if (tag.toLowerCase() === 'a') {
+  } else if (isTagA) {
     return html`<a href="${href}" target="${target}" class="${buttonClasses}">
       ${childrenFragment}
       ${arrowIcon || genericIcon}

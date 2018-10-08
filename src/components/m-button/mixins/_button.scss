@@ -155,9 +155,11 @@
   @include button--has-icon($x-padding, $button-lg-height);
 }
 
-@mixin button__icon() {
-  $local-padding: 8px;
+@mixin button--only-icon() {
+  line-height: 1;
+}
 
+@mixin button__icon() {
   @include size($button-md-height);
 
   position: absolute;
@@ -170,26 +172,19 @@
 
   height: calc(100% + #{$button-border-width});
 
-  padding: $local-padding;
+  padding: $button__icon-padding;
 
   box-sizing: border-box;
 
   border-left: $button-border-width solid currentColor;
 }
 
-@mixin button__icon--only() {
-  position: relative;
-  border-left: none;
-}
-
 @mixin button__icon--sm() {
-  $local-padding: 5px;
-
   @include size($button-sm-height);
 
   height: calc(100% + #{$button-border-width--sm});
 
-  padding: $local-padding;
+  padding: $button__icon-padding--sm;
 
   margin-top: - $button-border-width--sm;
 
@@ -197,13 +192,42 @@
 }
 
 @mixin button__icon--lg() {
-  $local-padding: 11px;
-
   @include size($button-lg-height);
 
   height: calc(100% + #{$button-border-width});
 
-  padding: $local-padding;
+  padding: $button__icon-padding--lg;
+}
+
+@mixin button__icon--only() {
+  @include size($button-md-height);
+
+  position: relative;
+
+  padding: $button__icon-padding;
+
+  // undo padding
+  margin: -$button__icon-padding;
+  box-sizing: border-box;
+  border-left: none;
+}
+
+@mixin button__icon--only--sm() {
+  @include size($button-sm-height);
+
+  padding: $button__icon-padding--sm;
+
+  // undo padding
+  margin: -$button__icon-padding--sm;
+}
+
+@mixin button__icon--only--lg() {
+  @include size($button-lg-height);
+
+  padding: $button__icon-padding--lg;
+
+  // undo padding
+  margin: -$button__icon-padding--lg;
 }
 
 @mixin button__arrow() {
