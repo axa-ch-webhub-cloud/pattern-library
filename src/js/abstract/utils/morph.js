@@ -9,6 +9,10 @@ export default morph;
 function morph(newNode, oldNode) {
   const { nodeType, nodeName } = newNode;
 
+  if (oldNode.skipChildren && oldNode.skipChildren()) {
+    return;
+  }
+
   if (nodeType === ELEMENT_NODE) {
     copyAttrs(newNode, oldNode);
   }
