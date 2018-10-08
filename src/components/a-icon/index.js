@@ -29,5 +29,4 @@ document.addEventListener('DOMContentLoaded', () => {
   defineOnce(AXAIcon.tagName, AXAIcon);
 });
 
-
 export default AXAIcon;
