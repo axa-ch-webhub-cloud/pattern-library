@@ -19,11 +19,14 @@ class AXAIcon extends BaseComponentGlobal {
   constructor() {
     super({ styles, template });
   }
+
+  willRenderCallback() {
+    this.className = 'a-icon__root';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   defineOnce(AXAIcon.tagName, AXAIcon);
 });
-
 
 export default AXAIcon;
