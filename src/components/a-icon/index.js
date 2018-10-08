@@ -20,7 +20,7 @@ class AXAIcon extends BaseComponentGlobal {
     super({ styles, template });
   }
 
-  didRenderCallback() {
+  willRenderCallback() {
     this.className = 'a-icon__root';
   }
 }
