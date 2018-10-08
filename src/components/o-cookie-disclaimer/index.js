@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -9,10 +11,12 @@ import DisclaimerHandler from './js/disclaimer-handler';
 
 class AXACookieDisclaimer extends BaseComponentGlobal {
   static tagName = 'axa-cookie-disclaimer'
-
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'button-name', 'title', 'fixed']; }
+  static PropTypes = {
+    classes: PropTypes.string,
+    buttonName: PropTypes.string,
+    title: PropTypes.string,
+    fixed: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles, template });

@@ -1,6 +1,13 @@
 @import "../../../styles/settings/colors";
 @import "../../../styles/settings/zindex";
+@import "../../../styles/grid/grid-settings";
 
+$header-main-max-widths:
+  (
+    md: auto,
+    lg: map_get($container-max-widths, lg),
+    xl: map_get($container-max-widths, xl),
+  ) !default;
 $header-main-bg: $color-prim-white !default;
 $header-main-height: 75px !default;
 $header-main-z-index: $zindex-header-main-navigation !default;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
@@ -6,8 +8,14 @@ import Testimonials from './js/testimonials';
 
 class AXATestimonials extends BaseComponentGlobal {
   static tagName = 'axa-testimonials';
-
-  static get observedAttributes() { return ['classes', 'title', 'subtitle', 'auto-rotate-disabled', 'auto-rotate-time']; }
+  static propTypes = {
+    classes: PropTypes.string,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    autoRotateDisabled: PropTypes.bool,
+    autoRotateTime: PropTypes.number,
+    showAllInline: PropTypes.bool,
+  }
 
   constructor() {
     super({

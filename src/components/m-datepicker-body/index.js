@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import localePropType from '../../js/prop-types/locale-prop-type';
 import getAttribute from '../../js/get-attribute';
-// import the styles used for this component
 import styles from './index.scss';
-// import the template used for this component
 import template from './_template';
 import DatepickerBody from './js/datepicker-body';
 import fire from '../../js/fire';
@@ -11,10 +12,16 @@ import { AXA_EVENTS } from '../../js/ui-events';
 
 class AXADatepickerBody extends BaseComponentGlobal {
   static tagName = 'axa-datepicker-body'
-
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'locale', 'value', 'index', 'year', 'month', 'allowed-years']; }
+  static propTypes = {
+    classes: PropTypes.string,
+    locale: localePropType,
+    value: PropTypes.string,
+    index: PropTypes.number,
+    year: PropTypes.number,
+    month: PropTypes.number,
+    day: PropTypes.number,
+    allowedYears: PropTypes.arrayOf(PropTypes.number),
+  }
 
   constructor() {
     super({ styles, template });
@@ -47,7 +54,9 @@ class AXADatepickerBody extends BaseComponentGlobal {
   willRenderCallback() {
     let month = getAttribute(this, 'month');
     month = (month || month === 0) ? month : undefined;
-    this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, month, getAttribute(this, 'allowed-years'));
+    let day = getAttribute(this, 'day');
+    day = (day || day === 0) ? day : undefined;
+    this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, month, day, getAttribute(this, 'allowed-years'));
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

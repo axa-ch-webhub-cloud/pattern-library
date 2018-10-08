@@ -1,10 +1,12 @@
 import html from 'nanohtml';
+import classnames from 'classnames';
 
 export default ({
   title,
   subtitle,
+  showAllInline,
 }, childrenFragment) => html`
-  <article class="o-testimonials__background js-o-testimonials">
+  <article class="${classnames('o-testimonials__background', 'js-o-testimonials', { 'o-testimonials--show-all-inline': showAllInline })}" >
     <axa-container>
         ${title && html`<h1 class="o-testimonials__title">${title}</h1>`}
         ${subtitle && html`<p class="o-testimonials__subtitle">${subtitle}</p>`}

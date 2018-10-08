@@ -1,12 +1,25 @@
+import PropTypes from 'prop-types';
+
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
 
 class AXALink extends BaseComponentGlobal {
   static tagName = 'axa-link'
-
-  static get observedAttributes() { return ['color', 'size', 'motion', 'arrow', 'href', 'listed', 'icon', 'deco', 'icons-path-prefix']; }
+  static propTypes = {
+    color: PropTypes.oneOf(['red', 'white']),
+    size: PropTypes.oneOf(['']),
+    motion: PropTypes.bool,
+    arrow: PropTypes.bool,
+    href: urlPropType,
+    listed: PropTypes.bool,
+    icon: PropTypes.string,
+    deco: PropTypes.bool,
+    iconsPathPrefix: PropTypes.string,
+    target: PropTypes.oneOf(['_blank', '_self']),
+  }
 
   constructor() {
     super({ styles, template });

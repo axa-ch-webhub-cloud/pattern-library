@@ -1,20 +1,30 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import localePropType from '../../js/prop-types/locale-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
+import Datepicker from './js/datepicker';
+
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
-
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes']; }
+  static propTypes = {
+    classes: PropTypes.string,
+    locale: localePropType,
+    open: PropTypes.bool,
+    lowerEndYear: PropTypes.number,
+    higherEndYear: PropTypes.number,
+    value: PropTypes.string,
+  }
 
   constructor() {
     super({ styles, template });
 
+    this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?
     // this.provideContext()
 
@@ -35,24 +45,16 @@ class AXADatepicker extends BaseComponentGlobal {
 
   // You have some special logic? Or need to update the web-components DOM node itself?
   // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
-
-  // You may want to update stuff before rendering.
-  // willRenderCallback(initial) {
-  // }
-
-  // You may want to update staff after rendering
-  // didRenderCallback(initial) {
-  // }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Don't forget to cleanup :)
+    this.datepicker.destroy();
   }
 
+  didRenderCallback() {
+    this.datepicker.init();
+  }
   // Do you consume context?
   // contextCallback(contextNode) {
   //   contextNode is now available.

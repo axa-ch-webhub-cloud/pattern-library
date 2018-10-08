@@ -135,3 +135,7 @@
     @include button--generic-icon--lg();
   }
 }
+
+.m-button[aria-disabled] {
+  pointer-events: none;
+}
