@@ -78,6 +78,11 @@
 
 .m-button--only-icon {
   @include button--only-icon();
+
+  > .a-icon__root {
+    display: block;
+    line-height: 0;
+  }
 }
 
 .m-button--arrow {

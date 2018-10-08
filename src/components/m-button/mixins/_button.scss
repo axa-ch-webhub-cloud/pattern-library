@@ -156,7 +156,12 @@
 }
 
 @mixin button--only-icon() {
-  line-height: 1;
+  /* stylelint-disable declaration-no-important */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  line-height: 1 !important;
+  /* stylelint-enable declaration-no-important */
 }
 
 @mixin button__icon() {
@@ -206,8 +211,8 @@
 
   padding: $button__icon-padding;
 
-  // undo padding
-  margin: -$button__icon-padding;
+  // undo border
+  margin: -$button-border-width;
   box-sizing: border-box;
   border-left: none;
 }
@@ -217,8 +222,8 @@
 
   padding: $button__icon-padding--sm;
 
-  // undo padding
-  margin: -$button__icon-padding--sm;
+  // undo border
+  margin: -$button-border-width--sm;
 }
 
 @mixin button__icon--only--lg() {
@@ -226,8 +231,8 @@
 
   padding: $button__icon-padding--lg;
 
-  // undo padding
-  margin: -$button__icon-padding--lg;
+  // undo border
+  margin: -$button-border-width;
 }
 
 @mixin button__arrow() {
