@@ -19,6 +19,10 @@ class AXAIcon extends BaseComponentGlobal {
   constructor() {
     super({ styles, template });
   }
+
+  didRenderCallback() {
+    this.className = 'a-icon';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
