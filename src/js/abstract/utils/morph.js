@@ -9,6 +9,8 @@ export default morph;
 function morph(newNode, oldNode) {
   const { nodeType, nodeName } = newNode;
 
+  // IMPORTANT: cloned custom elements aren't connected
+  // so just skip them - they will morph themselves upon connection
   if (oldNode.skipChildren && oldNode.skipChildren()) {
     return;
   }
