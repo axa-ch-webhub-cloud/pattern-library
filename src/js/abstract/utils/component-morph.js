@@ -60,7 +60,7 @@ function walk(newNode, oldNode) {
 
   morph(newNode, oldNode);
 
-  if (!oldNode.skipChildren || !oldNode.skipChildren()) {
+  if (!newNode.skipChildren || !oldNode.skipChildren()) {
     updateChildren(newNode, oldNode);
   }
 
