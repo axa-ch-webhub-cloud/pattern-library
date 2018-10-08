@@ -68,7 +68,7 @@ const withUpdate = Base =>
                 super[key] = value;
               }
 
-              if (this._isConnected && this._hasRendered) {
+              if (this._isConnected) {
                 if (ENV !== PROD) {
                   lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
                 }
@@ -180,7 +180,7 @@ const withUpdate = Base =>
 
       this.checkPropTypes();
 
-      if (shouldUpdate && this._isConnected && this._hasRendered) {
+      if (shouldUpdate && this._isConnected) {
         if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n---> setProps for ${propsKeys.join(', ')}`);
         }
