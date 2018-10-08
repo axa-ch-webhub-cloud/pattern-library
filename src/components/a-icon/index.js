@@ -21,7 +21,7 @@ class AXAIcon extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
-    this.className = 'a-icon';
+    this.className = 'a-icon__root';
   }
 }
 

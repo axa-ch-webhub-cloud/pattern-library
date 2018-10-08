@@ -5,7 +5,7 @@ const PATH_PREFIX_APP = '#src--assets--icons--';
 
 export default ({
   icon,
-  classes = 'a-icon__svg',
+  classes = 'a-icon',
   pathPrefix,
 } = {}) => {
   const axaPLibConfig = window.__axaPLibConfig || {};
