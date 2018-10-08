@@ -9,12 +9,6 @@ export default morph;
 function morph(newNode, oldNode) {
   const { nodeType, nodeName } = newNode;
 
-  // IMPORTANT: cloned custom elements aren't connected
-  // so just skip them - they will morph themselves upon connection
-  if (oldNode.skipChildren && oldNode.skipChildren()) {
-    return;
-  }
-
   if (nodeType === ELEMENT_NODE) {
     copyAttrs(newNode, oldNode);
   }
@@ -35,6 +29,10 @@ function morph(newNode, oldNode) {
 }
 
 function copyAttrs(newNode, oldNode) {
+  // IMPORTANT: cloned custom elements aren't connected
+  // so only morph observed attributes
+  const skipChildren = oldNode.skipChildren && oldNode.skipChildren();
+  const { constructor: { observedAttributes } } = oldNode;
   const { attributes: oldAttrs } = oldNode;
   const { attributes: newAttrs } = newNode;
   let attrNamespaceURI = null;
@@ -48,6 +46,11 @@ function copyAttrs(newNode, oldNode) {
     attrName = attr.name;
     attrNamespaceURI = attr.namespaceURI;
     attrValue = attr.value;
+
+    if (skipChildren && observedAttributes.indexOf(attrName) === -1) {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
 
     if (attrNamespaceURI) {
       const attrLocalName = attr.localName;
@@ -85,6 +88,11 @@ function copyAttrs(newNode, oldNode) {
     if (attr.specified !== false) {
       attrName = attr.name;
       attrNamespaceURI = attr.namespaceURI;
+
+      if (skipChildren && observedAttributes.indexOf(attrName) === -1) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
 
       if (attrNamespaceURI) {
         attrName = attr.localName || attrName;
