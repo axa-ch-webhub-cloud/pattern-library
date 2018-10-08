@@ -72,8 +72,8 @@
   }
 }
 
-.m-button--icon {
-  @include button--icon();
+.m-button--has-icon {
+  @include button--has-icon();
 }
 
 .m-button--icon--only {
@@ -119,8 +119,8 @@
     @include button__icon--sm();
   }
 
-  &.m-button--icon {
-    @include button--icon--sm();
+  &.m-button--has-icon {
+    @include button--has-icon--sm();
   }
 }
 
@@ -139,8 +139,8 @@
     @include button__arrow--lg();
   }
 
-  &.m-button--icon {
-    @include button--icon--lg();
+  &.m-button--has-icon {
+    @include button--has-icon--lg();
   }
 }
 
