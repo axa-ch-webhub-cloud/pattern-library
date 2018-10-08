@@ -1,14 +1,30 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
+import valuePropType from '../../js/prop-types/value-prop-type';
 import DropDown from './js/drop-down';
+
 
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown'
-
-  static get observedAttributes() { return ['in-flow', 'items', 'native', 'size', 'title', 'value', 'icons-path-prefix']; }
+  static propTypes = {
+    inFlow: PropTypes.bool,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      url: urlPropType,
+      value: valuePropType,
+    })),
+    native: PropTypes.bool,
+    size: PropTypes.oneOf(['sm']),
+    title: PropTypes.string,
+    value: valuePropType,
+    iconsPathPrefix: PropTypes.string,
+  }
 
   constructor() {
     super({ styles, template });

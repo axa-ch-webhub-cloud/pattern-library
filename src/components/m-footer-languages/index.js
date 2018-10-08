@@ -1,13 +1,25 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
 
 class AXAFooterLanguages extends BaseComponentGlobal {
   static tagName = 'axa-footer-languages'
-
-  static get observedAttributes() { return ['inline', 'items', 'short', 'title']; }
+  static propTypes = {
+    inline: PropTypes.bool,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      code: PropTypes.string,
+      url: urlPropType,
+      isActive: PropTypes.bool,
+    })),
+    short: PropTypes.bool,
+    title: PropTypes.string,
+  }
 
   constructor() {
     super({ styles, template });

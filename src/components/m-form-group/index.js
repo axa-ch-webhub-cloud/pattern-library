@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
@@ -8,9 +9,10 @@ import template from './_template';
 
 class AXAFormGroup extends BaseComponentGlobal {
   static tagName = 'axa-form-group'
-
-  static get observedAttributes() {
-    return ['label', 'info', 'error'];
+  static propTypes = {
+    label: PropTypes.string,
+    info: PropTypes.string,
+    error: PropTypes.string,
   }
 
   constructor() {

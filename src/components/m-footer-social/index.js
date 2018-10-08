@@ -1,13 +1,23 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
 
 class AXAFooterSocial extends BaseComponentGlobal {
   static tagName = 'axa-footer-social'
-
-  static get observedAttributes() { return ['inline', 'items', 'light', 'title']; }
+  static propTypes = {
+    inline: PropTypes.bool,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      url: urlPropType,
+    })),
+    light: PropTypes.bool,
+    title: PropTypes.string,
+  }
 
   constructor() {
     super({ styles, template });

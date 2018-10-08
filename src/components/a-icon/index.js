@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
@@ -5,10 +7,14 @@ import template from './_template';
 
 class AXAIcon extends BaseComponentGlobal {
   static tagName = 'axa-icon'
-
-  // Specify observed attributes so that
-  // attributeChangedCallback will work
-  static get observedAttributes() { return ['icon', 'classes', 'path-prefix']; }
+  static propTypes = {
+    icon: PropTypes.string.isRequired,
+    classes: PropTypes.string,
+    pathPrefix: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
+  }
 
   constructor() {
     super({ styles, template });
