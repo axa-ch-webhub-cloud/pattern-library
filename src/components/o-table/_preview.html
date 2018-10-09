@@ -2,9 +2,10 @@
   caption="Caption"
   headings='["Nature", "Date", "Status", { "text": "Amount", "foo": "bar" }]'
   items='[
-    { "cells": ["New deposit N.O929lO8", "July, 22th 2018", "Received", "1200"]},
-    ["New deposit N.O929lO8", "July, 22th 2018", "Received", "1200"],
-    { "cells": ["New deposit N.O929lO8", "July, 22th 2018", "Received", "1200"]}
+    { "action": true, "cells": [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Received", "state": "ok" }, { "text": "1200", "bold": true }]},
+    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Pending", "state": "pending" }, { "text": "1200", "bold": true }],
+    { "cells": [{ "text": "New deposit N.O929lO8", "strong": true, "action": true }, "July, 22th 2018", { "text": "Refused", "state": "error" }, { "text": "1200", "bold": true }]},
+    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Unknown", "state": "unknown" }, { "text": "1200", "bold": true }]
   ]'
   footers='[
     { "cells": [{ "text": "Deposit Plan", "colspan": "3" }, "+ $ 1200 monthly"] },

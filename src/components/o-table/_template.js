@@ -1,4 +1,5 @@
 import html from 'nanohtml';
+import classnames from 'classnames';
 
 import expandData from './js/expand-data';
 
@@ -46,9 +47,16 @@ export default ({
     ${Array.isArray(itemsRows) && html`
       <tbody class="o-table__body" ${itemsAttrs}>
         ${itemsRows.map(({ cells, ...rowAttrs }) => html`
-          <tr class="o-table__row" ${rowAttrs}>
+          <tr class="o-table__row  ${classnames({
+            'o-table__row--action': rowAttrs.action,
+          })}" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
-              <td class="o-table__cell" ${attrs}>${text}</td>
+              <td class="o-table__cell  ${classnames({
+                'o-table__cell--action': attrs.action,
+                'o-table__cell--strong': attrs.strong,
+                'o-table__cell--bold': attrs.bold,
+                [`o-table__cell--state-${attrs.state}`]: attrs.state,
+              })}" ${attrs}>${text}</td>
             `)}
           </tr>
         `)}
