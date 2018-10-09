@@ -108,3 +108,4 @@ export { default as AXACore } from './components/u-core';
 export { default as AXAThead } from './components/m-thead';
 export { default as AXATbody } from './components/m-tbody';
 export { default as AXATfoot } from './components/m-tfoot';
+export { default as AXATd } from './components/a-td';

@@ -165,3 +165,6 @@ export const AXATbody = withReact(AXATbodyWC);
 
 import AXATfootWC from '../components/m-tfoot/';
 export const AXATfoot = withReact(AXATfootWC);
+
+import AXATdWC from '../components/a-td/';
+export const AXATd = withReact(AXATdWC);
