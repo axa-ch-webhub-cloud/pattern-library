@@ -1,8 +1,30 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/size";
+@import "../../styles/typo/typo-mixins";
+
+$table__cell-color: $color-prim-gray !default;
+$table__cell--strong-color: $color-prim-gray-mine-shaft !default;
+$table__cell--head-color: $color-axa-blue !default;
+$table__cell--foot-color: $color-prim-gray-mine-shaft !default;
+$table__cell--action-color: $color-axa-blue !default;
+$table__cell--action-bg: $color-prim-gray-alabaster !default;
+$table__cell--state-ok-color: $color-state-green-malachite !default;
+$table__cell--state-pending-color: $color-prim-red-burnt-sienna !default;
+$table__cell--state-error-color: $color-state-red-shy-tomato !default;
+$table__cell--state-unknown-color: $color-prim-gray-silver !default;
+$table__cell--state-size: 8px !default;
+$table__cell--state-margin-right: 20px !default;
+
+$table__foot-bg: $color-prim-gray-wild-sand !default;
+$table__foot-border: $color-prim-gray-mercury !default;
+
 .o-table__root {
   display: block;
 }
 
-.o-table {}
+.o-table {
+
+}
 
 .o-table__caption {}
 
@@ -11,7 +33,7 @@
 }
 
 .o-table__foot {
-
+  background: $table__foot-bg;
 }
 
 .o-table__body {
@@ -27,18 +49,111 @@
 }
 
 .o-table__row--foot {
+  border-top: $table__foot-border;
+}
 
+.o-table__row--action {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background: $table__cell--action-bg;
+  }
 }
 
 .o-table__cell {
+  @include typo-secondary-text();
 
+  padding: 10px 15px;
+  border-top: 1px solid $table__foot-border;
+
+  color: $table__cell-color;
+}
+
+.o-table__cell--strong {
+  color: $table__cell--strong-color;
+}
+
+.o-table__cell--bold {
+  @include typo-secondary-text--bold();
+
+  color: $table__cell--strong-color;
 }
 
 .o-table__cell--head {
+  @include typo-secondary-text--bold();
 
+  color: $table__cell--head-color;
 }
 
 .o-table__cell--foot {
+  @include typo-secondary-text--bold();
 
+  color: $table__cell--foot-color;
+  background: $table__foot-bg;
+
+  .o-table__row--foot:first-child > & {
+    border-top: none;
+  }
+}
+
+.o-table__cell--action {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background: $table__cell--action-bg;
+    color: $table__cell--action-color;
+  }
+}
+
+%o-table__cell--state {
+  &::before {
+    @include size($table__cell--state-size);
+
+    display: inline-block;
+    margin-right: $table__cell--state-margin-right;
+    border-radius: $table__cell--state-size;
+    vertical-align: middle;
+    content: '';
+  }
+}
+
+.o-table__cell--state-ok {
+  @extend %o-table__cell--state;
+
+  color: $table__cell--state-ok-color;
+
+  &::before {
+    background: $table__cell--state-ok-color;
+  }
+}
+
+.o-table__cell--state-pending {
+  @extend %o-table__cell--state;
+
+  color: $table__cell--state-pending-color;
+
+  &::before {
+    background: $table__cell--state-pending-color;
+  }
+}
+
+.o-table__cell--state-error {
+  @extend %o-table__cell--state;
+
+  color: $table__cell--state-error-color;
+
+  &::before {
+    background: $table__cell--state-error-color;
+  }
+}
+
+.o-table__cell--state-unknown {
+  @extend %o-table__cell--state;
+
+  color: $table__cell--state-unknown-color;
+
+  &::before {
+    background: $table__cell--state-unknown-color;
+  }
 }
 

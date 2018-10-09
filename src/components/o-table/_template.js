@@ -20,7 +20,7 @@ export default ({
     ${caption && html`<caption class="o-table__caption">${caption}</caption>`}
     
     ${Array.isArray(headingsRows) && html`
-      <thead class="o-table__head">
+      <thead class="o-table__head" ${headingsAttrs}>
         ${headingsRows.map(({ cells, ...rowAttrs }) => html`
           <tr class="o-table__row o-table__row--head" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
@@ -30,9 +30,9 @@ export default ({
         `)}
       </thead>
     `}
-    
+
     ${Array.isArray(footersRows) && html`
-      <tfoot class="o-table__foot">
+      <tfoot class="o-table__foot" ${footersAttrs}>
         ${footersRows.map(({ cells, ...rowAttrs }) => html`
           <tr class="o-table__row o-table__row--foot" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
@@ -42,9 +42,9 @@ export default ({
         `)}
       </tfoot>
     `}
-    
+
     ${Array.isArray(itemsRows) && html`
-      <tbody class="o-table__body">
+      <tbody class="o-table__body" ${itemsAttrs}>
         ${itemsRows.map(({ cells, ...rowAttrs }) => html`
           <tr class="o-table__row" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
