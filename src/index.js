@@ -110,3 +110,4 @@ export { default as AXATbody } from './components/m-tbody';
 export { default as AXATfoot } from './components/m-tfoot';
 export { default as AXATd } from './components/a-td';
 export { default as AXACaption } from './components/a-caption';
+export { default as AXATr } from './components/m-tr';

@@ -171,3 +171,6 @@ export const AXATd = withReact(AXATdWC);
 
 import AXACaptionWC from '../components/a-caption/';
 export const AXACaption = withReact(AXACaptionWC);
+
+import AXATrWC from '../components/m-tr/';
+export const AXATr = withReact(AXATrWC);
