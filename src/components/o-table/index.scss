@@ -1,5 +1,44 @@
-.o-table {
-  display: table;
-
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+.o-table__root {
+  display: block;
 }
+
+.o-table {}
+
+.o-table__caption {}
+
+.o-table__head {
+
+}
+
+.o-table__foot {
+
+}
+
+.o-table__body {
+
+}
+
+.o-table__row {
+
+}
+
+.o-table__row--head {
+
+}
+
+.o-table__row--foot {
+
+}
+
+.o-table__cell {
+
+}
+
+.o-table__cell--head {
+
+}
+
+.o-table__cell--foot {
+
+}
+
