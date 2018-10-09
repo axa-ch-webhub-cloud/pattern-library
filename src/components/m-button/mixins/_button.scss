@@ -20,6 +20,7 @@
 
   position: relative;
 
+  min-height: $button-md-height;
   padding: $button-padding-top-bottom-md $x-padding;
   border-width: $button-border-width;
   border-style: solid;
@@ -127,6 +128,7 @@
 @mixin button--sm() {
   @include typo-legals--semibold();
 
+  min-height: $button-sm-height;
   padding-top: $button-padding-top-bottom-sm;
   padding-bottom: $button-padding-top-bottom-sm;
 
@@ -136,28 +138,36 @@
 @mixin button--lg() {
   @include typo-secondary-text--semibold();
 
+  min-height: $button-lg-height;
   padding-top: $button-padding-top-bottom-lg;
   padding-bottom: $button-padding-top-bottom-lg;
 }
 
-@mixin button--generic-icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
+@mixin button--has-icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   padding-right: $x-padding + $button-height;
   overflow: hidden;
 }
 
-@mixin button--generic-icon--sm($x-padding: $button-x-padding-default) {
-  @include button--generic-icon($x-padding, $button-sm-height);
+@mixin button--has-icon--sm($x-padding: $button-x-padding-default) {
+  @include button--has-icon($x-padding, $button-sm-height);
 }
 
-@mixin button--generic-icon--lg($x-padding: $button-x-padding-default) {
-  @include button--generic-icon($x-padding, $button-lg-height);
+@mixin button--has-icon--lg($x-padding: $button-x-padding-default) {
+  @include button--has-icon($x-padding, $button-lg-height);
+}
+
+@mixin button--only-icon() {
+  /* stylelint-disable declaration-no-important */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  line-height: 1 !important;
+  /* stylelint-enable declaration-no-important */
 }
 
 @mixin button__icon() {
-  $local-padding: 8px;
-
   @include size($button-md-height);
 
   position: absolute;
@@ -170,7 +180,7 @@
 
   height: calc(100% + #{$button-border-width});
 
-  padding: $local-padding;
+  padding: $button__icon-padding;
 
   box-sizing: border-box;
 
@@ -178,13 +188,11 @@
 }
 
 @mixin button__icon--sm() {
-  $local-padding: 5px;
-
   @include size($button-sm-height);
 
   height: calc(100% + #{$button-border-width--sm});
 
-  padding: $local-padding;
+  padding: $button__icon-padding--sm;
 
   margin-top: - $button-border-width--sm;
 
@@ -192,13 +200,42 @@
 }
 
 @mixin button__icon--lg() {
-  $local-padding: 11px;
-
   @include size($button-lg-height);
 
   height: calc(100% + #{$button-border-width});
 
-  padding: $local-padding;
+  padding: $button__icon-padding--lg;
+}
+
+@mixin button__icon--only() {
+  @include size($button-md-height);
+
+  position: relative;
+
+  padding: $button__icon-padding;
+
+  // undo border
+  margin: -$button-border-width;
+  box-sizing: border-box;
+  border-left: none;
+}
+
+@mixin button__icon--only--sm() {
+  @include size($button-sm-height);
+
+  padding: $button__icon-padding--sm;
+
+  // undo border
+  margin: -$button-border-width--sm;
+}
+
+@mixin button__icon--only--lg() {
+  @include size($button-lg-height);
+
+  padding: $button__icon-padding--lg;
+
+  // undo border
+  margin: -$button-border-width;
 }
 
 @mixin button__arrow() {

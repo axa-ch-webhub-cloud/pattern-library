@@ -14,6 +14,10 @@
   @include button__icon();
 }
 
+.m-button__icon--only {
+  @include button__icon--only();
+}
+
 .m-button__arrow {
   @include button__arrow();
   @include button__arrow-right();
@@ -68,8 +72,17 @@
   }
 }
 
-.m-button--generic-icon {
-  @include button--generic-icon();
+.m-button--has-icon {
+  @include button--has-icon();
+}
+
+.m-button--only-icon {
+  @include button--only-icon();
+
+  > .a-icon__root {
+    display: block;
+    line-height: 0;
+  }
 }
 
 .m-button--arrow {
@@ -111,8 +124,12 @@
     @include button__icon--sm();
   }
 
-  &.m-button--generic-icon {
-    @include button--generic-icon--sm();
+  .m-button__icon--only {
+    @include button__icon--only--sm();
+  }
+
+  &.m-button--has-icon {
+    @include button--has-icon--sm();
   }
 }
 
@@ -127,12 +144,16 @@
     @include button__icon--lg();
   }
 
+  .m-button__icon--only {
+    @include button__icon--only--lg();
+  }
+
   .m-button__arrow {
     @include button__arrow--lg();
   }
 
-  &.m-button--generic-icon {
-    @include button--generic-icon--lg();
+  &.m-button--has-icon {
+    @include button--has-icon--lg();
   }
 }
 
