@@ -33,6 +33,8 @@ function copyAttrs(newNode, oldNode) {
   // so only morph observed attributes
   const skipChildren = oldNode.skipChildren && oldNode.skipChildren();
   const { constructor: { observedAttributes } } = oldNode;
+  const hasObservedAttributes = observedAttributes && Array.isArray(observedAttributes) && observedAttributes.length;
+  const shouldSkipAttr = attrName => skipChildren && hasObservedAttributes && observedAttributes.indexOf(attrName) === -1;
   const { attributes: oldAttrs } = oldNode;
   const { attributes: newAttrs } = newNode;
   let attrNamespaceURI = null;
@@ -47,7 +49,7 @@ function copyAttrs(newNode, oldNode) {
     attrNamespaceURI = attr.namespaceURI;
     attrValue = attr.value;
 
-    if (skipChildren && observedAttributes.indexOf(attrName) === -1) {
+    if (shouldSkipAttr(attrName)) {
       // eslint-disable-next-line no-continue
       continue;
     }
@@ -89,7 +91,7 @@ function copyAttrs(newNode, oldNode) {
       attrName = attr.name;
       attrNamespaceURI = attr.namespaceURI;
 
-      if (skipChildren && observedAttributes.indexOf(attrName) === -1) {
+      if (shouldSkipAttr(attrName)) {
         // eslint-disable-next-line no-continue
         continue;
       }
