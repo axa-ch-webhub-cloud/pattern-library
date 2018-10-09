@@ -168,3 +168,6 @@ export const AXATfoot = withReact(AXATfootWC);
 
 import AXATdWC from '../components/a-td/';
 export const AXATd = withReact(AXATdWC);
+
+import AXACaptionWC from '../components/a-caption/';
+export const AXACaption = withReact(AXACaptionWC);
