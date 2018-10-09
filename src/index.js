@@ -102,3 +102,5 @@ export const AXASticky = _AXASticky;
 export const AXAStickyContainer = _AXAStickyContainer;
 
 export { default as AXATestimonials } from './components/o-testimonials';
+
+export { default as AXATable } from './components/o-table';
