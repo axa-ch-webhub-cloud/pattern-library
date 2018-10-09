@@ -34,6 +34,7 @@ function copyAttrs(newNode, oldNode) {
   const skipChildren = oldNode.skipChildren && oldNode.skipChildren();
   const { constructor: { observedAttributes } } = oldNode;
   const hasObservedAttributes = observedAttributes && Array.isArray(observedAttributes) && observedAttributes.length;
+  // @todo: we may need to deal with attribute namespaces too in the future
   const shouldSkipAttr = attrName => skipChildren && hasObservedAttributes && observedAttributes.indexOf(attrName) === -1;
   const { attributes: oldAttrs } = oldNode;
   const { attributes: newAttrs } = newNode;
