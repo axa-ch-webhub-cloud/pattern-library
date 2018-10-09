@@ -104,3 +104,5 @@ export { default as AXATestimonials } from './components/o-testimonials';
 export { default as AXATable } from './components/o-table';
 
 export { default as AXACore } from './components/u-core';
+
+export { default as AXAThead } from './components/m-thead';

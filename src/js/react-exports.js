@@ -156,3 +156,6 @@ export const AXATestimonials = withReact(AXATestimonialsWC);
 
 import AXATableWC from '../components/o-table/';
 export const AXATable = withReact(AXATableWC);
+
+import AXATheadWC from '../components/m-thead/';
+export const AXAThead = withReact(AXATheadWC);
