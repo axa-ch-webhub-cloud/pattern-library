@@ -106,3 +106,4 @@ export { default as AXATable } from './components/o-table';
 export { default as AXACore } from './components/u-core';
 
 export { default as AXAThead } from './components/m-thead';
+export { default as AXATbody } from './components/m-tbody';

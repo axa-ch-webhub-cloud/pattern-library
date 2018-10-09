@@ -159,3 +159,6 @@ export const AXATable = withReact(AXATableWC);
 
 import AXATheadWC from '../components/m-thead/';
 export const AXAThead = withReact(AXATheadWC);
+
+import AXATbodyWC from '../components/m-tbody/';
+export const AXATbody = withReact(AXATbodyWC);
