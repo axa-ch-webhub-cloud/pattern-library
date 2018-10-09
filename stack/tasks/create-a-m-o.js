@@ -72,7 +72,7 @@ const writeIndexJs = (path, _name) => {
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import PropTypes from 'prop-types';
-    
+
       import BaseComponentGlobal from '../../js/abstract/base-component-global';
       import defineOnce from '../../js/define-once';
       // import the styles used for this component
@@ -82,7 +82,7 @@ const writeIndexJs = (path, _name) => {
 
       class ${className} extends BaseComponentGlobal {
         static tagName = 'axa-${_name}'
-        
+
         // specify runtime type-checking here, if you use custom attributes
         // this will also derived your needed observed attributes automatically for you
         static propTypes = {
