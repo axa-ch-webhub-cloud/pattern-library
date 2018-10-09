@@ -210,6 +210,7 @@ const updateReactExports = (_element, _name) => {
 
       import ${classNameWC} from '../components/${_element}-${_name}/';
       export const ${className} = withReact(${classNameWC});
+
     `,
     { flag: 'a' },
     handleError,
