@@ -35,6 +35,7 @@ class AXATable extends BaseComponentGlobal {
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
+    classes: PropTypes.string,
     caption: PropTypes.string,
     items: itemsType,
     headings: itemsType,

@@ -15,7 +15,7 @@ export default ({
   const { rows: footersRows, props: footersAttrs } = expandData(footers);
 
   return html`
-  <table class="o-table">
+  <table class="o-table ${classes}">
     ${childrenFragment}
 
     ${caption && html`<caption class="o-table__caption">${caption}</caption>`}
