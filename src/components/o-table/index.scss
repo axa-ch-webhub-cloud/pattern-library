@@ -26,7 +26,9 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
 }
 
-.o-table__caption {}
+.o-table__caption {
+  @include typo-tag();
+}
 
 .o-table__head {
 
