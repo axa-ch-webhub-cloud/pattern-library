@@ -356,12 +356,11 @@
     }
 
     &::after {
-      /* stylelint-disable-next-line declaration-no-important */
+      /* stylelint-disable declaration-no-important */
       transform: none !important;
-      /* stylelint-disable-next-line declaration-no-important */
       transition: none !important;
-      /* stylelint-disable-next-line declaration-no-important */
       background-color: transparent !important;
+      /* stylelint-enable declaration-no-important */
     }
   }
 }

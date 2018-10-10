@@ -91,10 +91,10 @@
   &:disabled,
   &[aria-disabled] {
     .m-button--has-icon {
-      /* stylelint-disable-next-line declaration-no-important */
+      /* stylelint-disable declaration-no-important */
       color: $color-prim-gray-silver !important;
-      /* stylelint-disable-next-line declaration-no-important */
       border-left-color: $color-prim-gray-silver !important;
+      /* stylelint-enable declaration-no-important */
     }
   }
 }
@@ -106,7 +106,7 @@
   &[aria-disabled] {
     .m-button__arrow {
       /* stylelint-disable-next-line declaration-no-important */
-      color: $color-prim-gray-silver !important;
+      color: $color-prim-gray-dusty !important;
     }
   }
 }
