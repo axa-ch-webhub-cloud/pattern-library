@@ -11,6 +11,7 @@ const PROP_BLACKLIST = [
   'style', // @todo: discuss if we need style, cause we normally use BEM
 ];
 const blackListFilter = key => PROP_BLACKLIST.indexOf(key) === -1;
+const ON = 'on';
 const isEventFilter = (key) => {
   if (!key) {
     return false;
@@ -18,8 +19,10 @@ const isEventFilter = (key) => {
 
   const keyFrom2 = key.charAt(2);
 
-  return key.indexOf('on') === 0 && keyFrom2 === keyFrom2.toUpperCase();
+  return key.indexOf(ON) === 0 && keyFrom2 === keyFrom2.toUpperCase();
 };
+
+const getNamespaceEventMatcher = namespace => (key) => key.toLowerCase().indexOf(`${ON}${namespace.toLowerCase()}`)
 
 /**
  * Provides a function which let's you wrap any WebComponent with React.
@@ -45,7 +48,7 @@ const isEventFilter = (key) => {
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
+const withReact = (WebComponent, { pure = true, passive = false, eventNamespace = 'axa' } = {}) => {
   // IMPORTANT:
   // the Custom Element can only be instantiated as soon as it is registered in CustomElementRegistry
   // which in turn is deferred after DOMReady
@@ -56,6 +59,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   const componentName = builtInTagName || tagName;
   const displayName = `${camelize(componentName)}React`;
   const Component = pure ? React.PureComponent : React.Component;
+  const isNamespacedEvent = getNamespaceEventMatcher(eventNamespace);
 
   return class WebComponentWrapper extends Component {
     // eslint-disable-next-line react/sort-comp
@@ -109,6 +113,14 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
 
       eventKeys.forEach((key) => {
+        // supper React's synthetic events
+        // Note: not 100% compatible with custom elements
+        if (!isNamespacedEvent(key)) {
+
+          return;
+        }
+
+        // handle namespace custom events
         if (eventCache[key]) {
           eventCache[key]();
         }
