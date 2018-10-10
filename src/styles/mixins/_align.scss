@@ -1,0 +1,90 @@
+@import "../grid/grid-settings";
+@import "./respond";
+
+$align-default: left;
+
+/// Generate responsive align classes to align text within an element.
+///
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+/// @param {Align} $align [left] - Text align, either `left`, `center` or `right`.
+@mixin align($breakpoints: $grid-breakpoints, $align: $align-default) {
+  $parent: &;
+  $breakpoints-keys: map-keys($breakpoints);
+
+  text-align: $align-default;
+
+  #{$parent}-left {
+    text-align: left;
+  }
+
+  #{$parent}-center {
+    text-align: center;
+  }
+
+  #{$parent}-right {
+    text-align: right;
+  }
+
+  @each $breakpoint-key in $breakpoints-keys {
+    @include respond-down($breakpoint-key) {
+      @at-root {
+        #{$parent}-#{$breakpoint-key}-down {
+          text-align: $align-default;
+        }
+
+        #{$parent}-left-#{$breakpoint-key}-down {
+          text-align: left;
+        }
+
+        #{$parent}-center-#{$breakpoint-key}-down {
+          text-align: center;
+        }
+
+        #{$parent}-right-#{$breakpoint-key}-down {
+          text-align: right;
+        }
+      }
+    }
+
+    @include respond-up($breakpoint-key) {
+      @at-root {
+        #{$parent}-#{$breakpoint-key}-up {
+          text-align: $align-default;
+        }
+
+        #{$parent}-left-#{$breakpoint-key}-up {
+          text-align: left;
+        }
+
+        #{$parent}-center-#{$breakpoint-key}-up {
+          text-align: center;
+        }
+
+        #{$parent}-right-#{$breakpoint-key}-up {
+          text-align: right;
+        }
+      }
+    }
+
+    @include respond-only($breakpoint-key) {
+      @at-root {
+        #{$parent}-#{$breakpoint-key} {
+          text-align: $align-default;
+        }
+
+        #{$parent}-left-#{$breakpoint-key} {
+          text-align: left;
+        }
+
+        #{$parent}-center-#{$breakpoint-key} {
+          text-align: center;
+        }
+
+        #{$parent}-right-#{$breakpoint-key} {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
