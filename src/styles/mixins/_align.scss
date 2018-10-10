@@ -13,16 +13,18 @@ $align-default: left;
 
   text-align: $align-default;
 
-  #{$parent}-left {
-    text-align: left;
-  }
+  @at-root {
+    #{$parent}-left {
+      text-align: left;
+    }
 
-  #{$parent}-center {
-    text-align: center;
-  }
+    #{$parent}-center {
+      text-align: center;
+    }
 
-  #{$parent}-right {
-    text-align: right;
+    #{$parent}-right {
+      text-align: right;
+    }
   }
 
   @each $breakpoint-key in $breakpoints-keys {
