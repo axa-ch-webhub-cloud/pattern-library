@@ -15,6 +15,7 @@ $table__cell--action-color: $color-axa-blue !default;
 $table__cell--action-bg: $color-prim-gray-alabaster !default;
 $table__cell--sort-width: 8px !default;
 $table__cell--sort-height: 4px !default;
+$table__cell--sort-margin-left: 5px !default;
 $table__cell--sort-color: $color-prim-gray-silver !default;
 $table__cell--sort-active-color: $color-axa-blue !default;
 $table__cell--state-ok-color: $color-state-green-malachite !default;
@@ -191,7 +192,11 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 .o-table__cell--sort {
-  &::after {}
+  &::after {
+    position: relative;
+
+    margin-left: $table__cell--sort-margin-left;
+  }
 
   &:hover {
     cursor: pointer;
@@ -201,6 +206,8 @@ $table__foot-border: $color-prim-gray-mercury !default;
 .o-table__cell--sort-up {
   &::after {
     @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+
+    top: -($table__cell--sort-height * 2);
   }
 
   &:hover,
@@ -214,6 +221,8 @@ $table__foot-border: $color-prim-gray-mercury !default;
 .o-table__cell--sort-down {
   &::after {
     @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+
+    top: -$table__cell--sort-height;
   }
 
   &:hover,
