@@ -25,15 +25,104 @@ $table__foot-border: $color-prim-gray-mercury !default;
   display: block;
 }
 
-.o-table {
-
-}
-
-.o-table__caption {
+%o-table__caption {
   @include typo-tag();
 
   padding: $table__cell-padding-y $table__cell-padding-x;
   color: $table__cell-color;
+}
+
+%o-table__foot {
+  background: $table__foot-bg;
+}
+
+%o-table__row--foot {
+  border-top: $table__foot-border;
+}
+
+%o-table__cell {
+  @include typo-secondary-text();
+
+  padding: $table__cell-padding-y $table__cell-padding-x;
+  border-top: 1px solid $table__foot-border;
+
+  color: $table__cell-color;
+}
+
+%o-table__cell--head {
+  @include typo-secondary-text--bold();
+
+  color: $table__cell--head-color;
+}
+
+%o-table__cell--foot {
+  @include typo-secondary-text--bold();
+
+  color: $table__cell--foot-color;
+  background: $table__foot-bg;
+}
+
+%o-table__cell--foot-first {
+  border-top: none;
+}
+
+.o-table,
+.o-table--all {
+  width: 100%;
+}
+
+.o-table--all {
+  caption {
+    @extend %o-table__caption;
+  }
+
+  td, th {
+    @extend %o-table__cell;
+  }
+
+  th {
+    @extend %o-table__cell--head;
+  }
+
+  thead {
+    tr {
+      th {
+
+      }
+    }
+  }
+
+  tfoot {
+    @extend %o-table__foot;
+
+    td {
+      @extend %o-table__cell--foot;
+    }
+
+    tr {
+      @extend %o-table__row--foot;
+
+      td {
+
+      }
+
+      &:first-child > td {
+        @extend %o-table__cell--foot-first;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+
+      }
+    }
+  }
+}
+
+.o-table__caption {
+  @extend %o-table__caption;
 }
 
 .o-table__caption--top {
@@ -61,7 +150,7 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 .o-table__foot {
-  background: $table__foot-bg;
+  @extend %o-table__foot;
 }
 
 .o-table__body {
@@ -77,7 +166,7 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 .o-table__row--foot {
-  border-top: $table__foot-border;
+  @extend %o-table__row--foot;
 }
 
 .o-table__row--action {
@@ -89,12 +178,7 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 .o-table__cell {
-  @include typo-secondary-text();
-
-  padding: $table__cell-padding-y $table__cell-padding-x;
-  border-top: 1px solid $table__foot-border;
-
-  color: $table__cell-color;
+  @extend %o-table__cell;
 }
 
 .o-table__cell--left {
@@ -120,19 +204,14 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 .o-table__cell--head {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--head-color;
+  @extend %o-table__cell--head;
 }
 
 .o-table__cell--foot {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--foot-color;
-  background: $table__foot-bg;
+  @extend %o-table__cell--foot;
 
   .o-table__row--foot:first-child > & {
-    border-top: none;
+    @extend %o-table__cell--foot-first;
   }
 }
 
