@@ -5,6 +5,8 @@ import expandData from './js/expand-data';
 
 export default ({
   caption,
+  captionAlign,
+  captionSide,
   headings,
   items,
   footers,
@@ -18,7 +20,10 @@ export default ({
   <table class="o-table ${classes}">
     ${childrenFragment}
 
-    ${caption && html`<caption class="o-table__caption">${caption}</caption>`}
+    ${caption && html`<caption class="o-table__caption ${classnames({
+      [`o-table__caption--${captionAlign}`]: captionAlign,
+      [`o-table__caption--${captionSide}`]: captionSide,
+    })}">${caption}</caption>`}
     
     ${Array.isArray(headingsRows) && html`
       <thead class="o-table__head" ${headingsAttrs}>

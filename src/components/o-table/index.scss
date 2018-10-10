@@ -30,6 +30,26 @@ $table__foot-border: $color-prim-gray-mercury !default;
   @include typo-tag();
 }
 
+.o-table__caption--top {
+  caption-side: top;
+}
+
+.o-table__caption--bottom {
+  caption-side: bottom;
+}
+
+.o-table__caption--left {
+  text-align: left;
+}
+
+.o-table__caption--center {
+  text-align: center;
+}
+
+.o-table__caption--right {
+  text-align: right;
+}
+
 .o-table__head {
 
 }

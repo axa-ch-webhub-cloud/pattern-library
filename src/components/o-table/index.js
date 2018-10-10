@@ -37,6 +37,8 @@ class AXATable extends BaseComponentGlobal {
   static propTypes = {
     classes: PropTypes.string,
     caption: PropTypes.string,
+    captionAlign: PropTypes.oneOf(['left', 'center', 'right']),
+    captionSide: PropTypes.oneOf(['top', 'bottom']),
     items: itemsType,
     headings: itemsType,
     footers: itemsType,
