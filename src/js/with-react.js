@@ -22,7 +22,7 @@ const isEventFilter = (key) => {
   return key.indexOf(ON) === 0 && keyFrom2 === keyFrom2.toUpperCase();
 };
 
-const getNamespaceEventMatcher = namespace => (key) => key.toLowerCase().indexOf(`${ON}${namespace.toLowerCase()}`)
+const getNamespaceEventMatcher = namespace => key => key.toLowerCase().indexOf(`${ON}${namespace.toLowerCase()}`) === 0;
 
 /**
  * Provides a function which let's you wrap any WebComponent with React.
@@ -113,10 +113,9 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
 
       eventKeys.forEach((key) => {
-        // supper React's synthetic events
+        // support React's synthetic events
         // Note: not 100% compatible with custom elements
         if (!isNamespacedEvent(key)) {
-
           return;
         }
 
