@@ -30,8 +30,10 @@ export default ({
           ${headingsRows.map(({ cells, ...rowAttrs }) => html`
             <tr class="o-table__row o-table__row--head" ${rowAttrs}>
               ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
-                <th class="o-table__cell o-table__cell--head  ${classnames({
+                <th class="o-table__cell o-table__cell--head ${classnames({
                   [`o-table__cell--${attrs.align}`]: attrs.align,
+                  [`o-table__cell--sort o-table__cell--sort-${attrs.sort}`]: attrs.sort,
+                  'o-table__cell--sort-active': attrs.sortActive,
                 })}" ${attrs}>${text}</th>
               `)}
             </tr>

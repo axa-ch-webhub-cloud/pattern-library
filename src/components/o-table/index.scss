@@ -1,5 +1,6 @@
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/size";
+@import "../../styles/mixins/triangle";
 @import "../../styles/typo/typo-mixins";
 
 $table__cell-color: $color-prim-gray !default;
@@ -11,6 +12,10 @@ $table__cell--head-color: $color-axa-blue !default;
 $table__cell--foot-color: $color-prim-gray-mine-shaft !default;
 $table__cell--action-color: $color-axa-blue !default;
 $table__cell--action-bg: $color-prim-gray-alabaster !default;
+$table__cell--sort-width: 8px !default;
+$table__cell--sort-height: 4px !default;
+$table__cell--sort-color: $color-prim-gray-silver !default;
+$table__cell--sort-active-color: $color-axa-blue !default;
 $table__cell--state-ok-color: $color-state-green-malachite !default;
 $table__cell--state-pending-color: $color-prim-red-burnt-sienna !default;
 $table__cell--state-error-color: $color-state-red-shy-tomato !default;
@@ -76,7 +81,8 @@ $table__foot-border: $color-prim-gray-mercury !default;
     @extend %o-table__caption;
   }
 
-  td, th {
+  td,
+  th {
     @extend %o-table__cell;
   }
 
@@ -205,6 +211,40 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
 .o-table__cell--head {
   @extend %o-table__cell--head;
+}
+
+.o-table__cell--sort {
+  &::after {}
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.o-table__cell--sort-up {
+  &::after {
+    @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+  }
+
+  &:hover,
+  &.o-table__cell--sort-active {
+    &::after {
+      @include triangle-color(top, $table__cell--sort-active-color);
+    }
+  }
+}
+
+.o-table__cell--sort-down {
+  &::after {
+    @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+  }
+
+  &:hover,
+  &.o-table__cell--sort-active {
+    &::after {
+      @include triangle-color(bottom, $table__cell--sort-active-color);
+    }
+  }
 }
 
 .o-table__cell--foot {
