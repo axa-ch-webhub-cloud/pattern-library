@@ -3,6 +3,9 @@
 @import "../../styles/typo/typo-mixins";
 
 $table__cell-color: $color-prim-gray !default;
+$table__cell-padding-x: 15px !default;
+$table__cell-padding-y: 10px !default;
+$table__cell-color: $color-prim-gray !default;
 $table__cell--strong-color: $color-prim-gray-mine-shaft !default;
 $table__cell--head-color: $color-axa-blue !default;
 $table__cell--foot-color: $color-prim-gray-mine-shaft !default;
@@ -28,6 +31,9 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
 .o-table__caption {
   @include typo-tag();
+
+  padding: $table__cell-padding-y $table__cell-padding-x;
+  color: $table__cell-color;
 }
 
 .o-table__caption--top {
@@ -85,7 +91,7 @@ $table__foot-border: $color-prim-gray-mercury !default;
 .o-table__cell {
   @include typo-secondary-text();
 
-  padding: 10px 15px;
+  padding: $table__cell-padding-y $table__cell-padding-x;
   border-top: 1px solid $table__foot-border;
 
   color: $table__cell-color;
