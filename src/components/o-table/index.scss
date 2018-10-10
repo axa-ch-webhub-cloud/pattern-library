@@ -2,6 +2,7 @@
 @import "../../styles/mixins/size";
 @import "../../styles/mixins/triangle";
 @import "../../styles/typo/typo-mixins";
+@import "../../styles/trumps/align";
 
 $table__cell-color: $color-prim-gray !default;
 $table__cell-padding-x: 15px !default;
@@ -139,18 +140,6 @@ $table__foot-border: $color-prim-gray-mercury !default;
   caption-side: bottom;
 }
 
-.o-table__caption--left {
-  text-align: left;
-}
-
-.o-table__caption--center {
-  text-align: center;
-}
-
-.o-table__caption--right {
-  text-align: right;
-}
-
 .o-table__head {
 
 }
@@ -185,18 +174,6 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
 .o-table__cell {
   @extend %o-table__cell;
-}
-
-.o-table__cell--left {
-  text-align: left;
-}
-
-.o-table__cell--center {
-  text-align: center;
-}
-
-.o-table__cell--right {
-  text-align: right;
 }
 
 .o-table__cell--strong {
