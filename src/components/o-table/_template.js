@@ -1,6 +1,7 @@
 import html from 'nanohtml';
 import classnames from 'classnames';
 
+import isEmptyFragment from '../../js/is-empty-fragment';
 import expandData from './js/expand-data';
 
 export default ({
@@ -16,8 +17,10 @@ export default ({
   const { rows: itemsRows, props: itemsAttrs } = expandData(items);
   const { rows: footersRows, props: footersAttrs } = expandData(footers);
 
+  console.log(childrenFragment.childNodes);
+
   return html`
-    <table class="o-table ${classes}">
+    <table class="o-table ${classnames({ 'o-table--all': !isEmptyFragment(childrenFragment) })} ${classes}">
       ${childrenFragment}
   
       ${caption && html`<caption class="o-table__caption ${classnames({
