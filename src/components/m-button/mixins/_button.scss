@@ -84,7 +84,7 @@
   &:disabled,
   &[aria-disabled] {
     /* stylelint-disable declaration-no-important */
-    color: $color-button-text !important;
+    color: $color-prim-gray-dusty !important;
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
     border-bottom-color: $color-prim-gray-silver !important;
@@ -273,8 +273,6 @@
 }
 
 @mixin button__arrow--motion() {
-  @include button--disabled();
-
   animation-duration: $button__arrow-motion-duration;
   animation-timing-function: $button__arrow-motion-easing;
   animation-fill-mode: both;
@@ -293,7 +291,6 @@
   transition: color $button__motion-duration $button__motion-easing 0s;
 
   &::after {
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -347,19 +344,24 @@
 }
 
 @mixin button--motion--ghost() {
-  @include button--disabled();
-
   /* stylelint-disable-next-line declaration-no-important */
   background: transparent !important;
 }
 
-@mixin button--disabled {
+@mixin button--disabled() {
   &:disabled,
   &[aria-disabled] {
+    .m-button__arrow {
+      animation-name: none;
+    }
+
     &::after {
-      transform: none;
-      transition: none;
-      background-color: transparent;
+      /* stylelint-disable-next-line declaration-no-important */
+      transform: none !important;
+      /* stylelint-disable-next-line declaration-no-important */
+      transition: none !important;
+      /* stylelint-disable-next-line declaration-no-important */
+      background-color: transparent !important;
     }
   }
 }

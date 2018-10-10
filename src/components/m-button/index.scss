@@ -85,8 +85,30 @@
   }
 }
 
+.m-button__icon {
+  @include button--generic-icon();
+
+  &:disabled,
+  &[aria-disabled] {
+    .m-button--has-icon {
+      /* stylelint-disable-next-line declaration-no-important */
+      color: $color-prim-gray-silver !important;
+      /* stylelint-disable-next-line declaration-no-important */
+      border-left-color: $color-prim-gray-silver !important;
+    }
+  }
+}
+
 .m-button--arrow {
   @include button--arrow-adjust();
+
+  &:disabled,
+  &[aria-disabled] {
+    .m-button__arrow {
+      /* stylelint-disable-next-line declaration-no-important */
+      color: $color-prim-gray-silver !important;
+    }
+  }
 }
 
 .m-button--x-pad-20 {
