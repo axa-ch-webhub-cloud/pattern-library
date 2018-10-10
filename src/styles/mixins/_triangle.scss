@@ -8,19 +8,23 @@ $triangle-color: cureentColor !default;
 /// @link https://css-tricks.com/snippets/sass/css-triangle-mixin/
 /// @param {Direction} $direction [bottom] - Triangle direction, either `top`, `right`, `bottom` or `left`
 /// @param {Color} $color [currentColor] - Triangle color
-/// @param {Length} $size [10px] - Triangle size
-@mixin triangle($direction: $triangle-direction, $size: $triangle-size, $color: $triangle-color) {
-  $perpendicular-borders: $size solid transparent;
+/// @param {Length} $width [10px] - Triangle width
+/// @param {Length} $height [10px|$width] - Triangle height
+@mixin triangle($direction: $triangle-direction, $color: $triangle-color, $width: $triangle-size, $height: $width) {
+  $perpendicular-borders: ($width / 2) solid transparent;
 
-  @include triangle-color($direction, $size, $color);
+  @include triangle-color($direction, $color);
 
-  display: block;
   width: 0;
   height: 0;
   // stylelint-disable-next-line scale-unlimited/declaration-strict-value
   font-size: 0;
   line-height: 0;
   content: '';
+
+  border-style: solid;
+  border-#{opposite-direction($direction)}-width: $height;
+  border-#{$direction}: none;
 
   @if $direction == top or $direction == bottom {
     border-left: $perpendicular-borders;
@@ -37,7 +41,6 @@ $triangle-color: cureentColor !default;
 /// Triangle color helper mixin
 /// @param {Direction} $direction [bottom] - Triangle direction, either `top`, `right`, `bottom` or `left`
 /// @param {Color} $color [currentColor] - Triangle color
-/// @param {Length} $size [10px] - Triangle size
-@mixin triangle-color($direction: $triangle-direction, $size: $triangle-size, $color: $triangle-color) {
-  border-#{opposite-direction($direction)}: ($size * 1.5) solid $color;
+@mixin triangle-color($direction: $triangle-direction, $color: $triangle-color) {
+  border-#{opposite-direction($direction)}-color: $color;
 }
