@@ -74,6 +74,16 @@
 
 .m-button--has-icon {
   @include button--has-icon();
+
+  &:disabled,
+  &[aria-disabled] {
+    .m-button__icon {
+      /* stylelint-disable declaration-no-important */
+      color: $color-prim-gray-silver !important;
+      border-left-color: $color-prim-gray-silver !important;
+      /* stylelint-enable declaration-no-important */
+    }
+  }
 }
 
 .m-button--only-icon {
@@ -83,19 +93,11 @@
     display: block;
     line-height: 0;
   }
-}
-
-.m-button__icon {
-  @include button--generic-icon();
 
   &:disabled,
   &[aria-disabled] {
-    .m-button--has-icon {
-      /* stylelint-disable declaration-no-important */
-      color: $color-prim-gray-silver !important;
-      border-left-color: $color-prim-gray-silver !important;
-      /* stylelint-enable declaration-no-important */
-    }
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $color-prim-gray-silver !important;
   }
 }
 
