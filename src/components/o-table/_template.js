@@ -30,7 +30,9 @@ export default ({
         ${headingsRows.map(({ cells, ...rowAttrs }) => html`
           <tr class="o-table__row o-table__row--head" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
-              <th class="o-table__cell o-table__cell--head" ${attrs}>${text}</th>
+              <th class="o-table__cell o-table__cell--head  ${classnames({
+                [`o-table__cell--${attrs.align}`]: attrs.align,
+              })}" ${attrs}>${text}</th>
             `)}
           </tr>
         `)}
@@ -42,7 +44,9 @@ export default ({
         ${footersRows.map(({ cells, ...rowAttrs }) => html`
           <tr class="o-table__row o-table__row--foot" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
-              <td class="o-table__cell o-table__cell--foot" ${attrs}>${text}</td>
+              <td class="o-table__cell o-table__cell--foot ${classnames({
+                [`o-table__cell--${attrs.align}`]: attrs.align,
+              })}" ${attrs}>${text}</td>
             `)}
           </tr>
         `)}
@@ -56,10 +60,11 @@ export default ({
             'o-table__row--action': rowAttrs.action,
           })}" ${rowAttrs}>
             ${Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
-              <td class="o-table__cell  ${classnames({
+              <td class="o-table__cell ${classnames({
                 'o-table__cell--action': attrs.action,
                 'o-table__cell--strong': attrs.strong,
                 'o-table__cell--bold': attrs.bold,
+                [`o-table__cell--${attrs.align}`]: attrs.align,
                 [`o-table__cell--state-${attrs.state}`]: attrs.state,
               })}" ${attrs}>${text}</td>
             `)}

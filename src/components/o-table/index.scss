@@ -97,6 +97,18 @@ $table__foot-border: $color-prim-gray-mercury !default;
   color: $table__cell-color;
 }
 
+.o-table__cell--left {
+  text-align: left;
+}
+
+.o-table__cell--center {
+  text-align: center;
+}
+
+.o-table__cell--right {
+  text-align: right;
+}
+
 .o-table__cell--strong {
   color: $table__cell--strong-color;
 }

@@ -1,16 +1,16 @@
 <axa-table
   caption="Caption"
   caption-side="bottom"
-  headings='["Nature", "Date", "Status", { "text": "Amount", "foo": "bar" }]'
+  headings='["Nature", "Date", "Status", { "text": "Amount", "foo": "bar", "align": "right" }]'
   items='[
-    { "action": true, "cells": [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Received", "state": "ok" }, { "text": "1200", "bold": true }]},
-    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Pending", "state": "pending" }, { "text": "1200", "bold": true }],
-    { "cells": [{ "text": "New deposit N.O929lO8", "strong": true, "action": true }, "July, 22th 2018", { "text": "Refused", "state": "error" }, { "text": "1200", "bold": true }]},
-    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Unknown", "state": "unknown" }, { "text": "1200", "bold": true }]
+    { "action": true, "cells": [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Received", "state": "ok" }, { "text": "1200", "bold": true, "align": "right" }]},
+    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Pending", "state": "pending" }, { "text": "1200", "bold": true, "align": "right" }],
+    { "cells": [{ "text": "New deposit N.O929lO8", "strong": true, "action": true }, "July, 22th 2018", { "text": "Refused", "state": "error" }, { "text": "1200", "bold": true, "align": "right" }]},
+    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Unknown", "state": "unknown" }, { "text": "1200", "bold": true, "align": "right" }]
   ]'
   footers='[
-    { "cells": [{ "text": "Deposit Plan", "colspan": "3" }, "+ $ 1200 monthly"] },
-    [{ "text": "Withdrawal Plan", "colspan": "3" }, "- $ 1200 yearly"]
+    { "cells": [{ "text": "Deposit Plan", "colspan": "3" }, { "text": "+ $ 1200 monthly", "align": "right" }] },
+    [{ "text": "Withdrawal Plan", "colspan": "3" }, { "text": "- $ 1200 yearly", "align": "right" }]
   ]'
 ></axa-table>
 
