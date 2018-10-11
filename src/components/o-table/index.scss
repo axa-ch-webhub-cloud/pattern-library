@@ -1,12 +1,20 @@
 @import "../../styles/settings/colors";
+@import "../../styles/mixins/clearfix";
+@import "../../styles/mixins/respond";
 @import "../../styles/mixins/size";
 @import "../../styles/mixins/triangle";
+@import "../../styles/mixins/word-break";
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/trumps/align";
+
+$table__row-padding-x--sm: 0 !default;
+$table__row-padding-y--sm: 20px !default;
 
 $table__cell-color: $color-prim-gray !default;
 $table__cell-padding-x: 15px !default;
 $table__cell-padding-y: 10px !default;
+$table__cell-padding-x--sm: 10px !default;
+$table__cell-padding-y--sm: 2px !default;
 $table__cell-color: $color-prim-gray !default;
 $table__cell--strong-color: $color-prim-gray-mine-shaft !default;
 $table__cell--head-color: $color-axa-blue !default;
@@ -24,6 +32,7 @@ $table__cell--state-error-color: $color-state-red-shy-tomato !default;
 $table__cell--state-unknown-color: $color-prim-gray-silver !default;
 $table__cell--state-size: 8px !default;
 $table__cell--state-margin-right: 20px !default;
+$table__cell--state-margin-right--sm: 10px !default;
 
 $table__foot-bg: $color-prim-gray-wild-sand !default;
 $table__foot-border: $color-prim-gray-mercury !default;
@@ -37,10 +46,30 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
   padding: $table__cell-padding-y $table__cell-padding-x;
   color: $table__cell-color;
+
+  @include respond-down(sm) {
+    padding-left: $table__cell-padding-x--sm;
+    padding-right: $table__cell-padding-x--sm;
+  }
 }
 
 %o-table__foot {
   background: $table__foot-bg;
+}
+
+%o-table__row {
+  @include respond-down(sm) {
+    display: block;
+
+    padding: $table__row-padding-y--sm $table__row-padding-x--sm;
+    border-top: 1px solid $table__foot-border;
+  }
+}
+
+%o-table__row--head {
+  @include respond-down(sm) {
+    display: none;
+  }
 }
 
 %o-table__row--foot {
@@ -54,12 +83,23 @@ $table__foot-border: $color-prim-gray-mercury !default;
   border-top: 1px solid $table__foot-border;
 
   color: $table__cell-color;
+
+  @include respond-down(sm) {
+    display: block;
+
+    padding: $table__cell-padding-y--sm $table__cell-padding-x--sm;
+    border-top: none;
+  }
 }
 
 %o-table__cell--head {
   @include typo-secondary-text--bold();
 
   color: $table__cell--head-color;
+
+  @include respond-down(sm) {
+    display: none;
+  }
 }
 
 %o-table__cell--foot {
@@ -73,14 +113,27 @@ $table__foot-border: $color-prim-gray-mercury !default;
   border-top: none;
 }
 
-.o-table,
-.o-table--all {
+%o-table {
   width: 100%;
 }
 
+.o-table {
+  @extend %o-table;
+}
+
 .o-table--all {
+  @extend %o-table;
+
+  table {
+    @extend %o-table;
+  }
+
   caption {
     @extend %o-table__caption;
+  }
+
+  tr {
+    @extend %o-table__row;
   }
 
   td,
@@ -94,6 +147,8 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
   thead {
     tr {
+      @extend %o-table__row--head;
+
       th {
 
       }
@@ -154,11 +209,11 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 .o-table__row {
-
+  @extend %o-table__row;
 }
 
 .o-table__row--head {
-
+  @extend %o-table__row--head;
 }
 
 .o-table__row--foot {
@@ -259,6 +314,10 @@ $table__foot-border: $color-prim-gray-mercury !default;
     border-radius: $table__cell--state-size;
     vertical-align: middle;
     content: '';
+
+    @include respond-down(sm) {
+      margin-right: $table__cell--state-margin-right--sm;
+    }
   }
 }
 
@@ -299,6 +358,35 @@ $table__foot-border: $color-prim-gray-mercury !default;
 
   &::before {
     background: $table__cell--state-unknown-color;
+  }
+}
+
+.o-table__cell--left {
+  @include respond-down(sm) {
+    @include word-break();
+
+    float: left;
+    text-align: left;
+  }
+}
+
+.o-table__cell--right {
+  @include respond-down(sm) {
+    @include word-break();
+
+    float: right;
+    text-align: right;
+
+    .o-table__cell--left + & + *,
+    + .o-table__cell--left + * {
+      clear: both;
+    }
+
+    @at-root {
+      .o-table__row {
+        @include clearfix();
+      }
+    }
   }
 }
 

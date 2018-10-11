@@ -36,6 +36,7 @@ export default ({
                 <th class="o-table__cell o-table__cell--head ${classnames({
                   [`u-align-${attrs.align}`]: attrs.align,
                   [`o-table__cell--sort o-table__cell--sort-${attrs.sort}`]: attrs.sort,
+                  [`o-table__cell--${attrs.float}`]: attrs.float,
                   'o-table__cell--sort-active': attrs.sortActive,
                 })}" ${attrs}>${text}</th>
               `)) || ''}
@@ -51,6 +52,7 @@ export default ({
               ${(Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
                 <td class="o-table__cell o-table__cell--foot ${classnames({
                   [`u-align-${attrs.align}`]: attrs.align,
+                  [`o-table__cell--${attrs.float}`]: attrs.float,
                 })}" ${attrs}>${text}</td>
               `)) || ''}
             </tr>
@@ -70,6 +72,7 @@ export default ({
                   'o-table__cell--strong': attrs.strong,
                   'o-table__cell--bold': attrs.bold,
                   [`u-align-${attrs.align}`]: attrs.align,
+                  [`o-table__cell--${attrs.float}`]: attrs.float,
                   [`o-table__cell--state-${attrs.state}`]: attrs.state,
                 })}" ${attrs}>${text}</td>
               `)) || ''}}

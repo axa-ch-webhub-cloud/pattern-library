@@ -1,107 +1,109 @@
-<h2>With Attributes</h2>
+<axa-container>
+  <h2>With Attributes</h2>
 
-<axa-table
-  caption="Caption"
-  caption-side="bottom"
-  headings='["Nature", "Date", "Status", { "text": "Amount", "align": "right", "sort": "down" }]'
-  items='[
-    { "action": true, "cells": [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Received", "state": "ok" }, { "text": "1200", "bold": true, "align": "right" }]},
-    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Pending", "state": "pending" }, { "text": "1200", "bold": true, "align": "right" }],
-    { "cells": [{ "text": "New deposit N.O929lO8", "strong": true, "action": true }, "July, 22th 2018", { "text": "Refused", "state": "error" }, { "text": "1200", "bold": true, "align": "right" }]},
-    [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Unknown", "state": "unknown" }, { "text": "1200", "bold": true, "align": "right" }]
-  ]'
-  footers='[
-    { "cells": [{ "text": "Deposit Plan", "colspan": "3" }, { "text": "+ $ 1200 monthly", "align": "right" }] },
-    [{ "text": "Withdrawal Plan", "colspan": "3" }, { "text": "- $ 1200 yearly", "align": "right" }]
-  ]'
-></axa-table>
+  <axa-table
+    caption="Caption"
+    caption-side="bottom"
+    headings='["Nature", "Date", "Status", { "text": "Amount", "align": "right", "sort": "down" }]'
+    items='[
+      { "action": true, "cells": [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Received", "float": "right", "state": "ok" }, { "text": "1200", "bold": true, "align": "right", "float": "left" }]},
+      [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Pending", "float": "right", "state": "pending" }, { "text": "1200", "bold": true, "align": "right", "float": "left" }],
+      { "cells": [{ "text": "New deposit N.O929lO8", "strong": true, "action": true }, "July, 22th 2018", { "text": "Refused", "float": "right", "state": "error" }, { "text": "1200", "bold": true, "align": "right", "float": "left" }]},
+      [{ "text": "New deposit N.O929lO8", "strong": true }, "July, 22th 2018", { "text": "Unknown", "float": "right", "state": "unknown" }, { "text": "1200", "bold": true, "align": "right", "float": "left" }]
+    ]'
+    footers='[
+      { "cells": [{ "text": "Deposit Plan", "colspan": "3", "float": "left" }, { "text": "+ $ 1200 monthly", "align": "right", "float": "right" }] },
+      [{ "text": "Withdrawal Plan", "colspan": "3", "float": "left" }, { "text": "- $ 1200 yearly", "align": "right", "float": "right" }]
+    ]'
+  ></axa-table>
 
-<h2>With Children</h2>
+  <h2>With Children</h2>
 
-<axa-table>
-  <table>
-  <caption>Caption</caption>
-  <thead>
-    <tr>
-      <th>Nature</th>
-      <th>Date</th>
-      <th>Status</th>
-      <th class="u-align-right">Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>New deposit N.O929lO8</td>
-      <td>July, 22th 2018</td>
-      <td>Received</td>
-      <td class="u-align-right">1200</td>
-    </tr>
-    <tr>
-      <td>New deposit N.O929lO8</td>
-      <td>July, 22th 2018</td>
-      <td>Received</td>
-      <td class="u-align-right">1200</td>
-    </tr>
-    <tr>
-      <td>New deposit N.O929lO8</td>
-      <td>July, 22th 2018</td>
-      <td>Received</td>
-      <td class="u-align-right">1200</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3">Deposit Plan</td>
-      <td class="u-align-right">+ $ 1'200 monthly</td>
-    </tr>
-    <tr>
-      <td colspan="3">Withdrawal Plan</td>
-      <td class="u-align-right">- $ 1'200 yearly</td>
-    </tr>
-  </tfoot>
+  <axa-table>
+    <table>
+    <caption>Caption</caption>
+    <thead>
+      <tr>
+        <th>Nature</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th class="u-align-right">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>New deposit N.O929lO8</td>
+        <td>July, 22th 2018</td>
+        <td>Received</td>
+        <td class="u-align-right">1200</td>
+      </tr>
+      <tr>
+        <td>New deposit N.O929lO8</td>
+        <td>July, 22th 2018</td>
+        <td>Received</td>
+        <td class="u-align-right">1200</td>
+      </tr>
+      <tr>
+        <td>New deposit N.O929lO8</td>
+        <td>July, 22th 2018</td>
+        <td>Received</td>
+        <td class="u-align-right">1200</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Deposit Plan</td>
+        <td class="u-align-right">+ $ 1'200 monthly</td>
+      </tr>
+      <tr>
+        <td colspan="3">Withdrawal Plan</td>
+        <td class="u-align-right">- $ 1'200 yearly</td>
+      </tr>
+    </tfoot>
+    </table>
+  </axa-table>
+
+  <h2>Native Markup</h2>
+
+  <table class="o-table--all">
+    <caption>Caption</caption>
+    <thead>
+      <tr>
+        <th>Nature</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th class="u-align-right">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>New deposit N.O929lO8</td>
+        <td>July, 22th 2018</td>
+        <td>Received</td>
+        <td class="u-align-right">1200</td>
+      </tr>
+      <tr>
+        <td>New deposit N.O929lO8</td>
+        <td>July, 22th 2018</td>
+        <td>Received</td>
+        <td class="u-align-right">1200</td>
+      </tr>
+      <tr>
+        <td>New deposit N.O929lO8</td>
+        <td>July, 22th 2018</td>
+        <td>Received</td>
+        <td class="u-align-right">1200</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Deposit Plan</td>
+        <td class="u-align-right">+ $ 1'200 monthly</td>
+      </tr>
+      <tr>
+        <td colspan="3">Withdrawal Plan</td>
+        <td class="u-align-right">- $ 1'200 yearly</td>
+      </tr>
+    </tfoot>
   </table>
-</axa-table>
-
-<h2>Native Markup</h2>
-
-<table class="o-table--all">
-  <caption>Caption</caption>
-  <thead>
-    <tr>
-      <th>Nature</th>
-      <th>Date</th>
-      <th>Status</th>
-      <th class="u-align-right">Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>New deposit N.O929lO8</td>
-      <td>July, 22th 2018</td>
-      <td>Received</td>
-      <td class="u-align-right">1200</td>
-    </tr>
-    <tr>
-      <td>New deposit N.O929lO8</td>
-      <td>July, 22th 2018</td>
-      <td>Received</td>
-      <td class="u-align-right">1200</td>
-    </tr>
-    <tr>
-      <td>New deposit N.O929lO8</td>
-      <td>July, 22th 2018</td>
-      <td>Received</td>
-      <td class="u-align-right">1200</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3">Deposit Plan</td>
-      <td class="u-align-right">+ $ 1'200 monthly</td>
-    </tr>
-    <tr>
-      <td colspan="3">Withdrawal Plan</td>
-      <td class="u-align-right">- $ 1'200 yearly</td>
-    </tr>
-  </tfoot>
-</table>
+</axa-container>
