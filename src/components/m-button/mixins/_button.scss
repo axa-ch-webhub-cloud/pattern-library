@@ -11,6 +11,11 @@
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
+$color-button-bg--disabled: get-color($button-color, default, bg--disabled);
+$color-button-text--disabled: get-color($button-color, default, text--disabled);
+$color-button-arrow--disabled: get-color($button-color, default, arrow--disabled);
+$color-button-icon--disabled: get-color($button-color, default, icon--disabled);
+$color-button-border--disabled: get-color($button-color, default, border--disabled);
 
 @mixin button($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
@@ -65,8 +70,6 @@
   $color-button-text: get-color($button-color, $style, text);
   $color-button-bg: get-color($button-color, $style, bg);
   $color-button-bg--hover: get-color($button-color, $style, bg--hover);
-  $color-button-bg--disabled: get-color($button-color, $style, bg--disabled);
-
   color: $color-button-text;
 
   background: $color-button-bg;
@@ -84,10 +87,10 @@
   &:disabled,
   &[aria-disabled] {
     /* stylelint-disable declaration-no-important */
-    color: $color-prim-gray-dusty !important;
+    color: $color-button-text--disabled !important;
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
-    border-bottom-color: $color-prim-gray-silver !important;
+    border-bottom-color: $color-button-border--disabled !important;
     /* stylelint-enable declaration-no-important */
   }
 }

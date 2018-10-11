@@ -79,14 +79,16 @@
   &[aria-disabled] {
     .m-button__icon {
       /* stylelint-disable declaration-no-important */
-      color: $color-prim-gray-silver !important;
-      border-left-color: $color-prim-gray-silver !important;
+      color: $color-button-icon--disabled !important;
+      border-left-color: $color-button-border--disabled !important;
       /* stylelint-enable declaration-no-important */
     }
   }
 }
 
 .m-button--only-icon {
+  $color-button-icon--disabled: get-color($button-color, default, icon--disabled);
+
   @include button--only-icon();
 
   > .a-icon__root {
@@ -97,18 +99,20 @@
   &:disabled,
   &[aria-disabled] {
     /* stylelint-disable-next-line declaration-no-important */
-    color: $color-prim-gray-silver !important;
+    color: $color-button-icon--disabled !important;
   }
 }
 
 .m-button--arrow {
+  $color-button-arrow--disabled: get-color($button-color, default, arrow--disabled);
+
   @include button--arrow-adjust();
 
   &:disabled,
   &[aria-disabled] {
     .m-button__arrow {
       /* stylelint-disable-next-line declaration-no-important */
-      color: $color-prim-gray-dusty !important;
+      color: $color-button-arrow--disabled !important;
     }
   }
 }
