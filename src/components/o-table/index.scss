@@ -247,7 +247,24 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
   &:hover,
   &:focus {
     cursor: pointer;
-    background: $table__cell--action-bg;
+
+    .o-table__cell,
+    td,
+    th {
+      color: $table__cell--action-color;
+      border-top-color: $table__cell--action-color;
+      border-bottom: 1px solid $table__cell--action-color;
+
+      &:first-child {
+        padding-left: $table__cell-padding-x - 1;
+        border-left: 1px solid $table__cell--action-color;
+      }
+
+      &:last-child {
+        // padding-right: $table__cell-padding-x - 1;
+        border-right: 1px solid $table__cell--action-color;
+      }
+    }
   }
 }
 
@@ -327,7 +344,6 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
   &:hover,
   &:focus {
     cursor: pointer;
-    background: $table__cell--action-bg;
     color: $table__cell--action-color;
   }
 }
@@ -351,7 +367,8 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
 .o-table__cell--state-ok {
   @extend %o-table__cell--state;
 
-  color: $table__cell--state-ok-color;
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-ok-color !important;
 
   &::before {
     background: $table__cell--state-ok-color;
@@ -361,7 +378,8 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
 .o-table__cell--state-pending {
   @extend %o-table__cell--state;
 
-  color: $table__cell--state-pending-color;
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-pending-color !important;
 
   &::before {
     background: $table__cell--state-pending-color;
@@ -371,7 +389,8 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
 .o-table__cell--state-error {
   @extend %o-table__cell--state;
 
-  color: $table__cell--state-error-color;
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-error-color !important;
 
   &::before {
     background: $table__cell--state-error-color;
@@ -381,7 +400,8 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
 .o-table__cell--state-unknown {
   @extend %o-table__cell--state;
 
-  color: $table__cell--state-unknown-color;
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-unknown-color !important;
 
   &::before {
     background: $table__cell--state-unknown-color;
