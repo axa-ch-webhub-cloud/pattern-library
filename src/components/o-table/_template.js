@@ -42,7 +42,7 @@ export default ({
             </tr>
           `)}
         </thead>
-      `}
+      ` || ''}
 
       ${Array.isArray(footersRows) && html`
         <tfoot class="o-table__foot" ${footersAttrs}>
@@ -56,7 +56,7 @@ export default ({
             </tr>
           `)}
         </tfoot>
-      `}
+      ` || ''}
   
       ${Array.isArray(itemsRows) && html`
         <tbody class="o-table__body" ${itemsAttrs}>
@@ -76,7 +76,7 @@ export default ({
             </tr>
           `)}
         </tbody>
-      `}
+      ` || ''}
     </table>
   `;
 };
