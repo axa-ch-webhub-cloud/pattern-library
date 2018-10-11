@@ -75,7 +75,7 @@ export default ({
                   [`o-table__cell--${attrs.float}`]: attrs.float,
                   [`o-table__cell--state-${attrs.state}`]: attrs.state,
                 })}" ${attrs}>${text}</td>
-              `)) || ''}}
+              `)) || ''}
             </tr>
           `)) || ''}
         </tbody>
