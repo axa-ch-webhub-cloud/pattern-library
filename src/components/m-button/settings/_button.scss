@@ -46,6 +46,10 @@ $button-color:
       bg--motion: $color-prim-blue-deep-sapphire,
       bg--motion--hover: $color-prim-blue-deep-sapphire,
       text--motion--hover: $color-prim-white,
+      text--disabled: $color-prim-gray-dusty,
+      arrow--disabled: $color-prim-gray-dusty,
+      border--disabled: $color-prim-gray-silver,
+      icon--disabled: $color-prim-gray-silver,
     ),
     red: (
       text: $color-prim-white,
