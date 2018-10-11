@@ -15,6 +15,7 @@ $table__row-padding-y--sm: 20px !default;
 $table__cell-color: $color-prim-gray !default;
 $table__cell-padding-x: 15px !default;
 $table__cell-padding-y: 10px !default;
+$table__cell-padding-y--dense: 2px !default;
 $table__cell-padding-x--sm: 10px !default;
 $table__cell-padding-y--sm: 2px !default;
 $table__cell-color: $color-prim-gray !default;
@@ -123,6 +124,11 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
   border-top: none;
 }
 
+%o-table__cell--dense {
+  padding-top: $table__cell-padding-y--dense;
+  padding-bottom: $table__cell-padding-y--dense;
+}
+
 %o-table {
   width: 100%;
 }
@@ -191,6 +197,13 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
 
       }
     }
+  }
+}
+
+.o-table--dense {
+  th,
+  td {
+    @extend %o-table__cell--dense;
   }
 }
 
@@ -304,6 +317,10 @@ $table__foot-bg: $color-prim-gray-wild-sand !default;
   .o-table__row--foot:first-child > & {
     @extend %o-table__cell--foot-first;
   }
+}
+
+.o-table__cell--dense {
+  @extend %o-table__cell--dense;
 }
 
 .o-table__cell--action {
