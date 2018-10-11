@@ -7,6 +7,8 @@
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/trumps/align";
 
+$table-border-color: $color-prim-gray-mercury !default;
+
 $table__row-padding-x--sm: 0 !default;
 $table__row-padding-y--sm: 20px !default;
 
@@ -35,7 +37,6 @@ $table__cell--state-margin-right: 20px !default;
 $table__cell--state-margin-right--sm: 10px !default;
 
 $table__foot-bg: $color-prim-gray-wild-sand !default;
-$table__foot-border: $color-prim-gray-mercury !default;
 
 .o-table__root {
   display: block;
@@ -62,7 +63,7 @@ $table__foot-border: $color-prim-gray-mercury !default;
     display: block;
 
     padding: $table__row-padding-y--sm $table__row-padding-x--sm;
-    border-top: 1px solid $table__foot-border;
+    border-top: 1px solid $table-border-color;
   }
 }
 
@@ -73,14 +74,23 @@ $table__foot-border: $color-prim-gray-mercury !default;
 }
 
 %o-table__row--foot {
-  border-top: $table__foot-border;
+  border-top-color: $table-border-color;
+
+  @include respond-down(sm) {
+    padding-top: $table__cell-padding-y;
+    padding-bottom: $table__cell-padding-y;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
 }
 
 %o-table__cell {
   @include typo-secondary-text();
 
   padding: $table__cell-padding-y $table__cell-padding-x;
-  border-top: 1px solid $table__foot-border;
+  border-top: 1px solid $table-border-color;
 
   color: $table__cell-color;
 
