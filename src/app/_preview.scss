@@ -77,18 +77,18 @@ body {
   margin: 0 auto;
 
   .syntaxhighlighter {
-    margin-top: 0 !important;
+    margin-top: 0;
     padding: $sg-small-margin;
-    background-color: $sg-black-syntaxhighlighter !important;
+    background-color: $sg-black-syntaxhighlighter;
   }
 
   .syntaxhighlighter {
     .line {
-      background-color: $sg-black-syntaxhighlighter !important;
+      background-color: $sg-black-syntaxhighlighter;
 
       &.alt1,
       &.alt2 {
-        background-color: $sg-black-syntaxhighlighter !important;
+        background-color: $sg-black-syntaxhighlighter;
       }
     }
   }
@@ -172,10 +172,11 @@ $colorlist:
 
 .sg-header {
   .m-header-sub-navigation__list {
-    margin-top: 0 !important;
+    margin-top: 0;
   }
 
   .m-header-sub-navigation__block {
+    /* stylelint-disable-next-line declaration-no-important */
     padding-top: 0 !important;
 
     @each $current-color in $colorlist {

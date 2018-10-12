@@ -8,12 +8,14 @@
   $parent: &;
   $breakpoints-keys: map-keys($breakpoints);
 
+  /* stylelint-disable-next-line declaration-no-important */
   display: none !important;
 
   @each $breakpoint-key in $breakpoints-keys {
     @include respond-down($breakpoint-key) {
       @at-root {
         #{$parent}-#{$breakpoint-key}-down {
+          /* stylelint-disable-next-line declaration-no-important */
           display: none !important;
         }
       }
@@ -22,6 +24,7 @@
     @include respond-up($breakpoint-key) {
       @at-root {
         #{$parent}-#{$breakpoint-key}-up {
+          /* stylelint-disable-next-line declaration-no-important */
           display: none !important;
         }
       }
@@ -30,6 +33,7 @@
     @include respond-only($breakpoint-key) {
       @at-root {
         #{$parent}-#{$breakpoint-key} {
+          /* stylelint-disable-next-line declaration-no-important */
           display: none !important;
         }
       }

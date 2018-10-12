@@ -64,6 +64,7 @@ export default class DatepickerBody {
 
   handleClick = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     this.selected = null;
     const { dataset } = e.target;
     const index = +dataset.index;

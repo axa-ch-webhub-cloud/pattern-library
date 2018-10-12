@@ -227,9 +227,21 @@ Invoked when one of the custom element's attributes is added, removed, or change
 **IMPORTANT:**
 - attributes are always of type `'string'` and have to be parsed by `JSON.parse()` to provide proper [first class props](#first-class-props)
 - a static `observedAttributes()` getter must be defined to make this callback work!
+- `observedAttributes()` will be automatically derived from your static [`propTypes`](https://www.npmjs.com/package/prop-types) property. 
 
 ```js
-static get observedAttributes() { return ['foo', 'bar']; }
+import PropTypes from 'prop-types';
+
+class AXAElement extends BaseComponentGlobal {
+  // preferred way - observedAttributes derived from your propTypes
+  static propTypes = {
+    foo: PropTypes.string,
+    barBaz: PropTypes.string,
+  }
+
+  // only do this if it's different from your propTypes
+  static get observedAttributes() { return ['foo', 'bar-baz']; }
+}
 ```
 
 #### Property `setter()`
@@ -237,7 +249,16 @@ static get observedAttributes() { return ['foo', 'bar']; }
 All observed attributes defined by static `observedAttributes()` getter will be automatically turned in camelcased getter/setter properties, like:
 
 ```js
+import PropTypes from 'prop-types';
+
 class AXAExample extends BaseComponentGlobal {
+  // preferred way - observedAttributes derived from your propTypes
+  static propTypes = {
+    foo: PropTypes.string,
+    exampleMessage: PropTypes.string,
+  }
+
+  // only do this if it's different from your propTypes
   static get observedAttributes() { return ['foo', 'example-message']; }
 }
 ```
@@ -314,7 +335,7 @@ Appends an optional custom element's stylesheet to the document.
 
 #### `withUpdate()`
 
-Adds attribute observation and enables [**First Class Props**](#first-class-props).
+Adds attribute observation and enables [**First Class Props**](#first-class-props) and runtime type-checking.
 
 ## Integration
 

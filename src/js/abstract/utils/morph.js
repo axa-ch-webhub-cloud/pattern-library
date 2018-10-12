@@ -29,6 +29,13 @@ function morph(newNode, oldNode) {
 }
 
 function copyAttrs(newNode, oldNode) {
+  // IMPORTANT: cloned custom elements aren't connected
+  // so only morph observed attributes
+  const skipChildren = oldNode.skipChildren && oldNode.skipChildren();
+  const { constructor: { observedAttributes } } = oldNode;
+  const hasObservedAttributes = observedAttributes && Array.isArray(observedAttributes) && observedAttributes.length;
+  // @todo: we may need to deal with attribute namespaces too in the future
+  const shouldSkipAttr = attrName => skipChildren && hasObservedAttributes && observedAttributes.indexOf(attrName) === -1;
   const { attributes: oldAttrs } = oldNode;
   const { attributes: newAttrs } = newNode;
   let attrNamespaceURI = null;
@@ -42,6 +49,11 @@ function copyAttrs(newNode, oldNode) {
     attrName = attr.name;
     attrNamespaceURI = attr.namespaceURI;
     attrValue = attr.value;
+
+    if (shouldSkipAttr(attrName)) {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
 
     if (attrNamespaceURI) {
       const attrLocalName = attr.localName;
@@ -79,6 +91,11 @@ function copyAttrs(newNode, oldNode) {
     if (attr.specified !== false) {
       attrName = attr.name;
       attrNamespaceURI = attr.namespaceURI;
+
+      if (shouldSkipAttr(attrName)) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
 
       if (attrNamespaceURI) {
         attrName = attr.localName || attrName;

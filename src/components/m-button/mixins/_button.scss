@@ -11,6 +11,11 @@
 
 // Buttons as specified at
 // https://design.axa.com/web-guidelines/buttons-and-links
+$color-button-bg--disabled: get-color($button-color, default, bg--disabled);
+$color-button-text--disabled: get-color($button-color, default, text--disabled);
+$color-button-arrow--disabled: get-color($button-color, default, arrow--disabled);
+$color-button-icon--disabled: get-color($button-color, default, icon--disabled);
+$color-button-border--disabled: get-color($button-color, default, border--disabled);
 
 @mixin button($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
@@ -20,6 +25,7 @@
 
   position: relative;
 
+  min-height: $button-md-height;
   padding: $button-padding-top-bottom-md $x-padding;
   border-width: $button-border-width;
   border-style: solid;
@@ -40,6 +46,7 @@
 
   &:disabled,
   &[aria-disabled] {
+    /* stylelint-disable-next-line declaration-no-important */
     cursor: default !important;
   }
 }
@@ -63,8 +70,6 @@
   $color-button-text: get-color($button-color, $style, text);
   $color-button-bg: get-color($button-color, $style, bg);
   $color-button-bg--hover: get-color($button-color, $style, bg--hover);
-  $color-button-bg--disabled: get-color($button-color, $style, bg--disabled);
-
   color: $color-button-text;
 
   background: $color-button-bg;
@@ -81,10 +86,12 @@
 
   &:disabled,
   &[aria-disabled] {
-    color: $color-button-text !important;
+    /* stylelint-disable declaration-no-important */
+    color: $color-button-text--disabled !important;
     background: $color-button-bg--disabled !important;
     border-color: $color-button-bg--disabled !important;
-    border-bottom-color: $color-prim-gray-silver !important;
+    border-bottom-color: $color-button-border--disabled !important;
+    /* stylelint-enable declaration-no-important */
   }
 }
 
@@ -116,6 +123,7 @@
 
   &:disabled,
   &[aria-disabled] {
+    /* stylelint-disable-next-line declaration-no-important */
     background-color: $color-button-bg--disabled !important;
   }
 }
@@ -123,6 +131,7 @@
 @mixin button--sm() {
   @include typo-legals--semibold();
 
+  min-height: $button-sm-height;
   padding-top: $button-padding-top-bottom-sm;
   padding-bottom: $button-padding-top-bottom-sm;
 
@@ -132,28 +141,36 @@
 @mixin button--lg() {
   @include typo-secondary-text--semibold();
 
+  min-height: $button-lg-height;
   padding-top: $button-padding-top-bottom-lg;
   padding-bottom: $button-padding-top-bottom-lg;
 }
 
-@mixin button--generic-icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
+@mixin button--has-icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   padding-right: $x-padding + $button-height;
   overflow: hidden;
 }
 
-@mixin button--generic-icon--sm($x-padding: $button-x-padding-default) {
-  @include button--generic-icon($x-padding, $button-sm-height);
+@mixin button--has-icon--sm($x-padding: $button-x-padding-default) {
+  @include button--has-icon($x-padding, $button-sm-height);
 }
 
-@mixin button--generic-icon--lg($x-padding: $button-x-padding-default) {
-  @include button--generic-icon($x-padding, $button-lg-height);
+@mixin button--has-icon--lg($x-padding: $button-x-padding-default) {
+  @include button--has-icon($x-padding, $button-lg-height);
+}
+
+@mixin button--only-icon() {
+  /* stylelint-disable declaration-no-important */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  line-height: 1 !important;
+  /* stylelint-enable declaration-no-important */
 }
 
 @mixin button__icon() {
-  $local-padding: 8px;
-
   @include size($button-md-height);
 
   position: absolute;
@@ -166,7 +183,7 @@
 
   height: calc(100% + #{$button-border-width});
 
-  padding: $local-padding;
+  padding: $button__icon-padding;
 
   box-sizing: border-box;
 
@@ -174,13 +191,11 @@
 }
 
 @mixin button__icon--sm() {
-  $local-padding: 5px;
-
   @include size($button-sm-height);
 
   height: calc(100% + #{$button-border-width--sm});
 
-  padding: $local-padding;
+  padding: $button__icon-padding--sm;
 
   margin-top: - $button-border-width--sm;
 
@@ -188,13 +203,42 @@
 }
 
 @mixin button__icon--lg() {
-  $local-padding: 11px;
-
   @include size($button-lg-height);
 
   height: calc(100% + #{$button-border-width});
 
-  padding: $local-padding;
+  padding: $button__icon-padding--lg;
+}
+
+@mixin button__icon--only() {
+  @include size($button-md-height);
+
+  position: relative;
+
+  padding: $button__icon-padding;
+
+  // undo border
+  margin: -$button-border-width;
+  box-sizing: border-box;
+  border-left: none;
+}
+
+@mixin button__icon--only--sm() {
+  @include size($button-sm-height);
+
+  padding: $button__icon-padding--sm;
+
+  // undo border
+  margin: -$button-border-width--sm;
+}
+
+@mixin button__icon--only--lg() {
+  @include size($button-lg-height);
+
+  padding: $button__icon-padding--lg;
+
+  // undo border
+  margin: -$button-border-width;
 }
 
 @mixin button__arrow() {
@@ -232,8 +276,6 @@
 }
 
 @mixin button__arrow--motion() {
-  @include button--disabled();
-
   animation-duration: $button__arrow-motion-duration;
   animation-timing-function: $button__arrow-motion-easing;
   animation-fill-mode: both;
@@ -252,7 +294,6 @@
   transition: color $button__motion-duration $button__motion-easing 0s;
 
   &::after {
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -306,18 +347,23 @@
 }
 
 @mixin button--motion--ghost() {
-  @include button--disabled();
-
+  /* stylelint-disable-next-line declaration-no-important */
   background: transparent !important;
 }
 
-@mixin button--disabled {
+@mixin button--disabled() {
   &:disabled,
   &[aria-disabled] {
+    .m-button__arrow {
+      animation-name: none;
+    }
+
     &::after {
-      transform: none;
-      transition: none;
-      background-color: transparent;
+      /* stylelint-disable declaration-no-important */
+      transform: none !important;
+      transition: none !important;
+      background-color: transparent !important;
+      /* stylelint-enable declaration-no-important */
     }
   }
 }

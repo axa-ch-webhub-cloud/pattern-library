@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import stylesStickyContainer from './scss/sticky-container.scss';
@@ -9,8 +11,9 @@ import StickyContainer from './js/sticky-container';
 
 export class AXAStickyContainer extends BaseComponentGlobal {
   static tagName = 'axa-sticky-container'
-
-  static get observedAttributes() { return ['debug']; }
+  static propTypes = {
+    debug: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles: stylesStickyContainer });
@@ -40,8 +43,9 @@ export class AXAStickyContainer extends BaseComponentGlobal {
 
 export class AXASticky extends BaseComponentGlobal {
   static tagName = 'axa-sticky'
-
-  static get observedAttributes() { return ['debug']; }
+  static propTypes = {
+    debug: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles: stylesSticky, template: templateSticky });

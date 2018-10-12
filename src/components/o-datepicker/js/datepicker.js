@@ -75,6 +75,7 @@ export default class Datepicker {
 
   handleClickDatepickerCalender = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     const { detail } = e;
     if (!detail) {
@@ -95,11 +96,13 @@ export default class Datepicker {
 
   handleClickDatepickerInput = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     this.displayDatepicker();
   }
 
   handleInputChange = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { detail } = e;
     this.setDateValueOfString(detail);
   }

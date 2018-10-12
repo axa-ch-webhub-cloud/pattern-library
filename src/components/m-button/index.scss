@@ -14,6 +14,10 @@
   @include button__icon();
 }
 
+.m-button__icon--only {
+  @include button__icon--only();
+}
+
 .m-button__arrow {
   @include button__arrow();
   @include button__arrow-right();
@@ -68,12 +72,49 @@
   }
 }
 
-.m-button--generic-icon {
-  @include button--generic-icon();
+.m-button--has-icon {
+  @include button--has-icon();
+
+  &:disabled,
+  &[aria-disabled] {
+    .m-button__icon {
+      /* stylelint-disable declaration-no-important */
+      color: $color-button-icon--disabled !important;
+      border-left-color: $color-button-border--disabled !important;
+      /* stylelint-enable declaration-no-important */
+    }
+  }
+}
+
+.m-button--only-icon {
+  $color-button-icon--disabled: get-color($button-color, default, icon--disabled);
+
+  @include button--only-icon();
+
+  > .a-icon__root {
+    display: block;
+    line-height: 0;
+  }
+
+  &:disabled,
+  &[aria-disabled] {
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $color-button-icon--disabled !important;
+  }
 }
 
 .m-button--arrow {
+  $color-button-arrow--disabled: get-color($button-color, default, arrow--disabled);
+
   @include button--arrow-adjust();
+
+  &:disabled,
+  &[aria-disabled] {
+    .m-button__arrow {
+      /* stylelint-disable-next-line declaration-no-important */
+      color: $color-button-arrow--disabled !important;
+    }
+  }
 }
 
 .m-button--x-pad-20 {
@@ -111,8 +152,12 @@
     @include button__icon--sm();
   }
 
-  &.m-button--generic-icon {
-    @include button--generic-icon--sm();
+  .m-button__icon--only {
+    @include button__icon--only--sm();
+  }
+
+  &.m-button--has-icon {
+    @include button--has-icon--sm();
   }
 }
 
@@ -127,12 +172,16 @@
     @include button__icon--lg();
   }
 
+  .m-button__icon--only {
+    @include button__icon--only--lg();
+  }
+
   .m-button__arrow {
     @include button__arrow--lg();
   }
 
-  &.m-button--generic-icon {
-    @include button--generic-icon--lg();
+  &.m-button--has-icon {
+    @include button--has-icon--lg();
   }
 }
 

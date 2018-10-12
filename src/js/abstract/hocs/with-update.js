@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import PropertyExistsException from '../utils/property-exists-exception';
 import lifecycleLogger from '../utils/lifecycle-logger';
 import dasherize from '../../dasherize';
@@ -15,6 +17,13 @@ const withUpdate = Base =>
    * Adds attribute observation and enables **First Class Props**.
    */
   class WithUpdate extends Base {
+    static get observedAttributes() {
+      const { propTypes } = this;
+      const derivedAttributes = propTypes && Object.keys(propTypes).map(dasherize);
+
+      return derivedAttributes;
+    }
+
     constructor(options) {
       super(options);
 
@@ -59,7 +68,7 @@ const withUpdate = Base =>
                 super[key] = value;
               }
 
-              if (this._isConnected && this._hasRendered) {
+              if (this._isConnected) {
                 if (ENV !== PROD) {
                   lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
                 }
@@ -113,6 +122,8 @@ const withUpdate = Base =>
             }
           });
 
+          this.checkPropTypes();
+
           if (ENV !== PROD) {
             lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
           }
@@ -142,10 +153,12 @@ const withUpdate = Base =>
 
       // add, update attribute
       if (this.hasAttribute(name)) {
-        this[key] = toProp(newValue);
+        this[key] = toProp(newValue, name);
       } else { // delete attribute
         this[key] = null;
       }
+
+      this.checkPropTypes();
 
       // if value is updated, we presume that an axa on change event have to be triggered
       if (name === 'value' && newValue !== null) {
@@ -165,7 +178,9 @@ const withUpdate = Base =>
       const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
       const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
 
-      if (shouldUpdate && this._isConnected && this._hasRendered) {
+      this.checkPropTypes();
+
+      if (shouldUpdate && this._isConnected) {
         if (ENV !== PROD) {
           lifecycleLogger(this.logLifecycle)(`\n---> setProps for ${propsKeys.join(', ')}`);
         }
@@ -213,6 +228,17 @@ const withUpdate = Base =>
         props,
         shouldUpdate: true,
       };
+    }
+
+    /**
+     * Check types at runtime.
+     */
+    checkPropTypes() {
+      const { constructor: { propTypes, tagName } } = this;
+
+      if (propTypes) {
+        PropTypes.checkPropTypes(propTypes, this._props, 'prop', tagName);
+      }
     }
 
     /**

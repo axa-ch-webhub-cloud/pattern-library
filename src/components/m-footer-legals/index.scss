@@ -88,6 +88,7 @@
 
 .m-footer-legals--bottom {
   align-self: flex-end;
+  /* stylelint-disable-next-line declaration-no-important */
   text-align: right !important;
 
   .m-footer-legals__link {

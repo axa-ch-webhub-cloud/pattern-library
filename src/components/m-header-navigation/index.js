@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
@@ -5,11 +7,22 @@ import Stroke from './js/stroke';
 import HeaderNavigation from './js/header-navigation';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
   static tagName = 'axa-header-navigation'
-
-  static get observedAttributes() { return ['hyphenate', 'items', 'simplemenu', 'history-api']; }
+  static propTypes = {
+    hyphenate: PropTypes.bool,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      url: urlPropType,
+      name: PropTypes.string,
+      items: PropTypes.array,
+      classes: PropTypes.string,
+      isActive: PropTypes.bool,
+    })),
+    simplemenu: PropTypes.bool,
+    historyApi: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles, template });
