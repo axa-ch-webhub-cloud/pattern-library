@@ -1,6 +1,5 @@
 import { AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
-import fire from '../../../js/fire';
 import getAttribute from '../../../js/get-attribute';
 import { parseLocalisedDateIfValid, getLocaleDayMonthYear } from '../../../js/date';
 import { OK } from '../../m-datepicker/js/datepicker';
