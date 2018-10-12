@@ -116,6 +116,7 @@ export default class Datepicker {
 
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { target } = e;
     const month = target.getAttribute('value');
 
@@ -127,6 +128,7 @@ export default class Datepicker {
 
   handleChangeDropdownYear = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { target } = e;
     const year = target.getAttribute('value');
 
@@ -137,6 +139,7 @@ export default class Datepicker {
 
   handleChangeDatepickerBody = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { target } = e;
     this.changeDropDowns(target);
   }

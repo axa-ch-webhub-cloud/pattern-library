@@ -1,5 +1,6 @@
 import { AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
+import fire from '../../../js/fire';
 import getAttribute from '../../../js/get-attribute';
 import { parseLocalisedDateIfValid, getLocaleDayMonthYear } from '../../../js/date';
 import { OK } from '../../m-datepicker/js/datepicker';
@@ -75,6 +76,7 @@ export default class Datepicker {
 
   handleClickDatepickerCalender = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     const { detail } = e;
     if (!detail) {
@@ -95,11 +97,13 @@ export default class Datepicker {
 
   handleClickDatepickerInput = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     this.displayDatepicker();
   }
 
   handleInputChange = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { detail } = e;
     this.setDateValueOfString(detail);
   }
