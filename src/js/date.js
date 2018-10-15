@@ -134,7 +134,7 @@ export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => 
   const dayIndex = splittedBlueprint.indexOf('23');
   const yearIndex = splittedBlueprint.indexOf('2017');
 
-  const dateUnderValidation = new Date(splittedValue[yearIndex], splittedValue[monthIndex], splittedValue[dayIndex]);
+  const dateUnderValidation = new Date(splittedValue[yearIndex], splittedValue[monthIndex] - 1, splittedValue[dayIndex]);
 
   // eslint-disable-next-line no-restricted-globals
   if (dateUnderValidation instanceof Date && !isNaN(dateUnderValidation)) {
