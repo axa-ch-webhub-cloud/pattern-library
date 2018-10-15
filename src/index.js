@@ -100,5 +100,3 @@ export { default as AXAStickyContainer } from './components/o-sticky-container';
 export { default as AXATestimonials } from './components/o-testimonials';
 
 export { default as AXATable } from './components/o-table';
-
-export { default as AXASticky } from './components/m-sticky';

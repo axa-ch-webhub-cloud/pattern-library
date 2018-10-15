@@ -156,6 +156,3 @@ export const AXATestimonials = withReact(AXATestimonialsWC);
 
 import AXATableWC from '../components/o-table/';
 export const AXATable = withReact(AXATableWC);
-
-import AXAStickyWC from '../components/m-sticky/';
-export const AXASticky = withReact(AXAStickyWC);
