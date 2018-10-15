@@ -93,13 +93,9 @@ export { default as AXAHeader } from './components/o-header';
 
 export { default as AXAPolicyFeatures } from './components/o-policy-features';
 
-// @todo: cleanup sticky
-import {
-  AXASticky as _AXASticky,
-  AXAStickyContainer as _AXAStickyContainer,
-} from './components/o-sticky-container';
-export const AXASticky = _AXASticky;
-export const AXAStickyContainer = _AXAStickyContainer;
+export { default as AXASticky } from './components/m-sticky';
+
+export { default as AXAStickyContainer } from './components/o-sticky-container';
 
 export { default as AXATestimonials } from './components/o-testimonials';
 
