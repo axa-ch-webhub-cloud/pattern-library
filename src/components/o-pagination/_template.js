@@ -1,10 +1,11 @@
 import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
 export default ({ classes, items, first, last }) => html`
   <nav class="o-pagination ${classes}">
     ${(first && html`
-      <a class="o-pagination__first" href=${''} />&lt;</a>
+      <a class="o-pagination__first" href=${''} />${raw('&lt;')}</a>
     `) || ''}
     
     ${Array.isArray(items) && items.map(({ href, active }, index) => html`
@@ -14,7 +15,7 @@ export default ({ classes, items, first, last }) => html`
     `)}
     
     ${(last && html`
-      <a class="o-pagination__last" href=${''} />&gt;</a>
+      <a class="o-pagination__last" href=${''} />${raw('&gt;')}</a>
     `) || ''}
   </nav>
 `;

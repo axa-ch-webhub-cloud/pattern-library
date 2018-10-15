@@ -32,6 +32,8 @@ $pagination__link-border-margin: 6px !default;
 
 }
 
+.o-pagination__first,
+.o-pagination__last,
 .o-pagination__link {
   @include typo-tag();
 

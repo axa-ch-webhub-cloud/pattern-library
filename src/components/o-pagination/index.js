@@ -15,6 +15,8 @@ class AXAPagination extends BaseComponentGlobal {
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
     classes: PropTypes.string,
+    first: PropTypes.bool,
+    last: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
       href: urlPropType,
     })),
