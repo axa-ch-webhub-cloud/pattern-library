@@ -1,2 +1,27 @@
-@import "./scss/sticky-container";
-@import "./scss/sticky";
+.o-sticky-container {
+  position: relative;
+
+  display: block;
+}
+
+.o-sticky-container--debug {
+  background: rgba(yellow, 0.5);
+
+  &::before {
+    content: '';
+  }
+
+  &.is-sticky-container-active {
+    background: green;
+
+    &::before {
+      content: 'is-active';
+    }
+  }
+
+  &.is-sticky-container-idle {
+    &::before {
+      content: 'is-idle';
+    }
+  }
+}

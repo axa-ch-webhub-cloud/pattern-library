@@ -3,10 +3,7 @@ import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
-import stylesStickyContainer from './scss/sticky-container.scss';
-import stylesSticky from './scss/sticky.scss';
-import templateSticky from './sticky.template';
-import Sticky from './js/sticky';
+import styles from './index.scss';
 import StickyContainer from './js/sticky-container';
 
 export class AXAStickyContainer extends BaseComponentGlobal {
@@ -16,7 +13,7 @@ export class AXAStickyContainer extends BaseComponentGlobal {
   }
 
   constructor() {
-    super({ styles: stylesStickyContainer });
+    super({ styles });
 
     this.provideContext();
   }
@@ -41,59 +38,7 @@ export class AXAStickyContainer extends BaseComponentGlobal {
   }
 }
 
-export class AXASticky extends BaseComponentGlobal {
-  static tagName = 'axa-sticky'
-  static propTypes = {
-    debug: PropTypes.bool,
-  }
-
-  constructor() {
-    super({ styles: stylesSticky, template: templateSticky });
-
-    this.consumeContext('axa-sticky-container');
-  }
-
-  willRenderCallback() {
-    const { debug } = this;
-
-    this.className = classnames(this.initialClassName, 'o-sticky js-sticky', {
-      'o-sticky--debug': debug,
-    });
-  }
-
-  didRenderCallback() {
-    if (this.sticky) {
-      this.sticky.destroy();
-    }
-
-    this.sticky = new Sticky(this);
-
-    const { contextNode } = this;
-
-    if (contextNode) {
-      this.contextCallback(contextNode);
-    }
-  }
-
-  contextCallback(contextNode) {
-    if (this.sticky) {
-      this.sticky.contextNode = contextNode;
-    }
-  }
-
-  disconnectedCallback() {
-    if (this.sticky) {
-      this.sticky.destroy();
-      delete this.sticky;
-    }
-  }
-}
-
 
 defineOnce(AXAStickyContainer.tagName, AXAStickyContainer);
-defineOnce(AXASticky.tagName, AXASticky);
 
-export default {
-  AXASticky,
-  AXAStickyContainer,
-};
+export default AXAStickyContainer;
