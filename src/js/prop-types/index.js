@@ -1,4 +1,5 @@
 export { default as alignPropType } from './align-prop-type';
+export * from './cell-prop-types';
 export { default as floatPropType } from './float-prop-type';
 export { default as localePropType } from './locale-prop-type';
 export { default as sidePropType } from './side-prop-type';
