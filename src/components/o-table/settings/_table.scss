@@ -1,4 +1,4 @@
-@import "../../styles/settings/colors";
+@import "../../../styles/settings/colors";
 
 $table-border-color: $color-prim-gray-mercury !default;
 
@@ -11,17 +11,19 @@ $table__cell-padding-y: 10px !default;
 $table__cell-padding-y--dense: 2px !default;
 $table__cell-padding-x--sm: 10px !default;
 $table__cell-padding-y--sm: 2px !default;
-$table__cell-color: $color-prim-gray !default;
+
 $table__cell--strong-color: $color-prim-gray-mine-shaft !default;
 $table__cell--head-color: $color-axa-blue !default;
 $table__cell--foot-color: $color-prim-gray-mine-shaft !default;
 $table__cell--action-color: $color-axa-blue !default;
 $table__cell--action-bg: $color-prim-gray-alabaster !default;
+
 $table__cell--sort-width: 8px !default;
 $table__cell--sort-height: 4px !default;
 $table__cell--sort-margin-left: 5px !default;
 $table__cell--sort-color: $color-prim-gray-silver !default;
 $table__cell--sort-active-color: $color-axa-blue !default;
+
 $table__cell--state-ok-color: $color-state-green-malachite !default;
 $table__cell--state-pending-color: $color-prim-red-burnt-sienna !default;
 $table__cell--state-error-color: $color-state-red-shy-tomato !default;
