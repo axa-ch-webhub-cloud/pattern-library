@@ -24,8 +24,8 @@ export class AXASticky extends BaseComponentGlobal {
   willRenderCallback() {
     const { debug } = this;
 
-    this.className = classnames(this.initialClassName, 'o-sticky js-sticky', {
-      'o-sticky--debug': debug,
+    this.className = classnames(this.initialClassName, 'm-sticky js-sticky', {
+      'm-sticky--debug': debug,
     });
   }
 
