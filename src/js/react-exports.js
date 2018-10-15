@@ -149,7 +149,7 @@ export const AXAPolicyFeatures = withReact(AXAPolicyFeaturesWC);
 import {
   AXASticky as AXAStickyWC,
   AXAStickyContainer as AXAStickyContainerWC,
-} from '../components/o-sticky/';
+} from '../components/o-sticky-container/';
 export const AXASticky = withReact(AXAStickyWC);
 export const AXAStickyContainer = withReact(AXAStickyContainerWC);
 

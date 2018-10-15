@@ -97,7 +97,7 @@ export { default as AXAPolicyFeatures } from './components/o-policy-features';
 import {
   AXASticky as _AXASticky,
   AXAStickyContainer as _AXAStickyContainer,
-} from './components/o-sticky';
+} from './components/o-sticky-container';
 export const AXASticky = _AXASticky;
 export const AXAStickyContainer = _AXAStickyContainer;
 
