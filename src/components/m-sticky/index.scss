@@ -1,15 +1,15 @@
-@import "../../../styles/settings/zindex";
+@import "../../styles/settings/zindex";
 
-.o-sticky {
+.m-sticky {
   display: block;
 }
 
-.o-sticky__placeholder {
+.m-sticky__placeholder {
   display: block;
   height: 0;
 }
 
-.o-sticky__box {
+.m-sticky__box {
   display: block;
 
   .is-sticky-sticky > & {
@@ -29,19 +29,19 @@
   }
 }
 
-.o-sticky--debug {
-  $o-sticky--debug: &;
+.m-sticky--debug {
+  $m-sticky--debug: &;
   $sticky-bg: blue;
   $sticky-bg--is-sticky: red;
   $sticky-bg--is-bottom: orange;
   $sticky-color: #fff;
   $sticky-pseudo-color: yellow;
 
-  @at-root .o-sticky__box {
-    $o-sticky__box: &;
+  @at-root .m-sticky__box {
+    $m-sticky__box: &;
 
     @at-root {
-      #{$o-sticky--debug} > #{$o-sticky__box} {
+      #{$m-sticky--debug} > #{$m-sticky__box} {
         background: rgba($sticky-bg, 0.5);
         color: $sticky-color;
 
@@ -52,7 +52,7 @@
         }
       }
 
-      #{$o-sticky--debug}.is-sticky-sticky > #{$o-sticky__box} {
+      #{$m-sticky--debug}.is-sticky-sticky > #{$m-sticky__box} {
         background: rgba($sticky-bg--is-sticky, 0.7);
 
         &::before {
@@ -60,7 +60,7 @@
         }
       }
 
-      #{$o-sticky--debug}.is-sticky-bottom > #{$o-sticky__box} {
+      #{$m-sticky--debug}.is-sticky-bottom > #{$m-sticky__box} {
         background: rgba($sticky-bg--is-bottom, 0.7);
 
         &::before {
@@ -68,19 +68,19 @@
         }
       }
 
-      #{$o-sticky--debug}.is-sticky-in-flow > #{$o-sticky__box} {
+      #{$m-sticky--debug}.is-sticky-in-flow > #{$m-sticky__box} {
         &::before {
           content: 'is-in-flow';
         }
       }
 
-      #{$o-sticky--debug}.is-sticky-scroll-up > #{$o-sticky__box} {
+      #{$m-sticky--debug}.is-sticky-scroll-up > #{$m-sticky__box} {
         &::after {
           content: 'is-scroll-up';
         }
       }
 
-      #{$o-sticky--debug}.is-sticky-scroll-down > #{$o-sticky__box} {
+      #{$m-sticky--debug}.is-sticky-scroll-down > #{$m-sticky__box} {
         &::after {
           content: 'is-scroll-down';
         }
