@@ -19,6 +19,7 @@ export default ({
   const { rows: itemsRows, props: itemsAttrs } = expandData(items);
   const { rows: footersRows, props: footersAttrs } = expandData(footers);
 
+  /* eslint-disable indent */
   return html`
     <table class="o-table ${classnames({
       'o-table--action': action,
