@@ -23,3 +23,7 @@ export const rowFootPropType = PropTypes.oneOfType([
     cells: PropTypes.arrayOf(cellFootPropType),
   }),
 ]);
+
+// @todo: fix missing default exports break the build
+// https://github.com/axa-ch/patterns-library/issues/609
+export default null;

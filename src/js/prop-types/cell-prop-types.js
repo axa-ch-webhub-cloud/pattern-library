@@ -51,3 +51,7 @@ export const cellFootPropType = PropTypes.oneOfType([
     float: floatPropType,
   }),
 ]);
+
+// @todo: fix missing default exports break the build
+// https://github.com/axa-ch/patterns-library/issues/609
+export default null;
