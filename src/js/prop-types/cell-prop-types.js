@@ -14,6 +14,7 @@ export const cellShape = {
   colspan: PropTypes.number,
   scope: tablePropType,
   align: alignPropType,
+  dense: PropTypes.bool,
 };
 
 export const cellPropTypes = PropTypes.oneOfType([
