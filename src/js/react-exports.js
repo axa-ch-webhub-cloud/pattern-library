@@ -155,3 +155,6 @@ export const AXAStickyContainer = withReact(AXAStickyContainerWC);
 
 import AXATestimonialsWC from '../components/o-testimonials/';
 export const AXATestimonials = withReact(AXATestimonialsWC);
+
+import AXATableWC from '../components/o-table/';
+export const AXATable = withReact(AXATableWC);
