@@ -5,6 +5,8 @@ import isEmptyFragment from '../../js/is-empty-fragment';
 import expandData from './js/expand-data';
 
 export default ({
+  action,
+  dense,
   caption,
   captionAlign,
   captionSide,
@@ -18,7 +20,11 @@ export default ({
   const { rows: footersRows, props: footersAttrs } = expandData(footers);
 
   return html`
-    <table class="o-table ${classnames({ 'o-table--all': !isEmptyFragment(childrenFragment) })} ${classes}">
+    <table class="o-table ${classnames({
+      'o-table--action': action,
+      'o-table--all': !isEmptyFragment(childrenFragment),
+      'o-table--dense': dense,
+    })} ${classes}">
       ${childrenFragment}
   
       ${(caption && html`<caption class="o-table__caption ${classnames({
