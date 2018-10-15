@@ -7,8 +7,10 @@
 @import "../../styles/typo/typo-mixins";
 @import "../../styles/trumps/align";
 
-.o-table__root {
-  display: block;
+/// Placeholders
+
+%o-table {
+  width: 100%;
 }
 
 %o-table__caption {
@@ -21,6 +23,14 @@
     padding-left: $table__cell-padding-x--sm;
     padding-right: $table__cell-padding-x--sm;
   }
+}
+
+%o-table__caption--top {
+  caption-side: top;
+}
+
+%o-table__caption--bottom {
+  caption-side: bottom;
 }
 
 %o-table__foot {
@@ -97,82 +107,30 @@
   padding-bottom: $table__cell-padding-y--dense;
 }
 
-%o-table {
-  width: 100%;
+%o-table__cell--state {
+  &::before {
+    @include size($table__cell--state-size);
+
+    display: inline-block;
+    margin-right: $table__cell--state-margin-right;
+    border-radius: $table__cell--state-size;
+    vertical-align: middle;
+    content: '';
+
+    @include respond-down(sm) {
+      margin-right: $table__cell--state-margin-right--sm;
+    }
+  }
+}
+
+/// Class styles
+
+.o-table__root {
+  display: block;
 }
 
 .o-table {
   @extend %o-table;
-}
-
-.o-table--all {
-  @extend %o-table;
-
-  table {
-    @extend %o-table;
-  }
-
-  caption {
-    @extend %o-table__caption;
-  }
-
-  tr {
-    @extend %o-table__row;
-  }
-
-  td,
-  th {
-    @extend %o-table__cell;
-  }
-
-  th {
-    @extend %o-table__cell--head;
-  }
-
-  thead {
-    tr {
-      @extend %o-table__row--head;
-
-      th {
-
-      }
-    }
-  }
-
-  tfoot {
-    @extend %o-table__foot;
-
-    td {
-      @extend %o-table__cell--foot;
-    }
-
-    tr {
-      @extend %o-table__row--foot;
-
-      td {
-
-      }
-
-      &:first-child > td {
-        @extend %o-table__cell--foot-first;
-      }
-    }
-  }
-
-  tbody {
-    tr {
-      td {
-
-      }
-    }
-  }
-}
-
-.o-table--dense {
-  th,
-  td {
-    @extend %o-table__cell--dense;
-  }
 }
 
 .o-table__caption {
@@ -180,24 +138,20 @@
 }
 
 .o-table__caption--top {
-  caption-side: top;
+  @extend %o-table__caption--top;
 }
 
 .o-table__caption--bottom {
-  caption-side: bottom;
+  @extend %o-table__caption--bottom;
 }
 
-.o-table__head {
-
-}
+.o-table__head {}
 
 .o-table__foot {
   @extend %o-table__foot;
 }
 
-.o-table__body {
-
-}
+.o-table__body {}
 
 .o-table__row {
   @extend %o-table__row;
@@ -316,22 +270,6 @@
   }
 }
 
-%o-table__cell--state {
-  &::before {
-    @include size($table__cell--state-size);
-
-    display: inline-block;
-    margin-right: $table__cell--state-margin-right;
-    border-radius: $table__cell--state-size;
-    vertical-align: middle;
-    content: '';
-
-    @include respond-down(sm) {
-      margin-right: $table__cell--state-margin-right--sm;
-    }
-  }
-}
-
 .o-table__cell--state-ok {
   @extend %o-table__cell--state;
 
@@ -402,6 +340,90 @@
         @include clearfix();
       }
     }
+  }
+}
+
+/// Tag styles
+
+.o-table--all {
+  @extend %o-table;
+
+  table {
+    @extend %o-table;
+  }
+
+  caption {
+    @extend %o-table__caption;
+  }
+
+  tr {
+    @extend %o-table__row;
+  }
+
+  td,
+  th {
+    @extend %o-table__cell;
+  }
+
+  th {
+    @extend %o-table__cell--head;
+  }
+
+  thead {
+    tr {
+      @extend %o-table__row--head;
+
+      th {
+
+      }
+    }
+  }
+
+  tfoot {
+    @extend %o-table__foot;
+
+    td {
+      @extend %o-table__cell--foot;
+    }
+
+    tr {
+      @extend %o-table__row--foot;
+
+      td {
+
+      }
+
+      &:first-child > td {
+        @extend %o-table__cell--foot-first;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+
+      }
+    }
+  }
+}
+
+.o-table--caption-top {
+  caption {
+    @extend %o-table__caption--top;
+  }
+}
+
+.o-table--caption-bottom {
+  caption {
+    @extend %o-table__caption--bottom;
+  }
+}
+
+.o-table--dense {
+  th,
+  td {
+    @extend %o-table__cell--dense;
   }
 }
 
