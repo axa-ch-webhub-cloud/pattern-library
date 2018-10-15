@@ -181,3 +181,6 @@ export const AXATr = withReact(AXATrWC);
 
 import AXAThWC from '../components/a-th/';
 export const AXATh = withReact(AXAThWC);
+
+import AXAPaginationWC from '../components/o-pagination/';
+export const AXAPagination = withReact(AXAPaginationWC);

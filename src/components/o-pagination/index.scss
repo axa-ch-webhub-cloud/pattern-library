@@ -1,0 +1,91 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/respond";
+@import "../../styles/typo/typo-mixins";
+
+$pagination__link-color: $color-prim-gray-dusty !default;
+$pagination__link-color--hover: $color-prim-red-burnt-sienna !default;
+$pagination__link-width: 30px !default;
+$pagination__link-width-sm: 22px !default;
+$pagination__link-height: 20px !default;
+$pagination__link-height-sm: 18px !default;
+
+$pagination__link-border-width: 14px !default;
+$pagination__link-border-width-sm: 10px !default;
+$pagination__link-border-height: 3px !default;
+$pagination__link-border-margin: 6px !default;
+
+.o-pagination__root {
+  display: block;
+
+  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+}
+
+.o-pagination {
+
+}
+
+.o-pagination__first {
+
+}
+
+.o-pagination__last {
+
+}
+
+.o-pagination__link {
+  @include typo-tag();
+
+  position: relative;
+
+  display: inline-block;
+  width: $pagination__link-width;
+  height: $pagination__link-height;
+  margin-bottom: $pagination__link-border-height + $pagination__link-border-margin;
+
+  color: $pagination__link-color;
+  text-align: center;
+  text-decoration: none;
+
+  &::after {
+    position: absolute;
+    left: 50%;
+    bottom: -$pagination__link-border-margin;
+
+    display: block;
+    width: $pagination__link-border-width;
+    height: $pagination__link-border-height;
+    margin-left: -($pagination__link-border-width / 2);
+    background: transparent;
+
+    content: '';
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    color: $pagination__link-color--hover;
+    text-decoration: none;
+  }
+
+  @include respond-down(sm) {
+    width: $pagination__link-width-sm;
+    height: $pagination__link-height-sm;
+
+    &::after {
+      width: $pagination__link-border-width-sm;
+      margin-left: -($pagination__link-border-width-sm / 2);
+    }
+  }
+}
+
+
+.o-pagination__link--active {
+  @include typo-tag--semibold();
+
+  color: $pagination__link-color--hover;
+
+  &::after {
+    background: $pagination__link-color--hover;
+  }
+}

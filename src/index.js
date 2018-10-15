@@ -123,3 +123,5 @@ export { default as AXACaption } from './components/a-caption';
 export { default as AXATr } from './components/m-tr';
 
 export { default as AXATh } from './components/a-th';
+
+export { default as AXAPagination } from './components/o-pagination';
