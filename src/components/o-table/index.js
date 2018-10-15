@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import alignPropType from '../../js/prop-types/align-prop-type';
+import valuePropType from '../../js/prop-types/value-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
@@ -11,10 +13,7 @@ const cellPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
   PropTypes.shape({
-    text: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    text: valuePropType,
     value: PropTypes.any,
   }),
 ]);
@@ -37,7 +36,7 @@ class AXATable extends BaseComponentGlobal {
   static propTypes = {
     classes: PropTypes.string,
     caption: PropTypes.string,
-    captionAlign: PropTypes.oneOf(['left', 'center', 'right']),
+    captionAlign: alignPropType,
     captionSide: PropTypes.oneOf(['top', 'bottom']),
     items: itemsType,
     headings: itemsType,
