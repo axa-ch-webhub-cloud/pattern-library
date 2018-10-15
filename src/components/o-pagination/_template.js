@@ -2,8 +2,10 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
-export default ({ classes, items, first, last }) => html`
+export default ({ classes, items, first, last }, childrenFragment) => html`
   <nav class="o-pagination ${classes}">
+    ${childrenFragment}
+
     ${(first && html`
       <a class="o-pagination__first" href=${''} />${raw('&lt;')}</a>
     `) || ''}
