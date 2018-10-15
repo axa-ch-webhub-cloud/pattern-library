@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import alignPropType from '../../js/prop-types/align-prop-type';
+import sidePropType from '../../js/prop-types/side-prop-type';
 import valuePropType from '../../js/prop-types/value-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
@@ -37,7 +38,7 @@ class AXATable extends BaseComponentGlobal {
     classes: PropTypes.string,
     caption: PropTypes.string,
     captionAlign: alignPropType,
-    captionSide: PropTypes.oneOf(['top', 'bottom']),
+    captionSide: sidePropType,
     items: itemsType,
     headings: itemsType,
     footers: itemsType,
