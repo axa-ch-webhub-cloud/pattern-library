@@ -31,7 +31,7 @@ export const cellHeaderPropType = PropTypes.oneOfType([
   }),
 ]);
 
-export const cellDataPropType = PropTypes.oneOfType([
+export const cellBodyPropType = PropTypes.oneOfType([
   cellPropTypes,
   PropTypes.shape({
     ...cellShape,
