@@ -11,20 +11,20 @@ export const tableScopePropType = PropTypes.oneOf([
   'auto',
 ]);
 
-export const tableHeadPropTypes = PropTypes.oneOfType(
+export const tableHeadPropTypes = PropTypes.oneOfType([
   PropTypes.arrayOf(cellHeadPropType),
   PropTypes.arrayOf(rowHeadPropType),
-);
+]);
 
-export const tableBodyPropTypes = PropTypes.oneOfType(
+export const tableBodyPropTypes = PropTypes.oneOfType([
   PropTypes.arrayOf(cellBodyPropType),
   PropTypes.arrayOf(rowBodyPropType),
-);
+]);
 
-export const tableFootPropTypes = PropTypes.oneOfType(
+export const tableFootPropTypes = PropTypes.oneOfType([
   PropTypes.arrayOf(cellFootPropType),
   PropTypes.arrayOf(rowFootPropType),
-);
+]);
 
 // @todo: fix missing default exports break the build
 // https://github.com/axa-ch/patterns-library/issues/609
