@@ -17,8 +17,6 @@ export default ({
   const { rows: itemsRows, props: itemsAttrs } = expandData(items);
   const { rows: footersRows, props: footersAttrs } = expandData(footers);
 
-  console.log(childrenFragment.childNodes);
-
   return html`
     <table class="o-table ${classnames({ 'o-table--all': !isEmptyFragment(childrenFragment) })} ${classes}">
       ${childrenFragment}
