@@ -65,6 +65,31 @@
   }
 }
 
+%o-table__row--action {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    .o-table__cell,
+    td,
+    th {
+      color: $table__cell--action-color;
+      border-top-color: $table__cell--action-color;
+      border-bottom: 1px solid $table__cell--action-color;
+
+      &:first-child {
+        padding-left: $table__cell-padding-x - 1;
+        border-left: 1px solid $table__cell--action-color;
+      }
+
+      &:last-child {
+        // padding-right: $table__cell-padding-x - 1;
+        border-right: 1px solid $table__cell--action-color;
+      }
+    }
+  }
+}
+
 %o-table__cell {
   @include typo-secondary-text();
 
@@ -166,28 +191,7 @@
 }
 
 .o-table__row--action {
-  &:hover,
-  &:focus {
-    cursor: pointer;
-
-    .o-table__cell,
-    td,
-    th {
-      color: $table__cell--action-color;
-      border-top-color: $table__cell--action-color;
-      border-bottom: 1px solid $table__cell--action-color;
-
-      &:first-child {
-        padding-left: $table__cell-padding-x - 1;
-        border-left: 1px solid $table__cell--action-color;
-      }
-
-      &:last-child {
-        // padding-right: $table__cell-padding-x - 1;
-        border-right: 1px solid $table__cell--action-color;
-      }
-    }
-  }
+ @extend %o-table__row--action;
 }
 
 .o-table__cell {
@@ -417,6 +421,12 @@
 .o-table--caption-bottom {
   caption {
     @extend %o-table__caption--bottom;
+  }
+}
+
+.o-table--action {
+  tbody > tr {
+    @extend %o-table__row--action;
   }
 }
 
