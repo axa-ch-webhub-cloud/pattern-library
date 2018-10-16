@@ -40,7 +40,7 @@ class Todos extends Component {
     const date = new Date(event.detail);
     console.log(date, event);
     // eslint-disable-next-line
-    alert(`${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`);
+    alert(`${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`);
   }
 
   handleNewTodoKeyDown(event) {
