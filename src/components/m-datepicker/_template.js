@@ -7,6 +7,9 @@ import {
   TODAY,
 } from '../../js/date';
 
+/**
+ * @param startMonth zero-based
+ */
 const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   let { lowerEndYear, higherEndYear } = yearsRange;
   const date = new Date();
@@ -23,7 +26,7 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   }
 
   if (startMonth !== TODAY) {
-    date.setMonth(startMonth);
+    date.setMonth(startMonth); // zero-based
   }
 
   if (startYear !== TODAY) {
@@ -58,7 +61,7 @@ export default ({
   buttonCancel,
   locale = 'en-uk',
   startYear = TODAY,
-  startMonth = TODAY,
+  startMonth = TODAY, // zero-based
   selectedDay = null,
   lowerEndYear,
   higherEndYear,
