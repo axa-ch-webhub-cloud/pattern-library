@@ -8,7 +8,10 @@ import {
 } from '../../js/date';
 
 /**
- * @param startMonth zero-based
+ * @param yearsRange object with keys: lowerEndYear, higherEndYear
+ * @param startYear number|string year number, or 'TODAY' string
+ * @param startMonth number|string zero-based month number, or 'TODAY' string
+ * @return object with keys: year, month (zero-based)
  */
 const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
   let { lowerEndYear, higherEndYear } = yearsRange;
