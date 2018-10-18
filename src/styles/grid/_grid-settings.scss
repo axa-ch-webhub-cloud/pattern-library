@@ -21,7 +21,9 @@ $grid-breakpoints:
     // Large screen / desktop
     lg: 992px,
     // Extra large screen / wide desktop
-    xl: 1200px
+    xl: 1200px,
+    // Extra large screen / wide desktop
+    xxl: 1440px
   ) !default;
 
 /// Responsive CSS `max-width` at each grid-tier
@@ -31,5 +33,6 @@ $container-max-widths:
     sm: 540px,
     md: 720px,
     lg: 960px,
-    xl: 1140px
+    xl: 1140px,
+    xxl: 1360px
   ) !default;
