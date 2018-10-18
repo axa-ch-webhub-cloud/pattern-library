@@ -12,8 +12,8 @@
   color: $color-prim-white;
 
   .m-header-mobile & {
-    padding-top: $header-top-content-bar-y-padding !important;
-    padding-bottom: $header-top-content-bar-y-padding !important;
+    padding-top: $header-top-content-bar-y-padding;
+    padding-bottom: $header-top-content-bar-y-padding;
   }
 
   @include respond-up(sm) {
@@ -45,8 +45,8 @@
   align-items: center;
 
   .m-header-mobile & {
-    flex-direction: column !important;
-    align-items: center !important;
+    flex-direction: column;
+    align-items: center;
   }
 
   @include respond-up(sm) {
@@ -67,7 +67,7 @@
   margin-top: $header-top-content-bar__button-margin-top;
 
   .m-header-mobile & {
-    margin-top: $header-top-content-bar__button-margin-top !important;
+    margin-top: $header-top-content-bar__button-margin-top;
   }
 
   @include respond-up(sm) {

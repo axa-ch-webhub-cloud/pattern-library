@@ -1,6 +1,8 @@
 import Swipe from '../../../js/swipe';
 import on from '../../../js/on';
 import getAttribute from '../../../js/get-attribute';
+import debounce from '../../../js/debounce';
+import ownerWindow from '../../../js/owner-window';
 import UiEvents, { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 
 class Testimonials extends UiEvents {
@@ -30,6 +32,7 @@ class Testimonials extends UiEvents {
     this.slideIndex = 0;
     this.options = options;
     this.wcNode = wcNode;
+    this.autoRotateTimer = undefined;
 
     this.init();
   }
@@ -45,13 +48,13 @@ class Testimonials extends UiEvents {
     if (!this.autoRotateTimeInMiliseconds) {
       this.autoRotateTimeInMiliseconds = 5000;
     }
-    this.calculateContainerMinHeight();
     // if show all inline is enabled no need to init swipe controls and hide/show slides.
     if (!this.showAllInline) {
       // show if more than 1 slide and not inline.
       if (this.slides.length > 1) {
         this.showControls();
       }
+      this.calculateContainerMinHeight();
       this.hideAllSlides();
       this.showSlide(0);
       this.on();
@@ -74,6 +77,7 @@ class Testimonials extends UiEvents {
     this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.goToNextSlide);
     this.swipedLeft = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_LEFT, this.goToNextSlide);
     this.swipedRight = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_RIGHT, this.goToPreviousSlide);
+    this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, debounce(this.setMinimumHeightOnResize, 300));
   }
 
   off() {
@@ -89,6 +93,17 @@ class Testimonials extends UiEvents {
     if (this.swipedRight) {
       this.swipedRight();
     }
+    if (this._unResize) {
+      this._unResize();
+    }
+  }
+
+  setMinimumHeightOnResize = () => {
+    this.showAllSlides();
+    this.calculateContainerMinHeight();
+    this.hideAllSlides();
+    clearTimeout(this.autoRotateTimer);
+    this.showSlide(0);
   }
 
   initSwipe() {
@@ -109,6 +124,12 @@ class Testimonials extends UiEvents {
   hideAllSlides() {
     for (let i = 0, { length } = this.slides; i < length; i++) {
       this.slides[i].style.display = 'none';
+    }
+  }
+
+  showAllSlides() {
+    for (let i = 0, { length } = this.slides; i < length; i++) {
+      this.slides[i].style.display = 'block';
     }
   }
 
@@ -140,7 +161,7 @@ class Testimonials extends UiEvents {
   autoRotate() {
     // auto rotate until disabled
     if (!this.autoRotateDisabled) {
-      setTimeout(
+      this.autoRotateTimer = setTimeout(
         () => {
           if (!this.autoRotateDisabled) {
             // if disabled meanwhile
@@ -189,6 +210,10 @@ class Testimonials extends UiEvents {
 
     if (this.showAllInline) {
       delete this.showAllInline;
+    }
+
+    if (this.autoRotateTimer) {
+      delete this.autoRotateTimer;
     }
   }
 }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
@@ -7,8 +8,14 @@ import template from './_template';
 
 class AXARadio extends BaseComponentGlobal {
   static tagName = 'axa-radio'
-
-  static get observedAttributes() { return ['input-id', 'error', 'value', 'name', 'checked', 'disabled']; }
+  static propTypes = {
+    inputId: PropTypes.string,
+    error: PropTypes.string,
+    value: PropTypes.string,
+    name: PropTypes.string,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles, template });

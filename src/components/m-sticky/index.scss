@@ -1,0 +1,90 @@
+@import "../../styles/settings/zindex";
+
+.m-sticky {
+  display: block;
+}
+
+.m-sticky__placeholder {
+  display: block;
+  height: 0;
+}
+
+.m-sticky__box {
+  display: block;
+
+  .is-sticky-sticky > & {
+    position: fixed;
+    top: 0;
+    z-index: $zindex-sticky;
+  }
+
+  .is-sticky-bottom > & {
+    position: absolute;
+    bottom: 0;
+    z-index: $zindex-sticky;
+  }
+
+  .is-sticky-in-flow > & {
+    position: static;
+  }
+}
+
+.m-sticky--debug {
+  $m-sticky--debug: &;
+  $sticky-bg: blue;
+  $sticky-bg--is-sticky: red;
+  $sticky-bg--is-bottom: orange;
+  $sticky-color: #fff;
+  $sticky-pseudo-color: yellow;
+
+  @at-root .m-sticky__box {
+    $m-sticky__box: &;
+
+    @at-root {
+      #{$m-sticky--debug} > #{$m-sticky__box} {
+        background: rgba($sticky-bg, 0.5);
+        color: $sticky-color;
+
+        &::before,
+        &::after {
+          content: '';
+          color: $sticky-pseudo-color;
+        }
+      }
+
+      #{$m-sticky--debug}.is-sticky-sticky > #{$m-sticky__box} {
+        background: rgba($sticky-bg--is-sticky, 0.7);
+
+        &::before {
+          content: 'is-sticky';
+        }
+      }
+
+      #{$m-sticky--debug}.is-sticky-bottom > #{$m-sticky__box} {
+        background: rgba($sticky-bg--is-bottom, 0.7);
+
+        &::before {
+          content: 'is-bottom';
+        }
+      }
+
+      #{$m-sticky--debug}.is-sticky-in-flow > #{$m-sticky__box} {
+        &::before {
+          content: 'is-in-flow';
+        }
+      }
+
+      #{$m-sticky--debug}.is-sticky-scroll-up > #{$m-sticky__box} {
+        &::after {
+          content: 'is-scroll-up';
+        }
+      }
+
+      #{$m-sticky--debug}.is-sticky-scroll-down > #{$m-sticky__box} {
+        &::after {
+          content: 'is-scroll-down';
+        }
+      }
+    }
+  }
+}

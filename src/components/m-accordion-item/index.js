@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import template from './_template';
@@ -6,8 +8,13 @@ import AccordionItem from './js/accordion-item';
 
 class AXAAccordionItem extends BaseComponentGlobal {
   static tagName = 'axa-accordion-item'
-
-  static get observedAttributes() { return ['icon', 'header', 'header-secondary', 'header-color', 'multiple']; }
+  static propTypes = {
+    icon: PropTypes.string,
+    header: PropTypes.string,
+    headerSecondary: PropTypes.string,
+    headerColor: PropTypes.oneOf(['blue']),
+    multiple: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles, template });

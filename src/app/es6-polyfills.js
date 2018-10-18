@@ -5,3 +5,5 @@ import 'core-js/es6/promise';
 // IE11 does not support Array.from
 import 'core-js/fn/array/from';
 import 'innersvg-polyfill/innersvg';
+// Needed for url-prop-type check
+import 'url-polyfill';

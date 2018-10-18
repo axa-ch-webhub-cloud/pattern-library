@@ -1,9 +1,16 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
+import fire from '../../../js/fire';
+import DeviceStateObserver from '../../../js/device-state';
+
+export const OK = 'ok';
+
+const IS_NATIVE_WHEN = ['xs', 'sm'];
 
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
+    this.deviceStateObserver = new DeviceStateObserver();
   }
 
   init(outputIso) {
@@ -11,12 +18,37 @@ export default class Datepicker {
     this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
     this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
     this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
+    this.okButton = this.wcNode.querySelector('.js-datepicker__button__Ok');
+    this.cancelButton = this.wcNode.querySelector('.js-datepicker__button__Cancel');
+
     this.listenToChanges();
     this.listenToButtons();
+    this.listenToDeviceStateChange();
+  }
+
+  listenToDeviceStateChange() {
+    this.offListenToDeviceStateChange();
+    this.unListenToDeviceStateChange = this.deviceStateObserver.listen((state) => {
+      if (!this.dropdownMonth || !this.dropdownYear) {
+        return;
+      }
+      const { breakpoint } = state;
+      const isNative = !!~IS_NATIVE_WHEN.indexOf(breakpoint);
+      this.dropdownMonth.setAttribute('native', isNative);
+      this.dropdownYear.setAttribute('native', isNative);
+    });
+
+    this.deviceStateObserver.triggerOnce();
+  }
+
+  offListenToDeviceStateChange() {
+    if (this.unListenToDeviceStateChange) {
+      this.unListenToDeviceStateChange();
+    }
   }
 
   listenToChanges() {
-    this.offListenToChangess();
+    this.offListenToChanges();
     this.unListenToDropdownMonth = on(
       this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '',
       this.handleChangeDropdownMonth, {
@@ -37,7 +69,7 @@ export default class Datepicker {
     );
   }
 
-  offListenToChangess() {
+  offListenToChanges() {
     if (this.unListenToDropdownMonth) {
       this.unListenToDropdownMonth();
     }
@@ -52,30 +84,23 @@ export default class Datepicker {
   listenToButtons() {
     this.offListenToButtons();
     this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), EVENTS.CLICK, () => {
-      // TODO: Axa change event for cancel
+      fire(this.cancelButton, AXA_EVENTS.AXA_CLICK, { value: '', button: 'cancel' }, { bubbles: true, cancelable: true, composed: true });
     });
     this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
-      const value = this.datepickerBody.getAttribute('value');
-      const locale = this.datepickerBody.getAttribute('locale');
+      const day = this.datepickerBody.getAttribute('value');
 
-      const choosenDate = new Date();
+      if (day) {
+        const choosenDate = new Date(year, month, day);
 
-      choosenDate.setMonth(month);
-      choosenDate.setFullYear(year);
-      if (value) {
-        choosenDate.setDate(value);
-      }
-
-      if (this.outputIso) {
-        // TODO: Axa change event for click
-        // eslint-disable-next-line
-        alert(choosenDate.getTime());
+        if (this.outputIso) {
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: OK }, { bubbles: true, cancelable: true, composed: true });
+        } else {
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate, button: OK }, { bubbles: true, cancelable: true, composed: true });
+        }
       } else {
-        // TODO: Axa change event for click
-        // eslint-disable-next-line
-        alert(choosenDate.toLocaleString(locale));
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: '', button: OK }, { bubbles: true, cancelable: true, composed: true });
       }
     });
   }
@@ -91,6 +116,7 @@ export default class Datepicker {
 
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { target } = e;
     const month = target.getAttribute('value');
 
@@ -102,6 +128,7 @@ export default class Datepicker {
 
   handleChangeDropdownYear = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { target } = e;
     const year = target.getAttribute('value');
 
@@ -112,6 +139,7 @@ export default class Datepicker {
 
   handleChangeDatepickerBody = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const { target } = e;
     this.changeDropDowns(target);
   }
@@ -127,5 +155,10 @@ export default class Datepicker {
     if (year || year === 0) {
       this.dropdownYear.setAttribute('value', year);
     }
+  }
+
+  destroy() {
+    this.offListenToDeviceStateChange();
+    this.offListenToChanges();
   }
 }

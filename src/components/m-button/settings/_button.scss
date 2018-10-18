@@ -9,6 +9,9 @@ $button-border-width--sm: 1px !default;
 
 $button__icon-width: 16px !default;
 $button__icon-width--lg: 20px !default;
+$button__icon-padding: 8px !default;
+$button__icon-padding--sm: 5px !default;
+$button__icon-padding--lg: 11px !default;
 
 $button-sm-height: 30px !default;
 $button-md-height: 40px !default;
@@ -37,12 +40,16 @@ $button-color:
       text--ghost--hover: $color-prim-blue-deep-sapphire,
       bg: $color-axa-blue,
       bg--hover: $color-prim-blue-deep-sapphire,
-      bg--disabled: $color-prim-gray-dusty,
+      bg--disabled: $color-button-bg--disabled,
       bg--ghost: transparent,
       bg--ghost--hover: transparent,
       bg--motion: $color-prim-blue-deep-sapphire,
       bg--motion--hover: $color-prim-blue-deep-sapphire,
       text--motion--hover: $color-prim-white,
+      text--disabled: $color-prim-gray-dusty,
+      arrow--disabled: $color-prim-gray-dusty,
+      border--disabled: $color-prim-gray-silver,
+      icon--disabled: $color-prim-gray-silver,
     ),
     red: (
       text: $color-prim-white,
@@ -50,7 +57,7 @@ $button-color:
       text--ghost--hover: $color-prim-red-flamingo,
       bg: $color-prim-red-burnt-sienna,
       bg--hover: $color-prim-red-flamingo,
-      bg--disabled: $color-prim-gray-dusty,
+      bg--disabled: $color-button-bg--disabled,
       bg--ghost: transparent,
       bg--ghost--hover: transparent,
       bg--motion: $color-prim-red-flamingo,
@@ -63,7 +70,7 @@ $button-color:
       text--ghost--hover: $color-prim-blue-dark-indigo,
       bg: $color-prim-white,
       bg--hover: $color-prim-blue-deep-sapphire,
-      bg--disabled: $color-prim-gray-dusty,
+      bg--disabled: $color-button-bg--disabled,
       bg--ghost: transparent,
       bg--ghost--hover: $color-prim-white,
       bg--motion: $color-prim-white,

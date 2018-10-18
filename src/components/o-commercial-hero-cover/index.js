@@ -1,14 +1,23 @@
 import 'picturefill';
 import 'objectFitPolyfill';
+import PropTypes from 'prop-types';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
 
 class AXACommercialHeroCover extends BaseComponentGlobal {
   static tagName = 'axa-commercial-hero-cover'
-
-  static get observedAttributes() { return ['src', 'alt', 'gradient', 'content-align', 'picture-classes', 'hero-object-position']; }
+  static propTypes = {
+    src: urlPropType,
+    alt: PropTypes.string,
+    gradient: PropTypes.oneOf(['white', 'black']),
+    contentAlign: PropTypes.oneOf(['left', 'right']),
+    pictureClasses: PropTypes.string,
+    heroObjectPosition: PropTypes.string,
+  }
 
   constructor() {
     super({

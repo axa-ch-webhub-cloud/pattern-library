@@ -4,6 +4,8 @@ import TodosList from './todos-list';
 import TodoFooter from './todo-footer';
 import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
 
+import { AXADatepicker } from '../../js/react-exports';
+
 const ENTER_KEY = 13;
 
 class Todos extends Component {
@@ -18,6 +20,7 @@ class Todos extends Component {
     this.cancel = this.cancel.bind(this);
     this.clearCompleted = this.clearCompleted.bind(this);
     this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
+    this.handleDatepickerChange = this.handleDatepickerChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.nowShowing = this.nowShowing.bind(this);
 
@@ -31,6 +34,13 @@ class Todos extends Component {
 
   handleChange(event) {
     this.setState({ newTodo: event.target.value });
+  }
+
+  handleDatepickerChange(event) {
+    const date = new Date(event.detail);
+    console.log(date, event);
+    // eslint-disable-next-line
+    alert(`${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`);
   }
 
   handleNewTodoKeyDown(event) {
@@ -125,6 +135,8 @@ class Todos extends Component {
           onCancel={this.cancel}
           key={1}
         />
+
+        <AXADatepicker onAxaChange={this.handleDatepickerChange} />
 
         <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} onNowShowing={this.nowShowing} key={2} />
       </div>

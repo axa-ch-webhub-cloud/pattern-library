@@ -1,6 +1,10 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
+import isEmptyFragment from '../../js/is-empty-fragment';
+
+const DISABLED = 'disabled';
+const ARIA_DISABLED = 'aria-disabled';
 
 export default function ({
   tag = 'button',
@@ -13,7 +17,13 @@ export default function ({
   gpu,
   arrow,
   icon = '',
+  target = '_self',
+  disabled = false,
 }, childrenFragment) {
+  const isTagA = tag.toLowerCase() === 'a';
+  const noChildren = isEmptyFragment(childrenFragment);
+  const hasIcon = icon && !arrow;
+  const hasOnlyIcon = hasIcon && noChildren;
   const buttonClasses = classnames('m-button', 'js-button', classes, {
     [`m-button--${color}`]: color,
     [`m-button--${size}`]: size,
@@ -21,7 +31,8 @@ export default function ({
     'm-button--motion': motion,
     'm-button--gpu': gpu,
     'm-button--arrow': arrow,
-    'm-button--generic-icon': icon && !arrow,
+    'm-button--has-icon': hasIcon && !hasOnlyIcon,
+    'm-button--only-icon': hasOnlyIcon,
   });
 
   let arrowIcon;
@@ -29,17 +40,27 @@ export default function ({
   if (arrow) {
     arrowIcon = raw('<axa-icon icon="arrow" classes="m-button__arrow"></axa-icon>');
   } else if (icon) {
-    genericIcon = raw(`<axa-icon icon="${icon}" classes="m-button__icon"></axa-icon>`);
+    const iconCLasses = classnames({
+      'm-button__icon': !hasOnlyIcon,
+      'm-button__icon--only': hasOnlyIcon,
+    });
+
+    genericIcon = raw(`<axa-icon icon="${icon}" classes="${iconCLasses}"></axa-icon>`);
   }
 
-  if (tag.toLowerCase() === 'a') {
-    return html`<a href="${href}" class="${buttonClasses}">
+  if (isTagA && disabled) {
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}" ${ARIA_DISABLED} tabindex="-1">
+      ${childrenFragment}
+      ${arrowIcon || genericIcon}
+    </a>`;
+  } else if (isTagA) {
+    return html`<a href="${href}" target="${target}" class="${buttonClasses}">
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </a>`;
   }
 
-  return html`<button type="button" class="${buttonClasses}">
+  return html`<button type="button" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </button>`;

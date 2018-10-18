@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -8,8 +10,9 @@ import template from './_template';
 
 class AXAHeaderMain extends BaseComponentGlobal {
   static tagName = 'axa-header-main'
-
-  static get observedAttributes() { return ['first-left']; }
+  static propTypes = {
+    firstLeft: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles, template });

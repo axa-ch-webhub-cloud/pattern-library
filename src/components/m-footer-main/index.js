@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import getAttribute from '../../js/get-attribute';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
@@ -7,8 +9,9 @@ import template from './_template';
 
 class AXAFooterMain extends BaseComponentGlobal {
   static tagName = 'axa-footer-main'
-
-  static get observedAttributes() { return ['light']; }
+  static propTypes = {
+    light: PropTypes.bool,
+  }
 
   constructor() {
     super({ styles, template });

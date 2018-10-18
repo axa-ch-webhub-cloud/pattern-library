@@ -1,25 +1,24 @@
 import html from 'nanohtml';
-import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
-const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
+const arrowIcon = (iconsPathPrefix = 'true') => [html`<axa-icon icon="angle-bracket-down" path-prefix="${iconsPathPrefix}" classes="m-dropdown__icon"></axa-icon>`];
 
-const nativeSelect = ({ title, items, size, value }) => html`<div class="${classnames('m-dropdown__select-wrap', {
+const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,
   })}" tabindex="0">
-    <select class="${classnames('m-dropdown__select', {
+    <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', {
       [`m-dropdown__select--${size}`]: size,
     })}">
     ${title && html`<option value="" disabled hidden selected class="m-dropdown__select-option--hidden" >${title}</option>`}
     ${Array.isArray(items) &&
-      items.map(({ name, value: itemValue, url }) =>
-        html`<option value="${itemValue}" data-url="${url}" ${
-          itemValue === value ? 'selected' : ''
+      items.map(({ name, value: itemValue, url }, index) =>
+        html`<option value="${itemValue || index}" data-url="${url}" ${
+          (itemValue || index) === value ? 'selected' : ''
         }>${name}</option>`)}
     </select>
     <div class="${classnames('m-dropdown__select-icon', {
       [`m-dropdown__select-icon--${size}`]: size,
-    })}">${raw(arrowIcon)}</div>
+    })}">${arrowIcon(iconsPathPrefix)}</div>
   </div>`;
 
 const getTitle = (value, items, title) => {
@@ -36,11 +35,11 @@ const getTitle = (value, items, title) => {
   return selected.length === 1 ? selected[0].name : title;
 };
 
-const enhancedSelect = ({ title, items, size, value }) => [
+const enhancedSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) => [
   html`<button type="button" class="${classnames('m-dropdown__toggle js-dropdown__toggle', {
     [`m-dropdown__toggle--${size}`]: size,
   })}">
-    ${getTitle(value, items, title) || ''}${raw(arrowIcon)}
+    ${getTitle(value, items, title) || ''}${arrowIcon(iconsPathPrefix)}
   </button>`,
   html`<ul class="m-dropdown__content js-dropdown__content">
     ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => html`

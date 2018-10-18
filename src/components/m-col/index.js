@@ -1,16 +1,23 @@
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 
 const reWhiteSpace = /\s+/;
-const reModifiers = /(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|first|last))?/;
-const validModifiers = (modifier) => {
+const reSize = /\d+|(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|))?/;
+const reOrder = /\d+|first|last|(?:xs|sm|md|lg|xl)-(?:\d+|first|last)/;
+const reOffset = /\d+|(?:xs|sm|md|lg|xl)(?:-\d+)?/;
+const validModifiers = reModifiers => (modifier) => {
   const type = typeof modifier;
 
   return type === 'number' || (type === 'string' && reModifiers.test(modifier));
 };
+const validSize = validModifiers(reSize);
+const validOrder = validModifiers(reOrder);
+const validOffset = validModifiers(reOffset);
 const toArray = (modifier) => {
   if (Array.isArray(modifier)) {
     return modifier;
@@ -22,13 +29,25 @@ const toArray = (modifier) => {
 
   return [modifier];
 };
+// eslint-disable-next-line consistent-return
+const modifierProp = (filter, format) => (props, propName, componentName) => {
+  const prop = props[propName];
+  const modifiers = toArray(prop);
+
+  if (prop && modifiers.length !== modifiers.filter(validModifiers).length) {
+    console.log(props, modifiers);
+    return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`, expected ${format} - multiple modifiers separated by spaces.`);
+  }
+};
 
 class AXACol extends BaseComponentGlobal {
   static tagName = 'axa-col'
-
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  static get observedAttributes() { return ['classes', 'size', 'order', 'offset']; }
+  static propTypes = {
+    classes: PropTypes.string,
+    size: modifierProp(validSize, '`number|xs|sm|md|lg|xl` optionally followed by `-number`'),
+    order: modifierProp(validOrder, '`number|first|last|xs|sm|md|lg|xl` optionally followed by `-(number|first|last)`'),
+    offset: modifierProp(validOffset, '`number|xs|sm|md|lg|xl` optionally followed by `-(number|auto|first|last)`'),
+  }
 
   constructor() {
     super({ styles });
@@ -50,9 +69,9 @@ class AXACol extends BaseComponentGlobal {
     offset = toArray(offset);
 
     /* eslint-disable no-shadow */
-    size = size.filter(validModifiers).map(size => `u-col-${size}`);
-    order = order.filter(validModifiers).map(order => `u-order-${order}`);
-    offset = offset.filter(validModifiers).map(offset => `u-offset-${offset}`);
+    size = size.filter(validSize).map(size => `u-col-${size}`);
+    order = order.filter(validOrder).map(order => `u-order-${order}`);
+    offset = offset.filter(validOffset).map(offset => `u-offset-${offset}`);
     /* eslint-enable no-shadow */
 
     this.className = classnames('m-col', { 'u-col': !size || !size.length }, classes, size, order, offset);
