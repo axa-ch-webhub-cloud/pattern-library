@@ -41,7 +41,7 @@ $policy-features-margin-20: 20px;
 }
 
 .o-policy-features__title {
-  @include typo-small-module-title--publico();
+  @include typo-slice-title--publico();
   text-align: center;
 }
 
