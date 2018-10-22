@@ -16,11 +16,14 @@ function getAttributes(node) {
   const { attributes } = node;
   const { length } = attributes;
 
+  const { constructor: { propTypes = {} } } = node;
+
   for (let i = 0; i < length; ++i) {
     const attribute = attributes[i];
     const { name } = attribute;
+    const key = camelize(name);
 
-    out[camelize(name)] = getAttribute(attribute);
+    out[key] = getAttribute(attribute, null, propTypes[key]);
   }
 
   return out;

@@ -107,11 +107,13 @@ const withUpdate = Base =>
             lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
           }
 
+          const { constructor: { propTypes } } = this;
+
           observedAttributes.forEach((attr) => {
             const key = camelize(attr);
 
             if (this.hasAttribute(attr)) {
-              const value = getAttribute(this, attr);
+              const value = getAttribute(this, attr, propTypes[key]);
               const hasKey = this._hasKeys[key];
 
               this._props[key] = value;
@@ -153,7 +155,8 @@ const withUpdate = Base =>
 
       // add, update attribute
       if (this.hasAttribute(name)) {
-        this[key] = toProp(newValue, name);
+        const { constructor: { propTypes } } = this;
+        this[key] = toProp(newValue, name, propTypes[key]);
       } else { // delete attribute
         this[key] = null;
       }
