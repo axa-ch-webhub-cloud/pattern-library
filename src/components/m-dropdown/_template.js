@@ -11,10 +11,12 @@ const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) =
     })}">
     ${title && html`<option value="" disabled hidden selected class="m-dropdown__select-option--hidden" >${title}</option>`}
     ${Array.isArray(items) &&
-      items.map(({ name, value: itemValue, url }, index) =>
-        html`<option value="${itemValue || index}" data-url="${url}" ${
-          (itemValue || index) === value ? 'selected' : ''
-        }>${name}</option>`)}
+      items.map(({ name, value: itemValue, url }, index) => {
+        const _itemValue = itemValue === null || itemValue === undefined ? index : itemValue;
+        return html`<option value="${_itemValue}" data-url="${url}" ${
+          _itemValue === value ? 'selected' : ''
+        }>${name}</option>`;
+      })}
     </select>
     <div class="${classnames('m-dropdown__select-icon', {
       [`m-dropdown__select-icon--${size}`]: size,
