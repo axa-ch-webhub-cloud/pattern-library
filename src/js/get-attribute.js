@@ -1,4 +1,5 @@
 import toProp from './to-prop';
+import camelize from './camelize';
 
 /**
  * Get an HTML attribute's value by it's name.
@@ -6,10 +7,14 @@ import toProp from './to-prop';
  *
  * @param {Element|Attribute} node - The HTML element to get an attribute from.
  * @param {String} [name] - The attribute's name.
+ * @param {String} [type] - The attribute's type.
  * @returns {*} - Returns the value of the attribute - in case of valid JSON the result of `JSON.parse` else plain text.
  */
-function getAttribute(node, name) {
-  if (typeof node.hasAttribute === 'function' && !node.hasAttribute(name)) {
+function getAttribute(node, name, type) {
+  let derivedType = type;
+  const isElementNode = node.nodeType === 1;
+
+  if (isElementNode && !node.hasAttribute(name)) {
     return false;
   }
 
@@ -24,7 +29,12 @@ function getAttribute(node, name) {
     value = node.getAttribute(name);
   }
 
-  value = toProp(value, name);
+  if (!type && isElementNode) {
+    const { constructor: { propTypes = {} } } = node;
+    derivedType = propTypes[camelize(name)];
+  }
+
+  value = toProp(value, name, derivedType);
 
   return value;
 }
