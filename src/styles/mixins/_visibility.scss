@@ -1,7 +1,7 @@
 @import "../grid/grid-settings";
 @import "./respond";
 
-/// Genereate responsive visibility classes to hide an element.
+/// Generate responsive visibility classes to hide an element.
 ///
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @mixin hide($breakpoints: $grid-breakpoints) {

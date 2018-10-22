@@ -1,4 +1,4 @@
-import StickySpy from './sticky-spy';
+import StickySpy from '../../o-sticky-container/js/sticky-spy';
 import Enum from '../../../js/enum';
 import { subscribe } from '../../../js/pubsub';
 import { add, remove } from '../../../js/class-list';

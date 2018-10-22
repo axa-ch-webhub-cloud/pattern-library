@@ -1,0 +1,5 @@
+@import "../mixins/align";
+
+.u-align {
+  @include align();
+}
