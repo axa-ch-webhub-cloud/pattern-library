@@ -3,6 +3,8 @@ import classnames from 'classnames';
 
 const arrowIcon = (iconsPathPrefix = 'true') => [html`<axa-icon icon="angle-bracket-down" path-prefix="${iconsPathPrefix}" classes="m-dropdown__icon"></axa-icon>`];
 
+const getItemValue = (itemValue, index) => itemValue === null || itemValue === undefined ? index : itemValue;
+
 const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,
   })}" tabindex="0">
@@ -12,7 +14,7 @@ const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) =
     ${title && html`<option value="" disabled hidden selected class="m-dropdown__select-option--hidden" >${title}</option>`}
     ${Array.isArray(items) &&
       items.map(({ name, value: itemValue, url }, index) => {
-        const _itemValue = itemValue === null || itemValue === undefined ? index : itemValue;
+        const _itemValue = getItemValue(itemValue, index);
         return html`<option value="${_itemValue}" data-url="${url}" ${
           _itemValue === value ? 'selected' : ''
         }>${name}</option>`;
@@ -44,11 +46,14 @@ const enhancedSelect = ({ title, items, size, value, iconsPathPrefix = 'true' })
     ${getTitle(value, items, title) || ''}${arrowIcon(iconsPathPrefix)}
   </button>`,
   html`<ul class="m-dropdown__content js-dropdown__content">
-    ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => html`
+    ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => {
+    const _itemValue = getItemValue(itemValue, index);
+    return html`
       <li class="m-dropdown__item">
-        <a class="m-dropdown__link" data-index="${itemValue || index}" data-selected="${itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
+        <a class="m-dropdown__link" data-index="${_itemValue}" data-selected="${_itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
       </li>
-  `)}
+    `;
+  })}
   </ul>`,
 ];
 
