@@ -91,10 +91,10 @@ export default class Datepicker {
       const month = this.datepickerBody.getAttribute('month');
       const dayAsValue = this.datepickerBody.getAttribute('value'); // new value - after click on a day
       let dayAsDay = this.datepickerBody.getAttribute('day'); // prev value - prior click on a day
-      if ('false' === dayAsDay) {
-        dayAsDay = false
+      if (dayAsDay === 'false') {
+        dayAsDay = false;
       }
-      const day = dayAsValue || dayAsDay
+      const day = dayAsValue || dayAsDay;
 
       if (day) {
         const choosenDate = new Date(year, month, day);
