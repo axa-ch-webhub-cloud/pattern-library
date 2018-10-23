@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import toProp from './to-prop';
 import camelize from './camelize';
 
@@ -11,11 +13,17 @@ import camelize from './camelize';
  * @returns {*} - Returns the value of the attribute - in case of valid JSON the result of `JSON.parse` else plain text.
  */
 function getAttribute(node, name, type) {
-  let derivedType = type;
   const isElementNode = node.nodeType === 1;
+  const { constructor: { propTypes = {} } } = node;
+  let derivedType = type;
+
+  if (!type && isElementNode) {
+    const key = camelize(name);
+    derivedType = propTypes[key];
+  }
 
   if (isElementNode && !node.hasAttribute(name)) {
-    return false;
+    return derivedType === PropTypes.bool ? false : undefined;
   }
 
   // if it's an attribute node, get it's value directly
@@ -27,11 +35,6 @@ function getAttribute(node, name, type) {
     ({ name } = node);
   } else { // fetch the correct attribute from the Element by it's name
     value = node.getAttribute(name);
-  }
-
-  if (!type && isElementNode) {
-    const { constructor: { propTypes = {} } } = node;
-    derivedType = propTypes[camelize(name)];
   }
 
   value = toProp(value, name, derivedType);
