@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
 function getShim(propType) {
-  function shim() {
-    return propType;
+  function shim(...args) {
+    return propType(...args);
   }
 
   Object.keys(propType).forEach((key) => {
