@@ -11,7 +11,7 @@ import DisclaimerHandler from './js/disclaimer-handler';
 
 class AXACookieDisclaimer extends BaseComponentGlobal {
   static tagName = 'axa-cookie-disclaimer'
-  static PropTypes = {
+  static propTypes = {
     classes: PropTypes.string,
     buttonName: PropTypes.string,
     title: PropTypes.string,
