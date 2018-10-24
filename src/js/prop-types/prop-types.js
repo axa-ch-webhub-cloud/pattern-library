@@ -6,16 +6,23 @@ function getShim(propType) {
     return propType(...args);
   }
 
+  // guard cyclic refs causing max call stack errors
+  shim.__isShimmed = true;
+
   // make sure to also shim `isRequired`, etc.
   Object.keys(propType).reduce(shimKeys, propType);
 
   return shim;
 }
 
-function shimKeys(propType, key) {
-  propType[key] = getShim(propType[key]);
+function shimKeys(propTypes, key) {
+  const propType = propTypes[key];
 
-  return propType;
+  if (!propType.__isShimmed) {
+    propTypes[key] = getShim(propType);
+  }
+
+  return propTypes;
 }
 
 const ReactPropTypes = PropTypes;
