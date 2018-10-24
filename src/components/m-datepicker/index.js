@@ -31,7 +31,7 @@ class AXADatepicker extends BaseComponentGlobal {
     selectedDay: PropTypes.number,
     lowerEndYear: PropTypes.number,
     higherEndYear: PropTypes.number,
-    outputIso: PropTypes.string,
+    outputIso: PropTypes.bool,
   }
 
   // Specify observed attributes so that attributeChangedCallback will work,
