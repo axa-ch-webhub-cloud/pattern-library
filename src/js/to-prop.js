@@ -16,17 +16,22 @@ function toTypedProp(value, name, type) {
   // @todo: complex PropTypes like `oneOf`, `oneOfType`, `arrayOf`, etc. are missing
   switch (type) {
     case PropTypes.string:
+    case PropTypes.string.isRequired:
       return value;
 
     case PropTypes.bool:
+    case PropTypes.bool.isRequired:
       if (!value || (name === value)) {
         return true;
       }
 
     // eslint-disable no-fallthrought
     case PropTypes.number:
+    case PropTypes.number.isRequired:
     case PropTypes.object:
+    case PropTypes.object.isRequired:
     case PropTypes.array:
+    case PropTypes.array.isRequired:
     default:
     // eslint-enable no-fallthrought
 
