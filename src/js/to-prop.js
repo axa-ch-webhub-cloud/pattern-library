@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from './prop-types';
 
 const regexJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\s])*[\]}])\s*$/;
 
@@ -12,6 +12,8 @@ const regexJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[
  */
 function toTypedProp(value, name, type) {
   let newValue = value;
+
+  // @todo: complex PropTypes like `oneOf`, `oneOfType`, `arrayOf`, etc. are missing
   switch (type) {
     case PropTypes.string:
       return value;

@@ -27,13 +27,13 @@ $policy-feature-item-content-width-lg: 255px;
 
 .m-policy-feature-item__title {
   @include word-break();
-  @include typo-secondary-text--semibold();
+  @include typo-text-longer--bold();
   text-align: center;
 }
 
 .m-policy-feature-item__description {
   @include word-break();
-  @include typo-tag();
+  @include typo-secondary-text();
   text-align: center;
 }
 

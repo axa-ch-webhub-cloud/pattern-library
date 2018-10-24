@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 import classnames from 'classnames';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';

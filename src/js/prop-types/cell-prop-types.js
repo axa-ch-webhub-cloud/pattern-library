@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from './prop-types';
 
 import valuePropType from './value-prop-type';
 import tablePropType from './table-prop-types';
