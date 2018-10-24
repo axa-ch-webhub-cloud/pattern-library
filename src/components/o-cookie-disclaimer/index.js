@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
@@ -11,7 +11,7 @@ import DisclaimerHandler from './js/disclaimer-handler';
 
 class AXACookieDisclaimer extends BaseComponentGlobal {
   static tagName = 'axa-cookie-disclaimer'
-  static PropTypes = {
+  static propTypes = {
     classes: PropTypes.string,
     buttonName: PropTypes.string,
     title: PropTypes.string,

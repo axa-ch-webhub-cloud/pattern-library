@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from './prop-types';
 
 import toProp from './to-prop';
 import camelize from './camelize';
