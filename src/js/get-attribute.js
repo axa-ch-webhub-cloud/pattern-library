@@ -23,7 +23,7 @@ function getAttribute(node, name, type) {
   }
 
   if (isElementNode && !node.hasAttribute(name)) {
-    return derivedType === PropTypes.bool ? false : undefined;
+    return (derivedType === PropTypes.bool || derivedType === PropTypes.bool.isRequired) ? false : undefined;
   }
 
   // if it's an attribute node, get it's value directly
