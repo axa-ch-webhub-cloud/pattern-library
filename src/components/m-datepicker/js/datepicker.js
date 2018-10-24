@@ -89,7 +89,12 @@ export default class Datepicker {
     this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
-      const day = this.datepickerBody.getAttribute('value');
+      const dayAsValue = this.datepickerBody.getAttribute('value'); // new value - after click on a day
+      let dayAsDay = this.datepickerBody.getAttribute('day'); // prev value - prior click on a day
+      if (dayAsDay === 'false') {
+        dayAsDay = false;
+      }
+      const day = dayAsValue || dayAsDay;
 
       if (day) {
         const choosenDate = new Date(year, month, day);

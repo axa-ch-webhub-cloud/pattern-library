@@ -7,10 +7,10 @@
 @import "../m-button/mixins/button";
 
 $picture-z-index: -1;
-$hero-mobile-height: 256px;
-$hero-medium-height: 376px;
-$hero-large-height: 490px;
-$hero-xl-height: 560px;
+$hero-xs-height: 256px;
+$hero-md-height: 376px;
+$hero-lg-height: 480px;
+$hero-xxl-height: 560px;
 $margin-info-mobile: 140px;
 $margin-10: 10px;
 $margin-20: 20px;
@@ -23,7 +23,7 @@ $margin-30: 30px;
 .o-commercial-hero-cover__header {
   position: relative;
 
-  min-height: $hero-mobile-height;
+  min-height: $hero-xs-height;
   margin-bottom: 0;
   display: flex;
 
@@ -34,11 +34,11 @@ $margin-30: 30px;
   color: $color-text;
 
   @include respond-up(md) {
-    min-height: $hero-medium-height;
+    min-height: $hero-md-height;
   }
 
   @include respond-up(lg) {
-    height: $hero-large-height;
+    height: $hero-lg-height;
 
     &.o-commercial-hero-cover__header__gradient-white {
       background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
@@ -61,8 +61,8 @@ $margin-30: 30px;
     }
   }
 
-  @include respond-up(xl) {
-    height: $hero-xl-height;
+  @include respond-up(xxl) {
+    height: $hero-xxl-height;
   }
 }
 
@@ -78,19 +78,19 @@ $margin-30: 30px;
   display: block;
 
   width: 100%;
-  height: $hero-mobile-height;
+  height: $hero-xs-height;
   content: '';
 
   @include respond-up(md) {
-    height: $hero-medium-height;
+    height: $hero-md-height;
   }
 
   @include respond-up(lg) {
-    height: $hero-large-height;
+    height: $hero-lg-height;
   }
 
-  @include respond-up(xl) {
-    height: $hero-xl-height;
+  @include respond-up(xxl) {
+    height: $hero-xxl-height;
   }
 }
 
@@ -142,13 +142,19 @@ $margin-30: 30px;
 
 .o-commercial-hero-cover__title {
   @include word-break();
-  @include typo-small-module-title--publico();
-  margin-top: $margin-20;
+  @include typo-slice-title--publico();
+
+  margin-top: $margin-10;
+
+  @include respond-up(md) {
+    margin-top: $margin-20;
+  }
 }
 
 .o-commercial-hero-cover__text {
   @include word-break();
   @include typo-text-longer();
+  @include typo-secondary-text();
   margin-top: $margin-20;
 }
 

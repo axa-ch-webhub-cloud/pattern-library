@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from './prop-types';
 
 import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './cell-prop-types';
 import { rowHeadPropType, rowBodyPropType, rowFootPropType } from './row-prop-types';

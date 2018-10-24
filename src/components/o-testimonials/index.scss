@@ -14,7 +14,7 @@ $o-testimonials-title-margin-top-sm: 50px;
 $o-testimonials-subtitle-margin-top-xs: 20px;
 $o-testimonials-navigator-margin-bottom-xs: 70px;
 $o-testimonials-navigator-margin-bottom-sm: 80px;
-$o-testimonials-navigator-margin-top-xs: 10px;
+$o-testimonials-navigator-margin-top-xs: 30px;
 $o-testimonials-navigator-margin-horizontal-xs: 5px;
 $o-testimonials-navigator-margin-horizontal-sm: 15px;
 $o-testimonials-navigator-margin-horizontal-lg: 15px;
@@ -38,7 +38,7 @@ $o-testimonials-author-position-bottom: -40px;
 }
 
 .o-testimonials__title {
-  @include typo-small-module-title--publico();
+  @include typo-slice-title--publico();
 
   margin: $o-testimonials-title-margin-top-xs $o-testimonials-margin-30 0 $o-testimonials-margin-30;
   text-align: center;
