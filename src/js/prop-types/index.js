@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 export { default as alignPropType } from './align-prop-type';
 export * from './cell-prop-types';
 export { default as floatPropType } from './float-prop-type';
@@ -12,17 +10,4 @@ export * from './table-prop-types';
 export { default as urlPropType } from './url-prop-type';
 export { default as valuePropType } from './value-prop-type';
 
-const ReactPropTypes = {
-  array: PropTypes.array,
-  bool: PropTypes.bool,
-  func: PropTypes.func,
-  number: PropTypes.number,
-  object: PropTypes.object,
-  string: PropTypes.string,
-  symbol: PropTypes.symbol,
-};
-
-export default {
-  ...PropTypes,
-  ...ReactPropTypes,
-};
+export default from './prop-types';
