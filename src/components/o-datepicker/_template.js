@@ -12,6 +12,7 @@ export default ({
 }, documentFragment, wcNode) => {
   wcNode.datepicker.locale = locale;
   const { localeValue, value } = wcNode.datepicker;
+  // when falsy, leave out the output-iso attr., otherwise the "false" string value means true within <axa-m-datepicker>
   return html`
     <article class=${classes}>
       ${localeValue ?
