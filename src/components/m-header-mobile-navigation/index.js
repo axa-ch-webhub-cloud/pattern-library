@@ -1,4 +1,4 @@
-import PropTypes from '../../js/prop-types';
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 import classnames from 'classnames';
 
 import styles from './index.scss';
