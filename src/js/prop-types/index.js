@@ -1,3 +1,5 @@
+import PropTypes from './prop-types';
+
 export { default as alignPropType } from './align-prop-type';
 export * from './cell-prop-types';
 export { default as floatPropType } from './float-prop-type';
@@ -10,4 +12,4 @@ export * from './table-prop-types';
 export { default as urlPropType } from './url-prop-type';
 export { default as valuePropType } from './value-prop-type';
 
-export default from './prop-types';
+export default PropTypes;
