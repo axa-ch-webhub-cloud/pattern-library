@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from '../../js/prop-types';
 import classnames from 'classnames';
 
 import getAttribute from '../../js/get-attribute';

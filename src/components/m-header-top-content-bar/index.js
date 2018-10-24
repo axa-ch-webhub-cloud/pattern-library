@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from '../../js/prop-types';
 
 import styles from './index.scss';
 import template from './_template';

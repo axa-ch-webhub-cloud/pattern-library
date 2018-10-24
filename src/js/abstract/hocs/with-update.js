@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from '../../prop-types';
 
 import PropertyExistsException from '../utils/property-exists-exception';
 import lifecycleLogger from '../utils/lifecycle-logger';
