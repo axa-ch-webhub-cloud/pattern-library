@@ -7,17 +7,19 @@ function getShim(propType) {
   }
 
   // make sure to also shim `isRequired`, etc.
-  Object.keys(propType).forEach((key) => {
-    shim[key] = getShim(propType[key]);
-  });
+  Object.keys(propType).reduce(shimKeys, propType);
 
   return shim;
 }
 
+function shimKeys(propType, key) {
+  propType[key] = getShim(propType[key]);
+
+  return propType;
+}
+
 const ReactPropTypes = PropTypes;
 
-Object.keys(ReactPropTypes).forEach((key) => {
-  ReactPropTypes[key] = getShim(ReactPropTypes[key]);
-});
+Object.keys(ReactPropTypes).reduce(shimKeys, ReactPropTypes);
 
 export default ReactPropTypes;
