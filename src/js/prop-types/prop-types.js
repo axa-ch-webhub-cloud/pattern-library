@@ -6,6 +6,7 @@ function getShim(propType, deeper = true) {
     return propType(...args);
   }
 
+  // guard cyclic refs causing max call stack errors
   if (deeper) {
     // make sure to also shim `isRequired`, etc.
     Object.keys(propType).reduce(shimKeys, propType);
