@@ -148,6 +148,11 @@ There are a few key principles you have to know:
      1. first custom elements like `<axa-foo>...</axa-foo>` 
      2. last it's definition by JS (at end of body)
 - HTML attributes (always `'string'`) VS DOM properties ([first class props](#first-class-props))
+   - [HTML boolean attributes](https://www.w3.org/TR/html5/infrastructure.html#sec-boolean-attributes) are special, i.e.:
+   
+      missing attribute -> `false`,
+   
+      existing attribute `checked`, or empty string value `checked=""` or same value `checked="checked"` -> `true`
 - [Key Terms](#key-terms)
 - [Lifecycle phases](#lifecycle-phases)
 
