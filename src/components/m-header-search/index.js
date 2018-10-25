@@ -20,8 +20,8 @@ class AXAHeaderSearch extends BaseComponentGlobal {
     return ['action', 'href', 'method'];
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   /**

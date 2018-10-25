@@ -5,8 +5,8 @@ import defineOnce from '../../js/define-once';
 class AXAHeader extends BaseComponentGlobal {
   static tagName = 'axa-header'
 
-  constructor() {
-    super({ styles });
+  init() {
+    super.init({ styles });
 
     this.provideContext();
   }

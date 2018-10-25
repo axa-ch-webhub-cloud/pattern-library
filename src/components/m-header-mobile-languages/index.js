@@ -22,10 +22,8 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
     value: valuePropType,
   }
 
-  unClickEnd
-
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   handleClick = (e) => {

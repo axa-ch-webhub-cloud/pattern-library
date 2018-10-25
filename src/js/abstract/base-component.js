@@ -14,10 +14,19 @@ const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRend
  * and if yes appends it. It also appends custom styles to the top of the dom tree.
  */
 class BaseComponent extends HTMLElement {
-  constructor(options) {
-    super(options);
+  constructor(self) {
+    // eslint-disable-next-line no-param-reassign
+    self = super(self);
+    console.log('HTMLElement constructor super called');
 
+    self.init();
+
+    return self;
+  }
+
+  init() {
     this._id = getId(this.nodeName);
+    this._initialised = true;
   }
 
   static uuidv4() {

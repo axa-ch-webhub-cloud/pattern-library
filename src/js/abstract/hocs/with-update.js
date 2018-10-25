@@ -21,8 +21,8 @@ const withUpdate = Base =>
       return derivedAttributes;
     }
 
-    constructor(options) {
-      super(options);
+    init(options) {
+      super.init(options);
 
       this._isConnected = false;
       this.props = {};
@@ -40,6 +40,8 @@ const withUpdate = Base =>
           }
         });
       }
+
+      console.log(`>>> init withUpdate() ${this.nodeName}#${this._id}`);
     }
 
     /**
@@ -91,6 +93,8 @@ const withUpdate = Base =>
       if (this.updated) {
         this.updated();
       }
+
+      console.log(`>>> connectedCallback withUpdate() ${this.nodeName}#${this._id}`);
     }
 
     /**

@@ -49,8 +49,8 @@ class AXACol extends BaseComponentGlobal {
     offset: modifierProp(validOffset, '`number|xs|sm|md|lg|xl` optionally followed by `-(number|auto|first|last)`'),
   }
 
-  constructor() {
-    super({ styles });
+  init() {
+    super.init({ styles });
 
     // does this provide context (See docs for context) ?
     // this.provideContext()

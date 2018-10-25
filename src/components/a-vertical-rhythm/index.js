@@ -8,8 +8,8 @@ import template from './_template';
 class AXAVerticalRhythm extends BaseComponentGlobal {
   static tagName = 'axa-vertical-rhythm'
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {

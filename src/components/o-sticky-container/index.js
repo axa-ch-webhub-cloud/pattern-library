@@ -12,8 +12,8 @@ export class AXAStickyContainer extends BaseComponentGlobal {
     debug: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles });
+  init() {
+    super.init({ styles });
 
     this.provideContext();
   }

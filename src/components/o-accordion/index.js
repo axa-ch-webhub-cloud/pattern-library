@@ -6,8 +6,8 @@ import styles from './index.scss';
 class AXAAccordion extends BaseComponentGlobal {
   static tagName = 'axa-accordion'
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.provideContext();
   }

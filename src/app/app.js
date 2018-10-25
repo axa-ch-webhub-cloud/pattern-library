@@ -1,4 +1,4 @@
-import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
+// import 'document-register-element/build/document-register-element'; // ES2015
 import wcdomready from '../js/wcdomready';
 
 console.log('🚀 patterns library 🚀');

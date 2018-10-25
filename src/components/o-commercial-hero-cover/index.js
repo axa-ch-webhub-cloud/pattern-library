@@ -19,8 +19,8 @@ class AXACommercialHeroCover extends BaseComponentGlobal {
     heroObjectPosition: PropTypes.string,
   }
 
-  constructor() {
-    super({
+  init() {
+    super.init({
       styles, template,
     });
   }
