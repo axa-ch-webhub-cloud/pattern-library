@@ -9,13 +9,13 @@ export default ({ classes, items, first, last }, childrenFragment) => html`
     ${(first && html`
       <a class="o-pagination__first" href=${''} />${raw('&lt;')}</a>
     `) || ''}
-    
-    ${Array.isArray(items) && items.map(({ href, active }, index) => html`
+
+    ${Array.isArray(items) && items.map(({ href, active, page }, index) => html`
       <a class="o-pagination__link ${classnames({
         'o-pagination__link--active': active,
-      })}" href=${href}/>${index + 1}</a>
+      })}" href=${href}/>${page || index + 1}</a>
     `)}
-    
+
     ${(last && html`
       <a class="o-pagination__last" href=${''} />${raw('&gt;')}</a>
     `) || ''}
