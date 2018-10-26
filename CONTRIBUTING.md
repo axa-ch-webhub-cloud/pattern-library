@@ -18,6 +18,7 @@
       - [First Class Props](#first-class-props)
     - [Lifecycle Phases](#lifecycle-phases)
       - [`constructor()`](#constructor)
+      - [`init()`](#init)
       - [`connectedCallback()`](#connectedcallback)
       - [`contextCallback(contextNode)`](#contextcallbackcontextnode)
       - [`attributeChangedCallback(name, oldValue, newValue)`](#attributechangedcallbackname-oldvalue-newvalue)
@@ -214,8 +215,11 @@ A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/U
 
 #### `constructor()`
 
-The constructor can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
-It always starts by calling `super()` so that the correct prototype chain is established.
+We never use the ~~constructor~~ directly, ìnstead we call [`init()`](#init) for you with the proper context!
+
+#### `init()`
+The `init()` method can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
+It always starts by calling `super.init(?options)` so that the correct prototype chain is established.
 
 #### `connectedCallback()`
 
