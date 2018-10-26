@@ -95,8 +95,11 @@ const writeIndexJs = (path, _name) => {
         // static get observedAttributes() {
         //  return ['classes'];
         // }
-
-        constructor() {
+        
+        // Always use init if you want to construct your element
+        // never use the constructor directly, we call init for you with the proper context
+        // @link https://github.com/WebReflection/document-register-element#v1-caveat
+        init() {
           super({ styles, template });
 
           // does this provide context (See docs for context) ?
