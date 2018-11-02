@@ -15,6 +15,7 @@ class Testimonials extends UiEvents {
     animationLeft: 'o-testimonials__item_animation_left',
     animationRight: 'o-testimonials__item_animation_right',
     autoRotateDisabled: 'auto-rotate-disabled',
+    keysEnabled: 'keys-enabled',
     autoRotateTime: 'auto-rotate-time',
     showAllInline: 'show-all-inline',
   };
@@ -38,6 +39,7 @@ class Testimonials extends UiEvents {
   }
 
   init() {
+    this.keysEnabled = getAttribute(this.wcNode, this.options.keysEnabled);
     this.slides = this.wcNode.querySelectorAll(this.options.slides);
     this.controlLeft = this.wcNode.querySelector(this.options.controlLeft);
     this.controlRight = this.wcNode.querySelector(this.options.controlRight);
@@ -75,6 +77,9 @@ class Testimonials extends UiEvents {
     this.off();
     this.controlLeftClicked = on(this.controlLeft, EVENTS.CLICK, this.goToPreviousSlide);
     this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.goToNextSlide);
+    if (this.keysEnabled) {
+      this.controlKeysClicked = on(this.wcNode.ownerDocument, EVENTS.KEYUP, this.handleKeyup);
+    }
     this.swipedLeft = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_LEFT, this.goToNextSlide);
     this.swipedRight = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_RIGHT, this.goToPreviousSlide);
     this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, debounce(this.setMinimumHeightOnResize, 300));
@@ -96,6 +101,9 @@ class Testimonials extends UiEvents {
     if (this._unResize) {
       this._unResize();
     }
+    if (this.controlKeysClicked) {
+      this.controlKeysClicked();
+    }
   }
 
   setMinimumHeightOnResize = () => {
@@ -114,6 +122,15 @@ class Testimonials extends UiEvents {
   goToPreviousSlide = () => {
     this.autoRotateDisabled = true;
     this.showSlide(-1);
+  };
+
+  handleKeyup = (ev) => {
+    const e = ev || window.event;
+    if (+e.keyCode === 37) {
+      this.goToPreviousSlide();
+    } else if (+e.keyCode === 39) {
+      this.goToNextSlide();
+    }
   };
 
   goToNextSlide = () => {
