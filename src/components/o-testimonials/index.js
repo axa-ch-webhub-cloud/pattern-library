@@ -13,6 +13,7 @@ class AXATestimonials extends BaseComponentGlobal {
     title: PropTypes.string,
     subtitle: PropTypes.string,
     autoRotateDisabled: PropTypes.bool,
+    keysEnabled: PropTypes.bool,
     autoRotateTime: PropTypes.number,
     showAllInline: PropTypes.bool,
   }
