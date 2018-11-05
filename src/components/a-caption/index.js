@@ -1,19 +1,25 @@
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import { withAllHocs, withBase } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
-// import the template used for this component
-import template from './_template';
+import alignPropType from '../../js/prop-types/align-prop-type';
+import sidePropType from '../../js/prop-types/side-prop-type';
 
-class AXACaption extends BaseComponentGlobal {
+const TableCaptionBase = withAllHocs(withBase(HTMLTableCaptionElement));
+
+class AXACaption extends TableCaptionBase {
   static tagName = 'axa-caption'
-  
+  static buildinTagName = 'caption'
+
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
     classes: PropTypes.string,
+    align: alignPropType,
+    side: sidePropType,
   }
 
   // Only use this if you need to observe attributes other than your prop-types!
@@ -23,8 +29,8 @@ class AXACaption extends BaseComponentGlobal {
   //  return ['classes'];
   // }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles });
 
     // does this provide context (See docs for context) ?
     // this.provideContext()
@@ -33,43 +39,16 @@ class AXACaption extends BaseComponentGlobal {
     // this.consumeContext('axa-context-provider');
   }
 
-  /**
-   * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-   */
-  connectedCallback() {
-    super.connectedCallback();
+  willRenderCallback() {
+    const { classes, align, side } = this._props;
 
-    this.className = `${this.initialClassName} a-caption`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+    this.className = classnames('a-caption', classes, {
+      [`u-align-${align}`]: align,
+      [`a-caption--${side}`]: side,
+    });
   }
-
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
-
-  // You may want to update stuff before rendering.
-  // willRenderCallback(initial) {
-  // }
-
-  // You may want to update staff after rendering
-  // didRenderCallback(initial) {
-  // }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Don't forget to cleanup :)
-  }
-
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
 }
 
-defineOnce(AXACaption.tagName, AXACaption);
+defineOnce(AXACaption.tagName, AXACaption, { extends: AXACaption.buildinTagName });
 
 export default AXACaption;

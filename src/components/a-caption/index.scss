@@ -1,5 +1,57 @@
-.a-caption {
-  display: block;
+@import "../o-table/settings/table";
+@import "../../styles/mixins/respond";
+@import "../../styles/typo/typo-mixins";
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+@import "../../styles/trumps/align";
+
+%a-caption {
+  @include typo-tag();
+
+  padding: $table__cell-padding-y $table__cell-padding-x;
+  color: $table__cell-color;
+
+  @include respond-down(sm) {
+    padding-left: $table__cell-padding-x--sm;
+    padding-right: $table__cell-padding-x--sm;
+  }
+}
+
+%a-caption--top {
+  caption-side: top;
+}
+
+%a-caption--bottom {
+  caption-side: bottom;
+}
+
+.a-caption {
+  @extend %a-caption;
+}
+
+.a-caption--top {
+  @extend %a-caption--top;
+}
+
+.a-caption--bottom {
+  @extend %a-caption--bottom;
+}
+
+/// Tag Styles
+
+.o-table--all {
+  caption {
+    @extend %a-caption;
+  }
+}
+
+.o-table--caption-top {
+  caption {
+    @extend %a-caption--top;
+  }
+}
+
+.o-table--caption-bottom {
+  caption {
+    @extend %a-caption--bottom;
+  }
 }
