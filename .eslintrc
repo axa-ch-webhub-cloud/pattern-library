@@ -105,6 +105,7 @@
     "XMLHttpRequest": true,
     "history": true,
     "MutationObserver": true,
+    "customElements": true,
     "document": true,
     "window": true,
     "ENV": true,
