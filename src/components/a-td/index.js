@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import { withAllHocs, withBase } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
-class AXATd extends BaseComponentGlobal {
+const TableCellBase = withAllHocs(withBase(HTMLTableCellElement));
+
+class AXATd extends TableCellBase {
   static tagName = 'axa-td'
 
   // specify runtime type-checking here, if you use custom attributes
@@ -16,60 +18,21 @@ class AXATd extends BaseComponentGlobal {
     classes: PropTypes.string,
   }
 
-  // Only use this if you need to observe attributes other than your prop-types!
-  // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
-  // static get observedAttributes() {
-  //  return ['classes'];
-  // }
+  init() {
+    super.init({ styles });
 
-  constructor() {
-    super({ styles, template });
-
-    // does this provide context (See docs for context) ?
-    // this.provideContext()
-
-    // or do you want to consume a specific context
-    // this.consumeContext('axa-context-provider');
+    this.logLifecycle = true;
   }
 
-  /**
-   * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-   */
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.className = `${this.initialClassName} a-td`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+  willRenderCallback() {
+    this.className = 'a-td';
   }
 
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
-
-  // You may want to update stuff before rendering.
-  // willRenderCallback(initial) {
-  // }
-
-  // You may want to update staff after rendering
-  // didRenderCallback(initial) {
-  // }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Don't forget to cleanup :)
+  didRenderCallback() {
+    this.innerHTML = 'Rendered Built in Table Cell';
   }
-
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
 }
 
-defineOnce(AXATd.tagName, AXATd);
+defineOnce(AXATd.tagName, AXATd, { extends: 'td' });
 
 export default AXATd;
