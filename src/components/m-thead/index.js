@@ -9,7 +9,7 @@ import template from './_template';
 
 class AXAThead extends BaseComponentGlobal {
   static tagName = 'axa-thead'
-  
+
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {

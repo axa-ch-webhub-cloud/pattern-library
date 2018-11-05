@@ -9,7 +9,7 @@ import template from './_template';
 
 class AXATfoot extends BaseComponentGlobal {
   static tagName = 'axa-tfoot'
-  
+
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {

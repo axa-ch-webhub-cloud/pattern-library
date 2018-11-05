@@ -9,7 +9,7 @@ import template from './_template';
 
 class AXATd extends BaseComponentGlobal {
   static tagName = 'axa-td'
-  
+
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
