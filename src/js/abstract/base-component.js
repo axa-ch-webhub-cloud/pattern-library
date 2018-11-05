@@ -17,7 +17,6 @@ class BaseComponent extends HTMLElement {
   constructor(self) {
     // eslint-disable-next-line no-param-reassign
     self = super(self);
-    console.log('HTMLElement constructor super called');
 
     self.init();
 
