@@ -1,5 +1,248 @@
-.a-td {
-  display: block;
+@import "../o-table/settings/table";
+@import "../../styles/mixins/respond";
+@import "../../styles/typo/typo-mixins";
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+@import "../../styles/trumps/align";
+
+%a-td {
+  @include typo-secondary-text();
+
+  padding: $table__cell-padding-y $table__cell-padding-x;
+  border-top: 1px solid $table-border-color;
+
+  color: $table__cell-color;
+
+  @include respond-down(sm) {
+    display: block;
+
+    padding: $table__cell-padding-y--sm $table__cell-padding-x--sm;
+    border-top: none;
+  }
+}
+
+%a-td--head {
+  @include typo-secondary-text--bold();
+
+  color: $table__cell--head-color;
+
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+%a-td--foot {
+  @include typo-secondary-text--bold();
+
+  color: $table__cell--foot-color;
+  background: $table__foot-bg;
+}
+
+%a-td--foot-first {
+  border-top: none;
+}
+
+%a-td--dense {
+  padding-top: $table__cell-padding-y--dense;
+  padding-bottom: $table__cell-padding-y--dense;
+}
+
+%a-td--state {
+  &::before {
+    @include size($table__cell--state-size);
+
+    display: inline-block;
+    margin-right: $table__cell--state-margin-right;
+    border-radius: $table__cell--state-size;
+    vertical-align: middle;
+    content: '';
+
+    @include respond-down(sm) {
+      margin-right: $table__cell--state-margin-right--sm;
+    }
+  }
+}
+
+.a-td {
+  @extend %a-td;
+}
+
+.a-td--strong {
+  color: $table__cell--strong-color;
+}
+
+.a-td--bold {
+  @include typo-secondary-text--bold();
+
+  color: $table__cell--strong-color;
+}
+
+.a-td--head {
+  @extend %a-td--head;
+}
+
+.a-td--sort {
+  &::after {
+    position: relative;
+
+    margin-left: $table__cell--sort-margin-left;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.a-td--sort-up {
+  &::after {
+    @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+
+    top: -($table__cell--sort-height * 2);
+  }
+
+  &:hover,
+  &.a-td--sort-active {
+    &::after {
+      @include triangle-color(top, $table__cell--sort-active-color);
+    }
+  }
+}
+
+.a-td--sort-down {
+  &::after {
+    @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+
+    top: -$table__cell--sort-height;
+  }
+
+  &:hover,
+  &.a-td--sort-active {
+    &::after {
+      @include triangle-color(bottom, $table__cell--sort-active-color);
+    }
+  }
+}
+
+.a-td--foot {
+  @extend %a-td--foot;
+
+  .o-table__row--foot:first-child > & {
+    @extend %a-td--foot-first;
+  }
+}
+
+.a-td--dense {
+  @extend %a-td--dense;
+}
+
+.a-td--action {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $table__cell--action-color;
+  }
+}
+
+.a-td--state-ok {
+  @extend %a-td--state;
+
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-ok-color !important;
+
+  &::before {
+    background: $table__cell--state-ok-color;
+  }
+}
+
+.a-td--state-pending {
+  @extend %a-td--state;
+
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-pending-color !important;
+
+  &::before {
+    background: $table__cell--state-pending-color;
+  }
+}
+
+.a-td--state-error {
+  @extend %a-td--state;
+
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-error-color !important;
+
+  &::before {
+    background: $table__cell--state-error-color;
+  }
+}
+
+.a-td--state-unknown {
+  @extend %a-td--state;
+
+  // stylelint-disable-next-line declaration-no-important
+  color: $table__cell--state-unknown-color !important;
+
+  &::before {
+    background: $table__cell--state-unknown-color;
+  }
+}
+
+.a-td--left {
+  @include respond-down(sm) {
+    @include word-break();
+
+    float: left;
+    text-align: left;
+  }
+}
+
+.a-td--right {
+  @include respond-down(sm) {
+    @include word-break();
+
+    float: right;
+    text-align: right;
+
+    .a-td--left + & + *,
+    + .a-td--left + * {
+      clear: both;
+    }
+
+    @at-root {
+      .o-table__row {
+        @include clearfix();
+      }
+    }
+  }
+}
+
+/// Tag Styles
+
+.o-table--all {
+  td,
+  th {
+    @extend %a-td;
+  }
+
+  th {
+    @extend %a-td--head;
+  }
+
+  tfoot {
+    td {
+      @extend %a-td--foot;
+    }
+
+    tr {
+      &:first-child > td {
+        @extend %a-td--foot-first;
+      }
+    }
+  }
+}
+
+.o-table--dense {
+  th,
+  td {
+    @extend %a-td--dense;
+  }
 }
