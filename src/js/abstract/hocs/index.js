@@ -1,5 +1,6 @@
 import compose from '../../compose';
 
+import withBase from './with-base';
 import withContext from './with-context';
 import withMonkeyPatches from './with-monkey-patches';
 import withRender from './with-render';
@@ -8,6 +9,7 @@ import withStyles from './with-styles';
 import withUpdate from './with-update';
 
 export {
+  withBase,
   withContext,
   withMonkeyPatches,
   withRender,
