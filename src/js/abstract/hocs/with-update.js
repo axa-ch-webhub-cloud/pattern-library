@@ -40,8 +40,6 @@ const withUpdate = Base =>
           }
         });
       }
-
-      console.log(`>>> init withUpdate() ${this.nodeName}#${this._id}`);
     }
 
     /**
@@ -93,8 +91,6 @@ const withUpdate = Base =>
       if (this.updated) {
         this.updated();
       }
-
-      console.log(`>>> connectedCallback withUpdate() ${this.nodeName}#${this._id}`);
     }
 
     /**
