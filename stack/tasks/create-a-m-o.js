@@ -1,5 +1,6 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
+const readline = require('readline');
 const outdent = require('outdent');
 const chalk = require('chalk');
 
@@ -33,6 +34,9 @@ console.log(chalk.cyan(outdent`
   `));
 
 let element = '';
+let componentName = '';
+let isBuiltin = false;
+let buildinElement = '';
 
 const mapElement = {
   a: 'ATOM📗',
@@ -40,6 +44,160 @@ const mapElement = {
   o: 'ORGANISM📙',
 };
 
+const getNativeElementConstructor = (tag) => {
+  switch (tag) {
+    case 'a':
+      return 'HTMLAnchorElement';
+    case 'area':
+      return 'HTMLAreaElement';
+    case 'audio':
+      return 'HTMLAudioElement';
+    case 'br':
+      return 'HTMLBRElement';
+    case 'base':
+      return 'HTMLBaseElement';
+    case 'body':
+      return 'HTMLBodyElement';
+    case 'button':
+      return 'HTMLButtonElement';
+    case 'canvas':
+      return 'HTMLCanvasElement';
+    case 'dl':
+      return 'HTMLDListElement';
+    case 'datalist':
+      return 'HTMLDataListElement';
+    case 'details':
+      return 'HTMLDetailsElement';
+    case 'dialog':
+      return 'HTMLDialogElement';
+    case 'dir':
+      return 'HTMLDirectoryElement';
+    case 'div':
+      return 'HTMLDivElement';
+    case 'document':
+      return 'HTMLDocument';
+    case 'embed':
+      return 'HTMLEmbedElement';
+    case 'fieldset':
+      return 'HTMLFieldSetElement';
+    case 'font':
+      return 'HTMLFontElement';
+    case 'form':
+      return 'HTMLFormElement';
+    case 'frame':
+      return 'HTMLFrameElement';
+    case 'frameset':
+      return 'HTMLFrameSetElement';
+    case 'hr':
+      return 'HTMLHRElement';
+    case 'head':
+      return 'HTMLHeadElement';
+    case 'h1':
+    case 'h2':
+    case 'h3':
+    case 'h4':
+    case 'h5':
+    case 'h6':
+      return 'HTMLHeadingElement';
+    case 'html':
+      return 'HTMLHtmlElement';
+    case 'iframe':
+      return 'HTMLIFrameElement';
+    case 'img':
+      return 'HTMLImageElement';
+    case 'input':
+      return 'HTMLInputElement';
+    case 'li':
+      return 'HTMLLIElement';
+    case 'label':
+      return 'HTMLLabelElement';
+    case 'legend':
+      return 'HTMLLegendElement';
+    case 'link':
+      return 'HTMLLinkElement';
+    case 'map':
+      return 'HTMLMapElement';
+    case 'marquee':
+      return 'HTMLMarqueeElement';
+    case 'media':
+      return 'HTMLMediaElement';
+    case 'menu':
+      return 'HTMLMenuElement';
+    case 'meta':
+      return 'HTMLMetaElement';
+    case 'meter':
+      return 'HTMLMeterElement';
+    case 'del':
+      return 'HTMLModElement';
+    case 'ins':
+      return 'HTMLModElement';
+    case 'ol':
+      return 'HTMLOListElement';
+    case 'object':
+      return 'HTMLObjectElement';
+    case 'obtgroup':
+      return 'HTMLOptGroupElement';
+    case 'option':
+      return 'HTMLOptionElement';
+    case 'output':
+      return 'HTMLOutputElement';
+    case 'p':
+      return 'HTMLParagraphElement';
+    case 'param':
+      return 'HTMLParamElement';
+    case 'picture':
+      return 'HTMLPictureElement';
+    case 'pre':
+      return 'HTMLPreElement';
+    case 'progress':
+      return 'HTMLProgressElement';
+    case 'quote':
+      return 'HTMLQuoteElement';
+    case 'script':
+      return 'HTMLScriptElement';
+    case 'select':
+      return 'HTMLSelectElement';
+    case 'source':
+      return 'HTMLSourceElement';
+    case 'span':
+      return 'HTMLSpanElement';
+    case 'style':
+      return 'HTMLStyleElement';
+    case 'caption':
+      return 'HTMLTableCaptionElement';
+    case 'td':
+      return 'HTMLTableCellElement';
+    case 'th':
+      return 'HTMLTableCellElement';
+    case 'col':
+      return 'HTMLTableColElement';
+    case 'colgroup':
+      return 'HTMLTableColElement';
+    case 'table':
+      return 'HTMLTableElement';
+    case 'tr':
+      return 'HTMLTableRowElement';
+    case 'thead':
+    case 'tfoot':
+    case 'tbody':
+      return 'HTMLTableSectionElement';
+    case 'template':
+      return 'HTMLTemplateElement';
+    case 'textarea':
+      return 'HTMLTextAreaElement';
+    case 'title':
+      return 'HTMLTitleElement';
+    case 'track':
+      return 'HTMLTrackElement';
+    case 'ul':
+      return 'HTMLUListElement';
+    case 'video':
+      return 'HTMLVideoElement';
+
+    default:
+      return 'HTMLElement';
+  }
+};
 
 const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 const camelCase = string => string.split(/[-_]+/).map(capitalizeFirstLetter).join('');
@@ -57,9 +215,25 @@ const displayElementSelector = () => {
 
       Press:
 
-      1 for ATOM 📗
-      2 for MOLECULE 📘
-      3 for ORGANISM 📙
+      a for ATOM 📗
+      m for MOLECULE 📘
+      o for ORGANISM 📙
+
+    `));
+};
+
+const displayIsBuiltinElementCheck = () => {
+  console.log(chalk.white(outdent`
+      Are you extending built-in elements? [y/n]
+    `));
+};
+const whichElementDoYouExtend = () => {
+  console.log(chalk.white(outdent`
+
+      Alright. We need more information.
+      Which built-in element do you want to extend?
+
+      Please enter the tag name and press enter.
 
     `));
 };
@@ -68,19 +242,30 @@ const getClassName = _name => `AXA${camelCase(_name)}`;
 
 const writeIndexJs = (path, _name) => {
   const className = getClassName(_name);
+  const nativeElementConstructor = getNativeElementConstructor(buildinElement);
+  const BaseConstructor = isBuiltin ? `${nativeElementConstructor}Base` : 'BaseComponentGlobal';
 
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
-      import BaseComponentGlobal from '../../js/abstract/base-component-global';
+      ${isBuiltin ?
+        `import { withBase, withAllHocs } from '../../js/abstract/hocs';`
+      :
+        `import ${BaseConstructor} from '../../js/abstract/base-component-global';`
+      }
+
       import defineOnce from '../../js/define-once';
       // import the styles used for this component
       import styles from './index.scss';
       // import the template used for this component
       import template from './_template';
 
-      class ${className} extends BaseComponentGlobal {
+      ${isBuiltin ?
+        `const ${BaseConstructor} = withAllHocs(withBase(${nativeElementConstructor}));`
+      : ''}
+
+      class ${className} extends ${BaseConstructor} {
         static tagName = 'axa-${_name}'
 
         // specify runtime type-checking here, if you use custom attributes
@@ -146,7 +331,11 @@ const writeIndexJs = (path, _name) => {
         // }
       }
 
-      defineOnce(${className}.tagName, ${className});
+      ${isBuiltin ?
+        `defineOnce(${className}.tagName, ${className}, { extends: '${buildinElement}' });`
+      :
+        `defineOnce(${className}.tagName, ${className});`
+      }
 
       export default ${className};
 
@@ -171,10 +360,16 @@ const writeIndexScss = (path, _name) => {
 };
 
 const writePreviewAndHtml = (path, _name) => {
+  const markup = isBuiltin ?
+    outdent`<${buildinElement} is="axa-${_name}" classes="${element}-${_name}"></${buildinElement}>
+    `
+    :
+    outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
+    `;
+
   fs.writeFileSync(
     `${path}/_preview.html`,
-    outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
-    `
+    markup
     , handleError,
   );
   fs.writeFileSync(
@@ -271,28 +466,75 @@ const createBoilerplate = (_name) => {
   }
 };
 
+// @todo: this should be a clean state machine
+const CLI_GET_ATOMIC_TYPE = 'CLI_GET_ATOMIC_TYPE';
+const CLI_READ_ELEMENT_NAME = 'CLI_READ_ELEMENT_NAME';
+const CLI_GET_BUILTIN = 'CLI_GET_BUILTIN';
+const CLI_READ_BUILTIN_NAME = 'CLI_READ_BUILTIN_NAME';
+const CLI_FINISH = 'CLI_FINISH';
+let CLI_STATE = CLI_GET_ATOMIC_TYPE;
+const reWhitespaceSep = /\s+/g;
+const ELEMENT_NAME_SEP = '-';
 
 process.stdin.on('readable', () => {
   const chunk = process.stdin.read();
-  switch (parseInt(chunk, 10)) {
-    case 1:
-      element = 'a';
-      displayNameText();
-      break;
-    case 2:
-      element = 'm';
-      displayNameText();
-      break;
-    case 3:
-      element = 'o';
-      displayNameText();
-      break;
-    default:
-      if (element && chunk) {
-        createBoilerplate(chunk.trim().replace(/\s+/g, '-'));
-      } else {
-        displayElementSelector();
+  const input = chunk && chunk.trim();
+
+  switch (CLI_STATE) {
+    case CLI_GET_ATOMIC_TYPE:
+      switch (input) {
+        case 'a':
+        case 'm':
+        case 'o':
+          element = input;
+          CLI_STATE = CLI_READ_ELEMENT_NAME;
+          displayNameText();
+          break;
+
+        default:
+          displayElementSelector();
       }
+      break;
+
+    case CLI_READ_ELEMENT_NAME:
+      if (input) {
+        componentName = input.replace(reWhitespaceSep, ELEMENT_NAME_SEP);
+        CLI_STATE = CLI_GET_BUILTIN;
+        displayIsBuiltinElementCheck();
+      } else {
+        displayNameText();
+      }
+      break;
+
+    case CLI_GET_BUILTIN:
+      switch (input) {
+        case 'y':
+          isBuiltin = true;
+          whichElementDoYouExtend();
+          CLI_STATE = CLI_READ_BUILTIN_NAME;
+          break;
+        case 'n':
+          isBuiltin = false;
+          CLI_STATE = CLI_FINISH;
+          createBoilerplate(componentName);
+          break;
+
+        default:
+          displayIsBuiltinElementCheck();
+      }
+      break;
+
+    case CLI_READ_BUILTIN_NAME:
+      if (input) {
+        buildinElement = input.replace(reWhitespaceSep, ELEMENT_NAME_SEP);
+        CLI_STATE = CLI_FINISH;
+        createBoilerplate(componentName);
+      } else {
+        displayIsBuiltinElementCheck();
+      }
+      break;
+
+    case CLI_FINISH:
       break;
   }
 });
