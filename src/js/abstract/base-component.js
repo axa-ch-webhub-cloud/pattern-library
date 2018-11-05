@@ -1,13 +1,6 @@
 import getId from './utils/get-id';
-import compose from '../compose';
 
-import withContext from './hocs/with-context';
-import withMonkeyPatches from './hocs/with-monkey-patches';
-import withUpdate from './hocs/with-update';
-import withRender from './hocs/with-render';
-import withStyles from './hocs/with-styles';
-
-const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRender, withStyles);
+import { withAllHocs } from './hocs';
 
 /**
  * Base class {BaseComponent}. This class checks if a template is set in the custom element
