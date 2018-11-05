@@ -267,6 +267,7 @@ const writeIndexJs = (path, _name) => {
 
       class ${className} extends ${BaseConstructor} {
         static tagName = 'axa-${_name}'
+        ${isBuiltin ? `static buildinTagName = '${buildinElement}'` : ''}
 
         // specify runtime type-checking here, if you use custom attributes
         // this will also derived your needed observed attributes automatically for you
