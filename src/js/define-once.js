@@ -1,7 +1,7 @@
 /* globals customElements */
 
-export default function defineOnce(tagName, ctor) {
+export default function defineOnce(tagName, ctor, options) {
   if (!customElements.get(tagName)) {
-    customElements.define(tagName, ctor);
+    customElements.define(tagName, ctor, options);
   }
 }
