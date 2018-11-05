@@ -1,4 +1,5 @@
 @import "../o-table/settings/table";
+@import "../o-table/index";
 @import "../../styles/mixins/respond";
 @import "../../styles/typo/typo-mixins";
 
@@ -20,16 +21,6 @@
   }
 }
 
-%a-td--head {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--head-color;
-
-  @include respond-down(sm) {
-    display: none;
-  }
-}
-
 %a-td--foot {
   @include typo-secondary-text--bold();
 
@@ -39,11 +30,6 @@
 
 %a-td--foot-first {
   border-top: none;
-}
-
-%a-td--dense {
-  padding-top: $table__cell-padding-y--dense;
-  padding-bottom: $table__cell-padding-y--dense;
 }
 
 %a-td--state {
@@ -66,6 +52,10 @@
   @extend %a-td;
 }
 
+.a-td--dense {
+  @extend %a-table-cell--dense;
+}
+
 .a-td--strong {
   color: $table__cell--strong-color;
 }
@@ -76,62 +66,12 @@
   color: $table__cell--strong-color;
 }
 
-.a-td--head {
-  @extend %a-td--head;
-}
-
-.a-td--sort {
-  &::after {
-    position: relative;
-
-    margin-left: $table__cell--sort-margin-left;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.a-td--sort-up {
-  &::after {
-    @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
-
-    top: -($table__cell--sort-height * 2);
-  }
-
-  &:hover,
-  &.a-td--sort-active {
-    &::after {
-      @include triangle-color(top, $table__cell--sort-active-color);
-    }
-  }
-}
-
-.a-td--sort-down {
-  &::after {
-    @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
-
-    top: -$table__cell--sort-height;
-  }
-
-  &:hover,
-  &.a-td--sort-active {
-    &::after {
-      @include triangle-color(bottom, $table__cell--sort-active-color);
-    }
-  }
-}
-
 .a-td--foot {
   @extend %a-td--foot;
 
   .o-table__row--foot:first-child > & {
     @extend %a-td--foot-first;
   }
-}
-
-.a-td--dense {
-  @extend %a-td--dense;
 }
 
 .a-td--action {
@@ -186,45 +126,12 @@
   }
 }
 
-.a-td--left {
-  @include respond-down(sm) {
-    @include word-break();
-
-    float: left;
-    text-align: left;
-  }
-}
-
-.a-td--right {
-  @include respond-down(sm) {
-    @include word-break();
-
-    float: right;
-    text-align: right;
-
-    .a-td--left + & + *,
-    + .a-td--left + * {
-      clear: both;
-    }
-
-    @at-root {
-      .o-table__row {
-        @include clearfix();
-      }
-    }
-  }
-}
-
 /// Tag Styles
 
 .o-table--all {
   td,
   th {
     @extend %a-td;
-  }
-
-  th {
-    @extend %a-td--head;
   }
 
   tfoot {
@@ -241,8 +148,7 @@
 }
 
 .o-table--dense {
-  th,
   td {
-    @extend %a-td--dense;
+    @extend %a-table-cell--dense;
   }
 }

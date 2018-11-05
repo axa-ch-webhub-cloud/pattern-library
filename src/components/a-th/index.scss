@@ -1,0 +1,83 @@
+@import "../o-table/settings/table";
+@import "../o-table/index";
+@import "../../styles/mixins/respond";
+@import "../../styles/typo/typo-mixins";
+
+@import "../../styles/trumps/align";
+
+%a-th {
+  @include typo-secondary-text--bold();
+
+  padding: $table__cell-padding-y $table__cell-padding-x;
+  border-top: 1px solid $table-border-color;
+
+  color: $table__cell--head-color;
+
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+.a-th {
+  @extend %a-th;
+}
+
+.a-th--dense {
+  @extend %a-table-cell--dense;
+}
+
+.a-td--sort {
+  &::after {
+    position: relative;
+
+    margin-left: $table__cell--sort-margin-left;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.a-th--sort-up {
+  &::after {
+    @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+
+    top: -($table__cell--sort-height * 2);
+  }
+
+  &:hover,
+  &.a-th--sort-active {
+    &::after {
+      @include triangle-color(top, $table__cell--sort-active-color);
+    }
+  }
+}
+
+.a-th--sort-down {
+  &::after {
+    @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
+
+    top: -$table__cell--sort-height;
+  }
+
+  &:hover,
+  &.a-th--sort-active {
+    &::after {
+      @include triangle-color(bottom, $table__cell--sort-active-color);
+    }
+  }
+}
+
+/// Tag Styles
+
+.o-table--all {
+  th {
+    @extend %a-th;
+  }
+}
+
+.o-table--dense {
+  td {
+    @extend %a-table-cell--dense;
+  }
+}

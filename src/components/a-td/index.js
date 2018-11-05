@@ -41,7 +41,7 @@ class AXATd extends TableCellBase {
       'a-td--bold': bold,
       'a-td--dense': dense,
       [`u-align-${align}`]: align,
-      [`a-td--${float}`]: float,
+      [`a-table-cell--float-${float}`]: float,
       [`a-td--state-${state}`]: state,
     });
   }
