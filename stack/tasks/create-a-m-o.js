@@ -480,6 +480,7 @@ process.stdin.on('readable', () => {
   const chunk = process.stdin.read();
   const input = chunk && chunk.trim();
 
+  // eslint-disable-next-line default-case
   switch (CLI_STATE) {
     case CLI_GET_ATOMIC_TYPE:
       switch (input) {
