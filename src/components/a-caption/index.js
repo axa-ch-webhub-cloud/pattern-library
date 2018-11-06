@@ -40,7 +40,7 @@ class AXACaption extends TableCaptionBase {
   }
 
   willRenderCallback() {
-    const { classes, align, side } = this._props;
+    const { classes, align, side } = this.props;
 
     this.className = classnames('a-caption', classes, {
       [`u-align-${align}`]: align,

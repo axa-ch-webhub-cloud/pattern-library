@@ -42,7 +42,7 @@ class AXATh extends HTMLTableCellElementBase {
   }
 
   willRenderCallback() {
-    const { classes, align, sort, float, sortActive, dense } = this._props;
+    const { classes, align, sort, float, sortActive, dense } = this.props;
 
     this.className = classnames('a-th', classes, {
       [`u-align-${align}`]: align,

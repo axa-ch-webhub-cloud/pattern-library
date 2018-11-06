@@ -33,7 +33,7 @@ class AXATd extends TableCellBase {
   }
 
   willRenderCallback() {
-    const { classes, action, align, bold, dense, float, state, strong } = this._props;
+    const { classes, action, align, bold, dense, float, state, strong } = this.props;
 
     this.className = classnames('a-td', classes, {
       'a-td--action': action,
