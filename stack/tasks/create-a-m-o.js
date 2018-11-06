@@ -1,6 +1,5 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
-const readline = require('readline');
 const outdent = require('outdent');
 const chalk = require('chalk');
 
@@ -250,7 +249,7 @@ const writeIndexJs = (path, _name) => {
     outdent`import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
       ${isBuiltin ?
-        `import { withBase, withAllHocs } from '../../js/abstract/hocs';`
+        "import { withBase, withAllHocs } from '../../js/abstract/hocs';"
       :
         `import ${BaseConstructor} from '../../js/abstract/base-component-global';`
       }
@@ -263,7 +262,7 @@ const writeIndexJs = (path, _name) => {
 
       ${isBuiltin ?
         `const ${BaseConstructor} = withAllHocs(withBase(${nativeElementConstructor}));`
-      : ''}
+        : ''}
 
       class ${className} extends ${BaseConstructor} {
         static tagName = 'axa-${_name}'

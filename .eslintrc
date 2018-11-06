@@ -6,8 +6,8 @@
     "indent": ["error", 2, {
       "SwitchCase": 1,
       "ignoredNodes": [
-        "TaggedTemplateExpression[tag.name=\"html\"]",
-        "TaggedTemplateExpression[tag.name=\"html\"] > TemplateLiteral ObjectExpression"
+        "TaggedTemplateExpression[tag.name=/html|outdent/]",
+        "TaggedTemplateExpression[tag.name=/html|outdent/] *"
       ]
     }],
     "no-confusing-arrow": "off",
