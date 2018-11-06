@@ -1,4 +1,5 @@
 @import "../o-table/settings/table";
+@import "../o-table/mixins/table";
 @import "../o-table/index";
 @import "../../styles/mixins/respond";
 @import "../../styles/typo/typo-mixins";
@@ -23,7 +24,7 @@
 }
 
 .a-th--dense {
-  @extend %a-table-cell--dense;
+  @include table-cell--dense();
 }
 
 .a-td--sort {
@@ -78,6 +79,6 @@
 
 .o-table--dense {
   td {
-    @extend %a-table-cell--dense;
+    @extend .a-th--dense;
   }
 }

@@ -1,0 +1,42 @@
+@import "../settings/table";
+@import "../../../styles/mixins/clearfix";
+
+@mixin table-cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+
+@mixin table-cell--float() {
+  $parent: &;
+
+  @at-root {
+    #{$parent}-left {
+      @include respond-down(sm) {
+        @include word-break();
+
+        float: left;
+        text-align: left;
+      }
+    }
+
+    #{$parent}-right {
+      @include respond-down(sm) {
+        @include word-break();
+
+        float: right;
+        text-align: right;
+
+        #{$parent}-left + & + *,
+        + #{$parent}-left + * {
+          clear: both;
+        }
+
+        @at-root {
+          tr {
+            @include clearfix();
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 @import "./settings/table";
-@import "../../styles/mixins/clearfix";
+@import "./mixins/table";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/size";
 @import "../../styles/mixins/triangle";
@@ -70,11 +70,6 @@
   }
 }
 
-%a-table-cell--dense {
-  padding-top: $table__cell-padding-y--dense;
-  padding-bottom: $table__cell-padding-y--dense;
-}
-
 /// Class styles
 
 .o-table__root {
@@ -109,33 +104,8 @@
   @extend %o-table__row--action;
 }
 
-.a-table-cell--float-left {
-  @include respond-down(sm) {
-    @include word-break();
-
-    float: left;
-    text-align: left;
-  }
-}
-
-.a-table-cell--float-right {
-  @include respond-down(sm) {
-    @include word-break();
-
-    float: right;
-    text-align: right;
-
-    .a-table-cell--float-left + & + *,
-    + .a-table-cell--float-left + * {
-      clear: both;
-    }
-
-    @at-root {
-      tr {
-        @include clearfix();
-      }
-    }
-  }
+.a-table-cell--float {
+  @include table-cell--float();
 }
 
 /// Tag styles
@@ -191,7 +161,7 @@
 .o-table--dense {
   th,
   td {
-    @extend %a-table-cell--dense;
+    @include table-cell--dense();
   }
 }
 
