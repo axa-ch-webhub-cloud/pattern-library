@@ -1,4 +1,5 @@
 @import "../o-table/settings/table";
+@import "../o-table/mixins/table";
 @import "../../styles/mixins/respond";
 
 %m-tr {
@@ -27,6 +28,10 @@
       border-top: none;
     }
   }
+}
+
+%m-tr--dense {
+  @include table-cell--dense();
 }
 
 %m-tr--action {
@@ -67,6 +72,13 @@
   @extend %m-tr--foot;
 }
 
+.m-tr--dense {
+  th,
+  td {
+    @extend %m-tr--dense;
+  }
+}
+
 .m-tr--action {
   @extend %m-tr--action;
 }
@@ -92,6 +104,13 @@
 
   tbody {
     tr {}
+  }
+}
+
+.o-table--dense {
+  th,
+  td {
+    @extend %m-tr--dense;
   }
 }
 

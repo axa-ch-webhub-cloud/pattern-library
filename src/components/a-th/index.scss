@@ -76,9 +76,3 @@
     @extend %a-th;
   }
 }
-
-.o-table--dense {
-  td {
-    @extend .a-th--dense;
-  }
-}
