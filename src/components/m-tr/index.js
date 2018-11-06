@@ -1,19 +1,25 @@
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import { withBase, withAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
-// import the template used for this component
-import template from './_template';
 
-class AXATr extends BaseComponentGlobal {
+const HTMLTableRowElementBase = withAllHocs(withBase(HTMLTableRowElement));
+
+class AXATr extends HTMLTableRowElementBase {
   static tagName = 'axa-tr'
+  static buildinTagName = 'tr'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
     classes: PropTypes.string,
+    head: PropTypes.bool,
+    foot: PropTypes.bool,
+    action: PropTypes.bool,
+    dense: PropTypes.bool,
   }
 
   // Only use this if you need to observe attributes other than your prop-types!
@@ -23,8 +29,8 @@ class AXATr extends BaseComponentGlobal {
   //  return ['classes'];
   // }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles });
 
     // does this provide context (See docs for context) ?
     // this.provideContext()
@@ -33,43 +39,18 @@ class AXATr extends BaseComponentGlobal {
     // this.consumeContext('axa-context-provider');
   }
 
-  /**
-   * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-   */
-  connectedCallback() {
-    super.connectedCallback();
+  willRenderCallback() {
+    const { classes, head, foot, action, dense } = this.props;
 
-    this.className = `${this.initialClassName} m-tr`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+    this.className = classnames('m-tr', classes, {
+      'm-tr--head': head,
+      'm-tr--foot': foot,
+      'm-tr--action': action,
+      'm-tr--dense': dense,
+    });
   }
-
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
-
-  // You may want to update stuff before rendering.
-  // willRenderCallback(initial) {
-  // }
-
-  // You may want to update staff after rendering
-  // didRenderCallback(initial) {
-  // }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Don't forget to cleanup :)
-  }
-
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
 }
 
-defineOnce(AXATr.tagName, AXATr);
+defineOnce(AXATr.tagName, AXATr, { extends: AXATr.buildinTagName });
 
 export default AXATr;

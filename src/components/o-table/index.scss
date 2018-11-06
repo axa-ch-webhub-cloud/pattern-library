@@ -17,59 +17,6 @@
   background: $table__foot-bg;
 }
 
-%o-table__row {
-  @include respond-down(sm) {
-    display: block;
-
-    padding: $table__row-padding-y--sm $table__row-padding-x--sm;
-    border-top: 1px solid $table-border-color;
-  }
-}
-
-%o-table__row--head {
-  @include respond-down(sm) {
-    display: none;
-  }
-}
-
-%o-table__row--foot {
-  border-top-color: $table-border-color;
-
-  @include respond-down(sm) {
-    padding-top: $table__cell-padding-y;
-    padding-bottom: $table__cell-padding-y;
-
-    &:first-child {
-      border-top: none;
-    }
-  }
-}
-
-%o-table__row--action {
-  &:hover,
-  &:focus {
-    cursor: pointer;
-
-    .o-table__cell,
-    td,
-    th {
-      color: $table__cell--action-color;
-      border-top-color: $table__cell--action-color;
-      border-bottom: 1px solid $table__cell--action-color;
-
-      &:first-child {
-        padding-left: $table__cell-padding-x - 1;
-        border-left: 1px solid $table__cell--action-color;
-      }
-
-      &:last-child {
-        // padding-right: $table__cell-padding-x - 1;
-        border-right: 1px solid $table__cell--action-color;
-      }
-    }
-  }
-}
-
 /// Class styles
 
 .o-table__root {
@@ -88,22 +35,6 @@
 
 .o-table__body {}
 
-.o-table__row {
-  @extend %o-table__row;
-}
-
-.o-table__row--head {
-  @extend %o-table__row--head;
-}
-
-.o-table__row--foot {
-  @extend %o-table__row--foot;
-}
-
-.o-table__row--action {
-  @extend %o-table__row--action;
-}
-
 .a-table-cell--float {
   @include table-cell--float();
 }
@@ -117,14 +48,8 @@
     @extend %o-table;
   }
 
-  tr {
-    @extend %o-table__row;
-  }
-
   thead {
     tr {
-      @extend %o-table__row--head;
-
       th {
 
       }
@@ -135,7 +60,6 @@
     @extend %o-table__foot;
 
     tr {
-      @extend %o-table__row--foot;
 
       td {
 
@@ -149,12 +73,6 @@
 
       }
     }
-  }
-}
-
-.o-table--action {
-  tbody > tr {
-    @extend %o-table__row--action;
   }
 }
 

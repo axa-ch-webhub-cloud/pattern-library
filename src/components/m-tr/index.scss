@@ -1,5 +1,102 @@
-.m-tr {
-  display: block;
+@import "../o-table/settings/table";
+@import "../../styles/mixins/respond";
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+%m-tr {
+  @include respond-down(sm) {
+    display: block;
+
+    padding: $table__row-padding-y--sm $table__row-padding-x--sm;
+    border-top: 1px solid $table-border-color;
+  }
+}
+
+%m-tr--head {
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+%m-tr--foot {
+  border-top-color: $table-border-color;
+
+  @include respond-down(sm) {
+    padding-top: $table__cell-padding-y;
+    padding-bottom: $table__cell-padding-y;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+%m-tr--action {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    .a-th,
+    .a-td,
+    td,
+    th {
+      color: $table__cell--action-color;
+      border-top-color: $table__cell--action-color;
+      border-bottom: 1px solid $table__cell--action-color;
+
+      &:first-child {
+        padding-left: $table__cell-padding-x - 1;
+        border-left: 1px solid $table__cell--action-color;
+      }
+
+      &:last-child {
+        // padding-right: $table__cell-padding-x - 1;
+        border-right: 1px solid $table__cell--action-color;
+      }
+    }
+  }
+}
+
+.m-tr {
+  @extend %m-tr;
+}
+
+.m-tr--head {
+  @extend %m-tr--head;
+}
+
+.m-tr--foot {
+  @extend %m-tr--foot;
+}
+
+.m-tr--action {
+  @extend %m-tr--action;
+}
+
+/// Tag styles
+
+.o-table--all {
+  tr {
+    @extend %m-tr;
+  }
+
+  thead {
+    tr {
+      @extend %m-tr--head;
+    }
+  }
+
+  tfoot {
+    tr {
+      @extend %m-tr--foot;
+    }
+  }
+
+  tbody {
+    tr {}
+  }
+}
+
+.o-table--action {
+  tbody > tr {
+    @extend %m-tr--action;
+  }
 }
