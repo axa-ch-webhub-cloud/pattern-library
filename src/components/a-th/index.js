@@ -38,7 +38,7 @@ class AXATh extends HTMLTableCellElementBase {
   // never use the constructor directly, we call init for you with the proper context
   // @link https://github.com/WebReflection/document-register-element#v1-caveat
   init() {
-    super({ styles });
+    super.init({ styles });
   }
 
   willRenderCallback() {

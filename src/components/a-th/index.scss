@@ -27,7 +27,7 @@
   @include table-cell--dense();
 }
 
-.a-td--sort {
+.a-th--sort {
   &::after {
     position: relative;
 
