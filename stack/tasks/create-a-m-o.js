@@ -285,7 +285,7 @@ const writeIndexJs = (path, _name) => {
         // never use the constructor directly, we call init for you with the proper context
         // @link https://github.com/WebReflection/document-register-element#v1-caveat
         init() {
-          super({ styles, template });
+          super.init({ styles, template });
 
           // does this provide context (See docs for context) ?
           // this.provideContext()
