@@ -9,9 +9,9 @@ import styles from './index.scss';
 import template from './_template';
 import { tableBodyPropTypes } from '../../js/prop-types';
 
-const HTMLTableTBodyElementBase = withAllHocs(withBase(HTMLTableSectionElement));
+const HTMLTableSectionElementBase = withAllHocs(withBase(HTMLTableSectionElement));
 
-class AXATbody extends HTMLTableTBodyElementBase {
+class AXATbody extends HTMLTableSectionElementBase {
   static tagName = 'axa-tbody'
   static buildinTagName = 'tbody'
 
