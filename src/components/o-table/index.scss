@@ -13,10 +13,6 @@
   width: 100%;
 }
 
-%o-table__foot {
-  background: $table__foot-bg;
-}
-
 /// Class styles
 
 .o-table__root {
@@ -26,14 +22,6 @@
 .o-table {
   @extend %o-table;
 }
-
-.o-table__head {}
-
-.o-table__foot {
-  @extend %o-table__foot;
-}
-
-.o-table__body {}
 
 .a-table-cell--float {
   @include table-cell--float();
@@ -46,33 +34,6 @@
 
   table {
     @extend %o-table;
-  }
-
-  thead {
-    tr {
-      th {
-
-      }
-    }
-  }
-
-  tfoot {
-    @extend %o-table__foot;
-
-    tr {
-
-      td {
-
-      }
-    }
-  }
-
-  tbody {
-    tr {
-      td {
-
-      }
-    }
   }
 }
 
