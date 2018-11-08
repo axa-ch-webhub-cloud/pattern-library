@@ -1,1 +1,15 @@
-<axa-thead classes="m-thead"></axa-thead>
+<table style="width: 100%;">
+  <thead is="axa-thead"
+         items='["Nature", "Date", "Status", { "text": "Amount", "align": "right", "sort": "down" }]'></thead>
+</table>
+
+<table style="width: 100%;">
+  <thead is="axa-thead">
+    <tr is="axa-tr" head>
+      <th is="axa-th">Nature</th>
+      <th is="axa-th" sort="down" sort-active>Date</th>
+      <th is="axa-th" sort="up">Status</th>
+      <th is="axa-th" align="right" sort="down">Amount</th>
+    </tr>
+  </thead>
+</table>
