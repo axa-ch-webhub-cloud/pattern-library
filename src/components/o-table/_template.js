@@ -12,10 +12,7 @@ export default ({
   const fragment = [];
 
   if (cap) {
-    fragment.push(html`<cap class="o-table__cap ${classnames({
-      [`u-align-${capAlign}`]: capAlign,
-      [`o-table__cap--${capSide}`]: capSide,
-    })}">${cap}</cap>`);
+    fragment.push(html`<caption is="axa-caption" align="capAlign" side="capSide">${cap}</caption>`);
   }
 
   if (headings) {

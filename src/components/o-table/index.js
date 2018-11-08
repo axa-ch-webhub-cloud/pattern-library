@@ -5,12 +5,10 @@ import { withBase, withAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 import alignPropType from '../../js/prop-types/align-prop-type';
 import sidePropType from '../../js/prop-types/side-prop-type';
-import { tableHeadPropTypes, tableBodyPropTypes, tableFootPropTypes } from '../../js/prop-types/table-prop-types';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import isEmptyFragment from "../../js/is-empty-fragment";
 
 const HTMLTableElementBase = withAllHocs(withBase(HTMLTableElement));
 
@@ -28,9 +26,9 @@ class AXATable extends HTMLTableElementBase {
     cap: PropTypes.string,
     capAlign: alignPropType,
     capSide: sidePropType,
-    items: tableBodyPropTypes,
-    headings: tableHeadPropTypes,
-    footers: tableFootPropTypes,
+    items: PropTypes.string,
+    headings: PropTypes.string,
+    footers: PropTypes.string,
   }
 
   // Only use this if you need to observe attributes other than your prop-types!
