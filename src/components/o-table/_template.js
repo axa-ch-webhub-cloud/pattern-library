@@ -2,20 +2,20 @@ import html from 'nanohtml';
 import classnames from 'classnames';
 
 export default ({
-  caption,
-  captionAlign,
-  captionSide,
+  cap,
+  capAlign,
+  capSide,
   headings,
   items,
   footers,
 }, childrenFragment) => {
   const fragment = [];
 
-  if (caption) {
-    fragment.push(html`<caption class="o-table__caption ${classnames({
-      [`u-align-${captionAlign}`]: captionAlign,
-      [`o-table__caption--${captionSide}`]: captionSide,
-    })}">${caption}</caption>`);
+  if (cap) {
+    fragment.push(html`<cap class="o-table__cap ${classnames({
+      [`u-align-${capAlign}`]: capAlign,
+      [`o-table__cap--${capSide}`]: capSide,
+    })}">${cap}</cap>`);
   }
 
   if (headings) {
