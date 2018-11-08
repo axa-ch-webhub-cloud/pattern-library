@@ -1,5 +1,15 @@
-.m-tfoot {
-  display: block;
+@import "../o-table/settings/table";
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+%m-tfoot {
+  background: $table__foot-bg;
+}
+
+.m-tfoot {
+  @extend %m-tfoot;
+}
+
+.o-table--all {
+  tfoot {
+    @extend %m-tfoot;
+  }
 }

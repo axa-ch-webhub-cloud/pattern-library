@@ -1,1 +1,20 @@
-<axa-tfoot classes="m-tfoot"></axa-tfoot>
+<table style="width: 100%;">
+  <tfoot is="axa-tfoot"
+         items='[
+      { "cells": [{ "text": "Deposit Plan", "colspan": "3", "float": "left", "bold": true }, { "text": "+ $ 1200 monthly", "align": "right", "float": "right", "bold": true }] },
+      [{ "text": "Withdrawal Plan", "colspan": "3", "float": "left", "bold": true }, { "text": "- $ 1200 yearly", "align": "right", "float": "right", "bold": true }]
+    ]'></tfoot>
+</table>
+
+<table style="width: 100%;">
+  <tfoot is="axa-tfoot">
+    <tr is="axa-tr" foot>
+      <td is="axa-td" colspan="3" float="left" bold>Deposit Plan</td>
+      <td is="axa-td" align="right" float="right" bold>+ $ 1200 monthly</td>
+    </tr>
+    <tr is="axa-tr" foot>
+      <td is="axa-td" colspan="3" float="left" bold>Withdrawal Plan</td>
+      <td is="axa-td" align="right" float="right" bold>- $ 1200 yearly</td>
+    </tr>
+  </tfoot>
+</table>
