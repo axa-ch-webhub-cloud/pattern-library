@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { withBase, withAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
-import styles from './index.scss';
+// import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import { tableBodyPropTypes } from '../../js/prop-types';
@@ -23,7 +23,7 @@ class AXATbody extends HTMLTableSectionElementBase {
   }
 
   init() {
-    super.init({ styles, template });
+    super.init({ template });
   }
 
   willRenderCallback() {
