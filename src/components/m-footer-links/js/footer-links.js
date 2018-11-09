@@ -65,7 +65,7 @@ export default class FooterLinks {
   handleClick(event, delegateTarget) {
     // @todo: would be cool to be able to use props here, cause now it needs JSON.parse...
     const index = getAttribute(delegateTarget, 'index');
-    const { wcNode: { items } } = this;
+    const { wcNode: { props: { items } } } = this;
     /**
      * axa-click event.
      *
