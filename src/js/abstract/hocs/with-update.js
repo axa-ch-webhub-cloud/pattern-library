@@ -26,7 +26,6 @@ const withUpdate = Base =>
 
       this._isConnected = false;
       this.props = {};
-      this._hasKeys = {};
       this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
 
       const { constructor: { observedAttributes } } = this;
@@ -35,13 +34,10 @@ const withUpdate = Base =>
       if (Array.isArray(observedAttributes)) {
         observedAttributes.forEach((attr) => {
           const key = camelize(attr);
-          const hasKey = key in this;
 
           if (ENV !== PROD) {
             lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
           }
-
-          this._hasKeys[key] = hasKey;
         });
       }
     }
@@ -79,13 +75,8 @@ const withUpdate = Base =>
 
             if (this.hasAttribute(attr)) {
               const value = getAttribute(this, attr, propTypes[key]);
-              const hasKey = this._hasKeys[key];
 
               this.props[key] = value;
-
-              if (hasKey) {
-                super[key] = value;
-              }
             }
           });
 
