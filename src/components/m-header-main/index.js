@@ -21,7 +21,7 @@ class AXAHeaderMain extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { firstLeft } = this;
+    const { props: { firstLeft } } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-main', {
       'm-header-main--first-left': firstLeft,

@@ -4,6 +4,7 @@ import lifecycleLogger from '../utils/lifecycle-logger';
 import dasherize from '../../dasherize';
 import toProp from '../../to-prop';
 import camelize from '../../camelize';
+import debounce from '../../debounce';
 import getAttribute from '../../get-attribute';
 import fire from '../../fire';
 import { AXA_EVENTS } from '../../ui-events';
@@ -25,20 +26,18 @@ const withUpdate = Base =>
 
       this._isConnected = false;
       this.props = {};
-      this._hasKeys = {};
+      this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
+
       const { constructor: { observedAttributes } } = this;
 
       // add DOM property getters/setters for related attributes
       if (Array.isArray(observedAttributes)) {
         observedAttributes.forEach((attr) => {
           const key = camelize(attr);
-          const hasKey = key in this;
 
           if (ENV !== PROD) {
             lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
           }
-
-          this._hasKeys[key] = hasKey;
         });
       }
     }
@@ -76,13 +75,8 @@ const withUpdate = Base =>
 
             if (this.hasAttribute(attr)) {
               const value = getAttribute(this, attr, propTypes[key]);
-              const hasKey = this._hasKeys[key];
 
               this.props[key] = value;
-
-              if (hasKey) {
-                super[key] = value;
-              }
             }
           });
 
@@ -129,6 +123,8 @@ const withUpdate = Base =>
       if (name === 'value' && newValue !== null) {
         fire(this, AXA_EVENTS.AXA_CHANGE, newValue, { bubbles: true, cancelable: true, composed: true });
       }
+
+      this.updatedDebounced();
     }
 
     /**
@@ -165,8 +161,6 @@ const withUpdate = Base =>
      * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
      */
     _reduceProps = ({ props, shouldUpdate }, key) => {
-      const hasKey = this._hasKeys[key];
-
       const name = `_${key}`;
       const value = props[key];
       const oldValue = this[name];
@@ -179,10 +173,6 @@ const withUpdate = Base =>
       }
 
       this.props[key] = value;
-
-      if (hasKey) {
-        super[key] = value;
-      }
 
       return {
         props,
