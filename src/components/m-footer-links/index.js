@@ -29,7 +29,7 @@ class AXAFooterLinks extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { cols } = this;
+    const { props: { cols } } = this;
 
     this.className = classnames(this.initialClassName, 'm-footer-links', {
       'm-footer-links--cols': cols,

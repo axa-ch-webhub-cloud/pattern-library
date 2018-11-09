@@ -22,7 +22,7 @@ class AXARadio extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { error, checked, disabled } = this;
+    const { props: { error, checked, disabled } } = this;
 
     this.className = classnames(this.initialClassName, 'a-radio', {
       'a-radio--error': error,
