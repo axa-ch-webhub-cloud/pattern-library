@@ -20,7 +20,7 @@ export default function ({
           value="${value}"
           disabled="${disabled}">
           <span class="a-input__valid-icon"></span>
-          ${icon ? html`<button class="a-input__icon__button js-input__icon__button">
+          ${icon ? html`<button class="a-input__icon__button js-input__icon__button" type="button">
             <axa-icon classes="a-input__icon" icon="${icon}"></axa-icon>
           </button>` : ''}
     </div>
