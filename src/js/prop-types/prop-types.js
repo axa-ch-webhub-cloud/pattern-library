@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 
 // @todo remove as soon as https://github.com/facebook/prop-types/issues/231 is resolved
-function getShim(propType, deeper = true) {
+function getShim(propType) {
   function shim(...args) {
     return propType(...args);
   }
 
-  // guard cyclic refs causing max call stack errors
-  if (deeper) {
-    // make sure to also shim `isRequired`, etc.
-    Object.keys(propType).reduce(shimKeys, propType);
-  }
+  // make sure to also shim `isRequired`, etc.
+  Object.keys(propType)
+    .map((key) => {
+      shim[key] = propType[key];
+
+      return key;
+    })
+    .reduce(shimKeys, shim);
 
   return shim;
 }
@@ -19,7 +22,7 @@ function shimKeys(propTypes, key) {
   const propType = propTypes[key];
 
   if (typeof propType === 'function') {
-    propTypes[key] = getShim(propType, false);
+    propTypes[key] = getShim(propType);
   }
 
   return propTypes;
