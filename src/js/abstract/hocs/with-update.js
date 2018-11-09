@@ -4,6 +4,7 @@ import lifecycleLogger from '../utils/lifecycle-logger';
 import dasherize from '../../dasherize';
 import toProp from '../../to-prop';
 import camelize from '../../camelize';
+import debounce from '../../debounce';
 import getAttribute from '../../get-attribute';
 import fire from '../../fire';
 import { AXA_EVENTS } from '../../ui-events';
@@ -26,6 +27,8 @@ const withUpdate = Base =>
       this._isConnected = false;
       this.props = {};
       this._hasKeys = {};
+      this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
+
       const { constructor: { observedAttributes } } = this;
 
       // add DOM property getters/setters for related attributes
@@ -129,6 +132,8 @@ const withUpdate = Base =>
       if (name === 'value' && newValue !== null) {
         fire(this, AXA_EVENTS.AXA_CHANGE, newValue, { bubbles: true, cancelable: true, composed: true });
       }
+
+      this.updatedDebounced();
     }
 
     /**
