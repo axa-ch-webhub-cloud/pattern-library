@@ -1,19 +1,26 @@
 import PropTypes from 'prop-types';
 
+// guard for Uncaught RangeError: Maximum call stack size exceeded in prod
+let level = 0;
+
 // @todo remove as soon as https://github.com/facebook/prop-types/issues/231 is resolved
 function getShim(propType) {
   function shim(...args) {
     return propType(...args);
   }
 
-  // make sure to also shim `isRequired`, etc.
-  Object.keys(propType)
-    .map((key) => {
-      shim[key] = propType[key];
+  if (level === 0) {
+    level++; // eslint-disable-line no-plusplus
+    // make sure to also shim `isRequired`, etc.
+    Object.keys(propType)
+      .map((key) => {
+        shim[key] = propType[key];
 
-      return key;
-    })
-    .reduce(shimKeys, shim);
+        return key;
+      })
+      .reduce(shimKeys, shim);
+    level--; // eslint-disable-line no-plusplus
+  }
 
   return shim;
 }
