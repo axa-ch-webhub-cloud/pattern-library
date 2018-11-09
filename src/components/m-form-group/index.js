@@ -20,7 +20,7 @@ class AXAFormGroup extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { info, error } = this;
+    const { props: { info, error } } = this;
 
     this.className = classnames(this.initialClassName, 'm-form-group', {
       'm-form-group--info': info,
