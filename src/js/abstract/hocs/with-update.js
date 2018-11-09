@@ -118,9 +118,9 @@ const withUpdate = Base =>
       // add, update attribute
       if (this.hasAttribute(name)) {
         const { constructor: { propTypes } } = this;
-        this[key] = toProp(newValue, name, propTypes[key]);
+        this.props[key] = toProp(newValue, name, propTypes[key]);
       } else { // delete attribute
-        this[key] = null;
+        this.props[key] = null;
       }
 
       this.checkPropTypes();
