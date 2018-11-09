@@ -61,8 +61,8 @@ class AXACol extends BaseComponentGlobal {
 
   // You may want to update stuff before rendering.
   willRenderCallback() {
-    const { classes } = this;
-    let { size = '', order = '', offset = '' } = this;
+    const { props: { classes }, props } = this;
+    let { size = '', order = '', offset = '' } = props;
 
     size = toArray(size);
     order = toArray(order);

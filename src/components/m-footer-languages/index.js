@@ -26,7 +26,7 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { inline } = this;
+    const { props: { inline } } = this;
 
     this.className = classnames(this.initialClassName, 'm-footer-languages', {
       'm-footer-languages--inline': inline,
