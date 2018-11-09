@@ -22,7 +22,7 @@ class AXAChoice extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { error, checked, disabled } = this;
+    const { props: { error, checked, disabled } } = this;
 
     this.className = classnames(this.initialClassName, 'a-choice', {
       'a-choice--error': error,

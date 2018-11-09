@@ -36,7 +36,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { hyphenate } = this;
+    const { props: { hyphenate } } = this;
 
     this.className = classnames(this.initialClassName, 'm-header-navigation', {
       'm-header-navigation--hyphenate': hyphenate,

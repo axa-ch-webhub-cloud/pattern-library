@@ -1,6 +1,5 @@
 import PropTypes from '../../prop-types';
 
-import PropertyExistsException from '../utils/property-exists-exception';
 import lifecycleLogger from '../utils/lifecycle-logger';
 import dasherize from '../../dasherize';
 import toProp from '../../to-prop';
@@ -9,8 +8,6 @@ import debounce from '../../debounce';
 import getAttribute from '../../get-attribute';
 import fire from '../../fire';
 import { AXA_EVENTS } from '../../ui-events';
-
-const PROPERTY_WHITELIST = ['title', 'checked', 'disabled'];
 
 const withUpdate = Base =>
   /**
@@ -28,55 +25,19 @@ const withUpdate = Base =>
       super(options);
 
       this._isConnected = false;
-      this._props = {};
-      this._hasKeys = {};
+      this.props = {};
       this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
+
       const { constructor: { observedAttributes } } = this;
 
       // add DOM property getters/setters for related attributes
       if (Array.isArray(observedAttributes)) {
         observedAttributes.forEach((attr) => {
           const key = camelize(attr);
-          const hasKey = key in this;
 
           if (ENV !== PROD) {
             lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
           }
-
-          if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
-            throw new PropertyExistsException(key, this);
-          }
-
-          this._hasKeys[key] = hasKey;
-
-          // @todo: may we should allow deletion by setting configurable: true
-          Object.defineProperty(this, key, {
-            get() {
-              return this._props[key];
-            },
-            set(value) {
-              // only update the value if it has actually changed
-              // and only re-render if it has changed
-              if (!this.shouldUpdateCallback(this._props[key], value)) {
-                return;
-              }
-
-              this._props[key] = value;
-
-              // sync DOM property if in white list
-              if (hasKey) {
-                super[key] = value;
-              }
-
-              if (this._isConnected) {
-                if (ENV !== PROD) {
-                  lifecycleLogger(this.logLifecycle)(`\n---> setter for ${key} by _${key}`);
-                }
-
-                this.updatedDebounced();
-              }
-            },
-          });
         });
       }
     }
@@ -114,13 +75,8 @@ const withUpdate = Base =>
 
             if (this.hasAttribute(attr)) {
               const value = getAttribute(this, attr, propTypes[key]);
-              const hasKey = this._hasKeys[key];
 
-              this._props[key] = value;
-
-              if (hasKey) {
-                super[key] = value;
-              }
+              this.props[key] = value;
             }
           });
 
@@ -156,9 +112,9 @@ const withUpdate = Base =>
       // add, update attribute
       if (this.hasAttribute(name)) {
         const { constructor: { propTypes } } = this;
-        this[key] = toProp(newValue, name, propTypes[key]);
+        this.props[key] = toProp(newValue, name, propTypes[key]);
       } else { // delete attribute
-        this[key] = null;
+        this.props[key] = null;
       }
 
       this.checkPropTypes();
@@ -167,6 +123,8 @@ const withUpdate = Base =>
       if (name === 'value' && newValue !== null) {
         fire(this, AXA_EVENTS.AXA_CHANGE, newValue, { bubbles: true, cancelable: true, composed: true });
       }
+
+      this.updatedDebounced();
     }
 
     /**
@@ -205,10 +163,6 @@ const withUpdate = Base =>
     _reduceProps = ({ props, shouldUpdate }, key) => {
       const hasKey = this._hasKeys[key];
 
-      if (PROPERTY_WHITELIST.indexOf(key) === -1 && hasKey) {
-        throw new PropertyExistsException(key, this);
-      }
-
       const name = `_${key}`;
       const value = props[key];
       const oldValue = this[name];
@@ -220,8 +174,7 @@ const withUpdate = Base =>
         };
       }
 
-      this[name] = value;
-      this._props[key] = value;
+      this.props[key] = value;
 
       if (hasKey) {
         super[key] = value;
@@ -240,7 +193,7 @@ const withUpdate = Base =>
       const { constructor: { propTypes, tagName } } = this;
 
       if (propTypes) {
-        PropTypes.checkPropTypes(propTypes, this._props, 'prop', tagName);
+        PropTypes.checkPropTypes(propTypes, this.props, 'prop', tagName);
       }
     }
 

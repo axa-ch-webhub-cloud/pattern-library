@@ -29,7 +29,7 @@ class AXAInput extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { valid, inline, error, disabled } = this;
+    const { props: { valid, inline, error, disabled } } = this;
 
     this.className = classnames('a-input', this.initialClassName, {
       'a-input--valid': valid,

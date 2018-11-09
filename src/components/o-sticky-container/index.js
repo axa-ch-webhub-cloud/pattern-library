@@ -21,7 +21,7 @@ export class AXAStickyContainer extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    const { debug } = this;
+    const { props: { debug } } = this;
 
     this.className = classnames(this.initialClassName, 'o-sticky-container js-sticky-container', {
       'o-sticky-container--debug': debug,

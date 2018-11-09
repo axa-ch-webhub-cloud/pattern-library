@@ -31,7 +31,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { inFlow, size, gpu } = this;
+    const { props: { inFlow, size, gpu } } = this;
 
     this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
       'm-dropdown--in-flow': inFlow,
