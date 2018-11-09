@@ -24,7 +24,7 @@ class AXAFooterSocial extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { inline, light } = this;
+    const { props: { inline, light } } = this;
 
     this.className = classnames(this.initialClassName, 'm-footer-social', {
       'm-footer-social--inline': inline,
