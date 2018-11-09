@@ -19,7 +19,7 @@ function shimKeys(propTypes, key) {
   const propType = propTypes[key];
 
   if (typeof propType === 'function') {
-    propTypes[key] = getShim(propTypes[key], false);
+    propTypes[key] = getShim(propType, false);
   }
 
   return propTypes;
