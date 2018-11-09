@@ -29,7 +29,7 @@ class AXAErrorPage extends BaseComponentGlobal {
    * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
    */
   willRenderCallback() {
-    const { props: background } = this;
+    const { props: { background } } = this;
 
     this.className = classnames(this.initialClassName, 'o-error-page', {
       [`o-error-page--${background}`]: background,
