@@ -1,5 +1,4 @@
 import html from 'nanohtml';
-import classnames from 'classnames';
 
 export default ({
   cap,
@@ -12,7 +11,7 @@ export default ({
   const fragment = [];
 
   if (cap) {
-    fragment.push(html`<caption is="axa-caption" align="capAlign" side="capSide">${cap}</caption>`);
+    fragment.push(html`<caption is="axa-caption" align="${capAlign}" side="${capSide}">${cap}</caption>`);
   }
 
   if (headings) {
