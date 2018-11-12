@@ -3,7 +3,7 @@ import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import urlPropType from '../../js/prop-types/url-prop-type';
-import valuePropType from "../../js/prop-types/value-prop-type";
+import valuePropType from '../../js/prop-types/value-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
