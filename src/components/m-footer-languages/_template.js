@@ -10,7 +10,7 @@ export default function ({ title, items, short }) {
         <li class="m-footer-languages__list-item">
           <a class="${classnames('m-footer-languages__link', {
             'is-footer-languages-active': isActive,
-          })}" href="${url}" lang="${code}">${short ? code : name}</a>
+          })}" href="${url}" lang="${code}" data-language="${code}">${short ? code : name}</a>
         </li>
       `)}
     </ul>

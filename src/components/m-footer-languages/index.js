@@ -6,6 +6,9 @@ import defineOnce from '../../js/define-once';
 import urlPropType from '../../js/prop-types/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
+import valuePropType from "../../js/prop-types/value-prop-type";
+import on from "../../js/on";
+import {EVENTS} from "../../js/ui-events";
 
 class AXAFooterLanguages extends BaseComponentGlobal {
   static tagName = 'axa-footer-languages'
@@ -19,10 +22,31 @@ class AXAFooterLanguages extends BaseComponentGlobal {
     })),
     short: PropTypes.bool,
     title: PropTypes.string,
+    value: valuePropType,
   }
+
+  unClickEnd
 
   constructor() {
     super({ styles, template });
+  }
+
+  handleClick = (e) => {
+    if (e.target && e.target.dataset && e.target.dataset.language) {
+      e.stopPropagation();
+      this.setAttribute('value', e.target.dataset.language);
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.unClickEnd = on(
+      this, EVENTS.CLICK, 'm-footer-languages__link',
+      this.handleClick, {
+        capture: true, passive: false,
+      },
+    );
   }
 
   willRenderCallback() {
@@ -32,6 +56,11 @@ class AXAFooterLanguages extends BaseComponentGlobal {
       'm-footer-languages--inline': inline,
     });
   }
+
+  disconnectedCallback() {
+    this.unClickEnd && this.unClickEnd();
+  }
+
 }
 
 defineOnce(AXAFooterLanguages.tagName, AXAFooterLanguages);
