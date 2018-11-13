@@ -6,9 +6,9 @@ import defineOnce from '../../js/define-once';
 import urlPropType from '../../js/prop-types/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
-import valuePropType from "../../js/prop-types/value-prop-type";
-import on from "../../js/on";
-import {EVENTS} from "../../js/ui-events";
+import valuePropType from '../../js/prop-types/value-prop-type';
+import on from '../../js/on';
+import { EVENTS } from '../../js/ui-events';
 
 class AXAFooterLanguages extends BaseComponentGlobal {
   static tagName = 'axa-footer-languages'
@@ -58,9 +58,10 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.unClickEnd && this.unClickEnd();
+    if (this.unClickEnd) {
+      this.unClickEnd();
+    }
   }
-
 }
 
 defineOnce(AXAFooterLanguages.tagName, AXAFooterLanguages);

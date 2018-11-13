@@ -49,9 +49,10 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    this.unClickEnd && this.unClickEnd();
+    if (this.unClickEnd) {
+      this.unClickEnd();
+    }
   }
-
 }
 
 defineOnce(AXAHeaderMobileLanguages.tagName, AXAHeaderMobileLanguages);
