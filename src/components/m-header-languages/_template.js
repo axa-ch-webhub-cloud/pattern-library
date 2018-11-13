@@ -6,7 +6,7 @@ const getSelectedName = (value, items) => {
   if (!items || !Array.isArray(items) || !items.length) {
     return '';
   }
-  const selectedItem = items.find(item => item.name === value);
+  const selectedItem = items.filter(item => item.name === value)[0];
   return selectedItem ? selectedItem.name : items[0].name;
 };
 
