@@ -320,6 +320,12 @@ Under the hood we defined following encapsulated higher order classes.
 
 **Caution:** consider that all possible combinations have to be interchangeable and that they result in a [**Factorial**](https://en.wikipedia.org/wiki/Factorial) set of permutations - i.e. our `6` HOCs correlate to `6!` = `720` permutations.
 
+#### `withBase()`
+
+This class handles [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat), it adds a unique `_id` and provides a static UUID generator.
+
+#### `withBaseGlobal()`
+
 #### `withContext()`
 
 Adds the ability to provide and consume contextual data.

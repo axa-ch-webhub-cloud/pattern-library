@@ -2,8 +2,11 @@ import getId from '../utils/get-id';
 
 const withBase = HTMLElement =>
   /**
-   * Base class {BaseComponent}. This class checks if a template is set in the custom element
-   * and if yes appends it. It also appends custom styles to the top of the dom tree.
+   * Base class {BaseComponent}.
+   * This class handles proper context upgrading within the constructor,
+   * it adds a unique `_id` and provides a static UUID generator.
+   *
+   * @link https://github.com/WebReflection/document-register-element#v1-caveat
    */
   class WithBase extends HTMLElement {
     constructor(self) {
