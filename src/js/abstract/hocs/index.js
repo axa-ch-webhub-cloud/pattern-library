@@ -1,6 +1,7 @@
 import compose from '../../compose';
 
 import withBase from './with-base';
+import withBaseGlobal from './with-base-global';
 import withContext from './with-context';
 import withMonkeyPatches from './with-monkey-patches';
 import withRender from './with-render';
@@ -10,6 +11,7 @@ import withUpdate from './with-update';
 
 export {
   withBase,
+  withBaseGlobal,
   withContext,
   withMonkeyPatches,
   withRender,
