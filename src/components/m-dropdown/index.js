@@ -23,7 +23,6 @@ class AXADropdown extends BaseComponentGlobal {
     size: PropTypes.oneOf(['sm']),
     title: PropTypes.string,
     value: valuePropType,
-    iconsPathPrefix: PropTypes.string,
   }
 
   constructor() {
