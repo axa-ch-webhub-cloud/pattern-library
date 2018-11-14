@@ -1,12 +1,12 @@
 import html from 'nanohtml';
 
-import expandData from '../o-table/js/expand-data';
+import expandTableData from '../../js/expand-table-data';
 
 export default ({ items }, fragmentChildren) => {
   let rows;
 
   if (items) {
-    ({ rows } = expandData(items));
+    ({ rows } = expandTableData(items));
   }
 
   return Array.isArray(rows) && rows.length ?

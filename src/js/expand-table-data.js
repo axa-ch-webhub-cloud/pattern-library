@@ -1,4 +1,4 @@
-import isObject from '../../../js/is-object';
+import isObject from './is-object';
 
 const isCell = value => isObject(value) && value.text;
 const isRow = value => isObject(value) && Array.isArray(value.cells);
@@ -118,7 +118,7 @@ const expandRow = (row) => {
  * @param {TableData} items
  * @returns {{rows: *}}
  */
-const expandData = (items) => {
+const expandTableData = (items) => {
   let rows = items;
   let props = {};
 
@@ -138,4 +138,4 @@ const expandData = (items) => {
   };
 };
 
-export default expandData;
+export default expandTableData;
