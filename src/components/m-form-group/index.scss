@@ -22,7 +22,7 @@
 }
 
 .m-form-group--info {
-  .m-form-group__label {
+  .m-form-group__legend {
     margin-right: $form-group-label-margin--info;
   }
 
@@ -52,7 +52,7 @@
   color: $color-state-red-shy-tomato;
 }
 
-.m-form-group__label {
+.m-form-group__legend {
   @include typo-secondary-text--semibold();
 
   flex: 1;
