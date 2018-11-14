@@ -1,11 +1,12 @@
 import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
-const arrowIcon = (iconsPathPrefix = 'true') => [html`<axa-icon icon="angle-bracket-down" path-prefix="${iconsPathPrefix}" classes="m-dropdown__icon"></axa-icon>`];
+const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
 const getItemValue = (itemValue, index) => itemValue === null || itemValue === undefined ? index : itemValue;
 
-const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) => html`<div class="${classnames('m-dropdown__select-wrap', {
+const nativeSelect = ({ title, items, size, value }) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,
   })}" tabindex="0">
     <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', {
@@ -22,7 +23,7 @@ const nativeSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) =
     </select>
     <div class="${classnames('m-dropdown__select-icon', {
       [`m-dropdown__select-icon--${size}`]: size,
-    })}">${arrowIcon(iconsPathPrefix)}</div>
+    })}">${raw(arrowIcon)}</div>
   </div>`;
 
 const getTitle = (value, items, title) => {
@@ -39,11 +40,11 @@ const getTitle = (value, items, title) => {
   return selected.length === 1 ? selected[0].name : title;
 };
 
-const enhancedSelect = ({ title, items, size, value, iconsPathPrefix = 'true' }) => [
+const enhancedSelect = ({ title, items, size, value }) => [
   html`<button type="button" class="${classnames('m-dropdown__toggle js-dropdown__toggle', {
     [`m-dropdown__toggle--${size}`]: size,
   })}">
-    ${getTitle(value, items, title) || ''}${arrowIcon(iconsPathPrefix)}
+    ${getTitle(value, items, title) || ''}${raw(arrowIcon)}
   </button>`,
   html`<ul class="m-dropdown__content js-dropdown__content">
     ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => {
