@@ -161,8 +161,6 @@ const withUpdate = Base =>
      * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
      */
     _reduceProps = ({ props, shouldUpdate }, key) => {
-      const hasKey = this._hasKeys[key];
-
       const name = `_${key}`;
       const value = props[key];
       const oldValue = this[name];
@@ -175,10 +173,6 @@ const withUpdate = Base =>
       }
 
       this.props[key] = value;
-
-      if (hasKey) {
-        super[key] = value;
-      }
 
       return {
         props,
