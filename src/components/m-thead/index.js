@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withBase, withAllHocs } from '../../js/abstract/hocs';
+import { withBase, withBaseGlobal, withAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 // import styles from './index.scss';
@@ -9,7 +9,7 @@ import defineOnce from '../../js/define-once';
 import template from './_template';
 import { tableHeadPropTypes } from '../../js/prop-types';
 
-const HTMLTableSectionElementBase = withAllHocs(withBase(HTMLTableSectionElement));
+const HTMLTableSectionElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableSectionElement)));
 
 class AXATHead extends HTMLTableSectionElementBase {
   static tagName = 'axa-thead'

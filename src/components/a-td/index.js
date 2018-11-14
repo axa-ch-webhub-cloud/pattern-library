@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withAllHocs, withBase } from '../../js/abstract/hocs';
+import { withAllHocs, withBase, withBaseGlobal } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 import alignPropType from '../../js/prop-types/align-prop-type';
 import floatPropType from '../../js/prop-types/float-prop-type';
@@ -9,7 +9,7 @@ import statePropType from '../../js/prop-types/state-prop-type';
 // import the styles used for this component
 import styles from './index.scss';
 
-const TableCellBase = withAllHocs(withBase(HTMLTableCellElement));
+const TableCellBase = withAllHocs(withBaseGlobal(withBase(HTMLTableCellElement)));
 
 class AXATd extends TableCellBase {
   static tagName = 'axa-td'

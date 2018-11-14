@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withBase, withAllHocs } from '../../js/abstract/hocs';
+import { withBase, withBaseGlobal, withAllHocs } from '../../js/abstract/hocs';
 
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
@@ -10,7 +10,7 @@ import alignPropType from '../../js/prop-types/align-prop-type';
 import sortPropType from '../../js/prop-types/sort-prop-type';
 import floatPropType from '../../js/prop-types/float-prop-type';
 
-const HTMLTableCellElementBase = withAllHocs(withBase(HTMLTableCellElement));
+const HTMLTableCellElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableCellElement)));
 
 class AXATh extends HTMLTableCellElementBase {
   static tagName = 'axa-th'
