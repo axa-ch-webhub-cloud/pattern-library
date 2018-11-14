@@ -326,6 +326,9 @@ This class handles [proper context upgrading within the constructor](https://git
 
 #### `withBaseGlobal()`
 
+This class extends the {Base} and applies styles globally by injecting them within `<head>` section.
+This is the recommended approach.
+
 #### `withContext()`
 
 Adds the ability to provide and consume contextual data.
