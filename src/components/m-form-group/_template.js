@@ -11,22 +11,20 @@ export default function ({
 
   return [
     html`
-      <label class="m-form-group__wrapper js-form-group__wrapper">
-        <fieldset>
-          <span class="m-form-group__label-icon-wrapper js-form-group__label-icon-wrapper">
-            <legend class="m-form-group__legend">
-              ${label}
-            </legend>
-            <a tabindex="0" role="button" class="m-form-group__info-button js-form-group-info__toggle">
-            ${closeIcon}
-            ${openIcon}
-            </a>
-          </span>
+      <fieldset class="m-form-group__wrapper js-form-group__wrapper">
+        <span class="m-form-group__label-icon-wrapper js-form-group__label-icon-wrapper">
+          <legend class="m-form-group__legend">
+            ${label}
+          </legend>
+          <a tabindex="0" role="button" class="m-form-group__info-button js-form-group-info__toggle">
+          ${closeIcon}
+          ${openIcon}
+          </a>
+        </span>
 
-          ${childrenFragment}
-          <span class="m-form-group__error">${error}</span>
-        </fieldset>
-      </label>`,
+        ${childrenFragment}
+        <span class="m-form-group__error">${error}</span>
+      </fieldset>`,
     html`
       <div class="m-form-group__info js-form-group__info">
           <div class="m-form-group__info-content">${info}</div>
