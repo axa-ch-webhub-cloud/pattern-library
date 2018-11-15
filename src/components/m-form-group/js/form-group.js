@@ -11,7 +11,7 @@ class FormGroup extends UiEvents {
     containerClass: false,
     toggle: '.js-form-group-info__toggle',
     info: '.js-form-group__info',
-    labelIconWrapper: '.js-form-group__label-icon-wrapper',
+    labelIconWrapper: '.js-form-group__legend-icon-wrapper',
     isOpen: 'is-form-group-info-open',
   };
 

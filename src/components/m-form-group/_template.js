@@ -12,7 +12,7 @@ export default function ({
   return [
     html`
       <fieldset class="m-form-group__wrapper js-form-group__wrapper">
-        <span class="m-form-group__label-icon-wrapper js-form-group__label-icon-wrapper">
+        <div class="m-form-group__legend-icon-wrapper js-form-group__legend-icon-wrapper">
           <legend class="m-form-group__legend">
             ${label}
           </legend>
@@ -20,7 +20,7 @@ export default function ({
           ${closeIcon}
           ${openIcon}
           </a>
-        </span>
+        </div>
 
         ${childrenFragment}
         <span class="m-form-group__error">${error}</span>
