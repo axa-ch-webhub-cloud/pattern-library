@@ -10,7 +10,7 @@ import template from './_template';
 class AXAFormGroup extends BaseComponentGlobal {
   static tagName = 'axa-form-group'
   static propTypes = {
-    label: PropTypes.string,
+    legend: PropTypes.string,
     info: PropTypes.string,
     error: PropTypes.string,
   }

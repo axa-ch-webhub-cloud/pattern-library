@@ -2,7 +2,7 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
 export default function ({
-  label = '',
+  legend = '',
   info = '',
   error = '',
 }, childrenFragment) {
@@ -11,10 +11,10 @@ export default function ({
 
   return [
     html`
-      <fieldset class="m-form-group__wrapper js-form-group__wrapper">
+      <fieldset class="m-form-group__fieldset m-form-group__fieldset">
         <div class="m-form-group__legend-icon-wrapper js-form-group__legend-icon-wrapper">
           <legend class="m-form-group__legend">
-            ${label}
+            ${legend}
           </legend>
           <a tabindex="0" role="button" class="m-form-group__info-button js-form-group-info__toggle">
           ${closeIcon}
