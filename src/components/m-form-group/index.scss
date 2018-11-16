@@ -17,12 +17,12 @@
   }
 }
 
-.m-form-group__wrapper {
+.m-form-group__fieldset {
   display: block;
 }
 
 .m-form-group--info {
-  .m-form-group__label {
+  .m-form-group__legend {
     margin-right: $form-group-label-margin--info;
   }
 
@@ -37,7 +37,7 @@
   }
 }
 
-.m-form-group__label-icon-wrapper {
+.m-form-group__legend-icon-wrapper {
   display: flex;
   width: $form-group-label-icon-wrapper-width;
 }
@@ -52,7 +52,7 @@
   color: $color-state-red-shy-tomato;
 }
 
-.m-form-group__label {
+.m-form-group__legend {
   @include typo-secondary-text--semibold();
 
   flex: 1;
