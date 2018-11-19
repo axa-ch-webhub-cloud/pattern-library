@@ -3,6 +3,8 @@ export { default as AXACheckbox } from './components/a-checkbox';
 
 export { default as AXAChoice } from './components/a-choice';
 
+export { default as AXADeviceState } from './components/a-device-state';
+
 export { default as AXAIcon } from './components/a-icon';
 
 export { default as AXAInput } from './components/a-input';
@@ -100,3 +102,5 @@ export { default as AXAStickyContainer } from './components/o-sticky-container';
 export { default as AXATestimonials } from './components/o-testimonials';
 
 export { default as AXATable } from './components/o-table';
+
+export { default as AXACore } from './components/u-core';
