@@ -52,8 +52,8 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
   // hence it's tagName could only be resolved lazily
   // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry
   // therefor we don't instantiate it, but rather use a statically defined tagName property
-  const { tagName, buildinTagName } = WebComponent;
-  const displayName = `${camelize(buildinTagName || tagName)}React`;
+  const { tagName, builtInTagName } = WebComponent;
+  const displayName = `${camelize(builtInTagName || tagName)}React`;
   const Component = pure ? React.PureComponent : React.Component;
 
   return class WebComponentWrapper extends Component {
@@ -150,7 +150,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     render() {
       // eslint-disable-next-line react/prop-types
       const { props: { children }, handleRef } = this;
-      const is = buildinTagName ? tagName : null;
+      const is = builtInTagName ? tagName : null;
 
       return createElement(tagName, { ref: handleRef, is }, children);
     }

@@ -34,8 +34,8 @@ console.log(chalk.cyan(outdent`
 
 let element = '';
 let componentName = '';
-let isBuiltin = false;
-let buildinElement = '';
+let isBuiltIn = false;
+let builtInElement = '';
 
 const mapElement = {
   a: 'ATOM📗',
@@ -221,7 +221,7 @@ const displayElementSelector = () => {
     `));
 };
 
-const displayIsBuiltinElementCheck = () => {
+const displayisBuiltInElementCheck = () => {
   console.log(chalk.white(outdent`
       Are you extending built-in elements? [y/n]
     `));
@@ -241,14 +241,14 @@ const getClassName = _name => `AXA${camelCase(_name)}`;
 
 const writeIndexJs = (path, _name) => {
   const className = getClassName(_name);
-  const nativeElementConstructor = getNativeElementConstructor(buildinElement);
-  const BaseConstructor = isBuiltin ? `${nativeElementConstructor}Base` : 'BaseComponentGlobal';
+  const nativeElementConstructor = getNativeElementConstructor(builtInElement);
+  const BaseConstructor = isBuiltIn ? `${nativeElementConstructor}Base` : 'BaseComponentGlobal';
 
   fs.writeFileSync(
     `${path}/index.js`,
     outdent`import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
-      ${isBuiltin ?
+      ${isBuiltIn ?
         "import { withBase, withAllHocs } from '../../js/abstract/hocs';"
       :
         `import ${BaseConstructor} from '../../js/abstract/base-component-global';`
@@ -260,13 +260,13 @@ const writeIndexJs = (path, _name) => {
       // import the template used for this component
       import template from './_template';
 
-      ${isBuiltin ?
+      ${isBuiltIn ?
         `const ${BaseConstructor} = withAllHocs(withBase(${nativeElementConstructor}));`
         : ''}
 
       class ${className} extends ${BaseConstructor} {
         static tagName = 'axa-${_name}'
-        ${isBuiltin ? `static buildinTagName = '${buildinElement}'` : ''}
+        ${isBuiltIn ? `static builtInTagName = '${builtInElement}'` : ''}
 
         // specify runtime type-checking here, if you use custom attributes
         // this will also derived your needed observed attributes automatically for you
@@ -331,8 +331,8 @@ const writeIndexJs = (path, _name) => {
         // }
       }
 
-      ${isBuiltin ?
-        `defineOnce(${className}.tagName, ${className}, { extends: '${buildinElement}' });`
+      ${isBuiltIn ?
+        `defineOnce(${className}.tagName, ${className}, { extends: '${builtInElement}' });`
       :
         `defineOnce(${className}.tagName, ${className});`
       }
@@ -360,8 +360,8 @@ const writeIndexScss = (path, _name) => {
 };
 
 const writePreviewAndHtml = (path, _name) => {
-  const markup = isBuiltin ?
-    outdent`<${buildinElement} is="axa-${_name}" classes="${element}-${_name}"></${buildinElement}>
+  const markup = isBuiltIn ?
+    outdent`<${builtInElement} is="axa-${_name}" classes="${element}-${_name}"></${builtInElement}>
     `
     :
     outdent`<axa-${_name} classes="${element}-${_name}"></axa-${_name}>
@@ -501,7 +501,7 @@ process.stdin.on('readable', () => {
       if (input) {
         componentName = input.replace(reWhitespaceSep, ELEMENT_NAME_SEP);
         CLI_STATE = CLI_GET_BUILTIN;
-        displayIsBuiltinElementCheck();
+        displayisBuiltInElementCheck();
       } else {
         displayNameText();
       }
@@ -510,28 +510,28 @@ process.stdin.on('readable', () => {
     case CLI_GET_BUILTIN:
       switch (input) {
         case 'y':
-          isBuiltin = true;
+          isBuiltIn = true;
           whichElementDoYouExtend();
           CLI_STATE = CLI_READ_BUILTIN_NAME;
           break;
         case 'n':
-          isBuiltin = false;
+          isBuiltIn = false;
           CLI_STATE = CLI_FINISH;
           createBoilerplate(componentName);
           break;
 
         default:
-          displayIsBuiltinElementCheck();
+          displayisBuiltInElementCheck();
       }
       break;
 
     case CLI_READ_BUILTIN_NAME:
       if (input) {
-        buildinElement = input.replace(reWhitespaceSep, ELEMENT_NAME_SEP);
+        builtInElement = input.replace(reWhitespaceSep, ELEMENT_NAME_SEP);
         CLI_STATE = CLI_FINISH;
         createBoilerplate(componentName);
       } else {
-        displayIsBuiltinElementCheck();
+        displayisBuiltInElementCheck();
       }
       break;
 
