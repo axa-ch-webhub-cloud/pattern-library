@@ -4,7 +4,7 @@
 @import "../../../styles/typo/typo-mixins";
 
 @mixin th(
-  $color: $table__cell-color,
+  $color: $table__cell--head-color,
   $border-color: $table-border-color,
   $border-width: $table-border-width,
   $padding-x: $table__cell-padding-x,
