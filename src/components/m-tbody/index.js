@@ -13,7 +13,7 @@ const HTMLTableSectionElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTabl
 
 class AXATbody extends HTMLTableSectionElementBase {
   static tagName = 'axa-tbody'
-  static buildinTagName = 'tbody'
+  static builtInTagName = 'tbody'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -33,6 +33,6 @@ class AXATbody extends HTMLTableSectionElementBase {
   }
 }
 
-defineOnce(AXATbody.tagName, AXATbody, { extends: AXATbody.buildinTagName });
+defineOnce(AXATbody.tagName, AXATbody, { extends: AXATbody.builtInTagName });
 
 export default AXATbody;

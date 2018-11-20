@@ -14,7 +14,7 @@ const HTMLTableElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableElemen
 
 class AXATable extends HTMLTableElementBase {
   static tagName = 'axa-table'
-  static buildinTagName = 'table'
+  static builtInTagName = 'table'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -59,6 +59,6 @@ class AXATable extends HTMLTableElementBase {
   }
 }
 
-defineOnce(AXATable.tagName, AXATable, { extends: AXATable.buildinTagName });
+defineOnce(AXATable.tagName, AXATable, { extends: AXATable.builtInTagName });
 
 export default AXATable;

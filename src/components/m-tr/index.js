@@ -10,7 +10,7 @@ const HTMLTableRowElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableRow
 
 class AXATr extends HTMLTableRowElementBase {
   static tagName = 'axa-tr'
-  static buildinTagName = 'tr'
+  static builtInTagName = 'tr'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -51,6 +51,6 @@ class AXATr extends HTMLTableRowElementBase {
   }
 }
 
-defineOnce(AXATr.tagName, AXATr, { extends: AXATr.buildinTagName });
+defineOnce(AXATr.tagName, AXATr, { extends: AXATr.builtInTagName });
 
 export default AXATr;

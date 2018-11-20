@@ -14,7 +14,7 @@ const HTMLTableCellElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableCe
 
 class AXATh extends HTMLTableCellElementBase {
   static tagName = 'axa-th'
-  static buildinTagName = 'th'
+  static builtInTagName = 'th'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -54,6 +54,6 @@ class AXATh extends HTMLTableCellElementBase {
   }
 }
 
-defineOnce(AXATh.tagName, AXATh, { extends: AXATh.buildinTagName });
+defineOnce(AXATh.tagName, AXATh, { extends: AXATh.builtInTagName });
 
 export default AXATh;

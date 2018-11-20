@@ -13,7 +13,7 @@ const HTMLTableSectionElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTabl
 
 class AXATFoot extends HTMLTableSectionElementBase {
   static tagName = 'axa-tfoot'
-  static buildinTagName = 'tfoot'
+  static builtInTagName = 'tfoot'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -33,6 +33,6 @@ class AXATFoot extends HTMLTableSectionElementBase {
   }
 }
 
-defineOnce(AXATFoot.tagName, AXATFoot, { extends: AXATFoot.buildinTagName });
+defineOnce(AXATFoot.tagName, AXATFoot, { extends: AXATFoot.builtInTagName });
 
 export default AXATFoot;

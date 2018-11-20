@@ -12,7 +12,7 @@ const TableCaptionBase = withAllHocs(withBaseGlobal(withBase(HTMLTableCaptionEle
 
 class AXACaption extends TableCaptionBase {
   static tagName = 'axa-caption'
-  static buildinTagName = 'caption'
+  static builtInTagName = 'caption'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -49,6 +49,6 @@ class AXACaption extends TableCaptionBase {
   }
 }
 
-defineOnce(AXACaption.tagName, AXACaption, { extends: AXACaption.buildinTagName });
+defineOnce(AXACaption.tagName, AXACaption, { extends: AXACaption.builtInTagName });
 
 export default AXACaption;
