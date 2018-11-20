@@ -1,6 +1,4 @@
-import BaseComponent from './base-component';
-
-import withBaseGlobal from './hocs/with-base-global';
+import { withBaseGlobalAndAllHocs } from './hocs';
 
 /**
  * Base class {BaseComponentGlobal}. This class extends the {BaseComponent} and
@@ -9,4 +7,4 @@ import withBaseGlobal from './hocs/with-base-global';
  * is used more than once and has lots of css.
  * The style will be included only once in the DOM and is insert in the head of the main document.
  */
-export default withBaseGlobal(BaseComponent);
+export default withBaseGlobalAndAllHocs(HTMLElement);

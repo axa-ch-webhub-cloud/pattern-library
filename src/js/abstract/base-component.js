@@ -1,3 +1,3 @@
-import { withAllHocs, withBase } from './hocs';
+import { withBaseAndAllHocs } from './hocs';
 
-export default withAllHocs(withBase(HTMLElement));
+export default withBaseAndAllHocs(HTMLElement);

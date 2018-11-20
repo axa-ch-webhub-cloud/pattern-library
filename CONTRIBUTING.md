@@ -30,6 +30,11 @@
       - [`disconnectedCallback()`](#disconnectedcallback)
       - [Render Loop](#render-loop)
     - [Higher Order Classes](#higher-order-classes)
+      - [`withAllHocs`](#withallhocs)
+      - [`withBaseAndAllHocs`](#withbaseandallhocs)
+      - [`withBaseGlobalAndAllHocs`](#withbaseglobalandallhocs)
+      - [`withBase()`](#withbase)
+      - [`withBaseGlobal()`](#withbaseglobal)
       - [`withContext()`](#withcontext)
       - [`withMonkeyPatch()`](#withmonkeypatch)
       - [`withRender()`](#withrender)
@@ -319,6 +324,18 @@ Under the hood we defined following encapsulated higher order classes.
 **Note:** all of these are already composed to `BaseComponnet` class.
 
 **Caution:** consider that all possible combinations have to be interchangeable and that they result in a [**Factorial**](https://en.wikipedia.org/wiki/Factorial) set of permutations - i.e. our `6` HOCs correlate to `6!` = `720` permutations.
+
+#### `withAllHocs`
+
+A composed HOC with all feature HOCs including [`withContext()`](#withcontext), [`withMonkeyPatch()`](#withmonkeypatch), [`withRender()`](#withrender), [`withStyles()`](#withstyles), [`withUpdate()`](#withupdate)
+
+#### `withBaseAndAllHocs`
+
+A composed HOC with [`withBase()`](#withbase) and [all feature HOCs](#withallhocs).
+
+#### `withBaseGlobalAndAllHocs`
+
+A composed HOC with [`withBase()`](#withbase), [`withBaseGlobal()`](#withbaseglobal) and [all feature HOCs](#withallhocs).
 
 #### `withBase()`
 

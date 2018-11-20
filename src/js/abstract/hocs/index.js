@@ -21,3 +21,5 @@ export {
 };
 
 export const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRender, withStyles);
+export const withBaseAndAllHocs = compose(withAllHocs, withBase);
+export const withBaseGlobalAndAllHocs = compose(withAllHocs, withBaseGlobal, withBase);
