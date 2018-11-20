@@ -150,9 +150,13 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
     render() {
       // eslint-disable-next-line react/prop-types
       const { props: { children }, handleRef } = this;
-      const is = builtInTagName ? tagName : null;
+      const props = { ref: handleRef };
 
-      return createElement(tagName, { ref: handleRef, is }, children);
+      if (builtInTagName) {
+        props.is = tagName;
+      }
+
+      return createElement(tagName, props, children);
     }
   };
 };
