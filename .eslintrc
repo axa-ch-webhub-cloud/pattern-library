@@ -25,7 +25,6 @@
     }]
   },
   "globals": {
-    "HTMLAllCollection": true,
     "HTMLAnchorElement": true,
     "HTMLAreaElement": true,
     "HTMLAudioElement": true,
@@ -34,7 +33,6 @@
     "HTMLBodyElement": true,
     "HTMLButtonElement": true,
     "HTMLCanvasElement": true,
-    "HTMLCollection": true,
     "HTMLContentElement": true,
     "HTMLDListElement": true,
     "HTMLDataListElement": true,
@@ -47,7 +45,6 @@
     "HTMLEmbedElement": true,
     "HTMLFieldSetElement": true,
     "HTMLFontElement": true,
-    "HTMLFormControlsCollection": true,
     "HTMLFormElement": true,
     "HTMLFrameElement": true,
     "HTMLFrameSetElement": true,
@@ -73,7 +70,6 @@
     "HTMLObjectElement": true,
     "HTMLOptGroupElement": true,
     "HTMLOptionElement": true,
-    "HTMLOptionsCollection": true,
     "HTMLOutputElement": true,
     "HTMLParagraphElement": true,
     "HTMLParamElement": true,
