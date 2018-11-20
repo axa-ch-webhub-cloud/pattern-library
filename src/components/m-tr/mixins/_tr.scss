@@ -41,7 +41,8 @@
   $color: $table__cell--action-color,
   $border-color: $color,
   $border-width: $table-border-width,
-  $padding-x: $table__cell-padding-x
+  $padding-x: $table__row-padding-x--sm,
+  $padding-y: $table__row-padding-y--sm
 ) {
   &:hover,
   &:focus {
@@ -65,6 +66,10 @@
     }
 
     @include respond-down(sm) {
+      margin-left: -$border-width;
+      margin-right: -$border-width;
+      padding-top: ($padding-y - $border-width);
+      padding-bottom: ($padding-y - $border-width);
       border: $border-width solid $border-color;
 
       .a-th,
