@@ -1,0 +1,32 @@
+@import "../../o-table/settings/table";
+@import "../../../styles/mixins/respond";
+@import "../../../styles/typo/typo-mixins";
+
+@mixin caption(
+  $color: $table__cell-color,
+  $padding-x: $table__cell-padding-y,
+  $padding-y: $table__cell-padding-y,
+  $padding-x--sm: $table__cell-padding-x--sm
+) {
+  @include typo-tag();
+
+  padding: $padding-y $padding-x;
+  color: $color;
+
+  @include respond-down(sm) {
+    padding-left: $padding-x--sm;
+    padding-right: $padding-x--sm;
+  }
+}
+
+@mixin caption-side($side: top) {
+  caption-side: $side;
+}
+
+@mixin caption-side--top() {
+  @include caption-side(top);
+}
+
+@mixin caption-side--bottom() {
+  @include caption-side(bottom);
+}

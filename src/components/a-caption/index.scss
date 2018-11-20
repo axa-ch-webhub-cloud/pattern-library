@@ -1,27 +1,17 @@
-@import "../o-table/settings/table";
-@import "../../styles/mixins/respond";
-@import "../../styles/typo/typo-mixins";
+@import "./mixins/caption";
 
 @import "../../styles/trumps/align";
 
 %a-caption {
-  @include typo-tag();
-
-  padding: $table__cell-padding-y $table__cell-padding-x;
-  color: $table__cell-color;
-
-  @include respond-down(sm) {
-    padding-left: $table__cell-padding-x--sm;
-    padding-right: $table__cell-padding-x--sm;
-  }
+  @include caption();
 }
 
 %a-caption--top {
-  caption-side: top;
+  @include caption-side--top();
 }
 
 %a-caption--bottom {
-  caption-side: bottom;
+  @include caption-side--bottom();
 }
 
 .a-caption {
