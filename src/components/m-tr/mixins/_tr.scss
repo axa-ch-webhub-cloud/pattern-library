@@ -63,5 +63,21 @@
         border-right-color: $border-color;
       }
     }
+
+    @include respond-down(sm) {
+      border: $border-width solid $border-color;
+
+      .a-th,
+      .a-td,
+      td,
+      th {
+        border-color: transparent;
+
+        &:first-child,
+        &:last-child {
+          border-color: transparent;
+        }
+      }
+    }
   }
 }
