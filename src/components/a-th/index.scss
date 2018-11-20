@@ -1,22 +1,10 @@
-@import "../o-table/settings/table";
 @import "../o-table/mixins/table";
-@import "../o-table/index";
-@import "../../styles/mixins/respond";
-@import "../../styles/typo/typo-mixins";
+@import "./mixins/th";
 
 @import "../../styles/trumps/align";
 
 %a-th {
-  @include typo-secondary-text--bold();
-
-  padding: $table__cell-padding-y $table__cell-padding-x;
-  border-top: 1px solid $table-border-color;
-
-  color: $table__cell--head-color;
-
-  @include respond-down(sm) {
-    display: none;
-  }
+  @include th();
 }
 
 .a-th {
@@ -28,45 +16,15 @@
 }
 
 .a-th--sort {
-  &::after {
-    position: relative;
-
-    margin-left: $table__cell--sort-margin-left;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
+  @include th--sort();
 }
 
 .a-th--sort-up {
-  &::after {
-    @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
-
-    top: -($table__cell--sort-height * 2);
-  }
-
-  &:hover,
-  &.a-th--sort-active {
-    &::after {
-      @include triangle-color(top, $table__cell--sort-active-color);
-    }
-  }
+  @include th--sort-up();
 }
 
 .a-th--sort-down {
-  &::after {
-    @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
-
-    top: -$table__cell--sort-height;
-  }
-
-  &:hover,
-  &.a-th--sort-active {
-    &::after {
-      @include triangle-color(bottom, $table__cell--sort-active-color);
-    }
-  }
+  @include th--sort-down();
 }
 
 /// Tag Styles
