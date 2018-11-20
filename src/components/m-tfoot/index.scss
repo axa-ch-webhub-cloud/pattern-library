@@ -1,12 +1,18 @@
-@import "../o-table/settings/table";
+@import "./mixins/tfoot";
+
+/// Placeholders
 
 %m-tfoot {
-  background: $table__foot-bg;
+  @include tfoot();
 }
+
+/// Class styles
 
 .m-tfoot {
   @extend %m-tfoot;
 }
+
+/// Tag styles
 
 .o-table--all {
   tfoot {
