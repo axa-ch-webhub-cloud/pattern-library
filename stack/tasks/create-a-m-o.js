@@ -280,7 +280,7 @@ const writeIndexJs = (path, _name) => {
         // static get observedAttributes() {
         //  return ['classes'];
         // }
-        
+
         // Always use init if you want to construct your element
         // never use the constructor directly, we call init for you with the proper context
         // @link https://github.com/WebReflection/document-register-element#v1-caveat
@@ -332,7 +332,7 @@ const writeIndexJs = (path, _name) => {
       }
 
       ${isBuiltIn ?
-        `defineOnce(${className}.tagName, ${className}, { extends: '${builtInElement}' });`
+        `defineOnce(${className}.tagName, ${className}, { extends: ${className}.builtInTagName });`
       :
         `defineOnce(${className}.tagName, ${className});`
       }
