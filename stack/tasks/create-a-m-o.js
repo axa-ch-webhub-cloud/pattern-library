@@ -381,15 +381,26 @@ const writePreviewAndHtml = (path, _name) => {
 };
 
 const writeTemplateJs = (path) => {
-  fs.writeFileSync(
-    `${path}/_template.js`,
-    outdent`import html from 'nanohtml';
+  const shouldUseArticle = isBuiltIn && element === 'o';
+  const templateSource = shouldUseArticle
+    ? outdent`import html from 'nanohtml';
 
       export default ({ classes }) => html\`
         <article class=\${classes}>Ready to start</article>
       \`;
 
-    `,
+    `
+    : outdent`import html from 'nanohtml';
+
+      export default ({ classes }) => html\`
+        <div class=\${classes}>Ready to start</div>
+      \`;
+
+    `;
+
+  fs.writeFileSync(
+    `${path}/_template.js`,
+    templateSource,
     handleError,
   );
 };
