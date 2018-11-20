@@ -249,7 +249,7 @@ const writeIndexJs = (path, _name) => {
     outdent`import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
       ${isBuiltIn ?
-        "import { withBase, withAllHocs } from '../../js/abstract/hocs';"
+        "import { withBase, withBaseGlobal, withAllHocs } from '../../js/abstract/hocs';"
       :
         `import ${BaseConstructor} from '../../js/abstract/base-component-global';`
       }
@@ -261,7 +261,7 @@ const writeIndexJs = (path, _name) => {
       import template from './_template';
 
       ${isBuiltIn ?
-        `const ${BaseConstructor} = withAllHocs(withBase(${nativeElementConstructor}));`
+        `const ${BaseConstructor} = withAllHocs(withBaseGlobal(withBase(${nativeElementConstructor})));`
         : ''}
 
       class ${className} extends ${BaseConstructor} {
