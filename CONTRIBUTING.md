@@ -220,11 +220,15 @@ A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/U
 
 #### `constructor()`
 
-We never use the ~~constructor~~ directly, ìnstead we call [`init()`](#init) for you with the proper context!
+We never use the ~~constructor~~ directly, instead we call [`init()`](#init) for you with the proper context!
+
+**Note:** It's a caveat of Babel 6, please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) for more details.
 
 #### `init()`
 The `init()` method can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
 It always starts by calling `super.init(?options)` so that the correct prototype chain is established.
+
+**Note:** It's a caveat of Babel 6, please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) for more details.
 
 #### `connectedCallback()`
 
