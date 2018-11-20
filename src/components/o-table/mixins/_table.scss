@@ -1,11 +1,19 @@
 @import "../settings/table";
 @import "../../../styles/mixins/clearfix";
+@import "../../../styles/mixins/respond";
+@import "../../../styles/mixins/word-break";
+
+@mixin table($width: $table-width) {
+  width: $width;
+}
 
 @mixin table-cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {
   padding-top: $top;
   padding-bottom: $bottom;
 }
 
+/// Table cell do stack on mobile by default.
+/// Additionally it's support that two adjacent siblings float horizontally - one on the left, the other on the right.
 @mixin table-cell--float() {
   $parent: &;
 
