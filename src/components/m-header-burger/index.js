@@ -9,8 +9,8 @@ import Burger from './js/burger';
 class AXAHeaderBurger extends BaseComponentGlobal {
   static tagName = 'axa-header-burger'
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.consumeContext('axa-header');
   }

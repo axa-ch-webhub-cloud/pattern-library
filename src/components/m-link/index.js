@@ -21,8 +21,8 @@ class AXALink extends BaseComponentGlobal {
     target: PropTypes.oneOf(['_blank', '_self']),
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 }
 

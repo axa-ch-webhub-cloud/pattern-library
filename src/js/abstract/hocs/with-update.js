@@ -21,8 +21,8 @@ const withUpdate = Base =>
       return derivedAttributes;
     }
 
-    constructor(options) {
-      super(options);
+    init(options) {
+      super.init(options);
 
       this._isConnected = false;
       this.props = {};

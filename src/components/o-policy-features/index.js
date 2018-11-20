@@ -12,8 +12,8 @@ class AXAPolicyFeatures extends BaseComponentGlobal {
     title: PropTypes.string,
   }
 
-  constructor() {
-    super({
+  init() {
+    super.init({
       styles, template,
     });
   }

@@ -21,8 +21,8 @@ class AXADatepicker extends BaseComponentGlobal {
     value: PropTypes.string,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?

@@ -17,8 +17,8 @@ class AXACheckbox extends BaseComponentGlobal {
     disabled: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   willRenderCallback() {

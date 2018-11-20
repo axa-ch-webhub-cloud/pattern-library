@@ -15,8 +15,8 @@ class AXAFormGroup extends BaseComponentGlobal {
     error: PropTypes.string,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   willRenderCallback() {
