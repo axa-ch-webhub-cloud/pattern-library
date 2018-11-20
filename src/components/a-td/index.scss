@@ -3,6 +3,8 @@
 
 @import "../../styles/trumps/align";
 
+/// Placeholders
+
 %a-td {
   @include td();
 }
@@ -18,6 +20,8 @@
 %a-td--state {
   @include td--state();
 }
+
+/// Class styles
 
 .a-td {
   @extend %a-td;

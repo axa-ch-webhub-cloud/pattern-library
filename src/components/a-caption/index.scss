@@ -2,6 +2,8 @@
 
 @import "../../styles/trumps/align";
 
+/// Placeholders
+
 %a-caption {
   @include caption();
 }
@@ -13,6 +15,8 @@
 %a-caption--bottom {
   @include caption-side--bottom();
 }
+
+/// Class Styles
 
 .a-caption {
   @extend %a-caption;

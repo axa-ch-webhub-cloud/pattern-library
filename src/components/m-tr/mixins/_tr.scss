@@ -1,0 +1,69 @@
+@import "../../o-table/settings/table";
+@import "../../../styles/mixins/respond";
+
+@mixin tr(
+  $padding-x: $table__row-padding-x--sm,
+  $padding-y: $table__row-padding-y--sm,
+  $border-color: $table-border-color,
+  $border-width: $table-border-width
+) {
+  @include respond-down(sm) {
+    display: block;
+
+    padding: $padding-y $padding-x;
+    border-top: $border-width solid $border-color;
+  }
+}
+
+@mixin tr--head() {
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+@mixin tr--foot(
+  $border-color: $table-border-color,
+  $padding-y: $table__cell-padding-y
+) {
+  border-top-color: $border-color;
+
+  @include respond-down(sm) {
+    padding-top: $padding-y;
+    padding-bottom: $padding-y;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+@mixin tr--action(
+  $color: $table__cell--action-color,
+  $border-color: $color,
+  $border-width: $table-border-width,
+  $padding-x: $table__cell-padding-x
+) {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    .a-th,
+    .a-td,
+    td,
+    th {
+      color: $color;
+      border-top-color: $border-color;
+      border-bottom: $border-width solid $border-color;
+
+      &:first-child {
+        padding-left: $padding-x - $border-width;
+        border-left: $border-width solid $border-color;
+      }
+
+      &:last-child {
+        // padding-right: $padding-x - $border-width;
+        border-right: $border-width solid $border-color;
+      }
+    }
+  }
+}

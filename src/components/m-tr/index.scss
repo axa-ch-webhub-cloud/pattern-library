@@ -2,32 +2,20 @@
 @import "../o-table/mixins/table";
 @import "../../styles/mixins/respond";
 
-%m-tr {
-  @include respond-down(sm) {
-    display: block;
+@import "./mixins/tr";
 
-    padding: $table__row-padding-y--sm $table__row-padding-x--sm;
-    border-top: 1px solid $table-border-color;
-  }
+/// Placeholders
+
+%m-tr {
+  @include tr();
 }
 
 %m-tr--head {
-  @include respond-down(sm) {
-    display: none;
-  }
+  @include tr--head();
 }
 
 %m-tr--foot {
-  border-top-color: $table-border-color;
-
-  @include respond-down(sm) {
-    padding-top: $table__cell-padding-y;
-    padding-bottom: $table__cell-padding-y;
-
-    &:first-child {
-      border-top: none;
-    }
-  }
+  @include tr--head();
 }
 
 %m-tr--dense {
@@ -35,30 +23,10 @@
 }
 
 %m-tr--action {
-  &:hover,
-  &:focus {
-    cursor: pointer;
-
-    .a-th,
-    .a-td,
-    td,
-    th {
-      color: $table__cell--action-color;
-      border-top-color: $table__cell--action-color;
-      border-bottom: 1px solid $table__cell--action-color;
-
-      &:first-child {
-        padding-left: $table__cell-padding-x - 1;
-        border-left: 1px solid $table__cell--action-color;
-      }
-
-      &:last-child {
-        // padding-right: $table__cell-padding-x - 1;
-        border-right: 1px solid $table__cell--action-color;
-      }
-    }
-  }
+  @include tr--action();
 }
+
+/// Class Styles
 
 .m-tr {
   @extend %m-tr;

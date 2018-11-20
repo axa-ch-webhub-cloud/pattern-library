@@ -3,9 +3,13 @@
 
 @import "../../styles/trumps/align";
 
+/// Placeholders
+
 %a-th {
   @include th();
 }
+
+/// Class styles
 
 .a-th {
   @extend %a-th;
