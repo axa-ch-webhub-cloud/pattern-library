@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withBase, withBaseGlobal, withAllHocs } from '../../js/abstract/hocs';
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 
-const HTMLTableRowElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableRowElement)));
+const HTMLTableRowElementBase = withBaseGlobalAndAllHocs(HTMLTableRowElement);
 
 class AXATr extends HTMLTableRowElementBase {
   static tagName = 'axa-tr'

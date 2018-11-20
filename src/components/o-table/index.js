@@ -1,7 +1,7 @@
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 import classnames from 'classnames';
 
-import { withBase, withBaseGlobal, withAllHocs } from '../../js/abstract/hocs';
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 import alignPropType from '../../js/prop-types/align-prop-type';
 import sidePropType from '../../js/prop-types/side-prop-type';
@@ -10,7 +10,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
-const HTMLTableElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableElement)));
+const HTMLTableElementBase = withBaseGlobalAndAllHocs(HTMLTableElement);
 
 class AXATable extends HTMLTableElementBase {
   static tagName = 'axa-table'

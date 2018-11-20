@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withAllHocs, withBase, withBaseGlobal } from '../../js/abstract/hocs';
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
 import alignPropType from '../../js/prop-types/align-prop-type';
 import sidePropType from '../../js/prop-types/side-prop-type';
 
-const TableCaptionBase = withAllHocs(withBaseGlobal(withBase(HTMLTableCaptionElement)));
+const TableCaptionBase = withBaseGlobalAndAllHocs(HTMLTableCaptionElement);
 
 class AXACaption extends TableCaptionBase {
   static tagName = 'axa-caption'

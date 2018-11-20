@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withBase, withBaseGlobal, withAllHocs } from '../../js/abstract/hocs';
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 // import the styles used for this component
 import styles from './index.scss';
@@ -9,7 +9,7 @@ import styles from './index.scss';
 import template from './_template';
 import { tableFootPropTypes } from '../../js/prop-types';
 
-const HTMLTableSectionElementBase = withAllHocs(withBaseGlobal(withBase(HTMLTableSectionElement)));
+const HTMLTableSectionElementBase = withBaseGlobalAndAllHocs(HTMLTableSectionElement);
 
 class AXATFoot extends HTMLTableSectionElementBase {
   static tagName = 'axa-tfoot'
