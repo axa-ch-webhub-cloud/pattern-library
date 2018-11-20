@@ -1,52 +1,21 @@
-@import "../o-table/settings/table";
-@import "../o-table/mixins/table";
-@import "../o-table/index";
-@import "../../styles/mixins/respond";
-@import "../../styles/typo/typo-mixins";
+@import "./mixins/td";
 
 @import "../../styles/trumps/align";
 
 %a-td {
-  @include typo-secondary-text();
-
-  padding: $table__cell-padding-y $table__cell-padding-x;
-  border-top: 1px solid $table-border-color;
-
-  color: $table__cell-color;
-
-  @include respond-down(sm) {
-    display: block;
-
-    padding: $table__cell-padding-y--sm $table__cell-padding-x--sm;
-    border-top: none;
-  }
+  @include td();
 }
 
 %a-td--foot {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--foot-color;
-  background: $table__foot-bg;
+  @include td--foot();
 }
 
 %a-td--foot-first {
-  border-top: none;
+  @include td--foot-first();
 }
 
 %a-td--state {
-  &::before {
-    @include size($table__cell--state-size);
-
-    display: inline-block;
-    margin-right: $table__cell--state-margin-right;
-    border-radius: $table__cell--state-size;
-    vertical-align: middle;
-    content: '';
-
-    @include respond-down(sm) {
-      margin-right: $table__cell--state-margin-right--sm;
-    }
-  }
+  @include td--state();
 }
 
 .a-td {
@@ -58,13 +27,11 @@
 }
 
 .a-td--strong {
-  color: $table__cell--strong-color;
+  @include td--strong();
 }
 
 .a-td--bold {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--strong-color;
+  @include td--bold();
 }
 
 .a-td--foot {
@@ -76,55 +43,31 @@
 }
 
 .a-td--action {
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    color: $table__cell--action-color;
-  }
+  @include td--action();
 }
 
 .a-td--state-ok {
+  @include td--state-ok();
+
   @extend %a-td--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-ok-color !important;
-
-  &::before {
-    background: $table__cell--state-ok-color;
-  }
 }
 
 .a-td--state-pending {
+  @include td--state-pending();
+
   @extend %a-td--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-pending-color !important;
-
-  &::before {
-    background: $table__cell--state-pending-color;
-  }
 }
 
 .a-td--state-error {
+  @include td--state-error();
+
   @extend %a-td--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-error-color !important;
-
-  &::before {
-    background: $table__cell--state-error-color;
-  }
 }
 
 .a-td--state-unknown {
+  @include td--state-unknown();
+
   @extend %a-td--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-unknown-color !important;
-
-  &::before {
-    background: $table__cell--state-unknown-color;
-  }
 }
 
 /// Tag Styles

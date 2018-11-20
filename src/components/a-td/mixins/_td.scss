@@ -1,0 +1,104 @@
+@import "../../o-table/settings/table";
+@import "../../o-table/mixins/table";
+@import "../../o-table/index";
+@import "../../../styles/mixins/respond";
+@import "../../../styles/typo/typo-mixins";
+
+@mixin td(
+  $color: $table__cell-color,
+  $border-color: $table-border-color,
+  $border-width: $table-border-width,
+  $padding-x: $table__cell-padding-y,
+  $padding-y: $table__cell-padding-y,
+  $padding-x--sm: $table__cell-padding-x--sm,
+  $padding-y--sm: $table__cell-padding-y--sm
+) {
+  @include typo-secondary-text();
+
+  padding: $padding-y $padding-x;
+  border-top: $border-width solid $border-color;
+
+  color: $color;
+
+  @include respond-down(sm) {
+    display: block;
+
+    padding: $padding-x--sm $padding-y--sm;
+    border-top: none;
+  }
+}
+
+@mixin td--strong($color: $table__cell--strong-color) {
+  color: $color;
+}
+
+@mixin td--bold($color: $table__cell--strong-color) {
+  @include typo-secondary-text--bold();
+
+  color: $color;
+}
+
+
+@mixin td--action($color: $table__cell--action-color) {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $color;
+  }
+}
+
+@mixin td--foot($color: $table__cell--foot-color, $background: $table__foot-bg) {
+  @include typo-secondary-text--bold();
+
+  color: $color;
+  background: $background;
+}
+
+@mixin td--foot-first() {
+  border-top: none;
+}
+
+@mixin td--state(
+  $size: $table__cell--state-size,
+  $margin-right: $table__cell--state-margin-right,
+  $margin-right--sm: $table__cell--state-margin-right--sm
+) {
+  &::before {
+    @include size($size);
+
+    display: inline-block;
+    margin-right: $margin-right;
+    border-radius: $size;
+    vertical-align: middle;
+    content: '';
+
+    @include respond-down(sm) {
+      margin-right: $margin-right--sm;
+    }
+  }
+}
+
+@mixin td--state--color($color, $background: $color) {
+  // stylelint-disable-next-line declaration-no-important
+  color: $color !important;
+
+  &::before {
+    background: $background;
+  }
+}
+
+@mixin td--state-ok() {
+  @include td--state--color($table__cell--state-ok-color);
+}
+
+@mixin td--state-pending() {
+  @include td--state--color($table__cell--state-pending-color);
+}
+
+@mixin td--state-error() {
+  @include td--state--color($table__cell--state-error-color);
+}
+
+@mixin td--state-unknown() {
+  @include td--state--color($table__cell--state-unknown-color);
+}
