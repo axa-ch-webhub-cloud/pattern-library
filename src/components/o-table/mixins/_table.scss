@@ -5,6 +5,7 @@
 
 @mixin table($width: $table-width) {
   width: $width;
+  border-collapse: collapse;
 }
 
 @mixin table-cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {

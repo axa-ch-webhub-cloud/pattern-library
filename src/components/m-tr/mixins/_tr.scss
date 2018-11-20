@@ -61,7 +61,7 @@
       }
 
       &:last-child {
-        // padding-right: $padding-x - $border-width;
+        padding-right: $padding-x - $border-width;
         border-right: $border-width solid $border-color;
       }
     }
