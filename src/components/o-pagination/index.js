@@ -29,8 +29,8 @@ class AXAPagination extends BaseComponentGlobal {
   //  return ['classes'];
   // }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     // does this provide context (See docs for context) ?
     // this.provideContext()
