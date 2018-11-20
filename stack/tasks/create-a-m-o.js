@@ -438,6 +438,7 @@ const updateIndex = (_element, _name) => {
     outdent`
 
       export { default as ${className} } from './components/${_element}-${_name}';
+
     `,
     { flag: 'a' },
     handleError,
