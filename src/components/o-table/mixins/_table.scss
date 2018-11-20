@@ -13,6 +13,22 @@
   padding-bottom: $bottom;
 }
 
+@mixin table-cell--action(
+  $padding-x: $table__cell-padding-x,
+  $border-width: $table-border-width,
+  $border-color: transparent
+) {
+  &:first-child {
+    padding-left: $padding-x - $border-width;
+    border-left: $border-width solid $border-color;
+  }
+
+  &:last-child {
+    padding-right: $padding-x - $border-width;
+    border-right: $border-width solid $border-color;
+  }
+}
+
 /// Table cell do stack on mobile by default.
 /// Additionally it's support that two adjacent siblings float horizontally - one on the left, the other on the right.
 @mixin table-cell--float() {

@@ -13,6 +13,7 @@
   $padding-y--sm: $table__cell-padding-y--sm
 ) {
   @include typo-secondary-text();
+  @include table-cell--action();
 
   padding: $padding-y $padding-x;
   border-top: $border-width solid $border-color;
@@ -20,6 +21,8 @@
   color: $color;
 
   @include respond-down(sm) {
+    @include table-cell--action($padding-x: $padding-x--sm);
+
     display: block;
 
     padding: $padding-x--sm $padding-y--sm;

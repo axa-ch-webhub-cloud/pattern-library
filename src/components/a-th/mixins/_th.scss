@@ -11,6 +11,7 @@
   $padding-y: $table__cell-padding-y
 ) {
   @include typo-secondary-text--bold();
+  @include table-cell--action();
 
   padding: $padding-y $padding-x;
   border-top: $border-width solid $border-color;

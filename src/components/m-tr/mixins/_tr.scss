@@ -56,13 +56,11 @@
       border-bottom: $border-width solid $border-color;
 
       &:first-child {
-        padding-left: $padding-x - $border-width;
-        border-left: $border-width solid $border-color;
+        border-left-color: $border-color;
       }
 
       &:last-child {
-        padding-right: $padding-x - $border-width;
-        border-right: $border-width solid $border-color;
+        border-right-color: $border-color;
       }
     }
   }
