@@ -16,8 +16,8 @@ class AXAAccordionItem extends BaseComponentGlobal {
     multiple: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.consumeContext('axa-accordion');
   }

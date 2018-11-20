@@ -12,8 +12,8 @@ class AXAFooterLegals extends BaseComponentGlobal {
     bottom: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles });
+  init() {
+    super.init({ styles });
   }
 
   connectedCallback() {

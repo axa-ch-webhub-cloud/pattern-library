@@ -18,6 +18,7 @@
       - [First Class Props](#first-class-props)
     - [Lifecycle Phases](#lifecycle-phases)
       - [`constructor()`](#constructor)
+      - [`init()`](#init)
       - [`connectedCallback()`](#connectedcallback)
       - [`contextCallback(contextNode)`](#contextcallbackcontextnode)
       - [`attributeChangedCallback(name, oldValue, newValue)`](#attributechangedcallbackname-oldvalue-newvalue)
@@ -29,6 +30,11 @@
       - [`disconnectedCallback()`](#disconnectedcallback)
       - [Render Loop](#render-loop)
     - [Higher Order Classes](#higher-order-classes)
+      - [`withAllHocs`](#withallhocs)
+      - [`withBaseAndAllHocs`](#withbaseandallhocs)
+      - [`withBaseGlobalAndAllHocs`](#withbaseglobalandallhocs)
+      - [`withBase()`](#withbase)
+      - [`withBaseGlobal()`](#withbaseglobal)
       - [`withContext()`](#withcontext)
       - [`withMonkeyPatch()`](#withmonkeypatch)
       - [`withRender()`](#withrender)
@@ -214,8 +220,15 @@ A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/U
 
 #### `constructor()`
 
-The constructor can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
-It always starts by calling `super()` so that the correct prototype chain is established.
+We never use the ~~constructor~~ directly, instead we call [`init()`](#init) for you with the proper context!
+
+**Note:** It's a caveat of Babel 6, please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) for more details.
+
+#### `init()`
+The `init()` method can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
+It always starts by calling `super.init(?options)` so that the correct prototype chain is established.
+
+**Note:** It's a caveat of Babel 6, please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) for more details.
 
 #### `connectedCallback()`
 
@@ -315,6 +328,27 @@ Under the hood we defined following encapsulated higher order classes.
 **Note:** all of these are already composed to `BaseComponnet` class.
 
 **Caution:** consider that all possible combinations have to be interchangeable and that they result in a [**Factorial**](https://en.wikipedia.org/wiki/Factorial) set of permutations - i.e. our `6` HOCs correlate to `6!` = `720` permutations.
+
+#### `withAllHocs`
+
+A composed HOC with all feature HOCs including [`withContext()`](#withcontext), [`withMonkeyPatch()`](#withmonkeypatch), [`withRender()`](#withrender), [`withStyles()`](#withstyles), [`withUpdate()`](#withupdate)
+
+#### `withBaseAndAllHocs`
+
+A composed HOC with [`withBase()`](#withbase) and [all feature HOCs](#withallhocs).
+
+#### `withBaseGlobalAndAllHocs`
+
+A composed HOC with [`withBase()`](#withbase), [`withBaseGlobal()`](#withbaseglobal) and [all feature HOCs](#withallhocs).
+
+#### `withBase()`
+
+This class handles [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat), it adds a unique `_id` and provides a static UUID generator.
+
+#### `withBaseGlobal()`
+
+This class extends the {Base} and applies styles globally by injecting them within `<head>` section.
+This is the recommended approach.
 
 #### `withContext()`
 

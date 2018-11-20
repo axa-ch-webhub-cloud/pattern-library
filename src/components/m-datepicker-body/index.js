@@ -23,8 +23,8 @@ class AXADatepickerBody extends BaseComponentGlobal {
     allowedYears: PropTypes.arrayOf(PropTypes.number),
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.datepickerBody = new DatepickerBody(this);
     // does this provide context (See docs for context) ?

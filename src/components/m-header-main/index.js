@@ -14,8 +14,8 @@ class AXAHeaderMain extends BaseComponentGlobal {
     firstLeft: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.provideContext();
   }

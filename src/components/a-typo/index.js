@@ -8,8 +8,8 @@ import template from './_template';
 class AXATypo extends BaseComponentGlobal {
   static tagName = 'axa-typo'
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   /**

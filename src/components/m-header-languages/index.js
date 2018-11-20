@@ -21,8 +21,8 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
     value: valuePropType,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   willRenderCallback() {

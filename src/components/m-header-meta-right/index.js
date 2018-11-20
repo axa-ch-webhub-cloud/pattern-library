@@ -8,8 +8,8 @@ import template from './_template';
 class AXAHeaderMetaRight extends BaseComponentGlobal {
   static tagName = 'axa-header-meta-right'
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {
