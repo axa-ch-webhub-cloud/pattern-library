@@ -8,7 +8,7 @@ import floatPropType from './float-prop-type';
 import statePropType from './state-prop-type';
 
 // share across `<thead>`, `<tbody>` and `<tfoot>`
-export const cellShape = {
+export const tableCellShape = {
   text: valuePropType,
   value: PropTypes.any,
   rowspan: PropTypes.number,
@@ -19,7 +19,7 @@ export const cellShape = {
 };
 
 // share across `<tbody>` and `<tfoot>`
-export const cellDataShape = {
+export const tableCellDataShape = {
   float: floatPropType,
   strong: PropTypes.bool,
   bold: PropTypes.bool,
@@ -28,33 +28,33 @@ export const cellDataShape = {
 export const tableCellPropTypes = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
-  PropTypes.shape(cellShape),
+  PropTypes.shape(tableCellShape),
 ]);
 
-export const cellHeadPropType = PropTypes.oneOfType([
+export const tableCellHeadPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
-    ...cellShape,
+    ...tableCellShape,
     sort: sortPropType,
     sortActive: PropTypes.bool,
   }),
 ]);
 
-export const cellBodyPropType = PropTypes.oneOfType([
+export const tableCellBodyPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
-    ...cellShape,
-    ...cellDataShape,
+    ...tableCellShape,
+    ...tableCellDataShape,
     action: PropTypes.bool,
     state: statePropType,
   }),
 ]);
 
-export const cellFootPropType = PropTypes.oneOfType([
+export const tableCellFootPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
-    ...cellShape,
-    ...cellDataShape,
+    ...tableCellShape,
+    ...tableCellDataShape,
   }),
 ]);
 

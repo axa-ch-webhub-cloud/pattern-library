@@ -1,26 +1,26 @@
 import PropTypes from './prop-types';
 
-import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './table-cell-prop-types';
+import { tableCellHeadPropType, tableCellBodyPropType, tableCellFootPropType } from './table-cell-prop-types';
 
-export const rowHeadPropType = PropTypes.oneOfType([
-  PropTypes.arrayOf(cellHeadPropType),
+export const tableRowHeadPropType = PropTypes.oneOfType([
+  PropTypes.arrayOf(tableCellHeadPropType),
   PropTypes.shape({
-    cells: PropTypes.arrayOf(cellHeadPropType),
+    cells: PropTypes.arrayOf(tableCellHeadPropType),
   }),
 ]);
 
-export const rowBodyPropType = PropTypes.oneOfType([
-  PropTypes.arrayOf(cellBodyPropType),
+export const tableRowBodyPropType = PropTypes.oneOfType([
+  PropTypes.arrayOf(tableCellBodyPropType),
   PropTypes.shape({
-    cells: PropTypes.arrayOf(cellBodyPropType),
+    cells: PropTypes.arrayOf(tableCellBodyPropType),
     action: PropTypes.bool,
   }),
 ]);
 
-export const rowFootPropType = PropTypes.oneOfType([
-  PropTypes.arrayOf(cellFootPropType),
+export const tableRowFootPropType = PropTypes.oneOfType([
+  PropTypes.arrayOf(tableCellFootPropType),
   PropTypes.shape({
-    cells: PropTypes.arrayOf(cellFootPropType),
+    cells: PropTypes.arrayOf(tableCellFootPropType),
   }),
 ]);
 

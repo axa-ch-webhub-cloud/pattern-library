@@ -8,4 +8,4 @@ const tableScopePropType = PropTypes.oneOf([
   'auto',
 ]);
 
-export default tableScopePropType
+export default tableScopePropType;
