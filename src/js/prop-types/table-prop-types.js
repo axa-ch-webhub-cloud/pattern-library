@@ -1,20 +1,19 @@
 import PropTypes from './prop-types';
 
-import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './table-cell-prop-types';
 import { rowHeadPropType, rowBodyPropType, rowFootPropType } from './table-row-prop-types';
 
 export const tableHeadPropTypes = PropTypes.oneOfType([
-  PropTypes.arrayOf(cellHeadPropType),
+  rowHeadPropType,
   PropTypes.arrayOf(rowHeadPropType),
 ]);
 
 export const tableBodyPropTypes = PropTypes.oneOfType([
-  PropTypes.arrayOf(cellBodyPropType),
+  rowBodyPropType,
   PropTypes.arrayOf(rowBodyPropType),
 ]);
 
 export const tableFootPropTypes = PropTypes.oneOfType([
-  PropTypes.arrayOf(cellFootPropType),
+  rowFootPropType,
   PropTypes.arrayOf(rowFootPropType),
 ]);
 

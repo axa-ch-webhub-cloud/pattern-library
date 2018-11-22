@@ -7,6 +7,7 @@ import sortPropType from './sort-prop-type';
 import floatPropType from './float-prop-type';
 import statePropType from './state-prop-type';
 
+// share across `<thead>`, `<tbody>` and `<tfoot>`
 export const cellShape = {
   text: valuePropType,
   value: PropTypes.any,
@@ -15,6 +16,13 @@ export const cellShape = {
   scope: tableScopePropType,
   align: alignPropType,
   dense: PropTypes.bool,
+};
+
+// share across `<tbody>` and `<tfoot>`
+export const cellDataShape = {
+  float: floatPropType,
+  strong: PropTypes.bool,
+  bold: PropTypes.bool,
 };
 
 export const tableCellPropTypes = PropTypes.oneOfType([
@@ -36,10 +44,8 @@ export const cellBodyPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
     ...cellShape,
-    float: floatPropType,
+    ...cellDataShape,
     action: PropTypes.bool,
-    strong: PropTypes.bool,
-    bold: PropTypes.bool,
     state: statePropType,
   }),
 ]);
@@ -48,7 +54,7 @@ export const cellFootPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
     ...cellShape,
-    float: floatPropType,
+    ...cellDataShape,
   }),
 ]);
 
