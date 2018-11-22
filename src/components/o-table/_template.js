@@ -11,7 +11,12 @@ export default ({
   const fragment = [];
 
   if (cap) {
-    fragment.push(html`<caption is="axa-caption" align="${capAlign}" side="${capSide}">${cap}</caption>`);
+    const capAttrs = {
+      ...(capAlign && { align: capAlign }),
+      ...(capSide && { side: capSide }),
+    };
+
+    fragment.push(html`<caption is="axa-caption" ${capAttrs}>${cap}</caption>`);
   }
 
   if (headings) {
