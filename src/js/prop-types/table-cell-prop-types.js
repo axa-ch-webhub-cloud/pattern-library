@@ -1,7 +1,7 @@
 import PropTypes from './prop-types';
 
 import valuePropType from './value-prop-type';
-import tablePropType from './table-prop-types';
+import tableScopePropType from './table-scope-prop-type';
 import alignPropType from './align-prop-type';
 import sortPropType from './sort-prop-type';
 import floatPropType from './float-prop-type';
@@ -12,19 +12,19 @@ export const cellShape = {
   value: PropTypes.any,
   rowspan: PropTypes.number,
   colspan: PropTypes.number,
-  scope: tablePropType,
+  scope: tableScopePropType,
   align: alignPropType,
   dense: PropTypes.bool,
 };
 
-export const cellPropTypes = PropTypes.oneOfType([
+export const tableCellPropTypes = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
   PropTypes.shape(cellShape),
 ]);
 
 export const cellHeadPropType = PropTypes.oneOfType([
-  cellPropTypes,
+  tableCellPropTypes,
   PropTypes.shape({
     ...cellShape,
     sort: sortPropType,
@@ -33,7 +33,7 @@ export const cellHeadPropType = PropTypes.oneOfType([
 ]);
 
 export const cellBodyPropType = PropTypes.oneOfType([
-  cellPropTypes,
+  tableCellPropTypes,
   PropTypes.shape({
     ...cellShape,
     float: floatPropType,
@@ -45,7 +45,7 @@ export const cellBodyPropType = PropTypes.oneOfType([
 ]);
 
 export const cellFootPropType = PropTypes.oneOfType([
-  cellPropTypes,
+  tableCellPropTypes,
   PropTypes.shape({
     ...cellShape,
     float: floatPropType,

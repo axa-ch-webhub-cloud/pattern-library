@@ -1,6 +1,6 @@
 import PropTypes from './prop-types';
 
-import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './cell-prop-types';
+import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './table-cell-prop-types';
 
 export const rowHeadPropType = PropTypes.oneOfType([
   PropTypes.arrayOf(cellHeadPropType),

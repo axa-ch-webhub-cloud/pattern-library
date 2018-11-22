@@ -1,15 +1,7 @@
 import PropTypes from './prop-types';
 
-import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './cell-prop-types';
-import { rowHeadPropType, rowBodyPropType, rowFootPropType } from './row-prop-types';
-
-export const tableScopePropType = PropTypes.oneOf([
-  'row',
-  'col',
-  'rowgroup',
-  'colgroup',
-  'auto',
-]);
+import { cellHeadPropType, cellBodyPropType, cellFootPropType } from './table-cell-prop-types';
+import { rowHeadPropType, rowBodyPropType, rowFootPropType } from './table-row-prop-types';
 
 export const tableHeadPropTypes = PropTypes.oneOfType([
   PropTypes.arrayOf(cellHeadPropType),
