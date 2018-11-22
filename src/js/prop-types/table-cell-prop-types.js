@@ -11,8 +11,8 @@ import statePropType from './state-prop-type';
 export const tableCellShape = {
   text: valuePropType,
   value: PropTypes.any,
-  rowspan: PropTypes.number,
-  colspan: PropTypes.number,
+  rowspan: valuePropType,
+  colspan: valuePropType,
   scope: tableScopePropType,
   align: alignPropType,
   dense: PropTypes.bool,
@@ -28,7 +28,6 @@ export const tableCellDataShape = {
 export const tableCellPropTypes = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
-  PropTypes.shape(tableCellShape),
 ]);
 
 export const tableCellHeadPropType = PropTypes.oneOfType([
