@@ -38,6 +38,6 @@ glob.glob('src/assets/icons/**/*.svg', { CWD }, (err, files) => {
     mkdirp.sync(`${destAssets}/icons`);
     // Write the generated resource to disk
     fs.writeFileSync(`${destAssets}/icons/icons.svg`, sprite.contents);
-    console.log(`\nIcons sprite generated to: ${destAssets}/icons/icons.svg\n`);
+    // console.log(`\nIcons sprite generated to: ${destAssets}/icons/icons.svg\n`);
   });
 });

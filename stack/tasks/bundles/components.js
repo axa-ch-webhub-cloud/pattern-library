@@ -24,8 +24,10 @@ const inputOptionsComponents = {
   plugins: [
     ...common.inputOptions.plugins,
     sass({
+      quiet: true,
       insert: false,
       options: {
+        quiet: true,
         outputStyle: ENV === constants.ENV.PROD ? undefined : 'expanded',
       },
       processor: css => postcss([autoprefixer])

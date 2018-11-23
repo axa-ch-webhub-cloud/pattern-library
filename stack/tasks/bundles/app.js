@@ -27,7 +27,7 @@ async function buildApp() {
     input: `${CWD}/src/app/app.js`,
   });
   const file = common.adaptSlashes(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/app.js`);
-  console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
+  // console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
     ...common.outputOptions,
