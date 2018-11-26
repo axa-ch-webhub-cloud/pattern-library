@@ -25,7 +25,7 @@ REF: https://github.com/webcomponents/webcomponentsjs
 We don't use polyfills provided from https://github.com/webcomponents/webcomponentsjs, because they aren't feature complete.
 Instead we use the battle-tested polyfills by WebReflection:
 - https://www.npmjs.com/package/document-register-element
-- https://www.npmjs.com/package/built-in-element
+- https://www.npmjs.com/package/@ungap/custom-elements-builtin
 
 The main goal here is to have components that are reusable with every frontend technology. It doesn't matter if you are using angular or React, you can always import the Components from the patterns library.
 
@@ -57,7 +57,7 @@ To use the webcomponents with older browsers, import the polyfills which are ava
 // better to load this only if it's needed
 import 'document-register-element/'; // ES2015
 // load this for browsers which support customElements without builtin (webkit)
-import 'built-in-element';
+import '@ungap/custom-elements-builtin';
 ```
 
 or:
@@ -68,7 +68,7 @@ or:
   if(!this.customElements) {
     document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
   } else {
-    document.write('<script src="https://unpkg.com/built-in-element"><\x2fscript>');
+    document.write('<script src="https://unpkg.com/@ungap/custom-elements-builtin"><\x2fscript>');
   }
 </script>
 ```
@@ -106,7 +106,7 @@ Here an example on how to use the component button and typo in your project. The
       if(!this.customElements) {
         document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
       } else {
-        document.write('<script src="https://unpkg.com/built-in-element"><\x2fscript>');
+        document.write('<script src="https://unpkg.com/@ungap/custom-elements-builtin"><\x2fscript>');
       }
     </script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/u-core/index.js"></script>
