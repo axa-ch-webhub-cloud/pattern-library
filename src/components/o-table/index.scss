@@ -10,13 +10,8 @@
 @import "../a-th/styles/th-placeholders";
 @import "../m-tr/styles/tr-placeholders";
 @import "../m-tfoot/styles/tfoot-placeholders";
+@import "./styles/table-placeholders";
 @import "../../styles/trumps/align";
-
-/// Placeholders
-
-%o-table {
-  @include table();
-}
 
 /// Class styles
 
@@ -105,7 +100,7 @@
 .o-table--dense {
   th,
   td {
-    @include table-cell--dense();
+    @extend %o-table--dense;
   }
 }
 
