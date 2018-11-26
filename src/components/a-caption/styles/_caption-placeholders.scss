@@ -1,0 +1,15 @@
+@import "./caption";
+
+/// Placeholders
+
+%a-caption {
+  @include caption();
+}
+
+%a-caption--top {
+  @include caption-side--top();
+}
+
+%a-caption--bottom {
+  @include caption-side--bottom();
+}

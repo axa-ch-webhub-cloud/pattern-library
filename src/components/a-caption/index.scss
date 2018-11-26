@@ -1,20 +1,6 @@
-@import "./mixins/caption";
+@import "styles/caption-placeholders";
 
 @import "../../styles/trumps/align";
-
-/// Placeholders
-
-%a-caption {
-  @include caption();
-}
-
-%a-caption--top {
-  @include caption-side--top();
-}
-
-%a-caption--bottom {
-  @include caption-side--bottom();
-}
 
 /// Class Styles
 
@@ -28,24 +14,4 @@
 
 .a-caption--bottom {
   @extend %a-caption--bottom;
-}
-
-/// Tag Styles
-
-.o-table--all {
-  caption {
-    @extend %a-caption;
-  }
-}
-
-.o-table--caption-top {
-  caption {
-    @extend %a-caption--top;
-  }
-}
-
-.o-table--caption-bottom {
-  caption {
-    @extend %a-caption--bottom;
-  }
 }

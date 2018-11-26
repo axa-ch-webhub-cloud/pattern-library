@@ -5,6 +5,7 @@
 @import "../../styles/mixins/triangle";
 @import "../../styles/mixins/word-break";
 @import "../../styles/typo/typo-mixins";
+@import "../a-caption/styles/caption-placeholders";
 @import "../../styles/trumps/align";
 
 /// Placeholders
@@ -28,8 +29,24 @@
 .o-table--all {
   @extend %o-table;
 
+  caption {
+    @extend %a-caption;
+  }
+
   table {
     @extend %o-table;
+  }
+}
+
+.o-table--caption-top {
+  caption {
+    @extend %a-caption--top;
+  }
+}
+
+.o-table--caption-bottom {
+  caption {
+    @extend %a-caption--bottom;
   }
 }
 
