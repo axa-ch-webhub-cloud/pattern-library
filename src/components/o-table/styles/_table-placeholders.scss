@@ -1,0 +1,11 @@
+@import "./table-mixins";
+
+/// Placeholders
+
+%o-table {
+  @include table();
+}
+
+%o-table--dense {
+  @include table__cell--dense();
+}

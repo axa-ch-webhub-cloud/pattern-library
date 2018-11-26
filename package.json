@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.217",
+  "version": "2.0.1-beta.218",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -169,6 +169,8 @@
     "url-polyfill": "^1.1.0"
   },
   "peerDependencies": {
+    "built-in-element": "^0.1.4",
+    "document-register-element": "^1.12.0",
     "react": ">=0.14.0"
   }
 }

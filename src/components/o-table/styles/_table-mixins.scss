@@ -1,0 +1,67 @@
+@import "./table-settings";
+@import "../../../styles/mixins/clearfix";
+@import "../../../styles/mixins/respond";
+@import "../../../styles/mixins/word-break";
+
+@mixin table($width: $table-width) {
+  width: $width;
+  border-collapse: collapse;
+}
+
+@mixin table__cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+
+@mixin table__cell--action(
+  $padding-x: $table__cell-padding-x,
+  $border-width: $table-border-width,
+  $border-color: transparent
+) {
+  &:first-child {
+    padding-left: $padding-x - $border-width;
+    border-left: $border-width solid $border-color;
+  }
+
+  &:last-child {
+    padding-right: $padding-x - $border-width;
+    border-right: $border-width solid $border-color;
+  }
+}
+
+/// Table cell do stack on mobile by default.
+/// Additionally it's support that two adjacent siblings float horizontally - one on the left, the other on the right.
+@mixin table__cell--float() {
+  $parent: &;
+
+  @at-root {
+    #{$parent}-left {
+      @include respond-down(sm) {
+        @include word-break();
+
+        float: left;
+        text-align: left;
+      }
+    }
+
+    #{$parent}-right {
+      @include respond-down(sm) {
+        @include word-break();
+
+        float: right;
+        text-align: right;
+
+        #{$parent}-left + & + *,
+        + #{$parent}-left + * {
+          clear: both;
+        }
+
+        @at-root {
+          tr {
+            @include clearfix();
+          }
+        }
+      }
+    }
+  }
+}

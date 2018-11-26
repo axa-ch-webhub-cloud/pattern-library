@@ -1,0 +1,30 @@
+@import "../o-table/styles/table-settings";
+@import "../o-table/styles/table-mixins";
+@import "../../styles/mixins/respond";
+
+@import "styles/tr-placeholders";
+
+/// Class Styles
+
+.m-tr {
+  @extend %m-tr;
+}
+
+.m-tr--head {
+  @extend %m-tr--head;
+}
+
+.m-tr--foot {
+  @extend %m-tr--foot;
+}
+
+.m-tr--dense {
+  th,
+  td {
+    @extend %m-tr--dense;
+  }
+}
+
+.m-tr--action {
+  @extend %m-tr--action;
+}
