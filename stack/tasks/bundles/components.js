@@ -56,8 +56,8 @@ const bundleSingleFile = (filePath) => {
 
     const bundle = await rollup.rollup(bundleConfig);
 
-    console.log(fPath.replace('.js', '.css')); // eslint-disable-line
-    console.log(`Bundled to: ${fPath}`); // eslint-disable-line
+    // console.log(fPath.replace('.js', '.css')); // eslint-disable-line
+    // console.log(`Bundled to: ${fPath}`); // eslint-disable-line
 
     if (distFolder === PROD_LIB) {
       await bundle.write({
