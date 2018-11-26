@@ -222,17 +222,20 @@ A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/U
 
 We never use the ~~constructor~~ directly, instead we call [`init()`](#init) for you with the proper context!
 
-**Note:** It's a caveat of Babel 6, please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) for more details.
+**Note:** It's a caveat of Babel 6 and support for extended built-in elements polyfill (Safari/webkit only), please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) and [You cannot use the constructor in any meaningful way](https://github.com/ungap/custom-elements-builtin#constructor-caveat) for more details.
 
 #### `init()`
 The `init()` method can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
 It always starts by calling `super.init(?options)` so that the correct prototype chain is established.
 
-**Note:** It's a caveat of Babel 6, please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) for more details.
+**Note:** This method is invoked lazily for you upon first `connectedCallback` or `attributeChangedCallback`.
+It's a caveat of Babel 6 and support for extended built-in elements polyfill (Safari/webkit only), please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) and [You cannot use the constructor in any meaningful way](https://github.com/ungap/custom-elements-builtin#constructor-caveat) for more details.
+
 
 #### `connectedCallback()`
 
 Invoked when the custom element is first connected to the document's DOM.
+It always starts by calling `super.connectedCallback()` conditionally.
 
 #### `contextCallback(contextNode)`
 
@@ -241,6 +244,7 @@ In case your custom element needs to communicate with a child or parent you are 
 #### `attributeChangedCallback(name, oldValue, newValue)`
 
 Invoked when one of the custom element's attributes is added, removed, or changed.
+It always starts by calling `super.attributeChangedCallback(name, oldValue, newValue)` conditionally.
 
 **IMPORTANT:**
 - attributes are always of type `'string'` and have to be parsed by `JSON.parse()` to provide proper [first class props](#first-class-props)
@@ -316,6 +320,7 @@ Invoked after the custom element's [flattened DOM](#flattened-dom) has rendered.
 #### `disconnectedCallback()`
 
 Invoked when the custom element is disconnected from the document's DOM.
+It always starts by calling `super.disconnectedCallback()` conditionally.
 
 #### Render Loop
 
