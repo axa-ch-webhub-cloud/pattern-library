@@ -64,6 +64,8 @@
   #{$parent}__icon {
     @include control-transition();
     @include control-icon($control-icon-size);
+
+    flex-shrink: 0;
     border-radius: $border-radius;
 
     &::after {

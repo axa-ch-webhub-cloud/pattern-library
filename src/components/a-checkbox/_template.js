@@ -17,6 +17,7 @@ export default function ({
       checked="${checked}" 
       value="${value}" 
       disabled="${disabled}">
-    <span class="a-checkbox__icon"></span>${childrenFragment}
+    <span class="a-checkbox__icon"></span>
+    <div class="a-checkbox__content">${childrenFragment}</div>
   </label>`;
 }
