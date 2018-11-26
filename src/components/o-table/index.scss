@@ -1,350 +1,26 @@
-@import "./settings/table";
-@import "../../styles/mixins/clearfix";
+@import "./styles/table-mixins";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/size";
 @import "../../styles/mixins/triangle";
 @import "../../styles/mixins/word-break";
 @import "../../styles/typo/typo-mixins";
+@import "../a-caption/styles/caption-placeholders";
+@import "../a-td/styles/td-placeholders";
+@import "../a-th/styles/th-placeholders";
+@import "../m-tr/styles/tr-placeholders";
+@import "../m-thead/styles/thead-placeholders";
+@import "../m-tfoot/styles/tfoot-placeholders";
+@import "./styles/table-placeholders";
 @import "../../styles/trumps/align";
 
-/// Placeholders
-
-%o-table {
-  width: 100%;
-}
-
-%o-table__caption {
-  @include typo-tag();
-
-  padding: $table__cell-padding-y $table__cell-padding-x;
-  color: $table__cell-color;
-
-  @include respond-down(sm) {
-    padding-left: $table__cell-padding-x--sm;
-    padding-right: $table__cell-padding-x--sm;
-  }
-}
-
-%o-table__caption--top {
-  caption-side: top;
-}
-
-%o-table__caption--bottom {
-  caption-side: bottom;
-}
-
-%o-table__foot {
-  background: $table__foot-bg;
-}
-
-%o-table__row {
-  @include respond-down(sm) {
-    display: block;
-
-    padding: $table__row-padding-y--sm $table__row-padding-x--sm;
-    border-top: 1px solid $table-border-color;
-  }
-}
-
-%o-table__row--head {
-  @include respond-down(sm) {
-    display: none;
-  }
-}
-
-%o-table__row--foot {
-  border-top-color: $table-border-color;
-
-  @include respond-down(sm) {
-    padding-top: $table__cell-padding-y;
-    padding-bottom: $table__cell-padding-y;
-
-    &:first-child {
-      border-top: none;
-    }
-  }
-}
-
-%o-table__row--action {
-  &:hover,
-  &:focus {
-    cursor: pointer;
-
-    .o-table__cell,
-    td,
-    th {
-      color: $table__cell--action-color;
-      border-top-color: $table__cell--action-color;
-      border-bottom: 1px solid $table__cell--action-color;
-
-      &:first-child {
-        padding-left: $table__cell-padding-x - 1;
-        border-left: 1px solid $table__cell--action-color;
-      }
-
-      &:last-child {
-        // padding-right: $table__cell-padding-x - 1;
-        border-right: 1px solid $table__cell--action-color;
-      }
-    }
-  }
-}
-
-%o-table__cell {
-  @include typo-secondary-text();
-
-  padding: $table__cell-padding-y $table__cell-padding-x;
-  border-top: 1px solid $table-border-color;
-
-  color: $table__cell-color;
-
-  @include respond-down(sm) {
-    display: block;
-
-    padding: $table__cell-padding-y--sm $table__cell-padding-x--sm;
-    border-top: none;
-  }
-}
-
-%o-table__cell--head {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--head-color;
-
-  @include respond-down(sm) {
-    display: none;
-  }
-}
-
-%o-table__cell--foot {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--foot-color;
-  background: $table__foot-bg;
-}
-
-%o-table__cell--foot-first {
-  border-top: none;
-}
-
-%o-table__cell--dense {
-  padding-top: $table__cell-padding-y--dense;
-  padding-bottom: $table__cell-padding-y--dense;
-}
-
-%o-table__cell--state {
-  &::before {
-    @include size($table__cell--state-size);
-
-    display: inline-block;
-    margin-right: $table__cell--state-margin-right;
-    border-radius: $table__cell--state-size;
-    vertical-align: middle;
-    content: '';
-
-    @include respond-down(sm) {
-      margin-right: $table__cell--state-margin-right--sm;
-    }
-  }
-}
-
 /// Class styles
-
-.o-table__root {
-  display: block;
-}
 
 .o-table {
   @extend %o-table;
 }
 
-.o-table__caption {
-  @extend %o-table__caption;
-}
-
-.o-table__caption--top {
-  @extend %o-table__caption--top;
-}
-
-.o-table__caption--bottom {
-  @extend %o-table__caption--bottom;
-}
-
-.o-table__head {}
-
-.o-table__foot {
-  @extend %o-table__foot;
-}
-
-.o-table__body {}
-
-.o-table__row {
-  @extend %o-table__row;
-}
-
-.o-table__row--head {
-  @extend %o-table__row--head;
-}
-
-.o-table__row--foot {
-  @extend %o-table__row--foot;
-}
-
-.o-table__row--action {
-  @extend %o-table__row--action;
-}
-
-.o-table__cell {
-  @extend %o-table__cell;
-}
-
-.o-table__cell--strong {
-  color: $table__cell--strong-color;
-}
-
-.o-table__cell--bold {
-  @include typo-secondary-text--bold();
-
-  color: $table__cell--strong-color;
-}
-
-.o-table__cell--head {
-  @extend %o-table__cell--head;
-}
-
-.o-table__cell--sort {
-  &::after {
-    position: relative;
-
-    margin-left: $table__cell--sort-margin-left;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.o-table__cell--sort-up {
-  &::after {
-    @include triangle(top, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
-
-    top: -($table__cell--sort-height * 2);
-  }
-
-  &:hover,
-  &.o-table__cell--sort-active {
-    &::after {
-      @include triangle-color(top, $table__cell--sort-active-color);
-    }
-  }
-}
-
-.o-table__cell--sort-down {
-  &::after {
-    @include triangle(bottom, $table__cell--sort-color, $table__cell--sort-width, $table__cell--sort-height);
-
-    top: -$table__cell--sort-height;
-  }
-
-  &:hover,
-  &.o-table__cell--sort-active {
-    &::after {
-      @include triangle-color(bottom, $table__cell--sort-active-color);
-    }
-  }
-}
-
-.o-table__cell--foot {
-  @extend %o-table__cell--foot;
-
-  .o-table__row--foot:first-child > & {
-    @extend %o-table__cell--foot-first;
-  }
-}
-
-.o-table__cell--dense {
-  @extend %o-table__cell--dense;
-}
-
-.o-table__cell--action {
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    color: $table__cell--action-color;
-  }
-}
-
-.o-table__cell--state-ok {
-  @extend %o-table__cell--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-ok-color !important;
-
-  &::before {
-    background: $table__cell--state-ok-color;
-  }
-}
-
-.o-table__cell--state-pending {
-  @extend %o-table__cell--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-pending-color !important;
-
-  &::before {
-    background: $table__cell--state-pending-color;
-  }
-}
-
-.o-table__cell--state-error {
-  @extend %o-table__cell--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-error-color !important;
-
-  &::before {
-    background: $table__cell--state-error-color;
-  }
-}
-
-.o-table__cell--state-unknown {
-  @extend %o-table__cell--state;
-
-  // stylelint-disable-next-line declaration-no-important
-  color: $table__cell--state-unknown-color !important;
-
-  &::before {
-    background: $table__cell--state-unknown-color;
-  }
-}
-
-.o-table__cell--left {
-  @include respond-down(sm) {
-    @include word-break();
-
-    float: left;
-    text-align: left;
-  }
-}
-
-.o-table__cell--right {
-  @include respond-down(sm) {
-    @include word-break();
-
-    float: right;
-    text-align: right;
-
-    .o-table__cell--left + & + *,
-    + .o-table__cell--left + * {
-      clear: both;
-    }
-
-    @at-root {
-      .o-table__row {
-        @include clearfix();
-      }
-    }
-  }
+.o-table__cell--float {
+  @include table__cell--float();
 }
 
 /// Tag styles
@@ -352,88 +28,83 @@
 .o-table--all {
   @extend %o-table;
 
+  // caption
+  caption {
+    @extend %a-caption;
+  }
+
   table {
     @extend %o-table;
   }
 
-  caption {
-    @extend %o-table__caption;
-  }
-
-  tr {
-    @extend %o-table__row;
-  }
-
+  // table cells
   td,
   th {
-    @extend %o-table__cell;
+    @extend %a-td;
   }
 
   th {
-    @extend %o-table__cell--head;
+    @extend %a-th;
   }
 
+  // table row
+  tr {
+    @extend %m-tr;
+  }
+
+  // table sections
   thead {
+    @extend %m-thead;
+
     tr {
-      @extend %o-table__row--head;
-
-      th {
-
-      }
+      @extend %m-tr--head;
     }
   }
 
   tfoot {
-    @extend %o-table__foot;
+    @extend %m-tfoot;
 
     td {
-      @extend %o-table__cell--foot;
+      @extend %a-td--foot;
     }
 
     tr {
-      @extend %o-table__row--foot;
-
-      td {
-
-      }
+      @extend %m-tr--foot;
 
       &:first-child > td {
-        @extend %o-table__cell--foot-first;
+        @extend %a-td--foot-first;
       }
     }
   }
 
   tbody {
-    tr {
-      td {
-
-      }
-    }
+    tr {}
   }
 }
 
 .o-table--caption-top {
   caption {
-    @extend %o-table__caption--top;
+    @extend %a-caption--top;
   }
 }
 
 .o-table--caption-bottom {
   caption {
-    @extend %o-table__caption--bottom;
-  }
-}
-
-.o-table--action {
-  tbody > tr {
-    @extend %o-table__row--action;
+    @extend %a-caption--bottom;
   }
 }
 
 .o-table--dense {
   th,
   td {
-    @extend %o-table__cell--dense;
+    @extend %o-table--dense;
   }
 }
+
+.o-table--action {
+  tbody > tr {
+    @extend %m-tr--action;
+  }
+}
+
 

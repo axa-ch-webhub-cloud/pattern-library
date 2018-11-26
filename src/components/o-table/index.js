@@ -1,30 +1,34 @@
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import classnames from 'classnames';
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
 import defineOnce from '../../js/define-once';
 import alignPropType from '../../js/prop-types/align-prop-type';
 import sidePropType from '../../js/prop-types/side-prop-type';
-import { tableHeadPropTypes, tableBodyPropTypes, tableFootPropTypes } from '../../js/prop-types/table-prop-types';
 // import the styles used for this component
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
-class AXATable extends BaseComponentGlobal {
+const HTMLTableElementBase = withBaseGlobalAndAllHocs(HTMLTableElement);
+
+class AXATable extends HTMLTableElementBase {
   static tagName = 'axa-table'
+  static builtInTagName = 'table'
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
     action: PropTypes.bool,
+    all: PropTypes.bool,
     dense: PropTypes.bool,
     classes: PropTypes.string,
-    caption: PropTypes.string,
-    captionAlign: alignPropType,
-    captionSide: sidePropType,
-    items: tableBodyPropTypes,
-    headings: tableHeadPropTypes,
-    footers: tableFootPropTypes,
+    cap: PropTypes.string,
+    capAlign: alignPropType,
+    capSide: sidePropType,
+    items: PropTypes.string,
+    headings: PropTypes.string,
+    footers: PropTypes.string,
   }
 
   // Only use this if you need to observe attributes other than your prop-types!
@@ -45,10 +49,16 @@ class AXATable extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    this.className = 'a-table__root';
+    const { classes, action, all, dense } = this.props;
+
+    this.className = classnames('o-table', classes, {
+      'o-table--action': action,
+      'o-table--all': all,
+      'o-table--dense': dense,
+    });
   }
 }
 
-defineOnce(AXATable.tagName, AXATable);
+defineOnce(AXATable.tagName, AXATable, { extends: AXATable.builtInTagName });
 
 export default AXATable;

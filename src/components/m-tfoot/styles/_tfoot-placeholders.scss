@@ -1,0 +1,7 @@
+@import "./tfoot-mixins";
+
+/// Placeholders
+
+%m-tfoot {
+  @include tfoot();
+}

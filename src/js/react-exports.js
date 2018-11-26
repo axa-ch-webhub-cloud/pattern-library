@@ -156,3 +156,24 @@ export const AXATestimonials = withReact(AXATestimonialsWC);
 
 import AXATableWC from '../components/o-table/';
 export const AXATable = withReact(AXATableWC);
+
+import AXATheadWC from '../components/m-thead/';
+export const AXAThead = withReact(AXATheadWC);
+
+import AXATbodyWC from '../components/m-tbody/';
+export const AXATbody = withReact(AXATbodyWC);
+
+import AXATfootWC from '../components/m-tfoot/';
+export const AXATfoot = withReact(AXATfootWC);
+
+import AXATdWC from '../components/a-td/';
+export const AXATd = withReact(AXATdWC);
+
+import AXACaptionWC from '../components/a-caption/';
+export const AXACaption = withReact(AXACaptionWC);
+
+import AXATrWC from '../components/m-tr/';
+export const AXATr = withReact(AXATrWC);
+
+import AXAThWC from '../components/a-th/';
+export const AXATh = withReact(AXAThWC);

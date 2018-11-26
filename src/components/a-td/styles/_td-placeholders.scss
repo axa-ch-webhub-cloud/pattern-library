@@ -1,0 +1,19 @@
+@import "./td-mixins";
+
+/// Placeholders
+
+%a-td {
+  @include td();
+}
+
+%a-td--foot {
+  @include td--foot();
+}
+
+%a-td--foot-first {
+  @include td--foot-first();
+}
+
+%a-td--state {
+  @include td--state();
+}

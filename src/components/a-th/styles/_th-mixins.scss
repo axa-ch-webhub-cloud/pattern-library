@@ -1,0 +1,70 @@
+@import "../../o-table/styles/table-settings";
+@import "../../o-table/styles/table-mixins";
+@import "../../../styles/mixins/respond";
+@import "../../../styles/mixins/triangle";
+@import "../../../styles/typo/typo-mixins";
+
+@mixin th(
+  $color: $table__cell--head-color,
+  $border-color: $table-border-color,
+  $border-width: $table-border-width,
+  $padding-x: $table__cell-padding-x,
+  $padding-y: $table__cell-padding-y
+) {
+  @include typo-secondary-text--bold();
+  @include table__cell--action();
+
+  padding: $padding-y $padding-x;
+  border-top: $border-width solid $border-color;
+
+  color: $color;
+
+  @include respond-down(sm) {
+    display: none;
+  }
+}
+
+@mixin th--sort($margin-left: $table__cell--sort-margin-left) {
+  &::after {
+    position: relative;
+
+    margin-left: $margin-left;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin th--sort-dir(
+  $direction: top,
+  $color: $table__cell--sort-color,
+  $color-active: $table__cell--sort-active-color,
+  $width: $table__cell--sort-width,
+  $height: $table__cell--sort-height
+) {
+  &::after {
+    @include triangle($direction, $color, $width, $height);
+
+    @if $direction == top {
+      top: -($table__cell--sort-height * 2);
+    } @else if $direction == bottom {
+      top: -$table__cell--sort-height;
+    }
+  }
+
+  &:hover,
+  &.a-th--sort-active {
+    &::after {
+      @include triangle-color($direction, $color-active);
+    }
+  }
+}
+
+@mixin th--sort-up() {
+  @include th--sort-dir($direction: top);
+}
+
+@mixin th--sort-down() {
+  @include th--sort-dir($direction: bottom);
+}
