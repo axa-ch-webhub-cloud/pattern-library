@@ -47,7 +47,7 @@ class AXATh extends HTMLTableCellElementBase {
     this.className = classnames('a-th', classes, {
       [`u-align-${align}`]: align,
       [`a-th--sort a-th--sort-${sort}`]: sort,
-      [`a-table-cell--float-${float}`]: float,
+      [`o-table__cell--float-${float}`]: float,
       'a-th--sort-active': sortActive,
       'a-th--dense': dense,
     });

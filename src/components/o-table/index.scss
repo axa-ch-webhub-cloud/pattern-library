@@ -1,5 +1,4 @@
-@import "./settings/table";
-@import "./mixins/table";
+@import "./styles/table-mixins";
 @import "../../styles/mixins/respond";
 @import "../../styles/mixins/size";
 @import "../../styles/mixins/triangle";
@@ -19,8 +18,8 @@
   @extend %o-table;
 }
 
-.a-table-cell--float {
-  @include table-cell--float();
+.o-table__cell--float {
+  @include table__cell--float();
 }
 
 /// Tag styles

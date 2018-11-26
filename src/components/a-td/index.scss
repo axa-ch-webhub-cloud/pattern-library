@@ -10,7 +10,7 @@
 }
 
 .a-td--dense {
-  @include table-cell--dense();
+  @include table__cell--dense();
 }
 
 .a-td--strong {

@@ -8,12 +8,12 @@
   border-collapse: collapse;
 }
 
-@mixin table-cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {
+@mixin table__cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {
   padding-top: $top;
   padding-bottom: $bottom;
 }
 
-@mixin table-cell--action(
+@mixin table__cell--action(
   $padding-x: $table__cell-padding-x,
   $border-width: $table-border-width,
   $border-color: transparent
@@ -31,7 +31,7 @@
 
 /// Table cell do stack on mobile by default.
 /// Additionally it's support that two adjacent siblings float horizontally - one on the left, the other on the right.
-@mixin table-cell--float() {
+@mixin table__cell--float() {
   $parent: &;
 
   @at-root {
