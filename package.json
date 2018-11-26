@@ -62,21 +62,21 @@
         "src"
       ],
       "extensions": "scss",
-      "quiet": false
+      "quiet": true
     },
     "build-html-dev": {
       "patterns": [
         "src"
       ],
       "extensions": "html",
-      "quiet": false
+      "quiet": true
     },
     "build-icons-dev": {
       "patterns": [
         "src"
       ],
       "extensions": "svg",
-      "quiet": false
+      "quiet": true
     }
   },
   "repository": {
