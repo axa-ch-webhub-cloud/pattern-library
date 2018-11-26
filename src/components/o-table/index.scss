@@ -8,6 +8,7 @@
 @import "../a-caption/styles/caption-placeholders";
 @import "../a-td/styles/td-placeholders";
 @import "../a-th/styles/th-placeholders";
+@import "../m-tr/styles/tr-placeholders";
 @import "../../styles/trumps/align";
 
 /// Placeholders
@@ -31,6 +32,7 @@
 .o-table--all {
   @extend %o-table;
 
+  // caption
   caption {
     @extend %a-caption;
   }
@@ -39,6 +41,7 @@
     @extend %o-table;
   }
 
+  // table cells
   td,
   th {
     @extend %a-td;
@@ -58,6 +61,27 @@
         @extend %a-td--foot-first;
       }
     }
+  }
+
+  // table row
+  tr {
+    @extend %m-tr;
+  }
+
+  thead {
+    tr {
+      @extend %m-tr--head;
+    }
+  }
+
+  tfoot {
+    tr {
+      @extend %m-tr--foot;
+    }
+  }
+
+  tbody {
+    tr {}
   }
 }
 
@@ -79,4 +103,11 @@
     @include table-cell--dense();
   }
 }
+
+.o-table--action {
+  tbody > tr {
+    @extend %m-tr--action;
+  }
+}
+
 

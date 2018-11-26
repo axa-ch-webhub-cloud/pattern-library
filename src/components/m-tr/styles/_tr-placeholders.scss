@@ -1,0 +1,23 @@
+@import "./tr-mixins";
+
+/// Placeholders
+
+%m-tr {
+  @include tr();
+}
+
+%m-tr--head {
+  @include tr--head();
+}
+
+%m-tr--foot {
+  @include tr--head();
+}
+
+%m-tr--dense {
+  @include table-cell--dense();
+}
+
+%m-tr--action {
+  @include tr--action();
+}

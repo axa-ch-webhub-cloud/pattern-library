@@ -2,29 +2,7 @@
 @import "../o-table/mixins/table";
 @import "../../styles/mixins/respond";
 
-@import "./mixins/tr";
-
-/// Placeholders
-
-%m-tr {
-  @include tr();
-}
-
-%m-tr--head {
-  @include tr--head();
-}
-
-%m-tr--foot {
-  @include tr--head();
-}
-
-%m-tr--dense {
-  @include table-cell--dense();
-}
-
-%m-tr--action {
-  @include tr--action();
-}
+@import "styles/tr-placeholders";
 
 /// Class Styles
 
@@ -49,41 +27,4 @@
 
 .m-tr--action {
   @extend %m-tr--action;
-}
-
-/// Tag styles
-
-.o-table--all {
-  tr {
-    @extend %m-tr;
-  }
-
-  thead {
-    tr {
-      @extend %m-tr--head;
-    }
-  }
-
-  tfoot {
-    tr {
-      @extend %m-tr--foot;
-    }
-  }
-
-  tbody {
-    tr {}
-  }
-}
-
-.o-table--dense {
-  th,
-  td {
-    @extend %m-tr--dense;
-  }
-}
-
-.o-table--action {
-  tbody > tr {
-    @extend %m-tr--action;
-  }
 }
