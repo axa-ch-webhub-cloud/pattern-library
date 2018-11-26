@@ -17,7 +17,7 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
       items.map(({ name, value: itemValue, url }, index) => {
         const _itemValue = getItemValue(itemValue, index);
         return html`<option value="${_itemValue}" data-url="${url}" ${
-          _itemValue === value ? 'selected' : ''
+          `${_itemValue}` === `${value}` ? 'selected' : ''
         }>${name}</option>`;
       })}
     </select>
