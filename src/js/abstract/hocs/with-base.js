@@ -9,18 +9,15 @@ const withBase = HTMLElement =>
    * @link https://github.com/WebReflection/document-register-element#v1-caveat
    */
   class WithBase extends HTMLElement {
-    constructor(self) {
-      // eslint-disable-next-line no-param-reassign
-      self = super(self);
-
-      self.init();
-
-      return self;
-    }
-
     init() {
       this._id = getId(this.nodeName);
       this._initialised = true;
+    }
+
+    connectedCallback() {
+      if (this.init && !this._initialised) {
+        this.init();
+      }
     }
 
     static uuidv4() {
