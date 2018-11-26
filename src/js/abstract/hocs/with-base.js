@@ -3,10 +3,14 @@ import getId from '../utils/get-id';
 const withBase = HTMLElement =>
   /**
    * Base class {BaseComponent}.
-   * This class handles proper context upgrading within the constructor,
+   * This class handles proper context upgrading fir init(),
    * it adds a unique `_id` and provides a static UUID generator.
    *
+   * **IMPORTANT:** To make extended built-in elements and polyfilled browser working properly,
+   * we can't rely on constructor(), due to context issues.
+   *
    * @link https://github.com/WebReflection/document-register-element#v1-caveat
+   * @link: https://github.com/ungap/custom-elements-builtin#constructor-caveat
    */
   class WithBase extends HTMLElement {
     init() {
@@ -14,8 +18,17 @@ const withBase = HTMLElement =>
       this._initialised = true;
     }
 
+    // super important lazy initialize only once as need,
+    // either upon connection
     connectedCallback() {
-      if (this.init && !this._initialised) {
+      if (!this._initialised) {
+        this.init();
+      }
+    }
+
+    // of upon attribute change (can happen before connection if not live)
+    attributeChangedCallback() {
+      if (!this._initialised) {
         this.init();
       }
     }
