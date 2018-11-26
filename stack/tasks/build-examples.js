@@ -169,6 +169,7 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
   }
 
   const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
+  const indexTitle = fs.readFileSync('./src/partials/title.html', 'utf8');
   const singleHtml = fs.readFileSync('./src/single-component.html', 'utf8');
   const stylesPath = highlightStyles.filter(style => style.name === 'midnight')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
@@ -186,27 +187,10 @@ dir.files(`${CWD}/src/components`, (err, _allFiles) => {
   createAmoPage(indexHtml, scripts, styles, REACT, filePath);
 
   const _indexHtml = indexHtml
-    .replace(/<!-- {CUT AND INJECT INDEX HTML HERE} -->/g, `
-    <article class="o-sg-section o-sg-section--padded o-sg-section__atomic-category">
-      <h1>Welcome to the patterns library!</h1>
-      <p>
-        This is the core pattern library used for AXA Switzerland. It's based on Web-Components.
-        Web-Components are natively supported in modern browsers. This repo contains also polyfills for those less "cool"
-        browsers out there. Support is:
-      </p>
-      <ul>
-        <li>ie 11 (Polyfill for template, html import, shadow dom and custom element)</li>
-        <li>EDGE (Polyfill for html import, shadow dom and custom element)</li>
-        <li>FF (Polyfill for html import, shadow dom and custom element)</li>
-        <li>Chrome / Chrome Mobile (100% native)</li>
-        <li>Safari / iOS Safari (Polyfill for html import)</li>
-      </ul>
-      <h2>We embrace the atomic design to split our components!</h2>
-    </article>
-  `);
+    .replace(/<!-- {CUT AND INJECT INDEX HTML HERE} -->/g, indexTitle);
 
   createAmoPage(_indexHtml, scripts, styles, INDEX, filePath);
-  // createSingleComponentPage(singleHtml, 'single');
+  createSingleComponentPage(singleHtml, 'single');
 
 });
 
