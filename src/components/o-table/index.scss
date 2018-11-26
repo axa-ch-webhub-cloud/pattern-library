@@ -8,6 +8,7 @@
 @import "../a-td/styles/td-placeholders";
 @import "../a-th/styles/th-placeholders";
 @import "../m-tr/styles/tr-placeholders";
+@import "../m-thead/styles/thead-placeholders";
 @import "../m-tfoot/styles/tfoot-placeholders";
 @import "./styles/table-placeholders";
 @import "../../styles/trumps/align";
@@ -46,36 +47,33 @@
     @extend %a-th;
   }
 
-  tfoot {
-    @extend %m-tfoot;
-  }
-
-  tfoot {
-    td {
-      @extend %a-td--foot;
-    }
-
-    tr {
-      &:first-child > td {
-        @extend %a-td--foot-first;
-      }
-    }
-  }
-
   // table row
   tr {
     @extend %m-tr;
   }
 
+  // table sections
   thead {
+    @extend %m-thead;
+
     tr {
       @extend %m-tr--head;
     }
   }
 
   tfoot {
+    @extend %m-tfoot;
+
+    td {
+      @extend %a-td--foot;
+    }
+
     tr {
       @extend %m-tr--foot;
+
+      &:first-child > td {
+        @extend %a-td--foot-first;
+      }
     }
   }
 
