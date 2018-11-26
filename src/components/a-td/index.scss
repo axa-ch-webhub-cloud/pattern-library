@@ -1,25 +1,7 @@
 @import "../o-table/mixins/table";
-@import "./mixins/td";
+@import "styles/td-placeholders";
 
 @import "../../styles/trumps/align";
-
-/// Placeholders
-
-%a-td {
-  @include td();
-}
-
-%a-td--foot {
-  @include td--foot();
-}
-
-%a-td--foot-first {
-  @include td--foot-first();
-}
-
-%a-td--state {
-  @include td--state();
-}
 
 /// Class styles
 
@@ -73,25 +55,4 @@
   @include td--state-unknown();
 
   @extend %a-td--state;
-}
-
-/// Tag Styles
-
-.o-table--all {
-  td,
-  th {
-    @extend %a-td;
-  }
-
-  tfoot {
-    td {
-      @extend %a-td--foot;
-    }
-
-    tr {
-      &:first-child > td {
-        @extend %a-td--foot-first;
-      }
-    }
-  }
 }

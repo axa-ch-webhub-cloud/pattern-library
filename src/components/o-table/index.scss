@@ -6,6 +6,7 @@
 @import "../../styles/mixins/word-break";
 @import "../../styles/typo/typo-mixins";
 @import "../a-caption/styles/caption-placeholders";
+@import "../a-td/styles/td-placeholders";
 @import "../../styles/trumps/align";
 
 /// Placeholders
@@ -35,6 +36,23 @@
 
   table {
     @extend %o-table;
+  }
+
+  td,
+  th {
+    @extend %a-td;
+  }
+
+  tfoot {
+    td {
+      @extend %a-td--foot;
+    }
+
+    tr {
+      &:first-child > td {
+        @extend %a-td--foot-first;
+      }
+    }
   }
 }
 
