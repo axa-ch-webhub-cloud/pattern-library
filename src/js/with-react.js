@@ -150,8 +150,17 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     render() {
       // eslint-disable-next-line react/prop-types
-      const { props: { children }, handleRef } = this;
-      const props = { ref: handleRef };
+      const { props: { children, ...props }, handleRef } = this;
+      const { observedAttributes } = WebComponent;
+
+      // important: set non-observed attributes to keep native built-in features working
+      if (Array.isArray(observedAttributes)) {
+        observedAttributes.forEach((name) => {
+          delete props[camelize(name)];
+        });
+      }
+
+      props.ref = handleRef;
 
       if (builtInTagName) {
         props.is = tagName;

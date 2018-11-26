@@ -19,6 +19,8 @@
   &::after {
     @include size($control-icon-inner-size, $control-icon-inner-size);
 
+    display: block;
+
     border: $control-border-width solid transparent;
     content: "";
   }

@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.219",
+  "version": "2.0.1-beta.220",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -152,6 +152,7 @@
     "vinyl": "^2.1.0"
   },
   "dependencies": {
+    "@ungap/custom-elements-builtin": "^0.1.1",
     "babel-plugin-transform-builtin-classes": "^0.6.1",
     "babel-runtime": "^6.26.0",
     "built-in-element": "^0.1.4",
@@ -169,7 +170,7 @@
     "url-polyfill": "^1.1.0"
   },
   "peerDependencies": {
-    "built-in-element": "^0.1.4",
+    "@ungap/custom-elements-builtin": "^0.1.1",
     "document-register-element": "^1.12.0",
     "react": ">=0.14.0"
   }
