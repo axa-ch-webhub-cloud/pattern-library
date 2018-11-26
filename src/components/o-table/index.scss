@@ -9,6 +9,7 @@
 @import "../a-td/styles/td-placeholders";
 @import "../a-th/styles/th-placeholders";
 @import "../m-tr/styles/tr-placeholders";
+@import "../m-tfoot/styles/tfoot-placeholders";
 @import "../../styles/trumps/align";
 
 /// Placeholders
@@ -49,6 +50,10 @@
 
   th {
     @extend %a-th;
+  }
+
+  tfoot {
+    @extend %m-tfoot;
   }
 
   tfoot {

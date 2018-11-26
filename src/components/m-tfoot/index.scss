@@ -1,21 +1,7 @@
-@import "./mixins/tfoot";
-
-/// Placeholders
-
-%m-tfoot {
-  @include tfoot();
-}
+@import "styles/tfoot-placeholders";
 
 /// Class styles
 
 .m-tfoot {
   @extend %m-tfoot;
-}
-
-/// Tag styles
-
-.o-table--all {
-  tfoot {
-    @extend %m-tfoot;
-  }
 }
