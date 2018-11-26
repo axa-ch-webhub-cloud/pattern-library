@@ -169,6 +169,8 @@
     "url-polyfill": "^1.1.0"
   },
   "peerDependencies": {
+    "built-in-element": "^0.1.4",
+    "document-register-element": "^1.12.0",
     "react": ">=0.14.0"
   }
 }
