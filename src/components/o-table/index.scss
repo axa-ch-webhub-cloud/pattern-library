@@ -7,6 +7,7 @@
 @import "../../styles/typo/typo-mixins";
 @import "../a-caption/styles/caption-placeholders";
 @import "../a-td/styles/td-placeholders";
+@import "../a-th/styles/th-placeholders";
 @import "../../styles/trumps/align";
 
 /// Placeholders
@@ -41,6 +42,10 @@
   td,
   th {
     @extend %a-td;
+  }
+
+  th {
+    @extend %a-th;
   }
 
   tfoot {
