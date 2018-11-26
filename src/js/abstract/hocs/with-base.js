@@ -3,7 +3,7 @@ import getId from '../utils/get-id';
 const withBase = HTMLElement =>
   /**
    * Base class {BaseComponent}.
-   * This class handles proper context upgrading fir init(),
+   * This class handles proper context upgrading for init(),
    * it adds a unique `_id` and provides a static UUID generator.
    *
    * **IMPORTANT:** To make extended built-in elements and polyfilled browser working properly,
