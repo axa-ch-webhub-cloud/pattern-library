@@ -29,10 +29,6 @@ const INDEX = 'index';
 const SINGLE = 'single-component';
 
 const filePath = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}`;
-
-// const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
-// const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
-// const reGetJavascript = /\/components\/[^/]+\/index\.js$/;
 const reGetDemosHtml = /\/src\/[^/]+\/demo\.react\.html$/;
 
 // @TODO: import order seems to be crucial for chrome, whats going on here??
@@ -64,8 +60,6 @@ const pageHtml = {
   [REACT]: [],
   [INDEX]: [],
 };
-
-let scripts = [];
 
 const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, filePath) => {
   const resultAtoms = indexHtml
@@ -247,13 +241,13 @@ const generateComponent = (componentPreviewPath, componentExamplePath, showStyle
     let component = {}
     switch (previewName.substring(0, 2)) {
       case 'a-':
-        component = createAmoComponent(ATOMS, previewName, 'Atom', previewHtml, resultCssString, exampleHtml, scriptTag, showStyles, showButtons);
+        component = createAmoComponent(ATOMS, previewName, 'Atom', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
         break;
       case 'm-':
-        component = createAmoComponent(MOLECULES, previewName, 'Molecule', previewHtml, resultCssString, exampleHtml, scriptTag, showStyles, showButtons);
+        component = createAmoComponent(MOLECULES, previewName, 'Molecule', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
         break;
       case 'o-':
-        component = createAmoComponent(ORGANISMS, previewName, 'Organism', previewHtml, resultCssString, exampleHtml, scriptTag, showStyles, showButtons);
+        component = createAmoComponent(ORGANISMS, previewName, 'Organism', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
         break;
       default:
         throw new Error('Could not determine component type');
