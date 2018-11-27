@@ -100,16 +100,13 @@ const createSingleComponentPage = (filePath, template, component, scriptTags) =>
   fs.writeFileSync(`${filePath}`, out);
 };
 
-const createAmoComponent = (amoType, previewName, atomicName, preview, resultCssString, example, scriptTag, showStyles = true, showButtons = true) => {
+const createAmoComponent = (amoType, previewName, atomicName, preview, resultCssString, example, showStyles = true, showButtons = true) => {
   let component = {
     type: amoType,
     buttonsHtml: '',
     mobileButtonsHtml: '',
     pageHtml: '',
-    scriptTag: '',
-    scriptFile: 'index.js' 
   }
-  component.scriptTag = scriptTag;
   component.buttonsHtml = `
     ,{
       "links": [
@@ -152,15 +149,14 @@ const createAmoComponent = (amoType, previewName, atomicName, preview, resultCss
     return component;
 };
 
-// let foo = getDirectories(`${CWD}/src/components`);
-// console.log('foo dirs', foo);
-// dir.files(`${CWD}/src/demos`, (err, allFiles) => {
-//   allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
-//   const demoHtmls = allFiles.filter(_file => _file.match(reGetDemosHtml));
-//   demoHtmls.forEach((_file) => {
-//     pageHtml[REACT].push(`${fs.readFileSync(_file, 'utf8')}<script src="./app/all-demos.js"></script>`);
-//   });
-// });
+// Can be improved with the other code
+dir.files(`${CWD}/src/demos`, (err, allFiles) => {
+  allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
+  const demoHtmls = allFiles.filter(_file => _file.match(reGetDemosHtml));
+  demoHtmls.forEach((_file) => {
+    pageHtml[REACT].push(`${fs.readFileSync(_file, 'utf8')}<script src="./app/all-demos.js"></script>`);
+  });
+});
 
 dir.files(`${CWD}/src/components`, (err, allFiles) => {
   if (err) throw err;
