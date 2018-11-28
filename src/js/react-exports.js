@@ -1,3 +1,7 @@
+import 'document-register-element';
+// load this for browsers which support customElements without builtin (webkit)
+import '@ungap/custom-elements-builtin';
+
 // First import the withReact integration helper function
 import withReact from './with-react';
 
