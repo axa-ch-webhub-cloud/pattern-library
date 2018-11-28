@@ -89,7 +89,7 @@ const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, filePath) => {
 const createSingleComponentPage = (filePath, template, component, scriptTags) => {
   let out = template;
   out = out
-    .replace(new RegExp('<!-- {CUT AND INJECT SINGLECOMPONENT HTML HERE} -->', 'g'), component.pageHtml)
+    .replace(/<!-- {CUT AND INJECT SINGLECOMPONENT HTML HERE} -->/g, component.pageHtml)
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, scriptTags.join('\n'))
   fs.writeFileSync(`${filePath}`, out);
 };
