@@ -177,9 +177,9 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     throw new Error('Every component must contain a _preview and a _example html');
   }
 
-  const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
-  const indexTitle = fs.readFileSync('./src/partials/title.html', 'utf8');
-  const singleHtml = fs.readFileSync('./src/single-component.html', 'utf8');
+  const indexHtml = fs.readFileSync('./src/app/index.html', 'utf8');
+  const indexTitle = fs.readFileSync('./src/app/partials/title.html', 'utf8');
+  const singleHtml = fs.readFileSync('./src/app/single-component.html', 'utf8');
 
   const stylesPath = highlightStyles.filter(style => style.name === 'midnight')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
