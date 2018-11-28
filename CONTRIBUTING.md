@@ -381,6 +381,24 @@ Appends an optional custom element's stylesheet to the document.
 
 Adds attribute observation and enables [**First Class Props**](#first-class-props) and runtime type-checking.
 
+#### `withVersion()`
+
+Adds the current `version` from `package.json` to each component.
+
+Query it like:
+
+```js
+const AXAButton = customElements.get('axa-button');
+console.log(AXAButton.version);
+
+// or by promise
+customElements.whenDefined('axa-button')
+  .then(() => {
+    const AXAButton = customElements.get('axa-button');
+    console.log(AXAButton.version);
+  });
+```
+
 ## Integration
 
 The goal is that custom elements can be shared across frameworks and libraries like Angular, React, Vue, you name it. To ease this process we set a static `tagName` property for each custom element and provide generic wrapper functions.
