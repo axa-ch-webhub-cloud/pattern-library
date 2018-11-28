@@ -140,7 +140,7 @@ const createAmoComponent = (amoType, previewName, atomicName, preview, resultCss
       </article>
     `;
 
-    return component;
+  return component;
 };
 
 // Can be improved with the other code
@@ -170,7 +170,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
       filesJavascript.push(_file);
     }
   });
-  
+
   previewHtmls.sort(sortUp);
   exampleHtmls.sort(sortUp);
   filesJavascript.sort(sortUp);
@@ -185,9 +185,9 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
   const stylesPath = highlightStyles.filter(style => style.name === 'midnight')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
-  
+
   const scriptTags = filesJavascript.map((item) => {
-    let distPath = path.relative( path.resolve(process.cwd(), 'src'), item);
+    let distPath = path.relative(path.resolve(process.cwd(), 'src'), item);
     return `<script src="/${distPath}"></script>`;
   });
 
@@ -196,7 +196,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     const exampleHtmlPath = exampleHtmls[index];
     let component = generateComponent(previewHtmlPath, exampleHtmlPath, false, false);
     const componentPreviewIndexPath = previewHtmlPath.replace(adaptSlashes(`${CWD}/src/`), '')
-    .replace('_preview.html', 'index.html');
+      .replace('_preview.html', 'index.html');
     const componentIndexDestinationPath = `${filePath}/${componentPreviewIndexPath}`;
     registerComponent(component);
     createSingleComponentPage(componentIndexDestinationPath, singleHtml, component, scriptTags);
@@ -215,43 +215,43 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 });
 
 const generateComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
-    const componentDirectory = componentPreviewPath.replace(adaptSlashes(`${CWD}/src/`), '')
-      .replace('_preview.html', '');
-    const componentDirectoryPath = path.join(componentDirectory); // .tmp/comp
-    const scriptTag = `<script src="../../${componentDirectoryPath}index.js"></script>`;
-    const name = componentPreviewPath.split('/').slice(-2).join('/');
-    const previewName = name.replace('/_preview.html', '');
-    const previewHtml = fs.readFileSync(componentPreviewPath, 'utf8');
-    const exampleHtml = fs.readFileSync(componentExamplePath, 'utf8');
+  const componentDirectory = componentPreviewPath.replace(adaptSlashes(`${CWD}/src/`), '')
+    .replace('_preview.html', '');
+  const componentDirectoryPath = path.join(componentDirectory); // .tmp/comp
+  const scriptTag = `<script src="../../${componentDirectoryPath}index.js"></script>`;
+  const name = componentPreviewPath.split('/').slice(-2).join('/');
+  const previewName = name.replace('/_preview.html', '');
+  const previewHtml = fs.readFileSync(componentPreviewPath, 'utf8');
+  const exampleHtml = fs.readFileSync(componentExamplePath, 'utf8');
 
-    let resultCss;
-    let resultCssString;
+  let resultCss;
+  let resultCssString;
 
-    try {
-      resultCss = sass.renderSync({
-        file: componentPreviewPath.replace('_preview.html', 'index.scss'),
-        outputStyle: 'expanded',
-      });
-      resultCssString = autoprefixer.process(resultCss.css).css;
-    } catch (error) {
+  try {
+    resultCss = sass.renderSync({
+      file: componentPreviewPath.replace('_preview.html', 'index.scss'),
+      outputStyle: 'expanded',
+    });
+    resultCssString = autoprefixer.process(resultCss.css).css;
+  } catch (error) {
 
-    } // eslint-disable-line
+  } // eslint-disable-line
 
-    // Create a component object that contains the html
-    let component = {}
-    switch (previewName.substring(0, 2)) {
-      case 'a-':
-        component = createAmoComponent(ATOMS, previewName, 'Atom', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
-        break;
-      case 'm-':
-        component = createAmoComponent(MOLECULES, previewName, 'Molecule', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
-        break;
-      case 'o-':
-        component = createAmoComponent(ORGANISMS, previewName, 'Organism', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
-        break;
-      default:
-        throw new Error('Could not determine component type');
-    }
+  // Create a component object that contains the html
+  let component = {}
+  switch (previewName.substring(0, 2)) {
+    case 'a-':
+      component = createAmoComponent(ATOMS, previewName, 'Atom', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
+      break;
+    case 'm-':
+      component = createAmoComponent(MOLECULES, previewName, 'Molecule', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
+      break;
+    case 'o-':
+      component = createAmoComponent(ORGANISMS, previewName, 'Organism', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
+      break;
+    default:
+      throw new Error('Could not determine component type');
+  }
   return component;
 }
 
