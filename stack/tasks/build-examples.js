@@ -85,7 +85,6 @@ const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, filePath) => {
   fs.writeFileSync(`${filePath}/${typeAmo}.html`, resultAtoms);
 };
 
-// Basically to test/develop a component on a single page encapsulated from others,to prevent side effects
 const createSingleComponentPage = (filePath, template, component, scriptTags) => {
   let out = template;
   out = out
@@ -104,7 +103,7 @@ const createAmoComponent = (amoType, previewName, atomicName, preview, resultCss
   component.buttonsHtml = `
     ,{
       "links": [
-        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "${amoType}.html#${previewName}"}
+        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "components/${previewName}/index.html"}
       ]
     }`;
 
@@ -143,7 +142,6 @@ const createAmoComponent = (amoType, previewName, atomicName, preview, resultCss
   return component;
 };
 
-// Can be improved with the other code
 dir.files(`${CWD}/src/demos`, (err, allFiles) => {
   allFiles = allFiles.map(adaptSlashes); // eslint-disable-line no-param-reassign
   const demoHtmls = allFiles.filter(_file => _file.match(reGetDemosHtml));
@@ -194,7 +192,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   // Generate Component Packages / Previews
   previewHtmls.forEach((previewHtmlPath, index) => {
     const exampleHtmlPath = exampleHtmls[index];
-    let component = generateComponent(previewHtmlPath, exampleHtmlPath, false, false);
+    let component = createComponent(previewHtmlPath, exampleHtmlPath, false, false);
     const componentPreviewIndexPath = previewHtmlPath.replace(adaptSlashes(`${CWD}/src/`), '')
       .replace('_preview.html', 'index.html');
     const componentIndexDestinationPath = `${filePath}/${componentPreviewIndexPath}`;
@@ -202,7 +200,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     createSingleComponentPage(componentIndexDestinationPath, singleHtml, component, scriptTags);
   });
 
-  //Generate Subpages of component types
+  // Generate Subpages of component types
   createAmoPage(indexHtml, scriptTags, styles, ORGANISMS, filePath);
   createAmoPage(indexHtml, scriptTags, styles, MOLECULES, filePath);
   createAmoPage(indexHtml, scriptTags, styles, ATOMS, filePath);
@@ -214,7 +212,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   createAmoPage(_indexHtml, scriptTags, styles, INDEX, filePath);
 });
 
-const generateComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
+const createComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
   const name = componentPreviewPath.split('/').slice(-2).join('/');
   const previewName = name.replace('/_preview.html', '');
   const previewHtml = fs.readFileSync(componentPreviewPath, 'utf8');
@@ -251,7 +249,6 @@ const generateComponent = (componentPreviewPath, componentExamplePath, showStyle
   return component;
 }
 
-// still not pure... but better.
 const registerComponent = (component) => {
   buttonsHtml[component.type].push(component.buttonsHtml);
   mobileButtonsHtml[component.type].push(component.mobileButtonsHtml);
