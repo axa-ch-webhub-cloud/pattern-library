@@ -41,6 +41,7 @@
       - [`withShadow()`](#withshadow)
       - [`withStyles()`](#withstyles)
       - [`withUpdate()`](#withupdate)
+      - [`withVersion()`](#withversion)
   - [Integration](#integration)
     - [`withReact()`](#withreact)
 - [How do we release a new version](#how-do-we-release-a-new-version)
