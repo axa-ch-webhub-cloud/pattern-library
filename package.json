@@ -170,8 +170,8 @@
     "objectFitPolyfill": "^2.0.5",
     "picturefill": "^3.0.2",
     "prop-types": "^15.6.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "url-polyfill": "^1.1.0"
   },
   "peerDependencies": {
