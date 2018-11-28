@@ -6,7 +6,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
   // For example, add scss loaders:
   defaultConfig.module.rules.push({
     test: /\.scss$/,
-    loaders: ["raw-loader", "css-loader", "sass-loader"],
+    loaders: ["raw-loader", "sass-loader"],
     include: path.resolve(__dirname, "../")
   });
 
