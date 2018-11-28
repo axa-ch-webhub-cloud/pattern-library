@@ -215,10 +215,6 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 });
 
 const generateComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
-  const componentDirectory = componentPreviewPath.replace(adaptSlashes(`${CWD}/src/`), '')
-    .replace('_preview.html', '');
-  const componentDirectoryPath = path.join(componentDirectory); // .tmp/comp
-  const scriptTag = `<script src="../../${componentDirectoryPath}index.js"></script>`;
   const name = componentPreviewPath.split('/').slice(-2).join('/');
   const previewName = name.replace('/_preview.html', '');
   const previewHtml = fs.readFileSync(componentPreviewPath, 'utf8');
