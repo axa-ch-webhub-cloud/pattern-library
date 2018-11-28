@@ -40,8 +40,8 @@ class AXADatepicker extends BaseComponentGlobal {
     return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'start-year', 'start-month', 'selected-day', 'lower-end-year', 'higher-end-year', 'output-iso'];
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?

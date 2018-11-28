@@ -1,0 +1,5 @@
+@import "../../o-table/styles/table-settings";
+
+@mixin tfoot($background: $table__foot-bg) {
+  background: $background;
+}

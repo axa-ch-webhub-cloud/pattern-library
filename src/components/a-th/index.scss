@@ -1,0 +1,26 @@
+@import "../o-table/styles/table-mixins";
+@import "styles/th-placeholders";
+
+@import "../../styles/trumps/align";
+
+/// Class styles
+
+.a-th {
+  @extend %a-th;
+}
+
+.a-th--dense {
+  @include table__cell--dense();
+}
+
+.a-th--sort {
+  @include th--sort();
+}
+
+.a-th--sort-up {
+  @include th--sort-up();
+}
+
+.a-th--sort-down {
+  @include th--sort-down();
+}

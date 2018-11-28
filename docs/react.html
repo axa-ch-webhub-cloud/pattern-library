@@ -11,6 +11,12 @@
       }(document);
     </script>
     <script src="app/es6-polyfills.js"></script>
+    <!--<script>
+      if(!this.customElements) {
+        document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+      }
+    </script>-->
+    <!--<script src="https://unpkg.com/built-in-element"></script>-->
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./sg.css">
 
@@ -313,6 +319,30 @@
         {"name": "Sticky", "url": "molecules.html#m-sticky"}
       ]
     }
+
+    ,{
+      "links": [
+        {"name": "Tbody", "url": "molecules.html#m-tbody"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Tfoot", "url": "molecules.html#m-tfoot"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Thead", "url": "molecules.html#m-thead"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Tr", "url": "molecules.html#m-tr"}
+      ]
+    }
                   ]
                 }
               ]
@@ -328,6 +358,12 @@
                         {"url": "atoms.html", "name": "All"}
                       ]
                     }
+    ,{
+      "links": [
+        {"name": "Caption", "url": "atoms.html#a-caption"}
+      ]
+    }
+
     ,{
       "links": [
         {"name": "Checkbox", "url": "atoms.html#a-checkbox"}
@@ -361,6 +397,18 @@
     ,{
       "links": [
         {"name": "Radio", "url": "atoms.html#a-radio"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Td", "url": "atoms.html#a-td"}
+      ]
+    }
+
+    ,{
+      "links": [
+        {"name": "Th", "url": "atoms.html#a-th"}
       ]
     }
 
@@ -506,6 +554,14 @@
     ,{"name": "Row", "url": "molecules.html#m-row"}
 
     ,{"name": "Sticky", "url": "molecules.html#m-sticky"}
+
+    ,{"name": "Tbody", "url": "molecules.html#m-tbody"}
+
+    ,{"name": "Tfoot", "url": "molecules.html#m-tfoot"}
+
+    ,{"name": "Thead", "url": "molecules.html#m-thead"}
+
+    ,{"name": "Tr", "url": "molecules.html#m-tr"}
               ]
             },
             {
@@ -513,6 +569,8 @@
               "name": "Atoms", "isActive": false,
               "items": [
                 {"name": "All", "url": "atoms.html"}
+    ,{"name": "Caption", "url": "atoms.html#a-caption"}
+
     ,{"name": "Checkbox", "url": "atoms.html#a-checkbox"}
 
     ,{"name": "Choice", "url": "atoms.html#a-choice"}
@@ -524,6 +582,10 @@
     ,{"name": "Input", "url": "atoms.html#a-input"}
 
     ,{"name": "Radio", "url": "atoms.html#a-radio"}
+
+    ,{"name": "Td", "url": "atoms.html#a-td"}
+
+    ,{"name": "Th", "url": "atoms.html#a-th"}
 
     ,{"name": "Typo", "url": "atoms.html#a-typo"}
 
@@ -864,12 +926,15 @@
 </article>
 <script src="./app/all-demos.js"></script>
       
-    <script src="components/a-checkbox/index.js"></script>
+    <script src="components/a-caption/index.js"></script>
+<script src="components/a-checkbox/index.js"></script>
 <script src="components/a-choice/index.js"></script>
 <script src="components/a-device-state/index.js"></script>
 <script src="components/a-icon/index.js"></script>
 <script src="components/a-input/index.js"></script>
 <script src="components/a-radio/index.js"></script>
+<script src="components/a-td/index.js"></script>
+<script src="components/a-th/index.js"></script>
 <script src="components/a-typo/index.js"></script>
 <script src="components/a-vertical-rhythm/index.js"></script>
 <script src="components/m-accordion-item/index.js"></script>
@@ -904,6 +969,10 @@
 <script src="components/m-policy-feature-item/index.js"></script>
 <script src="components/m-row/index.js"></script>
 <script src="components/m-sticky/index.js"></script>
+<script src="components/m-tbody/index.js"></script>
+<script src="components/m-tfoot/index.js"></script>
+<script src="components/m-thead/index.js"></script>
+<script src="components/m-tr/index.js"></script>
 <script src="components/o-accordion/index.js"></script>
 <script src="components/o-commercial-hero-cover/index.js"></script>
 <script src="components/o-container/index.js"></script>

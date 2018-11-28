@@ -1,4 +1,9 @@
 /* eslint-disable */
+// ES2015 Custom Element Polyfill
+import 'document-register-element';
+// load this for browsers which support customElements without builtin (webkit)
+import '@ungap/custom-elements-builtin';
+
 export { default as AXACheckbox } from './components/a-checkbox';
 
 export { default as AXAChoice } from './components/a-choice';
@@ -104,3 +109,17 @@ export { default as AXATestimonials } from './components/o-testimonials';
 export { default as AXATable } from './components/o-table';
 
 export { default as AXACore } from './components/u-core';
+
+export { default as AXAThead } from './components/m-thead';
+
+export { default as AXATbody } from './components/m-tbody';
+
+export { default as AXATfoot } from './components/m-tfoot';
+
+export { default as AXATd } from './components/a-td';
+
+export { default as AXACaption } from './components/a-caption';
+
+export { default as AXATr } from './components/m-tr';
+
+export { default as AXATh } from './components/a-th';

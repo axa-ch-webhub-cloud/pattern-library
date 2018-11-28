@@ -21,8 +21,8 @@ const withUpdate = Base =>
       return derivedAttributes;
     }
 
-    constructor(options) {
-      super(options);
+    init(options) {
+      super.init(options);
 
       this._isConnected = false;
       this.props = {};
@@ -97,6 +97,11 @@ const withUpdate = Base =>
      * Default behaviour is to update on attribute addition, change or removal.
      */
     attributeChangedCallback(name, oldValue, newValue) {
+      // super important to call throuth the prototype chain, so that lazy initialisation can happen
+      if (super.attributeChangedCallback) {
+        super.attributeChangedCallback(name, oldValue, newValue);
+      }
+
       if (ENV !== PROD) {
         lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
       }

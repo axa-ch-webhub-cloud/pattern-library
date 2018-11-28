@@ -14,8 +14,8 @@ class AXAContainer extends BaseComponentGlobal {
     classes: PropTypes.string,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {

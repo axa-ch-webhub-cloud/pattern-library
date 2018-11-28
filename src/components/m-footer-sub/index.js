@@ -6,8 +6,8 @@ import template from './_template';
 class AXAFooterSub extends BaseComponentGlobal {
   static tagName = 'axa-footer-sub'
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {

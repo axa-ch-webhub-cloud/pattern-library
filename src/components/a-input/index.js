@@ -22,8 +22,8 @@ class AXAInput extends BaseComponentGlobal {
     icon: PropTypes.string,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.input = new Input(this);
   }

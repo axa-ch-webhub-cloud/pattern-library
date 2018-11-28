@@ -13,8 +13,8 @@ class AXAFooterMain extends BaseComponentGlobal {
     light: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {

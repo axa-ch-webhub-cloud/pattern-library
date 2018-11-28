@@ -1,0 +1,7 @@
+@import "./th-mixins";
+
+/// Placeholders
+
+%a-th {
+  @include th();
+}

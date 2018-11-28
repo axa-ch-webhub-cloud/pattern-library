@@ -132,6 +132,7 @@ promiseSeries([
 ]).then(() => {
   // process.exit(0);
 }).catch((reason) => {
+  console.log('foo');
   console.error(reason);
 
   process.exit(1);

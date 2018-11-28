@@ -18,8 +18,8 @@ class AXATestimonials extends BaseComponentGlobal {
     showAllInline: PropTypes.bool,
   }
 
-  constructor() {
-    super({
+  init() {
+    super.init({
       styles, template,
     });
   }

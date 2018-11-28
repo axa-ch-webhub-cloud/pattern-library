@@ -23,8 +23,8 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     historyApi: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.consumeContext('axa-header-main');
   }
