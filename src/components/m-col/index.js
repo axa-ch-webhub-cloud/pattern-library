@@ -35,7 +35,6 @@ const modifierProp = (filter, format) => (props, propName, componentName) => {
   const modifiers = toArray(prop);
 
   if (prop && modifiers.length !== modifiers.filter(validModifiers).length) {
-    // console.log(props, modifiers);
     return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`, expected ${format} - multiple modifiers separated by spaces.`);
   }
 };
