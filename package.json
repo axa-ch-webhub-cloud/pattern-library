@@ -5,6 +5,7 @@
   "main": "stack/server.js",
   "module": "lib",
   "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "clean": "rimraf dist && rimraf lib && rimraf docs",
     "clean-dev": "rimraf .tmp",
     "test": "npm run test-eslint && npm run test-stylelint",
