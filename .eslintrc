@@ -1,7 +1,7 @@
 {
   "extends": "airbnb",
   "rules": {
-    "max-len": ["warn", 140, 2],
+    "max-len": "off",
     "import/prefer-default-export": "off",
     "indent": ["error", 2, {
       "SwitchCase": 1,
@@ -19,10 +19,7 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}],
-    "object-curly-newline": ["warn", {
-        "ObjectExpression": "always",
-        "ObjectPattern": { "multiline": true }
-    }]
+    "object-curly-newline": "off"
   },
   "globals": {
     "HTMLAnchorElement": true,
