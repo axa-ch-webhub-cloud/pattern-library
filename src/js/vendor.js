@@ -3,6 +3,8 @@
  *
  * @type {{dom, lowercase, css, js}}
  */
+
+/* eslint-disable func-names */
 const vendor = (function () {
   if (!window.getComputedStyle) return null;
 

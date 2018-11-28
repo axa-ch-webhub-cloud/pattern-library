@@ -42,7 +42,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    console.log('m-datepicker init', this._id);
+    // console.log('m-datepicker init', this._id);
     this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?
     // this.enableContext()

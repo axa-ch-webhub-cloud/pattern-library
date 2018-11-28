@@ -139,7 +139,7 @@ const withRender = Base =>
             this._isMorphing = false;
           }
         } catch (err) {
-          console.error(err);
+          console.error(err); // eslint-disable-line no-console
         }
       }
 
