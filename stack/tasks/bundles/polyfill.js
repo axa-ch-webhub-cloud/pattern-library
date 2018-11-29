@@ -10,7 +10,7 @@ const CWD = process.cwd();
 async function buildPolyfills() {
   const bundle = await rollup.rollup(common.inputOptions);
   const file = common.adaptSlashes(`${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}/app/es6-polyfills.js`);
-  console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
+  // console.log(`Styleguide Bundel: ${file}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
     ...common.outputOptions,

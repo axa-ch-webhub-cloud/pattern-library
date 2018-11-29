@@ -1,10 +1,17 @@
 const dir = require('node-dir');
 const fs = require('fs');
 const { adaptSlashes } = require('../utils/adaptslashes.js');
+const { capitalize } = require('../utils/capitalize.js');
 const constants = require('../constants');
 const nsh = require('node-syntaxhighlighter');
 const sass = require('node-sass');
 const autoprefixer = require('autoprefixer');
+const { lstatSync, readdirSync } = require('fs')
+const path = require('path')
+
+const isDirectory = source => lstatSync(source).isDirectory()
+const getDirectories = source =>
+  readdirSync(source).map(name => path.join(source, name)).filter(isDirectory)
 
 // const jsLang = nsh.getLanguage('js');
 const htmlLang = nsh.getLanguage('html');
@@ -19,9 +26,9 @@ const MOLECULES = 'molecules';
 const ORGANISMS = 'organisms';
 const REACT = 'react';
 const INDEX = 'index';
+const SINGLE = 'single-component';
 
-const reGetExamples = /\/components\/[^/]+\/_example\.html$/;
-const reGetPreviews = /\/components\/[^/]+\/_preview\.html$/;
+const filePath = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}`;
 const reGetDemosHtml = /\/src\/[^/]+\/demo\.react\.html$/;
 
 // @TODO: import order seems to be crucial for chrome, whats going on here??
@@ -54,11 +61,9 @@ const pageHtml = {
   [INDEX]: [],
 };
 
-const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
-
-const createAmoPage = (indexHtml, imports, styles, typeAmo, filePath) => {
+const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, filePath) => {
   const resultAtoms = indexHtml
-    .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, imports)
+    .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, scriptTags.join('\n'))
     .replace(new RegExp(`<!-- {CUT AND INJECT ACTIVE ${typeAmo.toUpperCase()}} -->`, 'g'), ', "isActive": true')
 
     .replace(new RegExp('<!-- {CUT AND INJECT ATOMS BUTTONS} -->', 'g'), buttonsHtml[ATOMS].join('\n'))
@@ -80,17 +85,34 @@ const createAmoPage = (indexHtml, imports, styles, typeAmo, filePath) => {
   fs.writeFileSync(`${filePath}/${typeAmo}.html`, resultAtoms);
 };
 
-const createAmoComponents = (amoType, previewName, atomicName, preview, resultCssString, example) => {
-  buttonsHtml[amoType].push(`
+const createSingleComponentPage = (filePath, template, component, scriptTags) => {
+  let out = template;
+  out = out
+    .replace(/<!-- {CUT AND INJECT SINGLECOMPONENT HTML HERE} -->/g, component.pageHtml)
+    .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, scriptTags.join('\n'))
+  fs.writeFileSync(`${filePath}`, out);
+};
+
+const createAmoComponent = (amoType, previewName, atomicName, preview, resultCssString, example, showStyles = true, showButtons = true) => {
+  let component = {
+    type: amoType,
+    buttonsHtml: '',
+    mobileButtonsHtml: '',
+    pageHtml: '',
+  }
+  component.buttonsHtml = `
     ,{
       "links": [
-        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "${amoType}.html#${previewName}"}
+        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "components/${previewName}/index.html"}
       ]
-    }`);
-  mobileButtonsHtml[amoType].push(`
-    ,{"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "${amoType}.html#${previewName}"}`);
+    }`;
 
-  pageHtml[amoType].push(`
+  component.mobileButtonsHtml = `
+    ,{"name": "${capitalize(previewName.substring(2, previewName.length))}",
+    "url": "components/${previewName}/index.html"}`
+    ;
+
+  component.pageHtml = `
       <article class="o-sg-section o-sg-section__atomic-category js--section" id="${previewName}">
         <section class="o-sg-section__section o-sg-section__section--title">
           <h1 class="o-sg-section__section__title">
@@ -101,17 +123,23 @@ const createAmoComponents = (amoType, previewName, atomicName, preview, resultCs
         <article class="js--section-source o-sg-section__section o-sg-section__section--source">
           ${preview}
         </article>
+        ${showButtons ? `
         <section class="o-sg-section__section o-sg-section__section--buttons">
           <axa-button ghost color="red" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="source">Close</axa-button>
           <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="wc-html">Webcomponent HTML</axa-button>
           <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="html">Traditional HTML</axa-button>
           <axa-button ghost color="white" motion classes="js--toggle o-sg-section__button o-sg-section__button--selected" data-toggle="css">CSS</axa-button>
         </section>
+        ` : ``}
+        ${showStyles ? `
         <pre class="js--section-wc-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(preview, htmlLang)}</pre>
         <pre class="js--section-html o-sg-section__section o-sg-section__section--src">${nsh.highlight(example, htmlLang)}</pre>
         <pre class="js--section-css o-sg-section__section o-sg-section__section--src">${resultCssString ? nsh.highlight(resultCssString.toString(), cssLang) : ''}</pre>
+        ` : ``}
       </article>
-    `);
+    `;
+
+  return component;
 };
 
 dir.files(`${CWD}/src/demos`, (err, allFiles) => {
@@ -122,101 +150,107 @@ dir.files(`${CWD}/src/demos`, (err, allFiles) => {
   });
 });
 
-dir.files(`${CWD}/src/components`, (err, _allFiles) => {
-  let previewHtmls = [];
-  let exampleHtmls = [];
-
+dir.files(`${CWD}/src/components`, (err, allFiles) => {
   if (err) throw err;
 
-  const allFiles = _allFiles.map(adaptSlashes);
+  let previewHtmls = [];
+  let exampleHtmls = [];
+  let filesJavascript = [];
 
-  previewHtmls = allFiles.filter(_file => _file.match(reGetPreviews));
-  exampleHtmls = allFiles.filter(_file => _file.match(reGetExamples));
+  allFiles.forEach(_file => {
+    if (_file.match(/\/components\/[^/]+\/_preview\.html$/)) {
+      previewHtmls.push(_file);
+    }
+    if (_file.match(/\/components\/[^/]+\/_example\.html$/)) {
+      exampleHtmls.push(_file);
+    }
+    if (_file.match(/\/components\/[^/]+\/index\.js$/)) {
+      filesJavascript.push(_file);
+    }
+  });
+
+  previewHtmls.sort(sortUp);
+  exampleHtmls.sort(sortUp);
+  filesJavascript.sort(sortUp);
 
   if (exampleHtmls.length !== previewHtmls.length || !previewHtmls.length || !exampleHtmls.length) {
     throw new Error('Every component must contain a _preview and a _example html');
   }
 
+  const indexHtml = fs.readFileSync('./src/app/index.html', 'utf8');
+  const indexTitle = fs.readFileSync('./src/app/partials/title.html', 'utf8');
+  const singleHtml = fs.readFileSync('./src/app/single-component.html', 'utf8');
 
-  let imports = '';
-  const indexHtml = fs.readFileSync('./src/index.html', 'utf8');
   const stylesPath = highlightStyles.filter(style => style.name === 'midnight')[0].sourcePath;
   const styles = fs.readFileSync(stylesPath, 'utf8');
 
-  const filePath = `${CWD}/${ENV === constants.ENV.PROD ? 'dist' : '.tmp'}`;
-
-  previewHtmls = previewHtmls.sort(sortUp);
-  exampleHtmls = exampleHtmls.sort(sortUp);
-
-  previewHtmls.forEach((_filePath, index) => {
-    const partial = _filePath.replace(adaptSlashes(`${CWD}/src/`), '').replace('_preview.html', 'index.js');
-    imports += `<script src="${partial}"></script>\n`;
-
-    const name = _filePath.split('/').slice(-2).join('/');
-    const previewName = name.replace('/_preview.html', '');
-
-    const example = fs.readFileSync(exampleHtmls[index], 'utf8');
-    const preview = fs.readFileSync(_filePath, 'utf8');
-
-    let resultCss;
-    let resultCssString;
-
-    try {
-      resultCss = sass.renderSync({
-        file: _filePath.replace('_preview.html', 'index.scss'),
-        outputStyle: 'expanded',
-      });
-      resultCssString = autoprefixer.process(resultCss.css).css;
-    } catch (error) {} // eslint-disable-line
-
-    switch (previewName.substring(0, 2)) {
-      case 'a-':
-        createAmoComponents(ATOMS, previewName, 'Atom', preview, resultCssString, example);
-        break;
-      case 'm-':
-        createAmoComponents(MOLECULES, previewName, 'Molecule', preview, resultCssString, example);
-        break;
-      case 'o-':
-        createAmoComponents(ORGANISMS, previewName, 'Organism', preview, resultCssString, example);
-        break;
-      default:
-        createAmoComponents(ORGANISMS, previewName, 'Organism', preview, resultCssString, example);
-    }
+  const scriptTags = filesJavascript.map((item) => {
+    let distPath = path.relative(path.resolve(process.cwd(), 'src'), item);
+    return `<script src="/${distPath}"></script>`;
   });
 
-  buttonsHtml[REACT].push(`
-    ,{
-      "links": [
-        {"name": "React", "url": "${REACT}.html"}
-      ]
-    }`);
-  mobileButtonsHtml[REACT].push(`
-    ,{"name": "React", "url": "${REACT}.html"}`);
+  // Generate Component Packages / Previews
+  previewHtmls.forEach((previewHtmlPath, index) => {
+    const exampleHtmlPath = exampleHtmls[index];
+    let component = createComponent(previewHtmlPath, exampleHtmlPath, false, false);
+    const componentPreviewIndexPath = previewHtmlPath.replace(adaptSlashes(`${CWD}/src/`), '')
+      .replace('_preview.html', 'index.html');
+    const componentIndexDestinationPath = `${filePath}/${componentPreviewIndexPath}`;
+    registerComponent(component);
+    createSingleComponentPage(componentIndexDestinationPath, singleHtml, component, scriptTags);
+  });
 
-  createAmoPage(indexHtml, imports, styles, ORGANISMS, filePath);
-  createAmoPage(indexHtml, imports, styles, MOLECULES, filePath);
-  createAmoPage(indexHtml, imports, styles, ATOMS, filePath);
-  createAmoPage(indexHtml, imports, styles, REACT, filePath);
+  // Generate Subpages of component types
+  createAmoPage(indexHtml, scriptTags, styles, ORGANISMS, filePath);
+  createAmoPage(indexHtml, scriptTags, styles, MOLECULES, filePath);
+  createAmoPage(indexHtml, scriptTags, styles, ATOMS, filePath);
+  createAmoPage(indexHtml, scriptTags, styles, REACT, filePath);
 
   const _indexHtml = indexHtml
-    .replace(/<!-- {CUT AND INJECT INDEX HTML HERE} -->/g, `
-    <article class="o-sg-section o-sg-section--padded o-sg-section__atomic-category">
-      <h1>Welcome to the patterns library!</h1>
-      <p>
-        This is the core pattern library used for AXA Switzerland. It's based on Web-Components.
-        Web-Components are natively supported in modern browsers. This repo contains also polyfills for those less "cool"
-        browsers out there. Support is:
-      </p>
-      <ul>
-        <li>ie 11 (Polyfill for template, html import, shadow dom and custom element)</li>
-        <li>EDGE (Polyfill for html import, shadow dom and custom element)</li>
-        <li>FF (Polyfill for html import, shadow dom and custom element)</li>
-        <li>Chrome / Chrome Mobile (100% native)</li>
-        <li>Safari / iOS Safari (Polyfill for html import)</li>
-      </ul>
-      <h2>We embrace the atomic design to split our components!</h2>
-    </article>
-      `);
+    .replace(/<!-- {CUT AND INJECT INDEX HTML HERE} -->/g, indexTitle);
 
-  createAmoPage(_indexHtml, imports, styles, INDEX, filePath);
+  createAmoPage(_indexHtml, scriptTags, styles, INDEX, filePath);
 });
+
+const createComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
+  const name = componentPreviewPath.split('/').slice(-2).join('/');
+  const previewName = name.replace('/_preview.html', '');
+  const previewHtml = fs.readFileSync(componentPreviewPath, 'utf8');
+  const exampleHtml = fs.readFileSync(componentExamplePath, 'utf8');
+
+  let resultCss;
+  let resultCssString;
+
+  try {
+    resultCss = sass.renderSync({
+      file: componentPreviewPath.replace('_preview.html', 'index.scss'),
+      outputStyle: 'expanded',
+    });
+    resultCssString = autoprefixer.process(resultCss.css).css;
+  } catch (error) {
+
+  } // eslint-disable-line
+
+  // Create a component object that contains the html
+  let component = {}
+  switch (previewName.substring(0, 2)) {
+    case 'a-':
+      component = createAmoComponent(ATOMS, previewName, 'Atom', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
+      break;
+    case 'm-':
+      component = createAmoComponent(MOLECULES, previewName, 'Molecule', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
+      break;
+    case 'o-':
+      component = createAmoComponent(ORGANISMS, previewName, 'Organism', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
+      break;
+    default:
+      throw new Error('Could not determine component type');
+  }
+  return component;
+}
+
+const registerComponent = (component) => {
+  buttonsHtml[component.type].push(component.buttonsHtml);
+  mobileButtonsHtml[component.type].push(component.mobileButtonsHtml);
+  pageHtml[component.type].push(component.pageHtml);
+};
