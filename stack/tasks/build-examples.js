@@ -109,7 +109,7 @@ const createAmoComponent = (amoType, previewName, atomicName, preview, resultCss
 
   component.mobileButtonsHtml = `
     ,{"name": "${capitalize(previewName.substring(2, previewName.length))}",
-    "url": "${amoType}.html#${previewName}"}`
+    "url": "components/${previewName}/index.html"}`
     ;
 
   component.pageHtml = `
