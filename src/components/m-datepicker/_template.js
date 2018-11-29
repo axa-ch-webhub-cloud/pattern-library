@@ -90,9 +90,9 @@ export default ({
       </div>
       <axa-datepicker-body allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}"class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
       <div class="m-datepicker__button">
-        <axa-button classes="m-datepicker__button__borderless" class="m-datepicker__button__Cancel js-datepicker__button__Cancel"
+        <axa-button classes="m-datepicker__button__borderless" class="m-datepicker__button-cancel js-datepicker__button-cancel"
           tag="button" ghost>${buttonCancel}</axa-button>
-        <axa-button classes="m-datepicker__button__borderless" class="m-datepicker__button__Ok js-datepicker__button__Ok"
+        <axa-button class="m-datepicker__button-borderless m-datepicker__button-ok js-datepicker__button-ok"
           tag="button" ghost>${buttonOk}</axa-button>
       </div>
     </article>

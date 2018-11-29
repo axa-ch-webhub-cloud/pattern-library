@@ -18,8 +18,8 @@ export default class Datepicker {
     this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
     this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
     this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
-    this.okButton = this.wcNode.querySelector('.js-datepicker__button__Ok');
-    this.cancelButton = this.wcNode.querySelector('.js-datepicker__button__Cancel');
+    this.okButton = this.wcNode.querySelector('.js-datepicker__button-ok');
+    this.cancelButton = this.wcNode.querySelector('.js-datepicker__button-cancel');
 
     this.listenToChanges();
     this.listenToButtons();
@@ -83,10 +83,10 @@ export default class Datepicker {
 
   listenToButtons() {
     this.offListenToButtons();
-    this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Cancel'), EVENTS.CLICK, () => {
+    this.unCancelButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button-cancel'), EVENTS.CLICK, () => {
       fire(this.cancelButton, AXA_EVENTS.AXA_CLICK, { value: '', button: 'cancel' }, { bubbles: true, cancelable: true, composed: true });
     });
-    this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button__Ok'), EVENTS.CLICK, () => {
+    this.unOkButtonListenerEnd = on(this.wcNode.querySelector('.js-datepicker__button-ok'), EVENTS.CLICK, () => {
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
       const dayAsValue = this.datepickerBody.getAttribute('value'); // new value - after click on a day
