@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>AXA-CH Style and HTML guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script>
+      !function(document){
+        var root = document.documentElement || document.getElementsByTagName("html")[0]
+        root.className = root.className.split("no-js").join("js")
+      }(document);
+    </script>
+    <script src="/app/es6-polyfills.js"></script>
+    <!--<script>
+      if(!this.customElements) {
+        document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+      }
+    </script>-->
+    <!--<script src="https://unpkg.com/built-in-element"></script>-->
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="../../sg.css">
+
+  </head>
+  <body class="js-device-state a-device-state a-device-state--debug">
+
+    <br>
+    <axa-core only-load="true" icons-path="../../assets/icons/icons.svg"></axa-core>
+    <axa-link class="o-sg-section__section" href="/" color="blue">Home</axa-link>
+
+    
+      <article class="o-sg-section o-sg-section__atomic-category js--section" id="o-header">
+        <section class="o-sg-section__section o-sg-section__section--title">
+          <h1 class="o-sg-section__section__title">
+            <strong class="o-sg-section__section__title--text">Organism</strong>
+            <span class="o-sg-section__section__title--text">header</span>
+          </h1>
+        </section>
+        <article class="js--section-source o-sg-section__section o-sg-section__section--source">
+          <axa-sticky-container>
+  <axa-header>
+    <axa-header-top-content-bar class="u-hide-md-down" type="commercial">
+      <p class="m-header-top-content-bar__text">commercial <a href="#" class="m-link m-link--white">link</a> stuff</p>
+      <button class="m-button m-button--white m-button--ghost m-header-top-content-bar__button">get it for free</button>
+    </axa-header-top-content-bar>
+
+    <axa-sticky class="o-header__fade">
+      <axa-header-meta>
+        <axa-header-others items='[
+            {"name": "individuals", "url": "#", "isActive": true},
+            {"name": "small busineses", "url": "#"},
+            {"name": "businesses", "url": "#"}
+          ]'></axa-header-others>
+
+        <axa-header-meta-right>
+          <axa-header-languages items='[
+              {"name": "de", "url": "#de", "isActive": true},
+              {"name": "en", "url": "#en"},
+              {"name": "fr", "url": "#fr"},
+              {"name": "it", "url": "#it"}
+            ]'></axa-header-languages>
+
+          <a href="#" class="m-button m-button--motion">myAXA Login</a>
+        </axa-header-meta-right>
+      </axa-header-meta>
+
+      <axa-header-main first-left>
+        <axa-header-logo></axa-header-logo>
+
+        <axa-header-navigation items='[
+          {
+            "url": "#",
+            "name": "Offers",
+            "isActive": true,
+            "items": [
+              {
+                "columns": [
+                  {
+                    "links": [
+                      {"url": "#", "name": "Property insurance", "isActive": true, "preventDefault": true},
+                      {"url": "#", "name": "Engineering insurance", "preventDefault": true},
+                      {"url": "#", "name": "LooooooooooooooooooooooooooooooongTiiiiiiiiiitle", "preventDefault": true},
+                      {"url": "#", "name": "Third-party liability insurance", "preventDefault": true},
+                      {"url": "#", "name": "Fidelity insurance", "preventDefault": true},
+                      {"url": "#", "name": "Companies", "preventDefault": true},
+                      {"url": "#", "name": "Transportation insurance <br> subline", "preventDefault": true},
+                      {"url": "#", "name": "Building insurance", "preventDefault": true},
+                      {"url": "#", "name": "Construction insurance", "preventDefault": true},
+                      {"url": "#", "name": "Guarantees and bonds", "preventDefault": true},
+                      {"url": "#", "name": "Credit insurance", "preventDefault": true},
+                      {"url": "#", "name": "Epidemic insurance", "preventDefault": true},
+                      {"url": "#", "name": "Cyber insurance", "preventDefault": true}
+                    ],
+                    "title": "Liability and property"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "Car insurance", "preventDefault": true},
+                      {"url": "#", "name": "Watercraft insurance", "preventDefault": true},
+                      {"url": "#", "name": "Aviation insurance", "preventDefault": true}
+                    ],
+                    "title": "Vehicles"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "Daily sickness benefits insurance", "preventDefault": true},
+                      {"url": "#", "name": "Accident insurance for companies", "preventDefault": true}
+                    ],
+                    "title": "Persons"
+                  }
+                ]
+              },
+              {
+                "columns": [
+                  {
+                    "links": [
+                      {"url": "#", "name": "Solutions for start-ups and SMEs", "preventDefault": true},
+                      {"url": "#", "name": "Pension fund solutions", "preventDefault": true}
+                    ],
+                    "title": "Occupational benefits"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "Smart Fleet", "preventDefault": true},
+                      {"url": "#", "name": "Pre-finance customer invoices", "preventDefault": true}
+                    ],
+                    "title": "AXA & partners"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "Corporate Health Management", "preventDefault": true},
+                      {"url": "#", "name": "Customer magazine", "preventDefault": true},
+                      {"url": "#", "name": "Current legislation on Pillar 2 – BVG", "preventDefault": true}
+                    ],
+                    "title": "Knowledge"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "url": "#",
+            "name": "Your Situation",
+            "items": [
+              {
+                "isWide": true,
+                "columns": [
+                  {
+                    "links": [
+                      {"url": "#", "name": "Your company start-up", "preventDefault": true},
+                      {"url": "#", "name": "Your self-employment", "preventDefault": true},
+                      {"url": "#", "name": "Your succession planning", "preventDefault": true},
+                      {"url": "#", "name": "The health of your employees", "preventDefault": true}
+                    ],
+                    "title": "You are interested in"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "Company with up to 20 employees", "preventDefault": true},
+                      {"url": "#", "name": "Company with 20 to 100 employees", "preventDefault": true},
+                      {"url": "#", "name": "Corporates with 100+ employees", "preventDefault": true}
+                    ],
+                    "title": "You are a ..."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "url": "#",
+            "name": "Advice, Contact, Service",
+            "items": [
+              {
+                "columns": [
+                  {
+                    "links": [
+                      {"url": "#", "name": "Corporate customer advisor", "preventDefault": true},
+                      {"url": "#", "name": "Consultant pension fund", "preventDefault": true},
+                      {"url": "#", "name": "Insurance check", "preventDefault": true}
+                    ],
+                    "title": "Advice"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "General contact", "preventDefault": true}
+                    ],
+                    "title": "Contact"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "Download-Center Corporate customers", "preventDefault": true}
+                    ],
+                    "title": "Service"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "url": "#",
+            "name": "Report and Update",
+            "items": [
+              {
+                "columns": [
+                  {
+                    "links": [
+                      {"url": "#", "name": "Electronic salary notification", "preventDefault": true},
+                      {"url": "#", "name": "Report accident / illness", "preventDefault": true},
+                      {"url": "#", "name": "File a claim", "preventDefault": true},
+                      {"url": "#", "name": "Online contract administration for BVG", "preventDefault": true}
+                    ],
+                    "title": "Notify"
+                  },
+                  {
+                    "links": [
+                      {"url": "#", "name": "myAXA customer portal", "preventDefault": true}
+                    ],
+                    "title": "Update"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "url": "#",
+            "name": "Blog",
+            "items": [
+              {
+                "columns": [
+                  {
+                    "links": [
+                      {"url": "#", "name": "Link", "preventDefault": true},
+                      {"url": "#", "name": "Link", "preventDefault": true},
+                      {"url": "#", "name": "Link", "preventDefault": true}
+                    ],
+                    "title": "Category"
+                  }
+                ]
+              }
+            ]
+          }
+        ]'></axa-header-navigation>
+
+        <axa-header-search></axa-header-search>
+        <axa-header-burger></axa-header-burger>
+      </axa-header-main>
+
+      <axa-header-mobile>
+        <a href="#" class="m-button m-button--ghost m-button--motion">myAXA Login</a>
+
+        <axa-header-mobile-navigation items='[{"name": "car insurance", "isActive": true, "items": [
+               {"name": "professional indemnity insurance"},
+               {"name": "public liability insurance"},
+               {"name": "shop insurance sub line", "isActive": true},
+               {"name": "van insurance"},
+               {"name": "residential landlord insurance"}
+               ]},
+        {"name": "home insurance", "items": [
+               {"name": "personal sub line", "items": [
+                      {"name": "car insurance"},
+                      {"name": "home insurance"},
+                      {"name": "travel insurance"},
+                      {"name": "breakdown cover"},
+                      {"name": "van insurance"}
+               ]},
+               {"name": "business", "items": [
+                      {"name": "professional indemnity insurance"},
+                      {"name": "public liability insurance"},
+                      {"name": "shop insurance"},
+                      {"name": "van insurance"},
+                      {"name": "residential landlord insurance"}
+               ]}
+        ]},
+        {"name": "health insurance", "items": [
+               {"name": "personal sub line", "items": [
+                      {"name": "car insurance"},
+                      {"name": "home insurance"},
+                      {"name": "travel insurance"},
+                      {"name": "breakdown cover"},
+                      {"name": "van insurance"}
+               ]},
+               {"name": "business", "items": [
+                      {"name": "professional indemnity insurance"},
+                      {"name": "public liability insurance"},
+                      {"name": "shop insurance"},
+                      {"name": "van insurance"},
+                      {"name": "residential landlord insurance"}
+               ]}
+
+        ]},
+        {"name": "travel insurance", "items": [
+               {"name": "personal sub line", "items": [
+                      {"name": "car insurance"},
+                      {"name": "home insurance"},
+                      {"name": "travel insurance"},
+                      {"name": "breakdown cover"},
+                      {"name": "van insurance"}
+               ]},
+               {"name": "business", "items": [
+                      {"name": "professional indemnity insurance"},
+                      {"name": "public liability insurance"},
+                      {"name": "shop insurance"},
+                      {"name": "van insurance"},
+                      {"name": "residential landlord insurance"}
+               ]}
+
+        ]},
+        {"name": "all products", "items": [
+               {"name": "personal sub line", "items": [
+                      {"name": "car insurance"},
+                      {"name": "home insurance"},
+                      {"name": "travel insurance"},
+                      {"name": "breakdown cover"},
+                      {"name": "van insurance"}
+               ]},
+               {"name": "business", "items": [
+                      {"name": "professional indemnity insurance"},
+                      {"name": "public liability insurance"},
+                      {"name": "shop insurance"},
+                      {"name": "van insurance"},
+                      {"name": "residential landlord insurance"}
+               ]}
+
+        ]}
+        ]'></axa-header-mobile-navigation>
+
+        <axa-header-top-content-bar type="commercial">
+          <p class="m-header-top-content-bar__text">commercial <a href="#" class="m-link m-link--white">link</a> stuff</p>
+          <button class="m-button m-button--white m-button--ghost m-header-top-content-bar__button">get it for free</button>
+        </axa-header-top-content-bar>
+
+        <axa-header-mobile-others
+          items='[
+            {"name": "individuals", "url": "#", "isActive": true},
+            {"name": "small busineses", "url": "#"},
+            {"name": "businesses", "url": "#"}
+          ]'
+        ></axa-header-mobile-others>
+
+        <axa-header-mobile-languages items='[
+          {"code": "de", "url": "#", "isActive": true},
+          {"code": "en", "url": "#en"},
+          {"code": "fr", "url": "#fr"},
+          {"code": "it", "url": "#it"}
+        ]'></axa-header-mobile-languages>
+      </axa-header-mobile>
+    </axa-sticky>
+  </axa-header>
+  <div style="height: 500px;">Empty space</div>
+</axa-sticky-container>
+
+        </article>
+        
+        
+      </article>
+    
+    <!-- {CUT AND INJECT INDEX HTML HERE} -->
+    <!-- {CUT AND INJECT PREVIEWS HERE} -->
+
+    <script src="../../app/app.js"></script>
+    <script src="../../components/u-core/index.js"></script>
+    
+    <script src="/components/a-caption/index.js"></script>
+<script src="/components/a-checkbox/index.js"></script>
+<script src="/components/a-choice/index.js"></script>
+<script src="/components/a-device-state/index.js"></script>
+<script src="/components/a-icon/index.js"></script>
+<script src="/components/a-input/index.js"></script>
+<script src="/components/a-radio/index.js"></script>
+<script src="/components/a-td/index.js"></script>
+<script src="/components/a-th/index.js"></script>
+<script src="/components/a-typo/index.js"></script>
+<script src="/components/a-vertical-rhythm/index.js"></script>
+<script src="/components/m-accordion-item/index.js"></script>
+<script src="/components/m-button/index.js"></script>
+<script src="/components/m-col/index.js"></script>
+<script src="/components/m-datepicker-body/index.js"></script>
+<script src="/components/m-datepicker/index.js"></script>
+<script src="/components/m-dropdown/index.js"></script>
+<script src="/components/m-footer-languages/index.js"></script>
+<script src="/components/m-footer-legals/index.js"></script>
+<script src="/components/m-footer-links/index.js"></script>
+<script src="/components/m-footer-main/index.js"></script>
+<script src="/components/m-footer-social/index.js"></script>
+<script src="/components/m-footer-sub/index.js"></script>
+<script src="/components/m-form-group/index.js"></script>
+<script src="/components/m-header-burger/index.js"></script>
+<script src="/components/m-header-languages/index.js"></script>
+<script src="/components/m-header-logo/index.js"></script>
+<script src="/components/m-header-main/index.js"></script>
+<script src="/components/m-header-meta-right/index.js"></script>
+<script src="/components/m-header-meta/index.js"></script>
+<script src="/components/m-header-mobile-languages/index.js"></script>
+<script src="/components/m-header-mobile-navigation/index.js"></script>
+<script src="/components/m-header-mobile-others/index.js"></script>
+<script src="/components/m-header-mobile/index.js"></script>
+<script src="/components/m-header-navigation/index.js"></script>
+<script src="/components/m-header-others/index.js"></script>
+<script src="/components/m-header-search/index.js"></script>
+<script src="/components/m-header-sub-navigation/index.js"></script>
+<script src="/components/m-header-top-content-bar/index.js"></script>
+<script src="/components/m-link/index.js"></script>
+<script src="/components/m-policy-feature-item/index.js"></script>
+<script src="/components/m-row/index.js"></script>
+<script src="/components/m-sticky/index.js"></script>
+<script src="/components/m-tbody/index.js"></script>
+<script src="/components/m-tfoot/index.js"></script>
+<script src="/components/m-thead/index.js"></script>
+<script src="/components/m-tr/index.js"></script>
+<script src="/components/o-accordion/index.js"></script>
+<script src="/components/o-commercial-hero-cover/index.js"></script>
+<script src="/components/o-container/index.js"></script>
+<script src="/components/o-cookie-disclaimer/index.js"></script>
+<script src="/components/o-datepicker/index.js"></script>
+<script src="/components/o-error-page/index.js"></script>
+<script src="/components/o-footer/index.js"></script>
+<script src="/components/o-header/index.js"></script>
+<script src="/components/o-policy-features/index.js"></script>
+<script src="/components/o-sticky-container/index.js"></script>
+<script src="/components/o-table/index.js"></script>
+<script src="/components/o-testimonials/index.js"></script>
+<script src="/components/u-core/index.js"></script>
+
+  </body>
+</html>

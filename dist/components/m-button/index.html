@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>AXA-CH Style and HTML guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script>
+      !function(document){
+        var root = document.documentElement || document.getElementsByTagName("html")[0]
+        root.className = root.className.split("no-js").join("js")
+      }(document);
+    </script>
+    <script src="/app/es6-polyfills.js"></script>
+    <!--<script>
+      if(!this.customElements) {
+        document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+      }
+    </script>-->
+    <!--<script src="https://unpkg.com/built-in-element"></script>-->
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="../../sg.css">
+
+  </head>
+  <body class="js-device-state a-device-state a-device-state--debug">
+
+    <br>
+    <axa-core only-load="true" icons-path="../../assets/icons/icons.svg"></axa-core>
+    <axa-link class="o-sg-section__section" href="/" color="blue">Home</axa-link>
+
+    
+      <article class="o-sg-section o-sg-section__atomic-category js--section" id="m-button">
+        <section class="o-sg-section__section o-sg-section__section--title">
+          <h1 class="o-sg-section__section__title">
+            <strong class="o-sg-section__section__title--text">Molecule</strong>
+            <span class="o-sg-section__section__title--text">button</span>
+          </h1>
+        </section>
+        <article class="js--section-source o-sg-section__section o-sg-section__section--source">
+          <div>
+  <axa-button tag="button" size="sm">Small</axa-button>
+  <axa-button tag="button">Default</axa-button>
+  <axa-button tag="button" size="lg">Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm">Small</axa-button>
+  <axa-button tag="button" color="red">Default</axa-button>
+  <axa-button tag="button" color="red" size="lg">Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm">Small</axa-button>
+  <axa-button tag="a">Default</axa-button>
+  <axa-button tag="a" size="lg">Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm">Small</axa-button>
+  <axa-button tag="a" color="red">Default</axa-button>
+  <axa-button tag="a" color="red" size="lg">Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" arrow>Small</axa-button>
+  <axa-button tag="button" arrow>Default</axa-button>
+  <axa-button tag="button" size="lg" arrow>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" arrow>Small</axa-button>
+  <axa-button tag="button" color="red" arrow>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" arrow>Small</axa-button>
+  <axa-button tag="a" arrow>Default</axa-button>
+  <axa-button tag="a" size="lg" arrow>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" arrow>Small</axa-button>
+  <axa-button tag="a" color="red" arrow>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" motion>Small</axa-button>
+  <axa-button tag="button" motion>Default</axa-button>
+  <axa-button tag="button" size="lg" motion>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" motion>Small</axa-button>
+  <axa-button tag="button" color="red" motion>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" motion>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" motion>Small</axa-button>
+  <axa-button tag="a" motion>Default</axa-button>
+  <axa-button tag="a" size="lg" motion>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" motion>Small</axa-button>
+  <axa-button tag="a" color="red" motion>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" motion>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" motion arrow>Small</axa-button>
+  <axa-button tag="button" motion arrow>Default</axa-button>
+  <axa-button tag="button" size="lg" motion arrow>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" motion arrow>Small</axa-button>
+  <axa-button tag="button" color="red" motion arrow>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" motion arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" motion arrow>Small</axa-button>
+  <axa-button tag="a" motion arrow>Default</axa-button>
+  <axa-button tag="a" size="lg" motion arrow>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" motion arrow>Small</axa-button>
+  <axa-button tag="a" color="red" motion arrow>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" motion arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" motion icon="twitter">Small</axa-button>
+  <axa-button tag="a" size="sm" motion icon="twitter"></axa-button>
+  <axa-button tag="a" motion icon="more">Default</axa-button>
+  <axa-button tag="a" motion icon="more"></axa-button>
+  <axa-button tag="a" size="lg" motion icon="facebook">Large</axa-button>
+  <axa-button tag="a" size="lg" motion icon="facebook"></axa-button>
+
+  <axa-button tag="a" color="red" size="sm" motion icon="linkedin">Small</axa-button>
+  <axa-button tag="a" color="red" size="sm" motion icon="linkedin"></axa-button>
+  <axa-button tag="a" color="red" motion icon="twitter">Default</axa-button>
+  <axa-button tag="a" color="red" motion icon="twitter"></axa-button>
+  <axa-button tag="a" color="red" size="lg" motion icon="add">Large</axa-button>
+  <axa-button tag="a" color="red" size="lg" motion icon="add"></axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" ghost>Small</axa-button>
+  <axa-button tag="button" ghost>Default</axa-button>
+  <axa-button tag="button" size="lg" ghost>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" ghost>Small</axa-button>
+  <axa-button tag="button" color="red" ghost>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" ghost>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" ghost>Small</axa-button>
+  <axa-button tag="a" ghost>Default</axa-button>
+  <axa-button tag="a" size="lg" ghost>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" ghost>Small</axa-button>
+  <axa-button tag="a" color="red" ghost>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" ghost arrow>Small</axa-button>
+  <axa-button tag="button" ghost arrow>Default</axa-button>
+  <axa-button tag="button" size="lg" ghost arrow>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" ghost arrow>Small</axa-button>
+  <axa-button tag="button" color="red" ghost arrow>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" ghost arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" ghost arrow>Small</axa-button>
+  <axa-button tag="a" ghost arrow>Default</axa-button>
+  <axa-button tag="a" size="lg" ghost arrow>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" ghost arrow>Small</axa-button>
+  <axa-button tag="a" color="red" ghost arrow>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" ghost motion>Small</axa-button>
+  <axa-button tag="button" ghost motion>Default</axa-button>
+  <axa-button tag="button" size="lg" ghost motion>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" ghost motion>Small</axa-button>
+  <axa-button tag="button" color="red" ghost motion>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" ghost motion>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" ghost motion>Small</axa-button>
+  <axa-button tag="a" ghost motion>Default</axa-button>
+  <axa-button tag="a" size="lg" ghost motion>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" ghost motion>Small</axa-button>
+  <axa-button tag="a" color="red" ghost motion>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost motion>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" ghost motion arrow>Small</axa-button>
+  <axa-button tag="button" ghost motion arrow>Default</axa-button>
+  <axa-button tag="button" size="lg" ghost motion arrow>Large</axa-button>
+
+  <axa-button tag="button" color="red" size="sm" ghost motion arrow>Small</axa-button>
+  <axa-button tag="button" color="red" ghost motion arrow>Default</axa-button>
+  <axa-button tag="button" color="red" size="lg" ghost motion arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" ghost motion arrow>Small</axa-button>
+  <axa-button tag="a" ghost motion arrow>Default</axa-button>
+  <axa-button tag="a" size="lg" ghost motion arrow>Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" ghost motion arrow>Small</axa-button>
+  <axa-button tag="a" color="red" ghost motion arrow>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost motion arrow>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" ghost motion icon="facebook">Small</axa-button>
+  <axa-button tag="a" ghost motion icon="facebook">Default</axa-button>
+  <axa-button tag="a" size="lg" ghost motion icon="facebook">Large</axa-button>
+
+  <axa-button tag="a" color="red" size="sm" ghost motion icon="facebook">Small</axa-button>
+  <axa-button tag="a" color="red" ghost motion icon="facebook">Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost motion icon="facebook">Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="sm" ghost motion icon="facebook"></axa-button>
+  <axa-button tag="a" ghost motion icon="facebook"></axa-button>
+  <axa-button tag="a" size="lg" ghost motion icon="facebook"></axa-button>
+
+  <axa-button tag="a" color="red" size="sm" ghost motion icon="facebook"></axa-button>
+  <axa-button tag="a" color="red" ghost motion icon="facebook"></axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost motion icon="facebook"></axa-button>
+</div>
+
+<div style="margin-top: 8px; padding: 8px 0; background: #3b3fd8;">
+  <axa-button tag="button" color="white" size="sm" ghost>Small</axa-button>
+  <axa-button tag="button" color="white" ghost>Default</axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost>Large</axa-button>
+
+  <axa-button tag="a" color="white" size="sm" ghost>Small</axa-button>
+  <axa-button tag="a" color="white" ghost>Default</axa-button>
+  <axa-button tag="a" color="white" size="lg" ghost>Large</axa-button>
+</div>
+
+<div style="padding: 8px 0; background: #3b3fd8;">
+  <axa-button tag="button" color="white" size="sm" ghost motion>Small</axa-button>
+  <axa-button tag="button" color="white" ghost motion>Default</axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost motion>Large</axa-button>
+
+  <axa-button tag="a" color="white" size="sm" ghost motion>Small</axa-button>
+  <axa-button tag="a" color="white" ghost motion>Default</axa-button>
+  <axa-button tag="a" color="white" size="lg" ghost motion>Large</axa-button>
+</div>
+
+<div style="padding: 8px 0; background: #3b3fd8;">
+  <axa-button tag="button" color="white" size="sm" ghost motion arrow>Small</axa-button>
+  <axa-button tag="button" color="white" ghost motion arrow>Default</axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost motion arrow>Large</axa-button>
+
+  <axa-button tag="a" color="white" size="sm" ghost motion arrow>Small</axa-button>
+  <axa-button tag="a" color="white" ghost motion arrow>Default</axa-button>
+  <axa-button tag="a" color="white" size="lg" ghost motion arrow>Large</axa-button>
+</div>
+
+<div style="padding: 8px 0; background: #3b3fd8;">
+  <axa-button tag="button" color="white" size="sm" ghost motion icon="facebook">Small</axa-button>
+  <axa-button tag="button" color="white" ghost motion icon="twitter">Default</axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost motion icon="linkedin">Large</axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost motion icon="facebook" href="https://google.ch/" target="_blank">Large</axa-button>
+
+  <axa-button tag="a" color="white" size="sm" ghost motion icon="linkedin">Small</axa-button>
+  <axa-button tag="a" color="white" ghost motion icon="twitter">Default</axa-button>
+  <axa-button tag="a" color="white" size="lg" ghost motion icon="facebook">Large</axa-button>
+  <axa-button tag="a" color="white" size="sm" ghost motion icon="twitter" href="https://google.ch/" target="_blank">Large</axa-button>
+</div>
+
+
+<div style="padding: 8px 0; background: #3b3fd8;">
+  <axa-button tag="button" color="white" size="sm" ghost motion icon="facebook"></axa-button>
+  <axa-button tag="button" color="white" ghost motion icon="twitter"></axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost motion icon="linkedin"></axa-button>
+  <axa-button tag="button" color="white" size="lg" ghost motion icon="facebook" href="https://google.ch/" target="_blank"></axa-button>
+
+  <axa-button tag="a" color="white" size="sm" ghost motion icon="linkedin"></axa-button>
+  <axa-button tag="a" color="white" ghost motion icon="twitter"></axa-button>
+  <axa-button tag="a" color="white" size="lg" ghost motion icon="facebook"></axa-button>
+  <axa-button tag="a" color="white" size="sm" ghost motion icon="twitter" href="https://google.ch/" target="_blank"></axa-button>
+</div>
+
+<div style="padding: 8px 0; background: #3b3fd8;">
+  <axa-button tag="button" color="white" size="lg" ghost motion icon="facebook" disabled>Large</axa-button>
+  <axa-button tag="button" color="white" size="md" ghost motion icon="facebook" disabled></axa-button>
+  <axa-button tag="a" color="white" size="sm" ghost motion icon="twitter" disabled>Large</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="a" size="lg" href="https://google.ch/" target="_blank">Large</axa-button>
+  <axa-button tag="button" size="sm" href="https://google.ch/" target="_blank">Large Button</axa-button>
+  <axa-button tag="a" size="lg" href="https://google.ch/" target="_blank">Large Link</axa-button>
+  <axa-button tag="button" color="red" size="sm" ghost motion href="https://google.ch/" target="_blank">Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost motion href="https://google.ch/" target="_blank">Default</axa-button>
+  <axa-button tag="button" color="red" size="sm" ghost motion arrow href="https://google.ch/" target="_blank">Default</axa-button>
+  <axa-button tag="a" color="red" size="sm" ghost motion arrow href="https://google.ch/" target="_blank">Default</axa-button>
+</div>
+
+<div style="margin-top: 8px;">
+  <axa-button tag="button" size="sm" disabled>Large Button</axa-button>
+  <axa-button tag="a" size="lg" disabled>Large Link</axa-button>
+  <axa-button tag="button" color="red" size="sm" ghost motion disabled>Default</axa-button>
+  <axa-button tag="a" color="red" size="lg" ghost motion disabled>Default</axa-button>
+  <axa-button tag="button" color="red" size="sm" ghost motion arrow disabled>Default</axa-button>
+  <axa-button tag="button" color="red" size="sm" motion arrow disabled>Default</axa-button>
+  <axa-button tag="a" color="red" size="sm" ghost motion arrow disabled>Default</axa-button>
+</div>
+
+        </article>
+        
+        
+      </article>
+    
+    <!-- {CUT AND INJECT INDEX HTML HERE} -->
+    <!-- {CUT AND INJECT PREVIEWS HERE} -->
+
+    <script src="../../app/app.js"></script>
+    <script src="../../components/u-core/index.js"></script>
+    
+    <script src="/components/a-caption/index.js"></script>
+<script src="/components/a-checkbox/index.js"></script>
+<script src="/components/a-choice/index.js"></script>
+<script src="/components/a-device-state/index.js"></script>
+<script src="/components/a-icon/index.js"></script>
+<script src="/components/a-input/index.js"></script>
+<script src="/components/a-radio/index.js"></script>
+<script src="/components/a-td/index.js"></script>
+<script src="/components/a-th/index.js"></script>
+<script src="/components/a-typo/index.js"></script>
+<script src="/components/a-vertical-rhythm/index.js"></script>
+<script src="/components/m-accordion-item/index.js"></script>
+<script src="/components/m-button/index.js"></script>
+<script src="/components/m-col/index.js"></script>
+<script src="/components/m-datepicker-body/index.js"></script>
+<script src="/components/m-datepicker/index.js"></script>
+<script src="/components/m-dropdown/index.js"></script>
+<script src="/components/m-footer-languages/index.js"></script>
+<script src="/components/m-footer-legals/index.js"></script>
+<script src="/components/m-footer-links/index.js"></script>
+<script src="/components/m-footer-main/index.js"></script>
+<script src="/components/m-footer-social/index.js"></script>
+<script src="/components/m-footer-sub/index.js"></script>
+<script src="/components/m-form-group/index.js"></script>
+<script src="/components/m-header-burger/index.js"></script>
+<script src="/components/m-header-languages/index.js"></script>
+<script src="/components/m-header-logo/index.js"></script>
+<script src="/components/m-header-main/index.js"></script>
+<script src="/components/m-header-meta-right/index.js"></script>
+<script src="/components/m-header-meta/index.js"></script>
+<script src="/components/m-header-mobile-languages/index.js"></script>
+<script src="/components/m-header-mobile-navigation/index.js"></script>
+<script src="/components/m-header-mobile-others/index.js"></script>
+<script src="/components/m-header-mobile/index.js"></script>
+<script src="/components/m-header-navigation/index.js"></script>
+<script src="/components/m-header-others/index.js"></script>
+<script src="/components/m-header-search/index.js"></script>
+<script src="/components/m-header-sub-navigation/index.js"></script>
+<script src="/components/m-header-top-content-bar/index.js"></script>
+<script src="/components/m-link/index.js"></script>
+<script src="/components/m-policy-feature-item/index.js"></script>
+<script src="/components/m-row/index.js"></script>
+<script src="/components/m-sticky/index.js"></script>
+<script src="/components/m-tbody/index.js"></script>
+<script src="/components/m-tfoot/index.js"></script>
+<script src="/components/m-thead/index.js"></script>
+<script src="/components/m-tr/index.js"></script>
+<script src="/components/o-accordion/index.js"></script>
+<script src="/components/o-commercial-hero-cover/index.js"></script>
+<script src="/components/o-container/index.js"></script>
+<script src="/components/o-cookie-disclaimer/index.js"></script>
+<script src="/components/o-datepicker/index.js"></script>
+<script src="/components/o-error-page/index.js"></script>
+<script src="/components/o-footer/index.js"></script>
+<script src="/components/o-header/index.js"></script>
+<script src="/components/o-policy-features/index.js"></script>
+<script src="/components/o-sticky-container/index.js"></script>
+<script src="/components/o-table/index.js"></script>
+<script src="/components/o-testimonials/index.js"></script>
+<script src="/components/u-core/index.js"></script>
+
+  </body>
+</html>
