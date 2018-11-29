@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.222",
+  "version": "2.0.1-beta.223",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -21,13 +21,13 @@
     "watch-js": "node stack/tasks/watch-js.js",
     "watch-html": "npm-watch build-html-dev",
     "watch-svg": "npm-watch build-icons-dev",
-    "serve": "concurrently \"npm run server\" \"npm run watch\" \"npm run bundle-demos-dev\"",
+    "serve": "concurrently \"npm run server\" \"npm run watch\"",
     "bundle-demos-dev": "node stack/tasks/bundle-demos.js",
     "bundle-demos-prod": "node stack/tasks/bundle-demos.js",
     "bundle-prod": "concurrently \"node stack/tasks/bundles/all-prod.js\" \"npm run bundle-demos-prod\"",
     "serve-build-prod": "concurrently \"npm run server\" \"npm run build\"",
-    "build-css-dev": "concurrently \"node-sass src/index.scss -o .tmp/\" \"node-sass src/sg.scss -o .tmp/\"",
-    "build-css-prod": "concurrently \"node-sass src/index.scss -o dist/\" \"node-sass src/sg.scss -o dist/\"",
+    "build-css-dev": "concurrently \"node-sass src/app/index.scss -o .tmp/\" \"node-sass src/app/sg.scss -o .tmp/\"",
+    "build-css-prod": "concurrently \"node-sass src/app/index.scss -o dist/\" \"node-sass src/app/sg.scss -o dist/\"",
     "postbuild-css-prod": "postcss dist/index.css -o dist/index.css",
     "build-js-dev": "node stack/tasks/watch-js.js",
     "build-html-dev": "concurrently \"node stack/tasks/build.html.js\" \"node stack/tasks/build-examples.js\"",
@@ -62,21 +62,21 @@
         "src"
       ],
       "extensions": "scss",
-      "quiet": false
+      "quiet": true
     },
     "build-html-dev": {
       "patterns": [
         "src"
       ],
       "extensions": "html",
-      "quiet": false
+      "quiet": true
     },
     "build-icons-dev": {
       "patterns": [
         "src"
       ],
       "extensions": "svg",
-      "quiet": false
+      "quiet": true
     }
   },
   "repository": {
@@ -103,6 +103,7 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-version-transform": "^1.0.0",
     "babel-preset-env": "~1.6.1",
     "babel-preset-react": "^6.24.1",
     "chalk": "^2.4.0",

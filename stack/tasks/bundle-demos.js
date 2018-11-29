@@ -50,7 +50,7 @@ async function buildComponents() {
     ],
     input: './src/demos/*.jsx',
   });
-  console.log(`Bundled to: ${fPath}`); // eslint-disable-line
+  // console.log(`Bundled to: ${fPath}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
     format: 'iife',
