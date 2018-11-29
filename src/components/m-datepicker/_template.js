@@ -76,13 +76,13 @@ export default ({
       <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
         size="sm" value="${startDate.month}"
         items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
-          name: month, url: '#', value: index,
+          name: month.toString(), url: '#', value: index.toString(),
         })))}">
       </axa-dropdown>
       <axa-dropdown data-year="true" class="m-datepicker__dropdown m-datepicker__dropdown__year js-datepicker__dropdown__year"
         size="sm" value="${startDate.year}"
         items="${JSON.stringify(specificYears.map(year => ({
-          name: year, url: '#', value: year,
+          name: year.toString(), url: '#', value: year.toString(),
         })))}">
       </axa-dropdown>
       <div class="m-datepicker__weekdays">
