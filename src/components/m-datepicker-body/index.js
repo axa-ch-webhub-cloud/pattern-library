@@ -25,13 +25,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-
     this.datepickerBody = new DatepickerBody(this);
-    // does this provide context (See docs for context) ?
-    // this.provideContext()
-
-    // or do you want to consume a specific context
-    // this.consumeContext('axa-context-provider');
   }
 
   /**
@@ -39,15 +33,11 @@ class AXADatepickerBody extends BaseComponentGlobal {
    */
   connectedCallback() {
     super.connectedCallback();
-
     this.className = `${this.initialClassName} m-datepicker-body`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
     // TODO Don't forget to cleanup :)
   }
 
