@@ -104,12 +104,12 @@ export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
 // eslint-disable-next-line no-control-regex
 export const clearStringFromIEGeneratedCharacters = string => string.replace(/[^\x00-\x7F]/g, '');
 
-export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
+export const getLocaleDayMonthYear = (locale = 'en-UK', date = new Date()) => {
   const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   return clearStringFromIEGeneratedCharacters(objDate);
 };
 
-export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => {
+export const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 10, 23);
 

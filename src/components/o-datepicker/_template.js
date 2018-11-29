@@ -4,7 +4,7 @@ import { getLocaleDayMonthYear, TODAY } from '../../js/date';
 
 export default ({
   classes,
-  locale = 'en-uk',
+  locale = 'en-UK',
   outputIso = false,
   higherEndYear = false,
   buttonCancel = 'Cancel',

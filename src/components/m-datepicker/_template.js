@@ -62,7 +62,7 @@ export default ({
   classes,
   buttonOk,
   buttonCancel,
-  locale = 'en-uk',
+  locale = 'en-UK',
   startYear = TODAY,
   startMonth = TODAY, // zero-based
   selectedDay = new Date().getDate(),
