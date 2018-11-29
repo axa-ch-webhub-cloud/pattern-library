@@ -179,7 +179,7 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
   const scriptTags = filesJavascript.map((item) => {
     const distPath = path.relative(path.resolve(process.cwd(), 'src'), item);
-    return `<script src="${distPath}"></script>`;
+    return `<script src="${ENV === constants.ENV.PROD ? '/patterns-library' : ''}/${distPath}"></script>`;
   });
 
   const createComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
