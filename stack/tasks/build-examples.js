@@ -55,22 +55,26 @@ const pageHtml = {
   [INDEX]: [],
 };
 
+const addMenuStrings = (indexHtml, scriptTags, typeAmo) => indexHtml
+  .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, scriptTags.join('\n'))
+  .replace(new RegExp(`<!-- {CUT AND INJECT ACTIVE ${typeAmo.toUpperCase()}} -->`, 'g'), ', "isActive": true')
+
+  .replace(new RegExp('<!-- {CUT AND INJECT PREFIX} -->', 'g'), ENV === constants.ENV.PROD ? '/patterns-library' : '')
+
+  .replace(new RegExp('<!-- {CUT AND INJECT ATOMS BUTTONS} -->', 'g'), buttonsHtml[ATOMS].join('\n'))
+  .replace(new RegExp('<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->', 'g'), buttonsHtml[ORGANISMS].join('\n'))
+  .replace(new RegExp('<!-- {CUT AND INJECT MOLECULES BUTTONS} -->', 'g'), buttonsHtml[MOLECULES].join('\n'))
+
+  .replace(new RegExp('<!-- {CUT AND INJECT ATOMS MOBILE BUTTONS} -->', 'g'), mobileButtonsHtml[ATOMS].join('\n'))
+  .replace(new RegExp('<!-- {CUT AND INJECT ORGANISMS MOBILE BUTTONS} -->', 'g'), mobileButtonsHtml[ORGANISMS].join('\n'))
+  .replace(new RegExp('<!-- {CUT AND INJECT MOLECULES MOBILE BUTTONS} -->', 'g'), mobileButtonsHtml[MOLECULES].join('\n'))
+
+  .replace(/<!-- {CUT AND INJECT .* BUTTONS} -->/g, '')
+  .replace(/<!-- {CUT AND INJECT ACTIVE.*} -->/g, ', "isActive": false');
+
 const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, _filePath) => {
-  const resultAtoms = indexHtml
-    .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, scriptTags.join('\n'))
-    .replace(new RegExp(`<!-- {CUT AND INJECT ACTIVE ${typeAmo.toUpperCase()}} -->`, 'g'), ', "isActive": true')
-
-    .replace(new RegExp('<!-- {CUT AND INJECT ATOMS BUTTONS} -->', 'g'), buttonsHtml[ATOMS].join('\n'))
-    .replace(new RegExp('<!-- {CUT AND INJECT ORGANISMS BUTTONS} -->', 'g'), buttonsHtml[ORGANISMS].join('\n'))
-    .replace(new RegExp('<!-- {CUT AND INJECT MOLECULES BUTTONS} -->', 'g'), buttonsHtml[MOLECULES].join('\n'))
-
-    .replace(new RegExp('<!-- {CUT AND INJECT ATOMS MOBILE BUTTONS} -->', 'g'), mobileButtonsHtml[ATOMS].join('\n'))
-    .replace(new RegExp('<!-- {CUT AND INJECT ORGANISMS MOBILE BUTTONS} -->', 'g'), mobileButtonsHtml[ORGANISMS].join('\n'))
-    .replace(new RegExp('<!-- {CUT AND INJECT MOLECULES MOBILE BUTTONS} -->', 'g'), mobileButtonsHtml[MOLECULES].join('\n'))
-
-    .replace(/<!-- {CUT AND INJECT .* BUTTONS} -->/g, '')
-    .replace(/<!-- {CUT AND INJECT ACTIVE.*} -->/g, ', "isActive": false')
-    .replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, `
+  const resultAtoms =
+    addMenuStrings(indexHtml, scriptTags, typeAmo).replace(/<!-- {CUT AND INJECT PREVIEWS HERE} -->/g, `
       <style>
         ${styles}
       </style>
@@ -81,6 +85,11 @@ const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, _filePath) => {
 
 const createSingleComponentPage = (_filePath, template, component, scriptTags, styles) => {
   let out = template;
+  if (ENV === constants.ENV.PROD) {
+    const indexHeader = fs.readFileSync('./src/app/partials/header.html', 'utf8');
+    out = out.replace(/<!-- {CUT AND INJECT HEADER HTML HERE} -->/g, indexHeader);
+    out = addMenuStrings(out, scriptTags, component.type);
+  }
   out += `
   <style>
     ${styles}
@@ -102,13 +111,13 @@ const createAmoComponent = (amoType, previewName, atomicName, preview, resultCss
   component.buttonsHtml = `
     ,{
       "links": [
-        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "components/${previewName}/index.html"}
+        {"name": "${capitalize(previewName.substring(2, previewName.length))}", "url": "${ENV === constants.ENV.PROD ? '/patterns-library' : ''}/components/${previewName}/index.html"}
       ]
     }`;
 
   component.mobileButtonsHtml = `
     ,{"name": "${capitalize(previewName.substring(2, previewName.length))}",
-    "url": "components/${previewName}/index.html"}`;
+    "url": "${ENV === constants.ENV.PROD ? '/patterns-library' : ''}/components/${previewName}/index.html"}`;
 
   component.pageHtml = `
       <article class="o-sg-section o-sg-section__atomic-category js--section" id="${previewName}">
@@ -187,9 +196,26 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     return `<script src="${ENV === constants.ENV.PROD ? '/patterns-library' : ''}/${distPath}"></script>`;
   });
 
-  const createComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
+  const getPreviewName = (componentPreviewPath) => {
     const name = componentPreviewPath.split('/').slice(-2).join('/');
-    const previewName = name.replace('/_preview.html', '');
+    return name.replace('/_preview.html', '');
+  };
+
+  const getAmoType = (componentPreviewPath) => {
+    switch (getPreviewName(componentPreviewPath).substring(0, 2)) {
+      case 'a-':
+        return ATOMS;
+      case 'm-':
+        return MOLECULES;
+      case 'o-':
+        return ORGANISMS;
+      default:
+        throw new Error('Could not determine component type');
+    }
+  };
+
+  const createComponent = (componentPreviewPath, componentExamplePath, showStyles, showButtons) => {
+    const previewName = getPreviewName(componentPreviewPath);
     const previewHtml = fs.readFileSync(componentPreviewPath, 'utf8');
     const exampleHtml = fs.readFileSync(componentExamplePath, 'utf8');
 
@@ -206,14 +232,14 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
 
     // Create a component object that contains the html
     let component = {};
-    switch (previewName.substring(0, 2)) {
-      case 'a-':
+    switch (getAmoType(componentPreviewPath)) {
+      case ATOMS:
         component = createAmoComponent(ATOMS, previewName, 'Atom', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
         break;
-      case 'm-':
+      case MOLECULES:
         component = createAmoComponent(MOLECULES, previewName, 'Molecule', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
         break;
-      case 'o-':
+      case ORGANISMS:
         component = createAmoComponent(ORGANISMS, previewName, 'Organism', previewHtml, resultCssString, exampleHtml, showStyles, showButtons);
         break;
       default:
@@ -228,15 +254,22 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
     pageHtml[component.type].push(component.pageHtml);
   };
 
-  // Generate Component Packages / Previews
+  const components = [];
+
+  // Register Component Packages / Previews
   previewHtmls.forEach((previewHtmlPath, index) => {
     const exampleHtmlPath = exampleHtmls[index];
     const component = createComponent(previewHtmlPath, exampleHtmlPath, ENV === constants.ENV.PROD, ENV === constants.ENV.PROD);
+    registerComponent(component);
+    components[index] = component;
+  });
+
+  // Generate header for single component pages only for prod and create single pages
+  previewHtmls.forEach((previewHtmlPath, index) => {
     const componentPreviewIndexPath = previewHtmlPath.replace(adaptSlashes(`${CWD}/src/`), '')
       .replace('_preview.html', 'index.html');
     const componentIndexDestinationPath = `${filePath}/${componentPreviewIndexPath}`;
-    registerComponent(component);
-    createSingleComponentPage(componentIndexDestinationPath, singleHtml, component, scriptTags, styles);
+    createSingleComponentPage(componentIndexDestinationPath, singleHtml, components[index], scriptTags, styles);
   });
 
   // Generate Subpages of component types
