@@ -79,8 +79,13 @@ const createAmoPage = (indexHtml, scriptTags, styles, typeAmo, _filePath) => {
   fs.writeFileSync(`${_filePath}/${typeAmo}.html`, resultAtoms);
 };
 
-const createSingleComponentPage = (_filePath, template, component, scriptTags) => {
+const createSingleComponentPage = (_filePath, template, component, scriptTags, styles) => {
   let out = template;
+  out += `
+  <style>
+    ${styles}
+  </style>
+  `;
   out = out
     .replace(/<!-- {CUT AND INJECT SINGLECOMPONENT HTML HERE} -->/g, component.pageHtml)
     .replace(/<!-- {CUT AND INJECT IMPORTS HERE} -->/g, scriptTags.join('\n'));
@@ -226,12 +231,12 @@ dir.files(`${CWD}/src/components`, (err, allFiles) => {
   // Generate Component Packages / Previews
   previewHtmls.forEach((previewHtmlPath, index) => {
     const exampleHtmlPath = exampleHtmls[index];
-    const component = createComponent(previewHtmlPath, exampleHtmlPath, false, false);
+    const component = createComponent(previewHtmlPath, exampleHtmlPath, ENV === constants.ENV.PROD, ENV === constants.ENV.PROD);
     const componentPreviewIndexPath = previewHtmlPath.replace(adaptSlashes(`${CWD}/src/`), '')
       .replace('_preview.html', 'index.html');
     const componentIndexDestinationPath = `${filePath}/${componentPreviewIndexPath}`;
     registerComponent(component);
-    createSingleComponentPage(componentIndexDestinationPath, singleHtml, component, scriptTags);
+    createSingleComponentPage(componentIndexDestinationPath, singleHtml, component, scriptTags, styles);
   });
 
   // Generate Subpages of component types
