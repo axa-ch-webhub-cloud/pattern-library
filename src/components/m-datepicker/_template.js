@@ -88,9 +88,9 @@ export default ({
       <div class="m-datepicker__weekdays">
         ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
-      <axa-datepicker-body allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}"class="js-datepicker__datepicker-body" locale="${locale}"></axa-datepicker-body>
-      <div class="m-datepicker__button">
-        <axa-button classes="m-datepicker__button__borderless" class="m-datepicker__button-cancel js-datepicker__button-cancel"
+      <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body" allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}" locale="${locale}"></axa-datepicker-body>
+      <div class="m-datepicker__buttons">
+        <axa-button class="m-datepicker__button-borderless m-datepicker__button-cancel js-datepicker__button-cancel"
           tag="button" ghost>${buttonCancel}</axa-button>
         <axa-button class="m-datepicker__button-borderless m-datepicker__button-ok js-datepicker__button-ok"
           tag="button" ghost>${buttonOk}</axa-button>
