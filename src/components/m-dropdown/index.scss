@@ -46,7 +46,6 @@
 // js enhanced dropdown
 .m-dropdown__toggle {
   @include button-reset();
-  @include typo-text-longer();
   @include dropdown-toggle();
   @include dropdown-frame();
 
@@ -120,9 +119,13 @@
   }
 }
 
+.m-dropdown__toggle,
 .m-dropdown__link {
-  @include typo-text-longer();
+   // no responsive font in dropdown or fixed frames needed
+  @include typo-decls('typo-18');
+}
 
+.m-dropdown__link {
   display: block;
   padding: $dropdown__frame-y-padding $dropdown__frame-x-padding;
 
