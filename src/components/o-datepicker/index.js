@@ -3,12 +3,11 @@ import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import localePropType from '../../js/prop-types/locale-prop-type';
-// import the styles used for this component
 import styles from './index.scss';
-// import the template used for this component
 import template from './_template';
-
 import Datepicker from './js/datepicker';
+import fire from '../../js/fire';
+import { AXA_EVENTS } from '../../js/ui-events';
 
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
@@ -25,13 +24,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-
-    this.datepicker = new Datepicker(this);
-    // does this provide context (See docs for context) ?
-    // this.provideContext()
-
-    // or do you want to consume a specific context
-    // this.consumeContext('axa-context-provider');
+    this.datepicker = new Datepicker(this); // TODO:: move to connectedCallback to prevent multi inits
   }
 
   /**
@@ -39,28 +32,24 @@ class AXADatepicker extends BaseComponentGlobal {
    */
   connectedCallback() {
     super.connectedCallback();
-
     this.className = `${this.initialClassName} o-datepicker`;
-    // Your DOM interaction here, but keep it decoupled.
-    // If you don't have any, just remove this function
+    this.datepicker.init();
   }
-
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
     this.datepicker.destroy();
   }
 
-  didRenderCallback() {
-    this.datepicker.init();
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    if (name === 'open' && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null) {
+    // option 1
+    // fire(this, AXA_EVENTS.AXA_CHANGE, '', { bubbles: true, cancelable: true, composed: true });
+    // option 2
+    // this.datepicker.onCalenderStatusChange();
+    }
   }
-  // Do you consume context?
-  // contextCallback(contextNode) {
-  //   contextNode is now available.
-  // }
 }
 
 defineOnce(AXADatepicker.tagName, AXADatepicker);
