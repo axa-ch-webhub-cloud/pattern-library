@@ -165,11 +165,14 @@ $margin-30: 30px;
   display: block;
 }
 
-.o-commercial-hero-cover__full-height {
-  height: 100%;
+.m-row,
+.u-container {
+  &.o-commercial-hero-cover__full-height {
+    height: 100%;
+  }
 }
 
-.o-commercial-hero-cover__flex {
+.m-col.o-commercial-hero-cover__flex {
   display: flex;
 
   justify-content: center;
