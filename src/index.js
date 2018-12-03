@@ -1,4 +1,9 @@
 /* eslint-disable */
+// ES2015 Custom Element Polyfill
+import 'document-register-element';
+// load this for browsers which support customElements without builtin (webkit)
+import '@ungap/custom-elements-builtin';
+
 export { default as AXACheckbox } from './components/a-checkbox';
 
 export { default as AXAChoice } from './components/a-choice';

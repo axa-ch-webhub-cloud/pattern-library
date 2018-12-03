@@ -5,6 +5,7 @@
 // https://github.com/d4tocchini/customevent-polyfill
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent#Polyfill
 
+/* eslint-disable func-names */
 const CustomEvent = (function () {
   try {
     const ce = new window.CustomEvent('test', { cancelable: true });

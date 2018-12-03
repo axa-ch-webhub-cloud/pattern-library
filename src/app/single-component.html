@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>AXA-CH Style and HTML guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script>
+      !function(document){
+        var root = document.documentElement || document.getElementsByTagName("html")[0]
+        root.className = root.className.split("no-js").join("js")
+      }(document);
+    </script>
+    <script src="<!-- {CUT AND INJECT PREFIX} -->/app/es6-polyfills.js"></script>
+    <!--<script>
+      if(!this.customElements) {
+        document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+      }
+    </script>-->
+    <!--<script src="https://unpkg.com/built-in-element"></script>-->
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="../../sg.css">
+
+  </head>
+  <body class="js-device-state a-device-state a-device-state--debug">
+    <!-- {CUT AND INJECT HEADER HTML HERE} -->
+    <br>
+    <axa-core only-load="true" icons-path="../../assets/icons/icons.svg"></axa-core>
+
+    <axa-link class="o-sg-section__section" href="javascript:history.back()" color="blue">Go Back</axa-link>
+
+    <!-- {CUT AND INJECT SINGLECOMPONENT HTML HERE} -->
+    <!-- {CUT AND INJECT INDEX HTML HERE} -->
+    <!-- {CUT AND INJECT PREVIEWS HERE} -->
+
+    <script src="../../app/app.js"></script>
+    <script src="../../components/u-core/index.js"></script>
+
+    <!-- {CUT AND INJECT IMPORTS HERE} -->
+
+  </body>
+</html>

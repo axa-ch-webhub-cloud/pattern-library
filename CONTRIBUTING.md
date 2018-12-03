@@ -41,6 +41,7 @@
       - [`withShadow()`](#withshadow)
       - [`withStyles()`](#withstyles)
       - [`withUpdate()`](#withupdate)
+      - [`withVersion()`](#withversion)
   - [Integration](#integration)
     - [`withReact()`](#withreact)
 - [How do we release a new version](#how-do-we-release-a-new-version)
@@ -380,6 +381,24 @@ Appends an optional custom element's stylesheet to the document.
 #### `withUpdate()`
 
 Adds attribute observation and enables [**First Class Props**](#first-class-props) and runtime type-checking.
+
+#### `withVersion()`
+
+Adds the current `version` from `package.json` to each component.
+
+Query it like:
+
+```js
+const AXAButton = customElements.get('axa-button');
+console.log(AXAButton.version);
+
+// or by promise
+customElements.whenDefined('axa-button')
+  .then(() => {
+    const AXAButton = customElements.get('axa-button');
+    console.log(AXAButton.version);
+  });
+```
 
 ## Integration
 

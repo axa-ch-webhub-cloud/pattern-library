@@ -8,6 +8,7 @@ import withRender from './with-render';
 import withShadow from './with-shadow';
 import withStyles from './with-styles';
 import withUpdate from './with-update';
+import withVersion from './with-version';
 
 export {
   withBase,
@@ -18,8 +19,9 @@ export {
   withShadow,
   withStyles,
   withUpdate,
+  withVersion,
 };
 
-export const withAllHocs = compose(withContext, withMonkeyPatches, withUpdate, withRender, withStyles);
+export const withAllHocs = compose(withVersion, withContext, withMonkeyPatches, withUpdate, withRender, withStyles);
 export const withBaseAndAllHocs = compose(withAllHocs, withBase);
 export const withBaseGlobalAndAllHocs = compose(withAllHocs, withBaseGlobal, withBase);

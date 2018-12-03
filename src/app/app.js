@@ -5,7 +5,7 @@ import '@ungap/custom-elements-builtin';
 
 import wcdomready from '../js/wcdomready';
 
-console.log('🚀 patterns library 🚀');
+console.log('🚀 patterns library 🚀'); // eslint-disable-line no-console
 
 const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
 

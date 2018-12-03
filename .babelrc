@@ -15,6 +15,7 @@
     "transform-class-properties",
     "transform-es2015-destructuring",
     "transform-object-rest-spread",
+    "babel-plugin-version-transform",
     ["inline-replace-variables", {
       "ENV": {
         "type": "node",

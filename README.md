@@ -13,11 +13,11 @@ This repo contains also polyfills for those less "cool" browsers out there. Supp
 * [HTML template](https://caniuse.com/#feat=template)
 * [HTML imports](https://caniuse.com/#feat=imports)
 
-* ie 11 (Polyfill for template, html import, shadow dom and custom element)
-* EDGE (Polyfill for html import, shadow dom and custom element)
-* FF (Polyfill for html import, shadow dom and custom element)
+* ie 11 (Polyfilled)
+* EDGE (Polyfilled, native support is under development)
+* FF (Native for Custom element v1 with polyfill for built in)
 * Chrome / Chrome Mobile (100% native)
-* Safari / iOS Safari (Polyfill for html import)
+* Safari / iOS Safari (Native for Custom element v1 with polyfill for built in)
 
 REF: https://github.com/webcomponents/webcomponentsjs
 
@@ -86,6 +86,19 @@ Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vu
 * To build to dist folder, simply run `npm run build`
 * to run server and watchers (this is what you want while you are developing) `npm run serve`
 * to run the PROD server `npm run serve-build-prod`
+
+## Icons
+
+To use custom icon Spritesheet, you have to do use `<axa-core>`. Let me show you with the following Example written in React:
+```js
+ReactDOM.render(<Fragment>
+  <axa-core icons-path="icons.svg"></axa-core>
+  <App />
+  </Fragment>, document.getElementById('root'));
+registerServiceWorker();
+```
+
+This will dowload the svg and make it avaiable to the `<axa-icon>`. Be aware that it have to be a SVG spritesheet.
 
 ## Usage guide - With just Webcomponents (no framework)
 
