@@ -28,7 +28,6 @@ async function buildComponents() {
       ENV === constants.ENV.PROD ? uglify() : () => {},
       commonjs({
         include: 'node_modules/**',
-        exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
         namedExports: {
           'node_modules/react/index.js': ['Children', 'Component', 'PureComponent', 'createElement'],
           'node_modules/react-dom/index.js': ['render'],
