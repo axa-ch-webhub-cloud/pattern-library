@@ -17,15 +17,16 @@ export default ({ value, items }) => [html`
   </button>
 `, html`
   <ul class="m-header-languages__list js-dropdown__content">
-    ${Array.isArray(items) && items.map(({ url = '', name, isActive }) => html`
+    ${Array.isArray(items) && items.map(({ url = '', name, code = name, isActive }) => html`
       <li class="m-header-languages__list-item">
         <a
           data-index="${name}"
           data-selected="${name === value ? 'true' : 'false'}"
-          class="${classnames('m-header-languages__list-link', {
+          class="${classnames('m-header-languages__list-link', 'js-header-languages__list-link', {
             'is-header-languages-active': isActive,
           })}"
           href="${url}"
+          lang="${code}"
         >
           ${raw(name)}
         </a>
