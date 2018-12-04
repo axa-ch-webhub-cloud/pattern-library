@@ -100,9 +100,15 @@ export default class Datepicker {
         const choosenDate = new Date(year, month, day);
 
         if (this.outputIso) {
-          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate.getTime(), button: OK }, { bubbles: true, cancelable: true, composed: true });
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
+            value: choosenDate.getTime(),
+            button: OK,
+          }, { bubbles: true, cancelable: true, composed: true });
         } else {
-          fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: choosenDate, button: OK }, { bubbles: true, cancelable: true, composed: true });
+          fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
+            value: choosenDate,
+            button: OK,
+          }, { bubbles: true, cancelable: true, composed: true });
         }
       } else {
         fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: '', button: OK }, { bubbles: true, cancelable: true, composed: true });
