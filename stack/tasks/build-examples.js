@@ -90,6 +90,7 @@ const createSingleComponentPage = (_filePath, template, component, scriptTags, s
     out = out.replace(/<!-- {CUT AND INJECT HEADER HTML HERE} -->/g, indexHeader);
     out = addMenuStrings(out, scriptTags, component.type);
   }
+  out = out.replace(new RegExp('<!-- {CUT AND INJECT PREFIX} -->', 'g'), ENV === constants.ENV.PROD ? '/patterns-library' : '')
   out += `
   <style>
     ${styles}
