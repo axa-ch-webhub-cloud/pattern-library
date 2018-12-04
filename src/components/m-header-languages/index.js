@@ -9,6 +9,9 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 import DropDown from '../m-dropdown/js/drop-down';
+import fire from '../../js/fire';
+import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
+import on from '../../js/on';
 
 class AXAHeaderLanguages extends BaseComponentGlobal {
   static tagName = 'axa-header-languages'
@@ -23,6 +26,38 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
+  }
+
+  handleClick = (event) => {
+    const { target } = event;
+    const { lang } = target;
+
+    /**
+     * axa-click event.
+     *
+     * @event FooterLinks#axa-click
+     * @type {object}
+     */
+    const cancelled = fire(this, AXA_EVENTS.AXA_CLICK, lang, {
+      bubbles: true,
+      cancelable: true,
+      composed: true,
+    });
+
+    if (!cancelled) {
+      event.preventDefault();
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.unClickEnd = on(
+      this, EVENTS.CLICK, 'js-header-languages__list-link',
+      this.handleClick, {
+        capture: true, passive: false,
+      },
+    );
   }
 
   willRenderCallback() {
@@ -41,9 +76,14 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+
     if (this.dropDown) {
       this.dropDown.destroy();
       delete this.dropDown;
+    }
+
+    if (this.unClickEnd) {
+      this.unClickEnd();
     }
   }
 }

@@ -22,10 +22,11 @@ export default ({ value, items }) => [html`
         <a
           data-index="${name}"
           data-selected="${name === value ? 'true' : 'false'}"
-          class="${classnames('m-header-languages__list-link', {
+          class="${classnames('m-header-languages__list-link', 'js-header-languages__list-link', {
             'is-header-languages-active': isActive,
           })}"
           href="${url}"
+          lang="${name}"
         >
           ${raw(name)}
         </a>
