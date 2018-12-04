@@ -160,6 +160,13 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
         });
       }
 
+      const propsKeys = Object.keys(props);
+
+      // remove events from props
+      propsKeys.filter(isEventFilter).forEach((key) => {
+        delete props[key];
+      });
+
       props.ref = handleRef;
 
       if (builtInTagName) {
