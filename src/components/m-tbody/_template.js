@@ -1,5 +1,7 @@
 import html from 'nanohtml';
 
+import '../m-tr';
+import '../a-td';
 import expandTableData from '../../js/expand-table-data';
 
 export default ({ items }, fragmentChildren) => {

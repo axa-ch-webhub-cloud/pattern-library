@@ -1,5 +1,10 @@
 import html from 'nanohtml';
 
+import '../a-caption';
+import '../m-thead';
+import '../m-tfoot';
+import '../m-tbody';
+
 export default ({
   cap,
   capAlign,
