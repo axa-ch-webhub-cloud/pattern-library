@@ -51,7 +51,10 @@ const enhancedSelect = ({ title, items, size, value }) => [
     const _itemValue = getItemValue(itemValue, index);
     return html`
       <li class="m-dropdown__item">
-        <a class="m-dropdown__link" data-index="${_itemValue}" data-selected="${_itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
+        <a class="m-dropdown__link"
+        data-index="${_itemValue}"
+        data-selected="${_itemValue === value ? 'true' : 'false'}"
+        href="${url}">${name}</a>
       </li>
     `;
   })}
