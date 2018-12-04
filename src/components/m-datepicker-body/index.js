@@ -52,12 +52,17 @@ class AXADatepickerBody extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
+    // @todo: `getAttribute` should be replaced by `this.props.*`
     let month = getAttribute(this, 'month');
     month = (month || month === 0) ? month : undefined;
     let day = getAttribute(this, 'day');
     day = (day || day === 0) ? day : undefined;
+    const index = getAttribute(this, 'index');
+    const locale = getAttribute(this, 'locale');
+    const year = getAttribute(this, 'year') || undefined;
+    const allowedYears = getAttribute(this, 'allowed-years');
 
-    this.datepickerBody.init(getAttribute(this, 'index'), getAttribute(this, 'locale'), getAttribute(this, 'year') || undefined, month, day, getAttribute(this, 'allowed-years'));
+    this.datepickerBody.init(index, locale, year, month, day, allowedYears);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.230",
+  "version": "2.0.1-beta.232",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -21,7 +21,7 @@
     "watch-js": "node stack/tasks/watch-js.js",
     "watch-html": "npm-watch build-html-dev",
     "watch-svg": "npm-watch build-icons-dev",
-    "serve": "concurrently \"npm run server\" \"npm run watch\"",
+    "serve": "concurrently \"npm run server\" \"npm run watch\" \"npm run bundle-demos-dev\"",
     "bundle-demos-dev": "node stack/tasks/bundle-demos.js",
     "bundle-demos-prod": "node stack/tasks/bundle-demos.js",
     "bundle-prod": "concurrently \"node stack/tasks/bundles/all-prod.js\" \"npm run bundle-demos-prod\"",
