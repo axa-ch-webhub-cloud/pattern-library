@@ -19,6 +19,7 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
     items: PropTypes.arrayOf(PropTypes.shape({
       url: urlPropType,
       name: PropTypes.string,
+      code: PropTypes.string,
       isActive: PropTypes.bool,
     })),
     value: valuePropType,

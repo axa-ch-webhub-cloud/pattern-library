@@ -17,7 +17,7 @@ export default ({ value, items }) => [html`
   </button>
 `, html`
   <ul class="m-header-languages__list js-dropdown__content">
-    ${Array.isArray(items) && items.map(({ url = '', name, isActive }) => html`
+    ${Array.isArray(items) && items.map(({ url = '', name, code = name, isActive }) => html`
       <li class="m-header-languages__list-item">
         <a
           data-index="${name}"
@@ -26,7 +26,7 @@ export default ({ value, items }) => [html`
             'is-header-languages-active': isActive,
           })}"
           href="${url}"
-          lang="${name}"
+          lang="${code}"
         >
           ${raw(name)}
         </a>
