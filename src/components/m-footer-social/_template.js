@@ -1,5 +1,7 @@
 import html from 'nanohtml';
 
+import '../a-icon';
+
 export default function ({ title, items = [] }) {
   return html`<aside class="m-footer-social__box">
     ${title && html`<strong class="m-footer-social__title">${title}</strong>`}

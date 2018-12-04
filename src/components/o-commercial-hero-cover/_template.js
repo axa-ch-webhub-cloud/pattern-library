@@ -1,5 +1,9 @@
 import html from 'nanohtml';
 
+import '../m-row';
+import '../m-col';
+import '../o-container';
+
 export default ({
   src,
   alt = 'Commercial Hero cover',

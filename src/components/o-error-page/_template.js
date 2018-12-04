@@ -2,6 +2,8 @@ import classnames from 'classnames';
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
+import '../m-button';
+
 export default ({
   code, // eslint-disable-line
   status,

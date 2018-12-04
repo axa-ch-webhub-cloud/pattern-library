@@ -1,6 +1,8 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
+import '../a-icon';
+
 export default ({ src, alt = 'AXA Logo', href = '#' } = {}) => html`
   <a href="${href}" class="m-header-logo__link js-header-logo__link">
     ${src ? html`

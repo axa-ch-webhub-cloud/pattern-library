@@ -2,6 +2,8 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
+import '../a-icon';
+
 const getSelectedName = (value, items) => {
   if (!items || !Array.isArray(items) || !items.length) {
     return '';

@@ -7,6 +7,9 @@ import {
   TODAY,
 } from '../../js/date';
 
+import '../m-dropdown';
+import '../m-datepicker-body';
+
 /**
  * @param yearsRange object with keys: lowerEndYear, higherEndYear
  * @param startYear number|string year number, or 'TODAY' string

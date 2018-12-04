@@ -3,6 +3,8 @@ import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 import isEmptyFragment from '../../js/is-empty-fragment';
 
+import '../a-icon';
+
 const DISABLED = 'disabled';
 const ARIA_DISABLED = 'aria-disabled';
 

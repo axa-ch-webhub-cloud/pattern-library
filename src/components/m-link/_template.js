@@ -1,6 +1,8 @@
 import html from 'nanohtml';
 import classnames from 'classnames';
 
+import '../a-icon';
+
 export default function ({
   color,
   size,

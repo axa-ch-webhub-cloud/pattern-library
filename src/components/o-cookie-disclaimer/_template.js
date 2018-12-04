@@ -1,5 +1,8 @@
 import html from 'nanohtml';
 
+import '../m-button';
+import '../o-container';
+
 export default ({
   classes,
   buttonName,

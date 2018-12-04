@@ -2,6 +2,8 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
+import '../a-icon';
+
 const linkItem = ({ url = '', name, isActive, preventDefault = 'false' }) => html`
   <li class="m-header-sub-navigation__list-item">
     <a data-prevent-default="${preventDefault}" class="${classnames('m-header-sub-navigation__link', 'js-header-navigation-close', {

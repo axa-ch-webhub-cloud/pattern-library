@@ -2,6 +2,8 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
+import '../m-header-sub-navigation';
+
 const submenuItem = ({ url = '', name = '', items, classes, isActive, simplemenu, hyphenate = false, historyApi }) => html`
     <li class="m-header-navigation__list-item">
       <a data-prevent-default class="${classnames('m-header-navigation__list-link', classes, {

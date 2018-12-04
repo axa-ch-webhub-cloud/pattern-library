@@ -2,6 +2,8 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
+import '../a-icon';
+
 const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
 const getItemValue = (itemValue, index) => itemValue === null || itemValue === undefined ? index : itemValue;

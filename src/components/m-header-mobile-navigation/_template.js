@@ -1,6 +1,8 @@
 import html from 'nanohtml';
 import classnames from 'classnames';
 
+import '../a-icon';
+
 function mobileNavItem(item) {
   const { name, url = '', isActive, items } = item;
   const hasItems = !!items;

@@ -2,6 +2,9 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import { getLocaleDayMonthYear, TODAY } from '../../js/date';
 
+import '../a-input';
+import '../m-datepicker';
+
 export default ({
   classes,
   locale = 'en-uk',
