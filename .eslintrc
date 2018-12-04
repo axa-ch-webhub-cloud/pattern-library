@@ -1,7 +1,7 @@
 {
   "extends": "airbnb",
   "rules": {
-    "max-len": ["warn", {
+    "max-len": ["error", {
       "code": 140,
       "tabWidth": 2,
       "ignoreComments": true,
