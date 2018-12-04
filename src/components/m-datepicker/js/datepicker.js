@@ -95,6 +95,7 @@ export default class Datepicker {
         dayAsDay = false;
       }
       const day = dayAsValue || dayAsDay;
+      const eventInit = { bubbles: true, cancelable: true, composed: true };
 
       if (day) {
         const choosenDate = new Date(year, month, day);
@@ -103,15 +104,18 @@ export default class Datepicker {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
             value: choosenDate.getTime(),
             button: OK,
-          }, { bubbles: true, cancelable: true, composed: true });
+          }, );
         } else {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
             value: choosenDate,
             button: OK,
-          }, { bubbles: true, cancelable: true, composed: true });
+          }, eventInit);
         }
       } else {
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: '', button: OK }, { bubbles: true, cancelable: true, composed: true });
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
+          value: '',
+          button: OK,
+        }, eventInit);
       }
     });
   }
