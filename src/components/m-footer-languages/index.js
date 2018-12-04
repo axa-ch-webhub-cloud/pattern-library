@@ -31,8 +31,7 @@ class AXAFooterLanguages extends BaseComponentGlobal {
   }
 
   handleClick = (event) => {
-    const { target } = event;
-    const { lang } = target;
+    const { target: { lang } } = event;
 
     /**
      * axa-click event.
