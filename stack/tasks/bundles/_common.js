@@ -20,7 +20,6 @@ module.exports = {
       }),
       commonjs({
         include: 'node_modules/**',
-        exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
     ],
