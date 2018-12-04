@@ -104,7 +104,7 @@ export default class Datepicker {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
             value: choosenDate.getTime(),
             button: OK,
-          }, );
+          }, eventInit);
         } else {
           fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
             value: choosenDate,
