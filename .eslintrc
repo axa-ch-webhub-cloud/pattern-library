@@ -19,9 +19,7 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}],
-    "object-curly-newline": ["warn", {
-        "ObjectPattern": { "multiline": true, "consistent": true }
-    }]
+    "object-curly-newline": ["warn", {"multiline": true, "consistent": true }]
   },
   "globals": {
     "HTMLAnchorElement": true,
