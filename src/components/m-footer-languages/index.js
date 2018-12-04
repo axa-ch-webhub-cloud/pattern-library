@@ -51,6 +51,8 @@ class AXAFooterLanguages extends BaseComponentGlobal {
       event.preventDefault();
     }
 
+    // @todo: we shouldn't need data attributes, since the HTMLElement interface support `lang` DOM Property
+    // @link: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/lang
     if (dataset && dataset.language) {
       event.stopPropagation();
       this.setAttribute('value', dataset.language);
