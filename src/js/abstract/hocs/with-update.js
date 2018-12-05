@@ -142,7 +142,34 @@ const withUpdate = Base =>
       const { constructor: { observedAttributes = [] } } = this;
       const propsKeys = Object.keys(props);
       const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
-      const { shouldUpdate } = propsKeys.filter(filter).reduce(this._reduceProps, { props, shouldUpdate: false });
+      /**
+       * Props reducer for batch processing.
+       *
+       * @param {{}} props - The properties to be batch processed.
+       * @param {Boolean} shouldUpdate - Is re-render necessary?
+       * @param {String} key - the current property's key.
+       * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
+       */
+      // eslint-disable-next-line no-shadow
+      const reduceProps = ({ props, shouldUpdate }, key) => {
+        const value = props[key];
+        const oldValue = this.props && this.props[key] ? this.props[key] : undefined;
+
+        if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
+          return {
+            props,
+            shouldUpdate: false,
+          };
+        }
+
+        this.props[key] = value;
+
+        return {
+          props,
+          shouldUpdate: true,
+        };
+      };
+      const { shouldUpdate } = propsKeys.filter(filter).reduce(reduceProps, { props, shouldUpdate: false });
 
       this.checkPropTypes();
 
@@ -158,41 +185,13 @@ const withUpdate = Base =>
     }
 
     /**
-     * Props reducer for batch processing.
-     *
-     * @param {{}} props - The properties to be batch processed.
-     * @param {Boolean} shouldUpdate - Is re-render necessary?
-     * @param {String} key - the current property's key.
-     * @returns {{props: {}, shouldUpdate: boolean}} - For the next accumulator iteration.
-     */
-    _reduceProps = ({ props, shouldUpdate }, key) => {
-      const name = `_${key}`;
-      const value = props[key];
-      const oldValue = this[name];
-
-      if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
-        return {
-          props,
-          shouldUpdate: false,
-        };
-      }
-
-      this.props[key] = value;
-
-      return {
-        props,
-        shouldUpdate: true,
-      };
-    }
-
-    /**
      * Check types at runtime.
      */
     checkPropTypes() {
-      const { constructor: { propTypes, tagName } } = this;
+      const { constructor: { propTypes, tagName }, props } = this;
 
       if (propTypes) {
-        PropTypes.checkPropTypes(propTypes, this.props, 'prop', tagName);
+        PropTypes.checkPropTypes(propTypes, props, 'prop', tagName);
       }
     }
 
