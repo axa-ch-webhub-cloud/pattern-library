@@ -152,28 +152,30 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       // eslint-disable-next-line react/prop-types
       const { props: { children, ...props }, handleRef } = this;
       const { observedAttributes } = WebComponent;
+      // super important: don't mutate this.props
+      const jsxProps = { ...props };
 
       // important: set non-observed attributes to keep native built-in features working
       if (Array.isArray(observedAttributes)) {
         observedAttributes.forEach((name) => {
-          delete props[camelize(name)];
+          delete jsxProps[camelize(name)];
         });
       }
 
-      const propsKeys = Object.keys(props);
+      const propsKeys = Object.keys(jsxProps);
 
       // remove events from props
       propsKeys.filter(isEventFilter).forEach((key) => {
-        delete props[key];
+        delete jsxProps[key];
       });
 
-      props.ref = handleRef;
+      jsxProps.ref = handleRef;
 
       if (builtInTagName) {
-        props.is = tagName;
+        jsxProps.is = tagName;
       }
 
-      return createElement(componentName, props, children);
+      return createElement(componentName, jsxProps, children);
     }
   };
 };
