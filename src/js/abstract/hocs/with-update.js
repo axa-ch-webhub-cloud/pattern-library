@@ -152,9 +152,8 @@ const withUpdate = Base =>
        */
       // eslint-disable-next-line no-shadow
       const reduceProps = ({ props, shouldUpdate }, key) => {
-        const name = `_${key}`;
         const value = props[key];
-        const oldValue = this[name];
+        const oldValue = this.props && this.props[key] ? this.props[key] : undefined;
 
         if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
           return {
