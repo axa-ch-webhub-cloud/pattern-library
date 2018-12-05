@@ -33,7 +33,7 @@ const withContext = Base =>
         }
 
         this.unContextEnabled = subscribe('context/available', this._makeContextReady);
-      }
+      };
     }
     /**
      * connectedCallback - description
