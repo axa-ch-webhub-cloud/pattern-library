@@ -25,31 +25,31 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-  }
 
-  handleClick = (event) => {
-    const { target: { lang } } = event;
+    this.handleClick = (event) => {
+      const { target: { lang } } = event;
 
-    /**
-     * axa-click event.
-     *
-     * @event FooterLinks#axa-click
-     * @type {object}
-     */
-    const cancelled = fire(this, AXA_EVENTS.AXA_CLICK, lang, {
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-    });
+      /**
+       * axa-click event.
+       *
+       * @event FooterLinks#axa-click
+       * @type {object}
+       */
+      const cancelled = fire(this, AXA_EVENTS.AXA_CLICK, lang, {
+        bubbles: true,
+        cancelable: true,
+        composed: true,
+      });
 
-    if (!cancelled) {
-      event.preventDefault();
-    }
+      if (!cancelled) {
+        event.preventDefault();
+      }
 
-    if (lang) {
-      event.stopPropagation();
-      this.setAttribute('value', lang);
-    }
+      if (lang) {
+        event.stopPropagation();
+        this.setAttribute('value', lang);
+      }
+    };
   }
 
   connectedCallback() {
