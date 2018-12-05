@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.233",
+  "version": "2.0.1-beta.236",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -156,7 +156,6 @@
     "@ungap/custom-elements-builtin": "^0.1.1",
     "babel-plugin-transform-builtin-classes": "^0.6.1",
     "babel-runtime": "^6.26.0",
-    "built-in-element": "^0.1.4",
     "classnames": "^2.2.5",
     "connect-slow": "^0.4.0",
     "core-js": "~2.5.1",
