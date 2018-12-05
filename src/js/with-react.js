@@ -97,7 +97,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     // eslint-disable-next-line react/sort-comp
     updateWebComponentProps() {
-      const { wcNode, _eventCache: eventCache, props, state: isDefined } = this;
+      const { wcNode, _eventCache: eventCache, props, state: { isDefined } } = this;
 
       // only patch if custom element is defined and avoid type error of
       // TypeError: wcNode.setProps is not a function
