@@ -1,6 +1,6 @@
 /* eslint-disable */
 import './es6-polyfills';
-import 'document-register-element';
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce'
 // load this for browsers which support customElements without builtin (webkit)
 import '@ungap/custom-elements-builtin';
 

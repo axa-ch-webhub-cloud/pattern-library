@@ -1,7 +1,7 @@
 /* eslint-disable */
 import './js/es6-polyfills.js';
 // ES2015 Custom Element Polyfill
-import 'document-register-element';
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
 // load this for browsers which support customElements without builtin (webkit)
 import '@ungap/custom-elements-builtin';
 

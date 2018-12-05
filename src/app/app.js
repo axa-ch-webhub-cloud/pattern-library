@@ -1,5 +1,5 @@
 // better to load this only if it's needed
-import 'document-register-element'; // ES2015
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce'
 // load this for browsers which support customElements without builtin (webkit)
 import '@ungap/custom-elements-builtin';
 
