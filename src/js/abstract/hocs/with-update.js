@@ -188,10 +188,10 @@ const withUpdate = Base =>
      * Check types at runtime.
      */
     checkPropTypes() {
-      const { constructor: { propTypes, tagName } } = this;
+      const { constructor: { propTypes, tagName }, props } = this;
 
       if (propTypes) {
-        PropTypes.checkPropTypes(propTypes, this.props, 'prop', tagName);
+        PropTypes.checkPropTypes(propTypes, props, 'prop', tagName);
       }
     }
 
