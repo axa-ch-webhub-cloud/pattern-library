@@ -7,8 +7,13 @@ const withBaseGlobal = Base =>
    * This is the recommended approach.
    */
   class WithBaseGlobal extends Base {
-    _appendStyles = () => {
-      WithBaseGlobal.appendGlobalStyles(this._styles, this.nodeName);
+    init(options) {
+      super.init(options);
+
+      // important: because of constructor caveats we have to override this lazily upon init
+      this._appendStyles = () => {
+        WithBaseGlobal.appendGlobalStyles(this._styles, this.nodeName);
+      };
     }
 
     /**
