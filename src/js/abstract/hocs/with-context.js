@@ -6,6 +6,12 @@ const withContext = Base =>
    * Adds the ability to provide and consume contextual data.
    */
   class WithContext extends Base {
+    init(options) {
+      super.init(options);
+
+      // important: because of constructor caveats we have to override this lazily upon init
+      this._makeContextReady = this._makeContextReady.bind();
+    }
     /**
      * connectedCallback - description
      *
@@ -73,7 +79,7 @@ const withContext = Base =>
      * @param contextName - Lowercase `nodeName` of the contextual node.
      * @private
      */
-    _makeContextReady = ({ detail: contextName } = {}) => {
+    _makeContextReady({ detail: contextName } = {}) {
       if (this.contextNode) {
         clearTimeout(this.timeoutId);
         this.timeoutId = setTimeout(() => {
