@@ -1,5 +1,5 @@
 /* eslint-disable */
-import '../app/es6-polyfills';
+import './es6-polyfills';
 import 'document-register-element';
 // load this for browsers which support customElements without builtin (webkit)
 import '@ungap/custom-elements-builtin';
