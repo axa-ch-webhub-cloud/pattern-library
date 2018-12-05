@@ -139,6 +139,11 @@ const withUpdate = Base =>
      * @param {{}} props - DOM properties to be updated.
      */
     setProps(props) {
+      // super important to call throuth the prototype chain, so that lazy initialisation can happen
+      if (super.attributeChangedCallback) {
+        super.attributeChangedCallback();
+      }
+
       const { constructor: { observedAttributes = [] } } = this;
       const propsKeys = Object.keys(props);
       const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
