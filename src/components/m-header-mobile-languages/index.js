@@ -28,9 +28,7 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
   }
 
   handleClick = (event) => {
-    const { target } = event;
-    const { lang } = target;
-    const { dataset } = target;
+    const { target: { lang } } = event;
 
     /**
      * axa-click event.
@@ -48,11 +46,9 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
       event.preventDefault();
     }
 
-    // @todo: we shouldn't need data attributes, since the HTMLElement interface support `lang` DOM Property
-    // @link: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/lang
-    if (dataset && dataset.language) {
+    if (lang) {
       event.stopPropagation();
-      this.setAttribute('value', dataset.language);
+      this.setAttribute('value', lang);
     }
   }
 
