@@ -1,7 +1,13 @@
 {
   "extends": "airbnb",
   "rules": {
-    "max-len": "off",
+    "max-len": ["error", {
+      "code": 140,
+      "tabWidth": 2,
+      "ignoreComments": true,
+      "ignoreUrls": true,
+      "ignoreTemplateLiterals": true
+    }],
     "import/prefer-default-export": "off",
     "indent": ["error", 2, {
       "SwitchCase": 1,
@@ -19,7 +25,7 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}],
-    "object-curly-newline": "off"
+    "object-curly-newline": ["error", {"multiline": true, "consistent": true }]
   },
   "globals": {
     "HTMLAnchorElement": true,
