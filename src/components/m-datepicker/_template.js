@@ -65,7 +65,7 @@ export default ({
   locale = 'en-uk',
   startYear = TODAY,
   startMonth = TODAY, // zero-based
-  selectedDay = null,
+  selectedDay = new Date().getDate(),
   lowerEndYear,
   higherEndYear,
 }) => {
