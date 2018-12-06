@@ -9,7 +9,7 @@ export default class Datepicker {
     this.wcNode = wcNode;
     this._value = '';
     this._locale = '';
-    this._localValue = '';
+    this._localeValue = '';
   }
 
   init() {
