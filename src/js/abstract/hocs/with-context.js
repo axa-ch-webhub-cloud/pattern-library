@@ -6,6 +6,35 @@ const withContext = Base =>
    * Adds the ability to provide and consume contextual data.
    */
   class WithContext extends Base {
+    init(options) {
+      super.init(options);
+
+      /**
+       * Poll `contextNode` until it is available.
+       *
+       * @param contextName - Lowercase `nodeName` of the contextual node.
+       * @private
+       */
+      // important: because of constructor caveats we have to override this lazily upon init
+      this._makeContextReady = ({ detail: contextName } = {}) => {
+        if (this.contextNode) {
+          clearTimeout(this.timeoutId);
+          this.timeoutId = setTimeout(() => {
+            if (ENV !== PROD) {
+              lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
+            }
+
+            this.contextCallback(this.contextNode, contextName);
+          }, 10);
+        }
+
+        if (this.unContextEnabled) {
+          this.unContextEnabled();
+        }
+
+        this.unContextEnabled = subscribe('context/available', this._makeContextReady);
+      };
+    }
     /**
      * connectedCallback - description
      *
@@ -65,31 +94,6 @@ const withContext = Base =>
       }
 
       this.__consumedContext = name && name.toLowerCase();
-    }
-
-    /**
-     * Poll `contextNode` until it is available.
-     *
-     * @param contextName - Lowercase `nodeName` of the contextual node.
-     * @private
-     */
-    _makeContextReady = ({ detail: contextName } = {}) => {
-      if (this.contextNode) {
-        clearTimeout(this.timeoutId);
-        this.timeoutId = setTimeout(() => {
-          if (ENV !== PROD) {
-            lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
-          }
-
-          this.contextCallback(this.contextNode, contextName);
-        }, 10);
-      }
-
-      if (this.unContextEnabled) {
-        this.unContextEnabled();
-      }
-
-      this.unContextEnabled = subscribe('context/available', this._makeContextReady);
     }
 
     /**

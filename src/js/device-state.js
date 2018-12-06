@@ -41,9 +41,18 @@ export default class DeviceStateObserver {
   }
 
   handleResize = (force = false) => {
-    const { hasStateChanged, content } = this.getContent();
-    if (typeof this.callbackOnChange === 'function' && (hasStateChanged || force)) {
-      this.callbackOnChange(this.getDeviceState(content));
+    const hasContent = this.getContent();
+
+    if (hasContent) {
+      const { hasStateChanged, content } = hasContent;
+
+      if (content && (typeof this.callbackOnChange) === 'function' && (hasStateChanged || force)) {
+        const state = this.getDeviceState(content);
+
+        if (state) {
+          this.callbackOnChange(state);
+        }
+      }
     }
   }
 
@@ -84,11 +93,16 @@ export default class DeviceStateObserver {
   }
 
   getDeviceState(content) {
+    if (typeof content !== 'string') {
+      return;
+    }
+
     const state = content.replace(regexWhiteSpace, '')
       .replace(regexUnquote, '')
       .split(',')
       .reduce(this.parsePair, {});
 
+    // eslint-disable-next-line consistent-return
     return state;
   }
 }

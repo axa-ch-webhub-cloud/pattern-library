@@ -9,7 +9,7 @@ export default class Datepicker {
     this.wcNode = wcNode;
     this._value = '';
     this._locale = '';
-    this._localValue = '';
+    this._localeValue = '';
   }
 
   init() {
@@ -126,6 +126,9 @@ export default class Datepicker {
   }
 
   isItemInLowerHalf(target) {
+    if (!target) {
+      return true;
+    }
     const { top, height } = target.getBoundingClientRect();
     const calculation = top + (height / 2);
     const toBottom = window.innerHeight - calculation;

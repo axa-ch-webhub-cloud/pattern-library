@@ -223,11 +223,15 @@ A [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/U
 
 We never use the ~~constructor~~ directly, instead we call [`init()`](#init) for you with the proper context!
 
+**Important:** for same reason we also can't use any  syntactic sugar related to the ~~constructor~~, like [Class field declarations](https://github.com/tc39/proposal-class-fields) including class field with Arrow functions (instead `.bind()` your methods within `init()`).
+
 **Note:** It's a caveat of Babel 6 and support for extended built-in elements polyfill (Safari/webkit only), please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) and [You cannot use the constructor in any meaningful way](https://github.com/ungap/custom-elements-builtin#constructor-caveat) for more details.
 
 #### `init()`
 The `init()` method can be used to setup stuff like, establishing contexts, event handlers, observers, defining a shadow root, but never for DOM manipulation.
 It always starts by calling `super.init(?options)` so that the correct prototype chain is established.
+
+**Important:** for same reason we also can't use any  syntactic sugar related to the ~~constructor~~, like [Class field declarations](https://github.com/tc39/proposal-class-fields) including class field with Arrow functions (instead `.bind()` your methods within `init()`).
 
 **Note:** This method is invoked lazily for you upon first `connectedCallback` or `attributeChangedCallback`.
 It's a caveat of Babel 6 and support for extended built-in elements polyfill (Safari/webkit only), please see [proper context upgrading within the constructor](https://github.com/WebReflection/document-register-element#v1-caveat) and [You cannot use the constructor in any meaningful way](https://github.com/ungap/custom-elements-builtin#constructor-caveat) for more details.
