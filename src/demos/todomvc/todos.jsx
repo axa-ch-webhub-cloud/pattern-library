@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoHeader from './todo-header';
 import TodosList from './todos-list';
+import TodosTable from './todos-table';
 import TodoFooter from './todo-footer';
 import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
 
@@ -138,6 +139,8 @@ class Todos extends Component {
           onCancel={this.cancel}
           key={1}
         />
+
+        <TodosTable shownTodos={shownTodos} />
 
         <AXADatepickerReact onAxaChange={this.handleDatepickerChange} />
 
