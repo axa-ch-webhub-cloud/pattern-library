@@ -9,7 +9,7 @@ import urlPropType from '../../js/prop-types/url-prop-type';
 class AXALink extends BaseComponentGlobal {
   static tagName = 'axa-link'
   static propTypes = {
-    color: PropTypes.oneOf(['red', 'white']),
+    color: PropTypes.oneOf(['red', 'white', 'blue']),
     size: PropTypes.oneOf(['']),
     motion: PropTypes.bool,
     arrow: PropTypes.bool,
