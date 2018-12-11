@@ -392,6 +392,10 @@ export default ({ items }, childrenFragment, wcNode) =>
   </ul>`
 ```
 
+Please see further docs:
+- nanomorph: https://github.com/choojs/nanomorph#reordering-lists
+- it's similar to React's `key` prop: https://reactjs.org/docs/lists-and-keys.html#keys
+
 #### `withShadow()`
 
 Attaches a shadow DOM to the custom element.
