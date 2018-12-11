@@ -4,7 +4,10 @@ import TodosList from './todos-list';
 import TodoFooter from './todo-footer';
 import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
 
-import { AXADatepicker } from '../../js/react-exports';
+import withReact from '../../js/with-react';
+import AXADatepicker from '../../components/o-datepicker';
+
+const AXADatepickerReact = withReact(AXADatepicker);
 
 const ENTER_KEY = 13;
 
@@ -136,7 +139,7 @@ class Todos extends Component {
           key={1}
         />
 
-        <AXADatepicker onAxaChange={this.handleDatepickerChange} />
+        <AXADatepickerReact onAxaChange={this.handleDatepickerChange} />
 
         <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} onNowShowing={this.nowShowing} key={2} />
       </div>
