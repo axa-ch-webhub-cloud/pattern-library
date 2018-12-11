@@ -1,8 +1,9 @@
 import html from 'nanohtml';
 
 import expandTableData from '../../js/expand-table-data';
+import getNodId from '../../js/get-node-id';
 
-export default ({ items }, fragmentChildren) => {
+export default ({ items }, fragmentChildren, wcNode) => {
   let rows;
 
   if (items) {
@@ -10,10 +11,10 @@ export default ({ items }, fragmentChildren) => {
   }
 
   return Array.isArray(rows) && rows.length ?
-    rows.map(({ cells, ...rowAttrs }) => html`
-      <tr is="axa-tr" foot ${rowAttrs}>
-        ${(Array.isArray(cells) && cells.map(({ text, ...attrs }) => html`
-          <td is="axa-td" ${attrs}>${text}</td>
+    rows.map(({ cells, id: rowId, ...rowAttrs }, rowIndex) => html`
+      <tr is="axa-tr" foot ${rowAttrs} id="${getNodId(wcNode, rowId, rowIndex, 'tr')}">
+        ${(Array.isArray(cells) && cells.map(({ text, id: cellId, ...attrs }, cellIndex) => html`
+          <td is="axa-td" ${attrs} id="${getNodId(wcNode, cellId, cellIndex, 'td')}">${text}</td>
         `)) || ''}
       </tr>
     `)
