@@ -1,43 +1,9 @@
 import html from 'nanohtml';
 import classnames from 'classnames';
 
-function mobileNavItem(item) {
-  const { name, url = '', isActive, items } = item;
-  const hasItems = !!items;
-  const activeClass = {
-    'is-header-mobile-navigation-active': isActive,
-  };
-  const categoryClass = classnames(
-    'm-header-mobile-navigation__category',
-    'js-header-mobile-navigation__category',
-    activeClass,
-  );
-  const linkListClass = classnames(
-    'm-header-mobile-navigation__list-link',
-    'js-header-mobile-navigation__list-link',
-    'js-header-mobile-close',
-    activeClass,
-  );
+import getNodeId from '../../js/get-node-id';
 
-  /* eslint-disable indent */
-  return html`
-    <li class="m-header-mobile-navigation__list-item">
-      ${hasItems ? [html`<button type="button" class="${categoryClass}">
-          ${name}
-          <axa-icon icon="angle-bracket-down" classes="m-header-mobile-navigation__icon-next"></axa-icon>
-        </button>
-        `,
-        mobileNav(items, item),
-      ] : html`
-        <a class="${linkListClass}"
-           href="${url}">${name}</a>
-      `}
-    </li>
-  `;
-  /* eslint-enable indent */
-}
-
-function mobileNav(items, parent) {
+function mobileNav(items, parent, wcNode) {
   return html`
     <div class="${classnames('m-header-mobile-navigation__nav', {
       'js-header-mobile-navigation__nav': !parent,
@@ -49,11 +15,47 @@ function mobileNav(items, parent) {
         </button>
       `}
       <ul class="m-header-mobile-navigation__list">
-        ${parent && mobileNavItem({ ...parent, name: 'index page', items: null })}
+        ${parent && mobileNavItem({ ...parent, name: 'index page', items: null }, 'parent')}
         ${Array.isArray(items) && items.map(mobileNavItem)}
       </ul>
     </div>
   `;
+
+  function mobileNavItem(item, index) {
+    const { name, url = '', isActive, items: subItems } = item;
+    const hasItems = !!subItems;
+    const activeClass = {
+      'is-header-mobile-navigation-active': isActive,
+    };
+    const categoryClass = classnames(
+      'm-header-mobile-navigation__category',
+      'js-header-mobile-navigation__category',
+      activeClass,
+    );
+    const linkListClass = classnames(
+      'm-header-mobile-navigation__list-link',
+      'js-header-mobile-navigation__list-link',
+      'js-header-mobile-close',
+      activeClass,
+    );
+
+    /* eslint-disable indent */
+    return html`
+    <li class="m-header-mobile-navigation__list-item" id="${getNodeId(wcNode, name, index)}">
+      ${hasItems ? [html`<button type="button" class="${categoryClass}">
+          ${name}
+          <axa-icon icon="angle-bracket-down" classes="m-header-mobile-navigation__icon-next"></axa-icon>
+        </button>
+        `,
+      mobileNav(subItems, item),
+    ] : html`
+        <a class="${linkListClass}"
+           href="${url}">${name}</a>
+      `}
+    </li>
+  `;
+    /* eslint-enable indent */
+  }
 }
 
-export default ({ items }) => mobileNav(items);
+export default ({ items }, childrenFragment, wcNode) => mobileNav(items, null, wcNode);

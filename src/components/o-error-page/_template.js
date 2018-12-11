@@ -2,6 +2,8 @@ import classnames from 'classnames';
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
+import getNodeId from '../../js/get-node-id';
+
 export default ({
   code, // eslint-disable-line
   status,
@@ -10,7 +12,7 @@ export default ({
   items,
   ctaHref,
   ctaTitle,
-}, childrenFragment) => {
+}, childrenFragment, wcNode) => {
   const hasItems = Array.isArray(items) && items.length;
   const hasChildren = childrenFragment && childrenFragment.childElementCount;
 
@@ -23,7 +25,7 @@ export default ({
       
       ${(hasItems && html`
         <ul class="o-error-page__list">
-          ${items.map(item => html`<li class="o-error-page__list-item">${item}</li>`)}
+          ${items.map((item, index) => html`<li class="o-error-page__list-item" id="${getNodeId(wcNode, null, index)}">${item}</li>`)}
         </ul>
       `) || null}
       

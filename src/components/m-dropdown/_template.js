@@ -2,11 +2,13 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import classnames from 'classnames';
 
+import getNodeId from '../../js/get-node-id';
+
 const arrowIcon = '<axa-icon icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
 const getItemValue = (itemValue, index) => itemValue === null || itemValue === undefined ? index : itemValue;
 
-const nativeSelect = ({ title, items, size, value }) => html`<div class="${classnames('m-dropdown__select-wrap', {
+const nativeSelect = ({ title, items, size, value }, wcNode) => html`<div class="${classnames('m-dropdown__select-wrap', {
     [`m-dropdown__select-wrap--${size}`]: size,
   })}" tabindex="0">
     <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', {
@@ -18,7 +20,7 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
         const _itemValue = getItemValue(itemValue, index);
         return html`<option value="${_itemValue}" data-url="${url}" ${
           `${_itemValue}` === `${value}` ? 'selected' : ''
-        }>${name}</option>`;
+        } id="${getNodeId(wcNode, itemValue, index, 'option')}">${name}</option>`;
       })}
     </select>
     <div class="${classnames('m-dropdown__select-icon', {
@@ -40,7 +42,7 @@ const getTitle = (value, items, title) => {
   return selected.length === 1 ? selected[0].name : title;
 };
 
-const enhancedSelect = ({ title, items, size, value }) => [
+const enhancedSelect = ({ title, items, size, value }, wcNode) => [
   html`<button type="button" class="${classnames('m-dropdown__toggle js-dropdown__toggle', {
     [`m-dropdown__toggle--${size}`]: size,
   })}">
@@ -50,7 +52,7 @@ const enhancedSelect = ({ title, items, size, value }) => [
     ${Array.isArray(items) && items.map(({ name, url, value: itemValue }, index) => {
     const _itemValue = getItemValue(itemValue, index);
     return html`
-      <li class="m-dropdown__item">
+      <li class="m-dropdown__item" id="${getNodeId(wcNode, itemValue, index, 'li')}">
         <a class="m-dropdown__link"
         data-index="${_itemValue}"
         data-selected="${_itemValue === value ? 'true' : 'false'}"
@@ -62,4 +64,5 @@ const enhancedSelect = ({ title, items, size, value }) => [
 ];
 
 // eslint-disable-next-line no-confusing-arrow
-export default ({ native, ...props }) => native ? nativeSelect(props) : enhancedSelect(props);
+export default ({ native, ...props }, childrenFragment, wcNode) =>
+  native ? nativeSelect(props, wcNode) : enhancedSelect(props, wcNode);
