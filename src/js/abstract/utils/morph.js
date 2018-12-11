@@ -1,3 +1,9 @@
+/**
+ * Original source from nanomorph, with additions to support custom elements.
+ *
+ * @link https://github.com/choojs/nanomorph
+ */
+
 const ELEMENT_NODE = 1;
 const TEXT_NODE = 3;
 const COMMENT_NODE = 8;
