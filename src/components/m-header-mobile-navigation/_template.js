@@ -47,7 +47,7 @@ function mobileNav(items, parent, wcNode) {
           <axa-icon icon="angle-bracket-down" classes="m-header-mobile-navigation__icon-next"></axa-icon>
         </button>
         `,
-      mobileNav(subItems, item),
+      mobileNav(subItems, item, wcNode),
     ] : html`
         <a class="${linkListClass}"
            href="${url}">${name}</a>
