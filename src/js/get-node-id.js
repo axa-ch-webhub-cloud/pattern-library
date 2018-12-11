@@ -1,3 +1,4 @@
+const reWhiteSpace = /\s+/;
 /**
  * It's common to work with lists of elements on the DOM.
  * Adding, removing or reordering elements in a list can be rather expensive.
@@ -12,10 +13,10 @@
  * @returns {string|number} - Returns a unique `id`.
  */
 function getNodeId(node, id, index, tag) {
-  const { nodeName, _id } = node;
+  const { nodeName, _id, constructor: { tagName, builtInTagName } } = node;
 
   // auto generate a unique id by
-  return `${nodeName}-${_id}-${id}-${index}-${tag}`;
+  return `${builtInTagName || tagName || nodeName}-${_id}-${id}-${index}-${tag}`.replace(reWhiteSpace, '');
 }
 
 export default getNodeId;
