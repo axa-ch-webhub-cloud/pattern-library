@@ -11,6 +11,16 @@ const reWhiteSpace = /\s+/;
  * @paaram {string|number} [tag] - Use this to further tag id - needed if multiple lists/mappings happen within one template.
  *
  * @returns {string|number} - Returns a unique `id`.
+ *
+ * @example
+ * import html from 'nanohtml';
+ * import getNodeId from '../../js/get-node-id';
+ *
+ * export default ({ items }, childrenFragment, wcNode) =>
+ * html`<ul>
+ *  ${Array.isArray(items) && items.map({ id, text }, index) =>
+ *       html`<li id="${getNodeId(wcNode, id, index)}">${text}</li>`}
+ *  </ul>`
  */
 function getNodeId(node, id, index, tag) {
   const { nodeName, _id, constructor: { tagName, builtInTagName } } = node;

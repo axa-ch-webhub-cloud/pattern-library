@@ -374,6 +374,24 @@ Guarantees that updates to the custom element's children do not mess up the [**F
 
 Adds the ability to render external DOM-based templates, applies changes incrementally by DOM-morphing and provides additional lifecycle hooks.
 
+**Important:**
+It's common to work with lists of elements on the DOM.
+Adding, removing or reordering elements in a list can be rather expensive.
+To optimize this you should add an `id` attribute to a DOM node.
+
+In order to make sure this `id` is unique we provide a `getNodeId(node, id, index, tag)` helper function for you, just import and use it within your templates:
+
+```js
+import html from 'nanohtml';
+import getNodeId from '../../js/get-node-id';
+
+export default ({ items }, childrenFragment, wcNode) =>
+  html`<ul>
+    ${Array.isArray(items) && items.map({ id, text }, index) =>
+      html`<li id="${getNodeId(wcNode, id, index)}">${text}</li>`}
+  </ul>`
+```
+
 #### `withShadow()`
 
 Attaches a shadow DOM to the custom element.
