@@ -11,11 +11,14 @@ const headings = JSON.stringify(['Completed', 'Title']);
 const toRow = ({ id, title, completed }) => ({
   id,
   cells: [
-    completed,
-    title,
+    { id: `${id}-0`, text: `${!!completed}` },
+    { id: `${id}-1`, text: title },
   ],
 });
 const toItems = (todos) => {
+  console.log('toItems', todos);
+  console.log(todos.map(toRow));
+
   return JSON.stringify(todos.map(toRow));
 };
 
