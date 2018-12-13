@@ -1,24 +1,26 @@
-import { IconName } from '../a-icon';
+import * as React from 'react';
+import { AXAIcon } from '../a-icon';
 
-export type AXAButtonColor = 'red' | 'white';
-export type AXAButtonSize = 'sm' | 'md' | 'lg';
-export type AXAButtonTag = 'a' | 'button';
-export type AXAButtonTarget = '_blank' | '_self';
+export namespace AXAButton {
+  export type Color = 'red' | 'white';
+  export type Size = 'sm' | 'md' | 'lg';
+  export type Tag = 'a' | 'button';
+  export type Target = '_blank' | '_self';
 
-
-export interface AXAButtonProps {
-  onAxaClick?: (e: React.MouseEvent) => void;
-  arrow?: boolean;
-  classes?: string;
-  color?: AXAButtonColor;
-  ghost?: boolean;
-  motion?: boolean;
-  size?: AXAButtonSize;
-  tag?: AXAButtonTag;
-  href?: string; // todo: urlPropType
-  icon?: IconName;
-  target?: AXAButtonTarget;
-  disabled?: boolean;
+  export interface Props {
+    onAxaClick?: (e: React.MouseEvent) => void;
+    arrow?: boolean;
+    classes?: string;
+    color?: Color;
+    ghost?: boolean;
+    motion?: boolean;
+    size?: Size;
+    tag?: Tag;
+    href?: string; // todo: urlPropType
+    icon?: AXAIcon.Icon;
+    target?: Target;
+    disabled?: boolean;
+  }
 }
 
-export const AXAButton: React.ComponentClass<AXAButtonProps>;
+export const AXAButton: React.ComponentClass<AXAButton.Props>;
