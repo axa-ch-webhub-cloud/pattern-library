@@ -11,6 +11,7 @@ class DropDown extends UiEvents {
     isOpenClass: 'is-dropdown-open',
     isAnimatingClass: 'is-dropdown-animating',
     selectClass: 'js-dropdown__content',
+    selectedItemSelector: 'option[selected=selected]',
   }
 
   constructor(wcNode, options) {
@@ -147,6 +148,17 @@ class DropDown extends UiEvents {
 
       lastElementChild.style.height = '';
       remove(node, this.options.isOpenClass);
+    }
+    const select = this.wcNode.querySelector(`.${this.options.nativeSelectClass}`);
+    if (select) {
+      const selectedOption = this.wcNode.querySelector(this.options.selectedItemSelector);
+      if (selectedOption) {
+        if (selectedOption.index !== select.selectedIndex) {
+          select.selectedIndex = selectedOption.index;
+        }
+      } else {
+        select.selectedIndex = 0;
+      }
     }
   }
 
