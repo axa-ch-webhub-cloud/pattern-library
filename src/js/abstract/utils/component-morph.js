@@ -1,4 +1,5 @@
 import morph from './morph';
+import specialElHandlers from './special-el-handlers';
 
 const TEXT_NODE = 3;
 // var DEBUG = false
@@ -63,6 +64,8 @@ function walk(newNode, oldNode) {
   if (!oldNode.skipChildren || !oldNode.skipChildren()) {
     updateChildren(newNode, oldNode);
   }
+  // at this point the children nodes have already been morphed and it is safe to apply special el handlers.
+  specialElHandlers(newNode, oldNode);
 
   return oldNode;
 }
