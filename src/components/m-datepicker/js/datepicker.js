@@ -13,8 +13,7 @@ export default class Datepicker {
     this.deviceStateObserver = new DeviceStateObserver();
   }
 
-  init(outputIso) {
-    this.outputIso = outputIso;
+  init() {
     this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
     this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown__month');
     this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown__year');
@@ -99,18 +98,10 @@ export default class Datepicker {
 
       if (day) {
         const choosenDate = new Date(year, month, day);
-
-        if (this.outputIso) {
-          fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
-            value: choosenDate.getTime(),
-            button: OK,
-          }, eventInit);
-        } else {
-          fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
-            value: choosenDate,
-            button: OK,
-          }, eventInit);
-        }
+        fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
+          value: choosenDate,
+          button: OK,
+        }, eventInit);
       } else {
         fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
           value: '',

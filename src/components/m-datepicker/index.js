@@ -1,11 +1,17 @@
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import { TODAY } from '../../js/date';
 import localePropType from '../../js/prop-types/locale-prop-type';
+// import the styles used for this component
 import styles from './index.scss';
+// import the template used for this component
 import template from './_template';
+
 import Datepicker from './js/datepicker';
+import getAttribute from '../../js/get-attribute';
+
 import getAttribute from '../../js/get-attribute';
 
 const startType = PropTypes.oneOfType([
@@ -13,13 +19,13 @@ const startType = PropTypes.oneOfType([
   PropTypes.oneOf([TODAY]),
 ]);
 
-class AXAMDatePicker extends BaseComponentGlobal {
+class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-m-datepicker'
   static propTypes = {
     classes: PropTypes.string,
     buttonOk: PropTypes.string,
     buttonCancel: PropTypes.string,
-    inputLocale: localePropType,
+    locale: localePropType,
     value: PropTypes.string,
     startYear: startType,
     startMonth: startType, // zero-based
@@ -29,8 +35,26 @@ class AXAMDatePicker extends BaseComponentGlobal {
     outputIso: PropTypes.bool,
   }
 
+  // Specify observed attributes so that attributeChangedCallback will work,
+  // this is essential for external re-rendering trigger.
+  static get observedAttributes() {
+    return [
+      'classes',
+      'button-ok',
+      'button-cancel',
+      'locale',
+      'value',
+      'start-year',
+      'start-month',
+      'selected-day',
+      'lower-end-year',
+      'higher-end-year',
+    ];
+  }
+
   init() {
     super.init({ styles, template });
+    this.datepicker = new Datepicker(this);
   }
 
   /**
@@ -39,22 +63,18 @@ class AXAMDatePicker extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker`;
-    this.datepicker = new Datepicker(this);
-    this.datepicker.init();
   }
-
-  // You have some special logic? Or need to update the web-components DOM node itself?
-  // Then don't forget to make sure that incremental rendering works properly.
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  // }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.datepicker.destroy();
   }
+
+  didRenderCallback() {
+    this.datepicker.init();
+  }
 }
 
-defineOnce(AXAMDatePicker.tagName, AXAMDatePicker);
+defineOnce(AXADatepicker.tagName, AXADatepicker);
 
-export default AXAMDatePicker;
+export default AXADatepicker;
