@@ -17,6 +17,7 @@ export const EVENTS = Enum(
   'touchend',
   'input',
   'resize',
+  'paste',
 );
 
 // TODO use another system for ENUMs as this one does convert axa-change into AXA-CHANGE which is a problem when using it
