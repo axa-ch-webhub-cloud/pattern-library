@@ -101,16 +101,12 @@ export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
   return weekdayIndex;
 };
 
+// eslint-disable-next-line no-control-regex
+export const clearStringFromIEGeneratedCharacters = string => string.replace(/[^\x00-\x7F]/g, '');
+
 export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
   const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
-  return objDate;
-};
-// ie11 adds characters when .split is used. this is why indexOf and parseInt does not work on split values in ie
-export const clearSplittedValues = (stringArray) => {
-  for (let i = 0, j = stringArray.length; i < j; i++) {
-    stringArray[i] = stringArray[i].replace(/[^\x00-\x7F]/g,'');
-  }
-  return stringArray;
+  return clearStringFromIEGeneratedCharacters(objDate);
 };
 
 export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => {
@@ -132,8 +128,8 @@ export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => 
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
-  const splittedValue = clearSplittedValues(inputValue.split(usedSeperator));
-  const splittedBlueprint = clearSplittedValues(localisedBlueprintDateString.split(usedSeperator));
+  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(usedSeperator);
+  const splittedBlueprint = clearStringFromIEGeneratedCharacters(localisedBlueprintDateString).split(usedSeperator);
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)
