@@ -19,12 +19,12 @@ export default ({
   return html`
     <article class=${classes}>
       ${localeValue ?
-        html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" value="${localeValue}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
-    :
-        html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
-      }
+      html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" value="${localeValue}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
+      :
+      html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
+    }
       ${open
-        ? raw(`<axa-m-datepicker
+      ? raw(`<axa-m-datepicker
             ${higherEndYear ? `higher-end-year="${higherEndYear}"` : ''}
             ${lowerEndYear ? `lower-end-year="${lowerEndYear}"` : ''}
             ${outputIso ? 'output-iso' : ''}
@@ -34,8 +34,9 @@ export default ({
             class="o-datepicker__calender js-datepicker__calender"
             locale="${locale}"
             button-ok="${buttonOk}"
-            button-cancel="${buttonCancel}"></axa-m-datepicker>`)
-        : ''}
+            button-cancel="${buttonCancel}">
+          </axa-m-datepicker>`)
+      : ''}
     </article>
   `;
 };
