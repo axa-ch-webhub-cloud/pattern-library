@@ -11,7 +11,6 @@ class DropDown extends UiEvents {
     isOpenClass: 'is-dropdown-open',
     isAnimatingClass: 'is-dropdown-animating',
     selectClass: 'js-dropdown__content',
-    selectedItemSelector: 'option[selected=selected]',
   }
 
   constructor(wcNode, options) {

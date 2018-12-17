@@ -1,6 +1,6 @@
 export default specialElHandlers;
 
-// diff elements and apply the resulting patch to the old node
+// applies special el handlers depending on the node name.
 // (obj, obj) -> null
 function specialElHandlers(newNode, oldNode) {
   const { nodeName } = newNode;
@@ -23,32 +23,32 @@ function updateOption(newNode, oldNode) {
 }
 
 function updateSelect(newNode, oldNode) {
-  var selectedIndex = -1;
-  var i = 0;
+  let selectedIndex = -1;
+  let i = 0;
   // We have to loop through children of oldNode, not newNode since nodes can be moved
   // from newNode to oldNode directly when morphing.
   // At the time this special handler is invoked, all children have already been morphed
   // and appended to / removed from newNode, so using oldNode here is safe and correct.
-  var curChild = oldNode.firstChild;
-  var optgroup;
-  var nodeName;
+  let curChild = oldNode.firstChild;
+  let optGroup;
+  let nodeName;
   while (curChild) {
     nodeName = curChild.nodeName && curChild.nodeName.toUpperCase();
     if (nodeName === 'OPTGROUP') {
-      optgroup = curChild;
-      curChild = optgroup.firstChild;
+      optGroup = curChild;
+      curChild = optGroup.firstChild;
     } else {
       if (nodeName === 'OPTION') {
         if (curChild.hasAttributeNS(null, 'selected')) {
           selectedIndex = i;
           break;
         }
-        i++;
+        i += 1;
       }
       curChild = curChild.nextSibling;
-      if (!curChild && optgroup) {
-        curChild = optgroup.nextSibling;
-        optgroup = null;
+      if (!curChild && optGroup) {
+        curChild = optGroup.nextSibling;
+        optGroup = null;
       }
     }
   }
