@@ -86,7 +86,7 @@ export default ({
         })))}">
       </axa-dropdown>
       <div class="m-datepicker__weekdays">
-        ${getLocalWeekdayArray(inputLocale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
+        ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
       <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body" allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}" input-locale="${locale}"></axa-datepicker-body>
       <div class="m-datepicker__buttons">
