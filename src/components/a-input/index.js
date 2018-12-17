@@ -20,6 +20,7 @@ class AXAInput extends BaseComponentGlobal {
     value: PropTypes.string,
     name: PropTypes.string,
     icon: PropTypes.string,
+    disablePaste: PropTypes.bool,
   }
 
   init() {
