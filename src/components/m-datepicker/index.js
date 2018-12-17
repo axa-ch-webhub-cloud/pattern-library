@@ -19,7 +19,7 @@ const startType = PropTypes.oneOfType([
   PropTypes.oneOf([TODAY]),
 ]);
 
-class AXADatepicker extends BaseComponentGlobal {
+class AXAMDatepicker extends BaseComponentGlobal {
   static tagName = 'axa-m-datepicker'
   static propTypes = {
     classes: PropTypes.string,
@@ -39,7 +39,6 @@ class AXADatepicker extends BaseComponentGlobal {
   // this is essential for external re-rendering trigger.
   static get observedAttributes() {
     return [
-      'classes',
       'button-ok',
       'button-cancel',
       'locale',
@@ -54,15 +53,18 @@ class AXADatepicker extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    this.datepicker = new Datepicker(this);
   }
 
   /**
    * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
    */
   connectedCallback() {
+    console.log('connected m datepicker');
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker`;
+    this.datepicker = new Datepicker(this);
+    this.datepicker.init();
+    this.dispatchEvent
   }
 
   disconnectedCallback() {
@@ -71,10 +73,10 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
-    this.datepicker.init();
+    super.didRenderCallback();
   }
 }
 
-defineOnce(AXADatepicker.tagName, AXADatepicker);
+defineOnce(AXAMDatepicker.tagName, AXAMDatepicker);
 
-export default AXADatepicker;
+export default AXAMDatepicker;
