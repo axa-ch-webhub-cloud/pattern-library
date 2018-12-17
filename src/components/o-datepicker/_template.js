@@ -34,8 +34,7 @@ export default ({
             class="o-datepicker__calender js-datepicker__calender"
             locale="${locale}"
             button-ok="${buttonOk}"
-            button-cancel="${buttonCancel}"
-            button-cancel="abbrechen"></axa-m-datepicker>`)
+            button-cancel="${buttonCancel}"></axa-m-datepicker>`)
         : ''}
     </article>
   `;
