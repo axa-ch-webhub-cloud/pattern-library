@@ -8,7 +8,7 @@ export default function ({
   value = '',
   name,
   disabled = false,
-  icon,
+  icon = false,
 }) {
   return html`<div class="a-input__wrapper">
       <input
@@ -18,11 +18,12 @@ export default function ({
           type="${type}"
           placeholder="${placeholder}"
           value="${value}"
+          icon="${icon}"
           disabled="${disabled}">
           <span class="a-input__valid-icon"></span>
-          ${icon ? html`<button class="a-input__icon__button js-input__icon__button" type="button">
+          ${icon ? html`<button class="a-input__icon-button js-input__icon-button" type="button">
             <axa-icon classes="a-input__icon" icon="${icon}"></axa-icon>
           </button>` : ''}
-    </div>
+      </div>
     `;
 }

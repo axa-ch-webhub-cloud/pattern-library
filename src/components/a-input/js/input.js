@@ -9,7 +9,7 @@ export default class Input {
   }
 
   init() {
-    this.iconButton = this.wcNode.querySelector('.js-input__icon__button');
+    this.iconButton = this.wcNode.querySelector('.js-input__icon-button');
     this.inputfield = this.wcNode.querySelector('.js-input__input');
     this.disablePaste = getAttribute(this.wcNode, 'disable-paste');
     this.listenToButtons();
