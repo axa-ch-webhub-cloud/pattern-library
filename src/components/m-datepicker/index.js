@@ -5,6 +5,7 @@ import defineOnce from '../../js/define-once';
 import { TODAY } from '../../js/date';
 import localePropType from '../../js/prop-types/locale-prop-type';
 // import the styles used for this component
+import on from '../../js/on';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
@@ -59,21 +60,15 @@ class AXAMDatepicker extends BaseComponentGlobal {
    * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
    */
   connectedCallback() {
-    console.log('connected m datepicker');
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker`;
     this.datepicker = new Datepicker(this);
     this.datepicker.init();
-    this.dispatchEvent
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.datepicker.destroy();
-  }
-
-  didRenderCallback() {
-    super.didRenderCallback();
   }
 }
 
