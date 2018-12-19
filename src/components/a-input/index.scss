@@ -27,7 +27,6 @@
 
 .a-input__input {
   @include control-transition();
-  @include typo-tag();
 
   display: inline-flex;
 
@@ -60,6 +59,16 @@
 
   &:disabled {
     background-color: $color-bg--gray;
+  }
+}
+
+.a-input--icon {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 0;
+
+  .a-input__input {
+    padding: $input-padding-icon;
   }
 }
 
@@ -128,10 +137,10 @@
 
 .a-input__icon-button {
   position: absolute;
-  right: 5px;
-  top: 5px;
-
-  height: $input-icon-button-height;
+  padding: 1px;
+  right: 0;
+  top: 0;
+  height: 100%;
   width: $input-icon-button-width;
   border: none;
   outline: none;

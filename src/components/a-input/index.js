@@ -25,18 +25,18 @@ class AXAInput extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-
     this.input = new Input(this);
   }
 
   willRenderCallback() {
-    const { props: { valid, inline, error, disabled } } = this;
+    const { props: { icon, valid, inline, error, disabled } } = this;
 
     this.className = classnames('a-input', this.initialClassName, {
       'a-input--valid': valid,
       'a-input--inline': inline,
       'a-input--error': error,
       'a-input--disabled': disabled,
+      'a-input--icon': icon,
     });
   }
   didRenderCallback() {
