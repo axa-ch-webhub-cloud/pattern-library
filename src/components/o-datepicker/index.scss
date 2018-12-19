@@ -6,15 +6,12 @@ $input-logo-padding-right: 20px !default;
 
 .o-datepicker {
   position: relative;
-
   display: block;
 }
 
-.o-datepicker__calender {
+.o-datepicker__calendar {
   position: absolute;
-
   z-index: $zindex-popover;
-
   display: none;
   background-color: $color-prim-white;
 }
@@ -26,11 +23,11 @@ $input-logo-padding-right: 20px !default;
   vertical-align: middle;
 }
 
-.a-input__icon__button {
+.a-input__icon-button {
   background-color: transparent;
 }
 
-.o-datepicker__calender--move-up {
+.o-datepicker__calendar--move-up {
   // TODO $control-size !!!!! ausrechnen !!!!!!!!
   top: -385px;
 }
