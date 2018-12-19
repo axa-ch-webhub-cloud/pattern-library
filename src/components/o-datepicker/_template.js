@@ -8,7 +8,7 @@ export default ({
   higherEndYear = false,
   lowerEndYear = false,
   dateValue = new Date(),
-  outputValue,
+  outputValue = '',
   open = false,
   buttonCancel = 'Cancel',
   buttonOk = 'Ok',

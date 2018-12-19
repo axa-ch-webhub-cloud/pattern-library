@@ -2,11 +2,11 @@ import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import localePropType from '../../js/prop-types/locale-prop-type';
-import { getLocaleDayMonthYear } from '../../js/date';
+import { parseLocalisedDateIfValid, getLocaleDayMonthYear } from '../../js/date';
 import styles from './index.scss';
 import template from './_template';
 import on from '../../js/on';
-import { EVENTS } from '../../js/ui-events';
+import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
 
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
@@ -27,20 +27,24 @@ class AXADatepicker extends BaseComponentGlobal {
     super.init({ styles, template });
   }
 
-  /**
-   * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-   */
   connectedCallback() {
     super.connectedCallback();
+    this.body = document.body;
     this.datepickerCalendar = this.querySelector('.js-datepicker__calendar');
+    this.datepickerBody = this.querySelector('.js-datepicker__datepicker-body');
     this.datepickerInput = this.querySelector('.js-datepicker__input');
-    this.datepickerInput.addEventListener(EVENTS.CLICK, (e) => this.handleDatepickerInputClick(e));
-    this.datepickerInput.addEventListener(EVENTS.CHANGE, (e) => this.handleDatepickerInputChange(e));
-    
+
     // Register Events
-    document.body.addEventListener('click', (e) => this.handleBodyClick(e));
-    this.datepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', (e) => this.handleDatepickerChangeDate(e));
-    this.datepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', (e) => this.handleDatepickerCancel(e));
+    this.body.addEventListener(EVENTS.CLICK, (e) => this.handleBodyClick(e));
+    this.offDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', (e) => this.handleDatepickerCalendarClick(e));
+    this.offDatePickerInputClick = on(this, EVENTS.CLICK, 'js-input__input', (e) => this.handleDatepickerInputClick(e));
+    this.offDatePickerInputButtonClick = on(this, EVENTS.CLICK, 'js-input__icon-button', (e) => this.handleDatepickerInputButtonClick(e));
+    this.offDatePickerInputChange = on(
+      this.datepickerInput, AXA_EVENTS.AXA_CHANGE, '', this.handleDatepickerInputChange, { capture: true, passive: false, }
+    );
+    // Listen to fired events of sub component datepicker calendar
+    this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', (e) => this.handleDatepickerChangeDate(e));
+    this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', (e) => this.handleDatepickerCancel(e));
 
     if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
@@ -55,6 +59,10 @@ class AXADatepicker extends BaseComponentGlobal {
 
   handleDatepickerInputClick = (e) => {
     e.stopPropagation(); // important as the propagation of the document.body event must be prevented
+  }
+
+  handleDatepickerInputButtonClick = (e) => {
+    e.stopPropagation(); // important as the propagation of the document.body event must be prevented
     if(this.open) {
       this.closeDatepicker();
     } else {
@@ -63,21 +71,41 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleDatepickerInputChange = (e) => {
-    console.log('input change');
+    const validDate = parseLocalisedDateIfValid(this.locale, e.detail);
+    if (validDate) {
+      // this.updateDate(validDate); // .. coz double trigger
+      this.updateDatepickerBody(validDate);
+    }
+  }
+  
+  handleDatepickerCalendarClick = (e) => {
+    e.stopPropagation();
   }
 
   handleDatepickerCancel = (e) => {
     this.closeDatepicker();
   }
 
+  // TODO:: loses focus and day is not accurate
   handleDatepickerChangeDate = (e) => {
     if (e.detail.value !== '') {
-      this.outputValue = getLocaleDayMonthYear(this.locale, e.detail.value);
-      this.value = e.detail.value.toISOString();
+      this.updateDate(e.detail.value);
       this.closeDatepicker();
     }
   }
   
+  updateDate(date) {
+    this.value = date.toISOString();
+    this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
+  }
+
+  updateDatepickerBody(date) {
+    this.datepickerBody.setAttribute('day', date.getDate());
+    this.datepickerBody.setAttribute('value', date.getDate());
+    this.datepickerBody.setAttribute('month', date.getMonth());
+    this.datepickerBody.setAttribute('year', date.getFullYear());
+  }
+
   closeDatepicker() {
     this.open = false;
   }
@@ -100,10 +128,14 @@ class AXADatepicker extends BaseComponentGlobal {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    this.datepickerCalendarCancel();
-    this.datepickerCalendarDateChanged();
-    document.body.removeEventListener('click', (e) => this.handleBodyClick(e));
+    // Deregister Events
+    this.body.removeEventListener(EVENTS.CLICK, (e) => this.handleBodyClick(e));
+    this.offDatepickerCalendarClick();
+    this.offDatePickerInputClick();
+    this.offDatePickerInputButtonClick();
+    this.offDatePickerInputChange();
+    this.offDatepickerCalendarDateChanged();
+    this.offDatepickerCalendarCancel();
   }
 
   set open(value) {
