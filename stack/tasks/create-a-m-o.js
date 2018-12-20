@@ -413,8 +413,6 @@ const writeIndexDTs = (path, _name) => {
   fs.writeFileSync(
     `${path}/index.d.ts`,
     outdent`
-      import * as React from 'react';
-      
       export namespace ${className} {
         export interface Props {
           //todo: specify the props, or remove the below line if component has no props 
@@ -422,7 +420,7 @@ const writeIndexDTs = (path, _name) => {
         }
       }
       
-      export const ${className}: React.ComponentClass<${className}.Props>;
+      export interface ${className} extends HTMLElement, ${className}.Props {}
     `
     , handleError,
   );
@@ -457,10 +455,14 @@ const updateReactDTsExports = (_element, _name) => {
     return;
   }
 
+  const className = getClassName(_name);
+
   fs.writeFileSync(
     `${CWD}/src/js/react-exports.d.ts`,
     outdent`
-      export * from '../components/${_element}-${_name}';
+      
+      import { ${className} } from '../components/${_element}-${_name}';
+      export const ${className}: React.ComponentClass<${className}.Props>;
 
     `,
     { flag: 'a' },
