@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 //used for AXAMDatepicker also
 export namespace AXADatepicker {
   export interface Props {
@@ -18,4 +16,4 @@ export namespace AXADatepicker {
   }
 }
 
-export const AXADatepicker: React.ComponentClass<AXADatepicker.Props>;
+export interface AXADatepicker extends HTMLElement, AXADatepicker.Props {}

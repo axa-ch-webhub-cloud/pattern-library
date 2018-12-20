@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXARadio {
   export interface Props {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,4 +10,4 @@ export namespace AXARadio {
   }
 }
 
-export const AXARadio: React.ComponentClass<AXARadio.Props>;
+export interface AXARadio extends HTMLElement, AXARadio.Props {}

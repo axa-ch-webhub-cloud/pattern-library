@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export namespace AXACheckbox {
   export interface Props {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,4 +10,4 @@ export namespace AXACheckbox {
   }
 }
 
-export const AXACheckbox: React.ComponentClass<AXACheckbox.Props>;
+export interface AXACheckbox extends HTMLElement, AXACheckbox.Props {}

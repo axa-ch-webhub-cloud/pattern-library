@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAChoice {
   export interface Props {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,4 +10,4 @@ export namespace AXAChoice {
   }
 }
 
-export const AXAChoice: React.ComponentClass<AXAChoice.Props>;
+export interface AXAChoice extends HTMLElement, AXAChoice.Props {}

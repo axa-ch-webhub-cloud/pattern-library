@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAFooterLegals {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,4 @@ export namespace AXAFooterLegals {
   }
 }
 
-export const AXAFooterLegals: React.ComponentClass<AXAFooterLegals.Props>;
+export interface AXAFooterLegals extends HTMLElement, AXAFooterLegals.Props {}

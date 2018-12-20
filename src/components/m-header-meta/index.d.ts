@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAHeaderMeta {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,4 @@ export namespace AXAHeaderMeta {
   }
 }
 
-export const AXAHeaderMeta: React.ComponentClass<AXAHeaderMeta.Props>;
+export interface AXAHeaderMeta extends HTMLElement, AXAHeaderMeta.Props {}

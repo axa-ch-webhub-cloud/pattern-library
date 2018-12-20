@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { AXAIcon } from '../a-icon';
 
 export namespace AXAButton {
@@ -23,4 +22,4 @@ export namespace AXAButton {
   }
 }
 
-export const AXAButton: React.ComponentClass<AXAButton.Props>;
+export interface AXAButton extends HTMLElement, AXAButton.Props {}

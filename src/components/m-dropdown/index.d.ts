@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXADropdown {
   export interface Item {
     name?: string;
@@ -13,10 +11,14 @@ export namespace AXADropdown {
     items?: Item[];
     native?: boolean;
     size?: 'sm';
-    title?: string;
+    // can't be optional, otherwise:
+    // Error:(22, 18) TS2320: Interface 'AXADropdown' cannot simultaneously extend types 'HTMLElement' and 'Props'.
+    // Named property 'title' of types 'HTMLElement' and 'Props' are not identical.
+    // https://github.com/Microsoft/TypeScript/issues/4278
+    title: string;
     value?: any;
     iconsPathPrefix?: string;
   }
 }
 
-export const AXADropdown: React.ComponentClass<AXADropdown.Props>;
+export interface AXADropdown extends HTMLElement, AXADropdown.Props {}

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAFormGroup {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,4 @@ export namespace AXAFormGroup {
   }
 }
 
-export const AXAFormGroup: React.ComponentClass<AXAFormGroup.Props>;
+export interface AXAFormGroup extends HTMLElement, AXAFormGroup.Props {}

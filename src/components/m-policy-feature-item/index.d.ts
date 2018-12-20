@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAPolicyFeatureItem {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,4 @@ export namespace AXAPolicyFeatureItem {
   }
 }
 
-export const AXAPolicyFeatureItem: React.ComponentClass<AXAPolicyFeatureItem.Props>;
+export interface AXAPolicyFeatureItem extends HTMLElement, AXAPolicyFeatureItem.Props {}

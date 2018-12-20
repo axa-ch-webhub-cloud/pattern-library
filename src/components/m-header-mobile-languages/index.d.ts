@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAHeaderMobileLanguages {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,4 @@ export namespace AXAHeaderMobileLanguages {
   }
 }
 
-export const AXAHeaderMobileLanguages: React.ComponentClass<AXAHeaderMobileLanguages.Props>;
+export interface AXAHeaderMobileLanguages extends HTMLElement, AXAHeaderMobileLanguages.Props {}

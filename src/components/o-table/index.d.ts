@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXATable {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,4 @@ export namespace AXATable {
   }
 }
 
-export const AXATable: React.ComponentClass<AXATable.Props>;
+export interface AXATable extends HTMLElement, AXATable.Props {}

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAHeaderTopContentBar {
   export interface Props {
     //todo: specify the props
@@ -7,4 +5,5 @@ export namespace AXAHeaderTopContentBar {
   }
 }
 
-export const AXAHeaderTopContentBar: React.ComponentClass<AXAHeaderTopContentBar.Props>;
+export interface AXAHeaderTopContentBar extends HTMLElement, AXAHeaderTopContentBar.Props {}
+

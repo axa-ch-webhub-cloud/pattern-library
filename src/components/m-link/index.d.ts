@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXALink {
   export type Color = 'red' | 'white';
   export type Target = '_blank' | '_self';
@@ -19,4 +17,4 @@ export namespace AXALink {
   }
 }
 
-export const AXALink: React.ComponentClass<AXALink.Props>;
+export interface AXALink extends HTMLElement, AXALink.Props {}

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { AXAIcon } from '../a-icon';
 
 export namespace AXAInput {
@@ -17,4 +16,4 @@ export namespace AXAInput {
   }
 }
 
-export const AXAInput: React.ComponentClass<AXAInput.Props>;
+export interface AXAInput extends HTMLElement, AXAInput.Props {}
