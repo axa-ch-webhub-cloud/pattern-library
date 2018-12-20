@@ -13,9 +13,13 @@
  *   https://github.com/Microsoft/TypeScript/issues/8305
  */
 
+import * as React from 'react';
+import { AXAIcon } from '../components/a-icon';
+
 export * from '../components/a-checkbox';
 export * from '../components/a-choice';
 export * from '../components/a-icon';
+export const AXAIcon: React.ComponentClass<AXAIcon.Props>;
 export * from '../components/a-input';
 export * from '../components/a-radio';
 export * from '../components/m-button';

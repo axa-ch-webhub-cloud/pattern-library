@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export namespace AXAIcon {
   export type Icon =
     'angle-bracket-down'
@@ -27,4 +25,4 @@ export namespace AXAIcon {
   }
 }
 
-export const AXAIcon: React.ComponentClass<AXAIcon.Props>;
+export interface AXAIcon extends HTMLElement, AXAIcon.Props {}
