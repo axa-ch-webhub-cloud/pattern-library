@@ -46,8 +46,8 @@ export default class Input {
 
   listenToInputChange() {
     this.offListenToInputChange();
-    this.unInputListenerEnd = on(this.inputfield, EVENTS.INPUT, () => {
-      fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, this.inputfield.value, { bubbles: true, cancelable: true, composed: true });
+    this.unInputListenerEnd = on(this.inputfield, EVENTS.INPUT, (e) => {
+      fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, e.target.value, { bubbles: true, cancelable: true, composed: true });
     });
   }
 
