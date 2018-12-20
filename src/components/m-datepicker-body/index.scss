@@ -1,34 +1,25 @@
 @import "../../styles/settings/colors";
 
 $datepicker-width: 309px !default;
-
 $datepicker-padding-left-right: 30px !default;
-
-$datepicker-cell-border-radius: 100px !default;
-
+$datepicker-cell-border-radius: 50% !default;
 $datepicker-border-width: 1px !default;
-
-$with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $datepicker-border-width * 2) / 7;
-
 $datepicker-calender-body-padding-top: 5px !default;
 
 .m-datepicker-body {
   padding-top: $datepicker-calender-body-padding-top;
   display: flex;
-
   flex-flow: row wrap;
   justify-content: space-between;
 }
 
 .m-datepicker-body__cell {
-  width: $with-one-seventh;
-  height: $with-one-seventh;
-
+  width: 33px;
+  height: 33px;
+  margin: 1px;
   padding-left: 0;
   padding-right: 0;
-
   background-color: transparent;
-
   border-radius: $datepicker-cell-border-radius;
   cursor: pointer;
   border: none;
