@@ -82,32 +82,19 @@ export default class Datepicker {
 
   listenToButtons() {
     this.offListenToButtons();
+    const eventOptions = { bubbles: true, cancelable: true, composed: true };
     this.unCancelButtonListenerEnd = on(this.cancelButton, EVENTS.CLICK, () => {
-      fire(this.cancelButton, AXA_EVENTS.AXA_CLICK, { value: '', button: 'cancel' }, { bubbles: true, cancelable: true, composed: true });
+      fire(this.wcNode, 'cancel', {}, eventOptions);
     });
     this.unOkButtonListenerEnd = on(this.okButton, EVENTS.CLICK, () => {
+      let out = '';
       const year = this.datepickerBody.getAttribute('year');
       const month = this.datepickerBody.getAttribute('month');
-      const dayAsValue = this.datepickerBody.getAttribute('value'); // new value - after click on a day
-      let dayAsDay = this.datepickerBody.getAttribute('day'); // prev value - prior click on a day
-      if (dayAsDay === 'false') {
-        dayAsDay = false;
-      }
-      const day = dayAsValue || dayAsDay;
-      const eventInit = { bubbles: true, cancelable: true, composed: true };
-
-      if (day) {
-        const choosenDate = new Date(year, month, day);
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
-          value: choosenDate,
-          button: OK,
-        }, eventInit);
-      } else {
-        fire(this.okButton, AXA_EVENTS.AXA_CLICK, {
-          value: '',
-          button: OK,
-        }, eventInit);
-      }
+      const day = this.datepickerBody.getAttribute('value');
+      if (day) out = new Date(year, month, day, 23, 0, 0);
+      
+      fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: out, button: OK }, eventOptions);
+      fire(this.wcNode, 'date-changed', {value: out}, eventOptions);
     });
   }
 

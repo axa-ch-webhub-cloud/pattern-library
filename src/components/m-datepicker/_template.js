@@ -59,6 +59,7 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
 };
 
 export default ({
+  value = new Date(),
   classes,
   buttonOk,
   buttonCancel,
@@ -88,7 +89,10 @@ export default ({
       <div class="m-datepicker__weekdays">
         ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
-      <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body" allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}" locale="${locale}"></axa-datepicker-body>
+      <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body"
+        allowed-years="${JSON.stringify(specificYears)}"
+        year="${startDate.year}" month="${startDate.month}" day="${selectedDay}" locale="${locale}">
+      </axa-datepicker-body>
       <div class="m-datepicker__buttons">
         <axa-button class="m-datepicker__button-borderless m-datepicker__button-cancel js-datepicker__button-cancel"
           tag="button" ghost>${buttonCancel}</axa-button>
