@@ -96,7 +96,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   updateDate(date) {
-    this.value = date.toISOString();
+    this.value = this.toLocalISOString(date);
     this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
@@ -105,6 +105,28 @@ class AXADatepicker extends BaseComponentGlobal {
     this.datepickerBody.setAttribute('value', date.getDate());
     this.datepickerBody.setAttribute('month', date.getMonth());
     this.datepickerBody.setAttribute('year', date.getFullYear());
+  }
+
+  // Respects current timezone of the date object we convert to "iso like format"
+  toLocalISOString = (date) => {
+    // ISO 8601
+    var d = date
+      , pad = function (n){return n<10 ? '0'+n : n}
+      , tz = d.getTimezoneOffset() //mins
+      , tzs = (tz>0?"-":"+") + pad(parseInt(tz/60))
+    
+    if (tz%60 != 0)
+      tzs += pad(tz%60)
+    
+    if (tz === 0) // Zulu time == UTC
+      tzs = 'Z'
+      
+     return d.getFullYear()+'-'
+          + pad(d.getMonth()+1)+'-'
+          + pad(d.getDate())+'T'
+          + pad(d.getHours())+':'
+          + pad(d.getMinutes())+':'
+          + pad(d.getSeconds()) + tzs
   }
 
   closeDatepicker() {
