@@ -75,7 +75,7 @@ export default ({
     <article class="${classes} m-datepicker__article">
       <axa-dropdown data-month="true" class="m-datepicker__dropdown m-datepicker__dropdown__month js-datepicker__dropdown__month"
         size="sm" value="${startDate.month}"
-        items="${JSON.stringify(getAllLocaleMonthsArray(inputLocale).map((month, index) => ({
+        items="${JSON.stringify(getAllLocaleMonthsArray(locale).map((month, index) => ({
           name: month.toString(), url: '#', value: index.toString(),
         })))}">
       </axa-dropdown>
@@ -88,7 +88,7 @@ export default ({
       <div class="m-datepicker__weekdays">
         ${getLocalWeekdayArray(locale).map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
       </div>
-      <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body" allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}" input-locale="${locale}"></axa-datepicker-body>
+      <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body" allowed-years="${JSON.stringify(specificYears)}" year="${startDate.year}" month="${startDate.month}" day="${selectedDay}" locale="${locale}"></axa-datepicker-body>
       <div class="m-datepicker__buttons">
         <axa-button class="m-datepicker__button-borderless m-datepicker__button-cancel js-datepicker__button-cancel"
           tag="button" ghost>${buttonCancel}</axa-button>
