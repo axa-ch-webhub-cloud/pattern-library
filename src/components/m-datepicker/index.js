@@ -19,7 +19,7 @@ class AXAMDatePicker extends BaseComponentGlobal {
     classes: PropTypes.string,
     buttonOk: PropTypes.string,
     buttonCancel: PropTypes.string,
-    locale: localePropType,
+    inputLocale: localePropType,
     value: PropTypes.string,
     startYear: startType,
     startMonth: startType, // zero-based
