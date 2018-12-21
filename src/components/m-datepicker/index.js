@@ -4,16 +4,9 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import { TODAY } from '../../js/date';
 import localePropType from '../../js/prop-types/locale-prop-type';
-// import the styles used for this component
-import on from '../../js/on';
 import styles from './index.scss';
-// import the template used for this component
 import template from './_template';
-
 import Datepicker from './js/datepicker';
-import getAttribute from '../../js/get-attribute';
-
-import getAttribute from '../../js/get-attribute';
 
 const startType = PropTypes.oneOfType([
   PropTypes.number,
@@ -33,11 +26,9 @@ class AXAMDatepicker extends BaseComponentGlobal {
     selectedDay: PropTypes.number,
     lowerEndYear: PropTypes.number,
     higherEndYear: PropTypes.number,
-    outputIso: PropTypes.bool,
   }
 
   // Specify observed attributes so that attributeChangedCallback will work,
-  // this is essential for external re-rendering trigger.
   static get observedAttributes() {
     return [
       'button-ok',

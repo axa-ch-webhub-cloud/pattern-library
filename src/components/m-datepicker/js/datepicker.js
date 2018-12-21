@@ -92,9 +92,9 @@ export default class Datepicker {
       const month = this.datepickerBody.getAttribute('month');
       const day = this.datepickerBody.getAttribute('value');
       if (day) out = new Date(year, month, day, 23, 0, 0);
-      
+
       fire(this.okButton, AXA_EVENTS.AXA_CLICK, { value: out, button: OK }, eventOptions);
-      fire(this.wcNode, 'date-changed', {value: out}, eventOptions);
+      fire(this.wcNode, 'date-changed', { value: out }, eventOptions);
     });
   }
 
@@ -110,8 +110,7 @@ export default class Datepicker {
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const { target } = e;
-    const month = target.getAttribute('value');
+    const month = e.target.getAttribute('value');
 
     // or if a dropdown changes, update the datepicker body
     if (month || month === 0) {
@@ -122,8 +121,7 @@ export default class Datepicker {
   handleChangeDropdownYear = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const { target } = e;
-    const year = target.getAttribute('value');
+    const year = e.target.getAttribute('value');
 
     if (year || year === 0) {
       this.datepickerBody.setAttribute('year', year);
@@ -133,8 +131,7 @@ export default class Datepicker {
   handleChangeDatepickerBody = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const { target } = e;
-    this.changeDropDowns(target);
+    this.changeDropDowns(e.target);
   }
 
   changeDropDowns(node) {

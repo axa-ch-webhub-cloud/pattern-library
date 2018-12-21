@@ -12,8 +12,7 @@ export default ({
   open = false,
   buttonCancel = 'Cancel',
   buttonOk = 'Ok',
-}, documentFragment, wcNode) => {
-  return html`
+}) => html`
     <article class=${classes}>
       <axa-input
         class="o-datepicker__input js-datepicker__input"
@@ -35,10 +34,9 @@ export default ({
           locale="${locale}"
           button-ok="${buttonOk}"
           button-cancel="${buttonCancel}"
-          ${open === false ? "hidden" : "" }
+          ${open === false ? 'hidden' : ''}
         >
         </axa-m-datepicker>`)
       }
     </article>
   `;
-};

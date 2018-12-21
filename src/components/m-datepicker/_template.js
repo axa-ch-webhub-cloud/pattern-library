@@ -59,16 +59,15 @@ const getStartDate = (yearsRange, startYear = TODAY, startMonth = TODAY) => {
 };
 
 export default ({
-  value = new Date(),
   classes,
   buttonOk,
   buttonCancel,
-  inputLocale = 'en-UK',
   startYear = TODAY,
   startMonth = TODAY, // zero-based
   selectedDay = new Date().getDate(),
   lowerEndYear,
   higherEndYear,
+  locale,
 }) => {
   const startDate = getStartDate({ lowerEndYear, higherEndYear }, startYear, startMonth);
   const specificYears = getSpecificYears({ lowerEndYear, higherEndYear });

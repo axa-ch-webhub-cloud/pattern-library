@@ -2,7 +2,7 @@ import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import localePropType from '../../js/prop-types/locale-prop-type';
-import { parseLocalisedDateIfValid, getLocaleDayMonthYear } from '../../js/date';
+import { parseLocalisedDateIfValid } from '../../js/date';
 import styles from './index.scss';
 import template from './_template';
 import on from '../../js/on';
@@ -10,7 +10,7 @@ import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
 
 class AXADatepicker extends BaseComponentGlobal {
   static tagName = 'axa-datepicker'
-  
+
   static propTypes = {
     classes: PropTypes.string,
     locale: localePropType,
@@ -35,24 +35,25 @@ class AXADatepicker extends BaseComponentGlobal {
     this.datepickerInput = this.querySelector('.js-datepicker__input');
 
     // Register Events
-    this.body.addEventListener(EVENTS.CLICK, (e) => this.handleBodyClick(e));
-    this.offDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', (e) => this.handleDatepickerCalendarClick(e));
-    this.offDatePickerInputClick = on(this, EVENTS.CLICK, 'js-input__input', (e) => this.handleDatepickerInputClick(e));
-    this.offDatePickerInputButtonClick = on(this, EVENTS.CLICK, 'js-input__icon-button', (e) => this.handleDatepickerInputButtonClick(e));
+    this.body.addEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
+    this.offDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', e => this.handleDatepickerCalendarClick(e));
+    this.offDatePickerInputClick = on(this, EVENTS.CLICK, 'js-input__input', e => this.handleDatepickerInputClick(e));
+    this.offDatePickerInputButtonClick = on(this, EVENTS.CLICK, 'js-input__icon-button', e => this.handleDatepickerInputButtonClick(e));
     this.offDatePickerInputChange = on(
-      this.datepickerInput, AXA_EVENTS.AXA_CHANGE, '', this.handleDatepickerInputChange, { capture: true, passive: false, }
+      this.datepickerInput, AXA_EVENTS.AXA_CHANGE, '',
+      this.handleDatepickerInputChange, { capture: true, passive: false },
     );
     // Listen to fired events of sub component datepicker calendar
-    this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', (e) => this.handleDatepickerChangeDate(e));
-    this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', (e) => this.handleDatepickerCancel(e));
+    this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
+    this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
 
     if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
     }
   }
 
-  handleBodyClick = (e) => {
-    if(this.open) {
+  handleBodyClick = () => {
+    if (this.open) {
       this.closeDatepicker();
     }
   }
@@ -63,7 +64,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   handleDatepickerInputButtonClick = (e) => {
     e.stopPropagation(); // important as the propagation of the document.body event must be prevented
-    if(this.open) {
+    if (this.open) {
       this.closeDatepicker();
     } else {
       this.openDatepicker();
@@ -77,12 +78,12 @@ class AXADatepicker extends BaseComponentGlobal {
       this.updateDatepickerBody(validDate);
     }
   }
-  
+
   handleDatepickerCalendarClick = (e) => {
     e.stopPropagation();
   }
 
-  handleDatepickerCancel = (e) => {
+  handleDatepickerCancel = () => {
     this.closeDatepicker();
   }
 
@@ -93,7 +94,7 @@ class AXADatepicker extends BaseComponentGlobal {
       this.closeDatepicker();
     }
   }
-  
+
   updateDate(date) {
     this.value = date.toISOString();
     this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
@@ -129,7 +130,7 @@ class AXADatepicker extends BaseComponentGlobal {
   disconnectedCallback() {
     super.disconnectedCallback();
     // Deregister Events
-    this.body.removeEventListener(EVENTS.CLICK, (e) => this.handleBodyClick(e));
+    this.body.removeEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
     this.offDatepickerCalendarClick();
     this.offDatePickerInputClick();
     this.offDatePickerInputButtonClick();
@@ -140,10 +141,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   set open(value) {
     const isOpen = Boolean(value);
-    if (isOpen)
-      this.datepickerCalendar.removeAttribute('hidden');
-    else
-      this.datepickerCalendar.setAttribute('hidden', '');
+    if (isOpen) { this.datepickerCalendar.removeAttribute('hidden'); } else { this.datepickerCalendar.setAttribute('hidden', ''); }
   }
 
   get open() {
@@ -151,10 +149,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   set locale(value) {
-    if (value)
-      this.setAttribute('locale', value);
-    else
-      this.removeAttribute('locale');
+    if (value) { this.setAttribute('locale', value); } else { this.removeAttribute('locale'); }
   }
 
   get locale() {
@@ -162,10 +157,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   set value(value) {
-    if (value)
-      this.setAttribute('value', value);
-    else
-      this.removeAttribute('value');
+    if (value) { this.setAttribute('value', value); } else { this.removeAttribute('value'); }
   }
 
   get value() {
@@ -173,10 +165,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   set outputValue(value) {
-    if (value)
-      this.setAttribute('output-value', value);
-    else
-      this.removeAttribute('output-value');
+    if (value) { this.setAttribute('output-value', value); } else { this.removeAttribute('output-value'); }
   }
 
   get outputValue() {
