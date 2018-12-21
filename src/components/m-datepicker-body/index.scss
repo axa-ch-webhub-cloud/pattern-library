@@ -9,6 +9,7 @@ $datepicker-calender-body-padding-top: 5px !default;
 .m-datepicker-body {
   padding-top: $datepicker-calender-body-padding-top;
   display: flex;
+
   flex-flow: row wrap;
   justify-content: space-between;
 }

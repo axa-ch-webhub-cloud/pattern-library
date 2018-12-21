@@ -30,6 +30,7 @@ $datepicker-padding-left-native-dropdown: 8px !default;
 
 .m-datepicker__article {
   position: relative;
+
   padding: $datepicker-padding-y $datepicker-padding-x;
   width: $datepicker-width;
   border: solid $datepicker-border-width $color-prim-gray-silver;
@@ -108,13 +109,16 @@ $datepicker-padding-left-native-dropdown: 8px !default;
 }
 
 .m-datepicker__body {
-  display: flex;
-  flex-wrap: wrap;
   margin-bottom: 12px;
+
+  display: flex;
+
+  flex-wrap: wrap;
 }
 
 .m-datepicker__buttons {
   display: flex;
+
   justify-content: space-between;
 }
 

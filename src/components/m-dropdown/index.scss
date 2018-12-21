@@ -121,7 +121,6 @@
 
 .m-dropdown__toggle,
 .m-dropdown__link {
-   // no responsive font in dropdown or fixed frames needed
   @include typo-decls('typo-18');
 }
 

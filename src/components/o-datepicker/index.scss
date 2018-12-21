@@ -6,12 +6,14 @@ $input-logo-padding-right: 20px !default;
 
 .o-datepicker {
   position: relative;
+
   display: block;
 }
 
 .o-datepicker__calendar {
   position: absolute;
   z-index: $zindex-popover;
+
   display: none;
   background-color: $color-prim-white;
 }
