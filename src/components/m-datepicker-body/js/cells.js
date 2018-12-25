@@ -1,37 +1,44 @@
 export class Cell {
-  static classes = 'm-datepicker-body__cell js-datepicker__calender-body__cell';
   constructor(text = '', index = 0, isToday = false) {
     this.text = text;
     this.index = index;
     this.isToday = isToday;
+    this.baseClass = 'm-datepicker-body__cell js-datepicker__calender-body__cell';
+    this.className = '';
   }
-  getClasses() { return Cell.classes; }
-  getIndex() { return this.index; }
-  getText() { return this.text; }
-  getIsToday() { return this.isToday; }
 }
 
 export class NextMonth extends Cell {
-  static classes = 'm-datepicker-body__not-current-month';
-  getClasses() { return `${super.getClasses()} ${NextMonth.classes}`; }
+  constructor(text = '', index = 0, isToday = false) {
+    super(text, index, isToday);
+    this.className = `${this.baseClass} m-datepicker-body__not-current-month`;
+  }
 }
 
 export class LastMonth extends Cell {
-  static classes = 'm-datepicker-body__not-current-month';
-  getClasses() { return `${super.getClasses()} ${LastMonth.classes}`; }
+  constructor(text = '', index = 0, isToday = false) {
+    super(text, index, isToday);
+    this.className = `${this.baseClass} m-datepicker-body__not-current-month`;
+  }
 }
 
 export class CurrentMonth extends Cell {
-  static classes = 'm-datepicker-body__current-month';
-  getClasses() { return `${super.getClasses()} ${CurrentMonth.classes}`; }
+  constructor(text = '', index = 0, isToday = false) {
+    super(text, index, isToday);
+    this.className = `${this.baseClass} m-datepicker-body__current-month`;
+  }
 }
 
 export class Today extends CurrentMonth {
-  static classes = 'm-datepicker-body__today';
-  getClasses() { return `${super.getClasses()} ${Today.classes}`; }
+  constructor(text = '', index = 0, isToday = false) {
+    super(text, index, isToday);
+    this.className = `${this.baseClass} m-datepicker-body__today`;
+  }
 }
 
 export class SelectedDay extends CurrentMonth {
-  static classes = 'm-datepicker-body__selected-day';
-  getClasses() { return `${super.getClasses()} ${SelectedDay.classes}`; }
+  constructor(text = '', index = 0, isToday = false) {
+    super(text, index, isToday);
+    this.className = `${this.baseClass} m-datepicker-body__selected-day`;
+  }
 }

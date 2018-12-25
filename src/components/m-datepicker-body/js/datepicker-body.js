@@ -1,23 +1,28 @@
 import { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
+import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth, Cell } from './cells';
 import Store from './store';
-import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth } from './cells';
 
 export default class DatepickerBody {
   constructor(wcNode) {
     this.wcNode = wcNode;
-    this.selected = null;
-    this.date = new Date();
   }
 
-  init(index, locale, year, month, day, allowedYears) {
-    this._store = new Store(locale, year, month, day);
-    this.selected = null;
-    this.prepareCells(index);
-    this.listenToCells();
+  init(index, locale, year, month, day, allowedYears, store) {
+    this.store = store;
     this.index = index;
     this.allowedYears = allowedYears;
     this.locale = locale;
+    this.year = year;
+    this.month = month;
+    this.day = day;
+
+    // Create dates to work with from init values (dom..)
+    this.date = new Date(this.year, this.month, this.day);
+    this.selected = this.date;
+
+    this.prepareCells(index);
+    this.listenToCells();
 
     if (month || month === 0) {
       this.date.setMonth(month);
@@ -28,19 +33,16 @@ export default class DatepickerBody {
     }
   }
 
-  get store() {
-    return this._store;
-  }
-
   prepareCells(index) {
+    console.log('prepare cells', index);
     if (this.selected && !index) {
-      const cell = new SelectedDay(this.selected.getText(), this.selected.getIndex(), this.selected.getIsToday());
-      this._store.setCell(this.selected.getIndex(), cell);
+      const cell = new SelectedDay(this.selected.text, this.selected.index, this.selected.isToday);
+      this.store.setCell(this.selected.index, cell);
     }
     if (!index && index !== 0) {
       return;
     }
-    const cell = this._store.getCell(index);
+    const cell = this.store.getCell(index);
     if (cell instanceof CurrentMonth) {
       this.handleCurrentMonth(index, cell);
     }
@@ -64,27 +66,44 @@ export default class DatepickerBody {
 
   handleClick = (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    this.selected = null;
-    const { dataset } = e.target;
-    const index = +dataset.index;
+    this.index = parseInt(e.target.dataset.index, 10);
+    this.cell = this.store.getCell(this.index);
+    this.date = new Date();
 
-    if (!index && index !== 0) {
-      return;
-    }
-    const cell = this._store.getCell(index);
+    // Check if we click on a "grey" cell of an prev or next month
+    if (this.cell instanceof NextMonth) {
+        this.date.setMonth(this.wcNode.month + 1);
+    } 
+    
+    if (this.cell instanceof LastMonth) {
+        this.date.setMonth(this.wcNode.month - 1);
+    } 
+    
+    // Set the day to the chosen day
+    this.date.setDate(parseInt(this.cell.text, 10));
 
-    if (cell instanceof NextMonth) {
-      this.updateDate(this.date.getMonth() + 1);
-      this.cleanupValueIndex();
-    } else if (cell instanceof LastMonth) {
-      this.updateDate(this.date.getMonth() - 1);
-      this.cleanupValueIndex();
-    } else {
-      this.wcNode.setAttribute('value', cell.getText());
-      this.wcNode.setAttribute('index', index);
-    }
+    // Update the dom node
+    // console.log('sel date', this.selected);
+    // console.log('new date', this.date);
+
+    this.updateDate(this.date);
+    // set / prepare all cells again according to new selection
+    this.store.update(this.date);
+
+    // Update dom
+    this.wcNode.props.cells = this.store.getCells();
+
+    // Save "last" chosen date
+    this.selected = this.date;
   }
+
+  // changeDay(cell, index) {
+  //   const newcell = new SelectedDay(cell.text, index, true);
+  //   // this.store.cells = this.store.cells.map(c => c instanceof Today ? newcell : c);
+  //   this.store.setCell(cell.index, newcell);
+  //   this.wcNode.setAttribute('value', cell.text);
+  //   this.wcNode.setAttribute('index', cell.index);
+  // }
 
   cleanupValueIndex() {
     this.wcNode.removeAttribute('index');
@@ -92,33 +111,31 @@ export default class DatepickerBody {
   }
 
   handleCurrentMonth(index, cell) {
-    if (this.selected !== null) {
-      const lastIndex = this.selected.getIndex();
-      const isToday = this.selected.getIsToday();
-      const lastText = this.selected.getText();
-      // const lastcell = isToday ? new Today(lastText, lastIndex, isToday) : new CurrentMonth(lastText, lastIndex, isToday);
-      const lastcell = new CurrentMonth(lastText, lastIndex, isToday);
-      this._store.setCell(lastIndex, lastcell);
-    }
+    console.log('current month', index, cell);
+    // if (this.selected !== null) {
+    //   const lastIndex = this.selected.index;
+    //   const isToday = this.selected.isToday;
+    //   const lastText = this.selected.text;
+    //   const lastcell = new CurrentMonth(lastText, lastIndex, isToday);
+    //   this.store.setCell(lastIndex, lastcell);
+    // }
 
-    const newcell = new SelectedDay(cell.getText(), cell.getIndex(), cell.getIsToday());
-    this._store.setCell(index, newcell);
-    this.selected = newcell;
-    if (!newcell.isToday) {
-      this._store.cells = this._store.cells.map(c => c instanceof Today ? new CurrentMonth(c.getText(), c.getIndex(), true) : c);
-    }
+    // const newcell = new SelectedDay(cell.text, cell.index, cell.isToday);
+    // this.store.setCell(index, newcell);
+    // this.selected = newcell;
+    // if (!newcell.isToday) {
+    //   this.store.cells = this.store.cells.map(c => c instanceof Today ? new CurrentMonth(c.text, c.index, true) : c);
+    // }
   }
 
-  updateDate(value) {
-    this.date = new Date(this.date.getFullYear(), this.date.getMonth());
-    this.date.setMonth(value);
-
-    const year = this.date.getFullYear();
-    if (this.allowedYears && !~this.allowedYears.indexOf(year)) {
-      return;
-    }
-
-    this.wcNode.setAttribute('year', year);
-    this.wcNode.setAttribute('month', this.date.getMonth());
+  updateDate(date) {
+    // TODO:: don't do this allowed year check here..
+    // if (this.allowedYears && !~this.allowedYears.indexOf(year)) {
+    //   return;
+    // }
+    this.wcNode.setAttribute('day', date.getDate());
+    this.wcNode.setAttribute('index', this.index);
+    this.wcNode.setAttribute('month', date.getMonth());
+    this.wcNode.setAttribute('year', date.getFullYear());
   }
 }

@@ -6,25 +6,34 @@ const CELLS = 7;
 const TOTAL_CELLS = ROWS * CELLS;
 
 export default class Store {
-  constructor(locale, year = new Date().getFullYear(), month = new Date().getMonth(), day = null) {
+  constructor(locale, date) {
     this.cells = [];
     this.today = new Date();
-
-    this.init(locale, year, month, day);
+    this.locale = locale;
+    this.init(date);
   }
 
-  init(locale, year, month, day) {
-    // const date = new Date(year, month);
+  update(date) {
+    this.init(date);
+  }
+
+  init(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+
+    // TODO:: make it smaller
     const firstDayOfMonth = new Date(year, month, 1);
     const lastDayOfMonth = new Date(year, month + 1, 0);
     const dateLastDayOfMonth = lastDayOfMonth.getDate();
     const lastDayOfLastMonth = new Date(year, month, 0);
     const firstDayOfNextMonth = new Date(year, month + 1, 1);
-    const numericWeekdayFirstDayOfMonth = getNumericWeekday(locale, firstDayOfMonth);
+    const numericWeekdayFirstDayOfMonth = getNumericWeekday(this.locale, firstDayOfMonth);
     const todayYear = this.today.getFullYear();
     const todayMonth = this.today.getMonth();
     const todayDate = day || this.today.getDate();
 
+    // TODO:: just use a for loop.. it's exactly the same
     this.cells = [...Array(TOTAL_CELLS).keys()].map((index) => {
       if (index < numericWeekdayFirstDayOfMonth) {
         const dateText = lastDayOfLastMonth.getDate() - (((numericWeekdayFirstDayOfMonth - 1) - index));

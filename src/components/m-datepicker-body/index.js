@@ -9,6 +9,7 @@ import template from './_template';
 import DatepickerBody from './js/datepicker-body';
 import fire from '../../js/fire';
 import { AXA_EVENTS } from '../../js/ui-events';
+import Store from './js/store';
 
 class AXADatepickerBody extends BaseComponentGlobal {
   static tagName = 'axa-datepicker-body'
@@ -21,11 +22,11 @@ class AXADatepickerBody extends BaseComponentGlobal {
     month: PropTypes.number,
     day: PropTypes.number,
     allowedYears: PropTypes.arrayOf(PropTypes.number),
+    cells: PropTypes.array
   }
 
   init() {
     super.init({ styles, template });
-    this.datepickerBody = new DatepickerBody(this);
   }
 
   /**
@@ -34,33 +35,73 @@ class AXADatepickerBody extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker-body`;
+    this.store = new Store(this.locale, new Date(this.year, this.month, this.day));
+    this.datepickerBody = new DatepickerBody(this);
+    this.datepickerBody.init(this.index, this.locale, this.year, this.month, this.day, this.allowedYears, this.store);
+    
+    // Set Cells
+    this.props.cells = this.store.cells;
+  }
+
+  get index() {
+    return this.getAttribute('index');
+  }
+
+  set index(value) {
+    this.setAttribute('index', value);
+  }
+
+  get locale() {
+    return this.getAttribute('locale');
+  }
+
+  set locale(value) {
+    this.setAttribute('locale', value);
+  }
+
+  get day() {
+    return this.getAttribute('day');
+  }
+
+  set day(value) {
+    this.setAttribute('day', value);
+  }
+
+  get month() {
+    return this.getAttribute('month');
+  }
+
+  set month(value) {
+    this.setAttribute('month', value);
+  }
+
+  set year(value) {
+    this.setAttribute('year', value);
+  }
+
+  get year() {
+    return this.getAttribute('year');
+  }
+
+  set allowedYears(value) {
+    this.setAttribute('allowed-years', value);
+  }
+
+  get allowedYears() {
+    return this.getAttribute('allowed-years');
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    // TODO Don't forget to cleanup :)
   }
 
-  willRenderCallback() {
-    // @todo: `getAttribute` should be replaced by `this.props.*`
-    let month = getAttribute(this, 'month');
-    month = (month || month === 0) ? month : undefined;
-    let day = getAttribute(this, 'day');
-    day = (day || day === 0) ? day : undefined;
-    const index = getAttribute(this, 'index');
-    const locale = getAttribute(this, 'locale');
-    const year = getAttribute(this, 'year') || undefined;
-    const allowedYears = getAttribute(this, 'allowed-years');
-
-    this.datepickerBody.init(index, locale, year, month, day, allowedYears);
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    if ((name === 'month' || name === 'year') && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null && oldValue !== null) {
-      fire(this, AXA_EVENTS.AXA_CHANGE, null, { bubbles: true, cancelable: true, composed: true });
-    }
-  }
+  // attributeChangedCallback(name, oldValue, newValue) {
+  //   super.attributeChangedCallback(name, oldValue, newValue);
+  //   // this.props.cells = this.store.getCells();
+  //   // if ((name === 'month' || name === 'year') && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null && oldValue !== null) {
+  //   //   fire(this, AXA_EVENTS.AXA_CHANGE, null, { bubbles: true, cancelable: true, composed: true });
+  //   // }
+  // }
 }
 
 defineOnce(AXADatepickerBody.tagName, AXADatepickerBody);
