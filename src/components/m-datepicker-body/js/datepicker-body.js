@@ -34,13 +34,11 @@ export default class DatepickerBody {
   }
 
   prepareCells(index) {
-    console.log('prepare cells', index);
+    if (!index && index !== 0) return;
+
     if (this.selected && !index) {
       const cell = new SelectedDay(this.selected.text, this.selected.index, this.selected.isToday);
       this.store.setCell(this.selected.index, cell);
-    }
-    if (!index && index !== 0) {
-      return;
     }
     const cell = this.store.getCell(index);
     if (cell instanceof CurrentMonth) {
@@ -87,11 +85,16 @@ export default class DatepickerBody {
     // console.log('new date', this.date);
 
     this.updateDate(this.date);
+    
     // set / prepare all cells again according to new selection
     this.store.update(this.date);
 
     // Update dom
     this.wcNode.props.cells = this.store.getCells();
+    this.wcNode.setAttribute('day', this.date.getDate());
+    this.wcNode.setAttribute('index', this.index);
+    this.wcNode.setAttribute('month', this.date.getMonth());
+    this.wcNode.setAttribute('year', this.date.getFullYear());
 
     // Save "last" chosen date
     this.selected = this.date;
@@ -133,9 +136,5 @@ export default class DatepickerBody {
     // if (this.allowedYears && !~this.allowedYears.indexOf(year)) {
     //   return;
     // }
-    this.wcNode.setAttribute('day', date.getDate());
-    this.wcNode.setAttribute('index', this.index);
-    this.wcNode.setAttribute('month', date.getMonth());
-    this.wcNode.setAttribute('year', date.getFullYear());
   }
 }
