@@ -4,7 +4,7 @@ export const TODAY = 'TODAY';
 // https://en.wikipedia.org/wiki/Date_format_by_country
 const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
 
-export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
+export const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   const finalArray = [];
   const objDate = new Date();
   objDate.setDate(1);
@@ -15,7 +15,7 @@ export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
   return finalArray;
 };
 
-export const getCurrentLocaleMonth = (locale = 'en-uk') => {
+export const getCurrentLocaleMonth = (locale = 'en-UK') => {
   const objDate = new Date();
   return objDate.toLocaleString(locale, { month: 'long' });
 };
@@ -45,7 +45,7 @@ export const getSpecificYears = (yearsRange) => {
   return finalArray;
 };
 
-export const getLocalWeekdayArray = (locale = 'en-uk') => {
+export const getLocalWeekdayArray = (locale = 'en-UK') => {
   const finalArray = [];
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
@@ -72,7 +72,7 @@ export const getLocalWeekdayArray = (locale = 'en-uk') => {
   return finalArray;
 };
 
-export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
+export const getNumericWeekday = (locale = 'en-UK', date = new Date()) => {
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
   let currentDay = objDate.getDate();
