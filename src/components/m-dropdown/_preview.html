@@ -1,22 +1,24 @@
-<div style="min-height:200px;">
-  <axa-dropdown title="title" items='[{"name": "Item 1", "url": "#"}, {"name": "Item 2 loooooong", "url": "#"}, {"name": "Item 3", "url": "#"}]'>
+<h2>Enhanced Dropdown</h2>
+ <axa-dropdown
+    classes="m-dropdown"
+    title="Initial Title" 
+    items='[ 
+      {"name": "Item 1", "value": "Item 1", "url": "#", "isSelected": false },
+      {"name": "Item 2", "value": "Item 2", "url": "#", "isSelected": true },
+      {"name": "Item 3", "value": "Item 3", "url": "#", "isSelected": false }
+    ]'
+    >
   </axa-dropdown>
 
-  <axa-dropdown items='[{"name": "Item 1 looooooooong", "url": "#", "value":"a"}, {"name": "Item 2", "url": "#", "value":"b"}, {"name": "Item 3", "url": "#", "value":"c"}]' value="b">
-  </axa-dropdown>
-
-  <axa-dropdown native value="" items='[{"name": "Item 1 empty value", "url": "#", "value":"a"}, {"name": "Item 2", "url": "#", "value":""}, {"name": "Item 3", "url": "#", "value":"c"}]' value="b">
-  </axa-dropdown>
-
-  <axa-dropdown title="title" items='[{"name": "Item 1 looooooooong", "url": "#"}, {"name": "Item 2", "url": "#"}, {"name": "Item 3", "url": "#"}]' in-flow>
-  </axa-dropdown>
-
-  <axa-dropdown size="sm" title="title" items='[{"name": "Item 1 looooooooong", "url": "#"}, {"name": "Item 2", "url": "#"}, {"name": "Item 3", "url": "#"}]' in-flow>
-  </axa-dropdown>
-
-  <axa-dropdown items='[{"name": "Item 1 looooooooong", "url": "#"}, {"name": "Item 2", "url": "#"}, {"name": "Item 3", "url": "#"}]' native>
-  </axa-dropdown>
-
-  <axa-dropdown title="test123" size="sm" items='[{"name": "Item 1 looooooooong", "url": "#"}, {"name": "Item 2", "url": "#"}, {"name": "Item 3", "url": "#"}]' native>
-  </axa-dropdown>
-</div>
+<h2>Native Dropdown</h2>
+<axa-dropdown
+  native
+  classes="m-dropdown"
+  title="Initial Title" 
+  items='[ 
+    {"name": "Short Item", "value": "Short Item", "url": "#", "isSelected": false },
+    {"name": "Longer Item", "value": "Longer Item", "url": "#", "isSelected": true },
+    {"name": "Super Long Item", "value": "Super Long Item", "url": "#", "isSelected": false },
+    {"name": "The longer Item than the box", "value": "The longer Item than the box", "url": "#", "isSelected": false }
+  ]'
+></axa-dropdown>

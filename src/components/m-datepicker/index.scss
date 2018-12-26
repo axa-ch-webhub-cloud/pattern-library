@@ -69,7 +69,7 @@ $datepicker-padding-left-native-dropdown: 8px !default;
   }
 }
 
-.m-datepicker__dropdown__year {
+.m-datepicker__dropdown-year {
   width: $datepicker-dropdown-year-width;
   float: right;
   text-transform: uppercase;
@@ -80,7 +80,7 @@ $datepicker-padding-left-native-dropdown: 8px !default;
   }
 }
 
-.m-datepicker__dropdown__month {
+.m-datepicker__dropdown-month {
   width: $datepicker-dropdown-month-width;
 
   .m-dropdown__toggle,

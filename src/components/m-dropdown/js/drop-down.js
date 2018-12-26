@@ -1,163 +1,142 @@
-import UiEvents, { EVENTS } from '../../../js/ui-events';
+import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
-import { requestAnimationFrame } from '../../../js/request-animation-frame';
-import { add, remove } from '../../../js/class-list';
+import fire from '../../../js/fire';
 
-class DropDown extends UiEvents {
-  static DEFAULTS = {
-    containerClass: '.js-dropdown',
-    toggleClass: 'js-dropdown__toggle',
-    nativeSelectClass: 'js-dropdown__native-select',
-    isOpenClass: 'is-dropdown-open',
-    isAnimatingClass: 'is-dropdown-animating',
-    selectClass: 'js-dropdown__content',
-  }
+const DEFAULTS = {
+  selectClass: 'js-dropdown__content',
+  containerClass: '.js-dropdown',
+  toggleClass: 'js-dropdown__toggle',
+  nativeSelectClass: 'js-dropdown__native-select',
+  isOpenClass: 'is-dropdown-open',
+  isAnimatingClass: 'is-dropdown-animating',
+}
 
-  constructor(wcNode, options) {
+class DropDown {
+  constructor(wcNode) {
     // eslint-disable-next-line no-param-reassign
-    options = {
-      ...DropDown.DEFAULTS,
-      ...options,
-    };
-
-    super(wcNode, options);
-
-    this.options = options;
     this.wcNode = wcNode;
     this.isOpen = false;
-
-    if (this.unInputEnd) {
-      this.unInputEnd();
-    }
-    this.unInputEnd = on(this.wcNode, EVENTS.CHANGE, this.options.nativeSelectClass, this.handleChange, { capture: true, passive: false });
+    this.offDropdownClick = on(this.wcNode, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
+    this.offDropdownValueClick= on(this.wcNode, EVENTS.CLICK, DEFAULTS.selectClass, this.handleDropdownValueClick, { capture: true, passive: false });
+    // this.unInputEnd = on(this.wcNode, EVENTS.CHANGE, this.options.nativeSelectClass, this.handleChange, { capture: true, passive: false });
   }
 
-  onInteractive() {
-    this.offInteractive();
-    this.unTransitionEnd = on(this.wcNode, 'transitionend', this.handleTransitionEnd);
+  // onInteractive() {
+  //   this.offInteractive();
+  //   this.unTransitionEnd = on(this.wcNode, 'transitionend', this.handleTransitionEnd);
+  // }
+
+  // offInteractive() {
+  //   if (this.unTransitionEnd) {
+  //     this.unTransitionEnd();
+  //   }
+  // }
+
+  // enter(node) {
+  //   const { parentNode } = node;
+  //   const { lastElementChild } = parentNode;
+
+  //   if (this.isOpen) {
+  //     return;
+  //   }
+  //   this.isOpen = true;
+
+  //   add(parentNode, this.options.isAnimatingClass);
+
+  //   lastElementChild.style.overflow = 'scroll';
+  //   const { scrollHeight } = lastElementChild;
+  //   lastElementChild.style.overflow = '';
+
+  //   this.onInteractive();
+  //   this.onClicks();
+
+  //   lastElementChild.style.height = `${scrollHeight}px`;
+
+  //   add(parentNode, this.options.isOpenClass);
+  // }
+
+  // leave(node) {
+  //   const { parentNode } = node;
+  //   const { lastElementChild } = parentNode;
+  //   const { scrollHeight } = lastElementChild;
+
+  //   if (!this.isOpen) {
+  //     return;
+  //   }
+  //   this.isOpen = false;
+
+  //   this.onInteractive();
+  //   this.onClicks();
+
+  //   add(parentNode, this.options.isAnimatingClass);
+
+  //   requestAnimationFrame(() => {
+  //     lastElementChild.style.height = `${scrollHeight}px`;
+
+  //     requestAnimationFrame(() => {
+  //       remove(parentNode, this.options.isOpenClass);
+  //       lastElementChild.style.height = 0;
+  //     });
+  //   });
+  // }
+
+  // _removeHeightOnElement(node) {
+  //   if (this.isOpen) {
+  //     node.style.height = '';
+  //   }
+  // }
+
+  // handleTransitionEnd = (e) => {
+  //   if (e.propertyName === 'height') {
+  //     this._removeHeightOnElement(e.target);
+
+  //     this.offInteractive();
+
+  //     remove(this.wcNode, this.options.isAnimatingClass);
+  //   }
+  // }
+
+  handleDropdownClick = (e) => {
+    e.preventDefault();
+    this.toggleDropdown();
   }
 
-  onClicks() {
-    this.offClicks();
-    this.unClickEnd = on(this.wcNode, EVENTS.CLICK, this.options.selectClass, this.handleClick, { capture: true, passive: false });
-  }
-
-  offInteractive() {
-    if (this.unTransitionEnd) {
-      this.unTransitionEnd();
-    }
-  }
-
-  offClicks() {
-    if (this.unClickEnd) {
-      this.unClickEnd();
-    }
-  }
-
-  enter(node) {
-    const { parentNode } = node;
-    const { lastElementChild } = parentNode;
-
-    if (this.isOpen) {
-      return;
-    }
-    this.isOpen = true;
-
-    add(parentNode, this.options.isAnimatingClass);
-
-    lastElementChild.style.overflow = 'scroll';
-    const { scrollHeight } = lastElementChild;
-    lastElementChild.style.overflow = '';
-
-    this.onInteractive();
-    this.onClicks();
-
-    lastElementChild.style.height = `${scrollHeight}px`;
-
-    add(parentNode, this.options.isOpenClass);
-  }
-
-  leave(node) {
-    const { parentNode } = node;
-    const { lastElementChild } = parentNode;
-    const { scrollHeight } = lastElementChild;
-
+  toggleDropdown() {
     if (!this.isOpen) {
-      return;
-    }
-    this.isOpen = false;
-
-    this.onInteractive();
-    this.onClicks();
-
-    add(parentNode, this.options.isAnimatingClass);
-
-    requestAnimationFrame(() => {
-      lastElementChild.style.height = `${scrollHeight}px`;
-
-      requestAnimationFrame(() => {
-        remove(parentNode, this.options.isOpenClass);
-        lastElementChild.style.height = 0;
-      });
-    });
-  }
-
-  _removeHeightOnElement(node) {
-    if (this.isOpen) {
-      node.style.height = '';
-    }
-  }
-
-  handleTransitionEnd = (e) => {
-    if (e.propertyName === 'height') {
-      this._removeHeightOnElement(e.target);
-
-      this.offInteractive();
-
-      remove(this.wcNode, this.options.isAnimatingClass);
-    }
-  }
-
-  handleClick = (e) => {
-    e.preventDefault();
-    this.offClicks();
-    const isTheSame = this.wcNode.getAttribute('value') === e.target.dataset.index;
-
-    if (isTheSame) {
-      this.leave(this.lastToggleNode);
-      this.deleteLastToggleNode();
+      this.wcNode.classList.add(DEFAULTS.isOpenClass);
+      this.isOpen = true;
     } else {
-      const { index } = e.target.dataset;
-      this.wcNode.setAttribute('value', index);
+      this.wcNode.classList.remove(DEFAULTS.isOpenClass);
+      this.isOpen = false;
     }
   }
 
-  handleChange = (e) => {
+  handleDropdownValueClick = (e) => {
     e.preventDefault();
-    if (this.wcNode) {
-      this.wcNode.setAttribute('value', e.target.value);
-    }
+    fire(this.wcNode, AXA_EVENTS.AXA_CHANGE, {...e.target.dataset}, { bubbles: true, cancelable: true });
+    this.toggleDropdown();
+    // this.wcNode.setAttribute('value', e.target.value);
   }
 
-  reset() {
-    const node = this.wcNode.querySelector(this.options.containerClass);
+  // reset() {
+  //   const node = this.wcNode.querySelector(this.options.containerClass);
 
-    if (node) {
-      const { lastElementChild } = node;
+  //   if (node) {
+  //     const { lastElementChild } = node;
 
-      lastElementChild.style.height = '';
-      remove(node, this.options.isOpenClass);
-    }
-  }
+  //     lastElementChild.style.height = '';
+  //     remove(node, this.options.isOpenClass);
+  //   }
+  // }
 
-  destroy() {
-    super.destroy();
+  // destroy() {
+  //   super.destroy();
 
-    this.reset();
+  //   this.reset();
 
-    delete this.wcNode;
-    delete this.options;
-  }
+  //   delete this.wcNode;
+  //   delete this.options;
+  // }
 }
 
 export default DropDown;
