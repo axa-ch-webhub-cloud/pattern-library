@@ -45,6 +45,22 @@ export const getSpecificYears = (yearsRange) => {
   return finalArray;
 };
 
+export const getStartOfWeek = (date) => {
+  const iDayOfWeek = date.getDay();
+  const iDifference = date.getDate() - iDayOfWeek + (iDayOfWeek === 0 ? -6 : 1);
+  return new Date(date.setDate(iDifference));
+}
+
+export const getWeekdays = (date, locale) => {
+  let out = [];
+  let start = getStartOfWeek(date);
+  for (let i = 0; i < 7; i++) {
+    out.push(start.toLocaleString(locale, {weekday: 'short'}));
+    start.setDate(start.getDate() + 1);
+  }
+  return out;
+}
+
 export const getLocalWeekdayArray = (locale = 'en-UK') => {
   const finalArray = [];
   const objDate = new Date();
