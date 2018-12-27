@@ -1,8 +1,7 @@
-export namespace AXAHeaderMobileLanguages {
-  export interface Props {
-    //todo: specify the props
-    [key:string]: any
-  }
+export interface Props {
+  //todo: specify the props
+  [key: string]: any
 }
 
-export interface AXAHeaderMobileLanguages extends HTMLElement, AXAHeaderMobileLanguages.Props {}
+export default interface AXAHeaderMobileLanguages extends HTMLElement, Props {
+}

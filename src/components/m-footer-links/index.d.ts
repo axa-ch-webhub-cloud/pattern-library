@@ -1,8 +1,7 @@
-export namespace AXAFooterLinks {
-  export interface Props {
-    //todo: specify the props
-    [key:string]: any
-  }
+export interface Props {
+  //todo: specify the props
+  [key: string]: any
 }
 
-export interface AXAFooterLinks extends HTMLElement, AXAFooterLinks.Props {}
+export default interface AXAFooterLinks extends HTMLElement, Props {
+}

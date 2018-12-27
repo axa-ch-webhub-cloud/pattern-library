@@ -1,3 +1,4 @@
-import { AXADatepicker } from '../o-datepicker';
+import { Props } from '../o-datepicker';
 
-export interface AXAMDatepicker extends HTMLElement, AXADatepicker.Props {}
+export default interface AXAMDatepicker extends HTMLElement, Props {
+}

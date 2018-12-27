@@ -1,9 +1,8 @@
-export namespace AXAHeaderTopContentBar {
-  export interface Props {
-    //todo: specify the props
-    [key:string]: any
-  }
+export interface Props {
+  //todo: specify the props
+  [key: string]: any
 }
 
-export interface AXAHeaderTopContentBar extends HTMLElement, AXAHeaderTopContentBar.Props {}
+export default interface AXAHeaderTopContentBar extends HTMLElement, Props {
+}
 
