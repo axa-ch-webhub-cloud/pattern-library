@@ -14,8 +14,8 @@ components.bundleLibFiles({
       resolved = path.resolve(path.dirname(parent), id);
     }
 
-    //normalize windows dir separators to allow the following regexp
-    resolved = resolved.replace(/\\/g, "/");
+    //unify dir separators to "/" to allow the following regexp
+    resolved = resolved.split(path.sep).join("/");
 
     return !/\/components\/[amou]-.+\//.test(resolved) && !/\.scss$/i.test(resolved);
   },
