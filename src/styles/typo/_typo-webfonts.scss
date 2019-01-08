@@ -5,7 +5,7 @@
 /// @param {string} $base-path [$font-base-path] - The path where your webfonts are stored.
 @mixin publico-headline($base-path: $font-base-path) {
   @font-face {
-    font-family: 'Publico Headline Web';
+    font-family: 'Publico Headline';
     font-style: normal;
     font-weight: 700;
     src: url('#{$base-path}PublicoHeadline-Bold-Web.eot'); /* IE9 Compat Modes */
