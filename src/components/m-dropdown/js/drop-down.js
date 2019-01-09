@@ -15,9 +15,6 @@ class DropDown {
   constructor(wcNode) {
     // eslint-disable-next-line no-param-reassign
     this.wcNode = wcNode;
-    this.isOpen = false;
-    this.offDropdownClick = on(this.wcNode, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
-    this.offDropdownValueClick= on(this.wcNode, EVENTS.CLICK, DEFAULTS.selectClass, this.handleDropdownValueClick, { capture: true, passive: false });
     // this.unInputEnd = on(this.wcNode, EVENTS.CHANGE, this.options.nativeSelectClass, this.handleChange, { capture: true, passive: false });
   }
 
@@ -96,27 +93,7 @@ class DropDown {
   //   }
   // }
 
-  handleDropdownClick = (e) => {
-    e.preventDefault();
-    this.toggleDropdown();
-  }
 
-  toggleDropdown() {
-    if (!this.isOpen) {
-      this.wcNode.classList.add(DEFAULTS.isOpenClass);
-      this.isOpen = true;
-    } else {
-      this.wcNode.classList.remove(DEFAULTS.isOpenClass);
-      this.isOpen = false;
-    }
-  }
-
-  handleDropdownValueClick = (e) => {
-    e.preventDefault();
-    fire(this.wcNode, AXA_EVENTS.AXA_CHANGE, {...e.target.dataset}, { bubbles: true, cancelable: true });
-    this.toggleDropdown();
-    // this.wcNode.setAttribute('value', e.target.value);
-  }
 
   // reset() {
   //   const node = this.wcNode.querySelector(this.options.containerClass);
