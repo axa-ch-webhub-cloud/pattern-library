@@ -1,11 +1,9 @@
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import classnames from 'classnames';
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import urlPropType from '../../js/prop-types/url-prop-type';
-import valuePropType from '../../js/prop-types/value-prop-type';
 import on from '../../js/on';
 import fire from '../../js/fire';
 import { EVENTS, AXA_EVENTS } from '../../js/ui-events';
@@ -42,18 +40,14 @@ class AXADropdown extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    // TODO:: this is inited like 4 times... but must come before attributeChanged callback.
     this.selectedItem = this.items.filter((item) => item.isSelected)[0];
-    
-    if (!this.title) {
-      this.title = this.selectedItem.name;
-    }
+    // TODO:: this is inited like 4 times... but must come before attributeChanged callback.
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-dropdown`;
-    this.isOpen = false; // use props.isOpen
+    this.isOpen = false; // use props.isOpen?
 
     this.onDropdownClick = on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
     this.onDropdownValueClick= on(this, EVENTS.CLICK, DEFAULTS.selectClass, this.handleDropdownValueClick, { capture: true, passive: false });
