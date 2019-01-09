@@ -3,7 +3,6 @@ import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import localePropType from '../../js/prop-types/locale-prop-type';
-import getAttribute from '../../js/get-attribute';
 import styles from './index.scss';
 import template from './_template';
 import DatepickerBody from './js/datepicker-body';
@@ -22,23 +21,20 @@ class AXADatepickerBody extends BaseComponentGlobal {
     month: PropTypes.number,
     day: PropTypes.number,
     allowedYears: PropTypes.arrayOf(PropTypes.number),
-    cells: PropTypes.array
+    cells: PropTypes.arrayOf(PropTypes.object),
   }
 
   init() {
     super.init({ styles, template });
   }
 
-  /**
-   * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-   */
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker-body`;
     this.store = new Store(this.locale, new Date(this.year, this.month, this.day));
     this.datepickerBody = new DatepickerBody(this);
     this.datepickerBody.init(this.index, this.locale, this.year, this.month, this.day, this.allowedYears, this.store);
-    
+
     // Set Cells
     this.props.cells = this.store.cells;
   }
@@ -59,12 +55,12 @@ class AXADatepickerBody extends BaseComponentGlobal {
     this.setAttribute('locale', value);
   }
 
-  get day() {
-    return this.getAttribute('day');
+  set year(value) {
+    this.setAttribute('year', value);
   }
 
-  set day(value) {
-    this.setAttribute('day', value);
+  get year() {
+    return this.getAttribute('year');
   }
 
   get month() {
@@ -75,12 +71,12 @@ class AXADatepickerBody extends BaseComponentGlobal {
     this.setAttribute('month', value);
   }
 
-  set year(value) {
-    this.setAttribute('year', value);
+  get day() {
+    return this.getAttribute('day');
   }
 
-  get year() {
-    return this.getAttribute('year');
+  set day(value) {
+    this.setAttribute('day', value);
   }
 
   set allowedYears(value) {
@@ -95,13 +91,42 @@ class AXADatepickerBody extends BaseComponentGlobal {
     super.disconnectedCallback();
   }
 
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   super.attributeChangedCallback(name, oldValue, newValue);
-  //   // this.props.cells = this.store.getCells();
-  //   // if ((name === 'month' || name === 'year') && this.shouldUpdateCallback(newValue, oldValue) && newValue !== null && oldValue !== null) {
-  //   //   fire(this, AXA_EVENTS.AXA_CHANGE, null, { bubbles: true, cancelable: true, composed: true });
-  //   // }
-  // }
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    const newDate = new Date(this.date);
+    let isNewDate = false;
+
+    if (name === 'day') {
+      isNewDate = true;
+      newDate.setDate(parseInt(newValue, 10));
+      if (this.store) {
+        this.store.update(newDate);
+        this.props.cells = this.store.getCells();
+      }
+    }
+
+    if (name === 'year') {
+      isNewDate = true;
+      newDate.setFullYear(parseInt(newValue, 10));
+      if (this.store) {
+        this.store.update(newDate);
+        this.props.cells = this.store.getCells();
+      }
+    }
+
+    if (name === 'month') {
+      isNewDate = true;
+      newDate.setMonth(parseInt(newValue, 10));
+      if (this.store) {
+        this.store.update(newDate);
+        this.props.cells = this.store.getCells();
+      }
+    }
+
+    if (isNewDate) {
+      fire(this, AXA_EVENTS.AXA_CHANGE, newDate, { bubbles: true, cancelable: true, composed: true });
+    }
+  }
 }
 
 defineOnce(AXADatepickerBody.tagName, AXADatepickerBody);

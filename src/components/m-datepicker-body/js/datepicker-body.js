@@ -1,7 +1,6 @@
 import { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
-import { CurrentMonth, Today, SelectedDay, LastMonth, NextMonth, Cell } from './cells';
-import Store from './store';
+import { CurrentMonth, SelectedDay, LastMonth, NextMonth } from './cells';
 
 export default class DatepickerBody {
   constructor(wcNode) {
@@ -19,10 +18,17 @@ export default class DatepickerBody {
 
     // Create dates to work with from init values (dom..)
     this.date = new Date(this.year, this.month, this.day);
+    this.wcNode.date = this.date;
     this.selected = this.date;
 
     this.prepareCells(index);
-    this.listenToCells();
+
+    this.unClickEnd = on(
+      this.wcNode, EVENTS.CLICK, 'js-datepicker-body',
+      this.handleClick, {
+        capture: true, passive: false,
+      },
+    );
 
     if (month || month === 0) {
       this.date.setMonth(month);
@@ -46,16 +52,6 @@ export default class DatepickerBody {
     }
   }
 
-  listenToCells() {
-    this.offClicks();
-    this.unClickEnd = on(
-      this.wcNode, EVENTS.CLICK, 'js-datepicker-body',
-      this.handleClick, {
-        capture: true, passive: false,
-      },
-    );
-  }
-
   offClicks() {
     if (this.unClickEnd) {
       this.unClickEnd();
@@ -67,74 +63,24 @@ export default class DatepickerBody {
     this.index = parseInt(e.target.dataset.index, 10);
     this.cell = this.store.getCell(this.index);
     this.date = new Date();
+    this.date.setFullYear(this.wcNode.year);
 
     // Check if we click on a "grey" cell of an prev or next month
     if (this.cell instanceof NextMonth) {
-        this.date.setMonth(this.wcNode.month + 1);
-    } 
-    
+      this.date.setMonth(this.wcNode.month + 1);
+      this.wcNode.month = this.date.getMonth();
+    }
+
     if (this.cell instanceof LastMonth) {
-        this.date.setMonth(this.wcNode.month - 1);
-    } 
-    
-    // Set the day to the chosen day
+      this.date.setMonth(this.wcNode.month - 1);
+      this.wcNode.month = this.date.getMonth();
+    }
+
     this.date.setDate(parseInt(this.cell.text, 10));
+    this.wcNode.day = this.date.getDate();
+    this.wcNode.index = this.index;
 
-    // Update the dom node
-    // console.log('sel date', this.selected);
-    // console.log('new date', this.date);
-
-    this.updateDate(this.date);
-    
-    // set / prepare all cells again according to new selection
-    this.store.update(this.date);
-
-    // Update dom
-    this.wcNode.props.cells = this.store.getCells();
-    this.wcNode.setAttribute('day', this.date.getDate());
-    this.wcNode.setAttribute('index', this.index);
-    this.wcNode.setAttribute('month', this.date.getMonth());
-    this.wcNode.setAttribute('year', this.date.getFullYear());
-
-    // Save "last" chosen date
+    // Set the day to the chosen day
     this.selected = this.date;
-  }
-
-  // changeDay(cell, index) {
-  //   const newcell = new SelectedDay(cell.text, index, true);
-  //   // this.store.cells = this.store.cells.map(c => c instanceof Today ? newcell : c);
-  //   this.store.setCell(cell.index, newcell);
-  //   this.wcNode.setAttribute('value', cell.text);
-  //   this.wcNode.setAttribute('index', cell.index);
-  // }
-
-  cleanupValueIndex() {
-    this.wcNode.removeAttribute('index');
-    this.wcNode.removeAttribute('value');
-  }
-
-  handleCurrentMonth(index, cell) {
-    console.log('current month', index, cell);
-    // if (this.selected !== null) {
-    //   const lastIndex = this.selected.index;
-    //   const isToday = this.selected.isToday;
-    //   const lastText = this.selected.text;
-    //   const lastcell = new CurrentMonth(lastText, lastIndex, isToday);
-    //   this.store.setCell(lastIndex, lastcell);
-    // }
-
-    // const newcell = new SelectedDay(cell.text, cell.index, cell.isToday);
-    // this.store.setCell(index, newcell);
-    // this.selected = newcell;
-    // if (!newcell.isToday) {
-    //   this.store.cells = this.store.cells.map(c => c instanceof Today ? new CurrentMonth(c.text, c.index, true) : c);
-    // }
-  }
-
-  updateDate(date) {
-    // TODO:: don't do this allowed year check here..
-    // if (this.allowedYears && !~this.allowedYears.indexOf(year)) {
-    //   return;
-    // }
   }
 }

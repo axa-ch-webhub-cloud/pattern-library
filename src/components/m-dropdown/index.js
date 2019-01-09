@@ -15,7 +15,7 @@ const DEFAULTS = {
   nativeSelectClass: 'js-dropdown__native-select',
   isOpenClass: 'is-dropdown-open',
   isAnimatingClass: 'is-dropdown-animating',
-}
+};
 
 class AXADropdown extends BaseComponentGlobal {
   static tagName = 'axa-dropdown';
@@ -26,7 +26,7 @@ class AXADropdown extends BaseComponentGlobal {
       name: PropTypes.string,
       url: urlPropType,
       value: PropTypes.string,
-      isSelected: PropTypes.bool
+      isSelected: PropTypes.bool,
     })),
     native: PropTypes.bool,
     size: PropTypes.oneOf(['sm']),
@@ -34,14 +34,13 @@ class AXADropdown extends BaseComponentGlobal {
     value: PropTypes.string,
   }
 
-  static get observedAttributes() { 
+  static get observedAttributes() {
     return ['items', 'title', 'native'];
   }
 
   init() {
-    super.init({ styles, template });
-    this.selectedItem = this.items.filter((item) => item.isSelected)[0];
-    // TODO:: this is inited like 4 times... but must come before attributeChanged callback.
+    super.init({ styles, template }); // eslint-disable-next-line prefer-destructuring
+    this.selectedItem = this.items.filter(item => item.isSelected)[0];
   }
 
   connectedCallback() {
@@ -49,9 +48,12 @@ class AXADropdown extends BaseComponentGlobal {
     this.className = `${this.initialClassName} m-dropdown`;
     this.isOpen = false; // use props.isOpen?
 
-    this.onDropdownClick = on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
-    this.onDropdownValueClick= on(this, EVENTS.CLICK, DEFAULTS.selectClass, this.handleDropdownValueClick, { capture: true, passive: false });
-    this.onDropdownValueChange = on(this, AXA_EVENTS.AXA_CHANGE, this.handleDropdownValueChange, { capture: true, passive: false, } );
+    this.onDropdownClick =
+      on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
+    this.onDropdownValueClick =
+      on(this, EVENTS.CLICK, DEFAULTS.selectClass, this.handleDropdownValueClick, { capture: true, passive: false });
+    this.onDropdownValueChange =
+      on(this, AXA_EVENTS.AXA_CHANGE, this.handleDropdownValueChange, { capture: true, passive: false });
   }
 
   handleDropdownClick = (e) => {
@@ -63,7 +65,7 @@ class AXADropdown extends BaseComponentGlobal {
     e.preventDefault();
     e.stopPropagation();
     this.toggleDropdown();
-    fire(this, AXA_EVENTS.AXA_CHANGE, {...e.target.dataset}, { bubbles: true, cancelable: true });
+    fire(this, AXA_EVENTS.AXA_CHANGE, { ...e.target.dataset }, { bubbles: true, cancelable: true });
   }
 
   handleDropdownValueChange(e) {
@@ -86,7 +88,7 @@ class AXADropdown extends BaseComponentGlobal {
 
   updateCurrentItem(value) {
     this.items = this.items.map((item) => {
-      if (item.value == value) {
+      if (item.value === value) {
         item.isSelected = true;
         this.selectedItem = item;
       } else {
@@ -102,8 +104,8 @@ class AXADropdown extends BaseComponentGlobal {
 
     // Update title and value when current item changes
     if (hasValue && name === 'items' && this.selectedItem) {
-        this.title = this.selectedItem.name;
-        this.value = this.selectedItem.value;
+      this.title = this.selectedItem.name;
+      this.value = this.selectedItem.value;
     }
   }
 
