@@ -8,7 +8,7 @@ import valuePropType from '../../js/prop-types/value-prop-type';
 import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
-import DropDown from '../m-dropdown/js/drop-down';
+// import DropDown from '../m-dropdown/js/drop-down';
 import fire from '../../js/fire';
 import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
 import on from '../../js/on';
@@ -65,22 +65,24 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
-    if (this.dropDown) {
-      this.dropDown.destroy();
-    }
+    // if (this.dropDown) {
+    //   this.dropDown.destroy();
+    // }
 
-    this.dropDown = new DropDown(this, {
-      containerClass: null,
-    });
+    // Ttemp disable the dropdown
+    // this.dropDown = new DropDown(this, {
+    //   containerClass: null,
+    // });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    if (this.dropDown) {
-      this.dropDown.destroy();
-      delete this.dropDown;
-    }
+    // Temp disable the dropdown
+    // if (this.dropDown) {
+    //   this.dropDown.destroy();
+    //   delete this.dropDown;
+    // }
 
     if (this.unClickEnd) {
       this.unClickEnd();

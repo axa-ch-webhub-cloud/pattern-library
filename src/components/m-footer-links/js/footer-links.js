@@ -3,7 +3,6 @@ import fire from '../../../js/fire';
 import getAttribute from '../../../js/get-attribute';
 import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 import DeviceStateObserver from '../../../js/device-state';
-import DropDown from '../../m-dropdown/js/drop-down';
 
 const hasDropdownBreakpoints = 'xs';
 
@@ -33,16 +32,14 @@ export default class FooterLinks {
   on() {
     this.off();
 
-    const { wcNode } = this;
-
     this.unsubscribe = this.deviceStateObserver.listen((state) => {
       const { breakpoint } = state;
       const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
 
       if (hasDropdown && !this.dropDown) {
-        this.dropDown = new DropDown(wcNode);
+        // this.dropDown = new DropDown(wcNode);
       } else if (!hasDropdown && this.dropDown) {
-        this.dropDown.destroy();
+        // this.dropDown.destroy();
         delete this.dropDown;
       }
     });
