@@ -37,7 +37,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   static get observedAttributes() { 
-    return ['title', 'items', 'native'];
+    return ['items', 'title', 'native'];
   }
 
   init() {
