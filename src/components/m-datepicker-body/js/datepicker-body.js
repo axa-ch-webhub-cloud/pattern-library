@@ -24,7 +24,7 @@ export default class DatepickerBody {
     this.prepareCells(index);
 
     this.unClickEnd = on(
-      this.wcNode, EVENTS.CLICK, 'js-datepicker-body',
+      this.wcNode, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
       this.handleClick, {
         capture: true, passive: false,
       },
