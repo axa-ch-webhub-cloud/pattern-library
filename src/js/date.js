@@ -45,6 +45,25 @@ export const getSpecificYears = (yearsRange) => {
   return finalArray;
 };
 
+// Respects current timezone of the date object we convert to "iso like format"
+export const toLocalISOString = (date) => {
+  // ISO 8601
+  const d = date;
+  const pad = n => n < 10 ? `0${n}` : n;
+  const tz = d.getTimezoneOffset(); // mins
+  let tzs = (tz > 0 ? '-' : '+') + pad(parseInt(tz / 60, 10));
+
+  if (tz % 60 !== 0) { tzs += pad(tz % 60); }
+  if (tz === 0) { tzs = 'Z'; }
+
+  return `${d.getFullYear()}-${
+    pad(d.getMonth() + 1)}-${
+    pad(d.getDate())}T${
+    pad(d.getHours())}:${
+    pad(d.getMinutes())}:${
+    pad(d.getSeconds())}${tzs}`;
+};
+
 export const getStartOfWeek = (date) => {
   const iDayOfWeek = date.getDay();
   const iDifference = (date.getDate() - iDayOfWeek) + (iDayOfWeek === 0 ? -6 : 1);

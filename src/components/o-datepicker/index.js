@@ -2,7 +2,7 @@ import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import localePropType from '../../js/prop-types/locale-prop-type';
-import { parseLocalisedDateIfValid } from '../../js/date';
+import { parseLocalisedDateIfValid, toLocalISOString } from '../../js/date';
 import styles from './index.scss';
 import template from './_template';
 import on from '../../js/on';
@@ -105,7 +105,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   updateDate(date) {
-    this.value = this.toLocalISOString(date);
+    this.value = toLocalISOString(date);
     this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
@@ -116,24 +116,24 @@ class AXADatepicker extends BaseComponentGlobal {
     this.datepickerBody.setAttribute('year', date.getFullYear());
   }
 
-  // Respects current timezone of the date object we convert to "iso like format"
-  toLocalISOString = (date) => {
-    // ISO 8601
-    const d = date;
-    const pad = n => n < 10 ? `0${n}` : n;
-    const tz = d.getTimezoneOffset(); // mins
-    let tzs = (tz > 0 ? '-' : '+') + pad(parseInt(tz / 60, 10));
+  // // Respects current timezone of the date object we convert to "iso like format"
+  // toLocalISOString = (date) => {
+  //   // ISO 8601
+  //   const d = date;
+  //   const pad = n => n < 10 ? `0${n}` : n;
+  //   const tz = d.getTimezoneOffset(); // mins
+  //   let tzs = (tz > 0 ? '-' : '+') + pad(parseInt(tz / 60, 10));
 
-    if (tz % 60 !== 0) { tzs += pad(tz % 60); }
-    if (tz === 0) { tzs = 'Z'; }
+  //   if (tz % 60 !== 0) { tzs += pad(tz % 60); }
+  //   if (tz === 0) { tzs = 'Z'; }
 
-    return `${d.getFullYear()}-${
-      pad(d.getMonth() + 1)}-${
-      pad(d.getDate())}T${
-      pad(d.getHours())}:${
-      pad(d.getMinutes())}:${
-      pad(d.getSeconds())}${tzs}`;
-  }
+  //   return `${d.getFullYear()}-${
+  //     pad(d.getMonth() + 1)}-${
+  //     pad(d.getDate())}T${
+  //     pad(d.getHours())}:${
+  //     pad(d.getMinutes())}:${
+  //     pad(d.getSeconds())}${tzs}`;
+  // }
 
   closeDatepicker() {
     this.open = false;

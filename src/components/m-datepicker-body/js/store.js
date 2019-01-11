@@ -1,4 +1,5 @@
 import { CurrentMonth, LastMonth, NextMonth } from './cells';
+import { toLocalISOString } from '../../../js/date';
 
 export default class Store {
   constructor(locale, date) {
@@ -36,20 +37,23 @@ export default class Store {
       const dateCell = {};
       const dayToStart = startDay - 1;
 
+      // Careful! We are calculating and working with standard ISO-dates. They might not show the same date as the local one in the given timezone.
+      // So for the user we are converting it back to the locale via .toLocaleDateString('de-CH|this.locale', options)
+      // Proof! -> new Date(Date.parse('2020-01-22T23:00:00.000Z')).toLocaleDateString('de-CH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      // ------> "Donnerstag, 23. Januar 2020" (the iso date has it's day on the 22. of January)
+
       // Previous month dates (if month does not start on Sunday)
       if (i < dayToStart) {
         dateCell.date = new Date(year, month - 1, prevMonthDay);
-        dateCell.type = 'prev';
         dateCell.isToday = false;
-        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.getDate(), i, false, false);
+        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false);
         prevMonthDay += 1;
 
       // Next month dates (if month does not end on Saturday)
-      } else if (i > currentMonthTotalDays + (dayToStart - 2)) {
+      } else if (i > currentMonthTotalDays + (dayToStart - 1)) {
         dateCell.date = new Date(year, month + 1, nextMonthDay);
-        dateCell.type = 'next';
         dateCell.isToday = false;
-        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.getDate(), i, false, false);
+        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false);
         nextMonthDay += 1;
 
       // Current month dates. */
@@ -58,9 +62,8 @@ export default class Store {
         const isToday = currentDate.toDateString() === today.toDateString();
         const isSelected = currentDate.toDateString() === date.toDateString();
         dateCell.date = currentDate;
-        dateCell.type = 'current';
         dateCell.isToday = isToday;
-        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.getDate(), i, isToday, isSelected);
+        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.toISOString(), i, isToday, isSelected);
       }
 
       dates.push(dateCell);

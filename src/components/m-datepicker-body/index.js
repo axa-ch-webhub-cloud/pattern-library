@@ -52,26 +52,12 @@ class AXADatepickerBody extends BaseComponentGlobal {
   handleDatepickerBodyCellClick(e) {
     e.preventDefault();
     const index = parseInt(e.target.dataset.index, 10);
-    const cell = this.store.getCell(index);
-    this.date = new Date();
-    this.date.setFullYear(this.year);
-
-    // Check if we click on a "grey" cell of an prev or next month
-    if (cell instanceof NextMonth) {
-      this.date.setMonth(this.month + 1);
-      this.month = this.date.getMonth();
-    }
-
-    if (cell instanceof LastMonth) {
-      this.date.setMonth(this.month - 1);
-      this.month = this.date.getMonth();
-    }
-
-    this.date.setDate(parseInt(cell.text, 10)); // TODO:: save value in data-value than taking the text inner html field.
+    // We parse the iso date to work with
+    this.date = new Date(Date.parse(e.target.dataset.value));
     this.day = this.date.getDate();
+    this.year = this.date.getFullYear();
+    this.month = this.date.getMonth();
     this.index = index;
-
-    console.log('handleDatepickerBodyCellClick(). set date', this.date);
 
     // Set the day to the chosen day
     this.selected = this.date;
