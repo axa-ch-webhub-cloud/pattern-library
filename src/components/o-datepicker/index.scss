@@ -6,8 +6,7 @@ $input-logo-padding-right: 20px !default;
 
 .o-datepicker {
   position: relative;
-
-  display: block;
+  display: inline-block; // important for onbody click close event
 }
 
 .o-datepicker__calendar {
