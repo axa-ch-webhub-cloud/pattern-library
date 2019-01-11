@@ -46,8 +46,7 @@ export default ({
       <axa-button class="m-datepicker__button-borderless m-datepicker__button-cancel js-datepicker__button-cancel"
         tag="button" ghost>${buttonCancel}</axa-button>
       <axa-button class="m-datepicker__button-borderless m-datepicker__button-ok js-datepicker__button-ok"
-        tag="button" ghost>${buttonOk}</axa-button>
+        tag="button">${buttonOk}</axa-button>
       </div> 
     </article>
-    
   `;
