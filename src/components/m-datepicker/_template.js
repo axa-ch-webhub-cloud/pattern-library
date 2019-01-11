@@ -16,6 +16,7 @@ export default ({
   allowedYears = [],
 }) => html`
     <article class="${classes} m-datepicker__article">
+
       <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
         size="sm"
         month="true"
