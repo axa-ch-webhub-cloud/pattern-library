@@ -56,7 +56,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
       }));
 
       const years = getSpecificYears({ lowerEndYear: this.props.lowerEndYear, higherEndYear: this.props.higherEndYear });
- 
+
       this.props.yearItems = years.map((item, index) => ({
         isSelected: index === 0,
         name: item.toString(),
