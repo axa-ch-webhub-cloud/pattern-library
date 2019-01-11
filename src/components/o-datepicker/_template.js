@@ -4,15 +4,15 @@ import { getLocaleDayMonthYear } from '../../js/date';
 
 export default ({
   classes,
-  locale = 'en-UK',
+  locale,
   outputValue = '',
-  open,
+  open = false,
   lowerEndYear = '',
   higherEndYear = '',
   startDateYear = [],
   startDateMonth = [],
   startDateDay = [],
-  allowedYears = [],
+  allowedYears,
   buttonOk = 'ok',
   buttonCancel = 'cancel',
 }) => html`
