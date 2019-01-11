@@ -18,7 +18,6 @@ export default function ({
           type="${type}"
           placeholder="${placeholder}"
           value="${value}"
-          icon="${icon}"
           disabled="${disabled}">
           <span class="a-input__valid-icon"></span>
           ${icon ? html`<button class="a-input__icon-button js-input__icon-button" type="button">
