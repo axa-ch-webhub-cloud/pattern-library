@@ -32,7 +32,7 @@ export default ({
       </axa-dropdown>
 
       <div class="m-datepicker__weekdays">
-        ${weekdays.map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`)}
+        ${weekdays ? weekdays.map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`) : ''}
       </div>
 
       <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body"
