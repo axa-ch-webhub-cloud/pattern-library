@@ -46,7 +46,7 @@ class AXADatepicker extends BaseComponentGlobal {
     // Listen to fired events of sub component datepicker calendar
     this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
     this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
-
+    
     if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
     }
@@ -89,6 +89,8 @@ class AXADatepicker extends BaseComponentGlobal {
 
   // TODO:: loses focus and day is not accurate
   handleDatepickerChangeDate = (e) => {
+    console.log('date chanchaged', e);
+
     if (e.detail.value !== '') {
       this.updateDate(e.detail.value);
       this.closeDatepicker();
