@@ -13,40 +13,44 @@ export default class Store {
   }
 
   getMonthInformation(year, month) {
-    const startDate = new Date(year, month, 1);
-    const endDate = new Date(year, month + 1, 0); /* 0 `day` gets last day from prior month */
-    const today = new Date();
-    /* result of getDay(): 0 means Sunday and 6 means Saturday */
-    const startDay = startDate.getDay(); // -1.. coz we start on monday which is not the default int us dates. they start on sundays
-    /* last day number = total days in current month */
-    const currentMonthTotalDays = endDate.getDate();
-    // const totalWeeks = Math.ceil((currentMonthTotalDays + startDay) / 7);
+    // exmpale year: 2019: month: 01
+    const startDate = new Date(year, month, 1); // Tue 01 2019 00:00:00 GMT+0100
+    const endDate = new Date(year, month + 1, 0); // // Thu 31 2019 00:00:00 GMT+0100
 
-    const prevMonthEndDate = new Date(year, month - 1, 0);
-    let prevMonthDay = (prevMonthEndDate.getDate() - startDay + 1);
-    console.log('predv month day', prevMonthEndDate, ' ', prevMonthDay);
+    const startDay = startDate.getDay(); // 2 (Tuesday) 0 is Sunday and 6 is Saturday
+    const currentMonthTotalDays = endDate.getDate(); // 31 // Day of the current month.
+
+    const prevMonthEndDate = new Date(year, month, 0); // 31. Dec. 2019
+    const prevMontLastDay = prevMonthEndDate.getDate(); // ie. 31
     let nextMonthDay = 1;
 
+    prevMonthEndDate.setDate(prevMontLastDay - (startDay - 2)); // rewind as many days to the start of the current day of month
+
+    let prevMonthDay = prevMonthEndDate.getDate();
+
+    const today = new Date();
     const dates = [];
     for (let i = 0; i < 42; i += 1) {
       const date = {};
       const dayToStart = startDay - 1;
 
-      /* Previous month dates (if month does not start on Sunday) */
+      // Previous month dates (if month does not start on Sunday)
       if (i < dayToStart) {
         date.date = new Date(year, month - 1, prevMonthDay);
         date.type = 'prev';
         date.isToday = false;
         date.cell = new LastMonth(date.date.getDate(), i, false);
         prevMonthDay += 1;
-      /* Next month dates (if month does not end on Saturday) */
-      } else if (i > currentMonthTotalDays + (dayToStart - 1)) {
+
+      // Next month dates (if month does not end on Saturday)
+      } else if (i > currentMonthTotalDays + (dayToStart - 2)) {
         date.date = new Date(year, month + 1, nextMonthDay);
         date.type = 'next';
         date.isToday = false;
         date.cell = new NextMonth(date.date.getDate(), i, false);
         nextMonthDay += 1;
-        /* Current month dates. */
+
+      // Current month dates. */
       } else {
         const currentDate = new Date(year, month, (i - dayToStart) + 1);
         const isToday = currentDate.toDateString() === today.toDateString();
@@ -57,7 +61,7 @@ export default class Store {
       }
       dates.push(date);
     }
-    console.log('dates', dates);
+
     return dates;
   }
 
