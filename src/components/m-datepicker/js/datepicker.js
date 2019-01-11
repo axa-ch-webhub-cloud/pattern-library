@@ -64,9 +64,13 @@ export default class Datepicker {
 
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
-    const month = e.detail.index;
+    const month = e.detail.value;
     if (month) {
-      this.datepickerBody.setAttribute('month', month);
+      const newDate = this.datepickerBody.getAttribute('date');
+      const parsedDate = new Date(Date.parse(newDate));
+      parsedDate.setMonth(month);
+
+      this.datepickerBody.setAttribute('date', parsedDate.toISOString());
     }
   }
 
@@ -74,16 +78,21 @@ export default class Datepicker {
     e.preventDefault();
     const year = e.detail.value;
     if (year) {
-      this.datepickerBody.setAttribute('year', year);
+      const newDate = this.datepickerBody.getAttribute('date');
+      const parsedDate = new Date(Date.parse(newDate));
+      parsedDate.setFullYear(year);
+      this.datepickerBody.setAttribute('date', parsedDate.toISOString());
     }
   }
 
   handleChangeDatepickerBody = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (e.detail) {
-      this.dropdownMonth.setAttribute('value', e.detail.getMonth());
-      this.dropdownYear.setAttribute('value', e.detail.getFullYear());
+      const parsedDate = new Date(Date.parse(e.detail));
+      this.dropdownMonth.setAttribute('value', parsedDate.getMonth());
+      this.dropdownYear.setAttribute('value', parsedDate.getFullYear());
     }
   }
 

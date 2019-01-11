@@ -128,20 +128,14 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    const newDate = new Date(this.date);
-    let isNewDate = false;
 
     if (name === 'date') {
-      const parsedDate = new Date(Date.parse(newValue));
       if (this.store) {
-        this.store.update(parsedDate);
+        const newDate = new Date(this.date);
+        this.store.update(newDate);
         this.props.cells = this.store.getCells();
-        isNewDate = true;
+        fire(this, AXA_EVENTS.AXA_CHANGE, newDate, { bubbles: true, cancelable: true, composed: true });
       }
-    }
-
-    if (isNewDate) {
-      fire(this, AXA_EVENTS.AXA_CHANGE, newDate, { bubbles: true, cancelable: true, composed: true });
     }
   }
 }

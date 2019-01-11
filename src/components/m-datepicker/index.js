@@ -51,7 +51,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
       this.props.monthItems = getAllLocaleMonthsArray(this.props.locale).map((item, index) => ({
         isSelected: index === this.props.startDateMonth - 1,
         name: item.toString(),
-        value: item.toString(),
+        value: index.toString(),
         url: item.url,
       }));
 

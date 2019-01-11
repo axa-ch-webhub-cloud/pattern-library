@@ -35,7 +35,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   static get observedAttributes() {
-    return ['items', 'title', 'native'];
+    return ['items', 'title', 'native', 'value'];
   }
 
   init() {
@@ -102,10 +102,13 @@ class AXADropdown extends BaseComponentGlobal {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
 
+    if (hasValue && name === 'value') {
+      this.updateCurrentItem(newValue.toString());
+    }
+
     // Update title and value when current item changes
     if (hasValue && name === 'items' && this.selectedItem) {
       this.title = this.selectedItem.name;
-      this.value = this.selectedItem.value;
     }
   }
 
