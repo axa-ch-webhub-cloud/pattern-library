@@ -62,24 +62,6 @@ export default class Datepicker {
     this.deviceStateObserver.triggerOnce();
   }
 
-  offListenToDeviceStateChange() {
-    if (this.unListenToDeviceStateChange) {
-      this.unListenToDeviceStateChange();
-    }
-  }
-
-  offListenToChanges() {
-    if (this.unListenToDropdownMonth) {
-      this.unListenToDropdownMonth();
-    }
-    if (this.unListenToDropdownYear) {
-      this.unListenToDropdownYear();
-    }
-    if (this.unListenToDatepickerBody) {
-      this.unListenToDatepickerBody();
-    }
-  }
-
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
     const month = e.detail.index;
