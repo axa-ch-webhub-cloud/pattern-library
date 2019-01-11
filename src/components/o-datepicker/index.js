@@ -15,12 +15,18 @@ class AXADatepicker extends BaseComponentGlobal {
     classes: PropTypes.string,
     locale: localePropType,
     open: PropTypes.bool,
-    lowerEndYear: PropTypes.number,
-    buttonCancel: PropTypes.string,
-    buttonOk: PropTypes.string,
-    higherEndYear: PropTypes.number,
     value: PropTypes.string,
     outputValue: PropTypes.string,
+
+    buttonCancel: PropTypes.string,
+    buttonOk: PropTypes.string,
+
+    startDateYear: PropTypes.number,
+    startDateMonth: PropTypes.number,
+    startDateDay: PropTypes.number,
+    allowedYears: PropTypes.arrayOf(PropTypes.number),
+    lowerEndYear: PropTypes.number,
+    higherEndYear: PropTypes.number,
   }
 
   init() {
