@@ -36,7 +36,6 @@ export default ({
       </div>
 
       <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body"
-        allowed-years='${JSON.stringify(allowedYears)}'
         year="${startDateYear}" 
         month="${startDateMonth}" 
         day="${startDateDay}" 

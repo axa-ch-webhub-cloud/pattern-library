@@ -7,10 +7,9 @@ export default class DatepickerBody {
     this.wcNode = wcNode;
   }
 
-  init(index, locale, date, allowedYears, store) {
+  init(index, locale, date, store) {
     this.store = store;
     this.index = index;
-    this.allowedYears = allowedYears;
     this.locale = locale;
     this.date = date;
     this.selected = this.date;

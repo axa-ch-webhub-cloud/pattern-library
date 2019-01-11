@@ -20,7 +20,6 @@ class AXADatepickerBody extends BaseComponentGlobal {
     year: PropTypes.number,
     month: PropTypes.number,
     day: PropTypes.number,
-    allowedYears: PropTypes.arrayOf(PropTypes.number),
     cells: PropTypes.arrayOf(PropTypes.object),
   }
 
@@ -34,7 +33,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
     this.date = new Date(this.props.year, this.props.month - 1, this.props.day);
     this.store = new Store(this.locale, this.date);
     this.datepickerBody = new DatepickerBody(this);
-    this.datepickerBody.init(this.index, this.locale, this.date, this.allowedYears, this.store);
+    this.datepickerBody.init(this.index, this.locale, this.date, this.store);
 
     // Set Cells
     this.props.cells = this.store.cells;
