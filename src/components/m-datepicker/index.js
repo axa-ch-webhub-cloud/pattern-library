@@ -41,33 +41,34 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     init() {
       super.init({ styles, template });
-
-      // This method is triggered up to a millions times.... but it's needed here else, no items are available
-      this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-        isSelected: index === this.props.startDateMonth - 1,
-        name: item.toString(),
-        value: item.toString(),
-        url: item.url,
-      }));
-
-      this.yearItems = getSpecificYears({ lowerEndYear: this.lowerEndYear, higherEndYear: this.higherEndYear }).map(item => ({
-        isSelected: false,
-        name: item.toString(),
-        value: item.toString(),
-        url: item.url,
-      }));
     }
 
     connectedCallback() {
       super.connectedCallback();
       this.className = `${this.initialClassName} m-datepicker`;
 
+      // This method is triggered up to a millions times.... but it's needed here else, no items are available
+      this.props.monthItems = getAllLocaleMonthsArray(this.props.locale).map((item, index) => ({
+        isSelected: index === this.props.startDateMonth - 1,
+        name: item.toString(),
+        value: item.toString(),
+        url: item.url,
+      }));
+
+      const years = getSpecificYears({ lowerEndYear: this.props.lowerEndYear, higherEndYear: this.props.higherEndYear });
+ 
+      this.props.yearItems = years.map((item, index) => ({
+        isSelected: index === 0,
+        name: item.toString(),
+        value: item.toString(),
+        url: item.url,
+      }));
 
       // Create a date object from year, month and day props/attributes
-      this.startDate = new Date(this.startDateYear, this.props.startDateMonth - 1, this.startDateDay);
-      this.props.weekdays = getWeekdays(this.startDate, this.locale);
-      this.props.startDateMonthTitle = this.startDate.toLocaleString(this.locale, { month: 'long' });
-      this.props.startDateYearTitle = this.startDateYear;
+      this.props.startDate = new Date(this.props.startDateYear, this.props.startDateMonth - 1, this.props.startDateDay);
+      this.props.weekdays = getWeekdays(this.props.startDate, this.props.locale);
+      this.props.startDateMonthTitle = this.props.startDate.toLocaleString(this.props.locale, { month: 'long' });
+      this.props.startDateYearTitle = this.props.startDateYear;
 
       this.datepicker = new Datepicker(this);
       this.datepicker.init();
