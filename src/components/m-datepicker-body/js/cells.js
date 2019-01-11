@@ -11,14 +11,14 @@ export class Cell {
 export class NextMonth extends Cell {
   constructor(text = '', index = 0, isToday = false) {
     super(text, index, isToday);
-    this.className = `${this.baseClass} m-datepicker-body__not-current-month`;
+    this.className = `${this.baseClass} m-datepicker-body__not-current-month m-datepicker-body__next-month`;
   }
 }
 
 export class LastMonth extends Cell {
   constructor(text = '', index = 0, isToday = false) {
     super(text, index, isToday);
-    this.className = `${this.baseClass} m-datepicker-body__not-current-month`;
+    this.className = `${this.baseClass} m-datepicker-body__not-current-month m-datepicker-body__prev-month`;
   }
 }
 
