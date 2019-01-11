@@ -25,7 +25,6 @@ export class LastMonth extends Cell {
 export class CurrentMonth extends Cell {
   constructor(text = '', index = 0, isToday = false) {
     super(text, index, isToday);
-    
     this.className = `${this.baseClass} m-datepicker-body__current-month${isToday ? ' m-datepicker-body__today' : ''}`;
   }
 }
