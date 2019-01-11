@@ -31,9 +31,10 @@ class AXADatepickerBody extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker-body`;
-    this.store = new Store(this.locale, new Date(this.year, this.month, this.day));
+    this.date = new Date(this.props.year, this.props.month - 1, this.props.day);
+    this.store = new Store(this.locale, this.date);
     this.datepickerBody = new DatepickerBody(this);
-    this.datepickerBody.init(this.index, this.locale, this.year, this.month, this.day, this.allowedYears, this.store);
+    this.datepickerBody.init(this.index, this.locale, this.date, this.allowedYears, this.store);
 
     // Set Cells
     this.props.cells = this.store.cells;
@@ -118,6 +119,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
       isNewDate = true;
       newDate.setMonth(parseInt(newValue, 10));
       if (this.store) {
+        // console.log('month update received', newDate);
         this.store.update(newDate);
         this.props.cells = this.store.getCells();
       }

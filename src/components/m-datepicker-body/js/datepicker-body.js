@@ -1,27 +1,19 @@
 import { EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
-import { CurrentMonth, SelectedDay, LastMonth, NextMonth } from './cells';
+import { LastMonth, NextMonth } from './cells';
 
 export default class DatepickerBody {
   constructor(wcNode) {
     this.wcNode = wcNode;
   }
 
-  init(index, locale, year, month, day, allowedYears, store) {
+  init(index, locale, date, allowedYears, store) {
     this.store = store;
     this.index = index;
     this.allowedYears = allowedYears;
     this.locale = locale;
-    this.year = year;
-    this.month = month;
-    this.day = day;
-
-    // Create dates to work with from init values (dom..)
-    this.date = new Date(this.year, this.month, this.day);
-    this.wcNode.date = this.date;
+    this.date = date;
     this.selected = this.date;
-
-    this.prepareCells(index);
 
     this.unClickEnd = on(
       this.wcNode, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
@@ -29,34 +21,20 @@ export default class DatepickerBody {
         capture: true, passive: false,
       },
     );
-
-    if (month || month === 0) {
-      this.date.setMonth(month);
-    }
-
-    if (year) {
-      this.date.setFullYear(year);
-    }
   }
 
-  prepareCells(index) {
-    if (!index && index !== 0) return;
+  // prepareCells(index) {
+  //   if (!index && index !== 0) return;
 
-    if (this.selected && !index) {
-      const cell = new SelectedDay(this.selected.text, this.selected.index, this.selected.isToday);
-      this.store.setCell(this.selected.index, cell);
-    }
-    const cell = this.store.getCell(index);
-    if (cell instanceof CurrentMonth) {
-      this.handleCurrentMonth(index, cell);
-    }
-  }
-
-  offClicks() {
-    if (this.unClickEnd) {
-      this.unClickEnd();
-    }
-  }
+  //   if (this.selected && !index) {
+  //     const cell = new SelectedDay(this.selected.text, this.selected.index, this.selected.isToday);
+  //     this.store.setCell(this.selected.index, cell);
+  //   }
+  //   const cell = this.store.getCell(index);
+  //   if (cell instanceof CurrentMonth) {
+  //     this.handleCurrentMonth(index, cell);
+  //   }
+  // }
 
   handleClick = (e) => {
     e.preventDefault();
