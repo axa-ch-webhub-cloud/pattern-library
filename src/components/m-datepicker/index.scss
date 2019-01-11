@@ -120,3 +120,8 @@ $datepicker-padding-left-native-dropdown: 8px !default;
   display: flex;
   justify-content: space-between;
 }
+
+.m-datepicker__buttons .m-button {
+  padding: 10px;
+  min-width: 75px;
+}
