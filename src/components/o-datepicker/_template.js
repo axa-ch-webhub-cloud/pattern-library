@@ -1,11 +1,11 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
-import { getLocaleDayMonthYear } from '../../js/date';
 
 export default ({
   classes,
   locale,
   outputValue = '',
+  placeholder = 'Select a date',
   open = false,
   lowerEndYear = '',
   higherEndYear = '',
@@ -13,13 +13,13 @@ export default ({
   startDateMonth = [],
   startDateDay = [],
   allowedYears,
-  buttonOk = 'ok',
-  buttonCancel = 'cancel',
+  buttonOk = 'Ok',
+  buttonCancel = 'Cancel',
 }) => html`
     <article class=${classes}>
       <axa-input
         class="o-datepicker__input js-datepicker__input"
-        placeholder="${getLocaleDayMonthYear(locale)}"
+        placeholder="${placeholder}"
         name="get-local-day-month-year"
         icon="datepicker"
         value="${outputValue}"
