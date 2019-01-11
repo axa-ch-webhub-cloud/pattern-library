@@ -23,7 +23,7 @@ const enhancedSelect = ({ title, items, size }) => [
     ${title}${raw(arrowIcon)}
   </button>`,
   html`<ul class="m-dropdown__content js-dropdown__content">
-    ${items && items.map(({ name, url, isSelected, value }, index) => html`
+    ${items && items.map(({ name, url = '#', isSelected, value }, index) => html`
       <li class="m-dropdown__item">
         <a class="m-dropdown__link" data-name="${name}" data-index="${index}" data-value="${value}" data-selected="${isSelected ? 'true' : 'false'}" href="${url}">${name}</a>
       </li>
