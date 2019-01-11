@@ -47,8 +47,8 @@ class AXAMDatepicker extends BaseComponentGlobal {
       super.connectedCallback();
       this.className = `${this.initialClassName} m-datepicker`;
 
-      this.monthItems = getAllLocaleMonthsArray(this.locale).map(item => ({
-        isSelected: false,
+      this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+        isSelected: index === this.props.startDateMonth - 1,
         name: item.toString(),
         value: item.toString(),
         url: item.url,
@@ -62,7 +62,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
       }));
 
       // Create a date object from year, month and day props/attributes
-      this.startDate = new Date(this.startDateYear, this.startDateMonth, this.startDateDay);
+      this.startDate = new Date(this.startDateYear, this.props.startDateMonth - 1, this.startDateDay);
       this.props.weekdays = getWeekdays(this.startDate, this.locale);
       this.props.startDateMonthTitle = this.startDate.toLocaleString(this.locale, { month: 'long' });
       this.props.startDateYearTitle = this.startDateYear;
