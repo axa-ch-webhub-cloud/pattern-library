@@ -31,6 +31,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
+    this.className = `${this.initialClassName} o-datepicker`;
   }
 
   connectedCallback() {
@@ -52,13 +53,14 @@ class AXADatepicker extends BaseComponentGlobal {
     // Listen to fired events of sub component datepicker calendar
     this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
     this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
-    
+
     if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
     }
   }
 
   handleBodyClick = () => {
+    console.log('body click');
     if (this.open) {
       this.closeDatepicker();
     }
