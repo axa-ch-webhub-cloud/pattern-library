@@ -1,6 +1,6 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
-import { getLocaleDayMonthYear, TODAY } from '../../js/date';
+import { getLocaleDayMonthYear } from '../../js/date';
 
 export default ({
   classes,
@@ -25,16 +25,16 @@ export default ({
       </axa-input>
       ${raw(`
         <axa-m-datepicker
-          ${higherEndYear ? `higher-end-year="${higherEndYear}"` : ''}
-          ${lowerEndYear ? `lower-end-year="${lowerEndYear}"` : ''}
-          ${dateValue ? `selected-day="${dateValue.getDate()}"` : ''}
-          start-month="${dateValue ? dateValue.getMonth() : TODAY}"
-          start-year="${dateValue ? dateValue.getFullYear() : TODAY}"
-          class="o-datepicker__calendar js-datepicker__calendar"
-          locale="${locale}"
-          button-ok="${buttonOk}"
-          button-cancel="${buttonCancel}"
-          ${open === false ? 'hidden' : ''}
+          button-ok="ok" 
+          button-cancel="abbrechen" 
+          locale="de-CH" 
+          lower-end-year="2018"
+          higher-end-year="2023"
+          allowed-years='[2018, 2019, 2020, 2021, 2022, 2023]'
+          start-date-year="2019"
+          start-date-month="1"
+          start-date-day="1"
+          ${open === false ? '' : ''}
         >
         </axa-m-datepicker>`)
       }

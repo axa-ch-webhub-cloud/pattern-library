@@ -41,12 +41,8 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     init() {
       super.init({ styles, template });
-    }
 
-    connectedCallback() {
-      super.connectedCallback();
-      this.className = `${this.initialClassName} m-datepicker`;
-
+      // This method is triggered up to a millions times.... but it's needed here else, no items are available
       this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
         isSelected: index === this.props.startDateMonth - 1,
         name: item.toString(),
@@ -60,6 +56,12 @@ class AXAMDatepicker extends BaseComponentGlobal {
         value: item.toString(),
         url: item.url,
       }));
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.className = `${this.initialClassName} m-datepicker`;
+
 
       // Create a date object from year, month and day props/attributes
       this.startDate = new Date(this.startDateYear, this.props.startDateMonth - 1, this.startDateDay);
