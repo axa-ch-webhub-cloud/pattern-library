@@ -4,8 +4,8 @@ import html from 'nanohtml';
 const PATH_PREFIX_APP = '#src--assets--icons--';
 
 export default ({
-  icon,
-  classes = 'a-icon',
+  icon = false,
+  classes,
   pathPrefix,
 } = {}) => {
   const axaPLibConfig = window.__axaPLibConfig || {};
