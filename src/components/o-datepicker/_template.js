@@ -5,13 +5,16 @@ import { getLocaleDayMonthYear } from '../../js/date';
 export default ({
   classes,
   locale = 'en-UK',
-  higherEndYear = false,
-  lowerEndYear = false,
-  dateValue = new Date(),
   outputValue = '',
-  open = false,
-  buttonCancel = 'Cancel',
-  buttonOk = 'Ok',
+  open,
+  lowerEndYear = '',
+  higherEndYear = '',
+  startDateYear = [],
+  startDateMonth = [],
+  startDateDay = [],
+  allowedYears = [],
+  buttonOk = 'ok',
+  buttonCancel = 'cancel',
 }) => html`
     <article class=${classes}>
       <axa-input
@@ -25,16 +28,17 @@ export default ({
       </axa-input>
       ${raw(`
         <axa-m-datepicker
-          button-ok="ok" 
-          button-cancel="abbrechen" 
-          locale="de-CH" 
-          lower-end-year="2018"
-          higher-end-year="2023"
-          allowed-years='[2018, 2019, 2020, 2021, 2022, 2023]'
-          start-date-year="2019"
-          start-date-month="1"
-          start-date-day="1"
-          ${open === false ? '' : ''}
+          class="js-datepicker__calendar"
+          button-ok="${buttonOk}" 
+          button-cancel="${buttonCancel}" 
+          locale="${locale}"
+          lower-end-year='${lowerEndYear}'
+          higher-end-year='${higherEndYear}'
+          allowed-years='${allowedYears}'
+          start-date-year='${startDateYear}'
+          start-date-month='${startDateMonth}'
+          start-date-day='${startDateDay}'
+          ${open === false ? 'hidden' : ''}
         >
         </axa-m-datepicker>`)
       }
