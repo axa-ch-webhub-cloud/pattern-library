@@ -9,7 +9,6 @@ import fire from '../../js/fire';
 import on from '../../js/on';
 import { EVENTS, AXA_EVENTS } from '../../js/ui-events';
 import Store from './js/store';
-import { LastMonth, NextMonth } from './js/cells';
 
 class AXADatepickerBody extends BaseComponentGlobal {
   static tagName = 'axa-datepicker-body'
@@ -21,11 +20,12 @@ class AXADatepickerBody extends BaseComponentGlobal {
     year: PropTypes.number,
     month: PropTypes.number,
     day: PropTypes.number,
+    date: PropTypes.string,
     cells: PropTypes.arrayOf(PropTypes.object),
   }
 
   static get observedAttributes() {
-    return ['day', 'month', 'year', 'cells', 'value', 'index'];
+    return ['day', 'month', 'year', 'cells', 'value', 'index', 'date'];
   }
 
   init() {
@@ -35,9 +35,9 @@ class AXADatepickerBody extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker-body`;
-    this.date = new Date(this.props.year, this.props.month - 1, this.props.day);
-    this.selected = this.date;
-    this.store = new Store(this.locale, this.date);
+    this.props.date = new Date(this.props.year, this.props.month - 1, this.props.day);
+    this.selected = this.props.date;
+    this.store = new Store(this.locale, this.props.date);
 
     this.onDatepickerBodyCellClick = on(
       this, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
@@ -52,15 +52,17 @@ class AXADatepickerBody extends BaseComponentGlobal {
   handleDatepickerBodyCellClick(e) {
     e.preventDefault();
     const index = parseInt(e.target.dataset.index, 10);
+
     // We parse the iso date to work with
-    this.date = new Date(Date.parse(e.target.dataset.value));
-    this.day = this.date.getDate();
-    this.year = this.date.getFullYear();
-    this.month = this.date.getMonth();
+    const date = new Date(Date.parse(e.target.dataset.value));
+    this.year = date.getFullYear();
+    this.month = date.getMonth();
+    this.day = date.getDate();
     this.index = index;
 
     // Set the day to the chosen day
-    this.selected = this.date;
+    this.date = date.toISOString();
+    this.selected = date;
   }
 
   get index() {
@@ -77,6 +79,14 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   set locale(value) {
     this.setAttribute('locale', value);
+  }
+
+  get date() {
+    return this.getAttribute('date');
+  }
+
+  set date(value) {
+    this.setAttribute('date', value);
   }
 
   set year(value) {
@@ -121,33 +131,12 @@ class AXADatepickerBody extends BaseComponentGlobal {
     const newDate = new Date(this.date);
     let isNewDate = false;
 
-    console.log('attributed changed', newValue);
-
-    if (name === 'day') {
-      isNewDate = true;
-      newDate.setDate(parseInt(newValue, 10));
+    if (name === 'date') {
+      const parsedDate = new Date(Date.parse(newValue));
       if (this.store) {
-        this.store.update(newDate);
+        this.store.update(parsedDate);
         this.props.cells = this.store.getCells();
-      }
-    }
-
-    if (name === 'year') {
-      isNewDate = true;
-      newDate.setFullYear(parseInt(newValue, 10));
-      if (this.store) {
-        this.store.update(newDate);
-        this.props.cells = this.store.getCells();
-      }
-    }
-
-    if (name === 'month') {
-      isNewDate = true;
-      newDate.setMonth(parseInt(newValue, 10));
-      if (this.store) {
-        // console.log('month update received', newDate);
-        this.store.update(newDate);
-        this.props.cells = this.store.getCells();
+        isNewDate = true;
       }
     }
 
