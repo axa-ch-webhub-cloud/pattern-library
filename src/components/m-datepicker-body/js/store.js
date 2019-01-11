@@ -12,7 +12,9 @@ export default class Store {
     this.init(date);
   }
 
-  getMonthInformation(year, month) {
+  getMonthInformation(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
     // exmpale year: 2019: month: 01
     const startDate = new Date(year, month, 1); // Tue 01 2019 00:00:00 GMT+0100
     const endDate = new Date(year, month + 1, 0); // // Thu 31 2019 00:00:00 GMT+0100
@@ -31,42 +33,44 @@ export default class Store {
     const today = new Date();
     const dates = [];
     for (let i = 0; i < 42; i += 1) {
-      const date = {};
+      const dateCell = {};
       const dayToStart = startDay - 1;
 
       // Previous month dates (if month does not start on Sunday)
       if (i < dayToStart) {
-        date.date = new Date(year, month - 1, prevMonthDay);
-        date.type = 'prev';
-        date.isToday = false;
-        date.cell = new LastMonth(date.date.getDate(), i, false);
+        dateCell.date = new Date(year, month - 1, prevMonthDay);
+        dateCell.type = 'prev';
+        dateCell.isToday = false;
+        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.getDate(), i, false, false);
         prevMonthDay += 1;
 
       // Next month dates (if month does not end on Saturday)
       } else if (i > currentMonthTotalDays + (dayToStart - 2)) {
-        date.date = new Date(year, month + 1, nextMonthDay);
-        date.type = 'next';
-        date.isToday = false;
-        date.cell = new NextMonth(date.date.getDate(), i, false);
+        dateCell.date = new Date(year, month + 1, nextMonthDay);
+        dateCell.type = 'next';
+        dateCell.isToday = false;
+        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.getDate(), i, false, false);
         nextMonthDay += 1;
 
       // Current month dates. */
       } else {
         const currentDate = new Date(year, month, (i - dayToStart) + 1);
         const isToday = currentDate.toDateString() === today.toDateString();
-        date.date = currentDate;
-        date.type = 'current';
-        date.isToday = isToday;
-        date.cell = new CurrentMonth(currentDate.getDate(), i, date.isToday);
+        const isSelected = currentDate.toDateString() === date.toDateString();
+        dateCell.date = currentDate;
+        dateCell.type = 'current';
+        dateCell.isToday = isToday;
+        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.getDate(), i, isToday, isSelected);
       }
-      dates.push(date);
+
+      dates.push(dateCell);
     }
 
     return dates;
   }
 
   init(date) {
-    const daysOfMonth = this.getMonthInformation(date.getFullYear(), date.getMonth());
+    const daysOfMonth = this.getMonthInformation(date);
     this.cells = [];
 
     // TODO:: Combine legacy with refactored code. Remove the double loop.

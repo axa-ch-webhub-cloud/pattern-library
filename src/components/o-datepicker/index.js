@@ -60,7 +60,6 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleBodyClick = () => {
-    console.log('body click');
     if (this.open) {
       this.closeDatepicker();
     }
@@ -97,7 +96,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   // TODO:: loses focus and day is not accurate
   handleDatepickerChangeDate = (e) => {
-    console.log('date chanchaged', e);
+    console.log('o-datepicker handleDatepickerChangeDate() e', e);
 
     if (e.detail.value !== '') {
       this.updateDate(e.detail.value);

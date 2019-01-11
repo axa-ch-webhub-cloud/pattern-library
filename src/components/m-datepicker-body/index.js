@@ -5,10 +5,11 @@ import defineOnce from '../../js/define-once';
 import localePropType from '../../js/prop-types/locale-prop-type';
 import styles from './index.scss';
 import template from './_template';
-import DatepickerBody from './js/datepicker-body';
 import fire from '../../js/fire';
-import { AXA_EVENTS } from '../../js/ui-events';
+import on from '../../js/on';
+import { EVENTS, AXA_EVENTS } from '../../js/ui-events';
 import Store from './js/store';
+import { LastMonth, NextMonth } from './js/cells';
 
 class AXADatepickerBody extends BaseComponentGlobal {
   static tagName = 'axa-datepicker-body'
@@ -23,6 +24,10 @@ class AXADatepickerBody extends BaseComponentGlobal {
     cells: PropTypes.arrayOf(PropTypes.object),
   }
 
+  static get observedAttributes() {
+    return ['day', 'month', 'year', 'cells', 'value', 'index'];
+  }
+
   init() {
     super.init({ styles, template });
   }
@@ -31,12 +36,45 @@ class AXADatepickerBody extends BaseComponentGlobal {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker-body`;
     this.date = new Date(this.props.year, this.props.month - 1, this.props.day);
+    this.selected = this.date;
     this.store = new Store(this.locale, this.date);
-    this.datepickerBody = new DatepickerBody(this);
-    this.datepickerBody.init(this.index, this.locale, this.date, this.store);
+
+    this.onDatepickerBodyCellClick = on(
+      this, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
+      this.handleDatepickerBodyCellClick.bind(this), { capture: true, passive: false },
+    );
 
     // Set Cells
     this.props.cells = this.store.cells;
+  }
+
+
+  handleDatepickerBodyCellClick(e) {
+    e.preventDefault();
+    const index = parseInt(e.target.dataset.index, 10);
+    const cell = this.store.getCell(index);
+    this.date = new Date();
+    this.date.setFullYear(this.year);
+
+    // Check if we click on a "grey" cell of an prev or next month
+    if (cell instanceof NextMonth) {
+      this.date.setMonth(this.month + 1);
+      this.month = this.date.getMonth();
+    }
+
+    if (cell instanceof LastMonth) {
+      this.date.setMonth(this.month - 1);
+      this.month = this.date.getMonth();
+    }
+
+    this.date.setDate(parseInt(cell.text, 10)); // TODO:: save value in data-value than taking the text inner html field.
+    this.day = this.date.getDate();
+    this.index = index;
+
+    console.log('handleDatepickerBodyCellClick(). set date', this.date);
+
+    // Set the day to the chosen day
+    this.selected = this.date;
   }
 
   get index() {
@@ -89,12 +127,15 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.onDatepickerBodyCellClick();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
     const newDate = new Date(this.date);
     let isNewDate = false;
+
+    console.log('attributed changed', newValue);
 
     if (name === 'day') {
       isNewDate = true;

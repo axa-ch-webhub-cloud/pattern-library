@@ -51,8 +51,12 @@ $datepicker-calender-body-padding-top: 5px !default;
   opacity: 1;
 }
 
-.m-datepicker-body__selected-day,
-.m-datepicker-body__today {
+.m-datepicker-body__selected-day {
   background-color: $color-axa-blue;
   color: $color-prim-white;
+}
+
+.m-datepicker-body__today {
+  border-style: solid;
+  border-color: $color-axa-blue;
 }

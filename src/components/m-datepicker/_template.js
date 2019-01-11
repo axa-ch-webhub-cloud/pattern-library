@@ -13,7 +13,6 @@ export default ({
   weekdays = [],
   monthItems = [],
   yearItems = [],
-  allowedYears = [],
 }) => html`
     <article class="${classes} m-datepicker__article">
 
