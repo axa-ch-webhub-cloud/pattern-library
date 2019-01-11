@@ -106,7 +106,6 @@ class AXADropdown extends BaseComponentGlobal {
       this.updateCurrentItem(newValue.toString());
     }
 
-    // Update title and value when current item changes
     if (hasValue && name === 'items' && this.selectedItem) {
       this.title = this.selectedItem.name;
     }

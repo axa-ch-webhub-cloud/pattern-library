@@ -35,15 +35,14 @@ class AXADatepickerBody extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `${this.initialClassName} m-datepicker-body`;
-    this.props.date = new Date(this.props.year, this.props.month - 1, this.props.day);
-    this.selected = this.props.date;
-    this.store = new Store(this.locale, this.props.date);
+
+    const date = new Date(this.props.year, this.props.month - 1, this.props.day);
+    this.store = new Store(this.locale, date);
 
     this.onDatepickerBodyCellClick = on(
       this, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
       this.handleDatepickerBodyCellClick.bind(this), { capture: true, passive: false },
     );
-
     // Set Cells
     this.props.cells = this.store.cells;
   }
@@ -62,7 +61,6 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
     // Set the day to the chosen day
     this.date = date.toISOString();
-    this.selected = date;
   }
 
   get index() {
@@ -131,7 +129,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
     if (name === 'date') {
       if (this.store) {
-        const newDate = new Date(this.date);
+        const newDate = new Date(Date.parse(newValue));
         this.store.update(newDate);
         this.props.cells = this.store.getCells();
         fire(this, AXA_EVENTS.AXA_CHANGE, newDate, { bubbles: true, cancelable: true, composed: true });
