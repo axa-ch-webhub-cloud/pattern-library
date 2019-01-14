@@ -2,7 +2,6 @@ import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 
 export default ({
-  classes,
   locale,
   outputValue = '',
   placeholder = 'Select a date',
@@ -12,7 +11,7 @@ export default ({
   startDateYear = [],
   startDateMonth = [],
   startDateDay = [],
-  allowedYears,
+  allowedYears = [],
   buttonOk = 'Ok',
   buttonCancel = 'Cancel',
 }) => html`
@@ -34,7 +33,7 @@ export default ({
           locale="${locale}"
           lower-end-year='${lowerEndYear}'
           higher-end-year='${higherEndYear}'
-          allowed-years='${allowedYears}'
+          allowed-years='${JSON.stringify(allowedYears)}'
           start-date-year='${startDateYear}'
           start-date-month='${startDateMonth}'
           start-date-day='${startDateDay}'
