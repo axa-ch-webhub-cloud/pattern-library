@@ -16,7 +16,7 @@ export default ({
   buttonOk = 'Ok',
   buttonCancel = 'Cancel',
 }) => html`
-    <article class=${classes}>
+    <article class="o-datepicker__wrap">
       <axa-input
         class="o-datepicker__input js-datepicker__input"
         placeholder="${placeholder}"

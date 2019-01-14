@@ -31,7 +31,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    this.className = `${this.initialClassName} o-datepicker`;
+    this.className = `o-datepicker${this.initialClassName ? ` ${this.initialClassName}` : ''}`;
   }
 
   connectedCallback() {
@@ -96,8 +96,6 @@ class AXADatepicker extends BaseComponentGlobal {
 
   // TODO:: loses focus and day is not accurate
   handleDatepickerChangeDate = (e) => {
-    console.log('o-datepicker handleDatepickerChangeDate() e', e);
-
     if (e.detail.value !== '') {
       this.updateDate(e.detail.value);
       this.closeDatepicker();
@@ -115,25 +113,6 @@ class AXADatepicker extends BaseComponentGlobal {
     this.datepickerBody.setAttribute('month', date.getMonth());
     this.datepickerBody.setAttribute('year', date.getFullYear());
   }
-
-  // // Respects current timezone of the date object we convert to "iso like format"
-  // toLocalISOString = (date) => {
-  //   // ISO 8601
-  //   const d = date;
-  //   const pad = n => n < 10 ? `0${n}` : n;
-  //   const tz = d.getTimezoneOffset(); // mins
-  //   let tzs = (tz > 0 ? '-' : '+') + pad(parseInt(tz / 60, 10));
-
-  //   if (tz % 60 !== 0) { tzs += pad(tz % 60); }
-  //   if (tz === 0) { tzs = 'Z'; }
-
-  //   return `${d.getFullYear()}-${
-  //     pad(d.getMonth() + 1)}-${
-  //     pad(d.getDate())}T${
-  //     pad(d.getHours())}:${
-  //     pad(d.getMinutes())}:${
-  //     pad(d.getSeconds())}${tzs}`;
-  // }
 
   closeDatepicker() {
     this.open = false;
