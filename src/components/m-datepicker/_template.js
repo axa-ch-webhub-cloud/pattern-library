@@ -1,7 +1,6 @@
 import html from 'nanohtml';
 
 export default ({
-  classes,
   buttonOk,
   buttonCancel,
   locale,
