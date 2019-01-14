@@ -1,11 +1,12 @@
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 import classnames from 'classnames';
-
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 import Input from './js/input';
+import fire from '../../js/fire';
+import { AXA_EVENTS } from '../../js/ui-events';
 
 class AXAInput extends BaseComponentGlobal {
   static tagName = 'axa-input'
@@ -39,9 +40,12 @@ class AXAInput extends BaseComponentGlobal {
       'a-input--icon': icon,
     });
   }
+
   didRenderCallback() {
     this.input.init();
+    fire(this, AXA_EVENTS.AXA_RENDER, this.input.inputfield, { bubbles: true, cancelable: true, composed: true });
   }
+
   disconnectedCallback() {
     this.input.destroy();
   }

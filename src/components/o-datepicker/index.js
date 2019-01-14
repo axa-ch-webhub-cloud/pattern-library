@@ -29,6 +29,18 @@ class AXADatepicker extends BaseComponentGlobal {
     higherEndYear: PropTypes.number,
   }
 
+  static get observedAttributes() {
+    return [
+      'locale',
+      'output-value',
+      'allowed-years',
+      'lower-end-year',
+      'higher-end-year',
+      'start-date-year',
+      'start-date-month',
+      'start-date-day'];
+  }
+
   init() {
     super.init({ styles, template });
     this.className = `o-datepicker${this.initialClassName ? ` ${this.initialClassName}` : ''}`;
@@ -53,6 +65,7 @@ class AXADatepicker extends BaseComponentGlobal {
     // Listen to fired events of sub component datepicker calendar
     this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
     this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
+    this.onInputFieldRender = on(this.datepickerInput, AXA_EVENTS.AXA_RENDER, e => this.handleInputFieldRendered(e));
 
     if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
@@ -78,11 +91,21 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
+  // This is hacky. We wait for the fired didRenderCallback of the children input field and set the focus manually as it is lost coz of rerendering
+  handleInputFieldRendered(e) {
+    if (e.detail) {
+      e.detail.focus();
+      e.detail.setSelectionRange(e.detail.value.length, e.detail.value.length);
+    }
+  }
+
   handleDatepickerInputChange = (e) => {
-    const validDate = parseLocalisedDateIfValid(this.locale, e.detail);
-    if (validDate) {
-      // this.updateDate(validDate); // .. coz double trigger
-      this.updateDatepickerBody(validDate);
+    if (e.detail.length === 10) {
+      const validDate = parseLocalisedDateIfValid(this.locale, e.detail);
+      if (validDate) {
+        this.updateDate(validDate);
+        this.updateDatepickerBody(validDate);
+      }
     }
   }
 
@@ -94,24 +117,25 @@ class AXADatepicker extends BaseComponentGlobal {
     this.closeDatepicker();
   }
 
-  // TODO:: loses focus and day is not accurate
+  // TODO: loses focus and day is not accurate
+  // TODO: Apply validation. Check for allowed years
   handleDatepickerChangeDate = (e) => {
+    // console.log('date changed', e.detail.value);
     if (e.detail.value !== '') {
+      this.valueChanged = true;
       this.updateDate(e.detail.value);
+      this.updateDatepickerBody(e.detail.value.toISOString());
       this.closeDatepicker();
     }
   }
 
   updateDate(date) {
-    this.value = toLocalISOString(date);
+    this.value = toLocalISOString(date); // We should probably use the normal iso.
     this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
   updateDatepickerBody(date) {
-    this.datepickerBody.setAttribute('day', date.getDate());
-    this.datepickerBody.setAttribute('value', date.getDate());
-    this.datepickerBody.setAttribute('month', date.getMonth());
-    this.datepickerBody.setAttribute('year', date.getFullYear());
+    this.datepickerBody.setAttribute('value', new Date(Date.parse(date)).toISOString());
   }
 
   closeDatepicker() {
@@ -136,6 +160,9 @@ class AXADatepicker extends BaseComponentGlobal {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.onDropdownClick();
+    this.onDropdownValueChange();
+    this.onDropdownValueClick();
     // Deregister Events
     this.body.removeEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
     this.offDatepickerCalendarClick();
@@ -172,12 +199,21 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   set outputValue(value) {
-    if (value) { this.setAttribute('output-value', value); } else { this.removeAttribute('output-value'); }
+    this.setAttribute('output-value', value);
   }
 
   get outputValue() {
     return this.getAttribute('output-value');
   }
+
+  get allowedYears() {
+    return this.getAttribute('allowed-years');
+  }
+
+  set allowedYears(value) {
+    this.setAttribute('allowed-years', value);
+  }
+
 }
 
 defineOnce(AXADatepicker.tagName, AXADatepicker);

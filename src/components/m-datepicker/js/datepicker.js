@@ -33,16 +33,11 @@ export default class Datepicker {
 
     this.onOkButtonListenerEnd = on(this.okButton, EVENTS.CLICK, () => {
       let out = '';
-      const year = this.datepickerBody.getAttribute('year');
-      const month = this.datepickerBody.getAttribute('month');
-      const day = this.datepickerBody.getAttribute('value');
-
-      // TODO: Create local iso-string date....
-      if (day) {
-        out = new Date(year, month, day, 23, 0, 0);
+      const value = this.datepickerBody.getAttribute('date');
+      if (value) {
+        out = new Date(Date.parse(value));
+        fire(this.wcNode, 'date-changed', { value: out }, { bubbles: true, cancelable: true, composed: true });
       }
-
-      fire(this.wcNode, 'date-changed', { value: out }, { bubbles: true, cancelable: true, composed: true });
     });
 
     this.listenToDeviceStateChange();
