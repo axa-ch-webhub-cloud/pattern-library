@@ -32,6 +32,10 @@ $datepicker-calender-body-padding-top: 5px !default;
 
 .m-datepicker-body__not-current-month {
   color: $color-prim-gray-silver;
+
+  &:hover {
+    background: rgba($color-prim-gray-mercury, 0.3);
+  }
 }
 
 .m-datepicker-body__current-month {
