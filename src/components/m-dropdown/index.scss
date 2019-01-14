@@ -28,7 +28,6 @@
 
 .m-dropdown__select {
   @include dropdown-select();
-  @include typo-text-longer();
 }
 
 .m-dropdown__select--sm {
@@ -122,6 +121,7 @@
 .m-dropdown__toggle,
 .m-dropdown__link {
   @include typo-decls('typo-18');
+  line-height: normal; // no responsivesness within fixed boxes
 }
 
 .m-dropdown__link {

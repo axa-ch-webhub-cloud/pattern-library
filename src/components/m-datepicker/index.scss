@@ -4,7 +4,7 @@
 $datepicker-height: 385px !default;
 $datepicker-width: 320px !default;
 
-$datepicker-margin-y: 20px !default;
+$datepicker-margin-y: 12px !default;
 $datepicker-margin-x: 30px !default;
 
 $datepicker-padding-y: 20px !default;
@@ -58,6 +58,7 @@ $datepicker-padding-left-native-dropdown: 8px !default;
 
   .m-dropdown__select-icon {
     @include dropdown-select-icon($indent: 10px, $height: 40px);
+    width: 35px;
   }
 }
 
