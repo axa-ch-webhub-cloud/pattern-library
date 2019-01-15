@@ -39,22 +39,6 @@ export default class Datepicker {
         fire(this.wcNode, 'date-changed', { value: out }, { bubbles: true, cancelable: true, composed: true });
       }
     });
-
-    this.listenToDeviceStateChange();
-  }
-
-  listenToDeviceStateChange() {
-    this.onListenToDeviceStateChange = this.deviceStateObserver.listen((state) => {
-      if (!this.dropdownMonth || !this.dropdownYear) {
-        return;
-      }
-      const { breakpoint } = state;
-      const isNative = !!~IS_NATIVE_WHEN.indexOf(breakpoint);
-      this.dropdownMonth.setAttribute('native', isNative);
-      this.dropdownYear.setAttribute('native', isNative);
-    });
-
-    this.deviceStateObserver.triggerOnce();
   }
 
   handleChangeDropdownMonth = (e) => {
