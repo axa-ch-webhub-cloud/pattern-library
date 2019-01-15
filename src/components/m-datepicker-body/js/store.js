@@ -1,5 +1,4 @@
 import { CurrentMonth, LastMonth, NextMonth } from './cells';
-import { toLocalISOString } from '../../../js/date';
 
 export default class Store {
   constructor(locale, date) {

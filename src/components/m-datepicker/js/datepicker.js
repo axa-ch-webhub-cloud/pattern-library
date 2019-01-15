@@ -20,7 +20,7 @@ export default class Datepicker {
       on(this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDropdownMonth, { capture: true, passive: false });
     this.onListenToDropdownYear =
       on(this.dropdownYear, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDropdownYear, { capture: true, passive: false });
-    
+
     this.onListenDatepickerBodyDateChange =
       on(this.datepickerBody, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDatepickerBody, { capture: true, passive: false });
 

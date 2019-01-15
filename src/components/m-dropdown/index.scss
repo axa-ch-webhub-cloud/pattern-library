@@ -32,7 +32,7 @@
   height: 44px;
 
   .is-dropdown-open & {
-      height: auto;
+    height: auto;
   }
 }
 
@@ -110,6 +110,7 @@
 
 .m-dropdown__list--enhanced {
   display: none;
+
   @include respond-up(sm) {
     display: block;
   }

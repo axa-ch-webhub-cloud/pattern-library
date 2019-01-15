@@ -62,6 +62,7 @@ class AXADatepicker extends BaseComponentGlobal {
       this.datepickerInput, AXA_EVENTS.AXA_CHANGE, '',
       this.handleDatepickerInputChange, { capture: true, passive: false },
     );
+
     // Listen to fired events of sub component datepicker calendar
     this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
     this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
@@ -213,7 +214,6 @@ class AXADatepicker extends BaseComponentGlobal {
   set allowedYears(value) {
     this.setAttribute('allowed-years', value);
   }
-
 }
 
 defineOnce(AXADatepicker.tagName, AXADatepicker);

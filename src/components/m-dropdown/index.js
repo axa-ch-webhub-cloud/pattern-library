@@ -49,7 +49,7 @@ class AXADropdown extends BaseComponentGlobal {
 
     this.onDropdownClick =
       on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
-    
+
     // the enhanced dropdown is a list with links -> clicks event. the native is a select change event
     this.onDropdownValueClick =
       on(this, EVENTS.CLICK, DEFAULTS.selectClass, e => this.handleDropdownValueClick(e), { capture: true, passive: false });
@@ -122,10 +122,6 @@ class AXADropdown extends BaseComponentGlobal {
         this.title = this.selectedItem.name;
       }
     }
-
-    // if (hasValue && name === 'items' && this.selectedItem) {
-    //   this.title = this.selectedItem.name;
-    // }
   }
 
   disconnectedCallback() {

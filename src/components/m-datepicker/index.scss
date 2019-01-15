@@ -21,8 +21,8 @@ $datepicker-padding-x: 30px !default;
 $with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-border-width * 2) / 7;
 
 $datepicker-distance-number-to-border: 10px !default;
-
 $datepicker-padding-left-native-dropdown: 8px !default;
+$datepicker-layer: 1;
 
 .m-datepicker {
   display: block;
@@ -30,13 +30,17 @@ $datepicker-padding-left-native-dropdown: 8px !default;
 }
 
 .m-datepicker__article {
-  background: $color-bg--white;
+  position: absolute;
+  z-index: $datepicker-layer;
+
   padding: $datepicker-padding-y $datepicker-padding-x;
+
   max-width: $datepicker-width;
+
+  background: $color-bg--white;
+
   border: solid $datepicker-border-width $color-prim-gray-silver;
   box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
-  position: absolute;
-  z-index: 1;
 
   .m-dropdown__select-icon {
     padding: 0 $datepicker-padding-left-native-dropdown;
@@ -95,7 +99,7 @@ $datepicker-padding-left-native-dropdown: 8px !default;
 
 .m-dropdown__content {
   max-height: 330px;
-  overflow-y: auto !important; // can be removed if order of script includes is correct
+  overflow-y: auto !important; // stylelint-disable-line declaration-no-important
 }
 
 .m-datepicker__weekdays {
@@ -127,6 +131,7 @@ $datepicker-padding-left-native-dropdown: 8px !default;
 
 .m-datepicker__buttons {
   display: flex;
+
   justify-content: space-between;
 }
 
