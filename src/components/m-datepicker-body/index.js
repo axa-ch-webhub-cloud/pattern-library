@@ -47,6 +47,13 @@ class AXADatepickerBody extends BaseComponentGlobal {
     this.props.cells = this.store.cells;
   }
 
+  didRenderCallback() {
+    // this is not working in connectedCallback...
+    const date = new Date(this.props.year, this.props.month - 1, this.props.day);
+    if (!this.getAttribute('date')) {
+      this.setAttribute('date', date.toISOString());
+    }
+  }
 
   handleDatepickerBodyCellClick(e) {
     e.preventDefault();
