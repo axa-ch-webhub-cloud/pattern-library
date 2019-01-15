@@ -37,7 +37,7 @@ export default ({
           start-date-year='${startDateYear}'
           start-date-month='${startDateMonth}'
           start-date-day='${startDateDay}'
-          ${open === false ? '' : ''}
+          ${open === false ? 'hidden' : ''}
         >
         </axa-m-datepicker>`)
       }
