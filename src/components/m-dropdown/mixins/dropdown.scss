@@ -199,7 +199,7 @@
 
   transition: height 0.3s ease;
 
-  .#{$is-open-class} > & {
+  .#{$is-open-class} & {
     height: auto;
   }
 }

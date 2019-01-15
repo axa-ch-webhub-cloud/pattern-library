@@ -27,7 +27,13 @@
 }
 
 .m-dropdown__select {
-  @include dropdown-select();
+  min-width: 100px;
+  padding: 10px;
+  height: 44px;
+
+  .is-dropdown-open & {
+      height: auto;
+  }
 }
 
 .m-dropdown__select--sm {
@@ -78,6 +84,13 @@
 
 .m-dropdown__icon {
   @include dropdown-icon();
+  pointer-events: none;
+  line-height: 0;
+
+  &.a-icon .a-icon__svg {
+    width: 15px;
+    height: 15px;
+  }
 
   .m-dropdown--gpu > & {
     @include dropdown-icon--gpu();
@@ -86,6 +99,20 @@
 
 .m-dropdown__select-icon--sm {
   @include dropdown--sm();
+}
+
+
+.m-dropdown__list--native {
+  @include respond-up(sm) {
+    display: none;
+  }
+}
+
+.m-dropdown__list--enhanced {
+  display: none;
+  @include respond-up(sm) {
+    display: block;
+  }
 }
 
 .m-dropdown__content {

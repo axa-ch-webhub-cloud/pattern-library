@@ -49,10 +49,6 @@ $datepicker-padding-left-native-dropdown: 8px !default;
     }
   }
 
-  .m-dropdown__select-wrap {
-    display: inline-block;
-  }
-
   .m-dropdown__select {
     @include dropdown-select($indent: 10px, $height: 40px);
   }
