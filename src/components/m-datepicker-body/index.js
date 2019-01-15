@@ -135,7 +135,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
     super.attributeChangedCallback(name, oldValue, newValue);
 
     if (name === 'date') {
-      if (this.store) {
+      if (this.store && this.date) {
         const newDate = new Date(Date.parse(newValue));
         this.store.update(newDate);
         this.props.cells = this.store.getCells();
