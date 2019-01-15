@@ -67,6 +67,9 @@ class AXADropdown extends BaseComponentGlobal {
     e.preventDefault();
     e.stopPropagation();
     this.toggleDropdown();
+    this.title = e.target.dataset.name;
+    this.value = e.target.dataset.value;
+    this.updateCurrentItem(e.target.dataset.value);
     fire(this, AXA_EVENTS.AXA_CHANGE, e.target.dataset.value, { bubbles: true, cancelable: true });
   }
 
