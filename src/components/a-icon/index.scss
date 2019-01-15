@@ -1,11 +1,16 @@
 a-icon__root {}
 
-.a-icon {
+.a-icon .a-icon__svg {
   width: 50px;
   height: 50px;
 }
 
-.a-icon--small {
+.a-icon--small .a-icon__svg {
   width: 25px;
   height: 25px;
+}
+
+.a-icon--tiny .a-icon__svg {
+  width: 16px;
+  height: 16px;
 }

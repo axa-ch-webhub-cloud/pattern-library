@@ -17,20 +17,11 @@ class AXAIcon extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    this.className = `${this.initialClassName} a-icon a-icon__root`;
-    this._upgradeProperty('icon');
+    this.className = `${this.classes} a-icon a-icon--tiny a-icon__root`;
   }
 
-  willRenderCallback() {
-
-  }
-
-  _upgradeProperty(prop) { // eslint-disable-next-line no-prototype-builtins
-    if (this.hasOwnProperty(prop)) {
-      const value = this[prop];
-      delete this[prop];
-      this[prop] = value;
-    }
+  get classes() {
+    return this.getAttribute('classes');
   }
 
   set icon(value) {

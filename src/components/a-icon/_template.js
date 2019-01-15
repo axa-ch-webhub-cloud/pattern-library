@@ -5,7 +5,6 @@ const PATH_PREFIX_APP = '#src--assets--icons--';
 
 export default ({
   icon = false,
-  classes,
   pathPrefix,
 } = {}) => {
   const axaPLibConfig = window.__axaPLibConfig || {};
@@ -22,7 +21,7 @@ export default ({
   }
 
   return html`
-    <svg class="${classes}">
+    <svg class="a-icon__svg">
       <use xlink:href="${path}${icon}" href="${path}${icon}" />
     </svg>
   `;
