@@ -185,7 +185,6 @@
     "testMatch": [
       "<rootDir>/src/**/?(*.)(test).js"
     ],
-    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.css$": "<rootDir>/stack/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/stack/jest/fileTransform.js",
