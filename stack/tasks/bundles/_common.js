@@ -2,7 +2,7 @@
 const resolve = require('rollup-plugin-node-resolve');
 const uglify = require('rollup-plugin-uglify');
 const commonjs = require('rollup-plugin-commonjs');
-
+const babel = require('rollup-plugin-babel');
 const constants = require('../../constants');
 
 const ENV = process.env.NODE_ENV; // second element is the first argument.
@@ -22,6 +22,10 @@ module.exports = {
         include: 'node_modules/**',
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
+      babel({
+        plugins: ['external-helpers'],
+        externalHelpers: true,
+      }),
     ],
   },
   outputOptions: {

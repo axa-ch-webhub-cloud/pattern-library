@@ -44,8 +44,8 @@ components.bundleLibFiles({
       exclude: [
         'node_modules/**',
       ],
-      plugins: ['transform-runtime'],
-      runtimeHelpers: true,
+      plugins: ['external-helpers'],
+      externalHelpers: true,
     }),
     resolve({
       jsnext: true,

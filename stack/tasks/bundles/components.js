@@ -2,7 +2,6 @@ const rollup = require('rollup');
 const dir = require('node-dir');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
 // const multiEntry = require('rollup-plugin-multi-entry');
-const babel = require('rollup-plugin-babel');
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
@@ -33,9 +32,6 @@ const inputOptionsComponents = {
       processor: css => postcss([autoprefixer])
         .process(css)
         .then(result => result.css),
-    }),
-    babel({
-      runtimeHelpers: true,
     }),
   ],
 };

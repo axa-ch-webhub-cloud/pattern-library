@@ -43,7 +43,8 @@ async function buildComponents() {
           .then(result => result.css),
       }),
       babel({
-        runtimeHelpers: true,
+        plugins: ['external-helpers'],
+        externalHelpers: true,
         presets: ['react'],
       }),
     ],

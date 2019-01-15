@@ -1,8 +1,6 @@
 const rollup = require('rollup');
 const uglify = require('rollup-plugin-uglify');
-const babel = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
-
 const constants = require('../../constants');
 const common = require('./_common');
 
@@ -18,9 +16,6 @@ async function buildApp() {
         main: true,
         browser: true,
         preferBuiltins: false,
-      }),
-      babel({
-        runtimeHelpers: true,
       }),
       ENV === constants.ENV.PROD ? uglify() : () => {},
     ],

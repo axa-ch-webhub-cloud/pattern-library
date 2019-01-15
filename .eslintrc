@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "plugin:jest/recommended"],
   "rules": {
     "max-len": ["error", {
       "code": 140,
@@ -25,7 +25,8 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["./stack/**/*.js"]}],
-    "object-curly-newline": ["error", {"multiline": true, "consistent": true }]
+    "object-curly-newline": ["error", {"multiline": true, "consistent": true }],
+    "jest/no-jest-import": "off"
   },
   "globals": {
     "HTMLAnchorElement": true,
@@ -120,5 +121,6 @@
       "decorations": true,
       "jsx": true
     }
-  }
+  },
+  "plugins": ["jest"]
 }
