@@ -15,22 +15,24 @@ export default ({
 }) => html`
     <article class="m-datepicker__article">
 
-      <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-        size="sm"
-        month="true"
-        items='${JSON.stringify(monthItems)}'
-        title='${startDateMonthTitle}'>
-      </axa-dropdown>
+      <div class="m-datepicker__dropdown-wrap">
+        <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
+          size="sm"
+          month="true"
+          items='${JSON.stringify(monthItems)}'
+          title='${startDateMonthTitle}'>
+        </axa-dropdown>
 
-      <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-        size="sm"
-        year="true"
-        items='${JSON.stringify(yearItems)}'
-        title='${startDateYearTitle}'>
-      </axa-dropdown>
+        <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
+          size="sm"
+          year="true"
+          items='${JSON.stringify(yearItems)}'
+          title='${startDateYearTitle}'>
+        </axa-dropdown>
+      </div>
 
       <div class="m-datepicker__weekdays">
-        ${weekdays ? weekdays.map(day => html`<p class="m-datepicker__weekdays__day">${day}</p>`) : ''}
+        ${weekdays ? weekdays.map(day => html`<div class="m-datepicker__weekdays__day">${day}</div>`) : ''}
       </div>
 
       <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body"
