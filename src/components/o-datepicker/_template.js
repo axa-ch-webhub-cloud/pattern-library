@@ -6,8 +6,6 @@ export default ({
   outputValue = '',
   placeholder = 'Select a date',
   open = false,
-  lowerEndYear = '',
-  higherEndYear = '',
   startDateYear = [],
   startDateMonth = [],
   startDateDay = [],
@@ -31,8 +29,6 @@ export default ({
           button-ok="${buttonOk}" 
           button-cancel="${buttonCancel}" 
           locale="${locale}"
-          lower-end-year='${lowerEndYear}'
-          higher-end-year='${higherEndYear}'
           allowed-years='${JSON.stringify(allowedYears)}'
           start-date-year='${startDateYear}'
           start-date-month='${startDateMonth}'

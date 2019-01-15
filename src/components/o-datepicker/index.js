@@ -34,8 +34,6 @@ class AXADatepicker extends BaseComponentGlobal {
       'locale',
       'output-value',
       'allowed-years',
-      'lower-end-year',
-      'higher-end-year',
       'start-date-year',
       'start-date-month',
       'start-date-day'];

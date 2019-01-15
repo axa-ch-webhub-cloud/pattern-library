@@ -55,7 +55,9 @@ class AXAMDatepicker extends BaseComponentGlobal {
         url: item.url,
       }));
 
-      const years = getSpecificYears({ lowerEndYear: this.props.lowerEndYear, higherEndYear: this.props.higherEndYear });
+      const lowerEndYear = this.props.allowedYears[0];
+      const higherEndYear = this.props.allowedYears[this.props.allowedYears.length - 1];
+      const years = getSpecificYears({ lowerEndYear, higherEndYear });
 
       this.props.yearItems = years.map(item => ({
         isSelected: item === this.props.startDateYear,
@@ -85,22 +87,6 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     set locale(value) {
       this.setAttribute('locale', value);
-    }
-
-    get lowerEndYear() {
-      return this.getAttribute('lower-end-year');
-    }
-
-    set lowerEndYear(value) {
-      this.setAttribute('lower-end-year', value);
-    }
-
-    get higherEndYear() {
-      return this.getAttribute('higher-end-year');
-    }
-
-    set higherEndYear(value) {
-      this.setAttribute('higher-end-year', value);
     }
 
     get yearItems() {
