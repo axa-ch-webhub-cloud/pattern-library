@@ -8,6 +8,7 @@ const postcss = require('postcss');
 
 const constants = require('../../constants');
 const common = require('./_common');
+const babel = require('rollup-plugin-babel');
 
 const ENV = process.env.NODE_ENV; // second element is the first argument.
 const CWD = process.cwd();
@@ -32,6 +33,10 @@ const inputOptionsComponents = {
       processor: css => postcss([autoprefixer])
         .process(css)
         .then(result => result.css),
+    }),
+    babel({
+      plugins: ['external-helpers'],
+      externalHelpers: true,
     }),
   ],
 };

@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist && rimraf lib && rimraf docs",
     "clean-dev": "rimraf .tmp",
-    "test": "npm run test-eslint && npm run test-stylelint && npm run test-jest",
+    "test": "npm run test-eslint && npm run test-stylelint",
     "test-editorconfig": "editorconfig-checker src",
     "test-eslint": "eslint src/",
     "test-stylelint": "stylelint 'src/**/*.scss'",
@@ -182,7 +182,6 @@
     "collectCoverageFrom": [
       "src/**/*.js"
     ],
-    "node": "node",
     "testMatch": [
       "<rootDir>/src/**/?(*.)(test).js"
     ],
