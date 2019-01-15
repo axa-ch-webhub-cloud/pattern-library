@@ -49,14 +49,13 @@ class AXADropdown extends BaseComponentGlobal {
 
     this.onDropdownClick =
       on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
+    
+    // the enhanced dropdown is a list with links -> clicks event. the native is a select change event
     this.onDropdownValueClick =
-      on(this, EVENTS.CLICK, DEFAULTS.selectClass, this.handleDropdownValueClick, { capture: true, passive: false });
+      on(this, EVENTS.CLICK, DEFAULTS.selectClass, e => this.handleDropdownValueClick(e), { capture: true, passive: false });
 
     this.onNativeDropdownChange =
       on(this, EVENTS.CHANGE, DEFAULTS.nativeSelectClass, e => this.handleDropdownNativeValueChange(e), { capture: true, passive: false });
-
-    this.onDropdownValueChange =
-      on(this, AXA_EVENTS.AXA_CHANGE, '', e => this.handleDropdownValueChange(e), { capture: true, passive: false });
   }
 
   handleDropdownClick = (e) => {
@@ -68,7 +67,7 @@ class AXADropdown extends BaseComponentGlobal {
     e.preventDefault();
     e.stopPropagation();
     this.toggleDropdown();
-    fire(this, AXA_EVENTS.AXA_CHANGE, { ...e.target.dataset }, { bubbles: true, cancelable: true });
+    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.dataset.value, { bubbles: true, cancelable: true });
   }
 
   handleDropdownNativeValueChange(e) {
@@ -77,6 +76,7 @@ class AXADropdown extends BaseComponentGlobal {
     this.value = e.target.value;
     this.title = e.target.name;
     this.updateCurrentItem(e.target.value);
+    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.value, { bubbles: true, cancelable: true });
   }
 
   handleDropdownValueChange(e) {
@@ -113,13 +113,16 @@ class AXADropdown extends BaseComponentGlobal {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
 
-    // if (hasValue && name === 'value') {
-    //   this.updateCurrentItem(newValue.toString());
-    // }
-
-    if (hasValue && name === 'items' && this.selectedItem) {
-      this.title = this.selectedItem.name;
+    if (hasValue && name === 'value') {
+      this.updateCurrentItem(newValue.toString());
+      if (this.selectedItem) {
+        this.title = this.selectedItem.name;
+      }
     }
+
+    // if (hasValue && name === 'items' && this.selectedItem) {
+    //   this.title = this.selectedItem.name;
+    // }
   }
 
   disconnectedCallback() {
@@ -153,7 +156,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   set native(value) {
-    return this.setAttribute('native', value);
+    this.setAttribute('native', value);
   }
 
   get native() {

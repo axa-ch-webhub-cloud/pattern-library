@@ -1,16 +1,12 @@
 import { EVENTS, AXA_EVENTS } from '../../../js/ui-events';
 import on from '../../../js/on';
 import fire from '../../../js/fire';
-import DeviceStateObserver from '../../../js/device-state';
 
 export const OK = 'ok';
-
-const IS_NATIVE_WHEN = ['xs', 'sm'];
 
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
-    this.deviceStateObserver = new DeviceStateObserver();
   }
 
   init() {
@@ -24,6 +20,7 @@ export default class Datepicker {
       on(this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDropdownMonth, { capture: true, passive: false });
     this.onListenToDropdownYear =
       on(this.dropdownYear, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDropdownYear, { capture: true, passive: false });
+    
     this.onListenDatepickerBodyDateChange =
       on(this.datepickerBody, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDatepickerBody, { capture: true, passive: false });
 
@@ -43,7 +40,7 @@ export default class Datepicker {
 
   handleChangeDropdownMonth = (e) => {
     e.preventDefault();
-    const month = e.detail.value;
+    const month = e.detail;
     if (month) {
       const newDate = this.datepickerBody.getAttribute('date');
       const parsedDate = new Date(Date.parse(newDate));
@@ -55,7 +52,7 @@ export default class Datepicker {
 
   handleChangeDropdownYear = (e) => {
     e.preventDefault();
-    const year = e.detail.value;
+    const year = e.detail;
     if (year) {
       const newDate = this.datepickerBody.getAttribute('date');
       const parsedDate = new Date(Date.parse(newDate));
@@ -67,7 +64,6 @@ export default class Datepicker {
   handleChangeDatepickerBody = (e) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (e.detail) {
       const parsedDate = new Date(Date.parse(e.detail));
       this.dropdownMonth.setAttribute('value', parsedDate.getMonth());
@@ -81,6 +77,5 @@ export default class Datepicker {
     this.onListenDatepickerBodyDateChange();
     this.onCancelButtonListenerEnd();
     this.onOkButtonListenerEnd();
-    this.onListenToDeviceStateChange();
   }
 }
