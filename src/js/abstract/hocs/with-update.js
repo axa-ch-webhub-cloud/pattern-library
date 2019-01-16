@@ -186,6 +186,10 @@ const withUpdate = Base =>
         if (this.updated) {
           this.updated();
         }
+      } else if (shouldUpdate && !this._isConnected) {
+        // @todo: find out why that component never connects
+        // eslint-disable-next-line no-console
+        console.warn('setProps(): Custom Element not connected and props never update', this);
       }
     }
 
