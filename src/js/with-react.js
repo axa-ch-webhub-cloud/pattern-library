@@ -177,7 +177,11 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
 
       // remove events from props
       propsKeys.filter(isEventFilter).forEach((key) => {
-        delete jsxProps[key];
+        // support React's synthetic events
+        // Note: not 100% compatible with custom elements
+        if (isNamespacedEvent(key)) {
+          delete jsxProps[key];
+        }
       });
 
       jsxProps.ref = handleRef;
