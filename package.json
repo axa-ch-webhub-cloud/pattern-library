@@ -116,6 +116,7 @@
     "node-syntaxhighlighter": "^0.8.1",
     "nodemon": "^1.14.11",
     "npm-watch": "^0.3.0",
+    "npmversion": "^1.7.0",
     "outdent": "^0.4.1",
     "postcss": "^6.0.14",
     "postcss-cli": "^4.1.1",
