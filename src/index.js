@@ -9,7 +9,7 @@ export { default as AXACheckbox } from './components/a-checkbox';
 
 export { default as AXAChoice } from './components/a-choice';
 
-export { default as AXADeviceState } from './components/a-device-state';
+import './components/a-device-state';
 
 export { default as AXAIcon } from './components/a-icon';
 

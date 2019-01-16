@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "2.0.1-beta.244",
+  "version": "2.0.1-beta.245",
   "description": "AXA Switzerland Web Patterns",
   "main": "stack/server.js",
   "module": "lib",
@@ -40,21 +40,7 @@
     "build": "cross-env NODE_ENV=production concurrently \"node stack/tasks/build.html.js\" \"node stack/tasks/build-examples.js\" \"npm run build-css-prod\" \" npm run build-js-prod\" \"npm run build-lib\" \"npm run build-icons-prod\"",
     "postbuild": "node stack/tasks/copy-dist-to-docs.js",
     "build-lib": "concurrently \"babel src/js --out-dir lib/js --plugins transform-runtime\" \"node stack/tasks/bundles/lib.js\" && babel src/index.js --out-file lib/index.js",
-    "release": "node ./stack/tasks/release.js",
-    "xprebump-major": "npm run test",
-    "bump-major": "npm run test && npmversion --increment major",
-    "xprebump-minor": "npm run test",
-    "bump-minor": "npm run test && npmversion --increment minor",
-    "xprebump-patch": "npm run test",
-    "bump-patch": "npm run test && npmversion --increment patch",
-    "xprebump-major-beta": "npm run test",
-    "bump-major-beta": "npm run test && npmversion --increment major --preid beta --force-preid",
-    "xprebump-minor-beta": "npm run test",
-    "bump-minor-beta": "npm run test && npmversion --increment minor --preid beta --force-preid",
-    "xprebump-patch-beta": "npm run test",
-    "bump-patch-beta": "npm run test && npmversion --increment patch --preid beta --force-preid",
-    "xprebump-beta": "npm run test",
-    "bump-beta": "npm run test && npmversion --increment prerelease --preid beta --force-preid"
+    "release": "generic-release docs dist"
   },
   "watch": {
     "build-css-dev": {
@@ -93,6 +79,7 @@
   "author": "Luca Mele",
   "license": "Copyright 2017 AXA Versicherungen AG",
   "devDependencies": {
+    "@axa-ch/generic-release": "^1.0.8",
     "autoprefixer": "^7.2.3",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
@@ -129,7 +116,7 @@
     "node-syntaxhighlighter": "^0.8.1",
     "nodemon": "^1.14.11",
     "npm-watch": "^0.3.0",
-    "npmversion": "~1.4.0",
+    "npmversion": "^1.7.0",
     "outdent": "^0.4.1",
     "postcss": "^6.0.14",
     "postcss-cli": "^4.1.1",
