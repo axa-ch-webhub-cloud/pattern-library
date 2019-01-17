@@ -145,7 +145,9 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   updateDatepickerBody(date) {
-    this.datepickerBody.setAttribute('date', date);
+    if (this.datepickerBody) { // Needed for IE11...
+      this.datepickerBody.date = date;
+    }
   }
 
   closeDatepicker() {
