@@ -80,8 +80,8 @@
   "author": "Luca Mele",
   "license": "Copyright 2017 AXA Versicherungen AG",
   "devDependencies": {
+    "@axa-ch/generic-release": "^1.0.9",
     "@types/react": "^16.7.13",
-    "@axa-ch/generic-release": "^1.0.8",
     "autoprefixer": "^7.2.3",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
