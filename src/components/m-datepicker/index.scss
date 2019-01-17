@@ -66,7 +66,7 @@ $datepicker-layer: 1;
 }
 
 .m-datepicker__dropdown {
-  margin-bottom: $datepicker-margin-y;
+  margin-bottom: $datepicker-padding-y;
 
   .m-dropdown__toggle {
     padding-left: $datepicker-dropdown-padding-left;
