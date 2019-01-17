@@ -17,12 +17,12 @@ export default class Datepicker {
     this.cancelButton = this.wcNode.querySelector('.js-datepicker__button-cancel');
 
     this.onHandleChangeDropdownMonth =
-      on(this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDropdownMonth, { capture: true, passive: false });
+      on(this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '', e => this.handleChangeDropdownMonth(e), { capture: true, passive: false });
     this.onListenToDropdownYear =
-      on(this.dropdownYear, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDropdownYear, { capture: true, passive: false });
+      on(this.dropdownYear, AXA_EVENTS.AXA_CHANGE, '', e => this.handleChangeDropdownYear(e), { capture: true, passive: false });
 
     this.onListenDatepickerBodyDateChange =
-      on(this.datepickerBody, AXA_EVENTS.AXA_CHANGE, '', this.handleChangeDatepickerBody, { capture: true, passive: false });
+      on(this.datepickerBody, AXA_EVENTS.AXA_CHANGE, '', e => this.handleChangeDatepickerBody(e), { capture: true, passive: false });
 
     this.onCancelButtonListenerEnd = on(this.cancelButton, EVENTS.CLICK, () => {
       fire(this.wcNode, 'cancel', {}, { bubbles: true, cancelable: true, composed: true });
@@ -38,7 +38,7 @@ export default class Datepicker {
     });
   }
 
-  handleChangeDropdownMonth = (e) => {
+  handleChangeDropdownMonth(e) {
     e.preventDefault();
     const month = e.detail;
     if (month) {
@@ -50,7 +50,7 @@ export default class Datepicker {
     }
   }
 
-  handleChangeDropdownYear = (e) => {
+  handleChangeDropdownYear(e) {
     e.preventDefault();
     const year = e.detail;
     if (year) {
@@ -61,7 +61,7 @@ export default class Datepicker {
     }
   }
 
-  handleChangeDatepickerBody = (e) => {
+  handleChangeDatepickerBody(e) {
     e.preventDefault();
     e.stopPropagation();
     if (e.detail) {
