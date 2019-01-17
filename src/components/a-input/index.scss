@@ -49,6 +49,10 @@
     color: $color-prim-gray-dusty;
   }
 
+  &::-ms-clear {
+    display: none;
+  } 
+
   &:hover,
   &:active,
   &:focus {
