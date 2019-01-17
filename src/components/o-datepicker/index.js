@@ -99,11 +99,11 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleDatepickerInputChange = (e) => {
-    if (e.detail.length === 10) {
+    if (e.detail.length > 8) {
       const validDate = parseLocalisedDateIfValid(this.locale, e.detail);
       if (validDate) {
         this.updateDate(validDate);
-        this.updateDatepickerBody(validDate);
+        this.updateDatepickerBody(validDate.toISOString());
       }
     }
   }
@@ -118,7 +118,6 @@ class AXADatepicker extends BaseComponentGlobal {
 
   // TODO: Apply validation. Check for allowed years
   handleDatepickerChangeDate = (e) => {
-    // console.log('date changed', e.detail.value);
     if (e.detail.value !== '') {
       this.valueChanged = true;
       this.updateDate(e.detail.value);
@@ -128,12 +127,12 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   updateDate(date) {
-    this.value = toLocalISOString(date); // We should probably use the normal iso.
+    this.value = date.toISOString(); // We should probably use the normal iso.
     this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
   updateDatepickerBody(date) {
-    this.datepickerBody.setAttribute('value', new Date(Date.parse(date)).toISOString());
+    this.datepickerBody.setAttribute('date', date);
   }
 
   closeDatepicker() {
