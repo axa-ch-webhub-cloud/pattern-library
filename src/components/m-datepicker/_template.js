@@ -18,6 +18,7 @@ export default ({
 
       <div class="m-datepicker__dropdown-wrap">
         <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
+          tabindex="-1"
           size="sm"
           month="true"
           items='${JSON.stringify(monthItems)}'
@@ -25,6 +26,7 @@ export default ({
         </axa-dropdown>
 
         <axa-dropdown class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
+          tabindex="-1"
           size="sm"
           year="true"
           items='${JSON.stringify(yearItems)}'

@@ -10,7 +10,7 @@ export default ({
   size,
 }) => html`
 <article class="m-dropdown__wrap">
-      <div class="${classnames('m-dropdown__select-wrap', { [`m-dropdown__select-wrap--${size}`]: size })} m-dropdown__list--native" tabindex="0">
+      <div class="${classnames('m-dropdown__select-wrap', { [`m-dropdown__select-wrap--${size}`]: size })} m-dropdown__list--native">
         <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', { [`m-dropdown__select--${size}`]: size })}">
         ${Array.isArray(items) && items.map(({ name, value, isSelected }) =>
           html`<option value="${value}" ${isSelected ? 'selected' : ''}>${name}</option>`)
@@ -25,7 +25,7 @@ export default ({
         <ul class="m-dropdown__content js-dropdown__content">
           ${items && items.map(({ name, url = '#', isSelected, value }, index) => html`
             <li class="m-dropdown__item">
-              <a class="m-dropdown__link" data-name="${name}" data-index="${index}" data-value="${value}" data-selected="${isSelected ? 'true' : 'false'}" href="${url}">${name}</a>
+              <a tabindex="-1" class="m-dropdown__link js-dropdown__link" data-name="${name}" data-index="${index}" data-value="${value}" data-selected="${isSelected ? 'true' : 'false'}" href="${url}">${name}</a>
             </li>
           `)}
         </ul>

@@ -3,6 +3,7 @@
 @import "../../styles/control/control-settings";
 
 $input-logo-padding-right: 20px !default;
+$calendar-level-index: 1;
 
 .o-datepicker {
   position: relative;
@@ -27,6 +28,14 @@ $input-logo-padding-right: 20px !default;
 
 .a-input__icon-button {
   background-color: transparent;
+}
+
+.o-datepicker[open] {
+  .m-datepicker {
+    display: block !important;
+    position: absolute;
+    z-index: $calendar-level-index;
+  }
 }
 
 .o-datepicker__calendar--move-up {

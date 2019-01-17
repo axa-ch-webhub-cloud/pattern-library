@@ -186,12 +186,11 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   set open(value) {
-    const isOpen = Boolean(value);
-    if (isOpen) { this.datepickerCalendar.removeAttribute('hidden'); } else { this.datepickerCalendar.setAttribute('hidden', ''); }
+    if (value) { this.setAttribute('open', value); } else { this.removeAttribute('open'); }
   }
 
   get open() {
-    return !this.datepickerCalendar.hasAttribute('hidden');
+    return this.getAttribute('open');
   }
 
   set locale(value) {

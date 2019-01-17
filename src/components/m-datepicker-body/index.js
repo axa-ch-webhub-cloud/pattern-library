@@ -42,7 +42,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
     this.onDatepickerBodyCellClick = on(
       this, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
-      this.handleDatepickerBodyCellClick.bind(this), { capture: true, passive: false },
+      e => this.handleDatepickerBodyCellClick(e), { capture: true, passive: false },
     );
     // Set Cells
     this.props.cells = this.store.cells;

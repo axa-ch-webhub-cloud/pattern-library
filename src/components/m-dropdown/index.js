@@ -58,6 +58,10 @@ class AXADropdown extends BaseComponentGlobal {
       on(this, EVENTS.CHANGE, DEFAULTS.nativeSelectClass, e => this.handleDropdownNativeValueChange(e), { capture: true, passive: false });
   }
 
+  didRenderCallback() {
+    this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
+  }
+
   handleDropdownClick = (e) => {
     e.preventDefault();
     this.toggleDropdown();
@@ -94,9 +98,11 @@ class AXADropdown extends BaseComponentGlobal {
     if (!this.isOpen) {
       this.classList.add(DEFAULTS.isOpenClass);
       this.isOpen = true;
+      this.dropdownLinks.forEach((link) => { link.setAttribute('tabindex', '0'); });
     } else {
       this.classList.remove(DEFAULTS.isOpenClass);
       this.isOpen = false;
+      this.dropdownLinks.forEach((link) => { link.setAttribute('tabindex', '-1'); });
     }
   }
 

@@ -26,8 +26,14 @@ $datepicker-calender-body-padding-top: 5px !default;
   border: none;
 }
 
+.m-datepicker-body__cell:active {
+  outline: 0;
+  border: solid 2px $color-axa-blue;
+}
+
 .m-datepicker-body__cell:focus {
-  outline: none;
+  outline: 0;
+  border: dashed 2px $color-axa-blue;
 }
 
 .m-datepicker-body__not-current-month {
