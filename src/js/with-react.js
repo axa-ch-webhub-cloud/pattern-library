@@ -70,6 +70,12 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
     constructor(props) {
       super(props);
 
+      // bail-out if we are in a test-environment
+      // @todo: we have to differentiate between our test-environment and consumer test-environment
+      if (process.env.NODE_ENV === 'test') {
+        return;
+      }
+
       this._eventCache = {};
 
       // make sure that the custom element is ready
@@ -82,6 +88,12 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
     }
 
     componentDidMount() {
+      // bail-out if we are in a test-environment
+      // @todo: we have to differentiate between our test-environment and consumer test-environment
+      if (process.env.NODE_ENV === 'test') {
+        return;
+      }
+
       const { state: { isDefined } } = this;
 
       if (isDefined) {
@@ -96,6 +108,12 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
     }
 
     componentDidUpdate() {
+      // bail-out if we are in a test-environment
+      // @todo: we have to differentiate between our test-environment and consumer test-environment
+      if (process.env.NODE_ENV === 'test') {
+        return;
+      }
+
       this.updateWebComponentProps();
     }
 
@@ -143,6 +161,12 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
     }
 
     componentWillUnmount() {
+      // bail-out if we are in a test-environment
+      // @todo: we have to differentiate between our test-environment and consumer test-environment
+      if (process.env.NODE_ENV === 'test') {
+        return;
+      }
+
       const { _eventCache: eventCache } = this;
 
       // clean up bound custom events
@@ -162,6 +186,14 @@ const withReact = (WebComponent, { pure = true, passive = false, eventNamespace 
     render() {
       // eslint-disable-next-line react/prop-types
       const { props: { children, ...props }, handleRef } = this;
+
+      // bail-out if we are in a test-environment
+      // @todo: we have to differentiate between our test-environment and consumer test-environment
+      if (process.env.NODE_ENV === 'test') {
+        // maybe just returning null could be feasible
+        return createElement('div', this.props, children);
+      }
+
       const { observedAttributes } = WebComponent;
       // super important: don't mutate this.props
       const jsxProps = { ...props };
