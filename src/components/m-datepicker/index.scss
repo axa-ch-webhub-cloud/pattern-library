@@ -30,9 +30,6 @@ $datepicker-layer: 1;
 }
 
 .m-datepicker__article {
-  position: absolute;
-  z-index: $datepicker-layer;
-
   padding: $datepicker-padding-y $datepicker-padding-x;
 
   max-width: $datepicker-width;
@@ -61,6 +58,11 @@ $datepicker-layer: 1;
     @include dropdown-select-icon($indent: 10px, $height: 40px);
     width: 35px;
   }
+}
+
+.m-datepicker__article--open {
+  position: absolute;
+  z-index: $datepicker-layer;
 }
 
 .m-datepicker__dropdown {

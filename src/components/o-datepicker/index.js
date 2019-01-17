@@ -116,7 +116,6 @@ class AXADatepicker extends BaseComponentGlobal {
     this.closeDatepicker();
   }
 
-  // TODO: loses focus and day is not accurate
   // TODO: Apply validation. Check for allowed years
   handleDatepickerChangeDate = (e) => {
     // console.log('date changed', e.detail.value);

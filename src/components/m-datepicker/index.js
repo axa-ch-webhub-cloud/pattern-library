@@ -21,6 +21,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
       startDateMonth: PropTypes.number,
       startDateDay: PropTypes.number,
       allowedYears: PropTypes.arrayOf(PropTypes.number),
+      allowedYearsRange: PropTypes.string,
       lowerEndYear: PropTypes.number,
       higherEndYear: PropTypes.number,
       startDateMonthTitle: PropTypes.string,
@@ -43,6 +44,10 @@ class AXAMDatepicker extends BaseComponentGlobal {
       super.init({ styles, template });
     }
 
+    range(start, end) {
+      return Array.from({ length: (end - start) }, (v, k) => k + start);
+    }
+
     connectedCallback() {
       super.connectedCallback();
       this.className = `${this.initialClassName} m-datepicker`;
@@ -55,11 +60,18 @@ class AXAMDatepicker extends BaseComponentGlobal {
         url: item.url,
       }));
 
-      const lowerEndYear = this.props.allowedYears[0];
-      const higherEndYear = this.props.allowedYears[this.props.allowedYears.length - 1];
-      const years = getSpecificYears({ lowerEndYear, higherEndYear });
+      // if we set a range of years, we don't care about the allowedYears
+      let allowedYears = [];
+      if (this.props.allowedYearsRange && this.props.allowedYearsRange.length > 0) {
+        const yearRanges = this.props.allowedYearsRange.split('-');
+        allowedYears = this.range(parseInt(yearRanges[0], 10), parseInt(yearRanges[1], 10));
+      } else {
+        const lowerEndYear = this.props.allowedYears[0];
+        const higherEndYear = this.props.allowedYears[this.props.allowedYears.length - 1];
+        allowedYears = getSpecificYears({ lowerEndYear, higherEndYear });
+      }
 
-      this.props.yearItems = years.map(item => ({
+      this.props.yearItems = allowedYears.map(item => ({
         isSelected: item === this.props.startDateYear,
         name: item.toString(),
         value: item.toString(),
@@ -143,6 +155,14 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     get allowedYears() {
       return this.getAttribute('allowed-years');
+    }
+
+    set allowedYearsRange(value) {
+      this.setAttribute('allowed-years-range', value);
+    }
+
+    get allowedYearsRange() {
+      return this.getAttribute('allowed-years-range');
     }
 }
 
