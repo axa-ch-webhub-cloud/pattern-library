@@ -101,9 +101,12 @@ export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
   return weekdayIndex;
 };
 
+// eslint-disable-next-line no-control-regex
+export const clearStringFromIEGeneratedCharacters = string => string.replace(/[^\x00-\x7F]/g, '');
+
 export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
   const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
-  return objDate;
+  return clearStringFromIEGeneratedCharacters(objDate);
 };
 
 export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => {
@@ -125,8 +128,8 @@ export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => 
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
-  const splittedValue = inputValue.split(usedSeperator);
-  const splittedBlueprint = localisedBlueprintDateString.split(usedSeperator);
+  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(usedSeperator);
+  const splittedBlueprint = clearStringFromIEGeneratedCharacters(localisedBlueprintDateString).split(usedSeperator);
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)
