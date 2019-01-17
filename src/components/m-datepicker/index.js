@@ -60,18 +60,17 @@ class AXAMDatepicker extends BaseComponentGlobal {
         url: item.url,
       }));
 
-      // if we set a range of years, we don't care about the allowedYears
-      let allowedYears = [];
+      // if we set a range of years, we don't care about the initial allowedYears
       if (this.props.allowedYearsRange && this.props.allowedYearsRange.length > 0) {
         const yearRanges = this.props.allowedYearsRange.split('-');
-        allowedYears = this.range(parseInt(yearRanges[0], 10), parseInt(yearRanges[1], 10));
+        this.props.allowedYears = this.range(parseInt(yearRanges[0], 10), parseInt(yearRanges[1], 10));
       } else {
         const lowerEndYear = this.props.allowedYears[0];
         const higherEndYear = this.props.allowedYears[this.props.allowedYears.length - 1];
-        allowedYears = getSpecificYears({ lowerEndYear, higherEndYear });
+        this.props.allowedYears = getSpecificYears({ lowerEndYear, higherEndYear });
       }
 
-      this.props.yearItems = allowedYears.map(item => ({
+      this.props.yearItems = this.props.allowedYears.map(item => ({
         isSelected: item === this.props.startDateYear,
         name: item.toString(),
         value: item.toString(),

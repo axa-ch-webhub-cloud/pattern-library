@@ -17,6 +17,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
     locale: localePropType,
     value: PropTypes.string,
     index: PropTypes.number,
+    allowedYears: PropTypes.arrayOf(PropTypes.number),
     year: PropTypes.number,
     month: PropTypes.number,
     day: PropTypes.number,
@@ -133,9 +134,13 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
-
     if (name === 'date' && this.store && this.date) {
+      // Check validation
       const newDate = new Date(Date.parse(newValue));
+      if (newDate.getFullYear() < this.allowedYears[0] || newDate > this.allowedYears[this.allowedYears.length - 1]) {
+        console.log('out of validation range');
+        return;
+      }
       this.store.update(newDate);
       this.props.cells = this.store.getCells();
       fire(this, AXA_EVENTS.AXA_CHANGE, newDate, { bubbles: true, cancelable: true, composed: true });
