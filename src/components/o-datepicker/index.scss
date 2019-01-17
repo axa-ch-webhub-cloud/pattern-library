@@ -33,3 +33,8 @@ $input-logo-padding-right: 20px !default;
   // TODO $control-size !!!!! ausrechnen !!!!!!!!
   top: -385px;
 }
+
+
+.o-datepicker--is-invalid .o-datepicker__input input {
+  border: solid 1px $color-sec-red-tosca;
+}

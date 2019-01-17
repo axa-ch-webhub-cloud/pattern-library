@@ -124,7 +124,21 @@ class AXADatepickerBody extends BaseComponentGlobal {
   }
 
   get allowedYears() {
-    return this.getAttribute('allowed-years');
+    let out = '';
+    try {
+      out = JSON.parse(this.getAttribute('allowed-years'))
+    } catch (e) {
+      out = '';
+    }
+    return out;
+  }
+
+  set classes(value) {
+    this.setAttribute('classes', value);
+  }
+
+  get classes() {
+    return this.getAttribute('classes');
   }
 
   disconnectedCallback() {
@@ -135,15 +149,16 @@ class AXADatepickerBody extends BaseComponentGlobal {
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (name === 'date' && this.store && this.date) {
-      // Check validation
       const newDate = new Date(Date.parse(newValue));
-      if (newDate.getFullYear() < this.allowedYears[0] || newDate > this.allowedYears[this.allowedYears.length - 1]) {
-        console.log('out of validation range');
+      if (newDate.getFullYear() < this.allowedYears[0] || newDate.getFullYear() > this.allowedYears[this.allowedYears.length - 1]) {
+        fire(this, AXA_EVENTS.AXA_VALIDATION, { type: 'error', message: 'not-in-range' }, { bubbles: true, cancelable: true, composed: true });
         return;
       }
+
       this.store.update(newDate);
       this.props.cells = this.store.getCells();
       fire(this, AXA_EVENTS.AXA_CHANGE, newDate, { bubbles: true, cancelable: true, composed: true });
+      fire(this, AXA_EVENTS.AXA_VALIDATION,{ type: 'success', message: 'valid' }, { bubbles: true, cancelable: true, composed: true });
     }
   }
 }

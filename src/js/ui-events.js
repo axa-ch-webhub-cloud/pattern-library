@@ -26,6 +26,7 @@ export const AXA_EVENTS = {
   AXA_LOAD: 'axa-load',
   AXA_RENDER: 'axa-render',
   AXA_CHANGE: 'axa-change',
+  AXA_VALIDATION: 'axa-validation',
   AXA_SWIPE_UP: 'axa-swipe-up',
   AXA_SWIPE_DOWN: 'axa-swipe-down',
   AXA_SWIPE_LEFT: 'axa-swipe-left',

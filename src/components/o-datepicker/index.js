@@ -54,18 +54,22 @@ class AXADatepicker extends BaseComponentGlobal {
 
     // Register Events
     this.body.addEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
-    this.offDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', e => this.handleDatepickerCalendarClick(e));
-    this.offDatePickerInputClick = on(this, EVENTS.CLICK, 'js-input__input', e => this.handleDatepickerInputClick(e));
-    this.offDatePickerInputButtonClick = on(this, EVENTS.CLICK, 'js-input__icon-button', e => this.handleDatepickerInputButtonClick(e));
-    this.offDatePickerInputChange = on(
+    this.onDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', e => this.handleDatepickerCalendarClick(e));
+    this.onDatePickerInputClick = on(this, EVENTS.CLICK, 'js-input__input', e => this.handleDatepickerInputClick(e));
+    this.onDatePickerInputButtonClick = on(this, EVENTS.CLICK, 'js-input__icon-button', e => this.handleDatepickerInputButtonClick(e));
+
+    this.onDatePickerInputChange = on(
       this.datepickerInput, AXA_EVENTS.AXA_CHANGE, '',
       this.handleDatepickerInputChange, { capture: true, passive: false },
     );
 
     // Listen to fired events of sub component datepicker calendar
-    this.offDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
-    this.offDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
+    this.onDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
+    this.onDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
     this.onInputFieldRender = on(this.datepickerInput, AXA_EVENTS.AXA_RENDER, e => this.handleInputFieldRendered(e));
+
+    // Validation listener
+    this.onDatepickerBodyValidation = on(this.datepickerBody, AXA_EVENTS.AXA_VALIDATION, e => this.handleDatepickerBodyValidation(e));
 
     if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
@@ -88,6 +92,14 @@ class AXADatepicker extends BaseComponentGlobal {
       this.closeDatepicker();
     } else {
       this.openDatepicker();
+    }
+  }
+
+  handleDatepickerBodyValidation(e) {
+    if (e.detail.type === 'error') {
+      this.classList.add('o-datepicker--is-invalid');
+    } else {
+      this.classList.remove('o-datepicker--is-invalid');
     }
   }
 
@@ -163,12 +175,12 @@ class AXADatepicker extends BaseComponentGlobal {
     this.onDropdownValueClick();
     // Deregister Events
     this.body.removeEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
-    this.offDatepickerCalendarClick();
-    this.offDatePickerInputClick();
-    this.offDatePickerInputButtonClick();
-    this.offDatePickerInputChange();
-    this.offDatepickerCalendarDateChanged();
-    this.offDatepickerCalendarCancel();
+    this.onDatepickerCalendarClick();
+    this.onDatePickerInputClick();
+    this.onDatePickerInputButtonClick();
+    this.onDatePickerInputChange();
+    this.onDatepickerCalendarDateChanged();
+    this.onDatepickerCalendarCancel();
   }
 
   set open(value) {
