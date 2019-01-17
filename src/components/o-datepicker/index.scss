@@ -7,8 +7,10 @@ $calendar-level-index: 1;
 
 .o-datepicker {
   position: relative;
-  background: $color-prim-white;
+
   display: inline-block; // important for onbody click close event
+
+  background: $color-prim-white;
 }
 
 .o-datepicker__calendar {
@@ -32,17 +34,16 @@ $calendar-level-index: 1;
 
 .o-datepicker[open] {
   .m-datepicker {
-    display: block !important;
     position: absolute;
     z-index: $calendar-level-index;
+
+    display: block !important;  // stylelint-disable declaration-no-important
   }
 }
 
 .o-datepicker__calendar--move-up {
-  // TODO $control-size !!!!! ausrechnen !!!!!!!!
   top: -385px;
 }
-
 
 .o-datepicker--is-invalid .o-datepicker__input input {
   border: solid 1px $color-sec-red-tosca;
