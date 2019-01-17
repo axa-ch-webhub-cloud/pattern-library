@@ -62,7 +62,7 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
   }
 
   render() {
-    if (this.disclaimerHandler.hasAccepted()) {
+    if (this.disclaimerHandler && this.disclaimerHandler.hasAccepted()) {
       this.disclaimerHandler.cleanupWcNode();
     } else {
       super.render();
@@ -74,7 +74,9 @@ class AXACookieDisclaimer extends BaseComponentGlobal {
   //   contextNode is now available.
   // }
   didRenderCallback() {
-    this.disclaimerHandler.init();
+    if (this.disclaimerHandler) {
+      this.disclaimerHandler.init();
+    }
   }
 }
 
