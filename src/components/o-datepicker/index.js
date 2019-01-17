@@ -60,7 +60,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
     this.onDatePickerInputChange = on(
       this.datepickerInput, AXA_EVENTS.AXA_CHANGE, '',
-      this.handleDatepickerInputChange, { capture: true, passive: false },
+      e => this.handleDatepickerInputChange(e), { capture: true, passive: false },
     );
 
     // Listen to fired events of sub component datepicker calendar
@@ -71,7 +71,7 @@ class AXADatepicker extends BaseComponentGlobal {
     // Validation listener
     this.onDatepickerBodyValidation = on(this.datepickerBody, AXA_EVENTS.AXA_VALIDATION, e => this.handleDatepickerBodyValidation(e));
 
-    if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerInput)) {
+    if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerCalendar)) {
       this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
     }
   }
@@ -82,11 +82,11 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleDatepickerInputClick = (e) => {
+  handleDatepickerInputClick(e) {
     e.stopPropagation(); // important as the propagation of the document.body event must be prevented
   }
 
-  handleDatepickerInputButtonClick = (e) => {
+  handleDatepickerInputButtonClick(e) {
     e.stopPropagation(); // important as the propagation of the document.body event must be prevented
     if (this.open) {
       this.closeDatepicker();
@@ -111,7 +111,7 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleDatepickerInputChange = (e) => {
+  handleDatepickerInputChange(e) {
     if (e.detail.length > 8) {
       const validDate = parseLocalisedDateIfValid(this.locale, e.detail);
       if (validDate) {
@@ -121,16 +121,16 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleDatepickerCalendarClick = (e) => {
+  handleDatepickerCalendarClick(e) {
     e.stopPropagation();
   }
 
-  handleDatepickerCancel = () => {
+  handleDatepickerCancel() {
     this.closeDatepicker();
   }
 
   // TODO: Apply validation. Check for allowed years
-  handleDatepickerChangeDate = (e) => {
+  handleDatepickerChangeDate(e) {
     if (e.detail.value !== '') {
       this.valueChanged = true;
       this.updateDate(e.detail.value);
