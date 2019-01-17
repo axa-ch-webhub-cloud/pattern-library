@@ -7,7 +7,7 @@ $calendar-level-index: 1;
 
 .o-datepicker {
   position: relative;
-
+  background: $color-prim-white;
   display: inline-block; // important for onbody click close event
 }
 
