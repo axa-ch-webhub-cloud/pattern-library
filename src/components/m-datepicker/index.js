@@ -149,11 +149,11 @@ class AXAMDatepicker extends BaseComponentGlobal {
     }
 
     set allowedYears(value) {
-      this.setAttribute('allowed-years', value);
+      this.setAttribute('allowed-years', JSON.stringify(value));
     }
 
     get allowedYears() {
-      return this.getAttribute('allowed-years');
+      return JSON.parse(this.getAttribute('allowed-years'));
     }
 
     set allowedYearsRange(value) {
