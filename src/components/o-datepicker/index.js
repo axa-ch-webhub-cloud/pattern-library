@@ -36,12 +36,13 @@ class AXADatepicker extends BaseComponentGlobal {
       'allowed-years',
       'start-date-year',
       'start-date-month',
-      'start-date-day'];
+      'start-date-day',
+    ];
   }
 
   init() {
     super.init({ styles, template });
-    this.className = `o-datepicker${this.initialClassName ? ` ${this.initialClassName}` : ''}`;
+    this.className = `o-datepicker${this.classes ? ` ${this.classes}` : ''}`;
   }
 
   connectedCallback() {
@@ -127,7 +128,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   updateDate(date) {
-    this.value = date.toISOString(); // We should probably use the normal iso.
+    this.value = date.toISOString();
     this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
