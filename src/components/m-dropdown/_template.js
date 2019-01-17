@@ -12,7 +12,7 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
     <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', {
       [`m-dropdown__select--${size}`]: size,
     })}">
-    ${ title &&
+    ${title &&
       html`
         <option ${value === undefined ? 'selected' : ''}
         value="" disabled hidden class="m-dropdown__select-option--hidden" >
