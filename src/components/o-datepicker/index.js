@@ -31,6 +31,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
   static get observedAttributes() {
     return [
+      'open',
       'locale',
       'output-value',
       'allowed-years',
@@ -71,8 +72,10 @@ class AXADatepicker extends BaseComponentGlobal {
     // Validation listener
     this.onDatepickerBodyValidation = on(this.datepickerBody, AXA_EVENTS.AXA_VALIDATION, e => this.handleDatepickerBodyValidation(e));
 
-    if (this.datepickerCalendar && this.isItemInLowerHalf(this.datepickerCalendar)) {
-      this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
+    if (this.datepickerCalendar) {
+      const itemBounds = this.isItemInLowerHalf(this.datepickerCalendar);
+      console.log('item bounds', itemBounds);
+      // this.datepickerCalendar.classList.add('o-datepicker__calendar--move-up');
     }
   }
 
@@ -168,6 +171,9 @@ class AXADatepicker extends BaseComponentGlobal {
       return true;
     }
     const { top, height } = target.getBoundingClientRect();
+    console.log('target', target);
+    console.log('top', top);
+    console.log('height', height);
     const calculation = top + (height / 2);
     const toBottom = window.innerHeight - calculation;
     const toTop = calculation;

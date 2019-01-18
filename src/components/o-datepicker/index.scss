@@ -32,17 +32,21 @@ $calendar-level-index: 1;
   background-color: transparent;
 }
 
-.o-datepicker[open] {
-  .m-datepicker {
+.o-datepicker .m-datepicker {
     position: absolute;
     z-index: $calendar-level-index;
+    visibility: hidden;
+    pointer-events: none;
+    // display: block !important;  // stylelint-disable declaration-no-important
+}
 
-    display: block !important;  // stylelint-disable declaration-no-important
-  }
+.o-datepicker .js-datepicker__calendar--open {
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .o-datepicker__calendar--move-up {
-  top: -385px;
+  top: -395px;
 }
 
 .o-datepicker--is-invalid .o-datepicker__input input {

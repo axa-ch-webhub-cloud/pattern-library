@@ -1,5 +1,4 @@
 import html from 'nanohtml';
-import raw from 'nanohtml/raw';
 
 export default ({
   locale,
@@ -17,15 +16,13 @@ export default ({
       <axa-input
         class="o-datepicker__input js-datepicker__input"
         placeholder="${placeholder}"
-        name="get-local-day-month-year"
         icon="datepicker"
         value="${outputValue}"
         inline
       >
       </axa-input>
-      ${raw(`
         <axa-m-datepicker
-          class="js-datepicker__calendar"
+          classes="js-datepicker__calendar${open ? ' js-datepicker__calendar--open' : ' js-datepicker__calendar--closed'}"
           button-ok="${buttonOk}" 
           button-cancel="${buttonCancel}" 
           locale="${locale}"
@@ -33,9 +30,7 @@ export default ({
           start-date-year='${startDateYear}'
           start-date-month='${startDateMonth}'
           start-date-day='${startDateDay}'
-          ${open === false ? 'hidden' : ''}
         >
-        </axa-m-datepicker>`)
-      }
+        </axa-m-datepicker>
     </article>
   `;

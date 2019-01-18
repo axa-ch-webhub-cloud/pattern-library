@@ -42,6 +42,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     init() {
       super.init({ styles, template });
+      this.className = `m-datepicker${this.classes ? ` ${this.classes}` : ''}`;
     }
 
     range(start, end) {
@@ -50,7 +51,6 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     connectedCallback() {
       super.connectedCallback();
-      this.className = `${this.initialClassName} m-datepicker`;
 
       // This method is triggered up to a millions times.... but it's needed here else, no items are available
       this.props.monthItems = getAllLocaleMonthsArray(this.props.locale).map((item, index) => ({
@@ -81,7 +81,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
       this.props.startDate = new Date(this.props.startDateYear, this.props.startDateMonth - 1, this.props.startDateDay);
       this.props.weekdays = getWeekdays(this.props.startDate, this.props.locale);
       this.props.startDateMonthTitle = this.props.startDate.toLocaleString(this.props.locale, { month: 'long' });
-      this.props.startDateYearTitle = this.props.startDateYear;
+      this.props.startDateYearTitle = this.props.startDateYear.toString();
 
       this.datepicker = new Datepicker(this);
       this.datepicker.init();
@@ -90,6 +90,14 @@ class AXAMDatepicker extends BaseComponentGlobal {
     disconnectedCallback() {
       super.disconnectedCallback();
       this.datepicker.destroy();
+    }
+
+    get classes() {
+      return this.getAttribute('classes');
+    }
+
+    set classes(value) {
+      this.setAttribute('classes', value);
     }
 
     get locale() {
