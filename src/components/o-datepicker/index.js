@@ -152,10 +152,15 @@ class AXADatepicker extends BaseComponentGlobal {
 
   closeDatepicker() {
     this.open = false;
+    window.datepicker = null;
   }
 
   openDatepicker() {
     this.open = true;
+    if (window.datepicker) {
+      window.datepicker.closeDatepicker();
+    }
+    window.datepicker = this;
   }
 
   isItemInLowerHalf = (target) => {
