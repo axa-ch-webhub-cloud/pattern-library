@@ -37,7 +37,6 @@ $calendar-level-index: 1;
     z-index: $calendar-level-index;
     visibility: hidden;
     pointer-events: none;
-    // display: block !important;  // stylelint-disable declaration-no-important
 }
 
 .o-datepicker .js-datepicker__calendar--open {
@@ -45,7 +44,7 @@ $calendar-level-index: 1;
   pointer-events: auto;
 }
 
-.o-datepicker__calendar--move-up {
+.o-datepicker__calendar--move-up .m-datepicker {
   top: -395px;
 }
 
