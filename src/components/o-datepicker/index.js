@@ -74,15 +74,19 @@ class AXADatepicker extends BaseComponentGlobal {
     // Validation listener
     this.onDatepickerBodyValidation = on(this.datepickerBody, AXA_EVENTS.AXA_VALIDATION, e => this.handleDatepickerBodyValidation(e));
 
-    // Open calendar to the top if it's not in the viewport (window is too small in the height)
+    // Adapt calendar position (window is too small in the height)
     if (this.datepickerCalendar) {
-      window.addEventListener('resize', debounce(this.handleViewportCheck.bind(this), 250));
-      this.handleViewportCheck();
+      window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.datepickerCalendar), 250));
     }
   }
 
-  handleViewportCheck() {
-    const isInViewport = this.isBottomInViewport(this.datepickerCalendar);
+  didRenderCallback() {
+    const calendar = this.querySelector('.js-datepicker__calendar');
+    this.handleViewportCheck(calendar);
+  }
+
+  handleViewportCheck(elem) {
+    const isInViewport = this.isBottomInViewport(elem);
     if (!isInViewport) {
       this.classList.add('o-datepicker__calendar--move-up');
     } else {
