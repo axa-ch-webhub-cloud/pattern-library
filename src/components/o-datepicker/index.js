@@ -57,6 +57,8 @@ class AXADatepicker extends BaseComponentGlobal {
 
     // Register Events
     this.body.addEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
+    window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
+
     this.onDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', e => this.handleDatepickerCalendarClick(e));
     this.onDatePickerInputClick = on(this, EVENTS.CLICK, 'js-input__input', e => this.handleDatepickerInputClick(e));
     this.onDatePickerInputButtonClick = on(this, EVENTS.CLICK, 'js-input__icon-button', e => this.handleDatepickerInputButtonClick(e));
@@ -83,6 +85,15 @@ class AXADatepicker extends BaseComponentGlobal {
   didRenderCallback() {
     const calendar = this.querySelector('.js-datepicker__calendar');
     this.handleViewportCheck(calendar);
+  }
+
+  handleWindowKeyDown(e) {
+    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)) {
+      e.preventDefault();
+      if (this.open) {
+        this.closeDatepicker();
+      }
+    }
   }
 
   handleViewportCheck(elem) {
@@ -199,6 +210,7 @@ class AXADatepicker extends BaseComponentGlobal {
     this.onDatepickerCalendarDateChanged();
     this.onDatepickerCalendarCancel();
     window.removeEventListener('resize', () => this.handleViewportCheck());
+    window.removeEventListener('keydown', e => this.handleKeyDown(e));
   }
 
   set classes(value) {
