@@ -76,7 +76,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
     // Adapt calendar position (window is too small in the height)
     if (this.datepickerCalendar) {
-      window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.datepickerCalendar), 250));
+      window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.querySelector('.js-datepicker__calendar')), 250));
     }
   }
 
@@ -86,11 +86,8 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleViewportCheck(elem) {
-    const isInViewport = this.isBottomInViewport(elem);
-    if (!isInViewport) {
+    if (this.shouldMove(elem)) {
       this.classList.add('o-datepicker__calendar--move-up');
-    } else {
-      this.classList.remove('o-datepicker__calendar--move-up');
     }
   }
 
@@ -181,11 +178,11 @@ class AXADatepicker extends BaseComponentGlobal {
     window.datepicker = this;
   }
 
-  isBottomInViewport(elem) {
+  shouldMove(elem) {
     const bounding = elem.getBoundingClientRect();
-    return (
-      bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-    );
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return (!bottomIsInViewport && enoughSpaceToMove);
   }
 
   disconnectedCallback() {
