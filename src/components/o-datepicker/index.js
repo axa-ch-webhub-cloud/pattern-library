@@ -51,9 +51,6 @@ class AXADatepicker extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.body = document.body;
-    this.datepickerCalendar = this.querySelector('.js-datepicker__calendar');
-    this.datepickerBody = this.querySelector('.js-datepicker__datepicker-body');
-    this.datepickerInput = this.querySelector('.js-datepicker__input');
 
     // Register Events
     this.body.addEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
@@ -69,12 +66,11 @@ class AXADatepicker extends BaseComponentGlobal {
     );
 
     // Listen to fired events of sub component datepicker calendar
-    this.onDatepickerCalendarDateChanged = on(this.datepickerCalendar, 'date-changed', e => this.handleDatepickerChangeDate(e));
-    this.onDatepickerCalendarCancel = on(this.datepickerCalendar, 'cancel', e => this.handleDatepickerCancel(e));
-    this.onInputFieldRender = on(this.datepickerInput, AXA_EVENTS.AXA_RENDER, e => this.handleInputFieldRendered(e));
-
-    // Validation listener
-    this.onDatepickerBodyValidation = on(this.datepickerBody, AXA_EVENTS.AXA_VALIDATION, e => this.handleDatepickerBodyValidation(e));
+    this.onDatepickerCalendarDateChanged = on(this, 'date-changed', 'js-datepicker__calendar', e => this.handleDatepickerChangeDate(e));
+    this.onDatepickerCalendarCancel = on(this, 'cancel', 'js-datepicker__calendar', e => this.handleDatepickerCancel(e));
+    this.onDatepickerCalendarLoad = on(this, AXA_EVENTS.AXA_LOAD, 'js-datepicker__calendar', e => this.handleDatepickerLoad(e));
+    this.onInputFieldRender = on(this, AXA_EVENTS.AXA_RENDER, 'js-datepicker__input', e => this.handleInputFieldRendered(e));
+    this.onDatepickerBodyValidation = on(this, AXA_EVENTS.AXA_VALIDATION, 'js-datepicker__datepicker-body', e => this.handleDatepickerBodyValidation(e));
 
     // Adapt calendar position (window is too small in the height)
     if (this.datepickerCalendar) {
@@ -82,9 +78,13 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
+  handleDatepickerLoad() {
+    console.log('hi');
+  }
+
   didRenderCallback() {
-    const calendar = this.querySelector('.js-datepicker__calendar');
-    this.handleViewportCheck(calendar);
+    // const calendar = this.querySelector('.js-datepicker__calendar');
+    // this.handleViewportCheck(calendar);
   }
 
   handleWindowKeyDown(e) {
@@ -102,7 +102,7 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleBodyClick = () => {
+  handleBodyClick() {
     if (this.open) {
       this.closeDatepicker();
     }
