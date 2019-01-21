@@ -94,15 +94,21 @@ class AXADropdown extends BaseComponentGlobal {
     this.updateCurrentItem(e.detail.value);
   }
 
+  forEach(array, callback, scope) {
+    for (let i = 0; i < array.length; i++) {
+      callback.call(scope, i, array[i]); // passes back stuff we need
+    }
+  }
+
   toggleDropdown() {
     if (!this.isOpen) {
       this.classList.add(DEFAULTS.isOpenClass);
       this.isOpen = true;
-      this.dropdownLinks.forEach((link) => { link.setAttribute('tabindex', '0'); });
+      this.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '0'); });
     } else {
       this.classList.remove(DEFAULTS.isOpenClass);
       this.isOpen = false;
-      this.dropdownLinks.forEach((link) => { link.setAttribute('tabindex', '-1'); });
+      this.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '-1'); });
     }
   }
 
