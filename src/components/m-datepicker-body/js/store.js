@@ -79,10 +79,6 @@ export default class Store {
     daysOfMonth.forEach((day) => {
       this.cells.push(day.cell);
     });
-
-    // console.log('january 2019', this.getMonthInformation(2019, 1));
-    // console.log('february 2019', this.getMonthInformation(2019, 2));
-    // console.log('march 2019', this.getMonthInformation(2019, 3));
   }
 
   setCell(index, cell) {
