@@ -1,46 +1,37 @@
-# Contributor Covenant Code of Conduct
+# Code of Conduct (BETA) @ Patterns Library
 
-## Our Pledge
+## How we communicate with each others
+If we speak about something, we should all understand the same thing. Use dictionary and Semantic studies for clear and effective communication. We base our ideas on Alfred Korzybski: [Link Wikipedia](https://de.wikipedia.org/wiki/Alfred_Korzybski).
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+We make decisions purely based on Democracy. Majority wins.
 
-## Our Standards
+We don't aim to discuss about every little thing over and over again but, instead, we suggest, define and use conventions.
 
-Examples of behavior that contributes to creating a positive environment include:
+We don't aim to define or make precise every single term we need for our daily work, but assume a shared common-sense understanding throughout. Only when we run into misunderstandings that affect our work, we may take time to make precise what caused the misunderstanding and hampers our work.
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+We document everything that is relevant for other developers
 
-Examples of unacceptable behavior by participants include:
+## Our coding agreements
+We talk a lot about the same thing, lets define here what we agreed on so that we wont loose time on the same thing. This is decidede democratically and once approved, personal opinions are ignored.
 
-* The use of sexualized language or imagery and unwelcome sexual attention or advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+We make sure that our code respects *ESlint*, *StyleLint* and *EditorConfig* settings. We can challenge the setting but wont add our own code style if it goes against linting files.
 
-## Our Responsibilities
+## Our Pull Request culture
+We love to give and receive Feedbacks on our PRs. Every Feedback is legitimit.
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+If we comment on a Pull Request, we provide always an explanation on our feedback. If possible, we also provide reference links. Great would be also adding a coding help snippet. Just always give as much help as possible, to smother enable the PR creator.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+In a PR we avoid to change established conventions. We will challenge it in a separate meeting.
 
-## Scope
+A PR should be merged as soon as possible and not be a place for comprehensive conversation. If a conversation gets too intensive finish it bilaterally and offline. After agreement is done, we write it down and reference it in the PR.
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+We always respects each others opinion as every opinion is valid. The better idea always wins, even if it comes from an apprenticeship or from a CTO. If a clash on opinion happens, we discuss it in a constructive way.
 
-## Enforcement
+We assume that a PR creator knows Standard HTML, CSS and JS. We wont explain basics in a PR but are very happy to help verbally and bilaterally those new future frontend heroes. Everyone of us started from the beginning and helping someone is a honor for us.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at luca.mele@axa-winterthur.ch. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+An example of constructive conversation can look like:
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+* DONT: This is wrong, here the link to specs
+* DO: I'd like to refer to our coding style defined in our XXX, here, this xxxx would be correct. OR because of...
 
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
-
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+We aim to be as efficient as possible. On a PR review, we try to explain before referring to specs as we assume everyone have read the specs but maybe not understood it. We use link to specs as a nice add-on, not as a minimum argument. Of course, if explanation requires lots of time, just referring to specs might be ok. As a rule of thumb, always choose the option that solves the PR creators issue as soon as possible, as we have as goal to merge a PR as quick as possible. We also assume that everyone is willing to learn. Teaching is very welcome but is based on good will.
