@@ -7,6 +7,7 @@ import urlPropType from '../../js/prop-types/url-prop-type';
 import on from '../../js/on';
 import fire from '../../js/fire';
 import { EVENTS, AXA_EVENTS } from '../../js/ui-events';
+import debounce from '../../js/debounce';
 
 const DEFAULTS = {
   selectClass: 'js-dropdown__content',
@@ -56,10 +57,27 @@ class AXADropdown extends BaseComponentGlobal {
 
     this.onNativeDropdownChange =
       on(this, EVENTS.CHANGE, DEFAULTS.nativeSelectClass, e => this.handleDropdownNativeValueChange(e), { capture: true, passive: false });
+
+    window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.querySelector(`.${DEFAULTS.selectClass}`)), 250));
   }
 
   didRenderCallback() {
     this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
+  }
+
+  handleViewportCheck(elem) {
+    console.log('handleViewportCheck', elem.height);
+    if (this.shouldMove(elem)) {
+      console.log('should move');
+      elem.style.maxHeight = '200px';
+    }
+  }
+
+  shouldMove(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return (!bottomIsInViewport && enoughSpaceToMove);
   }
 
   handleDropdownClick = (e) => {
