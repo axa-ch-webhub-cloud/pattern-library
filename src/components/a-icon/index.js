@@ -8,6 +8,7 @@ class AXAIcon extends BaseComponentGlobal {
   static tagName = 'axa-icon'
   static propTypes = {
     icon: PropTypes.string,
+    iconClass: PropTypes.string,
     classes: PropTypes.string,
     pathPrefix: PropTypes.oneOfType([
       PropTypes.string,
@@ -17,7 +18,15 @@ class AXAIcon extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    this.className = `${this.classes} a-icon a-icon--tiny a-icon__root`;
+    this.className = `a-icon a-icon__root${this.classes ? ` ${this.classes}` : ''}`;
+  }
+
+  get iconClass() {
+    return this.getAttribute('iconClass');
+  }
+
+  set iconClass(value) {
+    return this.setAttribute('iconClass', value);
   }
 
   get classes() {

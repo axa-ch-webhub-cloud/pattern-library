@@ -4,6 +4,7 @@ import html from 'nanohtml';
 const PATH_PREFIX_APP = '#src--assets--icons--';
 
 export default ({
+  iconClass = '',
   icon = false,
   pathPrefix,
 } = {}) => {
@@ -21,7 +22,7 @@ export default ({
   }
 
   return html`
-    <svg class="a-icon__svg">
+    <svg class="a-icon__svg${iconClass ? ` ${iconClass}` : ''}">
       <use xlink:href="${path}${icon}" href="${path}${icon}" />
     </svg>
   `;

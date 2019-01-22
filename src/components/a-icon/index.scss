@@ -1,16 +1,24 @@
-a-icon__root {}
-
-.a-icon .a-icon__svg {
+.a-icon__svg {
   width: 50px;
   height: 50px;
 }
 
-.a-icon--small .a-icon__svg {
+.a-icon__svg--medium {
+  width: 35px;
+  height: 35px;
+}
+
+.a-icon__svg--small {
   width: 25px;
   height: 25px;
 }
 
-.a-icon--tiny .a-icon__svg {
+.a-icon__svg--smaller {
+  width: 16px;
+  height: 16px;
+}
+
+.a-icon__svg--tiny {
   width: 16px;
   height: 16px;
 }
