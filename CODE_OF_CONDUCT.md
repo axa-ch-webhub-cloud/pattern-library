@@ -35,3 +35,8 @@ An example of constructive conversation can look like:
 * DO: I'd like to refer to our coding style defined in our XXX, here, this xxxx would be correct because of...
 
 **We aim to be as efficient as possible.** On a PR review, we try to explain before referring to specs as we assume everyone have read the specs but maybe not understood it. We use link to specs as a nice add-on, not as a minimum argument. Of course, if explanation requires lots of time, just referring to specs might be ok. As a rule of thumb, always choose the option that solves the PR creators issue as soon as possible, as we have as goal to merge a PR as quick as possible. We also assume that everyone is willing to learn. Teaching is very welcome but is based on good will.
+
+## Enforcement
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at luca.mele@axa-winterthur.ch. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+
+Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
