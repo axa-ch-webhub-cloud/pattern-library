@@ -183,3 +183,9 @@ export const AXATr = withReact(AXATrWC);
 
 import AXAThWC from '../components/a-th/';
 export const AXATh = withReact(AXAThWC);
+
+import AXACardWC from '../components/o-card';
+export const AXACard = withReact(AXACardWC);
+
+import AXAFormOptionBoxWC from '../components/o-form-option-box';
+export const AXAFormOptionBox = withReact(AXAFormOptionBoxWC);

@@ -2,7 +2,9 @@
 
 # The AXA CH Style and HTML Guide (Editor's Draft)
 
-Preview can be found here: https://axa-ch.github.io/patterns-library/
+Preview can be found here: https://axa-ch.github.io/patterns-library
+
+If you would like to contribute, please check our [Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md)
 
 This is the core pattern library used for AXA Switzerland. It's based on Web-Components.
 Web-Components are natively supported in modern browsers.

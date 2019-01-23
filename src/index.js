@@ -9,7 +9,7 @@ export { default as AXACheckbox } from './components/a-checkbox';
 
 export { default as AXAChoice } from './components/a-choice';
 
-export { default as AXADeviceState } from './components/a-device-state';
+import './components/a-device-state';
 
 export { default as AXAIcon } from './components/a-icon';
 
@@ -124,3 +124,7 @@ export { default as AXACaption } from './components/a-caption';
 export { default as AXATr } from './components/m-tr';
 
 export { default as AXATh } from './components/a-th';
+
+export { default as AXACard } from './components/o-card';
+
+export { default as AXAFormOptionBox } from './components/o-form-option-box';

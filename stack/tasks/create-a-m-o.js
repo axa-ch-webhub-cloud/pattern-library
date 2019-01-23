@@ -405,6 +405,26 @@ const writeTemplateJs = (path) => {
   );
 };
 
+/**
+ * Creates TypeScript Declaration file "index.d.ts"
+ */
+const writeIndexDTs = (path, _name) => {
+  const className = getClassName(_name);
+  fs.writeFileSync(
+    `${path}/index.d.ts`,
+    outdent`
+      export interface Props {
+        //todo: specify the props, or remove the below line if component has no props 
+        [key:string]: any
+      }
+      
+      export default interface ${className} extends HTMLElement, Props {
+      }
+    `
+    , handleError,
+  );
+};
+
 const updateReactExports = (_element, _name) => {
   if (!reAMO.test(_element)) {
     return;
@@ -419,6 +439,29 @@ const updateReactExports = (_element, _name) => {
 
       import ${classNameWC} from '../components/${_element}-${_name}/';
       export const ${className} = withReact(${classNameWC});
+
+    `,
+    { flag: 'a' },
+    handleError,
+  );
+};
+
+/**
+ * Updates TypeScript Declaration file "react-exports.d.ts"
+ */
+const updateReactDTsExports = (_element, _name) => {
+  if (!reAMO.test(_element)) {
+    return;
+  }
+
+  const className = getClassName(_name);
+
+  fs.writeFileSync(
+    `${CWD}/src/js/react-exports.d.ts`,
+    outdent`
+      
+      import { Props as ${className}Props } from '../components/${_element}-${_name}';
+      export const ${className}: React.ComponentClass<${className}Props>;
 
     `,
     { flag: 'a' },
@@ -464,7 +507,9 @@ const createBoilerplate = (_name) => {
       writeIndexScss(path, _name);
       writePreviewAndHtml(path, _name);
       writeTemplateJs(path);
+      writeIndexDTs(path, _name);
       updateReactExports(element, _name);
+      updateReactDTsExports(element, _name);
       updateIndex(element, _name);
       console.log(chalk.cyan(outdent`
 
