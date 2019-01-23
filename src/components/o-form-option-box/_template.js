@@ -5,8 +5,8 @@ export default ({ iconName, headline, description, buttonTitle }) => html`
     <div class="o-form-option-box__row o-form-option-box__row--1">
       ${iconName ? html`<axa-icon size="lg" classes="o-form-option-box__icon" icon="${iconName}"></axa-icon>` : ''}
       <div class="o-form-option-box__col">
-        <div class="o-form-option-box__headline">${headline}</div>
-        <div class="o-form-option-box__description">${description}</div>
+        <span class="o-form-option-box__headline">${headline}</span>
+        <span class="o-form-option-box__description">${description}</span>
       </div>
     </div>
     <div class="o-form-option-box__row">

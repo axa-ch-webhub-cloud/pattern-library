@@ -41,4 +41,9 @@ $padding-lx-rx: 20px;
   &__button {
     width: 100%;
   }
+
+  &__headline,
+  &__description {
+    display: block;
+  }
 }
