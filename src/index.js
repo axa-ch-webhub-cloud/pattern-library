@@ -124,3 +124,7 @@ export { default as AXACaption } from './components/a-caption';
 export { default as AXATr } from './components/m-tr';
 
 export { default as AXATh } from './components/a-th';
+
+export { default as AXACard } from './components/o-card';
+
+export { default as AXAFormOptionBox } from './components/o-form-option-box';

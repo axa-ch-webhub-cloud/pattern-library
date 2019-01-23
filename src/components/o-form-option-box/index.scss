@@ -1,0 +1,49 @@
+@import '../../styles/settings/colors';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/triangle';
+
+$padding-top-bottom: 25px;
+$padding-lx-rx: 20px;
+
+.o-form-option-box {
+  display: block;
+  padding: $padding-top-bottom $padding-lx-rx;
+  background: $color-prim-white;
+  border: solid 1px $color-axa-blue;
+  border-radius: 5px;
+
+  &__row--1 {
+    display: flex;
+
+    margin-bottom: $padding-lx-rx;
+
+    flex-wrap: wrap;
+  }
+
+  &__icon {
+    flex: 0 0 20%;
+  }
+
+  &__col {
+    flex: 0 0 80%;
+  }
+
+  &__headline {
+    @include typo-secondary-text--bold();
+    color: $color-axa-blue;
+  }
+
+  &__description {
+    @include typo-secondary-text();
+    color: $color-prim-gray;
+  }
+
+  &__button {
+    width: 100%;
+  }
+
+  &__headline,
+  &__description {
+    display: block;
+  }
+}
