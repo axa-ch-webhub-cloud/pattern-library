@@ -13,6 +13,7 @@ class AXAFormOptionBox extends BaseComponentGlobal {
     headline: PropTypes.string,
     description: PropTypes.string,
     buttonTitle: PropTypes.string,
+    href: PropTypes.string,
   }
 
   init() {
