@@ -114,3 +114,9 @@ export const AXATable: React.ComponentClass<AXATableProps>;
 
 import { Props as AXAFooterProps } from '../components/o-footer';
 export const AXAFooter: React.ComponentClass<AXAFooterProps>;
+
+import { Props as AXACard } from '../components/o-card';
+export const AXACard: React.ComponentClass<AXACard>;
+
+import { Props as AXAFormOptionBox } from '../components/o-form-option-box'
+export const AXAFormOptionBox: React.ComponentClass<AXAFormOptionBox>;
