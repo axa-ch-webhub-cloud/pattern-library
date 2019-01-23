@@ -1,7 +1,7 @@
 import html from 'nanohtml';
 
 export default ({ iconName, headline, description, buttonTitle }) => html`
-  <div class="o-form-option-box__wrap">
+  <article class="o-form-option-box__wrap">
     <div class="o-form-option-box__row o-form-option-box__row--1">
       ${iconName ? html`<axa-icon size="lg" classes="o-form-option-box__icon" icon="${iconName}"></axa-icon>` : ''}
       <div class="o-form-option-box__col">
@@ -12,5 +12,5 @@ export default ({ iconName, headline, description, buttonTitle }) => html`
     <div class="o-form-option-box__row">
       ${buttonTitle ? html`<axa-button classes="o-form-option-box__button" color="blue">${buttonTitle}</axa-button>` : ''}
     </div>
-  </div>
+  </article>
 `;
