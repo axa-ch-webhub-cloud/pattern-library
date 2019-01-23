@@ -10,7 +10,7 @@ export default ({ iconName, headline, description, buttonTitle }) => html`
       </div>
     </div>
     <div class="o-form-option-box__row">
-      ${buttonTitle ? html`<axa-button classes="o-form-option-box__button" color="blue">${buttonTitle}</axa-icon>` : ''}
+      ${buttonTitle ? html`<axa-button classes="o-form-option-box__button" color="blue">${buttonTitle}</axa-button>` : ''}
     </div>
   </div>
 `;
