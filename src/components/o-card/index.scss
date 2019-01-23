@@ -2,6 +2,10 @@
 @import '../../styles/typo/typo-mixins';
 @import '../../styles/mixins/triangle';
 
+$padding-top-bottom: 30px;
+$padding-lx-rx: 10px;
+$zindex: 1;
+
 .o-card {
   display: block;
 
@@ -13,13 +17,17 @@
 
   &__side {
     position: relative;
-    padding: 30px 10px;
+
+    padding: $padding-top-bottom $padding-lx-rx;
     text-align: center;
 
     @include respond-up(sm) {
-      padding: 30px 30px;
-      text-align: left;
+
+      padding: $padding-top-bottom;
+
       flex: 50%;
+
+      text-align: left;
     }
   }
 
@@ -29,18 +37,18 @@
     color: $color-prim-white;
 
     &::after {
-      @include triangle(bottom, $color-axa-blue, 30px, 15px);
+      @include triangle(bottom, $color-axa-blue, $padding-top-bottom, $padding-top-bottom / 2);
       position: absolute;
       bottom: -15px;
       left: 20px;
-      z-index: 1;
+      z-index: $zindex;
 
       @include respond-up(sm) {
-        @include triangle(right, $color-axa-blue, 30px, 15px);
+        @include triangle(right, $color-axa-blue, $padding-top-bottom, $padding-top-bottom / 2);
         bottom: auto;
         left: auto;
-        top: 30px;
-        right: -15px;
+        top: $padding-top-bottom;
+        right: - $padding-top-bottom / 2;
       }
     }
   }
@@ -49,7 +57,7 @@
     background: $color-prim-gray-wild-sand;
     text-align: left;
   }
-  
+
   &__headline,
   &__subline {
     color: $color-prim-white;

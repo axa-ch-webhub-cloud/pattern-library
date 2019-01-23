@@ -2,17 +2,22 @@
 @import '../../styles/typo/typo-mixins';
 @import '../../styles/mixins/triangle';
 
+$padding-top-bottom: 25px;
+$padding-lx-rx: 20px;
+
 .o-form-option-box {
   display: block;
-  padding: 25px 20px;
+  padding: $padding-top-bottom $padding-lx-rx;
   background: $color-prim-white;
   border: solid 1px $color-axa-blue;
   border-radius: 5px;
 
   &__row--1 {
     display: flex;
+
+    margin-bottom: $padding-lx-rx;
+
     flex-wrap: wrap;
-    margin-bottom: 20px;
   }
 
   &__icon {
