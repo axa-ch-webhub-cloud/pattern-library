@@ -1,14 +1,15 @@
+const testPreset = [["env", {"modules": "commonjs"}], ["react"]];
+
 module.exports = {
-  presets: [
+  presets:
     process.env.NODE_ENV === "test"
-      ? ['babel-preset-env']
-      : ["env", {
+      ? testPreset
+      : [["env", {
         "modules": false,
         "targets": {
           "browsers": ["last 2 versions", "safari >= 8", "not ie <= 10"]
         }
-      }]
-  ],
+      }]],
   plugins: [
     ["nanohtml", {
       "useImport": true

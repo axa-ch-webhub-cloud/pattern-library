@@ -45,7 +45,7 @@ components.bundleLibFiles({
         'node_modules/**',
       ],
       plugins: ['external-helpers'],
-      externalHelpers: true,
+      runtimeHelpers: true,
     }),
     resolve({
       jsnext: true,

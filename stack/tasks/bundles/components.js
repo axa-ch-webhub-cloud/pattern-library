@@ -2,13 +2,13 @@ const rollup = require('rollup');
 const dir = require('node-dir');
 const mkdirp = require('mkdirp'); // eslint-disable-line import/no-extraneous-dependencies
 // const multiEntry = require('rollup-plugin-multi-entry');
+const babel = require('rollup-plugin-babel');
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 
 const constants = require('../../constants');
 const common = require('./_common');
-const babel = require('rollup-plugin-babel');
 
 const ENV = process.env.NODE_ENV; // second element is the first argument.
 const CWD = process.cwd();
@@ -36,7 +36,7 @@ const inputOptionsComponents = {
     }),
     babel({
       plugins: ['external-helpers'],
-      externalHelpers: true,
+      runtimeHelpers: true,
     }),
   ],
 };

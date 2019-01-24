@@ -44,7 +44,7 @@ async function buildComponents() {
       }),
       babel({
         plugins: ['external-helpers'],
-        externalHelpers: true,
+        runtimeHelpers: true,
         presets: ['react'],
       }),
     ],

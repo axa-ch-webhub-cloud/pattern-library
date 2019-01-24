@@ -1,9 +1,9 @@
 const rollup = require('rollup');
+const babel = require('rollup-plugin-babel');
 const uglify = require('rollup-plugin-uglify');
 const resolve = require('rollup-plugin-node-resolve');
 const constants = require('../../constants');
 const common = require('./_common');
-const babel = require('rollup-plugin-babel');
 
 const ENV = process.env.NODE_ENV; // second element is the first argument.
 const CWD = process.cwd();
@@ -18,11 +18,11 @@ async function buildApp() {
         browser: true,
         preferBuiltins: false,
       }),
-      ENV === constants.ENV.PROD ? uglify() : () => {},
       babel({
         plugins: ['external-helpers'],
-        externalHelpers: true,
+        runtimeHelpers: true,
       }),
+      ENV === constants.ENV.PROD ? uglify() : () => {},
     ],
     input: `${CWD}/src/app/app.js`,
   });
