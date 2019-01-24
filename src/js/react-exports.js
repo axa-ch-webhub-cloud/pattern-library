@@ -1,3 +1,9 @@
+/* eslint-disable */
+import './es6-polyfills';
+import 'document-register-element';
+// load this for browsers which support customElements without builtin (webkit)
+import '@ungap/custom-elements-builtin';
+
 // First import the withReact integration helper function
 import withReact from './with-react';
 
@@ -156,3 +162,30 @@ export const AXATestimonials = withReact(AXATestimonialsWC);
 
 import AXATableWC from '../components/o-table/';
 export const AXATable = withReact(AXATableWC);
+
+import AXATheadWC from '../components/m-thead/';
+export const AXAThead = withReact(AXATheadWC);
+
+import AXATbodyWC from '../components/m-tbody/';
+export const AXATbody = withReact(AXATbodyWC);
+
+import AXATfootWC from '../components/m-tfoot/';
+export const AXATfoot = withReact(AXATfootWC);
+
+import AXATdWC from '../components/a-td/';
+export const AXATd = withReact(AXATdWC);
+
+import AXACaptionWC from '../components/a-caption/';
+export const AXACaption = withReact(AXACaptionWC);
+
+import AXATrWC from '../components/m-tr/';
+export const AXATr = withReact(AXATrWC);
+
+import AXAThWC from '../components/a-th/';
+export const AXATh = withReact(AXAThWC);
+
+import AXACardWC from '../components/o-card';
+export const AXACard = withReact(AXACardWC);
+
+import AXAFormOptionBoxWC from '../components/o-form-option-box';
+export const AXAFormOptionBox = withReact(AXAFormOptionBoxWC);

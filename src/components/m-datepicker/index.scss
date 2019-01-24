@@ -136,11 +136,11 @@ $datepicker-padding-left-native-dropdown: 8px !default;
   right: 0;
 }
 
-.m-datepicker__button__borderless {
+.m-button.m-datepicker__button__borderless {
   padding: 0;
   border-style: none;
 }
 
-.m-datepicker__button__borderless:hover {
+.m-button.m-datepicker__button__borderless:hover {
   opacity: 0.5;
 }

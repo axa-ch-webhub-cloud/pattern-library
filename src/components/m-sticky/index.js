@@ -15,8 +15,8 @@ export class AXASticky extends BaseComponentGlobal {
     debug: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.consumeContext('axa-sticky-container');
   }

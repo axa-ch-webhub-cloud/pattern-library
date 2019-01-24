@@ -3,7 +3,22 @@ import on from './on';
 import getAttribute from './get-attribute';
 import outer from './outer';
 
-export const EVENTS = Enum('click', 'change', 'keyup', 'enter', 'move', 'leave', 'Escape', 'Esc', 'touchstart', 'touchmove', 'touchend', 'input', 'resize');
+export const EVENTS = Enum(
+  'click',
+  'change',
+  'keyup',
+  'enter',
+  'move',
+  'leave',
+  'Escape',
+  'Esc',
+  'touchstart',
+  'touchmove',
+  'touchend',
+  'input',
+  'resize',
+  'paste',
+);
 
 // TODO use another system for ENUMs as this one does convert axa-change into AXA-CHANGE which is a problem when using it
 export const AXA_EVENTS = {
@@ -85,7 +100,9 @@ class UiEvents {
   _on() {
     this._off();
 
-    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, { passive: !this._options.preventDefault });
+    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, {
+      passive: !this._options.preventDefault,
+    });
   }
 
   _off() {
@@ -99,16 +116,20 @@ class UiEvents {
   _onInteractive() {
     this._offInteractive();
 
-    if (this._options.closeClass) {
-      this._unCloseClick = on(this._container, EVENTS.CLICK, this._options.closeClass, this._handleClose, { passive: !this._options.preventDefault });
+    const { _container, _options: { closeClass, outerClose, escapeClose, preventDefault } } = this;
+
+    if (closeClass) {
+      this._unCloseClick = on(_container, EVENTS.CLICK, closeClass, this._handleClose, {
+        passive: !preventDefault,
+      });
     }
 
-    if (this._options.outerClose) {
-      this._unOuterClick = outer(this._container, EVENTS.CLICK, this._handleClose, { passive: !this._options.preventDefault });
+    if (outerClose) {
+      this._unOuterClick = outer(_container, EVENTS.CLICK, this._handleClose, { passive: !preventDefault });
     }
 
-    if (this._options.escapeClose) {
-      this._unCloseEscape = on(this._container.ownerDocument, EVENTS.KEYUP, this._handleKeyUp, { passive: false });
+    if (escapeClose) {
+      this._unCloseEscape = on(_container.ownerDocument, EVENTS.KEYUP, this._handleKeyUp, { passive: false });
     }
   }
 

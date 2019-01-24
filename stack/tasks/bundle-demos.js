@@ -28,7 +28,6 @@ async function buildComponents() {
       ENV === constants.ENV.PROD ? uglify() : () => {},
       commonjs({
         include: 'node_modules/**',
-        exclude: ['node_modules/@webcomponents/webcomponentsjs/**'],
         namedExports: {
           'node_modules/react/index.js': ['Children', 'Component', 'PureComponent', 'createElement'],
           'node_modules/react-dom/index.js': ['render'],
@@ -50,7 +49,7 @@ async function buildComponents() {
     ],
     input: './src/demos/*.jsx',
   });
-  console.log(`Bundled to: ${fPath}`); // eslint-disable-line
+  // console.log(`Bundled to: ${fPath}`); // eslint-disable-line
   // or write the bundle to disk
   await bundle.write({
     format: 'iife',

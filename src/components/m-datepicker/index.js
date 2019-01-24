@@ -37,12 +37,24 @@ class AXADatepicker extends BaseComponentGlobal {
   // Specify observed attributes so that attributeChangedCallback will work,
   // this is essential for external re-rendering trigger.
   static get observedAttributes() {
-    return ['classes', 'button-ok', 'button-cancel', 'locale', 'value', 'start-year', 'start-month', 'selected-day', 'lower-end-year', 'higher-end-year', 'output-iso'];
+    return [
+      'classes',
+      'button-ok',
+      'button-cancel',
+      'locale',
+      'value',
+      'start-year',
+      'start-month',
+      'selected-day',
+      'lower-end-year',
+      'higher-end-year',
+      'output-iso',
+    ];
   }
 
-  constructor() {
-    super({ styles, template });
-
+  init() {
+    super.init({ styles, template });
+    // console.log('m-datepicker init', this._id);
     this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?
     // this.enableContext()
@@ -56,7 +68,6 @@ class AXADatepicker extends BaseComponentGlobal {
    */
   connectedCallback() {
     super.connectedCallback();
-
     this.className = `${this.initialClassName} m-datepicker`;
     // Your DOM interaction here, but keep it decoupled.
     // If you don't have any, just remove this function

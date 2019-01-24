@@ -14,6 +14,9 @@ components.bundleLibFiles({
       resolved = path.resolve(path.dirname(parent), id);
     }
 
+    //unify dir separators to "/" to allow the following regexp
+    resolved = resolved.split(path.sep).join("/");
+
     return !/\/components\/[amou]-.+\//.test(resolved) && !/\.scss$/i.test(resolved);
   },
   plugins: [
@@ -22,7 +25,7 @@ components.bundleLibFiles({
       include: ['**/*.scss'],
       options: {
         includePaths: [
-          'node_modules',
+          'node_modules', // very expensive... can we include only the paths you need?
         ],
         // reboot is an external dependency and has to be used carfully from the
         // user of aletheia. Here we take it out for integration purposes (dont import twice)

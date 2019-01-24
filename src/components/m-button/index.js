@@ -12,19 +12,19 @@ class AXAButton extends BaseComponentGlobal {
   static propTypes = {
     arrow: PropTypes.bool,
     classes: PropTypes.string,
-    color: PropTypes.oneOf(['red', 'white']),
+    color: PropTypes.oneOf(['red', 'white', 'blue']),
     ghost: PropTypes.bool,
     motion: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    tag: PropTypes.oneOf(['a', 'button']),
+    tag: PropTypes.oneOf(['a', 'button', 'submit']),
     href: urlPropType,
     icon: PropTypes.string,
     target: PropTypes.oneOf(['_blank', '_self']),
     disabled: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   didRenderCallback() {

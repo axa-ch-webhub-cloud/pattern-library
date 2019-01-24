@@ -1,0 +1,5 @@
+@import "./thead-mixins";
+
+%m-thead {
+  @include thead();
+}

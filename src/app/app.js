@@ -1,7 +1,11 @@
-import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
+// better to load this only if it's needed
+import 'document-register-element'; // ES2015
+// load this for browsers which support customElements without builtin (webkit)
+import '@ungap/custom-elements-builtin';
+
 import wcdomready from '../js/wcdomready';
 
-console.log('🚀 patterns library 🚀');
+console.log('🚀 patterns library 🚀'); // eslint-disable-line no-console
 
 const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
 

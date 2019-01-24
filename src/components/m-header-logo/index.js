@@ -17,8 +17,8 @@ class AXAHeaderLogo extends BaseComponentGlobal {
     src: urlPropType,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {

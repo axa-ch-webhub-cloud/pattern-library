@@ -3,12 +3,13 @@ import classnames from 'classnames';
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
+import fire from '../../js/fire';
 import urlPropType from '../../js/prop-types/url-prop-type';
 import styles from './index.scss';
 import template from './_template';
 import valuePropType from '../../js/prop-types/value-prop-type';
 import on from '../../js/on';
-import { EVENTS } from '../../js/ui-events';
+import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
 
 class AXAFooterLanguages extends BaseComponentGlobal {
   static tagName = 'axa-footer-languages'
@@ -25,24 +26,40 @@ class AXAFooterLanguages extends BaseComponentGlobal {
     value: valuePropType,
   }
 
-  unClickEnd
+  init() {
+    super.init({ styles, template });
 
-  constructor() {
-    super({ styles, template });
-  }
+    this.handleClick = (event) => {
+      const { target: { lang } } = event;
 
-  handleClick = (e) => {
-    if (e.target && e.target.dataset && e.target.dataset.language) {
-      e.stopPropagation();
-      this.setAttribute('value', e.target.dataset.language);
-    }
+      /**
+       * axa-click event.
+       *
+       * @event FooterLinks#axa-click
+       * @type {object}
+       */
+      const cancelled = fire(this, AXA_EVENTS.AXA_CLICK, lang, {
+        bubbles: true,
+        cancelable: true,
+        composed: true,
+      });
+
+      if (!cancelled) {
+        event.preventDefault();
+      }
+
+      if (lang) {
+        event.stopPropagation();
+        this.setAttribute('value', lang);
+      }
+    };
   }
 
   connectedCallback() {
     super.connectedCallback();
 
     this.unClickEnd = on(
-      this, EVENTS.CLICK, 'm-footer-languages__link',
+      this, EVENTS.CLICK, 'js-footer-languages__link',
       this.handleClick, {
         capture: true, passive: false,
       },

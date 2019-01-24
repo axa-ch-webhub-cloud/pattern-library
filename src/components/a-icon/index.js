@@ -16,8 +16,8 @@ class AXAIcon extends BaseComponentGlobal {
     ]),
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   willRenderCallback() {

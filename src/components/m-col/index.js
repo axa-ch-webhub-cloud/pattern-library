@@ -35,7 +35,6 @@ const modifierProp = (filter, format) => (props, propName, componentName) => {
   const modifiers = toArray(prop);
 
   if (prop && modifiers.length !== modifiers.filter(validModifiers).length) {
-    console.log(props, modifiers);
     return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`, expected ${format} - multiple modifiers separated by spaces.`);
   }
 };
@@ -49,8 +48,8 @@ class AXACol extends BaseComponentGlobal {
     offset: modifierProp(validOffset, '`number|xs|sm|md|lg|xl` optionally followed by `-(number|auto|first|last)`'),
   }
 
-  constructor() {
-    super({ styles });
+  init() {
+    super.init({ styles });
 
     // does this provide context (See docs for context) ?
     // this.provideContext()

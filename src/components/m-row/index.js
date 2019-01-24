@@ -13,8 +13,8 @@ class AXARow extends BaseComponentGlobal {
     noGutters: PropTypes.bool,
   }
 
-  constructor() {
-    super({ styles });
+  init() {
+    super.init({ styles });
   }
 
   // You may want to update stuff before rendering.

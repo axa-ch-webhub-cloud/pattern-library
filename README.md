@@ -2,21 +2,34 @@
 
 # The AXA CH Style and HTML Guide (Editor's Draft)
 
-Preview can be found here: https://axa-ch.github.io/patterns-library/
+Preview can be found here: https://axa-ch.github.io/patterns-library
+
+If you would like to contribute, please check our [Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md)
 
 This is the core pattern library used for AXA Switzerland. It's based on Web-Components.
-Web-Components are natively supported in modern browser. This repo contains also polyfills for those
-less "cool" browsers out there. Support is:
+Web-Components are natively supported in modern browsers.
+This repo contains also polyfills for those less "cool" browsers out there. Support is:
 
-* ie 11 (Polyfill for template, html import, shadow dom and custom element)
-* EDGE (Polyfill for html import, shadow dom and custom element)
-* FF (Polyfill for html import, shadow dom and custom element)
+* [custom-elementsv1](https://caniuse.com/#feat=custom-elementsv1)
+* [shadowdomv1](https://caniuse.com/#feat=shadowdomv1)
+* [HTML template](https://caniuse.com/#feat=template)
+* [HTML imports](https://caniuse.com/#feat=imports)
+
+* ie 11 (Polyfilled)
+* EDGE (Polyfilled, native support is under development)
+* FF (Native for Custom element v1 with polyfill for built in)
 * Chrome / Chrome Mobile (100% native)
-* Safari / iOS Safari (Polyfill for html import)
+* Safari / iOS Safari (Native for Custom element v1 with polyfill for built in)
 
 REF: https://github.com/webcomponents/webcomponentsjs
 
-The main goal here to have components that are reusable with every frontend technology. It doesn't matter if you are using angular or React, you can always import the Components from the pattern library.
+**Important:**
+We don't use polyfills provided from https://github.com/webcomponents/webcomponentsjs, because they aren't feature complete.
+Instead we use the battle-tested polyfills by WebReflection:
+- https://www.npmjs.com/package/document-register-element
+- https://www.npmjs.com/package/@ungap/custom-elements-builtin
+
+The main goal here is to have components that are reusable with every frontend technology. It doesn't matter if you are using angular or React, you can always import the Components from the patterns library.
 
 *At the moment, we only use Living Standard Custom Element, therefore it will run natively on Safari and Chrome on mobile and desktop.*
 
@@ -43,19 +56,24 @@ If a component has dependencies to other components, you will have to add them a
 
 To use the webcomponents with older browsers, import the polyfills which are available under:
 ```js
-import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
+// better to load this only if it's needed
+import 'document-register-element/'; // ES2015
+// load this for browsers which support customElements without builtin (webkit)
+import '@ungap/custom-elements-builtin';
 ```
 
 or:
 
 ```html
-<script src="node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-ce.js"></script>
+<script>
+  // only load custom elements polyfill if needed
+  if(!this.customElements) {
+    document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+  } else {
+    document.write('<script src="https://unpkg.com/@ungap/custom-elements-builtin"><\x2fscript>');
+  }
+</script>
 ```
-
-A quick overview what they do:
-`webcomponents-ce.js` includes Custom-Elements polyfill of the 4 parts of the webcomponents specs.
-`es6-polyfills.js` are all the polyfills needed for ie11.
-Alternatively to `webcomponents-ce.js`, `webcomponents-lite.js` loads all and`webcomponents-loader.js` loads the polyfills that is needed asynchronously via AJAX.
 
 If you are using your own framework, be aware to convert the webcponents to a component for your framework (simple components like `m-button` does not need to be converted):
 
@@ -71,6 +89,19 @@ Do you love **Vue**? Here a helpfull link for you: https://alligator.io/vuejs/vu
 * to run server and watchers (this is what you want while you are developing) `npm run serve`
 * to run the PROD server `npm run serve-build-prod`
 
+## Icons
+
+To use custom icon Spritesheet, you have to do use `<axa-core>`. Let me show you with the following Example written in React:
+```js
+ReactDOM.render(<Fragment>
+  <axa-core icons-path="icons.svg"></axa-core>
+  <App />
+  </Fragment>, document.getElementById('root'));
+registerServiceWorker();
+```
+
+This will dowload the svg and make it avaiable to the `<axa-icon>`. Be aware that it have to be a SVG spritesheet.
+
 ## Usage guide - With just Webcomponents (no framework)
 
 __this code snipped is tested on FF, IE11, EDGE, Chrome, Safari, Mobile Chrome, Mobile Safari__
@@ -85,7 +116,14 @@ Here an example on how to use the component button and typo in your project. The
   <body>
 
     <script src="http://localhost:8080/node_modules/patterns-library/dist/app/es6-polyfills.js"></script>
-    <script src="http://localhost:8080/node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-ce.js"></script>
+    <script>
+      // only load custom elements polyfill if needed
+      if(!this.customElements) {
+        document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+      } else {
+        document.write('<script src="https://unpkg.com/@ungap/custom-elements-builtin"><\x2fscript>');
+      }
+    </script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/u-core/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/m-button/index.js"></script>
     <script src="http://localhost:8080/node_modules/patterns-library/dist/components/a-typo/index.js"></script>

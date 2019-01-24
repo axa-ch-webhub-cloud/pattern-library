@@ -7,8 +7,17 @@ function mobileNavItem(item) {
   const activeClass = {
     'is-header-mobile-navigation-active': isActive,
   };
-  const categoryClass = classnames('m-header-mobile-navigation__category', 'js-header-mobile-navigation__category', activeClass);
-  const linkListClass = classnames('m-header-mobile-navigation__list-link', 'js-header-mobile-navigation__list-link', 'js-header-mobile-close', activeClass);
+  const categoryClass = classnames(
+    'm-header-mobile-navigation__category',
+    'js-header-mobile-navigation__category',
+    activeClass,
+  );
+  const linkListClass = classnames(
+    'm-header-mobile-navigation__list-link',
+    'js-header-mobile-navigation__list-link',
+    'js-header-mobile-close',
+    activeClass,
+  );
 
   /* eslint-disable indent */
   return html`

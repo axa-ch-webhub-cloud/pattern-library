@@ -12,12 +12,15 @@ const nativeSelect = ({ title, items, size, value }) => html`<div class="${class
     <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', {
       [`m-dropdown__select--${size}`]: size,
     })}">
-    ${title && html`<option value="" disabled hidden selected class="m-dropdown__select-option--hidden" >${title}</option>`}
+    ${title && html`
+        <option ${value === undefined ? 'selected' : ''}
+        value="" disabled hidden class="m-dropdown__select-option--hidden" >
+        ${title}</option>`}
     ${Array.isArray(items) &&
       items.map(({ name, value: itemValue, url }, index) => {
         const _itemValue = getItemValue(itemValue, index);
         return html`<option value="${_itemValue}" data-url="${url}" ${
-          _itemValue === value ? 'selected' : ''
+          `${_itemValue}` === `${value}` ? 'selected' : ''
         }>${name}</option>`;
       })}
     </select>
@@ -51,7 +54,10 @@ const enhancedSelect = ({ title, items, size, value }) => [
     const _itemValue = getItemValue(itemValue, index);
     return html`
       <li class="m-dropdown__item">
-        <a class="m-dropdown__link" data-index="${_itemValue}" data-selected="${_itemValue === value ? 'true' : 'false'}" href="${url}">${name}</a>
+        <a class="m-dropdown__link"
+        data-index="${_itemValue}"
+        data-selected="${_itemValue === value ? 'true' : 'false'}"
+        href="${url}">${name}</a>
       </li>
     `;
   })}

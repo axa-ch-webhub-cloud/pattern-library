@@ -8,9 +8,9 @@ export default function ({ title, items, short }) {
     <ul class="m-footer-languages__list">
       ${Array.isArray(items) && items.map(({ name, code = 'en', url = '', isActive }) => html`
         <li class="m-footer-languages__list-item">
-          <a class="${classnames('m-footer-languages__link', {
+          <a class="${classnames('m-footer-languages__link', 'js-footer-languages__link', {
             'is-footer-languages-active': isActive,
-          })}" href="${url}" lang="${code}" data-language="${code}">${short ? code : name}</a>
+          })}" href="${url}" lang="${code}">${short ? code : name}</a>
         </li>
       `)}
     </ul>

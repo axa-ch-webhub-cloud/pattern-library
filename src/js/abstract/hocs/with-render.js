@@ -42,8 +42,8 @@ const withRender = Base =>
    * ```
    */
   class WithRender extends Base {
-    constructor({ template, ...options } = {}) {
-      super(options);
+    init({ template, ...options } = {}) {
+      super.init(options);
 
       this._template = template;
       this._hasTemplate = !!template;
@@ -139,7 +139,7 @@ const withRender = Base =>
             this._isMorphing = false;
           }
         } catch (err) {
-          console.error(err);
+          console.error(err); // eslint-disable-line no-console
         }
       }
 

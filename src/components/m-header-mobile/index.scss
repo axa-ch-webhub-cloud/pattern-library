@@ -87,24 +87,33 @@
   // https://github.com/axa-ch/patterns-library/issues/263
   background: $color-prim-white;
 
-  > .m-button {
-    display: block;
-    margin: $header-mobile__item-margin-top $header-mobile__item-padding-right 0 $header-mobile__item-padding-left;
-
-    text-align: center;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    + * {
-      margin-top: $header-mobile__item-margin-top;
-    }
-  }
-
   .m-header-top-content-bar__box {
     padding-left: $header-mobile__item-padding-left;
     padding-right: $header-mobile__item-padding-right;
+  }
+
+  // @TODO Built in elemnt with class should be used here
+  axa-button {
+    &:first-child {
+      .m-button {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.m-button.m-header-mobile__box--button {
+  display: block;
+  margin: $header-mobile__item-margin-top $header-mobile__item-padding-right $header-mobile__item-margin-top $header-mobile__item-padding-left;
+
+  text-align: center;
+
+  + * {
+    margin-top: $header-mobile__item-margin-top;
+  }
+
+  @include respond-up(sm) {
+    width: $header-mobile__canvas-width-sm - $header-mobile__item-padding-right - $header-mobile__item-padding-left;
   }
 }
 

@@ -17,12 +17,14 @@ class AXADatepicker extends BaseComponentGlobal {
     locale: localePropType,
     open: PropTypes.bool,
     lowerEndYear: PropTypes.number,
+    buttonCancel: PropTypes.string,
+    buttonOk: PropTypes.string,
     higherEndYear: PropTypes.number,
     value: PropTypes.string,
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
 
     this.datepicker = new Datepicker(this);
     // does this provide context (See docs for context) ?

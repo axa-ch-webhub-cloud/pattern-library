@@ -21,8 +21,8 @@ class AXAErrorPage extends BaseComponentGlobal {
     background: PropTypes.oneOf(['pacific', 'teal']),
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   /**

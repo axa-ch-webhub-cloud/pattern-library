@@ -4,8 +4,10 @@
   $value-type: type_of($value);
 
   @if $value-type != number {
-    @warn "Expected $value #{$value} [#{$value-type}] to be of type Number.";
+    // @warn "Expected $value #{$value} [#{$value-type}] to be of type Number.";
 
+    // node-sass has a --quiet flag but it's not respected (all scss @warn statements like the one above are still printed)
+    // bug?
     @return $value;
   }
 

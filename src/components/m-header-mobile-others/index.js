@@ -16,8 +16,8 @@ class AXAHeaderMobileOthers extends BaseComponentGlobal {
     })),
   }
 
-  constructor() {
-    super({ styles, template });
+  init() {
+    super.init({ styles, template });
   }
 
   connectedCallback() {

@@ -11,6 +11,7 @@ const PROP_BLACKLIST = [
   'style', // @todo: discuss if we need style, cause we normally use BEM
 ];
 const blackListFilter = key => PROP_BLACKLIST.indexOf(key) === -1;
+const ON = 'on';
 const isEventFilter = (key) => {
   if (!key) {
     return false;
@@ -18,8 +19,10 @@ const isEventFilter = (key) => {
 
   const keyFrom2 = key.charAt(2);
 
-  return key.indexOf('on') === 0 && keyFrom2 === keyFrom2.toUpperCase();
+  return key.indexOf(ON) === 0 && keyFrom2 === keyFrom2.toUpperCase();
 };
+
+const getNamespaceEventMatcher = namespace => key => key.toLowerCase().indexOf(`${ON}${namespace.toLowerCase()}`) === 0;
 
 /**
  * Provides a function which let's you wrap any WebComponent with React.
@@ -45,16 +48,18 @@ const isEventFilter = (key) => {
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
+const withReact = (WebComponent, { pure = true, passive = false, eventNamespace = 'axa' } = {}) => {
   // IMPORTANT:
   // the Custom Element can only be instantiated as soon as it is registered in CustomElementRegistry
   // which in turn is deferred after DOMReady
   // hence it's tagName could only be resolved lazily
   // ref: https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry
   // therefor we don't instantiate it, but rather use a statically defined tagName property
-  const { tagName } = WebComponent;
-  const displayName = `${camelize(tagName)}React`;
+  const { tagName, builtInTagName } = WebComponent;
+  const componentName = builtInTagName || tagName;
+  const displayName = `${camelize(componentName)}React`;
   const Component = pure ? React.PureComponent : React.Component;
+  const isNamespacedEvent = getNamespaceEventMatcher(eventNamespace);
 
   return class WebComponentWrapper extends Component {
     // eslint-disable-next-line react/sort-comp
@@ -96,7 +101,7 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     // eslint-disable-next-line react/sort-comp
     updateWebComponentProps() {
-      const { wcNode, _eventCache: eventCache, props, state: isDefined } = this;
+      const { wcNode, _eventCache: eventCache, props, state: { isDefined } } = this;
 
       // only patch if custom element is defined and avoid type error of
       // TypeError: wcNode.setProps is not a function
@@ -108,6 +113,13 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
       const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
 
       eventKeys.forEach((key) => {
+        // support React's synthetic events
+        // Note: not 100% compatible with custom elements
+        if (!isNamespacedEvent(key)) {
+          return;
+        }
+
+        // handle namespace custom events
         if (eventCache[key]) {
           eventCache[key]();
         }
@@ -149,9 +161,36 @@ const withReact = (WebComponent, { pure = true, passive = false } = {}) => {
 
     render() {
       // eslint-disable-next-line react/prop-types
-      const { props: { children }, handleRef } = this;
+      const { props: { children, ...props }, handleRef } = this;
+      const { observedAttributes } = WebComponent;
+      // super important: don't mutate this.props
+      const jsxProps = { ...props };
 
-      return createElement(tagName, { ref: handleRef }, children);
+      // important: set non-observed attributes to keep native built-in features working
+      if (Array.isArray(observedAttributes)) {
+        observedAttributes.forEach((name) => {
+          delete jsxProps[camelize(name)];
+        });
+      }
+
+      const propsKeys = Object.keys(jsxProps);
+
+      // remove events from props
+      propsKeys.filter(isEventFilter).forEach((key) => {
+        // support React's synthetic events
+        // Note: not 100% compatible with custom elements
+        if (isNamespacedEvent(key)) {
+          delete jsxProps[key];
+        }
+      });
+
+      jsxProps.ref = handleRef;
+
+      if (builtInTagName) {
+        jsxProps.is = tagName;
+      }
+
+      return createElement(componentName, jsxProps, children);
     }
   };
 };

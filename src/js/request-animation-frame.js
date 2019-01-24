@@ -1,6 +1,8 @@
 import vendor from './vendor';
 
 const vendorlower = vendor.lowercase;
+
+/* eslint-disable func-names */
 export const requestAnimationFrame = (function () {
   /* eslint-disable no-shadow */
   let requestAnimationFrame = window.requestAnimationFrame || window[`${vendorlower}RequestAnimationFrame`];
@@ -28,6 +30,8 @@ export const requestAnimationFrame = (function () {
 
   /* eslint-enable no-shadow */
 }());
+
+/* eslint-disable func-names */
 export const cancelAnimationFrame = (function () {
   /* eslint-disable no-shadow */
   let cancelAnimationFrame = window.cancelAnimationFrame

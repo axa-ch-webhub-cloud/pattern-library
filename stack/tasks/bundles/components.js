@@ -24,8 +24,10 @@ const inputOptionsComponents = {
   plugins: [
     ...common.inputOptions.plugins,
     sass({
+      quiet: true,
       insert: false,
       options: {
+        quiet: true,
         outputStyle: ENV === constants.ENV.PROD ? undefined : 'expanded',
       },
       processor: css => postcss([autoprefixer])
@@ -54,8 +56,8 @@ const bundleSingleFile = (filePath) => {
 
     const bundle = await rollup.rollup(bundleConfig);
 
-    console.log(fPath.replace('.js', '.css')); // eslint-disable-line
-    console.log(`Bundled to: ${fPath}`); // eslint-disable-line
+    // console.log(fPath.replace('.js', '.css')); // eslint-disable-line
+    // console.log(`Bundled to: ${fPath}`); // eslint-disable-line
 
     if (distFolder === PROD_LIB) {
       await bundle.write({

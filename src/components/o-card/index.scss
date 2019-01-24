@@ -1,0 +1,75 @@
+@import '../../styles/settings/colors';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/triangle';
+
+$padding-top-bottom: 30px;
+$padding-lx-rx: 10px;
+$zindex: 1;
+
+.o-card {
+  display: block;
+
+  &__wrap {
+    @include respond-up(sm) {
+      display: flex;
+    }
+  }
+
+  &__side {
+    position: relative;
+
+    padding: $padding-top-bottom $padding-lx-rx;
+    text-align: center;
+
+    @include respond-up(sm) {
+
+      padding: $padding-top-bottom;
+
+      flex: 50%;
+
+      text-align: left;
+    }
+  }
+
+
+  &__side--1 {
+    background: $color-axa-blue;
+    color: $color-prim-white;
+
+    &::after {
+      @include triangle(bottom, $color-axa-blue, $padding-top-bottom, $padding-top-bottom / 2);
+      position: absolute;
+      bottom: -15px;
+      left: 20px;
+      z-index: $zindex;
+
+      @include respond-up(sm) {
+        @include triangle(right, $color-axa-blue, $padding-top-bottom, $padding-top-bottom / 2);
+        bottom: auto;
+        left: auto;
+        top: $padding-top-bottom;
+        right: - $padding-top-bottom / 2;
+      }
+    }
+  }
+
+  &__side--2 {
+    background: $color-prim-gray-wild-sand;
+    text-align: left;
+  }
+
+  &__headline,
+  &__subline {
+    color: $color-prim-white;
+  }
+
+  &__headline {
+    @include typo-tag--bold();
+    color: $color-axa-blue;
+  }
+
+  &__subline {
+    @include typo-tag();
+    color: $color-prim-gray;
+  }
+}
