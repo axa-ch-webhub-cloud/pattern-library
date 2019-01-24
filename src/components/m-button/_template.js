@@ -60,7 +60,7 @@ export default function ({
     </a>`;
   }
 
-  return html`<button type="button" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
+  return html`<button type="${tag}" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </button>`;
