@@ -8,6 +8,7 @@ const ARIA_DISABLED = 'aria-disabled';
 
 export default function ({
   tag = 'button',
+  type = 'button',
   color,
   href = '#',
   size,
@@ -60,7 +61,7 @@ export default function ({
     </a>`;
   }
 
-  return html`<button type="${tag}" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
+  return html`<button type="${type}" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </button>`;
