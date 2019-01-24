@@ -16,7 +16,7 @@ class AXAButton extends BaseComponentGlobal {
     ghost: PropTypes.bool,
     motion: PropTypes.bool,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
-    tag: PropTypes.oneOf(['a', 'button', 'submit']),
+    tag: PropTypes.oneOf(['a', 'button']),
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
     href: urlPropType,
     icon: PropTypes.string,
