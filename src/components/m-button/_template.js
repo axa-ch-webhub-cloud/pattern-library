@@ -8,6 +8,7 @@ const ARIA_DISABLED = 'aria-disabled';
 
 export default function ({
   tag = 'button',
+  type = 'button',
   color,
   href = '#',
   size,
@@ -34,6 +35,8 @@ export default function ({
     'm-button--has-icon': hasIcon && !hasOnlyIcon,
     'm-button--only-icon': hasOnlyIcon,
   });
+  // should be obsolete, if all consumers use the type prop
+  const deprecatedType = tag === 'submit' ? tag : type;
 
   let arrowIcon;
   let genericIcon;
@@ -60,7 +63,7 @@ export default function ({
     </a>`;
   }
 
-  return html`<button type="${tag}" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
+  return html`<button type="${deprecatedType}" class="${buttonClasses}" ${disabled ? `${DISABLED}` : ''}>
       ${childrenFragment}
       ${arrowIcon || genericIcon}
     </button>`;
