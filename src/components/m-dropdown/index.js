@@ -11,7 +11,6 @@ import debounce from '../../js/debounce';
 
 const DEFAULTS = {
   selectClass: 'js-dropdown__content',
-  containerClass: '.js-dropdown',
   toggleClass: 'js-dropdown__toggle',
   nativeSelectClass: 'js-dropdown__native-select',
   isOpenClass: 'is-dropdown-open',

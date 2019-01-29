@@ -108,6 +108,12 @@
   }
 }
 
+.m-dropdown__list--native--only {
+  @include respond-up(sm) {
+    display: block;
+  }
+}
+
 .m-dropdown__list--enhanced {
   display: none;
 

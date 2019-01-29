@@ -5,12 +5,13 @@ import classnames from 'classnames';
 const arrowIcon = '<axa-icon size="sm" icon="angle-bracket-down" classes="m-dropdown__icon"></axa-icon>';
 
 export default ({
+  native,
   title,
   items = [],
   size,
 }) => html`
 <article class="m-dropdown__wrap">
-      <div class="${classnames('m-dropdown__select-wrap', { [`m-dropdown__select-wrap--${size}`]: size })} m-dropdown__list--native">
+      <div class="${classnames('m-dropdown__select-wrap', { [`m-dropdown__select-wrap--${size}`]: size }, 'm-dropdown__list--native')} ${native ? ' m-dropdown__list--native--only' : ''}">
         <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', { [`m-dropdown__select--${size}`]: size })}">
         ${Array.isArray(items) && items.map(({ name, value, isSelected }) =>
           html`<option value="${value}" ${isSelected ? 'selected' : ''}>${name}</option>`)
@@ -18,7 +19,7 @@ export default ({
         </select>
         ${raw(arrowIcon)}
       </div>
-      <div class="m-dropdown__list--enhanced">
+      <div class="m-dropdown__list--enhanced" ${native ? 'hidden' : ''}>
         <button type="button" class="${classnames('m-dropdown__toggle js-dropdown__toggle', { [`m-dropdown__toggle--${size}`]: size })}">
           ${title}${raw(arrowIcon)}
         </button>
