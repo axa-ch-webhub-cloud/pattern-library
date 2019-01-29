@@ -66,9 +66,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   handleViewportCheck(elem) {
-    console.log('handleViewportCheck', elem.height);
     if (this.shouldMove(elem)) {
-      console.log('should move');
       elem.style.maxHeight = '200px';
     }
   }
