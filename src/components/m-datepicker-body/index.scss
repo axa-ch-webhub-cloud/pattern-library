@@ -5,6 +5,9 @@ $datepicker-padding-left-right: 30px !default;
 $datepicker-cell-border-radius: 50% !default;
 $datepicker-border-width: 1px !default;
 $datepicker-calender-body-padding-top: 5px !default;
+$datepicker-calender-body-cell-width: 33px !default;
+$datepicker-calender-body-cell-height: 33px !default;
+$datepicker-calender-body-cell-border-width: 2px !default;
 
 .m-datepicker-body {
   padding-top: $datepicker-calender-body-padding-top;
@@ -15,8 +18,8 @@ $datepicker-calender-body-padding-top: 5px !default;
 }
 
 .m-datepicker-body__cell {
-  width: 33px;
-  height: 33px;
+  width: $datepicker-calender-body-cell-width;
+  height: $datepicker-calender-body-cell-width;
   margin: 1px;
   padding-left: 0;
   padding-right: 0;
@@ -28,12 +31,12 @@ $datepicker-calender-body-padding-top: 5px !default;
 
 .m-datepicker-body__cell:active {
   outline: 0;
-  border: solid 2px $color-axa-blue;
+  border: solid $datepicker-calender-body-cell-border-width $color-axa-blue;
 }
 
 .m-datepicker-body__cell:focus {
   outline: 0;
-  border: dashed 2px $color-axa-blue;
+  border: dashed $datepicker-calender-body-cell-border-width $color-axa-blue;
 }
 
 .m-datepicker-body__not-current-month {
