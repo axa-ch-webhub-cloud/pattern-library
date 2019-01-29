@@ -6,6 +6,10 @@
 @import "../../styles/mixins/unstyle-list";
 @import "./mixins/dropdown";
 
+$dropdown-min-width: 100px;
+$dropdown-height: 40px;
+$dropdown-spacing: 10px 40px 10px 10px;
+
 .m-dropdown {
   @include dropdown-container();
 
@@ -27,9 +31,10 @@
 }
 
 .m-dropdown__select {
-  min-width: 100px;
-  padding: 10px;
-  height: 44px;
+  @include normalize-native-select-styles();
+  min-width: $dropdown-min-width;
+  padding: $dropdown-spacing;
+  height: $dropdown-height;
 
   .is-dropdown-open & {
     height: auto;
@@ -108,7 +113,15 @@
   }
 }
 
+.m-dropdown__list--native {
+  @include respond-up(sm) {
+    display: none;
+  }
+}
+
 .m-dropdown__list--native--only {
+  display: block;
+
   @include respond-up(sm) {
     display: block;
   }
