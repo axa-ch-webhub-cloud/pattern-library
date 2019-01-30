@@ -38,6 +38,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
         isSelected: PropTypes.bool,
         value: PropTypes.string,
       })),
+      startMonth: PropTypes.number,
     }
 
     init() {
@@ -51,6 +52,18 @@ class AXAMDatepicker extends BaseComponentGlobal {
 
     connectedCallback() {
       super.connectedCallback();
+
+      // Legacy Setup values from legacy fields
+      if (!this.startDateDay || !this.startDateMonth || !this.startDateYear) {
+        const manualDate = new Date();
+        this.props.startDateDay = manualDate.getDate();
+        this.props.startDateMonth = manualDate.getMonth();
+        this.props.startDateYear = manualDate.getFullYear();
+        this.props.allowedYears = [];
+        this.props.allowedYears.push(this.props.lowerEndYear);
+        this.props.allowedYears.push(this.props.higherEndYear);
+        this.isLegacy = true;
+      }
 
       // This method is triggered up to a millions times.... but it's needed here else, no items are available
       this.props.monthItems = getAllLocaleMonthsArray(this.props.locale).map((item, index) => ({
@@ -92,12 +105,39 @@ class AXAMDatepicker extends BaseComponentGlobal {
       this.datepicker.destroy();
     }
 
-    get classes() {
-      return this.getAttribute('classes');
+    // Legacy backwards compatability
+    get lowerEndYear() {
+      return this.getAttribute('lower-end-year');
     }
+
+    set lowerEndYear(value) {
+      this.setAttribute('lower-end-year', value);
+    }
+
+    get higherEndYear() {
+      return this.getAttribute('higher-end-year');
+    }
+
+    set higherEndYear(value) {
+      this.setAttribute('higher-end-year', value);
+    }
+
+    get startMonth() {
+      return this.getAttribute('start-month');
+    }
+
+    set startMonth(value) {
+      this.setAttribute('start-month', value);
+    }
+
+    // End legacy
 
     set classes(value) {
       this.setAttribute('classes', value);
+    }
+
+    get classes() {
+      return this.getAttribute('classes');
     }
 
     get locale() {

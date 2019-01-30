@@ -35,7 +35,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
-    this.className = `${this.initialClassName} m-datepicker-body`;
+    this.className = `${this.classes ? this.classes : ''} m-datepicker-body`;
 
     const date = new Date(this.props.year, this.props.month - 1, this.props.day);
     this.store = new Store(this.locale, date);

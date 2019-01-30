@@ -5,9 +5,9 @@ export default ({
   buttonCancel,
   locale,
   allowedYears,
-  startDateYear,
-  startDateMonth,
-  startDateDay,
+  startDateYear = new Date().getFullYear(),
+  startDateMonth = new Date().getMonth(),
+  startDateDay = new Date().getDate(),
   startDateMonthTitle,
   startDateYearTitle,
   weekdays = [],
@@ -38,7 +38,7 @@ export default ({
         ${weekdays ? weekdays.map(day => html`<div class="m-datepicker__weekdays__day">${day}</div>`) : ''}
       </div>
 
-      <axa-datepicker-body class="m-datepicker__body js-datepicker__datepicker-body"
+      <axa-datepicker-body classes="m-datepicker__body js-datepicker__datepicker-body"
         allowed-years='${JSON.stringify(allowedYears)}'
         year="${startDateYear}" 
         month="${startDateMonth}" 
