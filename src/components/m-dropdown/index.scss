@@ -32,10 +32,10 @@ $dropdown-spacing: 10px 40px 10px 10px;
 
 .m-dropdown__select {
   @include normalize-native-select-styles();
-  line-height: normal;
   min-width: $dropdown-min-width;
   padding: $dropdown-spacing;
   height: $dropdown-height;
+  line-height: normal;
 
   .is-dropdown-open & {
     height: auto;

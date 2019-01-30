@@ -1,7 +1,7 @@
-<axa-m-datepicker
-    button-ok="ok" 
-    button-cancel="abbrechen" 
-    locale="de-CH" 
+<!-- <axa-m-datepicker
+    button-ok="ok"
+    button-cancel="abbrechen"
+    locale="de-CH"
     allowed-years-range='2019-2020'
     start-date-year="2019"
     start-date-month="1"
@@ -11,28 +11,40 @@
 
 <h2>A Legacy Version with old props (lower-end-year or higher-end-year)</h2>
 
-<axa-m-datepicker 
-    lower-end-year="2015" 
-    higher-end-year="2020" 
-    start-month="12" 
-    locale="it-CH" 
-    button-ok="ok" 
-    button-cancel="abbrechen" 
+<axa-m-datepicker
+    lower-end-year="2015"
+    higher-end-year="2020"
+    start-month="12"
+    locale="it-CH"
+    button-ok="ok"
+    button-cancel="abbrechen"
+    classes="m-datepicker">
+</axa-m-datepicker> -->
+
+<h2>A Legacy Version with old props (lower-end-year or higher-end-year, start-year and start-month)</h2>
+<axa-m-datepicker
+    lower-end-year="2020"
+    higher-end-year="2022"
+    start-month="8"
+    start-year="2021"
+    locale="it-CH"
+    button-ok="ok"
+    button-cancel="abbrechen"
     classes="m-datepicker">
 </axa-m-datepicker>
-<!-- 
+<!--
 <axa-m-datepicker
- lower-end-year="1990" 
- start-month="0" 
- button-ok="ok" 
- button-cancel="abbrechen" 
+ lower-end-year="1990"
+ start-month="0"
+ button-ok="ok"
+ button-cancel="abbrechen"
  classes="m-datepicker">
 </axa-m-datepicker>
 
 <axa-m-datepicker
-    button-ok="Ok man!" 
-    button-cancel="Cancel dude!" 
-    locale="en-US" 
+    button-ok="Ok man!"
+    button-cancel="Cancel dude!"
+    locale="en-US"
     allowed-years='[2018, 2019]'
     start-date-year="2018"
     start-date-month="11"
@@ -41,9 +53,9 @@
 </axa-m-datepicker>
 
 <axa-m-datepicker
-    button-ok="Ok man!" 
-    button-cancel="Cancel dude!" 
-    locale="en-US" 
+    button-ok="Ok man!"
+    button-cancel="Cancel dude!"
+    locale="en-US"
     allowed-years='[2018, 2019]'
     start-date-year="2018"
     start-date-month="11"
