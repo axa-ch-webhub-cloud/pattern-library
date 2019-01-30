@@ -10,7 +10,9 @@ export const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   objDate.setDate(1);
   [...Array(12).keys()].forEach((index) => {
     objDate.setMonth(index);
-    finalArray.push(objDate.toLocaleString(locale, { month: 'long' }));
+    let month = objDate.toLocaleString(locale, { month: 'long' });
+    month = month[0].toUpperCase() + month.slice(1);
+    finalArray.push(month);
   });
   return finalArray;
 };
@@ -74,7 +76,7 @@ export const getWeekdays = (date, locale) => {
   const out = [];
   const start = getStartOfWeek(date);
   for (let i = 0; i < 7; i++) {
-    out.push(start.toLocaleString(locale, { weekday: 'short' }));
+    out.push(start.toLocaleString(locale, { weekday: 'short' }).substr(0, 2));
     start.setDate(start.getDate() + 1);
   }
   return out;
