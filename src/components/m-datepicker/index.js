@@ -38,7 +38,7 @@ class AXAMDatepicker extends BaseComponentGlobal {
         isSelected: PropTypes.bool,
         value: PropTypes.string,
       })),
-      startMonth: PropTypes.number,
+      startMonth: PropTypes.number, // legacy -> new startDateMonth
     }
 
     init() {
@@ -47,23 +47,23 @@ class AXAMDatepicker extends BaseComponentGlobal {
     }
 
     range(start, end) {
-      return Array.from({ length: (end - start) }, (v, k) => k + start);
+      return Array.from({ length: ((end + 1) - start) }, (v, k) => k + start);
     }
 
     connectedCallback() {
       super.connectedCallback();
 
-      // Legacy Setup values from legacy fields
+      // Legacy Setup: new fields from values of legacy fields
       if (!this.startDateDay || !this.startDateMonth || !this.startDateYear) {
+        this.isLegacy = true;
         const manualDate = new Date();
+        manualDate.setMonth(this.props.startMonth);
         this.props.startDateDay = manualDate.getDate();
-        this.props.startDateMonth = manualDate.getMonth();
+        this.props.startDateMonth = this.props.startMonth - 1 || manualDate.getMonth();
         this.props.startDateYear = manualDate.getFullYear();
         this.props.allowedYears = [];
         this.props.allowedYears.push(this.props.lowerEndYear);
         this.props.allowedYears.push(this.props.higherEndYear);
-        this.isLegacy = true;
-        console.log('legacy');
       }
 
       this.props.monthItems = getAllLocaleMonthsArray(this.props.locale).map((item, index) => ({
@@ -76,11 +76,13 @@ class AXAMDatepicker extends BaseComponentGlobal {
       // if we set a range of years, we don't care about the initial allowedYears
       if (this.props.allowedYearsRange && this.props.allowedYearsRange.length > 0) {
         const yearRanges = this.props.allowedYearsRange.split('-');
+        console.log('year ranges', yearRanges);
         this.props.allowedYears = this.range(parseInt(yearRanges[0], 10), parseInt(yearRanges[1], 10));
+        console.log('allowed years', this.props.allowedYears);
         this.allowedYears = this.props.allowedYears;
       } else {
         const lowerEndYear = this.props.allowedYears[0];
-        const higherEndYear = this.props.allowedYears[this.props.allowedYears.length];
+        const higherEndYear = this.props.allowedYears[this.props.allowedYears.length - 1];
         this.props.allowedYears = getSpecificYears({ lowerEndYear, higherEndYear });
       }
 
@@ -132,7 +134,6 @@ class AXAMDatepicker extends BaseComponentGlobal {
     }
 
     // End legacy
-
     set classes(value) {
       this.setAttribute('classes', value);
     }
