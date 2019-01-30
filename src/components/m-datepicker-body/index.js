@@ -26,7 +26,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
   }
 
   static get observedAttributes() {
-    return ['day', 'month', 'year', 'cells', 'value', 'index', 'date'];
+    return ['day', 'month', 'year', 'cells', 'value', 'index', 'date', 'allowed-years'];
   }
 
   init() {

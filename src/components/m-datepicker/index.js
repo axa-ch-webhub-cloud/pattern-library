@@ -63,9 +63,9 @@ class AXAMDatepicker extends BaseComponentGlobal {
         this.props.allowedYears.push(this.props.lowerEndYear);
         this.props.allowedYears.push(this.props.higherEndYear);
         this.isLegacy = true;
+        console.log('legacy');
       }
 
-      // This method is triggered up to a millions times.... but it's needed here else, no items are available
       this.props.monthItems = getAllLocaleMonthsArray(this.props.locale).map((item, index) => ({
         isSelected: index === this.props.startDateMonth - 1,
         name: item.toString(),
@@ -77,9 +77,10 @@ class AXAMDatepicker extends BaseComponentGlobal {
       if (this.props.allowedYearsRange && this.props.allowedYearsRange.length > 0) {
         const yearRanges = this.props.allowedYearsRange.split('-');
         this.props.allowedYears = this.range(parseInt(yearRanges[0], 10), parseInt(yearRanges[1], 10));
+        this.allowedYears = this.props.allowedYears;
       } else {
         const lowerEndYear = this.props.allowedYears[0];
-        const higherEndYear = this.props.allowedYears[this.props.allowedYears.length - 1];
+        const higherEndYear = this.props.allowedYears[this.props.allowedYears.length];
         this.props.allowedYears = getSpecificYears({ lowerEndYear, higherEndYear });
       }
 

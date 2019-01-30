@@ -4,7 +4,7 @@ export default ({
   buttonOk,
   buttonCancel,
   locale,
-  allowedYears,
+  allowedYears = [],
   startDateYear = new Date().getFullYear(),
   startDateMonth = new Date().getMonth(),
   startDateDay = new Date().getDate(),
