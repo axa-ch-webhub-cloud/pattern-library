@@ -15,7 +15,7 @@
     "start": "cross-env NODE_ENV=production npm run serve-build-prod",
     "new": "node stack/tasks/create-a-m-o.js",
     "server": "node stack/server.js",
-    "postinstall": "npm rebuild node-sass && npm run build",
+    "postinstall": "npm rebuild node-sass",
     "watch": "cross-env NODE_ENV=development concurrently \"npm run watch-scss\" \"npm run watch-js\" \"npm run watch-html\" \"npm run watch-svg\"",
     "watch-scss": "npm-watch build-css-dev",
     "watch-js": "node stack/tasks/watch-js.js",
