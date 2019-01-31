@@ -7,9 +7,9 @@ import template from './_template';
 class AXAIcon extends BaseComponentGlobal {
   static tagName = 'axa-icon'
   static propTypes = {
+    classes: PropTypes.string,
     icon: PropTypes.string,
     iconClass: PropTypes.string,
-    classes: PropTypes.string,
     pathPrefix: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.bool,
