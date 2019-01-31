@@ -21,7 +21,7 @@ export default function ({
           disabled="${disabled}">
           <span class="a-input__valid-icon"></span>
           ${icon ? html`<button class="a-input__icon-button js-input__icon-button" type="button">
-            <axa-icon classes="a-input__icon" icon="${icon}"></axa-icon>
+            <axa-icon classes="a-input__icon" icon="${icon}" icon-class="a-icon__svg--small"></axa-icon>
           </button>` : ''}
       </div>
     `;
