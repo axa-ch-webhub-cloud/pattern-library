@@ -14,25 +14,26 @@ export default class Datepicker {
   }
 
   init() {
-    this.datepickerBody = this.wcNode.querySelector('.js-datepicker__datepicker-body');
-    this.dropdownMonth = this.wcNode.querySelector('.js-datepicker__dropdown-month');
-    this.dropdownYear = this.wcNode.querySelector('.js-datepicker__dropdown-year');
-    this.okButton = this.wcNode.querySelector('.js-datepicker__button-ok');
-    this.cancelButton = this.wcNode.querySelector('.js-datepicker__button-cancel');
+    this.onHandleChangeDropdownMonth = on(
+      this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-month',
+      e => this.handleChangeDropdownMonth(e), { capture: true, passive: false },
+    );
 
-    this.onHandleChangeDropdownMonth =
-      on(this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-month', e => this.handleChangeDropdownMonth(e), { capture: true, passive: false });
-    this.onListenToDropdownYear =
-      on(this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-year', e => this.handleChangeDropdownYear(e), { capture: true, passive: false });
+    this.onListenToDropdownYear = on(
+      this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-year',
+      e => this.handleChangeDropdownYear(e), { capture: true, passive: false },
+    );
 
-    this.onListenDatepickerBodyDateChange =
-      on(this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__datepicker-body', e => this.handleChangeDatepickerBody(e), { capture: true, passive: false });
+    this.onListenDatepickerBodyDateChange = on(
+      this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__datepicker-body',
+      e => this.handleChangeDatepickerBody(e), { capture: true, passive: false },
+    );
 
     this.onCancelButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-cancel', () => {
       fire(this.wcNode, 'cancel', {}, { bubbles: true, cancelable: true, composed: true });
     });
 
-    this.onOkButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-ok', (e) => {
+    this.onOkButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-ok', () => {
       let out = '';
       const value = this.wcNode.querySelector(SELECTORS.datepickerBody).getAttribute('date');
       if (value) {
@@ -71,6 +72,7 @@ export default class Datepicker {
   handleChangeDatepickerBody(e) {
     e.preventDefault();
     e.stopPropagation();
+
     if (e.detail) {
       const parsedDate = new Date(Date.parse(e.detail));
       this.dropdownMonth.setAttribute('value', parsedDate.getMonth());
