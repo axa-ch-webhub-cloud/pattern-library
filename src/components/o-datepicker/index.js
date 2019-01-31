@@ -73,9 +73,11 @@ class AXADatepicker extends BaseComponentGlobal {
      on(this, AXA_EVENTS.AXA_VALIDATION, 'js-datepicker__datepicker-body', e => this.handleDatepickerBodyValidation(e));
 
     // Adapt calendar position (window is too small in the height)
-    if (this.datepickerCalendar) {
-      window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.querySelector('.js-datepicker__calendar')), 250));
+    const calendar = this.querySelector('.js-datepicker__calendar');
+    if (calendar) {
+      window.addEventListener('resize', debounce(() => this.handleViewportCheck(calendar), 250));
     }
+    this.handleViewportCheck(calendar);
   }
 
   handleWindowKeyDown(e) {
