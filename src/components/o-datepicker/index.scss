@@ -27,9 +27,12 @@ $calendar-level-index: 1;
 .o-datepicker .m-datepicker {
   position: absolute;
   z-index: $calendar-level-index;
-  visibility: hidden;
-  pointer-events: none;
+
   min-height: 400px;
+
+  visibility: hidden;
+
+  pointer-events: none;
 }
 
 .o-datepicker .js-datepicker__calendar--open {
