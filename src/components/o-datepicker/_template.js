@@ -17,14 +17,15 @@ export default ({
         class="o-datepicker__input js-datepicker__input"
         placeholder="${placeholder}"
         icon="datepicker"
+        icon-class="a-icon__svg--small"
         value="${outputValue}"
         inline
       >
       </axa-input>
         <axa-m-datepicker
           classes="js-datepicker__calendar${open ? ' js-datepicker__calendar--open' : ' js-datepicker__calendar--closed'}"
-          button-ok="${buttonOk}" 
-          button-cancel="${buttonCancel}" 
+          button-ok="${buttonOk}"
+          button-cancel="${buttonCancel}"
           locale="${locale}"
           allowed-years='${JSON.stringify(allowedYears)}'
           start-date-year='${startDateYear}'
