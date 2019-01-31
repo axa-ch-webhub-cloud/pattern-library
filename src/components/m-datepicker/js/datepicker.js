@@ -4,6 +4,10 @@ import fire from '../../../js/fire';
 
 export const OK = 'ok';
 
+const SELECTORS = {
+  datepickerBody: '.js-datepicker__datepicker-body',
+};
+
 export default class Datepicker {
   constructor(wcNode) {
     this.wcNode = wcNode;
@@ -17,20 +21,20 @@ export default class Datepicker {
     this.cancelButton = this.wcNode.querySelector('.js-datepicker__button-cancel');
 
     this.onHandleChangeDropdownMonth =
-      on(this.dropdownMonth, AXA_EVENTS.AXA_CHANGE, '', e => this.handleChangeDropdownMonth(e), { capture: true, passive: false });
+      on(this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-month', e => this.handleChangeDropdownMonth(e), { capture: true, passive: false });
     this.onListenToDropdownYear =
-      on(this.dropdownYear, AXA_EVENTS.AXA_CHANGE, '', e => this.handleChangeDropdownYear(e), { capture: true, passive: false });
+      on(this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-year', e => this.handleChangeDropdownYear(e), { capture: true, passive: false });
 
     this.onListenDatepickerBodyDateChange =
-      on(this.datepickerBody, AXA_EVENTS.AXA_CHANGE, '', e => this.handleChangeDatepickerBody(e), { capture: true, passive: false });
+      on(this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__datepicker-body', e => this.handleChangeDatepickerBody(e), { capture: true, passive: false });
 
-    this.onCancelButtonListenerEnd = on(this.cancelButton, EVENTS.CLICK, () => {
+    this.onCancelButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-cancel', () => {
       fire(this.wcNode, 'cancel', {}, { bubbles: true, cancelable: true, composed: true });
     });
 
-    this.onOkButtonListenerEnd = on(this.okButton, EVENTS.CLICK, () => {
+    this.onOkButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-ok', (e) => {
       let out = '';
-      const value = this.datepickerBody.getAttribute('date');
+      const value = this.wcNode.querySelector(SELECTORS.datepickerBody).getAttribute('date');
       if (value) {
         out = new Date(Date.parse(value));
         fire(this.wcNode, 'date-changed', { value: out }, { bubbles: true, cancelable: true, composed: true });
@@ -42,11 +46,12 @@ export default class Datepicker {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      const newDate = this.datepickerBody.getAttribute('date');
+      // the body is undefined in IE11 if you don't select it here again.
+      const datepickerBody = this.wcNode.querySelector(SELECTORS.datepickerBody);
+      const newDate = datepickerBody.getAttribute('date');
       const parsedDate = new Date(Date.parse(newDate));
       parsedDate.setMonth(month);
-
-      this.datepickerBody.setAttribute('date', parsedDate.toISOString());
+      datepickerBody.setAttribute('date', parsedDate.toISOString());
     }
   }
 
@@ -54,10 +59,12 @@ export default class Datepicker {
     e.preventDefault();
     const year = e.detail;
     if (year) {
-      const newDate = this.datepickerBody.getAttribute('date');
+      // the body is undefined in IE11 if you don't select it here again.
+      const datepickerBody = this.wcNode.querySelector(SELECTORS.datepickerBody);
+      const newDate = datepickerBody.getAttribute('date');
       const parsedDate = new Date(Date.parse(newDate));
       parsedDate.setFullYear(year);
-      this.datepickerBody.setAttribute('date', parsedDate.toISOString());
+      datepickerBody.setAttribute('date', parsedDate.toISOString());
     }
   }
 
