@@ -13,14 +13,6 @@ $calendar-level-index: 1;
   background: $color-prim-white;
 }
 
-.o-datepicker__calendar {
-  position: absolute;
-  z-index: $zindex-popover;
-
-  display: none;
-  background-color: $color-prim-white;
-}
-
 .o-datepicker__input {
   display: inline-block;
   width: auto;
@@ -37,6 +29,7 @@ $calendar-level-index: 1;
   z-index: $calendar-level-index;
   visibility: hidden;
   pointer-events: none;
+  min-height: 400px;
 }
 
 .o-datepicker .js-datepicker__calendar--open {
