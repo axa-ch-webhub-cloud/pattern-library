@@ -6,6 +6,8 @@ export const OK = 'ok';
 
 const SELECTORS = {
   datepickerBody: '.js-datepicker__datepicker-body',
+  dropdownMonth: '.js-datepicker__dropdown-month',
+  dropdownYear: '.js-datepicker__dropdown-year',
 };
 
 export default class Datepicker {
@@ -14,6 +16,9 @@ export default class Datepicker {
   }
 
   init() {
+    this.dropdownMonth = this.wcNode.querySelector(SELECTORS.dropdownMonth);
+    this.dropdownYear = this.wcNode.querySelector(SELECTORS.dropdownYear);
+
     this.onHandleChangeDropdownMonth = on(
       this.wcNode, AXA_EVENTS.AXA_CHANGE, 'js-datepicker__dropdown-month',
       e => this.handleChangeDropdownMonth(e), { capture: true, passive: false },
@@ -29,9 +34,10 @@ export default class Datepicker {
       e => this.handleChangeDatepickerBody(e), { capture: true, passive: false },
     );
 
-    this.onCancelButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-cancel', () => {
-      fire(this.wcNode, 'cancel', {}, { bubbles: true, cancelable: true, composed: true });
-    });
+    this.onCancelButtonListenerEnd = on(
+      this.wcNode, EVENTS.CLICK, 'js-datepicker__button-cancel',
+      () => { fire(this.wcNode, 'cancel', {}, { bubbles: true, cancelable: true, composed: true }); },
+    );
 
     this.onOkButtonListenerEnd = on(this.wcNode, EVENTS.CLICK, 'js-datepicker__button-ok', () => {
       let out = '';
@@ -62,6 +68,7 @@ export default class Datepicker {
     if (year) {
       // the body is undefined in IE11 if you don't select it here again.
       const datepickerBody = this.wcNode.querySelector(SELECTORS.datepickerBody);
+      console.log('daetpicker body');
       const newDate = datepickerBody.getAttribute('date');
       const parsedDate = new Date(Date.parse(newDate));
       parsedDate.setFullYear(year);
