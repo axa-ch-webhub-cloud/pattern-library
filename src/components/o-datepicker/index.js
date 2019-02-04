@@ -72,11 +72,13 @@ class AXADatepicker extends BaseComponentGlobal {
     );
 
     // Adapt calendar position (window is too small in the height)
-    // const calendar = this.querySelector('.js-datepicker__calendar');
-    // if (calendar) {
-    //   window.addEventListener('resize', debounce(() => this.handleViewportCheck(calendar), 250));
-    // }
-    // this.handleViewportCheck(calendar);
+    // Hacky shit for IE. We have to wait for the children coz o getBoundingClientRect() being loaded,
+    // could be done with a callback of the childrens or hackier but less complex by waiting.
+    window.setTimeout(() => {
+      const calendar = this.querySelector('.js-datepicker__calendar');
+      window.addEventListener('resize', debounce(() => this.handleViewportCheck(calendar), 250));
+      this.handleViewportCheck(calendar);
+    }, 100);
   }
 
   didRenderCallback() {
@@ -94,8 +96,12 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleViewportCheck(elem) {
+    console.log('handle viewport check', elem.getBoundingClientRect());
     if (this.shouldMove(elem)) {
-      this.classList.add('o-datepicker__calendar--move-up');
+      console.log('should move');
+      if (!this.classList.contains('o-datepicker__calendar--move-up')) {
+        this.classList.add('o-datepicker__calendar--move-up');
+      }
     }
   }
 
@@ -173,12 +179,6 @@ class AXADatepicker extends BaseComponentGlobal {
     }
 
     const validDate = this.isValidDate(e.detail.value);
-    // if (validDate) {
-    //   const isInValidationYearRange = this.allowedYears.indexOf(validDate.getFullYear()) > 0;
-    //   if (!isInValidationYearRange) {
-    //     return;
-    //   }
-    // }
     if (validDate) {
       this.position = e.detail.position;
       this.newValue = e.detail.value;
