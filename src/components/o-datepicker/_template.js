@@ -4,7 +4,6 @@ export default ({
   locale,
   outputValue = '',
   placeholder = 'Select a date',
-  open = false,
   startDateYear = [],
   startDateMonth = [],
   startDateDay = [],
@@ -24,7 +23,7 @@ export default ({
       >
       </axa-input>
         <axa-m-datepicker
-          classes="js-datepicker__calendar${open ? ' js-datepicker__calendar--open' : ' js-datepicker__calendar--closed'}"
+          classes="js-datepicker__calendar"
           button-ok="${buttonOk}"
           button-cancel="${buttonCancel}"
           locale="${locale}"

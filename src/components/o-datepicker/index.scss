@@ -35,7 +35,7 @@ $calendar-level-index: 1;
   pointer-events: none;
 }
 
-.o-datepicker .js-datepicker__calendar--open {
+.o-datepicker.js-datepicker__calendar--open .js-datepicker__calendar {
   visibility: visible;
   pointer-events: auto;
 }

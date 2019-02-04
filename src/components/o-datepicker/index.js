@@ -32,10 +32,8 @@ class AXADatepicker extends BaseComponentGlobal {
 
   static get observedAttributes() {
     return [
-      'classes',
-      'open',
-      'locale',
       'output-value',
+      'locale',
       'allowed-years',
       'start-date-year',
       'start-date-month',
@@ -45,11 +43,11 @@ class AXADatepicker extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template });
-    this.className = `o-datepicker${this.classes ? ` ${this.classes}` : ''}`;
   }
 
   connectedCallback() {
     super.connectedCallback();
+    this.className = `o-datepicker${this.classes ? ` ${this.classes}` : ''}`;
     this.body = document.body;
 
     // Register Events
@@ -68,8 +66,10 @@ class AXADatepicker extends BaseComponentGlobal {
     // Listen to fired events of sub component datepicker calendar
     this.onDatepickerCalendarDateChanged = on(this, 'date-changed', 'js-datepicker__calendar', e => this.handleDatepickerChangeDate(e));
     this.onDatepickerCalendarCancel = on(this, 'cancel', 'js-datepicker__calendar', e => this.handleDatepickerCancel(e));
-    this.onDatepickerBodyValidation =
-      on(this, AXA_EVENTS.AXA_VALIDATION, 'js-datepicker__datepicker-body', e => this.handleDatepickerBodyValidation(e));
+    this.onDatepickerBodyValidation = on(
+      this, AXA_EVENTS.AXA_VALIDATION, 'js-datepicker__datepicker-body',
+      e => this.handleDatepickerBodyValidation(e),
+    );
 
     // Adapt calendar position (window is too small in the height)
     // const calendar = this.querySelector('.js-datepicker__calendar');
@@ -80,7 +80,8 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   didRenderCallback() {
-    this.onInputFieldRender = on(this.querySelector('.js-datepicker__input'), AXA_EVENTS.AXA_RENDER, '', e => this.handleInputFieldRendered(e));
+    this.onInputFieldRender =
+      on(this.querySelector('.js-datepicker__input'), AXA_EVENTS.AXA_RENDER, '', e => this.handleInputFieldRendered(e));
   }
 
   handleWindowKeyDown(e) {
@@ -126,14 +127,14 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   setInvalidState() {
-    this.state.isInvalid = true;
-    if (!this.state.isInvalid) {
+    this.isInvalid = true;
+    if (!this.isInvalid) {
       this.classList.add('o-datepicker--is-invalid');
     }
   }
 
   setValidState() {
-    this.state.isInvalid = false;
+    this.isInvalid = false;
     this.classList.remove('o-datepicker--is-invalid');
   }
 
@@ -153,8 +154,12 @@ class AXADatepicker extends BaseComponentGlobal {
     try {
       const parsedDate = new Date(Date.parse(`${date}`));
       const isValid = parsedDate instanceof Date && !Number.isNaN(parsedDate);
-      if (isValid) {
-        out = parsedDate;
+      const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
+      if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
+        const isInValidationYearRange = this.allowedYears.indexOf(isValidDateLocalized.getFullYear()) > 0;
+        if (isInValidationYearRange) {
+          out = isValidDateLocalized;
+        }
       }
     } catch (e) {
       out = false;
@@ -163,142 +168,143 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleDatepickerInputChange(e) {
-    if (typeof e.detail.value === 'undefined' || !e.detail && !e.detail.value && !e.detail.value.length > 6) {
+    if (((!e.detail && !e.detail.value) || typeof e.detail.value === 'undefined' || e.detail.value.length < 6)) {
       return;
     }
 
-    this.position = e.detail.position;
-    this.newValue = e.detail.value;
     const validDate = this.isValidDate(e.detail.value);
-    const validDateLocalized = parseLocalisedDateIfValid(this.locale, e.detail.value);
-    const isInValidationYearRange = this.allowedYears.indexOf(validDateLocalized.getFullYear()) > 0;
-    if (!validDateLocalized || !validDate || !isInValidationYearRange) {
-      this.setInvalidState();
-      return;
-    } else {
-      this.updateDate(validDateLocalized);
-      this.updateDatepickerBody(validDateLocalized.toISOString());
+    // if (validDate) {
+    //   const isInValidationYearRange = this.allowedYears.indexOf(validDate.getFullYear()) > 0;
+    //   if (!isInValidationYearRange) {
+    //     return;
+    //   }
+    // }
+    if (validDate) {
+      this.position = e.detail.position;
+      this.newValue = e.detail.value;
+      this.updateDate(validDate);
+      this.updateDatepickerBody(validDate.toISOString());
       this.setValidState();
-      this.previousDate = validDateLocalized;
+      this.previousDate = validDate;
+    } else {
+      this.setInvalidState();
     }
-
   }
-}
 
+  handleDatepickerCalendarClick(e) {
+    e.stopPropagation();
+  }
 
-handleDatepickerCalendarClick(e) {
-  e.stopPropagation();
-}
-
-handleDatepickerCancel() {
-  this.closeDatepicker();
-}
-
-// TODO: Apply validation. Check for allowed years
-handleDatepickerChangeDate(e) {
-  if (e.detail.value !== '') {
-    this.valueChanged = true;
-    this.updateDate(e.detail.value);
-    this.updateDatepickerBody(e.detail.value.toISOString());
+  handleDatepickerCancel() {
     this.closeDatepicker();
   }
-}
 
-updateDate(date) {
-  this.value = date.toISOString();
-  this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
-}
-
-updateDatepickerBody(date) {
-  // we have to select it here, since it's a children and might not be available.
-  this.querySelector('.js-datepicker__datepicker-body').setAttribute('date', date);
-}
-
-closeDatepicker() {
-  this.open = false;
-  window.datepicker = null;
-}
-
-openDatepicker() {
-  this.open = true;
-  if (window.datepicker) {
-    window.datepicker.closeDatepicker();
+  // TODO: Apply validation. Check for allowed years
+  handleDatepickerChangeDate(e) {
+    if (e.detail.value !== '') {
+      this.updateDate(e.detail.value);
+      this.updateDatepickerBody(e.detail.value.toISOString());
+      this.closeDatepicker();
+    }
   }
-  window.datepicker = this;
-}
 
-shouldMove(elem) {
-  const bounding = elem.getBoundingClientRect();
-  const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-  const enoughSpaceToMove = bounding.top > bounding.height;
-  return (!bottomIsInViewport && enoughSpaceToMove);
-}
+  updateDate(date) {
+    this.value = date.toISOString();
+    this.outputValue = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
+  }
 
-disconnectedCallback() {
-  super.disconnectedCallback();
-  this.onDropdownClick();
-  this.onDropdownValueChange();
-  this.onDropdownValueClick();
-  // Deregister Events
-  this.body.removeEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
-  this.onDatepickerCalendarClick();
-  this.onDatePickerInputClick();
-  this.onDatePickerInputButtonClick();
-  this.onDatePickerInputChange();
-  this.onDatepickerCalendarDateChanged();
-  this.onDatepickerCalendarCancel();
-  this.onInputFieldRender();
-  window.removeEventListener('resize', () => this.handleViewportCheck());
-  window.removeEventListener('keydown', e => this.handleKeyDown(e));
-}
+  updateDatepickerBody(date) {
+    // we have to select it here, since it's a children and might not be available.
+    this.querySelector('.js-datepicker__datepicker-body').setAttribute('date', date);
+  }
 
-set classes(value) {
-  if (value) { this.setAttribute('classes', value); } else { this.removeAttribute('classes'); }
-}
+  closeDatepicker() {
+    this.open = false;
+    this.classList.remove('js-datepicker__calendar--open');
+    window.datepicker = null;
+  }
 
-get classes() {
-  return this.getAttribute('classes');
-}
+  openDatepicker() {
+    this.open = true;
+    this.classList.add('js-datepicker__calendar--open');
+    if (window.datepicker) {
+      window.datepicker.closeDatepicker();
+    }
+    window.datepicker = this;
+  }
 
-set open(value) {
-  if (value) { this.setAttribute('open', value); } else { this.removeAttribute('open'); }
-}
+  shouldMove(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return (!bottomIsInViewport && enoughSpaceToMove);
+  }
 
-get open() {
-  return this.getAttribute('open');
-}
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.onDropdownClick();
+    this.onDropdownValueChange();
+    this.onDropdownValueClick();
+    // Deregister Events
+    this.body.removeEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
+    this.onDatepickerCalendarClick();
+    this.onDatePickerInputClick();
+    this.onDatePickerInputButtonClick();
+    this.onDatePickerInputChange();
+    this.onDatepickerCalendarDateChanged();
+    this.onDatepickerCalendarCancel();
+    this.onInputFieldRender();
+    window.removeEventListener('resize', () => this.handleViewportCheck());
+    window.removeEventListener('keydown', e => this.handleKeyDown(e));
+  }
 
-set locale(value) {
-  if (value) { this.setAttribute('locale', value); } else { this.removeAttribute('locale'); }
-}
+  set classes(value) {
+    if (value) { this.setAttribute('classes', value); } else { this.removeAttribute('classes'); }
+  }
 
-get locale() {
-  return this.getAttribute('locale');
-}
+  get classes() {
+    return this.getAttribute('classes');
+  }
 
-set value(value) {
-  if (value) { this.setAttribute('value', value); } else { this.removeAttribute('value'); }
-}
+  set open(value) {
+    if (value) { this.setAttribute('open', value); } else { this.removeAttribute('open'); }
+  }
 
-get value() {
-  return this.getAttribute('value');
-}
+  get open() {
+    return this.getAttribute('open');
+  }
 
-set outputValue(value) {
-  this.setAttribute('output-value', value);
-}
+  set locale(value) {
+    if (value) { this.setAttribute('locale', value); } else { this.removeAttribute('locale'); }
+  }
 
-get outputValue() {
-  return this.getAttribute('output-value');
-}
+  get locale() {
+    return this.getAttribute('locale');
+  }
 
-get allowedYears() {
-  return this.getAttribute('allowed-years');
-}
+  set value(value) {
+    if (value) { this.setAttribute('value', value); } else { this.removeAttribute('value'); }
+  }
 
-set allowedYears(value) {
-  this.setAttribute('allowed-years', value);
-}
+  get value() {
+    return this.getAttribute('value');
+  }
+
+  set outputValue(value) {
+    this.setAttribute('output-value', value);
+  }
+
+  get outputValue() {
+    return this.getAttribute('output-value');
+  }
+
+  get allowedYears() {
+    return this.getAttribute('allowed-years');
+  }
+
+  set allowedYears(value) {
+    this.setAttribute('allowed-years', value);
+  }
 }
 
 defineOnce(AXADatepicker.tagName, AXADatepicker);
