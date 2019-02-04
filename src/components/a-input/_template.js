@@ -6,9 +6,10 @@ export default function ({
   type = 'text',
   placeholder = '',
   value = '',
-  name,
+  name = '',
   disabled = false,
   icon = false,
+  autocomplete = 'off',
 }) {
   return html`<div class="a-input__wrapper">
       <input
@@ -18,7 +19,8 @@ export default function ({
           type="${type}"
           placeholder="${placeholder}"
           value="${value}"
-          disabled="${disabled}">
+          disabled="${disabled}"
+          autocomplete="${autocomplete}">
           <span class="a-input__valid-icon"></span>
           ${icon ? html`<button class="a-input__icon-button js-input__icon-button" type="button">
             <axa-icon classes="a-input__icon" icon="${icon}" icon-class="a-icon__svg--small"></axa-icon>
