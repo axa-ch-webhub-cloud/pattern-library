@@ -145,8 +145,6 @@ class AXADatepicker extends BaseComponentGlobal {
   // This is hacky. We wait for the fired didRenderCallback of the children input field and set the focus manually as it is lost coz of rerendering
   handleInputFieldRendered(e) {
     const element = e.target.querySelector('.js-input__input');
-    // console.log('handleInputFieldRendered. this.position and this.newValue', this.position, ' ', this.newValue);
-    // console.log('handleInputFieldRendered. this.value', this.newValue);
     if (typeof this.newValue !== 'undefined') {
       element.focus();
       element.setSelectionRange(this.position, this.position);
@@ -156,8 +154,9 @@ class AXADatepicker extends BaseComponentGlobal {
   isValidDate(date) {
     let out = false;
     try {
-      const parsedDate = new Date(Date.parse(`${date}`));
-      const isValid = parsedDate instanceof Date && !Number.isNaN(parsedDate);
+      const parsedDate = new Date(Date.parse(date));
+      // eslint-disable-next-line no-restricted-properties
+      const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
       const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
       if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
         const isInValidationYearRange = this.allowedYears.indexOf(isValidDateLocalized.getFullYear()) > 0;
