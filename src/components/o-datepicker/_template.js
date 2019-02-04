@@ -20,6 +20,7 @@ export default ({
         icon-class="a-icon__svg--small"
         value="${outputValue}"
         inline
+        autocomplete="off"
       >
       </axa-input>
         <axa-m-datepicker
