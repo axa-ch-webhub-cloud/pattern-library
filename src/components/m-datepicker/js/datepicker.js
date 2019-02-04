@@ -68,7 +68,6 @@ export default class Datepicker {
     if (year) {
       // the body is undefined in IE11 if you don't select it here again.
       const datepickerBody = this.wcNode.querySelector(SELECTORS.datepickerBody);
-      console.log('daetpicker body');
       const newDate = datepickerBody.getAttribute('date');
       const parsedDate = new Date(Date.parse(newDate));
       parsedDate.setFullYear(year);
