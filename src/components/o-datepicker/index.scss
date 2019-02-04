@@ -45,5 +45,7 @@ $calendar-level-index: 1;
 }
 
 .o-datepicker--is-invalid .o-datepicker__input input {
-  border: solid 1px $color-sec-red-tosca;
+  border: solid 1px $color-state-red-shy-tomato;
+  transition-property: border;
+  transition-delay: .3s;
 }
