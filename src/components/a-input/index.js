@@ -43,7 +43,7 @@ class AXAInput extends BaseComponentGlobal {
 
   didRenderCallback() {
     this.input.init();
-    fire(this, AXA_EVENTS.AXA_RENDER, this.input.inputfield, { bubbles: true, cancelable: true, composed: true });
+    fire(this, AXA_EVENTS.AXA_RENDER, '', this.input.inputfield, { bubbles: true, cancelable: true, composed: true });
   }
 
   disconnectedCallback() {
