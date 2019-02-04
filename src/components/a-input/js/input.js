@@ -49,7 +49,10 @@ export default class Input {
     this.offListenToInputChange();
     this.unInputListenerEnd = on(this.wcNode, EVENTS.INPUT, 'js-input__input', (e) => {
       this.cursorPosition = e.target.selectionStart;
-      fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, { value: e.target.value, position: e.target.selectionStart || 0 }, { bubbles: true, cancelable: true, composed: true });
+      fire(
+        this.inputfield, AXA_EVENTS.AXA_CHANGE, { value: e.target.value, position: e.target.selectionStart || 0 },
+        { bubbles: true, cancelable: true, composed: true },
+      );
     });
   }
 

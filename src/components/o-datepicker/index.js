@@ -96,9 +96,7 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   handleViewportCheck(elem) {
-    console.log('handle viewport check', elem.getBoundingClientRect());
     if (this.shouldMove(elem)) {
-      console.log('should move');
       if (!this.classList.contains('o-datepicker__calendar--move-up')) {
         this.classList.add('o-datepicker__calendar--move-up');
       }
