@@ -71,9 +71,10 @@ class AXADatepicker extends BaseComponentGlobal {
       e => this.handleDatepickerBodyValidation(e),
     );
 
-    // Adapt calendar position (window is too small in the height)
-    // Hacky shit for IE. We have to wait for the children coz o getBoundingClientRect() being loaded,
-    // could be done with a callback of the childrens or hackier but less complex by waiting.
+    // Adapt calendar position when vp height is too small
+    // This is hacky shit for IE11. We have to wait for the finally rendererd children coz expecting accurate values for getBoundingClientRect(),
+    // Cleanest solutios would be listening to a "hasRendererdCallback" of the child, and sending the ref (child) back here.
+    // Would be a lot of noise in several code for an IE11 fix only.
     window.setTimeout(() => {
       const calendar = this.querySelector('.js-datepicker__calendar');
       window.addEventListener('resize', debounce(() => this.handleViewportCheck(calendar), 250));
@@ -182,7 +183,6 @@ class AXADatepicker extends BaseComponentGlobal {
       this.updateDate(validDate);
       this.updateDatepickerBody(validDate.toISOString());
       this.setValidState();
-      this.previousDate = validDate;
     } else {
       this.setInvalidState();
     }
