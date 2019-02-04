@@ -12,6 +12,7 @@ export default class Input {
     this.iconButton = this.wcNode.querySelector('.js-input__icon-button');
     this.inputfield = this.wcNode.querySelector('.js-input__input');
     this.disablePaste = getAttribute(this.wcNode, 'disable-paste');
+    this.cursorPosition = 0;
     this.listenToButtons();
     this.listenToInputChange();
     if (this.disablePaste) {
@@ -46,8 +47,9 @@ export default class Input {
 
   listenToInputChange() {
     this.offListenToInputChange();
-    this.unInputListenerEnd = on(this.inputfield, EVENTS.INPUT, (e) => {
-      fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, e.target.value, { bubbles: true, cancelable: true, composed: true });
+    this.unInputListenerEnd = on(this.wcNode, EVENTS.INPUT, 'js-input__input', (e) => {
+      this.cursorPosition = e.target.selectionStart;
+      fire(this.inputfield, AXA_EVENTS.AXA_CHANGE, { value: e.target.value, position: e.target.selectionStart || 0 }, { bubbles: true, cancelable: true, composed: true });
     });
   }
 
