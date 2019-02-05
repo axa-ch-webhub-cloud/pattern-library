@@ -20,7 +20,7 @@
   display: block;
 }
 
-.m-header-logo__icon {
+.m-header-logo__icon.a-icon__svg--medium {
   @include size($header-logo-size);
 
   display: block;
