@@ -19,7 +19,8 @@
 }
 
 .m-button__arrow {
-  &, &.a-icon__svg {
+  &,
+  &.a-icon__svg {
     @include button__arrow();
     @include button__arrow-right();
   }
