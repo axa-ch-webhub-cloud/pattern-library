@@ -39,6 +39,10 @@ $datepicker-calender-body-cell-border-width: 2px !default;
   border: dashed $datepicker-calender-body-cell-border-width $color-axa-blue;
 }
 
+.m-datepicker-body__day--inactive {
+  visibility: hidden;
+}
+
 .m-datepicker-body__not-current-month {
   color: $color-prim-gray-silver;
 

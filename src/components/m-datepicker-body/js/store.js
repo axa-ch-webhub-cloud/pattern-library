@@ -1,10 +1,11 @@
 import { CurrentMonth, LastMonth, NextMonth } from './cells';
 
 export default class Store {
-  constructor(locale, date) {
+  constructor(locale, date, allowedYears) {
     this.cells = [];
     this.today = new Date();
     this.locale = locale;
+    this.allowedYears = allowedYears;
     this.init(date);
   }
 
@@ -34,6 +35,7 @@ export default class Store {
     const dates = [];
     for (let i = 0; i < 42; i += 1) {
       const dateCell = {};
+      dateCell.isActive = true;
       const dayToStart = startDay - 1;
 
       // Careful! We are calculating and working with standard ISO-dates. They might not show the same date as the local one in the given timezone.
@@ -43,26 +45,39 @@ export default class Store {
 
       // Previous month dates (if month does not start on Sunday)
       if (i < dayToStart) {
-        dateCell.date = new Date(year, month - 1, prevMonthDay);
+        const newDate = new Date(year, month - 1, prevMonthDay);
+        dateCell.date = newDate;
         dateCell.isToday = false;
-        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false);
+
+        if (this.allowedYears.indexOf(newDate.getFullYear()) < 0) {
+          dateCell.isActive = false;
+        }
+
+        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false, dateCell.isActive);
         prevMonthDay += 1;
 
       // Next month dates (if month does not end on Saturday)
       } else if (i > currentMonthTotalDays + (dayToStart - 1)) {
-        dateCell.date = new Date(year, month + 1, nextMonthDay);
+        const newDate = new Date(year, month + 1, nextMonthDay);
+        dateCell.date = newDate;
         dateCell.isToday = false;
-        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false);
+
+        if (this.allowedYears.indexOf(newDate.getFullYear()) < 0) {
+          dateCell.isActive = false;
+        }
+
+        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false, dateCell.isActive);
         nextMonthDay += 1;
 
       // Current month dates. */
       } else {
-        const currentDate = new Date(year, month, (i - dayToStart) + 1);
+        const newDate = new Date(year, month, (i - dayToStart) + 1);
+        const currentDate = newDate;
         const isToday = currentDate.toDateString() === today.toDateString();
         const isSelected = currentDate.toDateString() === date.toDateString();
         dateCell.date = currentDate;
         dateCell.isToday = isToday;
-        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.toISOString(), i, isToday, isSelected);
+        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.toISOString(), i, isToday, isSelected, dateCell.isActive);
       }
 
       dates.push(dateCell);
