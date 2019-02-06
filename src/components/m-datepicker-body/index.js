@@ -58,6 +58,8 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   handleDatepickerBodyCellClick(e) {
     e.preventDefault();
+    e.stopPropagation();
+    e.target.blur(); // prevent's the ugly focus ring after the click
     const index = parseInt(e.target.dataset.index, 10);
 
     // We parse the iso date to work with

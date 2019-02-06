@@ -26,7 +26,7 @@ $datepicker-calender-body-cell-border-width: 2px !default;
   background-color: transparent;
   border-radius: $datepicker-cell-border-radius;
   cursor: pointer;
-  border: none;
+  border: solid $datepicker-calender-body-cell-border-width transparent;
 }
 
 .m-datepicker-body__cell:focus {
@@ -39,6 +39,7 @@ $datepicker-calender-body-cell-border-width: 2px !default;
 }
 
 .m-datepicker-body__not-current-month {
+  border: 0;
   color: $color-prim-gray-silver;
 
   &:hover {
@@ -47,6 +48,7 @@ $datepicker-calender-body-cell-border-width: 2px !default;
 }
 
 .m-datepicker-body__current-month {
+  border: 0;
   color: $color-prim-gray-mine-shaft;
 }
 
@@ -75,6 +77,12 @@ $datepicker-calender-body-cell-border-width: 2px !default;
   outline: 0;
   background-color: $color-axa-blue;
   color: $color-prim-white;
+}
+
+.m-datepicker-body__cell:active:focus {
+  box-shadow: none;
+  outline: 0;
+  border: 0;
 }
 
 .m-datepicker-body__current-month:hover.m-datepicker-body__selected-day,
