@@ -77,8 +77,15 @@ class AXADropdown extends BaseComponentGlobal {
     return (!bottomIsInViewport && enoughSpaceToMove);
   }
 
+  closeOpenDropdowns() {
+    if (window.openDropdownInstance) {
+      this.closeDropdown(window.openDropdownInstance);
+    }
+  }
+
   handleDropdownClick = (e) => {
     e.preventDefault();
+    this.closeOpenDropdowns();
     this.toggleDropdown();
   }
 
@@ -117,14 +124,24 @@ class AXADropdown extends BaseComponentGlobal {
 
   toggleDropdown() {
     if (!this.isOpen) {
-      this.classList.add(DEFAULTS.isOpenClass);
-      this.isOpen = true;
-      this.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '0'); });
+      this.openDropdown(this);
     } else {
-      this.classList.remove(DEFAULTS.isOpenClass);
-      this.isOpen = false;
-      this.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '-1'); });
+      this.closeDropdown(this);
     }
+  }
+
+  openDropdown(elem) {
+    elem.classList.add(DEFAULTS.isOpenClass);
+    elem.isOpen = true;
+    elem.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '0'); });
+    window.openDropdownInstance = elem;
+  }
+
+  closeDropdown(elem) {
+    elem.classList.remove(DEFAULTS.isOpenClass);
+    elem.isOpen = false;
+    elem.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '-1'); });
+    window.openDropdownInstance = false;
   }
 
   updateCurrentItem(value) {
