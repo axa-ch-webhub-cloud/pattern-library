@@ -61,7 +61,8 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &:read-only {
     background-color: $color-bg--gray;
   }
 }

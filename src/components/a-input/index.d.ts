@@ -12,6 +12,7 @@ export interface Props {
   value?: string;
   name?: string;
   icon?: Icon;
+  readonly?: boolean;
 }
 
 export default interface AXAInput extends HTMLElement, Props {
