@@ -73,12 +73,13 @@ class AXADatepicker extends BaseComponentGlobal {
 
     // Adapt calendar position when vp height is too small
     // This is hacky shit for IE11. We have to wait for the finally rendererd children coz expecting accurate values for getBoundingClientRect(),
-    // Cleanest solutios would be listening to a "hasRendererdCallback" of the child, and sending the ref (child) back here.
+    // Cleanest solution would be by listening to a "hasRendererdCallback" of the child and sending the ref (the child) back here.
     // Would be a lot of noise in several code for an IE11 fix only.
     window.setTimeout(() => {
-      const calendar = this.querySelector('.js-datepicker__calendar');
-      window.addEventListener('resize', debounce(() => this.handleViewportCheck(calendar), 250));
-      this.handleViewportCheck(calendar);
+      const baseElemementInput = this.querySelector('.js-input__input');
+      window.addEventListener('resize', debounce(() => this.handleViewportCheck(baseElemementInput), 250));
+      window.addEventListener('scroll', debounce(() => this.handleViewportCheck(baseElemementInput), 250));
+      this.handleViewportCheck(baseElemementInput);
     }, 100);
   }
 
@@ -96,11 +97,13 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleViewportCheck(elem) {
-    if (this.shouldMove(elem)) {
+  handleViewportCheck(baseElem, elem) {
+    if (this.shouldMove(baseElem, elem)) {
       if (!this.classList.contains('o-datepicker__calendar--move-up')) {
         this.classList.add('o-datepicker__calendar--move-up');
       }
+    } else {
+      this.classList.remove('o-datepicker__calendar--move-up');
     }
   }
 
@@ -231,10 +234,9 @@ class AXADatepicker extends BaseComponentGlobal {
   }
 
   shouldMove(elem) {
-    const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-    const enoughSpaceToMove = bounding.top > bounding.height;
-    return (!bottomIsInViewport && enoughSpaceToMove);
+    const elemement = elem.getBoundingClientRect();
+    const moreSpaceOnTopThanBottom = (elemement.top > (window.innerHeight - elemement.bottom));
+    return moreSpaceOnTopThanBottom;
   }
 
   disconnectedCallback() {
