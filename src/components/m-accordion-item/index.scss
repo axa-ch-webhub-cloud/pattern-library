@@ -78,11 +78,15 @@
   transition: all 0.3s ease;
 }
 
+// Following line would not be needed if loading order was correct (m-according-item__icon should be included after atoms (a-icon__svg)
+.m-accordion-item__chevron.a-icon__svg {
+  height: $accordion-item-chevron-height;
+  width: $accordion-item-chevron-width;
+}
+
+
 .m-accordion-item__icon {
   display: block;
-
-  height: $accordion-item-icon-height;
-  width: $accordion-item-icon-width;
 
   color: $color-axa-blue;
 }

@@ -27,7 +27,6 @@
 
 .a-input__input {
   @include control-transition();
-  @include typo-tag();
 
   display: inline-flex;
 
@@ -50,6 +49,10 @@
     color: $color-prim-gray-dusty;
   }
 
+  &::-ms-clear {
+    display: none;
+  }
+
   &:hover,
   &:active,
   &:focus {
@@ -60,6 +63,16 @@
 
   &:disabled {
     background-color: $color-bg--gray;
+  }
+}
+
+.a-input--icon {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+
+  .a-input__input {
+    padding: $input-padding-icon;
   }
 }
 
@@ -126,18 +139,21 @@
   }
 }
 
-.a-input__icon__button {
+.a-input__icon-button {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 0;
+  top: 0;
 
-  height: $input-icon-button-height;
+  padding: 5px;
+
+  height: 100%;
   width: $input-icon-button-width;
+  background: transparent;
   border: none;
   outline: none;
 }
 
-.a-input__icon__button:hover {
+.a-input__icon-button:hover {
   cursor: pointer;
 }
 

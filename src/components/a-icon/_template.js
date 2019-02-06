@@ -4,8 +4,8 @@ import html from 'nanohtml';
 const PATH_PREFIX_APP = '#src--assets--icons--';
 
 export default ({
-  icon,
-  classes = 'a-icon',
+  iconClass = '',
+  icon = false,
   pathPrefix,
 } = {}) => {
   const axaPLibConfig = window.__axaPLibConfig || {};
@@ -22,7 +22,7 @@ export default ({
   }
 
   return html`
-    <svg class="${classes}">
+    <svg class="a-icon__svg${iconClass ? ` ${iconClass}` : ''}">
       <use xlink:href="${path}${icon}" href="${path}${icon}" />
     </svg>
   `;

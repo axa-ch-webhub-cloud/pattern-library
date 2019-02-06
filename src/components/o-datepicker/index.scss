@@ -3,20 +3,14 @@
 @import "../../styles/control/control-settings";
 
 $input-logo-padding-right: 20px !default;
+$calendar-level-index: 1;
 
 .o-datepicker {
   position: relative;
 
-  display: block;
-}
+  display: inline-block; // important for onbody click close event
 
-.o-datepicker__calender {
-  position: absolute;
-
-  z-index: $zindex-popover;
-
-  display: none;
-  background-color: $color-prim-white;
+  background: $color-prim-white;
 }
 
 .o-datepicker__input {
@@ -26,11 +20,32 @@ $input-logo-padding-right: 20px !default;
   vertical-align: middle;
 }
 
-.a-input__icon__button {
+.a-input__icon-button {
   background-color: transparent;
 }
 
-.o-datepicker__calender--move-up {
-  // TODO $control-size !!!!! ausrechnen !!!!!!!!
-  top: -385px;
+.o-datepicker .m-datepicker {
+  position: absolute;
+  z-index: $calendar-level-index;
+
+  min-height: 400px;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+.o-datepicker.js-datepicker__calendar--open .js-datepicker__calendar {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.o-datepicker__calendar--move-up .m-datepicker {
+  top: -395px;
+}
+
+.o-datepicker--is-invalid .o-datepicker__input input {
+  border: solid 1px $color-state-red-shy-tomato;
+  transition-property: border;
+  transition-delay: 0.3s;
 }

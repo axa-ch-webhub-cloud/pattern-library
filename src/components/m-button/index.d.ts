@@ -3,6 +3,7 @@ import { Icon } from '../a-icon';
 export type Color = 'red' | 'white';
 export type Size = 'sm' | 'md' | 'lg';
 export type Tag = 'a' | 'button';
+export type Type = 'button' | 'submit'| 'reset';
 export type Target = '_blank' | '_self';
 
 export interface Props {
@@ -14,6 +15,7 @@ export interface Props {
   motion?: boolean;
   size?: Size;
   tag?: Tag;
+  type?: Type;
   href?: string; // todo: urlPropType
   icon?: Icon;
   target?: Target;

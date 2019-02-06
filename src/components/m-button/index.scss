@@ -19,8 +19,11 @@
 }
 
 .m-button__arrow {
-  @include button__arrow();
-  @include button__arrow-right();
+  &,
+  &.a-icon__svg {
+    @include button__arrow();
+    @include button__arrow-right();
+  }
 }
 
 .m-button--red {

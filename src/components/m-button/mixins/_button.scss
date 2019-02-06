@@ -38,9 +38,7 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
   &:active,
   &:focus {
     cursor: pointer;
-
     text-decoration: none;
-
     outline: none;
   }
 
