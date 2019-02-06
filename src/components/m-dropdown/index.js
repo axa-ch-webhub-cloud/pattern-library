@@ -1,59 +1,192 @@
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import classnames from 'classnames';
-
 import styles from './index.scss';
 import template from './_template';
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import urlPropType from '../../js/prop-types/url-prop-type';
-import valuePropType from '../../js/prop-types/value-prop-type';
-import DropDown from './js/drop-down';
+import on from '../../js/on';
+import fire from '../../js/fire';
+import { EVENTS, AXA_EVENTS } from '../../js/ui-events';
+import debounce from '../../js/debounce';
 
+const DEFAULTS = {
+  selectClass: 'js-dropdown__content',
+  toggleClass: 'js-dropdown__toggle',
+  nativeSelectClass: 'js-dropdown__native-select',
+  isOpenClass: 'is-dropdown-open',
+  isAnimatingClass: 'is-dropdown-animating',
+};
 
 class AXADropdown extends BaseComponentGlobal {
-  static tagName = 'axa-dropdown'
+  static tagName = 'axa-dropdown';
   static propTypes = {
-    inFlow: PropTypes.bool,
+    classes: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       url: urlPropType,
-      value: valuePropType,
+      value: PropTypes.string,
+      isSelected: PropTypes.bool,
     })),
     native: PropTypes.bool,
     size: PropTypes.oneOf(['sm']),
     title: PropTypes.string,
-    value: valuePropType,
+    value: PropTypes.string,
+  }
+
+  static get observedAttributes() {
+    return ['items', 'title', 'native', 'value'];
   }
 
   init() {
-    super.init({ styles, template });
+    super.init({ styles, template }); // eslint-disable-next-line prefer-destructuring
+    this.selectedItem = this.items.filter(item => item.isSelected)[0];
   }
 
-  willRenderCallback() {
-    const { props: { inFlow, size, gpu } } = this;
+  connectedCallback() {
+    super.connectedCallback();
+    this.className = `${this.initialClassName} m-dropdown`;
+    this.isOpen = false; // use props.isOpen?
 
-    this.className = classnames(this.initialClassName, 'm-dropdown js-dropdown', {
-      'm-dropdown--in-flow': inFlow,
-      'm-dropdown--gpu': gpu,
-      [`m-dropdown--${size}`]: size,
-    });
+    this.onDropdownClick =
+      on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
+
+    // the enhanced dropdown is a list with links -> clicks event. the native is a select change event
+    this.onDropdownValueClick =
+      on(this, EVENTS.CLICK, DEFAULTS.selectClass, e => this.handleDropdownValueClick(e), { capture: true, passive: false });
+
+    this.onNativeDropdownChange =
+      on(this, EVENTS.CHANGE, DEFAULTS.nativeSelectClass, e => this.handleDropdownNativeValueChange(e), { capture: true, passive: false });
+
+    window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.querySelector(`.${DEFAULTS.selectClass}`)), 250));
   }
 
   didRenderCallback() {
-    if (this.dropDown) {
-      this.dropDown.destroy();
-    }
+    this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
+  }
 
-    this.dropDown = new DropDown(this, {
-      containerClass: null,
+  handleViewportCheck(elem) {
+    if (this.shouldMove(elem)) {
+      elem.style.maxHeight = '200px';
+    }
+  }
+
+  shouldMove(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return (!bottomIsInViewport && enoughSpaceToMove);
+  }
+
+  handleDropdownClick = (e) => {
+    e.preventDefault();
+    this.toggleDropdown();
+  }
+
+  handleDropdownValueClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.toggleDropdown();
+    this.title = e.target.dataset.name;
+    this.value = e.target.dataset.value;
+    this.updateCurrentItem(e.target.dataset.value);
+    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.dataset.value, { bubbles: true, cancelable: true });
+  }
+
+  handleDropdownNativeValueChange(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.value = e.target.value;
+    this.title = e.target.name;
+    this.updateCurrentItem(e.target.value);
+    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.value, { bubbles: true, cancelable: true });
+  }
+
+  handleDropdownValueChange(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.value = e.detail.value;
+    this.title = e.detail.name;
+    this.updateCurrentItem(e.detail.value);
+  }
+
+  forEach(array, callback, scope) {
+    for (let i = 0; i < array.length; i++) {
+      callback.call(scope, i, array[i]); // passes back stuff we need
+    }
+  }
+
+  toggleDropdown() {
+    if (!this.isOpen) {
+      this.classList.add(DEFAULTS.isOpenClass);
+      this.isOpen = true;
+      this.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '0'); });
+    } else {
+      this.classList.remove(DEFAULTS.isOpenClass);
+      this.isOpen = false;
+      this.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '-1'); });
+    }
+  }
+
+  updateCurrentItem(value) {
+    this.items = this.items.map((item) => {
+      if (item.value === value) {
+        item.isSelected = true;
+        this.selectedItem = item;
+      } else {
+        item.isSelected = false;
+      }
+      return item;
     });
   }
 
-  disconnectedCallback() {
-    if (this.dropDown) {
-      this.dropDown.destroy();
-      delete this.dropDown;
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    const hasValue = newValue !== null;
+
+    if (hasValue && name === 'value') {
+      this.updateCurrentItem(newValue.toString());
+      if (this.selectedItem) {
+        this.title = this.selectedItem.name;
+      }
     }
+  }
+
+  disconnectedCallback() {
+    this.onDropdownClick();
+    this.onDropdownValueChange();
+    this.onDropdownValueClick();
+  }
+
+  set title(value) {
+    this.setAttribute('title', value);
+  }
+
+  get title() {
+    return this.getAttribute('title');
+  }
+
+  set items(value) {
+    this.setAttribute('items', JSON.stringify(value));
+  }
+
+  get items() {
+    return JSON.parse(this.getAttribute('items'));
+  }
+
+  set value(value) {
+    this.setAttribute('value', value);
+  }
+
+  get value() {
+    return this.getAttribute('value');
+  }
+
+  set native(value) {
+    this.setAttribute('native', value);
+  }
+
+  get native() {
+    return this.getAttribute('native');
   }
 }
 

@@ -6,6 +6,10 @@
 @import "../../styles/mixins/unstyle-list";
 @import "./mixins/dropdown";
 
+$dropdown-min-width: 100px;
+$dropdown-height: 40px;
+$dropdown-spacing: 10px 40px 10px 10px;
+
 .m-dropdown {
   @include dropdown-container();
 
@@ -27,8 +31,15 @@
 }
 
 .m-dropdown__select {
-  @include dropdown-select();
-  @include typo-text-longer();
+  @include normalize-native-select-styles();
+  min-width: $dropdown-min-width;
+  padding: $dropdown-spacing;
+  height: $dropdown-height;
+  line-height: normal;
+
+  .is-dropdown-open & {
+    height: auto;
+  }
 }
 
 .m-dropdown__select--sm {
@@ -46,7 +57,6 @@
 // js enhanced dropdown
 .m-dropdown__toggle {
   @include button-reset();
-  @include typo-text-longer();
   @include dropdown-toggle();
   @include dropdown-frame();
 
@@ -80,6 +90,13 @@
 
 .m-dropdown__icon {
   @include dropdown-icon();
+  pointer-events: none;
+  line-height: 0;
+
+  &.a-icon .a-icon__svg {
+    width: 15px;
+    height: 15px;
+  }
 
   .m-dropdown--gpu > & {
     @include dropdown-icon--gpu();
@@ -88,6 +105,35 @@
 
 .m-dropdown__select-icon--sm {
   @include dropdown--sm();
+}
+
+
+.m-dropdown__list--native {
+  @include respond-up(sm) {
+    display: none;
+  }
+}
+
+.m-dropdown__list--native {
+  @include respond-up(sm) {
+    display: none;
+  }
+}
+
+.m-dropdown__list--native--only {
+  display: block;
+
+  @include respond-up(sm) {
+    display: block;
+  }
+}
+
+.m-dropdown__list--enhanced {
+  display: none;
+
+  @include respond-up(sm) {
+    display: block;
+  }
 }
 
 .m-dropdown__content {
@@ -120,9 +166,13 @@
   }
 }
 
+.m-dropdown__toggle,
 .m-dropdown__link {
-  @include typo-text-longer();
+  @include typo-decls('typo-18');
+  line-height: normal; // no responsivesness within fixed boxes
+}
 
+.m-dropdown__link {
   display: block;
   padding: $dropdown__frame-y-padding $dropdown__frame-x-padding;
 

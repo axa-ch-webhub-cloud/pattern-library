@@ -1,16 +1,13 @@
 @import "../../styles/settings/colors";
 
 $datepicker-width: 309px !default;
-
 $datepicker-padding-left-right: 30px !default;
-
-$datepicker-cell-border-radius: 100px !default;
-
+$datepicker-cell-border-radius: 50% !default;
 $datepicker-border-width: 1px !default;
-
-$with-one-seventh: ($datepicker-width - $datepicker-padding-left-right * 2 - $datepicker-border-width * 2) / 7;
-
 $datepicker-calender-body-padding-top: 5px !default;
+$datepicker-calender-body-cell-width: 33px !default;
+$datepicker-calender-body-cell-height: 33px !default;
+$datepicker-calender-body-cell-border-width: 2px !default;
 
 .m-datepicker-body {
   padding-top: $datepicker-calender-body-padding-top;
@@ -21,25 +18,33 @@ $datepicker-calender-body-padding-top: 5px !default;
 }
 
 .m-datepicker-body__cell {
-  width: $with-one-seventh;
-  height: $with-one-seventh;
-
+  width: $datepicker-calender-body-cell-width;
+  height: $datepicker-calender-body-cell-width;
+  margin: 1px;
   padding-left: 0;
   padding-right: 0;
-
   background-color: transparent;
-
   border-radius: $datepicker-cell-border-radius;
   cursor: pointer;
   border: none;
 }
 
+.m-datepicker-body__cell:active {
+  outline: 0;
+  border: solid $datepicker-calender-body-cell-border-width $color-axa-blue;
+}
+
 .m-datepicker-body__cell:focus {
-  outline: none;
+  outline: 0;
+  border: dashed $datepicker-calender-body-cell-border-width $color-axa-blue;
 }
 
 .m-datepicker-body__not-current-month {
   color: $color-prim-gray-silver;
+
+  &:hover {
+    background: rgba($color-prim-gray-mercury, 0.5);
+  }
 }
 
 .m-datepicker-body__current-month {
@@ -50,7 +55,6 @@ $datepicker-calender-body-padding-top: 5px !default;
   box-shadow: 0 0 0 3px $color-axa-blue inset;
   background-color: $color-prim-white;
   color: $color-prim-gray-mine-shaft;
-  opacity: 0.5;
 }
 
 .m-datepicker-body__current-month:hover.m-datepicker-body__selected-day,
@@ -60,8 +64,12 @@ $datepicker-calender-body-padding-top: 5px !default;
   opacity: 1;
 }
 
-.m-datepicker-body__selected-day,
-.m-datepicker-body__today {
+.m-datepicker-body__selected-day {
   background-color: $color-axa-blue;
   color: $color-prim-white;
+}
+
+.m-datepicker-body__today {
+  border-style: solid;
+  border-color: $color-axa-blue;
 }

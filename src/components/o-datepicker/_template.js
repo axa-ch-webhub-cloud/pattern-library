@@ -1,42 +1,37 @@
 import html from 'nanohtml';
-import raw from 'nanohtml/raw';
-import { getLocaleDayMonthYear, TODAY } from '../../js/date';
 
 export default ({
-  classes,
-  locale = 'en-uk',
-  outputIso = false,
-  higherEndYear = false,
-  buttonCancel = 'Cancel',
+  locale,
+  outputValue = '',
+  placeholder = 'Select a date',
+  startDateYear = [],
+  startDateMonth = [],
+  startDateDay = [],
+  allowedYears = [],
   buttonOk = 'Ok',
-  lowerEndYear = false,
-  open,
-}, documentFragment, wcNode) => {
-  wcNode.datepicker.locale = locale;
-  const { localeValue, value } = wcNode.datepicker;
-  const dateValue = new Date(value);
-  // when falsy, leave out the output-iso attr., otherwise the "false" string value means true within <axa-m-datepicker>
-  return html`
-    <article class=${classes}>
-      ${localeValue ?
-        html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" value="${localeValue}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
-    :
-        html`<axa-input class="o-datepicker__input js-datepicker__input" placeholder="${getLocaleDayMonthYear(locale)}" name="get-local-day-month-year" icon="datepicker" inline></axa-input>`
-      }
-      ${open
-        ? raw(`<axa-m-datepicker
-            ${higherEndYear ? `higher-end-year="${higherEndYear}"` : ''}
-            ${lowerEndYear ? `lower-end-year="${lowerEndYear}"` : ''}
-            ${outputIso ? 'output-iso' : ''}
-            ${value ? `selected-day="${dateValue.getDate()}"` : ''}
-            start-month="${value ? dateValue.getMonth() : TODAY}"
-            start-year="${value ? dateValue.getFullYear() : TODAY}"
-            class="o-datepicker__calender js-datepicker__calender"
-            locale="${locale}"
-            button-ok="${buttonOk}"
-            button-cancel="${buttonCancel}"
-            button-cancel="abbrechen"></axa-m-datepicker>`)
-        : ''}
+  buttonCancel = 'Cancel',
+}) => html`
+    <article class="o-datepicker__wrap">
+      <axa-input
+        class="o-datepicker__input js-datepicker__input"
+        placeholder="${placeholder}"
+        icon="datepicker"
+        icon-class="a-icon__svg--small"
+        value="${outputValue}"
+        inline
+        autocomplete="off"
+      >
+      </axa-input>
+        <axa-m-datepicker
+          classes="js-datepicker__calendar"
+          button-ok="${buttonOk}"
+          button-cancel="${buttonCancel}"
+          locale="${locale}"
+          allowed-years='${JSON.stringify(allowedYears)}'
+          start-date-year='${startDateYear}'
+          start-date-month='${startDateMonth}'
+          start-date-day='${startDateDay}'
+        >
+        </axa-m-datepicker>
     </article>
   `;
-};

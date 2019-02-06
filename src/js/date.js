@@ -4,18 +4,20 @@ export const TODAY = 'TODAY';
 // https://en.wikipedia.org/wiki/Date_format_by_country
 const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
 
-export const getAllLocaleMonthsArray = (locale = 'en-uk') => {
+export const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   const finalArray = [];
   const objDate = new Date();
   objDate.setDate(1);
   [...Array(12).keys()].forEach((index) => {
     objDate.setMonth(index);
-    finalArray.push(objDate.toLocaleString(locale, { month: 'long' }));
+    let month = objDate.toLocaleString(locale, { month: 'long' });
+    month = month[0].toUpperCase() + month.slice(1);
+    finalArray.push(month);
   });
   return finalArray;
 };
 
-export const getCurrentLocaleMonth = (locale = 'en-uk') => {
+export const getCurrentLocaleMonth = (locale = 'en-UK') => {
   const objDate = new Date();
   return objDate.toLocaleString(locale, { month: 'long' });
 };
@@ -45,7 +47,42 @@ export const getSpecificYears = (yearsRange) => {
   return finalArray;
 };
 
-export const getLocalWeekdayArray = (locale = 'en-uk') => {
+// Respects current timezone of the date object we convert to "iso like format"
+export const toLocalISOString = (date) => {
+  // ISO 8601
+  const d = date;
+  const pad = n => n < 10 ? `0${n}` : n;
+  const tz = d.getTimezoneOffset(); // mins
+  let tzs = (tz > 0 ? '-' : '+') + pad(parseInt(tz / 60, 10));
+
+  if (tz % 60 !== 0) { tzs += pad(tz % 60); }
+  if (tz === 0) { tzs = 'Z'; }
+
+  return `${d.getFullYear()}-${
+    pad(d.getMonth() + 1)}-${
+    pad(d.getDate())}T${
+    pad(d.getHours())}:${
+    pad(d.getMinutes())}:${
+    pad(d.getSeconds())}${tzs}`;
+};
+
+export const getStartOfWeek = (date) => {
+  const iDayOfWeek = date.getDay();
+  const iDifference = (date.getDate() - iDayOfWeek) + (iDayOfWeek === 0 ? -6 : 1);
+  return new Date(date.setDate(iDifference));
+};
+
+export const getWeekdays = (date, locale) => {
+  const out = [];
+  const start = getStartOfWeek(date);
+  for (let i = 0; i < 7; i++) {
+    out.push(start.toLocaleString(locale, { weekday: 'short' }).substr(0, 2));
+    start.setDate(start.getDate() + 1);
+  }
+  return out;
+};
+
+export const getLocalWeekdayArray = (locale = 'en-UK') => {
   const finalArray = [];
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
@@ -72,7 +109,7 @@ export const getLocalWeekdayArray = (locale = 'en-uk') => {
   return finalArray;
 };
 
-export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
+export const getNumericWeekday = (locale = 'en-UK', date = new Date()) => {
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
   let currentDay = objDate.getDate();
@@ -104,12 +141,12 @@ export const getNumericWeekday = (locale = 'en-uk', date = new Date()) => {
 // eslint-disable-next-line no-control-regex
 export const clearStringFromIEGeneratedCharacters = string => string.replace(/[^\x00-\x7F]/g, '');
 
-export const getLocaleDayMonthYear = (locale = 'en-uk', date = new Date()) => {
+export const getLocaleDayMonthYear = (locale = 'en-UK', date = new Date()) => {
   const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   return clearStringFromIEGeneratedCharacters(objDate);
 };
 
-export const parseLocalisedDateIfValid = (locale = 'en-uk', inputValue = '') => {
+export const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 10, 23);
 

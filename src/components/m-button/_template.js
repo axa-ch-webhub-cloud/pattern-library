@@ -39,14 +39,14 @@ export default function ({
   let arrowIcon;
   let genericIcon;
   if (arrow) {
-    arrowIcon = raw('<axa-icon icon="arrow" classes="m-button__arrow"></axa-icon>');
+    arrowIcon = raw('<axa-icon icon="arrow" icon-class="m-button__arrow"></axa-icon>');
   } else if (icon) {
     const iconCLasses = classnames({
       'm-button__icon': !hasOnlyIcon,
       'm-button__icon--only': hasOnlyIcon,
     });
 
-    genericIcon = raw(`<axa-icon icon="${icon}" classes="${iconCLasses}"></axa-icon>`);
+    genericIcon = raw(`<axa-icon icon="${icon}" icon-class="${iconCLasses}"></axa-icon>`);
   }
 
   if (isTagA && disabled) {
