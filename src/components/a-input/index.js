@@ -22,6 +22,7 @@ class AXAInput extends BaseComponentGlobal {
     name: PropTypes.string,
     icon: PropTypes.string,
     disablePaste: PropTypes.bool,
+    readonly: PropTypes.bool,
   }
 
   init() {
@@ -30,13 +31,14 @@ class AXAInput extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { props: { icon, valid, inline, error, disabled } } = this;
+    const { props: { icon, valid, inline, error, disabled, readonly } } = this;
 
     this.className = classnames('a-input', this.initialClassName, {
       'a-input--valid': valid,
       'a-input--inline': inline,
       'a-input--error': error,
       'a-input--disabled': disabled,
+      'a-input--readonly': readonly,
       'a-input--icon': icon,
     });
   }

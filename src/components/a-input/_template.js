@@ -10,6 +10,7 @@ export default function ({
   disabled = false,
   icon = false,
   autocomplete = 'off',
+  readonly = false,
 }) {
   return html`<div class="a-input__wrapper">
       <input
@@ -20,7 +21,8 @@ export default function ({
           placeholder="${placeholder}"
           value="${value}"
           disabled="${disabled}"
-          autocomplete="${autocomplete}">
+          autocomplete="${autocomplete}"
+          readonly="${readonly}">
           <span class="a-input__valid-icon"></span>
           ${icon ? html`<button class="a-input__icon-button js-input__icon-button" type="button">
             <axa-icon classes="a-input__icon" icon="${icon}" icon-class="a-icon__svg--small"></axa-icon>
