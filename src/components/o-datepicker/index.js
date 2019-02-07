@@ -48,6 +48,8 @@ class AXADatepicker extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `o-datepicker${this.classes ? ` ${this.classes}` : ''}`;
+    this.dropdownYear = this.querySelector('.js-datepicker__dropdown-year');
+    this.dropdownMonth = this.querySelector('.js-datepicker__dropdown-month');
     this.body = document.body;
 
     // Register Events
@@ -155,6 +157,12 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
+  closeDropdowns() {
+    // caching query does not work for ie11
+    this.querySelector('.js-datepicker__dropdown-month').classList.remove('is-dropdown-open');
+    this.querySelector('.js-datepicker__dropdown-year').classList.remove('is-dropdown-open');
+  }
+
   isValidDate(date) {
     let out = false;
     try {
@@ -222,6 +230,7 @@ class AXADatepicker extends BaseComponentGlobal {
     this.open = false;
     this.classList.remove('js-datepicker__calendar--open');
     window.datepicker = null;
+    this.closeDropdowns();
   }
 
   openDatepicker() {
