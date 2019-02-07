@@ -54,6 +54,7 @@ class AXADatepicker extends BaseComponentGlobal {
 
     // Register Events
     this.body.addEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
+    this.body.addEventListener(EVENTS.TOUCHEND, e => this.handleBodyClick(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
 
     this.onDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', e => this.handleDatepickerCalendarClick(e));
@@ -109,9 +110,11 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleBodyClick() {
-    if (this.open) {
-      this.closeDatepicker();
+  handleBodyClick(e) {
+    if (!this.querySelector('.js-datepicker__calendar').contains(e.target)) {
+      if (this.open) {
+        this.closeDatepicker();
+      }
     }
   }
 
@@ -264,6 +267,7 @@ class AXADatepicker extends BaseComponentGlobal {
     this.onInputFieldRender();
     window.removeEventListener('resize', () => this.handleViewportCheck());
     window.removeEventListener('keydown', e => this.handleKeyDown(e));
+    this.body.removeEventListener(EVENTS.TOUCHEND, e => this.handleBodyClick(e));
   }
 
   set classes(value) {
