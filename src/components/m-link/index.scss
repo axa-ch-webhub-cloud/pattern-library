@@ -27,6 +27,7 @@
   @include link-icon--mailto();
 }
 
+
 .m-link--arrow {
   @include link-icon--adjust();
 }
@@ -36,9 +37,10 @@
   @include link-icon--adjust($side: left);
 }
 
-.m-link__icon,
-.m-link__arrow,
-.m-link__listed {
+// temp fix coz of wrong css include order (atoms should be included before molecules and organisms
+.m-link__icon.a-icon__svg,
+.m-link__arrow.a-icon__svg,
+.m-link__listed.a-icon__svg {
   @include link__icon();
 }
 
