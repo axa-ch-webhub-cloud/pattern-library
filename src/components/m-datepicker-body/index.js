@@ -38,7 +38,7 @@ class AXADatepickerBody extends BaseComponentGlobal {
     this.className = `${this.classes ? this.classes : ''} m-datepicker-body`;
 
     const date = new Date(this.props.year, this.props.month - 1, this.props.day);
-    this.store = new Store(this.locale, date);
+    this.store = new Store(this.locale, date, this.allowedYears);
 
     this.onDatepickerBodyCellClick = on(
       this, EVENTS.CLICK, 'js-datepicker__calender-body__cell',
@@ -58,6 +58,8 @@ class AXADatepickerBody extends BaseComponentGlobal {
 
   handleDatepickerBodyCellClick(e) {
     e.preventDefault();
+    e.stopPropagation();
+    e.target.blur(); // prevent's the ugly focus ring after the click
     const index = parseInt(e.target.dataset.index, 10);
 
     // We parse the iso date to work with

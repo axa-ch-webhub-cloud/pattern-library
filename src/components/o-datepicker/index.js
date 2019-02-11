@@ -48,10 +48,13 @@ class AXADatepicker extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
     this.className = `o-datepicker${this.classes ? ` ${this.classes}` : ''}`;
+    this.dropdownYear = this.querySelector('.js-datepicker__dropdown-year');
+    this.dropdownMonth = this.querySelector('.js-datepicker__dropdown-month');
     this.body = document.body;
 
     // Register Events
     this.body.addEventListener(EVENTS.CLICK, e => this.handleBodyClick(e));
+    this.body.addEventListener(EVENTS.TOUCHEND, e => this.handleBodyClick(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
 
     this.onDatepickerCalendarClick = on(this, EVENTS.CLICK, 'js-datepicker__calendar', e => this.handleDatepickerCalendarClick(e));
@@ -107,9 +110,11 @@ class AXADatepicker extends BaseComponentGlobal {
     }
   }
 
-  handleBodyClick() {
-    if (this.open) {
-      this.closeDatepicker();
+  handleBodyClick(e) {
+    if (!this.querySelector('.js-datepicker__calendar').contains(e.target)) {
+      if (this.open) {
+        this.closeDatepicker();
+      }
     }
   }
 
@@ -153,6 +158,12 @@ class AXADatepicker extends BaseComponentGlobal {
       element.focus();
       element.setSelectionRange(this.position, this.position);
     }
+  }
+
+  closeDropdowns() {
+    // caching query does not work for ie11
+    this.querySelector('.js-datepicker__dropdown-month').classList.remove('is-dropdown-open');
+    this.querySelector('.js-datepicker__dropdown-year').classList.remove('is-dropdown-open');
   }
 
   isValidDate(date) {
@@ -222,6 +233,7 @@ class AXADatepicker extends BaseComponentGlobal {
     this.open = false;
     this.classList.remove('js-datepicker__calendar--open');
     window.datepicker = null;
+    this.closeDropdowns();
   }
 
   openDatepicker() {
@@ -255,6 +267,7 @@ class AXADatepicker extends BaseComponentGlobal {
     this.onInputFieldRender();
     window.removeEventListener('resize', () => this.handleViewportCheck());
     window.removeEventListener('keydown', e => this.handleKeyDown(e));
+    this.body.removeEventListener(EVENTS.TOUCHEND, e => this.handleBodyClick(e));
   }
 
   set classes(value) {
