@@ -1,18 +1,18 @@
 # Rules and Lintings
-* We export only WC. No Mixins, JS, HTML and SCSS files
-* We will use prettier
+* We export only Web Components. No separate distribution of SASS mixins, JS, HTML and SCSS files.
+* We will use [prettier](https://prettier.io/).
 
 ## Style Rules
-* We follow DRY, KISS, YAGNI pronicples when we write SCSS. This includes variables, mixins, etc
-* We take out the linting of ordering of props and also of grouping. Only includes have to be at the beggining
-* We wont have a vertical rythm or global spacing settings
+* We follow DRY, KISS, YAGNI principles when we write SCSS. This includes variables, mixins, etc.
+* We remove the linting of ordering and grouping of CSS properties. Only includes have to be at the beginning.
+* We won't have settings for vertical rhythm or global spacing.
 
 ## JS Rules
-* We use Patterns Lib v1 JavaScript linting settings
+* We reuse the Patterns Lib v1 JavaScript linting settings.
 
 ## Git Commit Messages
-* Prefix JIRA/github issue number
-* Reasonably self-contained
-* We commit in English only
-* We commit in present tense or imperative
-* Starting with initial capital letter 
+* are prefixed by JIRA/github issue number,
+* reasonably self-contained,
+* are in English only,
+* written in present tense or imperative,
+* start with an initial capital letter. 
