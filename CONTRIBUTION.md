@@ -8,7 +8,7 @@
 * We wont have a vertical rythm or global spacing settings
 
 ## JS Rules
-* We use v1 JavaScript linting settings
+* We use Patterns Lib v1 JavaScript linting settings
 
 ## Git Commit Messages
 * Prefix JIRA/github issue number
