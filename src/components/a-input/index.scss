@@ -38,6 +38,7 @@
 
   flex: 1;
 
+  line-height: normal;
   color: $color-prim-gray-mine-shaft;
   background: $color-bg--white;
   outline: none;
@@ -61,7 +62,8 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &:read-only {
     background-color: $color-bg--gray;
   }
 }
