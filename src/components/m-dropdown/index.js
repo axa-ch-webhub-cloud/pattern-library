@@ -67,8 +67,7 @@ class AXADropdown extends BaseComponentGlobal {
     this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
   }
 
-  handleWindowClick(e) {
-    e.preventDefault();
+  handleWindowClick() {
     if (this.isOpen) {
       this.closeDropdown(this);
     }
