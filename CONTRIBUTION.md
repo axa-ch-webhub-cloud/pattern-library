@@ -9,3 +9,10 @@
 
 ## JS Rules
 * We use v1 JavaScript linting settings
+
+## Git Commit Messages
+* Prefix JIRA/github issue number
+* Reasonably self-contained
+* We commit in English only
+* We commit in present tense or imperative
+* Starting with initial capital letter 
