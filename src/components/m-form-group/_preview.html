@@ -12,33 +12,50 @@
     <axa-input value="Pre-filled content" name="test-name"></axa-input>
   </axa-form-group>
   <axa-form-group legend="Test Legend"
-                  info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
+    info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
     <axa-input value="Pre-filled content" name="test-name"></axa-input>
   </axa-form-group>
 
   <axa-form-group legend="Test Legend"
-                  info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
+    info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
     <axa-input value="Pre-filled content" name="test-name"></axa-input>
   </axa-form-group>
   <axa-form-group legend="Test Legend"
-                  info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
+    info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
     <axa-input value="Pre-filled content" name="test-name"></axa-input>
   </axa-form-group>
   <axa-form-group legend="Test Legend"
-                  info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
+    info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
     <axa-input value="Pre-filled content" name="test-name"></axa-input>
   </axa-form-group>
 
-  <axa-form-group legend="Test Legend"
-                  error="Caramels liquorice ice cream gingerbread gummi bears."
-                  info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
+  <axa-form-group id="validation-triggered" legend="Validation">
+    <axa-input value="Be afraid of below button..."></axa-input>
+  </axa-form-group>
+  <button onclick="triggerValidation()">Trigger Validation</button>
+
+  <axa-form-group legend="Test Legend" error="Caramels liquorice ice cream gingerbread gummi bears."
+    info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
     <axa-input value="Pre-filled content" name="test-name" error="Some error!"></axa-input>
   </axa-form-group>
   <axa-form-group legend="Test Legend"
-                  info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
+    info="Caramels liquorice ice cream gingerbread gummi bears. Lemon drops cookie wafer cake. Sweet roll sesame snaps chocolate bar bear claw lemon drops sugar plum cupcake candy canes icing.">
     <axa-checkbox value="a" name="test-name2">hello</axa-checkbox>
     <axa-checkbox value="b" name="test-name2" checked>hello</axa-checkbox>
     <axa-checkbox value="c" name="test-name2">hello</axa-checkbox>
     <axa-checkbox value="d" name="test-name2">hello</axa-checkbox>
   </axa-form-group>
 </div>
+
+<script>
+  let validationState = true;
+  function triggerValidation() {
+    const validationForm = document.getElementById("validation-triggered");
+    if (validationState) {
+      validationForm.setAttribute('error', 'This field now suddenly is no longer valid, sorry!');
+    } else {
+      validationForm.removeAttribute('error');
+    }
+    validationState = !validationState;
+  }
+</script>
