@@ -63,7 +63,6 @@ class FormGroup extends UiEvents {
     }
   }
 
-
   toggleState = () => {
     if (this.isOpen) {
       this.close();

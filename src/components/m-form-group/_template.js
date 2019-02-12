@@ -23,7 +23,7 @@ export default function ({
         </div>
 
         ${childrenFragment}
-        <span class="m-form-group__error">${error}</span>
+        <span class="m-form-group__error">${error ? error : '&nbsp;'}</span>
       </fieldset>`,
     html`
       <div class="m-form-group__info js-form-group__info">
