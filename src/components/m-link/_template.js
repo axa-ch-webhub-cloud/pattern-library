@@ -24,9 +24,9 @@ export default function ({
   });
 
   return html`<a href="${href}" class="${classes}" target="${target}">
-      ${icon && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="${icon}" classes="m-link__icon"></axa-icon>`}
-      ${listed && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="arrow" classes="m-link__listed"></axa-icon>`}
+      ${icon && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="${icon}" icon-class="m-link__icon"></axa-icon>`}
+      ${listed && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="arrow" icon-class="m-link__listed"></axa-icon>`}
       ${childrenFragment}
-      ${arrow && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="arrow" classes="m-link__arrow"></axa-icon>`}
+      ${arrow && html`<axa-icon path-prefix="${iconsPathPrefix}" icon="arrow" icon-class="m-link__arrow"></axa-icon>`}
     </a>`;
 }
