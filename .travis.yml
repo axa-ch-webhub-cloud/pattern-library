@@ -4,7 +4,7 @@ node_js:
 script:
 - npm run test
 - npm run build
-- node ./node_modules/prettier/bin-prettier.js --check "src/**/*"
+- node ./node_modules/prettier/bin-prettier.js --check "src/**/*.js"
 deploy:
   provider: npm
   skip_cleanup: true
