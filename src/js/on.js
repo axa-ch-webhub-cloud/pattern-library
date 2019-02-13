@@ -1,11 +1,11 @@
-import hasPassive from './has-passive';
-import { has } from './class-list';
-import { freeByValue } from './free';
-import whichTransitionEnd from './which-transition-event';
+import hasPassive from "./has-passive";
+import { has } from "./class-list";
+import { freeByValue } from "./free";
+import whichTransitionEnd from "./which-transition-event";
 
 const regexWhitespace = /\s+/;
 const eventNameMap = {
-  transitionend: whichTransitionEnd(),
+  transitionend: whichTransitionEnd()
 };
 
 /**
@@ -20,7 +20,13 @@ const eventNameMap = {
  * @param {Boolean} [options.passive=true] - A Boolean indicating that the listener will never call `preventDefault()`. If it does, the user agent should ignore it and generate a console warning.
  * @returns {off} - Returns a function which properly removes the event listener from the target.
  */
-function on(eventTarget, eventName, className, func, { capture = false, passive = true } = {}) {
+function on(
+  eventTarget,
+  eventName,
+  className,
+  func,
+  { capture = false, passive = true } = {}
+) {
   if (eventNameMap[eventName]) {
     /* eslint-disable no-param-reassign */
     eventName = eventNameMap[eventName];
@@ -32,10 +38,10 @@ function on(eventTarget, eventName, className, func, { capture = false, passive 
   }
 
   const typeClassName = typeof className;
-  const isDelegated = className && typeClassName === 'string';
+  const isDelegated = className && typeClassName === "string";
 
   // reorder args
-  if (typeClassName === 'function') {
+  if (typeClassName === "function") {
     /* eslint-disable no-param-reassign */
     if (func) {
       ({ capture, passive } = func);

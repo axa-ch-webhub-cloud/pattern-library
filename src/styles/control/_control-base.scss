@@ -76,7 +76,7 @@
 
 @mixin control-error() {
   $parent: &;
-  $control: string-replace(#{$parent}, '--error', '');
+  $control: string-replace(#{$parent}, "--error", "");
   color: $color-state-red-shy-tomato;
 
   #{$control}__icon {

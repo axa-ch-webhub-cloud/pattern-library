@@ -104,7 +104,8 @@
 
 .m-button.m-header-mobile__box--button {
   display: block;
-  margin: $header-mobile__item-margin-top $header-mobile__item-padding-right $header-mobile__item-margin-top $header-mobile__item-padding-left;
+  margin: $header-mobile__item-margin-top $header-mobile__item-padding-right
+    $header-mobile__item-margin-top $header-mobile__item-padding-left;
 
   text-align: center;
 
@@ -113,7 +114,8 @@
   }
 
   @include respond-up(sm) {
-    width: $header-mobile__canvas-width-sm - $header-mobile__item-padding-right - $header-mobile__item-padding-left;
+    width: $header-mobile__canvas-width-sm - $header-mobile__item-padding-right -
+      $header-mobile__item-padding-left;
   }
 }
 

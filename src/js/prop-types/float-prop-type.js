@@ -1,8 +1,5 @@
-import PropTypes from './prop-types';
+import PropTypes from "./prop-types";
 
-const floatPropType = PropTypes.oneOf([
-  'left',
-  'right',
-]);
+const floatPropType = PropTypes.oneOf(["left", "right"]);
 
 export default floatPropType;

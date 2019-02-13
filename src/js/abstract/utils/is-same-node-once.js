@@ -33,7 +33,7 @@ export function clearIsSameNode() {
   let node;
 
   // eslint-disable-next-line no-cond-assign
-  while (node = sameNodeCache.pop()) {
+  while ((node = sameNodeCache.pop())) {
     delete node.isSameNode;
   }
 

@@ -29,8 +29,7 @@ $stroke-transition-easing: ease !default;
   }
 
   &.is-stroke-move {
-    transition:
-      left $stroke-transition-duration $stroke-transition-easing,
+    transition: left $stroke-transition-duration $stroke-transition-easing,
       width $stroke-transition-duration $stroke-transition-easing;
   }
 
@@ -57,7 +56,7 @@ $stroke-transition-easing: ease !default;
     width: 100%;
     height: $stroke-height;
 
-    content: '';
+    content: "";
 
     .is-stroke-interactive & {
       height: 0;

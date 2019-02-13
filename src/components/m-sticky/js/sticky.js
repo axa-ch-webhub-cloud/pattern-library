@@ -1,19 +1,19 @@
-import StickySpy from '../../o-sticky-container/js/sticky-spy';
-import Enum from '../../../js/enum';
-import { subscribe } from '../../../js/pubsub';
-import { add, remove } from '../../../js/class-list';
-import css from '../../../js/css';
+import StickySpy from "../../o-sticky-container/js/sticky-spy";
+import Enum from "../../../js/enum";
+import { subscribe } from "../../../js/pubsub";
+import { add, remove } from "../../../js/class-list";
+import css from "../../../js/css";
 
-const states = Enum('IS_IN_FLOW', 'IS_STICKY', 'IS_BOTTOM');
+const states = Enum("IS_IN_FLOW", "IS_STICKY", "IS_BOTTOM");
 
 class Sticky {
   static DEFAULTS = {
-    placeholderClass: '.js-sticky__placeholder',
-    boxClass: '.js-sticky__box',
-    isStickyClass: 'is-sticky-sticky',
-    isBottomClass: 'is-sticky-bottom',
-    isScrollUp: 'is-sticky-scroll-up',
-    isScrollDown: 'is-sticky-scroll-down',
+    placeholderClass: ".js-sticky__placeholder",
+    boxClass: ".js-sticky__box",
+    isStickyClass: "is-sticky-sticky",
+    isBottomClass: "is-sticky-bottom",
+    isScrollUp: "is-sticky-scroll-up",
+    isScrollDown: "is-sticky-scroll-down"
   };
 
   constructor(wcNode) {
@@ -36,8 +36,16 @@ class Sticky {
   _on() {
     this._off();
 
-    this._unActive = subscribe('sticky-container/active', this._update, this._contextNode);
-    this._unIdle = subscribe('sticky-container/idle', this._update, this._contextNode);
+    this._unActive = subscribe(
+      "sticky-container/active",
+      this._update,
+      this._contextNode
+    );
+    this._unIdle = subscribe(
+      "sticky-container/idle",
+      this._update,
+      this._contextNode
+    );
   }
 
   _off() {
@@ -92,10 +100,10 @@ class Sticky {
       remove(wcNode, Sticky.DEFAULTS.isStickyClass);
       remove(wcNode, Sticky.DEFAULTS.isBottomClass);
 
-      css(this.placeholder, { height: '' });
-      css(this.box, { left: '', width: '' });
+      css(this.placeholder, { height: "" });
+      css(this.box, { left: "", width: "" });
     }
-  }
+  };
 
   destroy() {
     this._off();

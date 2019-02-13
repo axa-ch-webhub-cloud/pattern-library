@@ -1,4 +1,4 @@
-import { CurrentMonth, LastMonth, NextMonth } from './cells';
+import { CurrentMonth, LastMonth, NextMonth } from "./cells";
 
 export default class Store {
   constructor(locale, date, allowedYears) {
@@ -36,9 +36,9 @@ export default class Store {
       // --> "Donnerstag, 23. Januar 2020" (the iso date has it's day on the 22. of January)
 
       // Previous month dates (if month does not start on Monday)
-      if ((i < daysToCount)) {
+      if (i < daysToCount) {
         const newDate = new Date(startDate);
-        newDate.setDate(startDate.getDate() - ((daysToCount) - i));
+        newDate.setDate(startDate.getDate() - (daysToCount - i));
         dateCell.date = newDate;
         dateCell.isToday = false;
 
@@ -46,8 +46,15 @@ export default class Store {
           dateCell.isActive = false;
         }
 
-        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false, dateCell.isActive);
-      // Next month dates (if month does not end on Saturday)
+        dateCell.cell = new LastMonth(
+          dateCell.date.getDate(),
+          dateCell.date.toISOString(),
+          i,
+          false,
+          false,
+          dateCell.isActive
+        );
+        // Next month dates (if month does not end on Saturday)
       } else if (i > currentMonthTotalDays + (daysToCount - 1)) {
         const newDate = new Date(year, month + 1, nextMonthDay);
         dateCell.date = newDate;
@@ -57,9 +64,16 @@ export default class Store {
           dateCell.isActive = false;
         }
 
-        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false, dateCell.isActive);
+        dateCell.cell = new NextMonth(
+          dateCell.date.getDate(),
+          dateCell.date.toISOString(),
+          i,
+          false,
+          false,
+          dateCell.isActive
+        );
         nextMonthDay += 1;
-      // Current month dates. */
+        // Current month dates. */
       } else {
         const newDate = new Date(startDate);
         newDate.setDate(startDate.getDate() + (i - daysToCount));
@@ -68,7 +82,14 @@ export default class Store {
         const isSelected = currentDate.toDateString() === date.toDateString();
         dateCell.date = currentDate;
         dateCell.isToday = isToday;
-        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.toISOString(), i, isToday, isSelected, dateCell.isActive);
+        dateCell.cell = new CurrentMonth(
+          currentDate.getDate(),
+          currentDate.toISOString(),
+          i,
+          isToday,
+          isSelected,
+          dateCell.isActive
+        );
       }
 
       dates.push(dateCell);
@@ -82,7 +103,7 @@ export default class Store {
     this.cells = [];
 
     // TODO:: Combine legacy with refactored code. Remove the double loop.
-    daysOfMonth.forEach((day) => {
+    daysOfMonth.forEach(day => {
       this.cells.push(day.cell);
     });
   }

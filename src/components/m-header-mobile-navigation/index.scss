@@ -79,10 +79,12 @@
 .m-header-mobile-navigation__list-item {
   display: block;
 
-  border-bottom: $header-mobile-navigation__list-item-border-width solid $header-mobile-navigation__list-item-border-color;
+  border-bottom: $header-mobile-navigation__list-item-border-width solid
+    $header-mobile-navigation__list-item-border-color;
 
   &:first-child {
-    border-top: $header-mobile-navigation__list-item-border-width solid $header-mobile-navigation__list-item-border-color;
+    border-top: $header-mobile-navigation__list-item-border-width solid
+      $header-mobile-navigation__list-item-border-color;
   }
 }
 

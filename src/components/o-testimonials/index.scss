@@ -40,11 +40,13 @@ $o-testimonials-author-position-bottom: -40px;
 .o-testimonials__title {
   @include typo-slice-title--publico();
 
-  margin: $o-testimonials-title-margin-top-xs $o-testimonials-margin-30 0 $o-testimonials-margin-30;
+  margin: $o-testimonials-title-margin-top-xs $o-testimonials-margin-30 0
+    $o-testimonials-margin-30;
   text-align: center;
 
   @include respond-up(sm) {
-    margin: $o-testimonials-title-margin-top-sm $o-testimonials-margin-30 0 $o-testimonials-margin-30;
+    margin: $o-testimonials-title-margin-top-sm $o-testimonials-margin-30 0
+      $o-testimonials-margin-30;
   }
 }
 
@@ -52,7 +54,8 @@ $o-testimonials-author-position-bottom: -40px;
   @include word-break();
   @include typo-secondary-text();
 
-  margin: $o-testimonials-subtitle-margin-top-xs $o-testimonials-margin-30 0 $o-testimonials-margin-30;
+  margin: $o-testimonials-subtitle-margin-top-xs $o-testimonials-margin-30 0
+    $o-testimonials-margin-30;
   text-align: center;
 }
 
@@ -116,7 +119,10 @@ $o-testimonials-author-position-bottom: -40px;
   overflow: hidden;
   box-sizing: content-box;
 
-  padding: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-xs $o-testimonials-navigator-margin-horizontal-xs;
+  padding: $o-testimonials-navigator-margin-top-xs
+    $o-testimonials-navigator-margin-horizontal-xs
+    $o-testimonials-navigator-margin-bottom-xs
+    $o-testimonials-navigator-margin-horizontal-xs;
 
   flex-direction: row;
   align-items: center;
@@ -126,7 +132,10 @@ $o-testimonials-author-position-bottom: -40px;
   }
 
   @include respond-up(sm) {
-    padding: $o-testimonials-navigator-margin-top-xs $o-testimonials-navigator-margin-horizontal-xs $o-testimonials-navigator-margin-bottom-sm $o-testimonials-navigator-margin-horizontal-xs;
+    padding: $o-testimonials-navigator-margin-top-xs
+      $o-testimonials-navigator-margin-horizontal-xs
+      $o-testimonials-navigator-margin-bottom-sm
+      $o-testimonials-navigator-margin-horizontal-xs;
   }
 }
 

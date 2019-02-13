@@ -1,29 +1,29 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import classnames from 'classnames';
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import classnames from "classnames";
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
 // import the styles used for this component
-import styles from './index.scss';
+import styles from "./index.scss";
 
 const reWhiteSpace = /\s+/;
 const reSize = /\d+|(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|))?/;
 const reOrder = /\d+|first|last|(?:xs|sm|md|lg|xl)-(?:\d+|first|last)/;
 const reOffset = /\d+|(?:xs|sm|md|lg|xl)(?:-\d+)?/;
-const validModifiers = reModifiers => (modifier) => {
+const validModifiers = reModifiers => modifier => {
   const type = typeof modifier;
 
-  return type === 'number' || (type === 'string' && reModifiers.test(modifier));
+  return type === "number" || (type === "string" && reModifiers.test(modifier));
 };
 const validSize = validModifiers(reSize);
 const validOrder = validModifiers(reOrder);
 const validOffset = validModifiers(reOffset);
-const toArray = (modifier) => {
+const toArray = modifier => {
   if (Array.isArray(modifier)) {
     return modifier;
   }
 
-  if (typeof modifier === 'string') {
+  if (typeof modifier === "string") {
     return modifier.split(reWhiteSpace);
   }
 
@@ -35,18 +35,29 @@ const modifierProp = (filter, format) => (props, propName, componentName) => {
   const modifiers = toArray(prop);
 
   if (prop && modifiers.length !== modifiers.filter(validModifiers).length) {
-    return new Error(`Invalid modifiers \`${propName}\` supplied to \`${componentName}\`, expected ${format} - multiple modifiers separated by spaces.`);
+    return new Error(
+      `Invalid modifiers \`${propName}\` supplied to \`${componentName}\`, expected ${format} - multiple modifiers separated by spaces.`
+    );
   }
 };
 
 class AXACol extends BaseComponentGlobal {
-  static tagName = 'axa-col'
+  static tagName = "axa-col";
   static propTypes = {
     classes: PropTypes.string,
-    size: modifierProp(validSize, '`number|xs|sm|md|lg|xl` optionally followed by `-number`'),
-    order: modifierProp(validOrder, '`number|first|last|xs|sm|md|lg|xl` optionally followed by `-(number|first|last)`'),
-    offset: modifierProp(validOffset, '`number|xs|sm|md|lg|xl` optionally followed by `-(number|auto|first|last)`'),
-  }
+    size: modifierProp(
+      validSize,
+      "`number|xs|sm|md|lg|xl` optionally followed by `-number`"
+    ),
+    order: modifierProp(
+      validOrder,
+      "`number|first|last|xs|sm|md|lg|xl` optionally followed by `-(number|first|last)`"
+    ),
+    offset: modifierProp(
+      validOffset,
+      "`number|xs|sm|md|lg|xl` optionally followed by `-(number|auto|first|last)`"
+    )
+  };
 
   init() {
     super.init({ styles });
@@ -60,8 +71,11 @@ class AXACol extends BaseComponentGlobal {
 
   // You may want to update stuff before rendering.
   willRenderCallback() {
-    const { props: { classes }, props } = this;
-    let { size = '', order = '', offset = '' } = props;
+    const {
+      props: { classes },
+      props
+    } = this;
+    let { size = "", order = "", offset = "" } = props;
 
     size = toArray(size);
     order = toArray(order);
@@ -73,7 +87,14 @@ class AXACol extends BaseComponentGlobal {
     offset = offset.filter(validOffset).map(offset => `u-offset-${offset}`);
     /* eslint-enable no-shadow */
 
-    this.className = classnames('m-col', { 'u-col': !size || !size.length }, classes, size, order, offset);
+    this.className = classnames(
+      "m-col",
+      { "u-col": !size || !size.length },
+      classes,
+      size,
+      order,
+      offset
+    );
   }
 }
 

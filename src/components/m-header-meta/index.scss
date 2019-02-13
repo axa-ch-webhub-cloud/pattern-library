@@ -7,7 +7,8 @@
 
   background: $header-meta-bg;
   border-top: $header-meta-border-top-width solid $header-meta-border-top-color;
-  border-bottom: $header-meta-border-bottom-width solid $header-meta-border-bottom-color;
+  border-bottom: $header-meta-border-bottom-width solid
+    $header-meta-border-bottom-color;
 
   @include respond-down(md) {
     display: none;

@@ -1,9 +1,5 @@
-import PropTypes from './prop-types';
+import PropTypes from "./prop-types";
 
-const alignPropType = PropTypes.oneOf([
-  'left',
-  'center',
-  'right',
-]);
+const alignPropType = PropTypes.oneOf(["left", "center", "right"]);
 
 export default alignPropType;

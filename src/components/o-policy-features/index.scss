@@ -46,14 +46,22 @@ $policy-features-margin-20: 20px;
 }
 
 .o-policy-features__content {
-  padding: $policy-features-padding-vertical-xs $policy-features-padding-horizontal-xs $policy-features-padding-vertical-xs $policy-features-padding-horizontal-xs;
+  padding: $policy-features-padding-vertical-xs
+    $policy-features-padding-horizontal-xs $policy-features-padding-vertical-xs
+    $policy-features-padding-horizontal-xs;
 
   @include respond-up(sm) {
-    padding: $policy-features-padding-vertical-md $policy-features-padding-horizontal-md $policy-features-padding-vertical-md $policy-features-padding-horizontal-md;
+    padding: $policy-features-padding-vertical-md
+      $policy-features-padding-horizontal-md
+      $policy-features-padding-vertical-md
+      $policy-features-padding-horizontal-md;
   }
 
   @include respond-up(md) {
-    padding: $policy-features-padding-vertical-lg $policy-features-padding-horizontal-lg $policy-features-padding-vertical-lg $policy-features-padding-horizontal-lg;
+    padding: $policy-features-padding-vertical-lg
+      $policy-features-padding-horizontal-lg
+      $policy-features-padding-vertical-lg
+      $policy-features-padding-horizontal-lg;
   }
 }
 

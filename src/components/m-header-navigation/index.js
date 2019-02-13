@@ -1,32 +1,34 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import classnames from 'classnames';
-import styles from './index.scss';
-import template from './_template';
-import Stroke from './js/stroke';
-import HeaderNavigation from './js/header-navigation';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import urlPropType from '../../js/prop-types/url-prop-type';
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import classnames from "classnames";
+import styles from "./index.scss";
+import template from "./_template";
+import Stroke from "./js/stroke";
+import HeaderNavigation from "./js/header-navigation";
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import urlPropType from "../../js/prop-types/url-prop-type";
 
 class AXAHeaderNavigation extends BaseComponentGlobal {
-  static tagName = 'axa-header-navigation'
+  static tagName = "axa-header-navigation";
   static propTypes = {
     hyphenate: PropTypes.bool,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      url: urlPropType,
-      name: PropTypes.string,
-      items: PropTypes.array,
-      classes: PropTypes.string,
-      isActive: PropTypes.bool,
-    })),
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: urlPropType,
+        name: PropTypes.string,
+        items: PropTypes.array,
+        classes: PropTypes.string,
+        isActive: PropTypes.bool
+      })
+    ),
     simplemenu: PropTypes.bool,
-    historyApi: PropTypes.bool,
-  }
+    historyApi: PropTypes.bool
+  };
 
   init() {
     super.init({ styles, template });
 
-    this.consumeContext('axa-header-main');
+    this.consumeContext("axa-header-main");
   }
 
   contextCallback(contextNode) {
@@ -36,10 +38,12 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
   }
 
   willRenderCallback() {
-    const { props: { hyphenate } } = this;
+    const {
+      props: { hyphenate }
+    } = this;
 
-    this.className = classnames(this.initialClassName, 'm-header-navigation', {
-      'm-header-navigation--hyphenate': hyphenate,
+    this.className = classnames(this.initialClassName, "m-header-navigation", {
+      "m-header-navigation--hyphenate": hyphenate
     });
   }
 
@@ -56,7 +60,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
 
     // simple menu nicht mehr brauchen. Stroke checkt if ein submenu da ist. un wenn ja dann mach default action
     this.stroke = new Stroke(this, {
-      simpleMenu,
+      simpleMenu
     });
 
     if (contextNode) {
@@ -64,7 +68,7 @@ class AXAHeaderNavigation extends BaseComponentGlobal {
     }
 
     this.navigation = new HeaderNavigation(this, {
-      simpleMenu,
+      simpleMenu
     });
   }
 

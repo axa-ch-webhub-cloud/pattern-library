@@ -13,7 +13,8 @@
 
   margin: $accordion-item-header-margin;
 
-  padding: $accordion-item-padding-top $accordion-item-padding-right $accordion-item-padding-bottom $accordion-item-padding-left;
+  padding: $accordion-item-padding-top $accordion-item-padding-right
+    $accordion-item-padding-bottom $accordion-item-padding-left;
 
   align-items: center;
 
@@ -26,14 +27,21 @@
 
 .m-accordion-item__header--with-icon {
   .m-accordion-item__heading-wrapper {
-    margin-left: ($accordion-item-padding-right - $accordion-item-padding-left - $accordion-item-icon-width);
+    margin-left: (
+      $accordion-item-padding-right - $accordion-item-padding-left -
+        $accordion-item-icon-width
+    );
   }
 
   ~ .m-accordion-item__body {
-    padding-left: ($accordion-item-padding-right - $accordion-item-padding-left - $accordion-item-icon-spacing);
+    padding-left: (
+      $accordion-item-padding-right - $accordion-item-padding-left -
+        $accordion-item-icon-spacing
+    );
 
     .m-accordion-item__content {
-      padding: $accordion-item-content-padding-top $accordion-item-padding-right $accordion-item-padding-bottom $accordion-item-padding-left;
+      padding: $accordion-item-content-padding-top $accordion-item-padding-right
+        $accordion-item-padding-bottom $accordion-item-padding-left;
     }
   }
 }
@@ -84,7 +92,6 @@
   width: $accordion-item-chevron-width;
 }
 
-
 .m-accordion-item__icon {
   display: block;
 
@@ -101,7 +108,8 @@
 
 .m-accordion-item__content {
   margin-left: $accordion-item-icon-spacing;
-  padding: $accordion-item-content-padding-top $accordion-item-padding-right $accordion-item-padding-bottom 0;
+  padding: $accordion-item-content-padding-top $accordion-item-padding-right
+    $accordion-item-padding-bottom 0;
 }
 
 .is-accordion-item-open {

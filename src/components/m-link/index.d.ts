@@ -1,5 +1,5 @@
-export type Color = 'red' | 'white';
-export type Target = '_blank' | '_self';
+export type Color = "red" | "white";
+export type Target = "_blank" | "_self";
 
 export interface Props {
   onClick?: (e: React.MouseEvent) => void;
@@ -15,5 +15,4 @@ export interface Props {
   target?: Target;
 }
 
-export default interface AXALink extends HTMLElement, Props {
-}
+export default interface AXALink extends HTMLElement, Props {}

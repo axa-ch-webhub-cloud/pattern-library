@@ -1,16 +1,16 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
 
-import styles from './index.scss';
-import template from './_template';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import urlPropType from '../../js/prop-types/url-prop-type';
+import styles from "./index.scss";
+import template from "./_template";
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import urlPropType from "../../js/prop-types/url-prop-type";
 
 class AXALink extends BaseComponentGlobal {
-  static tagName = 'axa-link'
+  static tagName = "axa-link";
   static propTypes = {
-    color: PropTypes.oneOf(['red', 'white', 'blue']),
-    size: PropTypes.oneOf(['']),
+    color: PropTypes.oneOf(["red", "white", "blue"]),
+    size: PropTypes.oneOf([""]),
     motion: PropTypes.bool,
     arrow: PropTypes.bool,
     href: urlPropType,
@@ -18,8 +18,8 @@ class AXALink extends BaseComponentGlobal {
     icon: PropTypes.string,
     deco: PropTypes.bool,
     iconsPathPrefix: PropTypes.string,
-    target: PropTypes.oneOf(['_blank', '_self']),
-  }
+    target: PropTypes.oneOf(["_blank", "_self"])
+  };
 
   init() {
     super.init({ styles, template });

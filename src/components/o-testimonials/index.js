@@ -1,13 +1,13 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import styles from './index.scss';
-import template from './_template';
-import Testimonials from './js/testimonials';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import styles from "./index.scss";
+import template from "./_template";
+import Testimonials from "./js/testimonials";
 
 class AXATestimonials extends BaseComponentGlobal {
-  static tagName = 'axa-testimonials';
+  static tagName = "axa-testimonials";
   static propTypes = {
     classes: PropTypes.string,
     title: PropTypes.string,
@@ -15,12 +15,13 @@ class AXATestimonials extends BaseComponentGlobal {
     autoRotateDisabled: PropTypes.bool,
     keysEnabled: PropTypes.bool,
     autoRotateTime: PropTypes.number,
-    showAllInline: PropTypes.bool,
-  }
+    showAllInline: PropTypes.bool
+  };
 
   init() {
     super.init({
-      styles, template,
+      styles,
+      template
     });
   }
 

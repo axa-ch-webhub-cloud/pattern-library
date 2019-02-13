@@ -1,25 +1,25 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import template from './_template';
-import styles from './index.scss';
-import AccordionItem from './js/accordion-item';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import template from "./_template";
+import styles from "./index.scss";
+import AccordionItem from "./js/accordion-item";
 
 class AXAAccordionItem extends BaseComponentGlobal {
-  static tagName = 'axa-accordion-item'
+  static tagName = "axa-accordion-item";
   static propTypes = {
     icon: PropTypes.string,
     header: PropTypes.string,
     headerSecondary: PropTypes.string,
-    headerColor: PropTypes.oneOf(['blue']),
-    multiple: PropTypes.bool,
-  }
+    headerColor: PropTypes.oneOf(["blue"]),
+    multiple: PropTypes.bool
+  };
 
   init() {
     super.init({ styles, template });
 
-    this.consumeContext('axa-accordion');
+    this.consumeContext("axa-accordion");
   }
 
   connectedCallback() {

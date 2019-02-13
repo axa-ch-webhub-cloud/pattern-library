@@ -9,10 +9,10 @@ function forceRepaint(node) {
     return;
   }
 
-  node.style.display = 'none';
+  node.style.display = "none";
   // eslint-disable-next-line no-unused-expressions
   node.offsetHeight; // no need to store this anywhere, the reference is enough
-  node.style.display = '';
+  node.style.display = "";
 }
 
 export default forceRepaint;

@@ -4,13 +4,13 @@
  * @returns {String} - Returns the supported transition event or empty string `''`.
  */
 function whichTransitionEvent() {
-  const tmpNode = document.createElement('div');
+  const tmpNode = document.createElement("div");
   const { style } = tmpNode;
   const transitions = {
-    transition: 'transitionend',
-    OTransition: 'oTransitionEnd otransitionend',
-    MozTransition: 'transitionend',
-    WebkitTransition: 'webkitTransitionEnd',
+    transition: "transitionend",
+    OTransition: "oTransitionEnd otransitionend",
+    MozTransition: "transitionend",
+    WebkitTransition: "webkitTransitionEnd"
   };
   const transitionsKeys = Object.keys(transitions);
   const { length } = transitionsKeys;
@@ -24,7 +24,7 @@ function whichTransitionEvent() {
     }
   }
 
-  return '';
+  return "";
 }
 
 export default whichTransitionEvent;

@@ -1,4 +1,4 @@
-import CustomEvent from './custom-event';
+import CustomEvent from "./custom-event";
 
 /**
  * Trigger a custom event on the node element.
@@ -11,7 +11,7 @@ import CustomEvent from './custom-event';
 function fire(eventTarget, eventName, eventObject, eventInit = {}) {
   const event = new CustomEvent(eventName, {
     ...eventInit,
-    detail: eventObject,
+    detail: eventObject
   });
 
   // Dispatch the event.

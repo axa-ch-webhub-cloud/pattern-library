@@ -1,8 +1,8 @@
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
 
 class AXAFooter extends BaseComponentGlobal {
-  static tagName = 'axa-footer'
+  static tagName = "axa-footer";
 
   connectedCallback() {
     super.connectedCallback();

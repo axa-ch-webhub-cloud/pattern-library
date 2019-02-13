@@ -46,5 +46,5 @@ export function freeByValue(object, value) {
 
 export default {
   free,
-  freeByValue,
+  freeByValue
 };

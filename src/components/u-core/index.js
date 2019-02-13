@@ -1,10 +1,10 @@
-import getAttributes from '../../js/get-attributes';
-import defineOnce from '../../js/define-once';
+import getAttributes from "../../js/get-attributes";
+import defineOnce from "../../js/define-once";
 
 const axaPLibDefaults = {};
 
 class AXACore extends HTMLElement {
-  static tagName = 'axa-core'
+  static tagName = "axa-core";
 
   connectedCallback() {
     const attributes = getAttributes(this);
@@ -20,12 +20,12 @@ class AXACore extends HTMLElement {
           axaPLibConfig.iconsPath = iconsPath;
         }
 
-        httpObj.open('GET', iconsPath, true);
+        httpObj.open("GET", iconsPath, true);
         httpObj.send();
         httpObj.onload = () => {
-          const div = document.createElement('div');
+          const div = document.createElement("div");
           div.innerHTML = httpObj.responseText;
-          div.style.display = 'none';
+          div.style.display = "none";
           document.body.insertBefore(div, document.body.childNodes[0]);
         };
       }
@@ -34,7 +34,7 @@ class AXACore extends HTMLElement {
     window.__axaPLibConfig = {
       ...axaPLibDefaults,
       ...(window.__axaPLibConfig || {}),
-      ...axaPLibConfig,
+      ...axaPLibConfig
     };
   }
 }

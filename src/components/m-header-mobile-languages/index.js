@@ -1,33 +1,37 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import urlPropType from '../../js/prop-types/url-prop-type';
-import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
-import on from '../../js/on';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import urlPropType from "../../js/prop-types/url-prop-type";
+import { AXA_EVENTS, EVENTS } from "../../js/ui-events";
+import on from "../../js/on";
 // import the styles used for this component
-import styles from './index.scss';
+import styles from "./index.scss";
 // import the template used for this component
-import template from './_template';
-import valuePropType from '../../js/prop-types/value-prop-type';
-import fire from '../../js/fire';
+import template from "./_template";
+import valuePropType from "../../js/prop-types/value-prop-type";
+import fire from "../../js/fire";
 
 class AXAHeaderMobileLanguages extends BaseComponentGlobal {
-  static tagName = 'axa-header-mobile-languages'
+  static tagName = "axa-header-mobile-languages";
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-      url: urlPropType,
-      code: PropTypes.string,
-      isActive: PropTypes.bool,
-    })),
-    value: valuePropType,
-  }
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: urlPropType,
+        code: PropTypes.string,
+        isActive: PropTypes.bool
+      })
+    ),
+    value: valuePropType
+  };
 
   init() {
     super.init({ styles, template });
 
-    this.handleClick = (event) => {
-      const { target: { lang } } = event;
+    this.handleClick = event => {
+      const {
+        target: { lang }
+      } = event;
 
       /**
        * axa-click event.
@@ -38,7 +42,7 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
       const cancelled = fire(this, AXA_EVENTS.AXA_CLICK, lang, {
         bubbles: true,
         cancelable: true,
-        composed: true,
+        composed: true
       });
 
       if (!cancelled) {
@@ -47,7 +51,7 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
 
       if (lang) {
         event.stopPropagation();
-        this.setAttribute('value', lang);
+        this.setAttribute("value", lang);
       }
     };
   }
@@ -58,10 +62,14 @@ class AXAHeaderMobileLanguages extends BaseComponentGlobal {
     this.className = `${this.initialClassName} m-header-mobile-languages`;
 
     this.unClickEnd = on(
-      this, EVENTS.CLICK, 'js-header-mobile-languages__link',
-      this.handleClick, {
-        capture: true, passive: false,
-      },
+      this,
+      EVENTS.CLICK,
+      "js-header-mobile-languages__link",
+      this.handleClick,
+      {
+        capture: true,
+        passive: false
+      }
     );
   }
 

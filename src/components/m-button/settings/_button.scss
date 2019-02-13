@@ -32,49 +32,48 @@ $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955) !default;
 $button__motion-z-index: 0 !default;
 $button__motion-pseudo-z-index: -1 !default;
 
-$button-color:
-  (
-    default: (
-      text: $color-prim-white,
-      text--ghost: $color-axa-blue,
-      text--ghost--hover: $color-prim-blue-deep-sapphire,
-      bg: $color-axa-blue,
-      bg--hover: $color-prim-blue-deep-sapphire,
-      bg--disabled: $color-button-bg--disabled,
-      bg--ghost: transparent,
-      bg--ghost--hover: transparent,
-      bg--motion: $color-prim-blue-deep-sapphire,
-      bg--motion--hover: $color-prim-blue-deep-sapphire,
-      text--motion--hover: $color-prim-white,
-      text--disabled: $color-prim-gray-dusty,
-      arrow--disabled: $color-prim-gray-dusty,
-      border--disabled: $color-prim-gray-silver,
-      icon--disabled: $color-prim-gray-silver,
-    ),
-    red: (
-      text: $color-prim-white,
-      text--ghost: $color-prim-red-burnt-sienna,
-      text--ghost--hover: $color-prim-red-flamingo,
-      bg: $color-prim-red-burnt-sienna,
-      bg--hover: $color-prim-red-flamingo,
-      bg--disabled: $color-button-bg--disabled,
-      bg--ghost: transparent,
-      bg--ghost--hover: transparent,
-      bg--motion: $color-prim-red-flamingo,
-      bg--motion--hover: $color-prim-red-flamingo,
-      text--motion--hover: $color-prim-white,
-    ),
-    white: (
-      text: $color-prim-white,
-      text--ghost: $color-prim-white,
-      text--ghost--hover: $color-prim-blue-dark-indigo,
-      bg: $color-prim-white,
-      bg--hover: $color-prim-blue-deep-sapphire,
-      bg--disabled: $color-button-bg--disabled,
-      bg--ghost: transparent,
-      bg--ghost--hover: $color-prim-white,
-      bg--motion: $color-prim-white,
-      bg--motion--hover: $color-prim-white,
-      text--motion--hover: $color-prim-blue-dark-indigo,
-    )
-  ) !default;
+$button-color: (
+  default: (
+    text: $color-prim-white,
+    text--ghost: $color-axa-blue,
+    text--ghost--hover: $color-prim-blue-deep-sapphire,
+    bg: $color-axa-blue,
+    bg--hover: $color-prim-blue-deep-sapphire,
+    bg--disabled: $color-button-bg--disabled,
+    bg--ghost: transparent,
+    bg--ghost--hover: transparent,
+    bg--motion: $color-prim-blue-deep-sapphire,
+    bg--motion--hover: $color-prim-blue-deep-sapphire,
+    text--motion--hover: $color-prim-white,
+    text--disabled: $color-prim-gray-dusty,
+    arrow--disabled: $color-prim-gray-dusty,
+    border--disabled: $color-prim-gray-silver,
+    icon--disabled: $color-prim-gray-silver
+  ),
+  red: (
+    text: $color-prim-white,
+    text--ghost: $color-prim-red-burnt-sienna,
+    text--ghost--hover: $color-prim-red-flamingo,
+    bg: $color-prim-red-burnt-sienna,
+    bg--hover: $color-prim-red-flamingo,
+    bg--disabled: $color-button-bg--disabled,
+    bg--ghost: transparent,
+    bg--ghost--hover: transparent,
+    bg--motion: $color-prim-red-flamingo,
+    bg--motion--hover: $color-prim-red-flamingo,
+    text--motion--hover: $color-prim-white
+  ),
+  white: (
+    text: $color-prim-white,
+    text--ghost: $color-prim-white,
+    text--ghost--hover: $color-prim-blue-dark-indigo,
+    bg: $color-prim-white,
+    bg--hover: $color-prim-blue-deep-sapphire,
+    bg--disabled: $color-button-bg--disabled,
+    bg--ghost: transparent,
+    bg--ghost--hover: $color-prim-white,
+    bg--motion: $color-prim-white,
+    bg--motion--hover: $color-prim-white,
+    text--motion--hover: $color-prim-blue-dark-indigo
+  )
+) !default;

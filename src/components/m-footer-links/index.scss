@@ -54,7 +54,8 @@
   @include respond-down(xs) {
     $padding-y: $footer-links__category-padding-y;
     $padding-left: $footer-links__category-padding-x;
-    $padding-right: $footer-links__category-padding-x + $footer-links__category__icon-right;
+    $padding-right: $footer-links__category-padding-x +
+      $footer-links__category__icon-right;
 
     @include typo-secondary-text--semibold();
     @include dropdown-toggle();
@@ -67,7 +68,10 @@
 }
 
 .m-footer-links__category__icon {
-  @include dropdown-icon($footer-links__category__icon-size, $footer-links__category__icon-right);
+  @include dropdown-icon(
+    $footer-links__category__icon-size,
+    $footer-links__category__icon-right
+  );
 
   display: none;
 
@@ -114,7 +118,8 @@
 
   @include respond-down(xs) {
     margin-top: 0;
-    border-bottom: $footer-links__list-item-border-bottom-width solid $footer-links__list-item-border-bottom-color;
+    border-bottom: $footer-links__list-item-border-bottom-width solid
+      $footer-links__list-item-border-bottom-color;
 
     &:last-child {
       border-bottom: none;

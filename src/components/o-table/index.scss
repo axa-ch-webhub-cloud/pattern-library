@@ -78,7 +78,8 @@
   }
 
   tbody {
-    tr {}
+    tr {
+    }
   }
 }
 
@@ -106,5 +107,3 @@
     @extend %m-tr--action;
   }
 }
-
-

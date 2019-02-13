@@ -57,7 +57,7 @@
 
   /* stylelint-disable indentation */
   @at-root .m-header-navigation__list-link--hyphenate,
-  .m-header-navigation--hyphenate & {
+    .m-header-navigation--hyphenate & {
     @include word-break();
   }
   /* stylelint-enable indentation */

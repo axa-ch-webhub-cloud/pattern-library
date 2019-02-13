@@ -1,4 +1,4 @@
-import PropTypes from './prop-types';
+import PropTypes from "./prop-types";
 
 const regexJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\s])*[\]}])\s*$/;
 
@@ -21,7 +21,7 @@ function toTypedProp(value, name, type) {
 
     case PropTypes.bool:
     case PropTypes.bool.isRequired:
-      if (!value || (name === value)) {
+      if (!value || name === value) {
         return true;
       }
 
@@ -33,7 +33,7 @@ function toTypedProp(value, name, type) {
     case PropTypes.array:
     case PropTypes.array.isRequired:
     default:
-    // eslint-enable no-fallthrought
+      // eslint-enable no-fallthrought
 
       if (regexJson.test(value)) {
         try {
@@ -64,7 +64,7 @@ function toProp(value, name, type) {
   }
 
   // If no type, use HTML Spec for attributes
-  if (!value || (name === value)) {
+  if (!value || name === value) {
     newValue = true;
   } else if (regexJson.test(value)) {
     try {

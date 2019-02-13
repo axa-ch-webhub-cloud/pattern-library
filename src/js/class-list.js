@@ -8,7 +8,10 @@ const regexTrim = /^\s+|\s{2,}|\s+$/g;
  * @returns {RegExp} - Returns the Regex for a specific class name.
  */
 function getReClass(className, modifier) {
-  return new RegExp(`^${className}$|^${className}\\s|\\s${className}\\s|\\s${className}$`, modifier);
+  return new RegExp(
+    `^${className}$|^${className}\\s|\\s${className}\\s|\\s${className}$`,
+    modifier
+  );
 }
 
 /**
@@ -31,7 +34,7 @@ export function add(node, ...classNames) {
   }
 
   if (classesToAdd) {
-    node.className += ` ${classesToAdd.join(' ')}`;
+    node.className += ` ${classesToAdd.join(" ")}`;
   }
 }
 
@@ -71,7 +74,7 @@ export function has(node, ...classNames) {
 
     return {
       className,
-      hasClass,
+      hasClass
     };
   }
 }
@@ -111,9 +114,9 @@ function removeReducer(classesToRemove, { className, hasClass }) {
 }
 
 function removeClassReducer(nodeClassName, className) {
-  const regexClass = getReClass(className, 'g');
+  const regexClass = getReClass(className, "g");
 
-  return nodeClassName.replace(regexClass, ' ').replace(regexTrim, ' ');
+  return nodeClassName.replace(regexClass, " ").replace(regexTrim, " ");
 }
 
 /**
@@ -140,7 +143,10 @@ export function toggle(node, ...classNames) {
   }
 }
 
-function toggleReducer([classesToAdd, classesToRemove], { className, hasClass }) {
+function toggleReducer(
+  [classesToAdd, classesToRemove],
+  { className, hasClass }
+) {
   if (hasClass) {
     classesToRemove.push(className);
   } else {
@@ -154,6 +160,5 @@ export default {
   add,
   has,
   remove,
-  toggle,
+  toggle
 };
-

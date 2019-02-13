@@ -1,6 +1,6 @@
 const ids = {};
 
-const getId = (nodeName) => {
+const getId = nodeName => {
   if (!(nodeName in ids)) {
     ids[nodeName] = 0;
   }

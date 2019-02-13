@@ -1,11 +1,11 @@
-import PropTypes from './prop-types';
+import PropTypes from "./prop-types";
 
 const tableScopePropType = PropTypes.oneOf([
-  'row',
-  'col',
-  'rowgroup',
-  'colgroup',
-  'auto',
+  "row",
+  "col",
+  "rowgroup",
+  "colgroup",
+  "auto"
 ]);
 
 export default tableScopePropType;

@@ -1,6 +1,6 @@
-import fire from './fire';
-import on from './on';
-import debounce from './debounce';
+import fire from "./fire";
+import on from "./on";
+import debounce from "./debounce";
 // import maybe, { toEqual } from './maybe';
 
 // @TODO: this local variable isn't shared between redundant module instance
@@ -21,7 +21,7 @@ export function publish(topic, arg, node = document) {
   if (!subscriptions[topic]) {
     subscriptions[topic] = {
       count: 0,
-      queue: [],
+      queue: []
     };
   }
 
@@ -54,7 +54,7 @@ export function subscribe(topic, func, node = document) {
   // count number of subscriptions
   if (!subscriptions[topic]) {
     subscriptions[topic] = {
-      count: 0,
+      count: 0
     };
   }
 
@@ -95,7 +95,7 @@ export function subscribe(topic, func, node = document) {
  */
 function onsubscribe(_topic) {
   return function initialPublish() {
-    fire(document, 'pubsub/onsubscribe', _topic);
+    fire(document, "pubsub/onsubscribe", _topic);
     fire(document, `pubsub/onsubscribe/${_topic}`, _topic);
 
     if (subscriptions[_topic]) {
@@ -105,7 +105,7 @@ function onsubscribe(_topic) {
 }
 
 // flush queued published message w/o subscriptions
-on(document, 'pubsub/onsubscribe', flush);
+on(document, "pubsub/onsubscribe", flush);
 
 /**
  * Flush publish cache as soon as any given topic has subscriptions.
@@ -115,7 +115,7 @@ on(document, 'pubsub/onsubscribe', flush);
 function flush({ detail: topic }) {
   if (!subscriptions[topic]) {
     subscriptions[topic] = {
-      count: 0,
+      count: 0
     };
   }
 
@@ -133,5 +133,5 @@ function flush({ detail: topic }) {
 
 export default {
   publish,
-  subscribe,
+  subscribe
 };

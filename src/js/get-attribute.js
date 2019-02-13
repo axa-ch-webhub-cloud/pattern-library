@@ -1,7 +1,7 @@
-import PropTypes from './prop-types';
+import PropTypes from "./prop-types";
 
-import toProp from './to-prop';
-import camelize from './camelize';
+import toProp from "./to-prop";
+import camelize from "./camelize";
 
 /**
  * Get an HTML attribute's value by it's name.
@@ -14,7 +14,9 @@ import camelize from './camelize';
  */
 function getAttribute(node, name, type) {
   const isElementNode = node.nodeType === 1;
-  const { constructor: { propTypes = {} } } = node;
+  const {
+    constructor: { propTypes = {} }
+  } = node;
   let derivedType = type;
 
   if (!type && isElementNode) {
@@ -23,7 +25,10 @@ function getAttribute(node, name, type) {
   }
 
   if (isElementNode && !node.hasAttribute(name)) {
-    return (derivedType === PropTypes.bool || derivedType === PropTypes.bool.isRequired) ? false : undefined;
+    return derivedType === PropTypes.bool ||
+      derivedType === PropTypes.bool.isRequired
+      ? false
+      : undefined;
   }
 
   // if it's an attribute node, get it's value directly
@@ -33,7 +38,8 @@ function getAttribute(node, name, type) {
   if (!name) {
     // eslint-disable-next-line
     ({ name } = node);
-  } else { // fetch the correct attribute from the Element by it's name
+  } else {
+    // fetch the correct attribute from the Element by it's name
     value = node.getAttribute(name);
   }
 

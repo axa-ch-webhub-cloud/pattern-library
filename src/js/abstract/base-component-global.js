@@ -1,4 +1,4 @@
-import { withBaseGlobalAndAllHocs } from './hocs';
+import { withBaseGlobalAndAllHocs } from "./hocs";
 
 /**
  * Base class {BaseComponentGlobal}. This class extends the {BaseComponent} and

@@ -1,13 +1,17 @@
-import getScrollTop from './get-scroll-top';
-import getScrollLeft from './get-scroll-left';
-import { getViewportWidth, getViewportHeight } from './viewport';
+import getScrollTop from "./get-scroll-top";
+import getScrollLeft from "./get-scroll-left";
+import { getViewportWidth, getViewportHeight } from "./viewport";
 
 // Test with a point larger than the viewport. If it returns an element,
 // then that means elementFromPoint takes page coordinates.
-const elementFromPagePoint = ('pageYOffset' in window
-  && document.elementFromPoint(getScrollLeft() + getViewportHeight(), getScrollTop() + getViewportWidth())) ?
-  document.elementFromPoint.bind(document) :
-  elementFromPoint;
+const elementFromPagePoint =
+  "pageYOffset" in window &&
+  document.elementFromPoint(
+    getScrollLeft() + getViewportHeight(),
+    getScrollTop() + getViewportWidth()
+  )
+    ? document.elementFromPoint.bind(document)
+    : elementFromPoint;
 
 /**
  * Select an element by it's page coordinates.

@@ -1,4 +1,4 @@
-import html from 'nanohtml';
+import html from "nanohtml";
 
 export default ({ classes }, childrenFragment) => html`
   <article class=${classes}>${childrenFragment}</article>

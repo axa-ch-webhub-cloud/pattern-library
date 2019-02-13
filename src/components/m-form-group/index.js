@@ -1,30 +1,32 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import classnames from 'classnames';
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import classnames from "classnames";
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import FormGroup from './js/form-group';
-import styles from './index.scss';
-import template from './_template';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import FormGroup from "./js/form-group";
+import styles from "./index.scss";
+import template from "./_template";
 
 class AXAFormGroup extends BaseComponentGlobal {
-  static tagName = 'axa-form-group'
+  static tagName = "axa-form-group";
   static propTypes = {
     legend: PropTypes.string,
     info: PropTypes.string,
-    error: PropTypes.string,
-  }
+    error: PropTypes.string
+  };
 
   init() {
     super.init({ styles, template });
   }
 
   willRenderCallback() {
-    const { props: { info, error } } = this;
+    const {
+      props: { info, error }
+    } = this;
 
-    this.className = classnames(this.initialClassName, 'm-form-group', {
-      'm-form-group--info': info,
-      'm-form-group--error': error,
+    this.className = classnames(this.initialClassName, "m-form-group", {
+      "m-form-group--info": info,
+      "m-form-group--error": error
     });
   }
 

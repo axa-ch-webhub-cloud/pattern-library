@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import TodoHeader from './todo-header';
-import TodosList from './todos-list';
-import TodoFooter from './todo-footer';
-import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
+import React, { Component } from "react";
+import TodoHeader from "./todo-header";
+import TodosList from "./todos-list";
+import TodoFooter from "./todo-footer";
+import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from "./utils";
 
-import withReact from '../../js/with-react';
-import AXADatepicker from '../../components/o-datepicker';
+import withReact from "../../js/with-react";
+import AXADatepicker from "../../components/o-datepicker";
 
 const AXADatepickerReact = withReact(AXADatepicker);
 
@@ -30,8 +30,8 @@ class Todos extends Component {
     this.state = {
       nowShowing: ALL_TODOS,
       editing: null,
-      newTodo: '',
-      toggleAll: false,
+      newTodo: "",
+      toggleAll: false
     };
   }
 
@@ -43,7 +43,7 @@ class Todos extends Component {
     const date = new Date(event.detail);
     console.log(date, event);
     // eslint-disable-next-line
-    alert(`${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`);
+    alert(`${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`);
   }
 
   handleNewTodoKeyDown(event) {
@@ -57,12 +57,14 @@ class Todos extends Component {
 
     if (val) {
       this.props.model.addTodo(val);
-      this.setState({ newTodo: '' });
+      this.setState({ newTodo: "" });
     }
   }
 
   toggleAll(event) {
-    const { state: { toggleAll } } = this;
+    const {
+      state: { toggleAll }
+    } = this;
 
     event.preventDefault();
 
@@ -97,20 +99,26 @@ class Todos extends Component {
   }
 
   nowShowing(event) {
-    const { detail: { state } } = event;
+    const {
+      detail: { state }
+    } = event;
 
     event.preventDefault();
 
     this.setState({
-      nowShowing: state,
+      nowShowing: state
     });
   }
 
   render() {
-    const { props: { model: { todos } } } = this;
+    const {
+      props: {
+        model: { todos }
+      }
+    } = this;
     const { state } = this;
 
-    const shownTodos = todos.filter((todo) => {
+    const shownTodos = todos.filter(todo => {
       switch (state.nowShowing) {
         case ACTIVE_TODOS:
           return !todo.completed;
@@ -121,12 +129,21 @@ class Todos extends Component {
       }
     });
 
-    const activeTodoCount = todos.reduce((accum, todo) => todo.completed ? accum : accum + 1, 0);
+    const activeTodoCount = todos.reduce(
+      (accum, todo) => (todo.completed ? accum : accum + 1),
+      0
+    );
     const completedCount = todos.length - activeTodoCount;
 
     return (
       <div>
-        <TodoHeader newTodo={state.newTodo} handleNewTodoKeyDown={this.handleNewTodoKeyDown} handleChange={this.handleChange} toggleAll={this.toggleAll} key={0} />
+        <TodoHeader
+          newTodo={state.newTodo}
+          handleNewTodoKeyDown={this.handleNewTodoKeyDown}
+          handleChange={this.handleChange}
+          toggleAll={this.toggleAll}
+          key={0}
+        />
 
         <TodosList
           shownTodos={shownTodos}
@@ -141,7 +158,14 @@ class Todos extends Component {
 
         <AXADatepickerReact onAxaChange={this.handleDatepickerChange} />
 
-        <TodoFooter count={activeTodoCount} completedCount={completedCount} nowShowing={state.nowShowing} onClearCompleted={this.clearCompleted} onNowShowing={this.nowShowing} key={2} />
+        <TodoFooter
+          count={activeTodoCount}
+          completedCount={completedCount}
+          nowShowing={state.nowShowing}
+          onClearCompleted={this.clearCompleted}
+          onNowShowing={this.nowShowing}
+          key={2}
+        />
       </div>
     );
   }

@@ -8,7 +8,10 @@
   border-collapse: collapse;
 }
 
-@mixin table__cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense ) {
+@mixin table__cell--dense(
+  $top: $table__cell-padding-y--dense,
+  $bottom: $table__cell-padding-y--dense
+) {
   padding-top: $top;
   padding-bottom: $bottom;
 }

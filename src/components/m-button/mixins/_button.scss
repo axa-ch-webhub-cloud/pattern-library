@@ -13,9 +13,17 @@
 // https://design.axa.com/web-guidelines/buttons-and-links
 $color-button-bg--disabled: get-color($button-color, default, bg--disabled);
 $color-button-text--disabled: get-color($button-color, default, text--disabled);
-$color-button-arrow--disabled: get-color($button-color, default, arrow--disabled);
+$color-button-arrow--disabled: get-color(
+  $button-color,
+  default,
+  arrow--disabled
+);
 $color-button-icon--disabled: get-color($button-color, default, icon--disabled);
-$color-button-border--disabled: get-color($button-color, default, border--disabled);
+$color-button-border--disabled: get-color(
+  $button-color,
+  default,
+  border--disabled
+);
 
 @mixin button($x-padding: $button-x-padding-default) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
@@ -97,9 +105,17 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
   $color-button-bg: get-color($button-color, $style, bg);
   $color-button-bg--hover: get-color($button-color, $style, bg--hover);
   $color-button-text--ghost: get-color($button-color, $style, text--ghost);
-  $color-button-text--ghost--hover: get-color($button-color, $style, text--ghost--hover);
+  $color-button-text--ghost--hover: get-color(
+    $button-color,
+    $style,
+    text--ghost--hover
+  );
   $color-button-bg--ghost: get-color($button-color, $style, bg--ghost);
-  $color-button-bg--ghost--hover: get-color($button-color, $style, bg--ghost--hover);
+  $color-button-bg--ghost--hover: get-color(
+    $button-color,
+    $style,
+    bg--ghost--hover
+  );
 
   color: $color-button-text--ghost;
 
@@ -144,7 +160,10 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
   padding-bottom: $button-padding-top-bottom-lg;
 }
 
-@mixin button--has-icon($x-padding: $button-x-padding-default, $button-height: $button-md-height) {
+@mixin button--has-icon(
+  $x-padding: $button-x-padding-default,
+  $button-height: $button-md-height
+) {
   $x-padding: min-max($button-x-padding-min, $button-x-padding-max, $x-padding);
 
   padding-right: $x-padding + $button-height;
@@ -176,7 +195,7 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
   top: 0;
   right: 0;
 
-  margin-top: - $button-border-width;
+  margin-top: -$button-border-width;
   margin-bottom: 0;
 
   height: calc(100% + #{$button-border-width});
@@ -195,7 +214,7 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
 
   padding: $button__icon-padding--sm;
 
-  margin-top: - $button-border-width--sm;
+  margin-top: -$button-border-width--sm;
 
   border-left: $button-border-width--sm solid currentColor;
 }
@@ -304,7 +323,7 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
     // zero width is considered hidden
     width: 0.001px;
     height: 550px;
-    content: '';
+    content: "";
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: width $button__motion-duration $button__motion-easing 0s;
@@ -321,8 +340,16 @@ $color-button-border--disabled: get-color($button-color, default, border--disabl
 @mixin button--motion-style($style: default) {
   $color-button-bg: get-color($button-color, $style, bg);
   $color-button-bg--motion: get-color($button-color, $style, bg--motion);
-  $color-button-bg--motion--hover: get-color($button-color, $style, bg--motion--hover);
-  $color-button-text--motion--hover: get-color($button-color, $style, text--motion--hover);
+  $color-button-bg--motion--hover: get-color(
+    $button-color,
+    $style,
+    bg--motion--hover
+  );
+  $color-button-text--motion--hover: get-color(
+    $button-color,
+    $style,
+    text--motion--hover
+  );
 
   @include button--disabled();
 

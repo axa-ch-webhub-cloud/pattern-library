@@ -20,9 +20,11 @@
 
 .m-header-meta-right__list-item {
   display: block;
-  border-right: $header-meta-right__nav-border-x-width solid $header-meta-right__nav-border-x-color;
+  border-right: $header-meta-right__nav-border-x-width solid
+    $header-meta-right__nav-border-x-color;
 
   &:first-child {
-    border-left: $header-meta-right__nav-border-x-width solid $header-meta-right__nav-border-x-color;
+    border-left: $header-meta-right__nav-border-x-width solid
+      $header-meta-right__nav-border-x-color;
   }
 }

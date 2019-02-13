@@ -1,7 +1,7 @@
-import lifecycleLogger from '../utils/lifecycle-logger';
-import { clearIsSameNode, isSameNodeOnce } from '../utils/is-same-node-once';
-import nanomorph from '../utils/component-morph';
-import TemplateNoStringReturnException from '../utils/template-no-string-return-exception';
+import lifecycleLogger from "../utils/lifecycle-logger";
+import { clearIsSameNode, isSameNodeOnce } from "../utils/is-same-node-once";
+import nanomorph from "../utils/component-morph";
+import TemplateNoStringReturnException from "../utils/template-no-string-return-exception";
 
 const hasFragmentChildren = !!document.createDocumentFragment().children;
 
@@ -56,18 +56,25 @@ const withRender = Base =>
     /**
      * render - method can be overwritten and is called right after the component is connected.
      */
-    render() { // eslint-disable-line
+    render() {
+      // eslint-disable-line
       const initial = !this._hasRendered;
 
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
+        lifecycleLogger(this.logLifecycle)(
+          `willRenderCallback -> ${this.nodeName}#${
+            this._id
+          } <- initial: ${initial}`
+        );
       }
 
       this.willRenderCallback(initial);
 
       if (this._hasTemplate) {
         if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
+          lifecycleLogger(this.logLifecycle)(
+            `render -> ${this.nodeName}#${this._id} <- initial: ${initial}`
+          );
         }
 
         const { _template: template } = this;
@@ -85,8 +92,9 @@ const withRender = Base =>
 
             this._lightDOMRefs = lightDOMRefs;
             this.childrenFragment = childrenFragment;
-          } else { // Reuse the light DOM for subsequent rendering
-            this._lightDOMRefs.forEach((ref) => {
+          } else {
+            // Reuse the light DOM for subsequent rendering
+            this._lightDOMRefs.forEach(ref => {
               // Important: Once the light DOM is live it shouldn't be moved out
               // instead make sure to clone it for incremental updates
               const refClone = ref.cloneNode(true);
@@ -104,18 +112,20 @@ const withRender = Base =>
           // IE11 does not support children on fragments
           // ref: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10060579/
           if (!hasFragmentChildren) {
-            this.childrenFragment.children = Array.from(this.childrenFragment.childNodes).filter(node => node.nodeType === 1);
+            this.childrenFragment.children = Array.from(
+              this.childrenFragment.childNodes
+            ).filter(node => node.nodeType === 1);
           }
 
           const items = template(this.props, this.childrenFragment, this);
           const renderFragment = document.createDocumentFragment();
 
           if (Array.isArray(items)) {
-            items.forEach((item) => {
+            items.forEach(item => {
               renderFragment.appendChild(item);
             });
           } else if (items) {
-            if (typeof items === 'string') {
+            if (typeof items === "string") {
               throw new TemplateNoStringReturnException(this);
             }
             renderFragment.appendChild(items);
@@ -127,7 +137,9 @@ const withRender = Base =>
             const wcClone = this.cloneNode(false);
 
             if (ENV !== PROD) {
-              lifecycleLogger(this.logLifecycle)(`+++ incremental update -> ${this.nodeName}#${this._id}\n`);
+              lifecycleLogger(this.logLifecycle)(
+                `+++ incremental update -> ${this.nodeName}#${this._id}\n`
+              );
             }
 
             wcClone._isMorphing = true;
@@ -146,7 +158,11 @@ const withRender = Base =>
       this._hasRendered = true;
 
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
+        lifecycleLogger(this.logLifecycle)(
+          `didRenderCallback -> ${this.nodeName}#${
+            this._id
+          } <- initial: ${initial}`
+        );
       }
 
       this.didRenderCallback(initial);

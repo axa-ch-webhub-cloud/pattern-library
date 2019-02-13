@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // guard for Uncaught RangeError: Maximum call stack size exceeded in prod
 let level = 0;
@@ -13,7 +13,7 @@ function getShim(propType) {
     level++; // eslint-disable-line no-plusplus
     // make sure to also shim `isRequired`, etc.
     Object.keys(propType)
-      .map((key) => {
+      .map(key => {
         shim[key] = propType[key];
 
         return key;
@@ -28,7 +28,7 @@ function getShim(propType) {
 function shimKeys(propTypes, key) {
   const propType = propTypes[key];
 
-  if (typeof propType === 'function') {
+  if (typeof propType === "function") {
     propTypes[key] = getShim(propType);
   }
 

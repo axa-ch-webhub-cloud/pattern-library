@@ -1,5 +1,5 @@
-import isRequiredHelper from './is-required-helper';
-import getBaseURI from '../get-base-uri';
+import isRequiredHelper from "./is-required-helper";
+import getBaseURI from "../get-base-uri";
 
 // eslint-disable-next-line consistent-return
 function urlPropType(props, propName, componentName) {
@@ -8,7 +8,11 @@ function urlPropType(props, propName, componentName) {
     // eslint-disable-next-line no-new
     new window.URL(props[propName], getBaseURI());
   } catch (error) {
-    return new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`, expected a valid URL. ${error.message}`);
+    return new Error(
+      `Invalid prop \`${propName}\` supplied to \`${componentName}\`, expected a valid URL. ${
+        error.message
+      }`
+    );
   }
 
   return null;

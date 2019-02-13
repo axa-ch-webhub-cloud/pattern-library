@@ -4,7 +4,11 @@
 /// @param {number,string} $max-width - The maximum width to be applied.
 /// @param {number} $size [$grid-columns] - Amount of columns used.
 /// @param {number} $columns [$grid-columns] - Number of available columns.
-@function get-max-width($max-width, $size: $grid-columns, $columns: $grid-columns) {
+@function get-max-width(
+  $max-width,
+  $size: $grid-columns,
+  $columns: $grid-columns
+) {
   // IMPORTANT: deal with numbers only, skip stuff like auto
   @if type_of($max-width) == number {
     $max-width: $max-width / $columns * $size;

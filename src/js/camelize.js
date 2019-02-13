@@ -14,7 +14,7 @@ function camelize(string) {
 
 function replaceCase(match, index) {
   if (+match === 0 || regexSeparator.test(match)) {
-    return ''; // or if (/\s+/.test(match)) for white spaces
+    return ""; // or if (/\s+/.test(match)) for white spaces
   }
 
   return index === 0 ? match.toLowerCase() : match.toUpperCase();

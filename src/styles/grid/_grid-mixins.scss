@@ -55,10 +55,16 @@
 /// For each grid-tier, define the maximum width of the container in a media query.
 /// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
-@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+@mixin make-container-max-widths(
+  $max-widths: $container-max-widths,
+  $breakpoints: $grid-breakpoints
+) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include respond-up($breakpoint, $breakpoints) {
-      @include make-max-width($breakpoint: $breakpoint, $max-widths: $max-widths);
+      @include make-max-width(
+        $breakpoint: $breakpoint,
+        $max-widths: $max-widths
+      );
     }
   }
 }
@@ -68,7 +74,12 @@
 /// @param {string} $breakpoint [sm] - Breakpoint to use of max-width map.
 /// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
 /// @param {number} $columns [$grid-columns] - Number of available columns.
-@mixin make-max-width($size: $grid-columns, $breakpoint: sm, $max-widths: $container-max-widths, $columns: $grid-columns) {
+@mixin make-max-width(
+  $size: $grid-columns,
+  $breakpoint: sm,
+  $max-widths: $container-max-widths,
+  $columns: $grid-columns
+) {
   $max-width: map_get($max-widths, $breakpoint);
 
   max-width: get-max-width($max-width, $size, $columns);

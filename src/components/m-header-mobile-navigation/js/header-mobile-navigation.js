@@ -1,20 +1,20 @@
-import on from '../../../js/on';
-import { add, remove } from '../../../js/class-list';
-import { subscribe } from '../../../js/pubsub';
+import on from "../../../js/on";
+import { add, remove } from "../../../js/class-list";
+import { subscribe } from "../../../js/pubsub";
 
 class HeaderMobileNavigation {
   static DEFAULTS = {
-    nav: '.js-header-mobile-navigation__nav',
-    category: 'js-header-mobile-navigation__category',
-    back: 'js-header-mobile-navigation__back',
-    isSubMenuOpenClass: 'is-header-mobile-navigation-nav-open',
-  }
+    nav: ".js-header-mobile-navigation__nav",
+    category: "js-header-mobile-navigation__category",
+    back: "js-header-mobile-navigation__back",
+    isSubMenuOpenClass: "is-header-mobile-navigation-nav-open"
+  };
 
   constructor(wcNode, options) {
     this.wcNode = wcNode;
     this.options = {
       ...HeaderMobileNavigation.DEFAULTS,
-      ...options,
+      ...options
     };
 
     this.isOpen = false;
@@ -38,8 +38,20 @@ class HeaderMobileNavigation {
   on() {
     this.off();
 
-    this.unCategoryClick = on(this.nav, 'click', this.options.category, this.handleCategoryClick, { passive: false });
-    this.unBackClick = on(this.nav, 'click', this.options.back, this.handleBackClick, { passive: false });
+    this.unCategoryClick = on(
+      this.nav,
+      "click",
+      this.options.category,
+      this.handleCategoryClick,
+      { passive: false }
+    );
+    this.unBackClick = on(
+      this.nav,
+      "click",
+      this.options.back,
+      this.handleBackClick,
+      { passive: false }
+    );
   }
 
   off() {
@@ -59,9 +71,21 @@ class HeaderMobileNavigation {
     if (this._contextNode) {
       this.offContextEnabled();
 
-      this.unSubscribeOpen = subscribe('header-mobile/open', this.open, this._contextNode);
-      this.unSubscribeClose = subscribe('header-mobile/close', this.close, this._contextNode);
-      this.unSubscribeFadeFinish = subscribe('header-mobile/fade-finish', this.fadeFinish, this._contextNode);
+      this.unSubscribeOpen = subscribe(
+        "header-mobile/open",
+        this.open,
+        this._contextNode
+      );
+      this.unSubscribeClose = subscribe(
+        "header-mobile/close",
+        this.close,
+        this._contextNode
+      );
+      this.unSubscribeFadeFinish = subscribe(
+        "header-mobile/fade-finish",
+        this.fadeFinish,
+        this._contextNode
+      );
     }
   }
 
@@ -77,11 +101,11 @@ class HeaderMobileNavigation {
 
   open = () => {
     this.isOpen = true;
-  }
+  };
 
   close = () => {
     this.isOpen = false;
-  }
+  };
 
   fadeFinish = () => {
     if (this.isOpen || !this.opened) {
@@ -97,7 +121,7 @@ class HeaderMobileNavigation {
 
       open = this.opened.pop();
     }
-  }
+  };
 
   handleCategoryClick = (e, delegateTarget) => {
     if (!this.options.preventDefault) {
@@ -116,12 +140,12 @@ class HeaderMobileNavigation {
 
       this.opened.push({
         parentNode,
-        scrollTop,
+        scrollTop
       });
     }
-  }
+  };
 
-  handleBackClick = (e) => {
+  handleBackClick = e => {
     if (!this.options.preventDefault) {
       e.preventDefault();
     }
@@ -132,7 +156,7 @@ class HeaderMobileNavigation {
     remove(parentNode, this.options.isSubMenuOpenClass);
 
     canvas.scrollTop = scrollTop;
-  }
+  };
 
   destroy() {
     this.off();

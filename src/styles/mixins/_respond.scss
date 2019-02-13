@@ -52,7 +52,11 @@
 /// @param {string} $breakpoint - Either an existing breakpoint key.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @mixin respond-only($breakpoint, $breakpoints: $grid-breakpoints) {
-  @include respond-between($breakpoint, $breakpoint, $breakpoints: $grid-breakpoints) {
+  @include respond-between(
+    $breakpoint,
+    $breakpoint,
+    $breakpoints: $grid-breakpoints
+  ) {
     @content;
   }
 }

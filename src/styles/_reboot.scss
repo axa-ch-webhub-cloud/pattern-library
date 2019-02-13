@@ -10,7 +10,6 @@
 //
 // Normalize is licensed MIT. https://github.com/necolas/normalize.css
 
-
 // Document
 //
 // 1. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
@@ -26,7 +25,6 @@
 *::after {
   box-sizing: border-box; // 1
 }
-
 
 // Vertical Rhythm
 //
@@ -53,7 +51,17 @@ html {
 
 // stylelint-disable selector-list-comma-newline-after
 // Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
-article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+article,
+aside,
+dialog,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
   display: block;
 }
 // stylelint-enable selector-list-comma-newline-after
@@ -96,7 +104,6 @@ hr {
   overflow: visible; // 2
 }
 
-
 //
 // Typography
 //
@@ -106,7 +113,12 @@ hr {
 // By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
 // margin for easier control within type scales as it avoids margin collapsing.
 // stylelint-disable selector-list-comma-newline-after
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: $headings-margin-top;
   margin-bottom: 0;
 }
@@ -121,7 +133,6 @@ p {
   margin-bottom: 0;
 }
 
-
 // Abbreviations
 //
 // 1. Remove the bottom border in Firefox 39-.
@@ -130,7 +141,8 @@ p {
 // 4. Duplicate behavior to the data-* attribute for our tooltip plugin
 
 abbr[title],
-abbr[data-original-title] { // 4
+abbr[data-original-title] {
+  // 4
   text-decoration: underline; // 2
   text-decoration: underline dotted; // 2
   cursor: help; // 3
@@ -198,9 +210,12 @@ sup {
   vertical-align: baseline;
 }
 
-sub { bottom: -0.25em; }
-sup { top: -0.5em; }
-
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
 
 //
 // Links
@@ -240,7 +255,6 @@ a:not([href]):not([tabindex]) {
   }
 }
 
-
 //
 // Code
 //
@@ -270,7 +284,6 @@ pre {
   -ms-overflow-style: scrollbar;
 }
 
-
 //
 // Figures
 //
@@ -279,7 +292,6 @@ figure {
   // Apply a consistent margin strategy (matches our type styles).
   margin: $margin-top-base 0 0;
 }
-
 
 //
 // Images and content
@@ -293,7 +305,6 @@ img {
 svg:not(:root) {
   overflow: hidden; // Hide the overflow in IE
 }
-
 
 // Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
 //
@@ -317,7 +328,6 @@ textarea {
   touch-action: manipulation;
 }
 
-
 //
 // Tables
 //
@@ -339,7 +349,6 @@ th {
   // closest parent with a set `text-align`.
   text-align: inherit;
 }
-
 
 //
 // Forms
@@ -412,7 +421,6 @@ input[type="checkbox"] {
   box-sizing: border-box; // 1. Add the correct box sizing in IE 10-
   padding: 0; // 2. Remove the padding in IE 10-
 }
-
 
 input[type="date"],
 input[type="time"],

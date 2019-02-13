@@ -55,7 +55,8 @@
   @include unstyle-list();
   @include clearfix();
 
-  margin: $footer-social__list-margin-top $footer-social__list-margin-x 0 $footer-social__list-margin-x;
+  margin: $footer-social__list-margin-top $footer-social__list-margin-x 0
+    $footer-social__list-margin-x;
 
   // if no title -> disable top margin
   &:first-child {
@@ -106,7 +107,7 @@
 
     // inline always with colon at end of title
     &::after {
-      content: ':';
+      content: ":";
     }
   }
 

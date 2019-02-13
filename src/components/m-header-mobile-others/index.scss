@@ -18,7 +18,8 @@
 .m-header-mobile-others__list-item {
   display: block;
 
-  border-top: $header-mobile-others__list-item-border-top-width solid $header-mobile-others__list-item-border-top-color;
+  border-top: $header-mobile-others__list-item-border-top-width solid
+    $header-mobile-others__list-item-border-top-color;
 
   &:first-child {
     border-top: none;
@@ -31,7 +32,8 @@
 
   display: block;
 
-  padding: $header-mobile-others__link-y-padding $header-mobile-others__link-x-padding;
+  padding: $header-mobile-others__link-y-padding
+    $header-mobile-others__link-x-padding;
 
   color: $header-mobile-others__link-color;
   text-transform: uppercase;

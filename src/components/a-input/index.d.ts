@@ -1,4 +1,4 @@
-import { Icon } from '../a-icon';
+import { Icon } from "../a-icon";
 
 export interface Props {
   onAxaChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,5 +15,4 @@ export interface Props {
   readonly?: boolean;
 }
 
-export default interface AXAInput extends HTMLElement, Props {
-}
+export default interface AXAInput extends HTMLElement, Props {}

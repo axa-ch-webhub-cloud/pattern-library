@@ -8,5 +8,4 @@ export interface Props {
   disabled?: boolean;
 }
 
-export default interface AXAChoice extends HTMLElement, Props {
-}
+export default interface AXAChoice extends HTMLElement, Props {}

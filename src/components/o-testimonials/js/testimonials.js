@@ -1,31 +1,30 @@
-import Swipe from '../../../js/swipe';
-import on from '../../../js/on';
-import getAttribute from '../../../js/get-attribute';
-import debounce from '../../../js/debounce';
-import ownerWindow from '../../../js/owner-window';
-import UiEvents, { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
+import Swipe from "../../../js/swipe";
+import on from "../../../js/on";
+import getAttribute from "../../../js/get-attribute";
+import debounce from "../../../js/debounce";
+import ownerWindow from "../../../js/owner-window";
+import UiEvents, { AXA_EVENTS, EVENTS } from "../../../js/ui-events";
 
 class Testimonials extends UiEvents {
   static DEFAULTS = {
-    controlLeft: '.js-o-testimonials__control-left',
-    controlRight: '.js-o-testimonials__control-right',
-    slides: '.js-o-testimonial__item',
-    slider: '.js-o-testimonials',
-    navigator: '.js-o-testimonials__navigator',
-    animationLeft: 'o-testimonials__item_animation_left',
-    animationRight: 'o-testimonials__item_animation_right',
-    autoRotateDisabled: 'auto-rotate-disabled',
-    keysEnabled: 'keys-enabled',
-    autoRotateTime: 'auto-rotate-time',
-    showAllInline: 'show-all-inline',
+    controlLeft: ".js-o-testimonials__control-left",
+    controlRight: ".js-o-testimonials__control-right",
+    slides: ".js-o-testimonial__item",
+    slider: ".js-o-testimonials",
+    navigator: ".js-o-testimonials__navigator",
+    animationLeft: "o-testimonials__item_animation_left",
+    animationRight: "o-testimonials__item_animation_right",
+    autoRotateDisabled: "auto-rotate-disabled",
+    keysEnabled: "keys-enabled",
+    autoRotateTime: "auto-rotate-time",
+    showAllInline: "show-all-inline"
   };
 
-  constructor(wcNode, options = {
-  }) {
+  constructor(wcNode, options = {}) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...Testimonials.DEFAULTS,
-      ...options,
+      ...options
     };
 
     super(wcNode, options);
@@ -44,8 +43,14 @@ class Testimonials extends UiEvents {
     this.controlLeft = this.wcNode.querySelector(this.options.controlLeft);
     this.controlRight = this.wcNode.querySelector(this.options.controlRight);
     this.slider = this.wcNode.querySelector(this.options.slider);
-    this.autoRotateDisabled = getAttribute(this.wcNode, this.options.autoRotateDisabled);
-    this.autoRotateTimeInMiliseconds = getAttribute(this.wcNode, this.options.autoRotateTime);
+    this.autoRotateDisabled = getAttribute(
+      this.wcNode,
+      this.options.autoRotateDisabled
+    );
+    this.autoRotateTimeInMiliseconds = getAttribute(
+      this.wcNode,
+      this.options.autoRotateTime
+    );
     this.showAllInline = getAttribute(this.wcNode, this.options.showAllInline);
     if (!this.autoRotateTimeInMiliseconds) {
       this.autoRotateTimeInMiliseconds = 5000;
@@ -70,19 +75,45 @@ class Testimonials extends UiEvents {
     for (let i = 0, { length } = this.slides; i < length; i++) {
       this.minHeight = this.slides[i].clientHeight;
     }
-    this.slider.querySelector(this.options.navigator).style.minHeight = `${this.minHeight}px`;
+    this.slider.querySelector(this.options.navigator).style.minHeight = `${
+      this.minHeight
+    }px`;
   }
 
   on() {
     this.off();
-    this.controlLeftClicked = on(this.controlLeft, EVENTS.CLICK, this.goToPreviousSlide);
-    this.controlRightClicked = on(this.controlRight, EVENTS.CLICK, this.goToNextSlide);
+    this.controlLeftClicked = on(
+      this.controlLeft,
+      EVENTS.CLICK,
+      this.goToPreviousSlide
+    );
+    this.controlRightClicked = on(
+      this.controlRight,
+      EVENTS.CLICK,
+      this.goToNextSlide
+    );
     if (this.keysEnabled) {
-      this.controlKeysClicked = on(this.wcNode.ownerDocument, EVENTS.KEYUP, this.handleKeyup);
+      this.controlKeysClicked = on(
+        this.wcNode.ownerDocument,
+        EVENTS.KEYUP,
+        this.handleKeyup
+      );
     }
-    this.swipedLeft = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_LEFT, this.goToNextSlide);
-    this.swipedRight = on(this.wcNode, AXA_EVENTS.AXA_SWIPE_RIGHT, this.goToPreviousSlide);
-    this._unResize = on(ownerWindow(this.wcNode), EVENTS.RESIZE, debounce(this.setMinimumHeightOnResize, 300));
+    this.swipedLeft = on(
+      this.wcNode,
+      AXA_EVENTS.AXA_SWIPE_LEFT,
+      this.goToNextSlide
+    );
+    this.swipedRight = on(
+      this.wcNode,
+      AXA_EVENTS.AXA_SWIPE_RIGHT,
+      this.goToPreviousSlide
+    );
+    this._unResize = on(
+      ownerWindow(this.wcNode),
+      EVENTS.RESIZE,
+      debounce(this.setMinimumHeightOnResize, 300)
+    );
   }
 
   off() {
@@ -112,7 +143,7 @@ class Testimonials extends UiEvents {
     this.hideAllSlides();
     clearTimeout(this.autoRotateTimer);
     this.showSlide(0);
-  }
+  };
 
   initSwipe() {
     const swiper = new Swipe(this.wcNode);
@@ -124,7 +155,7 @@ class Testimonials extends UiEvents {
     this.showSlide(-1);
   };
 
-  handleKeyup = (ev) => {
+  handleKeyup = ev => {
     const e = ev || window.event;
     if (+e.keyCode === 37) {
       this.goToPreviousSlide();
@@ -140,19 +171,19 @@ class Testimonials extends UiEvents {
 
   hideAllSlides() {
     for (let i = 0, { length } = this.slides; i < length; i++) {
-      this.slides[i].style.display = 'none';
+      this.slides[i].style.display = "none";
     }
   }
 
   showAllSlides() {
     for (let i = 0, { length } = this.slides; i < length; i++) {
-      this.slides[i].style.display = 'block';
+      this.slides[i].style.display = "block";
     }
   }
 
   showControls() {
-    this.controlRight.style.display = 'block';
-    this.controlLeft.style.display = 'block';
+    this.controlRight.style.display = "block";
+    this.controlLeft.style.display = "block";
   }
 
   showSlide(positionDifference) {
@@ -171,22 +202,19 @@ class Testimonials extends UiEvents {
     } else {
       this.slides[this.slideIndex].classList.add(this.options.animationRight);
     }
-    this.slides[this.slideIndex].style.display = 'block';
+    this.slides[this.slideIndex].style.display = "block";
     this.autoRotate();
   }
 
   autoRotate() {
     // auto rotate until disabled
     if (!this.autoRotateDisabled) {
-      this.autoRotateTimer = setTimeout(
-        () => {
-          if (!this.autoRotateDisabled) {
-            // if disabled meanwhile
-            this.showSlide(+1);
-          }
-        },
-        this.autoRotateTimeInMiliseconds,
-      );
+      this.autoRotateTimer = setTimeout(() => {
+        if (!this.autoRotateDisabled) {
+          // if disabled meanwhile
+          this.showSlide(+1);
+        }
+      }, this.autoRotateTimeInMiliseconds);
     }
   }
 

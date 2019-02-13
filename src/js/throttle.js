@@ -1,4 +1,4 @@
-import debounce from './debounce';
+import debounce from "./debounce";
 
 /**
  * Creates a throttled function that only invokes `func` at most once per
@@ -41,7 +41,9 @@ import debounce from './debounce';
 
 function throttle(func, wait, { leading = true, trailing = true } = {}) {
   return debounce(func, wait, {
-    leading, maxWait: wait, trailing,
+    leading,
+    maxWait: wait,
+    trailing
   });
 }
 

@@ -61,7 +61,7 @@
   @if ($debug) {
     &::after {
       margin-left: 0.5em;
-      content: '[#{$name}]';
+      content: "[#{$name}]";
 
       color: $color-prim-gray;
       font-size: smaller;
@@ -74,28 +74,48 @@
 /// @param {string} $weight [null] - The name of a font weight.
 /// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-main-title--publico($weight: null, $debug: false) {
-  @include typo-css($name: typo-78, $face: publico, $weight: $weight, $debug: $debug);
+  @include typo-css(
+    $name: typo-78,
+    $face: publico,
+    $weight: $weight,
+    $debug: $debug
+  );
 }
 
 /// Render **Page Title** (*typo-62*) with Publico Headline.
 /// @param {string} $weight [null] - The name of a font weight.
 /// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-page-title--publico($weight: null, $debug: false) {
-  @include typo-css($name: typo-62, $face: publico, $weight: $weight, $debug: $debug);
+  @include typo-css(
+    $name: typo-62,
+    $face: publico,
+    $weight: $weight,
+    $debug: $debug
+  );
 }
 
 /// Render **Slice Title** (*typo-48*) with Publico Headline.
 /// @param {string} $weight [null] - The name of a font weight.
 /// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-slice-title--publico($weight: null, $debug: false) {
-  @include typo-css($name: typo-48, $face: publico, $weight: $weight, $debug: $debug);
+  @include typo-css(
+    $name: typo-48,
+    $face: publico,
+    $weight: $weight,
+    $debug: $debug
+  );
 }
 
 /// Render **Small Module Title** (*typo-36*) with Publico Headline.
 /// @param {string} $weight [null] - The name of a font weight.
 /// @param {bool} $debug [false] - Add debug information to `::after` pseudo element.
 @mixin typo-small-module-title--publico($weight: null, $debug: false) {
-  @include typo-css($name: typo-36, $face: publico, $weight: $weight, $debug: $debug);
+  @include typo-css(
+    $name: typo-36,
+    $face: publico,
+    $weight: $weight,
+    $debug: $debug
+  );
 }
 
 /// Render **Main Title** (*typo-78*) with Source Sans Pro.

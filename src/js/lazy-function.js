@@ -7,7 +7,7 @@
 
 /* eslint-disable func-names */
 function lazyFunction(func) {
-  return function (...args) {
+  return function(...args) {
     return func.apply(this, args);
   };
 }

@@ -90,7 +90,11 @@
 }
 
 .m-button--only-icon {
-  $color-button-icon--disabled: get-color($button-color, default, icon--disabled);
+  $color-button-icon--disabled: get-color(
+    $button-color,
+    default,
+    icon--disabled
+  );
 
   @include button--only-icon();
 
@@ -107,7 +111,11 @@
 }
 
 .m-button--arrow {
-  $color-button-arrow--disabled: get-color($button-color, default, arrow--disabled);
+  $color-button-arrow--disabled: get-color(
+    $button-color,
+    default,
+    arrow--disabled
+  );
 
   @include button--arrow-adjust();
 

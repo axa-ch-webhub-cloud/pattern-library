@@ -8,7 +8,7 @@ export {}; // this file needs to be a module
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'axa-core': any;
+      "axa-core": any;
     }
   }
 }

@@ -1,10 +1,10 @@
-import on from '../../../js/on';
-import fire from '../../../js/fire';
-import getAttribute from '../../../js/get-attribute';
-import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
-import DeviceStateObserver from '../../../js/device-state';
+import on from "../../../js/on";
+import fire from "../../../js/fire";
+import getAttribute from "../../../js/get-attribute";
+import { AXA_EVENTS, EVENTS } from "../../../js/ui-events";
+import DeviceStateObserver from "../../../js/device-state";
 
-const hasDropdownBreakpoints = 'xs';
+const hasDropdownBreakpoints = "xs";
 
 // @TODO: dependency to a-device-state not explicit
 /**
@@ -12,14 +12,14 @@ const hasDropdownBreakpoints = 'xs';
  */
 export default class FooterLinks {
   static DEFAULTS = {
-    link: 'js-footer-links__link',
+    link: "js-footer-links__link"
   };
 
   constructor(wcNode, options) {
     this.wcNode = wcNode;
     this.options = {
       ...FooterLinks.DEFAULTS,
-      ...options,
+      ...options
     };
 
     this.deviceStateObserver = new DeviceStateObserver();
@@ -32,7 +32,7 @@ export default class FooterLinks {
   on() {
     this.off();
 
-    this.unsubscribe = this.deviceStateObserver.listen((state) => {
+    this.unsubscribe = this.deviceStateObserver.listen(state => {
       const { breakpoint } = state;
       const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
 
@@ -46,7 +46,13 @@ export default class FooterLinks {
 
     this.deviceStateObserver.triggerOnce();
 
-    this.unClick = on(this.wcNode, EVENTS.CLICK, this.options.link, this.handleClick, { passive: false });
+    this.unClick = on(
+      this.wcNode,
+      EVENTS.CLICK,
+      this.options.link,
+      this.handleClick,
+      { passive: false }
+    );
   }
 
   off() {
@@ -61,15 +67,23 @@ export default class FooterLinks {
 
   handleClick(event, delegateTarget) {
     // @todo: would be cool to be able to use props here, cause now it needs JSON.parse...
-    const index = getAttribute(delegateTarget, 'index');
-    const { wcNode: { props: { items } } } = this;
+    const index = getAttribute(delegateTarget, "index");
+    const {
+      wcNode: {
+        props: { items }
+      }
+    } = this;
     /**
      * axa-click event.
      *
      * @event FooterLinks#axa-click
      * @type {object}
      */
-    const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, items[index], { bubbles: true, cancelable: true, composed: true });
+    const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, items[index], {
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    });
 
     if (!cancelled) {
       event.preventDefault();

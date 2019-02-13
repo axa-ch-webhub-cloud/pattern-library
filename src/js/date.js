@@ -1,28 +1,28 @@
 export const DEFAULT_NEW_YEARS = 10;
-export const TODAY = 'TODAY';
+export const TODAY = "TODAY";
 
 // https://en.wikipedia.org/wiki/Date_format_by_country
 const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
 
-export const getAllLocaleMonthsArray = (locale = 'en-UK') => {
+export const getAllLocaleMonthsArray = (locale = "en-UK") => {
   const finalArray = [];
   const objDate = new Date();
   objDate.setDate(1);
-  [...Array(12).keys()].forEach((index) => {
+  [...Array(12).keys()].forEach(index => {
     objDate.setMonth(index);
-    let month = objDate.toLocaleString(locale, { month: 'long' });
+    let month = objDate.toLocaleString(locale, { month: "long" });
     month = month[0].toUpperCase() + month.slice(1);
     finalArray.push(month);
   });
   return finalArray;
 };
 
-export const getCurrentLocaleMonth = (locale = 'en-UK') => {
+export const getCurrentLocaleMonth = (locale = "en-UK") => {
   const objDate = new Date();
-  return objDate.toLocaleString(locale, { month: 'long' });
+  return objDate.toLocaleString(locale, { month: "long" });
 };
 
-export const getSpecificYears = (yearsRange) => {
+export const getSpecificYears = yearsRange => {
   let { lowerEndYear, higherEndYear } = yearsRange;
   const finalArray = [];
 
@@ -48,27 +48,28 @@ export const getSpecificYears = (yearsRange) => {
 };
 
 // Respects current timezone of the date object we convert to "iso like format"
-export const toLocalISOString = (date) => {
+export const toLocalISOString = date => {
   // ISO 8601
   const d = date;
-  const pad = n => n < 10 ? `0${n}` : n;
+  const pad = n => (n < 10 ? `0${n}` : n);
   const tz = d.getTimezoneOffset(); // mins
-  let tzs = (tz > 0 ? '-' : '+') + pad(parseInt(tz / 60, 10));
+  let tzs = (tz > 0 ? "-" : "+") + pad(parseInt(tz / 60, 10));
 
-  if (tz % 60 !== 0) { tzs += pad(tz % 60); }
-  if (tz === 0) { tzs = 'Z'; }
+  if (tz % 60 !== 0) {
+    tzs += pad(tz % 60);
+  }
+  if (tz === 0) {
+    tzs = "Z";
+  }
 
-  return `${d.getFullYear()}-${
-    pad(d.getMonth() + 1)}-${
-    pad(d.getDate())}T${
-    pad(d.getHours())}:${
-    pad(d.getMinutes())}:${
-    pad(d.getSeconds())}${tzs}`;
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
+    d.getHours()
+  )}:${pad(d.getMinutes())}:${pad(d.getSeconds())}${tzs}`;
 };
 
-export const getStartOfWeek = (date) => {
+export const getStartOfWeek = date => {
   const iDayOfWeek = date.getDay();
-  const iDifference = (date.getDate() - iDayOfWeek) + (iDayOfWeek === 0 ? -6 : 1);
+  const iDifference = date.getDate() - iDayOfWeek + (iDayOfWeek === 0 ? -6 : 1);
   return new Date(date.setDate(iDifference));
 };
 
@@ -76,18 +77,22 @@ export const getWeekdays = (date, locale) => {
   const out = [];
   const start = getStartOfWeek(date);
   for (let i = 0; i < 7; i++) {
-    out.push(start.toLocaleString(locale, { weekday: 'short' }).substr(0, 2));
+    out.push(start.toLocaleString(locale, { weekday: "short" }).substr(0, 2));
     start.setDate(start.getDate() + 1);
   }
   return out;
 };
 
-export const getLocalWeekdayArray = (locale = 'en-UK') => {
+export const getLocalWeekdayArray = (locale = "en-UK") => {
   const finalArray = [];
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
   let currentDay = objDate.getDate();
-  const lastDayOfMonth = new Date(objDate.getFullYear(), objDate.getMonth() + 1, 0).getDate();
+  const lastDayOfMonth = new Date(
+    objDate.getFullYear(),
+    objDate.getMonth() + 1,
+    0
+  ).getDate();
 
   while (currentWeekDay !== 1) {
     if (currentDay < lastDayOfMonth) {
@@ -101,21 +106,29 @@ export const getLocalWeekdayArray = (locale = 'en-UK') => {
     currentWeekDay = objDate.getDay();
   }
 
-
-  [...Array(7).keys()].forEach((index) => {
+  [...Array(7).keys()].forEach(index => {
     objDate.setDate(currentDay + index);
-    finalArray.push(objDate.toLocaleString(locale, { weekday: 'long' }).replace(/[^ -~]/g, '').substring(0, 2));
+    finalArray.push(
+      objDate
+        .toLocaleString(locale, { weekday: "long" })
+        .replace(/[^ -~]/g, "")
+        .substring(0, 2)
+    );
   });
   return finalArray;
 };
 
-export const getNumericWeekday = (locale = 'en-UK', date = new Date()) => {
+export const getNumericWeekday = (locale = "en-UK", date = new Date()) => {
   const objDate = new Date();
   let currentWeekDay = objDate.getDay();
   let currentDay = objDate.getDate();
-  const weekday = date.toLocaleString(locale, { weekday: 'long' });
+  const weekday = date.toLocaleString(locale, { weekday: "long" });
   let weekdayIndex = null;
-  const lastDayOfMonth = new Date(objDate.getFullYear(), objDate.getMonth() + 1, 0).getDate();
+  const lastDayOfMonth = new Date(
+    objDate.getFullYear(),
+    objDate.getMonth() + 1,
+    0
+  ).getDate();
 
   while (currentWeekDay !== 1) {
     if (currentDay < lastDayOfMonth) {
@@ -129,9 +142,9 @@ export const getNumericWeekday = (locale = 'en-UK', date = new Date()) => {
     currentWeekDay = objDate.getDay();
   }
 
-  [...Array(7).keys()].forEach((index) => {
+  [...Array(7).keys()].forEach(index => {
     objDate.setDate(currentDay + index);
-    if (weekday === objDate.toLocaleString(locale, { weekday: 'long' })) {
+    if (weekday === objDate.toLocaleString(locale, { weekday: "long" })) {
       weekdayIndex = index;
     }
   });
@@ -139,14 +152,22 @@ export const getNumericWeekday = (locale = 'en-UK', date = new Date()) => {
 };
 
 // eslint-disable-next-line no-control-regex
-export const clearStringFromIEGeneratedCharacters = string => string.replace(/[^\x00-\x7F]/g, '');
+export const clearStringFromIEGeneratedCharacters = string =>
+  string.replace(/[^\x00-\x7F]/g, "");
 
-export const getLocaleDayMonthYear = (locale = 'en-UK', date = new Date()) => {
-  const objDate = date.toLocaleString(locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
+export const getLocaleDayMonthYear = (locale = "en-UK", date = new Date()) => {
+  const objDate = date.toLocaleString(locale, {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric"
+  });
   return clearStringFromIEGeneratedCharacters(objDate);
 };
 
-export const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
+export const parseLocalisedDateIfValid = (
+  locale = "en-UK",
+  inputValue = ""
+) => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 10, 23);
 
@@ -155,26 +176,37 @@ export const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => 
   }
 
   // find out which out of 4 valid seperator the current locale has
-  const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(blueprint);
+  const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(
+    blueprint
+  );
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
 
-  const usedSeperator = localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
+  const usedSeperator =
+    localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
 
   if (!usedSeperator) {
     return null;
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
-  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(usedSeperator);
-  const splittedBlueprint = clearStringFromIEGeneratedCharacters(localisedBlueprintDateString).split(usedSeperator);
+  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(
+    usedSeperator
+  );
+  const splittedBlueprint = clearStringFromIEGeneratedCharacters(
+    localisedBlueprintDateString
+  ).split(usedSeperator);
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)
-  const monthIndex = splittedBlueprint.indexOf('11');
-  const dayIndex = splittedBlueprint.indexOf('23');
-  const yearIndex = splittedBlueprint.indexOf('2017');
+  const monthIndex = splittedBlueprint.indexOf("11");
+  const dayIndex = splittedBlueprint.indexOf("23");
+  const yearIndex = splittedBlueprint.indexOf("2017");
 
-  const dateUnderValidation = new Date(splittedValue[yearIndex], splittedValue[monthIndex] - 1, splittedValue[dayIndex]);
+  const dateUnderValidation = new Date(
+    splittedValue[yearIndex],
+    splittedValue[monthIndex] - 1,
+    splittedValue[dayIndex]
+  );
 
   // eslint-disable-next-line no-restricted-globals
   if (dateUnderValidation instanceof Date && !isNaN(dateUnderValidation)) {

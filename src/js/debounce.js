@@ -51,7 +51,11 @@
  * }
  */
 
-function debounce(func, wait = 0, { leading = false, trailing = true, maxWait = false } = {}) {
+function debounce(
+  func,
+  wait = 0,
+  { leading = false, trailing = true, maxWait = false } = {}
+) {
   let args;
   let timeoutId;
   let maxTimeoutId;
@@ -71,7 +75,9 @@ function debounce(func, wait = 0, { leading = false, trailing = true, maxWait = 
     args = rest;
 
     if (waitFlag) {
-      if (timeoutId) { clearTimeout(timeoutId); }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
 
       timeoutId = setTimeout(delayed, wait);
     }
@@ -106,7 +112,9 @@ function debounce(func, wait = 0, { leading = false, trailing = true, maxWait = 
    * @private
    */
   function delayed() {
-    if (maxTimeoutId) { clearTimeout(maxTimeoutId); }
+    if (maxTimeoutId) {
+      clearTimeout(maxTimeoutId);
+    }
 
     complete();
   }
@@ -116,7 +124,9 @@ function debounce(func, wait = 0, { leading = false, trailing = true, maxWait = 
    * @private
    */
   function maxDelayed() {
-    if (timeoutId) { clearTimeout(timeoutId); }
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
 
     complete();
   }

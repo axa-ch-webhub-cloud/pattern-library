@@ -1,31 +1,33 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import classnames from 'classnames';
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import classnames from "classnames";
 
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
 // import the styles used for this component
-import styles from './index.scss';
+import styles from "./index.scss";
 // import the template used for this component
-import template from './_template';
-import Sticky from './js/sticky';
+import template from "./_template";
+import Sticky from "./js/sticky";
 
 export class AXASticky extends BaseComponentGlobal {
-  static tagName = 'axa-sticky'
+  static tagName = "axa-sticky";
   static propTypes = {
-    debug: PropTypes.bool,
-  }
+    debug: PropTypes.bool
+  };
 
   init() {
     super.init({ styles, template });
 
-    this.consumeContext('axa-sticky-container');
+    this.consumeContext("axa-sticky-container");
   }
 
   willRenderCallback() {
-    const { props: { debug } } = this;
+    const {
+      props: { debug }
+    } = this;
 
-    this.className = classnames(this.initialClassName, 'm-sticky js-sticky', {
-      'm-sticky--debug': debug,
+    this.className = classnames(this.initialClassName, "m-sticky js-sticky", {
+      "m-sticky--debug": debug
     });
   }
 

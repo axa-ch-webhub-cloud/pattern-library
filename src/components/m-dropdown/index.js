@@ -1,40 +1,42 @@
-import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
-import styles from './index.scss';
-import template from './_template';
-import BaseComponentGlobal from '../../js/abstract/base-component-global';
-import defineOnce from '../../js/define-once';
-import urlPropType from '../../js/prop-types/url-prop-type';
-import on from '../../js/on';
-import fire from '../../js/fire';
-import { EVENTS, AXA_EVENTS } from '../../js/ui-events';
-import debounce from '../../js/debounce';
+import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import styles from "./index.scss";
+import template from "./_template";
+import BaseComponentGlobal from "../../js/abstract/base-component-global";
+import defineOnce from "../../js/define-once";
+import urlPropType from "../../js/prop-types/url-prop-type";
+import on from "../../js/on";
+import fire from "../../js/fire";
+import { EVENTS, AXA_EVENTS } from "../../js/ui-events";
+import debounce from "../../js/debounce";
 
 const DEFAULTS = {
-  selectClass: 'js-dropdown__content',
-  toggleClass: 'js-dropdown__toggle',
-  nativeSelectClass: 'js-dropdown__native-select',
-  isOpenClass: 'is-dropdown-open',
-  isAnimatingClass: 'is-dropdown-animating',
+  selectClass: "js-dropdown__content",
+  toggleClass: "js-dropdown__toggle",
+  nativeSelectClass: "js-dropdown__native-select",
+  isOpenClass: "is-dropdown-open",
+  isAnimatingClass: "is-dropdown-animating"
 };
 
 class AXADropdown extends BaseComponentGlobal {
-  static tagName = 'axa-dropdown';
+  static tagName = "axa-dropdown";
   static propTypes = {
     classes: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      url: urlPropType,
-      value: PropTypes.string,
-      isSelected: PropTypes.bool,
-    })),
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        url: urlPropType,
+        value: PropTypes.string,
+        isSelected: PropTypes.bool
+      })
+    ),
     native: PropTypes.bool,
-    size: PropTypes.oneOf(['sm']),
+    size: PropTypes.oneOf(["sm"]),
     title: PropTypes.string,
-    value: PropTypes.string,
-  }
+    value: PropTypes.string
+  };
 
   static get observedAttributes() {
-    return ['items', 'title', 'native', 'value'];
+    return ["items", "title", "native", "value"];
   }
 
   init() {
@@ -48,23 +50,47 @@ class AXADropdown extends BaseComponentGlobal {
     this.isOpen = false; // use props.isOpen?
     window.openDropdownInstance = false;
 
-    this.onDropdownClick =
-      on(this, EVENTS.CLICK, DEFAULTS.toggleClass, this.handleDropdownClick, { capture: true, passive: false });
+    this.onDropdownClick = on(
+      this,
+      EVENTS.CLICK,
+      DEFAULTS.toggleClass,
+      this.handleDropdownClick,
+      { capture: true, passive: false }
+    );
 
     // the enhanced dropdown is a list with links -> clicks event. the native is a select change event
-    this.onDropdownValueClick =
-      on(this, EVENTS.CLICK, DEFAULTS.selectClass, e => this.handleDropdownValueClick(e), { capture: true, passive: false });
+    this.onDropdownValueClick = on(
+      this,
+      EVENTS.CLICK,
+      DEFAULTS.selectClass,
+      e => this.handleDropdownValueClick(e),
+      { capture: true, passive: false }
+    );
 
-    this.onNativeDropdownChange =
-      on(this, EVENTS.CHANGE, DEFAULTS.nativeSelectClass, e => this.handleDropdownNativeValueChange(e), { capture: true, passive: false });
+    this.onNativeDropdownChange = on(
+      this,
+      EVENTS.CHANGE,
+      DEFAULTS.nativeSelectClass,
+      e => this.handleDropdownNativeValueChange(e),
+      { capture: true, passive: false }
+    );
 
-    window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
-    window.addEventListener('click', e => this.handleWindowClick(e));
-    window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.querySelector(`.${DEFAULTS.selectClass}`)), 250));
+    window.addEventListener("keydown", e => this.handleWindowKeyDown(e));
+    window.addEventListener("click", e => this.handleWindowClick(e));
+    window.addEventListener(
+      "resize",
+      debounce(
+        () =>
+          this.handleViewportCheck(
+            this.querySelector(`.${DEFAULTS.selectClass}`)
+          ),
+        250
+      )
+    );
   }
 
   didRenderCallback() {
-    this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
+    this.dropdownLinks = this.querySelectorAll(".js-dropdown__link");
   }
 
   handleWindowClick() {
@@ -74,7 +100,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   handleWindowKeyDown(e) {
-    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)) {
+    if (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) {
       e.preventDefault();
       this.closeDropdown(this);
     }
@@ -82,15 +108,17 @@ class AXADropdown extends BaseComponentGlobal {
 
   handleViewportCheck(elem) {
     if (this.shouldMove(elem)) {
-      elem.style.maxHeight = '200px';
+      elem.style.maxHeight = "200px";
     }
   }
 
   shouldMove(elem) {
     const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const bottomIsInViewport =
+      bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight);
     const enoughSpaceToMove = bounding.top > bounding.height;
-    return (!bottomIsInViewport && enoughSpaceToMove);
+    return !bottomIsInViewport && enoughSpaceToMove;
   }
 
   closeOpenDropdowns() {
@@ -99,22 +127,25 @@ class AXADropdown extends BaseComponentGlobal {
     }
   }
 
-  handleDropdownClick = (e) => {
+  handleDropdownClick = e => {
     e.preventDefault();
     e.stopPropagation();
     this.closeOpenDropdowns();
     this.toggleDropdown();
-  }
+  };
 
-  handleDropdownValueClick = (e) => {
+  handleDropdownValueClick = e => {
     e.preventDefault();
     e.stopPropagation();
     this.title = e.target.dataset.name;
     this.value = e.target.dataset.value;
     this.updateCurrentItem(e.target.dataset.value);
-    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.dataset.value, { bubbles: true, cancelable: true });
+    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.dataset.value, {
+      bubbles: true,
+      cancelable: true
+    });
     this.closeDropdown(this);
-  }
+  };
 
   handleDropdownNativeValueChange(e) {
     e.preventDefault();
@@ -122,7 +153,10 @@ class AXADropdown extends BaseComponentGlobal {
     this.value = e.target.value;
     this.title = e.target.name;
     this.updateCurrentItem(e.target.value);
-    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.value, { bubbles: true, cancelable: true });
+    fire(this, AXA_EVENTS.AXA_CHANGE, e.target.value, {
+      bubbles: true,
+      cancelable: true
+    });
   }
 
   forEach(array, callback, scope) {
@@ -142,19 +176,23 @@ class AXADropdown extends BaseComponentGlobal {
   openDropdown(elem) {
     elem.classList.add(DEFAULTS.isOpenClass);
     elem.isOpen = true;
-    elem.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '0'); });
+    elem.forEach(this.dropdownLinks, (index, link) => {
+      link.setAttribute("tabindex", "0");
+    });
     window.openDropdownInstance = elem;
   }
 
   closeDropdown(elem) {
     elem.classList.remove(DEFAULTS.isOpenClass);
-    elem.forEach(this.dropdownLinks, (index, link) => { link.setAttribute('tabindex', '-1'); });
+    elem.forEach(this.dropdownLinks, (index, link) => {
+      link.setAttribute("tabindex", "-1");
+    });
     elem.isOpen = false;
     window.openDropdownInstance = false;
   }
 
   updateCurrentItem(value) {
-    this.items = this.items.map((item) => {
+    this.items = this.items.map(item => {
       if (item.value === value) {
         item.isSelected = true;
         this.selectedItem = item;
@@ -169,7 +207,7 @@ class AXADropdown extends BaseComponentGlobal {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
 
-    if (hasValue && name === 'value') {
+    if (hasValue && name === "value") {
       this.updateCurrentItem(newValue.toString());
       if (this.selectedItem) {
         this.title = this.selectedItem.name;
@@ -184,35 +222,35 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   set title(value) {
-    this.setAttribute('title', value);
+    this.setAttribute("title", value);
   }
 
   get title() {
-    return this.getAttribute('title');
+    return this.getAttribute("title");
   }
 
   set items(value) {
-    this.setAttribute('items', JSON.stringify(value));
+    this.setAttribute("items", JSON.stringify(value));
   }
 
   get items() {
-    return JSON.parse(this.getAttribute('items'));
+    return JSON.parse(this.getAttribute("items"));
   }
 
   set value(value) {
-    this.setAttribute('value', value);
+    this.setAttribute("value", value);
   }
 
   get value() {
-    return this.getAttribute('value');
+    return this.getAttribute("value");
   }
 
   set native(value) {
-    this.setAttribute('native', value);
+    this.setAttribute("native", value);
   }
 
   get native() {
-    return this.getAttribute('native');
+    return this.getAttribute("native");
   }
 }
 

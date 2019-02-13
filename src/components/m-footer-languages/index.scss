@@ -54,7 +54,7 @@
     height: $footer-delimiter-height;
     margin-top: ($footer-delimiter-height / -2);
 
-    content: '';
+    content: "";
     background: $footer-delimiter-bg;
   }
 
@@ -102,7 +102,7 @@
 
     // inline always with colon at end of title
     &::after {
-      content: ':';
+      content: ":";
     }
   }
 }

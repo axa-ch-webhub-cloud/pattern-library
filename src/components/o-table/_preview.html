@@ -1,7 +1,8 @@
 <axa-container>
   <h2>With Attributes</h2>
 
-  <table is="axa-table"
+  <table
+    is="axa-table"
     cap="Caption"
     cap-side="bottom"
     headings='["Nature", "Date", "Status", { "text": "Amount", "align": "right", "sort": "down" }]'
@@ -20,7 +21,9 @@
   <h2>With Children</h2>
 
   <table is="axa-table">
-    <caption is="axa-caption">Caption</caption>
+    <caption is="axa-caption">
+      Caption
+    </caption>
     <thead is="axa-thead">
       <tr is="axa-tr">
         <th is="axa-th">Nature</th>
@@ -64,7 +67,9 @@
   <h2>Native Markup</h2>
 
   <table is="axa-table" all action>
-    <caption>Caption</caption>
+    <caption>
+      Caption
+    </caption>
     <thead>
       <tr>
         <th>Nature</th>

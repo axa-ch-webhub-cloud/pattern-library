@@ -10,28 +10,26 @@ $grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
 
 /// The grid-tiers and associated breakpoints
-$grid-breakpoints:
-  (
-    // Extra small screen / phone
+$grid-breakpoints: (
+  // Extra small screen / phone
     xs: 0,
-    // Small screen / phone
+  // Small screen / phone
     sm: 576px,
-    // Medium screen / tablet
+  // Medium screen / tablet
     md: 768px,
-    // Large screen / desktop
+  // Large screen / desktop
     lg: 992px,
-    // Extra large screen / wide desktop
+  // Extra large screen / wide desktop
     xl: 1200px,
-    // ultra large screen / extremly wide desktop
+  // ultra large screen / extremly wide desktop
     xxl: 1440px
-  ) !default;
+) !default;
 
 /// Responsive CSS `max-width` at each grid-tier
-$container-max-widths:
-  (
-    xs: auto,
-    sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px
-  ) !default;
+$container-max-widths: (
+  xs: auto,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;

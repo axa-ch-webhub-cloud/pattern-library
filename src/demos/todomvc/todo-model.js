@@ -1,4 +1,4 @@
-import { store, uuid } from './utils';
+import { store, uuid } from "./utils";
 
 class TodoModel {
   constructor(key) {
@@ -13,7 +13,7 @@ class TodoModel {
 
   inform() {
     store(this.key, this.todos);
-    this.onChanges.forEach((cb) => {
+    this.onChanges.forEach(cb => {
       cb();
     });
   }
@@ -22,7 +22,7 @@ class TodoModel {
     this.todos = this.todos.concat({
       id: uuid(),
       title,
-      completed: false,
+      completed: false
     });
 
     this.inform();
@@ -35,19 +35,21 @@ class TodoModel {
     // todo items themselves.
     this.todos = this.todos.map(todo => ({
       ...todo,
-      completed: checked,
+      completed: checked
     }));
 
     this.inform();
   }
 
   toggle(todoToToggle) {
-    this.todos = this.todos.map(todo => todo !== todoToToggle ?
-      todo :
-      {
-        ...todo,
-        completed: !todo.completed,
-      });
+    this.todos = this.todos.map(todo =>
+      todo !== todoToToggle
+        ? todo
+        : {
+            ...todo,
+            completed: !todo.completed
+          }
+    );
 
     this.inform();
   }
@@ -59,12 +61,14 @@ class TodoModel {
   }
 
   save(todoToSave, text) {
-    this.todos = this.todos.map(todo => todo !== todoToSave ?
-      todo :
-      {
-        ...todo,
-        title: text,
-      });
+    this.todos = this.todos.map(todo =>
+      todo !== todoToSave
+        ? todo
+        : {
+            ...todo,
+            title: text
+          }
+    );
 
     this.inform();
   }

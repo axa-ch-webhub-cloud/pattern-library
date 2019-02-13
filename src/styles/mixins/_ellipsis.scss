@@ -2,8 +2,8 @@
 ///
 /// @link https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
 /// @param {string} $textOverflow ["ellipsis"] - The style to be used for overflowing text (`ellipsis`, `none`, etc.).
-@mixin ellipsis($textOverflow: 'ellipsis') {
-  @if $textOverflow == 'none' {
+@mixin ellipsis($textOverflow: "ellipsis") {
+  @if $textOverflow == "none" {
     overflow: visible;
 
     text-overflow: clip;

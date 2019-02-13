@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import withReact from '../../js/with-react';
-import AXAHeader from '../../components/o-header';
-import AXAHeaderMain from '../../components/m-header-main';
-import AXAHeaderLogo from '../../components/m-header-logo';
+import React, { Component } from "react";
+import withReact from "../../js/with-react";
+import AXAHeader from "../../components/o-header";
+import AXAHeaderMain from "../../components/m-header-main";
+import AXAHeaderLogo from "../../components/m-header-logo";
 
 const AXAHeaderReact = withReact(AXAHeader);
 const AXAHeaderMainReact = withReact(AXAHeaderMain);
@@ -12,7 +12,7 @@ const TodoHeader = ({
   newTodo,
   handleNewTodoKeyDown,
   handleChange,
-  toggleAll,
+  toggleAll
 }) => (
   <AXAHeaderReact>
     <AXAHeaderMainReact firstLeft>

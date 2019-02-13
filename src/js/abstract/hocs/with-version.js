@@ -13,7 +13,7 @@ const withVersion = Base =>
    *   .then(() => {
    *     const AXAButton = customElements.get('axa-button');
    *     console.log(AXAButton.version);
- *     });
+   *     });
    */
   class WithVersion extends Base {
     static version = VERSION;

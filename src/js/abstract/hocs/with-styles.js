@@ -3,7 +3,7 @@ const withStyles = Base =>
    * Appends an optional custom element's stylesheet to the document.
    */
   class WithStyles extends Base {
-    init({ styles = '', ...options } = {}) {
+    init({ styles = "", ...options } = {}) {
       super.init(options);
 
       this._styles = styles;
@@ -29,13 +29,13 @@ const withStyles = Base =>
      */
     _appendStyles(el = this) {
       if (this._styles) {
-        const styleNode = document.createElement('style');
+        const styleNode = document.createElement("style");
         const styleText = document.createTextNode(this._styles);
 
         styleNode.appendChild(styleText);
 
         if (el.insertAdjacentElement) {
-          el.insertAdjacentElement('afterbegin', styleNode);
+          el.insertAdjacentElement("afterbegin", styleNode);
         } else {
           el.appendChild(styleNode);
         }

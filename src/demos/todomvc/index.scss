@@ -67,15 +67,16 @@
 }
 
 .m-todo__list {
-  $vr-paddings:
-    (
-      // Extra small screen / phone
-      xs: $vr-base * 1, // 10px
+  $vr-paddings: (
+    // Extra small screen / phone
+      xs: $vr-base * 1,
+    // 10px
       // Small screen / phone
       // sm: 40px,
       // Medium screen / tablet
-      md: $vr-base * 2, // 20px
-    );
+      md: $vr-base * 2,
+    // 20px
+  );
 
   @include unstyle-list();
   @include make-container();
@@ -178,7 +179,7 @@
     height: $footer-delimiter-height;
     margin-top: ($footer-delimiter-height / -2);
 
-    content: '';
+    content: "";
     background: $footer-delimiter-bg;
   }
 }

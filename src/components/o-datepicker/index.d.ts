@@ -6,13 +6,12 @@ export interface Props {
   buttonCancel?: string;
   locale?: string;
   value?: string;
-  startYear?: number | 'TODAY';
-  startMonth?: number | 'TODAY';
+  startYear?: number | "TODAY";
+  startMonth?: number | "TODAY";
   selectedDay?: number;
   lowerEndYear?: number;
   higherEndYear?: number;
   outputIso?: string;
 }
 
-export default interface AXADatepicker extends HTMLElement, Props {
-}
+export default interface AXADatepicker extends HTMLElement, Props {}

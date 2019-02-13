@@ -73,7 +73,11 @@
   text-transform: none;
 }
 
-@mixin link-icon--adjust($icon-size: $link__icon-size, $icon-padding: $link__icon-padding, $side: right) {
+@mixin link-icon--adjust(
+  $icon-size: $link__icon-size,
+  $icon-padding: $link__icon-padding,
+  $side: right
+) {
   @if $side == left {
     padding-left: $icon-size + $icon-padding;
   } @else if $side == right {
@@ -83,7 +87,11 @@
   }
 }
 
-@mixin link-icon--justify($icon-size: $link__icon-size, $icon-padding: $link__icon-padding, $side: right) {
+@mixin link-icon--justify(
+  $icon-size: $link__icon-size,
+  $icon-padding: $link__icon-padding,
+  $side: right
+) {
   @if $side == left {
     margin-left: -($icon-size + $icon-padding);
   } @else if $side == right {

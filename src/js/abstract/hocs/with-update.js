@@ -1,13 +1,13 @@
-import PropTypes from '../../prop-types';
+import PropTypes from "../../prop-types";
 
-import lifecycleLogger from '../utils/lifecycle-logger';
-import dasherize from '../../dasherize';
-import toProp from '../../to-prop';
-import camelize from '../../camelize';
-import debounce from '../../debounce';
-import getAttribute from '../../get-attribute';
-import fire from '../../fire';
-import { AXA_EVENTS } from '../../ui-events';
+import lifecycleLogger from "../utils/lifecycle-logger";
+import dasherize from "../../dasherize";
+import toProp from "../../to-prop";
+import camelize from "../../camelize";
+import debounce from "../../debounce";
+import getAttribute from "../../get-attribute";
+import fire from "../../fire";
+import { AXA_EVENTS } from "../../ui-events";
 
 const withUpdate = Base =>
   /**
@@ -16,7 +16,8 @@ const withUpdate = Base =>
   class WithUpdate extends Base {
     static get observedAttributes() {
       const { propTypes } = this;
-      const derivedAttributes = propTypes && Object.keys(propTypes).map(dasherize);
+      const derivedAttributes =
+        propTypes && Object.keys(propTypes).map(dasherize);
 
       return derivedAttributes;
     }
@@ -26,17 +27,24 @@ const withUpdate = Base =>
 
       this._isConnected = false;
       this.props = {};
-      this.updatedDebounced = debounce(() => this.updated && this.updated(), 50);
+      this.updatedDebounced = debounce(
+        () => this.updated && this.updated(),
+        50
+      );
 
-      const { constructor: { observedAttributes } } = this;
+      const {
+        constructor: { observedAttributes }
+      } = this;
 
       // add DOM property getters/setters for related attributes
       if (Array.isArray(observedAttributes)) {
-        observedAttributes.forEach((attr) => {
+        observedAttributes.forEach(attr => {
           const key = camelize(attr);
 
           if (ENV !== PROD) {
-            lifecycleLogger(this.logLifecycle)(`\n<-> apply getter/setter for ${key} by _${attr}`);
+            lifecycleLogger(this.logLifecycle)(
+              `\n<-> apply getter/setter for ${key} by _${attr}`
+            );
           }
         });
       }
@@ -53,24 +61,32 @@ const withUpdate = Base =>
       }
 
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`\n^^^ connectedCallback -> ${this.nodeName}#${this._id}`);
+        lifecycleLogger(this.logLifecycle)(
+          `\n^^^ connectedCallback -> ${this.nodeName}#${this._id}`
+        );
       }
 
       if (!this._isConnected) {
         this._isConnected = true;
 
-        const { constructor: { observedAttributes } } = this;
+        const {
+          constructor: { observedAttributes }
+        } = this;
 
         this.initialClassName = this.className;
 
         if (Array.isArray(observedAttributes)) {
           if (ENV !== PROD) {
-            lifecycleLogger(this.logLifecycle)(`\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`);
+            lifecycleLogger(this.logLifecycle)(
+              `\n!!! observedAttributes start -> ${this.nodeName}#${this._id}`
+            );
           }
 
-          const { constructor: { propTypes } } = this;
+          const {
+            constructor: { propTypes }
+          } = this;
 
-          observedAttributes.forEach((attr) => {
+          observedAttributes.forEach(attr => {
             const key = camelize(attr);
 
             if (this.hasAttribute(attr)) {
@@ -83,7 +99,9 @@ const withUpdate = Base =>
           this.checkPropTypes();
 
           if (ENV !== PROD) {
-            lifecycleLogger(this.logLifecycle)(`\n??? observedAttributes end -> ${this.nodeName}#${this._id}`);
+            lifecycleLogger(this.logLifecycle)(
+              `\n??? observedAttributes end -> ${this.nodeName}#${this._id}`
+            );
           }
         }
       }
@@ -103,7 +121,11 @@ const withUpdate = Base =>
       }
 
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`+++ attributeChangedCallback -> ${this.nodeName}#${this._id} | ${name} from ${oldValue} to ${newValue}\n`);
+        lifecycleLogger(this.logLifecycle)(
+          `+++ attributeChangedCallback -> ${this.nodeName}#${
+            this._id
+          } | ${name} from ${oldValue} to ${newValue}\n`
+        );
       }
 
       // only update the value if it has actually changed
@@ -116,17 +138,24 @@ const withUpdate = Base =>
 
       // add, update attribute
       if (this.hasAttribute(name)) {
-        const { constructor: { propTypes } } = this;
+        const {
+          constructor: { propTypes }
+        } = this;
         this.props[key] = toProp(newValue, name, propTypes[key]);
-      } else { // delete attribute
+      } else {
+        // delete attribute
         this.props[key] = null;
       }
 
       this.checkPropTypes();
 
       // if value is updated, we presume that an axa on change event have to be triggered
-      if (name === 'value' && newValue !== null) {
-        fire(this, AXA_EVENTS.AXA_CHANGE, newValue, { bubbles: true, cancelable: true, composed: true });
+      if (name === "value" && newValue !== null) {
+        fire(this, AXA_EVENTS.AXA_CHANGE, newValue, {
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        });
       }
 
       this.updatedDebounced();
@@ -144,7 +173,9 @@ const withUpdate = Base =>
         super.attributeChangedCallback();
       }
 
-      const { constructor: { observedAttributes = [] } } = this;
+      const {
+        constructor: { observedAttributes = [] }
+      } = this;
       const propsKeys = Object.keys(props);
       const filter = key => observedAttributes.indexOf(dasherize(key)) > -1;
       /**
@@ -158,12 +189,13 @@ const withUpdate = Base =>
       // eslint-disable-next-line no-shadow
       const reduceProps = ({ props, shouldUpdate }, key) => {
         const value = props[key];
-        const oldValue = this.props && this.props[key] ? this.props[key] : undefined;
+        const oldValue =
+          this.props && this.props[key] ? this.props[key] : undefined;
 
         if (!shouldUpdate && !this.shouldUpdateCallback(value, oldValue)) {
           return {
             props,
-            shouldUpdate: false,
+            shouldUpdate: false
           };
         }
 
@@ -171,16 +203,20 @@ const withUpdate = Base =>
 
         return {
           props,
-          shouldUpdate: true,
+          shouldUpdate: true
         };
       };
-      const { shouldUpdate } = propsKeys.filter(filter).reduce(reduceProps, { props, shouldUpdate: false });
+      const { shouldUpdate } = propsKeys
+        .filter(filter)
+        .reduce(reduceProps, { props, shouldUpdate: false });
 
       this.checkPropTypes();
 
       if (shouldUpdate && this._isConnected) {
         if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(`\n---> setProps for ${propsKeys.join(', ')}`);
+          lifecycleLogger(this.logLifecycle)(
+            `\n---> setProps for ${propsKeys.join(", ")}`
+          );
         }
 
         if (this.updated) {
@@ -189,7 +225,10 @@ const withUpdate = Base =>
       } else if (shouldUpdate && !this._isConnected) {
         // @todo: find out why that component never connects
         // eslint-disable-next-line no-console
-        console.warn('setProps(): Custom Element not connected and props never update', this);
+        console.warn(
+          "setProps(): Custom Element not connected and props never update",
+          this
+        );
       }
     }
 
@@ -197,10 +236,13 @@ const withUpdate = Base =>
      * Check types at runtime.
      */
     checkPropTypes() {
-      const { constructor: { propTypes, tagName }, props } = this;
+      const {
+        constructor: { propTypes, tagName },
+        props
+      } = this;
 
       if (propTypes) {
-        PropTypes.checkPropTypes(propTypes, props, 'prop', tagName);
+        PropTypes.checkPropTypes(propTypes, props, "prop", tagName);
       }
     }
 
@@ -224,7 +266,9 @@ const withUpdate = Base =>
      */
     disconnectedCallback() {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(`$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`);
+        lifecycleLogger(this.logLifecycle)(
+          `$$$ disconnectedCallback -> ${this.nodeName}#${this._id}\n`
+        );
       }
 
       this._isConnected = false;

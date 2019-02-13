@@ -1,7 +1,6 @@
 export interface Props {
   //todo: specify the props
-  [key: string]: any
+  [key: string]: any;
 }
 
-export default interface AXAHeaderMain extends HTMLElement, Props {
-}
+export default interface AXAHeaderMain extends HTMLElement, Props {}

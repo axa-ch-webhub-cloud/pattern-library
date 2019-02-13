@@ -1,14 +1,14 @@
-import StickySpy from './sticky-spy';
-import Enum from '../../../js/enum';
-import { subscribe } from '../../../js/pubsub';
-import { add, remove } from '../../../js/class-list';
+import StickySpy from "./sticky-spy";
+import Enum from "../../../js/enum";
+import { subscribe } from "../../../js/pubsub";
+import { add, remove } from "../../../js/class-list";
 
-const states = Enum('IS_IDLE', 'IS_ACTIVE');
+const states = Enum("IS_IDLE", "IS_ACTIVE");
 
 class StickyContainer {
   static DEFAULTS = {
-    isActiveClass: 'is-sticky-container-active',
-    isIdleClass: 'is-sticky-container-idle',
+    isActiveClass: "is-sticky-container-active",
+    isIdleClass: "is-sticky-container-idle"
   };
 
   constructor(wcNode) {
@@ -24,8 +24,16 @@ class StickyContainer {
   _on() {
     this._off();
 
-    this._unActive = subscribe('sticky-container/active', this._active, this.roodNode);
-    this._unIdle = subscribe('sticky-container/idle', this._idle, this.roodNode);
+    this._unActive = subscribe(
+      "sticky-container/active",
+      this._active,
+      this.roodNode
+    );
+    this._unIdle = subscribe(
+      "sticky-container/idle",
+      this._idle,
+      this.roodNode
+    );
   }
 
   _off() {
@@ -46,7 +54,7 @@ class StickyContainer {
 
     add(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
     remove(this.roodNode, StickyContainer.DEFAULTS.isIdleClass);
-  }
+  };
 
   _idle = () => {
     if (this.state === states.IS_IDLE) {
@@ -56,7 +64,7 @@ class StickyContainer {
 
     add(this.roodNode, StickyContainer.DEFAULTS.isIdleClass);
     remove(this.roodNode, StickyContainer.DEFAULTS.isActiveClass);
-  }
+  };
 
   destroy() {
     this._off();

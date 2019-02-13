@@ -1,1 +1,1 @@
-import '../js/es6-polyfills';
+import "../js/es6-polyfills";

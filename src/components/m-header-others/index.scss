@@ -20,10 +20,12 @@
 
 .m-header-others__list-item {
   display: block;
-  border-right: $header-others__list-item-border-x-width solid $header-others__list-item-border-x-color;
+  border-right: $header-others__list-item-border-x-width solid
+    $header-others__list-item-border-x-color;
 
   &:first-child {
-    border-left: $header-others__list-item-border-x-width solid $header-others__list-item-border-x-color;
+    border-left: $header-others__list-item-border-x-width solid
+      $header-others__list-item-border-x-color;
   }
 }
 

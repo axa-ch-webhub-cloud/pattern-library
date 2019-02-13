@@ -1,43 +1,43 @@
-import Enum from './enum';
-import on from './on';
-import getAttribute from './get-attribute';
-import outer from './outer';
+import Enum from "./enum";
+import on from "./on";
+import getAttribute from "./get-attribute";
+import outer from "./outer";
 
 export const EVENTS = Enum(
-  'click',
-  'change',
-  'keyup',
-  'enter',
-  'move',
-  'leave',
-  'Escape',
-  'Esc',
-  'touchstart',
-  'touchmove',
-  'touchend',
-  'input',
-  'resize',
-  'paste',
+  "click",
+  "change",
+  "keyup",
+  "enter",
+  "move",
+  "leave",
+  "Escape",
+  "Esc",
+  "touchstart",
+  "touchmove",
+  "touchend",
+  "input",
+  "resize",
+  "paste"
 );
 
 // TODO use another system for ENUMs as this one does convert axa-change into AXA-CHANGE which is a problem when using it
 export const AXA_EVENTS = {
-  AXA_CLICK: 'axa-click',
-  AXA_LOAD: 'axa-load',
-  AXA_RENDER: 'axa-render',
-  AXA_CHANGE: 'axa-change',
-  AXA_VALIDATION: 'axa-validation',
-  AXA_SWIPE_UP: 'axa-swipe-up',
-  AXA_SWIPE_DOWN: 'axa-swipe-down',
-  AXA_SWIPE_LEFT: 'axa-swipe-left',
-  AXA_SWIPE_RIGHT: 'axa-swipe-right',
+  AXA_CLICK: "axa-click",
+  AXA_LOAD: "axa-load",
+  AXA_RENDER: "axa-render",
+  AXA_CHANGE: "axa-change",
+  AXA_VALIDATION: "axa-validation",
+  AXA_SWIPE_UP: "axa-swipe-up",
+  AXA_SWIPE_DOWN: "axa-swipe-down",
+  AXA_SWIPE_LEFT: "axa-swipe-left",
+  AXA_SWIPE_RIGHT: "axa-swipe-right"
 };
 
 /**
  * This is the data attribute that can be set on a DOM element and enforces prevent default.
  * It only works only for childrens of the events!
  */
-const DATA_PREVENT_DEFAULT = 'data-prevent-default';
+const DATA_PREVENT_DEFAULT = "data-prevent-default";
 
 /**
  * General purpose UI Event handling abstraction, it basically has two modes:
@@ -60,13 +60,13 @@ class UiEvents {
    * @property {Boolean} preventDefault - Is the default event action prevent?
    */
   static DEFAULTS = {
-    containerClass: '.js-ui-container',
-    toggleClass: 'js-ui-toggle',
-    closeClass: 'js-ui-close',
+    containerClass: ".js-ui-container",
+    toggleClass: "js-ui-toggle",
+    closeClass: "js-ui-close",
     escapeClose: true,
     outerClose: true,
     sameClickClose: true,
-    preventDefault: true,
+    preventDefault: true
   };
 
   /**
@@ -88,13 +88,15 @@ class UiEvents {
     if (options) {
       this._options = {
         ...UiEvents.DEFAULTS,
-        ...options,
+        ...options
       };
     }
 
     const { containerClass } = this._options;
 
-    this._container = containerClass ? this._wcNode.querySelector(containerClass) : this._wcNode;
+    this._container = containerClass
+      ? this._wcNode.querySelector(containerClass)
+      : this._wcNode;
 
     this._on();
   }
@@ -102,9 +104,15 @@ class UiEvents {
   _on() {
     this._off();
 
-    this._unClick = on(this._container, EVENTS.CLICK, this._options.toggleClass, this._handleClick, {
-      passive: !this._options.preventDefault,
-    });
+    this._unClick = on(
+      this._container,
+      EVENTS.CLICK,
+      this._options.toggleClass,
+      this._handleClick,
+      {
+        passive: !this._options.preventDefault
+      }
+    );
   }
 
   _off() {
@@ -118,26 +126,44 @@ class UiEvents {
   _onInteractive() {
     this._offInteractive();
 
-    const { _container, _options: { closeClass, outerClose, escapeClose, preventDefault } } = this;
+    const {
+      _container,
+      _options: { closeClass, outerClose, escapeClose, preventDefault }
+    } = this;
 
     if (closeClass) {
-      this._unCloseClick = on(_container, EVENTS.CLICK, closeClass, this._handleClose, {
-        passive: !preventDefault,
-      });
+      this._unCloseClick = on(
+        _container,
+        EVENTS.CLICK,
+        closeClass,
+        this._handleClose,
+        {
+          passive: !preventDefault
+        }
+      );
     }
 
     if (outerClose) {
-      this._unOuterClick = outer(_container, EVENTS.CLICK, this._handleClose, { passive: !preventDefault });
+      this._unOuterClick = outer(_container, EVENTS.CLICK, this._handleClose, {
+        passive: !preventDefault
+      });
     }
 
     if (escapeClose) {
-      this._unCloseEscape = on(_container.ownerDocument, EVENTS.KEYUP, this._handleKeyUp, { passive: false });
+      this._unCloseEscape = on(
+        _container.ownerDocument,
+        EVENTS.KEYUP,
+        this._handleKeyUp,
+        { passive: false }
+      );
     }
   }
 
   shouldPreventDefault(node) {
     const hasAttr = node.hasAttribute(DATA_PREVENT_DEFAULT);
-    return hasAttr ? getAttribute(node, DATA_PREVENT_DEFAULT) : this._options.preventDefault;
+    return hasAttr
+      ? getAttribute(node, DATA_PREVENT_DEFAULT)
+      : this._options.preventDefault;
   }
 
   _offInteractive() {
@@ -178,7 +204,7 @@ class UiEvents {
     if (isLeave && this._options.sameClickClose) {
       this._close();
     }
-  }
+  };
 
   _handleClose = (e, closeNode) => {
     if (this.shouldPreventDefault(closeNode || e.currentTarget)) {
@@ -186,17 +212,18 @@ class UiEvents {
     }
 
     this._close();
-  }
+  };
 
-  _handleKeyUp = (e) => {
-    const isEscape = e.key === EVENTS.ESCAPE || e.key === EVENTS.ESC || e.keyCode === 27;
+  _handleKeyUp = e => {
+    const isEscape =
+      e.key === EVENTS.ESCAPE || e.key === EVENTS.ESC || e.keyCode === 27;
 
     if (isEscape) {
       e.preventDefault();
 
       this._close();
     }
-  }
+  };
 
   _close() {
     if (this._lastToggleNode) {
@@ -209,7 +236,7 @@ class UiEvents {
   }
 
   _notify(name, toggleNode, lastToggleNode) {
-    if (name in this && typeof this[name] === 'function') {
+    if (name in this && typeof this[name] === "function") {
       this[name](toggleNode, lastToggleNode);
     }
   }
@@ -221,7 +248,7 @@ class UiEvents {
    */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   enter(toggleNode) {
-    throw new Error('UiEvent.enter method not overwritten');
+    throw new Error("UiEvent.enter method not overwritten");
   }
 
   /**
@@ -240,7 +267,7 @@ class UiEvents {
    */
   // eslint-disable-next-line no-unused-vars, class-methods-use-this
   leave(toggleNode) {
-    throw new Error('UiEvent.leave method not overwritten');
+    throw new Error("UiEvent.leave method not overwritten");
   }
 
   destroy() {

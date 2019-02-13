@@ -8,7 +8,7 @@ function getBaseURI() {
     return document.baseURI;
   }
 
-  const base = document.getElementsByName('base');
+  const base = document.getElementsByName("base");
 
   if (base.length && base[0].href) {
     return base[0].href;
