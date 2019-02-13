@@ -3,7 +3,8 @@
  *
  * @returns {String} - Returns the supported transition event or empty string `''`.
  */
-function whichTransitionEvent() {
+function whichTransitionEvent() 
+{ 
   const tmpNode = document.createElement("div");
   const { style } = tmpNode;
   const transitions = {
