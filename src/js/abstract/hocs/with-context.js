@@ -1,5 +1,5 @@
-import { publish, subscribe } from "../../pubsub";
-import lifecycleLogger from "../utils/lifecycle-logger";
+import { publish, subscribe } from '../../pubsub';
+import lifecycleLogger from '../utils/lifecycle-logger';
 
 const withContext = Base =>
   /**
@@ -21,11 +21,7 @@ const withContext = Base =>
           clearTimeout(this.timeoutId);
           this.timeoutId = setTimeout(() => {
             if (ENV !== PROD) {
-              lifecycleLogger(this.logLifecycle)(
-                `contextCallback -> ${this.nodeName}#${
-                  this._id
-                } <- context: ${contextName}`
-              );
+              lifecycleLogger(this.logLifecycle)(`contextCallback -> ${this.nodeName}#${this._id} <- context: ${contextName}`);
             }
 
             this.contextCallback(this.contextNode, contextName);
@@ -36,10 +32,7 @@ const withContext = Base =>
           this.unContextEnabled();
         }
 
-        this.unContextEnabled = subscribe(
-          "context/available",
-          this._makeContextReady
-        );
+        this.unContextEnabled = subscribe('context/available', this._makeContextReady);
       };
     }
     /**
@@ -78,9 +71,7 @@ const withContext = Base =>
      */
     provideContext() {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(
-          `provideContext -> ${this.nodeName}#${this._id}`
-        );
+        lifecycleLogger(this.logLifecycle)(`provideContext -> ${this.nodeName}#${this._id}`);
       }
 
       const contextName = this.nodeName.toLowerCase();
@@ -89,7 +80,7 @@ const withContext = Base =>
       this.__contextName = contextName;
 
       // publish context/enabled with contextual node name
-      publish("context/available", contextName);
+      publish('context/available', contextName);
     }
 
     /**
@@ -99,9 +90,7 @@ const withContext = Base =>
      */
     consumeContext(name) {
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(
-          `consumeContext -> ${this.nodeName}#${this._id} <- context: ${name}`
-        );
+        lifecycleLogger(this.logLifecycle)(`consumeContext -> ${this.nodeName}#${this._id} <- context: ${name}`);
       }
 
       this.__consumedContext = name && name.toLowerCase();
@@ -116,11 +105,7 @@ const withContext = Base =>
       const { __consumedContext } = this;
       let { parentNode } = this;
 
-      while (
-        parentNode &&
-        (!parentNode.__isContext ||
-          (__consumedContext && __consumedContext !== parentNode.__contextName))
-      ) {
+      while (parentNode && (!parentNode.__isContext || (__consumedContext && __consumedContext !== parentNode.__contextName))) {
         // eslint-disable-next-line prefer-destructuring
         parentNode = parentNode.parentNode;
       }

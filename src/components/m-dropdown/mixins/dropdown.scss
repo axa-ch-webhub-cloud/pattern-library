@@ -1,20 +1,17 @@
-@import "../settings/dropdown";
-@import "../../../styles/mixins/force-ios-click";
-@import "../../../styles/mixins/hardware-accelerate";
-@import "../../../styles/mixins/icon";
-@import "../../../styles/mixins/target";
+@import '../settings/dropdown';
+@import '../../../styles/mixins/force-ios-click';
+@import '../../../styles/mixins/hardware-accelerate';
+@import '../../../styles/mixins/icon';
+@import '../../../styles/mixins/target';
 
 @mixin dropdown-container() {
   position: relative;
 }
 
-@mixin dropdown-frame($icon-class: "m-dropdown__icon") {
-  $padding-right: (
-    $dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding
-  );
+@mixin dropdown-frame($icon-class: 'm-dropdown__icon') {
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
 
-  padding: $dropdown__frame-y-padding $padding-right $dropdown__frame-y-padding
-    $dropdown__frame-x-padding;
+  padding: $dropdown__frame-y-padding $padding-right $dropdown__frame-y-padding $dropdown__frame-x-padding;
 
   background: $dropdown__frame-bg;
   border: $dropdown__frame-border-width solid $dropdown__frame-border-color;
@@ -85,11 +82,7 @@
   }
 }
 
-@mixin dropdown-select(
-  $icon-class: "m-dropdown__icon",
-  $height: $dropdown__select-height,
-  $indent: $dropdown__select-indent
-) {
+@mixin dropdown-select($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
   @include normalize-native-select-styles();
   display: block;
   box-sizing: border-box;
@@ -133,11 +126,7 @@
   }
 }
 
-@mixin dropdown-select-icon(
-  $icon-class: "m-dropdown__icon",
-  $height: $dropdown__select-height,
-  $indent: $dropdown__select-indent
-) {
+@mixin dropdown-select-icon($icon-class: 'm-dropdown__icon', $height: $dropdown__select-height, $indent: $dropdown__select-indent) {
   display: block;
   float: right;
   height: $height;
@@ -206,10 +195,7 @@
   }
 }
 
-@mixin dropdown-content(
-  $zindex: $zindex-dropdown,
-  $is-open-class: $dropdown-is-open
-) {
+@mixin dropdown-content($zindex: $zindex-dropdown, $is-open-class: $dropdown-is-open) {
   position: absolute;
   top: 100%;
   z-index: $zindex;
@@ -244,11 +230,8 @@
 }
 
 @mixin dropdown-toggle--sm() {
-  $padding-right: (
-    $dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding
-  );
+  $padding-right: ($dropdown__icon-size + $dropdown__icon-gap + $dropdown__frame-x-padding);
 
   @include dropdown--sm();
-  padding: $dropdown__frame-y-padding-sm $padding-right
-    $dropdown__frame-y-padding-sm $dropdown__frame-x-padding;
+  padding: $dropdown__frame-y-padding-sm $padding-right $dropdown__frame-y-padding-sm $dropdown__frame-x-padding;
 }

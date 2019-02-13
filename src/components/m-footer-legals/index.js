@@ -1,15 +1,15 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
-import classnames from "classnames";
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import classnames from 'classnames';
 
-import getAttribute from "../../js/get-attribute";
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import styles from "./index.scss";
+import getAttribute from '../../js/get-attribute';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import styles from './index.scss';
 
 class AXAFooterLegals extends BaseComponentGlobal {
-  static tagName = "axa-footer-legals";
+  static tagName = 'axa-footer-legals';
   static propTypes = {
-    bottom: PropTypes.bool
+    bottom: PropTypes.bool,
   };
 
   init() {
@@ -27,10 +27,10 @@ class AXAFooterLegals extends BaseComponentGlobal {
   }
 
   render() {
-    const bottom = getAttribute(this, "bottom");
+    const bottom = getAttribute(this, 'bottom');
 
-    this.className = classnames(this.initialClassName, "m-footer-legals", {
-      "m-footer-legals--bottom": bottom
+    this.className = classnames(this.initialClassName, 'm-footer-legals', {
+      'm-footer-legals--bottom': bottom,
     });
   }
 }

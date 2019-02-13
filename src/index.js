@@ -1,150 +1,130 @@
 /* eslint-disable */
-import "./js/es6-polyfills.js";
+import './js/es6-polyfills.js';
 // ES2015 Custom Element Polyfill
-import "document-register-element";
+import 'document-register-element';
 // load this for browsers which support customElements without builtin (webkit)
-import "@ungap/custom-elements-builtin";
+import '@ungap/custom-elements-builtin';
 
-export { default as AXACheckbox } from "./components/a-checkbox";
+export { default as AXACheckbox } from './components/a-checkbox';
 
-export { default as AXAChoice } from "./components/a-choice";
+export { default as AXAChoice } from './components/a-choice';
 
-import "./components/a-device-state";
+import './components/a-device-state';
 
-export { default as AXAIcon } from "./components/a-icon";
+export { default as AXAIcon } from './components/a-icon';
 
-export { default as AXAInput } from "./components/a-input";
+export { default as AXAInput } from './components/a-input';
 
-export { default as AXARadio } from "./components/a-radio";
+export { default as AXARadio } from './components/a-radio';
 
-export { default as AXATypo } from "./components/a-typo";
+export { default as AXATypo } from './components/a-typo';
 
-export { default as AXAVerticalRhythm } from "./components/a-vertical-rhythm";
+export { default as AXAVerticalRhythm } from './components/a-vertical-rhythm';
 
-export { default as AXAAccordionItem } from "./components/m-accordion-item";
+export { default as AXAAccordionItem } from './components/m-accordion-item';
 
-export { default as AXAButton } from "./components/m-button";
+export { default as AXAButton } from './components/m-button';
 
-export { default as AXACol } from "./components/m-col";
+export { default as AXACol } from './components/m-col';
 
-export { default as AXAMDatepicker } from "./components/m-datepicker";
+export { default as AXAMDatepicker } from './components/m-datepicker';
 
-export { default as AXADatepickerBody } from "./components/m-datepicker-body";
+export { default as AXADatepickerBody } from './components/m-datepicker-body';
 
-export { default as AXADropdown } from "./components/m-dropdown";
+export { default as AXADropdown } from './components/m-dropdown';
 
-export { default as AXAFooterLanguages } from "./components/m-footer-languages";
+export { default as AXAFooterLanguages } from './components/m-footer-languages';
 
-export { default as AXAFooterLegals } from "./components/m-footer-legals";
+export { default as AXAFooterLegals } from './components/m-footer-legals';
 
-export { default as AXAFooterLinks } from "./components/m-footer-links";
+export { default as AXAFooterLinks } from './components/m-footer-links';
 
-export { default as AXAFooterMain } from "./components/m-footer-main";
+export { default as AXAFooterMain } from './components/m-footer-main';
 
-export { default as AXAFooterSocial } from "./components/m-footer-social";
+export { default as AXAFooterSocial } from './components/m-footer-social';
 
-export { default as AXAFooterSub } from "./components/m-footer-sub";
+export { default as AXAFooterSub } from './components/m-footer-sub';
 
-export { default as AXAFormGroup } from "./components/m-form-group";
+export { default as AXAFormGroup } from './components/m-form-group';
 
-export { default as AXAHeaderBurger } from "./components/m-header-burger";
+export { default as AXAHeaderBurger } from './components/m-header-burger';
 
-export { default as AXAHeaderLanguages } from "./components/m-header-languages";
+export { default as AXAHeaderLanguages } from './components/m-header-languages';
 
-export { default as AXAHeaderLogo } from "./components/m-header-logo";
+export { default as AXAHeaderLogo } from './components/m-header-logo';
 
-export { default as AXAHeaderMain } from "./components/m-header-main";
+export { default as AXAHeaderMain } from './components/m-header-main';
 
-export { default as AXAHeaderMeta } from "./components/m-header-meta";
+export { default as AXAHeaderMeta } from './components/m-header-meta';
 
-export {
-  default as AXAHeaderMetaRight
-} from "./components/m-header-meta-right";
+export { default as AXAHeaderMetaRight } from './components/m-header-meta-right';
 
-export { default as AXAHeaderMobile } from "./components/m-header-mobile";
+export { default as AXAHeaderMobile } from './components/m-header-mobile';
 
-export {
-  default as AXAHeaderMobileLanguages
-} from "./components/m-header-mobile-languages";
+export { default as AXAHeaderMobileLanguages } from './components/m-header-mobile-languages';
 
-export {
-  default as AXAHeaderMobileNavigation
-} from "./components/m-header-mobile-navigation";
+export { default as AXAHeaderMobileNavigation } from './components/m-header-mobile-navigation';
 
-export {
-  default as AXAHeaderMobileOthers
-} from "./components/m-header-mobile-others";
+export { default as AXAHeaderMobileOthers } from './components/m-header-mobile-others';
 
-export {
-  default as AXAHeaderNavigation
-} from "./components/m-header-navigation";
+export { default as AXAHeaderNavigation } from './components/m-header-navigation';
 
-export { default as AXAHeaderOthers } from "./components/m-header-others";
+export { default as AXAHeaderOthers } from './components/m-header-others';
 
-export { default as AXAHeaderSearch } from "./components/m-header-search";
+export { default as AXAHeaderSearch } from './components/m-header-search';
 
-export {
-  default as AXAHeaderSubNavigation
-} from "./components/m-header-sub-navigation";
+export { default as AXAHeaderSubNavigation } from './components/m-header-sub-navigation';
 
-export {
-  default as AXAHeaderTopContentBar
-} from "./components/m-header-top-content-bar";
+export { default as AXAHeaderTopContentBar } from './components/m-header-top-content-bar';
 
-export { default as AXALink } from "./components/m-link";
+export { default as AXALink } from './components/m-link';
 
-export {
-  default as AXAPolicyFeatureItem
-} from "./components/m-policy-feature-item";
+export { default as AXAPolicyFeatureItem } from './components/m-policy-feature-item';
 
-export { default as AXARow } from "./components/m-row";
+export { default as AXARow } from './components/m-row';
 
-export { default as AXAAccordion } from "./components/o-accordion";
+export { default as AXAAccordion } from './components/o-accordion';
 
-export {
-  default as AXACommercialHeroCover
-} from "./components/o-commercial-hero-cover";
+export { default as AXACommercialHeroCover } from './components/o-commercial-hero-cover';
 
-export { default as AXAContainer } from "./components/o-container";
+export { default as AXAContainer } from './components/o-container';
 
-export {
-  default as AXACookieDisclaimer
-} from "./components/o-cookie-disclaimer";
+export { default as AXACookieDisclaimer } from './components/o-cookie-disclaimer';
 
-export { default as AXADatepicker } from "./components/o-datepicker";
+export { default as AXADatepicker } from './components/o-datepicker';
 
-export { default as AXAErrorPage } from "./components/o-error-page";
+export { default as AXAErrorPage } from './components/o-error-page';
 
-export { default as AXAFooter } from "./components/o-footer";
+export { default as AXAFooter } from './components/o-footer';
 
-export { default as AXAHeader } from "./components/o-header";
+export { default as AXAHeader } from './components/o-header';
 
-export { default as AXAPolicyFeatures } from "./components/o-policy-features";
+export { default as AXAPolicyFeatures } from './components/o-policy-features';
 
-export { default as AXASticky } from "./components/m-sticky";
+export { default as AXASticky } from './components/m-sticky';
 
-export { default as AXAStickyContainer } from "./components/o-sticky-container";
+export { default as AXAStickyContainer } from './components/o-sticky-container';
 
-export { default as AXATestimonials } from "./components/o-testimonials";
+export { default as AXATestimonials } from './components/o-testimonials';
 
-export { default as AXATable } from "./components/o-table";
+export { default as AXATable } from './components/o-table';
 
-export { default as AXACore } from "./components/u-core";
+export { default as AXACore } from './components/u-core';
 
-export { default as AXAThead } from "./components/m-thead";
+export { default as AXAThead } from './components/m-thead';
 
-export { default as AXATbody } from "./components/m-tbody";
+export { default as AXATbody } from './components/m-tbody';
 
-export { default as AXATfoot } from "./components/m-tfoot";
+export { default as AXATfoot } from './components/m-tfoot';
 
-export { default as AXATd } from "./components/a-td";
+export { default as AXATd } from './components/a-td';
 
-export { default as AXACaption } from "./components/a-caption";
+export { default as AXACaption } from './components/a-caption';
 
-export { default as AXATr } from "./components/m-tr";
+export { default as AXATr } from './components/m-tr';
 
-export { default as AXATh } from "./components/a-th";
+export { default as AXATh } from './components/a-th';
 
-export { default as AXACard } from "./components/o-card";
+export { default as AXACard } from './components/o-card';
 
-export { default as AXAFormOptionBox } from "./components/o-form-option-box";
+export { default as AXAFormOptionBox } from './components/o-form-option-box';

@@ -1,5 +1,5 @@
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/typo/typo-examples";
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/typo/typo-examples';
 
 .a-typo {
   @include make-container();

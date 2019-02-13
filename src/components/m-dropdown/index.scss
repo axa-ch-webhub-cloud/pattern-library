@@ -1,10 +1,10 @@
-@import "./settings/dropdown";
-@import "../../styles/settings/colors";
-@import "../../styles/settings/zindex";
-@import "../../styles/mixins/button-reset";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/mixins/unstyle-list";
-@import "./mixins/dropdown";
+@import './settings/dropdown';
+@import '../../styles/settings/colors';
+@import '../../styles/settings/zindex';
+@import '../../styles/mixins/button-reset';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/unstyle-list';
+@import './mixins/dropdown';
 
 $dropdown-min-width: 100px;
 $dropdown-height: 40px;
@@ -79,7 +79,7 @@ $dropdown-spacing: 10px 40px 10px 10px;
     height: $dropdown__frame-border-width;
     overflow: hidden;
 
-    content: "";
+    content: '';
     background: $dropdown__frame-color--hover;
   }
 }
@@ -161,14 +161,13 @@ $dropdown-spacing: 10px 40px 10px 10px;
   }
 
   &:last-child {
-    border-bottom: $dropdown__item-border-width-last solid
-      $dropdown__item-border-color;
+    border-bottom: $dropdown__item-border-width-last solid $dropdown__item-border-color;
   }
 }
 
 .m-dropdown__toggle,
 .m-dropdown__link {
-  @include typo-decls("typo-18");
+  @include typo-decls('typo-18');
   line-height: normal; // no responsivesness within fixed boxes
 }
 

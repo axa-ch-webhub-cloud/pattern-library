@@ -1,5 +1,5 @@
-import PropTypes from "./prop-types";
+import PropTypes from './prop-types';
 
-const sidePropType = PropTypes.oneOf(["top", "bottom"]);
+const sidePropType = PropTypes.oneOf(['top', 'bottom']);
 
 export default sidePropType;

@@ -1,12 +1,12 @@
-@import "./settings/footer-social";
-@import "../../styles/mixins/clearfix";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/icon";
-@import "../../styles/mixins/respond";
-@import "../../styles/mixins/size";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/mixins/unstyle-list";
-@import "../../styles/mixins/word-break";
+@import './settings/footer-social';
+@import '../../styles/mixins/clearfix';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/icon';
+@import '../../styles/mixins/respond';
+@import '../../styles/mixins/size';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/unstyle-list';
+@import '../../styles/mixins/word-break';
 
 .m-footer-social {
   @include make-col-ready();
@@ -55,8 +55,7 @@
   @include unstyle-list();
   @include clearfix();
 
-  margin: $footer-social__list-margin-top $footer-social__list-margin-x 0
-    $footer-social__list-margin-x;
+  margin: $footer-social__list-margin-top $footer-social__list-margin-x 0 $footer-social__list-margin-x;
 
   // if no title -> disable top margin
   &:first-child {
@@ -107,7 +106,7 @@
 
     // inline always with colon at end of title
     &::after {
-      content: ":";
+      content: ':';
     }
   }
 

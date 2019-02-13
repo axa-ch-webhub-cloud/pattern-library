@@ -1,10 +1,10 @@
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/settings/colors";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/respond";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/mixins/word-break";
-@import "../m-button/mixins/button";
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/settings/colors';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/respond';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/word-break';
+@import '../m-button/mixins/button';
 
 $picture-z-index: -1;
 $hero-xs-height: 256px;
@@ -41,41 +41,21 @@ $margin-30: 30px;
     height: $hero-lg-height;
 
     &.o-commercial-hero-cover__header__gradient-white {
-      background: linear-gradient(
-        270deg,
-        fade_out($color-prim-white, 1) 30%,
-        fade_out($color-prim-white, 0.1) 60%,
-        $color-prim-white 100%
-      );
+      background: linear-gradient(270deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
     }
 
     &.o-commercial-hero-cover__header__gradient-black {
-      background: linear-gradient(
-        270deg,
-        fade_out($color-prim-black, 1) 30%,
-        fade_out($color-prim-black, 0.2) 60%,
-        $color-prim-black 100%
-      );
+      background: linear-gradient(270deg, fade_out($color-prim-black, 1) 30%, fade_out($color-prim-black, 0.2) 60%, $color-prim-black 100%);
 
       color: $color-text--highlight;
     }
 
     &.o-commercial-hero-cover__header__gradient-white-inverted {
-      background: linear-gradient(
-        90deg,
-        fade_out($color-prim-white, 1) 30%,
-        fade_out($color-prim-white, 0.1) 60%,
-        $color-prim-white 100%
-      );
+      background: linear-gradient(90deg, fade_out($color-prim-white, 1) 30%, fade_out($color-prim-white, 0.1) 60%, $color-prim-white 100%);
     }
 
     &.o-commercial-hero-cover__header__gradient-black-inverted {
-      background: linear-gradient(
-        90deg,
-        fade_out($color-prim-black, 1) 30%,
-        fade_out($color-prim-black, 0.2) 60%,
-        $color-prim-black 100%
-      );
+      background: linear-gradient(90deg, fade_out($color-prim-black, 1) 30%, fade_out($color-prim-black, 0.2) 60%, $color-prim-black 100%);
 
       color: $color-text--highlight;
     }
@@ -98,7 +78,7 @@ $margin-30: 30px;
 
   width: 100%;
   height: $hero-xs-height;
-  content: "";
+  content: '';
 
   @include respond-up(md) {
     height: $hero-md-height;

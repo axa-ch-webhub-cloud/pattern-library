@@ -1,4 +1,4 @@
-import { store, uuid } from "./utils";
+import { store, uuid } from './utils';
 
 class TodoModel {
   constructor(key) {
@@ -22,7 +22,7 @@ class TodoModel {
     this.todos = this.todos.concat({
       id: uuid(),
       title,
-      completed: false
+      completed: false,
     });
 
     this.inform();
@@ -35,7 +35,7 @@ class TodoModel {
     // todo items themselves.
     this.todos = this.todos.map(todo => ({
       ...todo,
-      completed: checked
+      completed: checked,
     }));
 
     this.inform();
@@ -47,7 +47,7 @@ class TodoModel {
         ? todo
         : {
             ...todo,
-            completed: !todo.completed
+            completed: !todo.completed,
           }
     );
 
@@ -66,7 +66,7 @@ class TodoModel {
         ? todo
         : {
             ...todo,
-            title: text
+            title: text,
           }
     );
 

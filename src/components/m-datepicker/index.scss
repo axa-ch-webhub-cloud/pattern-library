@@ -1,6 +1,6 @@
-@import "../../styles/settings/colors";
-@import "../../styles/mixins/clearfix";
-@import "../m-dropdown/mixins/dropdown";
+@import '../../styles/settings/colors';
+@import '../../styles/mixins/clearfix';
+@import '../m-dropdown/mixins/dropdown';
 
 $datepicker-height: 385px !default;
 $datepicker-width: 320px !default;
@@ -18,9 +18,7 @@ $datepicker-dropdown-padding-left: 10px !default;
 $datepicker-border-width: 1px !default;
 $datepicker-padding-x: 30px !default;
 
-$with-one-seventh: (
-    $datepicker-width - $datepicker-padding-x * 2 - $datepicker-border-width * 2
-  ) / 7;
+$with-one-seventh: ($datepicker-width - $datepicker-padding-x * 2 - $datepicker-border-width * 2) / 7;
 
 $datepicker-distance-number-to-border: 10px !default;
 $datepicker-padding-left-native-dropdown: 8px !default;

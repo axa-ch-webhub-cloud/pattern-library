@@ -1,5 +1,5 @@
-@import "../../o-table/styles/table-settings";
-@import "../../../styles/mixins/respond";
+@import '../../o-table/styles/table-settings';
+@import '../../../styles/mixins/respond';
 
 @mixin tr(
   $padding-x: $table__row-padding-x--sm,
@@ -21,10 +21,7 @@
   }
 }
 
-@mixin tr--foot(
-  $border-color: $table-border-color,
-  $padding-y: $table__cell-padding-y
-) {
+@mixin tr--foot($border-color: $table-border-color, $padding-y: $table__cell-padding-y) {
   border-top-color: $border-color;
 
   @include respond-down(sm) {

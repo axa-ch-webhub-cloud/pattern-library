@@ -15,7 +15,7 @@ function css(node, decls) {
     cssText.push(`${prop}:${decls[prop]};`);
   }
 
-  node.style.cssText = cssText.join("");
+  node.style.cssText = cssText.join('');
 }
 
 export default css;

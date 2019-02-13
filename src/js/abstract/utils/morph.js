@@ -13,10 +13,7 @@ function morph(newNode, oldNode) {
     copyAttrs(newNode, oldNode);
   }
 
-  if (
-    (nodeType === TEXT_NODE || nodeType === COMMENT_NODE) &&
-    oldNode.nodeValue !== newNode.nodeValue
-  ) {
+  if ((nodeType === TEXT_NODE || nodeType === COMMENT_NODE) && oldNode.nodeValue !== newNode.nodeValue) {
     oldNode.nodeValue = newNode.nodeValue;
   }
 }
@@ -26,17 +23,11 @@ function copyAttrs(newNode, oldNode) {
   // so only morph observed attributes
   const skipChildren = oldNode.skipChildren && oldNode.skipChildren();
   const {
-    constructor: { observedAttributes }
+    constructor: { observedAttributes },
   } = oldNode;
-  const hasObservedAttributes =
-    observedAttributes &&
-    Array.isArray(observedAttributes) &&
-    observedAttributes.length;
+  const hasObservedAttributes = observedAttributes && Array.isArray(observedAttributes) && observedAttributes.length;
   // @todo: we may need to deal with attribute namespaces too in the future
-  const shouldSkipAttr = attrName =>
-    skipChildren &&
-    hasObservedAttributes &&
-    observedAttributes.indexOf(attrName) === -1;
+  const shouldSkipAttr = attrName => skipChildren && hasObservedAttributes && observedAttributes.indexOf(attrName) === -1;
   const { attributes: oldAttrs } = oldNode;
   const { attributes: newAttrs } = newNode;
   let attrNamespaceURI = null;
@@ -62,10 +53,7 @@ function copyAttrs(newNode, oldNode) {
       // Important: getAttributeNS expects the localName of a namespaced attribute
       // ref: https://dom.spec.whatwg.org/#dom-element-getattributens
       // ref: https://www.w3.org/TR/DOM-Level-2-Core/glossary.html#dt-localname
-      fromValue = oldNode.getAttributeNS(
-        attrNamespaceURI,
-        attrLocalName || attrName
-      );
+      fromValue = oldNode.getAttributeNS(attrNamespaceURI, attrLocalName || attrName);
       if (fromValue !== attrValue) {
         // but setAttributeNS requires the fully qualified name
         // ref: https://dom.spec.whatwg.org/#dom-element-setattributens
@@ -78,7 +66,7 @@ function copyAttrs(newNode, oldNode) {
       fromValue = oldNode.getAttribute(attrName);
       if (fromValue !== attrValue) {
         // apparently values are always cast to strings, ah well
-        if (attrValue === "null" || attrValue === "undefined") {
+        if (attrValue === 'null' || attrValue === 'undefined') {
           oldNode.removeAttribute(attrName);
         } else {
           oldNode.setAttribute(attrName, attrValue);

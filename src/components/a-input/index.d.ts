@@ -1,4 +1,4 @@
-import { Icon } from "../a-icon";
+import { Icon } from '../a-icon';
 
 export interface Props {
   onAxaChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;

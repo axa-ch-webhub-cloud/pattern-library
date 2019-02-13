@@ -13,13 +13,10 @@ export function getViewportWidth() {
  * @returns {Number} - Returns the viewport's height in pixels.
  */
 export function getViewportHeight() {
-  return Math.max(
-    document.documentElement.clientHeight,
-    window.innerHeight || 0
-  );
+  return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 }
 
 export default {
   getViewportWidth,
-  getViewportHeight
+  getViewportHeight,
 };

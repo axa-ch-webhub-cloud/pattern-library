@@ -1,5 +1,5 @@
-import PropTypes from "./prop-types";
+import PropTypes from './prop-types';
 
-const sortPropType = PropTypes.oneOf(["up", "down"]);
+const sortPropType = PropTypes.oneOf(['up', 'down']);
 
 export default sortPropType;

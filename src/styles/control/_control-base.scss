@@ -1,10 +1,10 @@
-@import "../settings/colors";
-@import "../settings/base";
-@import "../functions/string-replace";
-@import "../mixins/visual-hidden";
-@import "./control-settings";
-@import "./control-icon";
-@import "./control-transition";
+@import '../settings/colors';
+@import '../settings/base';
+@import '../functions/string-replace';
+@import '../mixins/visual-hidden';
+@import './control-settings';
+@import './control-icon';
+@import './control-transition';
 
 @mixin control-base($border-radius: 0) {
   $parent: &;
@@ -76,7 +76,7 @@
 
 @mixin control-error() {
   $parent: &;
-  $control: string-replace(#{$parent}, "--error", "");
+  $control: string-replace(#{$parent}, '--error', '');
   color: $color-state-red-shy-tomato;
 
   #{$control}__icon {

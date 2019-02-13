@@ -1,24 +1,24 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
-import classnames from "classnames";
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import classnames from 'classnames';
 
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import urlPropType from "../../js/prop-types/url-prop-type";
-import styles from "./index.scss";
-import template from "./_template";
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
+import styles from './index.scss';
+import template from './_template';
 
 class AXAFooterSocial extends BaseComponentGlobal {
-  static tagName = "axa-footer-social";
+  static tagName = 'axa-footer-social';
   static propTypes = {
     inline: PropTypes.bool,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
-        url: urlPropType
+        url: urlPropType,
       })
     ),
     light: PropTypes.bool,
-    title: PropTypes.string
+    title: PropTypes.string,
   };
 
   init() {
@@ -27,12 +27,12 @@ class AXAFooterSocial extends BaseComponentGlobal {
 
   willRenderCallback() {
     const {
-      props: { inline, light }
+      props: { inline, light },
     } = this;
 
-    this.className = classnames(this.initialClassName, "m-footer-social", {
-      "m-footer-social--inline": inline,
-      "m-footer-social--light": light
+    this.className = classnames(this.initialClassName, 'm-footer-social', {
+      'm-footer-social--inline': inline,
+      'm-footer-social--light': light,
     });
   }
 }

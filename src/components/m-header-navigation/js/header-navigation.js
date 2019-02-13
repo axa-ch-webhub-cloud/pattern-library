@@ -1,34 +1,34 @@
-import { add, remove } from "../../../js/class-list";
-import { requestAnimationFrame } from "../../../js/request-animation-frame";
-import forceRepaint from "../../../js/force-repaint";
-import UiEvents, { EVENTS } from "../../../js/ui-events";
-import isEdge from "../../../js/shame/is-edge-SHAME";
-import on from "../../../js/on";
+import { add, remove } from '../../../js/class-list';
+import { requestAnimationFrame } from '../../../js/request-animation-frame';
+import forceRepaint from '../../../js/force-repaint';
+import UiEvents, { EVENTS } from '../../../js/ui-events';
+import isEdge from '../../../js/shame/is-edge-SHAME';
+import on from '../../../js/on';
 
 class HeaderNavigation extends UiEvents {
   static DEFAULTS = {
-    list: ".js-header-navigation__list",
-    toggleClass: "js-header-navigation__list-link",
-    subNavi: ".js-header-sub-navigation",
-    openClass: "is-header-sub-navigation-open",
-    historyClass: "js-header-navigation__list-link-history"
+    list: '.js-header-navigation__list',
+    toggleClass: 'js-header-navigation__list-link',
+    subNavi: '.js-header-sub-navigation',
+    openClass: 'is-header-sub-navigation-open',
+    historyClass: 'js-header-navigation__list-link-history',
   };
 
   constructor(wcNode, options = {}) {
     super(wcNode, {
-      containerClass: ".js-header-navigation__list",
+      containerClass: '.js-header-navigation__list',
       toggleClass: HeaderNavigation.DEFAULTS.toggleClass,
-      closeClass: "js-header-navigation-close",
+      closeClass: 'js-header-navigation-close',
       preventDefault: options.preventDefault || !options.simpleMenu,
       outerClose: !options.simpleMenu,
-      escapeClose: !options.simpleMenu
+      escapeClose: !options.simpleMenu,
     });
 
     this.wcNode = wcNode;
     this.options = {
       ...HeaderNavigation.DEFAULTS,
       useDefaultEvent: !!options.useDefaultEvent || !!options.simpleMenu,
-      ...options
+      ...options,
     };
 
     this.init();
@@ -37,19 +37,13 @@ class HeaderNavigation extends UiEvents {
   init() {
     this.list = this.wcNode.querySelector(this.options.list);
 
-    this.unClickEnd = on(
-      this.wcNode,
-      EVENTS.CLICK,
-      this.options.historyClass,
-      this.handleClick,
-      { capture: true, passive: false }
-    );
+    this.unClickEnd = on(this.wcNode, EVENTS.CLICK, this.options.historyClass, this.handleClick, { capture: true, passive: false });
   }
 
   handleClick = ev => {
     ev.preventDefault();
     const { target } = ev;
-    window.history.pushState(null, null, target.getAttribute("href"));
+    window.history.pushState(null, null, target.getAttribute('href'));
   };
 
   enter(node) {

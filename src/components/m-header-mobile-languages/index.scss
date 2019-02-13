@@ -1,8 +1,8 @@
-@import "../../styles/mixins/force-ios-click";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/unstyle-list";
-@import "../../styles/typo/typo-mixins";
-@import "settings/header-mobile-languages";
+@import '../../styles/mixins/force-ios-click';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/unstyle-list';
+@import '../../styles/typo/typo-mixins';
+@import 'settings/header-mobile-languages';
 
 .m-header-mobile-languages {
   display: block;
@@ -18,8 +18,7 @@
 
   display: inline-block;
 
-  padding: $header-mobile-languages__link-y-padding
-    $header-mobile-languages__link-x-padding;
+  padding: $header-mobile-languages__link-y-padding $header-mobile-languages__link-x-padding;
 
   color: $header-mobile-languages__link-color;
   text-transform: uppercase;
@@ -37,7 +36,7 @@
     float: left;
     margin-left: -$header-mobile-languages__link-x-padding;
 
-    content: "\00a0";
+    content: '\00a0';
 
     border-left: 1px solid $header-mobile-languages__link-color;
   }

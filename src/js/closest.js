@@ -1,4 +1,4 @@
-import { has } from "./class-list";
+import { has } from './class-list';
 
 /**
  * Returns the closest parent by class name.

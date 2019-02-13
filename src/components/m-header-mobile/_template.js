@@ -1,5 +1,5 @@
-import html from "nanohtml";
-import classnames from "classnames";
+import html from 'nanohtml';
+import classnames from 'classnames';
 
 export default ({ offcanvas } = {}, childrenFragment) => [
   html`
@@ -8,12 +8,12 @@ export default ({ offcanvas } = {}, childrenFragment) => [
   html`
     <div
       class="m-header-mobile__canvas js-header-mobile__canvas ${classnames({
-        "m-header-mobile__canvas--off-canvas": !offcanvas
+        'm-header-mobile__canvas--off-canvas': !offcanvas,
       })}"
     >
       <div class="m-header-mobile__box">
         ${childrenFragment}
       </div>
     </div>
-  `
+  `,
 ];

@@ -1,10 +1,10 @@
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import template from "./_template";
-import styles from "./index.scss";
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import template from './_template';
+import styles from './index.scss';
 
 class AXAAccordion extends BaseComponentGlobal {
-  static tagName = "axa-accordion";
+  static tagName = 'axa-accordion';
 
   init() {
     super.init({ styles, template });

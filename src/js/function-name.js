@@ -5,7 +5,7 @@ function functionName(func) {
 
   if (!name) {
     // eslint-disable-next-line prefer-template
-    const match = ("" + func).match(reFunctionName);
+    const match = ('' + func).match(reFunctionName);
     name = match && match[1];
   }
 

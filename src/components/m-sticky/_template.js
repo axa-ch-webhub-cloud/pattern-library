@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default function sticky(props, childrenFragment) {
   return [
@@ -7,6 +7,6 @@ export default function sticky(props, childrenFragment) {
     `,
     html`
       <div class="m-sticky__box js-sticky__box">${childrenFragment}</div>
-    `
+    `,
   ];
 }

@@ -1,7 +1,7 @@
-@import "settings/header-mobile";
-@import "../m-header-main/settings/header-main";
-@import "../../styles/mixins/hardware-accelerate";
-@import "../../styles/mixins/respond";
+@import 'settings/header-mobile';
+@import '../m-header-main/settings/header-main';
+@import '../../styles/mixins/hardware-accelerate';
+@import '../../styles/mixins/respond';
 
 .m-header-mobile {
   display: block;
@@ -104,8 +104,8 @@
 
 .m-button.m-header-mobile__box--button {
   display: block;
-  margin: $header-mobile__item-margin-top $header-mobile__item-padding-right
-    $header-mobile__item-margin-top $header-mobile__item-padding-left;
+  margin: $header-mobile__item-margin-top $header-mobile__item-padding-right $header-mobile__item-margin-top
+    $header-mobile__item-padding-left;
 
   text-align: center;
 
@@ -114,8 +114,7 @@
   }
 
   @include respond-up(sm) {
-    width: $header-mobile__canvas-width-sm - $header-mobile__item-padding-right -
-      $header-mobile__item-padding-left;
+    width: $header-mobile__canvas-width-sm - $header-mobile__item-padding-right - $header-mobile__item-padding-left;
   }
 }
 

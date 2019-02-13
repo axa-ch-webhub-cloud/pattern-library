@@ -1,21 +1,13 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default (
-  {
-    src,
-    alt = "Commercial Hero cover",
-    gradient = "white",
-    contentAlign = "left",
-    heroObjectPosition = "center",
-    pictureClasses = ""
-  },
+  { src, alt = 'Commercial Hero cover', gradient = 'white', contentAlign = 'left', heroObjectPosition = 'center', pictureClasses = '' },
   childrenFragment
 ) => html`
   <header
-    class="o-commercial-hero-cover__header o-commercial-hero-cover__header__${gradient ===
-    "white"
-      ? "gradient-white"
-      : "gradient-black"}${contentAlign === "right" ? "-inverted" : ""}"
+    class="o-commercial-hero-cover__header o-commercial-hero-cover__header__${gradient === 'white'
+      ? 'gradient-white'
+      : 'gradient-black'}${contentAlign === 'right' ? '-inverted' : ''}"
   >
     <picture class="m-picture o-commercial-hero-cover__picture">
       <img
@@ -26,24 +18,13 @@ export default (
         data-object-position="${heroObjectPosition}"
       />
     </picture>
-    <axa-container
-      class="o-commercial-hero-cover__info"
-      classes="o-commercial-hero-cover__full-height"
-    >
+    <axa-container class="o-commercial-hero-cover__info" classes="o-commercial-hero-cover__full-height">
       <axa-row classes="o-commercial-hero-cover__full-height">
-        <axa-col
-          size="sm-12 lg-6"
-          order="${contentAlign === "left" ? "0" : "1"}"
-          classes="o-commercial-hero-cover__flex"
-        >
-          ${childrenFragment.querySelector(
-            ".js-commercial-hero-cover__first"
-          ) || childrenFragment}
+        <axa-col size="sm-12 lg-6" order="${contentAlign === 'left' ? '0' : '1'}" classes="o-commercial-hero-cover__flex">
+          ${childrenFragment.querySelector('.js-commercial-hero-cover__first') || childrenFragment}
         </axa-col>
         <axa-col size="sm-12 lg-6">
-          ${childrenFragment.querySelector(
-            ".js-commercial-hero-cover__second"
-          ) || ""}
+          ${childrenFragment.querySelector('.js-commercial-hero-cover__second') || ''}
         </axa-col>
       </axa-row>
     </axa-container>

@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import withReact from "../js/with-react";
-import AXAButton from "../components/m-button";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import withReact from '../js/with-react';
+import AXAButton from '../components/m-button';
 
-import "./todomvc/app";
+import './todomvc/app';
 
 const AXAButtonReact = withReact(AXAButton);
 
@@ -13,37 +13,34 @@ class MyEventDemoReact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isToggleOn: true
+      isToggleOn: true,
     };
   }
 
   handleClick = () => {
-    console.log("click");
+    console.log('click');
     this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
+      isToggleOn: !prevState.isToggleOn,
     }));
   };
 
   render() {
     return [
       <axa-button onClick={this.handleClick} key={0}>
-        <span>{this.state.isToggleOn ? "ON" : "OFF"}</span>
+        <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
       </axa-button>,
       <AXAButtonReact onAxaClick={this.handleClick} key={1}>
-        {this.state.isToggleOn ? "ON" : "OFF"}
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
       </AXAButtonReact>,
       <AXAButtonReact onAxaClick={this.handleClick} key={2}>
-        <span>{this.state.isToggleOn ? "ON" : "OFF"}</span>
+        <span>{this.state.isToggleOn ? 'ON' : 'OFF'}</span>
         <p>
-          <em>foo {this.state.isToggleOn ? "is cool" : "is fui"}</em>
-          <strong>bar {this.state.isToggleOn ? "YES" : "NO"}</strong>
+          <em>foo {this.state.isToggleOn ? 'is cool' : 'is fui'}</em>
+          <strong>bar {this.state.isToggleOn ? 'YES' : 'NO'}</strong>
         </p>
-      </AXAButtonReact>
+      </AXAButtonReact>,
     ];
   }
 }
 
-ReactDOM.render(
-  <MyEventDemoReact />,
-  document.getElementById("my-event-demo-react")
-);
+ReactDOM.render(<MyEventDemoReact />, document.getElementById('my-event-demo-react'));

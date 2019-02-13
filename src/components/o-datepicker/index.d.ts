@@ -6,8 +6,8 @@ export interface Props {
   buttonCancel?: string;
   locale?: string;
   value?: string;
-  startYear?: number | "TODAY";
-  startMonth?: number | "TODAY";
+  startYear?: number | 'TODAY';
+  startMonth?: number | 'TODAY';
   selectedDay?: number;
   lowerEndYear?: number;
   higherEndYear?: number;

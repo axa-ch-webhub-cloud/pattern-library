@@ -14,7 +14,7 @@ function outeriOSSHAME(node) {
     return;
   }
 
-  node.style.cursor = "pointer";
+  node.style.cursor = 'pointer';
 }
 
 export default outeriOSSHAME;

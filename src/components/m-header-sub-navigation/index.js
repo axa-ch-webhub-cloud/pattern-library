@@ -1,14 +1,14 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
-import classnames from "classnames";
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import classnames from 'classnames';
 
-import styles from "./index.scss";
-import template from "./_template";
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import urlPropType from "../../js/prop-types/url-prop-type";
+import styles from './index.scss';
+import template from './_template';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
 
 class AXAHeaderSubNavigation extends BaseComponentGlobal {
-  static tagName = "axa-header-sub-navigation";
+  static tagName = 'axa-header-sub-navigation';
   static propTypes = {
     flyout: PropTypes.bool,
     indexTitle: PropTypes.string,
@@ -24,13 +24,13 @@ class AXAHeaderSubNavigation extends BaseComponentGlobal {
                 url: urlPropType,
                 name: PropTypes.string,
                 isActive: PropTypes.bool,
-                preventDefault: PropTypes.bool
+                preventDefault: PropTypes.bool,
               })
-            )
+            ),
           })
-        )
+        ),
       })
-    )
+    ),
   };
 
   init() {
@@ -39,16 +39,12 @@ class AXAHeaderSubNavigation extends BaseComponentGlobal {
 
   willRenderCallback() {
     const {
-      props: { flyout }
+      props: { flyout },
     } = this;
 
-    this.className = classnames(
-      this.initialClassName,
-      "m-header-sub-navigation js-header-sub-navigation",
-      {
-        "m-header-sub-navigation--flyout": flyout
-      }
-    );
+    this.className = classnames(this.initialClassName, 'm-header-sub-navigation js-header-sub-navigation', {
+      'm-header-sub-navigation--flyout': flyout,
+    });
   }
 }
 

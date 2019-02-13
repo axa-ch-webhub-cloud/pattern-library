@@ -1,60 +1,56 @@
-import css from "../../../js/css";
-import on from "../../../js/on";
-import ownerWindow from "../../../js/owner-window";
-import {
-  requestAnimationFrame,
-  cancelAnimationFrame
-} from "../../../js/request-animation-frame";
-import { add, remove, has } from "../../../js/class-list";
-import UiEvents from "../../../js/ui-events";
+import css from '../../../js/css';
+import on from '../../../js/on';
+import ownerWindow from '../../../js/owner-window';
+import { requestAnimationFrame, cancelAnimationFrame } from '../../../js/request-animation-frame';
+import { add, remove, has } from '../../../js/class-list';
+import UiEvents from '../../../js/ui-events';
 
 class Stroke extends UiEvents {
   static DEFAULTS = {
-    strokeClass: "a-stroke",
-    list: ".js-header-navigation__list",
-    toggleClass: "js-header-navigation__list-link",
-    enterClass: "is-stroke-enter",
-    moveClass: "is-stroke-move",
-    staticClass: "is-stroke-static",
-    interactiveClass: "is-stroke-interactive",
-    activeClass: "is-header-navigation-active",
-    activeOpenClass: "is-stroke-active-open",
-    activeMoveClass: "is-stroke-active-move",
-    transitionOffClass: "is-stroke-transition-off"
+    strokeClass: 'a-stroke',
+    list: '.js-header-navigation__list',
+    toggleClass: 'js-header-navigation__list-link',
+    enterClass: 'is-stroke-enter',
+    moveClass: 'is-stroke-move',
+    staticClass: 'is-stroke-static',
+    interactiveClass: 'is-stroke-interactive',
+    activeClass: 'is-header-navigation-active',
+    activeOpenClass: 'is-stroke-active-open',
+    activeMoveClass: 'is-stroke-active-move',
+    transitionOffClass: 'is-stroke-transition-off',
   };
 
   constructor(wcNode, options = {}) {
     super(wcNode, {
-      containerClass: ".js-header-navigation__list",
+      containerClass: '.js-header-navigation__list',
       toggleClass: Stroke.DEFAULTS.toggleClass,
-      closeClass: "js-header-navigation-close",
+      closeClass: 'js-header-navigation-close',
       sameClickClose: !options.simpleMenu,
       preventDefault: !options.simpleMenu,
       outerClose: !options.simpleMenu,
-      escapeClose: !options.simpleMenu
+      escapeClose: !options.simpleMenu,
     });
 
     this.wcNode = wcNode;
     this.options = {
       ...Stroke.DEFAULTS,
-      ...options
+      ...options,
     };
 
     this._isStatic = false;
   }
 
   init() {
-    this._contextNode.style.position = "relative";
+    this._contextNode.style.position = 'relative';
 
     this._list = this._contextNode.querySelector(this.options.list);
 
-    const stroke =
-      this.wcNode && this.wcNode.querySelector(`.${this.options.strokeClass}`);
+    const stroke = this.wcNode && this.wcNode.querySelector(`.${this.options.strokeClass}`);
 
     if (stroke) {
       this._stroke = stroke;
     } else {
-      this._stroke = document.createElement("div");
+      this._stroke = document.createElement('div');
       this._stroke.className = this.options.strokeClass;
     }
 
@@ -73,13 +69,13 @@ class Stroke extends UiEvents {
       const { options } = this;
 
       this._init(this._contextNode, {
-        containerClass: ".js-header-navigation__list",
+        containerClass: '.js-header-navigation__list',
         toggleClass: Stroke.DEFAULTS.toggleClass,
-        closeClass: "js-header-navigation-close",
+        closeClass: 'js-header-navigation-close',
         sameClickClose: !options.simpleMenu,
         preventDefault: !options.simpleMenu,
         outerClose: !options.simpleMenu,
-        escapeClose: !options.simpleMenu
+        escapeClose: !options.simpleMenu,
       });
 
       this.init();
@@ -105,7 +101,7 @@ class Stroke extends UiEvents {
         add(this._stroke, this.options.enterClass);
         css(this._stroke, {
           width: `${parentNode.offsetWidth}px`,
-          left: `${parentNode.offsetLeft}px`
+          left: `${parentNode.offsetLeft}px`,
         });
       });
     });
@@ -127,7 +123,7 @@ class Stroke extends UiEvents {
         add(this._stroke, this.options.moveClass);
         css(this._stroke, {
           width: `${parentNode.offsetWidth}px`,
-          left: `${parentNode.offsetLeft}px`
+          left: `${parentNode.offsetLeft}px`,
         });
 
         this._onMoving();
@@ -141,11 +137,7 @@ class Stroke extends UiEvents {
     this._offMoving();
 
     if (this._activeNode) {
-      remove(
-        this._activeNode,
-        this.options.activeMoveClass,
-        this.options.activeOpenClass
-      );
+      remove(this._activeNode, this.options.activeMoveClass, this.options.activeOpenClass);
       this._activeNode = null;
     }
 
@@ -170,12 +162,8 @@ class Stroke extends UiEvents {
   _onMoving() {
     this._offMoving();
 
-    this._unResize = on(ownerWindow(this.wcNode), "resize", this._handleResize);
-    this._unTransitionEnd = on(
-      this._stroke,
-      "transitionend",
-      this._handleTransitionEnd
-    );
+    this._unResize = on(ownerWindow(this.wcNode), 'resize', this._handleResize);
+    this._unTransitionEnd = on(this._stroke, 'transitionend', this._handleTransitionEnd);
   }
 
   _offMoving() {
@@ -222,20 +210,20 @@ class Stroke extends UiEvents {
 
     this.resizeTimeout = requestAnimationFrame(() => {
       const {
-        _parentNode: { offsetWidth, offsetLeft }
+        _parentNode: { offsetWidth, offsetLeft },
       } = this;
 
       if (offsetWidth && offsetLeft) {
         css(this._stroke, {
           width: `${offsetWidth}px`,
-          left: `${offsetLeft}px`
+          left: `${offsetLeft}px`,
         });
       }
     });
   };
 
   _handleTransitionEnd = e => {
-    if (e.propertyName === "left") {
+    if (e.propertyName === 'left') {
       this._offMoving();
       this._handleStaticState(true);
     }

@@ -1,9 +1,9 @@
-import styles from "./index.scss";
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
+import styles from './index.scss';
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 
 class AXAHeader extends BaseComponentGlobal {
-  static tagName = "axa-header";
+  static tagName = 'axa-header';
 
   init() {
     super.init({ styles });

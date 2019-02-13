@@ -1,7 +1,7 @@
-@import "settings/header-top-content-bar";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/respond";
+@import 'settings/header-top-content-bar';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/respond';
 
 .m-header-top-content-bar {
   display: block;

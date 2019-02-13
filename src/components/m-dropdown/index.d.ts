@@ -9,7 +9,7 @@ export interface Props {
   inFlow?: boolean;
   items?: Item[];
   native?: boolean;
-  size?: "sm";
+  size?: 'sm';
   // can't be optional, otherwise:
   // Error:(22, 18) TS2320: Interface 'AXADropdown' cannot simultaneously extend types 'HTMLElement' and 'Props'.
   // Named property 'title' of types 'HTMLElement' and 'Props' are not identical.

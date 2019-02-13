@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import classnames from "classnames";
-import withReact from "../../js/with-react";
-import AXAButton from "../../components/m-button";
-import AXAIcon from "../../components/a-icon";
-import AXACheckbox from "../../components/a-checkbox";
-import AXADropDown from "../../components/m-dropdown";
+import React, { Component } from 'react';
+import classnames from 'classnames';
+import withReact from '../../js/with-react';
+import AXAButton from '../../components/m-button';
+import AXAIcon from '../../components/a-icon';
+import AXACheckbox from '../../components/a-checkbox';
+import AXADropDown from '../../components/m-dropdown';
 
 const AXAButtonReact = withReact(AXAButton);
 const AXAIconReact = withReact(AXAIcon);
@@ -26,7 +26,7 @@ class TodoItem extends Component {
     this.handleDestroy = this.handleDestroy.bind(this);
 
     this.state = {
-      editText: props.todo.title
+      editText: props.todo.title,
     };
   }
 
@@ -40,11 +40,7 @@ class TodoItem extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const { props } = this;
 
-    return (
-      nextProps.todo !== props.todo ||
-      nextProps.editing !== props.editing ||
-      nextState.editText !== this.state.editText
-    );
+    return nextProps.todo !== props.todo || nextProps.editing !== props.editing || nextState.editText !== this.state.editText;
   }
 
   /**
@@ -58,10 +54,7 @@ class TodoItem extends Component {
       const { editField } = this;
 
       editField.focus();
-      editField.setSelectionRange(
-        editField.value.length,
-        editField.value.length
-      );
+      editField.setSelectionRange(editField.value.length, editField.value.length);
     }
   }
 
@@ -111,7 +104,7 @@ class TodoItem extends Component {
 
   handleDestroy(event) {
     const {
-      props: { todo, onDestroy }
+      props: { todo, onDestroy },
     } = this;
 
     onDestroy(todo);
@@ -128,33 +121,20 @@ class TodoItem extends Component {
         <div className="m-todo__wrap">
           <AXADropDownReact
             title="Switch status"
-            value={completed ? "selected" : "unselected"}
+            value={completed ? 'selected' : 'unselected'}
             onAxaChange={ev => {
-              todo.completed = ev.detail === "unselected";
+              todo.completed = ev.detail === 'unselected';
               onToggle(todo);
             }}
-            items={[
-              { name: "Selected", value: "selected" },
-              { name: "Unselected", value: "unselected" }
-            ]}
+            items={[{ name: 'Selected', value: 'selected' }, { name: 'Unselected', value: 'unselected' }]}
           />
-          <AXACheckboxReact
-            checked={completed}
-            name="completed"
-            onChange={() => onToggle(todo)}
-          />
+          <AXACheckboxReact checked={completed} name="completed" onChange={() => onToggle(todo)} />
 
-          <input
-            className="m-todo__toggle"
-            type="checkbox"
-            name="completed"
-            checked={completed}
-            onChange={() => onToggle(todo)}
-          />
+          <input className="m-todo__toggle" type="checkbox" name="completed" checked={completed} onChange={() => onToggle(todo)} />
 
           <label
-            className={classnames("m-todo__label", {
-              "is-todo-completed": completed
+            className={classnames('m-todo__label', {
+              'is-todo-completed': completed,
             })}
             onDoubleClick={this.handleEdit}
             htmlFor={htmlFor}
@@ -162,13 +142,7 @@ class TodoItem extends Component {
             {title}
           </label>
 
-          <AXAButtonReact
-            onAxaClick={this.handleDestroy}
-            color="red"
-            size="md"
-            motion
-            ghost={!completed}
-          >
+          <AXAButtonReact onAxaClick={this.handleDestroy} color="red" size="md" motion ghost={!completed}>
             <AXAIconReact icon="cross-gap" classes="m-todo__destroy-icon" />
           </AXAButtonReact>
 

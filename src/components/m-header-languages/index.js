@@ -1,30 +1,30 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import urlPropType from "../../js/prop-types/url-prop-type";
-import valuePropType from "../../js/prop-types/value-prop-type";
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
+import valuePropType from '../../js/prop-types/value-prop-type';
 // import the styles used for this component
-import styles from "./index.scss";
+import styles from './index.scss';
 // import the template used for this component
-import template from "./_template";
+import template from './_template';
 // import DropDown from '../m-dropdown/js/drop-down';
-import fire from "../../js/fire";
-import { AXA_EVENTS, EVENTS } from "../../js/ui-events";
-import on from "../../js/on";
+import fire from '../../js/fire';
+import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
+import on from '../../js/on';
 
 class AXAHeaderLanguages extends BaseComponentGlobal {
-  static tagName = "axa-header-languages";
+  static tagName = 'axa-header-languages';
   static propTypes = {
     items: PropTypes.arrayOf(
       PropTypes.shape({
         url: urlPropType,
         name: PropTypes.string,
         code: PropTypes.string,
-        isActive: PropTypes.bool
+        isActive: PropTypes.bool,
       })
     ),
-    value: valuePropType
+    value: valuePropType,
   };
 
   init() {
@@ -32,7 +32,7 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
 
     this.handleClick = event => {
       const {
-        target: { lang }
+        target: { lang },
       } = event;
 
       /**
@@ -44,7 +44,7 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
       const cancelled = fire(this, AXA_EVENTS.AXA_CLICK, lang, {
         bubbles: true,
         cancelable: true,
-        composed: true
+        composed: true,
       });
 
       if (!cancelled) {
@@ -56,16 +56,10 @@ class AXAHeaderLanguages extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    this.unClickEnd = on(
-      this,
-      EVENTS.CLICK,
-      "js-header-languages__list-link",
-      this.handleClick,
-      {
-        capture: true,
-        passive: false
-      }
-    );
+    this.unClickEnd = on(this, EVENTS.CLICK, 'js-header-languages__list-link', this.handleClick, {
+      capture: true,
+      passive: false,
+    });
   }
 
   willRenderCallback() {

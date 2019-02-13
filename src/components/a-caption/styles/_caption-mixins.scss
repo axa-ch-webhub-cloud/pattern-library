@@ -1,6 +1,6 @@
-@import "../../o-table/styles/table-settings";
-@import "../../../styles/mixins/respond";
-@import "../../../styles/typo/typo-mixins";
+@import '../../o-table/styles/table-settings';
+@import '../../../styles/mixins/respond';
+@import '../../../styles/typo/typo-mixins';
 
 @mixin caption(
   $color: $table__cell-color,

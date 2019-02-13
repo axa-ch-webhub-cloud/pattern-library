@@ -1,5 +1,5 @@
-import morph from "./morph";
-import specialElHandlers from "./special-el-handlers";
+import morph from './morph';
+import specialElHandlers from './special-el-handlers';
 
 const TEXT_NODE = 3;
 // var DEBUG = false
@@ -27,12 +27,12 @@ function componentMorph(oldTree, newTree) {
   //   newTree && newTree.outerHTML
   // )
   // }
-  if (typeof oldTree !== "object") {
-    throw new Error("componentMorph: oldTree should be an object");
+  if (typeof oldTree !== 'object') {
+    throw new Error('componentMorph: oldTree should be an object');
   }
 
-  if (typeof newTree !== "object") {
-    throw new Error("componentMorph: newTree should be an object");
+  if (typeof newTree !== 'object') {
+    throw new Error('componentMorph: newTree should be an object');
   }
 
   const tree = walk(newTree, oldTree);

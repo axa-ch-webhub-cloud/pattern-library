@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default ({
   buttonOk,
@@ -12,7 +12,7 @@ export default ({
   startDateYearTitle,
   weekdays = [],
   monthItems = [],
-  yearItems = []
+  yearItems = [],
 }) => html`
   <article class="m-datepicker__article">
     <div class="m-datepicker__dropdown-wrap">
@@ -45,7 +45,7 @@ export default ({
                 <div class="m-datepicker__weekdays__day">${day}</div>
               `
           )
-        : ""}
+        : ''}
     </div>
 
     <axa-datepicker-body
@@ -59,15 +59,10 @@ export default ({
     </axa-datepicker-body>
 
     <div class="m-datepicker__buttons">
-      <axa-button
-        class="m-datepicker__button-borderless m-datepicker__button-cancel js-datepicker__button-cancel"
-        tag="button"
-        ghost
+      <axa-button class="m-datepicker__button-borderless m-datepicker__button-cancel js-datepicker__button-cancel" tag="button" ghost
         >${buttonCancel}</axa-button
       >
-      <axa-button
-        class="m-datepicker__button-borderless m-datepicker__button-ok js-datepicker__button-ok"
-        tag="button"
+      <axa-button class="m-datepicker__button-borderless m-datepicker__button-ok js-datepicker__button-ok" tag="button"
         >${buttonOk}</axa-button
       >
     </div>

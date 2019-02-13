@@ -1,7 +1,7 @@
-@import "./settings/footer-legals";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/respond";
-@import "../../styles/typo/typo-mixins";
+@import './settings/footer-legals';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/respond';
+@import '../../styles/typo/typo-mixins';
 
 .m-footer-legals {
   @include typo-legals();
@@ -72,7 +72,7 @@
     height: $footer-delimiter-height;
     margin-top: ($footer-delimiter-height / -2);
 
-    content: "";
+    content: '';
     background: $footer-delimiter-bg;
   }
 

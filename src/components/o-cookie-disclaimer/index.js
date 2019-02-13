@@ -1,21 +1,21 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
-import styles from "./index.scss";
+import styles from './index.scss';
 // import the template used for this component
-import template from "./_template";
+import template from './_template';
 
-import DisclaimerHandler from "./js/disclaimer-handler";
+import DisclaimerHandler from './js/disclaimer-handler';
 
 class AXACookieDisclaimer extends BaseComponentGlobal {
-  static tagName = "axa-cookie-disclaimer";
+  static tagName = 'axa-cookie-disclaimer';
   static propTypes = {
     classes: PropTypes.string,
     buttonName: PropTypes.string,
     title: PropTypes.string,
-    fixed: PropTypes.bool
+    fixed: PropTypes.bool,
   };
 
   init() {

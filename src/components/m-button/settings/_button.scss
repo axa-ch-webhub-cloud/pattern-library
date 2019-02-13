@@ -1,4 +1,4 @@
-@import "../../../styles/settings/colors";
+@import '../../../styles/settings/colors';
 
 $button-x-padding-min: 20px !default;
 $button-x-padding-max: 40px !default;
@@ -48,7 +48,7 @@ $button-color: (
     text--disabled: $color-prim-gray-dusty,
     arrow--disabled: $color-prim-gray-dusty,
     border--disabled: $color-prim-gray-silver,
-    icon--disabled: $color-prim-gray-silver
+    icon--disabled: $color-prim-gray-silver,
   ),
   red: (
     text: $color-prim-white,
@@ -61,7 +61,7 @@ $button-color: (
     bg--ghost--hover: transparent,
     bg--motion: $color-prim-red-flamingo,
     bg--motion--hover: $color-prim-red-flamingo,
-    text--motion--hover: $color-prim-white
+    text--motion--hover: $color-prim-white,
   ),
   white: (
     text: $color-prim-white,
@@ -74,6 +74,6 @@ $button-color: (
     bg--ghost--hover: $color-prim-white,
     bg--motion: $color-prim-white,
     bg--motion--hover: $color-prim-white,
-    text--motion--hover: $color-prim-blue-dark-indigo
-  )
+    text--motion--hover: $color-prim-blue-dark-indigo,
+  ),
 ) !default;

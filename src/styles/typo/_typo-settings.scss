@@ -1,21 +1,21 @@
 /// Base path of font location.
 /// In case this changes for you just ovverride it before importing.
-$font-base-path: "./assets/fonts/" !default;
+$font-base-path: './assets/fonts/' !default;
 
 /// AXA use two font faces - Publico Headline and Source Sans Pro.
 ///
 /// @link https://design.axa.com/web-guidelines/typography#overview
 $face-map: (
   source-sans-pro: (
-    "Source Sans Pro",
+    'Source Sans Pro',
     Arial,
-    sans-serif
+    sans-serif,
   ),
   publico: (
-    "Publico Headline",
+    'Publico Headline',
     Georgia,
-    serif
-  )
+    serif,
+  ),
 ) !default;
 
 /// AXA global typography's typeface variation map.
@@ -30,127 +30,127 @@ $typo-map: (
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.13,
-        paddingBottom: 21px
+        paddingBottom: 21px,
       ),
       typo-62--publico: (
         size: 30px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.13,
-        paddingBottom: 16px
+        paddingBottom: 16px,
       ),
       typo-48--publico: (
         size: 24px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.17,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-36--publico: (
         size: 20px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.5,
-        paddingBottom: 11px
+        paddingBottom: 11px,
       ),
       typo-78: (
         size: 46px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.13,
-        paddingBottom: 21px
+        paddingBottom: 21px,
       ),
       typo-62: (
         size: 30px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.13,
-        paddingBottom: 16px
+        paddingBottom: 16px,
       ),
       typo-48: (
         size: 24px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.17,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-36: (
         size: 20px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 11px
+        paddingBottom: 11px,
       ),
       typo-28: (
         size: 20px,
         weight: (
           Bold,
-          Semibold
+          Semibold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 16px
+        paddingBottom: 16px,
       ),
       typo-24: (
         size: 20px,
         weight: Bold,
         spacing: 0,
         lineHeight: 1.5,
-        paddingBottom: 11px
+        paddingBottom: 11px,
       ),
       typo-20: (
         size: 18px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 12px
+        paddingBottom: 12px,
       ),
       typo-18: (
         size: 16px,
         weight: (
           Regular,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 10px
+        paddingBottom: 10px,
       ),
       typo-16: (
         size: 14px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.5,
-        paddingBottom: 10px
+        paddingBottom: 10px,
       ),
       typo-14: (
         size: 12px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.5,
-        paddingBottom: 10px
+        paddingBottom: 10px,
       ),
       typo-13: (
         size: 12px,
         weight: (
           Regular,
-          Semibold
+          Semibold,
         ),
         spacing: 0.02em,
         lineHeight: 1.5,
-        paddingBottom: 10px
-      )
+        paddingBottom: 10px,
+      ),
     ),
   // medium -> tablet md:
     (
@@ -159,127 +159,127 @@ $typo-map: (
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.05,
-        paddingBottom: 28px
+        paddingBottom: 28px,
       ),
       typo-62--publico: (
         size: 50px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.16,
-        paddingBottom: 26px
+        paddingBottom: 26px,
       ),
       typo-48--publico: (
         size: 36px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.13,
-        paddingBottom: 18px
+        paddingBottom: 18px,
       ),
       typo-36--publico: (
         size: 30px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.17,
-        paddingBottom: 17px
+        paddingBottom: 17px,
       ),
       typo-78: (
         size: 60px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.05,
-        paddingBottom: 28px
+        paddingBottom: 28px,
       ),
       typo-62: (
         size: 50px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.16,
-        paddingBottom: 26px
+        paddingBottom: 26px,
       ),
       typo-48: (
         size: 36px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.13,
-        paddingBottom: 18px
+        paddingBottom: 18px,
       ),
       typo-36: (
         size: 30px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.17,
-        paddingBottom: 17px
+        paddingBottom: 17px,
       ),
       typo-28: (
         size: 28px,
         weight: (
           Bold,
-          Semibold
+          Semibold,
         ),
         spacing: 0.01em,
         lineHeight: 1.14,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-24: (
         size: 24px,
         weight: Bold,
         spacing: 0,
         lineHeight: 1.2,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-20: (
         size: 20px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 16px
+        paddingBottom: 16px,
       ),
       typo-18: (
         size: 18px,
         weight: (
           Regular,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 15px
+        paddingBottom: 15px,
       ),
       typo-16: (
         size: 16px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.5,
-        paddingBottom: 11px
+        paddingBottom: 11px,
       ),
       typo-14: (
         size: 14px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.21,
-        paddingBottom: 8px
+        paddingBottom: 8px,
       ),
       typo-13: (
         size: 13px,
         weight: (
           Regular,
-          Semibold
+          Semibold,
         ),
         spacing: 0.02em,
         lineHeight: 1.38,
-        paddingBottom: 9px
-      )
+        paddingBottom: 9px,
+      ),
     ),
   // large -> small desktop lg:
     (
@@ -288,127 +288,127 @@ $typo-map: (
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.05,
-        paddingBottom: 28px
+        paddingBottom: 28px,
       ),
       typo-62--publico: (
         size: 50px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.16,
-        paddingBottom: 26px
+        paddingBottom: 26px,
       ),
       typo-48--publico: (
         size: 36px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.13,
-        paddingBottom: 18px
+        paddingBottom: 18px,
       ),
       typo-36--publico: (
         size: 30px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.17,
-        paddingBottom: 17px
+        paddingBottom: 17px,
       ),
       typo-78: (
         size: 60px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.05,
-        paddingBottom: 28px
+        paddingBottom: 28px,
       ),
       typo-62: (
         size: 50px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.16,
-        paddingBottom: 26px
+        paddingBottom: 26px,
       ),
       typo-48: (
         size: 36px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.13,
-        paddingBottom: 18px
+        paddingBottom: 18px,
       ),
       typo-36: (
         size: 30px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.17,
-        paddingBottom: 17px
+        paddingBottom: 17px,
       ),
       typo-28: (
         size: 28px,
         weight: (
           Bold,
-          Semibold
+          Semibold,
         ),
         spacing: 0.01em,
         lineHeight: 1.14,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-24: (
         size: 24px,
         weight: Bold,
         spacing: 0,
         lineHeight: 1.2,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-20: (
         size: 20px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 16px
+        paddingBottom: 16px,
       ),
       typo-18: (
         size: 18px,
         weight: (
           Regular,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 15px
+        paddingBottom: 15px,
       ),
       typo-16: (
         size: 16px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.5,
-        paddingBottom: 11px
+        paddingBottom: 11px,
       ),
       typo-14: (
         size: 14px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.21,
-        paddingBottom: 8px
+        paddingBottom: 8px,
       ),
       typo-13: (
         size: 13px,
         weight: (
           Regular,
-          Semibold
+          Semibold,
         ),
         spacing: 0.02em,
         lineHeight: 1.38,
-        paddingBottom: 9px
-      )
+        paddingBottom: 9px,
+      ),
     ),
   // extra large -> full desktop xl:
     (
@@ -417,127 +417,127 @@ $typo-map: (
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.05,
-        paddingBottom: 28px
+        paddingBottom: 28px,
       ),
       typo-62--publico: (
         size: 62px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.16,
-        paddingBottom: 26px
+        paddingBottom: 26px,
       ),
       typo-48--publico: (
         size: 48px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.13,
-        paddingBottom: 18px
+        paddingBottom: 18px,
       ),
       typo-36--publico: (
         size: 36px,
         weight: Bold,
         spacing: 0.015em,
         lineHeight: 1.17,
-        paddingBottom: 17px
+        paddingBottom: 17px,
       ),
       typo-78: (
         size: 78px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.05,
-        paddingBottom: 28px
+        paddingBottom: 28px,
       ),
       typo-62: (
         size: 62px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.16,
-        paddingBottom: 26px
+        paddingBottom: 26px,
       ),
       typo-48: (
         size: 48px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.13,
-        paddingBottom: 18px
+        paddingBottom: 18px,
       ),
       typo-36: (
         size: 36px,
         weight: Bold,
         spacing: 0.01em,
         lineHeight: 1.17,
-        paddingBottom: 17px
+        paddingBottom: 17px,
       ),
       typo-28: (
         size: 28px,
         weight: (
           Bold,
-          Semibold
+          Semibold,
         ),
         spacing: 0.01em,
         lineHeight: 1.14,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-24: (
         size: 24px,
         weight: Bold,
         spacing: 0,
         lineHeight: 1.2,
-        paddingBottom: 13px
+        paddingBottom: 13px,
       ),
       typo-20: (
         size: 20px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 16px
+        paddingBottom: 16px,
       ),
       typo-18: (
         size: 18px,
         weight: (
           Regular,
-          Bold
+          Bold,
         ),
         spacing: 0.01em,
         lineHeight: 1.5,
-        paddingBottom: 15px
+        paddingBottom: 15px,
       ),
       typo-16: (
         size: 16px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.5,
-        paddingBottom: 11px
+        paddingBottom: 11px,
       ),
       typo-14: (
         size: 14px,
         weight: (
           Regular,
           Semibold,
-          Bold
+          Bold,
         ),
         spacing: 0.02em,
         lineHeight: 1.21,
-        paddingBottom: 8px
+        paddingBottom: 8px,
       ),
       typo-13: (
         size: 13px,
         weight: (
           Regular,
-          Semibold
+          Semibold,
         ),
         spacing: 0.02em,
         lineHeight: 1.38,
-        paddingBottom: 9px
-      )
+        paddingBottom: 9px,
+      ),
     )
 ) !default;
 
@@ -562,5 +562,5 @@ $font-weight-map: (
   Extrabold: 800,
   Ultrabold: 800,
   Black: 900,
-  Heavy: 900
+  Heavy: 900,
 ) !default;

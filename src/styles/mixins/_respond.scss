@@ -1,6 +1,6 @@
-@import "../functions/strip-unit";
-@import "../functions/breakpoint";
-@import "../grid/grid-settings";
+@import '../functions/strip-unit';
+@import '../functions/breakpoint';
+@import '../grid/grid-settings';
 
 /// Style the element when the viewport is at the given breakpoint or wider.
 ///
@@ -52,11 +52,7 @@
 /// @param {string} $breakpoint - Either an existing breakpoint key.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @mixin respond-only($breakpoint, $breakpoints: $grid-breakpoints) {
-  @include respond-between(
-    $breakpoint,
-    $breakpoint,
-    $breakpoints: $grid-breakpoints
-  ) {
+  @include respond-between($breakpoint, $breakpoint, $breakpoints: $grid-breakpoints) {
     @content;
   }
 }

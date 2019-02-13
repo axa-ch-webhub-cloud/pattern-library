@@ -1,18 +1,17 @@
-@import "settings/header-sub-navigation";
-@import "../m-link/mixins/link";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/icon";
-@import "../../styles/mixins/quantity-query";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/mixins/unstyle-list";
-@import "../../styles/mixins/word-break";
+@import 'settings/header-sub-navigation';
+@import '../m-link/mixins/link';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/icon';
+@import '../../styles/mixins/quantity-query';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/unstyle-list';
+@import '../../styles/mixins/word-break';
 
 .m-header-sub-navigation {
   display: none;
 
   background: $header-sub-navigation-bg;
-  border-bottom: $header-sub-navigation-border-width solid
-    $header-sub-navigation-border-color;
+  border-bottom: $header-sub-navigation-border-width solid $header-sub-navigation-border-color;
   box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.3);
   text-align: left;
 
@@ -67,8 +66,7 @@
 
   position: relative;
 
-  padding-right: $header-sub-navigation__index-close__icon-size +
-    $header-sub-navigation__index-close-padding-left;
+  padding-right: $header-sub-navigation__index-close__icon-size + $header-sub-navigation__index-close-padding-left;
 
   margin-left: auto;
   text-transform: uppercase;
@@ -123,11 +121,9 @@
 .m-header-sub-navigation__block {
   @include make-col(3);
 
-  padding: $header-sub-navigation__block-y-padding
-    $header-sub-navigation__block-x-padding;
+  padding: $header-sub-navigation__block-y-padding $header-sub-navigation__block-x-padding;
 
-  border-right: $header-sub-navigation__block-border-width solid
-    $header-sub-navigation__block-border-color;
+  border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
 
   &:last-child {
     border: none;
@@ -141,8 +137,7 @@
 
     &:nth-child(n + 3) {
       padding-top: $header-sub-navigation__block-padding-top--repeat;
-      border-right: $header-sub-navigation__block-border-width solid
-        $header-sub-navigation__block-border-color;
+      border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
     }
 
     &:nth-child(2n) {
@@ -158,8 +153,7 @@
 
     &:nth-child(n + 4) {
       padding-top: $header-sub-navigation__block-padding-top--repeat;
-      border-right: $header-sub-navigation__block-border-width solid
-        $header-sub-navigation__block-border-color;
+      border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
     }
 
     &:nth-child(3n) {
@@ -170,8 +164,7 @@
   .m-header-sub-navigation__row--col-4 & {
     &:nth-child(n + 5) {
       padding-top: $header-sub-navigation__block-padding-top--repeat;
-      border-right: $header-sub-navigation__block-border-width solid
-        $header-sub-navigation__block-border-color;
+      border-right: $header-sub-navigation__block-border-width solid $header-sub-navigation__block-border-color;
     }
 
     &:nth-child(4n) {

@@ -52,7 +52,7 @@ const withMonkeyPatches = Base =>
         return;
       }
 
-      const div = document.createElement("div");
+      const div = document.createElement('div');
 
       div.innerHTML = html;
 

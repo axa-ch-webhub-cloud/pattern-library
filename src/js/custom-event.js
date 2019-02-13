@@ -8,12 +8,12 @@
 /* eslint-disable func-names */
 const CustomEvent = (function() {
   try {
-    const ce = new window.CustomEvent("test", { cancelable: true });
+    const ce = new window.CustomEvent('test', { cancelable: true });
     ce.preventDefault();
     if (ce.defaultPrevented !== true) {
       // IE has problems with .preventDefault() on custom events
       // http://stackoverflow.com/questions/23349191
-      throw new Error("Could not prevent default");
+      throw new Error('Could not prevent default');
     }
 
     return window.CustomEvent;
@@ -21,11 +21,8 @@ const CustomEvent = (function() {
 
   return CustomEventPolyfill;
 
-  function CustomEventPolyfill(
-    eventName,
-    { bubbles = false, cancelable = false, detail = undefined } = {}
-  ) {
-    const event = document.createEvent("CustomEvent");
+  function CustomEventPolyfill(eventName, { bubbles = false, cancelable = false, detail = undefined } = {}) {
+    const event = document.createEvent('CustomEvent');
     event.initCustomEvent(eventName, bubbles, cancelable, detail);
 
     const origPreventDefault = event.preventDefault;
@@ -38,10 +35,10 @@ const CustomEvent = (function() {
       // according to SO fixes IE 11/10/9
       // https://stackoverflow.com/questions/23349191/event-preventdefault-is-not-working-in-ie-11-for-custom-events
       try {
-        Object.defineProperty(this, "defaultPrevented", {
+        Object.defineProperty(this, 'defaultPrevented', {
           get() {
             return true;
-          }
+          },
         });
       } catch (error) {
         this.defaultPrevented = true;

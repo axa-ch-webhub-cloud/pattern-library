@@ -1,22 +1,22 @@
-import UiEvents from "../../../js/ui-events";
-import on from "../../../js/on";
-import { requestAnimationFrame } from "../../../js/request-animation-frame";
-import { add, remove } from "../../../js/class-list";
-import { publish, subscribe } from "../../../js/pubsub";
+import UiEvents from '../../../js/ui-events';
+import on from '../../../js/on';
+import { requestAnimationFrame } from '../../../js/request-animation-frame';
+import { add, remove } from '../../../js/class-list';
+import { publish, subscribe } from '../../../js/pubsub';
 
 class AccordionItem extends UiEvents {
   static DEFAULTS = {
     containerClass: false,
-    toggle: ".js-accordion-item__toggle",
-    body: ".js-accordion-item__body",
-    isOpen: "is-accordion-item-open"
+    toggle: '.js-accordion-item__toggle',
+    body: '.js-accordion-item__body',
+    isOpen: 'is-accordion-item-open',
   };
 
   constructor(wcNode, options) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...AccordionItem.DEFAULTS,
-      ...options
+      ...options,
     };
 
     super(wcNode, options);
@@ -39,7 +39,7 @@ class AccordionItem extends UiEvents {
   on() {
     this.off();
 
-    this.offToggleClicked = on(this.toggle, "click", this.handleToggleClick);
+    this.offToggleClicked = on(this.toggle, 'click', this.handleToggleClick);
   }
 
   off() {
@@ -57,11 +57,7 @@ class AccordionItem extends UiEvents {
   onInteractive() {
     this.offInteractive();
 
-    this.unTransitionEnd = on(
-      this.body,
-      "transitionend",
-      this.handleTransitionEnd
-    );
+    this.unTransitionEnd = on(this.body, 'transitionend', this.handleTransitionEnd);
   }
 
   offInteractive() {
@@ -92,9 +88,9 @@ class AccordionItem extends UiEvents {
 
     this.isOpen = true;
 
-    lastElementChild.style.overflow = "scroll";
+    lastElementChild.style.overflow = 'scroll';
     const { scrollHeight } = lastElementChild;
-    lastElementChild.style.overflow = "";
+    lastElementChild.style.overflow = '';
 
     this.onInteractive();
 
@@ -127,8 +123,8 @@ class AccordionItem extends UiEvents {
   }
 
   handleTransitionEnd = e => {
-    if (e.propertyName === "height") {
-      e.target.style.height = "";
+    if (e.propertyName === 'height') {
+      e.target.style.height = '';
 
       this.offInteractive();
     }
@@ -138,11 +134,7 @@ class AccordionItem extends UiEvents {
     if (this._contextNode) {
       this.offContextEnabled();
 
-      this.unSubscribeToggle = subscribe(
-        "accordion-item/toggle",
-        this.toggleState,
-        this._contextNode
-      );
+      this.unSubscribeToggle = subscribe('accordion-item/toggle', this.toggleState, this._contextNode);
     }
   }
 
@@ -153,7 +145,7 @@ class AccordionItem extends UiEvents {
   }
 
   handleToggleClick = () => {
-    publish("accordion-item/toggle", this.wcNode, this._contextNode);
+    publish('accordion-item/toggle', this.wcNode, this._contextNode);
   };
 
   destroy() {

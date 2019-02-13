@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default (props, childrenFragment) => html`
   <article class="o-card__wrap">

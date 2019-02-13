@@ -13,11 +13,11 @@
 
   $unit: unit($value);
 
-  @if ($unit == "px") {
+  @if ($unit == 'px') {
     $value: $value - 1px;
-  } @else if($unit == "em") {
+  } @else if($unit == 'em') {
     $value: $value - 0.01em;
-  } @else if($unit == "rem") {
+  } @else if($unit == 'rem') {
     $value: $value - 0.01rem;
   }
 

@@ -1,10 +1,10 @@
-import { Icon } from "../a-icon";
+import { Icon } from '../a-icon';
 
-export type Color = "red" | "white";
-export type Size = "sm" | "md" | "lg";
-export type Tag = "a" | "button";
-export type Type = "button" | "submit" | "reset";
-export type Target = "_blank" | "_self";
+export type Color = 'red' | 'white';
+export type Size = 'sm' | 'md' | 'lg';
+export type Tag = 'a' | 'button';
+export type Type = 'button' | 'submit' | 'reset';
+export type Target = '_blank' | '_self';
 
 export interface Props {
   onAxaClick?: (e: React.MouseEvent) => void;

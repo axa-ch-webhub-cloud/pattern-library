@@ -8,20 +8,20 @@
   background: rgba(yellow, 0.5);
 
   &::before {
-    content: "";
+    content: '';
   }
 
   &.is-sticky-container-active {
     background: green;
 
     &::before {
-      content: "is-active";
+      content: 'is-active';
     }
   }
 
   &.is-sticky-container-idle {
     &::before {
-      content: "is-idle";
+      content: 'is-idle';
     }
   }
 }

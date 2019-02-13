@@ -10,7 +10,7 @@ const withShadow = Base =>
    */
   class WithShadow extends Base {
     // @todo: still need to implement incremental rendering for shadow DOM
-    init({ mode = "open", ...options } = {}) {
+    init({ mode = 'open', ...options } = {}) {
       super.init(options);
 
       const shadowRoot = this.attachShadow({ mode });

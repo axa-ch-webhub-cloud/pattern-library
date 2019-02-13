@@ -1,5 +1,5 @@
-import on from "./on";
-import debounce from "./debounce";
+import on from './on';
+import debounce from './debounce';
 
 /**
  * Prevents overscroll on mobile devices.
@@ -13,9 +13,9 @@ import debounce from "./debounce";
  * @returns {cleanUp} - Returns a functions which properly removes the event listeners from the targets.
  */
 function preventOverscroll(node, body = document.body) {
-  const offStart = on(node, "touchstart", touchstart, { passive: false });
-  const offScroll = on(node, "scroll", scroll);
-  const offBody = on(body, "touchmove", bodymove, { passive: false });
+  const offStart = on(node, 'touchstart', touchstart, { passive: false });
+  const offScroll = on(node, 'scroll', scroll);
+  const offBody = on(body, 'touchmove', bodymove, { passive: false });
   const debouncedLimit = debounce(limitScroll, 100);
   let offMove;
   let offEnd;
@@ -28,8 +28,8 @@ function preventOverscroll(node, body = document.body) {
 
   function touchstart() {
     touchend();
-    offMove = on(node, "touchmove", touchmove);
-    offEnd = on(node, "touchend", touchend);
+    offMove = on(node, 'touchmove', touchmove);
+    offEnd = on(node, 'touchend', touchend);
 
     limitScroll();
   }

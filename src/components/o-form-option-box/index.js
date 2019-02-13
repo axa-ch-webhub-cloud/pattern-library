@@ -1,11 +1,11 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import styles from "./index.scss";
-import template from "./_template";
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import styles from './index.scss';
+import template from './_template';
 
 class AXAFormOptionBox extends BaseComponentGlobal {
-  static tagName = "axa-form-option-box";
+  static tagName = 'axa-form-option-box';
 
   static propTypes = {
     classes: PropTypes.string,
@@ -13,7 +13,7 @@ class AXAFormOptionBox extends BaseComponentGlobal {
     headline: PropTypes.string,
     description: PropTypes.string,
     buttonTitle: PropTypes.string,
-    href: PropTypes.string
+    href: PropTypes.string,
   };
 
   init() {
@@ -22,7 +22,7 @@ class AXAFormOptionBox extends BaseComponentGlobal {
 
   connectedCallback() {
     super.connectedCallback();
-    this.className = `o-form-option-box ${this.classes ? this.classes : ""}`;
+    this.className = `o-form-option-box ${this.classes ? this.classes : ''}`;
   }
 
   disconnectedCallback() {

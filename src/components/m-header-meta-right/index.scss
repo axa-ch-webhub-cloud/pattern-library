@@ -1,6 +1,6 @@
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/unstyle-list";
-@import "settings/header-meta-right";
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/unstyle-list';
+@import 'settings/header-meta-right';
 
 .m-header-meta-right {
   @include make-gutter();
@@ -20,11 +20,9 @@
 
 .m-header-meta-right__list-item {
   display: block;
-  border-right: $header-meta-right__nav-border-x-width solid
-    $header-meta-right__nav-border-x-color;
+  border-right: $header-meta-right__nav-border-x-width solid $header-meta-right__nav-border-x-color;
 
   &:first-child {
-    border-left: $header-meta-right__nav-border-x-width solid
-      $header-meta-right__nav-border-x-color;
+    border-left: $header-meta-right__nav-border-x-width solid $header-meta-right__nav-border-x-color;
   }
 }

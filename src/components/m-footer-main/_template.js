@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default function(props, childrenFragment) {
   return html`

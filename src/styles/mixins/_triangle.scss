@@ -1,4 +1,4 @@
-@import "../functions/opposite-direction";
+@import '../functions/opposite-direction';
 
 $triangle-direction: bottom !default;
 $triangle-size: 10px !default;
@@ -10,12 +10,7 @@ $triangle-color: cureentColor !default;
 /// @param {Color} $color [currentColor] - Triangle color
 /// @param {Length} $width [10px] - Triangle width
 /// @param {Length} $height [10px|$width] - Triangle height
-@mixin triangle(
-  $direction: $triangle-direction,
-  $color: $triangle-color,
-  $width: $triangle-size,
-  $height: $width
-) {
+@mixin triangle($direction: $triangle-direction, $color: $triangle-color, $width: $triangle-size, $height: $width) {
   $perpendicular-borders: ($width / 2) solid transparent;
 
   @include triangle-color($direction, $color);
@@ -25,7 +20,7 @@ $triangle-color: cureentColor !default;
   // stylelint-disable-next-line scale-unlimited/declaration-strict-value
   font-size: 0;
   line-height: 0;
-  content: "";
+  content: '';
 
   border-style: solid;
   border-#{opposite-direction($direction)}-width: $height;
@@ -46,9 +41,6 @@ $triangle-color: cureentColor !default;
 /// Triangle color helper mixin
 /// @param {Direction} $direction [bottom] - Triangle direction, either `top`, `right`, `bottom` or `left`
 /// @param {Color} $color [currentColor] - Triangle color
-@mixin triangle-color(
-  $direction: $triangle-direction,
-  $color: $triangle-color
-) {
+@mixin triangle-color($direction: $triangle-direction, $color: $triangle-color) {
   border-#{opposite-direction($direction)}-color: $color;
 }

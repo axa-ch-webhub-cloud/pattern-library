@@ -1,5 +1,5 @@
-import getAttribute from "./get-attribute";
-import camelize from "./camelize";
+import getAttribute from './get-attribute';
+import camelize from './camelize';
 
 /**
  * Get all attributes of a node.
@@ -17,7 +17,7 @@ function getAttributes(node) {
   const { length } = attributes;
 
   const {
-    constructor: { propTypes = {} }
+    constructor: { propTypes = {} },
   } = node;
 
   for (let i = 0; i < length; ++i) {

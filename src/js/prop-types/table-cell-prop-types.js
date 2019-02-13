@@ -1,11 +1,11 @@
-import PropTypes from "./prop-types";
+import PropTypes from './prop-types';
 
-import valuePropType from "./value-prop-type";
-import tableScopePropType from "./table-scope-prop-type";
-import alignPropType from "./align-prop-type";
-import sortPropType from "./sort-prop-type";
-import floatPropType from "./float-prop-type";
-import statePropType from "./state-prop-type";
+import valuePropType from './value-prop-type';
+import tableScopePropType from './table-scope-prop-type';
+import alignPropType from './align-prop-type';
+import sortPropType from './sort-prop-type';
+import floatPropType from './float-prop-type';
+import statePropType from './state-prop-type';
 
 // share across `<thead>`, `<tbody>` and `<tfoot>`
 export const tableCellShape = {
@@ -15,28 +15,25 @@ export const tableCellShape = {
   colspan: valuePropType,
   scope: tableScopePropType,
   align: alignPropType,
-  dense: PropTypes.bool
+  dense: PropTypes.bool,
 };
 
 // share across `<tbody>` and `<tfoot>`
 export const tableCellDataShape = {
   float: floatPropType,
   strong: PropTypes.bool,
-  bold: PropTypes.bool
+  bold: PropTypes.bool,
 };
 
-export const tableCellPropTypes = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number
-]);
+export const tableCellPropTypes = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
 
 export const tableCellHeadPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
     ...tableCellShape,
     sort: sortPropType,
-    sortActive: PropTypes.bool
-  })
+    sortActive: PropTypes.bool,
+  }),
 ]);
 
 export const tableCellBodyPropType = PropTypes.oneOfType([
@@ -45,16 +42,16 @@ export const tableCellBodyPropType = PropTypes.oneOfType([
     ...tableCellShape,
     ...tableCellDataShape,
     action: PropTypes.bool,
-    state: statePropType
-  })
+    state: statePropType,
+  }),
 ]);
 
 export const tableCellFootPropType = PropTypes.oneOfType([
   tableCellPropTypes,
   PropTypes.shape({
     ...tableCellShape,
-    ...tableCellDataShape
-  })
+    ...tableCellDataShape,
+  }),
 ]);
 
 // @todo: fix missing default exports break the build

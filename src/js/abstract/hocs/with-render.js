@@ -1,7 +1,7 @@
-import lifecycleLogger from "../utils/lifecycle-logger";
-import { clearIsSameNode, isSameNodeOnce } from "../utils/is-same-node-once";
-import nanomorph from "../utils/component-morph";
-import TemplateNoStringReturnException from "../utils/template-no-string-return-exception";
+import lifecycleLogger from '../utils/lifecycle-logger';
+import { clearIsSameNode, isSameNodeOnce } from '../utils/is-same-node-once';
+import nanomorph from '../utils/component-morph';
+import TemplateNoStringReturnException from '../utils/template-no-string-return-exception';
 
 const hasFragmentChildren = !!document.createDocumentFragment().children;
 
@@ -61,20 +61,14 @@ const withRender = Base =>
       const initial = !this._hasRendered;
 
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(
-          `willRenderCallback -> ${this.nodeName}#${
-            this._id
-          } <- initial: ${initial}`
-        );
+        lifecycleLogger(this.logLifecycle)(`willRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
       }
 
       this.willRenderCallback(initial);
 
       if (this._hasTemplate) {
         if (ENV !== PROD) {
-          lifecycleLogger(this.logLifecycle)(
-            `render -> ${this.nodeName}#${this._id} <- initial: ${initial}`
-          );
+          lifecycleLogger(this.logLifecycle)(`render -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
         }
 
         const { _template: template } = this;
@@ -112,9 +106,7 @@ const withRender = Base =>
           // IE11 does not support children on fragments
           // ref: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10060579/
           if (!hasFragmentChildren) {
-            this.childrenFragment.children = Array.from(
-              this.childrenFragment.childNodes
-            ).filter(node => node.nodeType === 1);
+            this.childrenFragment.children = Array.from(this.childrenFragment.childNodes).filter(node => node.nodeType === 1);
           }
 
           const items = template(this.props, this.childrenFragment, this);
@@ -125,7 +117,7 @@ const withRender = Base =>
               renderFragment.appendChild(item);
             });
           } else if (items) {
-            if (typeof items === "string") {
+            if (typeof items === 'string') {
               throw new TemplateNoStringReturnException(this);
             }
             renderFragment.appendChild(items);
@@ -137,9 +129,7 @@ const withRender = Base =>
             const wcClone = this.cloneNode(false);
 
             if (ENV !== PROD) {
-              lifecycleLogger(this.logLifecycle)(
-                `+++ incremental update -> ${this.nodeName}#${this._id}\n`
-              );
+              lifecycleLogger(this.logLifecycle)(`+++ incremental update -> ${this.nodeName}#${this._id}\n`);
             }
 
             wcClone._isMorphing = true;
@@ -158,11 +148,7 @@ const withRender = Base =>
       this._hasRendered = true;
 
       if (ENV !== PROD) {
-        lifecycleLogger(this.logLifecycle)(
-          `didRenderCallback -> ${this.nodeName}#${
-            this._id
-          } <- initial: ${initial}`
-        );
+        lifecycleLogger(this.logLifecycle)(`didRenderCallback -> ${this.nodeName}#${this._id} <- initial: ${initial}`);
       }
 
       this.didRenderCallback(initial);

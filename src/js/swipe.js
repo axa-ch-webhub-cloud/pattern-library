@@ -1,6 +1,6 @@
-import { EVENTS, AXA_EVENTS } from "./ui-events";
-import on from "./on";
-import fire from "./fire";
+import { EVENTS, AXA_EVENTS } from './ui-events';
+import on from './on';
+import fire from './fire';
 
 class Swipe {
   constructor(element) {
@@ -24,7 +24,7 @@ class Swipe {
     fire(this.element, AXA_EVENTS.AXA_SWIPE_LEFT, null, {
       bubbles: true,
       cancelable: true,
-      composed: true
+      composed: true,
     });
   }
 
@@ -32,7 +32,7 @@ class Swipe {
     fire(this.element, AXA_EVENTS.AXA_SWIPE_RIGHT, null, {
       bubbles: true,
       cancelable: true,
-      composed: true
+      composed: true,
     });
   }
 
@@ -40,7 +40,7 @@ class Swipe {
     fire(this.element, AXA_EVENTS.AXA_SWIPE_UP, null, {
       bubbles: true,
       cancelable: true,
-      composed: true
+      composed: true,
     });
   }
 
@@ -48,7 +48,7 @@ class Swipe {
     fire(this.element, AXA_EVENTS.AXA_SWIPE_DOWN, null, {
       bubbles: true,
       cancelable: true,
-      composed: true
+      composed: true,
     });
   }
 
@@ -67,10 +67,7 @@ class Swipe {
   handleTouchEnd() {
     const timeDiff = Date.now() - this.timeDown;
     if (Math.abs(this.xDiff) > Math.abs(this.yDiff)) {
-      if (
-        Math.abs(this.xDiff) > this.DIFF_THRESHOLD &&
-        timeDiff < this.TIME_THRESHOLD
-      ) {
+      if (Math.abs(this.xDiff) > this.DIFF_THRESHOLD && timeDiff < this.TIME_THRESHOLD) {
         if (this.xDiff > 0) {
           this.onLeft();
         } else {
@@ -80,10 +77,7 @@ class Swipe {
         // threshold limit not passed.
       }
     } else {
-      if (
-        Math.abs(this.yDiff) > this.DIFF_THRESHOLD &&
-        timeDiff < this.TIME_THRESHOLD
-      ) {
+      if (Math.abs(this.yDiff) > this.DIFF_THRESHOLD && timeDiff < this.TIME_THRESHOLD) {
         // eslint-disable-line
         if (this.yDiff > 0) {
           this.onUp();

@@ -1,20 +1,20 @@
-import on from "../../../js/on";
-import fire from "../../../js/fire";
-import { AXA_EVENTS, EVENTS } from "../../../js/ui-events";
+import on from '../../../js/on';
+import fire from '../../../js/fire';
+import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
 
 /**
  * @fires HeaderLogo#axa-click
  */
 class HeaderLogo {
   static DEFAULTS = {
-    link: ".js-header-logo__link"
+    link: '.js-header-logo__link',
   };
 
   constructor(wcNode, options = {}) {
     this.wcNode = wcNode;
     this.options = {
       ...HeaderLogo.DEFAULTS,
-      ...options
+      ...options,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -32,7 +32,7 @@ class HeaderLogo {
     this.off();
 
     this.unClick = on(this.link, EVENTS.CLICK, this.handleClick, {
-      passive: false
+      passive: false,
     });
   }
 
@@ -46,7 +46,7 @@ class HeaderLogo {
     const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, null, {
       bubbles: true,
       cancelable: true,
-      composed: true
+      composed: true,
     });
 
     if (!cancelled) {

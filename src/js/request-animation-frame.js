@@ -1,13 +1,11 @@
-import vendor from "./vendor";
+import vendor from './vendor';
 
 const vendorlower = vendor.lowercase;
 
 /* eslint-disable func-names */
 export const requestAnimationFrame = (function() {
   /* eslint-disable no-shadow */
-  let requestAnimationFrame =
-    window.requestAnimationFrame ||
-    window[`${vendorlower}RequestAnimationFrame`];
+  let requestAnimationFrame = window.requestAnimationFrame || window[`${vendorlower}RequestAnimationFrame`];
 
   if (requestAnimationFrame) {
     requestAnimationFrame = requestAnimationFrame.bind(window);
@@ -37,9 +35,7 @@ export const requestAnimationFrame = (function() {
 export const cancelAnimationFrame = (function() {
   /* eslint-disable no-shadow */
   let cancelAnimationFrame =
-    window.cancelAnimationFrame ||
-    window[`${vendorlower}CancelAnimationFrame`] ||
-    window[`${vendorlower}CancelRequestAnimationFrame`];
+    window.cancelAnimationFrame || window[`${vendorlower}CancelAnimationFrame`] || window[`${vendorlower}CancelRequestAnimationFrame`];
 
   if (cancelAnimationFrame) {
     cancelAnimationFrame = cancelAnimationFrame.bind(window);
@@ -56,5 +52,5 @@ export const cancelAnimationFrame = (function() {
 
 export default {
   requestAnimationFrame,
-  cancelAnimationFrame
+  cancelAnimationFrame,
 };

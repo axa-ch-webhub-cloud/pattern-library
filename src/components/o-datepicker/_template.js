@@ -1,15 +1,15 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default ({
   locale,
-  outputValue = "",
-  placeholder = "Select a date",
+  outputValue = '',
+  placeholder = 'Select a date',
   startDateYear = [],
   startDateMonth = [],
   startDateDay = [],
   allowedYears = [],
-  buttonOk = "Ok",
-  buttonCancel = "Cancel"
+  buttonOk = 'Ok',
+  buttonCancel = 'Cancel',
 }) => html`
   <article class="o-datepicker__wrap">
     <axa-input

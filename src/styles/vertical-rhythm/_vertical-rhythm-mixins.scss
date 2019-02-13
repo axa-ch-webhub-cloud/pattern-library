@@ -1,13 +1,9 @@
-@import "../settings/colors";
-@import "./vertical-rhythm-settings";
-@import "../mixins/respond";
-@import "../typo/typo-mixins";
+@import '../settings/colors';
+@import './vertical-rhythm-settings';
+@import '../mixins/respond';
+@import '../typo/typo-mixins';
 
-@mixin vr-pad-items(
-  $padding-tops: $vr-padding-tops,
-  $padding-bottoms: $vr-padding-bottoms,
-  $debug: false
-) {
+@mixin vr-pad-items($padding-tops: $vr-padding-tops, $padding-bottoms: $vr-padding-bottoms, $debug: false) {
   @include vr-pad-items-first($padding-tops, $debug);
   @include vr-pad-items-last($padding-bottoms, $debug);
 }
@@ -17,10 +13,7 @@
 
   @each $padding-tops-key in $padding-tops-keys {
     @include respond-up($padding-tops-key) {
-      @include vr-pad-item-first(
-        map_get($padding-tops, $padding-tops-key),
-        $debug
-      );
+      @include vr-pad-item-first(map_get($padding-tops, $padding-tops-key), $debug);
     }
   }
 }
@@ -30,10 +23,7 @@
 
   @each $padding-bottoms-key in $padding-bottoms-keys {
     @include respond-up($padding-bottoms-key) {
-      @include vr-pad-item-last(
-        map_get($padding-bottoms, $padding-bottoms-key),
-        $debug
-      );
+      @include vr-pad-item-last(map_get($padding-bottoms, $padding-bottoms-key), $debug);
     }
   }
 }
@@ -50,7 +40,7 @@
         margin-top: -$padding-top;
 
         background: $color-sec-blue-igloo;
-        content: "padding-top: #{$padding-top}";
+        content: 'padding-top: #{$padding-top}';
       }
     }
   }
@@ -68,17 +58,13 @@
         margin-bottom: -$padding-bottom;
 
         background: $color-sec-blue-igloo;
-        content: "padding-bottom: #{$padding-bottom}";
+        content: 'padding-bottom: #{$padding-bottom}';
       }
     }
   }
 }
 
-@mixin vr-margin-item(
-  $margin-tops: $vr-margin-tops,
-  $reset-first: true,
-  $debug: false
-) {
+@mixin vr-margin-item($margin-tops: $vr-margin-tops, $reset-first: true, $debug: false) {
   $margin-tops-keys: map-keys($margin-tops);
 
   @each $margin-tops-key in $margin-tops-keys {
@@ -107,7 +93,7 @@
       margin-top: -$margin-top;
 
       background: $color-sec-pink-cotton-candy;
-      content: "margin-top: #{$margin-top}";
+      content: 'margin-top: #{$margin-top}';
     }
   }
 }

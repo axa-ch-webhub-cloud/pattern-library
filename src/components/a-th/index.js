@@ -1,20 +1,20 @@
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import { withBaseGlobalAndAllHocs } from "../../js/abstract/hocs";
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
 
-import defineOnce from "../../js/define-once";
+import defineOnce from '../../js/define-once';
 // import the styles used for this component
-import styles from "./index.scss";
-import alignPropType from "../../js/prop-types/align-prop-type";
-import sortPropType from "../../js/prop-types/sort-prop-type";
-import floatPropType from "../../js/prop-types/float-prop-type";
+import styles from './index.scss';
+import alignPropType from '../../js/prop-types/align-prop-type';
+import sortPropType from '../../js/prop-types/sort-prop-type';
+import floatPropType from '../../js/prop-types/float-prop-type';
 
 const HTMLTableCellElementBase = withBaseGlobalAndAllHocs(HTMLTableCellElement);
 
 class AXATh extends HTMLTableCellElementBase {
-  static tagName = "axa-th";
-  static builtInTagName = "th";
+  static tagName = 'axa-th';
+  static builtInTagName = 'th';
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -24,7 +24,7 @@ class AXATh extends HTMLTableCellElementBase {
     sort: sortPropType,
     float: floatPropType,
     sortActive: PropTypes.bool,
-    dense: PropTypes.bool
+    dense: PropTypes.bool,
   };
 
   // Only use this if you need to observe attributes other than your prop-types!
@@ -44,12 +44,12 @@ class AXATh extends HTMLTableCellElementBase {
   willRenderCallback() {
     const { classes, align, sort, float, sortActive, dense } = this.props;
 
-    this.className = classnames("a-th", classes, {
+    this.className = classnames('a-th', classes, {
       [`u-align-${align}`]: align,
       [`a-th--sort a-th--sort-${sort}`]: sort,
       [`o-table__cell--float-${float}`]: float,
-      "a-th--sort-active": sortActive,
-      "a-th--dense": dense
+      'a-th--sort-active': sortActive,
+      'a-th--dense': dense,
     });
   }
 }

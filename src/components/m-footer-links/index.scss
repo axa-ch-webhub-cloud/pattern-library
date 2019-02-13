@@ -1,11 +1,11 @@
-@import "./settings/footer-links";
-@import "../../styles/mixins/clearfix";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/respond";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/mixins/unstyle-list";
-@import "../../styles/mixins/word-break";
-@import "../m-dropdown/mixins/dropdown";
+@import './settings/footer-links';
+@import '../../styles/mixins/clearfix';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/respond';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/unstyle-list';
+@import '../../styles/mixins/word-break';
+@import '../m-dropdown/mixins/dropdown';
 
 .m-footer-links {
   @include make-col-ready();
@@ -54,8 +54,7 @@
   @include respond-down(xs) {
     $padding-y: $footer-links__category-padding-y;
     $padding-left: $footer-links__category-padding-x;
-    $padding-right: $footer-links__category-padding-x +
-      $footer-links__category__icon-right;
+    $padding-right: $footer-links__category-padding-x + $footer-links__category__icon-right;
 
     @include typo-secondary-text--semibold();
     @include dropdown-toggle();
@@ -68,10 +67,7 @@
 }
 
 .m-footer-links__category__icon {
-  @include dropdown-icon(
-    $footer-links__category__icon-size,
-    $footer-links__category__icon-right
-  );
+  @include dropdown-icon($footer-links__category__icon-size, $footer-links__category__icon-right);
 
   display: none;
 
@@ -118,8 +114,7 @@
 
   @include respond-down(xs) {
     margin-top: 0;
-    border-bottom: $footer-links__list-item-border-bottom-width solid
-      $footer-links__list-item-border-bottom-color;
+    border-bottom: $footer-links__list-item-border-bottom-width solid $footer-links__list-item-border-bottom-color;
 
     &:last-child {
       border-bottom: none;

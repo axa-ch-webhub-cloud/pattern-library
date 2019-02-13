@@ -1,17 +1,17 @@
 /* globals customElements */
 
-import React, { createElement } from "react";
-import dasherize from "./dasherize";
-import camelize from "./camelize";
-import partition from "./array-partition";
-import on from "./on";
+import React, { createElement } from 'react';
+import dasherize from './dasherize';
+import camelize from './camelize';
+import partition from './array-partition';
+import on from './on';
 
 const PROP_BLACKLIST = [
-  "children", // children are never passed as props, instead as real DOM children
-  "style" // @todo: discuss if we need style, cause we normally use BEM
+  'children', // children are never passed as props, instead as real DOM children
+  'style', // @todo: discuss if we need style, cause we normally use BEM
 ];
 const blackListFilter = key => PROP_BLACKLIST.indexOf(key) === -1;
-const ON = "on";
+const ON = 'on';
 const isEventFilter = key => {
   if (!key) {
     return false;
@@ -22,8 +22,7 @@ const isEventFilter = key => {
   return key.indexOf(ON) === 0 && keyFrom2 === keyFrom2.toUpperCase();
 };
 
-const getNamespaceEventMatcher = namespace => key =>
-  key.toLowerCase().indexOf(`${ON}${namespace.toLowerCase()}`) === 0;
+const getNamespaceEventMatcher = namespace => key => key.toLowerCase().indexOf(`${ON}${namespace.toLowerCase()}`) === 0;
 
 /**
  * Provides a function which let's you wrap any WebComponent with React.
@@ -49,10 +48,7 @@ const getNamespaceEventMatcher = namespace => key =>
  *  <AXAButtonReact color={color} onClick={onClick}>Hello World</AXAButtonReact>
  * );
  */
-const withReact = (
-  WebComponent,
-  { pure = true, passive = false, eventNamespace = "axa" } = {}
-) => {
+const withReact = (WebComponent, { pure = true, passive = false, eventNamespace = 'axa' } = {}) => {
   // IMPORTANT:
   // the Custom Element can only be instantiated as soon as it is registered in CustomElementRegistry
   // which in turn is deferred after DOMReady
@@ -81,13 +77,13 @@ const withReact = (
       const isDefined = !!customElements.get(tagName);
 
       this.state = {
-        isDefined
+        isDefined,
       };
     }
 
     componentDidMount() {
       const {
-        state: { isDefined }
+        state: { isDefined },
       } = this;
 
       if (isDefined) {
@@ -111,7 +107,7 @@ const withReact = (
         wcNode,
         _eventCache: eventCache,
         props,
-        state: { isDefined }
+        state: { isDefined },
       } = this;
 
       // only patch if custom element is defined and avoid type error of
@@ -121,10 +117,7 @@ const withReact = (
       }
 
       const propsKeys = Object.keys(props);
-      const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [
-        [],
-        []
-      ]);
+      const [eventKeys, dataKeys] = propsKeys.reduce(partition(isEventFilter), [[], []]);
 
       eventKeys.forEach(key => {
         // support React's synthetic events
@@ -146,7 +139,7 @@ const withReact = (
       const dataProps = dataKeys.filter(blackListFilter).reduce(
         (data, key) => ({
           ...data,
-          [key]: props[key]
+          [key]: props[key],
         }),
         {}
       );
@@ -179,7 +172,7 @@ const withReact = (
       // eslint-disable-next-line react/prop-types
       const {
         props: { children, ...props },
-        handleRef
+        handleRef,
       } = this;
       const { observedAttributes } = WebComponent;
       // super important: don't mutate this.props

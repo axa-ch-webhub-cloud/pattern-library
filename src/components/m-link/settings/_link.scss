@@ -1,4 +1,4 @@
-@import "../../../styles/settings/colors";
+@import '../../../styles/settings/colors';
 
 $link__icon-size: 13px !default;
 $link__icon-padding: 10px !default;
@@ -9,14 +9,14 @@ $link__arrow-motion-easing: ease !default;
 $link-colors-map: (
   default: (
     text: $color-link,
-    text--hover: $color-link--hover
+    text--hover: $color-link--hover,
   ),
   red: (
     text: $color-link--red,
-    text--hover: $color-link--red--hover
+    text--hover: $color-link--red--hover,
   ),
   white: (
     text: $color-link--white,
-    text--hover: $color-link--white--hover
-  )
+    text--hover: $color-link--white--hover,
+  ),
 ) !default;

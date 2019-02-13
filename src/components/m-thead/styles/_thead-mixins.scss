@@ -1,4 +1,4 @@
-@import "../../../styles/mixins/respond";
+@import '../../../styles/mixins/respond';
 
 @mixin thead() {
   @include respond-down(sm) {

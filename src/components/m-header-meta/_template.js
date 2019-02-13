@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default (props, childrenFragment) => html`
   <div class="m-header-meta__box">

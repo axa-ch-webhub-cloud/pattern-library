@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default () => html`
   <article>
@@ -17,13 +17,9 @@ export default () => html`
     <p>
       <span class="a-typo__item-highlight">Item Highlight</span>
       <br />
-      <span class="a-typo__item-highlight--semibold"
-        >Item Highlight (Semibold)</span
-      >
+      <span class="a-typo__item-highlight--semibold">Item Highlight (Semibold)</span>
       <br />
-      <span class="a-typo__item-highlight--regular"
-        >Item Highlight (Regular)</span
-      >
+      <span class="a-typo__item-highlight--regular">Item Highlight (Regular)</span>
     </p>
 
     <p class="a-typo__text">Text</p>

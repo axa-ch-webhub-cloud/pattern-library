@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // guard for Uncaught RangeError: Maximum call stack size exceeded in prod
 let level = 0;
@@ -28,7 +28,7 @@ function getShim(propType) {
 function shimKeys(propTypes, key) {
   const propType = propTypes[key];
 
-  if (typeof propType === "function") {
+  if (typeof propType === 'function') {
     propTypes[key] = getShim(propType);
   }
 

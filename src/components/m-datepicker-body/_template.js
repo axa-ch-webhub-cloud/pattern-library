@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default props => html`
   <div class="m-datepicker-body js-datepicker-body">
@@ -6,16 +6,11 @@ export default props => html`
       ? props.cells.map(
           (cell, index) =>
             html`
-              <button
-                tabindex="0"
-                data-index="${index}"
-                data-value="${cell.value}"
-                class="${cell.className}"
-              >
+              <button tabindex="0" data-index="${index}" data-value="${cell.value}" class="${cell.className}">
                 ${cell.text}
               </button>
             `
         )
-      : ""}
+      : ''}
   </div>
 `;

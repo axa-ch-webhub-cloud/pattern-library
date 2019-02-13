@@ -1,5 +1,5 @@
-@import "../../styles/settings/colors";
-@import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
+@import '../../styles/settings/colors';
+@import '../../styles/vertical-rhythm/vertical-rhythm-mixins';
 
 .a-vertical-rhythm {
   @include vr-pad-items($debug: true);

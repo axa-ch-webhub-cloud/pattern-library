@@ -1,20 +1,20 @@
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
-import classnames from "classnames";
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
+import classnames from 'classnames';
 
-import { withBaseGlobalAndAllHocs } from "../../js/abstract/hocs";
-import defineOnce from "../../js/define-once";
-import alignPropType from "../../js/prop-types/align-prop-type";
-import sidePropType from "../../js/prop-types/side-prop-type";
+import { withBaseGlobalAndAllHocs } from '../../js/abstract/hocs';
+import defineOnce from '../../js/define-once';
+import alignPropType from '../../js/prop-types/align-prop-type';
+import sidePropType from '../../js/prop-types/side-prop-type';
 // import the styles used for this component
-import styles from "./index.scss";
+import styles from './index.scss';
 // import the template used for this component
-import template from "./_template";
+import template from './_template';
 
 const HTMLTableElementBase = withBaseGlobalAndAllHocs(HTMLTableElement);
 
 class AXATable extends HTMLTableElementBase {
-  static tagName = "axa-table";
-  static builtInTagName = "table";
+  static tagName = 'axa-table';
+  static builtInTagName = 'table';
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
@@ -28,7 +28,7 @@ class AXATable extends HTMLTableElementBase {
     capSide: sidePropType,
     items: PropTypes.string,
     headings: PropTypes.string,
-    footers: PropTypes.string
+    footers: PropTypes.string,
   };
 
   // Only use this if you need to observe attributes other than your prop-types!
@@ -51,10 +51,10 @@ class AXATable extends HTMLTableElementBase {
   willRenderCallback() {
     const { classes, action, all, dense } = this.props;
 
-    this.className = classnames("o-table", classes, {
-      "o-table--action": action,
-      "o-table--all": all,
-      "o-table--dense": dense
+    this.className = classnames('o-table', classes, {
+      'o-table--action': action,
+      'o-table--all': all,
+      'o-table--dense': dense,
     });
   }
 }

@@ -1,6 +1,6 @@
-@import "../settings/colors";
-@import "./control-settings";
-@import "../mixins/size";
+@import '../settings/colors';
+@import './control-settings';
+@import '../mixins/size';
 
 @mixin control-icon($width, $height: $width) {
   @include size($width, $height);
@@ -22,6 +22,6 @@
     display: block;
 
     border: $control-border-width solid transparent;
-    content: "";
+    content: '';
   }
 }

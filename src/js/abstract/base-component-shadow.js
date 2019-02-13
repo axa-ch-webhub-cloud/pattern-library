@@ -1,6 +1,6 @@
-import BaseComponent from "./base-component";
+import BaseComponent from './base-component';
 
-import withShadow from "./hocs/with-shadow";
+import withShadow from './hocs/with-shadow';
 
 /**
  * Base class {BaseComponentShadow}. This class extends the {BaseComponent} and

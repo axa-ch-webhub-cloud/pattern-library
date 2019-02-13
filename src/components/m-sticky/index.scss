@@ -1,4 +1,4 @@
-@import "../../styles/settings/zindex";
+@import '../../styles/settings/zindex';
 
 .m-sticky {
   display: block;
@@ -47,7 +47,7 @@
 
         &::before,
         &::after {
-          content: "";
+          content: '';
           color: $sticky-pseudo-color;
         }
       }
@@ -56,7 +56,7 @@
         background: rgba($sticky-bg--is-sticky, 0.7);
 
         &::before {
-          content: "is-sticky";
+          content: 'is-sticky';
         }
       }
 
@@ -64,25 +64,25 @@
         background: rgba($sticky-bg--is-bottom, 0.7);
 
         &::before {
-          content: "is-bottom";
+          content: 'is-bottom';
         }
       }
 
       #{$m-sticky--debug}.is-sticky-in-flow > #{$m-sticky__box} {
         &::before {
-          content: "is-in-flow";
+          content: 'is-in-flow';
         }
       }
 
       #{$m-sticky--debug}.is-sticky-scroll-up > #{$m-sticky__box} {
         &::after {
-          content: "is-scroll-up";
+          content: 'is-scroll-up';
         }
       }
 
       #{$m-sticky--debug}.is-sticky-scroll-down > #{$m-sticky__box} {
         &::after {
-          content: "is-scroll-down";
+          content: 'is-scroll-down';
         }
       }
     }

@@ -4,16 +4,12 @@
 /// any value of `$grid-columns`.
 /// @link https://getbootstrap.com/docs/4.0/layout/grid/ and explained at
 
-@import "./grid-settings";
-@import "./grid-functions";
-@import "./grid-mixins";
-@import "../mixins/respond";
+@import './grid-settings';
+@import './grid-functions';
+@import './grid-mixins';
+@import '../mixins/respond';
 
-@mixin make-grid-columns(
-  $columns: $grid-columns,
-  $gutter: $grid-gutter-width,
-  $breakpoints: $grid-breakpoints
-) {
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
   // Common properties for all breakpoints
   %grid-column {
     position: relative;
@@ -77,7 +73,7 @@
 
       // `$columns - 1` because offsetting by the width of an entire row isn't possible
       @for $i from 0 through ($columns - 1) {
-        @if not($infix == "" and $i == 0) {
+        @if not($infix == '' and $i == 0) {
           // Avoid emitting useless .u-offset-0
           .u-offset#{$infix}-#{$i} {
             @include make-col-offset($i, $columns);

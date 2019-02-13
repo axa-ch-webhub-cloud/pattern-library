@@ -1,26 +1,19 @@
-@import "./table-settings";
-@import "../../../styles/mixins/clearfix";
-@import "../../../styles/mixins/respond";
-@import "../../../styles/mixins/word-break";
+@import './table-settings';
+@import '../../../styles/mixins/clearfix';
+@import '../../../styles/mixins/respond';
+@import '../../../styles/mixins/word-break';
 
 @mixin table($width: $table-width) {
   width: $width;
   border-collapse: collapse;
 }
 
-@mixin table__cell--dense(
-  $top: $table__cell-padding-y--dense,
-  $bottom: $table__cell-padding-y--dense
-) {
+@mixin table__cell--dense($top: $table__cell-padding-y--dense, $bottom: $table__cell-padding-y--dense) {
   padding-top: $top;
   padding-bottom: $bottom;
 }
 
-@mixin table__cell--action(
-  $padding-x: $table__cell-padding-x,
-  $border-width: $table-border-width,
-  $border-color: transparent
-) {
+@mixin table__cell--action($padding-x: $table__cell-padding-x, $border-width: $table-border-width, $border-color: transparent) {
   &:first-child {
     padding-left: $padding-x - $border-width;
     border-left: $border-width solid $border-color;

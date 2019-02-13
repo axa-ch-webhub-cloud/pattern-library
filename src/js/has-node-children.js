@@ -1,4 +1,4 @@
-const cleanText = txt => txt.trim(" ").replace(/^\s*[\r\n]/gm, "");
+const cleanText = txt => txt.trim(' ').replace(/^\s*[\r\n]/gm, '');
 
 /**
  * Check if a node has children.
@@ -16,10 +16,7 @@ const hasNodeChildren = (fragment, includeNotEmptyText = false) => {
     const children = fragment.childNodes;
     for (let i = 0; i < children.length; i++) {
       if (nodeTypes.indexOf(children[i].nodeType) > -1) {
-        if (
-          (children[i].textContent && cleanText(children[i].textContent)) ||
-          children[i].innerHTML
-        ) {
+        if ((children[i].textContent && cleanText(children[i].textContent)) || children[i].innerHTML) {
           return true;
         }
       }

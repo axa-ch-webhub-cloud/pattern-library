@@ -1,6 +1,6 @@
-@import "../../styles/settings/colors";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/mixins/triangle";
+@import '../../styles/settings/colors';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/mixins/triangle';
 
 $padding-top-bottom: 30px;
 $padding-lx-rx: 10px;
@@ -35,24 +35,14 @@ $zindex: 1;
     color: $color-prim-white;
 
     &::after {
-      @include triangle(
-        bottom,
-        $color-axa-blue,
-        $padding-top-bottom,
-        $padding-top-bottom / 2
-      );
+      @include triangle(bottom, $color-axa-blue, $padding-top-bottom, $padding-top-bottom / 2);
       position: absolute;
       bottom: -15px;
       left: 20px;
       z-index: $zindex;
 
       @include respond-up(sm) {
-        @include triangle(
-          right,
-          $color-axa-blue,
-          $padding-top-bottom,
-          $padding-top-bottom / 2
-        );
+        @include triangle(right, $color-axa-blue, $padding-top-bottom, $padding-top-bottom / 2);
         bottom: auto;
         left: auto;
         top: $padding-top-bottom;

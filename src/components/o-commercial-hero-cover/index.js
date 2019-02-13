@@ -1,28 +1,28 @@
-import "picturefill";
-import "objectFitPolyfill";
-import PropTypes from "../../js/prop-types"; // eslint-disable-next-line import/first
+import 'picturefill';
+import 'objectFitPolyfill';
+import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
-import BaseComponentGlobal from "../../js/abstract/base-component-global";
-import defineOnce from "../../js/define-once";
-import urlPropType from "../../js/prop-types/url-prop-type";
-import styles from "./index.scss";
-import template from "./_template";
+import BaseComponentGlobal from '../../js/abstract/base-component-global';
+import defineOnce from '../../js/define-once';
+import urlPropType from '../../js/prop-types/url-prop-type';
+import styles from './index.scss';
+import template from './_template';
 
 class AXACommercialHeroCover extends BaseComponentGlobal {
-  static tagName = "axa-commercial-hero-cover";
+  static tagName = 'axa-commercial-hero-cover';
   static propTypes = {
     src: urlPropType,
     alt: PropTypes.string,
-    gradient: PropTypes.oneOf(["white", "black"]),
-    contentAlign: PropTypes.oneOf(["left", "right"]),
+    gradient: PropTypes.oneOf(['white', 'black']),
+    contentAlign: PropTypes.oneOf(['left', 'right']),
     pictureClasses: PropTypes.string,
-    heroObjectPosition: PropTypes.string
+    heroObjectPosition: PropTypes.string,
   };
 
   init() {
     super.init({
       styles,
-      template
+      template,
     });
   }
 

@@ -10,15 +10,15 @@ const wcdomready = cb => {
       try {
         cb(...args);
         usage += 1;
-        document.removeEventListener("DOMContentLoaded");
-        document.removeEventListener("WebComponentsReady");
+        document.removeEventListener('DOMContentLoaded');
+        document.removeEventListener('WebComponentsReady');
       } catch (err) {
         /* console.log(err); */
       }
     }
   };
-  document.addEventListener("DOMContentLoaded", once, false);
-  document.addEventListener("WebComponentsReady", once, false);
+  document.addEventListener('DOMContentLoaded', once, false);
+  document.addEventListener('WebComponentsReady', once, false);
 };
 
 export default wcdomready;

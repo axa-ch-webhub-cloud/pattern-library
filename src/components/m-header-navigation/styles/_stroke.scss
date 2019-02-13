@@ -1,5 +1,5 @@
-@import "../../../styles/settings/colors";
-@import "../../../styles/mixins/hardware-accelerate";
+@import '../../../styles/settings/colors';
+@import '../../../styles/mixins/hardware-accelerate';
 
 $stroke-bg: $color-prim-red-burnt-sienna !default;
 $stroke-height: 4px !default;
@@ -29,8 +29,7 @@ $stroke-transition-easing: ease !default;
   }
 
   &.is-stroke-move {
-    transition: left $stroke-transition-duration $stroke-transition-easing,
-      width $stroke-transition-duration $stroke-transition-easing;
+    transition: left $stroke-transition-duration $stroke-transition-easing, width $stroke-transition-duration $stroke-transition-easing;
   }
 
   &.is-stroke-static {
@@ -56,7 +55,7 @@ $stroke-transition-easing: ease !default;
     width: 100%;
     height: $stroke-height;
 
-    content: "";
+    content: '';
 
     .is-stroke-interactive & {
       height: 0;

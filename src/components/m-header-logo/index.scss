@@ -1,8 +1,8 @@
-@import "settings/header-logo";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/icon";
-@import "../../styles/mixins/respond";
-@import "../../styles/mixins/size";
+@import 'settings/header-logo';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/icon';
+@import '../../styles/mixins/respond';
+@import '../../styles/mixins/size';
 
 .m-header-logo {
   @include make-col(2);

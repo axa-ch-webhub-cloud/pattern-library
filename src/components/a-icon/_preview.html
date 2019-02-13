@@ -2,25 +2,25 @@
 
 <script>
   !(function() {
-    var axaIcon = document.getElementById("axa-icon-test");
+    var axaIcon = document.getElementById('axa-icon-test');
     var icons = [
-      "angle-bracket-down",
-      "checkmark",
-      "cross-gap",
-      "facebook",
-      "linkedin",
-      "menu",
-      "twitter",
-      "youtube",
-      "arrow",
-      "chevron-down",
-      "download",
-      "instagram",
-      "logo-AXA",
-      "search-left",
-      "xing",
-      "info-open",
-      "info-close"
+      'angle-bracket-down',
+      'checkmark',
+      'cross-gap',
+      'facebook',
+      'linkedin',
+      'menu',
+      'twitter',
+      'youtube',
+      'arrow',
+      'chevron-down',
+      'download',
+      'instagram',
+      'logo-AXA',
+      'search-left',
+      'xing',
+      'info-open',
+      'info-close',
     ];
     var iconsLength = icons.length;
     var index = 0;
@@ -28,7 +28,7 @@
     var interval = setInterval(function() {
       var icon = icons[index++];
 
-      axaIcon.setAttribute("icon", icon);
+      axaIcon.setAttribute('icon', icon);
 
       index = index % iconsLength;
     }, 1000);

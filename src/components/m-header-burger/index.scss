@@ -1,8 +1,8 @@
-@import "settings/header-burger";
-@import "../../styles/mixins/button-reset";
-@import "../../styles/mixins/force-ios-click";
-@import "../../styles/mixins/icon";
-@import "../../styles/mixins/respond";
+@import 'settings/header-burger';
+@import '../../styles/mixins/button-reset';
+@import '../../styles/mixins/force-ios-click';
+@import '../../styles/mixins/icon';
+@import '../../styles/mixins/respond';
 
 .m-header-burger {
   display: block;

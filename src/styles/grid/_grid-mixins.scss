@@ -5,9 +5,9 @@
 /// @link https://getbootstrap.com/docs/4.0/layout/grid/ and explained at
 /// @link https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss Original Source
 
-@import "./grid-settings";
-@import "./grid-functions";
-@import "../mixins/respond";
+@import './grid-settings';
+@import './grid-functions';
+@import '../mixins/respond';
 
 /// Creates a wrapper for a series of rows.
 /// @param {number} $gutter-width [$grid-gutter-width] - The gutter width applied to the wrapper.
@@ -46,7 +46,7 @@
   margin-left: 0;
 
   > .u-col,
-  > [class*="u-col"] {
+  > [class*='u-col'] {
     padding-right: 0;
     padding-left: 0;
   }
@@ -55,16 +55,10 @@
 /// For each grid-tier, define the maximum width of the container in a media query.
 /// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
-@mixin make-container-max-widths(
-  $max-widths: $container-max-widths,
-  $breakpoints: $grid-breakpoints
-) {
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {
     @include respond-up($breakpoint, $breakpoints) {
-      @include make-max-width(
-        $breakpoint: $breakpoint,
-        $max-widths: $max-widths
-      );
+      @include make-max-width($breakpoint: $breakpoint, $max-widths: $max-widths);
     }
   }
 }
@@ -74,12 +68,7 @@
 /// @param {string} $breakpoint [sm] - Breakpoint to use of max-width map.
 /// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
 /// @param {number} $columns [$grid-columns] - Number of available columns.
-@mixin make-max-width(
-  $size: $grid-columns,
-  $breakpoint: sm,
-  $max-widths: $container-max-widths,
-  $columns: $grid-columns
-) {
+@mixin make-max-width($size: $grid-columns, $breakpoint: sm, $max-widths: $container-max-widths, $columns: $grid-columns) {
   $max-width: map_get($max-widths, $breakpoint);
 
   max-width: get-max-width($max-width, $size, $columns);

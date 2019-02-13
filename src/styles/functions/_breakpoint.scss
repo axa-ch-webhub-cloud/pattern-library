@@ -1,41 +1,28 @@
-@import "../grid/grid-settings";
-@import "max-width";
+@import '../grid/grid-settings';
+@import 'max-width';
 
 /// Get the next breakpoint.
 /// @param {string} $breakpoint - Breakpoint to use of $breakpoints map.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 /// @param {list} $breakpoint-names [map-keys($breakpoints)] - All available breakpoint keys.
-@function next-breakpoint(
-  $breakpoint,
-  $breakpoints: $grid-breakpoints,
-  $breakpoint-names: map-keys($breakpoints)
-) {
+@function next-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $breakpoint);
 
-  @return if(
-    $n < length($breakpoint-names),
-    nth($breakpoint-names, $n + 1),
-    null
-  );
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
 
 /// Get a specific breakpoint, either by key or concrete number.
 /// @param {string} $breakpoint - Breakpoint to use of $breakpoints map.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 /// @param {up|down} $direction [down] - Direction of the breakpoint.
-@function get-breakpoint(
-  $breakpoint,
-  $breakpoints: $grid-breakpoints,
-  $direction: down
-) {
+@function get-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $direction: down) {
   @if type_of($breakpoints) != map {
     @error "$breakpoints #{$breakpoints} has to be a Map.";
   }
 
   $type-of-breakpoint: type_of($breakpoint);
   $breakpoint-is-number: $type-of-breakpoint == number;
-  $breakpoint-is-mapped: $type-of-breakpoint == string and
-    map_has_key($breakpoints, $breakpoint);
+  $breakpoint-is-mapped: $type-of-breakpoint == string and map_has_key($breakpoints, $breakpoint);
 
   @if (not $breakpoint-is-number and not $breakpoint-is-mapped) {
     @error "$breakpoint #{$breakpoint} has to be either a Number or valid key of a breakpoints Map.";
@@ -99,5 +86,5 @@
 /// @param {string} $name - Breakpoint name to use of $breakpoints map.
 /// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
 }

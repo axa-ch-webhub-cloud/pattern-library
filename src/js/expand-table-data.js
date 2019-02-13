@@ -1,10 +1,9 @@
-import isObject from "./is-object";
+import isObject from './is-object';
 
 const isCell = value => isObject(value) && value.text;
 const isRow = value => isObject(value) && Array.isArray(value.cells);
 const isData = value => isObject(value) && Array.isArray(value.rows);
-const isSingleRow = value =>
-  Array.isArray(value) && !Array.isArray(value[0]) && !isRow(value[0]);
+const isSingleRow = value => Array.isArray(value) && !Array.isArray(value[0]) && !isRow(value[0]);
 
 /**
  * A number, or a string representing table cell data.
@@ -90,7 +89,7 @@ const expandRow = row => {
 
   return {
     ...props,
-    cells
+    cells,
   };
 };
 
@@ -135,7 +134,7 @@ const expandTableData = items => {
 
   return {
     ...props,
-    rows
+    rows,
   };
 };
 

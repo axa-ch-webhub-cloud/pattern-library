@@ -1,6 +1,6 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
-import expandTableData from "../../js/expand-table-data";
+import expandTableData from '../../js/expand-table-data';
 
 export default ({ items }, fragmentChildren) => {
   let rows;
@@ -19,7 +19,7 @@ export default ({ items }, fragmentChildren) => {
                   <th is="axa-th" ${attrs}>${text}</th>
                 `
               )) ||
-              ""}
+              ''}
           </tr>
         `
       )

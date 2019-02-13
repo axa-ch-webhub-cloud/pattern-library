@@ -1,8 +1,8 @@
-@import "../../o-table/styles/table-settings";
-@import "../../o-table/styles/table-mixins";
-@import "../../../styles/mixins/respond";
-@import "../../../styles/mixins/size";
-@import "../../../styles/typo/typo-mixins";
+@import '../../o-table/styles/table-settings';
+@import '../../o-table/styles/table-mixins';
+@import '../../../styles/mixins/respond';
+@import '../../../styles/mixins/size';
+@import '../../../styles/typo/typo-mixins';
 
 @mixin td(
   $color: $table__cell-color,
@@ -49,10 +49,7 @@
   }
 }
 
-@mixin td--foot(
-  $color: $table__cell--foot-color,
-  $background: $table__foot-bg
-) {
+@mixin td--foot($color: $table__cell--foot-color, $background: $table__foot-bg) {
   @include typo-secondary-text--bold();
 
   color: $color;
@@ -75,7 +72,7 @@
     margin-right: $margin-right;
     border-radius: $size;
     vertical-align: middle;
-    content: "";
+    content: '';
 
     @include respond-down(sm) {
       margin-right: $margin-right--sm;

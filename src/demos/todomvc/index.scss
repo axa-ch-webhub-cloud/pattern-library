@@ -1,11 +1,11 @@
-@import "../../styles/settings/colors";
-@import "../../components/m-footer-legals/settings/footer-legals";
-@import "../../styles/mixins/respond";
-@import "../../styles/mixins/size";
-@import "../../styles/mixins/unstyle-list";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/typo/typo-mixins";
-@import "../../styles/vertical-rhythm/vertical-rhythm-mixins";
+@import '../../styles/settings/colors';
+@import '../../components/m-footer-legals/settings/footer-legals';
+@import '../../styles/mixins/respond';
+@import '../../styles/mixins/size';
+@import '../../styles/mixins/unstyle-list';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/typo/typo-mixins';
+@import '../../styles/vertical-rhythm/vertical-rhythm-mixins';
 
 .o-todo {
   @include vr-pad-items();
@@ -179,7 +179,7 @@
     height: $footer-delimiter-height;
     margin-top: ($footer-delimiter-height / -2);
 
-    content: "";
+    content: '';
     background: $footer-delimiter-bg;
   }
 }

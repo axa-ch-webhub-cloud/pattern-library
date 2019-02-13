@@ -1,24 +1,24 @@
-import on from "../../../js/on";
-import preventOverscroll from "../../../js/prevent-overscroll";
-import disableOverscroll from "../../../js/disable-overscroll";
-import { add, remove } from "../../../js/class-list";
-import { publish, subscribe } from "../../../js/pubsub";
+import on from '../../../js/on';
+import preventOverscroll from '../../../js/prevent-overscroll';
+import disableOverscroll from '../../../js/disable-overscroll';
+import { add, remove } from '../../../js/class-list';
+import { publish, subscribe } from '../../../js/pubsub';
 
 class HeaderMobile {
   static DEFAULTS = {
-    canvas: ".js-header-mobile__canvas",
-    backdrop: ".js-header-mobile__backdrop",
-    close: "js-header-mobile-close",
-    isMenuOpenClass: "is-mobile-menu-open",
-    isBackdropFading: "is-mobile-backdrop-fading",
-    isBodyFrozen: "is-body-frozen"
+    canvas: '.js-header-mobile__canvas',
+    backdrop: '.js-header-mobile__backdrop',
+    close: 'js-header-mobile-close',
+    isMenuOpenClass: 'is-mobile-menu-open',
+    isBackdropFading: 'is-mobile-backdrop-fading',
+    isBodyFrozen: 'is-body-frozen',
   };
 
   constructor(wcNode, options) {
     this.wcNode = wcNode;
     this.options = {
       ...HeaderMobile.DEFAULTS,
-      ...options
+      ...options,
     };
 
     this.opened = [];
@@ -41,14 +41,9 @@ class HeaderMobile {
     this.off();
 
     this.offOverscroll = preventOverscroll(this.canvas);
-    this.unBackdropClick = on(this.backdrop, "click", this.handleCloseClick);
+    this.unBackdropClick = on(this.backdrop, 'click', this.handleCloseClick);
     this.unBackdropOverscroll = disableOverscroll(this.backdrop);
-    this.unClose = on(
-      this.canvas,
-      "click",
-      this.options.close,
-      this.handleCloseClick
-    );
+    this.unClose = on(this.canvas, 'click', this.options.close, this.handleCloseClick);
   }
 
   off() {
@@ -74,16 +69,8 @@ class HeaderMobile {
     if (this._contextNode) {
       this.offContextEnabled();
 
-      this.unSubscribeOpen = subscribe(
-        "header-mobile/open",
-        this.open,
-        this._contextNode
-      );
-      this.unSubscribeClose = subscribe(
-        "header-mobile/close",
-        this.close,
-        this._contextNode
-      );
+      this.unSubscribeOpen = subscribe('header-mobile/open', this.open, this._contextNode);
+      this.unSubscribeClose = subscribe('header-mobile/close', this.close, this._contextNode);
     }
   }
 
@@ -111,21 +98,17 @@ class HeaderMobile {
       this.unTransitionEndBackdrop();
     }
 
-    this.unTransitionEndBackdrop = on(
-      this.backdrop,
-      "transitionend",
-      ({ propertyName }) => {
-        if (propertyName === "opacity") {
-          this.unTransitionEndBackdrop();
-          remove(this.backdrop, this.options.isBackdropFading);
+    this.unTransitionEndBackdrop = on(this.backdrop, 'transitionend', ({ propertyName }) => {
+      if (propertyName === 'opacity') {
+        this.unTransitionEndBackdrop();
+        remove(this.backdrop, this.options.isBackdropFading);
 
-          // reset initial scroll and menu state
-          this.canvas.scrollTop = 0;
+        // reset initial scroll and menu state
+        this.canvas.scrollTop = 0;
 
-          publish("header-mobile/fade-finish", null, this._contextNode);
-        }
+        publish('header-mobile/fade-finish', null, this._contextNode);
       }
-    );
+    });
 
     add(this.backdrop, this.options.isBackdropFading);
     remove(this.wcNode, this.options.isMenuOpenClass);
@@ -133,7 +116,7 @@ class HeaderMobile {
   };
 
   handleCloseClick = () => {
-    publish("header-mobile/close", null, this._contextNode);
+    publish('header-mobile/close', null, this._contextNode);
   };
 
   destroy() {

@@ -9,9 +9,8 @@
     />
     <script>
       !(function(document) {
-        var root =
-          document.documentElement || document.getElementsByTagName("html")[0];
-        root.className = root.className.split("no-js").join("js");
+        var root = document.documentElement || document.getElementsByTagName('html')[0];
+        root.className = root.className.split('no-js').join('js');
       })(document);
     </script>
     <script src="<!-- {CUT AND INJECT PREFIX} -->/app/es6-polyfills.js"></script>
@@ -27,17 +26,9 @@
   <body class="js-device-state a-device-state a-device-state--debug">
     <!-- {CUT AND INJECT HEADER HTML HERE} -->
     <br />
-    <axa-core
-      only-load="true"
-      icons-path="../../assets/icons/icons.svg"
-    ></axa-core>
+    <axa-core only-load="true" icons-path="../../assets/icons/icons.svg"></axa-core>
 
-    <axa-link
-      class="o-sg-section__section"
-      href="javascript:history.back()"
-      color="blue"
-      >Go Back</axa-link
-    >
+    <axa-link class="o-sg-section__section" href="javascript:history.back()" color="blue">Go Back</axa-link>
 
     <!-- {CUT AND INJECT SINGLECOMPONENT HTML HERE} -->
     <!-- {CUT AND INJECT INDEX HTML HERE} -->

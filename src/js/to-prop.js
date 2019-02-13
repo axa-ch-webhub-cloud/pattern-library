@@ -1,4 +1,4 @@
-import PropTypes from "./prop-types";
+import PropTypes from './prop-types';
 
 const regexJson = /^\s*(?:true|false|null|undefined|-?[0-9]+\.?[0-9]*|[[{](?:.|[\s])*[\]}])\s*$/;
 

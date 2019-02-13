@@ -1,6 +1,6 @@
-@import "settings/header-main";
-@import "../../styles/grid/grid-mixins";
-@import "../../styles/mixins/respond";
+@import 'settings/header-main';
+@import '../../styles/grid/grid-mixins';
+@import '../../styles/mixins/respond';
 
 .m-header-main {
   position: relative;
@@ -8,8 +8,7 @@
 
   display: block;
   height: $header-main-height;
-  border-bottom: $header-main-border-bottom-width solid
-    $header-main-border-bottom-color;
+  border-bottom: $header-main-border-bottom-width solid $header-main-border-bottom-color;
   background: $header-main-bg;
 }
 

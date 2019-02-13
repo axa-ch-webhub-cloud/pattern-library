@@ -26,13 +26,13 @@ const withBaseGlobal = Base =>
      */
     static appendGlobalStyles(styles, nodeName = Base.uuidv4()) {
       if (styles && !memory[nodeName]) {
-        const styleNode = document.createElement("style");
+        const styleNode = document.createElement('style');
         const styleText = document.createTextNode(styles);
 
         memory[nodeName] = true;
 
         styleNode.appendChild(styleText);
-        styleNode.setAttribute("data-c-name", nodeName.toLowerCase());
+        styleNode.setAttribute('data-c-name', nodeName.toLowerCase());
 
         // append directly to head
         document.head.appendChild(styleNode);

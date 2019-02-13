@@ -1,30 +1,25 @@
 // better to load this only if it's needed
-import "document-register-element"; // ES2015
+import 'document-register-element'; // ES2015
 // load this for browsers which support customElements without builtin (webkit)
-import "@ungap/custom-elements-builtin";
+import '@ungap/custom-elements-builtin';
 
-import wcdomready from "../js/wcdomready";
+import wcdomready from '../js/wcdomready';
 
-console.log("🚀 patterns library 🚀"); // eslint-disable-line no-console
+console.log('🚀 patterns library 🚀'); // eslint-disable-line no-console
 
-const sectionSelector = _el =>
-  `.js--section-${_el.getAttribute("data-toggle")}`;
+const sectionSelector = _el => `.js--section-${_el.getAttribute('data-toggle')}`;
 
 const disable = (element, parent) => {
-  parent
-    .querySelector(sectionSelector(element.parentNode))
-    .classList.remove("o-sg-section__section--visible");
+  parent.querySelector(sectionSelector(element.parentNode)).classList.remove('o-sg-section__section--visible');
 };
 
 const enable = (element, parent) => {
-  parent
-    .querySelector(sectionSelector(element.parentNode))
-    .classList.add("o-sg-section__section--visible");
+  parent.querySelector(sectionSelector(element.parentNode)).classList.add('o-sg-section__section--visible');
 };
 
 wcdomready(() => {
   // all sections's buttons toggle
-  const sections = document.querySelectorAll(".js--section");
+  const sections = document.querySelectorAll('.js--section');
 
   // let the components render first, thats why this hack.
   // All the WC components initialise on dom ready, but they are later in the queue.
@@ -35,11 +30,11 @@ wcdomready(() => {
   setTimeout(() => {
     Array.from(sections).forEach(section => {
       let lastEnabled = null;
-      const toggleButtons = section.querySelectorAll(".js--toggle");
+      const toggleButtons = section.querySelectorAll('.js--toggle');
       const arr = Array.from(toggleButtons);
       [lastEnabled] = arr;
       arr.forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener('click', () => {
           disable(lastEnabled, section);
           enable(button, section);
           lastEnabled = button;

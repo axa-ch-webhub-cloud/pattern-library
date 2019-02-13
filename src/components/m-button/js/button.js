@@ -1,13 +1,13 @@
-import on from "../../../js/on";
-import fire from "../../../js/fire";
-import { AXA_EVENTS } from "../../../js/ui-events";
+import on from '../../../js/on';
+import fire from '../../../js/fire';
+import { AXA_EVENTS } from '../../../js/ui-events';
 
 /**
  * @fires Button#axa-click
  */
 class Button {
   static DEFAULTS = {
-    button: ".js-button"
+    button: '.js-button',
   };
 
   constructor(wcNode, options = {}) {
@@ -15,7 +15,7 @@ class Button {
 
     this.options = {
       ...Button.DEFAULTS,
-      ...options
+      ...options,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -32,8 +32,8 @@ class Button {
   on() {
     this.off();
 
-    this.unClick = on(this.button, "click", this.handleClick, {
-      passive: false
+    this.unClick = on(this.button, 'click', this.handleClick, {
+      passive: false,
     });
   }
 
@@ -51,14 +51,14 @@ class Button {
      * @type {null}
      */
 
-    if (this.button.getAttribute("aria-disabled")) {
+    if (this.button.getAttribute('aria-disabled')) {
       event.preventDefault();
     }
 
     const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, null, {
       bubbles: true,
       cancelable: true,
-      composed: true
+      composed: true,
     });
 
     if (!cancelled) {

@@ -1,6 +1,6 @@
-import classnames from "classnames";
-import html from "nanohtml";
-import raw from "nanohtml/raw";
+import classnames from 'classnames';
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
 
 export default (
   {
@@ -10,7 +10,7 @@ export default (
     message,
     items,
     ctaHref,
-    ctaTitle
+    ctaTitle,
   },
   childrenFragment
 ) => {
@@ -23,8 +23,8 @@ export default (
       <h1 class="o-error-page__title">${title}</h1>
 
       <p
-        class="${classnames("o-error-page__message", {
-          "o-error-page__message--semibold": hasItems
+        class="${classnames('o-error-page__message', {
+          'o-error-page__message--semibold': hasItems,
         })}"
       >
         ${raw(message)}
@@ -45,15 +45,7 @@ export default (
       ${(ctaHref &&
         ctaTitle &&
         html`
-          <axa-button
-            class="o-error-page__cta"
-            href="${ctaHref}"
-            tag="a"
-            color="white"
-            ghost
-            motion
-            >${ctaTitle}</axa-button
-          >
+          <axa-button class="o-error-page__cta" href="${ctaHref}" tag="a" color="white" ghost motion>${ctaTitle}</axa-button>
         `) ||
         null}
     </article>
@@ -69,6 +61,6 @@ export default (
       <arcticle class="o-error-page__discover">
         <p class="o-error-page__discover-text">${childrenFragment}</p>
       </arcticle>
-    `
+    `,
   ];
 };

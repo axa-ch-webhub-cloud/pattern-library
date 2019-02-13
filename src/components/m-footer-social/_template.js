@@ -1,4 +1,4 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default function({ title, items = [] }) {
   return html`
@@ -14,10 +14,7 @@ export default function({ title, items = [] }) {
             ({ name, url }) => html`
               <li class="m-footer-social__list-item">
                 <a href="${url}" class="m-footer-social__link">
-                  <axa-icon
-                    icon="${name}"
-                    icon-class="m-footer-social__icon"
-                  ></axa-icon>
+                  <axa-icon icon="${name}" icon-class="m-footer-social__icon"></axa-icon>
                 </a>
               </li>
             `

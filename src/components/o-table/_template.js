@@ -1,15 +1,12 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
-export default (
-  { cap, capAlign, capSide, headings, items, footers },
-  childrenFragment
-) => {
+export default ({ cap, capAlign, capSide, headings, items, footers }, childrenFragment) => {
   const fragment = [];
 
   if (cap) {
     const capAttrs = {
       ...(capAlign && { align: capAlign }),
-      ...(capSide && { side: capSide })
+      ...(capSide && { side: capSide }),
     };
 
     fragment.push(

@@ -2,12 +2,12 @@
 ///
 /// @param {string} $browser - Apply CSS for `ie` (IE10+) or `moz` (firefox).
 @mixin target($browser) {
-  @if $browser == "ie" {
+  @if $browser == 'ie' {
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
       /* IE10+ CSS styles go here */
       @content;
     }
-  } @else if $browser == "moz" {
+  } @else if $browser == 'moz' {
     @-moz-document url-prefix() {
       /* ugly fix of firefox related issues */
       @content;

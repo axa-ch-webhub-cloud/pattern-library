@@ -7,19 +7,19 @@ function specialElHandlers(newNode, oldNode) {
 
   // Some DOM nodes are weird
   // https://github.com/patrick-steele-idem/morphdom/blob/master/src/specialElHandlers.js
-  if (nodeName === "INPUT") {
+  if (nodeName === 'INPUT') {
     updateInput(newNode, oldNode);
-  } else if (nodeName === "OPTION") {
+  } else if (nodeName === 'OPTION') {
     updateOption(newNode, oldNode);
-  } else if (nodeName === "TEXTAREA") {
+  } else if (nodeName === 'TEXTAREA') {
     updateTextarea(newNode, oldNode);
-  } else if (nodeName === "SELECT") {
+  } else if (nodeName === 'SELECT') {
     updateSelect(newNode, oldNode);
   }
 }
 
 function updateOption(newNode, oldNode) {
-  updateAttribute(newNode, oldNode, "selected");
+  updateAttribute(newNode, oldNode, 'selected');
 }
 
 function updateSelect(newNode, oldNode) {
@@ -34,12 +34,12 @@ function updateSelect(newNode, oldNode) {
   let nodeName;
   while (curChild) {
     nodeName = curChild.nodeName && curChild.nodeName.toUpperCase();
-    if (nodeName === "OPTGROUP") {
+    if (nodeName === 'OPTGROUP') {
       optGroup = curChild;
       curChild = optGroup.firstChild;
     } else {
-      if (nodeName === "OPTION") {
-        if (curChild.hasAttributeNS(null, "selected")) {
+      if (nodeName === 'OPTION') {
+        if (curChild.hasAttributeNS(null, 'selected')) {
           selectedIndex = i;
           break;
         }
@@ -63,22 +63,22 @@ function updateInput(newNode, oldNode) {
   const { value: newValue } = newNode;
   const { value: oldValue } = oldNode;
 
-  updateAttribute(newNode, oldNode, "checked");
-  updateAttribute(newNode, oldNode, "disabled");
+  updateAttribute(newNode, oldNode, 'checked');
+  updateAttribute(newNode, oldNode, 'disabled');
 
   if (newValue !== oldValue) {
-    oldNode.setAttribute("value", newValue);
+    oldNode.setAttribute('value', newValue);
     oldNode.value = newValue;
   }
 
-  if (newValue === "null") {
-    oldNode.value = "";
-    oldNode.removeAttribute("value");
+  if (newValue === 'null') {
+    oldNode.value = '';
+    oldNode.removeAttribute('value');
   }
 
-  if (!newNode.hasAttributeNS(null, "value")) {
-    oldNode.removeAttribute("value");
-  } else if (oldNode.type === "range") {
+  if (!newNode.hasAttributeNS(null, 'value')) {
+    oldNode.removeAttribute('value');
+  } else if (oldNode.type === 'range') {
     // this is so elements like slider move their UI thingy
     oldNode.value = newValue;
   }
@@ -94,10 +94,7 @@ function updateTextarea(newNode, oldNode) {
   if (oldNode.firstChild && oldNode.firstChild.nodeValue !== newValue) {
     // Needed for IE. Apparently IE sets the placeholder as the
     // node value and vise versa. This ignores an empty update.
-    if (
-      newValue === "" &&
-      oldNode.firstChild.nodeValue === oldNode.placeholder
-    ) {
+    if (newValue === '' && oldNode.firstChild.nodeValue === oldNode.placeholder) {
       return;
     }
 
@@ -110,7 +107,7 @@ function updateAttribute(newNode, oldNode, name) {
     oldNode[name] = newNode[name];
 
     if (newNode[name]) {
-      oldNode.setAttribute(name, "");
+      oldNode.setAttribute(name, '');
     } else {
       oldNode.removeAttribute(name);
     }

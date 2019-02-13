@@ -1,22 +1,22 @@
-import UiEvents from "../../../js/ui-events";
-import on from "../../../js/on";
-import { requestAnimationFrame } from "../../../js/request-animation-frame";
-import { add, remove } from "../../../js/class-list";
+import UiEvents from '../../../js/ui-events';
+import on from '../../../js/on';
+import { requestAnimationFrame } from '../../../js/request-animation-frame';
+import { add, remove } from '../../../js/class-list';
 
 class FormGroup extends UiEvents {
   static DEFAULTS = {
     containerClass: false,
-    toggle: ".js-form-group-info__toggle",
-    info: ".js-form-group__info",
-    legendIconWrapper: ".js-form-group__legend-icon-wrapper",
-    isOpen: "is-form-group-info-open"
+    toggle: '.js-form-group-info__toggle',
+    info: '.js-form-group__info',
+    legendIconWrapper: '.js-form-group__legend-icon-wrapper',
+    isOpen: 'is-form-group-info-open',
   };
 
   constructor(wcNode, options) {
     // eslint-disable-next-line no-param-reassign
     options = {
       ...FormGroup.DEFAULTS,
-      ...options
+      ...options,
     };
 
     super(wcNode, options);
@@ -39,7 +39,7 @@ class FormGroup extends UiEvents {
   on() {
     this.off();
 
-    this.offToggleClicked = on(this.toggle, "click", this.handleToggleClick);
+    this.offToggleClicked = on(this.toggle, 'click', this.handleToggleClick);
   }
 
   off() {
@@ -51,11 +51,7 @@ class FormGroup extends UiEvents {
   onInteractive() {
     this.offInteractive();
 
-    this.unTransitionEnd = on(
-      this.info,
-      "transitionend",
-      this.handleTransitionEnd
-    );
+    this.unTransitionEnd = on(this.info, 'transitionend', this.handleTransitionEnd);
   }
 
   offInteractive() {
@@ -82,9 +78,9 @@ class FormGroup extends UiEvents {
 
     this.isOpen = true;
 
-    lastElementChild.style.overflow = "scroll";
+    lastElementChild.style.overflow = 'scroll';
     const { scrollHeight } = lastElementChild;
-    lastElementChild.style.overflow = "";
+    lastElementChild.style.overflow = '';
 
     this.onInteractive();
 
@@ -117,8 +113,8 @@ class FormGroup extends UiEvents {
   }
 
   handleTransitionEnd = e => {
-    if (e.propertyName === "height") {
-      e.target.style.height = "";
+    if (e.propertyName === 'height') {
+      e.target.style.height = '';
 
       this.offInteractive();
     }
