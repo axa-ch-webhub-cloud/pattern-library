@@ -2,9 +2,10 @@
     "name": "@axa-ch/patterns-library",
     "version": "2.0.1-beta.256",
     "description": "AXA Switzerland Web Patterns",
-    "module": "lib",
     "scripts": {
-        "test": "npm run test-eslint && npm run test-stylelint"
+        "test": "npm run test-eslint && npm run test-stylelint",
+        "test-eslint": "eslint src/",
+        "test-stylelint": "stylelint 'src/**/*.scss'"
     },
     "repository": {
         "type": "git",
