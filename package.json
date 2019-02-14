@@ -2,6 +2,8 @@
     "name": "@axa-ch/patterns-library",
     "version": "2.0.1-beta.256",
     "description": "AXA Switzerland Web Patterns",
+    "author": "Luca Mele",
+    "license": "Copyright 2019 AXA Versicherungen AG",
     "scripts": {
         "test": "npm run test-eslint && npm run test-stylelint",
         "test-eslint": "eslint src/",
@@ -14,10 +16,17 @@
     "keywords": [
         "axa"
     ],
-    "author": "Luca Mele",
-    "license": "Copyright 2019 AXA Versicherungen AG",
     "devDependencies": {
         "babel-eslint": "^8.2.1",
-        "prettier": "1.16.4"
+        "prettier": "1.16.4",
+        "eslint": "^4.10.0",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-plugin-import": "^2.8.0",
+        "stylelint": "^8.2.0",
+        "stylelint-config-standard": "^17.0.0",
+        "stylelint-declaration-strict-value": "^1.0.4",
+        "stylelint-order": "^0.7.0",
+        "stylelint-scss": "^2.1.0",
+        "stylelint-selector-bem-pattern": "^2.0.0"
     }
 }
