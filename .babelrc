@@ -1,0 +1,49 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "modules": false,
+                "targets": {
+                    "browsers": [
+                        "last 2 versions",
+                        "safari >= 8",
+                        "not ie <= 10"
+                    ]
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "nanohtml",
+            {
+                "useImport": true
+            }
+        ],
+        "external-helpers",
+        "transform-class-properties",
+        "transform-es2015-destructuring",
+        "transform-object-rest-spread",
+        "babel-plugin-version-transform",
+        [
+            "inline-replace-variables",
+            {
+                "ENV": {
+                    "type": "node",
+                    "replacement": "process.env.NODE_ENV"
+                },
+                "DEV": "development",
+                "PROD": "production"
+            }
+        ],
+        [
+            "transform-inline-environment-variables",
+            {
+                "include": [
+                    "NODE_ENV"
+                ]
+            }
+        ]
+    ]
+}

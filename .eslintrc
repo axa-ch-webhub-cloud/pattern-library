@@ -1,0 +1,167 @@
+{
+    "extends": [
+        "airbnb",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "max-len": [
+            "error",
+            {
+                "code": 140,
+                "tabWidth": 2,
+                "ignoreComments": true,
+                "ignoreUrls": true,
+                "ignoreTemplateLiterals": true
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1,
+                "ignoredNodes": [
+                    "TaggedTemplateExpression[tag.name=/html|outdent/]",
+                    "TaggedTemplateExpression[tag.name=/html|outdent/] *"
+                ]
+            }
+        ],
+        "no-confusing-arrow": "off",
+        "class-methods-use-this": "off",
+        "no-return-assign": "off",
+        "no-bitwise": "off",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ],
+        "no-underscore-dangle": "off",
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": false
+            }
+        ],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "./stack/**/*.js"
+                ]
+            }
+        ],
+        "object-curly-newline": [
+            "error",
+            {
+                "multiline": true,
+                "consistent": true
+            }
+        ]
+    },
+    "globals": {
+        "HTMLAnchorElement": true,
+        "HTMLAreaElement": true,
+        "HTMLAudioElement": true,
+        "HTMLBRElement": true,
+        "HTMLBaseElement": true,
+        "HTMLBodyElement": true,
+        "HTMLButtonElement": true,
+        "HTMLCanvasElement": true,
+        "HTMLContentElement": true,
+        "HTMLDListElement": true,
+        "HTMLDataListElement": true,
+        "HTMLDetailsElement": true,
+        "HTMLDialogElement": true,
+        "HTMLDirectoryElement": true,
+        "HTMLDivElement": true,
+        "HTMLDocument": true,
+        "HTMLElement": true,
+        "HTMLEmbedElement": true,
+        "HTMLFieldSetElement": true,
+        "HTMLFontElement": true,
+        "HTMLFormElement": true,
+        "HTMLFrameElement": true,
+        "HTMLFrameSetElement": true,
+        "HTMLHRElement": true,
+        "HTMLHeadElement": true,
+        "HTMLHeadingElement": true,
+        "HTMLHtmlElement": true,
+        "HTMLIFrameElement": true,
+        "HTMLImageElement": true,
+        "HTMLInputElement": true,
+        "HTMLLIElement": true,
+        "HTMLLabelElement": true,
+        "HTMLLegendElement": true,
+        "HTMLLinkElement": true,
+        "HTMLMapElement": true,
+        "HTMLMarqueeElement": true,
+        "HTMLMediaElement": true,
+        "HTMLMenuElement": true,
+        "HTMLMetaElement": true,
+        "HTMLMeterElement": true,
+        "HTMLModElement": true,
+        "HTMLOListElement": true,
+        "HTMLObjectElement": true,
+        "HTMLOptGroupElement": true,
+        "HTMLOptionElement": true,
+        "HTMLOutputElement": true,
+        "HTMLParagraphElement": true,
+        "HTMLParamElement": true,
+        "HTMLPictureElement": true,
+        "HTMLPreElement": true,
+        "HTMLProgressElement": true,
+        "HTMLQuoteElement": true,
+        "HTMLScriptElement": true,
+        "HTMLSelectElement": true,
+        "HTMLShadowElement": true,
+        "HTMLSlotElement": true,
+        "HTMLSourceElement": true,
+        "HTMLSpanElement": true,
+        "HTMLStyleElement": true,
+        "HTMLTableCaptionElement": true,
+        "HTMLTableCellElement": true,
+        "HTMLTableColElement": true,
+        "HTMLTableElement": true,
+        "HTMLTableRowElement": true,
+        "HTMLTableSectionElement": true,
+        "HTMLTemplateElement": true,
+        "HTMLTextAreaElement": true,
+        "HTMLTitleElement": true,
+        "HTMLTrackElement": true,
+        "HTMLUListElement": true,
+        "HTMLUnknownElement": true,
+        "HTMLVideoElement": true,
+        "HTMLImports": true,
+        "XMLHttpRequest": true,
+        "history": true,
+        "MutationObserver": true,
+        "customElements": true,
+        "document": true,
+        "window": true,
+        "ENV": true,
+        "PROD": true,
+        "DEV": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "classes": true,
+            "decorations": true,
+            "jsx": true
+        }
+    }
+}
