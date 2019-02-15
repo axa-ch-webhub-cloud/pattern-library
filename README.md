@@ -1,4 +1,4 @@
-# Patterns Library v2
+# Patterns Library v3
 
 [Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)
 
