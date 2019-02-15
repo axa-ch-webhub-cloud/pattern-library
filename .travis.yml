@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- '8.8.1'
+  - '11.10.0'
 script:
-- npm run test
+  - npm run test
 deploy:
   provider: npm
   skip_cleanup: true
