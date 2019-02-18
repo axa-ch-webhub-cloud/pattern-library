@@ -7,9 +7,9 @@ import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 
 const reWhiteSpace = /\s+/;
-const reSize = /\d+|auto|(?:xs|sm|md|lg|xl)(?:-(?:\d+|auto|))?/;
-const reOrder = /\d+|first|last|(?:xs|sm|md|lg|xl)-(?:\d+|first|last)/;
-const reOffset = /\d+|(?:xs|sm|md|lg|xl)(?:-\d+)?/;
+const reSize = /\d+|auto|(?:xs|sm|md|lg|xl|xxl)(?:-(?:\d+|auto|))?/;
+const reOrder = /\d+|first|last|(?:xs|sm|md|lg|xl|xxl)-(?:\d+|first|last)/;
+const reOffset = /\d+|(?:xs|sm|md|lg|xl|xxl)(?:-\d+)?/;
 const validModifiers = reModifiers => (modifier) => {
   const type = typeof modifier;
 
@@ -43,9 +43,9 @@ class AXACol extends BaseComponentGlobal {
   static tagName = 'axa-col'
   static propTypes = {
     classes: PropTypes.string,
-    size: modifierProp(validSize, '`number|auto|xs|sm|md|lg|xl` optionally followed by `-(number|auto)`'),
-    order: modifierProp(validOrder, '`number|first|last|xs|sm|md|lg|xl` optionally followed by `-(number|first|last)`'),
-    offset: modifierProp(validOffset, '`number|xs|sm|md|lg|xl` optionally followed by `-number`'),
+    size: modifierProp(validSize, '`number|auto|xs|sm|md|lg|xl|xxl` optionally followed by `-(number|auto)`'),
+    order: modifierProp(validOrder, '`number|first|last|xs|sm|md|lg|xl|xxl` optionally followed by `-(number|first|last)`'),
+    offset: modifierProp(validOffset, '`number|xs|sm|md|lg|xl|xxl` optionally followed by `-number`'),
   }
 
   init() {
