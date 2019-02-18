@@ -4,7 +4,6 @@ node_js:
 script:
   - npm run test
 deploy:
-  provider: npm
-  skip_cleanup: true
-  on:
-    tags: true
+  # TODO uncomment script as soon as we have a deployable artifact and the script itself is adapted.
+  # provider: script
+  # script: bash scripts/deploy.sh
