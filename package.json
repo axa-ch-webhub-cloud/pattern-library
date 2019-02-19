@@ -13,6 +13,7 @@
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/html": "^4.1.12",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.5",
@@ -26,6 +27,8 @@
     "eslint-plugin-react": "^7.12.4",
     "node-sass": "^4.11.0",
     "prettier": "1.16.4",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "sass-loader": "^7.1.0",
     "to-string-loader": "^1.1.5"
   },
