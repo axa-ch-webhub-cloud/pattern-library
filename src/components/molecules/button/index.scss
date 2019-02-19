@@ -1,0 +1,229 @@
+$color-axa-blue: #00008f;
+$color-prim-red-burnt-sienna: #f07662;
+$color-prim-white: #fff;
+// Hover/Active/Focus
+$color-prim-red-flamingo: #ec4d33;
+$color-prim-blue-deep-sapphire: #00005b;
+
+.m-button {
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  //font-family: source-sans-pro--semibold;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1;
+  min-height: 40px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  color: $color-prim-white;
+  background: $color-axa-blue;
+  border: solid 2px $color-axa-blue;
+  border-bottom-color: $color-prim-blue-deep-sapphire;
+
+  &:hover,
+  &:active,
+  &:focus {
+    cursor: pointer;
+    text-decoration: none;
+    background: $color-prim-blue-deep-sapphire;
+    border-color: $color-prim-blue-deep-sapphire;
+  }
+
+  &:disabled,
+  &[aria-disabled] {
+    color: #999;
+    background: #e5e5e5;
+    border-color: #e5e5e5;
+    border-bottom-color: #ccc;
+    pointer-events: none;
+  }
+
+  &__flex-wrapper {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.m-button--sm {
+  font-size: 14px;
+  border-width: 1px;
+  min-height: 30px;
+}
+
+.m-button--lg {
+  min-height: 50px;
+}
+
+.m-button--motion {
+  $button__motion-duration: 0.3s;
+  $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  $button__motion-pseudo-z-index: -1;
+
+  z-index: 0;
+  overflow: hidden;
+
+  transition: color $button__motion-duration $button__motion-easing 0s;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    z-index: $button__motion-pseudo-z-index;
+
+    display: block;
+
+    // fix iOS double tap for :hover
+    // zero width is considered hidden
+    width: 0.001px;
+    height: 550px;
+    content: '';
+
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transition: width $button__motion-duration $button__motion-easing 0s;
+
+    background: $color-prim-blue-deep-sapphire;
+  }
+
+  &:hover,
+  &:focus {
+    background: $color-axa-blue;
+    color: $color-prim-white;
+
+    &::after {
+      width: 110%;
+      background: $color-prim-blue-deep-sapphire;
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    // TODO
+    .m-button__arrow {
+      animation-duration: 0.6s;
+      animation-timing-function: ease;
+      animation-fill-mode: both;
+      animation-name: fadeOutRightInLeft;
+    }
+
+    @keyframes fadeOutRightInLeft {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+      }
+
+      51% {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+}
+
+.m-button--motion.m-button--red {
+  &::after {
+    background: $color-prim-red-flamingo;
+  }
+
+  &:hover,
+  &:focus {
+    background: $color-prim-red-burnt-sienna;
+    color: $color-prim-white;
+
+    &::after {
+      background: $color-prim-red-flamingo;
+    }
+  }
+}
+
+.m-button--motion.m-button--ghost,
+.m-button--motion.m-button--red.m-button--ghost,
+.m-button--motion.m-button--white.m-button--ghost {
+  background: transparent;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+  }
+}
+
+.m-button--motion.m-button--white.m-button--ghost {
+  &::after {
+    background: $color-prim-white;
+  }
+
+  &:hover,
+  &:focus {
+    color: inherit;
+
+    &::after {
+      background: $color-prim-white;
+    }
+  }
+}
+
+.m-button--red {
+  background-color: $color-prim-red-burnt-sienna;
+  border-color: $color-prim-red-burnt-sienna;
+  border-bottom-color: $color-prim-red-flamingo;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $color-prim-red-flamingo;
+    border-color: $color-prim-red-flamingo;
+  }
+}
+
+.m-button--ghost {
+  background-color: transparent;
+  border-bottom-color: $color-axa-blue;
+  color: $color-axa-blue;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-prim-white;
+  }
+}
+
+.m-button--ghost.m-button--red {
+  color: $color-prim-red-burnt-sienna;
+  border-bottom-color: #ec4d33;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-prim-white;
+    border-bottom-color: $color-prim-red-flamingo;
+  }
+}
+
+.m-button--ghost.m-button--white {
+  border-color: $color-prim-white;
+  color: $color-prim-white;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $color-prim-white;
+    border-color: $color-prim-white;
+    color: inherit;
+  }
+}
