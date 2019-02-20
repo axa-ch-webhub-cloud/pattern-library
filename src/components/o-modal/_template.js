@@ -1,6 +1,6 @@
 import html from "nanohtml";
 
-export default () => {
+export default ({}, childrenFragment) => {
   const openModal = () => {
     var modal = document.getElementById("modal-wrapper");
     modal.style.display = "block";
@@ -27,8 +27,8 @@ export default () => {
         <span class="close"
           ><axa-icon icon="cross-gap" onclick="${closeModal}"></axa-icon
         ></span>
-        <h2>There is a problem with your internet</h2>
-        <p>Fix it or gtfo.</p>
+
+        <div>${childrenFragment}</div>
       </div>
     </div>
   `;

@@ -11,32 +11,15 @@ import template from "./_template";
 class AXAModal extends BaseComponentGlobal {
   static tagName = "axa-modal";
 
-  static propTypes = {
-    // action: PropTypes.string,
-    // href: urlPropType,
-    // method: PropTypes.oneOf(["GET", "POST"])
-  };
-
-  // static get observedAttributes() {
-  //   return ["action", "href", "method"];
-  // }
-
   init() {
     super.init({ styles, template });
   }
 
-  // /**
-  //  * REF: https://www.w3.org/TR/custom-elements/#custom-element-conformance
-  //  */
-  // willRenderCallback() {
-  //   const {
-  //     props: { background }
-  //   } = this;
+  connectedCallback() {
+    super.connectedCallback();
 
-  //   this.className = classnames(this.initialClassName, "o-error-page", {
-  //     [`o-error-page--${background}`]: background
-  //   });
-  // }
+    this.className = `${this.initialClassName}`;
+  }
 }
 
 defineOnce(AXAModal.tagName, AXAModal);
