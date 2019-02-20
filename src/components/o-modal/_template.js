@@ -1,18 +1,18 @@
-import html from "nanohtml";
+import html from 'nanohtml';
 
 export default ({}, childrenFragment) => {
   const openModal = () => {
-    var modal = document.getElementById("modal-wrapper");
-    modal.style.display = "block";
+    var modal = document.getElementById('modal-wrapper');
+    modal.style.display = 'block';
   };
 
   const closeModalByClickingOutside = event => {
-    if (event.target.id === "modal-wrapper") closeModal();
+    if (event.target.id === 'modal-wrapper') closeModal();
   };
 
   const closeModal = () => {
-    var modal = document.getElementById("modal-wrapper");
-    modal.style.display = "none";
+    var modal = document.getElementById('modal-wrapper');
+    modal.style.display = 'none';
   };
 
   return html`
