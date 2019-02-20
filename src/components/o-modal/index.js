@@ -15,10 +15,21 @@ class AXAModal extends BaseComponentGlobal {
     super.init({ styles, template });
   }
 
+  closeModal() {
+    var modal = document.getElementById("modal-wrapper");
+    modal.style.display = "none";
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
-    this.className = `${this.initialClassName}`;
+    const axaButtons = document.querySelectorAll(
+      "axa-button[data-modal-close]"
+    );
+    if (axaButtons && axaButtons.length)
+      axaButtons.forEach(button => {
+        button.onclick = this.closeModal;
+      });
   }
 }
 
