@@ -3,9 +3,15 @@
   "version": "2.0.0",
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
+  "scripts": {
+    "start": "npm run storybook",
+    "test": "eslint src/",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "classnames": "^2.2.6",
+    "dotenv-extended": "^2.3.0",
     "lit-element": "^2.0.1",
     "@skatejs/val": "^0.4.0"
   },
@@ -31,10 +37,6 @@
     "react-dom": "^16.8.2",
     "sass-loader": "^7.1.0",
     "to-string-loader": "^1.1.5"
-  },
-  "scripts": {
-    "test": "eslint src/",
-    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "repository": {
     "type": "git",
