@@ -3,7 +3,6 @@
     [
       "@babel/preset-env",
       {
-        "debug": true,
         "targets": {
           "browsers": ["last 2 versions", "safari >= 8", "not ie <= 10"]
         }
@@ -11,5 +10,8 @@
     ],
     "@babel/preset-react"
   ],
-  "plugins": ["transform-custom-element-classes", "@babel/plugin-proposal-class-properties"]
+  "plugins": [
+    "transform-custom-element-classes",
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
