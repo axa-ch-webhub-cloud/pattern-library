@@ -15,7 +15,7 @@
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #fff;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
@@ -24,15 +24,28 @@
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: #00008f;
   float: right;
-  font-size: 28px;
-  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
   color: #000;
-  text-decoration: none;
   cursor: pointer;
+}
+
+h2 {
+  font-family: PublicoHeadline;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #333333;
+}
+
+p {
+  font-family: SourceSansPro;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  color: #333333;
 }

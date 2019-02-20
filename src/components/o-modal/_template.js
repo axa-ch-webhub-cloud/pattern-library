@@ -24,8 +24,11 @@ export default () => {
       onclick="${closeModalByClickingOutside}"
     >
       <div class="modal-content">
-        <axa-icon icon="cross-gap" style="float:right;"></axa-icon>
-        <p>Some text in the Modal..</p>
+        <span class="close"
+          ><axa-icon icon="cross-gap" onclick="${closeModal}"></axa-icon
+        ></span>
+        <h2>There is a problem with your internet</h2>
+        <p>Fix it or gtfo.</p>
       </div>
     </div>
   `;
