@@ -18,15 +18,9 @@ export default ({}, childrenFragment) => {
   return html`
     <button id="myBtn" onclick="${openModal}">Open Modal</button>
 
-    <div
-      id="modal-wrapper"
-      class="modal"
-      onclick="${closeModalByClickingOutside}"
-    >
+    <div id="modal-wrapper" class="modal" onclick="${closeModalByClickingOutside}">
       <div class="modal-content">
-        <span class="close"
-          ><axa-icon icon="cross-gap" onclick="${closeModal}"></axa-icon
-        ></span>
+        <span class="close"><axa-icon icon="cross-gap" onclick="${closeModal}"></axa-icon></span>
 
         <div>${childrenFragment}</div>
       </div>

@@ -4,9 +4,23 @@
 <axa-modal>
   <h2>There might be an interesting option for you</h2>
   <p>
-    You can continue with the package your ordered, or have a look at a probably
-    much better option.
+    You can continue with the package your ordered, or have a look at a probably much better option.
   </p>
   <axa-button data-modal-close>Hello sir</axa-button>
   <axa-button data-modal-close>Hello madame</axa-button>
 </axa-modal>
+
+<script>
+  function change() {
+    const a = document.getElementsByTagName('axa-modal')[0];
+    // console.log('--');
+    a.isopen = !a.isopen;
+    console.log('setting element to ', !a.isopen);
+    a.setAttribute('isopen', !a.isopen);
+    setTimeout(() => {
+      change();
+    }, 1000);
+  }
+
+  // change();
+</script>
