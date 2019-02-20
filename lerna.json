@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "src/components/atoms/**",
+    "src/components/molecules/**"
+  ],
+  "version": "independent",
+  "npmClient": "npm"
+}
