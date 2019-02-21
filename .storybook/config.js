@@ -15,6 +15,7 @@ import 'core-js/fn/object/set-prototype-of';
 addDecorator(
   withOptions({
     name: 'AXA Living Styleguide',
+    url: 'https://github.com/axa-ch/patterns-library/tree/develop-v2',
     theme: {
       ...themes.normal,
       mainTextFace: '"Source Sans Pro", Arial, sans-serif;',
@@ -24,7 +25,7 @@ addDecorator(
       brand: {
         height: '55px',
         paddingLeft: '65px',
-        background: 'url("https://axa.ch/etc/clientlibs/axa/frontend-lib/images/logo-AXA.svg") no-repeat',
+        background: `url("/svg/logo-axa.svg") no-repeat`,
       },
       brandLink: {
         border: 'none',
