@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run storybook",
     "test": "eslint src/",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static"
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
@@ -20,6 +20,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-options": "^4.1.13",
     "@storybook/html": "^4.1.12",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.5",
