@@ -48,7 +48,7 @@ class AXAModal extends BaseComponentGlobal {
 
   closeModal() {
     const modal = document.getElementById('modal-wrapper');
-    modal.classList.add('is-hidden');
+    modal.classList.add('m-modal--hidden');
   }
 
   set open(value) {

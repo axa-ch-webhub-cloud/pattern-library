@@ -1,6 +1,6 @@
 @import '../../styles/mixins/respond';
 
-.modal {
+.m-modal {
   display: block;
   position: fixed;
   left: 0;
@@ -10,10 +10,10 @@
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+}
 
-  &.is-hidden {
-    display: none;
-  }
+.m-modal--hidden {
+  display: none;
 }
 
 .modal-content {

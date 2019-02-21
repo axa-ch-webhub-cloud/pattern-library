@@ -8,13 +8,13 @@ export default ({ open }, childrenFragment) => {
   const closeModal = () => {
     var modal = document.getElementById('modal-wrapper');
     modal.style.display = 'none';
-    modal.classList.add('is-hidden');
+    modal.classList.add('m-modal--hidden');
   };
 
   return html`
     <div
       id="modal-wrapper"
-      class="modal ${open ? '' : 'is-hidden'}"
+      class="m-modal ${open ? '' : 'm-modal--hidden'}"
       onclick="${closeModalByClickingOutside}"
     >
       <div class="modal-content">
