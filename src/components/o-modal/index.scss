@@ -21,16 +21,21 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
   text-align: center;
 
   width: 100%;
   height: 100%;
 
   @include respond-up(md) {
-    margin-top: 20%;
-    width: 80%;
-    height: 60%;
+    margin-top: 20vh;
+    width: 80vw;
+    height: 60vh;
+  }
+
+  @include respond-up(lg) {
+    margin-top: 20vh;
+    width: 70vw;
+    height: 60vh;
   }
 }
 
