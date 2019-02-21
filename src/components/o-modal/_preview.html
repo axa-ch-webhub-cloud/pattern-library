@@ -1,6 +1,8 @@
 <!--Please create here a HTML example by using just default HTML tags-->
 
-<axa-modal open>
+<button onclick="openModal()">Open modal</button>
+
+<axa-modal>
   <h2>There might be an interesting option for you</h2>
   <p>
     You can continue with the package your ordered, or have a look at a probably
@@ -11,14 +13,9 @@
 </axa-modal>
 
 <script>
-  function change() {
+  function openModal() {
     const a = document.getElementsByTagName('axa-modal')[0];
-    a.open = !a.open;
-    a.setAttribute('open', !a.open);
-    setTimeout(() => {
-      change();
-    }, 1000);
+    a.setAttribute('open', '');
+    a.open = true;
   }
-
-  //   change();
 </script>
