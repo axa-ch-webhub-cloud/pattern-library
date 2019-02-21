@@ -31,7 +31,7 @@ class AXAModal extends BaseComponentGlobal {
     }
 
     document.addEventListener('keyup', event => {
-      this.closeModalOnKeyUp(event);
+      this.closeModalOnEsc(event);
     });
   }
 
@@ -39,7 +39,7 @@ class AXAModal extends BaseComponentGlobal {
     document.removeEventListener('keyup');
   }
 
-  closeModalOnKeyUp(event) {
+  closeModalOnEsc(event) {
     const key = event.key || event.keyCode;
     if (key === 'Escape' || key === 'Esc' || key === 27) {
       this.closeModal();

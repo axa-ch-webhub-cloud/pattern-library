@@ -12,8 +12,6 @@ export default ({ open }, childrenFragment) => {
   };
 
   return html`
-    ${open}
-
     <div
       id="modal-wrapper"
       class="modal ${open ? '' : 'is-hidden'}"
