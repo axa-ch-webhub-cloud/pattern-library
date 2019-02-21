@@ -9,11 +9,12 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
+    "@skatejs/val": "^0.4.0",
+    "@storybook/addon-options": "^4.1.13",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "classnames": "^2.2.6",
     "dotenv-extended": "^2.3.0",
-    "lit-element": "^2.0.1",
-    "@skatejs/val": "^0.4.0"
+    "lit-element": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
