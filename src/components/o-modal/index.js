@@ -29,10 +29,25 @@ class AXAModal extends BaseComponentGlobal {
         button.onclick = this.closeModal;
       });
     }
+
+    document.addEventListener('keyup', event => {
+      this.closeModalOnKeyUp(event);
+    });
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('keyup');
+  }
+
+  closeModalOnKeyUp(event) {
+    const key = event.key || event.keyCode;
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      this.closeModal();
+    }
   }
 
   closeModal() {
-    var modal = document.getElementById('modal-wrapper');
+    const modal = document.getElementById('modal-wrapper');
     modal.classList.add('is-hidden');
   }
 
