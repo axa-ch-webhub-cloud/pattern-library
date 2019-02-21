@@ -1,11 +1,6 @@
 import html from 'nanohtml';
 
-export default ({}, childrenFragment) => {
-  const openModal = () => {
-    var modal = document.getElementById('modal-wrapper');
-    modal.style.display = 'block';
-  };
-
+export default ({ open }, childrenFragment) => {
   const closeModalByClickingOutside = event => {
     if (event.target.id === 'modal-wrapper') closeModal();
   };
@@ -13,14 +8,15 @@ export default ({}, childrenFragment) => {
   const closeModal = () => {
     var modal = document.getElementById('modal-wrapper');
     modal.style.display = 'none';
+    modal.classList.add('is-hidden');
   };
 
   return html`
-    <button id="myBtn" onclick="${openModal}">Open Modal</button>
+    ${open}
 
     <div
       id="modal-wrapper"
-      class="modal"
+      class="modal ${open ? '' : 'is-hidden'}"
       onclick="${closeModalByClickingOutside}"
     >
       <div class="modal-content">

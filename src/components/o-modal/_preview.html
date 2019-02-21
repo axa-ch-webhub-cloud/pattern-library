@@ -1,5 +1,4 @@
 <!--Please create here a HTML example by using just default HTML tags-->
-<!-- <axa-modal></axa-modal> -->
 
 <axa-modal open>
   <h2>There might be an interesting option for you</h2>
@@ -14,14 +13,12 @@
 <script>
   function change() {
     const a = document.getElementsByTagName('axa-modal')[0];
-    // console.log('--');
     a.open = !a.open;
-    console.log('setting element to ', !a.open);
     a.setAttribute('open', !a.open);
     setTimeout(() => {
       change();
     }, 1000);
   }
 
-  // change();
+  change();
 </script>
