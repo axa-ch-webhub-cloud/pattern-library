@@ -1,10 +1,11 @@
 <!--Please create here a HTML example by using just default HTML tags-->
 <!-- <axa-modal></axa-modal> -->
 
-<axa-modal>
+<axa-modal open>
   <h2>There might be an interesting option for you</h2>
   <p>
-    You can continue with the package your ordered, or have a look at a probably much better option.
+    You can continue with the package your ordered, or have a look at a probably
+    much better option.
   </p>
   <axa-button data-modal-close>Hello sir</axa-button>
   <axa-button data-modal-close>Hello madame</axa-button>
@@ -14,9 +15,9 @@
   function change() {
     const a = document.getElementsByTagName('axa-modal')[0];
     // console.log('--');
-    a.isopen = !a.isopen;
-    console.log('setting element to ', !a.isopen);
-    a.setAttribute('isopen', !a.isopen);
+    a.open = !a.open;
+    console.log('setting element to ', !a.open);
+    a.setAttribute('open', !a.open);
     setTimeout(() => {
       change();
     }, 1000);

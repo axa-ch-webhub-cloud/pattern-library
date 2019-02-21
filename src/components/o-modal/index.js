@@ -11,7 +11,7 @@ import template from './_template';
 class AXAModal extends BaseComponentGlobal {
   static tagName = 'axa-modal';
   static propTypes = {
-    isopen: PropTypes.bool
+    open: PropTypes.bool
   };
 
   init() {
@@ -24,14 +24,16 @@ class AXAModal extends BaseComponentGlobal {
   }
 
   static get observedAttributes() {
-    return ['isopen'];
+    return ['open'];
   }
 
   connectedCallback() {
     super.connectedCallback();
     console.log('connected');
 
-    const axaButtons = document.querySelectorAll('axa-button[data-modal-close]');
+    const axaButtons = document.querySelectorAll(
+      'axa-button[data-modal-close]'
+    );
     if (axaButtons && axaButtons.length) {
       axaButtons.forEach(button => {
         button.onclick = this.closeModal;
@@ -41,27 +43,27 @@ class AXAModal extends BaseComponentGlobal {
 
   willRenderCallback() {
     console.log('rendered callback');
-    const { isopen } = this.props;
+    const { open } = this.props;
 
-    console.log('open?', isopen);
+    console.log('open?', open);
     // const modal = document.getElementById('modal-wrapper');
-    if (isopen) {
+    if (open) {
       console.log('yes open');
-      console.log(isopen);
+      console.log(open);
       const modal = document.getElementById('modal-wrapper');
       console.log(modal);
-      // this.modal.setAttribute('isopen', true);
+      // this.modal.setAttribute('open', true);
       if (modal) modal.style.display = 'block';
       // this.modal.style.display = 'block';
     } else console.log('no not open');
   }
 
-  set isopen(value) {
-    this.setAttribute('isopen', value);
+  set open(value) {
+    this.setAttribute('open', value);
   }
 
-  get isopen() {
-    return this.getAttribute('isopen');
+  get open() {
+    return this.getAttribute('open');
   }
 }
 
