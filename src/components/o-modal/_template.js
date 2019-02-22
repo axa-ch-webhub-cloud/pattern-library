@@ -17,8 +17,8 @@ export default ({ open }, childrenFragment) => {
       class="m-modal ${open ? '' : 'm-modal--hidden'}"
       onclick="${closeModalByClickingOutside}"
     >
-      <div class="modal-content">
-        <span class="close"
+      <div class="m-modal__content">
+        <span class="m-modal__close-button"
           ><axa-icon icon="cross-gap" onclick="${closeModal}"></axa-icon
         ></span>
 
