@@ -2,19 +2,75 @@
 
 <button onclick="openModal()">Open modal</button>
 
-<axa-modal>
-  <h2>There might be an interesting option for you</h2>
-  <p>
-    You can continue with the package your ordered, or have a look at a probably much better option.
-  </p>
-  <axa-button data-modal-close>Hello sir</axa-button>
-  <axa-button data-modal-close>Hello madame</axa-button>
+<axa-modal open>
+  <h2>Prämie berechnen</h2>
+  <p><strong>Mehr als 80%</strong> unserer Kunden kombinieren die Hausratversicherung mit einer Privathaftpflichtversicherung.</p>
+  <p>Was möchten Sie?</p>
+
+  <section class="grid">
+    <div>
+      <img class="huge" src="/assets/icons/rocking_chair_blue.svg" />
+      <img class="huge" src="/assets/icons/broken_glass_blue.svg" />
+    </div>
+    <div>
+      <img class="huge" src="/assets/icons/rocking_chair_blue.svg" />
+    </div>
+    <div>
+      <axa-button data-modal-close>Hausrat und Privathaftpflicht</axa-button>
+    </div>
+    <div>
+      <axa-button data-modal-close>Nur Hausrat</axa-button>
+    </div>
+    <div>
+      <img src="/assets/icons/check_circle_outline.svg" />
+      Schützt Sie zusätzlich gegen Forderungen anderer.
+    </div>
+  </section>
 </axa-modal>
 
 <script>
   function openModal() {
-    const a = document.getElementsByTagName('axa-modal')[0];
-    a.setAttribute('open', '');
-    a.open = true;
+    const modal = document.getElementsByTagName('axa-modal')[0];
+    modal.setAttribute('open', '');
+    modal.open = true;
   }
 </script>
+
+<style>
+  h2 {
+    font-family: PublicoHeadline;
+    font-weight: bold;
+    color: #333333;
+    font-size: 36px;
+    margin-bottom: 50px;
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #333333;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
+  article {
+    align-self: center;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    align-self: center;
+  }
+
+  .huge {
+    height: 70px;
+    width: 70px;
+  }
+</style>
