@@ -25,5 +25,8 @@
   },
   "bugs": {
     "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "lit-element": "^2.0.1"
   }
 }
