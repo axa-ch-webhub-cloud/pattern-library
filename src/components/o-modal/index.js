@@ -7,7 +7,7 @@ import template from './_template';
 class AXAModal extends BaseComponentGlobal {
   static tagName = 'axa-modal';
   static propTypes = {
-    open: PropTypes.bool
+    open: PropTypes.bool,
   };
 
   init() {
@@ -21,16 +21,14 @@ class AXAModal extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    const axaButtons = document.querySelectorAll(
-      'axa-button[data-modal-close]'
-    );
+    const axaButtons = document.querySelectorAll('axa-button[data-modal-close]');
     if (axaButtons && axaButtons.length) {
-      axaButtons.forEach(button => {
+      axaButtons.forEach((button) => {
         button.onclick = this.closeModal;
       });
     }
 
-    document.addEventListener('keyup', event => {
+    document.addEventListener('keyup', (event) => {
       this.closeModalOnEsc(event);
     });
   }
@@ -39,16 +37,16 @@ class AXAModal extends BaseComponentGlobal {
     document.removeEventListener('keyup');
   }
 
+  closeModal() {
+    const modal = document.getElementById('modal-wrapper');
+    modal.classList.add('m-modal--hidden');
+  }
+
   closeModalOnEsc(event) {
     const key = event.key || event.keyCode;
     if (key === 'Escape' || key === 'Esc' || key === 27) {
       this.closeModal();
     }
-  }
-
-  closeModal() {
-    const modal = document.getElementById('modal-wrapper');
-    modal.classList.add('m-modal--hidden');
   }
 
   set open(value) {

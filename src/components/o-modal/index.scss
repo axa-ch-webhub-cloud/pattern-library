@@ -1,10 +1,15 @@
 @import '../../styles/mixins/respond';
 
+$modal-background-color: #fff;
+$close-button-color: #00008f;
+$close-button-color-hovered: #000;
+
 .m-modal {
-  display: block;
   position: fixed;
   left: 0;
   top: 0;
+
+  display: block;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -17,14 +22,15 @@
 }
 
 .m-modal__content {
-  background-color: #fff;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  text-align: center;
 
+  padding: 20px;
   width: 100%;
   height: 100%;
+  background-color: $modal-background-color;
+
+  border: 1px solid #888;
+  text-align: center;
 
   @include respond-up(md) {
     margin-top: 20vh;
@@ -40,12 +46,12 @@
 }
 
 .m-modal__close-button {
-  color: #00008f;
   float: right;
+  color: $close-button-color;
 }
 
 .m-modal__close-button:hover,
 .m-modal__close-button:focus {
-  color: #000;
+  color: $close-button-color-hovered;
   cursor: pointer;
 }
