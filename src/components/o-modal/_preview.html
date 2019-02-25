@@ -2,7 +2,7 @@
 
 <button onclick="openModal()">Open modal</button>
 
-<axa-modal open>
+<axa-modal class="axa-modal-preview">
   <h2>Prämie berechnen</h2>
   <p><strong>Mehr als 80%</strong> unserer Kunden kombinieren die Hausratversicherung mit einer Privathaftpflichtversicherung.</p>
   <p>Was möchten Sie?</p>
@@ -37,7 +37,7 @@
 </script>
 
 <style>
-  h2 {
+  .axa-modal-preview h2 {
     font-family: PublicoHeadline;
     font-weight: bold;
     color: #333333;
@@ -45,31 +45,31 @@
     margin-bottom: 50px;
   }
 
-  p {
+  .axa-modal-preview p {
     font-size: 20px;
     line-height: 1.5;
     color: #333333;
   }
 
-  section {
+  .axa-modal-preview section {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 60px;
   }
 
-  article {
+  .axa-modal-preview article {
     align-self: center;
   }
 
-  .grid {
+  .axa-modal-preview .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
     align-self: center;
   }
 
-  .huge {
+  .axa-modal-preview .huge {
     height: 70px;
     width: 70px;
   }
