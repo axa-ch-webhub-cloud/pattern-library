@@ -154,12 +154,14 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   updateCurrentItem(value) {
+    const hasValue = value !== null;
     this.items = this.items.map((item) => {
-      if (item.value === value) {
+      if (hasValue && item.value.toString() === value.toString()) {
         item.isSelected = true;
         this.selectedItem = item;
       } else {
         item.isSelected = false;
+        this.selectedItem = null;
       }
       return item;
     });
