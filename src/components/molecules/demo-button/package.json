@@ -25,5 +25,9 @@
   },
   "bugs": {
     "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "@skatejs/val": "^0.4.0",
+    "react": "^16.8.3"
   }
 }

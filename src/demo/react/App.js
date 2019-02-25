@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import '../../components/molecules/button';
-import AXAButtonReact from '../../components/molecules/button/index.react';
+import AXAButton from '../../components/molecules/button/index.react';
+import { AXAButtonReact } from '@axa-ch/button';
 
 class App extends Component {
   handleAXAButtonClick = () => {
