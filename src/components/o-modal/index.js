@@ -10,6 +10,33 @@ class AXAModal extends BaseComponentGlobal {
     open: PropTypes.bool,
   };
 
+  set open(value) {
+    this.setAttribute('open', value);
+  }
+
+  get open() {
+    return this.getAttribute('open');
+  }
+
+  closeModal() {
+    this.removeAttribute('open');
+  }
+
+  closeModalByClickingOutside(event) {
+    if (event.target === this.querySelector('.js-modal')) this.closeModal();
+  }
+
+  closeModalOnEsc(event) {
+    const key = event.key || event.keyCode;
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      this.closeModal();
+    }
+  }
+
+  closeModalFunction = () => this.closeModal();
+  closeModalByClickingOutsideFunction = (event) => this.closeModalByClickingOutside(event);
+  closeModalOnEscFunction = (event) => this.closeModalOnEsc(event);
+
   init() {
     super.init({ styles, template });
   }
@@ -25,24 +52,15 @@ class AXAModal extends BaseComponentGlobal {
     const axaButtons = Array.from(axaButtonsRaw);
     if (axaButtons && axaButtons.length) {
       axaButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          this.closeModal();
-        });
+        button.addEventListener('click', this.closeModalFunction);
       });
     }
 
-    const modal = this.querySelector('.m-modal');
-    modal.addEventListener('keyup', (event) => {
-      this.closeModalOnEsc(event);
-    });
-    modal.addEventListener('click', (event) => {
-      this.closeModalByClickingOutside(event);
-    });
+    this.addEventListener('keyup', this.closeModalOnEscFunction);
+    this.addEventListener('click', this.closeModalByClickingOutsideFunction);
 
-    const closeButton = this.querySelector('axa-icon[icon="cross-gap"]');
-    closeButton.addEventListener('click', () => {
-      this.closeModal();
-    });
+    const closeButton = this.querySelector('.js-modal-close-button');
+    closeButton.addEventListener('click', this.closeModalFunction);
   }
 
   disconnectedCallback() {
@@ -51,35 +69,12 @@ class AXAModal extends BaseComponentGlobal {
     const axaButtons = this.querySelectorAll('axa-button[data-modal-close]');
     if (axaButtons && axaButtons.length) {
       axaButtons.forEach((button) => {
-        button.removeEventListener('click', () => {
-          this.closeModal();
-        });
+        button.removeEventListener('click', this.closeModal);
       });
     }
-  }
 
-  closeModalByClickingOutside(event) {
-    if (event.target === this.querySelector('.m-modal')) this.closeModal();
-  }
-
-  closeModal() {
-    const modal = this.querySelector('.m-modal');
-    modal.classList.add('m-modal--hidden');
-  }
-
-  closeModalOnEsc(event) {
-    const key = event.key || event.keyCode;
-    if (key === 'Escape' || key === 'Esc' || key === 27) {
-      this.closeModal();
-    }
-  }
-
-  set open(value) {
-    this.setAttribute('open', value);
-  }
-
-  get open() {
-    return this.getAttribute('open');
+    const closeButton = this.querySelector('axa-icon[icon="cross-gap"]');
+    closeButton.removeEventListener('click', this.closeModal);
   }
 }
 
