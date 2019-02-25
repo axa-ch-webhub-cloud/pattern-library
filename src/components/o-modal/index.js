@@ -21,24 +21,49 @@ class AXAModal extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
-    const axaButtons = document.querySelectorAll('axa-button[data-modal-close]');
+    const axaButtonsRaw = this.querySelectorAll('axa-button[data-modal-close]');
+    const axaButtons = Array.from(axaButtonsRaw);
     if (axaButtons && axaButtons.length) {
       axaButtons.forEach((button) => {
-        button.onclick = this.closeModal;
+        button.addEventListener('click', (event) => {
+          this.closeModal();
+        });
       });
     }
 
-    document.addEventListener('keyup', (event) => {
+    const modal = this.querySelector('.m-modal');
+    modal.addEventListener('keyup', (event) => {
       this.closeModalOnEsc(event);
+    });
+    modal.addEventListener('click', (event) => {
+      this.closeModalByClickingOutside(event);
+    });
+
+    const closeButton = this.querySelector('axa-icon[icon="cross-gap"]');
+    closeButton.addEventListener('click', (event) => {
+      this.closeModal();
     });
   }
 
   disconnectedCallback() {
-    document.removeEventListener('keyup');
+    this.removeEventListener('keyup');
+
+    const axaButtons = this.querySelectorAll('axa-button[data-modal-close]');
+    if (axaButtons && axaButtons.length) {
+      axaButtons.forEach((button) => {
+        button.removeEventListener('click', (event) => {
+          this.closeModal();
+        });
+      });
+    }
+  }
+
+  closeModalByClickingOutside(event) {
+    if (event.target === this.querySelector('.m-modal')) this.closeModal();
   }
 
   closeModal() {
-    const modal = document.getElementById('modal-wrapper');
+    const modal = this.querySelector('.m-modal');
     modal.classList.add('m-modal--hidden');
   }
 
