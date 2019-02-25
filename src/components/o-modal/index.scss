@@ -23,6 +23,7 @@ $close-button-color-hovered: #000;
 
 .m-modal__content {
   margin: auto;
+  overflow: scroll;
 
   padding: 20px;
   width: 100%;

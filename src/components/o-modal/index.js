@@ -25,7 +25,7 @@ class AXAModal extends BaseComponentGlobal {
     const axaButtons = Array.from(axaButtonsRaw);
     if (axaButtons && axaButtons.length) {
       axaButtons.forEach((button) => {
-        button.addEventListener('click', (event) => {
+        button.addEventListener('click', () => {
           this.closeModal();
         });
       });
@@ -40,7 +40,7 @@ class AXAModal extends BaseComponentGlobal {
     });
 
     const closeButton = this.querySelector('axa-icon[icon="cross-gap"]');
-    closeButton.addEventListener('click', (event) => {
+    closeButton.addEventListener('click', () => {
       this.closeModal();
     });
   }
@@ -51,7 +51,7 @@ class AXAModal extends BaseComponentGlobal {
     const axaButtons = this.querySelectorAll('axa-button[data-modal-close]');
     if (axaButtons && axaButtons.length) {
       axaButtons.forEach((button) => {
-        button.removeEventListener('click', (event) => {
+        button.removeEventListener('click', () => {
           this.closeModal();
         });
       });
