@@ -189,3 +189,6 @@ export const AXACard = withReact(AXACardWC);
 
 import AXAFormOptionBoxWC from '../components/o-form-option-box';
 export const AXAFormOptionBox = withReact(AXAFormOptionBoxWC);
+
+import AXAModalWC from '../components/o-modal/';
+export const AXAModal = withReact(AXAModalWC);
