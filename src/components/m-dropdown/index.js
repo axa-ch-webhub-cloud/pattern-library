@@ -34,7 +34,7 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   static get observedAttributes() {
-    return ['items', 'title', 'native', 'value', 'selected-item'];
+    return ['items', 'title', 'native', 'value'];
   }
 
   init() {
@@ -214,14 +214,6 @@ class AXADropdown extends BaseComponentGlobal {
 
   get native() {
     return this.getAttribute('native');
-  }
-
-  set selectedItem(value) {
-    this.setAttribute('selected-item', JSON.stringify(value));
-  }
-
-  get selectedItem() {
-    return JSON.parse(this.getAttribute('selected-item'));
   }
 }
 

@@ -9,12 +9,11 @@ export default ({
   title,
   items = [],
   size,
-  selectedItem,
-}) => html`
+}, childrenFragment, wcNode) => html`
 <article class="m-dropdown__wrap">
       <div class="${classnames('m-dropdown__select-wrap', { [`m-dropdown__select-wrap--${size}`]: size }, 'm-dropdown__list--native')} ${native ? ' m-dropdown__list--native--only' : ''}">
         <select class="${classnames('m-dropdown__select', 'js-dropdown__native-select', { [`m-dropdown__select--${size}`]: size })}">
-        ${title && html`<option ${selectedItem === null ? 'selected' : ''}  value="" hidden disabled>${title}</option>`}
+        ${title && html`<option ${wcNode.selectedItem === null ? 'selected' : ''}  value="" hidden disabled>${title}</option>`}
         ${Array.isArray(items) && items.map(({ name, value, isSelected }) =>
           html`<option value="${value}" ${isSelected ? 'selected' : ''}>${name}</option>`)
           }
