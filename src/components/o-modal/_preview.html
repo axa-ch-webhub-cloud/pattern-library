@@ -9,11 +9,17 @@
 
   <section class="grid">
     <div>
-      <img class="huge" src="/assets/icons/rocking_chair_blue.svg" />
-      <img class="huge" src="/assets/icons/broken_glass_blue.svg" />
+      <svg class="huge">
+        <use xlink:href="#src--assets--icons--rocking_chair" href="#src--assets--icons--rocking_chair" />
+      </svg>
+      <svg class="huge">
+        <use xlink:href="#src--assets--icons--broken_glass" href="#src--assets--icons--broken_glass" />
+      </svg>
     </div>
     <div>
-      <img class="huge" src="/assets/icons/rocking_chair_blue.svg" />
+      <svg class="huge">
+        <use xlink:href="#src--assets--icons--rocking_chair" href="#src--assets--icons--rocking_chair" />
+      </svg>
     </div>
     <div>
       <axa-button data-modal-close>Hausrat und Privathaftpflicht</axa-button>
@@ -71,6 +77,7 @@
   .axa-modal-preview .huge {
     height: 70px;
     width: 70px;
+    color: #00008f;
   }
 
   .axa-modal-preview axa-icon[icon='check_circle_outline'] {
