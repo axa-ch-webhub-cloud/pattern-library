@@ -34,8 +34,8 @@ class AXAModal extends BaseComponentGlobal {
   }
 
   closeModalFunction = () => this.closeModal();
-  closeModalByClickingOutsideFunction = (event) => this.closeModalByClickingOutside(event);
-  closeModalOnEscFunction = (event) => this.closeModalOnEsc(event);
+  closeModalByClickingOutsideFunction = event => this.closeModalByClickingOutside(event);
+  closeModalOnEscFunction = event => this.closeModalOnEsc(event);
 
   init() {
     super.init({ styles, template });
