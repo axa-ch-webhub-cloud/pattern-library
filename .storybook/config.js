@@ -1,18 +1,39 @@
-import { configure } from '@storybook/html';
+import { addDecorator, configure } from '@storybook/html';
+import { withOptions } from '@storybook/addon-options';
+import { themes } from '@storybook/components';
 
 import '@webcomponents/webcomponentsjs';
-
-// Reflect is needed to make Custom Element ES6 Classes working and for IE11
 import 'core-js/es6/reflect';
-// Promise is needed for IE11 and if withReact is used
 import 'core-js/es6/promise';
-// IE11 does not support Array.from
 import 'core-js/fn/array/from';
-// IE11 does not support Object.* which is needed for built-in element polyfill
 import 'core-js/fn/object/assign';
 import 'core-js/fn/object/create';
 import 'core-js/fn/object/define-properties';
 import 'core-js/fn/object/set-prototype-of';
+
+// Option defaults.
+addDecorator(
+  withOptions({
+    name: 'AXA Living Styleguide',
+    url: 'https://github.com/axa-ch/patterns-library/tree/develop-v2',
+    theme: {
+      ...themes.normal,
+      mainTextFace: '"Source Sans Pro", Arial, sans-serif;',
+      menuLink: {
+        color: 'black',
+      },
+      brand: {
+        height: '55px',
+        paddingLeft: '65px',
+        background: `url("/svg/logo-axa.svg") no-repeat`,
+      },
+      brandLink: {
+        border: 'none',
+        textAlign: 'left',
+      },
+    },
+  })
+);
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);
