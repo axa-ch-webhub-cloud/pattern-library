@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-filename-extension */
 
-import React, { Component } from 'react';
+import React, { Component, createElement } from 'react';
 import '../../components/molecules/button';
-import AXAButtonReact from '../../components/molecules/button/index.react';
+import createAXAButtonReact from '../../components/molecules/button/index.react';
+
+const AXAButtonReact = createAXAButtonReact(createElement);
 
 class App extends Component {
   handleAXAButtonClick = () => {

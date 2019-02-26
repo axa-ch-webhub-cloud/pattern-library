@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "src/components/molecules/demo-button",
+    "src/components/molecules/demo-link"
+  ],
+  "version": "independent",
+  "npmClient": "npm"
+}

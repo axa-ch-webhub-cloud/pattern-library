@@ -1,5 +1,5 @@
 {
-  "name": "patterns-library",
+  "name": "@axa-ch/patterns-library",
   "version": "2.0.0",
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
@@ -9,6 +9,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static"
   },
   "dependencies": {
+    "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "classnames": "^2.2.6",
     "dotenv-extended": "^2.3.0",
@@ -32,6 +33,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "lerna": "^3.13.0",
     "node-sass": "^4.11.0",
     "prettier": "1.16.4",
     "react": "^16.8.2",
