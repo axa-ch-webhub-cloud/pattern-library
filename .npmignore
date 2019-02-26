@@ -1,3 +1,20 @@
-.tmp/
-docs/
-stack/
+src
+package-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directories
+node_modules
+
+# Optional npm cache directory
+.npm
+
+.DS_Store

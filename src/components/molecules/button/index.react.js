@@ -1,10 +1,8 @@
-import { createElement } from 'react';
-import val from '@skatejs/val';
+import { AXAButton } from './index';
 
-const wrappedCreateElement = val(createElement);
-const AXAButtonReact = ({ size, color, motion, onClick, children }) =>
+export default wrappedCreateElement => ({ size, color, motion, onClick, children }) =>
   wrappedCreateElement(
-    'axa-button',
+    AXAButton.tagName,
     {
       size,
       color,
@@ -14,4 +12,3 @@ const AXAButtonReact = ({ size, color, motion, onClick, children }) =>
     children,
   );
 
-export default AXAButtonReact;

@@ -19,7 +19,7 @@ function requireAll(requireContext) {
 }
 
 function loadStories() {
-  requireAll(require.context('..', true, /_demo/));
+  requireAll(require.context('..', true, /_story|_demo/));
 }
 
 configure(loadStories, module);

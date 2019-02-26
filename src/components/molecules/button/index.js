@@ -2,10 +2,9 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import classNames from 'classnames';
 import buttonCSS from './index.scss';
 
-class AXAButton extends LitElement {
-  static styles = css`
-    ${unsafeCSS(buttonCSS)}
-  `;
+export class AXAButton extends LitElement {
+  static tagName = 'axa-button';
+  static styles = css`${unsafeCSS(buttonCSS)}`;
 
   static get properties() {
     return {
@@ -47,4 +46,4 @@ class AXAButton extends LitElement {
   }
 }
 
-customElements.define('axa-button', AXAButton);
+customElements.define(AXAButton.tagName, AXAButton);

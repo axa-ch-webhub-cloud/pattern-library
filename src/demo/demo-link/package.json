@@ -1,11 +1,11 @@
 {
-  "name": "@axa-ch/demo-button",
-  "version": "0.0.4",
+  "name": "@axa-ch/demo-link",
+  "version": "0.0.9",
   "description": "> TODO: description",
-  "author": "Marc Illien <marc.illien@gmail.com>",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/molecules/demo-button#readme",
+  "author": "Pattern Warriors",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/molecules/demo-link#readme",
   "license": "ISC",
-  "main": "lib/demo-button.js",
+  "main": "lib/demo-link.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-    "react": "^16.8.3"
+    "lit-element": "^2.0.1"
   }
 }
