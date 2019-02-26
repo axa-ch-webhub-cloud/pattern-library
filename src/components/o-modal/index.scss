@@ -58,6 +58,11 @@ $close-button-color-hovered: #000;
 
 /* Reset browser button styles */
 button.m-modal__close-button {
+  background-color: transparent;
   border: none;
+  font-family: inherit;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   cursor: pointer;
 }
