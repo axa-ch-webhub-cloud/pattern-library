@@ -22,9 +22,9 @@ class AXADropdown extends BaseComponentGlobal {
   static propTypes = {
     classes: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
+      name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       url: urlPropType,
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       isSelected: PropTypes.bool,
     })),
     native: PropTypes.bool,
@@ -39,7 +39,7 @@ class AXADropdown extends BaseComponentGlobal {
 
   init() {
     super.init({ styles, template }); // eslint-disable-next-line prefer-destructuring
-    this.selectedItem = this.items.filter(item => item.isSelected)[0];
+    this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
   }
 
   connectedCallback() {
@@ -154,8 +154,9 @@ class AXADropdown extends BaseComponentGlobal {
   }
 
   updateCurrentItem(value) {
+    const hasValue = value !== null;
     this.items = this.items.map((item) => {
-      if (item.value === value) {
+      if (hasValue && item.value.toString() === value.toString()) {
         item.isSelected = true;
         this.selectedItem = item;
       } else {
