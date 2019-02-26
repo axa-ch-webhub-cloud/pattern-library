@@ -33,10 +33,6 @@ class AXAModal extends BaseComponentGlobal {
     }
   }
 
-  closeModalFunction = () => this.closeModal();
-  closeModalByClickingOutsideFunction = event => this.closeModalByClickingOutside(event);
-  closeModalOnEscFunction = event => this.closeModalOnEsc(event);
-
   init() {
     super.init({ styles, template });
   }
@@ -48,20 +44,24 @@ class AXAModal extends BaseComponentGlobal {
   connectedCallback() {
     super.connectedCallback();
 
+    const closeModalFunction = () => this.closeModal();
+
     const axaButtonsRaw = this.querySelectorAll('axa-button[data-modal-close]');
     const axaButtons = Array.from(axaButtonsRaw);
     if (axaButtons && axaButtons.length) {
-      axaButtons.forEach(button => button.addEventListener('click', this.closeModalFunction));
+      axaButtons.forEach(button => button.addEventListener('click', closeModalFunction));
     }
 
-    this.addEventListener('keyup', this.closeModalOnEscFunction);
-    this.addEventListener('click', this.closeModalByClickingOutsideFunction);
+    document.addEventListener('keyup', event => this.closeModalOnEsc(event));
+    this.addEventListener('click', event => this.closeModalByClickingOutside(event));
 
     const closeButton = this.querySelector('.js-modal-close-button');
-    closeButton.addEventListener('click', this.closeModalFunction);
+    closeButton.addEventListener('click', closeModalFunction);
   }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    document.removeEventListener('keyup', this.closeModalOnEsc);
+  }
 }
 
 defineOnce(AXAModal.tagName, AXAModal);
