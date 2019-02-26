@@ -10,7 +10,11 @@
   @include button--color();
 }
 
-.m-button__icon {
+// a-icon__svg is needed as css ordering is not loaded in the right order
+// I.e sizes in m-button__icon are overridden without this specifier.
+// Relates and fixes gh #836
+.m-button__icon,
+.m-button__icon.a-icon__svg {
   @include button__icon();
 }
 
