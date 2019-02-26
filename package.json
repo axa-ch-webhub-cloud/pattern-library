@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npm run clean-lib && cross-env NODE_ENV=production rollup --config ./rollup.config.js",
     "clean-lib": "rimraf src/**/lib",
+    "release": "npm run test && npm run build && lerna publish",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static",
     "test": "eslint src/"
