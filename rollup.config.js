@@ -13,7 +13,7 @@ const fs = require('fs');
 const babelOptions = JSON.parse(fs.readFileSync('./.storybook/.babelrc')); // get the babelrc file
 
 // options is optional
-const input = glob.sync('src/**/src/index.js');
+const input = glob.sync('src/**/src/index*.js');
 
 const plugins = [
   replace({
@@ -49,7 +49,7 @@ const plugins = [
 export default input.map(entry => ({
   input: entry,
   output: {
-    file: entry.replace('/src/index.js', '/lib/index.js'),
+    file: entry.replace('/src/index.', '/lib/index.'),
     format: 'es',
   },
   plugins,
