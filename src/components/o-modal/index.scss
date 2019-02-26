@@ -54,5 +54,10 @@ $close-button-color-hovered: #000;
 .m-modal__close-button:hover,
 .m-modal__close-button:focus {
   color: $close-button-color-hovered;
+}
+
+/* Reset browser button styles */
+button.m-modal__close-button {
+  border: none;
   cursor: pointer;
 }
