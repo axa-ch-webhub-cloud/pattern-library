@@ -3,17 +3,25 @@
   "version": "2.0.0",
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
+  "scripts": {
+    "start": "npm run storybook",
+    "test": "eslint src/",
+    "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static"
+  },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "classnames": "^2.2.6",
-    "lit-element": "^2.0.1"
+    "dotenv-extended": "^2.3.0",
+    "lit-element": "^2.0.1",
+    "@skatejs/val": "^0.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-options": "^4.1.13",
     "@storybook/html": "^4.1.12",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.5",
@@ -32,10 +40,6 @@
     "react-dom": "^16.8.2",
     "sass-loader": "^7.1.0",
     "to-string-loader": "^1.1.5"
-  },
-  "scripts": {
-    "test": "eslint src/",
-    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "repository": {
     "type": "git",
