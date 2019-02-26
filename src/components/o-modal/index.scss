@@ -1,9 +1,6 @@
 @import '../../styles/mixins/respond';
 @import '../../styles/mixins/button-reset';
-
-$modal-background-color: #fff;
-$close-button-color: #00008f;
-$close-button-color-hovered: #000;
+@import '../../styles/settings/colors';
 
 .m-modal {
   position: fixed;
@@ -29,7 +26,7 @@ $close-button-color-hovered: #000;
   padding: 20px;
   width: 100%;
   height: 100%;
-  background-color: $modal-background-color;
+  background-color: $color-bg--white;
 
   border: 1px solid #888;
   text-align: center;
@@ -49,12 +46,12 @@ $close-button-color-hovered: #000;
 
 .m-modal__close-button {
   float: right;
-  color: $close-button-color;
+  color: $color-axa-blue;
 }
 
 .m-modal__close-button:hover,
 .m-modal__close-button:focus {
-  color: $close-button-color-hovered;
+  color: $color-button-bg--hover;
 }
 
 button.m-modal__close-button {
