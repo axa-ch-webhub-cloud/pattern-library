@@ -28,7 +28,7 @@
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/_demo*.js", "**/src/**/*.react.js", "**/demo/**"] }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["rollup.config.js", "**/_demo*.js", "**/_story*.js", "**/src/**/*.react.js", "**/demo/**"] }],
     "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
   },
   "globals": {
