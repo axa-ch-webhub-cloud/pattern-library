@@ -3,12 +3,18 @@ import BaseComponentGlobal from '../../js/abstract/base-component-global';
 import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
+import on from '../../js/on';
+import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
 
 class AXAModal extends BaseComponentGlobal {
   static tagName = 'axa-modal';
   static propTypes = {
     open: PropTypes.bool,
   };
+
+  static get observedAttributes() {
+    return ['open'];
+  }
 
   set open(value) {
     this.setAttribute('open', value);
@@ -23,7 +29,9 @@ class AXAModal extends BaseComponentGlobal {
   }
 
   closeModalByClickingOutside(event) {
-    if (event.target === this.querySelector('.js-modal')) this.closeModal();
+    if (event.target === this.querySelector('.js-modal')) {
+      this.closeModal();
+    }
   }
 
   closeModalOnEsc(event) {
@@ -37,13 +45,10 @@ class AXAModal extends BaseComponentGlobal {
     super.init({ styles, template });
   }
 
-  static get observedAttributes() {
-    return ['open'];
-  }
-
   connectedCallback() {
     super.connectedCallback();
 
+    this.closeModalOnEscFunction = event => this.closeModalOnEsc(event);
     const closeModalFunction = () => this.closeModal();
 
     const axaButtonsRaw = this.querySelectorAll('axa-button[data-modal-close]');
@@ -52,7 +57,8 @@ class AXAModal extends BaseComponentGlobal {
       axaButtons.forEach(button => button.addEventListener('click', closeModalFunction));
     }
 
-    document.addEventListener('keyup', event => this.closeModalOnEsc(event));
+    this.onEscReleased = on(document, EVENTS.KEYUP, this.closeModalOnEscFunction);
+
     this.addEventListener('click', event => this.closeModalByClickingOutside(event));
 
     const closeButton = this.querySelector('.js-modal-close-button');
@@ -60,7 +66,7 @@ class AXAModal extends BaseComponentGlobal {
   }
 
   disconnectedCallback() {
-    document.removeEventListener('keyup', this.closeModalOnEsc);
+    this.onEscReleased();
   }
 }
 
