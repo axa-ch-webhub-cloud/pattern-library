@@ -4,7 +4,7 @@ import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 import on from '../../js/on';
-import { AXA_EVENTS, EVENTS } from '../../js/ui-events';
+import { EVENTS } from '../../js/ui-events';
 
 class AXAModal extends BaseComponentGlobal {
   static tagName = 'axa-modal';
