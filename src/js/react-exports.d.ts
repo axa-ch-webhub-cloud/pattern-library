@@ -120,3 +120,6 @@ export const AXACard: React.ComponentClass<AXACard>;
 
 import { Props as AXAFormOptionBox } from '../components/o-form-option-box'
 export const AXAFormOptionBox: React.ComponentClass<AXAFormOptionBox>;
+
+import { Props as AXAModalProps } from '../components/o-modal';
+export const AXAModal: React.ComponentClass<AXAModalProps>;

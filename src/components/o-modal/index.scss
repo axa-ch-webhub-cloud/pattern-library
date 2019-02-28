@@ -1,0 +1,61 @@
+@import '../../styles/mixins/respond';
+@import '../../styles/mixins/button-reset';
+@import '../../styles/settings/colors';
+
+.m-modal {
+  $integer-max-value: 2147483647;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $integer-max-value;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.m-modal--hidden {
+  display: none;
+}
+
+.m-modal__content {
+  margin: auto;
+  overflow: auto;
+
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  background-color: $color-bg--white;
+
+  border: 1px solid #888;
+  text-align: center;
+
+  @include respond-up(md) {
+    margin-top: 20vh;
+    width: 80vw;
+    height: 60vh;
+  }
+
+  @include respond-up(lg) {
+    margin-top: 20vh;
+    width: 70vw;
+    height: 60vh;
+  }
+}
+
+.m-modal__close-button {
+  float: right;
+  color: $color-axa-blue;
+}
+
+.m-modal__close-button:hover,
+.m-modal__close-button:focus {
+  color: $color-button-bg--hover;
+}
+
+button.m-modal__close-button {
+  @include button-reset();
+}
