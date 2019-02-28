@@ -3,10 +3,11 @@
 @import '../../styles/settings/colors';
 
 .m-modal {
+  $integer-max-value: 2147483647;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2147483647;
+  z-index: $integer-max-value;
 
   display: block;
   width: 100%;
