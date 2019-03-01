@@ -1,5 +1,27 @@
+@import "../../styles/settings/colors";
+@import "../../styles/mixins/respond";
+
+$progress-bar-height: 70px !default;
+$progress-bar-icon-height-width: 35px !default;
+
 .o-progress-bar {
   display: block;
+  background-color: $color-prim-blue-indigo;
+}
 
-  // IMPORTANT: make sure to deal with inherited CSS properties here, like text-align!
+.o-progress-bar__container {
+  height: $progress-bar-height;
+}
+
+.o-progress-bar__percentage {
+  display: inline;
+  color: $color-prim-white;
+}
+
+.o-progress-bar__closing-icon {
+  // width: $progress-bar-icon-height-width;
+  // height: $progress-bar-icon-height-width;
+  //
+  // stroke: currentColor;
+  // fill: currentColor;
 }
