@@ -1,6 +1,10 @@
 export interface Props {
-  //todo: specify the props, or remove the below line if component has no props 
-  [key:string]: any
+  // onAxaChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  classes?: string;
+  value?: number;
+  max?: number;
+  showIcon?: boolean;
+  showPercentage?: boolean;
 }
 
 export default interface AXAProgressBar extends HTMLElement, Props {
