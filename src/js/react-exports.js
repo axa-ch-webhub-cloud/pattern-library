@@ -192,3 +192,6 @@ export const AXAFormOptionBox = withReact(AXAFormOptionBoxWC);
 
 import AXAModalWC from '../components/o-modal/';
 export const AXAModal = withReact(AXAModalWC);
+
+import AXAProgressBarWC from '../components/o-progress-bar/';
+export const AXAProgressBar = withReact(AXAProgressBarWC);

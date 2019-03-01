@@ -130,3 +130,5 @@ export { default as AXACard } from './components/o-card';
 export { default as AXAFormOptionBox } from './components/o-form-option-box';
 
 export { default as AXAModal } from './components/o-modal';
+
+export { default as AXAProgressBar } from './components/o-progress-bar';
