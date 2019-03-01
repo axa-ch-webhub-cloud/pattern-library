@@ -9,7 +9,8 @@
     "release": "npm whoami && npm run test && npm run build && lerna publish",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static",
-    "test": "eslint src/"
+    "test": "eslint src/",
+    "cy": "npx cypress run --spec 'cypress/integration/sample_spec.js'"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
@@ -32,6 +33,7 @@
     "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
+    "cypress": "^3.1.5",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
