@@ -9,15 +9,18 @@ import styles from './index.scss';
 import template from './_template';
 
 
-
 class AXAProgressBar extends BaseComponentGlobal {
   static tagName = 'axa-progress-bar'
-  
+
 
   // specify runtime type-checking here, if you use custom attributes
   // this will also derived your needed observed attributes automatically for you
   static propTypes = {
     classes: PropTypes.string,
+    value: PropTypes.number,
+    max: PropTypes.number,
+    showIcon: PropTypes.bool,
+    showPercentage: PropTypes.bool,
   }
 
   // Only use this if you need to observe attributes other than your prop-types!
