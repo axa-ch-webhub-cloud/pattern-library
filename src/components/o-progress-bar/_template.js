@@ -36,7 +36,7 @@ export default function ({
       ${showPercentage ? html`<p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>` : ''}
       ${console.log(value, max, showIcon, showPercentage)}
       <progress class="o-progress-bar__progress" value="${value}" max="${max}"><span>${percentage}</span>${percentageSymbol}</progress>
-      ${showIcon ? html`<axa-icon class="o-progress-bar__closing-icon a-icon__svg--small" icon="${closingIcon}"></axa-icon>` : ''}
+      ${showIcon ? html`<axa-icon class="o-progress-bar__closing-icon" icon-class="a-icon__svg--small" icon="${closingIcon}"></axa-icon>` : ''}
     </div>
   </article>`;
 }
