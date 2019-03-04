@@ -12,4 +12,3 @@ export default createElement => ({ size, color, motion, onClick, children }) =>
     },
     children,
   );
-
