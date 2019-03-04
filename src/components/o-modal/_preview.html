@@ -1,0 +1,79 @@
+<button type="button" onclick="openModal()">Open modal</button>
+
+<axa-modal class="axa-modal-preview">
+  <h2>Prämie berechnen</h2>
+  <p><strong>Mehr als 80%</strong> unserer Kunden kombinieren die Hausratversicherung mit einer Privathaftpflichtversicherung.</p>
+  <p>Was möchten Sie?</p>
+
+  <axa-container>
+    <axa-row>
+      <axa-col>
+        <axa-icon icon="rocking_chair" icon-class="huge"> </axa-icon>
+        <axa-icon icon="broken_glass" icon-class="huge"> </axa-icon>
+      </axa-col>
+      <axa-col>
+        <axa-icon icon="rocking_chair" icon-class="huge"> </axa-icon>
+      </axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col><axa-button data-modal-close>Hausrat und Privathaftpflicht</axa-button></axa-col>
+      <axa-col><axa-button data-modal-close>Nur Hausrat</axa-button></axa-col>
+    </axa-row>
+    <axa-row>
+      <axa-col>
+        <axa-icon class="green-icon" icon="check_circle_outline"></axa-icon>
+        Schützt Sie zusätzlich gegen Forderungen anderer.
+      </axa-col>
+      <axa-col></axa-col>
+    </axa-row>
+  </axa-container>
+</axa-modal>
+
+<script>
+  function openModal() {
+    const modal = document.getElementsByTagName('axa-modal')[0];
+    modal.setAttribute('open', '');
+  }
+</script>
+
+<style>
+  .axa-modal-preview axa-container {
+    margin-top: 70px;
+  }
+
+  .axa-modal-preview h2 {
+    font-family: PublicoHeadline;
+    font-weight: bold;
+    color: #333333;
+    font-size: 36px;
+    margin-bottom: 50px;
+  }
+
+  .axa-modal-preview p {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #333333;
+  }
+
+  .axa-modal-preview section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
+  .axa-modal-preview article {
+    align-self: center;
+  }
+
+  .axa-modal-preview .huge {
+    height: 70px;
+    width: 70px;
+    color: #00008f;
+  }
+
+  .axa-modal-preview axa-icon[icon='check_circle_outline'] {
+    fill: green;
+    color: white;
+  }
+</style>

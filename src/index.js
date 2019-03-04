@@ -128,3 +128,5 @@ export { default as AXATh } from './components/a-th';
 export { default as AXACard } from './components/o-card';
 
 export { default as AXAFormOptionBox } from './components/o-form-option-box';
+
+export { default as AXAModal } from './components/o-modal';
