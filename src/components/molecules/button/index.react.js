@@ -1,7 +1,8 @@
-import { AXAButton } from './index';
+import withReact from '../../../utils/with-react';
+import AXAButton from './index';
 
-export default wrappedCreateElement => ({ size, color, motion, onClick, children }) =>
-  wrappedCreateElement(
+export default createElement => ({ size, color, motion, onClick, children }) =>
+  withReact(createElement)(
     AXAButton.tagName,
     {
       size,

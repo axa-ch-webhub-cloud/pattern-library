@@ -1,8 +1,8 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import classNames from 'classnames';
+import { classMap } from 'lit-html/directives/class-map';
 import buttonCSS from './index.scss';
 
-export class AXAButton extends LitElement {
+class AXAButton extends LitElement {
   static tagName = 'axa-button';
   static styles = css`${unsafeCSS(buttonCSS)}`;
 
@@ -29,15 +29,15 @@ export class AXAButton extends LitElement {
   }
 
   render() {
-    const buttonClasses = classNames('m-button', {
+    const classes = {
       [`m-button--${this.color}`]: this.color,
       [`m-button--${this.size}`]: this.size,
       'm-button--ghost': this.ghost,
       'm-button--motion': this.motion,
-    });
+    };
 
     return html`
-      <button type="${this.type}" class="${buttonClasses}" ?disabled="${this.disabled}" @click="${this.onClick}">
+      <button type="${this.type}" class="m-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.onClick}">
         <div class="m-button__flex-wrapper">
           <slot></slot>
         </div>
@@ -47,3 +47,5 @@ export class AXAButton extends LitElement {
 }
 
 customElements.define(AXAButton.tagName, AXAButton);
+
+export default AXAButton;
