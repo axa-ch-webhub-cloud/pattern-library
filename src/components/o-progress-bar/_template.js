@@ -33,10 +33,10 @@ export default function ({
 
   return html`<article class="${classes}">
     <div class="o-progress-bar__container">
-      <p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>
+      ${showPercentage ? html`<p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>` : ''}
       ${console.log(value, max, showIcon, showPercentage)}
-      <progress value="${value}" max="${max}"><span>${percentage}</span>${percentageSymbol}</progress>
-      <axa-icon class="o-progress-bar__closing-icon" icon="${closingIcon}"></axa-icon>
+      <progress class="o-progress-bar__progress" value="${value}" max="${max}"><span>${percentage}</span>${percentageSymbol}</progress>
+      ${showIcon ? html`<axa-icon class="o-progress-bar__closing-icon a-icon__svg--small" icon="${closingIcon}"></axa-icon>` : ''}
     </div>
   </article>`;
 }
