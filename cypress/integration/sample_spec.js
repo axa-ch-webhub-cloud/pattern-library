@@ -1,5 +1,5 @@
 describe('My First Test', function() {
-  it('Visits the Kitchen Sink', function() {
+  it('Check button vor various states', function() {
     cy.visit('http://localhost:9001');
 
     cy.contains('Demo').click();

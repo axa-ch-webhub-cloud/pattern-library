@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - '11.10.0'
+script:
+  - npm run cy
+deploy:
+  provider: npm
+  skip_cleanup: true
+  on:
+    tags: true
