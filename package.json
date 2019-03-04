@@ -10,7 +10,8 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static",
     "test": "eslint src/",
-    "cy": "npx cypress run --spec 'cypress/integration/sample_spec.js'"
+    "cy": "npx cypress run --spec 'cypress/integration/sample_spec.js'",
+    "tc": "testcafe chrome testcafe/"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
@@ -54,6 +55,7 @@
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-sass": "^1.1.0",
     "sass-loader": "^7.1.0",
+    "testcafe": "^1.1.0",
     "to-string-loader": "^1.1.5"
   },
   "repository": {
