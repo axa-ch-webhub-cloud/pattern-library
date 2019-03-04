@@ -57,6 +57,15 @@ progress[value] {
   }
 }
 
+progress[value]::-webkit-progress-bar {
+  border-radius: 3px;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: $color-prim-white;
+  border-radius: 3px;
+}
+
 .o-progress-bar__closing-icon {
   // TODO width and height
   float: right;
