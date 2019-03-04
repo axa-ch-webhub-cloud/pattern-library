@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React, { Component, createElement } from 'react';
-import '../../components/molecules/button/src';
-import createAXAButtonReact from '../../components/molecules/button/src/index.react';
+import '../../components/molecules/button';
+import createAXAButtonReact from '../../components/molecules/button/index.react';
 
 const AXAButtonReact = createAXAButtonReact(createElement);
 
@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div>
         <div>
           <p>with react wrapper - callback props are possible:</p>
           <AXAButtonReact color="red" onClick={this.handleAXAButtonClick}>

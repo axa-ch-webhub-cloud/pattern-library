@@ -14,9 +14,8 @@
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "classnames": "^2.2.6",
-    "dotenv-extended": "^2.3.0",
-    "lit-element": "^2.0.1"
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
@@ -32,6 +31,7 @@
     "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
+    "dotenv-extended": "^2.3.0",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
