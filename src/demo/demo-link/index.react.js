@@ -1,3 +1,4 @@
 import AXADemoLink from './index';
+import withReact from '../../utils/with-react';
 
-export default wrappedCreateElement => () => wrappedCreateElement(AXADemoLink.tagName);
+export default createElement => () => withReact(createElement)(AXADemoLink.tagName);

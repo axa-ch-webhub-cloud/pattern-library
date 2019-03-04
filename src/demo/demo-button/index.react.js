@@ -1,3 +1,4 @@
 import AXADemoButton from './index';
+import withReact from '../../utils/with-react';
 
-export default wrappedCreateElement => () => wrappedCreateElement(AXADemoButton.tagName);
+export default createElement => () => withReact(createElement)(AXADemoButton.tagName);
