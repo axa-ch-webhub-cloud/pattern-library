@@ -40,7 +40,7 @@
     "build": "cross-env NODE_ENV=production concurrently \"node stack/tasks/build.html.js\" \"node stack/tasks/build-examples.js\" \"npm run build-css-prod\" \" npm run build-js-prod\" \"npm run build-lib\" \"npm run build-icons-prod\"",
     "postbuild": "node stack/tasks/copy-dist-to-docs.js",
     "build-lib": "concurrently \"babel src/js --out-dir lib/js --plugins transform-runtime\" \"node stack/tasks/bundles/lib.js\" && babel src/index.js --out-file lib/index.js && npm run build-types",
-    "build-types": "cpx src/**/*.d.ts lib",
+    "build-types": "cpx \"src/**/*.d.ts\" lib",
     "release": "generic-release docs dist"
   },
   "watch": {
