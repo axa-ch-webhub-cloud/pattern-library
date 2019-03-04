@@ -23,9 +23,14 @@ $progress-bar-mobile-width: 320px !default;
   margin-right: 8px;
   margin-left: 20px;
   height: $progress-bar-mobile-height;
+  display: flex;
+
+  align-items: center;
   color: $color-prim-white;
 
-  // TODO Desktop-Version
+  @include respond-up(sm) {
+    height: $progress-bar-desktop-height;
+  }
 }
 
 .o-progress-bar__percentage {
@@ -43,6 +48,9 @@ $progress-bar-mobile-width: 320px !default;
 progress[value] {
   width: 240px;
   height: 8px;
+
+  -webkit-appearance: none;
+  appearance: none;
 
   @include respond-up(sm) {
     width: 500px;
