@@ -16,6 +16,7 @@ pids
 
 # Dependency directories
 node_modules
+.tmp
 
 # Optional npm cache directory
 .npm
