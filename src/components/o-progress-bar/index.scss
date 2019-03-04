@@ -1,27 +1,56 @@
 @import "../../styles/settings/colors";
 @import "../../styles/mixins/respond";
+@import "../../styles/settings/base";
 
-$progress-bar-height: 70px !default;
-$progress-bar-icon-height-width: 35px !default;
+$progress-bar-desktop-height: 70px !default;
+$progress-bar-mobile-height: 40px !default;
+$progress-bar-icon-height-width: 40px !default;
+$progress-bar-mobile-width: 320px !default;
 
 .o-progress-bar {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
   background-color: $color-prim-blue-indigo;
+
+  @include respond-up(sm) {
+    width: 100%;
+  }
 }
 
 .o-progress-bar__container {
-  height: $progress-bar-height;
+  margin-right: 8px;
+  margin-left: 20px;
+  height: $progress-bar-mobile-height;
+  color: $color-prim-white;
+
+  // TODO Desktop-Version
 }
 
 .o-progress-bar__percentage {
-  display: inline;
-  color: $color-prim-white;
+  display: none;
+
+  @include respond-up(sm) {
+    display: inline;
+  }
+}
+
+.o-progress-bar__progress {
+  // TODO
+}
+
+progress[value] {
+  width: 240px;
+  height: 8px;
+
+  @include respond-up(sm) {
+    width: 500px;
+  }
 }
 
 .o-progress-bar__closing-icon {
-  // width: $progress-bar-icon-height-width;
-  // height: $progress-bar-icon-height-width;
-  //
-  // stroke: currentColor;
-  // fill: currentColor;
+  // TODO width and height
+  float: right;
+  fill: currentColor;
 }
