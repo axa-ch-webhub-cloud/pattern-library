@@ -12,8 +12,12 @@ const fs = require('fs');
 
 const babelOptions = JSON.parse(fs.readFileSync('./.storybook/.babelrc')); // get the babelrc file
 
-// options is optional
+
 const input = glob.sync('src/components/@(atoms|molecules|organism)/*/index*.js');
+
+/* if you want to test lerna publish with demo-button and demo-link
+const input = glob.sync('src/demo/@(demo-button|demo-link)/index*.js');
+*/
 
 const plugins = [
   replace({
