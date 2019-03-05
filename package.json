@@ -56,6 +56,7 @@
     "rollup-plugin-sass": "^1.1.0",
     "sass-loader": "^7.1.0",
     "testcafe": "^1.1.0",
+    "testcafe-browser-provider-browserstack": "^1.8.0",
     "to-string-loader": "^1.1.5"
   },
   "repository": {
