@@ -21,6 +21,9 @@ $progress-bar-progress-border-radius: 3px !default;
 
 $progress-bar-progress-button-height: 22px !default;
 
+$progress-bar-percentage-font-size: 22px !default;
+$progress-bar-percentage-font-weight: 600 !default;
+
 .o-progress-bar {
   display: block;
   width: $progress-bar-mobile-width;
@@ -59,6 +62,8 @@ $progress-bar-progress-button-height: 22px !default;
   display: none;
   margin-top: auto;
   margin-bottom: auto;
+  font-weight: $progress-bar-percentage-font-weight;
+  font-size: $progress-bar-percentage-font-size;
 
   @include respond-up(sm) {
     display: inline;
@@ -66,8 +71,10 @@ $progress-bar-progress-button-height: 22px !default;
 }
 
 .o-progress-bar__progress {
-  // padding-left: 20px;
-  // padding-right: 20px;
+  @include respond-up(sm) {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 
 progress[value] {
