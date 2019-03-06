@@ -79,7 +79,6 @@ $progress-bar-percentage-font-weight: 600 !default;
   }
 }
 
-progress[value] {
 .o-progress-bar__progress[value] {
   width: $progress-bar-progress-mobile-width;
   height: $progress-bar-progress-height;
@@ -120,6 +119,8 @@ progress[value] {
   @include respond-up(sm) {
     margin-right: $progress-bar-progress-button-desktop-margin;
   }
+}
+
 .o-progress-bar__progress[value]::-moz-progress-bar {
   background-color: $color-prim-white;
   border-radius: $progress-bar-progress-border-radius;
