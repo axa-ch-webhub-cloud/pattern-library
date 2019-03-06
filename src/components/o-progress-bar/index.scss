@@ -30,7 +30,7 @@ $progress-bar-percentage-font-weight: 600 !default;
   width: $progress-bar-mobile-width;
   margin-left: auto;
   margin-right: auto;
-  background-color: $color-prim-blue-indigo;
+  background-color: $color-bg;
 
   @include respond-up(sm) {
     width: 100%;
