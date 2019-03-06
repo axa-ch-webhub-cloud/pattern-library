@@ -66,7 +66,7 @@ $progress-bar-percentage-font-weight: 600 !default;
   font-size: $progress-bar-percentage-font-size;
 
   @include respond-up(sm) {
-    display: inline;
+    display: inline-block;
   }
 }
 
