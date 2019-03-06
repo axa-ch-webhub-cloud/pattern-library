@@ -18,6 +18,7 @@ $progress-bar-progress-mobile-width: 245px !default;
 $progress-bar-progress-desktop-width: 500px !default;
 $progress-bar-progress-height: 8px !default;
 $progress-bar-progress-border-radius: 3px !default;
+$progress-bar-progress-margin: 30px !default;
 
 $progress-bar-progress-button-height: 22px !default;
 
@@ -99,7 +100,6 @@ progress[value]::-webkit-progress-value {
 .o-progress-bar__icon-button {
   padding: 0;
   height: $progress-bar-progress-button-height;
-  float: right;
   color: $color-prim-white;
   background: transparent;
   border: none;
