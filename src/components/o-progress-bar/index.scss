@@ -2,39 +2,63 @@
 @import "../../styles/mixins/respond";
 @import "../../styles/settings/base";
 
-$progress-bar-desktop-height: 70px !default;
+
 $progress-bar-mobile-height: 40px !default;
-$progress-bar-icon-height-width: 40px !default;
 $progress-bar-mobile-width: 320px !default;
+
+$progress-bar-container-mobile-padding-right: 10px !default;
+$progress-bar-container-mobile-padding-left: 20px !default;
+
+$progress-bar-desktop-height: 70px !default;
+$progress-bar-desktop-width: 992px !default;
+
+$progress-bar-container-desktop-padding-right: 30px !default;
+
+$progress-bar-progress-mobile-width: 245px !default;
+$progress-bar-progress-desktop-width: 500px !default;
+$progress-bar-progress-height: 8px !default;
+$progress-bar-progress-border-radius: 3px !default;
+
+$progress-bar-progress-button-height: 22px !default;
 
 .o-progress-bar {
   display: block;
+  width: $progress-bar-mobile-width;
   margin-left: auto;
   margin-right: auto;
-  width: 320px;
   background-color: $color-prim-blue-indigo;
 
   @include respond-up(sm) {
     width: 100%;
   }
+
+  @include respond-up(lg) {
+    width: $progress-bar-desktop-width;
+  }
 }
 
 .o-progress-bar__container {
-  margin-right: 8px;
-  margin-left: 20px;
+  width: 100%;
+  padding-right: $progress-bar-container-mobile-padding-right;
+  padding-left: $progress-bar-container-mobile-padding-left;
   height: $progress-bar-mobile-height;
+
   display: flex;
 
   align-items: center;
+  justify-content: space-between;
   color: $color-prim-white;
 
   @include respond-up(sm) {
+    padding-right: $progress-bar-container-desktop-padding-right;
     height: $progress-bar-desktop-height;
   }
 }
 
 .o-progress-bar__percentage {
   display: none;
+  margin-top: auto;
+  margin-bottom: auto;
 
   @include respond-up(sm) {
     display: inline;
@@ -42,32 +66,42 @@ $progress-bar-mobile-width: 320px !default;
 }
 
 .o-progress-bar__progress {
-  // TODO
+  // padding-left: 20px;
+  // padding-right: 20px;
 }
 
 progress[value] {
-  width: 240px;
-  height: 8px;
+  width: $progress-bar-progress-mobile-width;
+  height: $progress-bar-progress-height;
 
   -webkit-appearance: none;
   appearance: none;
 
   @include respond-up(sm) {
-    width: 500px;
+    width: $progress-bar-progress-desktop-width;
   }
 }
 
 progress[value]::-webkit-progress-bar {
-  border-radius: 3px;
+  border-radius: $progress-bar-progress-border-radius;
 }
 
 progress[value]::-webkit-progress-value {
   background-color: $color-prim-white;
-  border-radius: 3px;
+  border-radius: $progress-bar-progress-border-radius;
+}
+
+.o-progress-bar__icon-button {
+  padding: 0;
+  height: $progress-bar-progress-button-height;
+  float: right;
+  color: $color-prim-white;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .o-progress-bar__closing-icon {
-  // TODO width and height
-  float: right;
   fill: currentColor;
 }
