@@ -60,13 +60,11 @@ $progress-bar-percentage-font-weight: 600 !default;
 
 .o-progress-bar__percentage {
   display: none;
-  margin-top: auto;
-  margin-bottom: auto;
-  font-weight: $progress-bar-percentage-font-weight;
-  font-size: $progress-bar-percentage-font-size;
 
   @include respond-up(sm) {
     display: inline-block;
+    font-weight: $progress-bar-percentage-font-weight;
+    font-size: $progress-bar-percentage-font-size;
   }
 }
 
