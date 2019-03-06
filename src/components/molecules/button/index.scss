@@ -8,21 +8,21 @@ $color-prim-blue-deep-sapphire: #00005b;
 .m-button {
   position: relative;
   box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  //font-family: source-sans-pro--semibold;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-family: 'source-sans-pro--semibold', Georgia sans-serif;
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: 1px;
-  line-height: 1;
+  line-height: .5;
   min-height: 40px;
+  hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
   color: $color-prim-white;
-  background: $color-axa-blue;
+  background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-prim-blue-deep-sapphire;
 
@@ -31,14 +31,14 @@ $color-prim-blue-deep-sapphire: #00005b;
   &:focus {
     cursor: pointer;
     text-decoration: none;
-    background: $color-prim-blue-deep-sapphire;
+    background-color: $color-prim-blue-deep-sapphire;
     border-color: $color-prim-blue-deep-sapphire;
   }
 
   &:disabled,
   &[aria-disabled] {
     color: #999;
-    background: #e5e5e5;
+    background-color: #e5e5e5;
     border-color: #e5e5e5;
     border-bottom-color: #ccc;
     pointer-events: none;
@@ -48,22 +48,24 @@ $color-prim-blue-deep-sapphire: #00005b;
     display: flex;
     align-items: center;
   }
+
+  &__icon {
+    display: block;
+    margin-left: 12px;
+    color: currentColor;
+    fill: currentColor;
+    stroke: currentColor;
+  }
 }
 
-.m-button--sm {
-  font-size: 14px;
-  border-width: 1px;
-  min-height: 30px;
-}
-
-.m-button--lg {
+.m-button--large {
   min-height: 50px;
+  line-height: .64;
 }
 
 .m-button--motion {
   $button__motion-duration: 0.3s;
   $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  $button__motion-pseudo-z-index: -1;
 
   z-index: 0;
   overflow: hidden;
@@ -75,7 +77,7 @@ $color-prim-blue-deep-sapphire: #00005b;
     top: 50%;
     left: 50%;
 
-    z-index: $button__motion-pseudo-z-index;
+    z-index: -1;
 
     display: block;
 
@@ -88,84 +90,58 @@ $color-prim-blue-deep-sapphire: #00005b;
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: width $button__motion-duration $button__motion-easing 0s;
 
-    background: $color-prim-blue-deep-sapphire;
+    background-color: $color-prim-blue-deep-sapphire;
   }
 
   &:hover,
   &:focus {
-    background: $color-axa-blue;
+    background-color: $color-axa-blue;
     color: $color-prim-white;
 
     &::after {
       width: 110%;
-      background: $color-prim-blue-deep-sapphire;
+      background-color: $color-prim-blue-deep-sapphire;
     }
   }
+}
+
+.m-button--motion.m-button--cta {
+  &::after {
+    background-color: $color-prim-red-flamingo;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-prim-red-burnt-sienna;
+    color: $color-prim-white;
+
+    &::after {
+      background-color: $color-prim-red-flamingo;
+    }
+  }
+}
+
+.m-button--secondary.m-button--inverted {
+  border-color: $color-prim-white;
+  color: $color-prim-white;
 
   &:hover,
   &:active,
   &:focus {
-    // TODO
-    .m-button__arrow {
-      animation-duration: 0.6s;
-      animation-timing-function: ease;
-      animation-fill-mode: both;
-      animation-name: fadeOutRightInLeft;
-    }
-
-    @keyframes fadeOutRightInLeft {
-      0% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
-      }
-
-      51% {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0);
-      }
-
-      100% {
-        opacity: 1;
-        transform: none;
-      }
-    }
+    background-color: $color-prim-white;
+    border-color: $color-prim-white;
+    color: inherit;
   }
 }
 
-.m-button--motion.m-button--red {
+.m-button--motion.m-button--secondary,
+.m-button--motion.m-button--secondary.m-button--inverted {
+  background-color: transparent;
+}
+
+.m-button--motion.m-button--secondary.m-button--inverted {
   &::after {
-    background: $color-prim-red-flamingo;
-  }
-
-  &:hover,
-  &:focus {
-    background: $color-prim-red-burnt-sienna;
-    color: $color-prim-white;
-
-    &::after {
-      background: $color-prim-red-flamingo;
-    }
-  }
-}
-
-.m-button--motion.m-button--ghost,
-.m-button--motion.m-button--red.m-button--ghost,
-.m-button--motion.m-button--white.m-button--ghost {
-  background: transparent;
-
-  &:hover,
-  &:focus {
-    background: transparent;
-  }
-}
-
-.m-button--motion.m-button--white.m-button--ghost {
-  &::after {
-    background: $color-prim-white;
+    background-color: $color-prim-white;
   }
 
   &:hover,
@@ -173,12 +149,12 @@ $color-prim-blue-deep-sapphire: #00005b;
     color: inherit;
 
     &::after {
-      background: $color-prim-white;
+      background-color: $color-prim-white;
     }
   }
 }
 
-.m-button--red {
+.m-button--cta {
   background-color: $color-prim-red-burnt-sienna;
   border-color: $color-prim-red-burnt-sienna;
   border-bottom-color: $color-prim-red-flamingo;
@@ -186,12 +162,12 @@ $color-prim-blue-deep-sapphire: #00005b;
   &:hover,
   &:active,
   &:focus {
-    background: $color-prim-red-flamingo;
+    background-color: $color-prim-red-flamingo;
     border-color: $color-prim-red-flamingo;
   }
 }
 
-.m-button--ghost {
+.m-button--secondary {
   background-color: transparent;
   border-bottom-color: $color-axa-blue;
   color: $color-axa-blue;
@@ -200,30 +176,5 @@ $color-prim-blue-deep-sapphire: #00005b;
   &:active,
   &:focus {
     color: $color-prim-white;
-  }
-}
-
-.m-button--ghost.m-button--red {
-  color: $color-prim-red-burnt-sienna;
-  border-bottom-color: #ec4d33;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-prim-white;
-    border-bottom-color: $color-prim-red-flamingo;
-  }
-}
-
-.m-button--ghost.m-button--white {
-  border-color: $color-prim-white;
-  color: $color-prim-white;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: $color-prim-white;
-    border-color: $color-prim-white;
-    color: inherit;
   }
 }
