@@ -6,9 +6,6 @@
 $progress-bar-mobile-height: 40px !default;
 $progress-bar-mobile-width: 320px !default;
 
-$progress-bar-container-mobile-padding-right: 10px !default;
-$progress-bar-container-mobile-padding-left: 20px !default;
-
 $progress-bar-desktop-height: 70px !default;
 $progress-bar-desktop-width: 992px !default;
 
@@ -17,11 +14,15 @@ $progress-bar-container-desktop-padding-right: 30px !default;
 $progress-bar-progress-mobile-width: 245px !default;
 $progress-bar-progress-desktop-width: 500px !default;
 $progress-bar-progress-height: 8px !default;
+$progress-bar-progress-mobile-margin: 20px !default;
+$progress-bar-progress-desktop-margin: 30px !default;
 $progress-bar-progress-border-radius: 3px !default;
-$progress-bar-progress-margin: 30px !default;
 
 $progress-bar-progress-button-height: 22px !default;
+$progress-bar-progress-button-mobile-margin: 10px !default;
+$progress-bar-progress-button-desktop-margin: 30px !default;
 
+$progress-bar-percentage-margin-left: 30px !default;
 $progress-bar-percentage-font-size: 22px !default;
 $progress-bar-percentage-font-weight: 600 !default;
 
@@ -43,18 +44,17 @@ $progress-bar-percentage-font-weight: 600 !default;
 
 .o-progress-bar__container {
   width: 100%;
-  padding-right: $progress-bar-container-mobile-padding-right;
-  padding-left: $progress-bar-container-mobile-padding-left;
   height: $progress-bar-mobile-height;
 
   display: flex;
 
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+
   color: $color-prim-white;
 
   @include respond-up(sm) {
-    padding-right: $progress-bar-container-desktop-padding-right;
+    // padding-right: $progress-bar-container-desktop-padding-right;
     height: $progress-bar-desktop-height;
   }
 }
@@ -64,15 +64,19 @@ $progress-bar-percentage-font-weight: 600 !default;
 
   @include respond-up(sm) {
     display: inline-block;
+    margin-left: $progress-bar-percentage-margin-left;
     font-weight: $progress-bar-percentage-font-weight;
     font-size: $progress-bar-percentage-font-size;
   }
 }
 
 .o-progress-bar__progress {
+  margin-left: $progress-bar-progress-mobile-margin;
+  margin-right: $progress-bar-progress-mobile-margin;
+
   @include respond-up(sm) {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: $progress-bar-progress-desktop-margin;
+    margin-right: $progress-bar-progress-desktop-margin;
   }
 }
 
@@ -99,12 +103,17 @@ progress[value]::-webkit-progress-value {
 
 .o-progress-bar__icon-button {
   padding: 0;
+  margin-right: $progress-bar-progress-button-mobile-margin;
   height: $progress-bar-progress-button-height;
   color: $color-prim-white;
   background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+
+  @include respond-up(sm) {
+    margin-right: $progress-bar-progress-button-desktop-margin;
+  }
 }
 
 .o-progress-bar__closing-icon {
