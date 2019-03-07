@@ -53,7 +53,7 @@ class AXAProgressBar extends BaseComponentGlobal {
 
     this.className = `${this.initialClassName} o-progress-bar`;
 
-    this.progressBarHandler = new ProgressBarHandler(this);
+    this.progressBarHandler = new ProgressBarHandler(this, 2);
     this.progressBarHandler.init();
 
     // Your DOM interaction here, but keep it decoupled.
