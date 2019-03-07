@@ -3,14 +3,39 @@ import { Error, Warning, Information } from './error-handler';
 const LOWEST_PRIORITY = 2;
 
 export default class ProgressBarHandler {
-  constructor(wcNode, priority = LOWEST_PRIORITY) {
-    this.wcNode = wcNode;
+  constructor(priority = LOWEST_PRIORITY) {
     this.priority = priority;
+    this.value = '';
+    this.max = '';
     this.logs = [];
   }
 
-  init() {
-    this.logs.push(new Warning(Date.now(), 'das ist die message'));
-    this.logs.map(log => log.print());
+  init(value = 0, max = 0) {
+    this.value = value;
+    this.max = max;
+  }
+
+  testComponent() {
+    if (Math.sign(this.value) < 0) {
+      this.logs.push(new Error(Date.now(), `value ${this.value} is negative`));
+    }
+    if (Math.sign(this.max) < 0) {
+      this.logs.push(new Error(Date.now(), `max ${this.max} is negative`));
+    }
+    if (this.value > this.max) {
+      if ((this.max === undefined || this.max === null) && this.value > 1) {
+        this.logs.push(new Information(Date.now(), 'indeterminate state is not realised'));
+      } else {
+        this.logs.push(new Warning(Date.now(), `value ${this.value} is bigger than max ${this.max}`));
+      }
+    }
+  }
+
+  printMessages() {
+    this.logs.forEach((log) => {
+      if (this.priority >= log.priority) {
+        log.print();
+      }
+    });
   }
 }
