@@ -11,21 +11,15 @@ export default function ({
   showIcon,
   showPercentage,
 }) {
-  if (value < 0 || max < 0) {
-    console.log('negative');// TODO Errorhandling
-    // TODO set value to 0
-  } else if (value > max) {
-    console.log('value > max');// TODO Errorhandling
-  }
-
-  // the percentage shouldn't be round up cause then the progressbar could show 100% even if the task is not finished
   let percentage = 100;
-  if ((max === undefined || max === '') && value <= 1) {
-    percentage = value * 100;
+  if (Math.sign(value) < 0 || Math.sign(max) < 0) {
+    percentage = 0;
   } else if (value === 0) {
     percentage = 0;
   } else if (max >= value) {
     percentage = (value / max) * 100;
+  } else if ((max === undefined || max === '') && value <= 1) {
+    percentage = value * 100;
   }
   percentage = Math.floor(percentage);
 
