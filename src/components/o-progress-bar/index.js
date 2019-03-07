@@ -10,6 +10,7 @@ import styles from './index.scss';
 // import the template used for this component
 import template from './_template';
 
+const PRIORITY_LEVEL_ERRORHANDLING = 2;
 
 class AXAProgressBar extends BaseComponentGlobal {
   static tagName = 'axa-progress-bar'
@@ -38,6 +39,7 @@ class AXAProgressBar extends BaseComponentGlobal {
   init() {
     super.init({ styles, template });
 
+    this.progressBarHandler = new ProgressBarHandler(PRIORITY_LEVEL_ERRORHANDLING);
     // does this provide context (See docs for context) ?
     // this.provideContext()
 
@@ -52,10 +54,9 @@ class AXAProgressBar extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} o-progress-bar`;
-
-    this.progressBarHandler = new ProgressBarHandler(this, 2);
-    this.progressBarHandler.init();
-
+    this.progressBarHandler.init(this.getAttribute('value'), this.getAttribute('max'));
+    this.progressBarHandler.testComponent();
+    this.progressBarHandler.printMessages();
     // Your DOM interaction here, but keep it decoupled.
     // If you don't have any, just remove this function
   }
