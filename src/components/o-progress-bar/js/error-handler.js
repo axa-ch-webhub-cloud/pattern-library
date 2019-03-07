@@ -17,7 +17,7 @@ export class Log {
 export class Information extends Log {
   constructor(timestamp = new Date(), message = '') {
     super(timestamp, message);
-    this.priority = 0;
+    this.priority = 2;
     this.priorityName = INFORMATION;
   }
 }
@@ -33,7 +33,7 @@ export class Warning extends Log {
 export class Error extends Log {
   constructor(timestamp = new Date(), message = '') {
     super(timestamp, message);
-    this.priority = 2;
+    this.priority = 0;
     this.priorityName = ERROR;
   }
   print() {
