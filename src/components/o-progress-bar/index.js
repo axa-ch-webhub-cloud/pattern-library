@@ -1,3 +1,5 @@
+import ProgressBarHandler from './js/progress-bar-handler';
+
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
 import BaseComponentGlobal from '../../js/abstract/base-component-global';
@@ -50,6 +52,8 @@ class AXAProgressBar extends BaseComponentGlobal {
     super.connectedCallback();
 
     this.className = `${this.initialClassName} o-progress-bar`;
+
+    this.progressBarHandler = new ProgressBarHandler(this);
     // Your DOM interaction here, but keep it decoupled.
     // If you don't have any, just remove this function
   }
