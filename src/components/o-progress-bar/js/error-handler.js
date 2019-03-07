@@ -1,6 +1,6 @@
-const ERROR = 'Error';
-const WARNING = 'Warning';
-const INFORMATION = 'Information';
+const ERROR = 'error';
+const WARNING = 'warning';
+const INFORMATION = 'information';
 
 export class Log {
   constructor(timestamp = new Date(), message = '') {
@@ -10,7 +10,7 @@ export class Log {
     this.priorityName = '';
   }
   print() {
-    console.log(this.timestamp, this.message, 'priority', this.priority, 'type ', this.priorityName);
+    console.log(`${this.timestamp} priority: ${this.priority} type: ${this.priorityName}\n${this.message} `);
   }
 }
 
@@ -37,6 +37,6 @@ export class Error extends Log {
     this.priorityName = ERROR;
   }
   print() {
-    console.error(this.timestamp, this.message, 'priority', this.priority, 'type ', this.priorityName);
+    console.error(`${this.timestamp} priority: ${this.priority} type: ${this.priorityName}\n${this.message} `);
   }
 }
