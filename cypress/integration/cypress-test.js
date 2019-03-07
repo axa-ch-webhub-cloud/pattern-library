@@ -31,7 +31,15 @@ describe('My First Test', function() {
 
       cy.wrap($body)
         .find('axa-button')
-        .contains("I'm clickable");
+        .contains("I'm clickable")
+        .and('have.attr', 'color', 'red');
+
+      cy.wrap($body)
+        .find('axa-button')
+        .contains("I'm clickable")
+        .shadowFind('button')
+        .shadowShould('have.attr', 'type', 'button')
+        .shadowShould('have.css', 'background-color', 'rgb(240, 118, 98)');
     });
   });
 });

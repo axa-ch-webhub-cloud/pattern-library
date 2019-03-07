@@ -10,8 +10,9 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static",
     "test": "eslint src/",
-    "cy": "npx cypress run --spec 'cypress/integration/sample_spec.js'",
-    "tc": "testcafe \"chrome:headless\" testcafe/"
+    "cy": "npx cypress run",
+    "tc": "testcafe \"chrome:headless\" testcafe/",
+    "bs": "testcafe \"browserstack:Chrome@53.0:Windows 10\" testcafe/"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
