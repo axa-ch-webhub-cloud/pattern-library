@@ -18,8 +18,6 @@ export default function ({
     console.log('value > max');// TODO Errorhandling
   }
 
-  // console.log(childrenFragment.childNodes[0].nodeValue > -1);
-
   // the percentage shouldn't be round up cause then the progressbar could show 100% even if the task is not finished
   let percentage = 100;
   if ((max === undefined || max === '') && value <= 1) {
@@ -31,10 +29,10 @@ export default function ({
   }
   percentage = Math.floor(percentage);
 
+  // ${showIcon ? 'o-progress-bar__has-icon' : ''} ${showPercentage ? 'o-progress-bar__has-percentage' : ''}
   return html`<article class="${classes}">
     <div class="o-progress-bar__container">
       ${showPercentage ? html`<p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>` : ''}
-      ${console.log(value, max, showIcon, showPercentage)}
       <progress class="o-progress-bar__progress" value="${value}" max="${max}"><span>${percentage}</span>${percentageSymbol}</progress>
       ${showIcon ? html`<button class="o-progress-bar__icon-button" type="button">
           <axa-icon class="o-progress-bar__closing-icon" icon-class="a-icon__svg--small" icon="${closingIcon}"></axa-icon>
