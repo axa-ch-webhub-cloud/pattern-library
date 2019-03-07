@@ -6,7 +6,7 @@ const closingIcon = 'cross-gap';
 
 export default function ({
   classes,
-  value = '0',
+  value = 0,
   max,
   showIcon,
   showPercentage,
@@ -14,7 +14,7 @@ export default function ({
   let percentage = 100;
   if (Math.sign(value) < 0 || Math.sign(max) < 0) {
     percentage = 0;
-  } else if (value === 0) {
+  } else if (value === 0 || value === '') {
     percentage = 0;
   } else if (max >= value) {
     percentage = (value / max) * 100;
@@ -23,7 +23,6 @@ export default function ({
   }
   percentage = Math.floor(percentage);
 
-  // ${showIcon ? 'o-progress-bar__has-icon' : ''} ${showPercentage ? 'o-progress-bar__has-percentage' : ''}
   return html`<article class="${classes}">
     <div class="o-progress-bar__container">
       ${showPercentage ? html`<p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>` : ''}
