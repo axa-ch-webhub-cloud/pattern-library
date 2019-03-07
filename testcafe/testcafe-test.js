@@ -2,12 +2,10 @@ import { Selector } from 'testcafe';
 
 fixture('TestCafe Democase').page('http://localhost:9001');
 
-test('Check react button', async t => {
+test('Should check button for various states', async t => {
   const a = Selector('div');
   await t.click(a.withExactText('Demo'));
   await t.click(Selector('a[href="?selectedKind=Demo&selectedStory=Button%20React&full=0&addons=1&stories=1&panelRight=0"]'));
-
-  //   await t.expect(Selector('p').withExactText('with react wrapper - callback props are possible:').exists).ok();
 
   await t
     .switchToIframe(Selector('#storybook-preview-iframe'))
@@ -15,7 +13,7 @@ test('Check react button', async t => {
     .ok();
 
   await t
-    // We are already in the iFrame, this line will break the test.
+    // We are already in the iFrame, the following line will break the test.
     // .switchToIframe(Selector('#storybook-preview-iframe'))
     .expect(
       Selector('axa-button')
@@ -29,9 +27,9 @@ test('Check react button', async t => {
   // .expect(Selector('axa-button').withExactText("I'M DISABLED").hasChildElements)
   // .ok();
 
-  // Testing how to workaround accessing shadow dom
+  // Before accessing any shadow dom, wait for the button first (not needed here, just for documentation)
   await Selector('axa-button').withExactText("I'M CLICKABLE");
-  // This is how to access the shadow dom with TestCafe.
+  // This is how to access the shadow dom with TestCafe. Native selectors are allowed, which is a plus.
   const buttonInsideAxaButton = await Selector(() => document.querySelector('axa-button[color="red"]').shadowRoot.querySelector('button'));
   await t.expect(buttonInsideAxaButton.exists).ok();
   await t.expect(buttonInsideAxaButton.getStyleProperty('background-color')).eql('rgb(240, 118, 98)');

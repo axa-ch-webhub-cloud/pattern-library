@@ -1,5 +1,6 @@
-describe('My First Test', function() {
-  it('Check button vor various states', function() {
+describe('Button', function() {
+  it('Should check button for various states', function() {
+    // Server has to be running already (obviously)
     cy.visit('http://localhost:9001');
 
     cy.contains('Demo').click();
@@ -10,7 +11,7 @@ describe('My First Test', function() {
       .find('[href = "?selectedKind=Demo&selectedStory=Button%20React&full=0&addons=1&stories=1&panelRight=0"]')
       .click();
 
-    // Sadly, this workaround is needed for iframes, which storybooks uses
+    // Sadly, the next line is needed for getting into iframes, which storybooks uses
     cy.get('#storybook-preview-iframe').then(function($iframe) {
       const $jbody = $iframe.contents().find('body');
       const $body = $jbody[0];
@@ -26,13 +27,15 @@ describe('My First Test', function() {
         .find('axa-button')
         .contains("I'm disabled")
         .and('be.visible');
-      // This does not work, probably because of shadow dom
-      // .and('be.disabled');
 
+      // Test the axa-button itself without its shadow root
       cy.wrap($body)
         .find('axa-button')
         .contains("I'm clickable")
         .and('have.attr', 'color', 'red');
+
+      // The following line would take a screenshot of the current screen
+      // cy.screenshot();
 
       cy.wrap($body)
         .find('axa-button')
