@@ -1,7 +1,7 @@
 describe('Button', function() {
   it('Should check button for various states', function() {
     // Server has to be running already (obviously)
-    cy.visit('http://localhost:9001');
+    cy.visit('http://localhost:9999');
 
     cy.contains('Demo').click();
     cy.contains('Button').click();
