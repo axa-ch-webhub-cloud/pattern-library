@@ -10,7 +10,7 @@ export default class ProgressBarHandler {
     this.logs = [];
   }
 
-  init(value = 0, max = 0) {
+  init(value, max) {
     this.value = value;
     this.max = max;
   }
@@ -25,7 +25,7 @@ export default class ProgressBarHandler {
     if (this.value > this.max) {
       if ((this.max === undefined || this.max === null) && this.value > 1) {
         this.logs.push(new Information(Date.now(), 'indeterminate state is not realised'));
-      } else {
+      } else if (this.max !== undefined && this.max !== null) {
         this.logs.push(new Warning(Date.now(), `value ${this.value} is bigger than max ${this.max}`));
       }
     }
