@@ -13,7 +13,7 @@
     "cy": "npx cypress run",
     "tc": "testcafe \"chrome:headless\" testcafe/",
     "bs": "testcafe \"browserstack:Chrome@53.0:Windows 10\" testcafe/",
-    "tes": "npm run storybook & wait-on http://localhost:9001 && npm run cy"
+    "test-cy": "sh ./cypress/start-cypress-run.sh"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
