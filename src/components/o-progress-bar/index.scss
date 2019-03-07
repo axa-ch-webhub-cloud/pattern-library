@@ -22,14 +22,13 @@ $progress-bar-progress-button-mobile-margin: 10px !default;
 $progress-bar-progress-button-desktop-margin: 30px !default;
 
 $progress-bar-percentage-margin-left: 30px !default;
-$progress-bar-percentage-font-size: 22px !default;
+$progress-bar-percentage-font-size: 32px !default;
 $progress-bar-percentage-font-weight: 600 !default;
 
 .o-progress-bar {
   display: block;
+  margin: 0 auto;
   width: $progress-bar-mobile-width;
-  margin-left: auto;
-  margin-right: auto;
   background-color: $color-bg;
 
   @include respond-up(sm) {
