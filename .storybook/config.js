@@ -49,12 +49,18 @@ addParameters({
   },
 });
 
-function requireAll(requireContext) {
-  return requireContext.keys().map(requireContext);
-}
+const materials = require.context('../src/components/materials', true, /\.story\.js$/);
+const atoms = require.context('../src/components/atoms', true, /\.story\.js$/);
+const molecules = require.context('../src/components/molecules', true, /\.story\.js$/);
+const organisms = require.context('../src/components/organisms', true, /\.story\.js$/);
 
-function loadStories() {
-  requireAll(require.context('..', true, /_stories|_demo/));
-}
-
-configure(loadStories, module);
+configure(
+  () =>
+    [].concat(
+      materials.keys().forEach(materials),
+      atoms.keys().forEach(atoms),
+      molecules.keys().forEach(molecules),
+      organisms.keys().forEach(organisms)
+    ),
+  module
+);
