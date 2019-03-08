@@ -1,7 +1,39 @@
+<!--
+  component-name: progress-bar
+  added to patternslibrary: 08.03.2019
+  author: Noah Liechti
+
+  dependencies to other axa-components:
+- <axa-icon>
+
+  behavior of the <axa-progress-bar>:
+- a negativ value-attribute or a negative max-attribute resolves in a progress-bar with 0%
+  and a error is thrown
+- the value can be set without a max-attribute, when the value is betwenn 0 and 1
+- if the max-attribute is set, the value has to be between 0 and the value of the max-attribute
+- is the value bigger than the max-attribute a warning is thrown
+- is a value given that is bigger than 1, but no max-attribute an information gets thrown because the
+  indeterminate state is not realised
+
+  possible attributes:
+- value -> positiv, numeric values
+- max ->  positiv, numeric values
+- show-icon -> true / false (optional)
+- show-percentage -> true / false (optional)
+-->
+
+<!-- *** EXAMPLES ********************************************************** -->
+
+<!-- Example 1
+  click the <axa-button></axa-button> to run an animated progress, click again to restart the animation
+
+  expected outcome:
+  the progress-bar fills itself till 100%
+-->
 <axa-progress-bar
   classes="o-progress-bar"
   class="js-progress-bar-demo"
-  max="200"
+  max="300"
   show-icon
   show-percentage
 >
@@ -10,34 +42,95 @@
   <axa-button style="display: inline-block;" onclick="run()" color="red">Start</axa-button>
 </div>
 
+<!-- Example 2
+  expected outcome:
+- error in console
+- no percentage displayed
+-->
 <axa-progress-bar
   classes="o-progress-bar"
   value="-1"
   max="100"
   show-icon
-  show-percentage
+  show-percentage=false
 >
 </axa-progress-bar>
 </br>
+
+<!-- Example 3
+  expected outcome:
+- no icon displayed
+- no percentage displayed
+-->
 <axa-progress-bar
   classes="o-progress-bar"
   value="22.2"
   max="50"
-  show-icon
+  showIcon=false
+  show-percentage=""
+>
+</axa-progress-bar>
+</br>
+
+<!-- Example 4
+  expected outcome:
+- no icon displayed
+- fully loaded progress-bar, because of indeterminate state wich is not supported
+- information in console
+-->
+<axa-progress-bar
+  classes="o-progress-bar"
+  value="22.2"
   show-percentage
 >
 </axa-progress-bar>
+</br>
 
+<!-- Example 5
+  expected outcome:
+- 10% loaded progress-bar
+-->
+<axa-progress-bar
+  classes="o-progress-bar"
+  value="0.1"
+  max=""
+  show-percentage
+  show-icon
+>
+</axa-progress-bar>
+</br>
+
+<!-- Example 6
+  expected outcome:
+- warning in console because value-attribute is bigger than max-attribute
+-->
+<axa-progress-bar
+  classes="o-progress-bar"
+  value="50"
+  max="40"
+  show-percentage
+  show-icon
+>
+</axa-progress-bar>
+</br>
+<!--
+  the script animates the progressbar. Per iteration the value can be increased
+  by a random value between 0 and the stepIndex. Each iteration has a timeout of
+  100 milliseconds. Wich is defined in the timeout variable.
+-->
 <script>
   let myVar;
   let a = 0;
   let value = 0;
+  const timeout = 100;
+  const stepIndex = 7;
   const progressbar = document.querySelector('.js-progress-bar-demo');
-  const max = progressbar.getAttribute('max');
+  const max = progressbar.getAttribute('max') ? progressbar.getAttribute('max') : 0;
+
   function run() {
     if (value >= max) { a = 0 }
       myVar = setTimeout(() => {
-      	a += Math.floor(Math.random() * (20 - 1) + 1);
+      	a += Math.floor(Math.random() * (stepIndex - 1) + 1);
         if (a < max) {
             progressbar.setAttribute('value', a);
         	  run();
@@ -45,6 +138,6 @@
             progressbar.setAttribute('value', max);
         }
         value = a;
-      }, 200);
+      }, timeout);
   }
 </script>
