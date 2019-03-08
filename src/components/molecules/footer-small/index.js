@@ -44,8 +44,16 @@ class AXAFooterSmall extends LitElement {
         <div>
           <p>DE | FR | IT | EN</p>
         </div>
-        <div>
-          <p>Terms of use | Data protection © 2019 AXA Insurance Ltd.</p>
+
+        <div class="c2">
+          <div class="container2">
+            <div class="block1">
+              <p>Terms of use | Data protection</p>
+            </div>
+            <div class="block2">
+              <p>&nbsp;© 2019 AXA Insurance Ltd.</p>
+            </div>
+          </div>
         </div>
       </article>
     `;

@@ -10,6 +10,9 @@ article {
   color: $color-prim-white;
 }
 
-div {
-  // align-self: center;
+.container2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
