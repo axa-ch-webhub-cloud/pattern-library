@@ -6,8 +6,8 @@
   show-percentage
 >
 </axa-progress-bar>
-<div style="margin: 30px auto">
-  <axa-button onclick="run()" color="red">Start</axa-button>
+<div style="margin-top: 30px; margin-bottom: 30px; text-align: center">
+  <axa-button style="display: inline-block;" onclick="run()" color="red">Start</axa-button>
 </div>
 
 <axa-progress-bar
@@ -37,7 +37,7 @@
   function run() {
     if (value >= max) { a = 0 }
       myVar = setTimeout(() => {
-      	a += Math.floor(Math.random() * (5 - 1) + 1);
+      	a += Math.floor(Math.random() * (20 - 1) + 1);
         if (a < max) {
             progressbar.setAttribute('value', a);
         	  run();
