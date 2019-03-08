@@ -22,6 +22,7 @@ $progress-bar-progress-button-mobile-margin: 10px !default;
 $progress-bar-progress-button-desktop-margin: 30px !default;
 
 $progress-bar-percentage-margin-left: 30px !default;
+$progress-bar-percentage-width: 80px !default;
 $progress-bar-percentage-font-size: 32px !default;
 $progress-bar-percentage-font-weight: 600 !default;
 
@@ -62,6 +63,7 @@ $progress-bar-percentage-font-weight: 600 !default;
 
   @include respond-up(sm) {
     display: inline-block;
+    width: $progress-bar-percentage-width;
     margin-left: $progress-bar-percentage-margin-left;
     font-weight: $progress-bar-percentage-font-weight;
     font-size: $progress-bar-percentage-font-size;
