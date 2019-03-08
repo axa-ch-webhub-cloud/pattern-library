@@ -1,6 +1,9 @@
 lib
 package-lock.json
 
+# Storybook
+storybook-static
+
 # Logs
 logs
 *.log
