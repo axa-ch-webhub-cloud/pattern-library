@@ -1,11 +1,11 @@
+// Color Mock should placed in materials
 $color-axa-blue: #00008f;
 $color-prim-red-burnt-sienna: #f07662;
 $color-prim-white: #fff;
-// Hover/Active/Focus
 $color-prim-red-flamingo: #ec4d33;
 $color-prim-blue-deep-sapphire: #00005b;
 
-.m-button {
+.a-button {
   position: relative;
   box-sizing: border-box;
   padding-left: 30px;
@@ -58,12 +58,12 @@ $color-prim-blue-deep-sapphire: #00005b;
   }
 }
 
-.m-button--large {
+.a-button--large {
   min-height: 50px;
   line-height: .64;
 }
 
-.m-button--motion {
+.a-button--motion {
   $button__motion-duration: 0.3s;
   $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
@@ -105,7 +105,7 @@ $color-prim-blue-deep-sapphire: #00005b;
   }
 }
 
-.m-button--motion.m-button--cta {
+.a-button--motion.a-button--cta {
   &::after {
     background-color: $color-prim-red-flamingo;
   }
@@ -121,7 +121,7 @@ $color-prim-blue-deep-sapphire: #00005b;
   }
 }
 
-.m-button--secondary.m-button--inverted {
+.a-button--secondary.a-button--inverted {
   border-color: $color-prim-white;
   color: $color-prim-white;
 
@@ -134,12 +134,12 @@ $color-prim-blue-deep-sapphire: #00005b;
   }
 }
 
-.m-button--motion.m-button--secondary,
-.m-button--motion.m-button--secondary.m-button--inverted {
+.a-button--motion.a-button--secondary,
+.a-button--motion.a-button--secondary.a-button--inverted {
   background-color: transparent;
 }
 
-.m-button--motion.m-button--secondary.m-button--inverted {
+.a-button--motion.a-button--secondary.a-button--inverted {
   &::after {
     background-color: $color-prim-white;
   }
@@ -154,7 +154,7 @@ $color-prim-blue-deep-sapphire: #00005b;
   }
 }
 
-.m-button--cta {
+.a-button--cta {
   background-color: $color-prim-red-burnt-sienna;
   border-color: $color-prim-red-burnt-sienna;
   border-bottom-color: $color-prim-red-flamingo;
@@ -167,7 +167,7 @@ $color-prim-blue-deep-sapphire: #00005b;
   }
 }
 
-.m-button--secondary {
+.a-button--secondary {
   background-color: transparent;
   border-bottom-color: $color-axa-blue;
   color: $color-axa-blue;
