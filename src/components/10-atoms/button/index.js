@@ -1,13 +1,15 @@
-import { LitElement, html, css, unsafeCSS, svg} from 'lit-element';
+import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import buttonCSS from './index.scss';
 
 // import to mock icon
-import arrowRight from '../../materials/icons/arrow-right';
+import arrowRight from '../../00-materials/icons/arrow-right';
 
 class AXAButton extends LitElement {
   static tagName = 'axa-button';
-  static styles = css`${unsafeCSS(buttonCSS)}`;
+  static styles = css`
+    ${unsafeCSS(buttonCSS)}
+  `;
 
   static get properties() {
     return {
@@ -47,12 +49,7 @@ class AXAButton extends LitElement {
     };
 
     return html`
-      <button
-        type="${this.type}"
-        class="a-button ${classMap(classes)}"
-        ?disabled="${this.disabled}"
-        @click="${this.handleButtonClick}"
-      >
+      <button type="${this.type}" class="a-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.handleButtonClick}">
         <div class="a-button__flex-wrapper">
           <slot></slot>
           ${this.icon && svg`${arrowRight()}`}

@@ -1,1 +1,1 @@
-module.exports = ['materials/bootstrap', 'materials/00-colors', 'materials/10-helpers'];
+module.exports = ['components/00-materials/00-colors.scss', 'components/00-materials/10-helpers.scss'];
