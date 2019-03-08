@@ -1,0 +1,15 @@
+@import '../../../static/scss/colors.scss';
+
+article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  background-color: $color-axa-dark-blue;
+  color: $color-prim-white;
+}
+
+div {
+  // align-self: center;
+}
