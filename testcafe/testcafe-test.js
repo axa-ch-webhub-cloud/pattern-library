@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-fixture('TestCafe Democase').page('http://localhost:9001');
+fixture('TestCafe Democase').page('http://localhost:9999');
 
 test('Should check button for various states', async t => {
   const a = Selector('div');
