@@ -66,7 +66,8 @@
   }
 }
 
-.m-footer-links__category__icon {
+.m-footer-links__category__icon,
+.m-footer-links__category__icon.a-icon__svg {
   @include dropdown-icon($footer-links__category__icon-size, $footer-links__category__icon-right);
 
   display: none;
@@ -101,6 +102,11 @@
     /* stylelint-disable-next-line declaration-no-important */
     height: auto !important;
   }
+}
+
+.m-footer-links.js-footer--is-open .m-footer-links__list {
+  /* stylelint-disable-next-line declaration-no-important */
+  height: auto !important;
 }
 
 .m-footer-links__list-item {
