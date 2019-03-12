@@ -30,29 +30,16 @@ class AXAFooterSmall extends LitElement {
       // 'a-button--cta': this.cta && !this.secondary,
     };
 
-    // return html`
-    //   <button type="${this.type}" class="a-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.handleButtonClick}">
-    //     <div class="a-button__flex-wrapper">
-    //       <slot></slot>
-    //       ${this.icon && svg`${arrowRight()}`}
-    //     </div>
-    //   </button>
-    // `;
-
     return html`
-      <article>
+      <article class="footer-small">
         <div class="footer-small__side-aligned">
           <p>DE | FR | IT | EN</p>
         </div>
 
         <div class="footer-small__side-aligned">
-          <div class="container2">
-            <div class="block1">
-              <p>Terms of use | Data protection</p>
-            </div>
-            <div class="block2">
-              <p>&nbsp;© 2019 AXA Insurance Ltd.</p>
-            </div>
+          <div class="footer-small__disclaimer">
+            <p class="footer-small__disclaimer--left">Terms of use | Data protection</p>
+            <p class="footer-small__disclaimer--right">&nbsp;© 2019 AXA Insurance Ltd.</p>
           </div>
         </div>
       </article>
