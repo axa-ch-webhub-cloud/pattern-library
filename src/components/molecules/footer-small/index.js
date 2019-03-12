@@ -33,12 +33,17 @@ class AXAFooterSmall extends LitElement {
     return html`
       <article class="footer-small">
         <div class="footer-small__side-aligned">
-          <p>DE | FR | IT | EN</p>
+          <p>
+            <a href="https://google.com">DE</a> | <a href="https://google.com">FR</a> | <a href="https://google.com">IT</a> |
+            <a href="https://google.com">EN</a>
+          </p>
         </div>
 
         <div class="footer-small__side-aligned">
           <div class="footer-small__disclaimer">
-            <p class="footer-small__disclaimer--left">Terms of use | Data protection</p>
+            <p class="footer-small__disclaimer--left">
+              <a href="https://google.com">Terms of use</a> | <a href="https://google.com">Data protection</a>
+            </p>
             <p class="footer-small__disclaimer--right">&nbsp;© 2019 AXA Insurance Ltd.</p>
           </div>
         </div>
