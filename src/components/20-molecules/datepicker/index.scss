@@ -1,5 +1,5 @@
 .m-datepicker {
-  @include typo-base();
+  // @include typo-base();
   max-width: 260px;
   padding: 20px 30px;
   background: $color-prim-white;
@@ -23,7 +23,7 @@
 
   &__weekdays,
   &__calendar-cell {
-    @include typo-css('typo-18');
+    // @include typo-css('typo-18');
   }
 
   &__weekdays {
