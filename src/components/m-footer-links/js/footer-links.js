@@ -1,10 +1,6 @@
 import on from '../../../js/on';
-import fire from '../../../js/fire';
-import getAttribute from '../../../js/get-attribute';
-import { AXA_EVENTS, EVENTS } from '../../../js/ui-events';
+import { EVENTS } from '../../../js/ui-events';
 import DeviceStateObserver from '../../../js/device-state';
-
-const hasDropdownBreakpoints = 'xs';
 
 // @TODO: dependency to a-device-state not explicit
 /**
@@ -12,7 +8,8 @@ const hasDropdownBreakpoints = 'xs';
  */
 export default class FooterLinks {
   static DEFAULTS = {
-    link: 'js-footer-links__link',
+    link: 'js-dropdown__toggle',
+    isOpenClass: 'js-footer--is-open',
   };
 
   constructor(wcNode, options) {
@@ -22,8 +19,6 @@ export default class FooterLinks {
       ...options,
     };
 
-    this.deviceStateObserver = new DeviceStateObserver();
-
     this.handleClick = this.handleClick.bind(this);
 
     this.on();
@@ -31,59 +26,26 @@ export default class FooterLinks {
 
   on() {
     this.off();
-
-    this.unsubscribe = this.deviceStateObserver.listen((state) => {
-      const { breakpoint } = state;
-      const hasDropdown = hasDropdownBreakpoints.indexOf(breakpoint) > -1;
-
-      if (hasDropdown && !this.dropDown) {
-        // this.dropDown = new DropDown(wcNode);
-      } else if (!hasDropdown && this.dropDown) {
-        // this.dropDown.destroy();
-        delete this.dropDown;
-      }
-    });
-
-    this.deviceStateObserver.triggerOnce();
-
     this.unClick = on(this.wcNode, EVENTS.CLICK, this.options.link, this.handleClick, { passive: false });
   }
 
   off() {
-    if (this.unsubscribe) {
-      this.unsubscribe();
-    }
-
     if (this.unClick) {
       this.unClick();
     }
   }
 
-  handleClick(event, delegateTarget) {
-    // @todo: would be cool to be able to use props here, cause now it needs JSON.parse...
-    const index = getAttribute(delegateTarget, 'index');
-    const { wcNode: { props: { items } } } = this;
-    /**
-     * axa-click event.
-     *
-     * @event FooterLinks#axa-click
-     * @type {object}
-     */
-    const cancelled = fire(this.wcNode, AXA_EVENTS.AXA_CLICK, items[index], { bubbles: true, cancelable: true, composed: true });
+  handleClick(event) {
+    event.preventDefault();
+    this.toggleListSubelement(event.target);
+  }
 
-    if (!cancelled) {
-      event.preventDefault();
-    }
+  toggleListSubelement() {
+    this.wcNode.classList.toggle(FooterLinks.DEFAULTS.isOpenClass);
   }
 
   destroy() {
     this.off();
-
-    if (this.dropDown) {
-      this.dropDown.destroy();
-      delete this.dropDown;
-    }
-
     delete this.wcNode;
   }
 }

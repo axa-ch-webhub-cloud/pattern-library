@@ -104,6 +104,10 @@
   }
 }
 
+.m-footer-links.js-footer--is-open .m-footer-links__list {
+  height: auto !important;
+}
+
 .m-footer-links__list-item {
   display: block;
   width: 100%;
