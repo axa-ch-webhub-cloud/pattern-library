@@ -1,8 +1,6 @@
 import on from '../../../js/on';
 import { EVENTS } from '../../../js/ui-events';
-import DeviceStateObserver from '../../../js/device-state';
 
-// @TODO: dependency to a-device-state not explicit
 /**
  * @fires FooterLinks#axa-click
  */
