@@ -12,13 +12,14 @@
     "clean-tmp-materials": "rimraf src/components/materials/icons/.tmp",
     "release": "npm whoami && npm run test && npm run build && lerna publish",
     "start": "npm run storybook",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
     "test": "eslint src/",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
+    "breakpoint-sass": "^2.7.1",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"
   },

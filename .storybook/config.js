@@ -12,31 +12,6 @@ import 'core-js/fn/object/set-prototype-of';
 
 import logo from '../src/static/svg/logo-axa.svg';
 
-// old config
-// Option defaults.
-// addDecorator(
-//   withOptions({
-//     name: 'AXA Living Styleguide',
-//     url: 'https://github.com/axa-ch/patterns-library/tree/develop-v2',
-//     theme: {
-//       ...themes.normal,
-//       mainTextFace: '"Source Sans Pro", Arial, sans-serif;',
-//       menuLink: {
-//         color: 'black',
-//       },
-//       brand: {
-//         height: '55px',
-//         paddingLeft: '65px',
-//         background: `url("/svg/logo-axa.svg") no-repeat`,
-//       },
-//       brandLink: {
-//         border: 'none',
-//         textAlign: 'left',
-//       },
-//     },
-//   })
-// );
-
 // theme - logo some sort of broken
 addParameters({
   options: {
@@ -49,12 +24,18 @@ addParameters({
   },
 });
 
-function requireAll(requireContext) {
-  return requireContext.keys().map(requireContext);
-}
+const materials = require.context('../src/components/00-materials', true, /\.story\.js$/);
+const atoms = require.context('../src/components/10-atoms', true, /\.story\.js$/);
+const molecules = require.context('../src/components/20-molecules', true, /\.story\.js$/);
+const organisms = require.context('../src/components/30-organisms', true, /\.story\.js$/);
 
-function loadStories() {
-  requireAll(require.context('..', true, /_stories|_demo/));
-}
-
-configure(loadStories, module);
+configure(
+  () =>
+    [].concat(
+      materials.keys().forEach(materials),
+      atoms.keys().forEach(atoms),
+      molecules.keys().forEach(molecules),
+      organisms.keys().forEach(organisms)
+    ),
+  module
+);
