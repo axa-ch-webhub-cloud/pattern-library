@@ -41,11 +41,11 @@ class AXAFooterSmall extends LitElement {
 
     return html`
       <article>
-        <div>
+        <div class="footer-small__side-aligned">
           <p>DE | FR | IT | EN</p>
         </div>
 
-        <div class="c2">
+        <div class="footer-small__side-aligned">
           <div class="container2">
             <div class="block1">
               <p>Terms of use | Data protection</p>
