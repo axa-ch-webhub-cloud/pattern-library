@@ -1,0 +1,236 @@
+$dropdown-color: $color-prim-gray-mine-shaft !default;
+$dropdown-color--hover: $color-axa-blue !default;
+$dropdown-border-width: 1px;
+$dropdown-border-style: $dropdown-border-width solid $color-prim-gray-silver;
+$dropdown-height: 40px;
+
+@mixin normalize-native-select-styles() {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+
+  &:active,
+  &:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &::-moz-focus-inner,
+  option::-moz-focus-inner {
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:focus::-ms-value {
+    color: inherit;
+    background: transparent;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+:host(.is-dropdown-open) .m-dropdown__content {
+  height: auto;
+}
+
+:host([max-height]) .m-dropdown__content {
+  max-height: 352px;
+  overflow: auto;
+}
+
+.m-dropdown {
+  // @include typo-base();
+  // @include typo-css('typo-16');
+  position: relative;
+
+  &__list {
+    padding: 10.5px 20px 10.5px 12px;
+    background: $color-prim-white;
+    border: 1px solid $color-prim-gray-silver;
+    color: $dropdown-color;
+    height: $dropdown-height;
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      border-color: $dropdown-color--hover;
+
+      .m-dropdown--icon,
+      .m-dropdown__icon {
+        color: $dropdown-color--hover;
+      }
+    }
+  }
+
+  &__select {
+    @include normalize-native-select-styles();
+    min-width: 100px;
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    height: $dropdown-height;
+    line-height: normal;
+
+    .is-dropdown-open & {
+      height: auto;
+    }
+  }
+
+  &__select,
+  &__button {
+    cursor: pointer;
+  }
+
+  &__select-icon {
+    display: block;
+    width: 40px;
+    height: $dropdown-height;
+    background: $color-prim-white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+    text-align: center;
+
+    .a-icon__svg {
+      width: 15px;
+      height: $dropdown-height;
+      color: $color-prim-gray-dusty;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+      line-height: 0;
+
+      .is-dropdown-open & {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__select-option--hidden {
+    display: none;
+  }
+
+  &__toggle {
+    position: relative;
+    background: transparent;
+    border: none;
+    height: $dropdown-height;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: solid 1px $color-axa-blue;
+    }
+  }
+
+  &__content {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    height: 0;
+    min-width: 100%;
+    overflow: hidden;
+    transition: height 0.3s ease;
+
+    .is-dropdown-open & {
+      height: auto;
+    }
+
+    margin-top: -$dropdown-border-width;
+    background: $color-prim-white;
+  }
+
+  &__option,
+  &__toggle,
+  &__button,
+  &__select {
+    // @include typo-css('typo-18');
+    line-height: normal;
+  }
+
+  &__option,
+  &__toggle,
+  &__button {
+    padding: 10px 40px 10px 10px;
+    width: 100%;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    color: $dropdown-color;
+    white-space: nowrap;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: 0;
+      color: $dropdown-color--hover;
+      text-decoration: none;
+      background: $color-prim-gray-wild-sand;
+    }
+  }
+
+  &__item {
+    border-left: $dropdown-border-style;
+    border-right: $dropdown-border-style;
+
+    &--is-selected .m-dropdown__button {
+      background: $color-prim-gray-wild-sand;
+      color: $dropdown-color--hover;
+    }
+
+    &:first-child {
+      border-top: $dropdown-border-style;
+    }
+
+    &:last-child {
+      border-bottom: 3px solid $color-prim-gray-silver;
+    }
+  }
+
+  &__list--native {
+    @include breakpoint($mediaquery-md-up) {
+      display: none;
+    }
+  }
+
+  &__list--enhanced {
+    display: none;
+
+    @include breakpoint($mediaquery-md-up) {
+      display: block;
+    }
+  }
+
+  &--native-only {
+    .m-dropdown__list--native {
+      display: block;
+    }
+    .m-dropdown__list--enhanced {
+      display: none;
+
+      @include breakpoint($mediaquery-md-up) {
+        display: none;
+      }
+    }
+  }
+}
