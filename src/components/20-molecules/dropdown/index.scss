@@ -5,8 +5,6 @@ $dropdown-border-style: $dropdown-border-width solid $color-prim-gray-silver;
 $dropdown-height: 40px;
 
 @mixin normalize-native-select-styles() {
-  -moz-appearance: none;
-  -webkit-appearance: none;
   appearance: none;
   background: transparent;
   border: none;
