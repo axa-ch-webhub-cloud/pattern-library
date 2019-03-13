@@ -2,9 +2,17 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 
-storiesOf('Footer Small', module)
-  //   .add('Footer Small - click event', () => {
-  //     const footer = document.createElement('axa-footer-small');
-  //    return footer;
-  //   })
-  .add('Footer Small', () => '<axa-footer-small></axa-footer-small>');
+const languages = [
+  { code: 'DE', link: 'https://google.ch' },
+  { code: 'FR', link: 'https://google.ch' },
+  { code: 'IT', link: 'https://google.ch' },
+  { code: 'EN', link: 'https://google.ch' },
+];
+
+const languagesAsString = JSON.stringify(languages);
+
+storiesOf('Footer Small', module).add(
+  'Footer Small',
+  () =>
+    `<axa-footer-small languageLinks=${languagesAsString} disclaimerLinks="[]" copyrightText="© 2019 AXA Insurance Ltd."></axa-footer-small>`
+);
