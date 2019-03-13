@@ -207,6 +207,7 @@ export class Datepicker extends LitElement {
 
   handleButtonOkClick() {
     this.toggleDatepicker();
+    this.outputDate = this.date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
     this.inputField.focus();
   }
 
@@ -225,7 +226,6 @@ export class Datepicker extends LitElement {
     this.day = date.getDate();
     this.index = index;
     this.date = date;
-    this.outputDate = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
