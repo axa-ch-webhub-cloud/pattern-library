@@ -1,6 +1,6 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import datepickerCSS from './index.scss';
-import { getWeekdays, getAllLocaleMonthsArray } from './utils/date';
+import { getWeekdays, getAllLocaleMonthsArray, parseLocalisedDateIfValid } from './utils/date';
 import Store from './utils/Store';
 
 const iconDatepicker = svg`<svg class="m-datepicker__input-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -121,6 +121,36 @@ export class Datepicker extends LitElement {
     this.toggleDatepicker();
   }
 
+  handleInputChange(e) {
+    e.preventDefault();
+    const validDate = this.isValidDate(e.target.value);
+    if (validDate) {
+      this.date = validDate;
+      this.outputDate = validDate.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
+    }
+  }
+
+  isValidDate(date) {
+    let out = false;
+    try {
+      const parsedDate = new Date(Date.parse(date));
+      // eslint-disable-next-line no-restricted-properties
+      const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
+      const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
+      if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
+        // const isValid = this.allowedYears.indexOf(isValidDateLocalized.getFullYear()) > 0;
+        console.log('is valid', out);
+        out = isValidDateLocalized;
+        // if (isInValidationYearRange) {
+        //   out = isValidDateLocalized;
+        // }
+      }
+    } catch (e) {
+      out = false;
+    }
+    return out;
+  }
+
   render() {
     return html`
       <article class="m-datepicker">
@@ -128,6 +158,7 @@ export class Datepicker extends LitElement {
           ? html`
               <div class="m-datepicker__input-wrap">
                 <input
+                  @keyup="${this.handleInputChange}"
                   class="m-datepicker__input js-datepicker__input"
                   type="text"
                   placeholder="Please select a date"
