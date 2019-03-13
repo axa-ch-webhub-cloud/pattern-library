@@ -10,7 +10,8 @@ storiesOf('Molecules/Dropdown', module)
     {"name": "Item 1", "value": "Item 1", "url": "#", "isSelected": false },
     {"name": "Item 2", "value": "Item 2", "url": "#", "isSelected": false },
     {"name": "Item 3", "value": "Item 3", "url": "#", "isSelected": false }
-    ]'></axa-dropdown>`
+    ]'></axa-dropdown>
+    `
   )
   .add(
     'Dropdown Forced Native',

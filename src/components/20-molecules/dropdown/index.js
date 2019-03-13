@@ -37,11 +37,12 @@ class AXADropdown extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    window.axaComponents = window.axaComponents || {};
     this.isOpen = false;
     this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
     this.title = this.selectedItem.name;
 
-    window.openDropdownInstance = false;
+    window.axaComponents.openDropdownInstance = false;
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
   }
@@ -122,8 +123,8 @@ class AXADropdown extends LitElement {
   }
 
   closeOpenDropdowns() {
-    if (window.openDropdownInstance && this !== window.openDropdownInstance) {
-      this.closeDropdown(window.openDropdownInstance);
+    if (window.axaComponents.openDropdownInstance && this !== window.axaComponents.openDropdownInstance) {
+      this.closeDropdown(window.axaComponents.openDropdownInstance);
     }
   }
 
@@ -176,7 +177,7 @@ class AXADropdown extends LitElement {
     elem.forEach(links, (index, link) => {
       link.setAttribute('tabindex', '0');
     });
-    window.openDropdownInstance = elem;
+    window.axaComponents.openDropdownInstance = elem;
   }
 
   closeDropdown(elem) {
@@ -186,7 +187,7 @@ class AXADropdown extends LitElement {
       link.setAttribute('tabindex', '-1');
     });
     elem.isOpen = false;
-    window.openDropdownInstance = false;
+    window.axaComponents.openDropdownInstance = false;
   }
 
   updateCurrentItem(value) {
