@@ -1,7 +1,13 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import datepickerCSS from './index.scss';
 import { getWeekdays, getAllLocaleMonthsArray } from './utils/date';
 import Store from './utils/Store';
+
+const iconDatepicker = svg`<svg class="m-datepicker__input-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path fill="none" d="M0 0h24v24H0z"/>
+<path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+</svg>
+`;
 
 export class Datepicker extends LitElement {
   static tagName = 'axa-datepicker';
@@ -11,11 +17,13 @@ export class Datepicker extends LitElement {
 
   static get properties() {
     return {
+      open: { type: Boolean, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
       year: { type: Number, reflect: true },
       month: { type: Number, reflect: true },
       day: { type: Number, reflect: true },
+      inputField: { type: Boolean },
       monthItems: { type: Array },
       yearItems: { type: Array },
       cells: { type: Array },
@@ -64,11 +72,25 @@ export class Datepicker extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    window.axaComponents = window.axaComponents || {};
   }
 
   disconnectedCallback() {
     this.dropdownMonth.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
+  }
+
+  toggleDatepicker() {
+    if (!this.open) {
+      this.open = true;
+      if (window.axaComponents.openDropdownInstance) {
+        window.axaComponents.openDropdownInstance.open = false;
+      }
+      window.axaComponents.openDropdownInstance = this;
+    } else {
+      this.open = false;
+      window.axaComponents.openDropdownInstance = null;
+    }
   }
 
   handleChangeDropdownMonth(e) {
@@ -91,66 +113,97 @@ export class Datepicker extends LitElement {
     }
   }
 
+  handleInputButtonClick(e) {
+    e.preventDefault();
+    this.toggleDatepicker();
+  }
+
   render() {
     return html`
       <article class="m-datepicker">
-        <div className="m-datepicker__article">
-          <div class="m-datepicker__dropdown-wrap">
-            <axa-dropdown
-              class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-              max-height
-              items="${JSON.stringify(this.monthItems)}"
-              title="Month"
-            >
-            </axa-dropdown>
+        ${this.inputField
+          ? html`
+              <div class="m-datepicker__input-wrap">
+                <input class="m-datepicker__input" type="text" placeholder="Please select a date" />
+                <button class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
+                  <span class="m-datepicker__input-icon">${iconDatepicker}</span>
+                </button>
+              </div>
+            `
+          : ''}
+        <div class="m-datepicker__wrap">
+          <div className="m-datepicker__article">
+            <div class="m-datepicker__dropdown-wrap">
+              <axa-dropdown
+                class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
+                max-height
+                items="${JSON.stringify(this.monthItems)}"
+                title="Month"
+              >
+              </axa-dropdown>
 
-            <axa-dropdown
-              class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-              max-height
-              items="${JSON.stringify(this.yearItems)}"
-              title="Year"
-            >
-            </axa-dropdown>
-          </div>
+              <axa-dropdown
+                class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
+                max-height
+                items="${JSON.stringify(this.yearItems)}"
+                title="Year"
+              >
+              </axa-dropdown>
+            </div>
 
-          <div class="m-datepicker__weekdays">
-            ${this.weekdays
-              ? this.weekdays.map(
-                  day =>
-                    html`
-                      <div class="m-datepicker__weekdays-day">${day}</div>
-                    `
-                )
-              : ''}
-          </div>
+            <div class="m-datepicker__weekdays">
+              ${this.weekdays
+                ? this.weekdays.map(
+                    day =>
+                      html`
+                        <div class="m-datepicker__weekdays-day">${day}</div>
+                      `
+                  )
+                : ''}
+            </div>
 
-          <div class="m-datepicker__calendar js-datepicker__calendar">
-            ${this.cells
-              ? this.cells.map(
-                  (cell, index) =>
-                    html`
-                      <button
-                        @click="${this.handleDatepickerCalendarCellClick}"
-                        tabindex="0"
-                        data-index="${index}"
-                        data-value="${cell.value}"
-                        class="m-datepicker__calendar-cell ${cell.className}"
-                      >
-                        ${cell.text}
-                      </button>
-                    `
-                )
-              : ''}
-          </div>
-          <div class="m-datepicker__buttons">
-            <axa-button ghost class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
-              >${this.labelButtonCancel}</axa-button
-            >
-            <axa-button class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok">${this.labelButtonOk}</axa-button>
+            <div class="m-datepicker__calendar js-datepicker__calendar">
+              ${this.cells
+                ? this.cells.map(
+                    (cell, index) =>
+                      html`
+                        <button
+                          @click="${this.handleDatepickerCalendarCellClick}"
+                          tabindex="0"
+                          data-index="${index}"
+                          data-value="${cell.value}"
+                          class="m-datepicker__calendar-cell ${cell.className}"
+                        >
+                          ${cell.text}
+                        </button>
+                      `
+                  )
+                : ''}
+            </div>
+            <div class="m-datepicker__buttons">
+              <axa-button
+                ghost
+                class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
+                @click="${this.handleButtonCancelClick}"
+                >${this.labelButtonCancel}</axa-button
+              >
+              <axa-button class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok" @click="${this.handleButtonOkClick}"
+                >${this.labelButtonOk}</axa-button
+              >
+            </div>
           </div>
         </div>
       </article>
     `;
+  }
+
+  handleButtonOkClick() {
+    this.setDate('');
+    this.toggleDatepicker();
+  }
+
+  handleButtonCancelClick() {
+    this.toggleDatepicker();
   }
 
   handleDatepickerCalendarCellClick(e) {
