@@ -20,6 +20,7 @@ export class Datepicker extends LitElement {
       open: { type: Boolean, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
+      outputDate: { type: String, reflect: true },
       year: { type: Number, reflect: true },
       month: { type: Number, reflect: true },
       day: { type: Number, reflect: true },
@@ -42,6 +43,7 @@ export class Datepicker extends LitElement {
     this.labelButtonOk = 'OK'; // TODO get from attributes
     this.startDate = new Date(); // TODO get from attributes
     this.date = this.startDate;
+    this.outputDate = '';
     this.year = this.date.getFullYear();
     this.month = this.date.getMonth();
     this.allowedYears = [2019, 2020]; // TODO get from attributes
@@ -66,6 +68,7 @@ export class Datepicker extends LitElement {
   firstUpdated() {
     this.dropdownMonth = this.shadowRoot.querySelector('.js-datepicker__dropdown-month');
     this.dropdownYear = this.shadowRoot.querySelector('.js-datepicker__dropdown-year');
+    this.inputField = this.shadowRoot.querySelector('.js-datepicker__input');
     this.dropdownMonth.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
   }
@@ -124,7 +127,12 @@ export class Datepicker extends LitElement {
         ${this.inputField
           ? html`
               <div class="m-datepicker__input-wrap">
-                <input class="m-datepicker__input" type="text" placeholder="Please select a date" />
+                <input
+                  class="m-datepicker__input js-datepicker__input"
+                  type="text"
+                  placeholder="Please select a date"
+                  value="${this.outputDate}"
+                />
                 <button class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
                   <span class="m-datepicker__input-icon">${iconDatepicker}</span>
                 </button>
@@ -198,8 +206,8 @@ export class Datepicker extends LitElement {
   }
 
   handleButtonOkClick() {
-    this.setDate('');
     this.toggleDatepicker();
+    this.inputField.focus();
   }
 
   handleButtonCancelClick() {
@@ -217,6 +225,7 @@ export class Datepicker extends LitElement {
     this.day = date.getDate();
     this.index = index;
     this.date = date;
+    this.outputDate = date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
