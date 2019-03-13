@@ -9,7 +9,7 @@ class AXAFooterSmall extends LitElement {
 
   static get properties() {
     return {
-      languageLinks: { type: Array, reflect: true },
+      languageLinks: { type: Array },
       disclaimerLinks: { type: Array },
       copyrightText: { type: String },
     };
@@ -22,26 +22,22 @@ class AXAFooterSmall extends LitElement {
     this.copyrightText = '';
   }
 
-  handleButtonClick = () => {
-    // if (typeof this.onClick === 'function') {
-    //   this.onClick();
-    // }
-  };
+  formatText(text, arrIndex, arrLength) {
+    return `${text}${arrIndex !== arrLength - 1 ? ' | ' : ''}`;
+  }
 
   render() {
-    const classes = {
-      // 'a-button--large': this.large,
-      // 'a-button--secondary': this.secondary,
-      // 'a-button--inverted': this.inverted,
-      // 'a-button--motion': this.motion,
-      // 'a-button--cta': this.cta && !this.secondary,
-    };
-
-    const { copyrightText, languageLinks } = this;
     const languageHtml = this.languageLinks.map(
-      (lang, index) =>
+      (language, index) =>
         html`
-          <a href="${lang.link}">${lang.code}${index !== languageLinks.length - 1 ? ' | ' : ''}</a>
+          <a href="${language.link}">${this.formatText(language.text, index, this.languageLinks.length)}</a>
+        `
+    );
+
+    const disclaimerHtml = this.disclaimerLinks.map(
+      (disclaimer, index) =>
+        html`
+          <a href="${disclaimer.link}">${this.formatText(disclaimer.text, index, this.disclaimerLinks.length)}</a>
         `
     );
 
@@ -56,9 +52,9 @@ class AXAFooterSmall extends LitElement {
         <div class="footer-small__side-aligned">
           <div class="footer-small__disclaimer">
             <p class="footer-small__disclaimer--left">
-              <a href="https://google.com">Terms of use</a> | <a href="https://google.com">Data protection</a>
+              ${disclaimerHtml}
             </p>
-            <p class="footer-small__disclaimer--right">${copyrightText}</p>
+            <p class="footer-small__disclaimer--right">${this.copyrightText}</p>
           </div>
         </div>
       </article>
