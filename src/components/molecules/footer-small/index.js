@@ -8,11 +8,18 @@ class AXAFooterSmall extends LitElement {
   `;
 
   static get properties() {
-    return {};
+    return {
+      languageLinks: { type: Array, reflect: true },
+      disclaimerLinks: { type: Array },
+      copyrightText: { type: String },
+    };
   }
 
   constructor() {
     super();
+    this.languageLinks = [];
+    this.disclaimerLinks = [];
+    this.copyrightText = '';
   }
 
   handleButtonClick = () => {
@@ -30,12 +37,19 @@ class AXAFooterSmall extends LitElement {
       // 'a-button--cta': this.cta && !this.secondary,
     };
 
+    const { copyrightText, languageLinks } = this;
+    const languageHtml = this.languageLinks.map(
+      (lang, index) =>
+        html`
+          <a href="${lang.link}">${lang.code}${index !== languageLinks.length - 1 ? ' | ' : ''}</a>
+        `
+    );
+
     return html`
       <article class="footer-small">
         <div class="footer-small__side-aligned">
           <p>
-            <a href="https://google.com">DE</a> | <a href="https://google.com">FR</a> | <a href="https://google.com">IT</a> |
-            <a href="https://google.com">EN</a>
+            ${languageHtml}
           </p>
         </div>
 
@@ -44,7 +58,7 @@ class AXAFooterSmall extends LitElement {
             <p class="footer-small__disclaimer--left">
               <a href="https://google.com">Terms of use</a> | <a href="https://google.com">Data protection</a>
             </p>
-            <p class="footer-small__disclaimer--right">&nbsp;© 2019 AXA Insurance Ltd.</p>
+            <p class="footer-small__disclaimer--right">${copyrightText}</p>
           </div>
         </div>
       </article>
