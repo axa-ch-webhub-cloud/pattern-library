@@ -55,15 +55,20 @@ export class Datepicker extends LitElement {
     this.weekdays = getWeekdays(this.startDate, this.locale);
   }
 
+  firstUpdated() {
+    this.dropdownMonth = this.shadowRoot.querySelector('.js-datepicker__dropdown-month');
+    this.dropdownYear = this.shadowRoot.querySelector('.js-datepicker__dropdown-year');
+    this.dropdownMonth.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
+    this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
+  }
+
   connectedCallback() {
     super.connectedCallback();
   }
 
-  firstUpdated() {
-    const dropdownMonth = this.shadowRoot.querySelector('.js-datepicker__dropdown-month');
-    const dropdownYear = this.shadowRoot.querySelector('.js-datepicker__dropdown-year');
-    dropdownMonth.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
-    dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
+  disconnectedCallback() {
+    this.dropdownMonth.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
+    this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
   }
 
   handleChangeDropdownMonth(e) {
