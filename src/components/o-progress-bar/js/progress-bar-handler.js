@@ -5,8 +5,8 @@ const LOWEST_PRIORITY = 2;
 export default class ProgressBarHandler {
   constructor(priority = LOWEST_PRIORITY) {
     this.priority = priority;
-    this.value = '';
-    this.max = '';
+    this.value = 0;
+    this.max = 0;
     this.logs = [];
   }
 
@@ -22,6 +22,7 @@ export default class ProgressBarHandler {
     if (Math.sign(this.max) < 0) {
       this.logs.push(new Error(Date.now(), `max ${this.max} is negative`));
     }
+
     if (this.value > this.max) {
       if ((this.max === undefined || this.max === null) && this.value > 1) {
         this.logs.push(new Information(Date.now(), 'indeterminate state is not realised'));
