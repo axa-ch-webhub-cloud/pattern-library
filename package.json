@@ -19,7 +19,6 @@
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "breakpoint-sass": "^2.7.1",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"
   },
@@ -35,6 +34,7 @@
     "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
+    "breakpoint-sass": "^2.7.1",
     "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
