@@ -22,8 +22,8 @@ class AXAProgressBar extends BaseComponentGlobal {
     classes: PropTypes.string,
     value: PropTypes.number,
     max: PropTypes.number,
-    showIcon: PropTypes.bool,
-    showPercentage: PropTypes.bool,
+    iconShown: PropTypes.bool,
+    percentageShown: PropTypes.bool,
   }
 
   // Only use this if you need to observe attributes other than your prop-types!

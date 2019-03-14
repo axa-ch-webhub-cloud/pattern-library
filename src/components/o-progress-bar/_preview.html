@@ -18,8 +18,8 @@
   possible attributes:
 - value -> positiv, numeric values
 - max ->  positiv, numeric values
-- show-icon -> true / false (optional)
-- show-percentage -> true / false (optional)
+- icon-shown -> true / false (optional)
+- percentage-shown -> true / false (optional)
 -->
 
 <!-- *** EXAMPLES ********************************************************** -->
@@ -34,8 +34,8 @@
   classes="o-progress-bar"
   class="js-progress-bar-demo"
   max="300"
-  show-icon
-  show-percentage
+  icon-shown
+  percentage-shown
 >
 </axa-progress-bar>
 <div style="margin-top: 30px; margin-bottom: 30px; text-align: center">
@@ -51,8 +51,8 @@
   classes="o-progress-bar"
   value="-1"
   max="100"
-  show-icon
-  show-percentage=false
+  icon-shown
+  percentage-shown=false
 >
 </axa-progress-bar>
 </br>
@@ -60,14 +60,13 @@
 <!-- Example 3
   expected outcome:
 - no icon displayed
-- no percentage displayed
 -->
 <axa-progress-bar
   classes="o-progress-bar"
   value="22.2"
   max="50"
   showIcon=false
-  show-percentage=""
+  percentage-shown=""
 >
 </axa-progress-bar>
 </br>
@@ -81,7 +80,7 @@
 <axa-progress-bar
   classes="o-progress-bar"
   value="22.2"
-  show-percentage
+  percentage-shown
 >
 </axa-progress-bar>
 </br>
@@ -93,8 +92,8 @@
 <axa-progress-bar
   classes="o-progress-bar"
   value="0.1"
-  show-percentage
-  show-icon
+  percentage-shown
+  icon-shown
 >
 </axa-progress-bar>
 </br>
@@ -107,8 +106,8 @@
   classes="o-progress-bar"
   value="50"
   max="40"
-  show-percentage
-  show-icon
+  percentage-shown
+  icon-shown
 >
 </axa-progress-bar>
 </br>

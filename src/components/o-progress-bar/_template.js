@@ -8,8 +8,8 @@ export default function ({
   classes,
   value = 0,
   max,
-  showIcon,
-  showPercentage,
+  iconShown,
+  percentageShown,
 }) {
   let percentage = 100;
   if (Math.sign(value) < 0 || Math.sign(max) < 0) {
@@ -25,9 +25,9 @@ export default function ({
 
   return html`<article class="${classes}">
     <div class="o-progress-bar__container">
-      ${showPercentage ? html`<p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>` : ''}
+      ${percentageShown ? html`<p class="o-progress-bar__percentage"><span>${percentage}</span>${percentageSymbol}</p>` : ''}
       <progress class="o-progress-bar__progress" value="${value}" max="${max}"><span>${percentage}</span>${percentageSymbol}</progress>
-      ${showIcon ? html`<button class="o-progress-bar__icon-button" type="button">
+      ${iconShown ? html`<button class="o-progress-bar__icon-button" type="button">
           <axa-icon class="o-progress-bar__closing-icon" icon-class="a-icon__svg--small" icon="${closingIcon}"></axa-icon>
         </button>` : ''}
     </div>

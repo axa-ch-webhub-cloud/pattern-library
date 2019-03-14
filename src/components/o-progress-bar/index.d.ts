@@ -3,8 +3,8 @@ export interface Props {
   classes?: string;
   value?: number;
   max?: number;
-  showIcon?: boolean;
-  showPercentage?: boolean;
+  iconShown?: boolean;
+  percentageShown?: boolean;
 }
 
 export default interface AXAProgressBar extends HTMLElement, Props {
