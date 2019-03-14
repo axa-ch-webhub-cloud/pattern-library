@@ -7,13 +7,20 @@ const autoprefixer = require('autoprefixer');
 const stripFontFace = require('postcss-strip-font-face'); // strip all font faces in the bundled css
 const postcss = require('postcss');
 const glob = require('glob');
+const path = require('path');
 
 const fs = require('fs');
 
+const base = path.resolve(process.cwd(), 'src');
+
+// Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
+const globals = require('./config/globals.js')
+  .map(item => `@import '${base}/${item}';`)
+  .join('\n');
+
 const babelOptions = JSON.parse(fs.readFileSync('./.storybook/.babelrc')); // get the babelrc file
 
-
-const input = glob.sync('src/components/@(atoms|molecules|organism)/*/index*.js');
+const input = glob.sync('src/components/@(10-atoms|20-molecules|30-organism)/**/index*.js');
 
 /* if you want to test lerna publish with demo-button and demo-link
 const input = glob.sync('src/demo/@(demo-button|demo-link)/index*.js');
@@ -27,9 +34,8 @@ const plugins = [
     insert: true,
     include: ['**/*.scss'],
     options: {
-      includePaths: [
-        'node_modules',
-      ],
+      includePaths: ['node_modules', path.resolve(path.dirname(require.resolve('breakpoint-sass/package.json')), 'stylesheets')],
+      data: globals,
     },
     processor: css => postcss([autoprefixer, stripFontFace])
       .process(css)

@@ -5,11 +5,11 @@
   "module": "lib",
   "scripts": {
     "build": "npm run clean-lib-components && cross-env NODE_ENV=production rollup --config ./rollup.config.js && npm run build-icons",
-    "build-icons": "npm run clean-materials && svgo -f src/components/materials/icons -o src/components/materials/icons/.tmp && node scripts/icons.js && npm run clean-tmp-materials",
+    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/materials/icons/.tmp && node scripts/icons.js && npm run clean-tmp-materials",
     "clean-lib-components": "rimraf src/**/lib",
     "clean-materials": "npm run clean-lib-materials && npm run clean-tmp-materials",
     "clean-lib-materials": "rimraf src/components/materials/lib/**",
-    "clean-tmp-materials": "rimraf src/components/materials/icons/.tmp",
+    "clean-tmp-materials": "rimraf src/components/00-materials/icons/.tmp",
     "release": "npm whoami && npm run test && npm run build && lerna publish",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
