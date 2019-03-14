@@ -38,6 +38,7 @@ export class Error extends Log {
     this.priorityName = ERROR;
   }
   print() {
+    /* eslint-disable-next-line no-console */
     console.error(`${this.timestamp} priority: ${this.priority} type: ${this.priorityName}\n${this.message} `);
   }
 }
