@@ -10,6 +10,7 @@ export class Log {
     this.priorityName = '';
   }
   print() {
+    /* eslint-disable-next-line no-console */
     console.log(`${this.timestamp} priority: ${this.priority} type: ${this.priorityName}\n${this.message} `);
   }
 }
