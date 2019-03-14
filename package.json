@@ -10,7 +10,7 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./src/static",
     "test": "eslint src/",
-    "bs": "testcafe \"browserstack:Chrome@53.0:Windows 10\" testcafe/",
+    "bs": "BROWSERSTACK_USERNAME=lucamele1 BROWSERSTACK_ACCESS_KEY=JRgQNv7prk7yeVB9dEG6 testcafe \"browserstack:ie:Windows 10\" testcafe/",
     "test-tc": "sh ./testcafe/start-testcafe-run.sh",
     "test-cy": "sh ./cypress/start-cypress-run.sh"
   },
