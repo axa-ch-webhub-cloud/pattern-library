@@ -250,9 +250,6 @@ export class Datepicker extends LitElement {
     e.target.blur(); // Prevent the ugly focus ring after the click
     const index = parseInt(e.target.dataset.index, 10);
     const date = new Date(Date.parse(e.target.dataset.value));
-    // this.year = date.getFullYear();
-    // this.month = date.getMonth();
-    // this.day = date.getDate();
     this.index = index;
     this.date = date;
   }
