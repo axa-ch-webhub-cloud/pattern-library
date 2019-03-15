@@ -1,0 +1,37 @@
+@import '../../../static/scss/colors.scss';
+
+.footer-small {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  background: $color-axa-dark-blue;
+  color: $color-prim-white;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+
+  &__side-aligned {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  &__disclaimer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &--group-right {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+
+  &__link {
+    color: #fff;
+    text-decoration: none;
+  }
+}
