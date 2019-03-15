@@ -20,20 +20,13 @@
     flex-wrap: wrap;
     justify-content: center;
 
-    &--left {
-      padding-right: 5px;
-    }
-
-    &--right {
-      padding-left: 5px;
-    }
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
-  span {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-  }
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
 
   a {
     color: #fff;
