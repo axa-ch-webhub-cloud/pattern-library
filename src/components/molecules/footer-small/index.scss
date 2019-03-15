@@ -10,6 +10,10 @@
   color: $color-prim-white;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+
   &__side-aligned {
     margin: 0 auto;
     padding: 15px;
@@ -24,11 +28,7 @@
     padding-right: 5px;
   }
 
-  font-family: 'Source Sans Pro', Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-
-  a {
+  &__link {
     color: #fff;
     text-decoration: none;
   }
