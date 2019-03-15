@@ -24,8 +24,10 @@
     flex-wrap: wrap;
     justify-content: center;
 
-    padding-left: 5px;
-    padding-right: 5px;
+    &--group-right {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
   }
 
   &__link {
