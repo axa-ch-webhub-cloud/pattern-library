@@ -84,13 +84,13 @@ export class Datepicker extends LitElement {
   toggleDatepicker() {
     if (!this.open) {
       this.open = true;
-      if (window.axaComponents.openDropdownInstance) {
-        window.axaComponents.openDropdownInstance.open = false;
+      if (window.axaComponents.openDatepickerInstance) {
+        window.axaComponents.openDatepickerInstance.open = false;
       }
-      window.axaComponents.openDropdownInstance = this;
+      window.axaComponents.openDatepickerInstance = this;
     } else {
       this.open = false;
-      window.axaComponents.openDropdownInstance = null;
+      window.axaComponents.openDatepickerInstance = null;
     }
   }
 
@@ -288,13 +288,11 @@ export class Datepicker extends LitElement {
         value: index.toString(),
       }));
 
-      console.log('attributeChangedCallback()', this.monthItems);
-
-      // this.yearItems = this.allowedYears.map(item => ({
-      //   isSelected: item === this.year,
-      //   name: item.toString(),
-      //   value: item.toString(),
-      // }));
+      this.yearItems = this.allowedYears.map(item => ({
+        isSelected: item === this.year,
+        name: item.toString(),
+        value: item.toString(),
+      }));
 
       // Fire custom success events
       const eventChange = new CustomEvent('AXA_CHANGE', {
@@ -302,8 +300,8 @@ export class Datepicker extends LitElement {
         bubbles: true,
         cancelable: true,
       });
-
       this.dispatchEvent(eventChange);
+
       const eventValidation = new CustomEvent('AXA_VALIDATION', {
         detail: { type: 'success', message: 'valid' },
         bubbles: true,
