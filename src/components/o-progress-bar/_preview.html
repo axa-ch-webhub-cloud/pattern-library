@@ -44,7 +44,7 @@
 
 <!-- Example 2
   expected outcome:
-- error in console
+- error in console because of a negative value
 - no percentage displayed
 -->
 <axa-progress-bar
@@ -52,7 +52,6 @@
   value="-1"
   max="100"
   icon-shown
-  percentage-shown=false
 >
 </axa-progress-bar>
 </br>
@@ -60,12 +59,12 @@
 <!-- Example 3
   expected outcome:
 - no icon displayed
+- 44%
 -->
 <axa-progress-bar
   classes="o-progress-bar"
   value="22.2"
   max="50"
-  showIcon=false
   percentage-shown=""
 >
 </axa-progress-bar>
@@ -73,13 +72,13 @@
 
 <!-- Example 4
   expected outcome:
-- no icon displayed
 - fully loaded progress-bar, because of indeterminate state wich is not supported
 - information in console
 -->
 <axa-progress-bar
   classes="o-progress-bar"
   value="22.2"
+  icon-shown=""
   percentage-shown
 >
 </axa-progress-bar>
@@ -111,23 +110,35 @@
 >
 </axa-progress-bar>
 </br>
+
+<!-- Example 7
+  expected outcome:
+- 50% loaded progress-bar
+-->
+<axa-progress-bar
+  classes="o-progress-bar"
+  value="50"
+  max="100"
+  percentage-shown="percentage-shown"
+  icon-shown="icon-shown"
+>
+</axa-progress-bar>
 <!--
   the script animates the progressbar. Per iteration the value can be increased
   by a random value between 0 and the stepIndex. Each iteration has a timeout of
   100 milliseconds. Wich is defined in the timeout variable.
 -->
 <script>
-  let myVar;
   let a = 0;
   let value = 0;
-  const timeout = 100;
+  const iterationTime = 100;
   const stepIndex = 7;
   const progressbar = document.querySelector('.js-progress-bar-demo');
   const max = progressbar.getAttribute('max') ? progressbar.getAttribute('max') : 0;
 
   function run() {
     if (value >= max) { a = 0 }
-      myVar = setTimeout(() => {
+      setTimeout(() => {
       	a += Math.floor(Math.random() * (stepIndex - 1) + 1);
         if (a < max) {
             progressbar.setAttribute('value', a);
@@ -136,6 +147,6 @@
             progressbar.setAttribute('value', max);
         }
         value = a;
-      }, timeout);
+      }, iterationTime);
   }
 </script>
