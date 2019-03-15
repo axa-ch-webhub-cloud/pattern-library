@@ -1,12 +1,11 @@
-@import '../../../static/scss/colors.scss';
-
 .footer-small {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   flex-wrap: wrap;
 
-  background: $color-axa-dark-blue;
+  background: $color-prim-blue-azure;
   color: $color-prim-white;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
@@ -14,9 +13,19 @@
   font-size: 13px;
   font-weight: 400;
 
+  @include breakpoint($mediaquery-md-up) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   &__side-aligned {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    @include breakpoint($mediaquery-md-up) {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
   }
 
   &__disclaimer {
@@ -31,7 +40,7 @@
   }
 
   &__link {
-    color: #fff;
+    color: $color-prim-white;
     text-decoration: none;
   }
 }
