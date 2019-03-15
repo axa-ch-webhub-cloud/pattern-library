@@ -8,7 +8,6 @@ const iconDatepicker = svg`<svg class="m-datepicker__input-svg" xmlns="http://ww
 <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
 </svg>
 `;
-
 export class Datepicker extends LitElement {
   static tagName = 'axa-datepicker';
   static styles = css`
@@ -37,8 +36,7 @@ export class Datepicker extends LitElement {
   // TODO: set the selectd item of the year and month array from startdate
   constructor() {
     super();
-    this.className = 'm-datepicker';
-    this.locale = 'de-CH'; // TODO get from attributes
+    this.locale = 'de-ch'; // TODO get from attributes
     this.labelButtonCancel = 'Cancel'; // TODO get from attributes
     this.labelButtonOk = 'OK'; // TODO get from attributes
     this.startDate = new Date(); // TODO get from attributes
@@ -126,7 +124,11 @@ export class Datepicker extends LitElement {
     const validDate = this.isValidDate(e.target.value);
     if (validDate) {
       this.date = validDate;
-      this.outputDate = validDate.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
+      this.outputDate = validDate.toLocaleString(this.locale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      });
     }
   }
 
@@ -138,12 +140,7 @@ export class Datepicker extends LitElement {
       const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
       const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
       if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
-        // const isValid = this.allowedYears.indexOf(isValidDateLocalized.getFullYear()) > 0;
-        console.log('is valid', out);
         out = isValidDateLocalized;
-        // if (isInValidationYearRange) {
-        //   out = isValidDateLocalized;
-        // }
       }
     } catch (e) {
       out = false;
@@ -154,24 +151,23 @@ export class Datepicker extends LitElement {
   render() {
     return html`
       <article class="m-datepicker">
-        ${this.inputField
-          ? html`
-              <div class="m-datepicker__input-wrap">
-                <input
-                  @keyup="${this.handleInputChange}"
-                  class="m-datepicker__input js-datepicker__input"
-                  type="text"
-                  placeholder="Please select a date"
-                  value="${this.outputDate}"
-                />
-                <button class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
-                  <span class="m-datepicker__input-icon">${iconDatepicker}</span>
-                </button>
-              </div>
-            `
-          : ''}
+        ${this.inputField &&
+          html`
+            <div class="m-datepicker__input-wrap">
+              <input
+                @keyup="${this.handleInputChange}"
+                class="m-datepicker__input js-datepicker__input"
+                type="text"
+                placeholder="Please select a date"
+                value="${this.outputDate}"
+              />
+              <button class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
+                <span class="m-datepicker__input-icon">${iconDatepicker}</span>
+              </button>
+            </div>
+          `}
         <div class="m-datepicker__wrap">
-          <div className="m-datepicker__article">
+          <div class="m-datepicker__article">
             <div class="m-datepicker__dropdown-wrap">
               <axa-dropdown
                 class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
@@ -191,33 +187,31 @@ export class Datepicker extends LitElement {
             </div>
 
             <div class="m-datepicker__weekdays">
-              ${this.weekdays
-                ? this.weekdays.map(
-                    day =>
-                      html`
-                        <div class="m-datepicker__weekdays-day">${day}</div>
-                      `
-                  )
-                : ''}
+              ${this.weekdays &&
+                this.weekdays.map(
+                  day =>
+                    html`
+                      <div class="m-datepicker__weekdays-day">${day}</div>
+                    `
+                )}
             </div>
 
             <div class="m-datepicker__calendar js-datepicker__calendar">
-              ${this.cells
-                ? this.cells.map(
-                    (cell, index) =>
-                      html`
-                        <button
-                          @click="${this.handleDatepickerCalendarCellClick}"
-                          tabindex="0"
-                          data-index="${index}"
-                          data-value="${cell.value}"
-                          class="m-datepicker__calendar-cell ${cell.className}"
-                        >
-                          ${cell.text}
-                        </button>
-                      `
-                  )
-                : ''}
+              ${this.cells &&
+                this.cells.map(
+                  (cell, index) =>
+                    html`
+                      <button
+                        @click="${this.handleDatepickerCalendarCellClick}"
+                        tabindex="0"
+                        data-index="${index}"
+                        data-value="${cell.value}"
+                        class="m-datepicker__calendar-cell ${cell.className}"
+                      >
+                        ${cell.text}
+                      </button>
+                    `
+                )}
             </div>
             <div class="m-datepicker__buttons">
               <axa-button
@@ -238,8 +232,12 @@ export class Datepicker extends LitElement {
 
   handleButtonOkClick() {
     this.toggleDatepicker();
-    this.outputDate = this.date.toLocaleString(this.locale, { day: 'numeric', month: 'numeric', year: 'numeric' });
-    this.inputField.focus();
+    this.outputDate = this.date.toLocaleString(this.locale, {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    });
+    // this.inputField.focus();
   }
 
   handleButtonCancelClick() {
@@ -252,9 +250,9 @@ export class Datepicker extends LitElement {
     e.target.blur(); // Prevent the ugly focus ring after the click
     const index = parseInt(e.target.dataset.index, 10);
     const date = new Date(Date.parse(e.target.dataset.value));
-    this.year = date.getFullYear();
-    this.month = date.getMonth();
-    this.day = date.getDate();
+    // this.year = date.getFullYear();
+    // this.month = date.getMonth();
+    // this.day = date.getDate();
     this.index = index;
     this.date = date;
   }
@@ -263,18 +261,18 @@ export class Datepicker extends LitElement {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (name === 'date' && this.store && this.date) {
       // Validation
-      if (this.date.getFullYear() < this.allowedYears[0] || this.date.getFullYear() > this.allowedYears[this.allowedYears.length - 1]) {
-        const event = new CustomEvent('AXA_VALIDATION', {
-          detail: {
-            type: 'error',
-            message: 'not in range',
-          },
-          bubbles: true,
-          cancelable: true,
-        });
-        this.dispatchEvent(event);
-        return;
-      }
+      // if (this.date.getFullYear() < this.allowedYears[0] || this.date.getFullYear() > this.allowedYears[this.allowedYears.length - 1]) {
+      //   const event = new CustomEvent('AXA_VALIDATION', {
+      //     detail: {
+      //       type: 'error',
+      //       message: 'not in range',
+      //     },
+      //     bubbles: true,
+      //     cancelable: true,
+      //   });
+      //   this.dispatchEvent(event);
+      //   return;
+      // }
 
       // Update props which are dom reflected
       this.month = this.date.getMonth();
@@ -283,6 +281,20 @@ export class Datepicker extends LitElement {
 
       this.store.update(this.date);
       this.cells = this.store.getCells();
+
+      this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+        isSelected: index === this.month,
+        name: item.toString(),
+        value: index.toString(),
+      }));
+
+      console.log('attributeChangedCallback()', this.monthItems);
+
+      // this.yearItems = this.allowedYears.map(item => ({
+      //   isSelected: item === this.year,
+      //   name: item.toString(),
+      //   value: item.toString(),
+      // }));
 
       // Fire custom success events
       const eventChange = new CustomEvent('AXA_CHANGE', {
