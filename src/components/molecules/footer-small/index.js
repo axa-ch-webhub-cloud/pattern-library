@@ -44,17 +44,15 @@ class AXAFooterSmall extends LitElement {
     return html`
       <article class="footer-small">
         <div class="footer-small__side-aligned">
-          <span>
-            ${languageHtml}
-          </span>
+          ${languageHtml}
         </div>
 
         <div class="footer-small__side-aligned">
           <div class="footer-small__disclaimer">
-            <span class="footer-small__disclaimer--left">
+            <span class="footer-small__disclaimer">
               ${disclaimerHtml}
             </span>
-            <span class="footer-small__disclaimer--right">${this.copyrightText}</span>
+            <span class="footer-small__disclaimer">${this.copyrightText}</span>
           </div>
         </div>
       </article>
