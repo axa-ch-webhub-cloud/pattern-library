@@ -22,13 +22,11 @@ export default class ProgressBarHandler {
     if (Math.sign(this.max) < 0) {
       this.logs.push(new Error(Date.now(), `max ${this.max} is negative`));
     }
-
-    if (this.value > this.max) {
-      if ((this.max === undefined || this.max === null) && this.value > 1) {
-        this.logs.push(new Information(Date.now(), 'indeterminate state is not realised'));
-      } else if (this.max !== undefined && this.max !== null) {
-        this.logs.push(new Warning(Date.now(), `value ${this.value} is bigger than max ${this.max}`));
-      }
+    if ((this.max === undefined || this.max === null) && this.value > 1) {
+      this.logs.push(new Information(Date.now(), 'indeterminate state is not realised'));
+    }
+    if (this.max !== undefined && this.max !== null && parseInt(this.value, 10) > parseInt(this.max, 10)) {
+      this.logs.push(new Warning(Date.now(), `value ${this.value} is bigger than max ${this.max}`));
     }
   }
 
