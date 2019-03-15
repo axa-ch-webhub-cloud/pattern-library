@@ -97,6 +97,11 @@ $progress-bar-percentage-font-weight: 600 !default;
   }
 }
 
+.o-progress-bar__progress[value]::-moz-progress-bar {
+  background-color: $color-prim-white;
+  border-radius: $progress-bar-progress-border-radius;
+}
+
 .o-progress-bar__progress[value]::-webkit-progress-bar {
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: $progress-bar-progress-border-radius;
@@ -120,11 +125,6 @@ $progress-bar-percentage-font-weight: 600 !default;
   @include respond-up(sm) {
     margin-right: $progress-bar-progress-button-desktop-margin;
   }
-}
-
-.o-progress-bar__progress[value]::-moz-progress-bar {
-  background-color: $color-prim-white;
-  border-radius: $progress-bar-progress-border-radius;
 }
 
 .o-progress-bar__closing-icon {
