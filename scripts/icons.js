@@ -3,10 +3,10 @@ const outdent = require('outdent');
 const path = require('path');
 const fs = require('fs');
 
-const icons = glob.sync('src/components/materials/icons/.tmp/*');
+const icons = glob.sync('src/components/00-materials/icons/.tmp/*');
 const { resolve, basename } = path;
 
-const EXPORT_PATH = resolve('src/components/materials/lib');
+const EXPORT_PATH = resolve('src/components/00-materials/lib');
 let namedExports = '';
 
 const camelise = str => str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
