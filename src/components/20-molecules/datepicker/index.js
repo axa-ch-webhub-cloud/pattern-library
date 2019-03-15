@@ -261,20 +261,6 @@ export class Datepicker extends LitElement {
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (name === 'date' && this.store && this.date) {
-      // Validation
-      // if (this.date.getFullYear() < this.allowedYears[0] || this.date.getFullYear() > this.allowedYears[this.allowedYears.length - 1]) {
-      //   const event = new CustomEvent('AXA_VALIDATION', {
-      //     detail: {
-      //       type: 'error',
-      //       message: 'not in range',
-      //     },
-      //     bubbles: true,
-      //     cancelable: true,
-      //   });
-      //   this.dispatchEvent(event);
-      //   return;
-      // }
-
       // Update props which are dom reflected
       this.month = this.date.getMonth();
       this.year = this.date.getFullYear();
