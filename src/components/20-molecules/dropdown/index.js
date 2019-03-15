@@ -9,7 +9,6 @@ const ArrowIcon = svg`<svg class="a-icon__svg" version="1.1" xmlns="http://www.w
 `;
 
 const DEFAULTS = {
-  isOpenClass: 'is-dropdown-open',
   selectClass: 'js-dropdown__content',
 };
 
@@ -21,11 +20,12 @@ class AXADropdown extends LitElement {
 
   static get properties() {
     return {
-      items: { type: Array },
+      items: { type: Array, reflect: true },
+      open: { type: Boolean, reflect: true },
+      value: { type: String, reflect: true },
+      title: { type: String, reflect: true },
       native: { type: Boolean },
       size: { type: String },
-      title: { type: String },
-      value: { type: String },
     };
   }
 
@@ -38,13 +38,126 @@ class AXADropdown extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
-    this.isOpen = false;
+    this.open = false;
     this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
     this.title = this.selectedItem.name;
-
-    window.axaComponents.openDropdownInstance = false;
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
+  }
+
+  handleWindowClick() {
+    if (this.open) {
+      this.closeDropdown();
+    }
+  }
+
+  handleWindowKeyDown(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+      e.preventDefault();
+      this.closeDropdown();
+    }
+  }
+
+  handleViewportCheck(elem) {
+    if (this.shouldMove(elem)) {
+      elem.style.maxHeight = '200px';
+    }
+  }
+
+  shouldMove(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return !bottomIsInViewport && enoughSpaceToMove;
+  }
+
+  handleDropdownClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.toggleDropdown();
+  }
+
+  handleDropdownValueClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.title = e.target.dataset.name;
+    this.value = e.target.dataset.value;
+    this.updateCurrentItem(e.target.dataset.value);
+    this.closeDropdown();
+    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.dataset.value, bubbles: true, cancelable: true });
+    this.dispatchEvent(event);
+  }
+
+  handleDropdownNativeValueChange(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.value = e.target.value;
+    this.title = e.target.value;
+    this.updateCurrentItem(e.target.value);
+    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
+    this.dispatchEvent(event);
+  }
+
+  forEach(array, callback, scope) {
+    for (let i = 0; i < array.length; i++) {
+      callback.call(scope, i, array[i]); // passes back stuff we need
+    }
+  }
+
+  toggleDropdown() {
+    if (!this.open) {
+      this.openDropdown();
+    } else {
+      this.closeDropdown();
+    }
+  }
+
+  openDropdown() {
+    this.open = true;
+    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
+    this.forEach(links, (index, link) => {
+      link.setAttribute('tabindex', '0');
+    });
+    if (window.axaComponents.openDropdownInstance) {
+      window.axaComponents.openDropdownInstance.open = false;
+    }
+    window.axaComponents.openDropdownInstance = this;
+  }
+
+  closeDropdown() {
+    this.open = false;
+    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
+    this.forEach(links, (index, link) => {
+      link.setAttribute('tabindex', '-1');
+    });
+    window.axaComponents.openDropdownInstance = false;
+  }
+
+  updateCurrentItem(value) {
+    this.items = this.items.map(item => {
+      if (item.value.toString() === value.toString()) {
+        item.isSelected = true;
+        this.selectedItem = item;
+      } else {
+        item.isSelected = false;
+      }
+      return item;
+    });
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    const hasValue = newValue !== null;
+    if (hasValue && name === 'items') {
+      const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true);
+      this.title = currentItem[0].name;
+    }
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('resize', debounce(() => this.handleViewportCheck(this.dropdown), 250));
+    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
+    window.removeEventListener('click', e => this.handleWindowClick(e));
   }
 
   render() {
@@ -71,154 +184,28 @@ class AXADropdown extends LitElement {
           </button>
           <ul class="m-dropdown__content js-dropdown__content">
             ${this.items &&
-              this.items.map(({ name, value, isSelected, isInitialItem }, index) =>
-                !isInitialItem
-                  ? html`
-                      <li class="m-dropdown__item${isSelected ? ' m-dropdown__item--is-selected' : ''}">
-                        <button
-                          @click="${this.handleDropdownValueClick}"
-                          tabindex="-1"
-                          class="m-dropdown__button js-dropdown__button"
-                          data-name="${name}"
-                          data-index="${index}"
-                          data-value="${value}"
-                          data-selected="${isSelected ? 'true' : 'false'}"
-                        >
-                          ${name}
-                        </button>
-                      </li>
-                    `
-                  : ''
-              )}
+              this.items.map(({ name, value, isSelected, isInitialItem }) => {
+                if (!isInitialItem) {
+                  return html`
+                    <li class="m-dropdown__item${isSelected ? ' m-dropdown__item--is-selected' : ''}">
+                      <button
+                        @click="${this.handleDropdownValueClick}"
+                        tabindex="-1"
+                        class="m-dropdown__button js-dropdown__button"
+                        data-name="${name}"
+                        data-value="${value}"
+                        data-selected="${isSelected ? 'true' : 'false'}"
+                      >
+                        ${name}
+                      </button>
+                    </li>
+                  `;
+                }
+              })}
           </ul>
         </div>
       </div>
     `;
-  }
-
-  handleWindowClick() {
-    if (this.isOpen) {
-      this.closeDropdown(this);
-    }
-  }
-
-  handleWindowKeyDown(e) {
-    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-      e.preventDefault();
-      this.closeDropdown(this);
-    }
-  }
-
-  handleViewportCheck(elem) {
-    if (this.shouldMove(elem)) {
-      elem.style.maxHeight = '200px';
-    }
-  }
-
-  shouldMove(elem) {
-    const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-    const enoughSpaceToMove = bounding.top > bounding.height;
-    return !bottomIsInViewport && enoughSpaceToMove;
-  }
-
-  closeOpenDropdowns() {
-    if (window.axaComponents.openDropdownInstance && this !== window.axaComponents.openDropdownInstance) {
-      this.closeDropdown(window.axaComponents.openDropdownInstance);
-    }
-  }
-
-  handleDropdownClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.closeOpenDropdowns();
-    this.toggleDropdown();
-  }
-
-  handleDropdownValueClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.title = e.target.dataset.name;
-    this.value = e.target.dataset.value;
-    this.updateCurrentItem(e.target.dataset.value);
-    this.closeDropdown(this);
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.dataset.value, bubbles: true, cancelable: true });
-    this.dispatchEvent(event);
-  }
-
-  handleDropdownNativeValueChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.value = e.target.value;
-    this.title = e.target.value;
-    this.updateCurrentItem(e.target.value);
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
-    this.dispatchEvent(event);
-  }
-
-  forEach(array, callback, scope) {
-    for (let i = 0; i < array.length; i++) {
-      callback.call(scope, i, array[i]); // passes back stuff we need
-    }
-  }
-
-  toggleDropdown() {
-    if (!this.isOpen) {
-      this.openDropdown(this);
-    } else {
-      this.closeDropdown(this);
-    }
-  }
-
-  openDropdown(elem) {
-    elem.classList.add(DEFAULTS.isOpenClass);
-    elem.isOpen = true;
-    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
-    elem.forEach(links, (index, link) => {
-      link.setAttribute('tabindex', '0');
-    });
-    window.axaComponents.openDropdownInstance = elem;
-  }
-
-  closeDropdown(elem) {
-    elem.classList.remove(DEFAULTS.isOpenClass);
-    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
-    elem.forEach(links, (index, link) => {
-      link.setAttribute('tabindex', '-1');
-    });
-    elem.isOpen = false;
-    window.axaComponents.openDropdownInstance = false;
-  }
-
-  updateCurrentItem(value) {
-    const hasValue = value !== null;
-    this.items = this.items.map(item => {
-      if (hasValue && item.value.toString() === value.toString()) {
-        item.isSelected = true;
-        this.selectedItem = item;
-      } else {
-        item.isSelected = false;
-      }
-      return item;
-    });
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    const hasValue = newValue !== null;
-
-    if (hasValue && name === 'value') {
-      this.updateCurrentItem(newValue.toString());
-      if (this.selectedItem) {
-        this.title = this.selectedItem.name;
-      }
-    }
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('resize', debounce(() => this.handleViewportCheck(this.dropdown), 250));
-    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
-    window.removeEventListener('click', e => this.handleWindowClick(e));
   }
 }
 
