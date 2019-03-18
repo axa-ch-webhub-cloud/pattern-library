@@ -7,6 +7,27 @@ storiesOf('Molecules/Datepicker', module)
     'Datepicker Input',
     () =>
       `<axa-datepicker inputField year="2019" month="1" day="1"></axa-datepicker>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <axa-datepicker inputField year="2019" month="1" day="1"></axa-datepicker>
       `
   );
