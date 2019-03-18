@@ -23,6 +23,7 @@ export class Datepicker extends LitElement {
       year: { type: Number, reflect: true },
       month: { type: Number, reflect: true },
       day: { type: Number, reflect: true },
+      inverted: { type: Boolean, reflect: true },
       inputField: { type: Boolean },
       monthItems: { type: Array },
       yearItems: { type: Array },
@@ -64,6 +65,21 @@ export class Datepicker extends LitElement {
     this.weekdays = getWeekdays(this.startDate, this.locale);
   }
 
+  debounce(func, wait, immediate) {
+    let timeout;
+    return (...args) => {
+      const context = this;
+      const later = () => {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
   firstUpdated() {
     this.dropdownMonth = this.shadowRoot.querySelector('.js-datepicker__dropdown-month');
     this.dropdownYear = this.shadowRoot.querySelector('.js-datepicker__dropdown-year');
@@ -72,6 +88,11 @@ export class Datepicker extends LitElement {
     this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
+    window.setTimeout(() => {
+      window.addEventListener('resize', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
+      window.addEventListener('scroll', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
+      this.handleViewportCheck(this.inputField);
+    }, 100);
   }
 
   connectedCallback() {
@@ -84,6 +105,25 @@ export class Datepicker extends LitElement {
     this.dropdownMonth.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     window.removeEventListener('click', e => this.handleBodyClick(e));
+  }
+
+  handleViewportCheck(baseElem, elem) {
+    console.log('handle viewport check');
+    if (this.shouldMove(baseElem, elem)) {
+      if (!this.inverted) {
+        this.inverted = true;
+        console.log('handle inverted is set');
+      }
+    } else {
+      this.inverted = false;
+      console.log('handle inverted is unset');
+    }
+  }
+
+  shouldMove(elem) {
+    const elemement = elem.getBoundingClientRect();
+    const moreSpaceOnTopThanBottom = elemement.top > window.innerHeight - elemement.bottom;
+    return moreSpaceOnTopThanBottom;
   }
 
   toggleDatepicker() {

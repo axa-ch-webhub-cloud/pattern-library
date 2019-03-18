@@ -3,7 +3,12 @@
   z-index: 1;
   transform: scale(0);
   transform-origin: top left;
-  transition: transform .3s;
+  transition: transform .25s;
+}
+
+:host([inverted][inputfield]) .m-datepicker__wrap {
+  transform-origin: bottom left;
+  bottom: 40px;
 }
 
 :host([inputfield][open]) .m-datepicker__wrap {
@@ -13,6 +18,7 @@
 // TODO: Use Typography from materials
 .m-datepicker {
   position: relative;
+  display: inline-block;
   font-family: 'Source Sans Pro', Arial, sans-serif;
   font-size: 16px;
 
