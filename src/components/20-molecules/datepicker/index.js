@@ -119,8 +119,8 @@ export class Datepicker extends LitElement {
   }
 
   shouldMove(elem) {
-    const elemement = elem.getBoundingClientRect();
-    const moreSpaceOnTopThanBottom = elemement.top > window.innerHeight - elemement.bottom;
+    const element = elem.getBoundingClientRect();
+    const moreSpaceOnTopThanBottom = element.top > window.innerHeight - element.bottom;
     return moreSpaceOnTopThanBottom;
   }
 
