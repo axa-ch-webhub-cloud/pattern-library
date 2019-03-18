@@ -47,7 +47,7 @@ export class Datepicker extends LitElement {
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
-    this.allowedYears = [2019, 2020];
+    this.allowedYears = [2020];
     this.outputDate = '';
   }
 
@@ -59,11 +59,14 @@ export class Datepicker extends LitElement {
     this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
-    window.setTimeout(() => {
-      window.addEventListener('resize', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
-      window.addEventListener('scroll', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
-      this.handleViewportCheck(this.inputField);
-    }, 100);
+
+    if (this.inputField) {
+      window.setTimeout(() => {
+        window.addEventListener('resize', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
+        window.addEventListener('scroll', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
+        this.handleViewportCheck(this.inputField);
+      }, 100);
+    }
   }
 
   connectedCallback() {
