@@ -45,6 +45,7 @@ export class Datepicker extends LitElement {
     this.year = this.date.getFullYear();
     this.month = this.date.getMonth();
     this.allowedYears = [2019, 2020]; // TODO get from attributes
+    this.open = false;
 
     this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
       isSelected: index === this.month,
@@ -87,10 +88,10 @@ export class Datepicker extends LitElement {
 
   toggleDatepicker() {
     if (!this.open) {
-      this.open = true;
-      if (window.axaComponents.openDatepickerInstance) {
+      if (window.axaComponents.openDatepickerInstance && window.axaComponents.openDatepickerInstance !== this) {
         window.axaComponents.openDatepickerInstance.open = false;
       }
+      this.open = true;
       window.axaComponents.openDatepickerInstance = this;
     } else {
       this.open = false;
@@ -210,8 +211,11 @@ export class Datepicker extends LitElement {
     e.stopPropagation();
   }
 
-  handleBodyClick() {
-    this.open = false;
+  handleBodyClick(e) {
+    e.stopPropagation();
+    if (this.open) {
+      this.open = false;
+    }
   }
 
   handleChangeDropdownMonth(e) {
