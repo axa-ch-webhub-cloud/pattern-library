@@ -19,7 +19,7 @@ components across its web sites.
 
 To be filled.
 
-## Framework
+## New Foundation
 
 Version 2 is based on
 **[lit-element](https://lit-element.polymer-project.org)**, a simple
@@ -78,12 +78,12 @@ To classify an issue as fundamental is ultimately a judgement call made by a
 domain expert. While this will always remain subjective, we try to
 motivate *why* an issue was included in the list below.
 
-1. **Excessive complexity of foundation**.
+1. **Excessive complexity of v1 foundation**.
    - **Source:** v1 code inspection, sheer number of
    [issues](https://github.com/axa-ch/patterns-library/issues).
    - **Why:** Reasonable to assume v1 complexity is a root cause of
    unsolved fundamental issues and edge cases.
-   - **How:** use new framework as simplicity *enabler*, pay attention
+   - **How:** use new foundation as simplicity *enabler*, pay attention
    to simplest-possible-solution on per-component basis to overall satisfy
    desideratum 5.
    
@@ -219,6 +219,7 @@ motivate *why* an issue was included in the list below.
    on an ``<input>``).
    - **Experiment:** [lit-element-and-controlled-inputs](https://github.com/markus-walther/react-with-lit-element).
    - **How:** lit-element is *extremely good* at avoiding unnecessary
+   re-rendering *and* minimizing the amount of DOM subject to
    re-rendering thanks to lit-html. Our particular strategy for controlled inputs
    does not lose focus. In the general case, the ``updated()`` [life-cycle](https://lit-element.polymer-project.org/guide/lifecycle)
    method of lit-element would allow to correct any reversible post-rendering UI-state
@@ -231,7 +232,9 @@ motivate *why* an issue was included in the list below.
    style. In the latter style, they expect to be called back on both
    mounting and unmounting of a CE.
    - **Experiment:** to be done.
-   - **How:** To be specified.
+   - **How:** When exporting a CE to React, we use a wrapper around React's [``createElement``](https://reactjs.org/docs/react-api.html#createElement) called
+   [skatejs/val](https://github.com/skatejs/val). It comes with
+   built-in ``ref`` support. TODO: How to make it work in practice?
 
 1. **FOUC**.
    - **Source:** [#365](https://github.com/axa-ch/patterns-library/issues/365).
