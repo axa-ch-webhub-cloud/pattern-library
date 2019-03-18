@@ -109,15 +109,12 @@ export class Datepicker extends LitElement {
   }
 
   handleViewportCheck(baseElem, elem) {
-    console.log('handle viewport check');
     if (this.shouldMove(baseElem, elem)) {
       if (!this.inverted) {
         this.inverted = true;
-        console.log('handle inverted is set');
       }
     } else {
       this.inverted = false;
-      console.log('handle inverted is unset');
     }
   }
 
