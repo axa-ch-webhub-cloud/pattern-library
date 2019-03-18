@@ -69,16 +69,20 @@ export class Datepicker extends LitElement {
     this.inputField = this.shadowRoot.querySelector('.js-datepicker__input');
     this.dropdownMonth.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
+    window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
+    window.addEventListener('click', e => this.handleBodyClick(e));
   }
 
   connectedCallback() {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
+    this.addEventListener('click', e => this.handleDatepickerClick(e));
   }
 
   disconnectedCallback() {
     this.dropdownMonth.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
+    window.removeEventListener('click', e => this.handleBodyClick(e));
   }
 
   toggleDatepicker() {
@@ -91,46 +95,6 @@ export class Datepicker extends LitElement {
     } else {
       this.open = false;
       window.axaComponents.openDatepickerInstance = null;
-    }
-  }
-
-  handleChangeDropdownMonth(e) {
-    e.preventDefault();
-    const month = e.detail;
-    if (month) {
-      const parsedDate = new Date(this.date);
-      parsedDate.setMonth(month);
-      this.date = parsedDate;
-    }
-  }
-
-  handleChangeDropdownYear(e) {
-    e.preventDefault();
-    const year = e.detail;
-    if (year) {
-      const parsedDate = new Date(this.date);
-      parsedDate.setFullYear(year);
-      this.date = parsedDate;
-    }
-  }
-
-  handleInputButtonClick(e) {
-    e.preventDefault();
-    if (this.inputField) {
-      this.toggleDatepicker();
-    }
-  }
-
-  handleInputChange(e) {
-    e.preventDefault();
-    const validDate = this.isValidDate(e.target.value);
-    if (validDate) {
-      this.date = validDate;
-      this.outputDate = validDate.toLocaleString(this.locale, {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
-      });
     }
   }
 
@@ -230,6 +194,64 @@ export class Datepicker extends LitElement {
         </div>
       </article>
     `;
+  }
+
+  // Events
+  handleWindowKeyDown(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+      e.preventDefault();
+      if (this.open) {
+        this.toggleDatepicker();
+      }
+    }
+  }
+
+  handleDatepickerClick(e) {
+    e.stopPropagation();
+  }
+
+  handleBodyClick() {
+    this.open = false;
+  }
+
+  handleChangeDropdownMonth(e) {
+    e.preventDefault();
+    const month = e.detail;
+    if (month) {
+      const parsedDate = new Date(this.date);
+      parsedDate.setMonth(month);
+      this.date = parsedDate;
+    }
+  }
+
+  handleChangeDropdownYear(e) {
+    e.preventDefault();
+    const year = e.detail;
+    if (year) {
+      const parsedDate = new Date(this.date);
+      parsedDate.setFullYear(year);
+      this.date = parsedDate;
+    }
+  }
+
+  handleInputButtonClick(e) {
+    e.stopPropagation();
+    if (this.inputField) {
+      this.toggleDatepicker();
+    }
+  }
+
+  handleInputChange(e) {
+    e.preventDefault();
+    const validDate = this.isValidDate(e.target.value);
+    if (validDate) {
+      this.date = validDate;
+      this.outputDate = validDate.toLocaleString(this.locale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      });
+    }
   }
 
   handleButtonOkClick() {
