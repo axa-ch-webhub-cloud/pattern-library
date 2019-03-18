@@ -45,106 +45,6 @@ class AXADropdown extends LitElement {
     window.addEventListener('click', e => this.handleWindowClick(e));
   }
 
-  handleWindowClick() {
-    if (this.open) {
-      this.closeDropdown();
-    }
-  }
-
-  handleWindowKeyDown(e) {
-    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-      e.preventDefault();
-      this.closeDropdown();
-    }
-  }
-
-  handleViewportCheck(elem) {
-    if (this.shouldMove(elem)) {
-      elem.style.maxHeight = '200px';
-    }
-  }
-
-  shouldMove(elem) {
-    const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-    const enoughSpaceToMove = bounding.top > bounding.height;
-    return !bottomIsInViewport && enoughSpaceToMove;
-  }
-
-  handleDropdownClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.toggleDropdown();
-  }
-
-  handleDropdownValueClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.title = e.target.dataset.name;
-    this.value = e.target.dataset.value;
-    this.updateCurrentItem(e.target.dataset.value);
-    this.closeDropdown();
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.dataset.value, bubbles: true, cancelable: true });
-    this.dispatchEvent(event);
-  }
-
-  handleDropdownNativeValueChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.value = e.target.value;
-    this.title = e.target.value;
-    this.updateCurrentItem(e.target.value);
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
-    this.dispatchEvent(event);
-  }
-
-  forEach(array, callback, scope) {
-    for (let i = 0; i < array.length; i++) {
-      callback.call(scope, i, array[i]); // passes back stuff we need
-    }
-  }
-
-  toggleDropdown() {
-    if (!this.open) {
-      this.openDropdown();
-    } else {
-      this.closeDropdown();
-    }
-  }
-
-  openDropdown() {
-    this.open = true;
-    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
-    this.forEach(links, (index, link) => {
-      link.setAttribute('tabindex', '0');
-    });
-    if (window.axaComponents.openDropdownInstance) {
-      window.axaComponents.openDropdownInstance.open = false;
-    }
-    window.axaComponents.openDropdownInstance = this;
-  }
-
-  closeDropdown() {
-    this.open = false;
-    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
-    this.forEach(links, (index, link) => {
-      link.setAttribute('tabindex', '-1');
-    });
-    window.axaComponents.openDropdownInstance = false;
-  }
-
-  updateCurrentItem(value) {
-    this.items = this.items.map(item => {
-      if (item.value.toString() === value.toString()) {
-        item.isSelected = true;
-        this.selectedItem = item;
-      } else {
-        item.isSelected = false;
-      }
-      return item;
-    });
-  }
-
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
@@ -206,6 +106,108 @@ class AXADropdown extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  // Events
+  handleWindowClick() {
+    if (this.open) {
+      this.closeDropdown();
+    }
+  }
+
+  handleWindowKeyDown(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+      e.preventDefault();
+      this.closeDropdown();
+    }
+  }
+
+  handleViewportCheck(elem) {
+    if (this.shouldMove(elem)) {
+      elem.style.maxHeight = '200px';
+    }
+  }
+
+  handleDropdownClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.toggleDropdown();
+  }
+
+  handleDropdownValueClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.title = e.target.dataset.name;
+    this.value = e.target.dataset.value;
+    this.updateCurrentItem(e.target.dataset.value);
+    this.closeDropdown();
+    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.dataset.value, bubbles: true, cancelable: true });
+    this.dispatchEvent(event);
+  }
+
+  handleDropdownNativeValueChange(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.value = e.target.value;
+    this.title = e.target.value;
+    this.updateCurrentItem(e.target.value);
+    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
+    this.dispatchEvent(event);
+  }
+
+  // Methods
+  shouldMove(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return !bottomIsInViewport && enoughSpaceToMove;
+  }
+
+  forEach(array, callback, scope) {
+    for (let i = 0; i < array.length; i++) {
+      callback.call(scope, i, array[i]); // passes back stuff we need
+    }
+  }
+
+  toggleDropdown() {
+    if (!this.open) {
+      this.openDropdown();
+    } else {
+      this.closeDropdown();
+    }
+  }
+
+  openDropdown() {
+    this.open = true;
+    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
+    this.forEach(links, (index, link) => {
+      link.setAttribute('tabindex', '0');
+    });
+    if (window.axaComponents.openDropdownInstance) {
+      window.axaComponents.openDropdownInstance.open = false;
+    }
+    window.axaComponents.openDropdownInstance = this;
+  }
+
+  closeDropdown() {
+    this.open = false;
+    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
+    this.forEach(links, (index, link) => {
+      link.setAttribute('tabindex', '-1');
+    });
+    window.axaComponents.openDropdownInstance = false;
+  }
+
+  updateCurrentItem(value) {
+    this.items = this.items.map(item => {
+      if (item.value.toString() === value.toString()) {
+        item.isSelected = true;
+        this.selectedItem = item;
+      } else {
+        item.isSelected = false;
+      }
+      return item;
+    });
   }
 }
 
