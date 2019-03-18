@@ -211,6 +211,7 @@ export class Datepicker extends LitElement {
                     html`
                       <button
                         @click="${this.handleDatepickerCalendarCellClick}"
+                        type="button"
                         tabindex="0"
                         data-index="${index}"
                         data-value="${cell.value}"
