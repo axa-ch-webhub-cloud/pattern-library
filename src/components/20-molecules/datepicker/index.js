@@ -169,7 +169,7 @@ export class Datepicker extends LitElement {
                 placeholder="Please select a date"
                 value="${this.outputDate}"
               />
-              <button class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
+              <button type="button" class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
                 <span class="m-datepicker__input-icon">${iconDatepicker}</span>
               </button>
             </div>
