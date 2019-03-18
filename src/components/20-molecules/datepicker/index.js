@@ -25,7 +25,7 @@ export class Datepicker extends LitElement {
       month: { type: Number, reflect: true },
       day: { type: Number, reflect: true },
       inverted: { type: Boolean, reflect: true },
-      inputField: { type: Boolean },
+      inputField: { type: Boolean, reflect: true },
       monthItems: { type: Array },
       yearItems: { type: Array },
       cells: { type: Array },
@@ -38,47 +38,17 @@ export class Datepicker extends LitElement {
   // TODO: set the selectd item of the year and month array from startdate
   constructor() {
     super();
-    this.locale = 'de-ch'; // TODO get from attributes
-    this.labelButtonCancel = 'Cancel'; // TODO get from attributes
-    this.labelButtonOk = 'OK'; // TODO get from attributes
-    this.startDate = new Date(); // TODO get from attributes
-    this.date = this.startDate;
-    this.outputDate = '';
-    this.year = this.date.getFullYear();
-    this.month = this.date.getMonth();
-    this.allowedYears = [2019, 2020]; // TODO get from attributes
+    // Set defaults
+    this.locale = 'de-CH';
     this.open = false;
-
-    this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-      isSelected: index === this.month,
-      name: item.toString(),
-      value: index.toString(),
-    }));
-
-    this.yearItems = this.allowedYears.map(item => ({
-      isSelected: item === this.year,
-      name: item.toString(),
-      value: item.toString(),
-    }));
-
-    this.store = new Store(this.locale, this.startDate, this.allowedYears);
-    this.cells = this.store.getCells();
-    this.weekdays = getWeekdays(this.startDate, this.locale);
-  }
-
-  debounce(func, wait, immediate) {
-    let timeout;
-    return (...args) => {
-      const context = this;
-      const later = () => {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
+    this.labelButtonCancel = 'Cancel';
+    this.labelButtonOk = 'OK';
+    this.startDate = new Date();
+    this.year = this.startDate.getFullYear();
+    this.month = this.startDate.getMonth();
+    this.day = this.startDate.getDate();
+    this.allowedYears = [2019, 2020];
+    this.outputDate = '';
   }
 
   firstUpdated() {
@@ -100,6 +70,34 @@ export class Datepicker extends LitElement {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
     this.addEventListener('click', e => this.handleDatepickerClick(e));
+
+    if (this.year) {
+      this.startDate.setFullYear(this.year);
+    }
+
+    if (this.month) {
+      this.startDate.setMonth(this.month - 1);
+    }
+
+    if (this.day) {
+      this.startDate.setDate(this.day);
+    }
+
+    this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      isSelected: index === this.month - 1,
+      name: item.toString(),
+      value: index.toString(),
+    }));
+
+    this.yearItems = this.allowedYears.map(item => ({
+      isSelected: item === this.year,
+      name: item.toString(),
+      value: item.toString(),
+    }));
+
+    this.store = new Store(this.locale, this.startDate, this.allowedYears);
+    this.cells = this.store.getCells();
+    this.weekdays = getWeekdays(this.startDate, this.locale);
   }
 
   disconnectedCallback() {
@@ -151,6 +149,21 @@ export class Datepicker extends LitElement {
       out = false;
     }
     return out;
+  }
+
+  debounce(func, wait, immediate) {
+    let timeout;
+    return (...args) => {
+      const context = this;
+      const later = () => {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
   }
 
   render() {
@@ -318,37 +331,41 @@ export class Datepicker extends LitElement {
     e.stopPropagation();
     e.target.blur(); // Prevent the ugly focus ring after the click
     const index = parseInt(e.target.dataset.index, 10);
-    const date = new Date(Date.parse(e.target.dataset.value));
+    const date = e.target.dataset.value;
     this.index = index;
-    this.date = date;
+    this.date = new Date(date);
+  }
+
+  isInValidDateRange(date) {
+    return this.allowedYears.indexOf(date.getFullYear()) > -1;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    if (name === 'date' && this.store && this.date) {
-      // Update props which are dom reflected
-      this.month = this.date.getMonth();
-      this.year = this.date.getFullYear();
-      this.day = this.date.getDate();
-
-      this.store.update(this.date);
+    const hasValue = newValue !== null;
+    if (hasValue && name === 'date' && this.store && this.date) {
+      const newDate = this.date;
+      if (!this.isInValidDateRange(newDate)) {
+        return;
+      }
+      this.store.update(newDate);
       this.cells = this.store.getCells();
 
       this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-        isSelected: index === this.month,
+        isSelected: index === newDate.getMonth(),
         name: item.toString(),
         value: index.toString(),
       }));
 
       this.yearItems = this.allowedYears.map(item => ({
-        isSelected: item === this.year,
+        isSelected: item === newDate.getFullYear(),
         name: item.toString(),
         value: item.toString(),
       }));
 
       // Fire custom success events
       const eventChange = new CustomEvent('AXA_CHANGE', {
-        detail: newValue,
+        detail: newDate,
         bubbles: true,
         cancelable: true,
       });

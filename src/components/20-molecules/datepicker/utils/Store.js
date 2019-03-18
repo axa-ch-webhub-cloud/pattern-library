@@ -16,7 +16,6 @@ export default class Store {
   getMonthInformation(date) {
     const year = date.getFullYear();
     const month = date.getMonth();
-    // exmpale year: 2019: month: 01
     const startDate = new Date(year, month, 1); // Tue 01 2019 00:00:00 GMT+0100
     const endDate = new Date(year, month + 1, 0); // // Thu 31 2019 00:00:00 GMT+0100
 
@@ -34,8 +33,8 @@ export default class Store {
       // So for the user we are converting it back to the locale via .toLocaleDateString('de-CH|this.locale', options)
       // Proof! -> new Date(Date.parse('2020-01-22T23:00:00.000Z')).toLocaleDateString('de-CH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
       // --> "Donnerstag, 23. Januar 2020" (the iso date has it's day on the 22. of January)
-
       // Previous month dates (if month does not start on Monday)
+
       if (i < daysToCount) {
         const newDate = new Date(startDate);
         newDate.setDate(startDate.getDate() - (daysToCount - i));
@@ -85,10 +84,6 @@ export default class Store {
     daysOfMonth.forEach(day => {
       this.cells.push(day.cell);
     });
-  }
-
-  setCell(index, cell) {
-    this.cells[index] = cell;
   }
 
   getCell(index) {
