@@ -263,7 +263,9 @@ practices](https://developers.google.com/web/fundamentals/web-components/best-pr
 
 1. Don't impose classes on a CE from within. Using classes is reserved
 for the author *using* your CE. If you need CE-internal styling to
-react to CE configuration, use attribute selectors instead.
+react to CE configuration, use attribute selectors instead. For
+example, when you need to react to the presence of Boolean attribute ``open``,
+you could write ``:host([open]) .my-class {/* style open state */}``.
 
 1. Minimize serialized complex attribute values for CEs. While you
 *could* put JSON values there, these are cumbersome to specify and
