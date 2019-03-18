@@ -199,7 +199,7 @@ export class Datepicker extends LitElement {
                 this.weekdays.map(
                   day =>
                     html`
-                      <div class="m-datepicker__weekdays-day">${day}</div>
+                      <span class="m-datepicker__weekdays-day">${day}</span>
                     `
                 )}
             </div>
