@@ -30,28 +30,28 @@ class AXAFooterSmall extends LitElement {
     const languageHtml = this.languageLinks.map(
       (language, index) =>
         html`
-          <a class="footer-small__link" href="${language.link}">${this.formatText(language.text, index, this.languageLinks.length)}</a>
+          <a class="m-footer-small__link" href="${language.link}">${this.formatText(language.text, index, this.languageLinks.length)}</a>
         `
     );
 
     const disclaimerHtml = this.disclaimerLinks.map(
       (disclaimer, index) =>
         html`
-          <a class="footer-small__link" href="${disclaimer.link}"
+          <a class="m-footer-small__link" href="${disclaimer.link}"
             >${this.formatText(disclaimer.text, index, this.disclaimerLinks.length)}</a
           >
         `
     );
 
     return html`
-      <article class="footer-small">
-        <div class="footer-small__side-aligned">
+      <article class="m-footer-small">
+        <div class="m-footer-small__side-aligned">
           ${languageHtml}
         </div>
 
-        <div class="footer-small__side-aligned">
-          <div class="footer-small__disclaimer">
-            <span class="footer-small__disclaimer--group-right">
+        <div class="m-footer-small__side-aligned">
+          <div class="m-footer-small__disclaimer">
+            <span class="m-footer-small__disclaimer--group-right">
               ${disclaimerHtml}
             </span>
             <span footer-small__disclaimer--group-right>${this.copyrightText}</span>
