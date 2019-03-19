@@ -23,10 +23,6 @@ class AXAFooterSmall extends LitElement {
     this.copyrightText = '';
   }
 
-  formatText(text, arrIndex, arrLength) {
-    return `${text}${arrIndex !== arrLength - 1 ? ' | ' : ''}`;
-  }
-
   render() {
     return html`
       <article class="m-footer-small">
