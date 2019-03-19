@@ -49,7 +49,7 @@ class AXAModal extends BaseComponentGlobal {
     super.connectedCallback();
 
     // FOUC workaround
-    this.removeAttribute('style');
+    this.style.display = 'block';
 
     this.closeModalOnEscFunction = event => this.closeModalOnEsc(event);
     const closeModalFunction = () => this.closeModal();
