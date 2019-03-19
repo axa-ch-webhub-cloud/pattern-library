@@ -28,44 +28,31 @@ class AXAFooterSmall extends LitElement {
   }
 
   render() {
-    const languageHtml = this.languageLinks.map(
-      (language, index) =>
-        html`
-          <a class="m-footer-small__link" href="${language.link}">${this.formatText(language.text, index, this.languageLinks.length)}</a>
-        `
-    );
-
-    const disclaimerHtml = this.disclaimerLinks.map(
-      (disclaimer, index) =>
-        html`
-          <a class="m-footer-small__link" href="${disclaimer.link}"
-            >${this.formatText(disclaimer.text, index, this.disclaimerLinks.length)}</a
-          >
-        `
-    );
-
     return html`
       <article class="m-footer-small">
-        <ul class="m-footer-small__side-aligned">
+        <ul class="m-footer-small__list">
           ${repeat(
             this.languageLinks,
-            (languageItem, index) => html`
-              <li class="m-footer-small__list">
+            languageItem => html`
+              <li class="m-footer-small__list-item">
                 <a class="m-footer-small__link" href="${languageItem.link}">${languageItem.text}</a>
               </li>
             `
           )}
         </ul>
 
-        <div class="m-footer-small__side-aligned">
-          <div class="m-footer-small__disclaimer">
-            <span>
-              ${disclaimerHtml}
-            </span>
-            <span>
-              ${this.copyrightText}
-            </span>
-          </div>
+        <div class="m-footer-small__disclaimer">
+          <ul class="m-footer-small__list">
+            ${repeat(
+              this.disclaimerLinks,
+              languageItem => html`
+                <li class="m-footer-small__list-item">
+                  <a class="m-footer-small__link" href="${languageItem.link}">${languageItem.text}</a>
+                </li>
+              `
+            )}
+          </ul>
+          <div>${this.copyrightText}</div>
         </div>
       </article>
     `;

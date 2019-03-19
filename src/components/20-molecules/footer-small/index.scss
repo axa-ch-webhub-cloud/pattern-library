@@ -4,9 +4,7 @@
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
-
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 15px;
 
   background: $color-prim-blue-azure;
   color: $color-prim-white;
@@ -21,24 +19,24 @@
     justify-content: space-between;
   }
 
-  &__side-aligned {
+  span {
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    list-style-type: none;
+  }
+
+  &__list {
     // ### Reset browser styles for ul
     margin: 0;
     padding: 0;
     text-indent: 0;
-    list-style-type: 0;
-    // ###
+    list-style-type: none;
 
-    padding-top: 5px;
-    padding-bottom: 5px;
-
-    @include breakpoint($mediaquery-md-up) {
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
+    padding-right: 5px;
   }
 
-  &__list {
+  &__list-item {
     display: inline;
 
     &::after {
@@ -54,6 +52,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    padding-top: 10px;
+
+    @include breakpoint($mediaquery-md-up) {
+      padding-top: 0px;
+    }
   }
 
   &__link {
