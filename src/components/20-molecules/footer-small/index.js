@@ -1,5 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import footerSmallCSS from './index.scss';
+import { repeat } from 'lit-html/directives/repeat';
 
 class AXAFooterSmall extends LitElement {
   static tagName = 'axa-footer-small';
@@ -45,9 +46,16 @@ class AXAFooterSmall extends LitElement {
 
     return html`
       <article class="m-footer-small">
-        <div class="m-footer-small__side-aligned">
-          ${languageHtml}
-        </div>
+        <ul class="m-footer-small__side-aligned">
+          ${repeat(
+            this.languageLinks,
+            (languageItem, index) => html`
+              <li class="m-footer-small__list">
+                <a class="m-footer-small__link" href="${languageItem.link}">${languageItem.text}</a>
+              </li>
+            `
+          )}
+        </ul>
 
         <div class="m-footer-small__side-aligned">
           <div class="m-footer-small__disclaimer">

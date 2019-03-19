@@ -22,12 +22,31 @@
   }
 
   &__side-aligned {
+    // ### Reset browser styles for ul
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    list-style-type: 0;
+    // ###
+
     padding-top: 5px;
     padding-bottom: 5px;
 
     @include breakpoint($mediaquery-md-up) {
       padding-top: 15px;
       padding-bottom: 15px;
+    }
+  }
+
+  &__list {
+    display: inline;
+
+    &::after {
+      content: ' | ';
+    }
+
+    &:last-child::after {
+      content: '';
     }
   }
 
