@@ -3,13 +3,16 @@ import { storiesOf } from '@storybook/html';
 import './index';
 
 const languages = [
-  { text: 'DE', link: 'https://google.ch' },
-  { text: 'FR', link: 'https://google.ch' },
-  { text: 'IT', link: 'https://google.ch' },
-  { text: 'EN', link: 'https://google.ch' },
+  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
+  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
 ];
 
-const disclaimer = [{ text: 'Terms of use', link: 'https://google.ch' }, { text: 'Data protection', link: 'https://google.ch' }];
+const disclaimer = [
+  { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
+  { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
+];
 
 const languagesAsString = JSON.stringify(languages);
 const disclaimerAsString = JSON.stringify(disclaimer);
