@@ -26,10 +26,10 @@ export class Datepicker extends LitElement {
       day: { type: Number, reflect: true },
       inverted: { type: Boolean, reflect: true },
       inputField: { type: Boolean, reflect: true },
+      allowedYears: { type: Array, reflect: true },
       monthItems: { type: Array },
       yearItems: { type: Array },
       cells: { type: Array },
-      allowedYears: { type: Array },
       labelButtonCancel: { type: String },
       labelButtonOk: { type: String },
     };
@@ -47,7 +47,7 @@ export class Datepicker extends LitElement {
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
-    this.allowedYears = [2020];
+    this.allowedYears = [this.year];
     this.outputDate = '';
   }
 
@@ -86,6 +86,8 @@ export class Datepicker extends LitElement {
       this.startDate.setDate(this.day);
     }
 
+    this.allowedYears = [this.year];
+
     this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
       isSelected: index === this.month - 1,
       name: item.toString(),
@@ -97,6 +99,8 @@ export class Datepicker extends LitElement {
       name: item.toString(),
       value: item.toString(),
     }));
+
+    console.log('allowed years', this.allowedYears);
 
     this.store = new Store(this.locale, this.startDate, this.allowedYears);
     this.cells = this.store.getCells();
@@ -339,8 +343,8 @@ export class Datepicker extends LitElement {
     this.date = new Date(date);
   }
 
-  isInValidDateRange(date) {
-    return this.allowedYears.indexOf(date.getFullYear()) > -1;
+  isYearInValidDateRange(year) {
+    return this.allowedYears.indexOf(year) > -1;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -348,9 +352,10 @@ export class Datepicker extends LitElement {
     const hasValue = newValue !== null;
     if (hasValue && name === 'date' && this.store && this.date) {
       const newDate = this.date;
-      if (!this.isInValidDateRange(newDate)) {
+      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
         return;
       }
+
       this.store.update(newDate);
       this.cells = this.store.getCells();
 
