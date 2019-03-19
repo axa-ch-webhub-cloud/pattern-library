@@ -38,9 +38,12 @@ class AXADropdown extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
-    this.open = false;
-    this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
-    this.title = this.selectedItem.name;
+
+    // Search for the selected item or take the first as backup.
+    this.selectedItem = this.items.filter(item => item.isSelected)[0] || this.items[0];
+    if (this.selectedItem) {
+      this.title = this.selectedItem.name;
+    }
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
   }
@@ -49,8 +52,10 @@ class AXADropdown extends LitElement {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
     if (hasValue && name === 'items') {
-      const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true);
-      this.title = currentItem[0].name;
+      const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true)[0] || false;
+      if (currentItem) {
+        this.title = currentItem.name;
+      }
     }
   }
 

@@ -26,6 +26,11 @@ storiesOf('Molecules/Datepicker', module)
     <br/>
     <br/>
     <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <axa-datepicker inputField year="2020" month="3" day="20"></axa-datepicker>
     `
   );
