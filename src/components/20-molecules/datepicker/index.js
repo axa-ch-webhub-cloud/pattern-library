@@ -156,6 +156,10 @@ export class Datepicker extends LitElement {
     return out;
   }
 
+  isYearInValidDateRange(year) {
+    return this.allowedYears.indexOf(year) > -1;
+  }
+
   debounce(func, wait, immediate) {
     let timeout;
     return (...args) => {
@@ -254,6 +258,47 @@ export class Datepicker extends LitElement {
     `;
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    const hasValue = newValue !== null;
+    if (hasValue && name === 'date' && this.store && this.date) {
+      const newDate = this.date;
+      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
+        return;
+      }
+
+      this.store.update(newDate);
+      this.cells = this.store.getCells();
+
+      this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+        isSelected: index === newDate.getMonth(),
+        name: item.toString(),
+        value: index.toString(),
+      }));
+
+      this.yearItems = this.allowedYears.map(item => ({
+        isSelected: item === newDate.getFullYear(),
+        name: item.toString(),
+        value: item.toString(),
+      }));
+
+      // Fire custom success events
+      const eventChange = new CustomEvent('AXA_CHANGE', {
+        detail: newDate,
+        bubbles: true,
+        cancelable: true,
+      });
+      this.dispatchEvent(eventChange);
+
+      const eventValidation = new CustomEvent('AXA_VALIDATION', {
+        detail: { type: 'success', message: 'valid' },
+        bubbles: true,
+        cancelable: true,
+      });
+      this.dispatchEvent(eventValidation);
+    }
+  }
+
   // Events
   handleWindowKeyDown(e) {
     if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
@@ -339,51 +384,6 @@ export class Datepicker extends LitElement {
     const date = e.target.dataset.value;
     this.index = index;
     this.date = new Date(date);
-  }
-
-  isYearInValidDateRange(year) {
-    return this.allowedYears.indexOf(year) > -1;
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    const hasValue = newValue !== null;
-    if (hasValue && name === 'date' && this.store && this.date) {
-      const newDate = this.date;
-      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-        return;
-      }
-
-      this.store.update(newDate);
-      this.cells = this.store.getCells();
-
-      this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-        isSelected: index === newDate.getMonth(),
-        name: item.toString(),
-        value: index.toString(),
-      }));
-
-      this.yearItems = this.allowedYears.map(item => ({
-        isSelected: item === newDate.getFullYear(),
-        name: item.toString(),
-        value: item.toString(),
-      }));
-
-      // Fire custom success events
-      const eventChange = new CustomEvent('AXA_CHANGE', {
-        detail: newDate,
-        bubbles: true,
-        cancelable: true,
-      });
-      this.dispatchEvent(eventChange);
-
-      const eventValidation = new CustomEvent('AXA_VALIDATION', {
-        detail: { type: 'success', message: 'valid' },
-        bubbles: true,
-        cancelable: true,
-      });
-      this.dispatchEvent(eventValidation);
-    }
   }
 }
 
