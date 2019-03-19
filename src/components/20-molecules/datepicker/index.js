@@ -100,8 +100,6 @@ export class Datepicker extends LitElement {
       value: item.toString(),
     }));
 
-    console.log('allowed years', this.allowedYears);
-
     this.store = new Store(this.locale, this.startDate, this.allowedYears);
     this.cells = this.store.getCells();
     this.weekdays = getWeekdays(this.startDate, this.locale);
