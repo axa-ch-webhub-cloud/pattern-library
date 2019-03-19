@@ -1,6 +1,7 @@
 <button type="button" onclick="openModal()">Open modal</button>
 
-<axa-modal class="axa-modal-preview">
+<!-- The style attribute is necessary to avoid the FOUC problem -->
+<axa-modal class="axa-modal-preview" style="display:none;">
   <h2>Prämie berechnen</h2>
   <p><strong>Mehr als 80%</strong> unserer Kunden kombinieren die Hausratversicherung mit einer Privathaftpflichtversicherung.</p>
   <p>Was möchten Sie?</p>
@@ -8,23 +9,22 @@
   <axa-container>
     <axa-row>
       <axa-col>
-        <axa-icon icon="rocking_chair" icon-class="huge"> </axa-icon>
-        <axa-icon icon="broken_glass" icon-class="huge"> </axa-icon>
+        <div>
+          <axa-icon icon="rocking_chair" icon-class="huge"> </axa-icon>
+        </div>
+        <axa-button data-modal-close>Nur Hausrat</axa-button>
       </axa-col>
       <axa-col>
-        <axa-icon icon="rocking_chair" icon-class="huge"> </axa-icon>
+        <div>
+          <axa-icon icon="rocking_chair" icon-class="huge"> </axa-icon>
+          <axa-icon icon="broken_glass" icon-class="huge"> </axa-icon>
+        </div>
+        <axa-button data-modal-close>Hausrat und Privathaftpflicht</axa-button>
+        <div>
+          <axa-icon class="green-icon" icon="check_circle_outline"></axa-icon>
+          Schützt Sie zusätzlich gegen Forderungen anderer.
+        </div>
       </axa-col>
-    </axa-row>
-    <axa-row>
-      <axa-col><axa-button data-modal-close>Hausrat und Privathaftpflicht</axa-button></axa-col>
-      <axa-col><axa-button data-modal-close>Nur Hausrat</axa-button></axa-col>
-    </axa-row>
-    <axa-row>
-      <axa-col>
-        <axa-icon class="green-icon" icon="check_circle_outline"></axa-icon>
-        Schützt Sie zusätzlich gegen Forderungen anderer.
-      </axa-col>
-      <axa-col></axa-col>
     </axa-row>
   </axa-container>
 </axa-modal>
@@ -55,17 +55,6 @@
     color: #333333;
   }
 
-  .axa-modal-preview section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 60px;
-  }
-
-  .axa-modal-preview article {
-    align-self: center;
-  }
-
   .axa-modal-preview .huge {
     height: 70px;
     width: 70px;
@@ -75,5 +64,9 @@
   .axa-modal-preview axa-icon[icon='check_circle_outline'] {
     fill: green;
     color: white;
+  }
+
+  .axa-modal-preview axa-col {
+    padding: 10px;
   }
 </style>
