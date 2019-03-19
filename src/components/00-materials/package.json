@@ -6,6 +6,9 @@
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/materials/#readme",
   "license": "ISC",
   "main": "lib",
+  "dependencies": {
+    "lit-element": "^2.0.1"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
