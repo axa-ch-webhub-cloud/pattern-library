@@ -107,6 +107,7 @@
     "HTMLImports": true,
     "XMLHttpRequest": true,
     "history": true,
+    "CustomEvent": true,
     "MutationObserver": true,
     "customElements": true,
     "document": true,
