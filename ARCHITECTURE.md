@@ -39,8 +39,8 @@ wherever possible, mainly because it enables scoped CSS (which
 supports our desideratum 4 below). This is also lit-element's default.
 
 Conversely, we *don't* extend built-in native HTML
-elements, again in contrast to v1 but in line with what
-lit-element does (which in turn points to WebKit's refusal to implement them).
+elements, again in contrast to v1. We share the sentiment of
+lit-element to not support them as long as WebKit refuses to implement them. 
 
 ## How we learn
 
@@ -52,7 +52,7 @@ ourselves on what to do better in v2:
 [issues](https://github.com/axa-ch/patterns-library/issues/) filed by
 v1 users. Then generalize to distill fewer *fundamental issues* from these, to be
 addressed in v2.
-3. Within the v2 framework, conduct targeted experiments guided by the
+3. Within the v2 foundation, conduct targeted experiments guided by the
 outcome of 2. The goal of each experiment is to demonstrate *how to
 solve* one or more fundamental issues at hand.
 4. Feed back insights from 2. and 3. into *lived best practices* for
@@ -60,7 +60,7 @@ implementing custom components.
 
 ## Desiderata
 
-The outcome of Patterns Library v2 is a foundation in which to build
+The outcome of Patterns Library v2 is a foundation on which to build
 custom components, plus a set of actual custom
 components which evolves over time. We desire that:
 
@@ -69,14 +69,16 @@ components which evolves over time. We desire that:
 1. components are usable in a cross-browser fashion for the set of browsers that
 AXA-Winterthur cares about, including Internet Explorer 11+.
 1. components are usable in a plug-and-play way (details to be specified).
-1. the foundation is markedly less complex than v1.
+1. overall complexity of component implementation in v2 is markedly reduced,
+compared to v1.
 
 
 ## Fundamental Issues
 
 To classify an issue as fundamental is ultimately a judgement call made by a
 domain expert. While this will always remain subjective, we try to
-motivate *why* an issue was included in the list below.
+motivate *why* an issue was included in the list below, before
+sketching *how* it can be adressed.
 
 1. **Excessive complexity of v1 foundation**.
    - **Source:** v1 code inspection, sheer number of
@@ -130,13 +132,14 @@ motivate *why* an issue was included in the list below.
    - **Source:**
    [#778](https://github.com/axa-ch/patterns-library/issues/778).
    - **Why:** Ease of authoring without fear of breaking things. We need to be able to reason locally that
-   each CE is correct, then enjoy automatic global correctness even in the face of
-   nested 'components-in-components' from the principle of
-   compositionality.
+   each CE is correct, and have assurance they stay correct when
+   put together in arbitrary ways, including
+   nested 'components-in-components'. This presumes a [principle of
+   compositionality](https://en.wikipedia.org/wiki/Principle_of_compositionality).
    - **Experiment:**
    [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children),
    specifically its custom-tables-in-custom-tables aspect.
-   - **How:** see 2.
+   - **How:** By not disturbing the natural compositionality of HTML, see 2.
 
 1. **Deduplicated Styles**.
    - **Source:** [#492](https://github.com/axa-ch/patterns-library/issues/492).
@@ -147,10 +150,10 @@ motivate *why* an issue was included in the list below.
    - **How:** Store a reference to each instance in a global ``WeakSet``,
    render inline ``<style>`` only if not previously stored. *Benefit:
    ``<style>`` introduced lazily at usage site when CE first used.* *Drawback: Doesn't work
-   when Shadow DOM used.* For very modern browsers [constructable
+   when Shadow DOM with scoped CSS is used.* For very modern browsers [constructable
    stylesheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
    solve the issue also in the Shadow DOM case (Chrome 73+; feature-detecting and
-   exploiting this is already built-in to lit-element).
+   exploiting this is already a built-in feature of lit-element).
 
 1. **Concise HTML templates**.
    - **Source:** [#583](https://github.com/axa-ch/patterns-library/issues/583).
@@ -240,7 +243,7 @@ motivate *why* an issue was included in the list below.
    - **Source:** [#365](https://github.com/axa-ch/patterns-library/issues/365).
    - **Why:** CE users expect to be able to suppress or at least
    minimize the F(lash)O(f)U(nstyled)C(ontent) that results from using
-   CEs before their JS definitions may have been loaded over a slow network.
+   CEs before their JS definitions have been loaded e.g. over a slow network.
    - **Experiment:** [lit-element-and-fouc](https://github.com/axa-ch/lit-element-and-fouc)
    - **How:** Place a short critical inline CSS style in a page's
    ``<head>`` that uses ``:not(:defined) {...}`` to regulate how
@@ -249,14 +252,25 @@ motivate *why* an issue was included in the list below.
    conditional IE includes we can use ``my-ce1, my-ce2,
    ... {...}`` instead to achieve the same effect.
 
-*Note: the cited experiment shows that depending on CE-intrinsic
- styling FOUC compensation can only be approximative, since the
- __precise__ geometry of a CE can only be known after it is defined
- together with all its children. In practice, good-enough FOUC
- compensation will suffice.*
+   *Note: the cited experiment shows that depending on CE-intrinsic
+   styling FOUC compensation can only be approximative, since the
+   __precise__ geometry of a CE can only be known after it is defined
+   together with all its children. In practice, good-enough FOUC
+   compensation is the goal.*
 
-
-
+1. **Events**.
+   - **Source:** [#846](https://github.com/axa-ch/patterns-library/issues/846),[#778](https://github.com/axa-ch/patterns-library/issues/778).
+   - **Why:** CE users expect to register event callbacks on a CE
+   using simple mechanisms that feel idiomatic to the framework within which
+   they work (see e.g. desideratum 1). They furthermore expect to be called back *reliably*
+   on event occurrence.
+   - **Experiment:**
+   [lit-element-and-controlled-inputs](https://github.com/markus-walther/react-with-lit-element),
+   cf. App.js under React.
+   - **How:** We use lit-html's built-in [``@event``](https://lit-element.polymer-project.org/guide/events) notation
+   inside CEs built with lit-element. The [skatejs/val](https://github.com/skatejs/val)
+   wrapper for React export preserves registered event callbacks. As a
+   result, event handling becomes reliable.
 
 
 ## Best Practices in Component Implementation
