@@ -62,7 +62,7 @@ class AXAFooterSmall extends LitElement {
 
   render() {
     return html`
-      <a href="${this.href}">
+      <a class="m-link m-link--${this.color}" href="${this.href}">
         <slot></slot>
       </a>
     `;

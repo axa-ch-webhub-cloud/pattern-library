@@ -1,2 +1,12 @@
 .m-link {
+  text-decoration: none;
+  color: $color-prim-blue-deep-sapphire;
+
+  &--red {
+    color: $color-prim-red-burnt-sienna;
+  }
+
+  &--white {
+    color: $color-prim-white;
+  }
 }
