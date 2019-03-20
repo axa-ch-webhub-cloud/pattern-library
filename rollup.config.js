@@ -9,8 +9,6 @@ const postcss = require('postcss');
 const glob = require('glob');
 const path = require('path');
 
-const fs = require('fs');
-
 const base = path.resolve(process.cwd(), 'src');
 
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
@@ -18,7 +16,7 @@ const globals = require('./config/globals.js')
   .map(item => `@import '${base}/${item}';`)
   .join('\n');
 
-const babelOptions = JSON.parse(fs.readFileSync('./.storybook/.babelrc')); // get the babelrc file
+const babelOptions = require('./.storybook/.babelrc'); // get the babelrc file
 
 const input = glob.sync('src/components/@(10-atoms|20-molecules|30-organism)/**/index*.js');
 
