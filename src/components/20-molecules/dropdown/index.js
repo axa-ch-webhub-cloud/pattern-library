@@ -38,82 +38,13 @@ class AXADropdown extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
-
-    // Search for the selected item or take the first as backup.
-    this.selectedItem = this.items.filter(item => item.isSelected)[0] || this.items[0];
-    if (this.selectedItem) {
-      this.title = this.selectedItem.name;
-    }
+    this.open = false;
+    this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
+    this.title = this.selectedItem.name;
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    const hasValue = newValue !== null;
-    if (hasValue && name === 'items') {
-      const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true)[0] || false;
-      if (currentItem) {
-        this.title = currentItem.name;
-      }
-    }
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('resize', debounce(() => this.handleViewportCheck(this.dropdown), 250));
-    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
-    window.removeEventListener('click', e => this.handleWindowClick(e));
-  }
-
-  render() {
-    return html`
-      <div class="m-dropdown${this.native ? ' m-dropdown--native-only' : ''}">
-        <div class="m-dropdown__list m-dropdown__list--native">
-          <select class="m-dropdown__select" @change="${this.handleDropdownNativeValueChange}">
-            ${this.items &&
-              this.items.map(
-                ({ name, value, isSelected, isInitialItem }) =>
-                  html`
-                    <option class="m-dropdown__option" ?disabled="${isInitialItem}" value="${value}" ?selected="${isSelected}"
-                      >${name}</option
-                    >
-                  `
-              )}
-          </select>
-          <div class="m-dropdown__select-icon">${ArrowIcon}</div>
-        </div>
-        <div class="m-dropdown__list m-dropdown__list--enhanced">
-          <button @click="${this.handleDropdownClick}" type="button" class="m-dropdown__toggle js-dropdown__toggle">
-            <span>${this.title}</span>
-            <div class="m-dropdown__select-icon">${ArrowIcon}</div>
-          </button>
-          <ul class="m-dropdown__content js-dropdown__content">
-            ${this.items &&
-              this.items.map(({ name, value, isSelected, isInitialItem }) => {
-                if (!isInitialItem) {
-                  return html`
-                    <li class="m-dropdown__item${isSelected ? ' m-dropdown__item--is-selected' : ''}">
-                      <button
-                        @click="${this.handleDropdownValueClick}"
-                        tabindex="-1"
-                        class="m-dropdown__button js-dropdown__button"
-                        data-name="${name}"
-                        data-value="${value}"
-                        data-selected="${isSelected ? 'true' : 'false'}"
-                      >
-                        ${name}
-                      </button>
-                    </li>
-                  `;
-                }
-              })}
-          </ul>
-        </div>
-      </div>
-    `;
-  }
-
-  // Events
   handleWindowClick() {
     if (this.open) {
       this.closeDropdown();
@@ -131,6 +62,13 @@ class AXADropdown extends LitElement {
     if (this.shouldMove(elem)) {
       elem.style.maxHeight = '200px';
     }
+  }
+
+  shouldMove(elem) {
+    const bounding = elem.getBoundingClientRect();
+    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const enoughSpaceToMove = bounding.top > bounding.height;
+    return !bottomIsInViewport && enoughSpaceToMove;
   }
 
   handleDropdownClick(e) {
@@ -158,14 +96,6 @@ class AXADropdown extends LitElement {
     this.updateCurrentItem(e.target.value);
     const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
     this.dispatchEvent(event);
-  }
-
-  // Methods
-  shouldMove(elem) {
-    const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-    const enoughSpaceToMove = bounding.top > bounding.height;
-    return !bottomIsInViewport && enoughSpaceToMove;
   }
 
   forEach(array, callback, scope) {
@@ -213,6 +143,71 @@ class AXADropdown extends LitElement {
       }
       return item;
     });
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    const hasValue = newValue !== null;
+    if (hasValue && name === 'items') {
+      const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true);
+      this.title = currentItem[0].name;
+    }
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('resize', debounce(() => this.handleViewportCheck(this.dropdown), 250));
+    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
+    window.removeEventListener('click', e => this.handleWindowClick(e));
+  }
+
+  render() {
+    return html`
+      <div class="m-dropdown${this.native ? ' m-dropdown--native-only' : ''}">
+        <div class="m-dropdown__list m-dropdown__list--native">
+          <select class="m-dropdown__select" @change="${this.handleDropdownNativeValueChange}">
+            ${this.items &&
+              this.items.map(
+                ({ name, value, isSelected, isInitialItem }) =>
+                  html`
+                    <option class="m-dropdown__option" ?disabled="${isInitialItem}" value="${value}" ?selected="${isSelected}"
+                      >${name}</option
+                    >
+                  `
+              )}
+          </select>
+          <div class="m-dropdown__select-icon">${ArrowIcon}</div>
+        </div>
+        <div class="m-dropdown__list m-dropdown__list--enhanced">
+          <button @click="${this.handleDropdownClick}" type="button" class="m-dropdown__toggle js-dropdown__toggle">
+            <span>${this.title}</span>
+            <div class="m-dropdown__select-icon">${ArrowIcon}</div>
+          </button>
+          <ul class="m-dropdown__content js-dropdown__content">
+            ${this.items &&
+              this.items.map(({ name, value, isSelected, isInitialItem }) => {
+                let out = '';
+                if (!isInitialItem) {
+                  out = html`
+                    <li class="m-dropdown__item${isSelected ? ' m-dropdown__item--is-selected' : ''}">
+                      <button
+                        @click="${this.handleDropdownValueClick}"
+                        tabindex="-1"
+                        class="m-dropdown__button js-dropdown__button"
+                        data-name="${name}"
+                        data-value="${value}"
+                        data-selected="${isSelected ? 'true' : 'false'}"
+                      >
+                        ${name}
+                      </button>
+                    </li>
+                  `;
+                }
+                return out;
+              })}
+          </ul>
+        </div>
+      </div>
+    `;
   }
 }
 
