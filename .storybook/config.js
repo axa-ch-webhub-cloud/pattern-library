@@ -24,10 +24,13 @@ addParameters({
   },
 });
 
-const materials = require.context('../src/components/00-materials', true, /\.story\.js$/);
-const atoms = require.context('../src/components/10-atoms', true, /\.story\.js$/);
-const molecules = require.context('../src/components/20-molecules', true, /\.story\.js$/);
-const organisms = require.context('../src/components/30-organisms', true, /\.story\.js$/);
+const materials = require.context('../src/components/00-materials', true, /story\.js$/);
+const atoms = require.context('../src/components/10-atoms', true, /story\.js$/);
+const molecules = require.context('../src/components/20-molecules', true, /story\.js$/);
+const organisms = require.context('../src/components/30-organisms', true, /story\.js$/);
+
+const demo = require.context('../src/demo', true, /story\.(js|jsx)$/);
+
 
 configure(
   () =>
@@ -35,7 +38,8 @@ configure(
       materials.keys().forEach(materials),
       atoms.keys().forEach(atoms),
       molecules.keys().forEach(molecules),
-      organisms.keys().forEach(organisms)
+      organisms.keys().forEach(organisms),
+      demo.keys().forEach(demo)
     ),
   module
 );

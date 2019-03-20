@@ -3,10 +3,10 @@ const outdent = require('outdent');
 const path = require('path');
 const fs = require('fs');
 
-const icons = glob.sync('src/components/materials/icons/.tmp/*');
+const icons = glob.sync('src/components/00-materials/icons/.tmp/*');
 const { resolve, basename } = path;
 
-const EXPORT_PATH = resolve('src/components/materials/lib');
+const EXPORT_PATH = resolve('src/components/00-materials/lib');
 let namedExports = '';
 
 const camelise = str => str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
@@ -15,8 +15,9 @@ const camelise = str => str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
 });
 
 const componentName = name => name.trim().replace(/\s+/g, '-');
-const camelCase = _camelCase => camelise(componentName(_camelCase).replace(/-/g, ' '));
+const camelCase = _camelCase => camelise(componentName(_camelCase.replace('.', '-')).replace(/-/g, ' '));
 const toClassName = _className => camelCase(_className).replace(/^\w/, c => c.toUpperCase());
+
 
 // Create folder structure
 if (!fs.existsSync(EXPORT_PATH)) {
@@ -37,7 +38,9 @@ icons.forEach((icon) => {
   fs.writeFileSync(
     `${EXPORT_PATH}/icons/${fileName}.js`,
     outdent`
-    const icon = '${contents}'
+    import { svg } from 'lit-element';
+    
+    const icon = svg\`${contents}\`
 
     export default icon;
     `,

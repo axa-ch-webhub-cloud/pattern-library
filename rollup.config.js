@@ -8,10 +8,7 @@ const stripFontFace = require('postcss-strip-font-face'); // strip all font face
 const postcss = require('postcss');
 const glob = require('glob');
 
-const fs = require('fs');
-
-const babelOptions = JSON.parse(fs.readFileSync('./.storybook/.babelrc')); // get the babelrc file
-
+const babelOptions = require('./.storybook/.babelrc'); // get the babelrc file
 
 const input = glob.sync('src/components/@(atoms|molecules|organism)/*/index*.js');
 

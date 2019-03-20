@@ -1,6 +1,6 @@
 {
   "packages": [
-    "src/demo/demo-button",
+    "src/components/10-atoms/*",
     "src/demo/demo-link"
   ],
   "version": "independent",

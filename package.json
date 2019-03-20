@@ -5,7 +5,7 @@
   "module": "lib",
   "scripts": {
     "build": "npm run clean-lib-components && cross-env NODE_ENV=production rollup --config ./rollup.config.js && npm run build-icons",
-    "build-icons": "npm run clean-materials && svgo -f src/components/materials/icons -o src/components/materials/icons/.tmp && node scripts/icons.js && npm run clean-tmp-materials",
+    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/icons.js && npm run clean-tmp-materials",
     "clean-lib-components": "rimraf src/**/lib",
     "clean-materials": "npm run clean-lib-materials && npm run clean-tmp-materials",
     "clean-lib-materials": "rimraf src/components/materials/lib/**",
@@ -30,7 +30,7 @@
     "@babel/preset-react": "^7.0.0",
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
-    "@storybook/html": "^5.0.0",
+    "@storybook/html": "^5.0.1",
     "autoprefixer": "^9.4.9",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^8.0.5",
