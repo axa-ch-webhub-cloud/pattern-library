@@ -1,6 +1,11 @@
 .m-link {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
   text-decoration: none;
   color: $color-prim-blue-deep-sapphire;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &--red {
     color: $color-prim-red-burnt-sienna;
@@ -16,6 +21,10 @@
 
   &--bold {
     font-weight: bold;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &--motion {
@@ -29,6 +38,7 @@
     &:hover,
     &:active,
     &:focus {
+      text-decoration: none;
       .m-link--arrow {
         animation-duration: 0.6s;
         animation-timing-function: ease;
