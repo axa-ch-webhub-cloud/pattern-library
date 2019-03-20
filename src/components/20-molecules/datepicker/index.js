@@ -87,6 +87,7 @@ export class Datepicker extends LitElement {
     }
 
     this.allowedYears = [this.year];
+    this.date = this.startDate;
 
     this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
       isSelected: index === this.month - 1,
