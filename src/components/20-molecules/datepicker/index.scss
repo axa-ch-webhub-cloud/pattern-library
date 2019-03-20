@@ -1,0 +1,202 @@
+:host([inputfield]) .m-datepicker__wrap {
+  position: absolute;
+  z-index: 1;
+  transform: scale(0);
+  transform-origin: top left;
+  transition: transform .25s;
+}
+
+:host([inverted][inputfield]) .m-datepicker__wrap {
+  transform-origin: bottom left;
+  bottom: 40px;
+}
+
+:host([inputfield][open]) .m-datepicker__wrap {
+  transform: scale(1);
+}
+
+// TODO: Use Typography from materials
+.m-datepicker {
+  position: relative;
+  display: inline-block;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-size: 16px;
+
+  &__input-wrap {
+    display: flex;
+    margin-bottom: 1px;
+    border: solid 1px $color-prim-gray-mercury;
+    width: 195px;
+  }
+
+  &__input-button {
+    background: $color-prim-white;
+    cursor: pointer;
+    border: 0;
+    line-height: 0;
+  }
+
+  // TODO:: Challenge global input styles (materials?)
+  &__input {
+    border: 0;
+    padding: 8px;
+  }
+
+  &__input,
+  &__input::placeholder {
+    font-size: 13px;
+  }
+
+  // TODO: Extend SVG icon atom with modifiers
+  &__input-svg {
+    width: 18px;
+    height: 18px;
+    fill: $color-axa-blue;
+  }
+
+  &__wrap {
+    background: $color-prim-white;
+    max-width: 260px;
+    padding: 20px 30px;
+    background: $color-prim-white;
+    border: solid 1px $color-prim-gray-silver;
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
+  }
+
+  &__dropdown-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  &__dropdown-year {
+    width: 88px;
+    text-transform: uppercase;
+  }
+
+  &__dropdown-month {
+    width: 146px;
+  }
+
+  &__weekdays,
+  &__calendar-cell {
+    font-size: 14px;
+  }
+
+  &__weekdays {
+    display: flex;
+    margin: 0 -30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $color-axa-blue;
+    color: $color-prim-white;
+  }
+
+  &__weekdays-day {
+    width: 35px;
+    padding: 5px 0;
+    margin-top: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__calendar {
+    padding: 15px 0 15px 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__calendar-cell {
+    width: 33px;
+    height: 33px;
+    margin: 1px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    border: solid 2px transparent;
+    cursor: pointer;
+  }
+
+  &__calendar-cell:focus {
+    outline: 0;
+    border: dashed 2px $color-axa-blue;
+  }
+
+  &__calendar-day--inactive {
+    visibility: hidden;
+  }
+
+  &__calendar-not-current-month {
+    border: 0;
+    color: $color-prim-gray-silver;
+
+    &:hover {
+      background: rgba($color-prim-gray-mercury, 0.5);
+    }
+  }
+
+  &__calendar-current-month {
+    border: 0;
+    color: $color-prim-gray-mine-shaft;
+  }
+
+  &__calendar-current-month:hover {
+    box-shadow: 0 0 0 3px $color-axa-blue inset;
+    background-color: $color-prim-white;
+    color: $color-prim-gray-mine-shaft;
+  }
+
+  &__calendar-current-month:focus:hover {
+    border: 0;
+  }
+
+  &__calendar-cell:focus {
+    outline: 0;
+    border: dashed 1px $color-axa-blue;
+  }
+
+  &__calendar-cell:active {
+    outline: 0;
+    border: solid 1px $color-axa-blue;
+  }
+
+  &__calendar-cell:hover:active {
+    box-shadow: none;
+    outline: 0;
+    background-color: $color-axa-blue;
+    color: $color-prim-white;
+  }
+
+  &__calendar-cell:active:focus {
+    box-shadow: none;
+    outline: 0;
+    border: 0;
+  }
+
+  &__calendar-current-month:hover &__calendar-selected-day,
+  &__calendar-current-month:hover &__calendar-today {
+    background-color: $color-axa-blue;
+    color: $color-prim-white;
+    opacity: 1;
+  }
+
+  &__calendar-selected-day {
+    background-color: $color-axa-blue;
+    color: $color-prim-white;
+  }
+
+  &__calendar-today {
+    border-style: solid;
+    border-color: $color-axa-blue;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
