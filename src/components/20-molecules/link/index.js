@@ -20,6 +20,7 @@ class AXAFooterSmall extends LitElement {
       arrowRight: { type: Boolean },
       deco: { type: Boolean },
       external: { type: Boolean },
+      motion: { type: Boolean },
     };
   }
 
@@ -32,6 +33,7 @@ class AXAFooterSmall extends LitElement {
     this.arrowRight = false;
     this.deco = false;
     this.external = false;
+    this.motion = false;
   }
 
   render() {
@@ -41,6 +43,7 @@ class AXAFooterSmall extends LitElement {
       'm-link--white': this.color === 'white',
       'm-link--bold': this.bold,
       'm-link--deco': this.deco,
+      'm-link--motion': this.motion,
     };
 
     return html`
@@ -50,9 +53,13 @@ class AXAFooterSmall extends LitElement {
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        ${this.arrowLeft === true ? svg`${arrowRight()}` : ''}
+        <div class="m-link--arrow">
+          ${this.arrowLeft === true ? svg`${arrowRight()}` : ''}
+        </div>
         <slot></slot>
-        ${this.arrowRight === true ? svg`${arrowRight()}` : ''}
+        <div class="m-link--arrow">
+          ${this.arrowRight === true ? svg`${arrowRight()}` : ''}
+        </div>
       </a>
     `;
   }

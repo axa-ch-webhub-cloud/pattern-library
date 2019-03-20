@@ -17,4 +17,42 @@
   &--bold {
     font-weight: bold;
   }
+
+  &--motion {
+    .m-link--arrow {
+      display: inline-block;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      .m-link--arrow {
+        animation-duration: 0.6s;
+        animation-timing-function: ease;
+        animation-fill-mode: both;
+        animation-name: fadeOutRightInLeft;
+      }
+    }
+  }
+}
+
+@keyframes fadeOutRightInLeft {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  51% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
