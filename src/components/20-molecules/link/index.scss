@@ -21,6 +21,9 @@
   &--motion {
     .m-link--arrow {
       display: inline-block;
+
+      // TODO This might be obsolete as soon as the mocked icon is in use
+      margin-right: 10px;
     }
 
     &:hover,
