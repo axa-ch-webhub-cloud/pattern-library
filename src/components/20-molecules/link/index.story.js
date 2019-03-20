@@ -10,4 +10,6 @@ storiesOf('Link', module)
     () =>
       `<style>body{background-color: blue;}</style><axa-link href="https://axa.ch/en/private-customers.html" color="white">White Link</axa-link>`
   )
-  .add('Decorated link', () => `<axa-link href="https://axa.ch/en/private-customers.html" deco>Red Link</axa-link>`);
+  .add('Decorated link', () => `<axa-link href="https://axa.ch/en/private-customers.html" deco>Red Link</axa-link>`)
+  .add('Link static arrow left', () => `<axa-link href="https://axa.ch/en/private-customers.html" arrowLeft>Arrow Left Link</axa-link>`)
+  .add('Link static arrow right', () => `<axa-link href="https://axa.ch/en/private-customers.html" arrowRight>Arrow Right Link</axa-link>`);

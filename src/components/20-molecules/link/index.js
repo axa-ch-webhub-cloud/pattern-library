@@ -1,6 +1,9 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, svg, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
+
+// TODO mock that has to be replaced as soon as real object available
+import arrowRight from '../../00-materials/icons/arrow-right';
 
 class AXAFooterSmall extends LitElement {
   static tagName = 'axa-link';
@@ -15,7 +18,8 @@ class AXAFooterSmall extends LitElement {
       color: { type: String },
       size: { type: String },
       motion: { type: Boolean },
-      arrow: { type: Boolean },
+      arrowLeft: { type: Boolean },
+      arrowRight: { type: Boolean },
       href: { type: String },
       listed: { type: Boolean },
       icon: { type: String },
@@ -32,7 +36,8 @@ class AXAFooterSmall extends LitElement {
     this.color = '';
     this.size = '';
     this.motion = false;
-    this.arrow = false;
+    this.arrowLeft = false;
+    this.arrowRight = false;
     this.listed = false;
     this.icon = '';
     this.deco = false;
@@ -70,7 +75,9 @@ class AXAFooterSmall extends LitElement {
 
     return html`
       <a class="m-link ${classMap(classes)}" href="${this.href}">
+        ${this.arrowLeft === true ? svg`${arrowRight()}` : ''}
         <slot></slot>
+        ${this.arrowRight === true ? svg`${arrowRight()}` : ''}
       </a>
     `;
   }
