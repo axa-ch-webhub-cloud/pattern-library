@@ -1,10 +1,10 @@
 {
   "name": "@axa-ch/button",
-  "version": "1.0.0-beta.1",
+  "version": "0.0.0-beta.1",
   "description": "> TODO: description",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/10-atoms/button#readme",
-  "license": "ISC",
+  "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/button.js",
   "directories": {
     "lib": "lib",
@@ -16,9 +16,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/axa-ch/patterns-library.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/axa-ch/patterns-library/issues"
