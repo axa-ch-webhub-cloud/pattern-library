@@ -5,7 +5,7 @@ import linkCSS from './index.scss';
 // TODO mock that has to be replaced as soon as real object available
 import arrowRight from '../../00-materials/icons/arrow-right';
 
-class AXAFooterSmall extends LitElement {
+class AXALink extends LitElement {
   static tagName = 'axa-link';
   static styles = css`
     ${unsafeCSS(linkCSS)}
@@ -65,6 +65,6 @@ class AXAFooterSmall extends LitElement {
   }
 }
 
-customElements.define(AXAFooterSmall.tagName, AXAFooterSmall);
+customElements.define(AXALink.tagName, AXALink);
 
-export default AXAFooterSmall;
+export default AXALink;
