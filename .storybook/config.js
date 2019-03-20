@@ -15,6 +15,7 @@ import logo from '../src/static/svg/logo-axa.svg';
 // theme - logo some sort of broken
 addParameters({
   options: {
+    sortStoriesByKind: true,
     theme: create({
       base: 'light',
       brandTitle: 'AXA Living Styleguide',
