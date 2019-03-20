@@ -16,10 +16,10 @@ storiesOf('Link', module)
   .add('Static Arrow Left', () => `<axa-link href="https://axa.ch/en/private-customers.html" arrowLeft>Arrow Left Link</axa-link>`)
   .add('Static Arrow Right', () => `<axa-link href="https://axa.ch/en/private-customers.html" arrowRight>Arrow Right Link</axa-link>`)
   .add(
-    'Animated Arrow Right',
-    () => `<axa-link href="https://axa.ch/en/private-customers.html" motion arrowRight>Motion Link Right</axa-link>`
-  )
-  .add(
     'Animated Arrow Left',
     () => `<axa-link href="https://axa.ch/en/private-customers.html" motion arrowLeft>Motion Link Left</axa-link>`
+  )
+  .add(
+    'Animated Arrow Right',
+    () => `<axa-link href="https://axa.ch/en/private-customers.html" motion arrowRight>Motion Link Right</axa-link>`
   );
