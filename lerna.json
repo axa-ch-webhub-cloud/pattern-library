@@ -1,5 +1,6 @@
 {
   "packages": [
+    "src/components/10-atoms/*",
     "src/demo/demo-button",
     "src/demo/demo-link"
   ],

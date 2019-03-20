@@ -21,7 +21,7 @@ class AXAButton extends LitElement {
       large: { type: Boolean },
       inverted: { type: Boolean },
       cta: { type: Boolean },
-      motion: { type: Boolean },
+      static: { type: Boolean },
       disabled: { type: Boolean },
 
       onClick: { type: Function },
@@ -44,7 +44,7 @@ class AXAButton extends LitElement {
       'a-button--large': this.large,
       'a-button--secondary': this.secondary,
       'a-button--inverted': this.inverted,
-      'a-button--motion': this.motion,
+      'a-button--motion': !this.static,
       'a-button--cta': this.cta && !this.secondary,
     };
 
