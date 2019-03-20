@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "rules": {
     "max-len": [
       "error",
@@ -28,7 +28,21 @@
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["scripts/**", "rollup.config.js", "**/_demo*.js", "**/_story*.js", "**/src/**/*.react.js", "**/demo/**"] }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "scripts/**",
+          "rollup.config.js",
+          "**/_demo*.js",
+          "**/story.js",
+          "**/_story*.js",
+          "**/*.story.js",
+          "**/src/**/*.react.js",
+          "**/demo/**"
+        ]
+      }
+    ],
     "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
   },
   "globals": {
@@ -107,6 +121,7 @@
     "HTMLImports": true,
     "XMLHttpRequest": true,
     "history": true,
+    "CustomEvent": true,
     "MutationObserver": true,
     "customElements": true,
     "document": true,
