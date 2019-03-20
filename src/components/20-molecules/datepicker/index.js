@@ -20,18 +20,18 @@ export class Datepicker extends LitElement {
       open: { type: Boolean, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
-      outputDate: { type: String, reflect: true },
+      outputdate: { type: String, reflect: true },
       year: { type: Number, reflect: true },
       month: { type: Number, reflect: true },
       day: { type: Number, reflect: true },
       inverted: { type: Boolean, reflect: true },
-      inputField: { type: Boolean, reflect: true },
-      allowedYears: { type: Array, reflect: true },
-      monthItems: { type: Array },
-      yearItems: { type: Array },
+      inputfield: { type: Boolean, reflect: true },
+      allowedyears: { type: Array, reflect: true },
+      monthitems: { type: Array },
+      yearitems: { type: Array },
       cells: { type: Array },
-      labelButtonCancel: { type: String },
-      labelButtonOk: { type: String },
+      labelbuttoncancel: { type: String },
+      labelbuttonok: { type: String },
     };
   }
 
@@ -41,30 +41,30 @@ export class Datepicker extends LitElement {
     // Set defaults
     this.locale = 'de-CH';
     this.open = false;
-    this.labelButtonCancel = 'Cancel';
-    this.labelButtonOk = 'OK';
+    this.labelbuttoncancel = 'Cancel';
+    this.labelbuttonok = 'OK';
     this.startDate = new Date();
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
-    this.allowedYears = [this.year];
-    this.outputDate = '';
+    this.allowedyears = [this.year];
+    this.outputdate = '';
   }
 
   firstUpdated() {
     this.dropdownMonth = this.shadowRoot.querySelector('.js-datepicker__dropdown-month');
     this.dropdownYear = this.shadowRoot.querySelector('.js-datepicker__dropdown-year');
-    this.inputField = this.shadowRoot.querySelector('.js-datepicker__input');
+    this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
     this.dropdownMonth.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
 
-    if (this.inputField) {
+    if (this.inputfield) {
       window.setTimeout(() => {
-        window.addEventListener('resize', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
-        window.addEventListener('scroll', this.debounce(() => this.handleViewportCheck(this.inputField), 250));
-        this.handleViewportCheck(this.inputField);
+        window.addEventListener('resize', this.debounce(() => this.handleViewportCheck(this.inputfield), 250));
+        window.addEventListener('scroll', this.debounce(() => this.handleViewportCheck(this.inputfield), 250));
+        this.handleViewportCheck(this.inputfield);
       }, 100);
     }
   }
@@ -86,22 +86,22 @@ export class Datepicker extends LitElement {
       this.startDate.setDate(this.day);
     }
 
-    this.allowedYears = [this.year];
+    this.allowedyears = [this.year];
     this.date = this.startDate;
 
-    this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
       isSelected: index === this.month - 1,
       name: item.toString(),
       value: index.toString(),
     }));
 
-    this.yearItems = this.allowedYears.map(item => ({
+    this.yearitems = this.allowedyears.map(item => ({
       isSelected: item === this.year,
       name: item.toString(),
       value: item.toString(),
     }));
 
-    this.store = new Store(this.locale, this.startDate, this.allowedYears);
+    this.store = new Store(this.locale, this.startDate, this.allowedyears);
     this.cells = this.store.getCells();
     this.weekdays = getWeekdays(this.startDate, this.locale);
   }
@@ -158,7 +158,7 @@ export class Datepicker extends LitElement {
   }
 
   isYearInValidDateRange(year) {
-    return this.allowedYears.indexOf(year) > -1;
+    return this.allowedyears.indexOf(year) > -1;
   }
 
   debounce(func, wait, immediate) {
@@ -179,7 +179,7 @@ export class Datepicker extends LitElement {
   render() {
     return html`
       <article class="m-datepicker">
-        ${this.inputField &&
+        ${this.inputfield &&
           html`
             <div class="m-datepicker__input-wrap">
               <input
@@ -187,7 +187,7 @@ export class Datepicker extends LitElement {
                 class="m-datepicker__input js-datepicker__input"
                 type="text"
                 placeholder="Please select a date"
-                value="${this.outputDate}"
+                value="${this.outputdate}"
               />
               <button type="button" class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
                 <span class="m-datepicker__input-icon">${iconDatepicker}</span>
@@ -200,7 +200,7 @@ export class Datepicker extends LitElement {
               <axa-dropdown
                 class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
                 max-height
-                items="${JSON.stringify(this.monthItems)}"
+                items="${JSON.stringify(this.monthitems)}"
                 title="Month"
               >
               </axa-dropdown>
@@ -208,7 +208,7 @@ export class Datepicker extends LitElement {
               <axa-dropdown
                 class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
                 max-height
-                items="${JSON.stringify(this.yearItems)}"
+                items="${JSON.stringify(this.yearitems)}"
                 title="Year"
               >
               </axa-dropdown>
@@ -247,10 +247,10 @@ export class Datepicker extends LitElement {
                 ghost
                 class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
                 @click="${this.handleButtonCancelClick}"
-                >${this.labelButtonCancel}</axa-button
+                >${this.labelbuttoncancel}</axa-button
               >
               <axa-button class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok" @click="${this.handleButtonOkClick}"
-                >${this.labelButtonOk}</axa-button
+                >${this.labelbuttonok}</axa-button
               >
             </div>
           </div>
@@ -271,13 +271,13 @@ export class Datepicker extends LitElement {
       this.store.update(newDate);
       this.cells = this.store.getCells();
 
-      this.monthItems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
         isSelected: index === newDate.getMonth(),
         name: item.toString(),
         value: index.toString(),
       }));
 
-      this.yearItems = this.allowedYears.map(item => ({
+      this.yearitems = this.allowedyears.map(item => ({
         isSelected: item === newDate.getFullYear(),
         name: item.toString(),
         value: item.toString(),
@@ -343,7 +343,7 @@ export class Datepicker extends LitElement {
 
   handleInputButtonClick(e) {
     e.stopPropagation();
-    if (this.inputField) {
+    if (this.inputfield) {
       this.toggleDatepicker();
     }
   }
@@ -353,7 +353,7 @@ export class Datepicker extends LitElement {
     const validDate = this.isValidDate(e.target.value);
     if (validDate) {
       this.date = validDate;
-      this.outputDate = validDate.toLocaleString(this.locale, {
+      this.outputdate = validDate.toLocaleString(this.locale, {
         day: 'numeric',
         month: 'numeric',
         year: 'numeric',
@@ -362,11 +362,11 @@ export class Datepicker extends LitElement {
   }
 
   handleButtonOkClick() {
-    if (this.inputField) {
+    if (this.inputfield) {
       this.toggleDatepicker();
     }
 
-    this.outputDate = this.date.toLocaleString(this.locale, {
+    this.outputdate = this.date.toLocaleString(this.locale, {
       day: 'numeric',
       month: 'numeric',
       year: 'numeric',
