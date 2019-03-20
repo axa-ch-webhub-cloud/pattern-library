@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
 
 class AXAFooterSmall extends LitElement {
@@ -27,7 +28,6 @@ class AXAFooterSmall extends LitElement {
 
   constructor() {
     super();
-    this.text = '';
     this.href = '';
     this.color = '';
     this.size = '';
@@ -61,8 +61,15 @@ class AXAFooterSmall extends LitElement {
   // }
 
   render() {
+    const classes = {
+      'm-link--red': this.color === 'red',
+      'm-link--blue': this.color === 'blue',
+      'm-link--white': this.color === 'white',
+      'm-link--deco': this.deco,
+    };
+
     return html`
-      <a class="m-link m-link--${this.color}" href="${this.href}">
+      <a class="m-link ${classMap(classes)}" href="${this.href}">
         <slot></slot>
       </a>
     `;

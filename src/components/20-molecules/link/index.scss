@@ -9,4 +9,8 @@
   &--white {
     color: $color-prim-white;
   }
+
+  &--deco {
+    text-decoration: underline;
+  }
 }

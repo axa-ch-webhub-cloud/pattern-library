@@ -9,4 +9,5 @@ storiesOf('Link', module)
     'White link',
     () =>
       `<style>body{background-color: blue;}</style><axa-link href="https://axa.ch/en/private-customers.html" color="white">White Link</axa-link>`
-  );
+  )
+  .add('Decorated link', () => `<axa-link href="https://axa.ch/en/private-customers.html" deco>Red Link</axa-link>`);
