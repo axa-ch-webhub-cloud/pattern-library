@@ -15,8 +15,9 @@ const camelise = str => str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
 });
 
 const componentName = name => name.trim().replace(/\s+/g, '-');
-const camelCase = _camelCase => camelise(componentName(_camelCase).replace(/-/g, ' '));
+const camelCase = _camelCase => camelise(componentName(_camelCase.replace('.', '-')).replace(/-/g, ' '));
 const toClassName = _className => camelCase(_className).replace(/^\w/, c => c.toUpperCase());
+
 
 // Create folder structure
 if (!fs.existsSync(EXPORT_PATH)) {
@@ -37,7 +38,9 @@ icons.forEach((icon) => {
   fs.writeFileSync(
     `${EXPORT_PATH}/icons/${fileName}.js`,
     outdent`
-    const icon = '${contents}'
+    import { svg } from 'lit-element';
+    
+    const icon = svg\`${contents}\`
 
     export default icon;
     `,

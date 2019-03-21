@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 
-storiesOf('Button', module)
+storiesOf('Atoms/Button', module)
   .add('Button - click event', () => {
     const btn = document.createElement('axa-button');
     btn.innerHTML = 'Click me, my event name is click';
@@ -46,12 +46,12 @@ storiesOf('Button', module)
     'Button - motion',
     () => `
     <div>
-      <axa-button>I&apos;m primary btn without motion</axa-button>
-      <axa-button motion>I&apos;m primary btn with motion</axa-button>
-      <axa-button cta>I&apos;m primary cta btn without motion</axa-button>
-      <axa-button cta motion>I&apos;m primary cta btn with motion</axa-button>
-      <axa-button secondary>I&apos;m primary btn without motion</axa-button>
-      <axa-button secondary motion>I&apos;m secondary btn with motion</axa-button>
+      <axa-button motionoff>I&apos;m primary btn without motion</axa-button>
+      <axa-button>I&apos;m primary btn with motion</axa-button>
+      <axa-button motionoff cta>I&apos;m primary cta btn without motion</axa-button>
+      <axa-button cta>I&apos;m primary cta btn with motion</axa-button>
+      <axa-button motionoff secondary>I&apos;m primary btn without motion</axa-button>
+      <axa-button secondary>I&apos;m secondary btn with motion</axa-button>
     </div>`
   )
   .add(

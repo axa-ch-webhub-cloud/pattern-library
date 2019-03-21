@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React, { Component, createElement } from 'react';
-import '../../components/atoms/button';
-import createAXAButtonReact from '../../components/atoms/button/index.react';
+import '../../components/10-atoms/button';
+import createAXAButtonReact from '../../components/10-atoms/button/index.react';
 
 const AXAButtonReact = createAXAButtonReact(createElement);
 
