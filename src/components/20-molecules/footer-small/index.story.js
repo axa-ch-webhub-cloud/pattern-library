@@ -1,0 +1,21 @@
+/* global document */
+import { storiesOf } from '@storybook/html';
+import './index';
+
+const languages = JSON.stringify([
+  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
+  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
+]);
+
+const disclaimer = JSON.stringify([
+  { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
+  { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
+]);
+
+storiesOf('Molecules/Footer Small', module).add(
+  'Footer Small',
+  () =>
+    `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`
+);

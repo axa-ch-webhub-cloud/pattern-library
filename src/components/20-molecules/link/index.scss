@@ -1,0 +1,71 @@
+.m-link {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  text-decoration: none;
+  color: $color-prim-blue-deep-sapphire;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &--red {
+    color: $color-prim-red-burnt-sienna;
+  }
+
+  &--white {
+    color: $color-prim-white;
+  }
+
+  &--deco {
+    text-decoration: underline;
+  }
+
+  &--bold {
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__arrow {
+    display: inline-block;
+
+    // TODO This might be obsolete as soon as the mocked icon is in use
+    margin-right: 10px;
+  }
+
+  &--motion {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+      .m-link__arrow {
+        animation-duration: 0.6s;
+        animation-timing-function: ease;
+        animation-fill-mode: both;
+        animation-name: fadeOutRightInLeft;
+      }
+    }
+  }
+}
+
+@keyframes fadeOutRightInLeft {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  51% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
