@@ -10,17 +10,17 @@ class AXAFooterSmall extends LitElement {
 
   static get properties() {
     return {
-      languageLinks: { type: Array },
-      disclaimerLinks: { type: Array },
-      copyrightText: { type: String },
+      languageitems: { type: Array },
+      disclaimeritems: { type: Array },
+      copyrighttext: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.languageLinks = [];
-    this.disclaimerLinks = [];
-    this.copyrightText = '';
+    this.languageitems = [];
+    this.disclaimeritems = [];
+    this.copyrighttext = '';
   }
 
   render() {
@@ -28,7 +28,7 @@ class AXAFooterSmall extends LitElement {
       <article class="m-footer-small">
         <ul class="m-footer-small__list">
           ${repeat(
-            this.languageLinks,
+            this.languageitems,
             languageItem => html`
               <li class="m-footer-small__list-item">
                 <axa-link class="m-footer-small__link" href="${languageItem.link}" color="white">${languageItem.text}</axa-link>
@@ -40,7 +40,7 @@ class AXAFooterSmall extends LitElement {
         <div class="m-footer-small__disclaimer">
           <ul class="m-footer-small__list">
             ${repeat(
-              this.disclaimerLinks,
+              this.disclaimeritems,
               languageItem => html`
                 <li class="m-footer-small__list-item">
                   <axa-link class="m-footer-small__link" href="${languageItem.link}" color="white">${languageItem.text}</axa-link>
@@ -48,7 +48,7 @@ class AXAFooterSmall extends LitElement {
               `
             )}
           </ul>
-          <div>${this.copyrightText}</div>
+          <div>${this.copyrighttext}</div>
         </div>
       </article>
     `;
