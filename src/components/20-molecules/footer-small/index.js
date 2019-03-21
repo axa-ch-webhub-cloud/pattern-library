@@ -31,7 +31,7 @@ class AXAFooterSmall extends LitElement {
             this.languageLinks,
             languageItem => html`
               <li class="m-footer-small__list-item">
-                <a class="m-footer-small__link" href="${languageItem.link}">${languageItem.text}</a>
+                <axa-link class="m-footer-small__link" href="${languageItem.link}" color="white">${languageItem.text}</axa-link>
               </li>
             `
           )}
@@ -43,7 +43,7 @@ class AXAFooterSmall extends LitElement {
               this.disclaimerLinks,
               languageItem => html`
                 <li class="m-footer-small__list-item">
-                  <a class="m-footer-small__link" href="${languageItem.link}">${languageItem.text}</a>
+                  <axa-link class="m-footer-small__link" href="${languageItem.link}" color="white">${languageItem.text}</axa-link>
                 </li>
               `
             )}
