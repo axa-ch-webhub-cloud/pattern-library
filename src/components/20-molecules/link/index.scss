@@ -27,7 +27,7 @@
     }
   }
 
-  &--arrow {
+  &__arrow {
     display: inline-block;
 
     // TODO This might be obsolete as soon as the mocked icon is in use
@@ -39,7 +39,7 @@
     &:active,
     &:focus {
       text-decoration: none;
-      .m-link--arrow {
+      .m-link__arrow {
         animation-duration: 0.6s;
         animation-timing-function: ease;
         animation-fill-mode: both;

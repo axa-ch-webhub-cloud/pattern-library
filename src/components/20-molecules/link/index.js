@@ -53,11 +53,11 @@ class AXALink extends LitElement {
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        <div class="m-link--arrow">
+        <div class="m-link__arrow">
           ${this.arrowLeft === true ? svg`${arrowRight()}` : ''}
         </div>
         <slot></slot>
-        <div class="m-link--arrow">
+        <div class="m-link__arrow">
           ${this.arrowRight === true ? svg`${arrowRight()}` : ''}
         </div>
       </a>
