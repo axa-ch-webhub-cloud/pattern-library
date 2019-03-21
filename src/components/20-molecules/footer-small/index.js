@@ -1,6 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import footerSmallCSS from './index.scss';
 import { repeat } from 'lit-html/directives/repeat';
+import footerSmallCSS from './index.scss';
 
 class AXAFooterSmall extends LitElement {
   static tagName = 'axa-footer-small';
