@@ -8,6 +8,20 @@ class AXALink extends LitElement {
     ${unsafeCSS(linkCSS)}
   `;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.classes = classMap({
+      'm-link--red': this.color === 'red',
+      'm-link--blue': this.color === 'blue',
+      'm-link--white': this.color === 'white',
+      'm-link--bold': this.bold,
+      'm-link--deco': this.deco,
+      'm-link--motion': this.motion,
+    });
+
+    this.arrow = arrowRight();
+  }
+
   static get properties() {
     return {
       href: { type: String },
@@ -34,29 +48,24 @@ class AXALink extends LitElement {
   }
 
   render() {
-    const classes = {
-      'a-link--red': this.color === 'red',
-      'a-link--blue': this.color === 'blue',
-      'a-link--white': this.color === 'white',
-      'a-link--bold': this.bold,
-      'a-link--deco': this.deco,
-      'a-link--motion': this.motion,
-    };
-
-    const showArrow = html`
-      <div class="a-link__arrow"></div>
-    `;
-
     return html`
       <a
-        class="a-link ${classMap(classes)}"
+        class="m-link ${this.classes}"
         href="${this.href}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        ${this.arrowLeft === true ? showArrow : ''}
+        ${this.arrowLeft
+          ? html`
+              <div class="m-link__arrow">${this.arrow}</div>
+            `
+          : ''}
         <slot></slot>
-        ${this.arrowRight === true ? showArrow : ''}
+        ${this.arrowRight
+          ? html`
+              <div class="m-link__arrow">${this.arrow}</div>
+            `
+          : ''}
       </a>
     `;
   }
