@@ -46,7 +46,11 @@ class AXALink extends LitElement {
       'm-link--motion': this.motion,
     };
 
-    const arrowIcon = svg`${arrowRight()}`;
+    const showArrow = html`
+      <div class="m-link__arrow">
+        ${svg`${arrowRight()}`}
+      </div>
+    `;
 
     return html`
       <a
@@ -55,13 +59,9 @@ class AXALink extends LitElement {
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        <div class="m-link__arrow">
-          ${this.arrowLeft === true ? arrowIcon : ''}
-        </div>
+        ${this.arrowLeft === true ? showArrow : ''}
         <slot></slot>
-        <div class="m-link__arrow">
-          ${this.arrowRight === true ? arrowIcon : ''}
-        </div>
+        ${this.arrowRight === true ? showArrow : ''}
       </a>
     `;
   }
