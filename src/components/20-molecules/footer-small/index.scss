@@ -50,10 +50,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
 
     padding-top: 10px;
 
     @include breakpoint($mediaquery-md-up) {
+      width: auto;
       padding-top: 0px;
     }
   }
