@@ -1,0 +1,88 @@
+// =====================
+// Font, line-heights and sizes generation
+// =====================
+
+/// A simplified typography and text system.
+/// AXA use two font faces - Publico Headline and Source Sans Pro.
+/// @link https://design.axa.com/web-guidelines/typography#overview
+
+$base-font-size: 16px;
+$base-line-height: $base-font-size * 1.5;
+
+$font-family-fallback: sans-serif;
+$font-family-source-sans: 'Source Sans Pro', sans-serif;
+$font-family-publico: "Publico Headline", Georgia, serif;
+
+$fallback-font: $font-family-fallback;
+$primary-font: $font-family-source-sans;
+$secondary-font: $font-family-publico;
+
+$font-size-base: $base-font-size;
+$line-height-base: $base-line-height;
+
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$text-sizes: (
+    default: (14, 20, 0.02em),
+    smallest: (11, 16, 0.02em),
+    xx-small: (12, 16, 0.02em),
+    x-small: (13, 16, 0.02em),
+    small: (14, 20, 0.02em),
+    medium: (16, 24, 0.02em),
+    medium-large: (18, 24, 0.01em),
+    large: (20, 28, 0.01em),
+    x-large: (24, 32, 0.01em),
+    xx-large: (32, 40, 0.01em),
+    larger: (40, 52, 0.01em),
+    largest: (72, 80, 0.01em),
+);
+
+$primary-fonts: (
+    default: (400, normal),
+    thin: (100, normal),
+    light: (300, normal),
+    regular: (400, normal),
+    medium: (500, normal),
+    bold: (700, normal),
+    italic: (400, italic),
+);
+
+$secondary-fonts: (
+    default: (400, normal),
+    light: (300, normal),
+    regular: (400, normal),
+);
+
+@mixin font($font: primary, $name: default) {
+  @if map-has-key($primary-fonts, $name) and $font == primary {
+    font-family: $primary-font;
+    font-weight: nth(map-get($primary-fonts, $name), 1);
+    font-style: nth(map-get($primary-fonts, $name), 2);
+  }
+
+  @else if map-has-key($secondary-fonts, $name) and $font == secondary {
+    font-family: $secondary-font;
+    font-weight: nth(map-get($secondary-fonts, $name), 1);
+    font-style: nth(map-get($secondary-fonts, $name), 2);
+    letter-spacing: 0.015em; // Publico needs this
+  }
+}
+
+@mixin text($name: default) {
+    @if (map-has-key($text-sizes, $name)) {
+        font-size: nth(map-get($text-sizes, $name), 1) + px;
+        line-height: nth(map-get($text-sizes, $name), 2) + px;
+        letter-spacing: nth(map-get($text-sizes, $name), 3);
+    }
+
+    @else {
+        font-size: nth(map-get($text-sizes, default), 1) + px;
+        line-height: nth(map-get($text-sizes, default), 2) + px;
+        letter-spacing: nth(map-get($text-sizes, default), 3) + px;
+    }
+}
