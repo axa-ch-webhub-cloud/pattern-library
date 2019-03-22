@@ -14,7 +14,7 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
     "build-storybook": "build-storybook",
-    "test": "npm run test-testcafe && npm run test-testcafe-browserstack",
+    "test": "eslint src/",
     "test-testcafe": "sh build/run-testcafe.sh",
     "test-testcafe-browserstack": "sh build/run-browserstack.sh",
     "test-testcafe-browserstackjs": "node build/run-browserstack.js"
