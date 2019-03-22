@@ -17,10 +17,11 @@
 
 // TODO: Use Typography from materials
 .m-datepicker {
+  @include font(primary);
+  @include text(medium);
+
   position: relative;
   display: inline-block;
-  font-family: 'Source Sans Pro', Arial, sans-serif;
-  font-size: 16px;
 
   &__input-wrap {
     display: flex;
