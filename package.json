@@ -13,14 +13,19 @@
     "release": "npm whoami && npm run test && npm run build && lerna publish",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
-    "test": "eslint src/",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "npm run test-testcafe && npm run test-testcafe-browserstack",
+    "test-testcafe": "sh build/run-testcafe.sh",
+    "test-testcafe-browserstack": "sh build/run-browserstack.sh",
+    "test-testcafe-browserstackjs": "node build/run-browserstack.js"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "lit-element": "^2.0.1",
-    "lit-html": "^1.0.0"
+    "lit-html": "^1.0.0",
+    "testcafe": "^1.1.0",
+    "testcafe-browser-provider-browserstack": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
