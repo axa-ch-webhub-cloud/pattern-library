@@ -40,7 +40,8 @@
           "**/*.story.js",
           "**/src/**/*.react.js",
           "**/demo/**"
-        ]
+        ],
+        "packageDir": "./"
       }
     ],
     "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
