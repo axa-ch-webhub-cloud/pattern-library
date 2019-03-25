@@ -56,7 +56,8 @@ $secondary-fonts: (
     regular: (400, normal),
 );
 
-@mixin font($font: primary, $name: default) {
+// Don't use this in components, use typo()
+@mixin _font($font: primary, $name: default) {
   @if map-has-key($primary-fonts, $name) and $font == primary {
     font-family: $primary-font;
     font-weight: nth(map-get($primary-fonts, $name), 1);
@@ -67,11 +68,11 @@ $secondary-fonts: (
     font-family: $secondary-font;
     font-weight: nth(map-get($secondary-fonts, $name), 1);
     font-style: nth(map-get($secondary-fonts, $name), 2);
-    letter-spacing: 0.015em; // Publico needs this
   }
 }
 
-@mixin text($name: default) {
+// Don't use this in components, use typo()
+@mixin _text($name: default) {
     @if (map-has-key($text-sizes, $name)) {
         font-size: nth(map-get($text-sizes, $name), 1) + px;
         line-height: nth(map-get($text-sizes, $name), 2) + px;
@@ -83,4 +84,9 @@ $secondary-fonts: (
         line-height: nth(map-get($text-sizes, default), 2) + px;
         letter-spacing: nth(map-get($text-sizes, default), 3) + px;
     }
+}
+
+@mixin typo($name: primary, $text: default, $style: default) {
+  @include _font($name, $style);
+  @include _text($text);
 }

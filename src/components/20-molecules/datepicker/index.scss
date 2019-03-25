@@ -17,11 +17,15 @@
 
 // TODO: Use Typography from materials
 .m-datepicker {
-  @include font(primary);
-  @include text(medium);
-
   position: relative;
   display: inline-block;
+
+  &__input,
+  &__input::placeholder,
+  &__weekdays,
+  &__calendar-cell {
+    @include typo(primary, medium);
+  }
 
   &__input-wrap {
     display: flex;
@@ -41,11 +45,6 @@
   &__input {
     border: 0;
     padding: 8px;
-  }
-
-  &__input,
-  &__input::placeholder {
-    font-size: 13px;
   }
 
   // TODO: Extend SVG icon atom with modifiers
@@ -77,11 +76,6 @@
 
   &__dropdown-month {
     width: 146px;
-  }
-
-  &__weekdays,
-  &__calendar-cell {
-    font-size: 14px;
   }
 
   &__weekdays {
