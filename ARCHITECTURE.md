@@ -28,10 +28,10 @@ Google.
 
 Web components are also known as [Custom
 Elements](https://developers.google.com/web/fundamentals/web-components/customelements)
-(short: **CE**), a browser-native technology supported by web
-standards and poly-fillable for older browsers.
+(short: **CE**), a browser-native technology supported by [web
+standards](https://html.spec.whatwg.org/multipage/custom-elements.html) and poly-fillable for older browsers.
 
-[Here]() you can read how we arrived at this choice.
+[Here](https://github.com/axa-ch/patterns-library/FOUNDATION.md) you can read how we arrived at this choice.
 
 By default, and in contrast to v1, we use [Shadow
 DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
@@ -39,8 +39,16 @@ wherever possible, mainly because it enables scoped CSS (which
 supports our desideratum 4 below). This is also lit-element's default.
 
 Conversely, we *don't* extend built-in native HTML
-elements, again in contrast to v1. We share the sentiment of
+elements, again in contrast to v1. We share the [sentiment](https://github.com/Polymer/lit-element/issues/417#issuecomment-453208618) of
 lit-element to not support them as long as WebKit refuses to implement them. 
+
+As part of the new foundation, we also chose a new approach to export
+components to React, based on
+[skatejs/val](https://github.com/skatejs/val). Since JSX is just [syntactic
+sugar](https://reactjs.org/docs/react-without-jsx.html) for calls to a
+tag-creator function
+[``React.createElement``](https://reactjs.org/docs/react-api.html#createElement),
+the main idea of skatejs/val to wrap and instrument any such function applies straightforwardly.
 
 ## How we learn
 
@@ -120,12 +128,12 @@ sketching *how* it can be adressed.
    control the ``value`` or ``checked`` properties of ``<input>,
    <select>``, overriding built-in native behaviour.
    - **Experiment:**
-   [lit-element-and-controlled-inputs](https://github.com/markus-walther/react-with-lit-element).
+   [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element).
    - **How:** Looking at ``value,checked`` we can  determine whether a CE should be controlled.
     We then monitor UI-state-changing events via [lit-element event
     listeners](https://lit-element.polymer-project.org/guide/events) and
    let both property changes and user events lead to a post-render
-   correction of the visual state of an input element to confirm with
+   correction of the visual state of an input element to conform with
    the controlled state (we can use native DOM APIs for that).
 
 1. **Component Nesting**.
@@ -220,7 +228,7 @@ sketching *how* it can be adressed.
    - **Why:** Re-rendering can not only lead to expensive browser paint
    operations, but might also produce unwanted side effects (like losing focus
    on an ``<input>``).
-   - **Experiment:** [lit-element-and-controlled-inputs](https://github.com/markus-walther/react-with-lit-element).
+   - **Experiment:** [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element).
    - **How:** lit-element is *extremely good* at avoiding unnecessary
    re-rendering *and* minimizing the amount of DOM subject to
    re-rendering thanks to lit-html. Our particular strategy for controlled inputs
@@ -234,10 +242,17 @@ sketching *how* it can be adressed.
    pseudo-properties on CEs, especially in the idiomatic callback
    style. In the latter style, they expect to be called back on both
    mounting and unmounting of a CE.
-   - **Experiment:** to be done.
+   - **Experiment:** [react-with-lit-element, commit 8888048](https://github.com/axa-ch/react-with-lit-element/commit/88880489c644f6637a73d58a58c2b7dc8ad99616)
    - **How:** When exporting a CE to React, we use a wrapper around React's [``createElement``](https://reactjs.org/docs/react-api.html#createElement) called
    [skatejs/val](https://github.com/skatejs/val). It comes with
-   built-in ``ref`` support. TODO: How to make it work in practice?
+   built-in ``ref`` support. Unfortunately, wrapped CEs are seen by React as
+   functional components, whereas React's ``ref`` support is
+   restricted to class-defined components. However, in React version **16.3.0** or later
+   we can use [``React.forwardRef``](https://reactjs.org/docs/forwarding-refs.html)
+   to forward the ``ref`` to the wrapper, thus restoring full ``ref`` support.
+
+   *Note: ``React.findDOMNode`` is not considered here, since it has
+    been [deprecated in Strict Mode](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).*
 
 1. **FOUC**.
    - **Source:** [#365](https://github.com/axa-ch/patterns-library/issues/365).
@@ -252,10 +267,10 @@ sketching *how* it can be adressed.
    conditional IE includes we can use ``my-ce1, my-ce2,
    ... {...}`` instead to achieve the same effect.
 
-   *Note: the cited experiment shows that depending on CE-intrinsic
-   styling FOUC compensation can only be approximative, since the
-   __precise__ geometry of a CE can only be known after it is defined
-   together with all its children. In practice, good-enough FOUC
+   *Note: the experiment cited above shows that, depending on the exact details of CE-intrinsic
+   styling, FOUC compensation can only be approximative. The reason is
+   that the   __precise__ geometry of a CE can only be known after it is defined
+   together with all of its children. In practice, good-enough FOUC
    compensation is the goal.*
 
 1. **Events**.
@@ -265,12 +280,23 @@ sketching *how* it can be adressed.
    they work (see e.g. desideratum 1). They furthermore expect to be called back *reliably*
    on event occurrence.
    - **Experiment:**
-   [lit-element-and-controlled-inputs](https://github.com/markus-walther/react-with-lit-element),
+   [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element),
    cf. App.js under React.
    - **How:** We use lit-html's built-in [``@event``](https://lit-element.polymer-project.org/guide/events) notation
    inside CEs built with lit-element. The [skatejs/val](https://github.com/skatejs/val)
    wrapper for React export preserves registered event callbacks. As a
    result, event handling becomes reliable.
+
+   *Note: Handlers for React's synthetic events can be explicitly passed as props,
+    as demonstrated for ``onChange`` in the experiment above. For generic support,
+    see [this skatejs/val issue](https://github.com/skatejs/val/issues/26).*
+
+1. **SSR**.
+   - **Source:** [e.g. this external issue](https://github.com/Polymer/lit-html/issues/461)
+   - **Why:** CE users hope to use CEs in a S(erver-)S(ide)R(endering)
+   scenario, e.g. motivated by SEO concerns.
+   - **Experiment:** to be done. However, there is an external [lit-html-server](https://github.com/popeindustries/lit-html-server).
+   - **How:** to be filled.
 
 
 ## Best Practices in Component Implementation
@@ -293,3 +319,7 @@ mimic the idiomatic behaviour of native HTML's
 ``<select>,<ul>,<ol>,<dl>,<table>``, which all allow an author to freely
 specify their children, yet come with clear built-in expectation as to
 what children are semantically appropriate.
+
+<!-- Can we use [hooks](https://reactjs.org/docs/hooks-intro.html) for
+a functional specification of stateful components (e.g. building from
+[this](https://stackblitz.com/edit/typescript-lit-html-hooks-gyrkjs))? -->
