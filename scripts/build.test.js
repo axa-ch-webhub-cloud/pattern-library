@@ -8,7 +8,7 @@ const ALLOWED_DEPENDENCIES = [
 ];
 
 const { length : found } = Object.keys(dependencies).filter(
-  key => !~ALLOWED_DEPENDENCIES.indexOf(key)
+  key => ALLOWED_DEPENDENCIES.indexOf(key) === -1
 );
 
 if (found) {
