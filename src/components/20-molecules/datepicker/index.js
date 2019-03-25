@@ -235,6 +235,7 @@ export class Datepicker extends LitElement {
                         tabindex="0"
                         data-index="${index}"
                         data-value="${cell.value}"
+                        data-day="${cell.text}"
                         class="m-datepicker__calendar-cell ${cell.className}"
                       >
                         ${cell.text}

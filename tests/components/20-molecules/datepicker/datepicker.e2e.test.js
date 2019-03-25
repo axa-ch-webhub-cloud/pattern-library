@@ -1,16 +1,14 @@
 import { Selector } from 'testcafe';
 import { DatePickerAccessor } from './datepicker-accessor';
 
-fixture('Datepicker').page('http://localhost:6006/iframe.html?id=molecules-datepicker--datepicker');
+fixture('Datepicker').page('http://localhost:9999/iframe.html?id=molecules-datepicker--datepicker');
 
 test('Should select february the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t);
 
   await datePickerAccessor.chooseFebruary();
-  // 13. february
-  await datePickerAccessor.chooseDayByIndex(17);
-  // 14. february
-  await datePickerAccessor.chooseDayByIndex(18);
+  await datePickerAccessor.selectDayOfCurrentMonth(13);
+  await datePickerAccessor.selectDayOfCurrentMonth(14);
 
   await datePickerAccessor.assertYear(2020);
   await datePickerAccessor.assertMonth('Februar');
@@ -21,8 +19,7 @@ test('Should select the first of march from within the february view', async t =
   const datePickerAccessor = new DatePickerAccessor(t);
 
   await datePickerAccessor.chooseFebruary();
-  // 1. march
-  await datePickerAccessor.chooseDayByIndex(34);
+  await datePickerAccessor.selectDayOfOutsideMonth(1);
 
   await datePickerAccessor.assertYear(2020);
   await datePickerAccessor.assertMonth('März');
@@ -33,8 +30,7 @@ test('Should select the 31th of january from within the february view', async t 
   const datePickerAccessor = new DatePickerAccessor(t);
 
   await datePickerAccessor.chooseFebruary();
-  // 31. january
-  await datePickerAccessor.chooseDayByIndex(4);
+  await datePickerAccessor.selectDayOfOutsideMonth(31);
 
   await datePickerAccessor.assertYear(2020);
   await datePickerAccessor.assertMonth('Januar');

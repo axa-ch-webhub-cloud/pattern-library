@@ -5,8 +5,14 @@ class DatePickerAccessor {
     this.t = testcafe;
   }
 
-  daySelector = Selector(dayIndex => {
-    return document.querySelector('axa-datepicker').shadowRoot.querySelector(`button[data-index="${dayIndex}"]`);
+  daySelector = Selector((day, currentMonth) => {
+    return document
+      .querySelector('axa-datepicker')
+      .shadowRoot.querySelector(
+        currentMonth
+          ? `button[class*="m-datepicker__calendar-current-month"][data-day="${day}"]`
+          : `button[class*="m-datepicker__calendar-not-current-month"][data-day="${day}"]`
+      );
   });
 
   async chooseFebruary() {
@@ -22,9 +28,14 @@ class DatePickerAccessor {
     await this.t.click(monthFebruary);
   }
 
-  async chooseDayByIndex(dayIndex) {
-    const day = await Selector(this.daySelector(dayIndex));
-    await this.t.click(day);
+  async selectDayOfCurrentMonth(day) {
+    const dayToSelect = await Selector(this.daySelector(day, true));
+    await this.t.click(dayToSelect);
+  }
+
+  async selectDayOfOutsideMonth(day) {
+    const dayToSelect = await Selector(this.daySelector(day, false));
+    await this.t.click(dayToSelect);
   }
 
   async assertYear(year) {
