@@ -3,9 +3,12 @@ import { DatePickerAccessor } from './datepicker-accessor';
 
 fixture('Datepicker').page('http://localhost:6006/iframe.html?id=molecules-datepicker--datepicker');
 
-test('Should select february the 14th', async t => {
+test('Should select february the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t);
+
   await datePickerAccessor.chooseFebruary();
+  // 13. february
+  await datePickerAccessor.chooseDayByIndex(17);
   // 14. february
   await datePickerAccessor.chooseDayByIndex(18);
 
@@ -16,6 +19,7 @@ test('Should select february the 14th', async t => {
 
 test('Should select the first of march from within the february view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t);
+
   await datePickerAccessor.chooseFebruary();
   // 1. march
   await datePickerAccessor.chooseDayByIndex(34);
@@ -27,6 +31,7 @@ test('Should select the first of march from within the february view', async t =
 
 test('Should select the 31th of january from within the february view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t);
+
   await datePickerAccessor.chooseFebruary();
   // 31. january
   await datePickerAccessor.chooseDayByIndex(4);
