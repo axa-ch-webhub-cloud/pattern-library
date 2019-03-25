@@ -41,7 +41,7 @@ export class Datepicker extends LitElement {
     // Set defaults
     this.locale = 'de-CH';
     this.open = false;
-    this.labelbuttoncancel = 'Cancel';
+    this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
     this.startDate = new Date();
     this.year = this.startDate.getFullYear();
@@ -86,7 +86,10 @@ export class Datepicker extends LitElement {
       this.startDate.setDate(this.day);
     }
 
-    this.allowedyears = [this.year];
+    if (this.allowedyears.length < 2) {
+      this.allowedyears = [this.year];
+    }
+
     this.date = this.startDate;
 
     this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
