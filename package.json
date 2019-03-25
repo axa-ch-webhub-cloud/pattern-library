@@ -15,9 +15,9 @@
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
     "build-storybook": "build-storybook",
     "test": "eslint src/ && node ./scripts/build.test.js",
-    "test-testcafe": "sh build/run-testcafe.sh",
-    "test-testcafe-browserstack": "sh build/run-browserstack.sh",
-    "test-testcafe-browserstackjs": "node build/run-browserstack.js"
+    "test-testcafe": "sh scripts/run-testcafe.sh",
+    "test-testcafe-browserstack": "sh scripts/run-browserstack.sh",
+    "test-testcafe-browserstackjs": "node scripts/run-browserstack.js"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
