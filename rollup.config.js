@@ -53,7 +53,7 @@ const generatePlugins = type => {
       babel({
         ...babelOptions,
         babelrc: false,
-        exclude: type === DIST ? undefined : [
+        exclude: [
           'node_modules/**',
         ],
         runtimeHelpers: true,
@@ -69,13 +69,26 @@ const generatePlugins = type => {
   return [
     ...commons,
     babel({
-      ...babelOptions,
+      presets: babelOptions.presets,
+      plugins: [
+        ...babelOptions.plugins,
+        '@babel/plugin-transform-runtime'
+      ],
+      babelrc: false,
+      exclude: [
+        'node_modules/@skatejs/val/**',
+        'node_modules/@babel/**',
+      ],
+      runtimeHelpers: true,
     }),
-    resolve(),
+    resolve({
+      jsnext: true,
+    }),
     commonjs({
       namedExports: {
-        '@skatejs/val/umd/@skatejs/val.js': ['val'],
+        '@skatejs/val': ['val'],
       },
+      include: 'node_modules/**'
     }),
     uglify(),
   ];
@@ -83,12 +96,13 @@ const generatePlugins = type => {
 
 const generateOutputConfig = type => entry => ({
   input: entry,
-  external: [
+  external: type !== LIB ? undefined : [
     'lit-element',
     'lit-html/directives/class-map',
     'lit-html/directives/repeat',
     '@skatejs/val'
   ],
+  context: type === DIST ? 'window' : undefined,
   output: {
     // define export path (lib/index.js for lib, dist/index.js for dist)
     file: entry.replace('/index.', `/${type}/index.`),
