@@ -70,8 +70,7 @@
     "svgo": "^1.2.0",
     "testcafe": "^1.1.0",
     "testcafe-browser-provider-browserstack": "^1.8.0",
-    "to-string-loader": "^1.1.5",
-    "uglifyjs-webpack-plugin": "^2.1.2"
+    "to-string-loader": "^1.1.5"
   },
   "repository": {
     "type": "git",
