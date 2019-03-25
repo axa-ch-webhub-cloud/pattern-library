@@ -1,25 +1,16 @@
 import { Selector } from 'testcafe';
 import { datePickerAccessor } from './datepicker-accessor';
 
-fixture('Datepicker').page('http://localhost:9999/iframe.html?id=molecules-datepicker--datepicker');
+fixture('Datepicker').page('http://localhost:6006/iframe.html?id=molecules-datepicker--datepicker');
 
-test('Choose august the first from the month july', async t => {
-  const datepicker = Selector('axa-datepicker');
-  const dropDown = await Selector(() => document.querySelector('axa-datepicker').shadowRoot.querySelector('axa-dropdown'));
-  await t.click(dropDown);
+test('Should select february the 14th', async t => {
+  await datePickerAccessor.chooseFebruary(t);
+  // 14. February
+  await datePickerAccessor.chooseDayByIndex(t, 18);
 
-  const monthFebruary = await Selector(() =>
-    document
-      .querySelector('axa-datepicker')
-      .shadowRoot.querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
-      .shadowRoot.querySelector('button[data-value="1"]')
-  );
-
-  await t.click(monthFebruary);
-
-  const selectTheSixteenth = await Selector(() =>
-    document.querySelector('axa-datepicker').shadowRoot.querySelector('button[data-index="18"]')
-  );
-  await t.click(selectTheSixteenth);
-  await t.debug();
+  await datePickerAccessor.assertYear(t, 2020);
+  await datePickerAccessor.assertMonth(t, 'Februar');
+  await datePickerAccessor.assertDay(t, 14);
 });
+
+test('Should select the first of march from within the february view', async t => {});
