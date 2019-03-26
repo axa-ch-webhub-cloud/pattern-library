@@ -59,18 +59,13 @@ test('Should display month in english', async t => {
 
 fixture('Datepicker').page('http://localhost:9999/iframe.html?id=molecules-datepicker--datepicker-input');
 
-test('Should open calendar and choose february the 14th', async t => {
+test('Should close calendar as soon as another one is open', async t => {
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
-  console.log(datePickerAccessor2019.element);
-  // const datePickerAccessor2020 = new DatePickerAccessor(t, 'datepicker-input-2020');
-  // const datePickerAccessor2021 = new DatePickerAccessor(t, 'datepicker-input-2021');
+  await datePickerAccessor2019.openCalendar();
 
-  // await datePickerAccessor2019.openCalendar('datepicker-input-2019');
+  const datePickerAccessor2020 = new DatePickerAccessor(t, 'datepicker-input-2020');
+  await datePickerAccessor2020.openCalendar();
 
-  // await datePickerAccessor2019.chooseFebruary();
-  // await datePickerAccessor2019.selectDayOfCurrentMonth(14);
-
-  // await datePickerAccessor2019.assertYear(2019);
-  // await datePickerAccessor2019.assertMonth('Februar');
-  // await datePickerAccessor2019.assertDay(14);
+  await datePickerAccessor2020.assertIsOpen();
+  await datePickerAccessor2019.assertIsClosed();
 });
