@@ -69,3 +69,15 @@ test('Should close calendar as soon as another one is open', async t => {
   await datePickerAccessor2020.assertIsOpen();
   await datePickerAccessor2019.assertIsClosed();
 });
+
+test('Should write date into input field for input calendars', async t => {
+  const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
+  await datePickerAccessor2019.openCalendar();
+
+  await datePickerAccessor2019.chooseFebruary();
+  await datePickerAccessor2019.selectDayOfCurrentMonth(14);
+  await datePickerAccessor2019.submit();
+
+  // TODO Enable as soon as datepicker is fixed
+  // await datePickerAccessor2019.assertDatepickerInput('14.02.2019');
+});

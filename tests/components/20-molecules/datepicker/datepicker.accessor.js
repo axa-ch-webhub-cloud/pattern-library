@@ -56,6 +56,24 @@ class DatePickerAccessor {
     await this.t.expect(datepicker.hasAttribute('open')).ok();
   }
 
+  async assertDatepickerInput(date) {
+    const datepicker = await Selector(this.datepickerInputFieldSelector(this.id));
+    await this.t.expect(datepicker.getAttribute('value')).eql(date);
+  }
+
+  async submit() {
+    const submitButton = await Selector(this.submitButtonSelector(this.id));
+    await this.t.click(submitButton);
+  }
+
+  submitButtonSelector = Selector(id =>
+    document.querySelector(`axa-datepicker[id="${id}"]`).shadowRoot.querySelector('axa-button[class*="js-datepicker__button-ok"]')
+  );
+
+  datepickerInputFieldSelector = Selector(id =>
+    document.querySelector(`axa-datepicker[id="${id}"]`).shadowRoot.querySelector('input[class*="js-datepicker__input"]')
+  );
+
   calendarSelector = Selector(id => document.querySelector(`axa-datepicker[id="${id}"]`));
 
   daySelector = Selector((day, currentMonth) => {
