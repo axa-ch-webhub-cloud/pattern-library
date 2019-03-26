@@ -2,7 +2,10 @@ import { storiesOf } from '@storybook/html';
 import './index';
 
 storiesOf('Molecules/Datepicker', module)
-  .add('Datepicker', () => `<axa-datepicker allowedyears='[2019, 2020, 2021]' year='2020' month="3" day="20"></axa-datepicker>`)
+  .add(
+    'Datepicker',
+    () => `<axa-datepicker allowedyears='[2019, 2020, 2021]' year='2020' month="3" day="20" id="datepicker"></axa-datepicker>`
+  )
   .add(
     'Datepicker Translated',
     () => `<axa-datepicker allowedyears='[2019, 2020, 2021]' year='2020' month="3" day="20" locale='en-GB' id="datepicker-translated"
