@@ -298,6 +298,22 @@ sketching *how* it can be adressed.
    - **Experiment:** to be done. However, there is an external [lit-html-server](https://github.com/popeindustries/lit-html-server).
    - **How:** to be filled.
 
+1. **React Router**.
+   - **Source:** [#859](https://github.com/axa-ch/patterns-library/issues/859)
+   - **Why:** CE users expect to use CEs in scenarios controlled by [React Router](https://reacttraining.com/react-router/web/api/). In particular, they expect no surprises with respect to child updateability when routes change.
+   - **Experiment:** [lit-element-and-react-router](https://github.com/axa-ch/lit-element-and-react-router).
+   - **How:** The most critical case of instantiating and updating
+   components under React Router appears to be ``<Route component>``,
+   since the
+   [documentation](https://reacttraining.com/react-router/web/api/Route)
+   details how ``React.createElement`` is used *internally* to create
+   the component that should be rendered when the route in question
+   matches. Since in the case of React-exported CEs the exported
+   component has already been wrapped by
+   [skatejs/val](https://github.com/skatejs/val) for React
+   compatibility. Creating a component again from there unsurprisingly
+   works, since we're back to the case of dynamic children under 2. above.
+
 
 ## Best Practices in Component Implementation
 
