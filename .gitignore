@@ -1,4 +1,5 @@
 lib
+dist
 package-lock.json
 
 # Storybook
