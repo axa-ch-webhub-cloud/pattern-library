@@ -4,6 +4,8 @@ import defineOnce from '../../js/define-once';
 import styles from './index.scss';
 import template from './_template';
 import on from '../../js/on';
+import debounce from '../../js/debounce';
+import ownerWindow from '../../js/owner-window';
 import { EVENTS } from '../../js/ui-events';
 
 class AXAModal extends BaseComponentGlobal {
@@ -70,6 +72,33 @@ class AXAModal extends BaseComponentGlobal {
 
   disconnectedCallback() {
     this.onEscReleased();
+  }
+
+  didRenderCallback(...args) {
+    super.didRenderCallback(...args);
+    this._setMarginTop();
+    if (this._unResize) {
+      this._unResize();
+    }
+    this._unResize = on(ownerWindow(this), EVENTS.RESIZE, debounce(() => {
+      this._setMarginTop();
+    }, 300));
+  }
+
+  _setMarginTop() {
+    const contentElement = this.querySelector('.js-modal .js-modal__content');
+    const { offsetHeight, style: contentElementStyle } = contentElement;
+    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    if (offsetHeight && vh) {
+      const marginTopBottom = (vh - offsetHeight) / 2;
+
+      if (marginTopBottom > 0) {
+        contentElementStyle.marginTop = `${marginTopBottom}px`;
+      } else {
+        contentElementStyle.marginTop = '0px';
+      }
+    }
   }
 }
 
