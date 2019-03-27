@@ -5,11 +5,11 @@ import './index';
 storiesOf('Atoms/Button', module)
   .add('Button - click event', () => {
     const btn = document.createElement('axa-button');
-    btn.innerHTML = 'Click me, my event name is click';
+    let counter = 0;
+    btn.innerText = `You clicked me: ${counter} mal, btw my event name is click`;
     btn.addEventListener('click', () => {
-      /* eslint-disable no-alert */
-      window.alert('yooyo');
-      /* eslint-enable no-alert */
+      counter += 1;
+      btn.innerText = `You clicked me: ${counter} mal, btw my event name is click`;
     });
 
     return btn;
@@ -46,12 +46,18 @@ storiesOf('Atoms/Button', module)
     'Button - motion',
     () => `
     <div>
-      <axa-button motionoff>I&apos;m primary btn without motion</axa-button>
-      <axa-button>I&apos;m primary btn with motion</axa-button>
-      <axa-button motionoff cta>I&apos;m primary cta btn without motion</axa-button>
-      <axa-button cta>I&apos;m primary cta btn with motion</axa-button>
-      <axa-button motionoff secondary>I&apos;m primary btn without motion</axa-button>
-      <axa-button secondary>I&apos;m secondary btn with motion</axa-button>
+      <div>
+        <axa-button motionoff>I&apos;m primary btn without motion</axa-button>
+        <axa-button>I&apos;m primary btn with motion</axa-button>
+      </div>
+      <div>
+        <axa-button motionoff cta>I&apos;m primary cta btn without motion</axa-button>
+        <axa-button cta>I&apos;m primary cta btn with motion</axa-button>
+      </div>
+      <div>
+        <axa-button motionoff secondary>I&apos;m primary btn without motion</axa-button>
+        <axa-button secondary>I&apos;m secondary btn with motion</axa-button>
+      </div>
     </div>`
   )
   .add(
