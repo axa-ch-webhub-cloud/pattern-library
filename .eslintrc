@@ -39,7 +39,8 @@
           "**/_story*.js",
           "**/*.story.js",
           "**/src/**/*.react.js",
-          "**/demo/**"
+          "**/demo/**",
+          "**/test.ui.js"
         ],
         "packageDir": "./"
       }
