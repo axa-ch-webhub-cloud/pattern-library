@@ -22,8 +22,9 @@
 }
 
 .m-modal__content {
+  position: relative;
+
   margin: auto;
-  overflow: auto;
 
   padding: 20px;
   width: 100%;
@@ -47,7 +48,8 @@
 }
 
 .m-modal__close-button {
-  float: right;
+  position: absolute;
+  right: 20px;
   color: $color-axa-blue;
 }
 
@@ -58,4 +60,6 @@
 
 button.m-modal__close-button {
   @include button-reset();
+  width: 30px;
+  height: 30px;
 }
