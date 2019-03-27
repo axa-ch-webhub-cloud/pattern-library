@@ -3,7 +3,7 @@ npx start-storybook -p 9999 -c .storybook -s ../src/static --ci --quiet > /dev/n
 
 npx wait-on http://localhost:9999
 
-npx testcafe "chrome:headless" tests/
+npx testcafe "chrome:headless" **/test.ui.js
 test_status=$?
 
 # Kill storybook (cleanup) - By port
