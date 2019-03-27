@@ -18,17 +18,17 @@ check-box {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-
+  border: 1px solid #ccc;
   transition: all 0.5s ease;
   cursor: pointer;
   position: absolute;
   top: -3px;
   left: -3px;
-
   background: #fff;
 }
 
 check-box[checked] .check-box-label {
   left: 27px;
   background: #338ffc;
+  border-color: #338ffc;
 }

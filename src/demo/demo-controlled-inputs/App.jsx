@@ -1,6 +1,5 @@
 // IMPORTS
 import React, { Component, createElement } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import createReactLabelledRadioButton from './customelements/radio-button';
@@ -135,7 +134,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>
-            <span className="pure-react">React</span> &harr; <span className="lit-element">lit-element</span>
+            <span className="pure-react">React</span> &harr; <span className="lit-element">lit-element</span> with controlled inputs
           </p>
           <label htmlFor="checkbox">
             Freeze input values:&nbsp;
@@ -149,26 +148,21 @@ class App extends Component {
             <article className="pure-react">
               <h2>pure-React controlled radio buttons</h2>
               <div>{CITIES.map(labelledRadioButton(this, 'cities', handleRadioChange))}</div>
-              <hr />
               <div>{`Current city: ${CITIES[this.state.selectedRadioButtonIndex]}`}</div>
             </article>
             <article className="lit-element">
               <h2>React controlled lit-element radio buttons</h2>
               <div>{TEAM_MEMBERS.map(litElementRadioButton(this, 'team', handleTeamMemberChange))}</div>
-              <hr />
               <div>{`Current team member: ${TEAM_MEMBERS[this.state.selectedTeamMember]}`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled text input</h2>
               <input type="text" name="text" value={this.state.textValue} onChange={handleTextChange(this)} />
-              <hr />
               <div>{`Current text: "${this.state.textValue}"`}</div>
             </article>
             <article className="lit-element">
-              <hr />
               <h2>React controlled lit-element text input with AXA password-rules validation</h2>
               <ReactTextInput name="lit-text" validate="true" value={this.state.passwordValue} onChange={validateAsAxaPassword(this)} />
-              <hr />
               <div>{`Current password: "${this.state.passwordValue}" is ${this.state.passwordIsValid ? 'VALID' : 'INVALID'}`}</div>
             </article>
             <article className="pure-react">
@@ -176,37 +170,29 @@ class App extends Component {
               <select name="dropdown" value={this.state.dropdownValue} onChange={handleDropdownChange(this)}>
                 {OPTIONS.map(makeReactOption(this))}
               </select>
-              <hr />
               <div>{`Current dropdown choice: ${this.state.dropdownValue}`}</div>
             </article>
             <article className="lit-element">
-              <hr />
               <h2>React controlled lit-element dropdown</h2>
               <LitDropDown name="lit-dropdown" items={OPTIONS} value={this.state.dropdownValue} onChange={handleDropdownChange(this)} />
-              <hr />
               <div>{`Current lit-element dropdown choice: ${this.state.dropdownValue}`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled checkbox</h2>
               <input type="checkbox" name="checkbox" checked={this.state.checkboxValue} onChange={handleCheckboxChange(this)} />
-              <hr />
               <div>{`Current checkbox state: ${this.state.checkboxValue}`}</div>
             </article>
             <article className="lit-element">
-              <hr />
               <h2>React controlled lit-element checkbox</h2>
               <LitCheckbox checked={this.state.checkboxValue} name="lit-checkbox" onChange={handleCheckboxChange(this)} />
-              <hr />
               <div>{`Current lit-element checkbox state: ${this.state.checkboxValue}`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled textarea input</h2>
               <textarea name="textarea" value={this.state.textAreaValue} onChange={handleTextAreaChange(this)} />
-              <hr />
               <div>{`Current text: "${this.state.textAreaValue}"`}</div>
             </article>
             <article className="lit-element">
-              <hr />
               <h2>React controlled lit-element textarea</h2>
               <LitTextArea
                 name="lit-textarea"
@@ -214,7 +200,6 @@ class App extends Component {
                 onChange={handleLitTextAreaChange(this)} /* eslint-disable no-console */
                 ref={element => console.log('lit-element ref:', element)} /* eslint-enable no-console */
               />
-              <hr />
               <div>{`Current lit-element text: ${this.state.litTextArea}`}</div>
             </article>
           </fieldset>

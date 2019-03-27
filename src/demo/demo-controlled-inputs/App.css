@@ -12,8 +12,17 @@
   font-size: calc(10px + 2vmin);
 }
 
+.App-header label {
+  font-size: 16px;
+}
+
 article {
   padding: 1rem;
+  box-shadow: 1px 2px 3px #ddd;
+}
+
+article > div:last-child {
+  margin: 5px 0;
 }
 
 span {
@@ -21,11 +30,11 @@ span {
 }
 
 .pure-react {
-  background-color: lightgreen;
+  color: #3032c1;
 }
 
 .lit-element {
-  background-color: coral;
+  color: #f07662;
 }
 
 button[type='submit'] {
