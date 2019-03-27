@@ -9,7 +9,7 @@ storiesOf('Atoms/Button', module)
     btn.innerText = `You clicked me: ${counter} mal, btw my event name is click`;
     btn.addEventListener('click', () => {
       counter += 1;
-      btn.innerText = `You clicked me: ${counter} mal, btw my event name is click`;
+      btn.innerText = `You clicked me: ${counter} times, btw my event name is click`;
     });
 
     return btn;

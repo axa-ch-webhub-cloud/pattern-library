@@ -1,21 +1,21 @@
-import React, { createElement } from 'react';
+import React, { createElement, useState } from 'react';
 import '../../components/10-atoms/button';
 import createAXAButtonReact from '../../components/10-atoms/button/index.react';
 
 const AXAButtonReact = createAXAButtonReact(createElement);
 
 const DemoButton = () => {
+  const [count, setCount] = useState(0);
+
   const handleAXAButtonClick = () => {
-    /* eslint-disable no-alert */
-    window.alert('Oo yeah you clicked me');
-    /* eslint-enable no-alert */
+    setCount(count + 1)
   };
 
   return (
     <div>
       <p>with react wrapper - callback props are possible, too:</p>
       <AXAButtonReact onClick={handleAXAButtonClick}>
-        I&apos;m clickable
+        You clicked me: {count} times!
       </AXAButtonReact>
     </div>
   );
