@@ -1,13 +1,10 @@
-/* eslint-disable react/jsx-filename-extension */
-
 import React from 'react';
 import { storiesOf } from '@storybook/html';
 import ReactDOM from 'react-dom';
-import App from './App';
+import DemoButton from './DemoButton';
 
-storiesOf('Demo', module).add('Button React', () => {
+storiesOf('Demos', module).add('Button with React', () => {
   const div = document.createElement('div');
-  div.setAttribute('id', 'root-button');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<DemoButton />, div);
   return div;
 });
