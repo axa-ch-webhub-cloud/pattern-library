@@ -1,7 +1,7 @@
 import withReact from '../../../utils/with-react';
 import AXAButton from './index';
 
-export default createElement => ({ type, icon, secondary, large, inverted, cta, motion, disabled, onClick, children }) =>
+export default createElement => ({ type, icon, secondary, large, inverted, cta, motionOff, disabled, onClick, children }) =>
   withReact(createElement)(
     AXAButton.tagName,
     {
@@ -11,7 +11,7 @@ export default createElement => ({ type, icon, secondary, large, inverted, cta, 
       large,
       inverted,
       cta,
-      motion,
+      motionOff,
       disabled,
       onClick,
     },
