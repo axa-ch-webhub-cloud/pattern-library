@@ -37,13 +37,13 @@
   @include respond-up(md) {
     margin-top: 20vh;
     width: 80vw;
-    height: 60vh;
+    height: auto;
   }
 
   @include respond-up(lg) {
     margin-top: 20vh;
     width: 70vw;
-    height: 60vh;
+    height: auto;
   }
 }
 
