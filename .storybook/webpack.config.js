@@ -7,7 +7,9 @@ require('dotenv-extended').load();
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
 const globals = require(path.resolve(__dirname, '..', 'config', 'globals.js'))
   .map(item => `@import '${base}/${item}';`)
-  .join('\n');
+  .join('\n')
+  .replace(/\\/g, '/'); // use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash
+;
 
 module.exports = ({ config }) => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
