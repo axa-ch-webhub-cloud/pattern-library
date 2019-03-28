@@ -1,4 +1,4 @@
-import { DatePickerAccessor } from './datepicker.accessor';
+import { DatePickerAccessor } from './test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || '';
 
