@@ -18,6 +18,7 @@ class DatePickerAccessor {
     const openCalendar = await Selector(this.openCalendarSelector(this.id));
     await this.t.click(openCalendar);
   }
+
   async selectDayOfCurrentMonth(day) {
     const dayToSelect = await Selector(this.daySelector(day, true));
     await this.t.click(dayToSelect);
