@@ -2,7 +2,7 @@ import { DatePickerAccessor } from './datepicker.accessor';
 
 fixture('Datepicker').page('http://localhost:9999/iframe.html?id=molecules-datepicker--datepicker');
 
-test('Should select february the 13th and then the 14th', async t => {
+test('should select february the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -14,7 +14,7 @@ test('Should select february the 13th and then the 14th', async t => {
   await datePickerAccessor.assertDay(14);
 });
 
-test('Should select the first of march from within the february view', async t => {
+test('should select the first of march from within the february view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -25,7 +25,7 @@ test('Should select the first of march from within the february view', async t =
   await datePickerAccessor.assertDay(1);
 });
 
-test('Should select the 31th of january from within the february view', async t => {
+test('should select the 31th of january from within the february view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -36,7 +36,7 @@ test('Should select the 31th of january from within the february view', async t 
   await datePickerAccessor.assertDay(31);
 });
 
-test('Should correctly handle leap year', async t => {
+test('should correctly handle leap year', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -49,7 +49,7 @@ test('Should correctly handle leap year', async t => {
 
 fixture('Datepicker - With Locale').page('http://localhost:9999/iframe.html?id=molecules-datepicker--datepicker-translated');
 
-test('Should display month in english', async t => {
+test('should display month in english', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-translated');
 
   await datePickerAccessor.chooseFebruary();
@@ -59,7 +59,7 @@ test('Should display month in english', async t => {
 
 fixture('Datepicker - Collapseable Version').page('http://localhost:9999/iframe.html?id=molecules-datepicker--datepicker-input');
 
-test('Should close calendar as soon as another one is open', async t => {
+test('should close calendar as soon as another one is open', async t => {
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
   await datePickerAccessor2019.openCalendar();
 
@@ -70,7 +70,7 @@ test('Should close calendar as soon as another one is open', async t => {
   await datePickerAccessor2019.assertIsClosed();
 });
 
-test('Should write date into input field for input calendars', async t => {
+test('should write date into input field for input calendars', async t => {
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
   await datePickerAccessor2019.openCalendar();
 
