@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
   "rules": {
     "max-len": [
       "error",
@@ -40,12 +40,16 @@
           "**/*.story.js",
           "**/src/**/*.react.js",
           "**/demo/**",
-          "**/ui.test.js"
+          "**/ui.test.js",
+          "**/unit.test.{js,jsx}",
+          "**/setupTests.js",
+          "**/jestPreprocess.js"
         ],
         "packageDir": "./"
       }
     ],
-    "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
+    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
+    "jest/no-jest-import": "off"
   },
   "globals": {
     "HTMLAnchorElement": true,
