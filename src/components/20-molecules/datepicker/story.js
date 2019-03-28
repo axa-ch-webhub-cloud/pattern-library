@@ -7,7 +7,7 @@ storiesOf('Molecules/Datepicker', module)
     () => `<axa-datepicker allowedyears='[2019, 2020, 2021]' year='2020' month="3" day="20" data-test-id="datepicker"></axa-datepicker>`
   )
   .add(
-    'Datepicker Translated',
+    'Datepicker Translated (en-GB)',
     () => `<axa-datepicker allowedyears='[2019, 2020, 2021]' year='2020' month="3" day="20" locale='en-GB' data-test-id="datepicker-translated"
     ></axa-datepicker>`
   )
