@@ -3,7 +3,7 @@
 export $(egrep -v '^#' .env | xargs)
 
 npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ../src/static --ci --quiet > /dev/null 2>&1 &
-npx wait-on $TEST_HOST_STORYBOOK_URL -t 10000
+npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
 npx testcafe \"browserstack:ie:Windows 10\" **/*test.ui.js
 test_status=$?
 
