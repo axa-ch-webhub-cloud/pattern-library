@@ -14,16 +14,15 @@ class AXAButton extends LitElement {
   static get properties() {
     return {
       // button, submit, reset
-      type: { type: String },
-      icon: { type: String },
-
+      type: { type: String, reflect: true },
       secondary: { type: Boolean },
       large: { type: Boolean },
       inverted: { type: Boolean },
       cta: { type: Boolean },
       motionOff: { type: Boolean },
-      disabled: { type: Boolean },
+      disabled: { type: Boolean, reflect: true },
 
+      icon: { type: String },
       onClick: { type: Function },
     };
   }
@@ -31,13 +30,8 @@ class AXAButton extends LitElement {
   constructor() {
     super();
     this.type = 'button';
+    this.onClick = () => {};
   }
-
-  handleButtonClick = () => {
-    if (typeof this.onClick === 'function') {
-      this.onClick();
-    }
-  };
 
   render() {
     const classes = {
@@ -49,7 +43,7 @@ class AXAButton extends LitElement {
     };
 
     return html`
-      <button type="${this.type}" class="a-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.handleButtonClick}">
+      <button type="${this.type}" class="a-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.onClick}">
         <div class="a-button__flex-wrapper">
           <slot></slot>
           ${this.icon && svg`${arrowRight()}`}

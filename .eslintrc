@@ -39,7 +39,8 @@
           "**/_story*.js",
           "**/*.story.js",
           "**/src/**/*.react.js",
-          "**/demo/**"
+          "**/demo/**",
+          "**/ui.test.js"
         ],
         "packageDir": "./"
       }
@@ -129,7 +130,9 @@
     "window": true,
     "ENV": true,
     "PROD": true,
-    "DEV": true
+    "DEV": true,
+    "fixture": true,
+    "test": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

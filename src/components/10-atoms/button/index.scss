@@ -1,11 +1,10 @@
 .a-button {
+  @include typo(primary, medium, medium);
   position: relative;
   box-sizing: border-box;
   padding-left: 30px;
   padding-right: 30px;
-  font-family: 'source-sans-pro--semibold', Georgia sans-serif;
   font-size: 16px;
-  font-weight: 600;
   line-height: .5;
   min-height: 40px;
   hyphens: auto;
@@ -28,8 +27,7 @@
     border-color: $color-prim-blue-deep-sapphire;
   }
 
-  &:disabled,
-  &[aria-disabled] {
+  &:disabled {
     color: #999;
     background-color: #e5e5e5;
     border-color: #e5e5e5;
