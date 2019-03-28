@@ -49,7 +49,7 @@ test('should correctly handle leap year', async t => {
   await datePickerAccessor.assertDay(29);
 });
 
-fixture('Datepicker - With Locale').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-translated`);
+fixture('Datepicker - With Locale').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-translated-en-gb`);
 
 test('should display month in english', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-translated');
