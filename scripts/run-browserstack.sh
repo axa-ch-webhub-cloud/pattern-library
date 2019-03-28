@@ -8,7 +8,7 @@ npx start-storybook -p 9999 -c .storybook -s src/static --ci --quiet > /dev/null
 npx wait-on http://localhost:9999
 
 # Run tests on browserstack with the latest internet explorer (11)
-npx testcafe \"browserstack:ie:Windows 10\" **/ui.test.js
+npx testcafe \"browserstack:ie:Windows 10\" **/*test.ui.js
 test_status=$?
 
 # Kill storybook (cleanup) - By port
