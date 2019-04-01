@@ -267,13 +267,13 @@ export class Datepicker extends LitElement {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
     if (hasValue && name === 'date' && this.store && this.date) {
+      const newDate = this.date;
       // Validation
-      // if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-      //   //return;
-      // }
+      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
+        return;
+      }
 
       // Important for reactive dropdowns
-      const newDate = this.date;
       this.year = newDate.getFullYear();
       this.month = newDate.getMonth();
       this.day = newDate.getDate();
