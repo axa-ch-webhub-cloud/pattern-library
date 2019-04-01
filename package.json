@@ -17,7 +17,8 @@
     "test": "eslint src/ && node ./scripts/build.test.js",
     "test-testcafe": "sh scripts/run-testcafe.sh",
     "test-testcafe-browserstack": "sh scripts/run-browserstack.sh",
-    "test-testcafe-browserstackjs": "node scripts/run-browserstack.js"
+    "test-testcafe-browserstackjs": "node scripts/run-browserstack.js",
+    "test-jest": "node scripts/test.unit.js --env=jsdom"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
@@ -36,6 +37,7 @@
     "@storybook/html": "^5.0.5",
     "autoprefixer": "^9.4.9",
     "babel-eslint": "^8.2.1",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "breakpoint-sass": "^2.7.1",
@@ -47,10 +49,13 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "glob": "^7.1.3",
+    "jest": "^24.5.0",
     "lerna": "^3.13.1",
+    "mutationobserver-shim": "^0.3.3",
     "node-sass": "^4.11.0",
     "outdent": "^0.7.0",
     "postcss": "^7.0.14",
