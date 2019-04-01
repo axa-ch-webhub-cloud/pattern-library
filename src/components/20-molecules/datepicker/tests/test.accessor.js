@@ -10,7 +10,6 @@ class DatePickerAccessor {
     const dropDown = await Selector(this.selectMonthDropdownSelector(this.id));
     await this.t.click(dropDown);
     const monthFebruary = await Selector(this.selectFebruarySelector(this.id));
-
     await this.t.click(monthFebruary);
   }
 
@@ -62,6 +61,11 @@ class DatePickerAccessor {
     await this.t.expect(datepicker.getAttribute('value')).eql(date);
   }
 
+  async assertDropdownTitle(title) {
+    const dropdownButton = await Selector(this.datepickerDropdownButton(this.id));
+    await this.t.expect(dropdownButton.innerText).contains(title);
+  }
+
   async submit() {
     const submitButton = await Selector(this.submitButtonSelector(this.id));
     await this.t.click(submitButton);
@@ -73,6 +77,13 @@ class DatePickerAccessor {
 
   datepickerInputFieldSelector = Selector(id =>
     document.querySelector(`axa-datepicker[data-test-id="${id}"]`).shadowRoot.querySelector('input[class*="js-datepicker__input"]')
+  );
+
+  datepickerDropdownButton = Selector(id =>
+    document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .shadowRoot.querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .shadowRoot.querySelector('.js-dropdown__toggle span')
   );
 
   calendarSelector = Selector(id => document.querySelector(`axa-datepicker[data-test-id="${id}"]`));
