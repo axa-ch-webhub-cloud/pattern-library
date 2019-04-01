@@ -90,7 +90,7 @@ class AXADropdown extends LitElement {
     this.value = e.target.dataset.value;
     this.updateCurrentItem(e.target.dataset.value);
     this.closeDropdown();
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.dataset.value, bubbles: true, cancelable: true });
+    const event = new CustomEvent('axa-change', { detail: e.target.dataset.value, bubbles: true, composed: true });
     this.dispatchEvent(event);
   }
 
@@ -100,7 +100,7 @@ class AXADropdown extends LitElement {
     this.value = e.target.value;
     this.title = e.target.value;
     this.updateCurrentItem(e.target.value);
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
+    const event = new CustomEvent('axa-change', { detail: e.target.value, bubbles: true, cancelable: true });
     this.dispatchEvent(event);
   }
 

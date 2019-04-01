@@ -50,11 +50,7 @@ export class Datepicker extends LitElement {
   }
 
   firstUpdated() {
-    this.dropdownMonth = this.shadowRoot.querySelector('.js-datepicker__dropdown-month');
-    this.dropdownYear = this.shadowRoot.querySelector('.js-datepicker__dropdown-year');
     this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
-    this.dropdownMonth.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
-    this.dropdownYear.addEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
 
@@ -95,8 +91,6 @@ export class Datepicker extends LitElement {
   }
 
   disconnectedCallback() {
-    this.dropdownMonth.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
-    this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     this.removeEventListener('click', e => this.handleDatepickerClick(e));
     window.removeEventListener('click', e => this.handleBodyClick(e));
   }
@@ -135,6 +129,7 @@ export class Datepicker extends LitElement {
           <div class="m-datepicker__article">
             <div class="m-datepicker__dropdown-wrap">
               <axa-dropdown
+                @axa-change="${this.handleChangeDropdownMonth}"
                 class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
                 max-height
                 items="${JSON.stringify(this.monthitems)}"
@@ -143,6 +138,7 @@ export class Datepicker extends LitElement {
               </axa-dropdown>
 
               <axa-dropdown
+                @axa-change="${this.handleChangeDropdownYear}"
                 class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
                 max-height
                 items="${JSON.stringify(this.yearitems)}"
@@ -209,7 +205,7 @@ export class Datepicker extends LitElement {
       }
 
       // Fire custom success events
-      const eventChange = new CustomEvent('AXA_CHANGE', {
+      const eventChange = new CustomEvent('axa-change', {
         detail: newDate,
         bubbles: true,
         cancelable: true,
