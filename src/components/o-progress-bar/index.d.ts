@@ -1,5 +1,4 @@
 export interface Props {
-  // onAxaChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   classes?: string;
   value?: number;
   max?: number;

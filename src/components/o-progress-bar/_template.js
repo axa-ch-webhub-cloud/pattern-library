@@ -1,5 +1,4 @@
 import html from 'nanohtml';
-// import isEmptyFragment from '../../js/is-empty-fragment';
 
 const percentageSymbol = '%';
 const closingIcon = 'cross-gap';
