@@ -72,7 +72,7 @@ test('should close calendar as soon as another one is open', async t => {
   await datePickerAccessor2019.assertIsClosed();
 });
 
-test.only('should write date into input field for input calendars', async t => {
+test('should write date into input field for input calendars', async t => {
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
   await datePickerAccessor2019.openCalendar();
 
