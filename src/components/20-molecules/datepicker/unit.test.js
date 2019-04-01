@@ -1,4 +1,5 @@
 // Example
+// import Datepicker from './index';
 
 const sum = (x, y) => x + y;
 
