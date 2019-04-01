@@ -22,7 +22,7 @@ class AXAButton extends LitElement {
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
 
-      icon: { type: String },
+      icon: { type: Boolean },
       onClick: { type: Function },
     };
   }
