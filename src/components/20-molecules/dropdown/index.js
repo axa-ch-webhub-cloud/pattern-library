@@ -51,7 +51,10 @@ class AXADropdown extends LitElement {
   }
 
   updateTitle() {
-    this.title = this.items.filter(item => item.isSelected)[0].name;
+    const selectedItem = this.items.filter(item => item.isSelected);
+    if (selectedItem.length > 0) {
+      this.title = selectedItem[0].name;
+    }
   }
 
   handleWindowKeyDown(e) {
