@@ -6,6 +6,8 @@
 
 [Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop-v2/ARCHITECTURE.md)
 
+[Check out our Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop-v2/CODE_OF_CONDUCT.md)
+
 
 We only export holistic and self contained WebComponents based on CustomElement, ShadowDom and HTML Templates.
 
