@@ -44,6 +44,7 @@ export class Datepicker extends LitElement {
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
     this.startDate = new Date();
+    this.date = this.startDate;
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
@@ -74,35 +75,21 @@ export class Datepicker extends LitElement {
     window.axaComponents = window.axaComponents || {};
     this.addEventListener('click', e => this.handleDatepickerClick(e));
 
-    if (this.year) {
+    if (this.year >= 0) {
       this.startDate.setFullYear(this.year);
     }
 
-    if (this.month) {
-      this.startDate.setMonth(this.month - 1);
+    if (this.month >= 0 && typeof this.month === 'number') {
+      this.startDate.setMonth(this.month);
     }
 
-    if (this.day) {
+    if (this.day >= 0) {
       this.startDate.setDate(this.day);
     }
 
     if (this.allowedyears.length < 2) {
       this.allowedyears = [this.year];
     }
-
-    this.date = this.startDate;
-
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-      isSelected: index === this.month - 1,
-      name: item.toString(),
-      value: index.toString(),
-    }));
-
-    this.yearitems = this.allowedyears.map(item => ({
-      isSelected: item === this.year,
-      name: item.toString(),
-      value: item.toString(),
-    }));
 
     this.store = new Store(this.locale, this.startDate, this.allowedyears);
     this.cells = this.store.getCells();
@@ -112,6 +99,7 @@ export class Datepicker extends LitElement {
   disconnectedCallback() {
     this.dropdownMonth.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownMonth(e));
     this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
+    this.removeEventListener('click', e => this.handleDatepickerClick(e));
     window.removeEventListener('click', e => this.handleBodyClick(e));
   }
 
@@ -180,6 +168,18 @@ export class Datepicker extends LitElement {
   }
 
   render() {
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      isSelected: index === this.month,
+      name: item.toString(),
+      value: index.toString(),
+    }));
+
+    this.yearitems = this.allowedyears.map(item => ({
+      isSelected: item === this.year,
+      name: item.toString(),
+      value: item.toString(),
+    }));
+
     return html`
       <article class="m-datepicker">
         ${this.inputfield &&
@@ -204,7 +204,7 @@ export class Datepicker extends LitElement {
                 class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
                 max-height
                 items="${JSON.stringify(this.monthitems)}"
-                title="Month"
+                title="Choose Month"
               >
               </axa-dropdown>
 
@@ -212,7 +212,7 @@ export class Datepicker extends LitElement {
                 class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
                 max-height
                 items="${JSON.stringify(this.yearitems)}"
-                title="Year"
+                title="Choose Year"
               >
               </axa-dropdown>
             </div>
@@ -267,25 +267,31 @@ export class Datepicker extends LitElement {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
     if (hasValue && name === 'date' && this.store && this.date) {
-      const newDate = this.date;
-      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-        return;
-      }
+      // Validation
+      // if (!this.isYearInValidDateRange(newDate.getFullYear())) {
+      //   //return;
+      // }
 
-      this.store.update(newDate);
-      this.cells = this.store.getCells();
+      // Important for reactive dropdowns
+      const newDate = this.date;
+      this.year = newDate.getFullYear();
+      this.month = newDate.getMonth();
+      this.day = newDate.getDate();
 
       this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-        isSelected: index === newDate.getMonth(),
+        isSelected: index === this.month,
         name: item.toString(),
         value: index.toString(),
       }));
 
       this.yearitems = this.allowedyears.map(item => ({
-        isSelected: item === newDate.getFullYear(),
+        isSelected: item === this.year,
         name: item.toString(),
         value: item.toString(),
       }));
+
+      this.store.update(newDate);
+      this.cells = this.store.getCells();
 
       // Fire custom success events
       const eventChange = new CustomEvent('AXA_CHANGE', {

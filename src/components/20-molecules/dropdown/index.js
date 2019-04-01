@@ -39,16 +39,19 @@ class AXADropdown extends LitElement {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
     this.open = false;
-    this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
-    this.title = this.selectedItem.name;
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
+    this.updateTitle();
   }
 
   handleWindowClick() {
     if (this.open) {
       this.closeDropdown();
     }
+  }
+
+  updateTitle() {
+    this.title = this.items.filter(item => item.isSelected)[0].name;
   }
 
   handleWindowKeyDown(e) {
@@ -150,7 +153,7 @@ class AXADropdown extends LitElement {
     const hasValue = newValue !== null;
     if (hasValue && name === 'items') {
       const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true);
-      this.title = currentItem[0].name;
+      this.title = currentItem[0] ? currentItem[0].name : this.title;
     }
   }
 
