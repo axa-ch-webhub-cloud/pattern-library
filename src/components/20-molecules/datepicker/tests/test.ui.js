@@ -80,7 +80,6 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor2019.selectDayOfCurrentMonth(14);
   await datePickerAccessor2019.submit();
 
-  // TODO Enable as soon as datepicker is fixed
   await datePickerAccessor2019.assertDatepickerInput('14.2.2019');
 });
 
