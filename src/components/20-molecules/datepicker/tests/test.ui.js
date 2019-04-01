@@ -38,7 +38,7 @@ test('should select the 31th of january from within the february view', async t 
   await datePickerAccessor.assertDay(31);
 });
 
-test('should correctly handle leap year', async t => {
+test('should have a 29th of februrary in 2020 - should correctly handle leap year', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -59,9 +59,9 @@ test('should display month in english', async t => {
   await datePickerAccessor.assertMonth('February');
 });
 
-fixture('Datepicker - Collapseable Version').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-input`);
+fixture('Datepicker - Collapsable Version').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-input`);
 
-test('should close calendar as soon as another one is open', async t => {
+test.only('should close calendar as soon as another one is open', async t => {
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
   await datePickerAccessor2019.openCalendar();
 
