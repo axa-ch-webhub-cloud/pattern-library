@@ -323,9 +323,8 @@ export class Datepicker extends LitElement {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      const parsedDate = new Date(this.date);
-      parsedDate.setMonth(month);
-      this.date = parsedDate;
+      const newDate = new Date(this.year, month, this.day);
+      this.date = newDate;
       this.updateDatepickerProps(this.date);
     }
   }
