@@ -1,4 +1,4 @@
-import ProgressBarHandler from './js/progress-bar-handler';
+import ProgressBarOutputLogging from './js/progress-bar-output-logging';
 
 import PropTypes from '../../js/prop-types'; // eslint-disable-next-line import/first
 
@@ -26,7 +26,7 @@ class AXAProgressBar extends BaseComponentGlobal {
   init() {
     super.init({ styles, template });
 
-    this.progressBarHandler = new ProgressBarHandler(PRIORITY_LEVEL_ERRORHANDLING);
+    this.progressBarHandler = new ProgressBarOutputLogging(PRIORITY_LEVEL_ERRORHANDLING);
   }
 
   /**

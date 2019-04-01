@@ -1,8 +1,8 @@
-import { Error, Warning, Information } from './error-handler';
+import { Error, Warning, Information } from './log-level';
 
 const LOWEST_PRIORITY = 2;
 
-export default class ProgressBarHandler {
+export default class ProgressBarOutputLogging {
   constructor(priority = LOWEST_PRIORITY) {
     this.priority = priority;
     this.value = 0;
@@ -17,10 +17,10 @@ export default class ProgressBarHandler {
 
   testComponent() {
     if (Math.sign(this.value) < 0) {
-      this.logs.push(new Error(Date.now(), `value ${this.value} is negative`));
+      this.logs.push(new Error(Date.now(), `value ${this.value} is negative, wich is not a valid value`));
     }
     if (Math.sign(this.max) < 0) {
-      this.logs.push(new Error(Date.now(), `max ${this.max} is negative`));
+      this.logs.push(new Error(Date.now(), `max ${this.max} is negative, wich is not a valid value`));
     }
     if ((this.max === undefined || this.max === null) && this.value > 1) {
       this.logs.push(new Information(Date.now(), 'indeterminate state is not realised'));
