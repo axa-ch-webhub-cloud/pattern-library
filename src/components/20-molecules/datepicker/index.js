@@ -178,7 +178,7 @@ export class Datepicker extends LitElement {
             </div>
             <div class="m-datepicker__buttons">
               <axa-button
-                ghost
+                secondary
                 class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
                 @click="${this.handleButtonCancelClick}"
                 >${this.labelbuttoncancel}</axa-button
