@@ -35,16 +35,13 @@ export class Datepicker extends LitElement {
     };
   }
 
-  // TODO: set the selectd item of the year and month array from startdate
   constructor() {
     super();
-    // Set defaults
     this.locale = 'de-CH';
     this.open = false;
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
     this.startDate = new Date();
-    this.date = this.startDate;
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
@@ -91,9 +88,10 @@ export class Datepicker extends LitElement {
       this.allowedyears = [this.year];
     }
 
-    this.store = new Store(this.locale, this.startDate, this.allowedyears);
+    this.date = this.startDate;
+    this.store = new Store(this.locale, this.date, this.allowedyears);
     this.cells = this.store.getCells();
-    this.weekdays = getWeekdays(this.startDate, this.locale);
+    this.weekdays = getWeekdays(this.date, this.locale);
   }
 
   disconnectedCallback() {
@@ -101,70 +99,6 @@ export class Datepicker extends LitElement {
     this.dropdownYear.removeEventListener('AXA_CHANGE', e => this.handleChangeDropdownYear(e));
     this.removeEventListener('click', e => this.handleDatepickerClick(e));
     window.removeEventListener('click', e => this.handleBodyClick(e));
-  }
-
-  handleViewportCheck(baseElem, elem) {
-    if (this.shouldMove(baseElem, elem)) {
-      if (!this.inverted) {
-        this.inverted = true;
-      }
-    } else {
-      this.inverted = false;
-    }
-  }
-
-  shouldMove(elem) {
-    const element = elem.getBoundingClientRect();
-    const moreSpaceOnTopThanBottom = element.top > window.innerHeight - element.bottom;
-    return moreSpaceOnTopThanBottom;
-  }
-
-  toggleDatepicker() {
-    if (!this.open) {
-      if (window.axaComponents.openDatepickerInstance && window.axaComponents.openDatepickerInstance !== this) {
-        window.axaComponents.openDatepickerInstance.open = false;
-      }
-      this.open = true;
-      window.axaComponents.openDatepickerInstance = this;
-    } else {
-      this.open = false;
-      window.axaComponents.openDatepickerInstance = null;
-    }
-  }
-
-  isValidDate(date) {
-    let out = false;
-    try {
-      const parsedDate = new Date(Date.parse(date));
-      // eslint-disable-next-line no-restricted-properties
-      const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
-      const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
-      if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
-        out = isValidDateLocalized;
-      }
-    } catch (e) {
-      out = false;
-    }
-    return out;
-  }
-
-  isYearInValidDateRange(year) {
-    return this.allowedyears.indexOf(year) > -1;
-  }
-
-  debounce(func, wait, immediate) {
-    let timeout;
-    return (...args) => {
-      const context = this;
-      const later = () => {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
   }
 
   render() {
@@ -268,30 +202,11 @@ export class Datepicker extends LitElement {
     const hasValue = newValue !== null;
     if (hasValue && name === 'date' && this.store && this.date) {
       const newDate = this.date;
+
       // Validation
       if (!this.isYearInValidDateRange(newDate.getFullYear())) {
         return;
       }
-
-      // Important for reactive dropdowns
-      this.year = newDate.getFullYear();
-      this.month = newDate.getMonth();
-      this.day = newDate.getDate();
-
-      this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
-        isSelected: index === this.month,
-        name: item.toString(),
-        value: index.toString(),
-      }));
-
-      this.yearitems = this.allowedyears.map(item => ({
-        isSelected: item === this.year,
-        name: item.toString(),
-        value: item.toString(),
-      }));
-
-      this.store.update(newDate);
-      this.cells = this.store.getCells();
 
       // Fire custom success events
       const eventChange = new CustomEvent('AXA_CHANGE', {
@@ -308,6 +223,79 @@ export class Datepicker extends LitElement {
       });
       this.dispatchEvent(eventValidation);
     }
+  }
+
+  // Methods
+  handleViewportCheck(baseElem, elem) {
+    if (this.shouldMove(baseElem, elem)) {
+      if (!this.inverted) {
+        this.inverted = true;
+      }
+    } else {
+      this.inverted = false;
+    }
+  }
+
+  shouldMove(elem) {
+    const element = elem.getBoundingClientRect();
+    const moreSpaceOnTopThanBottom = element.top > window.innerHeight - element.bottom;
+    return moreSpaceOnTopThanBottom;
+  }
+
+  toggleDatepicker() {
+    if (!this.open) {
+      if (window.axaComponents.openDatepickerInstance && window.axaComponents.openDatepickerInstance !== this) {
+        window.axaComponents.openDatepickerInstance.open = false;
+      }
+      this.open = true;
+      window.axaComponents.openDatepickerInstance = this;
+    } else {
+      this.open = false;
+      window.axaComponents.openDatepickerInstance = null;
+    }
+  }
+
+  isValidDate(date) {
+    let out = false;
+    try {
+      const parsedDate = new Date(Date.parse(date));
+      // eslint-disable-next-line no-restricted-properties
+      const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
+      const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
+      if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
+        out = isValidDateLocalized;
+      }
+    } catch (e) {
+      out = false;
+    }
+    return out;
+  }
+
+  isYearInValidDateRange(year) {
+    return this.allowedyears.indexOf(year) > -1;
+  }
+
+  debounce(func, wait, immediate) {
+    let timeout;
+    return (...args) => {
+      const context = this;
+      const later = () => {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
+  updateDatepickerProps(date) {
+    this.month = date.getMonth();
+    this.day = date.getDate();
+    this.year = date.getFullYear();
+    this.store.update(date);
+    this.cells = this.store.getCells();
   }
 
   // Events
@@ -338,6 +326,7 @@ export class Datepicker extends LitElement {
       const parsedDate = new Date(this.date);
       parsedDate.setMonth(month);
       this.date = parsedDate;
+      this.updateDatepickerProps(this.date);
     }
   }
 
@@ -348,6 +337,7 @@ export class Datepicker extends LitElement {
       const parsedDate = new Date(this.date);
       parsedDate.setFullYear(year);
       this.date = parsedDate;
+      this.updateDatepickerProps(this.date);
     }
   }
 
@@ -363,6 +353,7 @@ export class Datepicker extends LitElement {
     const validDate = this.isValidDate(e.target.value);
     if (validDate) {
       this.date = validDate;
+      this.updateDatepickerProps(this.date);
       this.outputdate = validDate.toLocaleString(this.locale, {
         day: 'numeric',
         month: 'numeric',
@@ -391,10 +382,23 @@ export class Datepicker extends LitElement {
     e.preventDefault();
     e.stopPropagation();
     e.target.blur(); // Prevent the ugly focus ring after the click
-    const index = parseInt(e.target.dataset.index, 10);
+    const cellIndex = parseInt(e.target.dataset.index, 10);
     const date = e.target.dataset.value;
-    this.index = index;
+    this.index = cellIndex;
     this.date = new Date(date);
+    this.updateDatepickerProps(this.date);
+
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      isSelected: index === this.month,
+      name: item.toString(),
+      value: index.toString(),
+    }));
+
+    this.yearitems = this.allowedyears.map(item => ({
+      isSelected: item === this.year,
+      name: item.toString(),
+      value: item.toString(),
+    }));
   }
 }
 
