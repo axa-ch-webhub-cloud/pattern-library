@@ -6,10 +6,10 @@ storiesOf('Atoms/Button', module)
   .add('Button - click event', () => {
     const btn = document.createElement('axa-button');
     let counter = 0;
-    btn.innerText = `You clicked me: ${counter} mal, btw my event name is click`;
+    btn.innerHTML = `You clicked me: ${counter} mal, btw my event name is click`;
     btn.addEventListener('click', () => {
       counter += 1;
-      btn.innerText = `You clicked me: ${counter} times, btw my event name is click`;
+      btn.innerHTML = `You clicked me: ${counter} times, btw my event name is click`;
     });
 
     return btn;
