@@ -21,7 +21,9 @@ We roughly follow established agile methodology.
 We maintain a Kanban board to depict the current state of the design
 and development tasks in our work pipeline.
 
-See this ![screenshot](https://raw.githubusercontent.com/axa-ch/patterns-library/develop-v2/assets/kanban_board.png) for an example snapshot.
+See this picture for an example:
+
+<img src="https://raw.githubusercontent.com/axa-ch/patterns-library/develop-v2/assets/kanban_board.jpg" width="400">
 
 ## Dailies
 
