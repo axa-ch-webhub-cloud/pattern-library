@@ -48,13 +48,13 @@ class DatePickerAccessor {
 
   async assertIsClosed() {
     const datepicker = await Selector(this.calendarSelector(this.id));
-    this.t.wait(1000);
+    await this.t.wait(1000);
     await this.t.expect(datepicker.hasAttribute('open')).notOk();
   }
 
   async assertIsOpen() {
     const datepicker = await Selector(this.calendarSelector(this.id));
-    this.t.wait(1000);
+    await this.t.wait(1000);
     await this.t.expect(datepicker.hasAttribute('open')).ok();
   }
 
