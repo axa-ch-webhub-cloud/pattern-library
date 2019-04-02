@@ -22,6 +22,11 @@ class AXAButton extends LitElement {
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
 
+      /**
+       * icon name - when Icon component will be implemented
+       *
+       * For now it displays an arrow when 'icon' is truthy
+       */
       icon: { type: String },
       onClick: { type: Function },
     };
