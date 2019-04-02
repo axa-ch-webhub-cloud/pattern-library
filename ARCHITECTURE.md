@@ -31,7 +31,7 @@ Elements](https://developers.google.com/web/fundamentals/web-components/customel
 (short: **CE**), a browser-native technology supported by [web
 standards](https://html.spec.whatwg.org/multipage/custom-elements.html) and poly-fillable for older browsers.
 
-[Here](https://github.com/axa-ch/patterns-library/FOUNDATION.md) you can read how we arrived at this choice.
+[Here](https://raw.githubusercontent.com/axa-ch/patterns-library/develop-v2/FOUNDATION.md) you can read how we arrived at this choice.
 
 By default, and in contrast to v1, we use [Shadow
 DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
@@ -105,7 +105,8 @@ sketching *how* it can be adressed.
    function of props or state and expect re-render if function inputs
    change, esp. given desiderata 1, 4.
    - **Experiment:**
-   [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children).
+   [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children)
+   &nbsp; ([**Demo**](http://localhost:6006/?path=/story/demo--dynamic-children-react))
    - **How:** If by default we don't transform children in any
    way, simple HTML composition ensures that both the static and the dynamic case
    work out of the box. Mere styling as one frequent case does not need
@@ -128,7 +129,7 @@ sketching *how* it can be adressed.
    control the ``value`` or ``checked`` properties of ``<input>,
    <select>``, overriding built-in native behaviour.
    - **Experiment:**
-   [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element).
+   [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element) &nbsp; ([**Demo**](http://localhost:6006/?path=/story/demo--controlled-inputs-react))
    - **How:** Looking at ``value,checked`` we can  determine whether a CE should be controlled.
     We then monitor UI-state-changing events via [lit-element event
     listeners](https://lit-element.polymer-project.org/guide/events) and
@@ -155,8 +156,9 @@ sketching *how* it can be adressed.
    instances per page, which matters on mobile &mdash; if each instance redundantly includes
    styling, the increase is more dramatic.
    - **Experiment:** [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children).
-   - **How:** Store a reference to each instance in a global ``WeakSet``,
-   render inline ``<style>`` only if not previously stored. *Benefit:
+   - **How:** Store a reference to the document that each instance
+   belongs to in a global ``WeakMap``,
+   render inline ``<style>`` only if reference count is 1. *Benefit:
    ``<style>`` introduced lazily at usage site when CE first used.* *Drawback: Doesn't work
    when Shadow DOM with scoped CSS is used.* For very modern browsers [constructable
    stylesheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
@@ -231,7 +233,7 @@ sketching *how* it can be adressed.
    - **Experiment:** [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element).
    - **How:** lit-element is *extremely good* at avoiding unnecessary
    re-rendering *and* minimizing the amount of DOM subject to
-   re-rendering thanks to lit-html. Our particular strategy for controlled inputs
+   re-rendering thanks to [lit-html](https://docs.google.com/presentation/d/1KVYiupSAoFyECDwJwxQlJTk8RvSzhg-UKGpZ8-nFm3I/edit#slide=id.g4dceb8c29b_3_221). Our particular strategy for controlled inputs
    does not lose focus. In the general case, the ``updated()`` [life-cycle](https://lit-element.polymer-project.org/guide/lifecycle)
    method of lit-element would allow to correct any reversible post-rendering UI-state
    issues like focus loss, since it is guaranteed to be called after ``render()``.
@@ -308,11 +310,23 @@ sketching *how* it can be adressed.
    [documentation](https://reacttraining.com/react-router/web/api/Route)
    details how ``React.createElement`` is used *internally* to create
    the component that should be rendered when the route in question
-   matches. Since in the case of React-exported CEs the exported
-   component has already been wrapped by
+   matches. Exported CE
+   components have already been wrapped by
    [skatejs/val](https://github.com/skatejs/val) for React
    compatibility. Creating a component again from there unsurprisingly
    works, since we're back to the case of dynamic children under 2. above.
+
+1. **Unit Testing**.
+   - **Source:** [#786](https://github.com/axa-ch/patterns-library/issues/786)
+   - **Why:** CE users hope to write unit tests involving CEs,
+   including indirect scenarios like React components using CEs as
+   leaf nodes. In particular, they want to write these unit tests in [jest](https://jestjs.io/).
+   - **Experiment:** to be done. This needs an experiment since unit
+   tests typically run in node.js, which does not come with DOM out of
+   the box and needs a DOM emulation like [jsdom](https://github.com/jsdom/jsdom) to work with CE. The
+   experiment should evaluate the quality and fidelity of the
+   emulation for the purpose at hand, as well as determine which polyfills are necessary.
+   - **How:** to be filled.
 
 
 ## Best Practices in Component Implementation
