@@ -62,6 +62,7 @@ test('should display month in english', async t => {
 fixture('Datepicker - Collapsable Version').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-input`);
 
 test.only('should close calendar as soon as another one is open', async t => {
+  await t.wait(2000);
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
   await datePickerAccessor2019.openCalendar();
   await t.wait(1000);
@@ -70,6 +71,7 @@ test.only('should close calendar as soon as another one is open', async t => {
   await datePickerAccessor2020.openCalendar();
   await t.wait(1000);
   await datePickerAccessor2020.assertIsOpen();
+  await t.wait(1000);
   await datePickerAccessor2019.assertIsClosed();
 });
 
