@@ -5,6 +5,9 @@ script:
   - npm run test
 addons:
   chrome: stable
+cache:
+  directories:
+    - node_modules
 env:
   - TEST_HOST_STORYBOOK_PORT=9999
   - TEST_HOST_STORYBOOK_URL=http://localhost:9999
