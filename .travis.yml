@@ -12,3 +12,8 @@ addons:
 env:
   - TEST_HOST_STORYBOOK_PORT=9999
   - TEST_HOST_STORYBOOK_URL=http://localhost:9999
+
+before_install:
+- # start your web application and listen on `localhost`
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9999 http://localhost &
+⋮
