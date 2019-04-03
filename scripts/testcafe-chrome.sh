@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Import environment variables from .env file
 export $(egrep -v '^#' .env | xargs)
 
