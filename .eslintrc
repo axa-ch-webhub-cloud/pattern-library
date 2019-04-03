@@ -43,7 +43,8 @@
           "**/ui.test.js",
           "**/unit.test.{js,jsx}",
           "**/setupTests.js",
-          "**/jestPreprocess.js"
+          "**/jestPreprocess.js",
+          "**/tests/**"
         ],
         "packageDir": "./"
       }

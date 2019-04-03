@@ -31,7 +31,7 @@ class DatePickerAccessor {
   async assertYear(year) {
     const yearDropdown = await Selector(this.yearDropdownSelector(this.id));
     await this.t.expect(yearDropdown.exists).ok();
-    await this.t.expect(yearDropdown.getAttribute('items')).contains(`"value":"` + year + `"`);
+    await this.t.expect(yearDropdown.getAttribute('items')).contains(`"value":"${year}"`);
   }
 
   async assertMonth(month) {
