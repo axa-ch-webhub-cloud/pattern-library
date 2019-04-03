@@ -6,6 +6,13 @@ node_js:
 script:
   - npm run test
 
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 env:
   - TEST_HOST_STORYBOOK_PORT=9999
   - TEST_HOST_STORYBOOK_URL=http://localhost:9999
