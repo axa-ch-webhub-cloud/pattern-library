@@ -9,9 +9,14 @@ script:
 addons:
   chrome: stable
 
+
 env:
   - TEST_HOST_STORYBOOK_PORT=9999
   - TEST_HOST_STORYBOOK_URL=http://localhost:9999
+  - MOZ_HEADLESS=1
+
+addons:
+  firefox: latest
 
 before_install:
 - # start your web application and listen on `localhost`
