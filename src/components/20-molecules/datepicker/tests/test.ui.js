@@ -51,7 +51,7 @@ test('should have a 29th of februrary in 2020 - should correctly handle leap yea
 
 fixture('Datepicker - With Locale').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-translated-en-gb`);
 
-test.only('should display month in english', async t => {
+test('should display month in english', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-translated');
 
   await datePickerAccessor.chooseFebruary();
