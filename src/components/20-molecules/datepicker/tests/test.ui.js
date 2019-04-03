@@ -51,7 +51,7 @@ test('should have a 29th of februrary in 2020 - should correctly handle leap yea
 
 fixture('Datepicker - With Locale').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-translated-en-gb`);
 
-test('should display month in english', async t => {
+test.only('should display month in english', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-translated');
 
   await datePickerAccessor.chooseFebruary();
@@ -61,7 +61,7 @@ test('should display month in english', async t => {
 
 fixture('Datepicker - Collapsable Version').page(`${host}/iframe.html?id=molecules-datepicker--datepicker-input`);
 
-test.only('should close calendar as soon as another one is open', async t => {
+test('should close calendar as soon as another one is open', async t => {
   // await t.wait(2000);
   const datePickerAccessor2019 = new DatePickerAccessor(t, 'datepicker-input-2019');
   await datePickerAccessor2019.openCalendar();
