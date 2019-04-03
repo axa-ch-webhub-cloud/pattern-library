@@ -129,24 +129,24 @@
   100 milliseconds. Wich is defined in the timeout variable.
 -->
 <script>
-  let a = 0;
-  let value = 0;
-  const iterationTime = 100;
-  const stepIndex = 7;
-  const progressbar = document.querySelector('.js-progress-bar-demo');
-  const max = progressbar.getAttribute('max') ? progressbar.getAttribute('max') : 0;
+  var value = 0;
+  var iterationTime = 100;
+  var stepIndex = 7;
+  var progressbar = document.querySelector('.js-progress-bar-demo');
+  var max = progressbar.getAttribute('max') ? progressbar.getAttribute('max') : 0;
 
   function run() {
-    if (value >= max) { a = 0 }
-      setTimeout(() => {
-      	a += Math.floor(Math.random() * (stepIndex - 1) + 1);
-        if (a < max) {
-            progressbar.setAttribute('value', a);
-        	  run();
-        } else {
-            progressbar.setAttribute('value', max);
-        }
-        value = a;
-      }, iterationTime);
+    if (value >= max) {
+      value = 0;
+    }
+    setTimeout(function () {
+      value += Math.floor(Math.random() * (stepIndex - 1) + 1);
+      if (value < max) {
+        progressbar.setAttribute('value', value);
+        run();
+      } else {
+        progressbar.setAttribute('value', max);
+      }
+    }, iterationTime);
   }
 </script>
