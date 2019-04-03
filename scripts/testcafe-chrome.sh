@@ -2,9 +2,9 @@
 # Import environment variables from .env file
 export $(egrep -v '^#' .env | xargs)
 
-npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ../src/static --ci --quiet > /dev/null 2>&1 &
+npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci --quiet > /dev/null 2>&1 &
 npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
-npx testcafe "chrome" **/test.ui.js --sf --selector-timeout 1000
+npx testcafe "chrome" ./**/test.ui.js
 test_status=$?
 
 # Kill storybook (cleanup) - By port
