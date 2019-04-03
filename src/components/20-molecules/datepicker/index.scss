@@ -3,7 +3,7 @@
   z-index: 1;
   transform: scale(0);
   transform-origin: top left;
-  transition: transform .25s;
+  transition: transform 0.25s;
 }
 
 :host([inverted][inputfield]) .m-datepicker__wrap {
@@ -45,6 +45,7 @@
   &__input {
     border: 0;
     padding: 8px;
+    min-width: 0;
   }
 
   // TODO: Extend SVG icon atom with modifiers
@@ -193,5 +194,4 @@
     display: flex;
     justify-content: space-between;
   }
-
 }
