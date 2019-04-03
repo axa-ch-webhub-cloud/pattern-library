@@ -123,3 +123,6 @@ export const AXAFormOptionBox: React.ComponentClass<AXAFormOptionBox>;
 
 import { Props as AXAModalProps } from '../components/o-modal';
 export const AXAModal: React.ComponentClass<AXAModalProps>;
+
+import { Props as AXAProgressBarProps } from '../components/o-progress-bar';
+export const AXAProgressBar: React.ComponentClass<AXAProgressBarProps>;
