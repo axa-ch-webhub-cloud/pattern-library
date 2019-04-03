@@ -39,15 +39,21 @@ class AXADropdown extends LitElement {
     super.connectedCallback();
     window.axaComponents = window.axaComponents || {};
     this.open = false;
-    this.selectedItem = this.items.filter(item => item.isSelected)[0] || null;
-    this.title = this.selectedItem.name;
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
+    this.updateTitle();
   }
 
   handleWindowClick() {
     if (this.open) {
       this.closeDropdown();
+    }
+  }
+
+  updateTitle() {
+    const selectedItem = this.items.filter(item => item.isSelected);
+    if (selectedItem.length > 0) {
+      this.title = selectedItem[0].name;
     }
   }
 
@@ -84,7 +90,7 @@ class AXADropdown extends LitElement {
     this.value = e.target.dataset.value;
     this.updateCurrentItem(e.target.dataset.value);
     this.closeDropdown();
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.dataset.value, bubbles: true, cancelable: true });
+    const event = new CustomEvent('axa-change', { detail: e.target.dataset.value, bubbles: true, composed: true });
     this.dispatchEvent(event);
   }
 
@@ -94,7 +100,7 @@ class AXADropdown extends LitElement {
     this.value = e.target.value;
     this.title = e.target.value;
     this.updateCurrentItem(e.target.value);
-    const event = new CustomEvent('AXA_CHANGE', { detail: e.target.value, bubbles: true, cancelable: true });
+    const event = new CustomEvent('axa-change', { detail: e.target.value, bubbles: true, cancelable: true });
     this.dispatchEvent(event);
   }
 
@@ -150,7 +156,7 @@ class AXADropdown extends LitElement {
     const hasValue = newValue !== null;
     if (hasValue && name === 'items') {
       const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true);
-      this.title = currentItem[0].name;
+      this.title = currentItem[0] ? currentItem[0].name : this.title;
     }
   }
 
