@@ -183,7 +183,7 @@ test('should display correctly', async t => {
 
 fixture('Link - Arrow Right').page(`${host}/iframe.html?id=atoms-link--static-arrow-right`);
 
-test.only('should display correctly', async t => {
+test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.hasAttribute('arrowright')).ok();
@@ -207,4 +207,62 @@ test.only('should display correctly', async t => {
         .assignedNodes()[0]
   );
   await t.expect(linkText.textContent).eql('Arrow Right Link');
+});
+
+fixture('Link - Motion Left').page(`${host}/iframe.html?id=atoms-link--animated-arrow-left`);
+
+test('should display correctly', async t => {
+  const axaLink = Selector('axa-link');
+  await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+  await t.expect(axaLink.hasAttribute('arrowleft')).ok();
+  await t.expect(axaLink.hasAttribute('motion')).ok();
+
+  const linkElement = Selector(() => document.querySelector('axa-link').shadowRoot).find('a');
+  await t.expect(linkElement.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+
+  const link = Selector(() => document.querySelector('axa-link').shadowRoot.querySelector('a'));
+  await t.expect(link.exists).ok();
+  await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
+  await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
+
+  const arrowIcon = linkElement.find('div');
+  await t.expect(arrowIcon.hasClass('m-link__arrow')).ok();
+
+  const linkText = Selector(
+    () =>
+      document
+        .querySelector('axa-link')
+        .shadowRoot.querySelector('slot')
+        .assignedNodes()[0]
+  );
+  await t.expect(linkText.textContent).eql('Motion Link Left');
+});
+
+fixture('Link - Motion Right').page(`${host}/iframe.html?id=atoms-link--animated-arrow-right`);
+
+test('should display correctly', async t => {
+  const axaLink = Selector('axa-link');
+  await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+  await t.expect(axaLink.hasAttribute('arrowright')).ok();
+  await t.expect(axaLink.hasAttribute('motion')).ok();
+
+  const linkElement = Selector(() => document.querySelector('axa-link').shadowRoot).find('a');
+  await t.expect(linkElement.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+
+  const link = Selector(() => document.querySelector('axa-link').shadowRoot.querySelector('a'));
+  await t.expect(link.exists).ok();
+  await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
+  await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
+
+  const arrowIcon = linkElement.find('div');
+  await t.expect(arrowIcon.hasClass('m-link__arrow')).ok();
+
+  const linkText = Selector(
+    () =>
+      document
+        .querySelector('axa-link')
+        .shadowRoot.querySelector('slot')
+        .assignedNodes()[0]
+  );
+  await t.expect(linkText.textContent).eql('Motion Link Right');
 });
