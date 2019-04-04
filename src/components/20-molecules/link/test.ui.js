@@ -126,3 +126,29 @@ test('should display correctly', async t => {
   );
   await t.expect(linkText.textContent).eql('Bold Link');
 });
+
+fixture('Link - External').page(`${host}/iframe.html?id=atoms-link--external-link`);
+
+test('should display correctly', async t => {
+  const axaLink = Selector('axa-link');
+  await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+  await t.expect(axaLink.hasAttribute('external')).ok();
+
+  const linkElement = Selector(() => document.querySelector('axa-link').shadowRoot).find('a');
+  await t.expect(linkElement.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+
+  const link = Selector(() => document.querySelector('axa-link').shadowRoot.querySelector('a'));
+  await t.expect(link.exists).ok();
+  await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
+  await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
+  await t.expect(link.getAttribute('target')).eql('_blank');
+
+  const linkText = Selector(
+    () =>
+      document
+        .querySelector('axa-link')
+        .shadowRoot.querySelector('slot')
+        .assignedNodes()[0]
+  );
+  await t.expect(linkText.textContent).eql('External Link');
+});
