@@ -15,7 +15,7 @@ storiesOf('Atoms/Button', module)
     return btn;
   })
   .add('Button - default (primary)', () => '<axa-button>Im a primary button</axa-button>')
-  .add('Button - cta (primary)', () => '<axa-button cta>Im a primary cta button</axa-button>')
+  .add('Button - red (primary)', () => '<axa-button red>Im a primary red button</axa-button>')
   .add('Button - secondary', () => '<axa-button secondary>Im a secondary button</axa-button>')
   .add(
     'Button - secondary and inverted',
@@ -51,8 +51,8 @@ storiesOf('Atoms/Button', module)
         <axa-button>I&apos;m primary btn with motion</axa-button>
       </div>
       <div>
-        <axa-button motionoff cta>I&apos;m primary cta btn without motion</axa-button>
-        <axa-button cta>I&apos;m primary cta btn with motion</axa-button>
+        <axa-button motionoff red>I&apos;m primary red btn without motion</axa-button>
+        <axa-button red>I&apos;m primary red btn with motion</axa-button>
       </div>
       <div>
         <axa-button motionoff secondary>I&apos;m primary btn without motion</axa-button>
@@ -66,5 +66,6 @@ storiesOf('Atoms/Button', module)
     <div>
       <axa-button icon="arrow-right">I&apos;m primary btn with a icon</axa-button>
       <axa-button secondary icon="arrow-right">I&apos;m primary btn with a icon</axa-button>
+      <axa-button red icon="arrow-right">I&apos;m primary btn with a icon</axa-button>
     </div>`
   );
