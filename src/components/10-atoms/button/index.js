@@ -1,9 +1,6 @@
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import buttonCSS from './index.scss';
-
-// import to mock icon
-import arrowRight from '../../00-materials/icons/arrow-right';
 
 class AXAButton extends LitElement {
   static tagName = 'axa-button';
@@ -51,7 +48,6 @@ class AXAButton extends LitElement {
       <button type="${this.type}" class="a-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.onClick}">
         <div class="a-button__flex-wrapper">
           <slot></slot>
-          ${this.icon && svg`${arrowRight()}`}
         </div>
       </button>
     `;

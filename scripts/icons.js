@@ -40,7 +40,7 @@ icons.forEach((icon) => {
     outdent`
     import { svg } from 'lit-element';
     
-    const icon = svg\`${contents}\`
+    const icon = svg\`${contents}\`;
 
     export default icon;
     `,
