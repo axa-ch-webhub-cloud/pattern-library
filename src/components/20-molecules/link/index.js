@@ -1,6 +1,9 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, svg, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
+
+// TODO mock that has to be replaced as soon as real object available
+// import arrowRight from '../../00-materials/icons/arrow-right';
 
 class AXALink extends LitElement {
   static tagName = 'axa-link';
@@ -45,6 +48,7 @@ class AXALink extends LitElement {
 
     const showArrow = html`
       <div class="m-link__arrow">
+   
       </div>
     `;
 
