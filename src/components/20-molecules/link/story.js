@@ -10,7 +10,7 @@ storiesOf('/Atoms/Link', module)
     () =>
       `<style>body{background-color: blue;}</style><axa-link href="https://axa.ch/en/private-customers.html" color="white">White Link</axa-link>`
   )
-  .add('Decorated', () => `<axa-link href="https://axa.ch/en/private-customers.html" deco>Red Link</axa-link>`)
+  .add('Decorated', () => `<axa-link href="https://axa.ch/en/private-customers.html" deco>Decorated Link</axa-link>`)
   .add('Bold', () => `<axa-link href="https://axa.ch/en/private-customers.html" bold>Bold Link</axa-link>`)
   .add('External Link', () => `<axa-link href="https://axa.ch/en/private-customers.html" external>External Link</axa-link>`)
   .add('Static Arrow Left', () => `<axa-link href="https://axa.ch/en/private-customers.html" arrowLeft>Arrow Left Link</axa-link>`)
