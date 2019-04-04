@@ -10,5 +10,7 @@ import 'core-js/fn/object/create';
 import 'core-js/fn/object/define-properties';
 import 'core-js/fn/object/set-prototype-of';
 import 'innersvg-polyfill/innersvg';
+// IE11 does not support Math.sign
+import 'core-js/fn/math/sign';
 // Needed for url-prop-type check
 import 'url-polyfill';
