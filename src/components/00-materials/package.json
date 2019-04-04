@@ -1,10 +1,10 @@
 {
   "name": "@axa-ch/materials",
-  "version": "0.0.0",
+  "version": "0.0.0-beta.1",
   "description": "> Materials of @axa-ch",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/materials/#readme",
-  "license": "ISC",
+  "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib",
   "dependencies": {
     "lit-element": "^2.0.1"
