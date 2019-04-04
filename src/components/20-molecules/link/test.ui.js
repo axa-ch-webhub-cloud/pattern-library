@@ -1,3 +1,5 @@
+/* eslint-disable jest/no-identical-title */
+
 import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
