@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 
-// fix that stuff
+// TODO fix that rule
 /* eslint-disable import/no-extraneous-dependencies */
 import {
   ArrowRightSvg,
