@@ -28,7 +28,7 @@ test('should display unstyled link correctly', async t => {
 
 fixture('Datepicker').page(`${host}/iframe.html?id=atoms-link--red-link`);
 
-test.only('should display red link correctly', async t => {
+test('should display red link correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
 
