@@ -2,9 +2,9 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Link').page(`${host}/iframe.html?id=atoms-link--unstyled-link`);
+fixture('Link - Unstyled').page(`${host}/iframe.html?id=atoms-link--unstyled-link`);
 
-test('should display unstyled link correctly', async t => {
+test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
 
@@ -26,9 +26,9 @@ test('should display unstyled link correctly', async t => {
   await t.expect(linkText.textContent).eql('This simple link just links');
 });
 
-fixture('Link').page(`${host}/iframe.html?id=atoms-link--red-link`);
+fixture('Link - Red').page(`${host}/iframe.html?id=atoms-link--red-link`);
 
-test('should display red link correctly', async t => {
+test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.getAttribute('color')).eql('red');
@@ -51,9 +51,9 @@ test('should display red link correctly', async t => {
   await t.expect(linkText.textContent).eql('Red Link');
 });
 
-fixture('Link').page(`${host}/iframe.html?id=atoms-link--white-link`);
+fixture('Link - White').page(`${host}/iframe.html?id=atoms-link--white-link`);
 
-test('should display white link correctly', async t => {
+test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.getAttribute('color')).eql('white');
@@ -76,9 +76,9 @@ test('should display white link correctly', async t => {
   await t.expect(linkText.textContent).eql('White Link');
 });
 
-fixture('Link').page(`${host}/iframe.html?id=atoms-link--decorated`);
+fixture('Link - Decorated').page(`${host}/iframe.html?id=atoms-link--decorated`);
 
-test('should display decorated link correctly', async t => {
+test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.hasAttribute('deco')).ok();
@@ -101,9 +101,9 @@ test('should display decorated link correctly', async t => {
   await t.expect(linkText.textContent).eql('Decorated Link');
 });
 
-fixture('Link').page(`${host}/iframe.html?id=atoms-link--bold`);
+fixture('Link - Bold').page(`${host}/iframe.html?id=atoms-link--bold`);
 
-test('should display bold link correctly', async t => {
+test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.hasAttribute('bold')).ok();
