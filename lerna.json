@@ -1,8 +1,6 @@
 {
   "packages": [
-    "src/components/10-atoms/*",
-    "src/demo/demo-button",
-    "src/demo/demo-link"
+    "src/components/00-materials"
   ],
   "version": "independent",
   "npmClient": "npm"
