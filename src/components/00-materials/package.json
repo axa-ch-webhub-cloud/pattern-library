@@ -10,8 +10,7 @@
     "lit-element": "^2.1.0"
   },
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
