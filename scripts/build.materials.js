@@ -7,7 +7,7 @@ const EXPORT_PATH = path.resolve('src/components/00-materials/lib');
 fs.writeFileSync(
   `${EXPORT_PATH}/index.js`,
   outdent`
-   import './icon-set/index.js';
+  export * from './icon-set/index.js';
   `,
   'utf8',
 );
