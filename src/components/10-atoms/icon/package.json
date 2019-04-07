@@ -5,7 +5,7 @@
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/10-atoms/icon#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
-  "main": "lib/icon.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -21,7 +21,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "^1.0.0-alpha.0",
+    "@axa-ch/materials": "^1.0.0-alpha.1",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0"
   }

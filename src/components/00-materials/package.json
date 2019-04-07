@@ -5,7 +5,7 @@
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/materials/#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "lit-element": "^2.1.0"
   },
