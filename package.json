@@ -7,7 +7,7 @@
     "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
     "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
-    "clean-build": "rimraf src/components/*/lib && rimraf src/components/*/lib",
+    "clean-build": "rimraf src/components/*/*/lib && rimraf src/components/*/*/dist",
     "clean-materials": "npm run clean-build && npm run clean-tmp-icons",
     "clean-lib-materials": "rimraf src/components/00-materials/lib/**",
     "clean-tmp-icons": "rimraf src/components/00-materials/icons/.tmp",
