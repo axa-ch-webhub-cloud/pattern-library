@@ -1,5 +1,4 @@
 import React, { createElement } from 'react';
-import '../../components/10-atoms/icon';
 import createAXAIconReact from '../../components/10-atoms/icon/index.react';
 import axaLogo from '../../static/svg/logo-axa.svg'
 

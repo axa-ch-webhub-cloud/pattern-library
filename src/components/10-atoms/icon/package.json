@@ -22,6 +22,7 @@
   "dependencies": {
     "@axa-ch/materials": "^1.0.0-alpha.1",
     "@skatejs/val": "^0.4.0",
-    "lit-element": "^2.1.0"
+    "lit-element": "^2.1.0",
+    "lit-html": "^1.0.0"
   }
 }

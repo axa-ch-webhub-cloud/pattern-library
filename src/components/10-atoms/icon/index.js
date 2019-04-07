@@ -13,7 +13,7 @@ import { LitElement, html } from 'lit-element';
 //   PlusSvg,
 //   SearchSvg,
 //   UploadSvg
-// } from '@axa-ch/materials/lib/icons';
+// } from '@axa-ch/materials';
 
 import {
   ArrowRightSvg,
@@ -25,7 +25,7 @@ import {
   PlusSvg,
   SearchSvg,
   UploadSvg
-} from '../../00-materials/lib'
+} from '../../00-materials'
 
 class AXAIcon extends LitElement {
   static tagName = 'axa-icon';
