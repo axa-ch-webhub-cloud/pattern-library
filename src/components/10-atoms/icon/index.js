@@ -1,20 +1,7 @@
 import { LitElement, html } from 'lit-element';
 
-// fix that stuff
+// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-// Mock for the moment
-// import {
-//   ArrowRightSvg,
-//   CollapseSvg,
-//   DownloadSvg,
-//   EmailSvg,
-//   ExpandSvg,
-//   PhoneSvg,
-//   PlusSvg,
-//   SearchSvg,
-//   UploadSvg
-// } from '@axa-ch/materials';
-
 import {
   ArrowRightSvg,
   CollapseSvg,
@@ -25,7 +12,7 @@ import {
   PlusSvg,
   SearchSvg,
   UploadSvg
-} from '../../00-materials'
+} from '@axa-ch/materials';
 
 class AXAIcon extends LitElement {
   static tagName = 'axa-icon';
