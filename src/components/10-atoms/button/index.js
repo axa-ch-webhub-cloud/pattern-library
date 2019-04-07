@@ -2,7 +2,7 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 // TODO if @axa-ch/icon released
 // import '@axa-ch/icon';
-import '../icon'
+// import '../icon'
 
 import buttonCSS from './index.scss';
 
@@ -51,7 +51,6 @@ class AXAButton extends LitElement {
       <button type="${this.type}" class="a-button ${classMap(classes)}" ?disabled="${this.disabled}" @click="${this.onClick}">
         <div class="a-button__flex-wrapper">
           <slot></slot>
-          ${this.icon && html`<axa-icon icon="${this.icon}">`}
         </div>
       </button>
     `;

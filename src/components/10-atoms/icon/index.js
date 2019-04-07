@@ -1,7 +1,20 @@
 import { LitElement, html } from 'lit-element';
 
-// TODO fix that rule
+// fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
+// Mock for the moment
+// import {
+//   ArrowRightSvg,
+//   CollapseSvg,
+//   DownloadSvg,
+//   EmailSvg,
+//   ExpandSvg,
+//   PhoneSvg,
+//   PlusSvg,
+//   SearchSvg,
+//   UploadSvg
+// } from '@axa-ch/materials/lib/icons';
+
 import {
   ArrowRightSvg,
   CollapseSvg,
@@ -12,7 +25,7 @@ import {
   PlusSvg,
   SearchSvg,
   UploadSvg
-} from '@axa-ch/materials/lib/icons';
+} from '../../00-materials/lib'
 
 class AXAIcon extends LitElement {
   static tagName = 'axa-icon';
@@ -56,10 +69,7 @@ class AXAIcon extends LitElement {
   }
 
   render() {
-    // should be fixed with lit-element 2.1.0 see https://github.com/Polymer/lit-element/issues/618
-    return AXAIcon.iconsMapping[this.icon]
-      ? AXAIcon.iconsMapping[this.icon]
-      : html``
+    return AXAIcon.iconsMapping[this.icon] || html``;
   }
 }
 

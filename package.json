@@ -4,8 +4,9 @@
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
-    "build": "npm run clean-lib-components && cross-env NODE_ENV=production rollup --config ./rollup.config.js && npm run build-icons",
-    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/icons.js && npm run clean-tmp-materials",
+    "build": "npm run clean-lib-components && cross-env NODE_ENV=production rollup --config ./rollup.config.js && npm run build-materials",
+    "build-materials": "npm run build-icons && node scripts/build.materials.js",
+    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-materials",
     "clean-lib-components": "rimraf src/**/lib && rimraf src/**/dist",
     "clean-materials": "npm run clean-lib-materials && npm run clean-tmp-materials",
     "clean-lib-materials": "rimraf src/components/00-materials/lib/**",
@@ -22,7 +23,7 @@
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "lit-element": "^2.0.1",
+    "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
