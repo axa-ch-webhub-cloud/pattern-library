@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture.only('Footer Small').page(`${host}/iframe.html?id=molecules-footer-small--footer-small`);
+fixture('Footer Small').page(`${host}/iframe.html?id=molecules-footer-small--footer-small`);
 
 test('should display four languages', async t => {
   const german = Selector(
