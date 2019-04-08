@@ -48,7 +48,7 @@ class AXAFooterSmall extends LitElement {
               `
             )}
           </ul>
-          <div>${this.copyrighttext}</div>
+          <div class="js-footer-small__copyright">${this.copyrighttext}</div>
         </div>
       </article>
     `;
