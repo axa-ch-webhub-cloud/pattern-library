@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, svg } from 'lit-element';
 
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
@@ -56,7 +56,7 @@ class AXAIcon extends LitElement {
   }
 
   render() {
-    return AXAIcon.iconsMapping[this.icon] || html``;
+    return svg([AXAIcon.iconsMapping[this.icon] || '']) ;
   }
 }
 

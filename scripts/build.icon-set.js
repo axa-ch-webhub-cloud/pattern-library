@@ -38,9 +38,7 @@ icons.forEach((icon) => {
   fs.writeFileSync(
     `${EXPORT_PATH}/icon-set/${fileName}.js`,
     outdent`
-    import { svg } from 'lit-element';
-    
-    export default svg\`${contents}\`;
+    export default '${contents}';
     `,
     'utf8',
   );
