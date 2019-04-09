@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Import environment variables from .env file
+export $(egrep -v '^#' .env.defaults | xargs)
 export $(egrep -v '^#' .env | xargs)
 
 npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci --quiet > /dev/null 2>&1 &
