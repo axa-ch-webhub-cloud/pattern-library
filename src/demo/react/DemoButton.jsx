@@ -1,5 +1,4 @@
 import React, { createElement, useState } from 'react';
-import '../../components/10-atoms/button';
 import createAXAButtonReact from '../../components/10-atoms/button/index.react';
 
 const AXAButtonReact = createAXAButtonReact(createElement);

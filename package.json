@@ -4,17 +4,20 @@
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
-    "build": "npm run clean-lib-components && cross-env NODE_ENV=production rollup --config ./rollup.config.js && npm run build-icons",
-    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/icons.js && npm run clean-tmp-materials",
-    "clean-lib-components": "rimraf src/**/lib && rimraf src/**/dist",
-    "clean-materials": "npm run clean-lib-materials && npm run clean-tmp-materials",
+    "postinstall": "npm-recursive-install --skip-root",
+    "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js",
+    "build-materials": "npm run build-icons && node scripts/build.materials.js",
+    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
+    "clean-build": "rimraf src/components/*/*/lib && rimraf src/components/*/*/dist",
+    "clean-materials": "npm run clean-build && npm run clean-tmp-icons",
     "clean-lib-materials": "rimraf src/components/00-materials/lib/**",
-    "clean-tmp-materials": "rimraf src/components/00-materials/icons/.tmp",
+    "clean-tmp-icons": "rimraf src/components/00-materials/icons/.tmp",
     "release": "npm whoami && npm run test && npm run build && lerna publish",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
     "build-storybook": "build-storybook",
-    "test": "eslint src/ && node ./scripts/build.test.js && npm run test-chrome",
+    "test": "npm run test-lint && node ./scripts/build.test.js && npm run test-chrome",
+    "test-lint": "eslint src/",
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "node scripts/test.unit.js --env=jsdom"
@@ -22,7 +25,7 @@
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "lit-element": "^2.0.1",
+    "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
@@ -62,6 +65,7 @@
     "prettier": "1.16.4",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "recursive-install": "^1.4.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.7.3",
     "rollup-plugin-babel": "^4.3.2",

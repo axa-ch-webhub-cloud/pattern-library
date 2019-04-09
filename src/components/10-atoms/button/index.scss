@@ -40,12 +40,8 @@
     align-items: center;
   }
 
-  &__icon {
-    display: block;
+  &__button-icon {
     margin-left: 12px;
-    color: currentColor;
-    fill: currentColor;
-    stroke: currentColor;
   }
 }
 
@@ -96,7 +92,7 @@
   }
 }
 
-.a-button--motion.a-button--cta {
+.a-button--motion.a-button--red {
   &::after {
     background-color: $color-prim-red-flamingo;
   }
@@ -145,7 +141,7 @@
   }
 }
 
-.a-button--cta {
+.a-button--red {
   background-color: $color-prim-red-burnt-sienna;
   border-color: $color-prim-red-burnt-sienna;
   border-bottom-color: $color-prim-red-flamingo;

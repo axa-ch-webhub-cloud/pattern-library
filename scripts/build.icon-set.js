@@ -24,8 +24,8 @@ if (!fs.existsSync(EXPORT_PATH)) {
   fs.mkdirSync(EXPORT_PATH);
 }
 
-if (!fs.existsSync(`${EXPORT_PATH}/icons`)) {
-  fs.mkdirSync(`${EXPORT_PATH}/icons`);
+if (!fs.existsSync(`${EXPORT_PATH}/icon-set`)) {
+  fs.mkdirSync(`${EXPORT_PATH}/icon-set`);
 }
 
 // Write all JS files containing the optimised SVGs
@@ -36,13 +36,9 @@ icons.forEach((icon) => {
   const className = toClassName(fileName);
 
   fs.writeFileSync(
-    `${EXPORT_PATH}/icons/${fileName}.js`,
+    `${EXPORT_PATH}/icon-set/${fileName}.js`,
     outdent`
-    import { svg } from 'lit-element';
-    
-    const icon = svg\`${contents}\`;
-
-    export default icon;
+    export default '${contents}';
     `,
     'utf8',
   );
@@ -55,7 +51,7 @@ icons.forEach((icon) => {
 
 // Write all named exports indside in a index.js file
 fs.writeFileSync(
-  `${EXPORT_PATH}/icons/index.js`,
+  `${EXPORT_PATH}/icon-set/index.js`,
   namedExports,
   'utf8',
 );
