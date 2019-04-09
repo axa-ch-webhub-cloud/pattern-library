@@ -4,8 +4,8 @@ import AXAIcon from "./index";
 
 storiesOf('Atoms/Icon', module)
   .add('Icon - show all icons', () => {
-
     const list = document.createElement('ul');
+
     Object.keys(AXAIcon.iconsMapping).forEach(iconName => {
       const listEl = document.createElement('li');
       listEl.innerHTML = `${iconName} `;
@@ -19,7 +19,6 @@ storiesOf('Atoms/Icon', module)
 
     return list;
   })
-  .add('Icon - icon from a resource', () => {
-    return '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>'
-  });
+  .add('Icon - icon from a resource', () => '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>')
+  .add('Icon - icon undefined case', () => '<axa-icon></axa-icon>');
 
