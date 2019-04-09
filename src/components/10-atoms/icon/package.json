@@ -27,6 +27,5 @@
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
-  },
-  "gitHead": "71e7a137d8c64698b16144d2cb0254fbc0ab6ce6"
+  }
 }
