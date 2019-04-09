@@ -44,7 +44,7 @@ class AXALink extends LitElement {
     };
 
     const showArrow = html`
-      <div class="a-link__arrow"></div>
+      <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
     `;
 
     return html`
