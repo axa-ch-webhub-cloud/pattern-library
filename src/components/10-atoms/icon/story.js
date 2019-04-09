@@ -20,5 +20,5 @@ storiesOf('Atoms/Icon', module)
     return list;
   })
   .add('Icon - icon from a resource', () => '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>')
-  .add('Icon - icon undefined case', () => '<axa-icon></axa-icon>');
+  .add('Icon - icon undefined case', () => 'should be empty: <axa-icon></axa-icon>');
 
