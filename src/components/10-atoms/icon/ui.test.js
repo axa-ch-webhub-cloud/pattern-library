@@ -14,7 +14,7 @@ test('should render icon', async t => {
 });
 
 
-// fix serving static files testcafe
+// TODO fix serving static files in testcafe
 // fixture('Icon - icon from a resource').page('http://localhost:9999/iframe.html?id=atoms-icon--icon-icon-from-a-resource');
 //
 // test('should render icon from a resource', async t => {
