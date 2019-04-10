@@ -11,7 +11,8 @@ const glob = require('glob');
 const path = require('path');
 const { uglify } = require('rollup-plugin-uglify');
 
-const base = path.resolve(process.cwd(), 'src');
+// use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash
+const base = path.resolve(process.cwd(), 'src').replace(/\\/g, '/');
 
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
 const globals = require('./config/globals.js')
