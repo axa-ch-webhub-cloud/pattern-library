@@ -11,7 +11,8 @@ const glob = require('glob');
 const path = require('path');
 const { uglify } = require('rollup-plugin-uglify');
 
-const base = path.resolve(process.cwd(), 'src');
+// map platform native backslash on win32 to platform neutral forward slash (which sass-loader/LibSass needs)
+const base = path.resolve(process.cwd(), 'src').replace(/\\/g, '/');
 
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
 const globals = require('./config/globals.js')
