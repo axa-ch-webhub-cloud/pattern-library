@@ -11,7 +11,7 @@ const glob = require('glob');
 const path = require('path');
 const { uglify } = require('rollup-plugin-uglify');
 
-// use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash
+// map platform native backslash on win32 to platform neutral forward slash (which sass-loader/LibSass needs)
 const base = path.resolve(process.cwd(), 'src').replace(/\\/g, '/');
 
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
