@@ -19,19 +19,22 @@ addons.register(ADDON_ID, (api) => {
   const title = 'Readme';
   const channel = addons.getChannel();
   let initalText = DEFAULT_MSG;
+  let initalTemplate = '';
 
   class Wrapper extends Component {
     constructor(props) {
       super(props);
       this.state = {
         html: initalText,
+        template: initalTemplate,
       };
       this.onAddonAdded = this.onAddonAdded.bind(this);
     }
 
-    onAddonAdded ({ html }) {
+    onAddonAdded ({ template, html }) {
       initalText = html;
-      this.setState({ html });
+      initalTemplate = template;
+      this.setState({ html, template });
     }
 
     componentDidMount() {
@@ -43,10 +46,23 @@ addons.register(ADDON_ID, (api) => {
     }
 
     render() {
-      return e('div', {
-        key: uuidv4(),
-        dangerouslySetInnerHTML: { __html: this.state.html },
-      });
+      return [
+        e('style', {
+          key: uuidv4(),
+          dangerouslySetInnerHTML: { __html: 'code { background-color: #F0F0F0; }' },
+        }),
+        e('div', {
+          key: uuidv4(),
+          dangerouslySetInnerHTML: { __html: this.state.html },
+        }),
+        e('div', {
+          key: uuidv4(),
+          dangerouslySetInnerHTML: { __html: '<h3>Code Snipped</h3>' },
+        }),
+        e('pre', {
+          key: uuidv4()
+        }, e('code', { key: uuidv4() }, this.state.template.trim())),
+      ]
     }
   };
 
@@ -64,7 +80,8 @@ export const withMarkdown = makeDecorator({
   parameterName: 'markdown',
   wrapper: (storyFn, context, { options : html }) => {
     const channel = addons.getChannel();
-    channel.emit(ADDON_EVENT, { html: html || DEFAULT_MSG });
-    return storyFn(context);
+    const template = storyFn(context);
+    channel.emit(ADDON_EVENT, { template, html: html || DEFAULT_MSG });
+    return template;
   },
 });
