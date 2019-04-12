@@ -35,14 +35,6 @@ class AXALink extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.classes = classMap({
-      'a-link--red': this.color === 'red',
-      'a-link--blue': this.color === 'blue',
-      'a-link--white': this.color === 'white',
-      'a-link--bold': this.bold,
-      'a-link--deco': this.deco,
-      'a-link--motion': this.motion,
-    });
   }
 
   showArrow = html`
@@ -50,9 +42,18 @@ class AXALink extends LitElement {
   `;
 
   render() {
+    const classes = classMap({
+      'a-link--red': this.color === 'red',
+      'a-link--blue': this.color === 'blue',
+      'a-link--white': this.color === 'white',
+      'a-link--bold': this.bold,
+      'a-link--deco': this.deco,
+      'a-link--motion': this.motion,
+    });
+
     return html`
       <a
-        class="a-link ${this.classes}"
+        class="a-link ${classes}"
         href="${this.href}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
