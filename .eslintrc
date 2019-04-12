@@ -28,7 +28,28 @@
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
-    "import/no-extraneous-dependencies": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "scripts/**",
+          "rollup.config.js",
+          "**/_demo*.js",
+          "**/story.js",
+          "**/_story*.js",
+          "**/*.story.js",
+          "**/src/**/*.react.js",
+          "**/demo/**",
+          "**/ui.test.js",
+          "**/unit.test.{js,jsx}",
+          "**/setupTests.js",
+          "**/jestPreprocess.js",
+          "**/*test.accessor.js",
+          "**/*test.ui.js"
+        ],
+        "packageDir": "./"
+      }
+    ],
     "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
     "jest/no-jest-import": "off"
   },

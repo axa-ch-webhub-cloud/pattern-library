@@ -1,19 +1,31 @@
 import { LitElement, svg } from 'lit-element';
 
-import { ArrowRightSvg, CollapseSvg, DownloadSvg, EmailSvg, ExpandSvg, PhoneSvg, PlusSvg, SearchSvg, UploadSvg } from '@axa-ch/materials';
+// TODO fix that stuff
+/* eslint-disable import/no-extraneous-dependencies */
+import {
+  ArrowRightSvg,
+  CollapseSvg,
+  DownloadSvg,
+  EmailSvg,
+  ExpandSvg,
+  PhoneSvg,
+  PlusSvg,
+  SearchSvg,
+  UploadSvg
+} from '@axa-ch/materials';
 
 class AXAIcon extends LitElement {
   static tagName = 'axa-icon';
   static iconsMapping = {
     'arrow-right': ArrowRightSvg,
-    collapse: CollapseSvg,
-    download: DownloadSvg,
-    email: EmailSvg,
-    expand: ExpandSvg,
-    phone: PhoneSvg,
-    plus: PlusSvg,
-    search: SearchSvg,
-    upload: UploadSvg,
+    'collapse': CollapseSvg,
+    'download': DownloadSvg,
+    'email': EmailSvg,
+    'expand': ExpandSvg,
+    'phone': PhoneSvg,
+    'plus': PlusSvg,
+    'search': SearchSvg,
+    'upload': UploadSvg
   };
 
   static get properties() {
@@ -44,7 +56,7 @@ class AXAIcon extends LitElement {
   }
 
   render() {
-    return svg([AXAIcon.iconsMapping[this.icon] || '']);
+    return svg([AXAIcon.iconsMapping[this.icon] || '']) ;
   }
 }
 

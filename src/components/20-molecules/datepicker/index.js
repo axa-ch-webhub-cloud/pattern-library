@@ -1,8 +1,8 @@
-import { DateInputSvg } from '@axa-ch/materials';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import datepickerCSS from './index.scss';
 import { getWeekdays, getAllLocaleMonthsArray, parseLocalisedDateIfValid } from './utils/date';
 import Store from './utils/Store';
+import { DateInputSvg } from '@axa-ch/materials';
 
 const dateInputIcon = svg([DateInputSvg]);
 
