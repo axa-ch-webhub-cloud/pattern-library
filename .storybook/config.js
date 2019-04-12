@@ -1,4 +1,4 @@
-import { addParameters, configure, addDecorator } from '@storybook/html';
+import { addParameters, configure } from '@storybook/html';
 import { create } from '@storybook/theming';
 
 import '@webcomponents/webcomponentsjs';
