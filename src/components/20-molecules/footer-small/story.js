@@ -2,6 +2,9 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 
+import { withMarkdown } from '../../../../.storybook/addons/markdown';
+import Readme from './README.md';
+
 const languages = JSON.stringify([
   { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
   { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
@@ -14,8 +17,8 @@ const disclaimer = JSON.stringify([
   { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
 ]);
 
-storiesOf('Molecules/Footer Small', module).add(
-  'Footer Small',
-  () =>
-    `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`
-);
+storiesOf('Molecules/Footer Small', module)
+  .addDecorator(withMarkdown(Readme))
+  .add(
+    'Footer Small',
+    () => `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`);

@@ -7,7 +7,10 @@ import DemoIcon from './DemoIcon';
 import DemoControlledInputsApp from '../demo-controlled-inputs/App';
 import DemoDynamicChildrenApp from '../demo-dynamic-children/App';
 
+import { withMarkdown } from '../../../.storybook/addons/markdown';
+
 storiesOf('Demos', module)
+  .addDecorator(withMarkdown())
   .add('Button with React', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButton />, div);

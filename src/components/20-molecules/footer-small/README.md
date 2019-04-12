@@ -1,3 +1,3 @@
-# Icon
+# FooterSmall
 
 TODO Description
