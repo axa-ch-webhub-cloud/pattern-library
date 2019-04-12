@@ -33,30 +33,41 @@ class AXALink extends LitElement {
     this.motion = false;
   }
 
-  render() {
-    const classes = {
+  connectedCallback() {
+    super.connectedCallback();
+    this.classes = classMap({
       'a-link--red': this.color === 'red',
       'a-link--blue': this.color === 'blue',
       'a-link--white': this.color === 'white',
       'a-link--bold': this.bold,
       'a-link--deco': this.deco,
       'a-link--motion': this.motion,
-    };
+    });
+  }
 
-    const showArrow = html`
-      <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
-    `;
+  showArrow = html`
+    <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
+  `;
 
+  render() {
     return html`
       <a
-        class="a-link ${classMap(classes)}"
+        class="a-link ${this.classes}"
         href="${this.href}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        ${this.arrowLeft === true ? showArrow : ''}
+        ${this.arrowLeft
+          ? html`
+              <div class="a-link__arrow">${this.showArrow}</div>
+            `
+          : ''}
         <slot></slot>
-        ${this.arrowRight === true ? showArrow : ''}
+        ${this.arrowRight
+          ? html`
+              <div class="a-link__arrow">${this.showArrow}</div>
+            `
+          : ''}
       </a>
     `;
   }
