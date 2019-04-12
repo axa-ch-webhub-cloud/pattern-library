@@ -1,5 +1,5 @@
 import addons, { types, makeDecorator } from '@storybook/addons';
-import React from 'react';
+import React, { Component } from 'react';
 
 const ADDON_ID = 'markdown';
 const ADDON_EVENT = `${ADDON_ID}/event`;
@@ -13,23 +13,44 @@ const uuidv4 = () => {
   });
 };
 
-addons.register(ADDON_ID, (api) => {
-  let input = DEFAULT_MSG;
+const e = React.createElement;
 
-  const render = () => {
-    return  React.createElement(
-      'div',
-      { key: uuidv4(), dangerouslySetInnerHTML: { __html: input } }
-    );
-  };
+addons.register(ADDON_ID, (api) => {
   const title = 'Readme';
   const channel = addons.getChannel();
+  let initalText = DEFAULT_MSG;
 
-  channel.on(ADDON_EVENT, ({ id, html }) => {
-    const { render: _render } = addons.getElements(types.PANEL)[PANEL_ID];
-    input = html;
-    _render();
-  });
+  class Wrapper extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        html: initalText,
+      };
+      this.onAddonAdded = this.onAddonAdded.bind(this);
+    }
+
+    onAddonAdded ({ html }) {
+      initalText = html;
+      this.setState({ html });
+    }
+
+    componentDidMount() {
+      channel.on(ADDON_EVENT, this.onAddonAdded);
+    }
+
+    componentWillUnmount() {
+      channel.removeListener(ADDON_EVENT, this.onAddonAdded);
+    }
+
+    render() {
+      return e('div', {
+        key: uuidv4(),
+        dangerouslySetInnerHTML: { __html: this.state.html },
+      });
+    }
+  };
+
+  const render = () => e(Wrapper, { key: uuidv4() });
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
@@ -41,10 +62,9 @@ addons.register(ADDON_ID, (api) => {
 export const withMarkdown = makeDecorator({
   name: 'withMarkdown',
   parameterName: 'markdown',
-  wrapper: (storyFn, context, { options : html, parameters }) => {
+  wrapper: (storyFn, context, { options : html }) => {
     const channel = addons.getChannel();
-    const { id } = context;
-    channel.emit(ADDON_EVENT, { id, html: html || DEFAULT_MSG });
+    channel.emit(ADDON_EVENT, { html: html || DEFAULT_MSG });
     return storyFn(context);
   },
 });
