@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 const ADDON_ID = 'markdown';
 const ADDON_EVENT = `${ADDON_ID}/event`;
 const PANEL_ID = `${ADDON_ID}/panel`;
-const DEFAULT_MSG = 'No Markdown Provided';
+const DEFAULT_MSG = '<h2>No Markdown Provided</h2><br>';
 
 const uuidv4 = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -34,7 +34,7 @@ addons.register(ADDON_ID, (api) => {
     }
 
     onAddonAdded ({ template, html }) {
-      initialText = html;
+      initialText = html || '';
       initialTemplate = typeof template === 'string' ? template.trim() : '';
       this.setState({ html, template: initialTemplate });
     }
@@ -57,9 +57,6 @@ addons.register(ADDON_ID, (api) => {
 
     render() {
       const { template, html } = this.state;
-      if (html === DEFAULT_MSG) {
-        return html;
-      }
       return [
         e('style', {
           key: uuidv4(),
