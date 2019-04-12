@@ -43,7 +43,13 @@ module.exports = ({ config }) => {
       loader: 'babel-loader',
       options: {...babelOptions, presets: [...babelOptions.presets, '@babel/preset-react']},
     },
-
+    {
+      test: /\.md$/,
+      loader: "markdown-loader",
+      options: {
+          /* your options here */
+      }
+    }
   );
 
   return config;

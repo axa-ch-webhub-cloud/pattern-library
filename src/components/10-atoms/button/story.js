@@ -1,8 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
+import { withMarkdown } from '../../../../.storybook/addons/markdown';
+import Readme from './README.md';
 
 storiesOf('Atoms/Button', module)
+  .addDecorator(withMarkdown(Readme))
   .add('Button - click event', () => {
     const btn = document.createElement('axa-button');
     let counter = 0;
