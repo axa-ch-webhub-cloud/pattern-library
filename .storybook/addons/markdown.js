@@ -18,22 +18,22 @@ const e = React.createElement;
 addons.register(ADDON_ID, (api) => {
   const title = 'Readme';
   const channel = addons.getChannel();
-  let initalText = DEFAULT_MSG;
-  let initalTemplate = '';
+  let initialText = DEFAULT_MSG;
+  let initialTemplate = '';
 
   class Wrapper extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        html: initalText,
-        template: initalTemplate,
+        html: initialText,
+        template: initialTemplate,
       };
       this.onAddonAdded = this.onAddonAdded.bind(this);
     }
 
     onAddonAdded ({ template, html }) {
-      initalText = html;
-      initalTemplate = template;
+      initialText = html;
+      initialTemplate = template;
       this.setState({ html, template });
     }
 
