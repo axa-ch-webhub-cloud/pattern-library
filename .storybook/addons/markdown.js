@@ -1,4 +1,5 @@
 import addons, { types, makeDecorator } from '@storybook/addons';
+import { STORY_RENDERED } from '@storybook/core-events';
 import React, { Component } from 'react';
 
 const ADDON_ID = 'markdown';
@@ -33,8 +34,8 @@ addons.register(ADDON_ID, (api) => {
 
     onAddonAdded ({ template, html }) {
       initialText = html;
-      initialTemplate = template;
-      this.setState({ html, template });
+      initialTemplate = typeof template === 'string' ? template.trim() : '';
+      this.setState({ html, template: initialTemplate });
     }
 
     componentDidMount() {
@@ -46,6 +47,7 @@ addons.register(ADDON_ID, (api) => {
     }
 
     render() {
+      const { template, html } = this.state;
       return [
         e('style', {
           key: uuidv4(),
@@ -53,7 +55,7 @@ addons.register(ADDON_ID, (api) => {
         }),
         e('div', {
           key: uuidv4(),
-          dangerouslySetInnerHTML: { __html: this.state.html },
+          dangerouslySetInnerHTML: { __html: html },
         }),
         e('div', {
           key: uuidv4(),
@@ -61,7 +63,7 @@ addons.register(ADDON_ID, (api) => {
         }),
         e('pre', {
           key: uuidv4()
-        }, e('code', { key: uuidv4() }, this.state.template.trim())),
+        }, e('code', { key: uuidv4() }, template)),
       ]
     }
   };
@@ -81,7 +83,13 @@ export const withMarkdown = makeDecorator({
   wrapper: (storyFn, context, { options : html }) => {
     const channel = addons.getChannel();
     const template = storyFn(context);
-    channel.emit(ADDON_EVENT, { template, html: html || DEFAULT_MSG });
+    let generatedTemplate = template;
+    if (typeof template === 'object' && template !== null && template instanceof HTMLElement) {
+      const el = document.createElement('div');
+      el.appendChild(template);
+      generatedTemplate = el.innerHTML;
+    }
+    channel.emit(ADDON_EVENT, { template: generatedTemplate, html: html || DEFAULT_MSG });
     return template;
   },
 });
