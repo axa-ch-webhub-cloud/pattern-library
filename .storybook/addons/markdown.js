@@ -1,5 +1,5 @@
 import addons, { types, makeDecorator } from '@storybook/addons';
-import { STORY_RENDERED } from '@storybook/core-events';
+import { STORY_CHANGED } from '@storybook/core-events';
 import React, { Component } from 'react';
 
 const ADDON_ID = 'markdown';
@@ -30,6 +30,7 @@ addons.register(ADDON_ID, (api) => {
         template: initialTemplate,
       };
       this.onAddonAdded = this.onAddonAdded.bind(this);
+      this.onStoryChanged = this.onStoryChanged.bind(this);
     }
 
     onAddonAdded ({ template, html }) {
@@ -38,16 +39,27 @@ addons.register(ADDON_ID, (api) => {
       this.setState({ html, template: initialTemplate });
     }
 
+    onStoryChanged () {
+      initialText = DEFAULT_MSG;
+      initialTemplate = '';
+      this.setState({ html: initialText, template: initialTemplate });
+    }
+
     componentDidMount() {
       channel.on(ADDON_EVENT, this.onAddonAdded);
+      channel.on(STORY_CHANGED, this.onStoryChanged);
     }
 
     componentWillUnmount() {
       channel.removeListener(ADDON_EVENT, this.onAddonAdded);
+      channel.removeListener(STORY_CHANGED, this.onStoryChanged);
     }
 
     render() {
       const { template, html } = this.state;
+      if (html === DEFAULT_MSG) {
+        return html;
+      }
       return [
         e('style', {
           key: uuidv4(),
