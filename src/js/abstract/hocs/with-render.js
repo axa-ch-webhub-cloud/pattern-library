@@ -87,6 +87,13 @@ const withRender = Base =>
             this.childrenFragment = childrenFragment;
           } else { // Reuse the light DOM for subsequent rendering
             this._lightDOMRefs.forEach((ref) => {
+              // IMPORTANT: monkey patched nodes are new and should not be cloned!
+              if (ref.__isPatching === true) {
+                this.childrenFragment.appendChild(ref);
+                delete ref.__isPatching;
+                return;
+              }
+
               // Important: Once the light DOM is live it shouldn't be moved out
               // instead make sure to clone it for incremental updates
               const refClone = ref.cloneNode(true);

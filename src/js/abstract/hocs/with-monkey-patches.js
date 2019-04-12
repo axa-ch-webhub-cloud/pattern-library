@@ -18,6 +18,7 @@ const withMonkeyPatches = Base =>
 
       const textNode = document.createTextNode(text);
 
+      textNode.__isPatching = true;
       this._lightDOMRefs = [textNode];
 
       this.render();
@@ -36,6 +37,7 @@ const withMonkeyPatches = Base =>
 
       const textNode = document.createTextNode(text);
 
+      textNode.__isPatching = true;
       this._lightDOMRefs = [textNode];
 
       this.render();
@@ -56,7 +58,10 @@ const withMonkeyPatches = Base =>
 
       div.innerHTML = html;
 
-      this._lightDOMRefs = Array.from(div.children);
+      this._lightDOMRefs = Array.from(div.children).map((node) => {
+        node.__isPatching = true;
+        return node;
+      });
 
       this.render();
     }
@@ -72,6 +77,7 @@ const withMonkeyPatches = Base =>
         return;
       }
 
+      node.__isPatching = true;
       this._lightDOMRefs.push(node);
 
       this.render();
