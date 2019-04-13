@@ -10,8 +10,18 @@ storiesOf('Organisms/Table', module)
     'Table',
     () =>`
       <axa-table>
-
-
+        <axa-thead>
+          <axa-row>
+            <axa-th>
+              Hallo
+            </axa-th>
+          </axa-row>
+        </axa-thead>
+        <axa-row>
+          <axa-td>
+            Velo
+          </axa-td>
+        </axa-row>
       </axa-table>
       `
   );
