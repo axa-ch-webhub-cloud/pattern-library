@@ -1,0 +1,10 @@
+@import '../../mixins/cells';
+.o-table {
+  &__cell {
+    @include cell;
+  }
+
+  &__cell--th {
+    font-weight: bold;
+  }
+}

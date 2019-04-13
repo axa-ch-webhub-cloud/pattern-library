@@ -7,6 +7,8 @@ import AXATr from './components/axa-tr';
 import AXATd from './components/axa-td';
 import AXATh from './components/axa-th';
 import AXAThead from './components/axa-thead';
+import AXATbody from './components/axa-tbody';
+import AXATfoot from './components/axa-tfoot';
 
 // semantics are done with aria: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role
 
@@ -18,7 +20,7 @@ class AXATable extends LitElement {
 
   render() {
     return html`
-      <article role="table">
+      <article class="o-table" role="table">
         <slot></slot>
       </article>
     `;
@@ -30,3 +32,5 @@ defineOnce(AXATr.tagName, AXATr);
 defineOnce(AXATd.tagName, AXATd);
 defineOnce(AXATh.tagName, AXATh);
 defineOnce(AXAThead.tagName, AXAThead);
+defineOnce(AXATbody.tagName, AXATbody);
+defineOnce(AXATfoot.tagName, AXATfoot);
