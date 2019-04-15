@@ -20,7 +20,8 @@
     "test-lint": "eslint src/",
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
-    "test-jest": "node scripts/test.unit.js --env=jsdom"
+    "test-jest": "node scripts/test.unit.js --env=jsdom",
+    "new": "node scripts/create-a-m-o/index.js"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
@@ -43,6 +44,7 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "breakpoint-sass": "^2.7.1",
+    "chalk": "^2.4.2",
     "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
@@ -58,6 +60,7 @@
     "jest": "^24.5.0",
     "lerna": "^3.13.1",
     "markdown-loader": "^5.0.0",
+    "mkdirp": "^0.5.1",
     "mutationobserver-shim": "^0.3.3",
     "node-sass": "^4.11.0",
     "outdent": "^0.7.0",
