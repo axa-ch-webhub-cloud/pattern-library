@@ -15,7 +15,7 @@ console.log(chalk.cyan(outdent`
     An ATOM📗 should not have dependencies to other elements.
 
     An ORGANISM📙 is the finished and ready to use component. It must have at least one element as dependency.
-    As a rule of thumb, everything that has 100% with is an organism.
+    As a rule of thumb, everything that has 100% width is an organism.
 
     A MOLECULE📘 can be a finished component and can be reused somewhere else but has never 100% with.
     It must contain at least one ATOM📗.
