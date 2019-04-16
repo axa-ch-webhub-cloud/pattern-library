@@ -27,15 +27,15 @@ storiesOf('Molecules/Footer Small', module)
   .add('Footer Small - Dynamic Links', () => {
     const languages = [{ text: 'DE' }, { text: 'FR' }, { text: 'IT' }, { text: 'EN' }];
 
-    const disclaimer = [
-      { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
-      { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
-    ];
+    const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
 
     let wrapper = document.createElement('div');
     let activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
     activeLanguage.innerText = `Current Language: ${selectedLanguage}`;
+    let clickedDisclaimer = document.createElement('p');
+    clickedDisclaimer.id = 'clicked-disclaimer';
+    clickedDisclaimer.innerText = `Clicked disclaimer item: -`;
 
     const footerSmall = document.createElement('axa-footer-small');
     footerSmall.activeLanguage = selectedLanguage;
@@ -45,10 +45,16 @@ storiesOf('Molecules/Footer Small', module)
 
     wrapper.appendChild(footerSmall);
     wrapper.appendChild(activeLanguage);
+    wrapper.appendChild(clickedDisclaimer);
 
     footerSmall.addEventListener('axa-language-change', languageEvent => {
-      const language = document.getElementById('active-language');
-      language.innerText = `Current Language: ${languageEvent.detail}`;
+      const languageResult = document.getElementById('active-language');
+      languageResult.innerText = `Current Language: ${languageEvent.detail}`;
+    });
+
+    footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
+      const clickedDisclaimers = document.getElementById('clicked-disclaimer');
+      clickedDisclaimers.innerText = `Current disclaimer item: ${disclaimerEvent.detail}`;
     });
 
     return wrapper;
