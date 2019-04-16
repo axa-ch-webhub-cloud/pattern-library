@@ -7,4 +7,12 @@ export default createElement => ({
   copyrightText = '',
   activeLanguage = '',
   onLanguageChange = {},
-}) => withReact(createElement)(AXAFooterSmall.tagName, { languageItems, disclaimerItems, copyrightText, activeLanguage, onLanguageChange });
+}) =>
+  withReact(createElement)(AXAFooterSmall.tagName, {
+    languageItems,
+    disclaimerItems,
+    copyrightText,
+    activeLanguage,
+    onLanguageChange,
+    onDisclaimerChange,
+  });
