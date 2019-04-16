@@ -7,21 +7,31 @@ import Readme from './README.md';
 
 const selectedLanguage = 'EN';
 
-const languages = [
-  { text: 'DE' },
-  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
-  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
-  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
-];
-
-const disclaimer = [
-  { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
-  { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
-];
-
 storiesOf('Molecules/Footer Small', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Footer Small', () => {
+  .add('Footer Small - Static Links', () => {
+    const languages = JSON.stringify([
+      { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+      { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+      { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
+      { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
+    ]);
+
+    const disclaimer = JSON.stringify([
+      { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
+      { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
+    ]);
+
+    return `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`;
+  })
+  .add('Footer Small - Dynamic Links', () => {
+    const languages = [{ text: 'DE' }, { text: 'FR' }, { text: 'IT' }, { text: 'EN' }];
+
+    const disclaimer = [
+      { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
+      { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
+    ];
+
     let wrapper = document.createElement('div');
     let activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
