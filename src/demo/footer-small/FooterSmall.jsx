@@ -26,7 +26,12 @@ const DemoFooterSmall = () => {
   return (
     <div>
       <p>(React) Footer Small - Language changed to: {activeLanguage}</p>
-      <AXAFooterSmallReact languageItems={languages} disclaimerItems={disclaimer} onLanguageChange={handleAXAFooterLanguageChange} />
+      <AXAFooterSmallReact
+        languageItems={languages}
+        disclaimerItems={disclaimer}
+        onLanguageChange={handleAXAFooterLanguageChange}
+        copyrightText="© 2019 AXA Insurance Ltd."
+      />
     </div>
   );
 };

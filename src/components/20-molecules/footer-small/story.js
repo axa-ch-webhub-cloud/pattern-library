@@ -5,8 +5,10 @@ import './index';
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 
+const selectedLanguage = 'EN';
+
 const languages = [
-  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+  { text: 'DE' },
   { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
   { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
   { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
@@ -17,18 +19,27 @@ const disclaimer = [
   { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
 ];
 
-const hans = language => console.log(language);
-
 storiesOf('Molecules/Footer Small', module)
   .addDecorator(withMarkdown(Readme))
   .add('Footer Small', () => {
+    let wrapper = document.createElement('div');
+    let activeLanguage = document.createElement('p');
+    activeLanguage.id = 'active-language';
+    activeLanguage.innerText = `Current Language: ${selectedLanguage}`;
+
     const footerSmall = document.createElement('axa-footer-small');
-    footerSmall.activeLanguage = 'EN';
+    footerSmall.activeLanguage = selectedLanguage;
     footerSmall.languageItems = languages;
     footerSmall.disclaimerItems = disclaimer;
+    footerSmall.copyrightText = '© 2019 AXA Insurance Ltd.';
 
-    footerSmall.addEventListener('language-change', () => {
-      console.log('language is now changed');
+    wrapper.appendChild(footerSmall);
+    wrapper.appendChild(activeLanguage);
+
+    footerSmall.addEventListener('axa-language-change', languageEvent => {
+      const language = document.getElementById('active-language');
+      language.innerText = `Current Language: ${languageEvent.detail}`;
     });
-    return footerSmall;
+
+    return wrapper;
   });
