@@ -17,8 +17,17 @@ const disclaimer = JSON.stringify([
   { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
 ]);
 
+const hans = language => console.log(language);
+
 storiesOf('Molecules/Footer Small', module)
   .addDecorator(withMarkdown(Readme))
   .add(
     'Footer Small',
-    () => `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`);
+    () =>
+      `<axa-footer-small id="marco" activeLanguage="DE" languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>
+      <script>
+      console.log('hi');
+      document.getElementById('marco').addEventListener(${hans});
+      </script>
+      `
+  );
