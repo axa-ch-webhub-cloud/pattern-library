@@ -16,15 +16,16 @@ const DemoFooterSmall = () => {
     { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
   ];
 
-  const [count, setCount] = useState(0);
+  const initialLanguage = 'EN';
+  const [activeLanguage, setActiveLanguage] = useState(initialLanguage);
 
-  const handleAXAFooterLanguageChange = () => {
-    console.log('successssssss');
+  const handleAXAFooterLanguageChange = language => {
+    setActiveLanguage(language);
   };
 
   return (
     <div>
-      <p>with react wrapper - callback props are possible, too:</p>
+      <p>(React) Footer Small - Language changed to: {activeLanguage}</p>
       <AXAFooterSmallReact languageItems={languages} disclaimerItems={disclaimer} onLanguageChange={handleAXAFooterLanguageChange} />
     </div>
   );
