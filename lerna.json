@@ -1,5 +1,5 @@
 {
-  "packages": ["src/components/00-materials", "src/components/10-atoms/icon", "src/components/20-molecules/datepicker"],
+  "packages": ["src/components/00-materials", "src/components/10-atoms/icon"],
   "version": "independent",
   "npmClient": "npm"
 }
