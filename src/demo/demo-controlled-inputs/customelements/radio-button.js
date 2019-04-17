@@ -98,7 +98,15 @@ class LabelledRadioButton extends LitElement {
   }
 
   render() {
-    const { value, label, name, checked, disabled, _isControlled, isReact } = this;
+    const {
+      value,
+      label,
+      name,
+      checked,
+      disabled,
+      _isControlled,
+      isReact,
+    } = this;
     this._isControlled &= isReact;
     // we are the selected element of a group of controlled inputs?
     if (_isControlled && checked && name) {
@@ -135,5 +143,17 @@ class LabelledRadioButton extends LitElement {
 
 // EXPORTS
 const localName = defineOnce('radio-button', LabelledRadioButton, styles);
-export default createElement => ({ label, checked, disabled, name, value, onChange, children }) =>
-  withReact(createElement)(localName, { label, checked, disabled, name, value, onChange, isReact: 1 }, children);
+export default createElement => ({
+  label,
+  checked,
+  disabled,
+  name,
+  value,
+  onChange,
+  children,
+}) =>
+  withReact(createElement)(
+    localName,
+    { label, checked, disabled, name, value, onChange, isReact: 1 },
+    children
+  );

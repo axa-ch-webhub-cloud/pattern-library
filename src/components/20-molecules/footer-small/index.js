@@ -29,7 +29,12 @@ class AXAFooterSmall extends LitElement {
         items,
         item => html`
           <li class="m-footer-small__list-item">
-            <axa-link class="m-footer-small__link" href="${item.link}" color="white">${item.text}</axa-link>
+            <axa-link
+              class="m-footer-small__link"
+              href="${item.link}"
+              color="white"
+              >${item.text}</axa-link
+            >
           </li>
         `
       )}
@@ -43,7 +48,9 @@ class AXAFooterSmall extends LitElement {
 
         <div class="m-footer-small__disclaimer">
           ${this.renderFooterList(this.disclaimerItems)}
-          <div class="js-footer-small__copyright"><span>${this.copyrightText}</span></div>
+          <div class="js-footer-small__copyright">
+            <span>${this.copyrightText}</span>
+          </div>
         </div>
       </article>
     `;

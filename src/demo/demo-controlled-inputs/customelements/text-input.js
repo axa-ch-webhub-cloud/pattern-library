@@ -80,7 +80,14 @@ class TextInput extends LitElement {
     // Also works for *pasted* input!
     // cf. input-event polyfill for IE: https://github.com/jamesnicholls/input-event-polyfill/blob/master/main.js
     return html`
-      <input id="input" type="text" class="text-input-field" value=${value} name=${name} @input=${validateIfNeeded(this)} />
+      <input
+        id="input"
+        type="text"
+        class="text-input-field"
+        value=${value}
+        name=${name}
+        @input=${validateIfNeeded(this)}
+      />
       <style>
         .text-input-field {
           outline: none;
@@ -97,5 +104,16 @@ class TextInput extends LitElement {
 
 // EXPORTS
 const localName = defineOnce('text-input', TextInput);
-export default createElement => ({ value, name, validate, validator, onChange, children }) =>
-  withReact(createElement)(localName, { value, name, validate, validator, onChange, isReact: 1 }, children);
+export default createElement => ({
+  value,
+  name,
+  validate,
+  validator,
+  onChange,
+  children,
+}) =>
+  withReact(createElement)(
+    localName,
+    { value, name, validate, validator, onChange, isReact: 1 },
+    children
+  );

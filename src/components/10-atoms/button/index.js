@@ -75,7 +75,12 @@ class AXAButton extends LitElement {
     };
 
     return html`
-      <button type="${type}" class="a-button ${classMap(classes)}" ?disabled="${disabled}" @click="${this.handleButtonClick}">
+      <button
+        type="${type}"
+        class="a-button ${classMap(classes)}"
+        ?disabled="${disabled}"
+        @click="${this.handleButtonClick}"
+      >
         <div class="a-button__flex-wrapper">
           <slot></slot>
           ${icon &&

@@ -2,7 +2,9 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Footer Small').page(`${host}/iframe.html?id=molecules-footer-small--footer-small`);
+fixture('Footer Small').page(
+  `${host}/iframe.html?id=molecules-footer-small--footer-small`
+);
 
 test('should display four languages', async t => {
   const german = Selector(
@@ -71,7 +73,9 @@ test('should display disclaimer section', async t => {
 
 test('should have a copyright section', async t => {
   const copyright = Selector(() =>
-    document.querySelector(`axa-footer-small`).shadowRoot.querySelector('div[class*="js-footer-small__copyright"]')
+    document
+      .querySelector(`axa-footer-small`)
+      .shadowRoot.querySelector('div[class*="js-footer-small__copyright"]')
   );
   await t.expect(copyright.exists).ok();
   await t.expect(copyright.textContent).eql('© 2019 AXA Insurance Ltd.');

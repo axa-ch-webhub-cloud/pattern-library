@@ -10,7 +10,7 @@ $base-font-size: 16px;
 $base-line-height: $base-font-size * 1.5;
 
 $font-family-source-sans: 'Source Sans Pro', sans-serif;
-$font-family-publico: "Publico Headline", Georgia, serif;
+$font-family-publico: 'Publico Headline', Georgia, serif;
 
 $primary-font: $font-family-source-sans;
 $secondary-font: $font-family-publico;
@@ -26,32 +26,104 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 
 $text-sizes: (
-    default: (14, 20, 0.02em),
-    smallest: (11, 16, 0.02em),
-    xx-small: (12, 16, 0.02em),
-    x-small: (13, 16, 0.02em),
-    small: (14, 20, 0.02em),
-    medium: (16, 24, 0.02em),
-    medium-large: (18, 24, 0.01em),
-    large: (20, 28, 0.01em),
-    x-large: (24, 32, 0.01em),
-    xx-large: (32, 40, 0.01em),
-    larger: (40, 52, 0.01em),
-    largest: (72, 80, 0.01em),
+  default: (
+    14,
+    20,
+    0.02em,
+  ),
+  smallest: (
+    11,
+    16,
+    0.02em,
+  ),
+  xx-small: (
+    12,
+    16,
+    0.02em,
+  ),
+  x-small: (
+    13,
+    16,
+    0.02em,
+  ),
+  small: (
+    14,
+    20,
+    0.02em,
+  ),
+  medium: (
+    16,
+    24,
+    0.02em,
+  ),
+  medium-large: (
+    18,
+    24,
+    0.01em,
+  ),
+  large: (
+    20,
+    28,
+    0.01em,
+  ),
+  x-large: (
+    24,
+    32,
+    0.01em,
+  ),
+  xx-large: (
+    32,
+    40,
+    0.01em,
+  ),
+  larger: (
+    40,
+    52,
+    0.01em,
+  ),
+  largest: (
+    72,
+    80,
+    0.01em,
+  ),
 );
 
 $primary-fonts: (
-    default: (400, normal),
-    regular: (400, normal),
-    medium: (600, normal),
-    bold: (700, normal),
-    italic: (400, italic),
+  default: (
+    400,
+    normal,
+  ),
+  regular: (
+    400,
+    normal,
+  ),
+  medium: (
+    600,
+    normal,
+  ),
+  bold: (
+    700,
+    normal,
+  ),
+  italic: (
+    400,
+    italic,
+  ),
 );
 
 $secondary-fonts: (
-    default: (400, normal),
-    light: (300, normal),
-    regular: (400, normal),
+  default: (
+    400,
+    normal,
+  ),
+  light: (
+    300,
+    normal,
+  ),
+  regular: (
+    400,
+    normal,
+  ),
 );
 
 // Don't use this in components, use typo()
@@ -60,9 +132,7 @@ $secondary-fonts: (
     font-family: $primary-font;
     font-weight: nth(map-get($primary-fonts, $name), 1);
     font-style: nth(map-get($primary-fonts, $name), 2);
-  }
-
-  @else if map-has-key($secondary-fonts, $name) and $font == secondary {
+  } @else if map-has-key($secondary-fonts, $name) and $font == secondary {
     font-family: $secondary-font;
     font-weight: nth(map-get($secondary-fonts, $name), 1);
     font-style: nth(map-get($secondary-fonts, $name), 2);
@@ -71,17 +141,15 @@ $secondary-fonts: (
 
 // Don't use this in components, use typo()
 @mixin _text($name: default) {
-    @if (map-has-key($text-sizes, $name)) {
-        font-size: nth(map-get($text-sizes, $name), 1) + px;
-        line-height: nth(map-get($text-sizes, $name), 2) + px;
-        letter-spacing: nth(map-get($text-sizes, $name), 3);
-    }
-
-    @else {
-        font-size: nth(map-get($text-sizes, default), 1) + px;
-        line-height: nth(map-get($text-sizes, default), 2) + px;
-        letter-spacing: nth(map-get($text-sizes, default), 3) + px;
-    }
+  @if (map-has-key($text-sizes, $name)) {
+    font-size: nth(map-get($text-sizes, $name), 1) + px;
+    line-height: nth(map-get($text-sizes, $name), 2) + px;
+    letter-spacing: nth(map-get($text-sizes, $name), 3);
+  } @else {
+    font-size: nth(map-get($text-sizes, default), 1) + px;
+    line-height: nth(map-get($text-sizes, default), 2) + px;
+    letter-spacing: nth(map-get($text-sizes, default), 3) + px;
+  }
 }
 
 @mixin typo($name: primary, $text: default, $style: default) {

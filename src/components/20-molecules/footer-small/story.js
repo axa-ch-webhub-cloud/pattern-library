@@ -13,12 +13,20 @@ const languages = JSON.stringify([
 ]);
 
 const disclaimer = JSON.stringify([
-  { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
-  { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
+  {
+    text: 'Terms of use',
+    link: 'https://axa.ch/en/information/terms-of-use.html',
+  },
+  {
+    text: 'Data protection',
+    link: 'https://axa.ch/en/information/data-protection.html',
+  },
 ]);
 
 storiesOf('Molecules/Footer Small', module)
   .addDecorator(withMarkdown(Readme))
   .add(
     'Footer Small',
-    () => `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`);
+    () =>
+      `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`
+  );
