@@ -1,32 +1,28 @@
+import '@webcomponents/webcomponentsjs';
 import { LitElement, svg } from 'lit-element';
-
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  ArrowRightSvg,
-  CollapseSvg,
-  DownloadSvg,
-  EmailSvg,
-  ExpandSvg,
-  PhoneSvg,
-  PlusSvg,
-  SearchSvg,
-  UploadSvg
-} from '@axa-ch/materials';
+import { ArrowRightSvg, CollapseSvg, DownloadSvg, EmailSvg, ExpandSvg, PhoneSvg, PlusSvg, SearchSvg, UploadSvg } from '@axa-ch/materials';
+import defineOnce from '../../../utils/define-once';
 
 class AXAIcon extends LitElement {
-  static tagName = 'axa-icon';
-  static iconsMapping = {
-    'arrow-right': ArrowRightSvg,
-    'collapse': CollapseSvg,
-    'download': DownloadSvg,
-    'email': EmailSvg,
-    'expand': ExpandSvg,
-    'phone': PhoneSvg,
-    'plus': PlusSvg,
-    'search': SearchSvg,
-    'upload': UploadSvg
-  };
+  static get tagName() {
+    return 'axa-icon';
+  }
+
+  static get iconsMapping() {
+    return {
+      'arrow-right': ArrowRightSvg,
+      collapse: CollapseSvg,
+      download: DownloadSvg,
+      email: EmailSvg,
+      expand: ExpandSvg,
+      phone: PhoneSvg,
+      plus: PlusSvg,
+      search: SearchSvg,
+      upload: UploadSvg,
+    };
+  }
 
   static get properties() {
     return {
@@ -42,9 +38,11 @@ class AXAIcon extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    if (/\.svg/.test(this.icon)) {
+    const { icon } = this;
+
+    if (/\.svg/.test(icon)) {
       const req = new XMLHttpRequest();
-      req.open('GET', this.icon);
+      req.open('GET', icon);
       req.onreadystatechange = () => {
         if (req.readyState === 4 && req.status === 200) {
           this.shadowRoot.innerHTML = req.response;
@@ -56,10 +54,10 @@ class AXAIcon extends LitElement {
   }
 
   render() {
-    return svg([AXAIcon.iconsMapping[this.icon] || '']) ;
+    return svg([AXAIcon.iconsMapping[this.icon] || '']);
   }
 }
 
-customElements.define(AXAIcon.tagName, AXAIcon);
+defineOnce(AXAIcon.tagName, AXAIcon);
 
 export default AXAIcon;
