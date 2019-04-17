@@ -4,8 +4,6 @@
   box-sizing: border-box;
   padding-left: 30px;
   padding-right: 30px;
-  font-size: 16px;
-  line-height: .5;
   min-height: 40px;
   hyphens: auto;
   overflow-wrap: break-word;
@@ -92,55 +90,6 @@
   }
 }
 
-.a-button--motion.a-button--red {
-  &::after {
-    background-color: $color-prim-red-flamingo;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: $color-prim-red-burnt-sienna;
-    color: $color-prim-white;
-
-    &::after {
-      background-color: $color-prim-red-flamingo;
-    }
-  }
-}
-
-.a-button--secondary.a-button--inverted {
-  border-color: $color-prim-white;
-  color: $color-prim-white;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $color-prim-white;
-    border-color: $color-prim-white;
-    color: inherit;
-  }
-}
-
-.a-button--motion.a-button--secondary,
-.a-button--motion.a-button--secondary.a-button--inverted {
-  background-color: transparent;
-}
-
-.a-button--motion.a-button--secondary.a-button--inverted {
-  &::after {
-    background-color: $color-prim-white;
-  }
-
-  &:hover,
-  &:focus {
-    color: inherit;
-
-    &::after {
-      background-color: $color-prim-white;
-    }
-  }
-}
-
 .a-button--red {
   background-color: $color-prim-red-burnt-sienna;
   border-color: $color-prim-red-burnt-sienna;
@@ -151,6 +100,22 @@
   &:focus {
     background-color: $color-prim-red-flamingo;
     border-color: $color-prim-red-flamingo;
+  }
+
+  &.a-button--motion {
+    &::after {
+      background-color: $color-prim-red-flamingo;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $color-prim-red-burnt-sienna;
+      color: $color-prim-white;
+
+      &::after {
+        background-color: $color-prim-red-flamingo;
+      }
+    }
   }
 }
 
@@ -163,5 +128,31 @@
   &:active,
   &:focus {
     color: $color-prim-white;
+  }
+
+  &.a-button--motion {
+    background-color: transparent;
+  }
+}
+
+.a-button--inverted {
+  background-color: transparent;
+  border-color: $color-prim-white;
+  color: $color-prim-white;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $color-prim-white;
+    border-color: $color-prim-white;
+    color: inherit;
+  }
+
+  &.a-button--motion {
+    background-color: transparent;
+
+    &::after {
+      background-color: $color-prim-white;
+    }
   }
 }

@@ -4,10 +4,7 @@ import AXAButton from './index';
 export default createElement => ({
   type = 'button',
   icon = '',
-  secondary = false,
-  large = false,
-  inverted = false,
-  red = false,
+  variant = '',
   motionOff = false,
   disabled = false,
   onClick,
@@ -18,10 +15,7 @@ export default createElement => ({
     {
       type,
       icon,
-      secondary,
-      large,
-      inverted,
-      red,
+      variant,
       motionOff,
       disabled,
       onClick,

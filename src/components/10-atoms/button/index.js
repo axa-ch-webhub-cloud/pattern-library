@@ -8,32 +8,36 @@ import defineOnce from '../../../utils/define-once';
 import buttonCSS from './index.scss';
 
 class AXAButton extends LitElement {
-  static tagName = 'axa-button';
-  static styles = css`
-    ${unsafeCSS(buttonCSS)}
-  `;
+  static get tagName() {
+    return 'axa-button';
+  }
 
-  static properties = {
-    // button, submit, reset
-    type: { type: String },
-    icon: { type: String },
-    secondary: { type: Boolean },
-    large: { type: Boolean },
-    inverted: { type: Boolean },
-    red: { type: Boolean },
-    motionOff: { type: Boolean },
-    disabled: { type: Boolean, reflect: true },
-    onClick: { type: Function },
-  };
+  static get styles() {
+    return css`
+      ${unsafeCSS(buttonCSS)}
+    `;
+  }
+
+  static get properties() {
+    return {
+      // button, submit, reset
+      type: { type: String },
+      // secondary, inverted, red
+      variant: { type: String },
+      icon: { type: String },
+      large: { type: Boolean },
+      motionOff: { type: Boolean },
+      disabled: { type: Boolean, reflect: true },
+      onClick: { type: Function },
+    };
+  }
 
   constructor() {
     super();
     this.type = 'button';
+    this.variant = '';
     this.icon = '';
-    this.secondary = false;
     this.large = false;
-    this.inverted = false;
-    this.red = false;
     this.motionOff = false;
     this.disabled = false;
     this.onClick = () => {};
@@ -61,13 +65,13 @@ class AXAButton extends LitElement {
   };
 
   render() {
-    const { type, large, secondary, inverted, motionOff, red, disabled, icon = '' } = this;
+    const { type, large, motionOff, disabled, variant = '', icon = '' } = this;
     const classes = {
+      'a-button--secondary': variant === 'secondary',
+      'a-button--inverted': variant === 'inverted',
+      'a-button--red': variant === 'red',
       'a-button--large': large,
-      'a-button--secondary': secondary,
-      'a-button--inverted': inverted,
       'a-button--motion': !motionOff,
-      'a-button--red': red && !secondary,
     };
 
     return html`

@@ -17,14 +17,14 @@ storiesOf('Atoms/Button', module)
 
     return btn;
   })
-  .add('Button - default (primary)', () => '<axa-button>I&apos;m a primary button</axa-button>')
-  .add('Button - red (primary)', () => '<axa-button red>I&apos;m a primary red button</axa-button>')
-  .add('Button - secondary', () => '<axa-button secondary>I&apos;m a secondary button</axa-button>')
+  .add('Button - default variant', () => '<axa-button>I&apos;m a primary button</axa-button>')
+  .add('Button - variant red', () => '<axa-button variant="red">I&apos;m a primary red button</axa-button>')
+  .add('Button - variant secondary', () => '<axa-button variant="secondary">I&apos;m a secondary button</axa-button>')
   .add(
     'Button - secondary and inverted',
     () => `
     <div style="background-color: #3032c1; color:#3032c1; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button secondary inverted>I&apos;m a secondary inverted button</axa-button>
+      <axa-button variant='inverted'>I&apos;m a inverted button</axa-button>
     </div>`
   )
   .add('Button - disabled', () => '<axa-button disabled>I&apos;m a button</axa-button>')
@@ -57,16 +57,16 @@ storiesOf('Atoms/Button', module)
     () => `
     <div>
       <div>
-        <axa-button motionoff>I&apos;m primary btn without motion</axa-button>
+        <axa-button motionoff>I&apos;m default primary btn without motion</axa-button>
         <axa-button>I&apos;m primary btn with motion</axa-button>
       </div>
       <div>
-        <axa-button motionoff red>I&apos;m primary red btn without motion</axa-button>
-        <axa-button red>I&apos;m primary red btn with motion</axa-button>
+        <axa-button motionoff variant="red">I&apos;m primary red btn without motion</axa-button>
+        <axa-button variant="red">I&apos;m primary red btn with motion</axa-button>
       </div>
       <div>
-        <axa-button motionoff secondary>I&apos;m primary btn without motion</axa-button>
-        <axa-button secondary>I&apos;m secondary btn with motion</axa-button>
+        <axa-button motionoff variant="secondary">I&apos;m primary btn without motion</axa-button>
+        <axa-button variant="secondary">I&apos;m secondary btn with motion</axa-button>
       </div>
     </div>`
   )
@@ -74,8 +74,8 @@ storiesOf('Atoms/Button', module)
     'Button - icon',
     () => `
     <div>
-      <axa-button icon="arrow-right">I&apos;m primary btn with a icon</axa-button>
-      <axa-button secondary icon="arrow-right">I&apos;m primary btn with a icon</axa-button>
-      <axa-button red icon="arrow-right">I&apos;m primary btn with a icon</axa-button>
+      <axa-button icon="arrow-right">I&apos;m default btn with a icon</axa-button>
+      <axa-button variant="secondary" icon="arrow-right">I&apos;m variant: secondary btn with a icon</axa-button>
+      <axa-button variant="red" icon="arrow-right">I&apos;m variant: red btn with a icon</axa-button>
     </div>`
   );
