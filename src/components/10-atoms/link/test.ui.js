@@ -170,7 +170,7 @@ test('should display correctly', async t => {
   await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
   await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
 
-  const arrowIcon = linkElement.find('div');
+  const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
 
   const linkText = Selector(
@@ -198,7 +198,7 @@ test('should display correctly', async t => {
   await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
   await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
 
-  const arrowIcon = linkElement.find('div');
+  const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
 
   const linkText = Selector(
@@ -227,7 +227,7 @@ test('should display correctly', async t => {
   await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
   await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
 
-  const arrowIcon = linkElement.find('div');
+  const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
 
   const linkText = Selector(
@@ -256,7 +256,7 @@ test('should display correctly', async t => {
   await t.expect(link.getStyleProperty('color')).eql('rgb(0, 0, 91)');
   await t.expect(link.getStyleProperty('text-decoration')).eql('none solid rgb(0, 0, 91)');
 
-  const arrowIcon = linkElement.find('div');
+  const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
 
   const linkText = Selector(

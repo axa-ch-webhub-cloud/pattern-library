@@ -29,9 +29,7 @@
 
   &__arrow {
     display: inline-block;
-
-    // TODO This might be obsolete as soon as the mocked icon is in use
-    margin-right: 10px;
+    margin-right: 4px;
   }
 
   &--motion {
@@ -56,12 +54,12 @@
 
   50% {
     opacity: 0;
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(50%, 0, 0);
   }
 
   51% {
     opacity: 0;
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 
   100% {

@@ -8,6 +8,10 @@ class AXALink extends LitElement {
     ${unsafeCSS(linkCSS)}
   `;
 
+  showArrow = html`
+    <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
+  `;
+
   static get properties() {
     return {
       href: { type: String },
@@ -33,30 +37,38 @@ class AXALink extends LitElement {
     this.motion = false;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+  }
+
   render() {
-    const classes = {
+    const classes = classMap({
       'a-link--red': this.color === 'red',
       'a-link--blue': this.color === 'blue',
       'a-link--white': this.color === 'white',
       'a-link--bold': this.bold,
       'a-link--deco': this.deco,
       'a-link--motion': this.motion,
-    };
-
-    const showArrow = html`
-      <div class="a-link__arrow"></div>
-    `;
+    });
 
     return html`
       <a
-        class="a-link ${classMap(classes)}"
+        class="a-link ${classes}"
         href="${this.href}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        ${this.arrowLeft === true ? showArrow : ''}
+        ${this.arrowLeft
+          ? html`
+              <span class="a-link__arrow">${this.showArrow}</span>
+            `
+          : ''}
         <slot></slot>
-        ${this.arrowRight === true ? showArrow : ''}
+        ${this.arrowRight
+          ? html`
+              <span class="a-link__arrow">${this.showArrow}</span>
+            `
+          : ''}
       </a>
     `;
   }
