@@ -21,7 +21,7 @@ storiesOf('Atoms/Button', module)
   .add('Button - variant red', () => '<axa-button variant="red">I&apos;m a primary red button</axa-button>')
   .add('Button - variant secondary', () => '<axa-button variant="secondary">I&apos;m a secondary button</axa-button>')
   .add(
-    'Button - secondary and inverted',
+    'Button - variant inverted',
     () => `
     <div style="background-color: #3032c1; color:#3032c1; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
       <axa-button variant='inverted'>I&apos;m a inverted button</axa-button>
