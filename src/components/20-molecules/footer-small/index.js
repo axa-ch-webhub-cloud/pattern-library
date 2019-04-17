@@ -43,7 +43,7 @@ class AXAFooterSmall extends LitElement {
 
         <div class="m-footer-small__disclaimer">
           ${this.renderFooterList(this.disclaimerItems)}
-          <div class="js-footer-small__copyright">${this.copyrightText}</div>
+          <div class="js-footer-small__copyright"><span>${this.copyrightText}</span></div>
         </div>
       </article>
     `;
