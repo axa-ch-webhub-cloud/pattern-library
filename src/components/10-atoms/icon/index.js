@@ -1,5 +1,5 @@
+import '@webcomponents/webcomponentsjs';
 import { LitElement, svg } from 'lit-element';
-
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import {
@@ -13,6 +13,7 @@ import {
   SearchSvg,
   UploadSvg
 } from '@axa-ch/materials';
+import defineOnce from "../../../utils/define-once";
 
 class AXAIcon extends LitElement {
   static tagName = 'axa-icon';
@@ -28,11 +29,10 @@ class AXAIcon extends LitElement {
     'upload': UploadSvg
   };
 
-  static get properties() {
-    return {
-      icon: { type: String },
-    };
-  }
+  static properties = {
+    icon: { type: String }
+  };
+
 
   constructor() {
     super();
@@ -42,9 +42,11 @@ class AXAIcon extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    if (/\.svg/.test(this.icon)) {
+    const { icon } = this;
+
+    if (/\.svg/.test(icon)) {
       const req = new XMLHttpRequest();
-      req.open('GET', this.icon);
+      req.open('GET', icon);
       req.onreadystatechange = () => {
         if (req.readyState === 4 && req.status === 200) {
           this.shadowRoot.innerHTML = req.response;
@@ -60,6 +62,6 @@ class AXAIcon extends LitElement {
   }
 }
 
-customElements.define(AXAIcon.tagName, AXAIcon);
+defineOnce(AXAIcon.tagName, AXAIcon);
 
 export default AXAIcon;
