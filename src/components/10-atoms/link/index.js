@@ -8,6 +8,10 @@ class AXALink extends LitElement {
     ${unsafeCSS(linkCSS)}
   `;
 
+  showArrow = html`
+    <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
+  `;
+
   static get properties() {
     return {
       href: { type: String },
@@ -37,10 +41,6 @@ class AXALink extends LitElement {
     super.connectedCallback();
   }
 
-  showArrow = html`
-    <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
-  `;
-
   render() {
     const classes = classMap({
       'a-link--red': this.color === 'red',
@@ -60,13 +60,13 @@ class AXALink extends LitElement {
       >
         ${this.arrowLeft
           ? html`
-              <div class="a-link__arrow">${this.showArrow}</div>
+              <span class="a-link__arrow">${this.showArrow}</span>
             `
           : ''}
         <slot></slot>
         ${this.arrowRight
           ? html`
-              <div class="a-link__arrow">${this.showArrow}</div>
+              <span class="a-link__arrow">${this.showArrow}</span>
             `
           : ''}
       </a>
