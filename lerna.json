@@ -1,8 +1,5 @@
 {
-  "packages": [
-    "src/components/00-materials",
-    "src/components/10-atoms/icon"
-  ],
+  "packages": ["src/components/00-materials", "src/components/10-atoms/icon"],
   "version": "independent",
   "npmClient": "npm"
 }

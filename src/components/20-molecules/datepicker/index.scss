@@ -39,6 +39,13 @@
     cursor: pointer;
     border: 0;
     line-height: 0;
+
+    svg {
+      width: 21px;
+      height: 21px;
+      padding-right: 6px;
+      fill: $color-axa-blue;
+    }
   }
 
   // TODO:: Challenge global input styles (materials?)
