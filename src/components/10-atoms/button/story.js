@@ -17,17 +17,17 @@ storiesOf('Atoms/Button', module)
 
     return btn;
   })
-  .add('Button - default (primary)', () => '<axa-button>Im a primary button</axa-button>')
-  .add('Button - red (primary)', () => '<axa-button red>Im a primary red button</axa-button>')
-  .add('Button - secondary', () => '<axa-button secondary>Im a secondary button</axa-button>')
+  .add('Button - default (primary)', () => '<axa-button>I&apos;m a primary button</axa-button>')
+  .add('Button - red (primary)', () => '<axa-button red>I&apos;m a primary red button</axa-button>')
+  .add('Button - secondary', () => '<axa-button secondary>I&apos;m a secondary button</axa-button>')
   .add(
     'Button - secondary and inverted',
     () => `
     <div style="background-color: #3032c1; color:#3032c1; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button secondary inverted>Im a secondary inverted button</axa-button>
+      <axa-button secondary inverted>I&apos;m a secondary inverted button</axa-button>
     </div>`
   )
-  .add('Button - disabled', () => '<axa-button disabled>Im a button</axa-button>')
+  .add('Button - disabled', () => '<axa-button disabled>I&apos;m a button</axa-button>')
   .add(
     'Button - type',
     () => `
@@ -35,6 +35,13 @@ storiesOf('Atoms/Button', module)
       <axa-button>I&apos;m type button(default)</axa-button>
       <axa-button type="submit">I&apos;m type submit</axa-button>
       <axa-button type="reset">I&apos;m type reset</axa-button>
+      <form>
+       <axa-button type="submit">I&apos;m type submit in form should send me to Nirvana</axa-button>
+      </form>
+      <form>
+        <input type="text" />
+         <axa-button type="reset">I&apos;m type reset in form should reset Input</axa-button>
+      </form>
     </div>`
   )
   .add(
