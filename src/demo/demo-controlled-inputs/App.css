@@ -16,18 +16,18 @@
   font-size: 16px;
 }
 
-article {
-  padding: 1rem;
-  box-shadow: 1px 2px 3px #ddd;
-}
+/*article {*/
+/*  padding: 1rem;*/
+/*  box-shadow: 1px 2px 3px #ddd;*/
+/*}*/
 
-article > div:last-child {
-  margin: 5px 0;
-}
+/*article > div:last-child {*/
+/*  margin: 5px 0;*/
+/*}*/
 
-span {
-  padding: 5px;
-}
+/*span {*/
+/*  padding: 5px;*/
+/*}*/
 
 .pure-react {
   color: #3032c1;
@@ -37,25 +37,25 @@ span {
   color: #f07662;
 }
 
-button[type='submit'] {
-  width: fit-content;
-  height: 2em;
-  padding: 1em;
-  border-radius: 5px;
-  line-height: 0;
-  box-shadow: 1px 2px 3px 0px #ddd;
-  font-size: 14px;
-  outline: none;
-  background: red;
-  color: white;
-  font-weight: bold;
-  margin-bottom: 2em;
-}
+/*button[type='submit'] {*/
+/*  width: fit-content;*/
+/*  height: 2em;*/
+/*  padding: 1em;*/
+/*  border-radius: 5px;*/
+/*  line-height: 0;*/
+/*  box-shadow: 1px 2px 3px 0px #ddd;*/
+/*  font-size: 14px;*/
+/*  outline: none;*/
+/*  background: red;*/
+/*  color: white;*/
+/*  font-weight: bold;*/
+/*  margin-bottom: 2em;*/
+/*}*/
 
-button[type='submit']:hover {
-  cursor: pointer;
-  box-shadow: 1px 2px 3px 1px #ddd;
-}
+/*button[type='submit']:hover {*/
+/*  cursor: pointer;*/
+/*  box-shadow: 1px 2px 3px 1px #ddd;*/
+/*}*/
 
 legend {
   padding: 1em;
