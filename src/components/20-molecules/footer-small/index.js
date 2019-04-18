@@ -29,6 +29,7 @@ class AXAFooterSmall extends LitElement {
 
   handleLanguageClick = (ev, language) => {
     if (this.activeLanguage !== language) {
+      ev.preventDefault();
       this.activeLanguage = language;
       this.onLanguageChange(language);
       this.dispatchEvent(new CustomEvent('axa-language-change', { detail: language, bubbles: true, cancelable: true }));
@@ -40,6 +41,7 @@ class AXAFooterSmall extends LitElement {
 
   handleDisclaimerClick = (ev, disclaimer) => {
     if (this.clickedDisclaimer !== disclaimer) {
+      ev.preventDefault();
       this.clickedDisclaimer = disclaimer;
       this.onDisclaimerChange(disclaimer);
       this.dispatchEvent(new CustomEvent('axa-disclaimer-change', { detail: disclaimer, bubbles: true, cancelable: true }));
