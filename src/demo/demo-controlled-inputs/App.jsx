@@ -31,16 +31,7 @@ const labelledRadioButton = (self, group, handler) => (name, index) => (
   </label>
 );
 
-const litElementRadioButton = (self, group, handler) => (name, index) => (
-  <ReactLabelledRadioButton
-    key={`llerb${index}`}
-    name={group}
-    value={name}
-    label={name}
-    checked={index === self.state.selectedTeamMember}
-    onChange={handler(self, index)}
-  />
-);
+const litElementRadioButton = (self, group, handler) => (name, index) => <ReactLabelledRadioButton key={`llerb${index}`} name={group} value={name} label={name} checked={index === self.state.selectedTeamMember} onChange={handler(self, index)} />;
 
 const handleRadioChange = (self, index) => () => {
   return self.state.freezeControlledValues || self.setState({ selectedRadioButtonIndex: index });
@@ -194,12 +185,7 @@ class App extends Component {
             </article>
             <article className="lit-element">
               <h2>React controlled lit-element textarea</h2>
-              <LitTextArea
-                name="lit-textarea"
-                value={this.state.litTextArea}
-                onChange={handleLitTextAreaChange(this)} /* eslint-disable no-console */
-                ref={element => console.log('lit-element ref:', element)} /* eslint-enable no-console */
-              />
+              <LitTextArea name="lit-textarea" value={this.state.litTextArea} onChange={handleLitTextAreaChange(this)} /* eslint-disable no-console */ ref={element => console.log('lit-element ref:', element)} /* eslint-enable no-console */ />
               <div>{`Current lit-element text: ${this.state.litTextArea}`}</div>
             </article>
           </fieldset>

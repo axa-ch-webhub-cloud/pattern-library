@@ -1,6 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import AXAIcon from "./index";
+import AXAIcon from './index';
 
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';

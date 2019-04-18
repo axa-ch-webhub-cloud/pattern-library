@@ -108,16 +108,7 @@ class LabelledRadioButton extends LitElement {
     // render proper
     return html`
       <label class="radio-button">
-        <input
-          id="input"
-          type="radio"
-          class="radio-button-input"
-          value=${value}
-          name=${name}
-          ?checked=${checked}
-          ?disabled=${disabled}
-          @change=${handleChange(this)}
-        />
+        <input id="input" type="radio" class="radio-button-input" value=${value} name=${name} ?checked=${checked} ?disabled=${disabled} @change=${handleChange(this)} />
         ${label || value}
       </label>
     `;
@@ -135,5 +126,4 @@ class LabelledRadioButton extends LitElement {
 
 // EXPORTS
 const localName = defineOnce('radio-button', LabelledRadioButton, styles);
-export default createElement => ({ label, checked, disabled, name, value, onChange, children }) =>
-  withReact(createElement)(localName, { label, checked, disabled, name, value, onChange, isReact: 1 }, children);
+export default createElement => ({ label, checked, disabled, name, value, onChange, children }) => withReact(createElement)(localName, { label, checked, disabled, name, value, onChange, isReact: 1 }, children);

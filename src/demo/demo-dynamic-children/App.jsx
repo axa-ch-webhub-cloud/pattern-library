@@ -20,11 +20,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      policies: [
-        { title: 'Household Insurance', price: 79, state: 0 },
-        { title: 'Life Insurance', price: 121, state: 1 },
-        { title: 'Car Insurance', price: 88, state: 2 },
-      ],
+      policies: [{ title: 'Household Insurance', price: 79, state: 0 }, { title: 'Life Insurance', price: 121, state: 1 }, { title: 'Car Insurance', price: 88, state: 2 }],
     };
   }
 

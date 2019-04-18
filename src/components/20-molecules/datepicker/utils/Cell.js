@@ -6,9 +6,7 @@ export class Cell {
     this.isToday = isToday;
     this.isSelected = isSelected;
     this.isActive = isActive;
-    this.baseClass = `m-datepicker__calendar-cell js-datepicker__calender-body__cell${
-      isSelected ? ' m-datepicker__calendar-selected-day' : ''
-    }${!isActive ? ' m-datepicker__calendar-day--inactive' : ''}`;
+    this.baseClass = `m-datepicker__calendar-cell js-datepicker__calender-body__cell${isSelected ? ' m-datepicker__calendar-selected-day' : ''}${!isActive ? ' m-datepicker__calendar-day--inactive' : ''}`;
     this.className = '';
   }
 }

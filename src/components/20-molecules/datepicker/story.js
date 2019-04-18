@@ -6,11 +6,7 @@ import Readme from './README.md';
 
 storiesOf('Molecules/Datepicker', module)
   .addDecorator(withMarkdown(Readme))
-  .add(
-    'Datepicker',
-    () =>
-      `<axa-datepicker allowedyears='[2018, 2019, 2020, 2021]' year='2020' month="4" day="22" data-test-id="datepicker"></axa-datepicker>`
-  )
+  .add('Datepicker', () => `<axa-datepicker allowedyears='[2018, 2019, 2020, 2021]' year='2020' month="4" day="22" data-test-id="datepicker"></axa-datepicker>`)
   .add(
     'Datepicker Translated (en-GB)',
     () => `<axa-datepicker allowedyears='[2019, 2020, 2021]' year='2020' month="0" day="20" locale='en-GB' data-test-id="datepicker-translated"

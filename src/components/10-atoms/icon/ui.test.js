@@ -1,4 +1,4 @@
-import { Selector } from "testcafe";
+import { Selector } from 'testcafe';
 
 fixture('Icon - show all icons').page('http://localhost:9999/iframe.html?id=atoms-icon--icon-show-all-icons');
 
@@ -12,7 +12,6 @@ test('should render icon', async t => {
   const $axaIconShadowEl = await $axaIconShadow.find(SVG_TAG);
   await t.expect($axaIconShadowEl.exists).ok();
 });
-
 
 // TODO fix serving static files in testcafe
 // fixture('Icon - icon from a resource').page('http://localhost:9999/iframe.html?id=atoms-icon--icon-icon-from-a-resource');

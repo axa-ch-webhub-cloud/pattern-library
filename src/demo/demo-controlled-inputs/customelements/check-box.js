@@ -102,15 +102,7 @@ class LabelledCheckbox extends LitElement {
     return html`
       <div class="check-box">
         <label class="check-box-label">
-          <input
-            type="checkbox"
-            class="check-box-input"
-            ?value=${value}
-            name=${name}
-            ?checked=${checked}
-            ?disabled=${disabled}
-            @change=${handleChange(this)}
-          />
+          <input type="checkbox" class="check-box-input" ?value=${value} name=${name} ?checked=${checked} ?disabled=${disabled} @change=${handleChange(this)} />
           ${label || value}
         </label>
       </div>
@@ -130,5 +122,4 @@ class LabelledCheckbox extends LitElement {
 
 // EXPORTS
 const localName = defineOnce('check-box', LabelledCheckbox, styles);
-export default createElement => ({ label, checked, disabled, name, value, onChange, children }) =>
-  withReact(createElement)(localName, { label, checked, disabled, name, value, onChange, isReact: 1 }, children);
+export default createElement => ({ label, checked, disabled, name, value, onChange, children }) => withReact(createElement)(localName, { label, checked, disabled, name, value, onChange, isReact: 1 }, children);

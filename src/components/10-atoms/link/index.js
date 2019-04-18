@@ -52,12 +52,7 @@ class AXALink extends LitElement {
     });
 
     return html`
-      <a
-        class="a-link ${classes}"
-        href="${this.href}"
-        target="${this.external ? '_blank' : '_top'}"
-        rel="${this.external ? 'noreferrer noopener' : ''}"
-      >
+      <a class="a-link ${classes}" href="${this.href}" target="${this.external ? '_blank' : '_top'}" rel="${this.external ? 'noreferrer noopener' : ''}">
         ${this.arrowLeft
           ? html`
               <span class="a-link__arrow">${this.showArrow}</span>

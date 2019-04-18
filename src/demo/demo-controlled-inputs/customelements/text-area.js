@@ -85,7 +85,4 @@ class TextAreaInput extends LitElement {
 
 // EXPORTS
 const localName = defineOnce('text-area', TextAreaInput);
-export default createElement =>
-  forwardRef(({ value, name, onChange, children }, ref) =>
-    withReact(createElement)(localName, { value, name, onChange, ref, isReact: 1 }, children)
-  );
+export default createElement => forwardRef(({ value, name, onChange, children }, ref) => withReact(createElement)(localName, { value, name, onChange, ref, isReact: 1 }, children));

@@ -70,9 +70,7 @@ test('should display disclaimer section', async t => {
 });
 
 test('should have a copyright section', async t => {
-  const copyright = Selector(() =>
-    document.querySelector(`axa-footer-small`).shadowRoot.querySelector('div[class*="js-footer-small__copyright"]')
-  );
+  const copyright = Selector(() => document.querySelector(`axa-footer-small`).shadowRoot.querySelector('div[class*="js-footer-small__copyright"]'));
   await t.expect(copyright.exists).ok();
   await t.expect(copyright.textContent).eql('© 2019 AXA Insurance Ltd.');
 });

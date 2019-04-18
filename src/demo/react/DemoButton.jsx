@@ -7,19 +7,17 @@ const DemoButton = () => {
   const [count, setCount] = useState(0);
 
   const handleAXAButtonClick = () => {
-    setCount(count + 1)
+    setCount(count + 1);
   };
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = ev => {
     ev.preventDefault();
   };
 
   return (
     <div>
       <p>with react wrapper - callback props are possible, too:</p>
-      <AXAButtonReact onClick={handleAXAButtonClick}>
-        You clicked me: {count} times!
-      </AXAButtonReact>
+      <AXAButtonReact onClick={handleAXAButtonClick}>You clicked me: {count} times!</AXAButtonReact>
 
       <form>
         <p>I&apos;m type submit Button in a form, on click I send you to nirvana</p>

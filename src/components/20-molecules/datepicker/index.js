@@ -111,13 +111,7 @@ export class Datepicker extends LitElement {
         ${this.inputfield &&
           html`
             <div class="m-datepicker__input-wrap">
-              <input
-                @keyup="${this.handleInputChange}"
-                class="m-datepicker__input js-datepicker__input"
-                type="text"
-                placeholder="Please select a date"
-                value="${this.outputdate}"
-              />
+              <input @keyup="${this.handleInputChange}" class="m-datepicker__input js-datepicker__input" type="text" placeholder="Please select a date" value="${this.outputdate}" />
               <button type="button" class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
                 <span>${dateInputIcon}</span>
               </button>
@@ -126,23 +120,9 @@ export class Datepicker extends LitElement {
         <div class="m-datepicker__wrap">
           <div class="m-datepicker__article">
             <div class="m-datepicker__dropdown-wrap">
-              <axa-dropdown
-                @axa-change="${this.handleChangeDropdownMonth}"
-                class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-                max-height
-                items="${JSON.stringify(this.monthitems)}"
-                title="Choose Month"
-              >
-              </axa-dropdown>
+              <axa-dropdown @axa-change="${this.handleChangeDropdownMonth}" class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month" max-height items="${JSON.stringify(this.monthitems)}" title="Choose Month"> </axa-dropdown>
 
-              <axa-dropdown
-                @axa-change="${this.handleChangeDropdownYear}"
-                class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-                max-height
-                items="${JSON.stringify(this.yearitems)}"
-                title="Choose Year"
-              >
-              </axa-dropdown>
+              <axa-dropdown @axa-change="${this.handleChangeDropdownYear}" class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year" max-height items="${JSON.stringify(this.yearitems)}" title="Choose Year"> </axa-dropdown>
             </div>
 
             <div class="m-datepicker__weekdays">
@@ -160,30 +140,15 @@ export class Datepicker extends LitElement {
                 this.cells.map(
                   (cell, index) =>
                     html`
-                      <button
-                        @click="${this.handleDatepickerCalendarCellClick}"
-                        type="button"
-                        tabindex="0"
-                        data-index="${index}"
-                        data-value="${cell.value}"
-                        data-day="${cell.text}"
-                        class="m-datepicker__calendar-cell ${cell.className}"
-                      >
+                      <button @click="${this.handleDatepickerCalendarCellClick}" type="button" tabindex="0" data-index="${index}" data-value="${cell.value}" data-day="${cell.text}" class="m-datepicker__calendar-cell ${cell.className}">
                         ${cell.text}
                       </button>
                     `
                 )}
             </div>
             <div class="m-datepicker__buttons">
-              <axa-button
-                secondary
-                class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
-                @click="${this.handleButtonCancelClick}"
-                >${this.labelbuttoncancel}</axa-button
-              >
-              <axa-button class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok" @click="${this.handleButtonOkClick}"
-                >${this.labelbuttonok}</axa-button
-              >
+              <axa-button secondary class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel" @click="${this.handleButtonCancelClick}">${this.labelbuttoncancel}</axa-button>
+              <axa-button class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok" @click="${this.handleButtonOkClick}">${this.labelbuttonok}</axa-button>
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ test('should clickable (set different text after click)', async t => {
 fixture('Button - set properties').page('http://localhost:9999/iframe.html?id=atoms-button--button-default-primary');
 
 test('should set button element disabled', async t => {
-  const setDisabled = ClientFunction( () => {
+  const setDisabled = ClientFunction(() => {
     document.querySelector('axa-button').disabled = true;
   });
   await setDisabled();
@@ -38,13 +38,13 @@ test('should set button element disabled', async t => {
 });
 
 test('should set button element type', async t => {
-  const setType = ClientFunction( () => {
+  const setType = ClientFunction(() => {
     document.querySelector('axa-button').type = 'submit';
   });
   await setType();
   const $axaButtonShadow = await Selector(() => document.querySelector('axa-button').shadowRoot);
   const $axaButtonShadowEl = await $axaButtonShadow.find(BUTTON_CLASS);
-  await t.expect(await $axaButtonShadowEl.getAttribute('type') === 'submit').ok();
+  await t.expect((await $axaButtonShadowEl.getAttribute('type')) === 'submit').ok();
 });
 
 // TODO test icon smoke

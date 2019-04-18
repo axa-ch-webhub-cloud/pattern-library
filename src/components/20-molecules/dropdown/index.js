@@ -175,9 +175,7 @@ class AXADropdown extends LitElement {
               this.items.map(
                 ({ name, value, isSelected, isInitialItem }) =>
                   html`
-                    <option class="m-dropdown__option" ?disabled="${isInitialItem}" value="${value}" ?selected="${isSelected}"
-                      >${name}</option
-                    >
+                    <option class="m-dropdown__option" ?disabled="${isInitialItem}" value="${value}" ?selected="${isSelected}">${name}</option>
                   `
               )}
           </select>
@@ -195,14 +193,7 @@ class AXADropdown extends LitElement {
                 if (!isInitialItem) {
                   out = html`
                     <li class="m-dropdown__item${isSelected ? ' m-dropdown__item--is-selected' : ''}">
-                      <button
-                        @click="${this.handleDropdownValueClick}"
-                        tabindex="-1"
-                        class="m-dropdown__button js-dropdown__button"
-                        data-name="${name}"
-                        data-value="${value}"
-                        data-selected="${isSelected ? 'true' : 'false'}"
-                      >
+                      <button @click="${this.handleDropdownValueClick}" tabindex="-1" class="m-dropdown__button js-dropdown__button" data-name="${name}" data-value="${value}" data-selected="${isSelected ? 'true' : 'false'}">
                         ${name}
                       </button>
                     </li>
