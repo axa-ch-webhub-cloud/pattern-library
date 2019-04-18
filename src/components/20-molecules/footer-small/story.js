@@ -29,11 +29,11 @@ storiesOf('Molecules/Footer Small', module)
 
     const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
 
-    let wrapper = document.createElement('div');
-    let activeLanguage = document.createElement('p');
+    const wrapper = document.createElement('div');
+    const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
     activeLanguage.innerText = `Current Language: ${selectedLanguage}`;
-    let clickedDisclaimer = document.createElement('p');
+    const clickedDisclaimer = document.createElement('p');
     clickedDisclaimer.id = 'clicked-disclaimer';
     clickedDisclaimer.innerText = `Current disclaimer item: -`;
 

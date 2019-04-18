@@ -4,7 +4,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Link - Unstyled').page(`${host}/iframe.html?id=atoms-link--unstyled-link`);
+fixture('Link - Standard').page(`${host}/iframe.html?id=atoms-link--standard-link`);
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
