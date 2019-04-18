@@ -15,8 +15,8 @@ const getWeekdays = (date, locale) => {
 };
 
 const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
-// eslint-disable-next-line no-control-regex
 const clearStringFromIEGeneratedCharacters = string =>
+  // eslint-disable-next-line no-control-regex
   string.replace(/[^\x00-\x7F]/g, '');
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // year, monthIndex, day
