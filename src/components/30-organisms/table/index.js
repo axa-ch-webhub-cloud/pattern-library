@@ -11,7 +11,6 @@ import AXATbody from './components/axa-tbody';
 import AXATfoot from './components/axa-tfoot';
 
 // semantics are done with aria: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role
-
 export default class AXATable extends LitElement {
   static tagName = 'axa-table';
   static styles = css`
