@@ -35,7 +35,7 @@ storiesOf('Molecules/Footer Small', module)
     activeLanguage.innerText = `Current Language: ${selectedLanguage}`;
     let clickedDisclaimer = document.createElement('p');
     clickedDisclaimer.id = 'clicked-disclaimer';
-    clickedDisclaimer.innerText = `Clicked disclaimer item: -`;
+    clickedDisclaimer.innerText = `Current disclaimer item: -`;
 
     const footerSmall = document.createElement('axa-footer-small');
     footerSmall.activeLanguage = selectedLanguage;
