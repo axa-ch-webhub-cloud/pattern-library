@@ -63,7 +63,7 @@
     "outdent": "^0.7.0",
     "postcss": "^7.0.14",
     "postcss-strip-font-face": "^1.0.0",
-    "prettier": "1.16.4",
+    "prettier": "1.17.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "recursive-install": "^1.4.0",
