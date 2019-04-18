@@ -78,5 +78,5 @@ test('should have a copyright section', async t => {
       .shadowRoot.querySelector('div[class*="js-footer-small__copyright"]')
   );
   await t.expect(copyright.exists).ok();
-  await t.expect(copyright.textContent).eql('© 2019 AXA Insurance Ltd.');
+  await t.expect(copyright.textContent).contains('© 2019 AXA Insurance Ltd.');
 });
