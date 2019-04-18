@@ -9,6 +9,5 @@ fs.writeFileSync(
   outdent`
   export * from './icon-set/index.js';
   `,
-  'utf8',
+  'utf8'
 );
-
