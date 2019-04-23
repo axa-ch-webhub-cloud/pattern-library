@@ -58,12 +58,6 @@ class AXAButton extends LitElement {
     }
   }
 
-  handleButtonClick = ev => {
-    if (this.type === 'button') {
-      this.onClick(ev);
-    }
-  };
-
   render() {
     const { type, large, motionOff, disabled, variant = '', icon = '' } = this;
     const classes = {
@@ -75,7 +69,7 @@ class AXAButton extends LitElement {
     };
 
     return html`
-      <button type="${type}" class="a-button ${classMap(classes)}" ?disabled="${disabled}" @click="${this.handleButtonClick}">
+      <button type="${type}" class="a-button ${classMap(classes)}" ?disabled="${disabled}" @click="${this.onClick}">
         <div class="a-button__flex-wrapper">
           <slot></slot>
           ${icon &&
