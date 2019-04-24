@@ -26,4 +26,12 @@ storiesOf('Atoms/Link', module)
   .add(
     'Animated Arrow Right',
     () => `<axa-link href="https://axa.ch/en/private-customers.html" motion arrowright>Motion Link Right</axa-link>`
+  )
+  .add(
+    'White Heavy Link',
+    () =>
+      `<style>body{background-color: #3032c1;}</style>
+      <axa-link href="https://axa.ch/en/private-customers.html" heavy>Heavy Inactive Link</axa-link>
+      <br>
+      <axa-link href="https://axa.ch/en/private-customers.html" heavy heavyactive>Heavy Link</axa-link>`
   );
