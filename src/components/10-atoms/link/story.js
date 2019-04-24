@@ -33,5 +33,7 @@ storiesOf('Atoms/Link', module)
       `<style>body{background-color: #3032c1;}</style>
       <axa-link href="https://axa.ch/en/private-customers.html" heavy>Heavy Inactive Link</axa-link>
       <br>
-      <axa-link href="https://axa.ch/en/private-customers.html" heavy heavyactive>Heavy Link</axa-link>`
+      <axa-link href="https://axa.ch/en/private-customers.html" heavy heavyactive>Heavy Link</axa-link>
+      <br>
+      <axa-link href="https://axa.ch/en/private-customers.html" heavy heavySmall>Heavy Link</axa-link>`
   );

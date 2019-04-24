@@ -24,6 +24,7 @@ class AXALink extends LitElement {
       motion: { type: Boolean },
       heavy: { type: Boolean },
       heavyActive: { type: Boolean },
+      heavySmall: { type: Boolean },
     };
   }
 
@@ -39,6 +40,7 @@ class AXALink extends LitElement {
     this.motion = false;
     this.heavy = false;
     this.heavyActive = false;
+    this.heavySmall = false;
   }
 
   connectedCallback() {
@@ -55,6 +57,7 @@ class AXALink extends LitElement {
       'a-link--motion': this.motion,
       'a-link--heavy': this.heavy,
       'a-link--heavy-active': this.heavyActive,
+      'a-link--heavy-small': this.heavySmall,
     });
 
     return html`

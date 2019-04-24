@@ -54,7 +54,12 @@
     border: 20px;
 
     &:hover {
+      color: $color-prim-white;
       text-decoration: none;
+    }
+
+    &-small {
+      @include typo(primary, x-small, medium);
     }
 
     &-active {
@@ -62,10 +67,6 @@
     }
   }
 }
-
-// .a-link--active {
-//   color: rgba(255, 255, 255, 0.65);
-// }
 
 @keyframes fadeOutRightInLeft {
   0% {
