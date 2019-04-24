@@ -8,6 +8,7 @@ export default createElement => ({
   activeLanguage = '',
   onLanguageChange = {},
   onDisclaimerChange = {},
+  dynamic = false,
 }) =>
   withReact(createElement)(AXAFooterSmall.tagName, {
     languageItems,
@@ -16,4 +17,5 @@ export default createElement => ({
     activeLanguage,
     onLanguageChange,
     onDisclaimerChange,
+    dynamic,
   });

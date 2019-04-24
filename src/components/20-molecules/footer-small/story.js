@@ -42,6 +42,7 @@ storiesOf('Molecules/Footer Small', module)
     footerSmall.languageItems = languages;
     footerSmall.disclaimerItems = disclaimer;
     footerSmall.copyrightText = '© 2019 AXA Insurance Ltd.';
+    footerSmall.dynamic = true;
 
     wrapper.appendChild(footerSmall);
     wrapper.appendChild(activeLanguage);
