@@ -60,8 +60,7 @@
     }
   }
 
-  &__link {
-    color: $color-prim-white;
-    text-decoration: none;
+  &__link--is-active {
+    border-bottom: 1px solid white;
   }
 }

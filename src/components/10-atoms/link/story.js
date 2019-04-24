@@ -7,7 +7,7 @@ import Readme from './README.md';
 
 storiesOf('Atoms/Link', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Unstyled link', () => `<axa-link href="https://axa.ch/en/private-customers.html">This simple link just links</axa-link>`)
+  .add('Standard link', () => `<axa-link href="https://axa.ch/en/private-customers.html">This simple link just links</axa-link>`)
   .add('Red link', () => `<axa-link href="https://axa.ch/en/private-customers.html" color="red">Red Link</axa-link>`)
   .add(
     'White link',
