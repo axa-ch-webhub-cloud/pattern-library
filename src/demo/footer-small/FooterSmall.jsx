@@ -31,6 +31,7 @@ const DemoFooterSmall = () => {
         disclaimerItems={disclaimer}
         onLanguageChange={handleAXAFooterLanguageChange}
         onDisclaimerChange={handleAXAFooterDisclaimerChange}
+        activeLanguage={activeLanguage}
         copyrightText="© 2019 AXA Insurance Ltd."
         dynamic
       />
