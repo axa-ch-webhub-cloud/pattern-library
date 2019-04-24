@@ -96,6 +96,5 @@ test("should have 'javascript:void(0)' the href attribute", async t => {
       .shadowRoot.querySelector('.m-footer-small__list')
       .querySelector('axa-link')
   );
-  // eslint-disable-next-line no-script-url
-  await t.expect(german.getAttribute('href')).eql('javascript:void(0);');
+  await t.expect(german.getAttribute('href')).eql(undefined);
 });
