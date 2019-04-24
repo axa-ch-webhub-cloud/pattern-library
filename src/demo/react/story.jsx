@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 import DemoButton from './DemoButton';
 import DemoIcon from './DemoIcon';
+import DemoTable from './DemoTable';
 import DemoControlledInputsApp from '../demo-controlled-inputs/App';
 import DemoDynamicChildrenApp from '../demo-dynamic-children/App';
 import DemoFooterSmall from '../footer-small/FooterSmall';
@@ -37,5 +38,10 @@ storiesOf('Demos', module)
     const div = document.createElement('div');
     div.id = 'footer-small';
     ReactDOM.render(<DemoFooterSmall />, div);
+  })
+  .add('Table React', () => {
+    const div = document.createElement('div');
+    div.id = 'root-table-react';
+    ReactDOM.render(<DemoTable />, div);
     return div;
   });
