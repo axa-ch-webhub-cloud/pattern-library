@@ -1,12 +1,8 @@
 .a-button-link {
   @include typo(primary, medium, medium);
   position: relative;
-  display: inline-flex;
-  vertical-align: top;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   box-sizing: border-box;
-  min-height: 40px;
   padding: 0 30px;
   margin: 0;
   hyphens: auto;
@@ -36,12 +32,32 @@
     pointer-events: none;
   }
 
+  &__flex-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 40px;
+    // IE11 workaround
+    height: 39px;
+    box-sizing: border-box;
+  }
+
   &__icon {
     margin-left: 12px;
   }
 }
 
-.a-button-link--large {
+
+.a-button-link__flex-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.a-button-link--large .a-button-link__flex-wrapper {
   min-height: 50px;
   line-height: .64;
 }

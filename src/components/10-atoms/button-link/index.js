@@ -37,6 +37,7 @@ class AXAButtonLink extends LitElement {
     this.href = '';
     this.variant = '';
     this.icon = '';
+    this.external = false;
     this.large = false;
     this.motionOff = false;
     this.disabled = false;
@@ -44,7 +45,7 @@ class AXAButtonLink extends LitElement {
   }
 
   render() {
-    const { large, motionOff, disabled, variant = '', icon = '' } = this;
+    const { href, external, large, motionOff, disabled, variant = '', icon = '' } = this;
     const classes = {
       'a-button-link--secondary': variant === 'secondary',
       'a-button-link--inverted': variant === 'inverted',
@@ -56,17 +57,19 @@ class AXAButtonLink extends LitElement {
     return html`
       <a
         class="a-button-link ${classMap(classes)}"
-        ?href="${this.href}"
-        target="${this.external ? '_blank' : '_top'}"
-        ?rel="${this.external && 'noreferrer noopener'}"
+        href="${href}"
+        target="${external ? '_blank' : '_top'}"
+        rel="${external ? 'noreferrer noopener' : ''}"
         aria-disabled="${disabled}"
         @click="${this.onClick}"
       >
+      <div class="a-button-link__flex-wrapper">
         <slot></slot>
         ${icon &&
           html`
             <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
           `}
+       </div>
       </a>
     `;
   }

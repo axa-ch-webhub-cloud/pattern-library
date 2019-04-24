@@ -21,7 +21,7 @@ class AXAButton extends LitElement {
   static get properties() {
     return {
       // button, submit, reset
-      type: { type: String },
+      type: { type: String, reflect: true },
       // secondary, inverted, red
       variant: { type: String },
       icon: { type: String },

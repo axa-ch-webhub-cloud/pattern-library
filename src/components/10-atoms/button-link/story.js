@@ -10,26 +10,28 @@ storiesOf('Atoms/Button Link', module)
     const btn = document.createElement('axa-button-link');
     let counter = 0;
     btn.innerHTML = `You clicked me: ${counter} mal, btw my event name is click`;
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
       counter += 1;
       btn.innerHTML = `You clicked me: ${counter} times, btw my event name is click`;
     });
 
     return btn;
   })
-  .add('Button-Link - default variant', () => '<axa-button-link>I&apos;m a primary button</axa-button-link>')
-  .add('Button-Link - variant: red', () => '<axa-button-link variant="red">I&apos;m a primary red button</axa-button-link>')
-  .add('Button-Link - variant: secondary', () => '<axa-button-link variant="secondary">I&apos;m a secondary button</axa-button-link>')
+  .add('Button Link - external', () => '<axa-button-link href="https://axa.ch/" external>I will send you in a new tab to external site</axa-button-link>')
+  .add('Button Link - default', () => '<axa-button-link href="https://axa.ch/">I&apos;m a primary button</axa-button-link>')
+  .add('Button Link - variant: red', () => '<axa-button-link variant="red">I&apos;m a primary red button link</axa-button-link>')
+  .add('Button Link - variant: secondary', () => '<axa-button-link variant="secondary">I&apos;m a secondary button link</axa-button-link>')
   .add(
-    'Button-Link - variant: inverted',
+    'Button Link - variant: inverted',
     () => `
     <div style="background-color: #3032c1; color:#3032c1; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
       <axa-button-link variant='inverted'>I&apos;m a inverted button</axa-button-link>
     </div>`
   )
-  .add('Button-Link - disabled', () => '<axa-button-link disabled>I&apos;m a button</axa-button-link>')
+  .add('Button Link - disabled', () => '<axa-button-link disabled>I&apos;m a button</axa-button-link>')
   .add(
-    'Button-Link - size',
+    'Button Link - size',
     () => `
     <div>
       <axa-button-link>I&apos;m size medium(default)</axa-button-link>
@@ -37,7 +39,7 @@ storiesOf('Atoms/Button Link', module)
     </div>`
   )
   .add(
-    'Button-Link - motion',
+    'Button Link - motion',
     () => `
     <div>
       <div>
@@ -55,7 +57,7 @@ storiesOf('Atoms/Button Link', module)
     </div>`
   )
   .add(
-    'Button-Link - icon',
+    'Button Link - icon',
     () => `
     <div>
       <axa-button-link icon="arrow-right">I&apos;m default btn with a icon</axa-button-link>
@@ -63,3 +65,5 @@ storiesOf('Atoms/Button Link', module)
       <axa-button-link variant="red" icon="arrow-right">I&apos;m variant: red btn with a icon</axa-button-link>
     </div>`
   );
+
+

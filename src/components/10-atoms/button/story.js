@@ -17,7 +17,7 @@ storiesOf('Atoms/Button', module)
 
     return btn;
   })
-  .add('Button - default variant', () => '<axa-button>I&apos;m a primary button</axa-button>')
+  .add('Button - default', () => '<axa-button>I&apos;m a primary button</axa-button>')
   .add('Button - variant: red', () => '<axa-button variant="red">I&apos;m a primary red button</axa-button>')
   .add('Button - variant: secondary', () => '<axa-button variant="secondary">I&apos;m a secondary button</axa-button>')
   .add(
