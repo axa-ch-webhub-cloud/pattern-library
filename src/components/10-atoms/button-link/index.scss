@@ -1,13 +1,14 @@
-.a-button {
+.a-button-link {
   @include typo(primary, medium, medium);
   position: relative;
+  display: inline-block;
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
-  min-height: 40px;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  text-decoration: none;
   text-transform: uppercase;
   color: $color-prim-white;
   background-color: $color-axa-blue;
@@ -23,7 +24,7 @@
     border-color: $color-prim-blue-deep-sapphire;
   }
 
-  &:disabled {
+  &[aria-disabled="true"] {
     color: #999;
     background-color: #e5e5e5;
     border-color: #e5e5e5;
@@ -33,7 +34,13 @@
 
   &__flex-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    min-height: 40px;
+    // IE11 workaround
+    height: 39px;
+    box-sizing: border-box;
   }
 
   &__icon {
@@ -41,12 +48,21 @@
   }
 }
 
-.a-button--large {
+
+.a-button-link__flex-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.a-button-link--large .a-button-link__flex-wrapper {
   min-height: 50px;
   line-height: .64;
 }
 
-.a-button--motion {
+.a-button-link--motion {
   $button__motion-duration: 0.3s;
   $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
@@ -88,7 +104,7 @@
   }
 }
 
-.a-button--red {
+.a-button-link--red {
   background-color: $color-prim-red-burnt-sienna;
   border-color: $color-prim-red-burnt-sienna;
   border-bottom-color: $color-prim-red-flamingo;
@@ -100,7 +116,7 @@
     border-color: $color-prim-red-flamingo;
   }
 
-  &.a-button--motion {
+  &.a-button-link--motion {
     &::after {
       background-color: $color-prim-red-flamingo;
     }
@@ -117,7 +133,7 @@
   }
 }
 
-.a-button--secondary {
+.a-button-link--secondary {
   background-color: transparent;
   border-bottom-color: $color-axa-blue;
   color: $color-axa-blue;
@@ -128,12 +144,12 @@
     color: $color-prim-white;
   }
 
-  &.a-button--motion {
+  &.a-button-link--motion {
     background-color: transparent;
   }
 }
 
-.a-button--inverted {
+.a-button-link--inverted {
   background-color: transparent;
   border-color: $color-prim-white;
   color: $color-prim-white;
@@ -146,7 +162,7 @@
     color: inherit;
   }
 
-  &.a-button--motion {
+  &.a-button-link--motion {
     background-color: transparent;
 
     &::after {

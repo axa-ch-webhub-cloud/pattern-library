@@ -3,6 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 fixture('Button - basic functionality').page('http://localhost:9999/iframe.html?id=atoms-button--button-click-event');
 
 const BUTTON_TAG = 'axa-button';
+const ICON_TAG = 'axa-icon';
 const BUTTON_CLASS = '.a-button';
 
 test('should render button', async t => {
@@ -25,7 +26,7 @@ test('should clickable (set different text after click)', async t => {
   await t.expect($axaButton.innerText).contains('1');
 });
 
-fixture('Button - set properties').page('http://localhost:9999/iframe.html?id=atoms-button--button-default-primary');
+fixture('Button - set properties').page('http://localhost:9999/iframe.html?id=atoms-button--button-default');
 
 test('should set button element disabled', async t => {
   const setDisabled = ClientFunction( () => {
@@ -47,4 +48,10 @@ test('should set button element type', async t => {
   await t.expect(await $axaButtonShadowEl.getAttribute('type') === 'submit').ok();
 });
 
-// TODO test icon smoke
+fixture('Button - icon').page('http://localhost:9999/iframe.html?id=atoms-button--button-icon');
+
+test('should render icon', async t => {
+  const $axaButtonShadow = await Selector(() => document.querySelector('axa-button').shadowRoot);
+  const $axaIcon = await $axaButtonShadow.find(ICON_TAG);
+  await t.expect($axaIcon.exists).ok();
+});
