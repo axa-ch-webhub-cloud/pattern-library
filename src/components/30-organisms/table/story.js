@@ -11,7 +11,7 @@ storiesOf('Organisms/Table', module)
     () =>`
       Custom
       <axa-table>
-          <table>
+          <table class="any-for-test">
             <thead>
               <tr>
                 <th>Titel 1</th>
