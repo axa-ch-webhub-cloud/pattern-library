@@ -22,7 +22,7 @@ storiesOf('Molecules/Footer Small', module)
       { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
     ]);
 
-    return `<axa-footer-small languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`;
+    return `<axa-footer-small activelanguage="DE" languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`;
   })
   .add('Footer Small - Dynamic Links', () => {
     const languages = [{ text: 'DE' }, { text: 'FR' }, { text: 'IT' }, { text: 'EN' }];
