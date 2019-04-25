@@ -1,5 +1,5 @@
 import withReact from '../../../utils/with-react';
-import AXAButton from './index';
+import AXAButtonLink from './index';
 
 export default createElement => ({
   icon = '',
@@ -12,7 +12,7 @@ export default createElement => ({
   children,
 }) =>
   withReact(createElement)(
-    AXAButton.tagName,
+    AXAButtonLink.tagName,
     {
       icon,
       variant,
