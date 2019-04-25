@@ -59,19 +59,21 @@ class AXAFooterSmall extends LitElement {
               <li class="m-footer-small__list-item">
                 ${this.dynamic
                   ? html`
-                      <axa-link
-                        class="m-footer-small__link ${languageItem.text === this.activeLanguage ? 'm-footer-small__link--is-active' : ''}"
-                        color="white"
+                      <a
+                        class="m-footer-small__link--bold ${languageItem.text === this.activeLanguage
+                          ? 'm-footer-small__link--is-active'
+                          : ''}"
                         @click="${ev => this.handleLanguageClick(ev, languageItem.text)}"
-                        >${languageItem.text}</axa-link
+                        >${languageItem.text}</a
                       >
                     `
                   : html`
-                      <axa-link
-                        class="m-footer-small__link ${languageItem.text === this.activeLanguage ? 'm-footer-small__link--is-active' : ''}"
+                      <a
+                        class="m-footer-small__link--bold ${languageItem.text === this.activeLanguage
+                          ? 'm-footer-small__link--is-active'
+                          : ''}"
                         href="${languageItem.link || ''}"
-                        color="white"
-                        >${languageItem.text}</axa-link
+                        >${languageItem.text}</a
                       >
                     `}
               </li>
@@ -87,21 +89,18 @@ class AXAFooterSmall extends LitElement {
                 <li class="m-footer-small__list-item">
                   ${this.dynamic
                     ? html`
-                        <axa-link
-                          class="m-footer-small__link"
-                          color="white"
-                          @click="${ev => this.handleDisclaimerClick(ev, disclaimerItem.text)}"
-                          >${disclaimerItem.text}</axa-link
+                        <a class="m-footer-small__link" @click="${ev => this.handleDisclaimerClick(ev, disclaimerItem.text)}"
+                          >${disclaimerItem.text}</a
                         >
                       `
                     : html`
-                        <axa-link class="m-footer-small__link" href="${disclaimerItem.link}" color="white">${disclaimerItem.text}</axa-link>
+                        <a class="m-footer-small__link" href="${disclaimerItem.link}">${disclaimerItem.text}</a>
                       `}
                 </li>
               `
             )}
           </ul>
-          <div class="js-footer-small__copyright"><span>${this.copyrightText}<span></div>
+          <div class="js-footer-small__copyright m-footer-small__copyright"><span>${this.copyrightText}<span></div>
         </div>
       </article>
     `;
