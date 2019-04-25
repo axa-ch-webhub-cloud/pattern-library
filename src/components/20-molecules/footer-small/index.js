@@ -61,7 +61,7 @@ class AXAFooterSmall extends LitElement {
                   ? html`
                       <a
                         class="m-footer-small__link--bold ${languageItem.text === this.activeLanguage
-                          ? 'm-footer-small__link--is-active'
+                          ? 'm-footer-small__link--active'
                           : ''}"
                         @click="${ev => this.handleLanguageClick(ev, languageItem.text)}"
                         >${languageItem.text}</a
@@ -70,7 +70,7 @@ class AXAFooterSmall extends LitElement {
                   : html`
                       <a
                         class="m-footer-small__link--bold ${languageItem.text === this.activeLanguage
-                          ? 'm-footer-small__link--is-active'
+                          ? 'm-footer-small__link--active'
                           : ''}"
                         href="${languageItem.link || ''}"
                         >${languageItem.text}</a
