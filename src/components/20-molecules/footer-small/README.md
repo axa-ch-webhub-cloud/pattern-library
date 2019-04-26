@@ -1,3 +1,3 @@
-# FooterSmall
+# Footer - Small
 
-TODO Description
+This is the small version of the footer.
