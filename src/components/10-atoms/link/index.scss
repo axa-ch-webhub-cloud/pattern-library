@@ -1,11 +1,18 @@
 .a-link {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   text-decoration: none;
-  color: $color-prim-blue-deep-sapphire;
+  color: $color-axa-blue;
 
   &:hover {
     text-decoration: underline;
+    color: $color-prim-blue-deep-sapphire;
   }
+
+  &:active {
+    text-decoration: underline;
+  }
+
+  // ######
 
   &--red {
     color: $color-prim-red-burnt-sienna;
