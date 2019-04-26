@@ -5,28 +5,74 @@
   border-collapse: collapse;
 
   th, td {
+    display: block;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.02em;
-    padding: 10px 15px;
-    border-top: 1px solid $color-prim-gray-mercury;
+    padding: 2px 10px;
+    border-left: 1px solid transparent;
     color: $color-prim-gray-mine-shaft;
     text-align: left;
 
     &:first-child {
-      padding-left: 14px;
       border-left: 1px solid transparent;
+
+      @include breakpoint($mediaquery-md-up) {
+        padding-left: 14px;
+      }
     }
 
     @include breakpoint($mediaquery-md-up) {
+      display: table-cell;
       font-size: 16px;
+      padding: 10px 15px;
+      border-top: 1px solid $color-prim-gray-mercury;
     }
   }
 
   th {
     color: $color-axa-blue;
     font-weight: 700;
+
+    display: none;
+
+    @include breakpoint($mediaquery-md-up) {
+      display: table-cell;
+    }
+  }
+
+  tr {
+    border-top: 1px solid $color-prim-gray-mercury;
+    padding: 20px 0;
+    display: block;
+
+    @include breakpoint($mediaquery-md-up) {
+      border: 1px solid transparent;
+      display: table-row;
+    }
+
+    &:nth-child(n+2) {
+      &:last-child {
+        border-bottom: 1px solid $color-prim-gray-mercury;
+      }
+    }
+
+    &:before {
+      display: table;
+      content: "";
+    }
+  }
+
+  thead {
+    tr {
+      display: none;
+
+      @include breakpoint($mediaquery-md-up) {
+        border: 1px solid transparent;
+        display: table-row;
+      }
+    }
   }
 }
 
