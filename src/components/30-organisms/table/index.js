@@ -1,26 +1,40 @@
-import { LitElement, css, unsafeCSS } from 'lit-element';
+import { LitElement } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import tableCss from './index.scss';
 
 class AXATable extends LitElement {
+  constructor() {
+    super();
+    this.innerscroll= 0;
+  }
+
   static get tagName() {
     return 'axa-table';
   }
 
   static get styles() {
-    return css`
-      ${unsafeCSS(tableCss)}
-    `;
+    return tableCss;
   }
+
+  static get properties() {
+    return {
+      innerscroll: { type: Number },
+    };
+  }
+
 
   connectedCallback() {
     super.connectedCallback();
     const table = this.querySelector('table');
     if (table) {
       const style = document.createElement('style');
-      style.innerText = AXATable.styles;
+      style.textContent = AXATable.styles;
       this.appendChild(style);
       table.classList.add('o-table');
+      table.style.minWidth = `${this.innerscroll}px`;
+      if (this.innerscroll) {
+        this.classList.add('o-table--innerscroll');
+      }
     }
   }
 
