@@ -3,8 +3,6 @@ import defineOnce from '../../../utils/define-once';
 import tableCss from './index.scss';
 
 class AXATable extends LitElement {
-  static tagName = 'axa-table';
-
   static get tagName() {
     return 'axa-table';
   }
