@@ -1,7 +1,35 @@
 .o-table {
-  display: block;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  text-decoration: none;
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    padding: 10px 15px;
+    border-top: 1px solid $color-prim-gray-mercury;
+    color: $color-prim-gray-mine-shaft;
+    text-align: left;
+
+    &:first-child {
+      padding-left: 14px;
+      border-left: 1px solid transparent;
+    }
+
+    @include breakpoint($mediaquery-md-up) {
+      font-size: 16px;
+    }
+  }
 
   th {
     color: $color-axa-blue;
+    font-weight: 700;
   }
+}
+
+td.o-table--light {
+    color: $color-prim-gray;
 }
