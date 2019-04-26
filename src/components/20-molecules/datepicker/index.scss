@@ -55,13 +55,6 @@
     min-width: 0;
   }
 
-  // TODO: Extend SVG icon atom with modifiers
-  &__input-svg {
-    width: 18px;
-    height: 18px;
-    fill: $color-axa-blue;
-  }
-
   &__wrap {
     background: $color-prim-white;
     max-width: 260px;
@@ -200,5 +193,9 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
+  }
+
+  svg {
+    color: $color-axa-blue;
   }
 }
