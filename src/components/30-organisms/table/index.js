@@ -27,13 +27,18 @@ class AXATable extends LitElement {
     super.connectedCallback();
     const table = this.querySelector('table');
     if (table) {
-      const { body } = document;
-      if (!document.querySelector('#axa-table-global-styles-id')) {
-        const style = document.createElement('style');
+      const { documentElement } = this;
+      const doc = documentElement || document;
+
+      // If we are not in ShadowDom context, reuse styles from a previous defined
+      // table if there are 2 on the page.
+      if (!doc.querySelector('#axa-table-global-styles-id')) {
+        const style = doc.createElement('style');
         style.setAttribute('id', 'axa-table-global-styles-id');
         style.textContent = AXATable.styles;
-        body.appendChild(style);
+        this.appendChild(style);
       }
+
       table.classList.add('o-table');
       table.style.minWidth = `${this.innerscroll}px`;
       if (this.innerscroll) {

@@ -12,6 +12,8 @@ Example on how to use it:
 
 ```
 
+**This Table is not inside a ShadowDom, the axa-table-sortable, instead, is inside a ShadowDom**
+
 ## Options
 
 As see in the example above, we have following options
