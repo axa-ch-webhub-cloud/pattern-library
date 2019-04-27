@@ -49,6 +49,18 @@ class AXATableSortable extends LitElement {
     return true;
   }
 
+  getSortingAria(config) {
+    if (!config.sort) {
+      return 'none';
+    }
+    if (config.sort === 'DESC') {
+      return 'descending';
+    }
+    return 'ascending';
+  }
+
+  this
+
   render() {
 
     this.model = { ...this.defaultModel, ...this.model };
@@ -60,13 +72,17 @@ class AXATableSortable extends LitElement {
     const { thead, tbody, tfoot } = this.model;
 
     return html`
-      <axa-table innerscroll="${this.innerscroll}">
+      <axa-table class="o-table-sortable" innerscroll="${this.innerscroll}">
           <table>
             <thead>
               <tr>
                 ${thead &&
                 thead.map(
-                  config => html`<th>${config.html}</th>`
+                  config => html`
+                    <th aria-sort="${this.getSortingAria(config)}" >
+                      ${config.html}
+                    </th>
+                  `
                 )}
               </tr>
             </thead>
