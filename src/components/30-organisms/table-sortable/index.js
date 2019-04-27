@@ -15,6 +15,7 @@ class AXATableSortable extends LitElement {
       tfoot: [[]],
     };
     this.model = { ...this.defaultModel };
+    this.innerscroll = 0;
   }
 
   static get tagName() {
@@ -30,6 +31,7 @@ class AXATableSortable extends LitElement {
   static get properties() {
     return {
       model: { type: Object, reflect: true },
+      innerscroll: { type: Number },
     };
   }
 
@@ -58,7 +60,7 @@ class AXATableSortable extends LitElement {
     const { thead, tbody, tfoot } = this.model;
 
     return html`
-      <axa-table>
+      <axa-table innerscroll="${this.innerscroll}">
           <table>
             <thead>
               <tr>

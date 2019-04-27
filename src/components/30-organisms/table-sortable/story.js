@@ -19,6 +19,13 @@ storiesOf('Organisms/Table', module)
     'Table Sortable',
     () =>`
       <h3>AXA Table Sortable</h3>
-      <axa-table-sortable model='${JSON.stringify(model)}'></axa-table-sortable>
+
+      <axa-table-sortable model='${JSON.stringify(model)}'>
+      </axa-table-sortable>
+
+      <h3>AXA Table Sortable With innerscroll</h3>
+
+      <axa-table-sortable innerscroll="500" model='${JSON.stringify(model)}'>
+      </axa-table-sortable>
       `
   );
