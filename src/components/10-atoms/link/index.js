@@ -15,6 +15,7 @@ class AXALink extends LitElement {
   static get properties() {
     return {
       href: { type: String },
+      variant: { type: String },
       color: { type: String },
       bold: { type: Boolean },
       arrowLeft: { type: Boolean },
@@ -28,6 +29,7 @@ class AXALink extends LitElement {
   constructor() {
     super();
     this.href = '';
+    this.variant = '';
     this.color = '';
     this.bold = false;
     this.arrowLeft = false;
@@ -43,13 +45,13 @@ class AXALink extends LitElement {
 
   render() {
     const classes = classMap({
+      'a-link--icon': this.variant.includes('arrowleft') || this.variant.includes('arrowright'),
       'a-link--red': this.color === 'red',
       'a-link--blue': this.color === 'blue',
       'a-link--white': this.color === 'white',
       'a-link--bold': this.bold,
       'a-link--deco': this.deco,
       'a-link--motion': this.motion,
-      'a-link--icon': this.arrowLeft || this.arrowRight,
     });
 
     return html`
@@ -59,13 +61,13 @@ class AXALink extends LitElement {
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        ${this.arrowLeft
+        ${this.variant.includes('arrowleft')
           ? html`
               <span class="a-link__arrow">${this.showArrow}</span>
             `
           : ''}
         <slot></slot>
-        ${this.arrowRight
+        ${this.variant.includes('arrowright')
           ? html`
               <span class="a-link__arrow">${this.showArrow}</span>
             `

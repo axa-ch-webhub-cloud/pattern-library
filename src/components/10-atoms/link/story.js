@@ -15,13 +15,14 @@ storiesOf('Atoms/Link', module)
   .add(
     'Simple Link - Static Arrow Right',
     () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" arrowright>Arrow Right Link</axa-link>`
+      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright">Arrow Right Link</axa-link>`
   )
   .add(
     'Simple Link - Static Arrow Left',
     () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" arrowleft>Arrow Left Link</axa-link>`
+      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft">Arrow Left Link</axa-link>`
   )
+  //#######
   .add(
     'Red link',
     () =>
