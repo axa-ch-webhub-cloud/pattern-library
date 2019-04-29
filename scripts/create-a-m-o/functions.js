@@ -183,9 +183,7 @@ const createFiles = (store, a, m, o, done) => () => {
         this.onClick = () => {};
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-
+      firstUpdated() {
         // Here is where you can add DOM changes
         // This will be renderd when the component is connected to the DOM
       }
