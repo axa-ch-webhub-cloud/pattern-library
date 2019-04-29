@@ -199,7 +199,7 @@ const createFiles = (store, a, m, o, done) => () => {
       disconnectedCallback() {
         super.disconnectedCallback();
 
-        // Here you can cleanup stuff or reset class variables
+        // Cleanup and reset (i.e event listeners)
       }
     }
 
