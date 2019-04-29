@@ -24,6 +24,15 @@
     }
   }
 
+  &--red {
+    color: $color-prim-red-burnt-sienna;
+
+    &:hover,
+    &:active {
+      color: $color-prim-red-flamingo;
+    }
+  }
+
   // ######
 
   &--red {

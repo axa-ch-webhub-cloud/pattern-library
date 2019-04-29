@@ -24,7 +24,15 @@ storiesOf('Atoms/Link', module)
   )
   .add(
     'Simple Link - Icon',
-    () => `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download">Arrow Left Link</axa-link>`
+    () => `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download">Download Link</axa-link>`
+  )
+  .add(
+    'Simple Link - Red Color',
+    () => `
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-red">Arrow Right Link</axa-link><br>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-red">Arrow Left Link</axa-link><br>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-red" icon="download">Download Link</axa-link>
+    `
   )
   //#######
   .add(

@@ -48,9 +48,8 @@ class AXALink extends LitElement {
   render() {
     const classes = classMap({
       'a-link--icon': this.variant.includes('arrowleft') || this.variant.includes('arrowright') || this.variant.includes('icon'),
-      'a-link--red': this.color === 'red',
-      'a-link--blue': this.color === 'blue',
-      'a-link--white': this.color === 'white',
+      'a-link--red': this.variant.includes('red') && !this.variant.includes('white'),
+      'a-link--white': this.variant.includes('white') && !this.variant.includes('red'),
       'a-link--bold': this.bold,
       'a-link--deco': this.deco,
       'a-link--motion': this.motion,
@@ -68,7 +67,7 @@ class AXALink extends LitElement {
               ${this.showArrow}
             `
           : ''}
-        ${this.icon && this.variant === 'icon'
+        ${this.icon && this.variant.includes('icon') && !this.variant.includes('arrow')
           ? html`
               <axa-icon icon="${this.icon}" class="a-link__icon"></axa-icon>
             `
