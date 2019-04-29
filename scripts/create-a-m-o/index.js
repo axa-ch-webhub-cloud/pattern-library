@@ -81,7 +81,7 @@ const STEPS = {
       console.log(
         chalk.yellow(outdent`
 
-        I will create NOW the new component.
+        I will create the new component NOW.
         Press ${chalk.bold('y')} for yes and ${chalk.bold('n')} for exit
 
       `)
