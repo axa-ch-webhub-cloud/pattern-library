@@ -2,9 +2,11 @@ const outdent = require('outdent');
 const chalk = require('chalk');
 const readline = require('readline');
 
-// const {
-//   getAMOType,
-// } = require('./functions.js');
+const {
+  getAMOType,
+  prepareName,
+  createFiles,
+} = require('./functions.js');
 
 process.stdin.setEncoding('utf8');
 
@@ -42,27 +44,68 @@ const rl = readline.createInterface({
 
 let currentStep = 0;
 const FREE_TEXT_KEY = 'TEXT';
-const STORE = {};
+let STORE = {};
 
 const A = 'a';
 const M = 'm';
 const O = 'o';
+
+const reset = () => {
+  currentStep = 0;
+  STORE = {};
+
+  console.log(chalk.yellow(outdent`
+    Reset, your choices. Select again a AMO Type
+  `));
+};
 
 const STEPS = {
   0: {
     a: () => {
       currentStep++; // eslint-disable-line no-plusplus
       STORE.type = A;
+      getAMOType(A);
     },
     m: () => {
       currentStep++; // eslint-disable-line no-plusplus
       STORE.type = M;
+      getAMOType(M);
     },
     o: () => {
       currentStep++; // eslint-disable-line no-plusplus
       STORE.type = O;
+      getAMOType(O);
     },
   },
+  1: {
+    [FREE_TEXT_KEY]: prepareName(() => {
+      currentStep++; // eslint-disable-line no-plusplus
+
+      console.log(chalk.yellow(outdent`
+
+        I will create NOW the new components.
+        Press ${chalk.bold('y')} for yes and ${chalk.bold('n')} for exit
+
+      `));
+    }),
+    n: reset,
+  },
+  2: {
+    y: createFiles(() => {
+      currentStep++; // eslint-disable-line no-plusplus
+
+      console.log(chalk.yellow(outdent`
+
+      Done! Happy coding 🍻🍻
+
+      `));
+
+      process.exit();
+    }),
+    n: () => {
+      process.exit();
+    },
+  }
 };
 
 
