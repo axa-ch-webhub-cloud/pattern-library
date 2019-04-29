@@ -78,7 +78,10 @@ const STEPS = {
     },
   },
   1: {
-    [FREE_TEXT_KEY]: prepareName(() => {
+    [FREE_TEXT_KEY]: prepareName(({
+      className,
+      fileName
+    }) => {
       currentStep++; // eslint-disable-line no-plusplus
 
       console.log(chalk.yellow(outdent`
@@ -87,11 +90,14 @@ const STEPS = {
         Press ${chalk.bold('y')} for yes and ${chalk.bold('n')} for exit
 
       `));
+
+      STORE.className = className;
+      STORE.fileName = fileName;
     }),
     n: reset,
   },
   2: {
-    y: createFiles(() => {
+    y: createFiles(STORE, A, M, O, () => {
       currentStep++; // eslint-disable-line no-plusplus
 
       console.log(chalk.yellow(outdent`
