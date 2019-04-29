@@ -17,13 +17,7 @@ class AXALink extends LitElement {
       href: { type: String },
       variant: { type: String },
       icon: { type: String },
-      color: { type: String },
-      bold: { type: Boolean },
-      arrowLeft: { type: Boolean },
-      arrowRight: { type: Boolean },
-      deco: { type: Boolean },
       external: { type: Boolean },
-      motion: { type: Boolean },
     };
   }
 
@@ -32,13 +26,7 @@ class AXALink extends LitElement {
     this.href = '';
     this.variant = '';
     this.icon = '';
-    this.color = '';
-    this.bold = false;
-    this.arrowLeft = false;
-    this.arrowRight = false;
-    this.deco = false;
     this.external = false;
-    this.motion = false;
   }
 
   connectedCallback() {
@@ -51,8 +39,6 @@ class AXALink extends LitElement {
       'a-link--red': this.variant.includes('red') && !this.variant.includes('white'),
       'a-link--white': this.variant.includes('white') && !this.variant.includes('red'),
       'a-link--motion': this.variant.includes('arrowleft-animated') || this.variant.includes('arrowright-animated'),
-      'a-link--bold': this.bold,
-      'a-link--deco': this.deco,
     });
 
     return html`

@@ -14,7 +14,8 @@ storiesOf('Atoms/Link', module)
   )
   .add(
     'Simple Link - Icon',
-    () => `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download">Download Link</axa-link>`
+    () =>
+      `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download">Download Link</axa-link>`
   )
   .add(
     'Simple Link - Static Arrow Right',
@@ -28,11 +29,13 @@ storiesOf('Atoms/Link', module)
   )
   .add(
     'Simple Link - Animated Arrow Left',
-    () => `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated">Motion Link Left</axa-link>`
+    () =>
+      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated">Motion Link Left</axa-link>`
   )
   .add(
     'Simple Link - Animated Arrow Right',
-    () => `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated">Motion Link Right</axa-link>`
+    () =>
+      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated">Motion Link Right</axa-link>`
   )
   .add(
     'Simple Link - Red Color',
@@ -53,50 +56,4 @@ storiesOf('Atoms/Link', module)
       <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated-white">Motion Link Left</axa-link><br>
       <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated-white">Motion Link Right</axa-link>
       `
-  )
-  //#######
-  .add(
-    'Red link',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" color="red">Red Link</axa-link>`
-  )
-  .add(
-    'White link',
-    () =>
-      `<style>body{background-color: blue;}</style><axa-link href="https://axa.ch/en/private-customers.html" color="white">White Link</axa-link>`
-  )
-  .add(
-    'Decorated',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" deco>Decorated Link</axa-link>`
-  )
-  .add(
-    'Bold',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" bold>Bold Link</axa-link>`
-  )
-  .add(
-    'External Link',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" external>External Link</axa-link>`
-  )
-  .add(
-    'Static Arrow Left',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" arrowleft>Arrow Left Link</axa-link>`
-  )
-  .add(
-    'Static Arrow Right',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" arrowright>Arrow Right Link</axa-link>`
-  )
-  .add(
-    'Animated Arrow Left',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" motion arrowleft>Motion Link Left</axa-link>`
-  )
-  .add(
-    'Animated Arrow Right',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" motion arrowright>Motion Link Right</axa-link>`
   );
