@@ -52,5 +52,5 @@ If you know that none of your tests depend on jsdom, you can run `npm run test-j
 Jest has an integrated coverage reporter that works well with ES6 and requires no configuration.
 Run `npm test -- --coverage` (note extra -- in the middle)
 
-### How the create your first Components
+### How the create your first Component
 Very easy, please start Storybook with `npm run start` and then in another CLI tab run `npm run new` and follow the instructions in the CLI.
