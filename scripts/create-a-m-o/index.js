@@ -81,7 +81,7 @@ const STEPS = {
       console.log(
         chalk.yellow(outdent`
 
-        I will create the new component NOW.
+        I am creating the new component NOW.
         Press ${chalk.bold('y')} for yes and ${chalk.bold('n')} for exit
 
       `)
@@ -99,7 +99,7 @@ const STEPS = {
       console.log(
         chalk.yellow(outdent`
 
-      Done! Happy coding 🍻🍻
+        I am done! Happy coding 🍻🍻
 
       `)
       );
@@ -123,7 +123,7 @@ rl.on('line', line => {
     console.log(
       chalk.red(outdent`
 
-      Command not recognised, please try again
+      I dunno this command, please try again!
 
     `)
     );
