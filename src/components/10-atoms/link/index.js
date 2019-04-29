@@ -49,6 +49,7 @@ class AXALink extends LitElement {
       'a-link--bold': this.bold,
       'a-link--deco': this.deco,
       'a-link--motion': this.motion,
+      'a-link--icon': this.arrowLeft || this.arrowRight,
     });
 
     return html`

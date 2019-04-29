@@ -12,6 +12,18 @@
     text-decoration: underline;
   }
 
+  &--icon {
+    &:active,
+    &:hover {
+      text-decoration: none;
+    }
+
+    .a-link__arrow {
+      margin-right: 3px;
+      margin-left: 3px;
+    }
+  }
+
   // ######
 
   &--red {
@@ -34,12 +46,12 @@
     }
   }
 
-  &__arrow {
-    display: inline-block;
-    margin-right: 4px;
-  }
-
   &--motion {
+    .a-link__arrow {
+      display: inline-block;
+      margin-right: 4px;
+    }
+
     &:hover,
     &:active,
     &:focus {

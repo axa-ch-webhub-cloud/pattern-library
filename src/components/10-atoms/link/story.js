@@ -8,9 +8,19 @@ import Readme from './README.md';
 storiesOf('Atoms/Link', module)
   .addDecorator(withMarkdown(Readme))
   .add(
-    'Standard link',
+    'Hyperlink',
     () =>
       `<axa-link href="https://axa.ch/en/private-customers.html">This simple link just links</axa-link>`
+  )
+  .add(
+    'Simple Link - Static Arrow Right',
+    () =>
+      `<axa-link href="https://axa.ch/en/private-customers.html" arrowright>Arrow Right Link</axa-link>`
+  )
+  .add(
+    'Simple Link - Static Arrow Left',
+    () =>
+      `<axa-link href="https://axa.ch/en/private-customers.html" arrowleft>Arrow Left Link</axa-link>`
   )
   .add(
     'Red link',
