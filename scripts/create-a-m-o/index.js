@@ -17,7 +17,7 @@ console.log(
     As a general guideline, an ATOM📗 is a small component.
     An ATOM📗 does not have dependencies to other components.
 
-    A MOLECULE📘is most likely your default choice unless it's a much bigger component and not a simple atom.
+    A MOLECULE📘 is most likely your default choice unless it's a much bigger component and not a simple atom.
 
     An ORGANISM📙 is a much bigger component, containing multiple molecules.
     i.e (header, footer, navigation, image gallery)
