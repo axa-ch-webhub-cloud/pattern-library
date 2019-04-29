@@ -12,3 +12,7 @@
 We only export holistic and self contained WebComponents based on CustomElement, ShadowDom and HTML Templates.
 
 We do not support Built-ins
+
+## Scaffolding
+
+Simply, just run `npm run new` and follow on screen instructions
