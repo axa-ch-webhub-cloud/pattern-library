@@ -184,7 +184,7 @@ const createFiles = (store, a, m, o, done) => () => {
       }
 
       firstUpdated() {
-        // Here is where you can add DOM changes
+        // Add DOM changes here
         // This will be rendered when the component is connected to the DOM
       }
 
