@@ -34,6 +34,14 @@ storiesOf('Atoms/Link', module)
     <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-red" icon="download">Download Link</axa-link>
     `
   )
+  .add(
+    'Simple Link - White Color',
+    () => `<style>body {background-color: #3032c1;}</style>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-white">Arrow Right Link</axa-link><br>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-white">Arrow Left Link</axa-link><br>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-white" icon="download">Download Link</axa-link>
+    `
+  )
   //#######
   .add(
     'Red link',

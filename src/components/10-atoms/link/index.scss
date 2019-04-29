@@ -1,18 +1,17 @@
 .a-link {
-  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-family: $font-family-source-sans, Arial, sans-serif;
   text-decoration: none;
   color: $color-axa-blue;
 
+  &:active,
   &:hover {
     text-decoration: underline;
     color: $color-prim-blue-deep-sapphire;
   }
 
-  &:active {
-    text-decoration: underline;
-  }
-
   &--icon {
+    @include typo(primary, medium, small);
+
     &:active,
     &:hover {
       text-decoration: none;
@@ -25,6 +24,7 @@
   }
 
   &--red {
+    @include typo(primary, medium, small);
     color: $color-prim-red-burnt-sienna;
 
     &:hover,
@@ -33,27 +33,19 @@
     }
   }
 
-  // ######
-
-  &--red {
-    color: $color-prim-red-burnt-sienna;
-  }
-
   &--white {
+    @include typo(primary, medium, small);
     color: $color-prim-white;
-  }
+    opacity: 0.65;
 
-  &--deco {
-    text-decoration: underline;
-  }
-
-  &--bold {
-    font-weight: bold;
-
+    &:active,
     &:hover {
-      text-decoration: none;
+      color: $color-prim-white;
+      opacity: 1;
     }
   }
+
+  // ######
 
   &--motion {
     .a-link__icon {
