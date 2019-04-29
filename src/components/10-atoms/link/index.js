@@ -50,9 +50,9 @@ class AXALink extends LitElement {
       'a-link--icon': this.variant.includes('arrowleft') || this.variant.includes('arrowright') || this.variant.includes('icon'),
       'a-link--red': this.variant.includes('red') && !this.variant.includes('white'),
       'a-link--white': this.variant.includes('white') && !this.variant.includes('red'),
+      'a-link--motion': this.variant.includes('arrowleft-animated') || this.variant.includes('arrowright-animated'),
       'a-link--bold': this.bold,
       'a-link--deco': this.deco,
-      'a-link--motion': this.motion,
     });
 
     return html`
