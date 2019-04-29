@@ -9,13 +9,14 @@ class AXALink extends LitElement {
   `;
 
   showArrow = html`
-    <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
+    <axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>
   `;
 
   static get properties() {
     return {
       href: { type: String },
       variant: { type: String },
+      icon: { type: String },
       color: { type: String },
       bold: { type: Boolean },
       arrowLeft: { type: Boolean },
@@ -30,6 +31,7 @@ class AXALink extends LitElement {
     super();
     this.href = '';
     this.variant = '';
+    this.icon = '';
     this.color = '';
     this.bold = false;
     this.arrowLeft = false;
@@ -45,7 +47,7 @@ class AXALink extends LitElement {
 
   render() {
     const classes = classMap({
-      'a-link--icon': this.variant.includes('arrowleft') || this.variant.includes('arrowright'),
+      'a-link--icon': this.variant.includes('arrowleft') || this.variant.includes('arrowright') || this.icon,
       'a-link--red': this.color === 'red',
       'a-link--blue': this.color === 'blue',
       'a-link--white': this.color === 'white',
@@ -63,13 +65,18 @@ class AXALink extends LitElement {
       >
         ${this.variant.includes('arrowleft')
           ? html`
-              <span class="a-link__arrow">${this.showArrow}</span>
+              ${this.showArrow}
+            `
+          : ''}
+        ${this.icon
+          ? html`
+              <axa-icon icon="${this.icon}" class="a-link__icon"></axa-icon>
             `
           : ''}
         <slot></slot>
         ${this.variant.includes('arrowright')
           ? html`
-              <span class="a-link__arrow">${this.showArrow}</span>
+              ${this.showArrow}
             `
           : ''}
       </a>

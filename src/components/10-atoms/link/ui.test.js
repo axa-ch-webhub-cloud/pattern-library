@@ -249,7 +249,7 @@ test('should display correctly', async t => {
     .eql('none solid rgb(0, 0, 91)');
 
   const arrowIcon = linkElement.find('axa-icon');
-  await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
+  await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
 
   const linkText = Selector(
     () =>
@@ -289,7 +289,7 @@ test('should display correctly', async t => {
     .eql('none solid rgb(0, 0, 91)');
 
   const arrowIcon = linkElement.find('axa-icon');
-  await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
+  await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
 
   const linkText = Selector(
     () =>
@@ -330,7 +330,7 @@ test('should display correctly', async t => {
     .eql('none solid rgb(0, 0, 91)');
 
   const arrowIcon = linkElement.find('axa-icon');
-  await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
+  await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
 
   const linkText = Selector(
     () =>
@@ -371,7 +371,7 @@ test('should display correctly', async t => {
     .eql('none solid rgb(0, 0, 91)');
 
   const arrowIcon = linkElement.find('axa-icon');
-  await t.expect(arrowIcon.hasClass('a-link__arrow')).ok();
+  await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
 
   const linkText = Selector(
     () =>
