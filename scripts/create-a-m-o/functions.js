@@ -172,7 +172,7 @@ const createFiles = (store, a, m, o, done) => () => {
       }
 
       static get properties() {
-        // Here you can define all properties and theier type
+        // Define properties and types
         return {
           onClick: { type: Function },
         };
@@ -185,7 +185,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
       firstUpdated() {
         // Here is where you can add DOM changes
-        // This will be renderd when the component is connected to the DOM
+        // This will be rendered when the component is connected to the DOM
       }
 
       render() {
