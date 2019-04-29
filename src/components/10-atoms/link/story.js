@@ -50,6 +50,7 @@ storiesOf('Atoms/Link', module)
   .add(
     'Simple Link - Red Color',
     () => `
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-red" icon="download" external>External Download Link</axa-link><br>
     <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-red" icon="download">Download Link</axa-link><br>
     <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-red">Arrow Right Link</axa-link><br>
     <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-red">Arrow Left Link</axa-link><br>
@@ -60,6 +61,7 @@ storiesOf('Atoms/Link', module)
   .add(
     'Simple Link - White Color',
     () => `<style>body {background-color: #3032c1;}</style>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-white" icon="download" external>External Download Link</axa-link><br>
     <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-white" icon="download">Download Link</axa-link><br>
       <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-white">Arrow Right Link</axa-link><br>
       <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-white">Arrow Left Link</axa-link><br>
