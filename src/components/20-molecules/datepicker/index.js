@@ -119,7 +119,7 @@ export class Datepicker extends LitElement {
                 value="${this.outputdate}"
               />
               <button type="button" class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
-                <span>${dateInputIcon}</span>
+                <span class="m-datepicker__input-icon">${dateInputIcon}</span>
               </button>
             </div>
           `}
