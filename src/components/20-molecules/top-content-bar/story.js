@@ -4,6 +4,6 @@ import './index';
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 
-storiesOf('Molecules/Axa top content bar', module)
+storiesOf('Molecules/Top content bar', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Axa top content bar - default', () => '<axa-axa-top-content-bar>Some children</axa-axa-top-content-bar>')
+  .add('Top content bar - default', () => '<axa-top-content-bar>Some children</axa-top-content-bar>')

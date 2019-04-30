@@ -5,9 +5,9 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-class AXAAxaTopContentBar extends LitElement {
+class AXATopContentBar extends LitElement {
   static get tagName() {
-    return 'axa-axa-top-content-bar';
+    return 'axa-top-content-bar';
   }
 
   static get styles() {
@@ -35,7 +35,7 @@ class AXAAxaTopContentBar extends LitElement {
 
   render() {
     return html`
-      <article class="m-axa-top-content-bar">
+      <article class="m-top-content-bar">
         <slot></slot>
       </article>
     `;
@@ -48,6 +48,6 @@ class AXAAxaTopContentBar extends LitElement {
   }
 }
 
-defineOnce(AXAAxaTopContentBar.tagName, AXAAxaTopContentBar);
+defineOnce(AXATopContentBar.tagName, AXATopContentBar);
 
-export default AXAAxaTopContentBar;
+export default AXATopContentBar;
