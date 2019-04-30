@@ -15,7 +15,7 @@ storiesOf('Atoms/Link', module)
   .add(
     'External Link',
     () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" external>External Link</axa-link>`
+      `<axa-link href="https://axa.ch/en/private-customers.html" external>All links with the 'external' attribute will open in a new tab</axa-link>`
   )
   .add(
     'Simple Link - Icon',
