@@ -98,7 +98,7 @@ const withMonkeyPatches = Base =>
 
       // important: in case childrens are being wrapped
       // the wrapping nodes have to be removed too
-      this._lightDOMRefs.filter(ref => ref !== node);
+      this._lightDOMRefs = this._lightDOMRefs.filter(ref => ref !== node);
       this.render();
     }
 
