@@ -13,7 +13,7 @@ storiesOf('Atoms/Link', module)
       `<axa-link href="https://axa.ch/en/private-customers.html">This simple link just links</axa-link>`
   )
   .add(
-    'Hyperlink - External',
+    'External Link',
     () =>
       `<axa-link href="https://axa.ch/en/private-customers.html" external>External Link</axa-link>`
   )
@@ -21,11 +21,6 @@ storiesOf('Atoms/Link', module)
     'Simple Link - Icon',
     () =>
       `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download">Download Link</axa-link>`
-  )
-  .add(
-    'Simple Link - External',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download" external>External Download Link</axa-link>`
   )
   .add(
     'Simple Link - Static Arrow Right',
