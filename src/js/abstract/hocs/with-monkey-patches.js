@@ -101,6 +101,21 @@ const withMonkeyPatches = Base =>
       this._lightDOMRefs.filter(ref => ref !== node);
       this.render();
     }
+
+    /**
+     * Monkey patch `replaceChild` API to re-rendering.
+     *
+     * @param {Element} newChild
+     * @param {Element} oldChild
+     */
+    replaceChild(newChild, oldChild) {
+      if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
+        super.replaceChild(newChild, oldChild);
+        return;
+      }
+
+      oldChild.parentNode.replaceChild(newChild, oldChild);
+    }
   };
 
 export default withMonkeyPatches;
