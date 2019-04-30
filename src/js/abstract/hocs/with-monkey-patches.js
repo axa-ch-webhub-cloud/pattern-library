@@ -82,6 +82,25 @@ const withMonkeyPatches = Base =>
 
       this.render();
     }
+
+    /**
+     * Monkey patch `removeChild` API to re-rendering.
+     *
+     * @param {Element} node
+     */
+    removeChild(node) {
+      if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
+        super.removeChild(node);
+        return;
+      }
+
+      node.parentNode.removeChild(node);
+
+      // important: in case childrens are being wrapped
+      // the wrapping nodes have to be removed too
+      this._lightDOMRefs.filter(ref => ref !== node);
+      this.render();
+    }
   };
 
 export default withMonkeyPatches;
