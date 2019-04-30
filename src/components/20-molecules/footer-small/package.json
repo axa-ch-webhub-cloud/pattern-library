@@ -1,0 +1,32 @@
+{
+  "name": "@axa-ch/footer-small",
+  "version": "1.0.0",
+  "description": "The small version of the axa footer.",
+  "author": "Pattern Warriors",
+  "homepage": "https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/footer-small/README.md",
+  "license": "Copyright 2019 AXA Versicherungen AG",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axa-ch/patterns-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "@axa-ch/materials": "^1.0.0-alpha.5",
+    "@skatejs/val": "^0.4.0",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "lit-element": "^2.1.0",
+    "lit-html": "^1.0.0"
+  }
+}
