@@ -36,7 +36,7 @@ class AXAImageUpload extends LitElement {
   }
 
   firstUpdated() {
-    console.log('query example', this.shadowRoot.querySelector('.js-image-upload__dropzone'));
+    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__input');
   }
 
   render() {
@@ -67,7 +67,7 @@ class AXAImageUpload extends LitElement {
                 accept="image/jpg, image/jpeg, application/pdf, image/png"
                 capture="camera"
                 multiple="multiple"
-                class="m-button__image-upload-input"
+                class="m-image-upload__input js-image-upload__input"
                 id="file-upload"/>`
             }
         </section>
@@ -102,6 +102,7 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadDropZoneClick(e) {
     console.log(e, 'zone click')
+    this.dropZone.click();
   }
 }
 
