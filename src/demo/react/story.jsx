@@ -8,6 +8,7 @@ import DemoTable from './DemoTable';
 import DemoControlledInputsApp from '../demo-controlled-inputs/App';
 import DemoDynamicChildrenApp from '../demo-dynamic-children/App';
 import DemoFooterSmall from '../footer-small/FooterSmall';
+import DemoImageUpload from './DemoImageUpload';
 
 import { withMarkdown } from '../../../.storybook/addons/markdown';
 
@@ -43,5 +44,10 @@ storiesOf('Demos', module)
     const div = document.createElement('div');
     div.id = 'root-table-react';
     ReactDOM.render(<DemoTable />, div);
+    return div;
+  })
+  .add('Image Upload with React', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoImageUpload />, div);
     return div;
   });
