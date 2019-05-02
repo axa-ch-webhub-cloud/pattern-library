@@ -1,12 +1,10 @@
 import React from 'react';
-import { link } from 'fs';
 
 interface Item {
   text: string;
   link?: string;
 }
 
-// Not polished/finalised yet. Just an example.
 interface AXAFooterSmallProps {
   languageItems: Item[];
   disclaimerItems: Item[];
