@@ -50,6 +50,7 @@ fixture('Link - External').page(
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
+<<<<<<< HEAD
   await t
     .expect(axaLink.getAttribute('href'))
     .eql('https://axa.ch/en/private-customers.html');
@@ -64,6 +65,15 @@ test('should display correctly', async t => {
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
+=======
+  await t.expect(axaLink.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+  await t.expect(axaLink.hasAttribute('external')).ok();
+
+  const linkElement = Selector(() => document.querySelector('axa-link').shadowRoot).find('a');
+  await t.expect(linkElement.getAttribute('href')).eql('https://axa.ch/en/private-customers.html');
+
+  const link = Selector(() => document.querySelector('axa-link').shadowRoot.querySelector('a'));
+>>>>>>> Add assertion to external link
   await t.expect(link.exists).ok();
   await t.expect(link.getStyleProperty('color')).eql(axaBlue);
   await t
