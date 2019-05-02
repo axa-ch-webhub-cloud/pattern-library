@@ -1,1 +1,6 @@
 *.scss
+
+# Ignore auto generated files
+package-lock.json
+lib
+dist
