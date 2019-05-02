@@ -1,3 +1,38 @@
 .m-top-content-bar {
-  display: block;
+  background-color: $color-prim-blue-deep-sapphire;
+  display: none;
+  box-sizing: border-box;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  @include breakpoint($mediaquery-md-up) {
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: $color-prim-white;
+  }
+
+  &:first-child {
+    margin-top: 0px;
+  }
+
+  &__box {
+    @include max-width;
+
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    axa-button-link {
+      color: $color-prim-blue-deep-sapphire;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import '@webcomponents/webcomponentsjs';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -28,15 +29,19 @@ class AXATopContentBar extends LitElement {
     this.onClick = () => {};
   }
 
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
+  createRenderRoot() {
+    return this;
   }
 
   render() {
     return html`
+      <style>
+        ${AXATopContentBar.styles}
+      </style>
       <article class="m-top-content-bar">
-        <slot></slot>
+        <div class="m-top-content-bar__box">
+          ${unsafeHTML(this.innerHTML)}
+        </div>
       </article>
     `;
   }

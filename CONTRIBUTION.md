@@ -54,3 +54,24 @@ Run `npm test -- --coverage` (note extra -- in the middle)
 
 ### How the create your first Component
 Very easy, please start Storybook with `npm run start` and then in another CLI tab run `npm run new` and follow the instructions in the CLI.
+
+### Writing your stories
+
+- Add a description: `.addDecorator(withMarkdown(Readme))`
+- Add a body reset for the story in order to test and showcase 100% width components: `.addDecorator(withBodyReset())`
+
+Example:
+
+```js
+/* global document */
+import { storiesOf } from '@storybook/html';
+import './index';
+import { withMarkdown } from '../../../../.storybook/addons/markdown';
+import withBodyReset from '../../../../.storybook/addons/reset-body';
+import Readme from './README.md';
+
+storiesOf('Molecules/Top content bar', module)
+  .addDecorator(withMarkdown(Readme))
+  .addDecorator(withBodyReset())
+  .add('Top content bar - default', () => '<axa-top-content-bar>Some children</axa-top-content-bar>');
+```
