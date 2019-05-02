@@ -208,6 +208,7 @@ test('should display correctly', async t => {
   await t
     .expect(axaLink.getAttribute('href'))
     .eql('https://axa.ch/en/private-customers.html');
+  await t.expect(axaLink.getAttribute('variant')).contains('animated');
 
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
@@ -223,8 +224,7 @@ test('should display correctly', async t => {
   await t.expect(link.getStyleProperty('color')).eql(axaBlue);
   await t
     .expect(link.getStyleProperty('text-decoration'))
-    .eql('none solid ' + axaBlue);
-  await t.expect(link.hasAttribute('motion')).ok();
+    .eql(`none solid ${axaBlue}`);
 
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
@@ -248,6 +248,7 @@ test('should display correctly', async t => {
   await t
     .expect(axaLink.getAttribute('href'))
     .eql('https://axa.ch/en/private-customers.html');
+  await t.expect(axaLink.getAttribute('variant')).contains('animated');
 
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
@@ -263,8 +264,7 @@ test('should display correctly', async t => {
   await t.expect(link.getStyleProperty('color')).eql(axaBlue);
   await t
     .expect(link.getStyleProperty('text-decoration'))
-    .eql('none solid ' + axaBlue);
-  await t.expect(link.hasAttribute('motion')).ok();
+    .eql(`none solid ${axaBlue}`);
 
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
