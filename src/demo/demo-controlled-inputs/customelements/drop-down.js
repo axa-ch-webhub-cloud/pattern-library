@@ -5,7 +5,8 @@ import defineOnce from '../../../utils/define-once';
 
 // HELPER FUNCTIONS
 const optionGenerator = self => (description, index) => {
-  const { name = description, value = description } = typeof description === 'string' ? {} : description;
+  const { name = description, value = description } =
+    typeof description === 'string' ? {} : description;
   const { item2index } = self;
   if (typeof item2index[value] !== 'string') item2index[value] = index;
   return html`
@@ -86,7 +87,15 @@ class DropDown extends LitElement {
   }
 
   render() {
-    const { items, value, name, item2index, _timer, _isControlled, isReact } = this;
+    const {
+      items,
+      value,
+      name,
+      item2index,
+      _timer,
+      _isControlled,
+      isReact,
+    } = this;
     this._isControlled &= isReact;
     // cancel any scheduled UI update, since there is a real, changed incoming value
     if (_isControlled) {
@@ -96,7 +105,13 @@ class DropDown extends LitElement {
     // update model state from incoming value
     this.selectedIndex = item2index[value] || 0;
     return html`
-      <select type="text" class="select-css" value=${value} name=${name} @change=${handleChange(this)}>
+      <select
+        type="text"
+        class="select-css"
+        value=${value}
+        name=${name}
+        @change=${handleChange(this)}
+      >
         ${options}
       </select>
       <style>
@@ -160,4 +175,8 @@ class DropDown extends LitElement {
 // EXPORTS
 const localName = defineOnce('drop-down', DropDown);
 export default createElement => ({ items, value, name, onChange, children }) =>
-  withReact(createElement)(localName, { items, value, name, onChange, isReact: 1 }, children);
+  withReact(createElement)(
+    localName,
+    { items, value, name, onChange, isReact: 1 },
+    children
+  );

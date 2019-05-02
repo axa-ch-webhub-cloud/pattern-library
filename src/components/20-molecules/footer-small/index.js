@@ -39,14 +39,26 @@ class AXAFooterSmall extends LitElement {
     if (this.activeLanguage !== language) {
       this.activeLanguage = language;
       this.onLanguageChange(language);
-      this.dispatchEvent(new CustomEvent('axa-language-change', { detail: language, bubbles: true, cancelable: true }));
+      this.dispatchEvent(
+        new CustomEvent('axa-language-change', {
+          detail: language,
+          bubbles: true,
+          cancelable: true,
+        })
+      );
     }
   };
 
   handleDisclaimerClick = (ev, disclaimer) => {
     ev.preventDefault();
     this.onDisclaimerChange(disclaimer);
-    this.dispatchEvent(new CustomEvent('axa-disclaimer-change', { detail: disclaimer, bubbles: true, cancelable: true }));
+    this.dispatchEvent(
+      new CustomEvent('axa-disclaimer-change', {
+        detail: disclaimer,
+        bubbles: true,
+        cancelable: true,
+      })
+    );
   };
 
   render() {
@@ -60,16 +72,19 @@ class AXAFooterSmall extends LitElement {
                 ${this.dynamic
                   ? html`
                       <a
-                        class="m-footer-small__link--bold ${languageItem.text === this.activeLanguage
+                        class="m-footer-small__link--bold ${languageItem.text ===
+                        this.activeLanguage
                           ? 'm-footer-small__link--active'
                           : ''}"
-                        @click="${ev => this.handleLanguageClick(ev, languageItem.text)}"
+                        @click="${ev =>
+                          this.handleLanguageClick(ev, languageItem.text)}"
                         >${languageItem.text}</a
                       >
                     `
                   : html`
                       <a
-                        class="m-footer-small__link--bold ${languageItem.text === this.activeLanguage
+                        class="m-footer-small__link--bold ${languageItem.text ===
+                        this.activeLanguage
                           ? 'm-footer-small__link--active'
                           : ''}"
                         href="${languageItem.link || ''}"
@@ -89,18 +104,30 @@ class AXAFooterSmall extends LitElement {
                 <li class="m-footer-small__list-item">
                   ${this.dynamic
                     ? html`
-                        <a class="m-footer-small__link" @click="${ev => this.handleDisclaimerClick(ev, disclaimerItem.text)}"
+                        <a
+                          class="m-footer-small__link"
+                          @click="${ev =>
+                            this.handleDisclaimerClick(
+                              ev,
+                              disclaimerItem.text
+                            )}"
                           >${disclaimerItem.text}</a
                         >
                       `
                     : html`
-                        <a class="m-footer-small__link" href="${disclaimerItem.link}">${disclaimerItem.text}</a>
+                        <a
+                          class="m-footer-small__link"
+                          href="${disclaimerItem.link}"
+                          >${disclaimerItem.text}</a
+                        >
                       `}
                 </li>
               `
             )}
           </ul>
-          <div class="js-footer-small__copyright m-footer-small__copyright"><span>${this.copyrightText}<span></div>
+          <div class="js-footer-small__copyright m-footer-small__copyright"><span>${
+            this.copyrightText
+          }<span></div>
         </div>
       </article>
     `;

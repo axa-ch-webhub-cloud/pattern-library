@@ -92,7 +92,16 @@ class LabelledCheckbox extends LitElement {
   }
 
   render() {
-    const { value, name, label, checked, disabled, _timer, _isControlled, isReact } = this;
+    const {
+      value,
+      name,
+      label,
+      checked,
+      disabled,
+      _timer,
+      _isControlled,
+      isReact,
+    } = this;
     this._isControlled &= isReact;
     if (_isControlled) {
       // cancel any scheduled UI update, since there is a real, changed incoming 'checked' value
@@ -130,5 +139,17 @@ class LabelledCheckbox extends LitElement {
 
 // EXPORTS
 const localName = defineOnce('check-box', LabelledCheckbox, styles);
-export default createElement => ({ label, checked, disabled, name, value, onChange, children }) =>
-  withReact(createElement)(localName, { label, checked, disabled, name, value, onChange, isReact: 1 }, children);
+export default createElement => ({
+  label,
+  checked,
+  disabled,
+  name,
+  value,
+  onChange,
+  children,
+}) =>
+  withReact(createElement)(
+    localName,
+    { label, checked, disabled, name, value, onChange, isReact: 1 },
+    children
+  );

@@ -12,7 +12,8 @@ const POLICY_STATES = ['pending', 'ok', 'error'];
 // HELPER FUNCTIONS
 const handleClick = (self, index) => () => self.togglePolicyState(index);
 
-const handleMutate = (self, index, change) => () => self.mutateRow(index, change);
+const handleMutate = (self, index, change) => () =>
+  self.mutateRow(index, change);
 
 // COMPONENTS
 class App extends Component {
@@ -32,9 +33,17 @@ class App extends Component {
     const { policies } = this.state;
     if (add) {
       const { title, price, state } = policies[index];
-      return this.setState({ policies: [...policies.slice(0, index), { title, price, state }, ...policies.slice(index)] });
+      return this.setState({
+        policies: [
+          ...policies.slice(0, index),
+          { title, price, state },
+          ...policies.slice(index),
+        ],
+      });
     }
-    return this.setState({ policies: [...policies.slice(0, index), ...policies.slice(index + 1)] });
+    return this.setState({
+      policies: [...policies.slice(0, index), ...policies.slice(index + 1)],
+    });
   }
 
   togglePolicyState(index) {
@@ -74,12 +83,20 @@ class App extends Component {
                     <tr key={index} id={index}>
                       <td data-bold="true">{title}</td>
                       <td>{price}</td>
-                      <td data-state={POLICY_STATES[state]} data-action="true" onClick={handleClick(this, index)}>
+                      <td
+                        data-state={POLICY_STATES[state]}
+                        data-action="true"
+                        onClick={handleClick(this, index)}
+                      >
                         <span className="">{POLICY_STATES[state]}</span>
                       </td>
                       <td className="mutate">
-                        <button onClick={handleMutate(this, index, 'add')}>+</button>
-                        <button onClick={handleMutate(this, index)}>&mdash;</button>
+                        <button onClick={handleMutate(this, index, 'add')}>
+                          +
+                        </button>
+                        <button onClick={handleMutate(this, index)}>
+                          &mdash;
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -103,12 +120,24 @@ class App extends Component {
                               <tr key={index} id={index}>
                                 <td data-bold="true">{title}</td>
                                 <td>{price}</td>
-                                <td data-state={POLICY_STATES[state]} data-action="true" onClick={handleClick(this, index)}>
-                                  <span className="">{POLICY_STATES[state]}</span>
+                                <td
+                                  data-state={POLICY_STATES[state]}
+                                  data-action="true"
+                                  onClick={handleClick(this, index)}
+                                >
+                                  <span className="">
+                                    {POLICY_STATES[state]}
+                                  </span>
                                 </td>
                                 <td className="mutate">
-                                  <button onClick={handleMutate(this, index, 'add')}>+</button>
-                                  <button onClick={handleMutate(this, index)}>&mdash;</button>
+                                  <button
+                                    onClick={handleMutate(this, index, 'add')}
+                                  >
+                                    +
+                                  </button>
+                                  <button onClick={handleMutate(this, index)}>
+                                    &mdash;
+                                  </button>
                                 </td>
                               </tr>
                             ))}
@@ -138,12 +167,20 @@ class App extends Component {
                     <tr key={index} id={index}>
                       <td data-bold="true">{title}</td>
                       <td>{price}</td>
-                      <td data-state={POLICY_STATES[state]} data-action="true" onClick={handleClick(this, index)}>
+                      <td
+                        data-state={POLICY_STATES[state]}
+                        data-action="true"
+                        onClick={handleClick(this, index)}
+                      >
                         <span className="">{POLICY_STATES[state]}</span>
                       </td>
                       <td className="mutate">
-                        <button onClick={handleMutate(this, index, 'add')}>+</button>
-                        <button onClick={handleMutate(this, index)}>&mdash;</button>
+                        <button onClick={handleMutate(this, index, 'add')}>
+                          +
+                        </button>
+                        <button onClick={handleMutate(this, index)}>
+                          &mdash;
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -167,12 +204,24 @@ class App extends Component {
                               <tr key={index} id={index}>
                                 <td data-bold="true">{title}</td>
                                 <td>{price}</td>
-                                <td data-state={POLICY_STATES[state]} data-action="true" onClick={handleClick(this, index)}>
-                                  <span className="">{POLICY_STATES[state]}</span>
+                                <td
+                                  data-state={POLICY_STATES[state]}
+                                  data-action="true"
+                                  onClick={handleClick(this, index)}
+                                >
+                                  <span className="">
+                                    {POLICY_STATES[state]}
+                                  </span>
                                 </td>
                                 <td className="mutate">
-                                  <button onClick={handleMutate(this, index, 'add')}>+</button>
-                                  <button onClick={handleMutate(this, index)}>&mdash;</button>
+                                  <button
+                                    onClick={handleMutate(this, index, 'add')}
+                                  >
+                                    +
+                                  </button>
+                                  <button onClick={handleMutate(this, index)}>
+                                    &mdash;
+                                  </button>
                                 </td>
                               </tr>
                             ))}

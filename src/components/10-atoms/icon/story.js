@@ -1,6 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import AXAIcon from "./index";
+import AXAIcon from './index';
 
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
@@ -23,5 +23,11 @@ storiesOf('Atoms/Icon', module)
 
     return list;
   })
-  .add('Icon - icon from a resource', () => '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>')
-  .add('Icon - icon undefined case', () => 'should be empty: <axa-icon></axa-icon>');
+  .add(
+    'Icon - icon from a resource',
+    () => '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>'
+  )
+  .add(
+    'Icon - icon undefined case',
+    () => 'should be empty: <axa-icon></axa-icon>'
+  );

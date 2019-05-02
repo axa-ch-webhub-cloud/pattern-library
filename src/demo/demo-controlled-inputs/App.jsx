@@ -26,7 +26,13 @@ const OPTIONS = ['Eiger', 'Mönch', 'Jungfrau', 'Uetliberg'];
 // cf. https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/
 const labelledRadioButton = (self, group, handler) => (name, index) => (
   <label key={`lrb${index}`} htmlFor={group}>
-    <input type="radio" value={name} name={group} checked={index === self.state.selectedRadioButtonIndex} onChange={handler(self, index)} />
+    <input
+      type="radio"
+      value={name}
+      name={group}
+      checked={index === self.state.selectedRadioButtonIndex}
+      onChange={handler(self, index)}
+    />
     {name}
   </label>
 );
@@ -43,19 +49,35 @@ const litElementRadioButton = (self, group, handler) => (name, index) => (
 );
 
 const handleRadioChange = (self, index) => () => {
-  return self.state.freezeControlledValues || self.setState({ selectedRadioButtonIndex: index });
+  return (
+    self.state.freezeControlledValues ||
+    self.setState({ selectedRadioButtonIndex: index })
+  );
 };
 
-const handleTeamMemberChange = (self, index) => () => self.state.freezeControlledValues || self.setState({ selectedTeamMember: index });
+const handleTeamMemberChange = (self, index) => () =>
+  self.state.freezeControlledValues ||
+  self.setState({ selectedTeamMember: index });
 
-const handleTextChange = self => event => self.state.freezeControlledValues || self.setState({ textValue: event.target.value });
-const handleTextAreaChange = self => event => self.state.freezeControlledValues || self.setState({ textAreaValue: event.target.value });
-const handleLitTextAreaChange = self => event => self.state.freezeControlledValues || self.setState({ litTextArea: event.target.value });
+const handleTextChange = self => event =>
+  self.state.freezeControlledValues ||
+  self.setState({ textValue: event.target.value });
+const handleTextAreaChange = self => event =>
+  self.state.freezeControlledValues ||
+  self.setState({ textAreaValue: event.target.value });
+const handleLitTextAreaChange = self => event =>
+  self.state.freezeControlledValues ||
+  self.setState({ litTextArea: event.target.value });
 
-const handleDropdownChange = self => event => self.state.freezeControlledValues || self.setState({ dropdownValue: event.target.value });
+const handleDropdownChange = self => event =>
+  self.state.freezeControlledValues ||
+  self.setState({ dropdownValue: event.target.value });
 
 const handleCheckboxChange = self => event => {
-  return self.state.freezeControlledValues || self.setState({ checkboxValue: event.target.checked });
+  return (
+    self.state.freezeControlledValues ||
+    self.setState({ checkboxValue: event.target.checked })
+  );
 };
 
 const handleFreeze = self => () => {
@@ -134,11 +156,17 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>
-            <span className="pure-react">React</span> &harr; <span className="lit-element">lit-element</span> with controlled inputs
+            <span className="pure-react">React</span> &harr;{' '}
+            <span className="lit-element">lit-element</span> with controlled
+            inputs
           </p>
           <label htmlFor="checkbox">
             Freeze input values:&nbsp;
-            <input type="checkbox" name="checkbox" onChange={handleFreeze(this)} />
+            <input
+              type="checkbox"
+              name="checkbox"
+              onChange={handleFreeze(this)}
+            />
           </label>
         </header>
         <form id="form" onSubmit={handleSubmit(this)}>
@@ -147,49 +175,104 @@ class App extends Component {
             <button type="submit">Submit form</button>
             <article className="pure-react">
               <h2>pure-React controlled radio buttons</h2>
-              <div>{CITIES.map(labelledRadioButton(this, 'cities', handleRadioChange))}</div>
-              <div>{`Current city: ${CITIES[this.state.selectedRadioButtonIndex]}`}</div>
+              <div>
+                {CITIES.map(
+                  labelledRadioButton(this, 'cities', handleRadioChange)
+                )}
+              </div>
+              <div>{`Current city: ${
+                CITIES[this.state.selectedRadioButtonIndex]
+              }`}</div>
             </article>
             <article className="lit-element">
               <h2>React controlled lit-element radio buttons</h2>
-              <div>{TEAM_MEMBERS.map(litElementRadioButton(this, 'team', handleTeamMemberChange))}</div>
-              <div>{`Current team member: ${TEAM_MEMBERS[this.state.selectedTeamMember]}`}</div>
+              <div>
+                {TEAM_MEMBERS.map(
+                  litElementRadioButton(this, 'team', handleTeamMemberChange)
+                )}
+              </div>
+              <div>{`Current team member: ${
+                TEAM_MEMBERS[this.state.selectedTeamMember]
+              }`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled text input</h2>
-              <input type="text" name="text" value={this.state.textValue} onChange={handleTextChange(this)} />
+              <input
+                type="text"
+                name="text"
+                value={this.state.textValue}
+                onChange={handleTextChange(this)}
+              />
               <div>{`Current text: "${this.state.textValue}"`}</div>
             </article>
             <article className="lit-element">
-              <h2>React controlled lit-element text input with AXA password-rules validation</h2>
-              <ReactTextInput name="lit-text" validate="true" value={this.state.passwordValue} onChange={validateAsAxaPassword(this)} />
-              <div>{`Current password: "${this.state.passwordValue}" is ${this.state.passwordIsValid ? 'VALID' : 'INVALID'}`}</div>
+              <h2>
+                React controlled lit-element text input with AXA password-rules
+                validation
+              </h2>
+              <ReactTextInput
+                name="lit-text"
+                validate="true"
+                value={this.state.passwordValue}
+                onChange={validateAsAxaPassword(this)}
+              />
+              <div>{`Current password: "${this.state.passwordValue}" is ${
+                this.state.passwordIsValid ? 'VALID' : 'INVALID'
+              }`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled dropdown</h2>
-              <select name="dropdown" value={this.state.dropdownValue} onChange={handleDropdownChange(this)}>
+              <select
+                name="dropdown"
+                value={this.state.dropdownValue}
+                onChange={handleDropdownChange(this)}
+              >
                 {OPTIONS.map(makeReactOption(this))}
               </select>
-              <div>{`Current dropdown choice: ${this.state.dropdownValue}`}</div>
+              <div>{`Current dropdown choice: ${
+                this.state.dropdownValue
+              }`}</div>
             </article>
             <article className="lit-element">
               <h2>React controlled lit-element dropdown</h2>
-              <LitDropDown name="lit-dropdown" items={OPTIONS} value={this.state.dropdownValue} onChange={handleDropdownChange(this)} />
-              <div>{`Current lit-element dropdown choice: ${this.state.dropdownValue}`}</div>
+              <LitDropDown
+                name="lit-dropdown"
+                items={OPTIONS}
+                value={this.state.dropdownValue}
+                onChange={handleDropdownChange(this)}
+              />
+              <div>{`Current lit-element dropdown choice: ${
+                this.state.dropdownValue
+              }`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled checkbox</h2>
-              <input type="checkbox" name="checkbox" checked={this.state.checkboxValue} onChange={handleCheckboxChange(this)} />
+              <input
+                type="checkbox"
+                name="checkbox"
+                checked={this.state.checkboxValue}
+                onChange={handleCheckboxChange(this)}
+              />
               <div>{`Current checkbox state: ${this.state.checkboxValue}`}</div>
             </article>
             <article className="lit-element">
               <h2>React controlled lit-element checkbox</h2>
-              <LitCheckbox checked={this.state.checkboxValue} name="lit-checkbox" onChange={handleCheckboxChange(this)} />
-              <div>{`Current lit-element checkbox state: ${this.state.checkboxValue}`}</div>
+              <LitCheckbox
+                checked={this.state.checkboxValue}
+                name="lit-checkbox"
+                onChange={handleCheckboxChange(this)}
+              />
+              <div>{`Current lit-element checkbox state: ${
+                this.state.checkboxValue
+              }`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled textarea input</h2>
-              <textarea name="textarea" value={this.state.textAreaValue} onChange={handleTextAreaChange(this)} />
+              <textarea
+                name="textarea"
+                value={this.state.textAreaValue}
+                onChange={handleTextAreaChange(this)}
+              />
               <div>{`Current text: "${this.state.textAreaValue}"`}</div>
             </article>
             <article className="lit-element">
@@ -197,8 +280,12 @@ class App extends Component {
               <LitTextArea
                 name="lit-textarea"
                 value={this.state.litTextArea}
-                onChange={handleLitTextAreaChange(this)} /* eslint-disable no-console */
-                ref={element => console.log('lit-element ref:', element)} /* eslint-enable no-console */
+                onChange={handleLitTextAreaChange(
+                  this
+                )} /* eslint-disable no-console */
+                ref={element =>
+                  console.log('lit-element ref:', element)
+                } /* eslint-enable no-console */
               />
               <div>{`Current lit-element text: ${this.state.litTextArea}`}</div>
             </article>

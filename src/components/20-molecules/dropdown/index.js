@@ -32,7 +32,10 @@ class AXADropdown extends LitElement {
   firstUpdated() {
     this.dropdown = this.shadowRoot.querySelector(`.${DEFAULTS.selectClass}`);
     this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
-    window.addEventListener('resize', debounce(() => this.handleViewportCheck(this.dropdown), 250));
+    window.addEventListener(
+      'resize',
+      debounce(() => this.handleViewportCheck(this.dropdown), 250)
+    );
   }
 
   connectedCallback() {
@@ -72,7 +75,9 @@ class AXADropdown extends LitElement {
 
   shouldMove(elem) {
     const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport = bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+    const bottomIsInViewport =
+      bounding.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight);
     const enoughSpaceToMove = bounding.top > bounding.height;
     return !bottomIsInViewport && enoughSpaceToMove;
   }
@@ -90,7 +95,11 @@ class AXADropdown extends LitElement {
     this.value = e.target.dataset.value;
     this.updateCurrentItem(e.target.dataset.value);
     this.closeDropdown();
-    const event = new CustomEvent('axa-change', { detail: e.target.dataset.value, bubbles: true, composed: true });
+    const event = new CustomEvent('axa-change', {
+      detail: e.target.dataset.value,
+      bubbles: true,
+      composed: true,
+    });
     this.dispatchEvent(event);
   }
 
@@ -100,7 +109,11 @@ class AXADropdown extends LitElement {
     this.value = e.target.value;
     this.title = e.target.value;
     this.updateCurrentItem(e.target.value);
-    const event = new CustomEvent('axa-change', { detail: e.target.value, bubbles: true, cancelable: true });
+    const event = new CustomEvent('axa-change', {
+      detail: e.target.value,
+      bubbles: true,
+      cancelable: true,
+    });
     this.dispatchEvent(event);
   }
 
@@ -155,13 +168,18 @@ class AXADropdown extends LitElement {
     super.attributeChangedCallback(name, oldValue, newValue);
     const hasValue = newValue !== null;
     if (hasValue && name === 'items') {
-      const currentItem = JSON.parse(newValue).filter(item => item.isSelected === true);
+      const currentItem = JSON.parse(newValue).filter(
+        item => item.isSelected === true
+      );
       this.title = currentItem[0] ? currentItem[0].name : this.title;
     }
   }
 
   disconnectedCallback() {
-    window.removeEventListener('resize', debounce(() => this.handleViewportCheck(this.dropdown), 250));
+    window.removeEventListener(
+      'resize',
+      debounce(() => this.handleViewportCheck(this.dropdown), 250)
+    );
     window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.removeEventListener('click', e => this.handleWindowClick(e));
   }
@@ -170,12 +188,19 @@ class AXADropdown extends LitElement {
     return html`
       <div class="m-dropdown${this.native ? ' m-dropdown--native-only' : ''}">
         <div class="m-dropdown__list m-dropdown__list--native">
-          <select class="m-dropdown__select" @change="${this.handleDropdownNativeValueChange}">
+          <select
+            class="m-dropdown__select"
+            @change="${this.handleDropdownNativeValueChange}"
+          >
             ${this.items &&
               this.items.map(
                 ({ name, value, isSelected, isInitialItem }) =>
                   html`
-                    <option class="m-dropdown__option" ?disabled="${isInitialItem}" value="${value}" ?selected="${isSelected}"
+                    <option
+                      class="m-dropdown__option"
+                      ?disabled="${isInitialItem}"
+                      value="${value}"
+                      ?selected="${isSelected}"
                       >${name}</option
                     >
                   `
@@ -184,7 +209,11 @@ class AXADropdown extends LitElement {
           <div class="m-dropdown__select-icon">${ArrowIcon}</div>
         </div>
         <div class="m-dropdown__list m-dropdown__list--enhanced">
-          <button @click="${this.handleDropdownClick}" type="button" class="m-dropdown__toggle js-dropdown__toggle">
+          <button
+            @click="${this.handleDropdownClick}"
+            type="button"
+            class="m-dropdown__toggle js-dropdown__toggle"
+          >
             <span>${this.title}</span>
             <div class="m-dropdown__select-icon">${ArrowIcon}</div>
           </button>
@@ -194,7 +223,11 @@ class AXADropdown extends LitElement {
                 let out = '';
                 if (!isInitialItem) {
                   out = html`
-                    <li class="m-dropdown__item${isSelected ? ' m-dropdown__item--is-selected' : ''}">
+                    <li
+                      class="m-dropdown__item${isSelected
+                        ? ' m-dropdown__item--is-selected'
+                        : ''}"
+                    >
                       <button
                         @click="${this.handleDropdownValueClick}"
                         tabindex="-1"
