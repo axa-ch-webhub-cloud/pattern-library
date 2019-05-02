@@ -29,7 +29,10 @@ class MyTable extends LitElement {
     // first time for this document?
     if (referenceCount === 1) {
       // yes, insert inline style sheet *before* the children it is supposed to style
-      this.insertAdjacentHTML('afterbegin', `<style>${this.constructor.styles.cssText}</style>`);
+      this.insertAdjacentHTML(
+        'afterbegin',
+        `<style>${this.constructor.styles.cssText}</style>`
+      );
     }
   }
 
@@ -38,7 +41,9 @@ class MyTable extends LitElement {
     const root = this._rootNode;
     const referenceCount = (styled.get(root) | 0) - 1;
     // if last reference gone, actually remove it, otherwise record 1 less reference
-    return referenceCount < 1 ? styled.delete(root) : styled.set(root, referenceCount);
+    return referenceCount < 1
+      ? styled.delete(root)
+      : styled.set(root, referenceCount);
   }
 }
 MyTable.styles = css`
@@ -82,4 +87,5 @@ MyTable.styles = css`
 
 // EXPORTS
 const localName = defineOnce('my-table', MyTable);
-export default createElement => ({ ref, children }) => withReact(createElement)(localName, { ref }, children);
+export default createElement => ({ ref, children }) =>
+  withReact(createElement)(localName, { ref }, children);

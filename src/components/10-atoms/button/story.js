@@ -17,9 +17,19 @@ storiesOf('Atoms/Button', module)
 
     return btn;
   })
-  .add('Button - default', () => '<axa-button>I&apos;m a primary button</axa-button>')
-  .add('Button - variant: red', () => '<axa-button variant="red">I&apos;m a primary red button</axa-button>')
-  .add('Button - variant: secondary', () => '<axa-button variant="secondary">I&apos;m a secondary button</axa-button>')
+  .add(
+    'Button - default',
+    () => '<axa-button>I&apos;m a primary button</axa-button>'
+  )
+  .add(
+    'Button - variant: red',
+    () => '<axa-button variant="red">I&apos;m a primary red button</axa-button>'
+  )
+  .add(
+    'Button - variant: secondary',
+    () =>
+      '<axa-button variant="secondary">I&apos;m a secondary button</axa-button>'
+  )
   .add(
     'Button - variant: inverted',
     () => `
@@ -27,7 +37,10 @@ storiesOf('Atoms/Button', module)
       <axa-button variant='inverted'>I&apos;m a inverted button</axa-button>
     </div>`
   )
-  .add('Button - disabled', () => '<axa-button disabled>I&apos;m a button</axa-button>')
+  .add(
+    'Button - disabled',
+    () => '<axa-button disabled>I&apos;m a button</axa-button>'
+  )
   .add(
     'Button - type',
     () => `

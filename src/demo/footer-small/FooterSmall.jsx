@@ -4,7 +4,12 @@ import createAXAFooterSmallReact from '../../components/20-molecules/footer-smal
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
 const DemoFooterSmall = () => {
-  const languages = [{ text: 'DE' }, { text: 'FR' }, { text: 'IT' }, { text: 'EN' }];
+  const languages = [
+    { text: 'DE' },
+    { text: 'FR' },
+    { text: 'IT' },
+    { text: 'EN' },
+  ];
 
   const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
 

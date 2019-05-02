@@ -18,14 +18,25 @@ storiesOf('Molecules/Footer Small', module)
     ]);
 
     const disclaimer = JSON.stringify([
-      { text: 'Terms of use', link: 'https://axa.ch/en/information/terms-of-use.html' },
-      { text: 'Data protection', link: 'https://axa.ch/en/information/data-protection.html' },
+      {
+        text: 'Terms of use',
+        link: 'https://axa.ch/en/information/terms-of-use.html',
+      },
+      {
+        text: 'Data protection',
+        link: 'https://axa.ch/en/information/data-protection.html',
+      },
     ]);
 
     return `<axa-footer-small activelanguage="DE" languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`;
   })
   .add('Footer Small - Dynamic Links', () => {
-    const languages = [{ text: 'DE' }, { text: 'FR' }, { text: 'IT' }, { text: 'EN' }];
+    const languages = [
+      { text: 'DE' },
+      { text: 'FR' },
+      { text: 'IT' },
+      { text: 'EN' },
+    ];
 
     const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
 
@@ -55,7 +66,9 @@ storiesOf('Molecules/Footer Small', module)
 
     footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
       const clickedDisclaimers = document.getElementById('clicked-disclaimer');
-      clickedDisclaimers.innerText = `Current disclaimer item: ${disclaimerEvent.detail}`;
+      clickedDisclaimers.innerText = `Current disclaimer item: ${
+        disclaimerEvent.detail
+      }`;
     });
 
     return wrapper;

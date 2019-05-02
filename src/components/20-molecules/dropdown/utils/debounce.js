@@ -1,4 +1,8 @@
-const debounce = function debounce(func, wait = 0, { leading = false, trailing = true, maxWait = false } = {}) {
+const debounce = function debounce(
+  func,
+  wait = 0,
+  { leading = false, trailing = true, maxWait = false } = {}
+) {
   let args;
   let timeoutId;
   let maxTimeoutId;

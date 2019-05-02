@@ -18,10 +18,26 @@ storiesOf('Atoms/Button Link', module)
 
     return btn;
   })
-  .add('Button Link - external', () => '<axa-button-link href="https://axa.ch/" external>I will send you in a new tab to external site</axa-button-link>')
-  .add('Button Link - default', () => '<axa-button-link href="https://axa.ch/">I&apos;m a primary button</axa-button-link>')
-  .add('Button Link - variant: red', () => '<axa-button-link variant="red">I&apos;m a primary red button link</axa-button-link>')
-  .add('Button Link - variant: secondary', () => '<axa-button-link variant="secondary">I&apos;m a secondary button link</axa-button-link>')
+  .add(
+    'Button Link - external',
+    () =>
+      '<axa-button-link href="https://axa.ch/" external>I will send you in a new tab to external site</axa-button-link>'
+  )
+  .add(
+    'Button Link - default',
+    () =>
+      '<axa-button-link href="https://axa.ch/">I&apos;m a primary button</axa-button-link>'
+  )
+  .add(
+    'Button Link - variant: red',
+    () =>
+      '<axa-button-link variant="red">I&apos;m a primary red button link</axa-button-link>'
+  )
+  .add(
+    'Button Link - variant: secondary',
+    () =>
+      '<axa-button-link variant="secondary">I&apos;m a secondary button link</axa-button-link>'
+  )
   .add(
     'Button Link - variant: inverted',
     () => `
@@ -29,7 +45,10 @@ storiesOf('Atoms/Button Link', module)
       <axa-button-link variant='inverted'>I&apos;m a inverted button</axa-button-link>
     </div>`
   )
-  .add('Button Link - disabled', () => '<axa-button-link disabled>I&apos;m a button</axa-button-link>')
+  .add(
+    'Button Link - disabled',
+    () => '<axa-button-link disabled>I&apos;m a button</axa-button-link>'
+  )
   .add(
     'Button Link - size',
     () => `
@@ -65,5 +84,3 @@ storiesOf('Atoms/Button Link', module)
       <axa-button-link variant="red" icon="arrow-right">I&apos;m variant: red btn with a icon</axa-button-link>
     </div>`
   );
-
-

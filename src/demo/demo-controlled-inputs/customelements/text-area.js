@@ -67,7 +67,12 @@ class TextAreaInput extends LitElement {
     // Also works for *pasted* input!
     // cf. input-event polyfill for IE: https://github.com/jamesnicholls/input-event-polyfill/blob/master/main.js
     return html`
-      <textarea name=${name} value=${value} @input=${handleInput(this)} class="text-area-field"></textarea>
+      <textarea
+        name=${name}
+        value=${value}
+        @input=${handleInput(this)}
+        class="text-area-field"
+      ></textarea>
       <style>
         :host {
           contain: strict;
@@ -87,5 +92,9 @@ class TextAreaInput extends LitElement {
 const localName = defineOnce('text-area', TextAreaInput);
 export default createElement =>
   forwardRef(({ value, name, onChange, children }, ref) =>
-    withReact(createElement)(localName, { value, name, onChange, ref, isReact: 1 }, children)
+    withReact(createElement)(
+      localName,
+      { value, name, onChange, ref, isReact: 1 },
+      children
+    )
   );
