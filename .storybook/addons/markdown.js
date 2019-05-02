@@ -9,15 +9,14 @@ const DEFAULT_MSG = '<h2>No Markdown Provided</h2><br>';
 
 const uuidv4 = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 };
 
 const e = React.createElement;
 
-addons.register(ADDON_ID, api => {
+addons.register(ADDON_ID, (api) => {
   const title = 'Readme';
   const channel = addons.getChannel();
   let initialText = DEFAULT_MSG;
@@ -34,13 +33,13 @@ addons.register(ADDON_ID, api => {
       this.onStoryChanged = this.onStoryChanged.bind(this);
     }
 
-    onAddonAdded({ template, html }) {
+    onAddonAdded ({ template, html }) {
       initialText = html || '';
       initialTemplate = typeof template === 'string' ? template.trim() : '';
       this.setState({ html, template: initialTemplate });
     }
 
-    onStoryChanged() {
+    onStoryChanged () {
       initialText = DEFAULT_MSG;
       initialTemplate = '';
       this.setState({ html: initialText, template: initialTemplate });
@@ -61,9 +60,7 @@ addons.register(ADDON_ID, api => {
       return [
         e('style', {
           key: uuidv4(),
-          dangerouslySetInnerHTML: {
-            __html: 'code { background-color: #F0F0F0; }',
-          },
+          dangerouslySetInnerHTML: { __html: 'code { background-color: #F0F0F0; }' },
         }),
         e('div', {
           key: uuidv4(),
@@ -73,16 +70,12 @@ addons.register(ADDON_ID, api => {
           key: uuidv4(),
           dangerouslySetInnerHTML: { __html: '<h3>Code Snipped</h3>' },
         }),
-        e(
-          'pre',
-          {
-            key: uuidv4(),
-          },
-          e('code', { key: uuidv4() }, template)
-        ),
-      ];
+        e('pre', {
+          key: uuidv4()
+        }, e('code', { key: uuidv4() }, template)),
+      ]
     }
-  }
+  };
 
   const render = () => e(Wrapper, { key: uuidv4() });
 
@@ -96,23 +89,16 @@ addons.register(ADDON_ID, api => {
 export const withMarkdown = makeDecorator({
   name: 'withMarkdown',
   parameterName: 'markdown',
-  wrapper: (storyFn, context, { options: html }) => {
+  wrapper: (storyFn, context, { options : html }) => {
     const channel = addons.getChannel();
     const template = storyFn(context);
     let generatedTemplate = template;
-    if (
-      typeof template === 'object' &&
-      template !== null &&
-      template instanceof HTMLElement
-    ) {
+    if (typeof template === 'object' && template !== null && template instanceof HTMLElement) {
       const el = document.createElement('div');
       el.appendChild(template);
       generatedTemplate = el.innerHTML;
     }
-    channel.emit(ADDON_EVENT, {
-      template: generatedTemplate,
-      html: html || DEFAULT_MSG,
-    });
+    channel.emit(ADDON_EVENT, { template: generatedTemplate, html: html || DEFAULT_MSG });
     return template;
   },
 });
