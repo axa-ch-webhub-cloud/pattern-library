@@ -5,7 +5,7 @@ import tableCss from './index.scss';
 class AXATable extends LitElement {
   constructor() {
     super();
-    this.innerscroll= 0;
+    this.innerscroll = 0;
   }
 
   static get tagName() {
@@ -21,7 +21,6 @@ class AXATable extends LitElement {
       innerscroll: { type: Number },
     };
   }
-
 
   connectedCallback() {
     super.connectedCallback();

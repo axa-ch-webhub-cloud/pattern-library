@@ -8,7 +8,7 @@ storiesOf('Organisms/Table', module)
   .addDecorator(withMarkdown(Readme))
   .add(
     'Table',
-    () =>`
+    () => `
       <h3>AXA Table Default</h3>
       <axa-table>
           <table class="any-for-test">

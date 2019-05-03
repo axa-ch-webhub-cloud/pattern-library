@@ -2,7 +2,6 @@ import { LitElement, css, unsafeCSS, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import tableCss from './index.scss';
-
 // TODO use THE NPM package one axa-table is released
 import '../table';
 
@@ -37,9 +36,13 @@ class AXATableSortable extends LitElement {
 
   validateModel() {
     const {
-      thead : { length: theadL },
-      tbody : { 0: { length: tbodyL } },
-      tfoot : { 0: { length: tfootL } },
+      thead: { length: theadL },
+      tbody: {
+        0: { length: tbodyL },
+      },
+      tfoot: {
+        0: { length: tfootL },
+      },
     } = this.model;
 
     if (theadL !== tbodyL && (!tfootL || tfootL === tbodyL)) {
@@ -59,10 +62,9 @@ class AXATableSortable extends LitElement {
     return 'ascending';
   }
 
-  this
+  this;
 
   render() {
-
     this.model = { ...this.defaultModel, ...this.model };
 
     if (!this.validateModel()) {
@@ -73,52 +75,54 @@ class AXATableSortable extends LitElement {
 
     return html`
       <axa-table class="o-table-sortable" innerscroll="${this.innerscroll}">
-          <table>
-            <thead>
-              <tr>
-                ${thead &&
+        <table>
+          <thead>
+            <tr>
+              ${thead &&
                 thead.map(
                   config => html`
-                    <th aria-sort="${this.getSortingAria(config)}" >
+                    <th aria-sort="${this.getSortingAria(config)}">
                       ${config.html}
                     </th>
                   `
                 )}
-              </tr>
-            </thead>
-            <tbody>
-              ${tbody &&
+            </tr>
+          </thead>
+          <tbody>
+            ${tbody &&
               tbody.map(
                 cells => html`
-                <tr>
-                  ${cells &&
-                  cells.map(
-                    cell => html`
-                      <td>${unsafeHTML(cell.html)}</td>
-                    `
-                  )}
-                </tr>
+                  <tr>
+                    ${cells &&
+                      cells.map(
+                        cell => html`
+                          <td>${unsafeHTML(cell.html)}</td>
+                        `
+                      )}
+                  </tr>
                 `
               )}
-            </tbody>
-            ${tfoot ? html`
-              <tfoot>
-              ${tbody &&
-              tfoot.map(
-                cells => html`
-                <tr>
-                  ${cells &&
-                  cells.map(
-                    cell => html`
-                      <td>${unsafeHTML(cell.html)}</td>
-                    `
-                  )}
-                </tr>
-                `
-              )}
-              </tfoot>
-            ` : ''}
-          </table>
+          </tbody>
+          ${tfoot
+            ? html`
+                <tfoot>
+                  ${tbody &&
+                    tfoot.map(
+                      cells => html`
+                        <tr>
+                          ${cells &&
+                            cells.map(
+                              cell => html`
+                                <td>${unsafeHTML(cell.html)}</td>
+                              `
+                            )}
+                        </tr>
+                      `
+                    )}
+                </tfoot>
+              `
+            : ''}
+        </table>
       </axa-table>
     `;
   }

@@ -8,23 +8,23 @@ const model = {
   thead: [
     { html: 'Title 1', sort: 'ASC' },
     { html: 'Title 3', sort: 'DESC' },
-    { html: 'Title 2' }
+    { html: 'Title 2' },
   ],
   tbody: [
     [
       { html: '<span>Hello</span>' },
       { html: '<span>Cell 2</span>' },
-      { html: 'A' }
+      { html: 'A' },
     ],
     [
       { html: '<span>Hello 2</span>' },
       { html: '<span>Cell 2</span>' },
-      { html: 'B' }
+      { html: 'B' },
     ],
     [
       { html: '<span>Hello 3</span>' },
       { html: '<span>Cell 2</span>' },
-      { html: 'C' }
+      { html: 'C' },
     ],
   ],
 };
@@ -33,7 +33,7 @@ storiesOf('Organisms/Table', module)
   .addDecorator(withMarkdown(Readme))
   .add(
     'Table Sortable',
-    () =>`
+    () => `
       <h3>AXA Table Sortable</h3>
 
       <axa-table-sortable model='${JSON.stringify(model)}'>
