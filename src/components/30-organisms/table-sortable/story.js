@@ -20,13 +20,13 @@ const model = {
     ],
     [
       { html: '<span>1 Gaa</span>' },
-      { html: '<span>Hello 2</span>' },
+      { html: '<span>zHello 2</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'B' },
     ],
     [
       { html: '<span>2 Gaa</span>' },
-      { html: '<span>Hello 3</span>' },
+      { html: '<span>aHello 3</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'C' },
     ],
@@ -39,7 +39,7 @@ storiesOf('Organisms/Table', module)
     'Table Sortable',
     () => `
       <h3>AXA Table Sortable</h3>
-
+      <p style="color: red; font-weight:bold;">WARNING: on mobile sortable not implemented, use innerscroll option till finished<p/>
       <axa-table-sortable model='${JSON.stringify(model)}'>
       </axa-table-sortable>
 

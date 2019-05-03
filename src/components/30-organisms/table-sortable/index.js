@@ -29,8 +29,9 @@ class AXATableSortable extends LitElement {
       sensitivity: 'base',
     });
     this.strCollator = new Intl.Collator(undefined, {
-      sensitivity: 'base',
+      sensitivity: 'variant',
     });
+    this.lastIndex = -1;
   }
 
   static get tagName() {
@@ -45,7 +46,7 @@ class AXATableSortable extends LitElement {
 
   static get properties() {
     return {
-      model: { type: Object, reflect: true },
+      model: { type: Object },
       innerscroll: { type: Number },
     };
   }
@@ -89,9 +90,9 @@ class AXATableSortable extends LitElement {
     tmpModel.tfoot = this.sort(tfoot, index, sortAs);
     tmpModel.thead[index].sort = mapAsc[sortAs];
 
-    this.model = tmpModel;
+    this.lastIndex = index;
 
-    // target.setAttribute('aria-sort', sortAs);
+    this.model = tmpModel;
   }
 
   // V8 engine uses QuickSort algorythm for Array.prototype.sort
@@ -144,6 +145,9 @@ class AXATableSortable extends LitElement {
                 thead.map(
                   (config, index) => html`
                     <th
+                      class="${this.lastIndex === index
+                        ? 'o-table-sortable__th--selected'
+                        : ''}"
                       @click="${ev => {
                         this.sortByIndex(index, ev);
                       }}"

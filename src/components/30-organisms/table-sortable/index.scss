@@ -32,6 +32,12 @@
         border-bottom-color: $color-axa-blue;
       }
     }
+
+    &.o-table-sortable__th--selected {
+      &:after {
+        border-bottom-color: $color-axa-blue;
+      }
+    }
   }
 
   th[aria-sort="descending"] {
@@ -45,6 +51,12 @@
     &:hover,
     &:active,
     &:focus {
+      &:after {
+        border-top-color: $color-axa-blue;
+      }
+    }
+
+    &.o-table-sortable__th--selected {
       &:after {
         border-top-color: $color-axa-blue;
       }
