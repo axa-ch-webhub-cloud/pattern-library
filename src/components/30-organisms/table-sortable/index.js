@@ -62,11 +62,7 @@ class AXATableSortable extends LitElement {
       },
     } = this.model;
 
-    if (theadL !== tbodyL && (!tfootL || tfootL === tbodyL)) {
-      return false;
-    }
-
-    return true;
+    return !(theadL !== tbodyL && (!tfootL || tfootL === tbodyL));
   }
 
   getSortingAria(config) {

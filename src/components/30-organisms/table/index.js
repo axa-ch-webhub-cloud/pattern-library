@@ -22,8 +22,8 @@ class AXATable extends LitElement {
     };
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  firstUpdated(...args) {
+    super.firstUpdated(...args);
     const table = this.querySelector('table');
     if (table) {
       const { documentElement } = this;
