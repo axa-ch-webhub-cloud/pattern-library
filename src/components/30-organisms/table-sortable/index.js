@@ -62,8 +62,6 @@ class AXATableSortable extends LitElement {
     return 'ascending';
   }
 
-  this;
-
   render() {
     this.model = { ...this.defaultModel, ...this.model };
 
