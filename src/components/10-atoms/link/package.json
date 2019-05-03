@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/link",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.1-alpha.0",
   "description": "The axa link for internal and external page navigation.",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/link/README.md",
