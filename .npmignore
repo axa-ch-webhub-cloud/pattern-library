@@ -1,5 +1,7 @@
 src
 package-lock.json
+.tmp-lib
+.tmp-dist
 
 # Logs
 logs

@@ -23,8 +23,8 @@ const babelOptions = require('./.storybook/.babelrc'); // get the babelrc file
 
 const input = glob.sync('src/components/@(10-atoms|20-molecules|30-organisms)/*/index*.js');
 
-const LIB = 'lib';
-const DIST = 'dist';
+const LIB = '.tmp-lib';
+const DIST = '.tmp-dist';
 
 /* if you want to test lerna publish with demo-button and demo-link
 const input = glob.sync('src/demo/@(demo-button|demo-link)/index*.js');

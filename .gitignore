@@ -1,6 +1,8 @@
 lib
 dist
 package-lock.json
+.tmp-lib
+.tmp-dist
 
 # Storybook
 storybook-static
