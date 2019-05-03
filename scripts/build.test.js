@@ -4,10 +4,10 @@ const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
   '@webcomponents/webcomponentsjs',
   'lit-element',
-  'lit-html',
+  'lit-html'
 ];
 
-const { length: found } = Object.keys(dependencies).filter(
+const { length : found } = Object.keys(dependencies).filter(
   key => ALLOWED_DEPENDENCIES.indexOf(key) === -1
 );
 
@@ -19,7 +19,8 @@ if (found) {
 
     If not, then add it as devDependency.
 
-    `);
+    `
+  )
 }
 
 process.exit(0);

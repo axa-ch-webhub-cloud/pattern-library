@@ -73,3 +73,8 @@ request.
 ## Code of Conduct
 
 We adhere to our [Code of Conduct](https://raw.githubusercontent.com/axa-ch/patterns-library/develop-v2/CODE_OF_CONDUCT.md).
+
+
+
+
+

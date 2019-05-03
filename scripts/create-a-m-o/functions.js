@@ -3,41 +3,38 @@ const outdent = require('outdent');
 const fs = require('fs');
 const templateJson = require('./templates/template-package.json');
 
-const getAMOType = type => {
-  console.log(
-    chalk.cyan(outdent`
+const getAMOType = (type) => {
+  console.log(chalk.cyan(outdent`
 
     Ok good, you choose to create a new component of type ${chalk.bold(type)}.
 
     Now, tell me how your new component should be called
 
-  `)
-  );
+  `));
 };
 
-const prepareName = done => userInput => {
-  const capitalizeFirstLetter = string =>
-    string.charAt(0).toUpperCase() + string.slice(1);
-  const camelCase = string =>
-    string
-      .split(/[-_ ]+/)
-      .map(capitalizeFirstLetter)
-      .join('');
+const prepareName = done => (userInput) => {
+  const capitalizeFirstLetter = string => string
+    .charAt(0)
+    .toUpperCase() + string
+    .slice(1);
+  const camelCase = string => string
+    .split(/[-_ ]+/)
+    .map(capitalizeFirstLetter)
+    .join('');
   const fileName = userInput.replace(/ /g, '-').toLowerCase();
   const className = `AXA${camelCase(fileName)}`;
 
-  console.log(
-    chalk.cyan(outdent`
+  console.log(chalk.cyan(outdent`
     Ok good, we will setup all the files for your new component
 
     Class name: ${chalk.bold(className)}
     Folder name: ${chalk.bold(fileName)}
-  `)
-  );
+  `));
 
   done({
     className,
-    fileName,
+    fileName
   });
 };
 
@@ -58,7 +55,7 @@ const createFiles = (store, a, m, o, done) => () => {
   const BASE_FOLDER = `./src/components/${folderMap[type]}/${fileName}`;
 
   let compTitle = fileName.replace(/-/g, ' ');
-  compTitle = compTitle.charAt(0).toUpperCase() + compTitle.slice(1);
+  compTitle =compTitle.charAt(0).toUpperCase() + compTitle.slice(1);
 
   if (!fs.existsSync(BASE_FOLDER)) {
     fs.mkdirSync(`${BASE_FOLDER}`);
@@ -66,14 +63,12 @@ const createFiles = (store, a, m, o, done) => () => {
 
   templateJson.name = `@axa-ch/${fileName}`;
   templateJson.version = '0.0.0-beta.0';
-  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/master/src/components/${
-    folderMap[type]
-  }/${fileName}#readme`;
+  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/master/src/components/${folderMap[type]}/${fileName}#readme`;
 
   fs.writeFileSync(
     `${BASE_FOLDER}/package.json`,
     JSON.stringify(templateJson, null, 2),
-    'utf8'
+    'utf8',
   );
 
   fs.writeFileSync(
@@ -83,7 +78,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     TODO Description
     `,
-    'utf8'
+    'utf8',
   );
 
   fs.writeFileSync(
@@ -93,7 +88,7 @@ const createFiles = (store, a, m, o, done) => () => {
         display: block;
       }
     `,
-    'utf8'
+    'utf8',
   );
 
   fs.writeFileSync(
@@ -115,7 +110,7 @@ const createFiles = (store, a, m, o, done) => () => {
       );
 
     `,
-    'utf8'
+    'utf8',
   );
 
   fs.writeFileSync(
@@ -131,7 +126,7 @@ const createFiles = (store, a, m, o, done) => () => {
       .addDecorator(withMarkdown(Readme))
       .add('${compTitle} - default', () => '<axa-${fileName}>Some children</axa-${fileName}>')
     `,
-    'utf8'
+    'utf8',
   );
 
   fs.writeFileSync(
@@ -139,9 +134,7 @@ const createFiles = (store, a, m, o, done) => () => {
     outdent`
     import { Selector } from 'testcafe';
 
-    fixture('${compTitle} - basic functionality').page('http://localhost:9999/iframe.html?id=${titleMap[
-      type
-    ].toLowerCase()}-${fileName}--${fileName}-default');
+    fixture('${compTitle} - basic functionality').page('http://localhost:9999/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default');
 
     const TAG = 'axa-${fileName}';
     const CLASS = '.${type}-${fileName}';
@@ -154,7 +147,7 @@ const createFiles = (store, a, m, o, done) => () => {
       await t.expect($axaElemShadowEl.exists).ok();
     });
     `,
-    'utf8'
+    'utf8',
   );
 
   fs.writeFileSync(
@@ -214,11 +207,12 @@ const createFiles = (store, a, m, o, done) => () => {
 
     export default ${className};
     `,
-    'utf8'
+    'utf8',
   );
 
   done();
 };
+
 
 module.exports = {
   getAMOType,

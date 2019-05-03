@@ -9,6 +9,8 @@ const globals = require(path.resolve(__dirname, '..', 'config', 'globals.js'))
   .map(item => `@import '${base}/${item}';`)
   .join('\n')
   .replace(/\\/g, '/'); // use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash
+;
+
 module.exports = ({ config }) => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
     '~/materials': path.join(base, 'components', 'materials'),
@@ -24,12 +26,7 @@ module.exports = ({ config }) => {
           loader: 'sass-loader',
           options: {
             sourceMap: true,
-            includePaths: [
-              path.resolve(
-                path.dirname(require.resolve('breakpoint-sass/package.json')),
-                'stylesheets'
-              ),
-            ],
+            includePaths: [path.resolve(path.dirname(require.resolve('breakpoint-sass/package.json')), 'stylesheets')],
             data: globals,
           },
         },
@@ -46,17 +43,14 @@ module.exports = ({ config }) => {
       test: /\.jsx/,
       exclude: /node_modules\/(?![lit\-element|lit\-html])/,
       loader: 'babel-loader',
-      options: {
-        ...babelOptions,
-        presets: [...babelOptions.presets, '@babel/preset-react'],
-      },
+      options: {...babelOptions, presets: [...babelOptions.presets, '@babel/preset-react']},
     },
     {
       test: /\.md$/,
-      loader: 'markdown-loader',
+      loader: "markdown-loader",
       options: {
-        /* your options here */
-      },
+          /* your options here */
+      }
     }
   );
 
