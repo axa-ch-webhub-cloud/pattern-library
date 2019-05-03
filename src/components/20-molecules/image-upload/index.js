@@ -26,7 +26,8 @@ class AXAImageUpload extends LitElement {
     return {
       title: { type: String },
       fileButtonText: { type: String },
-      showImageOverview: { type: Boolean, reflect: true }
+      showImageOverview: { type: Boolean, reflect: true },
+      maxFiles: { type: Number }
     };
   }
 
@@ -35,6 +36,7 @@ class AXAImageUpload extends LitElement {
     this.title = "Image Upload";
     this.showImageOverview = false;
     this.fileButtonText = "Datei hochlanden";
+    this.maxFiles = 10;
   }
 
   firstUpdated() {
