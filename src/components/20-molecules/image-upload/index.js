@@ -1,9 +1,10 @@
-import '@webcomponents/webcomponentsjs';
 import { classMap } from 'lit-html/directives/class-map';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { DocumentSvg, ImagesSvg, CheckListSvg, PlusRoundedSvg } from './icons/index';
 
-/* eslint-disable import/no-extraneous-dependencies */
+// import compressedImage from './utils/imageCompressor'; // TODO
+import fileKey from './utils/fileKey'; // TODO
+import imageFigure from './utils/imageFigure';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
@@ -37,6 +38,7 @@ class AXAImageUpload extends LitElement {
     this.showImageOverview = false;
     this.fileButtonText = "Datei hochlanden";
     this.maxFiles = 10;
+    this.allFiles = [];
   }
 
   firstUpdated() {
@@ -46,13 +48,12 @@ class AXAImageUpload extends LitElement {
 
   render() {
     const iconElements = ICONS.map(icon => html`<div class="m-image-upload__icon">${icon}</div>`);
-
     const classes = {
       'm-image-upload__dropzone': true,
       'js-image-upload__dropzone': true,
       'm-image-upload__dropzone--drop': this.showImageOverview,
     }
-    console.log('classes', classes)
+
     return html`
     <article class="m-image-upload">
       <h1>${this.title}</h1>
@@ -61,7 +62,7 @@ class AXAImageUpload extends LitElement {
                  @drop="${this.handleImageUploadDropZoneDrop}"
                  @click ="${this.handleImageUploadDropZoneClick}" class="${classMap(classes)}">
             ${this.showImageOverview
-              ? html`<p>TODO</p>`
+              ? html``
               : html`<div class="m-image-upload__icons">
                   ${iconElements}
                 </div>
@@ -85,10 +86,9 @@ class AXAImageUpload extends LitElement {
     console.log(e, 'button klick')
   }
 
-  handleImageUploadButtonChange(e) {
-    e.stopPropagation();
-    this.showImageOverview = true;
-    const { files } = e.target;
+  handleImageUploadDropZoneClick(e) {
+    console.log(e, 'zone click')
+    this.inputButton.click();
   }
 
   handleImageUploadDropZoneDragover(e) {
@@ -97,7 +97,7 @@ class AXAImageUpload extends LitElement {
     this.dropZone.classList.add("m-image-upload__dropzone--dragover");
   }
 
-  handleImageUploadDropZoneDragleave(e) {
+  handleImageUploadDropZoneDragleave() {
     this.dropZone.classList.remove("m-image-upload__dropzone--dragover");
   }
 
@@ -106,11 +106,24 @@ class AXAImageUpload extends LitElement {
     this.dropZone.classList.remove("m-image-upload__dropzone--dragover");
     this.showImageOverview = true;
     const { files } = e.dataTransfer;
+
+    this.handleFileDrop(files);
   }
 
-  handleImageUploadDropZoneClick(e) {
-    console.log(e, 'zone click')
-    this.inputButton.click();
+  handleImageUploadButtonChange(e) {
+    e.stopPropagation();
+    this.showImageOverview = true;
+    const { files } = e.target;
+    console.log('files', files);
+    this.handleFileDrop(files);
+  }
+
+  handleFileDrop(items) {
+    Array.from(items).forEach(file => imageFigure(this.dropZone, file));
+
+    // if (typeof item === 'object' && item !== null && item.target && item.target.files) {
+    //   this.addFiles([...item.target.files]);
+    // }
   }
 }
 
