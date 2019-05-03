@@ -1,9 +1,9 @@
 import { LitElement, css, unsafeCSS, html } from 'lit-element';
+/* eslint-disable-next-line import/no-extraneous-dependencies */
+import '@axa-ch/table';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import tableCss from './index.scss';
-// TODO use THE NPM package one axa-table is released
-import '../table';
 
 const ASC = 'ascending';
 const DESC = 'descending';
