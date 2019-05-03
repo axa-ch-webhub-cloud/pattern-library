@@ -44,7 +44,7 @@
           "**/setupTests.js",
           "**/jestPreprocess.js",
           "**/*test.accessor.js",
-          "**/*test.ui.js"
+          "**/*ui.test.js"
         ],
         "packageDir": "./"
       }
