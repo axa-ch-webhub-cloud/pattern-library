@@ -1,7 +1,21 @@
 import withReact from '../../../utils/with-react';
 import AXADatepicker from './index';
 
-export default createElement => props =>
+export default createElement => ({
+  'data-test-id': dataTestId,
+  open,
+  locale,
+  day,
+  month,
+  year,
+  allowedYears,
+}) =>
   withReact(createElement)(AXADatepicker.tagName, {
-    ...props,
+    'data-test-id': dataTestId,
+    open,
+    locale,
+    day,
+    month,
+    year,
+    allowedYears,
   });
