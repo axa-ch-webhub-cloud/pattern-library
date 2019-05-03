@@ -1,7 +1,9 @@
 import { Selector } from 'testcafe';
 
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+
 fixture('Table - basic functionality').page(
-  'http://localhost:9999/iframe.html?id=organisms-table--table-default'
+  `${host}/iframe.html?id=organisms-table--table-default`
 );
 
 const TAG = 'axa-table';
@@ -21,7 +23,7 @@ test('should render default table on mobile', async t => {
 });
 
 fixture('Table - innerscroll functionality').page(
-  'http://localhost:9999/iframe.html?id=organisms-table--table-innerscroll'
+  `${host}/iframe.html?id=organisms-table--table-innerscroll`
 );
 
 test('should render innerscroll table on mobile', async t => {

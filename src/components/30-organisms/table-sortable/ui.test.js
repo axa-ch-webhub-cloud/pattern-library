@@ -1,7 +1,9 @@
 import { Selector } from 'testcafe';
 
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+
 fixture('Table Sortable - basic functionality').page(
-  'http://localhost:9999/iframe.html?id=organisms-table--table-sortable-default'
+  `${host}/iframe.html?id=organisms-table--table-sortable-default`
 );
 
 test('should render sortable table', async t => {
@@ -158,7 +160,7 @@ test('should add a fix css class when sorted is clicked', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  'http://localhost:9999/iframe.html?id=organisms-table--table-sortable-innerscroll'
+  `${host}/iframe.html?id=organisms-table--table-sortable-innerscroll`
 );
 
 test('should sort also when innerscroll is set ', async t => {
