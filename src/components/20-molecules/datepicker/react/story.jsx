@@ -10,6 +10,15 @@ storiesOf('Molecules/Datepicker/React', module)
   .addDecorator(withMarkdown(Readme))
   .add('Datepicker as React Component', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AXADatepickerReact data-test-id="datepicker-react" locale="de-CH" day={20} month={0} year={2020} />, div);
+    ReactDOM.render(
+      <AXADatepickerReact
+        data-test-id="datepicker-react"
+        locale="de-CH"
+        day={20}
+        month={0}
+        year={2020}
+      />,
+      div
+    );
     return div;
   });

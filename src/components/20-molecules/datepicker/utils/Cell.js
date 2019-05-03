@@ -1,5 +1,12 @@
 export class Cell {
-  constructor(text = '', value = '', index = 0, isToday = false, isSelected = false, isActive = true) {
+  constructor(
+    text = '',
+    value = '',
+    index = 0,
+    isToday = false,
+    isSelected = false,
+    isActive = true
+  ) {
     this.text = text;
     this.value = value;
     this.index = index;
@@ -14,22 +21,49 @@ export class Cell {
 }
 
 export class NextMonth extends Cell {
-  constructor(text = '', value = '', index = 0, isToday = false, isSelected = false, isActive = true) {
+  constructor(
+    text = '',
+    value = '',
+    index = 0,
+    isToday = false,
+    isSelected = false,
+    isActive = true
+  ) {
     super(text, value, index, isToday, isSelected, isActive);
-    this.className = `${this.baseClass} m-datepicker__calendar-not-current-month m-datepicker__calendar-next-month`;
+    this.className = `${
+      this.baseClass
+    } m-datepicker__calendar-not-current-month m-datepicker__calendar-next-month`;
   }
 }
 
 export class LastMonth extends Cell {
-  constructor(text = '', value = '', index = 0, isToday = false, isSelected = false, isActive = true) {
+  constructor(
+    text = '',
+    value = '',
+    index = 0,
+    isToday = false,
+    isSelected = false,
+    isActive = true
+  ) {
     super(text, value, index, isToday, isSelected, isActive);
-    this.className = `${this.baseClass} m-datepicker__calendar-not-current-month m-datepicker__calendar-prev-month`;
+    this.className = `${
+      this.baseClass
+    } m-datepicker__calendar-not-current-month m-datepicker__calendar-prev-month`;
   }
 }
 
 export class CurrentMonth extends Cell {
-  constructor(text = '', value = '', index = 0, isToday = false, isSelected = false, isActive = true) {
+  constructor(
+    text = '',
+    value = '',
+    index = 0,
+    isToday = false,
+    isSelected = false,
+    isActive = true
+  ) {
     super(text, value, index, isToday, isSelected, isActive);
-    this.className = `${this.baseClass} m-datepicker__calendar-current-month${isToday ? ' m-datepicker__calendar-today' : ''}`;
+    this.className = `${this.baseClass} m-datepicker__calendar-current-month${
+      isToday ? ' m-datepicker__calendar-today' : ''
+    }`;
   }
 }
