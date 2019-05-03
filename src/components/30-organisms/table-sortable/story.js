@@ -13,20 +13,20 @@ const model = {
   ],
   tbody: [
     [
-      { html: '<span>11 Gaa</span>' },
-      { html: '<span>Hello</span>' },
+      { html: '<span>11 Some Text</span>' },
+      { html: '<span>Some Text</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'A' },
     ],
     [
-      { html: '<span>1 Gaa</span>' },
-      { html: '<span>zHello 2</span>' },
+      { html: '<span>1 Some Text</span>' },
+      { html: '<span>Z Some Text</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'B' },
     ],
     [
-      { html: '<span>2 Gaa</span>' },
-      { html: '<span>aHello 3</span>' },
+      { html: '<span>2 Some Text</span>' },
+      { html: '<span>A Some Text</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'C' },
     ],

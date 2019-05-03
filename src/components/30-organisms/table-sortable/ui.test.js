@@ -76,20 +76,20 @@ test('should sort strings', async t => {
     .eql('descending');
   await t
     .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>zHello 2</span><!---->');
+    .eql('<!----><span>Z Some Text</span><!---->');
   await t
     .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>aHello 3</span><!---->');
+    .eql('<!----><span>A Some Text</span><!---->');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
   await t
     .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>aHello 3</span><!---->');
+    .eql('<!----><span>A Some Text</span><!---->');
   await t
     .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>zHello 2</span><!---->');
+    .eql('<!----><span>Z Some Text</span><!---->');
 });
 
 test('should sort numbers', async t => {
@@ -122,20 +122,20 @@ test('should sort numbers', async t => {
     .eql('descending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>11 Gaa</span><!---->');
+    .eql('<!----><span>11 Some Text</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>1 Gaa</span><!---->');
+    .eql('<!----><span>1 Some Text</span><!---->');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>1 Gaa</span><!---->');
+    .eql('<!----><span>1 Some Text</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>11 Gaa</span><!---->');
+    .eql('<!----><span>11 Some Text</span><!---->');
 });
 
 test('should add a fix css class when sorted is clicked', async t => {
@@ -202,10 +202,10 @@ test('should sort also when innerscroll is set ', async t => {
     .eql('descending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>11 Gaa</span><!---->');
+    .eql('<!----><span>11 Some Text</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>1 Gaa</span><!---->');
+    .eql('<!----><span>1 Some Text</span><!---->');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
