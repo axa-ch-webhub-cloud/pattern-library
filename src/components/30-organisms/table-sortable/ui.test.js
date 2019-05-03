@@ -136,7 +136,7 @@ test('number sorting should work', async t => {
     .eql('<!----><span>11 Gaa</span><!---->');
 });
 
-test('when sorted is clicked, a fix css class is set to the sort icon', async t => {
+test('when sorted is clicked, a fix css class should be set to the sort icon', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnOne = await Selector(() => {
@@ -161,7 +161,7 @@ fixture('Table Sortable - innerscroll functionality').page(
   'http://localhost:9999/iframe.html?id=organisms-table--table-sortable-innerscroll'
 );
 
-test('sorting works also when innerscroll is set ', async t => {
+test('sorting should work also when innerscroll is set ', async t => {
   await t.resizeWindow(300, 1000);
   const $elRoot = await Selector('axa-table-sortable');
 
