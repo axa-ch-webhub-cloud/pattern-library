@@ -97,7 +97,7 @@ class AXATableSortable extends LitElement {
 
   // V8 engine uses QuickSort algorythm for Array.prototype.sort
   // with elements less then 10. for more then 10, it uses the InsertionSort
-  // Akgorythm. As result, for arrays containing 10 or fewer elements,
+  // algorythm. As result, for arrays containing 10 or fewer elements,
   // time complexity of .sort is O(n^2), and space complexity is O(1).
   // For longer arrays time complexity is Θ(n log(n)) (average case),
   // and space complexity is O(log(n))
@@ -149,7 +149,9 @@ class AXATableSortable extends LitElement {
                         ? 'o-table-sortable__th--selected'
                         : ''}"
                       @click="${ev => {
-                        this.sortByIndex(index, ev);
+                        if (this.getSortingAria(config) !== 'none') {
+                          this.sortByIndex(index, ev);
+                        }
                       }}"
                       aria-sort="${this.getSortingAria(config)}"
                     >
