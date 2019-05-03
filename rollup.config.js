@@ -73,7 +73,8 @@ const generatePlugins = type => {
       presets: babelOptions.presets,
       plugins: [
         ...babelOptions.plugins,
-        '@babel/plugin-transform-runtime'
+        '@babel/plugin-transform-runtime',
+        '@babel/plugin-transform-regenerator'
       ],
       babelrc: false,
       exclude: [
