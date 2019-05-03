@@ -38,36 +38,14 @@ storiesOf('Organisms/Table', module)
   .add(
     'Table Sortable - default',
     () => `
-      <h3>AXA Table Sortable Default</h3>
-      <p style="color: red; font-weight:bold;">WARNING: on mobile sortable not implemented, use innerscroll option till finished<p/>
       <axa-table-sortable model='${JSON.stringify(model)}'>
       </axa-table-sortable>
-
-
-
-      </br>
-      </br>
-
-      TODO:</br>
-
-      - Allow cells formatting like axa-table</br>
-      - Allow to add callback events onChange or onClick when row is pressed</br>
       `
   )
   .add(
     'Table Sortable - innerscroll',
     () => `
-      <h3>AXA Table Sortable With innerscroll</h3>
-
       <axa-table-sortable innerscroll="500" model='${JSON.stringify(model)}'>
       </axa-table-sortable>
-
-      </br>
-      </br>
-
-      TODO:</br>
-
-      - Allow cells formatting like axa-table</br>
-      - Allow to add callback events onChange or onClick when row is pressed</br>
       `
   );

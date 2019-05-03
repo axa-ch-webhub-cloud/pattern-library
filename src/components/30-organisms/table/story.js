@@ -9,7 +9,6 @@ storiesOf('Organisms/Table', module)
   .add(
     'Table - default',
     () => `
-      <h3>AXA Table Default</h3>
       <axa-table>
           <table class="any-for-test">
             <thead>
@@ -43,7 +42,6 @@ storiesOf('Organisms/Table', module)
   .add(
     'Table - innerscroll',
     () => `
-    <h3>AXA Table innerscroll:</h3>
     <axa-table innerscroll="500">
         <table class="any-for-test">
           <thead>

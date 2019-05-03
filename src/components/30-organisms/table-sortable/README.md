@@ -1,5 +1,7 @@
 # AXA Table Sortable
 
+_WARNING: on mobile sortable not implemented, use innerscroll option till finished_
+
 [axa-table-sortable](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/30-organisms/table-sortable/README.md) component.
 
 ## Properties
