@@ -34,10 +34,9 @@
         "devDependencies": [
           "scripts/**",
           "rollup.config.js",
-          "**/_demo*.js",
-          "**/story.js",
-          "**/_story*.js",
-          "**/*.story.js",
+          "**/story.{js,jsx}",
+          "**/demo.{js,jsx}",
+          "**/react/*.{js,jsx}",
           "**/src/**/*.react.js",
           "**/demo/**",
           "**/ui.test.js",
@@ -45,7 +44,7 @@
           "**/setupTests.js",
           "**/jestPreprocess.js",
           "**/*test.accessor.js",
-          "**/*ui.test.js"
+          "**/*test.ui.js"
         ],
         "packageDir": "./"
       }
