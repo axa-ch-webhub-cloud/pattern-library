@@ -32,11 +32,15 @@ $image-upload-dropzone-border: 2px !default;
     width: 40px;
     height: 40px;
   }
-  // &__dropzone_dragover {
-  //   opacity: 0.6;
-  // }
-  //
-  // &__dropzone_dragleave {
-  //   border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
-  // }
+
+  &__dropzone--dragover {
+    opacity: 0.6;
+  }
+
+  &__dropzone--drop {
+    border: $image-upload-dropzone-border solid $color-prim-gray-dusty;
+  }
+}
+:host([showImageOverview]) p {
+  color: red;
 }

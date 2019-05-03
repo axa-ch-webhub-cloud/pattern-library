@@ -38,7 +38,8 @@ class AXAImageUpload extends LitElement {
   }
 
   firstUpdated() {
-    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__input');
+    this.inputButton = this.shadowRoot.querySelector('.js-image-upload__input');
+    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
   }
 
   render() {
@@ -47,9 +48,9 @@ class AXAImageUpload extends LitElement {
     const classes = {
       'm-image-upload__dropzone': true,
       'js-image-upload__dropzone': true,
-      'm-image-upload__dropzone__overview': this.showImageOverview,
+      'm-image-upload__dropzone--drop': this.showImageOverview,
     }
-
+    console.log('classes', classes)
     return html`
     <article class="m-image-upload">
       <h1>${this.title}</h1>
@@ -65,7 +66,8 @@ class AXAImageUpload extends LitElement {
                 <p class="m-image-upload__information">${INFO}</p>
                 <p class="m-image-upload__or">${OR}</p>
                 <label for="file-upload" class="m-button__image-upload-label"></label>
-                <input @change="${this.handleImageUploadButtonChange}" type="file"
+                <input @change="${this.handleImageUploadButtonChange}" @click="${this.handleImageUploadButtonClick}"
+                type="file"
                 accept="image/jpg, image/jpeg, application/pdf, image/png"
                 capture="camera"
                 multiple="multiple"
@@ -83,28 +85,30 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadButtonChange(e) {
     e.stopPropagation();
-    console.log(e, 'button change', e.monitor)
+    this.showImageOverview = true;
     const { files } = e.target;
   }
+
   handleImageUploadDropZoneDragover(e) {
     e.preventDefault();
-    console.log(e, 'dragover')
     e.dataTransfer.dropEffect = 'copy';
+    this.dropZone.classList.add("m-image-upload__dropzone--dragover");
   }
 
   handleImageUploadDropZoneDragleave(e) {
-    console.log(e, 'dragleave')
+    this.dropZone.classList.remove("m-image-upload__dropzone--dragover");
   }
 
   handleImageUploadDropZoneDrop(e) {
     e.preventDefault();
+    this.dropZone.classList.remove("m-image-upload__dropzone--dragover");
+    this.showImageOverview = true;
     const { files } = e.dataTransfer;
-    console.log(e, 'drop')
   }
 
   handleImageUploadDropZoneClick(e) {
     console.log(e, 'zone click')
-    this.dropZone.click();
+    this.inputButton.click();
   }
 }
 
