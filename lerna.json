@@ -1,11 +1,5 @@
 {
-  "packages": [
-    "src/components/00-materials",
-    "src/components/10-atoms/icon",
-    "src/components/10-atoms/button",
-    "src/components/10-atoms/button-link",
-    "src/components/20-molecules/footer-small"
-  ],
+  "packages": ["src/components/10-atoms/link"],
   "version": "independent",
   "npmClient": "npm"
 }
