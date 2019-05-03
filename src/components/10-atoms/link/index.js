@@ -8,33 +8,21 @@ class AXALink extends LitElement {
     ${unsafeCSS(linkCSS)}
   `;
 
-  showArrow = html`
-    <axa-icon icon="arrow-right" class="a-link__arrow"></axa-icon>
-  `;
-
   static get properties() {
     return {
       href: { type: String },
-      color: { type: String },
-      bold: { type: Boolean },
-      arrowLeft: { type: Boolean },
-      arrowRight: { type: Boolean },
-      deco: { type: Boolean },
+      variant: { type: String },
+      icon: { type: String },
       external: { type: Boolean },
-      motion: { type: Boolean },
     };
   }
 
   constructor() {
     super();
     this.href = '';
-    this.color = '';
-    this.bold = false;
-    this.arrowLeft = false;
-    this.arrowRight = false;
-    this.deco = false;
+    this.variant = '';
+    this.icon = '';
     this.external = false;
-    this.motion = false;
   }
 
   connectedCallback() {
@@ -43,12 +31,18 @@ class AXALink extends LitElement {
 
   render() {
     const classes = classMap({
-      'a-link--red': this.color === 'red',
-      'a-link--blue': this.color === 'blue',
-      'a-link--white': this.color === 'white',
-      'a-link--bold': this.bold,
-      'a-link--deco': this.deco,
-      'a-link--motion': this.motion,
+      'a-link--simple': this.variant,
+      'a-link--icon':
+        this.variant.includes('arrowleft') ||
+        this.variant.includes('arrowright') ||
+        this.variant.includes('icon'),
+      'a-link--red':
+        this.variant.includes('red') && !this.variant.includes('white'),
+      'a-link--white':
+        this.variant.includes('white') && !this.variant.includes('red'),
+      'a-link--motion':
+        this.variant.includes('arrowleft-animated') ||
+        this.variant.includes('arrowright-animated'),
     });
 
     return html`
@@ -58,15 +52,28 @@ class AXALink extends LitElement {
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
-        ${this.arrowLeft
+        ${this.variant.includes('arrowleft')
           ? html`
-              <span class="a-link__arrow">${this.showArrow}</span>
+              <axa-icon
+                icon="arrow-right"
+                class="a-link__icon a-link__icon--left"
+              ></axa-icon>
+            `
+          : ''}
+        ${this.icon &&
+        this.variant.includes('icon') &&
+        !this.variant.includes('arrow')
+          ? html`
+              <axa-icon
+                icon="${this.icon}"
+                class="a-link__icon a-link__icon--left"
+              ></axa-icon>
             `
           : ''}
         <slot></slot>
-        ${this.arrowRight
+        ${this.variant.includes('arrowright')
           ? html`
-              <span class="a-link__arrow">${this.showArrow}</span>
+              <axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>
             `
           : ''}
       </a>

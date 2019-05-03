@@ -1,43 +1,66 @@
 .a-link {
-  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-family: $font-family-source-sans, Arial;
   text-decoration: none;
-  color: $color-prim-blue-deep-sapphire;
+  color: $color-axa-blue;
 
+  &:active,
   &:hover {
     text-decoration: underline;
+    color: $color-prim-blue-deep-sapphire;
   }
 
-  &--red {
-    color: $color-prim-red-burnt-sienna;
+  // Simple links == Everything except the normal hyperlinks
+  &--simple {
+    @include typo(primary, default, medium);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
   }
 
-  &--white {
-    color: $color-prim-white;
+  &__icon {
+    margin-left: 10px;
+
+    &--left {
+      margin-left: 0;
+      margin-right: 10px;
+    }
   }
 
-  &--deco {
-    text-decoration: underline;
-  }
-
-  &--bold {
-    font-weight: bold;
-
+  &--icon {
+    &:active,
     &:hover {
       text-decoration: none;
     }
   }
 
-  &__arrow {
-    display: inline-block;
-    margin-right: 4px;
+  &--red {
+    color: $color-prim-red-burnt-sienna;
+
+    &:hover,
+    &:active {
+      color: $color-prim-red-flamingo;
+    }
+  }
+
+  &--white {
+    color: $color-prim-white;
+    opacity: 1;
+
+    &:active,
+    &:hover {
+      color: $color-prim-white;
+      opacity: 0.65;
+    }
   }
 
   &--motion {
+    .a-link__icon {
+      display: inline-block;
+    }
+
     &:hover,
     &:active,
     &:focus {
-      text-decoration: none;
-      .a-link__arrow {
+      .a-link__icon {
         animation-duration: 0.6s;
         animation-timing-function: ease;
         animation-fill-mode: both;
