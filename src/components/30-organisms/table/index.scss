@@ -1,0 +1,171 @@
+@mixin firstChild_TDMQ {
+  padding-left: 14px;
+}
+
+@mixin TD_MQ {
+  display: table-cell;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-top: 1px solid $color-prim-gray-mercury;
+}
+
+@mixin TH_MQ {
+  display: table-cell;
+}
+
+@mixin TR_MQ {
+  border: 1px solid transparent;
+  display: table-row;
+}
+
+@mixin HOVER_TD_MQ {
+  border-top: solid 1px $color-axa-blue;
+  border-bottom: solid 1px $color-axa-blue;
+
+  &:first-child {
+    border-left: solid 1px $color-axa-blue;
+  }
+
+  &:last-child {
+    border-right: solid 1px $color-axa-blue;
+  }
+}
+
+.o-table {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  text-decoration: none;
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    padding: 2px 10px;
+    border-left: 1px solid transparent;
+    color: $color-prim-gray-mine-shaft;
+    text-align: left;
+
+    &:first-child {
+      border-left: 1px solid transparent;
+
+      @include breakpoint($mediaquery-md-up) {
+        @include firstChild_TDMQ;
+      }
+    }
+
+    @include breakpoint($mediaquery-md-up) {
+      @include TD_MQ;
+    }
+  }
+
+  th {
+    color: $color-axa-blue;
+    font-weight: 700;
+
+    display: none;
+
+    @include breakpoint($mediaquery-md-up) {
+      @include TH_MQ;
+    }
+  }
+
+  tr {
+    border-top: 1px solid $color-prim-gray-mercury;
+    padding: 20px 0;
+    display: block;
+    box-sizing: border-box;
+
+    &:nth-child(n+2) {
+      &:last-child {
+        border-bottom: 1px solid $color-prim-gray-mercury;
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: 1px solid $color-axa-blue;
+      outline-offset: -2px;
+
+      td {
+        @include breakpoint($mediaquery-md-up) {
+          @include HOVER_TD_MQ;
+        }
+      }
+
+      @include breakpoint($mediaquery-md-up) {
+        outline: 1px solid transparent;
+      }
+    }
+
+    @include breakpoint($mediaquery-md-up) {
+      @include TR_MQ;
+    }
+  }
+
+  thead {
+    tr {
+      display: none;
+
+      @include breakpoint($mediaquery-md-up) {
+        @include TR_MQ;
+      }
+    }
+  }
+}
+
+.o-table--innerscroll {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  position: relative;
+  padding-bottom: 20px;
+
+  .o-table {
+    th, td {
+      &:first-child {
+        @include firstChild_TDMQ;
+      }
+
+      @include TD_MQ;
+    }
+
+    th {
+      @include TH_MQ;
+    }
+
+    tr {
+      @include TR_MQ;
+
+      outline: 1px solid transparent;
+
+      &:hover,
+      &:active,
+      &:focus {
+        td {
+          @include HOVER_TD_MQ;
+        }
+      }
+    }
+
+    thead {
+      tr {
+        @include TR_MQ;
+      }
+    }
+  }
+}
+
+
+td.o-table--light {
+  color: $color-prim-gray;
+}
+
+
+td.o-table--bold {
+  font-weight: bold;
+  color: $color-prim-gray-mine-shaft;
+}
