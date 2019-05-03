@@ -40,6 +40,36 @@ $image-upload-dropzone-border: 2px !default;
   &__dropzone--drop {
     border: $image-upload-dropzone-border solid $color-prim-gray-dusty;
   }
+
+  &__img-figure {
+    padding-right: 15px;
+    padding-bottom: 15px;
+    margin-top: 0; // override html default
+  }
+
+  &__icon-layer {
+    width: auto;
+    visibility: hidden;
+    background-color: white; // TODO why does it works only with this?
+    opacity: 0.5;
+  }
+
+  &__icon-hover-area:hover &__icon-layer {
+    visibility: visible;
+  }
+
+  &__img-element,
+  &__icon-layer {
+    height: 85px;
+  }
+
+  &__img-element {
+    float: left;
+  }
+
+  &__img-caption {
+    text-align: center;
+  }
 }
 
 :host([showImageOverview]) .m-image-upload__dropzone--drop {
