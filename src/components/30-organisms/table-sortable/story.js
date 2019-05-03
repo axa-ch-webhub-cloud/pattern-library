@@ -47,5 +47,14 @@ storiesOf('Organisms/Table', module)
 
       <axa-table-sortable innerscroll="500" model='${JSON.stringify(model)}'>
       </axa-table-sortable>
+
+      </br>
+      </br>
+
+      TODO:</br>
+
+      - Allow cells formatting like axa-table</br>
+      - Allow to add callback events onChange or onClick when row is pressed</br>
+      - Add ui tests</br>
       `
   );
