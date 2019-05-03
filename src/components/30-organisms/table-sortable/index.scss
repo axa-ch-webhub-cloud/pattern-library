@@ -1,6 +1,7 @@
 .o-table-sortable {
 
   th:not([aria-sort="none"]) {
+    cursor: pointer;
     &:after {
       position: relative;
       margin-left: 5px;

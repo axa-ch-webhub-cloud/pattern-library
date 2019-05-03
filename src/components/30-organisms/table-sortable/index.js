@@ -5,6 +5,9 @@ import tableCss from './index.scss';
 // TODO use THE NPM package one axa-table is released
 import '../table';
 
+const ASC = 'ascending';
+const DESC = 'descending';
+
 class AXATableSortable extends LitElement {
   constructor() {
     super();
@@ -57,9 +60,15 @@ class AXATableSortable extends LitElement {
       return 'none';
     }
     if (config.sort === 'DESC') {
-      return 'descending';
+      return DESC;
     }
-    return 'ascending';
+    return ASC;
+  }
+
+  sortByIndex(index, ev) {
+    const { target } = ev;
+    const sortAs = target.getAttribute('aria-sort') === ASC ? DESC : ASC;
+    target.setAttribute('aria-sort', sortAs);
   }
 
   render() {
@@ -78,8 +87,13 @@ class AXATableSortable extends LitElement {
             <tr>
               ${thead &&
                 thead.map(
-                  config => html`
-                    <th aria-sort="${this.getSortingAria(config)}">
+                  (config, index) => html`
+                    <th
+                      @click="${ev => {
+                        this.sortByIndex(index, ev);
+                      }}"
+                      aria-sort="${this.getSortingAria(config)}"
+                    >
                       ${config.html}
                     </th>
                   `
