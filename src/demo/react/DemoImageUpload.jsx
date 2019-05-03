@@ -6,7 +6,7 @@ const AXAImageUploadReact = createAXAImageUploadReact(createElement);
 const DemoImageUpload = () => {
   return (
     <div style={{width: '440px'}}>
-      <p>callback props are possible, but they aren't realized yet:</p>
+      <p>callback props are possible, but they are not realized yet:</p>
       <AXAImageUploadReact title="Image Upload" fileButtonText="Datei hochladen" />
     </div>
   );

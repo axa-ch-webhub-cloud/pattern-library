@@ -23,16 +23,18 @@ class AXAImageUpload extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
       title: { type: String },
-      fileButtonText: {type: String},
+      fileButtonText: { type: String },
+      showImageOverview: { type: Boolean, reflect: true }
     };
   }
 
   constructor() {
     super();
+    this.title = "Image Upload";
     this.showImageOverview = false;
+    this.fileButtonText = "Datei hochlanden";
   }
 
   firstUpdated() {
