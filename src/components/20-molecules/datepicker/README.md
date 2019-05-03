@@ -1,18 +1,23 @@
 # AXA Datepicker
 
-The datepicker component.
-[axa-datepicker](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/datepicker/README.md) component.
+[axa-datepicker](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/datepicker/README.md).
 
-## Usage
+## Install
+
+`npm install @axa-ch/datepicker`
+
+## Example Usage
+
+`<axa-datepicker locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`
 
 ## Properties
 
 | Attribute                        | Details                                    |
 | -------------------------------- | ------------------------------------------ |
 | `locale="de-CH"`                 | locale (second part must be in uppercase!) |
-| `day="1"`                        | day of date to start                       |
-| `month="month"`                  | month of date to start (January is 0)      |
 | `year="2020"`                    | year of date to start                      |
+| `month="month"`                  | month of date to start (January is 0)      |
+| `day="1"`                        | day of date to start                       |
 | `allowedYears="[2019,2020]"`     | allowdYears that are validated             |
 | `labelbuttoncancel="Schliessen"` | Label for OK button                        |
 | `labelbuttonok="OK"`             | Label for Cancel button                    |
