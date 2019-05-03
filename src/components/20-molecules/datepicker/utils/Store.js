@@ -45,14 +45,7 @@ export default class Store {
           dateCell.isActive = false;
         }
 
-        dateCell.cell = new LastMonth(
-          dateCell.date.getDate(),
-          dateCell.date.toISOString(),
-          i,
-          false,
-          false,
-          dateCell.isActive
-        );
+        dateCell.cell = new LastMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false, dateCell.isActive);
         // Next month dates (if month does not end on Saturday)
       } else if (i > currentMonthTotalDays + (daysToCount - 1)) {
         const newDate = new Date(year, month + 1, nextMonthDay);
@@ -63,14 +56,7 @@ export default class Store {
           dateCell.isActive = false;
         }
 
-        dateCell.cell = new NextMonth(
-          dateCell.date.getDate(),
-          dateCell.date.toISOString(),
-          i,
-          false,
-          false,
-          dateCell.isActive
-        );
+        dateCell.cell = new NextMonth(dateCell.date.getDate(), dateCell.date.toISOString(), i, false, false, dateCell.isActive);
         nextMonthDay += 1;
         // Current month dates. */
       } else {
@@ -81,14 +67,7 @@ export default class Store {
         const isSelected = currentDate.toDateString() === date.toDateString();
         dateCell.date = currentDate;
         dateCell.isToday = isToday;
-        dateCell.cell = new CurrentMonth(
-          currentDate.getDate(),
-          currentDate.toISOString(),
-          i,
-          isToday,
-          isSelected,
-          dateCell.isActive
-        );
+        dateCell.cell = new CurrentMonth(currentDate.getDate(), currentDate.toISOString(), i, isToday, isSelected, dateCell.isActive);
       }
 
       dates.push(dateCell);

@@ -15,9 +15,8 @@ const getWeekdays = (date, locale) => {
 };
 
 const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
-const clearStringFromIEGeneratedCharacters = string =>
-  // eslint-disable-next-line no-control-regex
-  string.replace(/[^\x00-\x7F]/g, '');
+// eslint-disable-next-line no-control-regex
+const clearStringFromIEGeneratedCharacters = string => string.replace(/[^\x00-\x7F]/g, '');
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 10, 23);
@@ -27,25 +26,18 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   }
 
   // find out which out of 4 valid seperator the current locale has
-  const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(
-    blueprint
-  );
+  const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(blueprint);
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
 
-  const usedSeperator =
-    localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
+  const usedSeperator = localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
 
   if (!usedSeperator) {
     return null;
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
-  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(
-    usedSeperator
-  );
-  const splittedBlueprint = clearStringFromIEGeneratedCharacters(
-    localisedBlueprintDateString
-  ).split(usedSeperator);
+  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(usedSeperator);
+  const splittedBlueprint = clearStringFromIEGeneratedCharacters(localisedBlueprintDateString).split(usedSeperator);
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)
@@ -53,11 +45,7 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   const dayIndex = splittedBlueprint.indexOf('23');
   const yearIndex = splittedBlueprint.indexOf('2017');
 
-  const dateUnderValidation = new Date(
-    splittedValue[yearIndex],
-    splittedValue[monthIndex] - 1,
-    splittedValue[dayIndex]
-  );
+  const dateUnderValidation = new Date(splittedValue[yearIndex], splittedValue[monthIndex] - 1, splittedValue[dayIndex]);
 
   // eslint-disable-next-line no-restricted-globals
   if (dateUnderValidation instanceof Date && !isNaN(dateUnderValidation)) {
