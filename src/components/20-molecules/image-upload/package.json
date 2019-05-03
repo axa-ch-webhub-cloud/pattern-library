@@ -23,9 +23,10 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.7",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
-    "lit-html": "^1.0.0"
+    "lit-html": "^1.0.0",
+    "blueimp-canvas-to-blob": "^3.14.0",
+    "is-blob": "^1.0.0"
   }
 }
