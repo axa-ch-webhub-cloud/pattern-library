@@ -1,3 +1,4 @@
+import { Selector } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
@@ -107,4 +108,15 @@ test('should change enhanced dropdown title (only on large screens) on month cha
   await datePickerAccessor2019.selectDayOfCurrentMonth(14);
 
   await datePickerAccessor2019.assertDropdownTitle('Februar');
+});
+
+// React smoke test
+fixture('Datepicker React').page(
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component`
+);
+test('should render datepicker as reactified component', async t => {
+  const datepickerReact = await Selector(() =>
+    document.querySelector(`axa-datepicker[data-test-id="datepicker-react"]`)
+  );
+  await t.expect(datepickerReact.exists).ok();
 });

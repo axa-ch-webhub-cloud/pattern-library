@@ -3,11 +3,7 @@
 import { DateInputSvg } from '@axa-ch/materials';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import datepickerCSS from './index.scss';
-import {
-  getWeekdays,
-  getAllLocaleMonthsArray,
-  parseLocalisedDateIfValid,
-} from './utils/date';
+import { getWeekdays, getAllLocaleMonthsArray, parseLocalisedDateIfValid } from './utils/date';
 import Store from './utils/Store';
 
 const dateInputIcon = svg([DateInputSvg]);
@@ -19,6 +15,7 @@ export class Datepicker extends LitElement {
 
   static get properties() {
     return {
+      'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
@@ -58,14 +55,8 @@ export class Datepicker extends LitElement {
 
     if (this.inputfield) {
       window.setTimeout(() => {
-        window.addEventListener(
-          'resize',
-          this.debounce(() => this.handleViewportCheck(this.inputfield), 250)
-        );
-        window.addEventListener(
-          'scroll',
-          this.debounce(() => this.handleViewportCheck(this.inputfield), 250)
-        );
+        window.addEventListener('resize', this.debounce(() => this.handleViewportCheck(this.inputfield), 250));
+        window.addEventListener('scroll', this.debounce(() => this.handleViewportCheck(this.inputfield), 250));
         this.handleViewportCheck(this.inputfield);
       }, 100);
     }
@@ -104,13 +95,11 @@ export class Datepicker extends LitElement {
   }
 
   render() {
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
-      (item, index) => ({
-        isSelected: index === this.month,
-        name: item.toString(),
-        value: index.toString(),
-      })
-    );
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      isSelected: index === this.month,
+      name: item.toString(),
+      value: index.toString(),
+    }));
 
     this.yearitems = this.allowedyears.map(item => ({
       isSelected: item === this.year,
@@ -130,12 +119,8 @@ export class Datepicker extends LitElement {
                 placeholder="Please select a date"
                 value="${this.outputdate}"
               />
-              <button
-                type="button"
-                class="m-datepicker__input-button"
-                @click="${this.handleInputButtonClick}"
-              >
-                <span class="m-datepicker__input-icon">${dateInputIcon}</span>
+              <button type="button" class="m-datepicker__input-button" @click="${this.handleInputButtonClick}">
+                <span>${dateInputIcon}</span>
               </button>
             </div>
           `}
@@ -197,9 +182,7 @@ export class Datepicker extends LitElement {
                 @click="${this.handleButtonCancelClick}"
                 >${this.labelbuttoncancel}</axa-button
               >
-              <axa-button
-                class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
-                @click="${this.handleButtonOkClick}"
+              <axa-button class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok" @click="${this.handleButtonOkClick}"
                 >${this.labelbuttonok}</axa-button
               >
             </div>
@@ -250,17 +233,13 @@ export class Datepicker extends LitElement {
 
   shouldMove(elem) {
     const element = elem.getBoundingClientRect();
-    const moreSpaceOnTopThanBottom =
-      element.top > window.innerHeight - element.bottom;
+    const moreSpaceOnTopThanBottom = element.top > window.innerHeight - element.bottom;
     return moreSpaceOnTopThanBottom;
   }
 
   toggleDatepicker() {
     if (!this.open) {
-      if (
-        window.axaComponents.openDatepickerInstance &&
-        window.axaComponents.openDatepickerInstance !== this
-      ) {
+      if (window.axaComponents.openDatepickerInstance && window.axaComponents.openDatepickerInstance !== this) {
         window.axaComponents.openDatepickerInstance.open = false;
       }
       this.open = true;
@@ -278,10 +257,7 @@ export class Datepicker extends LitElement {
       // eslint-disable-next-line no-restricted-properties
       const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
       const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
-      if (
-        (isValid && isValidDateLocalized) ||
-        (!isValid && isValidDateLocalized)
-      ) {
+      if ((isValid && isValidDateLocalized) || (!isValid && isValidDateLocalized)) {
         out = isValidDateLocalized;
       }
     } catch (e) {
@@ -406,13 +382,11 @@ export class Datepicker extends LitElement {
     this.date = new Date(date);
     this.updateDatepickerProps(this.date);
 
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
-      (item, index) => ({
-        isSelected: index === this.month,
-        name: item.toString(),
-        value: index.toString(),
-      })
-    );
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      isSelected: index === this.month,
+      name: item.toString(),
+      value: index.toString(),
+    }));
 
     this.yearitems = this.allowedyears.map(item => ({
       isSelected: item === this.year,
@@ -423,3 +397,4 @@ export class Datepicker extends LitElement {
 }
 
 customElements.define(Datepicker.tagName, Datepicker);
+export default Datepicker;
