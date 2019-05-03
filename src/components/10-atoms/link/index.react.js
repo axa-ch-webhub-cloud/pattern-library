@@ -6,10 +6,15 @@ export default createElement => ({
   variant = '',
   icon = '',
   external = false,
+  children,
 }) =>
-  withReact(createElement)(AXALink.tagName, {
-    href,
-    variant,
-    icon,
-    external,
-  });
+  withReact(createElement)(
+    AXALink.tagName,
+    {
+      href,
+      variant,
+      icon,
+      external,
+    },
+    children
+  );
