@@ -6,22 +6,26 @@ import Readme from './README.md';
 
 const model = {
   thead: [
+    { html: 'Title 0', sort: 'ASC' },
     { html: 'Title 1', sort: 'ASC' },
     { html: 'Title 3', sort: 'DESC' },
     { html: 'Title 2' },
   ],
   tbody: [
     [
+      { html: '<span>11 Gaa</span>' },
       { html: '<span>Hello</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'A' },
     ],
     [
+      { html: '<span>1 Gaa</span>' },
       { html: '<span>Hello 2</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'B' },
     ],
     [
+      { html: '<span>2 Gaa</span>' },
       { html: '<span>Hello 3</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'C' },

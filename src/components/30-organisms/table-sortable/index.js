@@ -8,6 +8,11 @@ import '../table';
 const ASC = 'ascending';
 const DESC = 'descending';
 
+const mapAsc = {
+  [ASC]: 'ASC',
+  [DESC]: 'DESC',
+};
+
 class AXATableSortable extends LitElement {
   constructor() {
     super();
@@ -18,6 +23,14 @@ class AXATableSortable extends LitElement {
     };
     this.model = { ...this.defaultModel };
     this.innerscroll = 0;
+    this.firstRender = true;
+    this.numCollator = new Intl.Collator(undefined, {
+      numeric: true,
+      sensitivity: 'base',
+    });
+    this.strCollator = new Intl.Collator(undefined, {
+      sensitivity: 'base',
+    });
   }
 
   static get tagName() {
@@ -68,16 +81,58 @@ class AXATableSortable extends LitElement {
   sortByIndex(index, ev) {
     const { target } = ev;
     const sortAs = target.getAttribute('aria-sort') === ASC ? DESC : ASC;
-    target.setAttribute('aria-sort', sortAs);
+    const tmpModel = { ...this.model };
+
+    const { tbody, tfoot } = this.model;
+
+    tmpModel.tbody = this.sort(tbody, index, sortAs);
+    tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+    tmpModel.thead[index].sort = mapAsc[sortAs];
+
+    this.model = tmpModel;
+
+    // target.setAttribute('aria-sort', sortAs);
   }
 
-  render() {
-    this.model = { ...this.defaultModel, ...this.model };
+  // V8 engine uses QuickSort algorythm for Array.prototype.sort
+  // with elements less then 10. for more then 10, it uses the InsertionSort
+  // Akgorythm. As result, for arrays containing 10 or fewer elements,
+  // time complexity of .sort is O(n^2), and space complexity is O(1).
+  // For longer arrays time complexity is Θ(n log(n)) (average case),
+  // and space complexity is O(log(n))
+  sort(arr, index, sortAs) {
+    return arr.sort((rowLx, rowRx) => {
+      const {
+        [index]: { html: cellRx },
+      } = rowRx;
+      const {
+        [index]: { html: cellLx },
+      } = rowLx;
+      const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
+      const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
+      let result;
+      // eslint-disable-next-line no-restricted-globals
+      if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
+        result = this.numCollator.compare(cleanCellLx, cleanCellRx);
+      } else {
+        result = this.strCollator.compare(cleanCellLx, cleanCellRx);
+      }
+      return sortAs === ASC ? result : ~result + 1;
+    });
+  }
 
+  shouldUpdate(...args) {
+    if (this.firstRender) {
+      this.firstRender = false;
+      this.model = { ...this.defaultModel, ...this.model };
+    }
     if (!this.validateModel()) {
       throw new Error('Invalid model provided');
     }
+    return super.shouldUpdate(...args);
+  }
 
+  render() {
     const { thead, tbody, tfoot } = this.model;
 
     return html`
