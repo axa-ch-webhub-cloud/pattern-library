@@ -41,6 +41,15 @@ $image-upload-dropzone-border: 2px !default;
     border: $image-upload-dropzone-border solid $color-prim-gray-dusty;
   }
 }
-:host([showImageOverview]) p {
-  color: red;
+
+:host([showImageOverview]) .m-image-upload__dropzone--drop {
+  display: flex;
+  overflow-y: auto;
+  padding-left: 20px;
+  padding-top: 20px;
+
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
 }
