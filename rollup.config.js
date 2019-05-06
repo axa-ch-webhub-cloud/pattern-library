@@ -21,7 +21,9 @@ const globals = require('./config/globals.js')
 
 const babelOptions = require('./.storybook/.babelrc'); // get the babelrc file
 
-const input = glob.sync('src/components/@(10-atoms|20-molecules|30-organisms)/*/index*.js');
+const input = glob.sync(
+  'src/components/@(10-atoms|20-molecules|30-organisms)/*/index*.js'
+);
 
 const LIB = '.tmp-lib';
 const DIST = '.tmp-dist';
@@ -39,12 +41,19 @@ const generatePlugins = type => {
       insert: true,
       include: ['**/*.scss'],
       options: {
-        includePaths: ['node_modules', path.resolve(path.dirname(require.resolve('breakpoint-sass/package.json')), 'stylesheets')],
+        includePaths: [
+          'node_modules',
+          path.resolve(
+            path.dirname(require.resolve('breakpoint-sass/package.json')),
+            'stylesheets'
+          ),
+        ],
         data: globals,
       },
-      processor: css => postcss([autoprefixer, stripFontFace])
-        .process(css)
-        .then(result => result.css),
+      processor: css =>
+        postcss([autoprefixer, stripFontFace])
+          .process(css)
+          .then(result => result.css),
     }),
   ];
   // is LIB
@@ -54,14 +63,11 @@ const generatePlugins = type => {
       babel({
         ...babelOptions,
         babelrc: false,
-        exclude: [
-          'node_modules/**',
-        ],
+        exclude: ['node_modules/**'],
         runtimeHelpers: true,
       }),
       resolve({
-        jsnext: true,
-        module: true,
+        mainFields: ['module', 'main'],
         only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
       }),
     ];
@@ -69,27 +75,33 @@ const generatePlugins = type => {
   // is DIST
   return [
     ...commons,
-    babel({
-      presets: babelOptions.presets,
-      plugins: [
-        ...babelOptions.plugins,
-        '@babel/plugin-transform-runtime'
-      ],
-      babelrc: false,
-      exclude: [
-        'node_modules/@skatejs/val/**',
-        'node_modules/@babel/**',
-      ],
-      runtimeHelpers: true,
-    }),
     resolve({
-      jsnext: true,
+      mainFields: ['module', 'main', 'browser'],
     }),
     commonjs({
       namedExports: {
         '@skatejs/val': ['val'],
       },
-      include: 'node_modules/**'
+      include: 'node_modules/**',
+    }),
+    babel({
+      presets: babelOptions.presets,
+      plugins: [
+        ...babelOptions.plugins,
+        [
+          '@babel/plugin-transform-runtime',
+          {
+            absoluteRuntime: true,
+            corejs: false,
+            helpers: true,
+            regenerator: true,
+            useESModules: false,
+          },
+        ],
+      ],
+      babelrc: false,
+      exclude: ['node_modules/@skatejs/val/**', 'node_modules/@babel/**'],
+      runtimeHelpers: true,
     }),
     uglify(),
   ];
@@ -97,18 +109,20 @@ const generatePlugins = type => {
 
 const generateOutputConfig = type => entry => ({
   input: entry,
-  external: type !== LIB ? undefined : [
-    'lit-element',
-    'lit-html/directives/class-map',
-    'lit-html/directives/repeat',
-    '@skatejs/val'
-  ],
+  external:
+    // prettier-ignore
+    type !== LIB ? undefined : [ // prettier-ignore
+      'lit-element',
+      'lit-html/directives/class-map',
+      'lit-html/directives/repeat',
+      '@skatejs/val',
+    ],
   context: type === DIST ? 'window' : undefined,
   output: {
     // define export path (lib/index.js for lib, dist/index.js for dist)
     file: entry.replace('/index.', `/${type}/index.`),
     // defined export type
-    format: type === LIB ? 'es' : 'iife',
+    format: type === LIB ? 'es' : 'umd',
     // if is IIFE, make sure to extend the window object
     extend: !type === LIB,
     // attach the IIFE to the window object
