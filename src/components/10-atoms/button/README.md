@@ -1,4 +1,4 @@
-# axa-button
+# AXA Button
 
 Buttons provide a clickable element, which can be used in forms, or anywhere that needs simple, standard button functionality. They may display text, icons, or both. Buttons can be styled with several attributes to look a specific way.
 If you need a link with button styling use the [axa-button-link](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/button-link/README.md) component.
@@ -8,7 +8,7 @@ If you need a link with button styling use the [axa-button-link](https://github.
 `npm install @axa-ch/button`
 
 ```
-import @axa-ch/button
+import '@axa-ch/button';
 
 <axa-button>I'm a button</axa-button>
 ```
