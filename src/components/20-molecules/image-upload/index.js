@@ -131,8 +131,25 @@ class AXAImageUpload extends LitElement {
   }
 
   handleFileDrop(items) {
-    Array.from(items).forEach(file => imageFigure(this.dropZone, file));
+    if (this.allFiles.length === 0) {
+      Array.from(items).forEach(file => imageFigure(this.dropZone, file));
 
+      const addMoreWrapper = document.createElement('div');
+      addMoreWrapper.className = 'm-image-upload__img-wrapper';
+      this.dropZone.appendChild(addMoreWrapper);
+
+      const addMoreField = document.createElement('div');
+      addMoreField.className = 'm-image-upload__add-more-field';
+      addMoreWrapper.appendChild(addMoreField);
+
+      const addMoreCaptureElement = document.createElement('p');
+      const addMoreCapture = document.createTextNode('Add more');
+      addMoreCaptureElement.className = 'm-image-upload__add-more-capture';
+      addMoreCaptureElement.appendChild(addMoreCapture);
+      addMoreWrapper.appendChild(addMoreCaptureElement);
+    } else {
+      Array.from(items).forEach(file => imageFigure(this.dropZone, file));
+    }
     // if (typeof item === 'object' && item !== null && item.target && item.target.files) {
     //   this.addFiles([...item.target.files]);
     // }
