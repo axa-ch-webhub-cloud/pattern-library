@@ -1,10 +1,11 @@
-import { LitElement } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
-import tableCss from './index.scss';
+import NoShadowDOM from '../../../utils/no-shadow';
+import tableCSS from './index.scss';
 
-class AXATable extends LitElement {
+class AXATable extends NoShadowDOM {
   constructor() {
     super();
+    // property defaults
     this.innerscroll = 0;
   }
 
@@ -13,41 +14,30 @@ class AXATable extends LitElement {
   }
 
   static get styles() {
-    return tableCss;
+    return tableCSS;
   }
 
   static get properties() {
     return {
-      innerscroll: { type: Number },
+      innerscroll: {
+        type: Number,
+        reflect: true /* for attribute-selector styling */,
+      },
     };
   }
 
-  firstUpdated(...args) {
-    super.firstUpdated(...args);
+  firstUpdated() {
+    // do we have minimal correct children content?
     const table = this.querySelector('table');
-    if (table) {
-      const { documentElement } = this;
-      const doc = documentElement || document;
-
-      // If we are not in ShadowDom context, reuse styles from a previous defined
-      // table if there are 2 on the page.
-      if (!doc.querySelector('#axa-table-global-styles-id')) {
-        const style = doc.createElement('style');
-        style.setAttribute('id', 'axa-table-global-styles-id');
-        style.textContent = AXATable.styles;
-        this.appendChild(style);
-      }
-
-      table.classList.add('o-table');
-      table.style.minWidth = `${this.innerscroll}px`;
-      if (this.innerscroll) {
-        this.classList.add('o-table--innerscroll');
-      }
+    if (!table) {
+      // no, early exit
+      return;
     }
-  }
-
-  createRenderRoot() {
-    return this;
+    // inject deduplicated inline <style>tableCSS</style>
+    this.inlineStyles();
+    // annotate top-level <table> for styling purposes
+    table.classList.add('o-table');
+    table.style.minWidth = `${this.innerscroll}px`;
   }
 }
 

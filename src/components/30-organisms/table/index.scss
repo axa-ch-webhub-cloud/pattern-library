@@ -117,7 +117,7 @@
   }
 }
 
-.o-table--innerscroll {
+axa-table[innerscroll]:not([innerscroll="0"]) {
   width: 100%;
   overflow-x: auto;
   display: block;
