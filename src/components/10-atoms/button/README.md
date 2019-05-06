@@ -70,4 +70,5 @@ The boolean attribute `disabled` disables the button.
 Based on the attribute `icon` value, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/icon/README.md) readme.
 
 ### onClick
+
 The function attribute `onClick` useable for React and other frameworks who can use callback props.
