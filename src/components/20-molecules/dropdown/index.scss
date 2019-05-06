@@ -38,7 +38,7 @@ $dropdown-height: 40px;
   height: auto;
 }
 
-:host([open]) .a-icon__svg {
+:host([open]) svg {
   transform: rotate(180deg);
 }
 
@@ -100,7 +100,7 @@ $dropdown-height: 40px;
     pointer-events: none;
     text-align: center;
 
-    .a-icon__svg {
+    svg {
       width: 15px;
       height: $dropdown-height;
       color: $color-prim-gray-dusty;
