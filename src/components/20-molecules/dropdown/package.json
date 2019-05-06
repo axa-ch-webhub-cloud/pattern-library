@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "@axa-ch/icon": "^1.0.0-alpha.3",
     "@axa-ch/materials": "^1.0.0-alpha.4",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
