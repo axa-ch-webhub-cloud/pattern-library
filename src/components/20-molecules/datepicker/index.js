@@ -88,7 +88,7 @@ class AXADatepicker extends LitElement {
       this.startDate.setMonth(this.month);
     }
 
-    if (this.day >= 0) {
+    if (this.day >= 0 && typeof this.day === 'number') {
       this.startDate.setDate(this.day);
     }
 
