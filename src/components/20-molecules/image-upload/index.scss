@@ -1,4 +1,13 @@
-$image-upload-dropzone-border: 2px !default;
+$image-upload-dropzone-border-width: 2px !default;
+$image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color-prim-gray-dusty;
+
+@mixin caption($max-width) {
+  width: $max-width;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .m-image-upload {
   @include typo(primary, medium);
@@ -12,7 +21,8 @@ $image-upload-dropzone-border: 2px !default;
     justify-content: space-evenly;
     align-items: center;
 
-    border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
+    border: $image-upload-dropzone-border;
+    cursor: pointer;
   }
 
   &__or {
@@ -38,10 +48,10 @@ $image-upload-dropzone-border: 2px !default;
   }
 
   &__dropzone--drop {
-    border: $image-upload-dropzone-border solid $color-prim-gray-dusty;
+    border: $image-upload-dropzone-border-width solid $color-prim-gray-dusty;
   }
 
-  &__img-figure {
+  &__img-wrapper {
     padding-right: 15px;
     padding-bottom: 15px;
     margin-top: 0; // override html default
@@ -60,15 +70,31 @@ $image-upload-dropzone-border: 2px !default;
 
   &__img-element,
   &__icon-layer {
-    height: 85px;
+    height: 82px;
   }
 
   &__img-element {
     float: left;
+    width: 122px;// TODO change size when compromising
+    height:82px;
+    vertical-align: middle;
   }
 
   &__img-caption {
-    text-align: center;
+    @include caption(122px);
+  }
+
+  &__add-more-capture {
+    margin: 0;
+    @include caption(122px);
+  }
+
+  &__add-more-field {
+    height: 78px;
+    width: 118px;
+    border: $image-upload-dropzone-border;
+    opacity: 0.5;
+    cursor: pointer;
   }
 }
 
@@ -82,4 +108,6 @@ $image-upload-dropzone-border: 2px !default;
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
+
+  cursor: default;
 }
