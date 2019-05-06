@@ -1,5 +1,5 @@
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
+import '@webcomponents/webcomponentsjs';
 import { DateInputSvg } from '@axa-ch/materials';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import '@axa-ch/dropdown';
@@ -10,10 +10,11 @@ import {
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
 } from './utils/date';
+import defineOnce from '../../../utils/define-once';
 import Store from './utils/Store';
 
 const dateInputIcon = svg([DateInputSvg]);
-export class Datepicker extends LitElement {
+class AXADatepicker extends LitElement {
   static tagName = 'axa-datepicker';
   static styles = css`
     ${unsafeCSS(datepickerCSS)}
@@ -425,5 +426,5 @@ export class Datepicker extends LitElement {
   }
 }
 
-customElements.define(Datepicker.tagName, Datepicker);
-export default Datepicker;
+defineOnce(AXADatepicker.tagName, AXADatepicker);
+export default AXADatepicker;
