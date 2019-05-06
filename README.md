@@ -16,3 +16,9 @@ We do not support Built-ins
 ## Scaffolding
 
 Simply, just run `npm run new` and follow on screen instructions
+
+## Layout and Reset CSS
+
+Resetting CSS on the `<body>` or `<html>` is the responsibility of to the system that embeds the component. This is important for 100% width sized components like the Top content bar or the header.
+
+You can do it in the following way as example:

@@ -22,7 +22,7 @@ class AXAButton extends LitElement {
     return {
       // button, submit, reset
       type: { type: String, reflect: true },
-      // secondary, inverted, red
+      // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
       icon: { type: String },
       large: { type: Boolean },
@@ -45,9 +45,7 @@ class AXAButton extends LitElement {
 
   isTypeSubmitOrReset = () => this.type === 'submit' || this.type === 'reset';
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  firstUpdated() {
     // shadow dom submit btn workaround
     if (this.isTypeSubmitOrReset()) {
       const fakeButton = document.createElement('button');
@@ -62,8 +60,10 @@ class AXAButton extends LitElement {
     const { type, large, motionOff, disabled, variant = '', icon = '' } = this;
     const classes = {
       'a-button--secondary': variant === 'secondary',
-      'a-button--inverted': variant === 'inverted',
       'a-button--red': variant === 'red',
+      'a-button--inverted': variant === 'inverted',
+      'a-button--inverted-green': variant === 'inverted-green',
+      'a-button--inverted-dark-blue': variant === 'inverted-dark-blue',
       'a-button--large': large,
       'a-button--motion': !motionOff,
     };

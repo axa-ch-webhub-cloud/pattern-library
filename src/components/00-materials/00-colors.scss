@@ -40,21 +40,3 @@ $color-sec-green-acid: #f0ff93 !default;
 $color-sec-orange-dune: #fcd385 !default;
 $color-sec-orange-apache: #ddbe65 !default;
 $color-sec-red-tosca: #914146 !default;
-
-// Breakpoints
-$breakpoint-medium: 768px;
-$breakpoint-large: 992px;
-$breakpoint-xlarge: 1200px;
-$breakpoint-xxlarge: 1440px;
-
-// https://github.com/at-import/breakpoint/wiki/Basic-Media-Queries
-// Breakpoints in pixel - auto converted to em!
-@import 'breakpoint';
-@include bkpt-set('to ems', true); // TODO -> SERIOUS EVALUATION HERE NEEDED
-
-$mediaquery-sm: 0 ($breakpoint-medium - 1); // (min-width: 0 and max-width: 767px)
-$mediaquery-md-up: $breakpoint-medium; // (min-width: 768px)
-$mediaquery-md: $breakpoint-medium ($breakpoint-large - 1px); // (min-width: 768px and max-width: 991px)
-$mediaquery-lg-up: $breakpoint-large; // (min-width: 1200px)
-$mediaquery-lg: $breakpoint-large ($breakpoint-xlarge - 1px); // (min-width: 1200 and max-width: 1439px)
-$mediaquery-xlg-up: $breakpoint-xlarge; // (min-width: 1600px)
