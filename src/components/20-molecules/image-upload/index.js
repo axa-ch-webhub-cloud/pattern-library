@@ -46,6 +46,18 @@ class AXAImageUpload extends LitElement {
     this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
   }
 
+  updated(changedProperties) {
+    super.update(changedProperties);
+    this.imgWrapperElements = this.dropZone.querySelectorAll('.js-image-upload__img-figure');
+
+    this.imgWrapperElements.forEach(element =>
+      element.addEventListener('click', e => {
+        e.stopPropagation();
+        this.dropZone.removeChild(element);
+      })
+    );
+  }
+
   render() {
     const iconElements = ICONS.map(icon => html`<div class="m-image-upload__icon">${icon}</div>`);
     const classes = {
