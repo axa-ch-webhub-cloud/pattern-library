@@ -15,8 +15,11 @@ storiesOf('Molecules/Datepicker/React', module)
         data-test-id="datepicker-react"
         locale="de-CH"
         day={20}
-        month={0}
+        month={1}
         year={2020}
+        labelbuttoncancel="Cancel"
+        labelbuttonok="OK"
+        allowedyears={[2019, 2020]}
       />,
       div
     );
