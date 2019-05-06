@@ -1,5 +1,6 @@
 import withReact from '../../../utils/with-react';
 import AXAButton from './index';
+import '@axa-ch/link/lib/index.react';
 
 export default createElement => ({
   type = 'button',
