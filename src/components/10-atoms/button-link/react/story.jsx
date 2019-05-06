@@ -6,20 +6,8 @@ import AXAButtonLinkReact from './AXAButtonLinkReact';
 import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Button/React', module)
+storiesOf('Atoms/Button Link/React', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Button-Link - click event', () => {
-    const btn = document.createElement('axa-button-link');
-    let counter = 0;
-    btn.innerHTML = `You clicked me: ${counter} mal, btw my event name is click`;
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      counter += 1;
-      btn.innerHTML = `You clicked me: ${counter} times, btw my event name is click`;
-    });
-
-    return btn;
-  })
 
   /* Default */
   .add('Button-Link - default', () => {

@@ -6,7 +6,7 @@ import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 import DemoButtonClick from './DemoButtonLinkClick';
 
-storiesOf('Atoms/Button/React/Demos', module)
+storiesOf('Atoms/Button Link/React/Demos', module)
   .addDecorator(withMarkdown(Readme))
   .add('Feature - Button Link clickable', () => {
     const div = document.createElement('div');
