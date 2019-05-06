@@ -4,7 +4,7 @@ export default (node, file) => {
   const imageUrl = urlCreator.createObjectURL(file);
 
   const figure = document.createElement('figure');
-  figure.className = 'js-image-upload__img-figure m-image-upload__img-wrapper';
+  figure.className = 'js-image-upload__img-figure m-image-upload__img-figure m-image-upload__img-wrapper';
   node.appendChild(figure);
 
   const hoverArea = document.createElement('div');

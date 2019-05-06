@@ -57,6 +57,11 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     margin-top: 0; // override html default
   }
 
+  &__img-figure {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   &__icon-layer {
     width: auto;
     visibility: hidden;
