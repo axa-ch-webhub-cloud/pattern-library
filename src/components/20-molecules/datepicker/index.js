@@ -2,6 +2,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { DateInputSvg } from '@axa-ch/materials';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import '@axa-ch/dropdown';
+import '@axa-ch/button';
 import datepickerCSS from './index.scss';
 import {
   getWeekdays,
