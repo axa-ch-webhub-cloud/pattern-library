@@ -1,3 +1,5 @@
+// TODO fix that stuff
+/* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon/lib/index';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
