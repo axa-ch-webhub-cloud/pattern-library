@@ -67,8 +67,7 @@ const generatePlugins = type => {
         runtimeHelpers: true,
       }),
       resolve({
-        jsnext: true,
-        module: true,
+        mainFields: ['module', 'main'],
         only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
       }),
     ];
@@ -76,25 +75,33 @@ const generatePlugins = type => {
   // is DIST
   return [
     ...commons,
-    babel({
-      presets: babelOptions.presets,
-      plugins: [
-        ...babelOptions.plugins,
-        '@babel/plugin-transform-runtime',
-        '@babel/plugin-transform-regenerator',
-      ],
-      babelrc: false,
-      exclude: ['node_modules/@skatejs/val/**', 'node_modules/@babel/**'],
-      runtimeHelpers: true,
-    }),
     resolve({
-      jsnext: true,
+      mainFields: ['module', 'main', 'browser'],
     }),
     commonjs({
       namedExports: {
         '@skatejs/val': ['val'],
       },
       include: 'node_modules/**',
+    }),
+    babel({
+      presets: babelOptions.presets,
+      plugins: [
+        ...babelOptions.plugins,
+        [
+          '@babel/plugin-transform-runtime',
+          {
+            absoluteRuntime: true,
+            corejs: false,
+            helpers: true,
+            regenerator: true,
+            useESModules: false,
+          },
+        ],
+      ],
+      babelrc: false,
+      exclude: ['node_modules/@skatejs/val/**', 'node_modules/@babel/**'],
+      runtimeHelpers: true,
     }),
     uglify(),
   ];
@@ -115,7 +122,7 @@ const generateOutputConfig = type => entry => ({
     // define export path (lib/index.js for lib, dist/index.js for dist)
     file: entry.replace('/index.', `/${type}/index.`),
     // defined export type
-    format: type === LIB ? 'es' : 'iife',
+    format: type === LIB ? 'es' : 'umd',
     // if is IIFE, make sure to extend the window object
     extend: !type === LIB,
     // attach the IIFE to the window object
