@@ -10,6 +10,9 @@
 
 `<axa-datepicker locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`
 
+As inputfield
+`<axa-datepicker inputfield locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`
+
 ## Properties
 
 | Attribute                        | Details                                    |
@@ -18,7 +21,7 @@
 | `year="2020"`                    | year of date to start                      |
 | `month="month"`                  | month of date to start (January is 0)      |
 | `day="1"`                        | day of date to start                       |
-| `allowedYears="[2019,2020]"`     | allowdYears that are validated             |
+| `allowedYears='[2019,2020]'`     | allowdYears that are validated             |
 | `labelbuttoncancel="Schliessen"` | Label for OK button                        |
 | `labelbuttonok="OK"`             | Label for Cancel button                    |
 
