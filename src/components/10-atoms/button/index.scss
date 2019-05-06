@@ -24,10 +24,10 @@
   }
 
   &:disabled {
-    color: #999;
-    background-color: #e5e5e5;
-    border-color: #e5e5e5;
-    border-bottom-color: #ccc;
+    color: $color-prim-gray-dusty;
+    background-color: $color-prim-gray-mercury;
+    border-color: $color-prim-gray-mercury;
+    border-bottom-color: $color-prim-gray-silver;
     pointer-events: none;
   }
 
@@ -42,8 +42,12 @@
 }
 
 .a-button--large {
-  min-height: 50px;
-  line-height: .64;
+  min-height: 40px;
+
+  @media screen and (min-width: 576px) {
+    min-height: 50px;
+    line-height: .64;
+  }
 }
 
 .a-button--motion {
@@ -133,7 +137,9 @@
   }
 }
 
-.a-button--inverted {
+.a-button--inverted,
+.a-button--inverted-green,
+.a-button--inverted-dark-blue {
   background-color: transparent;
   border-color: $color-prim-white;
   color: $color-prim-white;
@@ -143,7 +149,7 @@
   &:focus {
     background-color: $color-prim-white;
     border-color: $color-prim-white;
-    color: inherit;
+    color: #00008f;
   }
 
   &.a-button--motion {
@@ -152,5 +158,29 @@
     &::after {
       background-color: $color-prim-white;
     }
+  }
+}
+
+.a-button--inverted {
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-axa-blue;
+  }
+}
+
+.a-button--inverted-green {
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-sec-blue-teal;
+  }
+}
+
+.a-button--inverted-dark-blue {
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-prim-blue-deep-sapphire;
   }
 }
