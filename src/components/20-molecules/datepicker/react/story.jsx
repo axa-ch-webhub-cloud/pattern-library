@@ -14,7 +14,7 @@ storiesOf('Molecules/Datepicker/React', module)
       <AXADatepickerReact
         data-test-id="datepicker-react"
         locale="de-CH"
-        day={20}
+        day={25}
         month={1}
         year={2020}
         labelbuttoncancel="Cancel"
