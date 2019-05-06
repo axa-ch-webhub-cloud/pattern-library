@@ -22,7 +22,7 @@ class AXAButtonLink extends LitElement {
     return {
       href: { type: String },
       external: { type: Boolean },
-      // secondary, inverted, red
+      // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
       icon: { type: String },
       large: { type: Boolean },
@@ -54,10 +54,13 @@ class AXAButtonLink extends LitElement {
       variant = '',
       icon = '',
     } = this;
+
     const classes = {
       'a-button-link--secondary': variant === 'secondary',
-      'a-button-link--inverted': variant === 'inverted',
       'a-button-link--red': variant === 'red',
+      'a-button-link--inverted': variant === 'inverted',
+      'a-button-link--inverted-green': variant === 'inverted-green',
+      'a-button-link--inverted-dark-blue': variant === 'inverted-dark-blue',
       'a-button-link--large': large,
       'a-button-link--motion': !motionOff,
     };
