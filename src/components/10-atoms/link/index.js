@@ -1,3 +1,4 @@
+import '@axa-ch/icon/lib/index';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
