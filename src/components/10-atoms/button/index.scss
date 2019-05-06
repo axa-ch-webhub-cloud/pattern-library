@@ -44,7 +44,7 @@
 .a-button--large {
   min-height: 40px;
 
-  @media screen and (min-width: 576px) {
+  @include breakpoint($mediaquery-sm-up) {
     min-height: 50px;
     line-height: .64;
   }
