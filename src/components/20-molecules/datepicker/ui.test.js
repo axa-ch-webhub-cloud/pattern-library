@@ -19,7 +19,7 @@ test('should select february the 13th and then the 14th', async t => {
   await datePickerAccessor.assertDay(14);
 });
 
-test.only('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async t => {
+test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async t => {
   const datepicker = new DatePickerAccessor(t, 'datepicker');
   const dropdown = await Selector(
     datepicker.yearDropdownSelector('datepicker')
