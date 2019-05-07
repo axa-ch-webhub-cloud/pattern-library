@@ -1,4 +1,3 @@
-import '@webcomponents/webcomponentsjs';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 // TODO fix that stuff
@@ -76,11 +75,12 @@ class AXAButton extends LitElement {
         @click="${this.onClick}"
       >
         <div class="a-button__flex-wrapper">
-          <slot></slot>
-          ${icon &&
-            html`
-              <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
-            `}
+          <slot></slot> ${
+            icon &&
+              html`
+                <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
+              `
+          }
         </div>
       </button>
     `;

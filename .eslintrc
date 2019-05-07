@@ -17,7 +17,10 @@
       2,
       {
         "SwitchCase": 1,
-        "ignoredNodes": ["TaggedTemplateExpression[tag.name=/html|outdent/]", "TaggedTemplateExpression[tag.name=/html|outdent/] *"]
+        "ignoredNodes": [
+          "TaggedTemplateExpression[tag.name=/html|outdent/]",
+          "TaggedTemplateExpression[tag.name=/html|outdent/] *"
+        ]
       }
     ],
     "no-confusing-arrow": "off",
@@ -37,6 +40,7 @@
           "**/story.{js,jsx}",
           "**/demo.{js,jsx}",
           "**/react/*.{js,jsx}",
+          "**/05-utils/**/*.{js,jsx}",
           "**/src/**/*.react.js",
           "**/demo/**",
           "**/ui.test.js",
@@ -49,7 +53,10 @@
         "packageDir": "./"
       }
     ],
-    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
+    "object-curly-newline": [
+      "error",
+      { "multiline": true, "consistent": true }
+    ],
     "jest/no-jest-import": "off"
   },
   "globals": {
