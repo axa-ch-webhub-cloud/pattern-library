@@ -19,6 +19,41 @@ test('should select february the 13th and then the 14th', async t => {
   await datePickerAccessor.assertDay(14);
 });
 
+test.only('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async t => {
+  const datepicker = new DatePickerAccessor(t, 'datepicker');
+  const dropdown = await Selector(
+    datepicker.yearDropdownSelector('datepicker')
+  );
+
+  // Rendered array should be equal to the given ranges and custom dates we pass in in story.js allowedYears
+  const dropdownItems = await dropdown().getAttribute('items');
+  await t
+    .expect(dropdownItems)
+    .eql(
+      JSON.stringify([
+        { isSelected: false, name: '1989', value: '1989' },
+        { isSelected: false, name: '1990', value: '1990' },
+        { isSelected: false, name: '1991', value: '1991' },
+        { isSelected: false, name: '1992', value: '1992' },
+        { isSelected: false, name: '1993', value: '1993' },
+        { isSelected: false, name: '1994', value: '1994' },
+        { isSelected: false, name: '1995', value: '1995' },
+        { isSelected: false, name: '1996', value: '1996' },
+        { isSelected: false, name: '1997', value: '1997' },
+        { isSelected: false, name: '1998', value: '1998' },
+        { isSelected: false, name: '1999', value: '1999' },
+        { isSelected: false, name: '2000', value: '2000' },
+        { isSelected: false, name: '2012', value: '2012' },
+        { isSelected: false, name: '2014', value: '2014' },
+        { isSelected: false, name: '2018', value: '2018' },
+        { isSelected: false, name: '2019', value: '2019' },
+        { isSelected: true, name: '2020', value: '2020' },
+        { isSelected: false, name: '2021', value: '2021' },
+        { isSelected: false, name: '2022', value: '2022' },
+      ])
+    );
+});
+
 test('should select the first of march from within the february view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
