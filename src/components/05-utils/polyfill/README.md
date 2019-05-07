@@ -2,8 +2,8 @@
 
 This package includes polyfills for all AXA B2C Browsers. It includes 2 types of bundles:
 
-- Bundle for IE11 + WebComponents
-- Bundle for modern browser that don't support WebComponents yet.
+- Bundle for IE11 + custom elements (short: **CE**)
+- Bundle for modern browser that don't support custom elements yet.
 
 ## Usage
 
@@ -13,7 +13,7 @@ Install the package:
 npm install @axa-ch/patterns-library-polyfill
 ```
 
-For IE11 + WebComponents support in a "HTML-only" page:
+For IE11 + CE support in a "pure HTML" page:
 
 ```html
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ For IE11 + WebComponents support in a "HTML-only" page:
 </html>
 ```
 
-For IE11 + WebComponents support in a frontend stack:
+For IE11 + CE support in a typical frontend stack:
 
 ```js
 import '@axa-ch/patterns-library-polyfill';
@@ -39,7 +39,7 @@ import '@axa-ch/patterns-library-polyfill';
 // rest of your code here
 ```
 
-For Modern Browser support in a "HTML-only" page:
+For modern browser support in a "pure HTML" page:
 
 ```html
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ For Modern Browser support in a "HTML-only" page:
 </html>
 ```
 
-For Modern Browser support in a frontend stack:
+For modern browser support in a typical frontend stack:
 
 ```js
 import '@axa-ch/patterns-library-polyfill/lib/index.webcomponents';
@@ -65,7 +65,7 @@ import '@axa-ch/patterns-library-polyfill/lib/index.webcomponents';
 // rest of your code here
 ```
 
-## Used polyfills:
+## Polyfills used:
 
 - core-js/es6/reflect
 - core-js/es6/promise
