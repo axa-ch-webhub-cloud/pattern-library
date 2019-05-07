@@ -55,6 +55,10 @@ class AXADatepicker extends LitElement {
     this.outputdate = '';
   }
 
+  range(start, end) {
+    return new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+  }
+
   firstUpdated() {
     window.axaComponents = window.axaComponents || {};
     this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
@@ -88,9 +92,23 @@ class AXADatepicker extends LitElement {
       this.startDate.setDate(this.day);
     }
 
-    if (this.allowedyears.length < 2) {
-      this.allowedyears = [this.year];
-    }
+    let allowedYearsFinal = [this.year]; // the chosen start year is in the allowed years
+    this.allowedyears.forEach(years => {
+      if (typeof years === 'string') {
+        const splitYears = years.split('-');
+        const generatedYears = this.range(
+          parseInt(splitYears[0], 10),
+          parseInt(splitYears[1], 10)
+        );
+        allowedYearsFinal = allowedYearsFinal.concat(generatedYears);
+      } else {
+        allowedYearsFinal.push(years);
+      }
+    });
+
+    this.allowedyears = allowedYearsFinal
+      .filter((item, index) => allowedYearsFinal.indexOf(item) >= index)
+      .sort(); // Performance maniacs can puke (O...notation I know. ou ou ou).
 
     this.date = this.startDate;
     this.store = new Store(this.locale, this.date, this.allowedyears);
@@ -217,7 +235,7 @@ class AXADatepicker extends LitElement {
 
       // Validation
       if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-        return;
+        // return;
       }
 
       // Fire custom success events

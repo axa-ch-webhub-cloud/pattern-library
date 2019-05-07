@@ -15,15 +15,16 @@ As inputfield
 
 ## Properties
 
-| Attribute                        | Details                                    |
-| -------------------------------- | ------------------------------------------ |
-| `locale="de-CH"`                 | locale (second part must be in uppercase!) |
-| `year="2020"`                    | year of date to start                      |
-| `month="month"`                  | month of date to start (January is 0)      |
-| `day="1"`                        | day of date to start                       |
-| `allowedYears='[2019,2020]'`     | allowdYears that are validated             |
-| `labelbuttoncancel="Schliessen"` | Label for OK button                        |
-| `labelbuttonok="OK"`             | Label for Cancel button                    |
+| Attribute                                  | Details                                            |
+| ------------------------------------------ | -------------------------------------------------- |
+| `locale="de-CH"`                           | locale (second part must be in uppercase!)         |
+| `year="2020"`                              | year of date to start                              |
+| `month="month"`                            | month of date to start (January is 0)              |
+| `day="1"`                                  | day of date to start                               |
+| `allowedYears='[2019,2020]'`               | allowed years visible in dropdown                  |
+| `allowedYears='["1989-2010", 2012, 2014]'` | allowed years as range or mix of range and numbers |
+| `labelbuttoncancel="Schliessen"`           | Label for OK button                                |
+| `labelbuttonok="OK"`                       | Label for Cancel button                            |
 
 ### Variants
 
