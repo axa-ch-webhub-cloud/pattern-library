@@ -74,3 +74,19 @@ storiesOf('Molecules/Top content bar', module)
   .addDecorator(withBodyReset())
   .add('Top content bar - default', () => '<axa-top-content-bar>Some children</axa-top-content-bar>');
 ```
+
+## Release your components
+
+First of all, make sure that you have a npm account under the axa-ch org and that you are logged in.
+Make sure you have installed lerna globally: `npm i -g lerna`
+
+**Step by step guide:**
+- Create a new branch named with the following pattern: `release/ANYTHING_MEANINGFUL`
+- Check if your components is whitelisted in the `lerna.json` in the root directory
+  - If not, add the path to the root directory of your component, commit it and push it
+- Clean your repo:
+  - `rm -R node_modules`
+  - `npx lerna clean`
+- Then install all depedencies again: `npm i`
+- Now we release: `npm run release`
+  - When lerna CLI wizard displays, follow the instructions, but keep in mind: https://semver.org/ versioning is a must. All component with changes will appear
