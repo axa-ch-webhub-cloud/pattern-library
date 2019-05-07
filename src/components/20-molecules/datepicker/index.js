@@ -56,7 +56,9 @@ class AXADatepicker extends LitElement {
   }
 
   firstUpdated() {
+    window.axaComponents = window.axaComponents || {};
     this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
+    this.addEventListener('click', e => this.handleDatepickerClick(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
 
@@ -73,12 +75,6 @@ class AXADatepicker extends LitElement {
         this.handleViewportCheck(this.inputfield);
       }, 100);
     }
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    window.axaComponents = window.axaComponents || {};
-    this.addEventListener('click', e => this.handleDatepickerClick(e));
 
     if (this.year >= 0) {
       this.startDate.setFullYear(this.year);
