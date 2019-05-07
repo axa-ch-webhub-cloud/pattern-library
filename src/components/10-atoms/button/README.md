@@ -35,6 +35,7 @@ export default AXAButtonReact;
 ```
 
 ### Pure HTML pages
+
 Import the button-defining script and use a button like this:
 
 ```html
@@ -67,11 +68,11 @@ Import the button-defining script and use a button like this:
 
 ### Type
 
-| Attribute       | Details                    |
-| --------------- | -------------------------- |
-| `type="button"` | Default button type (default if omitted)      |
-| `type="submit"` | Submit button submit for forms |
-| `type="reset"`  | Reset button for forms  |
+| Attribute       | Details                                  |
+| --------------- | ---------------------------------------- |
+| `type="button"` | Default button type (default if omitted) |
+| `type="submit"` | Submit button submit for forms           |
+| `type="reset"`  | Reset button for forms                   |
 
 ### Large
 
@@ -83,7 +84,7 @@ The Boolean attribute `motionoff` deactivates hover animation.
 
 ### disabled
 
-The Boolean attribute `disabled` disables the button natively. 
+The Boolean attribute `disabled` disables the button natively.
 
 ### icon
 
