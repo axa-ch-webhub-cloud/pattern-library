@@ -1,14 +1,15 @@
 # AXA Icon
 
-axa-icon provides an icon set or a relative path to a svg resource, which can be used.
+&lt;axa-icon&gt; renders an icon, given either an icon name or a relative path to a suitable SVG image.
 
 ## Usage
 
 `npm install @axa-ch/icon`
 
-```
-import @axa-ch/icon
+```js
+import '@axa-ch/icon';
 
+...
 <axa-icon icon="arrow-right"></axa-icon>
 
 // resource path
@@ -18,9 +19,11 @@ import @axa-ch/icon
 
 ### React
 
-You can use this component like a web component (see above).
+You can use this component directly in your JSX without further React-ification (see Usage above).
 
-### HTML Pages only, import the script like so:
+### Pure HTML pages
+
+Import the icon-defining script and use icons like so:
 
 ```html
 <!DOCTYPE html>
@@ -38,7 +41,7 @@ You can use this component like a web component (see above).
 </html>
 ```
 
-##Properties
+## Properties
 
 ### Icon
 
