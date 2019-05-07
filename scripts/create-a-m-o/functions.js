@@ -114,6 +114,29 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
+    `${BASE_FOLDER}/index.react.d.ts`,
+    outdent`
+    import React from 'react';
+
+    interface ${className}Props {
+      /* Your type declarations for props go here, e.g.:
+      languageItems: Item[];
+      copyrightText: String;
+      dynamic?: boolean;
+      */ 
+    }
+
+    declare function create${className}(
+      createElement: typeof React.createElement
+    ): React.ComponentType<${className}Props>;
+
+    export = ${className}Small;
+
+    `,
+    'utf8',
+  );
+
+  fs.writeFileSync(
     `${BASE_FOLDER}/story.js`,
     outdent`
     /* global document */
