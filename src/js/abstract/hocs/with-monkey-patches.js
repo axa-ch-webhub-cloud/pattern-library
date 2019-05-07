@@ -105,26 +105,21 @@ const withMonkeyPatches = Base =>
       }
 
       const { _lightDOMRefs } = this;
-      const index = _lightDOMRefs.indexOf(referenceNode);
+      let index = _lightDOMRefs.indexOf(referenceNode);
 
+      // if not found -> push to the end of the array
       if (index !== -1) {
-        if (isDocumentFragment(newNode)) {
-          Array.from(newNode.childNodes).forEach((childNode, childIndex) => {
-            childNode.__isPatching = true;
-            this._lightDOMRefs.splice(index + childIndex, 0, childNode);
-          });
-        } else {
-          newNode.__isPatching = true;
-          this._lightDOMRefs.splice(index, 0, newNode);
-        }
-      } else if (isDocumentFragment(newNode)) {
-        Array.from(newNode.childNodes).forEach((childNode) => {
+        index = _lightDOMRefs.length;
+      }
+
+      if (isDocumentFragment(newNode)) {
+        Array.from(newNode.childNodes).forEach((childNode, childIndex) => {
           childNode.__isPatching = true;
-          this._lightDOMRefs.push(childNode);
+          this._lightDOMRefs.splice(index + childIndex, 0, childNode);
         });
       } else {
         newNode.__isPatching = true;
-        this._lightDOMRefs.push(newNode);
+        this._lightDOMRefs.splice(index, 0, newNode);
       }
 
       this.render();
