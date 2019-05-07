@@ -16,6 +16,7 @@
 }
 
 .m-datepicker {
+  background: hotpink;
   position: relative;
   display: inline-block;
 
@@ -51,6 +52,8 @@
     border: 0;
     padding: 8px;
     min-width: 0;
+    width: 100%;
+    line-height: normal;
   }
 
   &__wrap {
