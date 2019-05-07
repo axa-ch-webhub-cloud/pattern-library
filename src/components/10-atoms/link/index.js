@@ -1,6 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
+import '../../../utils/polyfills';
 
 class AXALink extends LitElement {
   static tagName = 'axa-link';

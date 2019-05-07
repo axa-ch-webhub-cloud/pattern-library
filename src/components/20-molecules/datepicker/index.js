@@ -9,6 +9,7 @@ import {
   parseLocalisedDateIfValid,
 } from './utils/date';
 import Store from './utils/Store';
+import '../../../utils/polyfills';
 
 const dateInputIcon = svg([DateInputSvg]);
 export class Datepicker extends LitElement {

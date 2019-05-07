@@ -3,6 +3,7 @@ import { LitElement, css, unsafeCSS, html } from 'lit-element';
 import '@axa-ch/table';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
+import '../../../utils/polyfills';
 import tableCss from './index.scss';
 
 const ASC = 'ascending';

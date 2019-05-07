@@ -1,4 +1,3 @@
-import '@webcomponents/webcomponentsjs';
 import { LitElement, svg } from 'lit-element';
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
@@ -14,6 +13,7 @@ import {
   UploadSvg,
 } from '@axa-ch/materials';
 import defineOnce from '../../../utils/define-once';
+import '../../../utils/polyfills';
 
 class AXAIcon extends LitElement {
   static get tagName() {

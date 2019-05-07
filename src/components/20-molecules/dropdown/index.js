@@ -1,6 +1,7 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import debounce from './utils/debounce';
 import styles from './index.scss';
+import '../../../utils/polyfills';
 
 // TODO import icon from '@axa-ch/materials and extend them with classes'
 const ArrowIcon = svg`<svg class="a-icon__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">

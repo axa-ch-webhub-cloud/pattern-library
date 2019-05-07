@@ -1,6 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import footerSmallCSS from './index.scss';
+import '../../../utils/polyfills';
 
 class AXAFooterSmall extends LitElement {
   static get tagName() {

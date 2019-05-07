@@ -1,5 +1,6 @@
 import { LitElement } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
+import '../../../utils/polyfills';
 import tableCss from './index.scss';
 
 class AXATable extends LitElement {
