@@ -3,7 +3,7 @@
 Install it with your CLI:
 `npm install @axa-ch/table-sortable`
 
-Example on how to use it as a HTML Stand alone:
+Example on how to use it in a HTML standalone page:
 
 ```html
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ Example on how to use it as a HTML Stand alone:
 </html>
 ```
 
-Example on how to use it as a React Component:
+Example on how to use it as a React-ified component:
 
 ```js
 import React, { Component, createElement } from 'react';
@@ -106,27 +106,20 @@ class App extends Component {
 export default App;
 ```
 
-**This Table is not inside a ShadowDom, the axa-table-sortable, instead, is inside a ShadowDom**
+**Note: axa-table does _not_ use ShadowDOM, unlike its sister component axa-table-sortable.**
 
-## Options
-
-As see in the example above, we have following options
-
-- innerscroll="500" instead of having cell 100% width on mobile screen, the table will add an overflow after the threshold (500px in the example above). Mandatory here the use of thead and tbody
-
-[axa-table](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/30-organisms/table/README.md) component.
 
 ## Properties
 
 | Attribute           | Details                                                                                   |
 | ------------------- | ----------------------------------------------------------------------------------------- |
-| `innerscroll="500"` | sets a min width and if viewport is less than defined here in PX, it will add a scrollbar |
+| `innerscroll="500"` | set a min width and if the viewport width is less than _innerscroll_ pixels, add a horizontal scrollbar. This property obligatorily requires thead and tbody. |
 
 ## Variants
 
-Cause is native tag styling, variants have to be done on the consumer side by applying classes to cells.
+The consumer of axa-table can create variants of the default look-and-feel by applying classes to cells.
 
 The following classes are provided:
 
-- `<td class="o-table--light">Longer Body A2</td>` For a lighter styled cell
-- `<td class="o-table--bold">Super Long Body B3 </td>` For a bolder styled cell
+- `<td class="o-table--light">Longer Body A2</td>` For a lighter-styled cell
+- `<td class="o-table--bold">Super Long Body B3 </td>` For a bolder-styled cell
