@@ -7,7 +7,7 @@
     "postinstall": "npm-recursive-install --skip-root",
     "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/finalise.build.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
-    "build-icons": "npm run clean-materials && svgo -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
+    "build-icons": "npm run clean-materials && svgo --disable=removeViewBox -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
     "clean-build": "npm run clean-build-tmp && rimraf src/components/*/*/lib && rimraf src/components/*/*/dist",
     "clean-build-tmp": "rimraf src/components/*/*/.tmp-lib && rimraf src/components/*/*/.tmp-dist",
     "clean-materials": "npm run clean-build && npm run clean-tmp-icons",
