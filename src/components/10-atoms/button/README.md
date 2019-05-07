@@ -80,7 +80,7 @@ The boolean attribute `motionoff` deactivates the hover animation.
 
 ### disabled
 
-The boolean attribute `disabled` disables the button.
+The boolean attribute `disabled` disables the button. 
 
 ### icon
 
