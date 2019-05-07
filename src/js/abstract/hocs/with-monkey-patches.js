@@ -72,11 +72,12 @@ const withMonkeyPatches = Base =>
      * Monkey patch `appendChild` API to re-rendering.
      *
      * @param {Element} node
+     *
+     * @returns {DocumentFragment|Element|null} appendedChild
      */
     appendChild(node) {
       if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
-        super.appendChild(node);
-        return;
+        return super.appendChild(node);
       }
 
       const { _lightDOMRefs } = this;
@@ -92,6 +93,8 @@ const withMonkeyPatches = Base =>
       }
 
       this.render();
+
+      return node;
     }
 
     /**
@@ -123,11 +126,12 @@ const withMonkeyPatches = Base =>
      *
      * @param {Element} newNode
      * @param {Element} referenceNode
+     *
+     * @returns {DocumentFragment|Element|null} insertedNode
      */
     insertBefore(newNode, referenceNode) {
       if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
-        super.insertBefore(newNode, referenceNode);
-        return;
+        return super.insertBefore(newNode, referenceNode);
       }
 
       const { _lightDOMRefs } = this;
@@ -149,25 +153,30 @@ const withMonkeyPatches = Base =>
       }
 
       this.render();
+
+      return newNode;
     }
 
     /**
      * Monkey patch `removeChild` API to re-rendering.
      *
      * @param {Element} node
+     *
+     * @returns {Element} removedNode
      */
     removeChild(node) {
       if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
-        super.removeChild(node);
-        return;
+        return super.removeChild(node);
       }
 
-      node.parentNode.removeChild(node);
+      const removedNode = node.parentNode.removeChild(node);
 
       // important: in case childrens are being wrapped
       // the wrapping nodes have to be removed too
       this._lightDOMRefs = this._lightDOMRefs.filter(ref => ref !== node);
       this.render();
+
+      return removedNode;
     }
 
     /**
@@ -175,14 +184,15 @@ const withMonkeyPatches = Base =>
      *
      * @param {Element} newChild
      * @param {Element} oldChild
+     *
+     * @returns {Element} replacedNode
      */
     replaceChild(newChild, oldChild) {
       if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
-        super.replaceChild(newChild, oldChild);
-        return;
+        return super.replaceChild(newChild, oldChild);
       }
 
-      oldChild.parentNode.replaceChild(newChild, oldChild);
+      return oldChild.parentNode.replaceChild(newChild, oldChild);
     }
   };
 
