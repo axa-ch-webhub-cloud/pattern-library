@@ -49,6 +49,7 @@ $dropdown-height: 40px;
 
 .m-dropdown {
   position: relative;
+  @include typo(primary, medium);
 
   &__list {
     padding: 10.5px 20px 10.5px 12px;
@@ -114,13 +115,21 @@ $dropdown-height: 40px;
     display: none;
   }
 
+  // &__option,
+  // &__button,
+  // &__select {
+  //   line-height: normal;
+  // }
+
   &__toggle {
+    @include typo(primary, small);
     position: relative;
     background: transparent;
     border: none;
     height: $dropdown-height;
     text-align: left;
     cursor: pointer;
+    line-height: 24px;
 
     &:hover,
     &:active,
@@ -151,14 +160,6 @@ $dropdown-height: 40px;
 
   &__option,
   &__toggle,
-  &__button,
-  &__select {
-    // @include typo-css('typo-18');
-    line-height: normal;
-  }
-
-  &__option,
-  &__toggle,
   &__button {
     padding: 10px 40px 10px 10px;
     width: 100%;
@@ -172,6 +173,7 @@ $dropdown-height: 40px;
     border: 0;
     color: $dropdown-color;
     white-space: nowrap;
+
 
     &:hover,
     &:active,

@@ -16,12 +16,10 @@
 }
 
 .m-datepicker {
-  background: hotpink;
   position: relative;
   display: inline-block;
 
-  &__input,
-  &__input::placeholder,
+  &,
   &__calendar-cell {
     @include typo(primary, medium);
   }
@@ -49,11 +47,22 @@
   }
 
   &__input {
+    @include typo(primary, small);
+
     border: 0;
     padding: 8px;
     min-width: 0;
     width: 100%;
     line-height: normal;
+
+    &::placeholder,
+    &:-ms-input-placeholder {
+      @include typo(primary, small);
+    }
+
+    &::-ms-clear {
+      display: none;
+    }
   }
 
   &__wrap {
