@@ -27,6 +27,8 @@
     "@axa-ch/materials": "^1.0.0-alpha.5",
     "@axa-ch/table": "1.0.0-alpha.1",
     "@skatejs/val": "^0.4.0",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "core-js": "^2.6.5",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
   }
