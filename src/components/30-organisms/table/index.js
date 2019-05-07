@@ -26,18 +26,13 @@ class AXATable extends NoShadowDOM {
     };
   }
 
-  firstUpdated() {
-    // do we have minimal correct children content?
-    const table = this.querySelector('table');
-    if (!table) {
-      // no, early exit
-      return;
-    }
-    // inject deduplicated inline <style>tableCSS</style>
-    this.inlineStyles();
-    // annotate top-level <table> for styling purposes
-    table.classList.add('o-table');
-    table.style.minWidth = `${this.innerscroll}px`;
+  updated() {
+    // whenever 'innerscroll' is updated,
+    // update our own inline style accordingly.
+    // The <table> child's CSS *inherits* this min-width!
+    // This indirect way of styling avoids having to track dynamic
+    // changes to the children of our <axa-table> via MutationObserver!
+    this.style.minWidth = `${this.innerscroll}px`;
   }
 }
 
