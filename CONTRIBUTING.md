@@ -368,7 +368,7 @@ Adds the ability to provide and consume contextual data.
 
 Guarantees that updates to the custom element's children do not mess up the [**Flattened DOM**](#flattened-dom) and keeps it's [**Local DOM**](#local-dom) untouched.
 
-**Note:** this is obsolete if `ShadowDOM` is enabled.
+**Note:** this is obsolete if `ShadowDOM` is enabled and `<slot>` is utilised.
 
 #### `withRender()`
 
