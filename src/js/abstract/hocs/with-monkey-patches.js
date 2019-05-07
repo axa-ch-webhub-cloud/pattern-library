@@ -93,6 +93,30 @@ const withMonkeyPatches = Base =>
     }
 
     /**
+     * Monkey patch `append` API to re-rendering.
+     *
+     * @param {Element} nodes
+     */
+    append(...nodes) {
+      if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
+        super.append(...nodes);
+        return;
+      }
+
+      nodes.forEach((node) => {
+        if (typeof node === 'string') {
+          // eslint-disable-next-line no-param-reassign
+          node = document.createTextNode(node);
+        }
+
+        node.__isPatching = true;
+        this._lightDOMRefs.push(node);
+      });
+
+      this.render();
+    }
+
+    /**
      * Monkey patch `insertBefore` API to re-rendering.
      *
      * @param {Element} newNode
