@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/table-sortable",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Table with sorting functionalities, having a model as interface",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/30-organisms/table-sortable#readme",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@axa-ch/materials": "^1.0.0-alpha.5",
-    "@axa-ch/table": "1.0.0-alpha.1",
+    "@axa-ch/table": "1.0.0-alpha.2",
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "core-js": "^2.6.5",
