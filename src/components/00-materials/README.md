@@ -4,7 +4,6 @@
 
 `npm install @axa-ch/materials`
 
-
 ## Icon set
 
 ### Usage
@@ -18,14 +17,14 @@ import {
 
 ### Properties
 
-| icon-set    |
-|-------------|
-| CollapseSvg |
-| DateInputSvg|
-| DownloadSvg |
-| EmailSvg    | 
-| ExpandSvg   |
-| PhoneSvg    |
-| PlusSvg     |
-| SearchSvg   |
-| UploadSvg   |  
+| icon-set     |
+| ------------ |
+| CollapseSvg  |
+| DateInputSvg |
+| DownloadSvg  |
+| EmailSvg     |
+| ExpandSvg    |
+| PhoneSvg     |
+| PlusSvg      |
+| SearchSvg    |
+| UploadSvg    |

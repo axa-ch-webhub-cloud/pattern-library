@@ -6,10 +6,23 @@ import './index';
 
 storiesOf('Atoms/Button Link', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Button Link - default', () => '<axa-button-link href="https://axa.ch/">Default</axa-button-link>')
-  .add('Button Link - external', () => '<axa-button-link href="https://axa.ch/" external>External</axa-button-link>')
-  .add('Button Link - variant: red', () => '<axa-button-link variant="red">Red</axa-button-link>')
-  .add('Button Link - variant: secondary', () => '<axa-button-link variant="secondary">Secondary</axa-button-link>')
+  .add(
+    'Button Link - default',
+    () => '<axa-button-link href="https://axa.ch/">Default</axa-button-link>'
+  )
+  .add(
+    'Button Link - external',
+    () =>
+      '<axa-button-link href="https://axa.ch/" external>External</axa-button-link>'
+  )
+  .add(
+    'Button Link - variant: red',
+    () => '<axa-button-link variant="red">Red</axa-button-link>'
+  )
+  .add(
+    'Button Link - variant: secondary',
+    () => '<axa-button-link variant="secondary">Secondary</axa-button-link>'
+  )
   .add(
     'Button Link - variant: inverted',
     () => `
@@ -31,7 +44,10 @@ storiesOf('Atoms/Button Link', module)
       <axa-button-link variant='inverted-dark-blue'>Inverted-Dark-Blue</axa-button-link>
     </div>`
   )
-  .add('Button Link - disabled', () => '<axa-button-link disabled>Disabled</axa-button-link>')
+  .add(
+    'Button Link - disabled',
+    () => '<axa-button-link disabled>Disabled</axa-button-link>'
+  )
   .add('Button Link - large', () => `<axa-button-link>Large</axa-button-link>`)
   .add(
     'Button Link - motion',
@@ -43,5 +59,7 @@ storiesOf('Atoms/Button Link', module)
       </div>
     </div>`
   )
-  .add('Button Link - icon', () => `<axa-button-link icon="arrow-right">Icon</axa-button-link>`);
-
+  .add(
+    'Button Link - icon',
+    () => `<axa-button-link icon="arrow-right">Icon</axa-button-link>`
+  );
