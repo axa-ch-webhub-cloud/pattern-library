@@ -18,7 +18,7 @@ import @axa-ch/icon
 
 ### React
 
-You can use this component like a  web component (see above).
+You can use this component like a web component (see above).
 
 ### HTML Pages only, import the script like so:
 
