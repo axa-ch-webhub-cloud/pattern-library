@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import '@webcomponents/webcomponentsjs';
 import { DateInputSvg } from '@axa-ch/materials';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import '@axa-ch/dropdown';

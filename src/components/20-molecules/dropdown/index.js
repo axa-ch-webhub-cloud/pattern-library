@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import '@webcomponents/webcomponentsjs';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { ExpandSvg } from '@axa-ch/materials';
 import debounce from './utils/debounce';
