@@ -13,6 +13,8 @@ interface AXAFooterSmallProps {
   dynamic?: boolean;
 }
 
-declare function createAXAFooterSmall(createElement: typeof React.createElement): React.ComponentType<AXAFooterSmallProps>;
+declare function createAXAFooterSmall(
+  createElement: typeof React.createElement
+): React.ComponentType<AXAFooterSmallProps>;
 
 export = createAXAFooterSmall;
