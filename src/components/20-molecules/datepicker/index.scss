@@ -15,14 +15,12 @@
   transform: scale(1);
 }
 
-// TODO: Use Typography from materials
 .m-datepicker {
   position: relative;
   display: inline-block;
 
   &__input,
   &__input::placeholder,
-  &__weekdays,
   &__calendar-cell {
     @include typo(primary, medium);
   }
@@ -48,7 +46,6 @@
     }
   }
 
-  // TODO:: Challenge global input styles (materials?)
   &__input {
     border: 0;
     padding: 8px;
@@ -91,6 +88,7 @@
   }
 
   &__weekdays-day {
+    @include typo(primary, medium);
     width: 35px;
     padding: 5px 0;
     margin-top: 0;

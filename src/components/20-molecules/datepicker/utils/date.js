@@ -8,7 +8,9 @@ const getWeekdays = (date, locale) => {
   const out = [];
   const start = getStartOfWeek(date);
   for (let i = 0; i < 7; i++) {
-    out.push(start.toLocaleString(locale, { weekday: 'short' }).substr(0, 2));
+    let abrMonth = start.toLocaleString(locale, { weekday: 'short' });
+    abrMonth = abrMonth.replace(/[^ -~]/g, '');
+    out.push(abrMonth.slice(0, 2));
     start.setDate(start.getDate() + 1);
   }
   return out;
