@@ -44,9 +44,7 @@ class AXAIcon extends LitElement {
     this.icon = '';
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  firstUpdated() {
     const { icon } = this;
 
     if (/\.svg/.test(icon)) {

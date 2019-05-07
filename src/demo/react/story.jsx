@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/html';
 import ReactDOM from 'react-dom';
-import DemoIcon from './DemoIcon';
 import DemoTable from './DemoTable';
 import DemoControlledInputsApp from '../demo-controlled-inputs/App';
 import DemoDynamicChildrenApp from '../demo-dynamic-children/App';
@@ -11,11 +10,6 @@ import { withMarkdown } from '../../../.storybook/addons/markdown';
 
 storiesOf('Demos', module)
   .addDecorator(withMarkdown())
-  .add('Icon with React', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoIcon />, div);
-    return div;
-  })
   .add('Controlled Inputs React', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoControlledInputsApp />, div);
