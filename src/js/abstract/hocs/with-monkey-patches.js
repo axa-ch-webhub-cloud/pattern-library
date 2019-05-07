@@ -1,5 +1,4 @@
 import isDocumentFragment from '../../is-document-fragment';
-import { notEqual } from 'assert';
 
 const withMonkeyPatches = Base =>
   /**
