@@ -31,7 +31,7 @@ storiesOf('Atoms/Button Link', module)
     </div>`
   )
   .add(
-    'Button - variant: inverted-green',
+    'Button - variant: inverted-green ',
     () => `
     <div style="background-color: #027180; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
       <axa-button-link variant='inverted-green'>Inverted-Green</axa-button-link>
