@@ -1,3 +1,6 @@
+import isDocumentFragment from '../../is-document-fragment';
+import { notEqual } from 'assert';
+
 const withMonkeyPatches = Base =>
   /**
    * Guarantees that updates to the custom element's children do not mess up the **Flattened DOM** and keeps it's **Local DOM** untouched
@@ -77,8 +80,15 @@ const withMonkeyPatches = Base =>
         return;
       }
 
-      node.__isPatching = true;
-      this._lightDOMRefs.push(node);
+      if (isDocumentFragment(node)) {
+        Array.from(node.childNodes).forEach((childNode) => {
+          childNode.__isPatching = true;
+          this._lightDOMRefs.push(childNode);
+        });
+      } else {
+        node.__isPatching = true;
+        this._lightDOMRefs.push(node);
+      }
 
       this.render();
     }
@@ -95,13 +105,26 @@ const withMonkeyPatches = Base =>
         return;
       }
 
-      newNode.__isPatching = true;
       const { _lightDOMRefs } = this;
       const index = _lightDOMRefs.indexOf(referenceNode);
 
       if (index !== -1) {
-        this._lightDOMRefs.splice(index, 0, newNode);
+        if (isDocumentFragment(newNode)) {
+          Array.from(newNode.childNodes).forEach((childNode, childIndex) => {
+            childNode.__isPatching = true;
+            this._lightDOMRefs.splice(index + childIndex, 0, childNode);
+          });
+        } else {
+          newNode.__isPatching = true;
+          this._lightDOMRefs.splice(index, 0, newNode);
+        }
+      } else if (isDocumentFragment(newNode)) {
+        Array.from(newNode.childNodes).forEach((childNode) => {
+          childNode.__isPatching = true;
+          this._lightDOMRefs.push(childNode);
+        });
       } else {
+        newNode.__isPatching = true;
         this._lightDOMRefs.push(newNode);
       }
 
