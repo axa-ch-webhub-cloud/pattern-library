@@ -22,7 +22,7 @@ const globals = require('./config/globals.js')
 const babelOptions = require('./.storybook/.babelrc'); // get the babelrc file
 
 const input = glob.sync(
-  'src/components/@(10-atoms|20-molecules|30-organisms)/*/index*.js'
+  'src/components/@(05-utils|10-atoms|20-molecules|30-organisms)/*/index*.js'
 );
 
 const LIB = '.tmp-lib';
@@ -82,16 +82,16 @@ const generatePlugins = type => {
       namedExports: {
         '@skatejs/val': ['val'],
       },
-      include: 'node_modules/**',
+      include: ['node_modules/**', 'src/**/node_modules/**'],
     }),
     babel({
-      presets: babelOptions.presets,
+      presets: ['@babel/preset-env'],
       plugins: [
         ...babelOptions.plugins,
         [
           '@babel/plugin-transform-runtime',
           {
-            absoluteRuntime: true,
+            absoluteRuntime: false,
             corejs: false,
             helpers: true,
             regenerator: true,
@@ -122,7 +122,7 @@ const generateOutputConfig = type => entry => ({
     // define export path (lib/index.js for lib, dist/index.js for dist)
     file: entry.replace('/index.', `/${type}/index.`),
     // defined export type
-    format: type === LIB ? 'es' : 'umd',
+    format: type === LIB ? 'es' : 'iife',
     // if is IIFE, make sure to extend the window object
     extend: !type === LIB,
     // attach the IIFE to the window object

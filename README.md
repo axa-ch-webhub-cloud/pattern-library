@@ -8,7 +8,6 @@
 
 [Check out our Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop-v2/CODE_OF_CONDUCT.md)
 
-
 We only export holistic and self contained WebComponents based on CustomElement, ShadowDom and HTML Templates.
 
 We do not support Built-ins
@@ -22,3 +21,8 @@ Simply, just run `npm run new` and follow on screen instructions
 Resetting CSS on the `<body>` or `<html>` is the responsibility of to the system that embeds the component. This is important for 100% width sized components like the Top content bar or the header.
 
 You can do it in the following way as example:
+
+## Polyfills
+
+Please read here:
+[Polyfills in the patterns library](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/05-utils/polyfill#README.md)
