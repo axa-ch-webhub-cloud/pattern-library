@@ -1,0 +1,33 @@
+{
+  "name": "@axa-ch/link",
+  "version": "1.0.6",
+  "description": "The axa link for internal and external page navigation.",
+  "author": "Pattern Warriors",
+  "homepage": "https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/link/README.md",
+  "license": "Copyright 2019 AXA Versicherungen AG",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axa-ch/patterns-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "@axa-ch/icon": "^1.0.0-alpha.5",
+    "@axa-ch/materials": "^1.0.0-alpha.5",
+    "@skatejs/val": "^0.4.0",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "lit-element": "^2.1.0"
+  }
+}
