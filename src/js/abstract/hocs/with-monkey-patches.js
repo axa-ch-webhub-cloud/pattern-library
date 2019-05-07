@@ -84,6 +84,31 @@ const withMonkeyPatches = Base =>
     }
 
     /**
+     * Monkey patch `insertBefore` API to re-rendering.
+     *
+     * @param {Element} newNode
+     * @param {Element} referenceNode
+     */
+    insertBefore(newNode, referenceNode) {
+      if (this._isMorphing || !this._hasTemplate || !this._hasRendered) {
+        super.insertBefore(newNode, referenceNode);
+        return;
+      }
+
+      newNode.__isPatching = true;
+      const { _lightDOMRefs } = this;
+      const index = _lightDOMRefs.indexOf(referenceNode);
+
+      if (index !== -1) {
+        this._lightDOMRefs.splice(index, 0, newNode);
+      } else {
+        this._lightDOMRefs.push(newNode);
+      }
+
+      this.render();
+    }
+
+    /**
      * Monkey patch `removeChild` API to re-rendering.
      *
      * @param {Element} node
