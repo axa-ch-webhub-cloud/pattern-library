@@ -79,14 +79,16 @@ const withMonkeyPatches = Base =>
         return;
       }
 
+      const { _lightDOMRefs } = this;
+
       if (isDocumentFragment(node)) {
         Array.from(node.childNodes).forEach((childNode) => {
           childNode.__isPatching = true;
-          this._lightDOMRefs.push(childNode);
+          _lightDOMRefs.push(childNode);
         });
       } else {
         node.__isPatching = true;
-        this._lightDOMRefs.push(node);
+        _lightDOMRefs.push(node);
       }
 
       this.render();
@@ -139,11 +141,11 @@ const withMonkeyPatches = Base =>
       if (isDocumentFragment(newNode)) {
         Array.from(newNode.childNodes).forEach((childNode, childIndex) => {
           childNode.__isPatching = true;
-          this._lightDOMRefs.splice(index + childIndex, 0, childNode);
+          _lightDOMRefs.splice(index + childIndex, 0, childNode);
         });
       } else {
         newNode.__isPatching = true;
-        this._lightDOMRefs.splice(index, 0, newNode);
+        _lightDOMRefs.splice(index, 0, newNode);
       }
 
       this.render();
