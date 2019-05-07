@@ -13,7 +13,7 @@ Install the package:
 npm install @axa-ch/patterns-library-polyfill
 ```
 
-For IE11 + WebComponents support in a HTML only page:
+For IE11 + WebComponents support in a "HTML-only" page:
 
 ```html
 <!DOCTYPE html>
