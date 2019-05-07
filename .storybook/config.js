@@ -1,8 +1,6 @@
 import { addParameters, configure } from '@storybook/html';
 import { create } from '@storybook/theming';
 
-import '../src/utils/polyfills';
-
 import logo from '../src/static/svg/logo-axa.svg';
 
 // theme - logo some sort of broken
