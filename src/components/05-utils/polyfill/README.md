@@ -39,7 +39,7 @@ import '@axa-ch/patterns-library-polyfill';
 // rest of your code here
 ```
 
-For Modern Browser support in a HTML only page:
+For Modern Browser support in a "HTML-only" page:
 
 ```html
 <!DOCTYPE html>
