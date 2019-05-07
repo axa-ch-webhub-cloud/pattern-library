@@ -1,20 +1,19 @@
 # AXA Table Sortable
 
-_WARNING: on mobile sortable not implemented, use innerscroll option till finished_
+_WARNING: For mobile use, currently the innerscroll property must be set. This restriction will be lifted in the future._
 
-[axa-table-sortable](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/30-organisms/table-sortable/README.md) component.
 
 ## Usage
 
 Install it with your CLI:
 `npm install @axa-ch/table-sortable`
 
-In your Html then:
+Include it in your HTML like this:
 
 ```html
 <axa-table-sortable
   innerscroll="500"
-  model="HERE A JSON OF YOUR MODEL, FORMAT SEE BELOW"
+  model="HERE A JSON OF YOUR MODEL, SEE BELOW FOR FORMAT"
 >
 </axa-table-sortable>
 ```
@@ -24,10 +23,10 @@ If you have a frontend stack, add the dependency like so:
 ```js
 import '@axa-ch/table-sortable';
 
-// Rest of your code here
+// rest of your code here
 ```
 
-If you use HTML Pages only, import the script like so:
+If you use HTML pages only, import the script like so:
 
 ```html
 <!DOCTYPE html>
@@ -51,7 +50,7 @@ If you use HTML Pages only, import the script like so:
 
 ### React
 
-Create a react table with the createElement function from your react version and then use it.
+Create a React-ified sortable table with the createElement function from your React version and then use it like this:
 
 ```js
 // Here an example from create-react-app
@@ -114,8 +113,8 @@ export default App;
 
 | Attribute           | Details                                                                                   |
 | ------------------- | ----------------------------------------------------------------------------------------- |
-| `innerscroll="500"` | sets a min width and if viewport is less than defined here in PX, it will add a scrollbar |
-| `model="{}"`        | Sets the model on how the component should render. See example below                      |
+| `innerscroll="500"` | set a min width and if the viewport width is less than _innerscroll_ pixels, add a horizontal scrollbar. This property obligatorily requires thead and tbody. |
+| `model="{}"`        | sets the model from which the component should render. See example below.                      |
 
 Model example:
 
