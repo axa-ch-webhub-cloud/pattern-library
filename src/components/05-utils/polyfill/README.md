@@ -3,7 +3,7 @@
 This package includes polyfills for all AXA B2C Browsers. It includes 2 types of bundles:
 
 - Bundle for IE11 + WebComponents
-- Bundle for modern browser that don't support yet WebComponents.
+- Bundle for modern browser that don't support WebComponents yet.
 
 ## Usage
 
