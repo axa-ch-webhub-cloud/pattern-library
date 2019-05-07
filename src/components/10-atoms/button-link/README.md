@@ -1,23 +1,25 @@
 # AXA Button Link
 
-Button Links provide link functionality, but in the style of the button. They may display text, icons, or both. Button links can be styled with several attributes to look a specific way.
-If you need the semantic button use [axa-button](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/button/README.md).
+Button links provide link functionality, but in the style of a button. They may display text, icons, or both. Button links can be styled via several properties to change their look-and-feel.
+If you need a semantically correct button, use [axa-button](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/button/README.md) instead.
 
 ## Usage
 
-`npm install @axa-ch/button-link`
-
+```bash
+npm install @axa-ch/button-link
 ```
-import '@axa-ch/button-link';
 
+```js
+import '@axa-ch/button-link';
+...
 <axa-button-link>I'm a button link</axa-button-link>
 ```
 
 ### React
 
-Create a react button link with the createElement function from your react version and then use it.
+Create a React-ified button link with the createElement function from your React version and then use it like this:
 
-```
+```js
 import { createElement } from 'react';
 import createAXAButtonLinkReact from '@axa-ch/button-link/lib/index.react';
 
@@ -26,13 +28,15 @@ const AXAButtonLinkReact = createAXAButtonLinkReact(createElement);
 export default AXAButtonLinkReact;
 ```
 
-```
+```js
 <AXAButtonLinkReact href='#axa' motionOff onClick={handler}>
   I'm a Button Link
 </AxaButtonReact>
 ```
 
-### HTML Pages only, import the script like so:
+### Pure HTML pages
+
+Import the button-link-defining script and use a button link like this:
 
 ```html
 <!DOCTYPE html>
@@ -50,7 +54,7 @@ export default AXAButtonLinkReact;
 </html>
 ```
 
-##Properties
+## Properties
 
 ### Variant
 
@@ -64,28 +68,28 @@ export default AXAButtonLinkReact;
 
 ### Href
 
-The string attribute `href` is used like the standard HTML.
+The string-valued attribute `href` is used like in a native &lt;a&gt; hyperlink.
 
 ### External
 
-The boolean attribute `external` adds the `target="_blank"` functionality.
+The Boolean attribute `external` adds the `target="_blank"` functionality.
 
 ### Large
 
-The boolean attribute `large` specifies the size of the button link. Setting this attribute will change the height of a button link.
+The Boolean attribute `large` specifies the size of a button link. Setting this attribute will change the height of a button link.
 
 ### motionOff
 
-This boolean attribute `motionoff` deactivates the hover animation.
+The Boolean attribute `motionoff` deactivates the hover animation.
 
 ### disabled
 
-This boolean attribute `disabled` disables the button.
+The Boolean attribute `disabled` disables the button natively.
 
 ### icon
 
-Based on the attribute `icon` value, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/icon/README.md) readme.
+Using the attribute `icon`'s string value as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/icon/README.md) README.
 
 ### onClick
 
-The function attribute `onClick` useable for React and other frameworks who can use callback props.
+The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
