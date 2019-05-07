@@ -31,6 +31,7 @@
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
+    "@axa-ch/patterns-library-polyfill": "^1.0.0-alpha.1",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-transform-regenerator": "^7.4.4",
