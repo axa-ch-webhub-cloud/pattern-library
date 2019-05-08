@@ -12,12 +12,18 @@ storiesOf('Molecules/Dropdown/React', module)
     const div = document.createElement('div');
     ReactDOM.render(
       <AXADropdownReact
-        items='[
-          {"name": "Please Select", "value": "Please Select", "url": "#", "isSelected": true, "isInitialItem": true },
-          {"name": "Item 1", "value": "Item 1", "url": "#", "isSelected": false },
-          {"name": "Item 2", "value": "Item 2", "url": "#", "isSelected": false },
-          {"name": "Item 3", "value": "Item 3", "url": "#", "isSelected": false }
-        ]'
+        items={[
+          {
+            name: 'Please Select',
+            value: 'Please Select',
+            url: '#',
+            isSelected: true,
+            isInitialItem: true,
+          },
+          { name: 'Item 1', value: 'Item 1', url: '#', isSelected: false },
+          { name: 'Item 2', value: 'Item 2', url: '#', isSelected: false },
+          { name: 'Item 3', value: 'Item 3', url: '#', isSelected: false },
+        ]}
       />,
       div
     );
