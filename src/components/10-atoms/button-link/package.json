@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/button-link",
-  "version": "1.0.0-alpha.1",
-  "description": "> TODO: description",
+  "version": "1.0.0-alpha.2",
+  "description": "The AXA Button Link component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/10-atoms/button#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
@@ -24,9 +24,10 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/icon": "^1.0.0-alpha.6",
+    "@axa-ch/icon": "^1.0.0-alpha.7",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
-  }
+  },
+  "gitHead": "5d56f21418c182834074b9668a36c0d3ec2bc547"
 }

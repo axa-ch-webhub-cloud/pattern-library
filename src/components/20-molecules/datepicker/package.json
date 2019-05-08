@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/datepicker",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.15",
   "description": "The datepicker for the AXA patterns library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library",
@@ -24,11 +24,12 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "1.0.0-alpha.2",
+    "@axa-ch/button": "^1.0.0-alpha.3",
     "@axa-ch/dropdown": "1.0.0-alpha.2",
-    "@axa-ch/materials": "^1.0.0-alpha.4",
+    "@axa-ch/materials": "^1.0.0-alpha.7",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
-  }
+  },
+  "gitHead": "5d56f21418c182834074b9668a36c0d3ec2bc547"
 }

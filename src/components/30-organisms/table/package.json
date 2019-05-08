@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/table",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Basic pure UI Table",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/30-organisms/table#readme",
@@ -24,9 +24,10 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "^1.0.0-alpha.6",
+    "@axa-ch/materials": "^1.0.0-alpha.7",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
-  }
+  },
+  "gitHead": "5d56f21418c182834074b9668a36c0d3ec2bc547"
 }

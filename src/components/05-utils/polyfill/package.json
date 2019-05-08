@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library-polyfill",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Polyfills for IE 11 and WCs in use in the plib",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/05-utils/polyfill#readme",
@@ -26,5 +26,6 @@
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "core-js": "^2.6.5"
-  }
+  },
+  "gitHead": "5d56f21418c182834074b9668a36c0d3ec2bc547"
 }
