@@ -60,8 +60,6 @@ class AXAButton extends LitElement {
       'a-button--secondary': variant === 'secondary',
       'a-button--red': variant === 'red',
       'a-button--inverted': variant === 'inverted',
-      'a-button--inverted-green': variant === 'inverted-green',
-      'a-button--inverted-dark-blue': variant === 'inverted-dark-blue',
       'a-button--large': large,
       'a-button--motion': !motionOff,
     };

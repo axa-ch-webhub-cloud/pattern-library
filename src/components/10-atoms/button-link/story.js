@@ -31,26 +31,15 @@ storiesOf('Atoms/Button Link', module)
     </div>`
   )
   .add(
-    'Button - variant: inverted-green ',
-    () => `
-    <div style="background-color: #027180; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button-link variant='inverted-green'>Inverted-Green</axa-button-link>
-    </div>`
-  )
-  .add(
-    'Button - variant: inverted-dark-blue',
-    () => `
-    <div style="background-color: #00005b; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button-link variant='inverted-dark-blue'>Inverted-Dark-Blue</axa-button-link>
-    </div>`
-  )
-  .add(
     'Button Link - disabled',
     () => '<axa-button-link disabled>Disabled</axa-button-link>'
   )
-  .add('Button Link - large', () => `<axa-button-link>Large</axa-button-link>`)
   .add(
-    'Button Link - motion',
+    'Button Link - large',
+    () => `<axa-button-link large>Large</axa-button-link>`
+  )
+  .add(
+    'Button Link - motionOff',
     () => `
     <div>
         <axa-button-link motionoff>MotionOff</axa-button-link>

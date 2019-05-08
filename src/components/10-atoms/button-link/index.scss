@@ -1,5 +1,5 @@
 .a-button-link {
-  @include typo(primary, medium, medium);
+  @include typo(primary, x-small, medium);
   position: relative;
   display: inline-block;
   box-sizing: border-box;
@@ -14,6 +14,10 @@
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-prim-blue-deep-sapphire;
+
+  @include breakpoint($mediaquery-sm-up) {
+    @include _text(default)
+  }
 
   &:hover,
   &:active,
@@ -37,9 +41,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 40px;
+    min-height: 36px;
     // IE11 workaround
-    height: 39px;
+    height: 35px;
     box-sizing: border-box;
   }
 
@@ -48,10 +52,17 @@
   }
 }
 
+.a-button-link--large {
+  @include _text(default);
+
+  @include breakpoint($mediaquery-sm-up) {
+    @include _text(medium);
+  }
+}
+
 .a-button-link--large .a-button-link__flex-wrapper {
   @include breakpoint($mediaquery-sm-up) {
-    min-height: 50px;
-    line-height: .64;
+    min-height: 46px;
   }
 }
 
@@ -142,9 +153,7 @@
   }
 }
 
-.a-button-link--inverted,
-.a-button-link--inverted-green,
-.a-button-link--inverted-dark-blue {
+.a-button-link--inverted {
   background-color: transparent;
   border-color: $color-prim-white;
   color: $color-prim-white;
@@ -152,6 +161,7 @@
   &:hover,
   &:active,
   &:focus {
+    color: $color-prim-blue-deep-sapphire;
     background-color: $color-prim-white;
     border-color: $color-prim-white;
   }
@@ -162,29 +172,5 @@
     &::after {
       background-color: $color-prim-white;
     }
-  }
-}
-
-.a-button-link--inverted {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-axa-blue;
-  }
-}
-
-.a-button-link--inverted-green {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-sec-blue-teal;
-  }
-}
-
-.a-button-link--inverted-dark-blue {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-prim-blue-deep-sapphire;
   }
 }

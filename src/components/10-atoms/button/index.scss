@@ -1,5 +1,5 @@
 .a-button {
-  @include typo(primary, medium, medium);
+  @include typo(primary, x-small, medium);
   position: relative;
   box-sizing: border-box;
   padding: 0 30px;
@@ -13,6 +13,10 @@
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-prim-blue-deep-sapphire;
+
+  @include breakpoint($mediaquery-sm-up) {
+    @include _text(default)
+  }
 
   &:hover,
   &:active,
@@ -43,10 +47,11 @@
 
 .a-button--large {
   min-height: 40px;
+  @include _text(default);
 
   @include breakpoint($mediaquery-sm-up) {
     min-height: 50px;
-    line-height: .64;
+    @include _text(medium)
   }
 }
 
@@ -137,9 +142,7 @@
   }
 }
 
-.a-button--inverted,
-.a-button--inverted-green,
-.a-button--inverted-dark-blue {
+.a-button--inverted {
   background-color: transparent;
   border-color: $color-prim-white;
   color: $color-prim-white;
@@ -149,6 +152,7 @@
   &:focus {
     background-color: $color-prim-white;
     border-color: $color-prim-white;
+    color: $color-prim-blue-deep-sapphire;
   }
 
   &.a-button--motion {
@@ -157,29 +161,5 @@
     &::after {
       background-color: $color-prim-white;
     }
-  }
-}
-
-.a-button--inverted {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-axa-blue;
-  }
-}
-
-.a-button--inverted-green {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-sec-blue-teal;
-  }
-}
-
-.a-button--inverted-dark-blue {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-prim-blue-deep-sapphire;
   }
 }

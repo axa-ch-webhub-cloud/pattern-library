@@ -63,8 +63,6 @@ Import the button-link-defining script and use a button link like this:
 | `variant="secondary"`          | Button link in a ghost state   |
 | `variant="red"`                | Button link red                |
 | `variant="inverted"`           | Button link inverted           |
-| `variant="inverted-green"`     | Button link inverted green     |
-| `variant="inverted-dark-blue"` | Button link inverted dark blue |
 
 ### Href
 
