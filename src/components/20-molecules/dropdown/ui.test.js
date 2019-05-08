@@ -15,7 +15,7 @@ test('should render correctly', async t => {
 fixture('Datepicker React').page(
   `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
 );
-test.only('should render dropdown as reactified component', async t => {
+test('should render dropdown as reactified component', async t => {
   const dropdownReact = await Selector(() =>
     document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
   );
