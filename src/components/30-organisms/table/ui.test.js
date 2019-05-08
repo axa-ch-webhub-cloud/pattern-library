@@ -2,9 +2,11 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Table - basic functionality').page(
-  `${host}/iframe.html?id=organisms-table--table-default`
-);
+fixture('Table - basic functionality')
+  .page(`${host}/iframe.html?id=organisms-table--table-default`)
+  .beforeEach(async t => {
+    await t.maximizeWindow();
+  });
 
 const TAG = 'axa-table';
 const TOPMOST_TABLE = 'axa-table > table';
