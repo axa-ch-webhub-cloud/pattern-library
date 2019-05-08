@@ -20,7 +20,33 @@ Simply, just run `npm run new` and follow on screen instructions
 
 Resetting CSS on the `<body>` or `<html>` is the responsibility of to the system that embeds the component. This is important for 100% width sized components like the Top content bar or the header.
 
-You can do it in the following way as example:
+Here an example on how it can look like:
+
+```html
+<style>
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+</style>
+
+```
 
 ## Polyfills
 
