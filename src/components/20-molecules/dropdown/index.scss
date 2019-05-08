@@ -115,12 +115,6 @@ $dropdown-height: 40px;
     display: none;
   }
 
-  // &__option,
-  // &__button,
-  // &__select {
-  //   line-height: normal;
-  // }
-
   &__toggle {
     @include typo(primary, small);
     position: relative;
