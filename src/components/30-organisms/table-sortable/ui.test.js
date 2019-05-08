@@ -2,9 +2,11 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Table Sortable - basic functionality').page(
-  `${host}/iframe.html?id=organisms-table--table-sortable-default`
-);
+fixture('Table Sortable - basic functionality')
+  .page(`${host}/iframe.html?id=organisms-table--table-sortable-default`)
+  .beforeEach(async t => {
+    await t.maximizeWindow();
+  });
 
 test('should render sortable table', async t => {
   const $el = await Selector('axa-table-sortable');
