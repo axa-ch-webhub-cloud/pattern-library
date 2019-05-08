@@ -22,9 +22,9 @@ Create a React-ified link with the createElement function from your React versio
 
 ```js
 import { createElement } from 'react';
-import createAXALinkLinkReact from '@axa-ch/link/lib/index.react';
+import createAXALinkReact from '@axa-ch/link/lib/index.react';
 
-const AXALinkReact = createAXALinkLinkReact(createElement);
+const AXALinkReact = createAXALinkReact(createElement);
 
 export default AXALinkReact;
 ```
