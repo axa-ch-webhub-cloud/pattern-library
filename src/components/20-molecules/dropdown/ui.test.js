@@ -12,7 +12,7 @@ test('should render correctly', async t => {
 });
 
 // Dropdown react
-fixture('Datepicker React').page(
+fixture('Dropdown React').page(
   `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
 );
 test('should render dropdown as reactified component', async t => {
