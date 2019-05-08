@@ -24,8 +24,14 @@ steps:
     # npx lerna bootstrap
     # npm run build
   displayName: 'npm build'
-    
+
+- task: CopyFiles@2
+  displayName: 'Stage Artifacts'
+  inputs:
+    SourceFolder: ./
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'drop'
-    targetPath: './'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
