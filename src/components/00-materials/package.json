@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/materials",
   "version": "1.0.0-alpha.6",
-  "description": "> Materials of @axa-ch",
+  "description": "Materials like typography, colors, grid, layout, icons...",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/materials/#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
