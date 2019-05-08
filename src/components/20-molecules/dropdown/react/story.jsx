@@ -12,6 +12,7 @@ storiesOf('Molecules/Dropdown/React', module)
     const div = document.createElement('div');
     ReactDOM.render(
       <AXADropdownReact
+        data-test-id="dropdown-react"
         items={[
           {
             name: 'Please Select',
