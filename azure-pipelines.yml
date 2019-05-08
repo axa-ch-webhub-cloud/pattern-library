@@ -17,12 +17,12 @@ steps:
 
 - script: |
     npm install
-    npm test
+    # npm test
   displayName: 'npm install and test'
 
 - script: |
-    npx lerna bootstrap
-    npm run build
+    # npx lerna bootstrap
+    # npm run build
   displayName: 'npm build'
     
 - task: PublishPipelineArtifact@0
