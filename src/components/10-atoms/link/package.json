@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/link",
-  "version": "1.1.0-alpha.1",
+  "version": "1.1.0",
   "description": "The axa link for internal and external page navigation.",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/link/README.md",
@@ -24,8 +24,8 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/icon": "^1.0.0-alpha.7",
-    "@axa-ch/materials": "^1.0.0-alpha.7",
+    "@axa-ch/icon": "^1.0.0",
+    "@axa-ch/materials": "^1.0.0",
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "lit-element": "^2.1.0"
