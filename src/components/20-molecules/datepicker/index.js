@@ -61,7 +61,6 @@ class AXADatepicker extends LitElement {
   firstUpdated() {
     window.axaComponents = window.axaComponents || {};
     this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
-    this.addEventListener('click', e => this.handleDatepickerClick(e));
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
 
@@ -116,8 +115,8 @@ class AXADatepicker extends LitElement {
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', e => this.handleDatepickerClick(e));
     window.removeEventListener('click', e => this.handleBodyClick(e));
+    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
   }
 
   render() {
@@ -136,7 +135,7 @@ class AXADatepicker extends LitElement {
     }));
 
     return html`
-      <article class="m-datepicker">
+      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
         ${this.inputfield &&
           html`
             <div class="m-datepicker__input-wrap">
