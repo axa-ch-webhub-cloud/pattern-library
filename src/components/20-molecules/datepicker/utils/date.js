@@ -8,7 +8,9 @@ const getWeekdays = (date, locale) => {
   const out = [];
   const start = getStartOfWeek(date);
   for (let i = 0; i < 7; i++) {
-    out.push(start.toLocaleString(locale, { weekday: 'short' }).substr(0, 2));
+    let abrMonth = start.toLocaleString(locale, { weekday: 'short' });
+    abrMonth = abrMonth.replace(/[^ -~]/g, '');
+    out.push(abrMonth.slice(0, 2));
     start.setDate(start.getDate() + 1);
   }
   return out;
@@ -16,8 +18,7 @@ const getWeekdays = (date, locale) => {
 
 const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
 const clearStringFromIEGeneratedCharacters = string =>
-  // eslint-disable-next-line no-control-regex
-  string.replace(/[^\x00-\x7F]/g, '');
+  string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 10, 23);

@@ -1,17 +1,19 @@
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { DateInputSvg } from '@axa-ch/materials';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import '@axa-ch/dropdown';
+import '@axa-ch/button';
 import datepickerCSS from './index.scss';
 import {
   getWeekdays,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
 } from './utils/date';
+import defineOnce from '../../../utils/define-once';
 import Store from './utils/Store';
 
 const dateInputIcon = svg([DateInputSvg]);
-export class Datepicker extends LitElement {
+class AXADatepicker extends LitElement {
   static tagName = 'axa-datepicker';
   static styles = css`
     ${unsafeCSS(datepickerCSS)}
@@ -19,6 +21,7 @@ export class Datepicker extends LitElement {
 
   static get properties() {
     return {
+      'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
@@ -51,7 +54,12 @@ export class Datepicker extends LitElement {
     this.outputdate = '';
   }
 
+  range(start, end) {
+    return new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+  }
+
   firstUpdated() {
+    window.axaComponents = window.axaComponents || {};
     this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleBodyClick(e));
@@ -69,12 +77,6 @@ export class Datepicker extends LitElement {
         this.handleViewportCheck(this.inputfield);
       }, 100);
     }
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    window.axaComponents = window.axaComponents || {};
-    this.addEventListener('click', e => this.handleDatepickerClick(e));
 
     if (this.year >= 0) {
       this.startDate.setFullYear(this.year);
@@ -84,13 +86,27 @@ export class Datepicker extends LitElement {
       this.startDate.setMonth(this.month);
     }
 
-    if (this.day >= 0) {
+    if (this.day >= 0 && typeof this.day === 'number') {
       this.startDate.setDate(this.day);
     }
 
-    if (this.allowedyears.length < 2) {
-      this.allowedyears = [this.year];
-    }
+    let allowedYearsFinal = [this.year]; // the chosen start year is in the allowed years
+    this.allowedyears.forEach(years => {
+      if (typeof years === 'string') {
+        const splitYears = years.split('-');
+        const generatedYears = this.range(
+          parseInt(splitYears[0], 10),
+          parseInt(splitYears[1], 10)
+        );
+        allowedYearsFinal = allowedYearsFinal.concat(generatedYears);
+      } else {
+        allowedYearsFinal.push(years);
+      }
+    });
+
+    this.allowedyears = allowedYearsFinal
+      .filter((item, index) => allowedYearsFinal.indexOf(item) >= index)
+      .sort(); // Performance maniacs can puke (O...notation I know. ou ou ou).
 
     this.date = this.startDate;
     this.store = new Store(this.locale, this.date, this.allowedyears);
@@ -99,8 +115,8 @@ export class Datepicker extends LitElement {
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', e => this.handleDatepickerClick(e));
     window.removeEventListener('click', e => this.handleBodyClick(e));
+    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
   }
 
   render() {
@@ -119,7 +135,7 @@ export class Datepicker extends LitElement {
     }));
 
     return html`
-      <article class="m-datepicker">
+      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
         ${this.inputfield &&
           html`
             <div class="m-datepicker__input-wrap">
@@ -135,7 +151,7 @@ export class Datepicker extends LitElement {
                 class="m-datepicker__input-button"
                 @click="${this.handleInputButtonClick}"
               >
-                <span class="m-datepicker__input-icon">${dateInputIcon}</span>
+                <span>${dateInputIcon}</span>
               </button>
             </div>
           `}
@@ -192,7 +208,7 @@ export class Datepicker extends LitElement {
             </div>
             <div class="m-datepicker__buttons">
               <axa-button
-                secondary
+                variant="secondary"
                 class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
                 @click="${this.handleButtonCancelClick}"
                 >${this.labelbuttoncancel}</axa-button
@@ -217,7 +233,7 @@ export class Datepicker extends LitElement {
 
       // Validation
       if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-        return;
+        // return;
       }
 
       // Fire custom success events
@@ -422,4 +438,5 @@ export class Datepicker extends LitElement {
   }
 }
 
-customElements.define(Datepicker.tagName, Datepicker);
+defineOnce(AXADatepicker.tagName, AXADatepicker);
+export default AXADatepicker;

@@ -15,14 +15,11 @@
   transform: scale(1);
 }
 
-// TODO: Use Typography from materials
 .m-datepicker {
   position: relative;
   display: inline-block;
 
-  &__input,
-  &__input::placeholder,
-  &__weekdays,
+  &,
   &__calendar-cell {
     @include typo(primary, medium);
   }
@@ -39,8 +36,10 @@
     cursor: pointer;
     border: 0;
     line-height: 0;
+    padding: 1px 3px 2px;
 
     svg {
+      color: $color-axa-blue;
       width: 21px;
       height: 21px;
       padding-right: 6px;
@@ -48,11 +47,23 @@
     }
   }
 
-  // TODO:: Challenge global input styles (materials?)
   &__input {
+    @include typo(primary, small);
+
     border: 0;
     padding: 8px;
     min-width: 0;
+    width: 100%;
+    line-height: normal;
+
+    &::placeholder,
+    &:-ms-input-placeholder {
+      @include typo(primary, small);
+    }
+
+    &::-ms-clear {
+      display: none;
+    }
   }
 
   &__wrap {
@@ -91,6 +102,7 @@
   }
 
   &__weekdays-day {
+    @include typo(primary, medium);
     width: 35px;
     padding: 5px 0;
     margin-top: 0;
@@ -193,6 +205,10 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
+  }
+
+  .m-datepicker__button-cancel {
+    margin-right: 4px;
   }
 
   .m-datepicker__input-icon {

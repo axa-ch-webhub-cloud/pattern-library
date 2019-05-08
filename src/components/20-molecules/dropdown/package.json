@@ -1,7 +1,7 @@
 {
-  "name": "@axa-ch/datepicker",
-  "version": "1.0.0-alpha.14",
-  "description": "The datepicker for the AXA patterns library",
+  "name": "@axa-ch/dropdown",
+  "version": "1.0.0-alpha.3",
+  "description": "The dropdown for the AXA patterns library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library",
   "license": "Copyright 2019 AXA Versicherungen AG",
@@ -24,9 +24,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "1.0.0-alpha.2",
-    "@axa-ch/dropdown": "1.0.0-alpha.2",
-    "@axa-ch/materials": "^1.0.0-alpha.4",
+    "@axa-ch/materials": "^1.0.0-alpha.5",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"

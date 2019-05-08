@@ -1,12 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { ExpandSvg } from '@axa-ch/materials';
 import debounce from './utils/debounce';
 import styles from './index.scss';
+import defineOnce from '../../../utils/define-once';
 
-// TODO import icon from '@axa-ch/materials and extend them with classes'
-const ArrowIcon = svg`<svg class="a-icon__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
-<path fill="currentColor" d="M16 28.067c-0.533 0-1-0.2-1.4-0.6l-14-14c-1.8-1.8 1-4.667 2.8-2.8l12.6 12.533 12.6-12.533c1.8-1.8 4.667 1 2.8 2.8l-14 14c-0.333 0.4-0.867 0.6-1.4 0.6z"></path>
-</svg>
-`;
+const ArrowIcon = svg([ExpandSvg]);
 
 const DEFAULTS = {
   selectClass: 'js-dropdown__content',
@@ -250,4 +249,5 @@ class AXADropdown extends LitElement {
   }
 }
 
-customElements.define(AXADropdown.tagName, AXADropdown);
+defineOnce(AXADropdown.tagName, AXADropdown);
+export default AXADropdown;
