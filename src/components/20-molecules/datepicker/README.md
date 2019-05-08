@@ -21,8 +21,8 @@ As inputfield
 | `year="2020"`                              | year of date to start                              |
 | `month="month"`                            | month of date to start (January is 0)              |
 | `day="1"`                                  | day of date to start                               |
-| `allowedYears='[2019,2020]'`               | allowed years visible in dropdown                  |
-| `allowedYears='["1989-2010", 2012, 2014]'` | allowed years as range or mix of range and numbers |
+| `allowedyears='[2019,2020]'`               | allowed years visible in dropdown                  |
+| `allowedyears='["1989-2010", 2012, 2014]'` | allowed years as range or mix of range and numbers |
 | `labelbuttoncancel="Schliessen"`           | Label for OK button                                |
 | `labelbuttonok="OK"`                       | Label for Cancel button                            |
 
