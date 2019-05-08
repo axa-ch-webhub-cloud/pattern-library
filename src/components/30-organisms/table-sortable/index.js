@@ -1,7 +1,7 @@
 import { LitElement, css, unsafeCSS, html } from 'lit-element';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
-import '@axa-ch/table';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import '@axa-ch/table';
 import defineOnce from '../../../utils/define-once';
 import tableCss from './index.scss';
 

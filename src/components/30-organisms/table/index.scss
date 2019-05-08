@@ -31,7 +31,7 @@
   }
 }
 
-.o-table {
+axa-table > table {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   text-decoration: none;
   width: 100%;
@@ -117,14 +117,14 @@
   }
 }
 
-.o-table--innerscroll {
+axa-table[innerscroll]:not([innerscroll="0"]) {
   width: 100%;
   overflow-x: auto;
   display: block;
   position: relative;
   padding-bottom: 20px;
 
-  .o-table {
+  > table {
     th, td {
       &:first-child {
         @include firstChild_TDMQ;
