@@ -63,8 +63,6 @@ Import the button-defining script and use a button like this:
 | `variant="secondary"`          | Button in a ghost state   |
 | `variant="red"`                | Button red                |
 | `variant="inverted"`           | Button inverted           |
-| `variant="inverted-green"`     | Button inverted green     |
-| `variant="inverted-dark-blue"` | Button inverted dark blue |
 
 ### Type
 

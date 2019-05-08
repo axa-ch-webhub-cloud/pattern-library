@@ -63,46 +63,6 @@ storiesOf('Atoms/Button Link/React', module)
     );
     return div;
   })
-  .add('Button-Link - variant: inverted-green', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div
-        style={{
-          backgroundColor: '#027180',
-          width: '500px',
-          height: '100px',
-          paddingTop: '30px',
-          paddingBottom: '30px',
-        }}
-      >
-        <AXAButtonLinkReact variant="inverted-green">
-          Inverted-Green
-        </AXAButtonLinkReact>
-      </div>,
-      div
-    );
-    return div;
-  })
-  .add('Button-Link - variant: inverted-dark-blue', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div
-        style={{
-          backgroundColor: '#00005b',
-          width: '500px',
-          height: '100px',
-          paddingTop: '30px',
-          paddingBottom: '30px',
-        }}
-      >
-        <AXAButtonLinkReact variant="inverted-dark-blue">
-          inverted-dark-blue
-        </AXAButtonLinkReact>
-      </div>,
-      div
-    );
-    return div;
-  })
 
   /* Disabled */
   .add('Button-Link - disabled', () => {

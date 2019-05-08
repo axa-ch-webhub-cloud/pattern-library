@@ -26,20 +26,6 @@ storiesOf('Atoms/Button', module)
       <axa-button variant='inverted'>Inverted</axa-button>
     </div>`
   )
-  .add(
-    'Button - variant: inverted-green',
-    () => `
-    <div style="background-color: #027180; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button variant='inverted-green'>Inverted-Green</axa-button>
-    </div>`
-  )
-  .add(
-    'Button - variant: inverted-dark-blue',
-    () => `
-    <div style="background-color: #00005b; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button variant='inverted-dark-blue'>Inverted-Dark-Blue</axa-button>
-    </div>`
-  )
 
   /* Disabled */
   .add('Button - disabled', () => '<axa-button disabled>Disabled</axa-button>')
@@ -60,7 +46,7 @@ storiesOf('Atoms/Button', module)
 
   /* MotionOff */
   .add(
-    'Button - motion',
+    'Button - motionOff',
     () => `
     <div>
         <axa-button motionoff>MotionOff</axa-button>
