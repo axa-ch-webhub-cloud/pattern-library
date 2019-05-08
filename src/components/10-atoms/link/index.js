@@ -28,10 +28,6 @@ class AXALink extends LitElement {
     this.external = false;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-  }
-
   render() {
     const classes = classMap({
       'a-link--simple': this.variant,
