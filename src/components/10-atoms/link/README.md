@@ -1,5 +1,80 @@
 # Link
 
-The link component meant for hyper and internal links.
+The link component meant for hyper and internal links. Links can be styled via several properties to change their look-and-feel.
 
-The link has a `variant` property with different parameters that can be provided. Adding a `external` attribute to it will make sure that on-click the link will open in a new tab.
+All links support the colors "red" and "white" if declared within the `variant` attribute. See the explanation below.
+
+## Usage
+
+```bash
+npm install @axa-ch/link
+```
+
+```js
+import '@axa-ch/link';
+...
+<axa-link>I'm a link</axa-link>
+```
+
+### React
+
+Create a React-ified link with the createElement function from your React version and then use it like this:
+
+```js
+import { createElement } from 'react';
+import createAXALinkReact from '@axa-ch/link/lib/index.react';
+
+const AXALinkReact = createAXALinkReact(createElement);
+
+export default AXALinkReact;
+```
+
+```js
+<AxaLinkReact variant="arrowright">I'm a Link</AxaLinkReact>
+```
+
+### Pure HTML pages
+
+Import the link-defining script and use a link like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Your awesome title</title>
+  </head>
+  <body>
+    <axa-link>I'm a link</axa-link>
+    <script src="node_modules/@axa-ch/link/dist/index.js"></script>
+  </body>
+</html>
+```
+
+## Properties
+
+### Variant
+
+| Attribute                             | Details                                         |
+| ------------------------------------- | ----------------------------------------------- |
+| `variant="icon"`                      | Link with an icon displayed                     |
+| `variant="arrowright"`                | Link with arrow icon to the right               |
+| `variant="arrowleft"`                 | Link with arrow icon to the left                |
+| `variant="arrowleft-animated"`        | Link with animated arrow icon                   |
+| `variant="arrowright-animated"`       | Link with animated arrow icon                   |
+| `variant="arrowright-animated-red"`   | Any link variant with "red" will appear red     |
+| `variant="arrowright-animated-white"` | Any link variant with "white" will appear white |
+
+### Href
+
+The string-valued attribute `href` is used like in a native &lt;a&gt; hyperlink.
+
+### External
+
+The Boolean attribute `external` adds the `target="_blank"` functionality.
+
+### icon
+
+If the variant is `icon`, using the attribute `icon`'s string value as icon name, an icon will be rendered. The attributes `variant=icon` and `icon=xyz` both need to exist in order for an icon to be displayed. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/icon/README.md) README.
