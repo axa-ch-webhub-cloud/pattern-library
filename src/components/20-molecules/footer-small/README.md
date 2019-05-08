@@ -1,3 +1,100 @@
 # Footer - Small
 
-This is the small version of the footer.
+This is the small version of the footer. If you use multiple footers, this one should always appear at the very bottom.
+
+## Usage
+
+```bash
+npm install @axa-ch/footer-small
+```
+
+```js
+import '@axa-ch/footer-small';
+...
+<axa-footer-small activelanguage="DE" languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>
+```
+
+### React
+
+Create a React-ified small footer with the createElement function from your React version and then use it like this:
+
+```js
+import { createElement } from 'react';
+import createAXAFooterSmallReact from '@axa-ch/footer-small/lib/index.react';
+
+const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
+
+export default AXAFooterSmallReact;
+```
+
+```js
+<AXAFooterSmallReact
+  languageItems={languages}
+  disclaimerItems={disclaimer}
+  onLanguageChange={handleAXAFooterLanguageChange}
+  onDisclaimerChange={handleAXAFooterDisclaimerChange}
+  activeLanguage={activeLanguage}
+  copyrightText="© 2019 AXA Insurance Ltd."
+  dynamic
+/>
+```
+
+### Pure HTML pages
+
+Import the defining script and use it like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Your awesome title</title>
+  </head>
+  <body>
+    <axa-footer-small></axa-footer-small>
+    <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
+  </body>
+</html>
+```
+
+## Properties
+
+### languageitems - Example
+
+An array of items that represent the language section.
+
+```js
+const languages = JSON.stringify([
+  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
+  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
+]);
+```
+
+### disclaimeritems - Example
+
+An array of items that represent the disclaimer section.
+
+```js
+const disclaimer = JSON.stringify([
+  {
+    text: 'Terms of use',
+    link: 'https://axa.ch/en/information/terms-of-use.html',
+  },
+  {
+    text: 'Data protection',
+    link: 'https://axa.ch/en/information/data-protection.html',
+  },
+]);
+```
+
+### copyrighttext
+
+A string representing the text in the copyright section.
+
+### activelanguage
+
+A string representing the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.
