@@ -12,6 +12,17 @@ We only export holistic and self contained WebComponents based on CustomElement,
 
 We do not support Built-ins
 
+## Released Components
+- [AXA Button](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/button)
+- [AXA Button Link](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/button-link)
+- [AXA Icon](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/icon)
+- [AXA Link](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/link)
+- [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/datepicker)
+- [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/dropdown)
+- [AXA Footer Small](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/footer-small)
+- [AXA Table Sortable](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/30-organisms/table-sortable)
+- [AXA Table](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/30-organisms/table)
+
 ## Scaffolding
 
 Simply, just run `npm run new` and follow on screen instructions
