@@ -19,6 +19,7 @@ class AXADropdown extends LitElement {
 
   static get properties() {
     return {
+      'data-test-id': { type: String, reflect: true },
       items: { type: Array, reflect: true },
       open: { type: Boolean, reflect: true },
       value: { type: String, reflect: true },

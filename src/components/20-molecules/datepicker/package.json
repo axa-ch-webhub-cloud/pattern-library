@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@axa-ch/button": "^1.0.0-alpha.3",
-    "@axa-ch/dropdown": "1.0.0-alpha.2",
+    "@axa-ch/dropdown": "1.0.0-alpha.4",
     "@axa-ch/materials": "^1.0.0-alpha.7",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",

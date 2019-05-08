@@ -8,7 +8,7 @@ storiesOf('Molecules/Dropdown', module)
   .addDecorator(withMarkdown(Readme))
   .add(
     'Dropdown',
-    () => `<axa-dropdown title="Please Select"
+    () => `<axa-dropdown title="Please Select" data-test-id="dropdown"
     items='[
     {"name": "Please Select", "value": "Please Select", "url": "#", "isSelected": true, "isInitialItem": true },
     {"name": "Item 1", "value": "Item 1", "url": "#", "isSelected": false },
@@ -19,7 +19,7 @@ storiesOf('Molecules/Dropdown', module)
   )
   .add(
     'Dropdown Forced Native',
-    () => `<axa-dropdown native title="Please Select"
+    () => `<axa-dropdown native title="Please Select" data-test-id="dropdown-native"
   items='[
   {"name": "Please Select", "value": "Please Select", "url": "#", "isSelected": true, "isInitialItem": true },
   {"name": "Item 1", "value": "Item 1", "url": "#", "isSelected": false },
