@@ -17,7 +17,7 @@ fixture('Datepicker React').page(
 );
 test.only('should render dropdown as reactified component', async t => {
   const dropdownReact = await Selector(() =>
-    document.querySelector('[axa-dropdown[data-test-id="dropdown-react"]')
+    document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
   );
   await t.expect(dropdownReact.exists).ok();
 });
