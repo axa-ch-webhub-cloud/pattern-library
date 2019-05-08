@@ -24,4 +24,22 @@ storiesOf('Molecules/Datepicker/React', module)
       div
     );
     return div;
+  })
+  .add('Datepicker with inputfield as React Component', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <AXADatepickerReact
+        inputfield
+        data-test-id="datepicker-react"
+        locale="de-CH"
+        day={25}
+        month={1}
+        year={2020}
+        labelbuttoncancel="Cancel"
+        labelbuttonok="OK"
+        allowedyears={[2019, 2020]}
+      />,
+      div
+    );
+    return div;
   });

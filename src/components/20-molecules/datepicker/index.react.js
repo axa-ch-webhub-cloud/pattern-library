@@ -3,6 +3,7 @@ import AXADatepicker from './index';
 
 export default createElement => ({
   'data-test-id': dataTestId,
+  inputfield,
   open,
   locale,
   day,
@@ -14,6 +15,7 @@ export default createElement => ({
 }) =>
   withReact(createElement)(AXADatepicker.tagName, {
     'data-test-id': dataTestId,
+    inputfield,
     open,
     locale,
     day,
