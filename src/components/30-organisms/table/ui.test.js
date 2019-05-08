@@ -7,12 +7,12 @@ fixture('Table - basic functionality').page(
 );
 
 const TAG = 'axa-table';
-const CLASS = '.o-table';
+const TOPMOST_TABLE = 'axa-table > table';
 
 test('should render table', async t => {
   const $el = await Selector(TAG);
   await t.expect($el.exists).ok();
-  const $elEl = await $el.find(CLASS);
+  const $elEl = await $el.find(TOPMOST_TABLE);
   await t.expect($elEl.exists).ok();
 });
 
@@ -29,7 +29,7 @@ fixture('Table - innerscroll functionality').page(
 test('should render innerscroll table on mobile', async t => {
   await t.resizeWindow(300, 1000);
   const $el = await Selector('axa-table');
-  const $elChild = await Selector('.o-table');
+  const $elChild = await Selector(TOPMOST_TABLE);
   const $elTh = await Selector('axa-table th');
   await t.expect(await $elTh.getStyleProperty('display')).eql('table-cell');
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');

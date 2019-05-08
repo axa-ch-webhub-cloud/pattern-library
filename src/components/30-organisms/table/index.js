@@ -28,11 +28,18 @@ class AXATable extends NoShadowDOM {
 
   updated() {
     // whenever 'innerscroll' is updated,
-    // update our own inline style accordingly.
-    // The <table> child's CSS *inherits* this min-width!
-    // This indirect way of styling avoids having to track dynamic
-    // changes to the children of our <axa-table> via MutationObserver!
-    this.style.minWidth = `${this.innerscroll}px`;
+    // update the topmost <table's> own inline style accordingly.
+    // CAVEATS: this messes with the children, but is unavoidable here
+    // to insure correct only-table-scrolls-horizontally behaviour!
+    // A fully general solution would monitor dynamic changes in the
+    // children via MutationObserver.
+    const topMostTable = this.firstElementChild;
+    if (!topMostTable || topMostTable.tagName !== 'TABLE') {
+      // eslint-disable-next-line no-console
+      console.info(`<${AXATable.tagName}>: expected <table> as first child!`);
+      return;
+    }
+    topMostTable.style.minWidth = `${this.innerscroll}px`;
   }
 }
 

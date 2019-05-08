@@ -172,7 +172,7 @@ test('should sort also when innerscroll is set ', async t => {
     return sRoot.querySelector('axa-table');
   });
 
-  const $elChild = $el.find('.o-table');
+  const $elChild = $el.find('table');
 
   await t.expect($elRoot.exists).ok();
   const $columnOne = await Selector(() => {

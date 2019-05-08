@@ -125,7 +125,6 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
   padding-bottom: 20px;
 
   > table {
-    min-width: inherit;
     th, td {
       &:first-child {
         @include firstChild_TDMQ;

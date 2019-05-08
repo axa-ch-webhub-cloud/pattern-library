@@ -10,66 +10,69 @@ const crossTagReferenceCounts = {};
 
 // BASE CLASS
 class NoShadowDOM extends LitElement {
+  /* render template in light DOM */
   createRenderRoot() {
-    // render template in light DOM. Note that shadow DOM features like
-    // encapsulated CSS are unavailable as a result.
     return this;
   }
 
-  /* return inline styles iff first instance in current document/ShadowRoot */
+  /* append inline styles iff first instance in current document/ShadowRoot */
   inlineStyles() {
-    // get this node's document or ShadowRoot
-    // N.B. needs polyfill for non-Chromium Edge / IE
+    // get this node's document or ShadowRoot, to be used as map key to attach
+    // reference-count metadata to
+    // N.B. getRootNode needs polyfill for non-Chromium Edge / IE
     // (https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode)
     const root = this.getRootNode();
-    // get reference counts for all the documents/ShadowRoots with instances
-    // of <tagName>...</tagName>
+    // retrieve all reference counts by tag name, initializing as needed
+    // with WeakMap(). WeakMap (supported by IE11) acts as defense-in-depth
+    // against memory leaks if disconnectedCallback is never called
+    // (allowed by the spec).
     const referenceCounts =
       crossTagReferenceCounts[this.tagName] || new WeakMap();
-    // we have 1 more reference to a <tagName>...</tagName> in the current
-    // document/ShadowRoot (undefined | 0 === 0)
+    // one more reference, caused by this instance (undefined | 0 === 0)
     const referenceCount = (referenceCounts.get(root) | 0) + 1;
-    // store the updated reference count
+    // persist reference-count metadata
     referenceCounts.set(root, referenceCount);
     crossTagReferenceCounts[this.tagName] = referenceCounts;
-    // first time for the current document/ShadowRoot?
+    // no style sheet attached sofar?
     if (referenceCount === 1) {
-      // yes, remember our root in the instance, if not available natively
-      // (ownerDocument). This is for when we disconnect from the DOM.
-      if (this.ownerDocument !== root) this._rootNode = root;
-      // create inline style sheet...
+      // remember our root in the instance, if not available natively
+      // (ownerDocument), for DOM-removal-time cleanup.
+      if (this.ownerDocument !== root) {
+        this._rootNode = root;
+      }
+      // provision inline style sheet with *string* content
+      // from the class property 'styles'
       const style = document.createElement('style');
-      // ... getting its *string* content from the class property 'styles'
       style.textContent = this.constructor.styles;
-      // append it at the right place (outside of this instance's children)
-      const parent = root instanceof window.ShadowRoot ? root : document.head;
+      // append it at the right place, *outside* of this instance's children
+      // eslint-disable-next-line no-undef
+      const parent = root instanceof ShadowRoot ? root : document.head;
       parent.appendChild(style);
     }
   }
 
   /* apply styles */
   connectedCallback() {
-    // call lit-element's own implementation first
     super.connectedCallback();
-    // apply inline styles - that method deduplicates itself, so is robust
-    // against multiple invocations of connectedCallback (allowed by the spec)
-    this.inlineStyles();
+    this.inlineStyles(); // contains built-in deduplication, so is
+    // robust against multiple invocations of connectedCallback
+    // (allowed by the spec)
   }
 
-  /* cleanup */
+  /* DOM-removal cleanup in module globals */
   disconnectedCallback() {
     super.disconnectedCallback();
-    // prepare to remove remembered document
+    // if applicable, prepare reference-count metadata
     const referenceCounts = crossTagReferenceCounts[this.tagName];
-    if (!referenceCounts) return;
+    if (!referenceCounts) {
+      return;
+    }
     const root = this._rootNode || this.ownerDocument;
     const referenceCount = (referenceCounts.get(root) | 0) - 1;
-    // if last reference is gone,
+    // remove or update reference-count metadata
     if (referenceCount < 1) {
-      // ... actually remove it from the map, thus giving an early hint to GC
-      referenceCounts.delete(root);
+      referenceCounts.delete(root); // give an early hint to GC
     } else {
-      // ... otherwise remember we have one less reference
       referenceCounts.set(root, referenceCount);
     }
   }

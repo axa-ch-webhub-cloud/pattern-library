@@ -28,3 +28,4 @@ node_modules
 .npm
 
 .DS_Store
+.vscode/settings.json
