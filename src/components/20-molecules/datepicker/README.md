@@ -19,7 +19,7 @@ As inputfield
 | ------------------------------------------ | -------------------------------------------------- |
 | `locale="de-CH"`                           | locale (second part must be in uppercase!)         |
 | `year="2020"`                              | year of date to start                              |
-| `month="month"`                            | month of date to start (January is 0)              |
+| `month="0"`                                | month of date to start (January is 0)              |
 | `day="1"`                                  | day of date to start                               |
 | `inputfield`                               | Rendered as inputfield                             |
 | `allowedyears='[2019,2020]'`               | allowed years visible in dropdown                  |
