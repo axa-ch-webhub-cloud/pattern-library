@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/button",
-  "version": "1.0.0-alpha.1",
-  "description": "> TODO: description",
+  "version": "1.0.0-alpha.6",
+  "description": "The AXA Button component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/10-atoms/button#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
