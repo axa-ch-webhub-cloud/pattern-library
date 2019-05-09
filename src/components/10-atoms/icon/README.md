@@ -1,6 +1,6 @@
 # AXA Icon
 
-&lt;axa-icon&gt; renders an icon, given either an icon name or a relative path to a suitable SVG image.
+&lt;axa-icon&gt; renders an icon, given either an icon name or a resource path to a suitable SVG image.
 
 ## Usage
 
@@ -45,6 +45,8 @@ Import the icon-defining script and use icons like so:
 
 ### Icon
 
+#### Icon names
+
 | Attribute            |
 | -------------------- |
 | `icon="arrow-right"` |
@@ -56,3 +58,7 @@ Import the icon-defining script and use icons like so:
 | `icon="plus"`        |
 | `icon="search"`      |
 | `icon="upload"`      |
+
+#### Icon resource path
+
+The icon resource path have to be end with `.svg` and the icon have to be a svg.
