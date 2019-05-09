@@ -10,8 +10,33 @@ npm install @axa-ch/footer-small
 
 ```js
 import '@axa-ch/footer-small';
-...
-<axa-footer-small activelanguage="DE" languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>
+
+const languages = JSON.stringify([
+  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
+  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
+]);
+
+const disclaimer = JSON.stringify([
+  {
+    text: 'Terms of use',
+    link: 'https://axa.ch/en/information/terms-of-use.html',
+  },
+  {
+    text: 'Data protection',
+    link: 'https://axa.ch/en/information/data-protection.html',
+  },
+]);
+```
+
+```html
+<axa-footer-small
+  activelanguage="DE"
+  languageitems="${languages}"
+  disclaimeritems="${disclaimer}"
+  copyrighttext="© 2019 AXA Insurance Ltd."
+/>;
 ```
 
 ### React
@@ -28,20 +53,41 @@ export default AXAFooterSmallReact;
 ```
 
 ```js
-<AXAFooterSmallReact
-  languageItems={languages}
-  disclaimerItems={disclaimer}
-  onLanguageChange={handleAXAFooterLanguageChange}
-  onDisclaimerChange={handleAXAFooterDisclaimerChange}
-  activeLanguage={activeLanguage}
-  copyrightText="© 2019 AXA Insurance Ltd."
-  dynamic
-/>
+const languages = [
+  { text: 'DE' },
+  { text: 'FR' },
+  { text: 'IT' },
+  { text: 'EN' },
+];
+
+const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
+
+const handleAXAFooterLanguageChange = language => {
+  console.log(language); // EN, DE, ...
+};
+
+const handleAXAFooterDisclaimerChange = disclaimer => {
+  console.log(disclaimer); // Terms of use, Data protection
+};
+
+return (
+  <div>
+    <AXAFooterSmallReact
+      languageItems={languages}
+      disclaimerItems={disclaimer}
+      onLanguageChange={handleAXAFooterLanguageChange}
+      onDisclaimerChange={handleAXAFooterDisclaimerChange}
+      activeLanguage="EN"
+      copyrightText="© 2019 AXA Insurance Ltd."
+      dynamic
+    />
+  </div>
+);
 ```
 
 ### Pure HTML pages
 
-Import the defining script and use it like this:
+If want a footer with static links, that will route to wherever the `href` attributes are pointing:
 
 ```html
 <!DOCTYPE html>
@@ -53,11 +99,46 @@ Import the defining script and use it like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-footer-small></axa-footer-small>
+    <axa-footer-small
+      activelanguage="DE"
+      languageitems="${languages}"
+      disclaimeritems="${disclaimer}"
+      copyrighttext="© 2019 AXA Insurance Ltd."
+    ></axa-footer-small>
     <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
   </body>
 </html>
 ```
+
+If you want to listen for changes, pass in the additional `dynamic` boolean attribute like this:
+
+```html
+....
+<axa-footer-small
+  activelanguage="DE"
+  languageitems="${languages}"
+  disclaimeritems="${disclaimer}"
+  copyrighttext="© 2019 AXA Insurance Ltd."
+  dynamic
+></axa-footer-small>
+....
+```
+
+With this, a click on any footer link will not automatically redirect the user anywhere, but instead fire an event that you can subscribe to. Example:
+
+```js
+const footerSmall = document.querySelector('axa-footer-small');
+
+footerSmall.addEventListener('axa-language-change', languageEvent => {
+  console.log(languageEvent.detail); // Content: DE, EN, ...`;
+});
+
+footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
+  console.log(disclaimerEvent.detail); // Content: Terms of use, Data protection
+});
+```
+
+Check the demo folder for this use case.
 
 ## Properties
 
@@ -66,12 +147,10 @@ Import the defining script and use it like this:
 An array of items that represent the language section.
 
 ```js
-const languages = JSON.stringify([
-  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
-  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
-  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
-]);
+const languages = [
+  { text: string, link: string },
+  ...
+];
 ```
 
 ### disclaimeritems - Example
@@ -79,16 +158,10 @@ const languages = JSON.stringify([
 An array of items that represent the disclaimer section.
 
 ```js
-const disclaimer = JSON.stringify([
-  {
-    text: 'Terms of use',
-    link: 'https://axa.ch/en/information/terms-of-use.html',
-  },
-  {
-    text: 'Data protection',
-    link: 'https://axa.ch/en/information/data-protection.html',
-  },
-]);
+const disclaimers = [
+  { text: string, link: string },
+  ...
+];
 ```
 
 ### copyrighttext

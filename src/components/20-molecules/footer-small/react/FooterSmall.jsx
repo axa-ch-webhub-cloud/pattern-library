@@ -1,5 +1,5 @@
 import React, { createElement, useState } from 'react';
-import createAXAFooterSmallReact from '../../components/20-molecules/footer-small/index.react';
+import createAXAFooterSmallReact from '../index.react';
 
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
@@ -28,7 +28,6 @@ const DemoFooterSmall = () => {
 
   return (
     <div>
-      <p>Footer Small</p>
       <p>Currently selected language: {activeLanguage}</p>
       <p>Disclaimer changed to: {disclaimerChange}</p>
       <AXAFooterSmallReact
