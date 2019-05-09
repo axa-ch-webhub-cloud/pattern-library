@@ -13,7 +13,7 @@ npm install @axa-ch/link
 ```js
 import '@axa-ch/link';
 ...
-<axa-link>I'm a link</axa-link>
+<axa-link href="https://axa.ch/en/private-customers.html">I'm a link</axa-link>
 ```
 
 ### React
@@ -30,7 +30,12 @@ export default AXALinkReact;
 ```
 
 ```js
-<AxaLinkReact variant="arrowright">I'm a Link</AxaLinkReact>
+<AxaLinkReact
+  variant="arrowright"
+  href="https://axa.ch/en/private-customers.html"
+>
+  I'm a Link
+</AxaLinkReact>
 ```
 
 ### Pure HTML pages
@@ -47,7 +52,9 @@ Import the link-defining script and use a link like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-link>I'm a link</axa-link>
+    <axa-link href="https://axa.ch/en/private-customers.html"
+      >I'm a link</axa-link
+    >
     <script src="node_modules/@axa-ch/link/dist/index.js"></script>
   </body>
 </html>
@@ -55,7 +62,7 @@ Import the link-defining script and use a link like this:
 
 ## Properties
 
-### Variant
+### variant
 
 | Attribute                             | Details                                         |
 | ------------------------------------- | ----------------------------------------------- |
@@ -67,14 +74,14 @@ Import the link-defining script and use a link like this:
 | `variant="arrowright-animated-red"`   | Any link variant with "red" will appear red     |
 | `variant="arrowright-animated-white"` | Any link variant with "white" will appear white |
 
-### Href
+### href
 
 The string-valued attribute `href` is used like in a native &lt;a&gt; hyperlink.
 
-### External
+### external
 
 The Boolean attribute `external` adds the `target="_blank"` functionality.
 
 ### icon
 
-If the variant is `icon`, using the attribute `icon`'s string value as icon name, an icon will be rendered. The attributes `variant=icon` and `icon=xyz` both need to exist in order for an icon to be displayed. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/icon/README.md) README.
+If the variant is `icon`, using the attribute `icon`'s string value as icon name, an icon will be rendered. The attributes `variant=icon` and `icon=xyz` both need to exist in order for an icon to be displayed. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/10-atoms/icon/README.md) readme.
