@@ -6,10 +6,12 @@ export default createElement => ({
   title,
   open,
   items,
+  onAXAValueChange = () => {},
 }) =>
   withReact(createElement)(AXADropdown.tagName, {
     'data-test-id': dataTestId,
     title,
     open,
     items,
+    onAXAValueChange,
   });

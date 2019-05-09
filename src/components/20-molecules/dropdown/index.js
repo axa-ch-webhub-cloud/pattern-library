@@ -17,6 +17,11 @@ class AXADropdown extends LitElement {
     ${unsafeCSS(styles)}
   `;
 
+  constructor() {
+    super();
+    this.onAXAValueChange = () => {};
+  }
+
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
@@ -26,24 +31,23 @@ class AXADropdown extends LitElement {
       title: { type: String, reflect: true },
       native: { type: Boolean },
       size: { type: String },
+      onAXAValueChange: { type: Function },
     };
   }
 
   firstUpdated() {
+    window.axaComponents = window.axaComponents || {};
+    this.open = false;
     this.dropdown = this.shadowRoot.querySelector(`.${DEFAULTS.selectClass}`);
     this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
+
     window.addEventListener(
       'resize',
       debounce(() => this.handleViewportCheck(this.dropdown), 250)
     );
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    window.axaComponents = window.axaComponents || {};
-    this.open = false;
     window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
     window.addEventListener('click', e => this.handleWindowClick(e));
+
     this.updateTitle();
   }
 
@@ -172,6 +176,15 @@ class AXADropdown extends LitElement {
         item => item.isSelected === true
       );
       this.title = currentItem[0] ? currentItem[0].name : this.title;
+
+      // Fire custom callbacks and events
+      const eventValidation = new CustomEvent('AXA_CHANGE', {
+        detail: currentItem[0].value,
+        bubbles: true,
+        cancelable: true,
+      });
+      this.dispatchEvent(eventValidation);
+      this.onAXAValueChange(currentItem[0].value);
     }
   }
 
