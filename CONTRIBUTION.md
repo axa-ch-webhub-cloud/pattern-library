@@ -87,9 +87,10 @@ storiesOf('Molecules/Top content bar', module)
 - Ensure you have an npm account under the `@axa-ch` organisation
 - Create a new branch that follows this pattern: `release/<component-name>`
 - Add your component to `lerna.json`
-- Clean the main and package node modules:
+- Clean the main and components dependencies:
   - `rm -rf node_modules`
   - `npx lerna clean`
-- Install node_modules : `npm install`
+- Run `npm install`
+- Run `npx lerna bootstrap`
 - Release via: `npm run release`
 - Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
