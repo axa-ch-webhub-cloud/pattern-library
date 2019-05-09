@@ -12,7 +12,7 @@ npm install @axa-ch/button-link
 ```js
 import '@axa-ch/button-link';
 ...
-<axa-button-link>I'm a button link</axa-button-link>
+<axa-button-link>I am a button link</axa-button-link>
 ```
 
 ### React
@@ -30,7 +30,7 @@ export default AXAButtonLinkReact;
 
 ```js
 <AXAButtonLinkReact href='#axa' motionOff onClick={handler}>
-  I'm a Button Link
+  I am a Button Link
 </AxaButtonReact>
 ```
 
@@ -48,7 +48,7 @@ Import the button-link-defining script and use a button link like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-button-link>I'm a button link</axa-button-link>
+    <axa-button-link>I am a button link</axa-button-link>
     <script src="node_modules/@axa-ch/button-link/dist/index.js"></script>
   </body>
 </html>
@@ -58,11 +58,11 @@ Import the button-link-defining script and use a button link like this:
 
 ### Variant
 
-| Attribute                      | Details                        |
-| ------------------------------ | ------------------------------ |
-| `variant="secondary"`          | Button link in a ghost state   |
-| `variant="red"`                | Button link red                |
-| `variant="inverted"`           | Button link inverted           |
+| Attribute             | Details                      |
+| --------------------- | ---------------------------- |
+| `variant="secondary"` | Button link in a ghost state |
+| `variant="red"`       | Button link red              |
+| `variant="inverted"`  | Button link inverted         |
 
 ### Href
 
