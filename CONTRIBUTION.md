@@ -92,4 +92,4 @@ storiesOf('Molecules/Top content bar', module)
   - `npx lerna clean`
 - Install node_modules : `npm install`
 - Release via: `npm run release`
-- Lerna is going to ask you how to update changed packages. Ffollow the instructions and keep in mind semver rules: https://semver.org/
+- Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
