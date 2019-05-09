@@ -41,7 +41,7 @@ export default AXAFooterSmallReact;
 
 ### Pure HTML pages
 
-Import the defining script and use it like this:
+If want a footer with static links, that will route to wherever the `href` attributes are pointing:
 
 ```html
 <!DOCTYPE html>
@@ -53,11 +53,46 @@ Import the defining script and use it like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-footer-small></axa-footer-small>
+    <axa-footer-small
+      activelanguage="DE"
+      languageitems="${languages}"
+      disclaimeritems="${disclaimer}"
+      copyrighttext="© 2019 AXA Insurance Ltd."
+    ></axa-footer-small>
     <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
   </body>
 </html>
 ```
+
+If you want to listen for "changes", pass in the additional `dynamic` boolean attribute like this:
+
+```html
+....
+<axa-footer-small
+  activelanguage="DE"
+  languageitems="${languages}"
+  disclaimeritems="${disclaimer}"
+  copyrighttext="© 2019 AXA Insurance Ltd."
+  dynamic
+></axa-footer-small>
+....
+```
+
+With this, a click on any footer link will not automatically redirect the user anywhere, but instead fire an event that you can subscribe to. Example:
+
+```js
+const footerSmall = document.querySelector('axa-footer-small');
+
+footerSmall.addEventListener('axa-language-change', languageEvent => {
+  console.log(languageEvent.detail); // Content: DE, EN, ...`;
+});
+
+footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
+  console.log(disclaimerEvent.detail); // Content: Terms of use, Data protection
+});
+```
+
+Check the demo folder for this use case.
 
 ## Properties
 
