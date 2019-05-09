@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Footer Small - Static links').page(
-  `${host}/iframe.html?id=molecules-footer-small--footer-small-static-links`
+  `${host}/iframe.html?id=molecules-footer-small--footer-small`
 );
 
 test('should display four languages', async t => {
@@ -72,7 +72,7 @@ test('should have a link in the href attribute', async t => {
 });
 
 fixture('Footer Small - Dynamic links').page(
-  `${host}/iframe.html?id=molecules-footer-small--footer-small-dynamic-links`
+  `${host}/iframe.html?id=molecules-footer-small-demos--footer-small-dynamic-links`
 );
 
 test("should have 'javascript:void(0)' the href attribute", async t => {
