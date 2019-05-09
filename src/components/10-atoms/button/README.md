@@ -12,7 +12,7 @@ npm install @axa-ch/button
 ```js
 import '@axa-ch/button';
 ...
-<axa-button>I'm a button</axa-button>
+<axa-button>I am a button</axa-button>
 ```
 
 ### React
@@ -30,7 +30,7 @@ export default AXAButtonReact;
 
 ```js
 <AXAButtonReact motionOff onClick={handler}>
-  I'm a Button
+  I am a Button
 </AxaButtonReact>
 ```
 
@@ -48,7 +48,7 @@ Import the button-defining script and use a button like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-button>I'm a button</axa-button>
+    <axa-button>I am a button</axa-button>
     <script src="node_modules/@axa-ch/button/dist/index.js"></script>
   </body>
 </html>
@@ -58,11 +58,11 @@ Import the button-defining script and use a button like this:
 
 ### Variant
 
-| Attribute                      | Details                   |
-| ------------------------------ | ------------------------- |
-| `variant="secondary"`          | Button in a ghost state   |
-| `variant="red"`                | Button red                |
-| `variant="inverted"`           | Button inverted           |
+| Attribute             | Details                 |
+| --------------------- | ----------------------- |
+| `variant="secondary"` | Button in a ghost state |
+| `variant="red"`       | Button red              |
+| `variant="inverted"`  | Button inverted         |
 
 ### Type
 

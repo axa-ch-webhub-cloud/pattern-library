@@ -13,7 +13,7 @@ npm install @axa-ch/link
 ```js
 import '@axa-ch/link';
 ...
-<axa-link href="https://axa.ch/en/private-customers.html">I'm a link</axa-link>
+<axa-link href="https://axa.ch/en/private-customers.html">I am a link</axa-link>
 ```
 
 ### React
@@ -34,7 +34,7 @@ export default AXALinkReact;
   variant="arrowright"
   href="https://axa.ch/en/private-customers.html"
 >
-  I'm a Link
+  I am a Link
 </AxaLinkReact>
 ```
 
@@ -53,7 +53,7 @@ Import the link-defining script and use a link like this:
   </head>
   <body>
     <axa-link href="https://axa.ch/en/private-customers.html"
-      >I'm a link</axa-link
+      >I am a link</axa-link
     >
     <script src="node_modules/@axa-ch/link/dist/index.js"></script>
   </body>
