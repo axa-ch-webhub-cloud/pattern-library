@@ -4,14 +4,35 @@
 
 ## Install
 
-`npm install @axa-ch/datepicker`
+```bash
+npm install @axa-ch/datepicker
+```
 
-## Example Usage
+## Usage Native
 
-`<axa-datepicker locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`
+```js
+import '@axa-ch/datepicker';
 
-As inputfield
-`<axa-datepicker inputfield locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`
+`<axa-datepicker locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`;
+```
+
+## Usage React
+
+Create a React-ified datepicker with the createElement function from your React version and then use it like this:
+
+```js
+import { createElement } from 'react';
+import createAXADatepickerReact from '@axa-ch/Datepicker/lib/index.react';
+
+const AXADatepickerReact = createAXADatepickerReact(createElement);
+
+export default AXADatepickerReact;
+```
+
+```js
+<AXADatepickerReact locale="de-CH" year={2020} month={1} day={1} onAXADateChange={date => console.log(`date changed ${date}`)}>
+</AxaDatepickerReact>
+```
 
 ## Properties
 
@@ -26,3 +47,9 @@ As inputfield
 | `allowedyears='["1989-2010", 2012, 2014]'` | allowed years as range or mix of range and numbers |
 | `labelbuttoncancel="Schliessen"`           | Label for OK button                                |
 | `labelbuttonok="OK"`                       | Label for Cancel button                            |
+
+## Callbacks
+
+### onAXADateChange
+
+The function-valued attribute `onAXADateChange` can be used as a callback prop for React and other frameworks.
