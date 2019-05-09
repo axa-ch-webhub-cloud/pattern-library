@@ -31,13 +31,13 @@
 ```js
 // React smoke test
 fixture('Button').page(
-  `${host}/iframe.html?id=your-`
+  `${host}/iframe.html?id=your-component-page`
 );
 test('should render a button as reactified component', async t => {
-  const datepickerReact = await Selector(() =>
+  const button = await Selector(() =>
     document.querySelector(`axa-button[data-test-id="button"]`)
   );
-  await t.expect(datepickerReact.exists).ok();
+  await t.expect(button.exists).ok();
 });
 ```
 
@@ -48,7 +48,7 @@ test('should render a button as reactified component', async t => {
 - Tests should be written with the `it()` function, i.e `it('should render correctly')`.
 - You may optionally want to describe and group them in `describe()` blocks.
 - Optional: Coverage: Run `npm test -- --coverage`
-- Optional: Disable jsDOM via (`npm run test-jest --env=node`
+- Optional: Disable jsDOM via `npm run test-jest --env=node`
 
 ```js
 import sum from './sum';
