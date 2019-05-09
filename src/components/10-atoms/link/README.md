@@ -1,6 +1,6 @@
 # Link
 
-The link component meant for hyper and internal links. Links can be styled via several properties to change their look-and-feel.
+The link component meant for hyper and simple links. Links can be styled via several properties to change their look-and-feel.
 
 All links support the colors "red" and "white" if declared within the `variant` attribute. See the explanation below.
 
@@ -13,7 +13,11 @@ npm install @axa-ch/link
 ```js
 import '@axa-ch/link';
 ...
+// Hyperlink
 <axa-link href="https://axa.ch/en/private-customers.html">I am a link</axa-link>
+
+// Simple Link
+<axa-link variant="" href="https://axa.ch/en/private-customers.html">I am a link</axa-link>
 ```
 
 ### React
@@ -30,12 +34,20 @@ export default AXALinkReact;
 ```
 
 ```js
-<AxaLinkReact
+// Hyperlink
+<AXALinkReact
+  href="https://axa.ch/en/private-customers.html"
+>
+  I am a Link
+</AXALinkReact>
+
+// Simple Link
+<AXALinkReact
   variant="arrowright"
   href="https://axa.ch/en/private-customers.html"
 >
   I am a Link
-</AxaLinkReact>
+</AXALinkReact>
 ```
 
 ### Pure HTML pages
@@ -52,7 +64,15 @@ Import the link-defining script and use a link like this:
     <title>Your awesome title</title>
   </head>
   <body>
+    <!-- Hyperlink -->
     <axa-link href="https://axa.ch/en/private-customers.html"
+      >I am a link</axa-link
+    >
+
+    <!-- Simple Link -->
+    <axa-link
+      variant="arrowright"
+      href="https://axa.ch/en/private-customers.html"
       >I am a link</axa-link
     >
     <script src="node_modules/@axa-ch/link/dist/index.js"></script>
@@ -62,17 +82,37 @@ Import the link-defining script and use a link like this:
 
 ## Properties
 
-### variant
+### variant (Simple Links)
 
-| Attribute                             | Details                                         |
-| ------------------------------------- | ----------------------------------------------- |
-| `variant="icon"`                      | Link with an icon displayed                     |
-| `variant="arrowright"`                | Link with arrow icon to the right               |
-| `variant="arrowleft"`                 | Link with arrow icon to the left                |
-| `variant="arrowleft-animated"`        | Link with animated arrow icon                   |
-| `variant="arrowright-animated"`       | Link with animated arrow icon                   |
-| `variant="arrowright-animated-red"`   | Any link variant with "red" will appear red     |
-| `variant="arrowright-animated-white"` | Any link variant with "white" will appear white |
+#### Default color
+
+| Attribute                       | Details                           |
+| ------------------------------- | --------------------------------- |
+| `variant="icon"`                | Link with an icon displayed       |
+| `variant="arrowright"`          | Link with arrow icon to the right |
+| `variant="arrowleft"`           | Link with arrow icon to the left  |
+| `variant="arrowleft-animated"`  | Link with animated arrow icon     |
+| `variant="arrowright-animated"` | Link with animated arrow icon     |
+
+#### Red color
+
+| Attribute                           | Details                           |
+| ----------------------------------- | --------------------------------- |
+| `variant="icon-red"`                | Link with an icon displayed       |
+| `variant="arrowright-red"`          | Link with arrow icon to the right |
+| `variant="arrowleft-red"`           | Link with arrow icon to the left  |
+| `variant="arrowleft-animated-red"`  | Link with animated arrow icon     |
+| `variant="arrowright-animated-red"` | Link with animated arrow icon     |
+
+#### white color
+
+| Attribute                             | Details                           |
+| ------------------------------------- | --------------------------------- |
+| `variant="icon-white"`                | Link with an icon displayed       |
+| `variant="arrowright-white"`          | Link with arrow icon to the right |
+| `variant="arrowleft-white"`           | Link with arrow icon to the left  |
+| `variant="arrowleft-animated-white"`  | Link with animated arrow icon     |
+| `variant="arrowright-animated-white"` | Link with animated arrow icon     |
 
 ### href
 
