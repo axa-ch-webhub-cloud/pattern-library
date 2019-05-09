@@ -2,6 +2,11 @@
 
 [axa-dropdown](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/dropdown/README.md).
 
+Note:
+
+- Controled inputs for reactified components are coming within the next minor release.
+- Due to limitations of ShadowDom, sent input values won't be visible within native form data (WIP)
+
 ## Install
 
 `npm install @axa-ch/dropdown`
@@ -21,8 +26,6 @@
 ## Example Usage React
 
 Create a React-ified Dropdown with the createElement function from your React version and then use it like this.
-
-Controled input is coming within the next major release.
 
 ```js
 import { createElement } from 'react';
