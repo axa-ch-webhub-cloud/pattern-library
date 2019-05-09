@@ -64,7 +64,7 @@ If want a footer with static links, that will route to wherever the `href` attri
 </html>
 ```
 
-If you want to listen for "changes", pass in the additional `dynamic` boolean attribute like this:
+If you want to listen for changes, pass in the additional `dynamic` boolean attribute like this:
 
 ```html
 ....
