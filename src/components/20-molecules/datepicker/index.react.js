@@ -12,6 +12,7 @@ export default createElement => ({
   allowedyears = [year],
   labelbuttonok = 'OK',
   labelbuttoncancel = 'Cancel',
+  onAXADateChange = () => {},
 }) =>
   withReact(createElement)(AXADatepicker.tagName, {
     'data-test-id': dataTestId,
@@ -24,4 +25,5 @@ export default createElement => ({
     allowedyears,
     labelbuttonok,
     labelbuttoncancel,
+    onAXADateChange,
   });

@@ -37,6 +37,7 @@ class AXADatepicker extends LitElement {
       cells: { type: Array },
       labelbuttoncancel: { type: String },
       labelbuttonok: { type: String },
+      onAXADateChange: { type: Function, reflect: true },
     };
   }
 
@@ -52,6 +53,7 @@ class AXADatepicker extends LitElement {
     this.day = this.startDate.getDate();
     this.allowedyears = [this.year];
     this.outputdate = '';
+    this.onAXADateChange = () => {};
   }
 
   range(start, end) {
@@ -243,6 +245,7 @@ class AXADatepicker extends LitElement {
         cancelable: true,
       });
       this.dispatchEvent(eventChange);
+      this.onAXADateChange(newDate);
 
       const eventValidation = new CustomEvent('AXA_VALIDATION', {
         detail: { type: 'success', message: 'valid' },
