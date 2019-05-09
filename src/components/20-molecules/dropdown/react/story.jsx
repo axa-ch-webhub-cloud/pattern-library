@@ -25,6 +25,7 @@ storiesOf('Molecules/Dropdown/React', module)
           { name: 'Item 2', value: 'Item 2', url: '#', isSelected: false },
           { name: 'Item 3', value: 'Item 3', url: '#', isSelected: false },
         ]}
+        onAXAValueChange={value => console.log(`value changed ${value}`)}
       />,
       div
     );
