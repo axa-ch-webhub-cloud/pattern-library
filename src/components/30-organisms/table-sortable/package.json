@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Table with sorting functionalities, having a model as interface",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/30-organisms/table-sortable#readme",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/30-organisms/table-sortable#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
   "directories": {
@@ -29,6 +29,5 @@
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
-  },
-  "gitHead": "5d56f21418c182834074b9668a36c0d3ec2bc547"
+  }
 }

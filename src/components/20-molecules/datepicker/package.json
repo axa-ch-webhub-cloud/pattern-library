@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "The datepicker for the AXA patterns library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library",
+  "homepage": "https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/datepicker#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
   "directories": {
