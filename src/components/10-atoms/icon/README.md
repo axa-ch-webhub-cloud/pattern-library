@@ -61,4 +61,4 @@ Import the icon-defining script and use icons like so:
 
 #### Icon resource path
 
-The icon resource path have to be end with `.svg` and the icon have to be a svg.
+The icon resource path must have `.svg` extension.
