@@ -18,6 +18,39 @@
     ]'></axa-dropdown>
 ```
 
+## Example Usage React
+
+Create a React-ified Dropdown with the createElement function from your React version and then use it like this.
+
+Controled input is coming within the next major release.
+
+```js
+import { createElement } from 'react';
+import createAXADropdownReact from '@axa-ch/Dropdown/lib/index.react';
+
+const AXADropdownReact = createAXADropdownReact(createElement);
+
+export default AXADropdownReact;
+```
+
+```js
+<AXADropdownReact
+  items={[
+    {
+      name: 'Please Select',
+      value: 'Please Select',
+      url: '#',
+      isSelected: true,
+      isInitialItem: true,
+    },
+    { name: 'Item 1', value: 'Item 1', url: '#', isSelected: false },
+    { name: 'Item 2', value: 'Item 2', url: '#', isSelected: false },
+    { name: 'Item 3', value: 'Item 3', url: '#', isSelected: false },
+  ]}
+  onAXAValueChange={date => console.log(`value changed ${date}`)}
+/>
+```
+
 ## Properties
 
 <!-- prettier-ignore-start -->
@@ -34,3 +67,7 @@
 |  }]'                                  |                                       |
 |                                       |                                       |
 <!-- prettier-ignore-end -->
+
+### onAXAValueChange
+
+The function-valued attribute `onAXAValueChange` can be used as a callback prop for React and other frameworks.
