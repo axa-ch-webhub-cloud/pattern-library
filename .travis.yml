@@ -4,6 +4,8 @@ node_js:
   - 8.8.1
 
 script:
+  - npx lerna bootstrap
+  - npm run build
   - npm run test
 
 env:
