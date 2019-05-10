@@ -2,6 +2,11 @@
 
 [axa-datepicker](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/datepicker/README.md).
 
+Note:
+
+- Controled inputs for the react component are coming within the next minor release (1.1.0).
+- Due to limitations of ShadowDom, sent input values won't be visible within native form data (WIP)
+
 ## Install
 
 ```bash
