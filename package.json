@@ -4,6 +4,7 @@
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
+    "postinstall": "npx lerna bootstrap",
     "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/finalise.build.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
     "build-icons": "npm run clean-materials && svgo --disable=removeViewBox -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
@@ -12,7 +13,7 @@
     "clean-materials": "npm run clean-build && npm run clean-tmp-icons",
     "clean-lib-materials": "rimraf src/components/00-materials/lib/**",
     "clean-tmp-icons": "rimraf src/components/00-materials/icons/.tmp",
-    "release": "npm whoami && npm run test && npm run build && lerna publish",
+    "release": "npm whoami && npx lerna bootstrap && npm run build && npm run test && lerna publish",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
     "build-storybook": "build-storybook",
