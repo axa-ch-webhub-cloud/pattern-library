@@ -4,7 +4,7 @@
 
 Note:
 
-- Controled inputs for reactified components are coming within the next minor release.
+- Controled inputs for the react component are coming within the next minor release (1.1.0).
 - Due to limitations of ShadowDom, sent input values won't be visible within native form data (WIP)
 
 ## Install
