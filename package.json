@@ -4,7 +4,6 @@
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
-    "postinstall": "npm-recursive-install --skip-root",
     "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/finalise.build.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
     "build-icons": "npm run clean-materials && svgo --disable=removeViewBox -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
@@ -74,7 +73,6 @@
     "prettier": "1.17.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "recursive-install": "^1.4.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.7.3",
     "rollup-plugin-babel": "^4.3.2",
