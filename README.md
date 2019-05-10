@@ -1,5 +1,7 @@
 # Patterns Library v2
 
+[Preview der Komponenten](https://patterns-library.azurewebsites.net)
+
 [![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop-v2)](https://travis-ci.org/axa-ch/patterns-library)
 
 [Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)
@@ -17,11 +19,13 @@ We do not support Built-ins
 - [AXA Button Link](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/button-link)
 - [AXA Icon](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/icon)
 - [AXA Link](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/10-atoms/link)
-- [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/datepicker)
-- [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/dropdown)
 - [AXA Footer Small](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/footer-small)
 - [AXA Table Sortable](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/30-organisms/table-sortable)
 - [AXA Table](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/30-organisms/table)
+
+## Alpha Release Components
+- [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/datepicker)
+- [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/20-molecules/dropdown)
 
 ## Scaffolding
 
