@@ -37,7 +37,7 @@ class AXADatepicker extends LitElement {
       cells: { type: Array },
       labelbuttoncancel: { type: String },
       labelbuttonok: { type: String },
-      onAXADateChange: { type: Function, reflect: true },
+      onAXADateChange: { type: Function },
     };
   }
 

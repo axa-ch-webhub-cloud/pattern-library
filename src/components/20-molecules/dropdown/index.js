@@ -176,15 +176,16 @@ class AXADropdown extends LitElement {
         item => item.isSelected === true
       );
       this.title = currentItem[0] ? currentItem[0].name : this.title;
+      const value = currentItem[0] ? currentItem[0].value : '';
 
       // Fire custom callbacks and events
       const eventValidation = new CustomEvent('AXA_CHANGE', {
-        detail: currentItem[0].value,
+        detail: value,
         bubbles: true,
         cancelable: true,
       });
       this.dispatchEvent(eventValidation);
-      this.onAXAValueChange(currentItem[0].value);
+      this.onAXAValueChange(value);
     }
   }
 
