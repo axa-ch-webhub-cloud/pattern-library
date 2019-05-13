@@ -17,15 +17,14 @@ class AXAFooter extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
-      onClick: { type: Function },
+      dynamic: { type: Boolean },
     };
   }
 
   constructor() {
     super();
-    this.onClick = () => {};
+    this.dynamic = false;
   }
 
   firstUpdated() {

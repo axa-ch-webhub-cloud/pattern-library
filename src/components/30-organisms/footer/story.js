@@ -6,4 +6,6 @@ import Readme from './README.md';
 
 storiesOf('Organisms/Footer', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Footer - default', () => '<axa-footer>Some children</axa-footer>')
+  .add('Footer - default', () => {
+    return `<axa-footer></axa-footer>`;
+  });
