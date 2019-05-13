@@ -130,7 +130,7 @@ const createFiles = (store, a, m, o, done) => () => {
       createElement: typeof React.createElement
     ): React.ComponentType<${className}Props>;
 
-    export = ${className}Small;
+    export = create${className};
 
     `,
     'utf8',
