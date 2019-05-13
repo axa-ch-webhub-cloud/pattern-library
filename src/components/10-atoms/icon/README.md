@@ -62,3 +62,16 @@ Import the icon-defining script and use icons like so:
 #### Icon resource path
 
 The icon resource path must have `.svg` extension.
+
+## Using custom icons
+
+Typical icon SVG looks similar to
+
+```html
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="10px" height="12px" viewBox="0 0 10 12">
+  <path fill="currentColor" d="M9.7,4.3H7v-4H3v4H0.3L5,9L9.7,4.3z"/>
+  <path fill="currentColor" d="M0.3,10.3v1.3h9.3v-1.3H0.3z"/>
+</svg>
+```
+
+When using a custom icon, make sure to define the icon `width` and `height` (in `px`) in its definition and use `fill="currentColor"` on `path`s that should inherit the color from its containing component, ie `<AXALinkReact variant="icon" icon={importedIcon}>Link</AXALinkReact>`.
