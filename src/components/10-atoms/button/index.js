@@ -111,7 +111,7 @@ class AXAButton extends LitElement {
             accept="${accept}"
             ?multiple="${multiple}"
             ?capture="${capture}"
-            class="a-button__input js-image-upload__input"
+            class="a-button__input"
             id="file-upload"
           />`
         : html`
