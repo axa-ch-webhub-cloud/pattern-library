@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- develop-v2
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -17,5 +17,21 @@ steps:
 
 - script: |
     npm install
+    npm test
+  displayName: 'npm install and test'
+
+- script: |
     npm run build
-  displayName: 'npm install and build'
+    npm run build-storybook
+  displayName: 'npm build'
+
+- task: CopyFiles@2
+  displayName: 'Stage Artifacts'
+  inputs:
+    SourceFolder: ./storybook-static
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'drop'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
