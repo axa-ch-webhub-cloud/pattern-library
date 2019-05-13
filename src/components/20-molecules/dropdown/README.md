@@ -1,6 +1,6 @@
 # AXA Dropdown
 
-[axa-dropdown](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/dropdown/README.md).
+[axa-dropdown](https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/dropdown/README.md).
 
 Note:
 

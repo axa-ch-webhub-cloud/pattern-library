@@ -1,6 +1,6 @@
 # AXA Datepicker
 
-[axa-datepicker](https://github.com/axa-ch/patterns-library/blob/develop-v2/src/components/20-molecules/datepicker/README.md).
+[axa-datepicker](https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/datepicker/README.md).
 
 Note:
 

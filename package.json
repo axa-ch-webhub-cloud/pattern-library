@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/patterns-library",
   "version": "2.0.0",
-  "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop-v2/CONTRIBUTION.md#rules-and-lintings)",
+  "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
     "postinstall": "npx lerna bootstrap",
