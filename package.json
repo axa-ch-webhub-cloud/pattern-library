@@ -4,7 +4,7 @@
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
-    "postinstall": "npx lerna bootstrap",
+    "postinstall": "npx lerna bootstrap && npm run build-materials",
     "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/finalise.build.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
     "build-icons": "npm run clean-materials && svgo --disable=removeViewBox -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
