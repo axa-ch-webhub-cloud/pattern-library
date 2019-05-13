@@ -70,6 +70,8 @@ it('should sum numbers', () => {
 });
 ```
 
+## Create a new component
+
 ### How-to start a new component
 - `npm run start`
 - `npm run new` and follow the instructions in the CLI.
