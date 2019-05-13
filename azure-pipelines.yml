@@ -18,12 +18,15 @@ steps:
 - script: |
     npm install
     npm run build
-    # npm test
-  displayName: 'npm install and test'
+  displayName: 'install & build'
+
+- script: |
+    npm test
+  displayName: 'test'
 
 - script: |
     npm run build-storybook
-  displayName: 'npm build'
+  displayName: 'build storybook'
 
 - task: CopyFiles@2
   displayName: 'Stage Artifacts'
