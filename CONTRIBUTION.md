@@ -8,7 +8,7 @@ npm start
 
 Your site is now running at http://localhost:6006.
 Open your code editor of choice and edit your desired component/package in
-`src/components/js`. Save your changes, and the browser will update in real time!
+`src/components`. Save your changes, and the browser will update in real time!
 
 ## Rules and Lintings
 
