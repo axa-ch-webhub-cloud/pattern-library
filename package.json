@@ -5,7 +5,7 @@
   "module": "lib",
   "scripts": {
     "postinstall": "npx lerna bootstrap && npm run build-materials",
-    "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/finalise.build.js",
+    "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/build.finalise.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
     "build-icons": "npm run clean-materials && svgo --disable=removeViewBox -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
     "clean-build": "npm run clean-build-tmp && rimraf src/components/*/*/lib && rimraf src/components/*/*/dist",
@@ -50,6 +50,7 @@
     "breakpoint-sass": "^2.7.1",
     "chalk": "^2.4.2",
     "core-js": "^2.6.5",
+    "cp": "^0.2.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "dotenv-extended": "^2.3.0",
