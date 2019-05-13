@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- develop-v2
+- develop
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -17,11 +17,11 @@ steps:
 
 - script: |
     npm install
+    npm run build
     npm test
   displayName: 'npm install and test'
 
 - script: |
-    npm run build
     npm run build-storybook
   displayName: 'npm build'
 
