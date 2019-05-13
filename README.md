@@ -25,8 +25,8 @@
 - [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/dropdown)
 
 ## How to contribute
-Whether you're helping us fix bugs, or creating components,
-we'd love to have you as part of the AXA PatternLibrary!
+Whether you're helping us to fix bugs, or creating components,
+we'd love to have you as contributor of the AXA Pattern Library!
 
 Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tree/develop/CONTRIBUTION.md) for ideas on contributing and setup steps for getting the repository up and running on your local machine.
 
@@ -34,4 +34,4 @@ Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tr
 We are is dedicated to building a welcoming, diverse, safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/CODE_OF_CONDUCT.md)
 
 A note on how this repository is organized
-This repository is a monorepo managed using Lerna. This means there are multiple packages managed in this codebase, even though we publish them to NPM as separate packages.
+This repository is a monorepo managed using Lerna. This means all components are managed in this codebase, even though we publish them to NPM as separate packages.
