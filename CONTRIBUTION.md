@@ -1,19 +1,31 @@
-# Rules and Lintings
+# Contribution
+
+## Install the AXA Pattern Library
+```js
+npm install // automatically runs `npm run bootstrap as postinstall hook`
+npm start
+```
+
+Your site is now running at http://localhost:6006.
+Open your code editor of choice and edit your desired component/package in
+`src/components`. Save your changes, and the browser will update in real time!
+
+## Rules and Lintings
 
 - We export only Web Components. No separate distribution of SASS mixins, JS, HTML and SCSS files.
 - We use [prettier](https://prettier.io/).
   - Make sure you install eslint checker and prettier in your IDE
 
-## Style Rules
+### Style Rules
 
 - We follow DRY, KISS, YAGNI principles when we write SCSS. This includes variables, mixins, etc.
 - We remove the linting of ordering and grouping of CSS properties. Only includes have to be at the beginning.
 - We won't have settings for vertical rhythm or global spacing.
 
-## JS Rules
+### JS Rules
 - We reuse the Patterns Lib v1 JavaScript linting settings.
 
-## Git Commit Message Rules
+### Git Commit Message Rules
 - must be English only,
 - must be written in present tense or imperative,
 - must start with a verb and initial capital letter.
@@ -59,7 +71,7 @@ it('should sum numbers', () => {
 ```
 
 ### How-to start a new component
-- `npm run start` 
+- `npm run start`
 - `npm run new` and follow the instructions in the CLI.
 
 ### How-to write a story
