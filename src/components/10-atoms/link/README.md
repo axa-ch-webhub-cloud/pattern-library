@@ -124,4 +124,4 @@ The Boolean attribute `external` adds the `target="_blank"` functionality.
 
 ### icon
 
-If the variant is `icon`, using the attribute `icon`'s string value as icon name, an icon will be rendered. The attributes `variant=icon` and `icon=xyz` both need to exist in order for an icon to be displayed. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) readme.
+If the variant is `icon`, using the attribute `icon`'s string value as icon name, an icon will be rendered. The attributes `variant=icon` and `icon=xyz` both need to exist in order for an icon to be displayed. To see the full list of possible icons and custom icon usage, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) readme.
