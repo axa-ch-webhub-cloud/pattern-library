@@ -12,7 +12,7 @@ addParameters({
     theme: create({
       base: 'light',
       brandTitle: 'AXA Living Styleguide',
-      brandUrl: 'https://github.com/axa-ch/patterns-library/tree/develop-v2',
+      brandUrl: 'https://github.com/axa-ch/patterns-library/tree/develop',
       brandImage: logo,
     }),
   },

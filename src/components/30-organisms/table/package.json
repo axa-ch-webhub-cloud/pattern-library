@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "description": "Basic pure UI Table",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop-v2/src/components/30-organisms/table#readme",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
   "directories": {
