@@ -1,6 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import footerSmallCSS from './index.scss';
+import defineOnce from '../../../utils/define-once';
 
 class AXAFooterSmall extends LitElement {
   static get tagName() {
@@ -134,6 +135,6 @@ class AXAFooterSmall extends LitElement {
   }
 }
 
-customElements.define(AXAFooterSmall.tagName, AXAFooterSmall);
+defineOnce(AXAFooterSmall.tagName, AXAFooterSmall);
 
 export default AXAFooterSmall;

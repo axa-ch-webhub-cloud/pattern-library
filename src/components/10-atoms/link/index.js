@@ -4,6 +4,7 @@ import '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
+import defineOnce from '../../../utils/define-once';
 
 class AXALink extends LitElement {
   static tagName = 'axa-link';
@@ -80,6 +81,6 @@ class AXALink extends LitElement {
   }
 }
 
-customElements.define(AXALink.tagName, AXALink);
+defineOnce(AXALink.tagName, AXALink);
 
 export default AXALink;
