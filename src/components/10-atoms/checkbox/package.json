@@ -1,0 +1,31 @@
+{
+  "name": "@axa-ch/checkbox",
+  "version": "1.0.0-alpha.0",
+  "description": "The AXA Checkbox component",
+  "author": "Pattern Warriors",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/10-atoms/checkbox#readme",
+  "license": "Copyright 2019 AXA Versicherungen AG",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axa-ch/patterns-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "@skatejs/val": "^0.4.0",
+    "lit-element": "^2.1.0",
+    "lit-html": "^1.0.0"
+  }
+}
