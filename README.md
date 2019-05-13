@@ -1,5 +1,7 @@
 # Patterns Library v2
 
+[Demo Preview](https://patternslibrary.azurewebsites.net)
+
 [![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop)](https://travis-ci.org/axa-ch/patterns-library)
 
 [Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
