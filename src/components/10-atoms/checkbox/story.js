@@ -54,6 +54,23 @@ storiesOf('Atoms/Checkbox', module)
       );
     return checkbox;
   })
+  .add('Checkbox - disabled + checked, with label', () => {
+    const checkbox = document.createElement('axa-checkbox');
+    checkbox.name = 'my-checkbox1';
+    checkbox.id = 'checkbox03';
+    checkbox.checked = true;
+    checkbox.label = 'mit Label';
+    checkbox.disabled = true;
+    checkbox.onChange = () =>
+      // eslint-disable-next-line no-console
+      console.log(
+        'checkbox "',
+        checkbox.name,
+        '" changed to:',
+        checkbox.checked
+      );
+    return checkbox;
+  })
   .add('Checkbox - hover, unchecked, with label', () => {
     const checkbox = document.createElement('axa-checkbox');
     checkbox.name = 'my-checkbox1';
@@ -97,5 +114,16 @@ storiesOf('Atoms/Checkbox', module)
     Kenntnis genommen und bin damit einverstanden.`;
     checkbox.error =
       'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.';
+    return checkbox;
+  })
+  .add('Checkbox - alternating checked/unchecked, with label', () => {
+    const checkbox = document.createElement('axa-checkbox');
+    checkbox.name = 'my-checkbox1';
+    checkbox.id = 'checkbox07';
+    checkbox.checked = false;
+    checkbox.label = 'changes every 1 second';
+    setInterval(() => {
+      checkbox.checked = !checkbox.checked;
+    }, 1000);
     return checkbox;
   });
