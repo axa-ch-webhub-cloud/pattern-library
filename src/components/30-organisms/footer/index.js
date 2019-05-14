@@ -1,6 +1,7 @@
 import '@webcomponents/webcomponentsjs';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import '@axa-ch/icon';
+import { repeat } from 'lit-html/directives/repeat';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -20,7 +21,7 @@ class AXAFooter extends LitElement {
   static get properties() {
     return {
       content: { type: Array },
-      icons: { type: Object },
+      iconArea: { type: Object },
       dynamic: { type: Boolean },
     };
   }
@@ -28,7 +29,7 @@ class AXAFooter extends LitElement {
   constructor() {
     super();
     this.content = [];
-    this.icons = {};
+    this.iconArea = {};
     this.dynamic = false;
   }
 
@@ -57,30 +58,29 @@ class AXAFooter extends LitElement {
     return html`
       <article class="o-footer">
         ${repeat(
-          this.icons,
+          this.iconArea.icons,
           icon =>
             html`
-              <axa-icon icon="download"></axa-icon>
+              <axa-icon icon="${icon}"></axa-icon>
             `
         )}
-
-        <button class="accordion active" @click="${this.handleClick}">
-          Section 1
-        </button>
-        <ul class="panel">
-          <li>hello</li>
-          <li>bonjour</li>
-          <li>hallo</li>
-        </ul>
-
-        <button class="accordion">Section 2</button>
-        <ul class="panel">
-          <li>hello</li>
-          <li>bonjour</li>
-          <li>hallo</li>
-        </ul>
       </article>
     `;
+    // <button class="accordion active" @click="${this.handleClick}">
+    //   Section 1
+    // </button>
+    // <ul class="panel">
+    //   <li>hello</li>
+    //   <li>bonjour</li>
+    //   <li>hallo</li>
+    // </ul>
+
+    // <button class="accordion">Section 2</button>
+    // <ul class="panel">
+    //   <li>hello</li>
+    //   <li>bonjour</li>
+    //   <li>hallo</li>
+    // </ul>
   }
 
   disconnectedCallback() {

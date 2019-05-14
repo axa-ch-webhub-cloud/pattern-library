@@ -7,7 +7,6 @@ import Readme from './README.md';
 storiesOf('Organisms/Footer', module)
   .addDecorator(withMarkdown(Readme))
   .add('Footer - default', () => {
-    // const columns = [{title: 'AXA & YOU'},{},{}];
     const content = JSON.stringify([
       {
         title: 'axa & you',
@@ -55,5 +54,5 @@ storiesOf('Organisms/Footer', module)
       ],
     });
 
-    return `<axa-footer content=${content}" icons="${icons}"></axa-footer>`;
+    return `<axa-footer content='${content}' iconarea='${icons}'></axa-footer>`;
   });
