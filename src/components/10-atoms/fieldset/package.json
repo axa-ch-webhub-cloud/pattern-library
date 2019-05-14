@@ -3,7 +3,7 @@
   "version": "0.0.0-beta.0",
   "description": "> TODO: description",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/master/src/components/10-atoms/fieldset#readme",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/fieldset#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
   "directories": {
@@ -24,7 +24,6 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.7",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
