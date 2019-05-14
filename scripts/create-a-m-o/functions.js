@@ -63,7 +63,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
   templateJson.name = `@axa-ch/${fileName}`;
   templateJson.version = '0.0.0-beta.0';
-  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/master/src/components/${folderMap[type]}/${fileName}#readme`;
+  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/develop/src/components/${folderMap[type]}/${fileName}#readme`;
 
   fs.writeFileSync(
     `${BASE_FOLDER}/package.json`,
@@ -77,6 +77,73 @@ const createFiles = (store, a, m, o, done) => () => {
     # ${compTitle}
 
     TODO Description
+
+    ## Usage
+
+    \`\`\`bash
+    npm install @axa-ch/${fileName}
+    \`\`\`
+
+    \`\`\`js
+    import '@axa-ch/${fileName}';
+    ...
+    <axa-${fileName}></axa-${fileName}>
+    \`\`\`
+
+    ### React
+
+    Create a React-ified ${fileName} with the createElement function from your React version and then use it like this:
+
+    \`\`\`js
+    import { createElement } from 'react';
+    import create${className}React from '@axa-ch/${fileName}/lib/index.react';
+
+    const ${className}React = create${className}React(createElement);
+
+    export default ${className}React;
+    \`\`\`
+
+    \`\`\`js
+    <${className}React onClick={handler}>
+    </${className}React>
+    \`\`\`
+
+    ### Pure HTML pages
+
+    Import the ${fileName}-defining script and use a ${fileName} like this:
+
+    \`\`\`html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Your awesome title</title>
+      </head>
+      <body>
+        <axa-${fileName}></axa-${fileName}>
+        <script src="node_modules/@axa-ch/${fileName}/dist/index.js"></script>
+      </body>
+    </html>
+    \`\`\`
+
+    ## Properties
+
+    ### Variant
+
+    | Attribute             | Details                 |
+    | --------------------- | ----------------------- |
+    | \`variant="foo"\`       | Desc of Variant         |
+
+    ### Bar
+
+    The attribute \`bar\` specifies...
+
+    ### onClick
+
+    The function-valued attribute \`onClick\` can be used as a callback prop for React and other frameworks.
+
     `,
     'utf8',
   );
@@ -123,7 +190,7 @@ const createFiles = (store, a, m, o, done) => () => {
       languageItems: Item[];
       copyrightText: String;
       dynamic?: boolean;
-      */ 
+      */
     }
 
     declare function create${className}(
@@ -153,11 +220,34 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
+    `${BASE_FOLDER}/index.react.d.ts`,
+    outdent`
+    import React from 'react';
+
+    type Variant = 'foo' | 'bar';
+
+    interface ${className}Props {
+      variant?: Variant;
+      onClick?: () => void;
+    }
+
+    declare function create${className}(
+      createElement: typeof React.createElement
+    ): React.ComponentType<${className}Props>;
+
+    export = create${className};
+    `,
+    'utf8',
+  );
+
+  fs.writeFileSync(
     `${BASE_FOLDER}/ui.test.js`,
     outdent`
     import { Selector } from 'testcafe';
 
-    fixture('${compTitle} - basic functionality').page('http://localhost:9999/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default');
+    const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+
+    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default\`);
 
     const TAG = 'axa-${fileName}';
     const CLASS = '.${type}-${fileName}';
@@ -176,7 +266,6 @@ const createFiles = (store, a, m, o, done) => () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/index.js`,
     outdent`
-    import '@webcomponents/webcomponentsjs';
     import { LitElement, html, css, unsafeCSS } from 'lit-element';
 
     /* eslint-disable import/no-extraneous-dependencies */
