@@ -77,6 +77,73 @@ const createFiles = (store, a, m, o, done) => () => {
     # ${compTitle}
 
     TODO Description
+
+    ## Usage
+
+    \`\`\`bash
+    npm install @axa-ch/${fileName}
+    \`\`\`
+
+    \`\`\`js
+    import '@axa-ch/${fileName}';
+    ...
+    <axa-${fileName}></axa-${fileName}>
+    \`\`\`
+
+    ### React
+
+    Create a React-ified ${fileName} with the createElement function from your React version and then use it like this:
+
+    \`\`\`js
+    import { createElement } from 'react';
+    import create${className}React from '@axa-ch/${fileName}/lib/index.react';
+
+    const ${className}React = create${className}React(createElement);
+
+    export default ${className}React;
+    \`\`\`
+
+    \`\`\`js
+    <${className}React onClick={handler}>
+    </${className}React>
+    \`\`\`
+
+    ### Pure HTML pages
+
+    Import the ${fileName}-defining script and use a ${fileName} like this:
+
+    \`\`\`html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Your awesome title</title>
+      </head>
+      <body>
+        <axa-${fileName}></axa-${fileName}>
+        <script src="node_modules/@axa-ch/${fileName}/dist/index.js"></script>
+      </body>
+    </html>
+    \`\`\`
+
+    ## Properties
+
+    ### Variant
+
+    | Attribute             | Details                 |
+    | --------------------- | ----------------------- |
+    | \`variant="foo"\`       | Desc of Variant         |
+
+    ### Bar
+
+    The attribute \`bar\` specifies...
+
+    ### onClick
+
+    The function-valued attribute \`onClick\` can be used as a callback prop for React and other frameworks.
+
     `,
     'utf8',
   );
