@@ -21,9 +21,11 @@ import {
 | ------------ |
 | CollapseSvg  |
 | DateInputSvg |
+| DocumentSvg  |
 | DownloadSvg  |
 | EmailSvg     |
 | ExpandSvg    |
+| MobileSvg    |
 | PhoneSvg     |
 | PlusSvg      |
 | SearchSvg    |
