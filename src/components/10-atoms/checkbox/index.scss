@@ -57,7 +57,7 @@ axa-checkbox {
 
       &:disabled + .a-checkbox__icon {
         cursor: default;
-        border-color: $color-prim-gray-dusty;
+        border-color: $color-prim-gray-silver;
 
         &::after {
           border-color: transparent;
@@ -67,7 +67,6 @@ axa-checkbox {
 
     .a-checkbox__icon {
         position: relative;
-        -webkit-transition: all 0.2s ease;
         transition: all 0.2s ease;
         width: $checkbox-dimension;
         height: $checkbox-dimension;
@@ -101,7 +100,14 @@ axa-checkbox {
     }
 
     &[disabled] {
-      color: $color-prim-gray-dusty;
+      .a-checkbox__content {
+        color: $color-prim-gray-dusty;
+      }
+
+      .a-checkbox__input:checked + .a-checkbox__icon::after {
+        border-color: $color-prim-gray-silver;
+        background-color: $color-prim-gray-silver;
+      }
     }
 
     &[error] {

@@ -15,5 +15,7 @@ storiesOf('Atoms/Fieldset', module)
   die Beraterinformation, sowie die Hinweise zum Datenschutz habe ich zur
   Kenntnis genommen und bin damit einverstanden." error="Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen."></axa-checkbox>
   <axa-checkbox label="Ich habe die in der Offerte beantworteten Antragsfragen geprüft und bestätige deren Richtigkeit." checked></axa-checkbox>
+  <axa-checkbox label="kurzes Label"></axa-checkbox><axa-checkbox label="kurzes Label, danach 2 x disabled"></axa-checkbox>
+  <axa-checkbox checked disabled></axa-checkbox><axa-checkbox disabled></axa-checkbox>
   </axa-fieldset>`
   );
