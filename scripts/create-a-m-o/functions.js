@@ -245,7 +245,6 @@ const createFiles = (store, a, m, o, done) => () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/index.js`,
     outdent`
-    import '@webcomponents/webcomponentsjs';
     import { LitElement, html, css, unsafeCSS } from 'lit-element';
 
     /* eslint-disable import/no-extraneous-dependencies */
