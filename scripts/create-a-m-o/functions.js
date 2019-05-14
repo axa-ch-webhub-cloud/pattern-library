@@ -63,7 +63,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
   templateJson.name = `@axa-ch/${fileName}`;
   templateJson.version = '0.0.0-beta.0';
-  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/master/src/components/${folderMap[type]}/${fileName}#readme`;
+  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/develop/src/components/${folderMap[type]}/${fileName}#readme`;
 
   fs.writeFileSync(
     `${BASE_FOLDER}/package.json`,
@@ -123,7 +123,7 @@ const createFiles = (store, a, m, o, done) => () => {
       languageItems: Item[];
       copyrightText: String;
       dynamic?: boolean;
-      */ 
+      */
     }
 
     declare function create${className}(
@@ -157,7 +157,9 @@ const createFiles = (store, a, m, o, done) => () => {
     outdent`
     import { Selector } from 'testcafe';
 
-    fixture('${compTitle} - basic functionality').page('http://localhost:9999/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default');
+    const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+
+    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default\`);
 
     const TAG = 'axa-${fileName}';
     const CLASS = '.${type}-${fileName}';
