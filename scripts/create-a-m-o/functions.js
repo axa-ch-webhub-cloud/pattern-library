@@ -220,6 +220,27 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
+    `${BASE_FOLDER}/index.react.d.ts`,
+    outdent`
+    import React from 'react';
+
+    type Variant = 'foo' | 'bar';
+
+    interface ${className}Props {
+      variant?: Variant;
+      onClick?: () => void;
+    }
+
+    declare function create${className}(
+      createElement: typeof React.createElement
+    ): React.ComponentType<${className}Props>;
+
+    export = create${className};
+    `,
+    'utf8',
+  );
+
+  fs.writeFileSync(
     `${BASE_FOLDER}/ui.test.js`,
     outdent`
     import { Selector } from 'testcafe';
