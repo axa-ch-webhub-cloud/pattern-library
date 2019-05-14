@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/html';
 import ReactDOM from 'react-dom';
 import DemoTable from './DemoTable';
+import DemoCheckbox from './DemoCheckbox';
 import DemoControlledInputsApp from '../demo-controlled-inputs/App';
 import DemoDynamicChildrenApp from '../demo-dynamic-children/App';
 
@@ -25,5 +26,12 @@ storiesOf('Demos', module)
     const div = document.createElement('div');
     div.id = 'root-table-react';
     ReactDOM.render(<DemoTable />, div);
+    return div;
+  })
+
+  .add('Checkbox React', () => {
+    const div = document.createElement('div');
+    div.id = 'root-checkbox-react';
+    ReactDOM.render(<DemoCheckbox />, div);
     return div;
   });
