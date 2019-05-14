@@ -2,7 +2,6 @@ import withReact from '../../../utils/with-react';
 import AXACheckbox from './index';
 
 export default createElement => ({
-  type,
   value,
   name,
   label,
@@ -15,7 +14,6 @@ export default createElement => ({
   withReact(createElement)(
     AXACheckbox.tagName,
     {
-      type,
       value,
       name,
       label,
