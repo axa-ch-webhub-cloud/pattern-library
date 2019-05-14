@@ -11,11 +11,13 @@ class AXACheckbox extends NoShadowDOM {
 
   static get properties() {
     return {
-      type: { type: String },
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
-      checked: { type: Boolean, reflect: true },
+      checked: {
+        type: Boolean,
+        reflect: true,
+      },
       disabled: { type: Boolean, reflect: true },
       error: {
         type: String,
@@ -40,6 +42,7 @@ class AXACheckbox extends NoShadowDOM {
     // initialize model state
     this.state = {
       isControlled: false,
+      firstUpdate: true,
       timer: null,
       checked: false,
       native: false,
@@ -49,7 +52,6 @@ class AXACheckbox extends NoShadowDOM {
     this.value = '';
     this.name = '';
     this.label = '';
-    this.checked = false;
     this.disabled = false;
     this.error = '';
     this.isReact = false;
@@ -59,13 +61,14 @@ class AXACheckbox extends NoShadowDOM {
   // custom setter
   set checked(value) {
     const {
-      state: { isControlled, checked },
+      state: { isControlled, checked, firstUpdate },
     } = this;
     // first incoming value indicates controlledness?
-    if (!isControlled && value !== undefined) {
+    if (!isControlled && value !== undefined && firstUpdate) {
       // yes, remember in model state
       this.state.isControlled = true;
     }
+    this.state.firstUpdate = false;
     const oldValue = checked;
     // remember value in model state
     this.state.checked = value;
@@ -101,7 +104,6 @@ class AXACheckbox extends NoShadowDOM {
   render() {
     // extract props and state
     const {
-      type,
       value,
       name,
       label = '',
@@ -126,7 +128,7 @@ class AXACheckbox extends NoShadowDOM {
         <input
           id="${id}"
           class="a-checkbox__input"
-          type="${type}"
+          type="checkbox"
           name="${name}"
           ?checked="${checked}"
           value="${value}"
