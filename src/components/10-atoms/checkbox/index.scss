@@ -7,21 +7,6 @@ axa-checkbox {
     @include typo(primary, default, default);
     display: block;
 
-    &:hover,
-    &.hover {
-      &:not([disabled]):not(.a-checkbox--error) {
-        color: $color-axa-blue;
-
-        .a-checkbox__icon {
-          border-color: $color-axa-blue;
-
-          &::after {
-            border-color: $color-axa-blue;
-          }
-        }
-      }
-    }
-
     .a-checkbox__wrapper {
       position: relative;
       display: inline-block;
@@ -129,7 +114,10 @@ axa-checkbox {
     &:hover,
     &.hover {
       &:not([disabled]) {
-        color: $color-axa-blue;
+
+        &:not([error]) {
+          color: $color-axa-blue;
+        }
 
         .a-checkbox__icon {
           border-color: $color-axa-blue;

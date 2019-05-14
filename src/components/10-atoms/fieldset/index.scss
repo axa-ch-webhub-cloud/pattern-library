@@ -1,6 +1,8 @@
 $fieldset-vertical-margin: 20px;
 
 axa-fieldset {
+  display: block;
+
   &:not([horizontal]) > *:not(:last-child) {
     margin-bottom: $fieldset-vertical-margin;
   }
