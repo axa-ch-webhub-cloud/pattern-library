@@ -1,6 +1,5 @@
 import '@webcomponents/webcomponentsjs';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import '@axa-ch/icon';
 import { repeat } from 'lit-html/directives/repeat';
 
 /* eslint-disable import/no-extraneous-dependencies */
@@ -61,7 +60,7 @@ class AXAFooter extends LitElement {
           this.iconArea.icons,
           icon =>
             html`
-              <axa-icon icon="${icon}"></axa-icon>
+              <span></span>
             `
         )}
       </article>
