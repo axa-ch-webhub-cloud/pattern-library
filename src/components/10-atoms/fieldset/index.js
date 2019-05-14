@@ -1,4 +1,3 @@
-import '@webcomponents/webcomponentsjs';
 import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */

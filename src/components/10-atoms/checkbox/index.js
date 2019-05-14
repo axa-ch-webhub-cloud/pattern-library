@@ -1,4 +1,3 @@
-import '@webcomponents/webcomponentsjs';
 import { html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
@@ -135,14 +134,14 @@ class AXACheckbox extends NoShadowDOM {
           ?error="${!!error}"
           @change=${this.handleChange}
         />
-        <div class="a-checkbox__icon"></div>
+        <span class="a-checkbox__icon"></span>
         ${label &&
           html`
-            <div class="a-checkbox__content">${unsafeHTML(label)}</div>
+            <span class="a-checkbox__content">${unsafeHTML(label)}</span>
           `}
         ${error &&
           html`
-            <div class="a-checkbox__error">${unsafeHTML(error)}</div>
+            <span class="a-checkbox__error">${unsafeHTML(error)}</span>
           `}
       </label>
     `;

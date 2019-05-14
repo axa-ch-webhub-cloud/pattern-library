@@ -66,6 +66,7 @@ axa-checkbox {
     }
 
     .a-checkbox__icon {
+        display: block;
         position: relative;
         transition: all 0.2s ease;
         width: $checkbox-dimension;
@@ -89,12 +90,14 @@ axa-checkbox {
     }
 
     .a-checkbox__content {
+      display: block;
       margin: -$checkbox-dimension 0 0 ($checkbox-dimension + $checkbox-label-left-margin);
       line-height: 1.37;
       color: $color-prim-gray-mine-shaft;
     }
 
     .a-checkbox__error {
+      display: block;
       margin: $checkbox-error-top-margin 0 0 ($checkbox-dimension + $checkbox-label-left-margin);
       line-height: 1.37;
     }
