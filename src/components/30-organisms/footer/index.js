@@ -60,27 +60,59 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
-    console.log('newhandle', e.target);
+    // const accordion = this.shadowRoot.querySelector('.panel');
+    // console.log(accordion);
+    // accordion.style.maxHeight = 'unset';
+
+    this.content = this.content.map(c => {
+      c.active = false;
+      return c;
+    });
+
+    this.content[index].active = true;
+
+    console.log('e', e);
+    console.log('i', index);
+    this.requestUpdate();
+
+    // var acc = this.getElementsByClassName('accordion');
+    // var i;
+    // for (i = 0; i < acc.length; i++) {
+    //   acc[i].addEventListener('click', function() {
+    //     this.classList.toggle('active');
+    //     var panel = this.nextElementSibling;
+    //     if (panel.style.maxHeight) {
+    //       panel.style.maxHeight = null;
+    //     } else {
+    //       panel.style.maxHeight = panel.scrollHeight + 'px';
+    //     }
+    //   });
+    // }
   }
 
   render() {
+    console.log('rerender');
     return html`
       <article class="o-footer">
         ${repeat(
           this.content,
-          contentItem =>
+          (contentItem, index) =>
             html`
               <div>
-                <button class="accordion active" @click="${this.handleClick}">
+                <button
+                  class="accordion"
+                  @click="${ev => this.handleClick(ev, index)}"
+                >
                   ${contentItem.title}
                 </button>
-                <ul class="panel">
+                <ul class="panel ${contentItem.active ? 'is-active' : ''}">
                   ${repeat(
                     contentItem.items,
                     i =>
                       html`
                         <li>
                           <a href=${i.link}>${i.text}</a>
+                          ${index}
                         </li>
                       `
                   )}
