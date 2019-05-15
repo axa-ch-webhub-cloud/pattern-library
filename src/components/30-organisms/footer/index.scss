@@ -34,7 +34,7 @@
 
   .accordion {
     color: $color-prim-white;
-    background-color: #3b3fd8;
+    background-color: $color-prim-blue-dark-indigo;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -43,11 +43,13 @@
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+
+    border-bottom: 1px solid $color-prim-blue-st-tropaz;
   }
   
-  .active, .accordion:hover {
-    background-color: #3b3fd8;
-  }
+  // .active, .accordion:hover {
+  //   background-color: $color-prim-blue-dark-indigo;
+  // }
   
   .panel {
     // ### Reset browser styles for ul
@@ -56,16 +58,25 @@
     text-indent: 0;
     list-style-type: none;
     
-    padding: 0 18px;
-    background-color: #3b3fd8;
+    // padding: 0 18px;
+    background-color: $color-prim-blue-dark-indigo;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 
     max-height: 0;
+
+    background-color: $color-prim-blue-azure;
+
+    li {
+      border-bottom: 1px solid $color-prim-blue-dark-indigo;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
-  
+
   .panel.is-active {
     max-height: unset;
   }
-
 }
