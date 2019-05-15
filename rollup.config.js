@@ -22,7 +22,7 @@ const globals = require('./config/globals.js')
 const babelOptions = require('./.storybook/.babelrc'); // get the babelrc file
 
 const input = glob.sync(
-  'src/components/@(05-utils|10-atoms|20-molecules|30-organisms)/*/index*.js'
+  'src/components/@(05-utils|10-atoms|20-molecules|30-organisms)/button/index*.js'
 );
 
 const LIB = '.tmp-lib';
@@ -108,8 +108,10 @@ const generatePlugins = type => {
           },
         ],
       ],
+      sourcemap: false,
       babelrc: false,
-      exclude: ['node_modules/@skatejs/val/**', 'node_modules/@babel/**'],
+      exclude: ['node_modules/**'],
+      // exclude: ['node_modules/@skatejs/val/**', 'node_modules/@babel/**'],
       runtimeHelpers: true,
     }),
     uglify(),

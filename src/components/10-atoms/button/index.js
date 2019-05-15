@@ -3,7 +3,9 @@ import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
-import buttonCSS from './index.scss';
+
+const buttonCSS = '.a-button{}';
+//import buttonCSS from './index.scss';
 
 class AXAButton extends LitElement {
   static get tagName() {
