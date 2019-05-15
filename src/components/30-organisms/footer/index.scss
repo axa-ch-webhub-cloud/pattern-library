@@ -36,7 +36,8 @@
 
   button {
     // Reset browser style for button-border
-   border: none 
+   border: none;
+   outline: 0;
   }
 
   .accordion {
