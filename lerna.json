@@ -1,8 +1,12 @@
 {
   "packages": [
+    "src/components/00-materials",
+    "src/components/05-utils/polyfill",
     "src/components/10-atoms/icon",
     "src/components/10-atoms/button",
     "src/components/10-atoms/button-link",
+    "src/components/10-atoms/checkbox",
+    "src/components/10-atoms/fieldset",
     "src/components/10-atoms/link",
     "src/components/20-molecules/footer-small",
     "src/components/30-organisms/table",
