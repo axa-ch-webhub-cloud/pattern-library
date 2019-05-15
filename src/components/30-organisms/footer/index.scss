@@ -32,24 +32,27 @@
   //   }
   // }
 
+  // @include typo(primary, x-small, x-small);
+
+  button {
+    // Reset browser style for button-border
+   border: none 
+  }
+
   .accordion {
     color: $color-prim-white;
     background-color: $color-prim-blue-dark-indigo;
-    cursor: pointer;
-    padding: 18px;
+    padding: 20px 60px 20px 30px;
     width: 100%;
-    border: none;
     text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
+    // transition: 0.4s;
+
+    @include typo(primary, default, medium);
 
     border-bottom: 1px solid $color-prim-blue-st-tropaz;
+    text-transform: uppercase;
   }
   
-  // .active, .accordion:hover {
-  //   background-color: $color-prim-blue-dark-indigo;
-  // }
   
   .panel {
     // ### Reset browser styles for ul
@@ -58,7 +61,6 @@
     text-indent: 0;
     list-style-type: none;
     
-    // padding: 0 18px;
     background-color: $color-prim-blue-dark-indigo;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -68,10 +70,18 @@
     background-color: $color-prim-blue-azure;
 
     li {
+      @include typo(primary, xx-small, default);
+
+      padding: 20px 30px;
       border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
       &:last-child {
         border-bottom: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-prim-white;
       }
     }
   }
@@ -79,4 +89,6 @@
   .panel.is-active {
     max-height: unset;
   }
+
+  
 }
