@@ -11,6 +11,9 @@
 - We only export holistic and self contained WebComponents based on CustomElement, ShadowDom and HTML Templates.
 - We do not support Built-ins
 
+## Released Polyfills
+- [AXA Polyfills](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill)
+
 ## Released Components
 - [AXA Button](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button)
 - [AXA Button Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button-link)
