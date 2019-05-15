@@ -60,12 +60,13 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
+    const oldState = this.content[index].active;
     this.content = this.content.map(c => {
       c.active = false;
       return c;
     });
 
-    this.content[index].active = true;
+    this.content[index].active = !oldState;
   }
 
   render() {
