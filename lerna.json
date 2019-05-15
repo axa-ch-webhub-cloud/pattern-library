@@ -1,7 +1,14 @@
 {
   "packages": [
-    "src/components/10-atoms/checkbox",
-    "src/components/10-atoms/fieldset"
+    "src/components/10-atoms/icon",
+    "src/components/10-atoms/button",
+    "src/components/10-atoms/button-link",
+    "src/components/10-atoms/link",
+    "src/components/20-molecules/footer-small",
+    "src/components/30-organisms/table",
+    "src/components/30-organisms/table-sortable",
+    "src/components/20-molecules/dropdown",
+    "src/components/20-molecules/datepicker"
   ],
   "version": "independent",
   "npmClient": "npm"

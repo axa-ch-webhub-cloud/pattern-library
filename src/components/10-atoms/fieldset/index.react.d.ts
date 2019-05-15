@@ -8,4 +8,4 @@ declare function createAXAFieldset(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAFieldsetProps>;
 
-export = AXAFieldsetSmall;
+export = createAXAFieldset;
