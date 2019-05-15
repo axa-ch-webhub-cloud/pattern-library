@@ -5,7 +5,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-import face from '../../00-materials/icons/facebook.svg';
+// import face from '../../00-materials/icons/facebook.svg';
 
 // import {
 //   facebookSvg,
