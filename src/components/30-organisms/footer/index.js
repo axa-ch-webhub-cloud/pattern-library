@@ -5,7 +5,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-// import face from '../../00-materials/icons/facebook.svg';
+import FacebookSvg from '../../00-materials/lib/icon-set/facebook.svg';
 
 // import {
 //   facebookSvg,
@@ -98,6 +98,15 @@ class AXAFooter extends LitElement {
               </div>
             `
         )}
+        <div>
+          <ul>
+            ${repeat(this.iconArea.icons, icon => {
+              return html`
+                <li>${svg([FacebookSvg || ''])}</li>
+              `;
+            })}
+          </ul>
+        <div>
       </article>
     `;
     // ${repeat(this.iconArea.icons, icon => svg([face || '']))}

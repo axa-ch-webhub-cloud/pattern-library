@@ -42,7 +42,7 @@ storiesOf('Organisms/Footer', module)
       },
     ]);
 
-    const icons = JSON.stringify({
+    const iconArea = JSON.stringify({
       title: 'stay in touch',
       icons: [
         'facebook',
@@ -54,5 +54,5 @@ storiesOf('Organisms/Footer', module)
       ],
     });
 
-    return `<axa-footer content='${content}' iconarea='${icons}'></axa-footer>`;
+    return `<axa-footer content='${content}' iconarea='${iconArea}'></axa-footer>`;
   });
