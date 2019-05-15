@@ -58,8 +58,14 @@
     
     padding: 0 18px;
     background-color: #3b3fd8;
-    // max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+
+    max-height: 0;
   }
+  
+  .panel.is-active {
+    max-height: unset;
+  }
+
 }
