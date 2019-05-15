@@ -1,10 +1,20 @@
 import '@webcomponents/webcomponentsjs';
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
-
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+
+import face from '../../00-materials/icons/facebook.svg';
+
+// import {
+//   facebookSvg,
+//   // instagramSvg,
+//   // twitterSvg,
+//   // xingSvg,
+//   // youtubeSvg,
+//   // linkedinSvg,
+// } from '@axa-ch/materials';
 
 class AXAFooter extends LitElement {
   static get tagName() {
@@ -57,14 +67,31 @@ class AXAFooter extends LitElement {
     return html`
       <article class="o-footer">
         ${repeat(
-          this.iconArea.icons,
-          icon =>
+          this.content,
+          contentItem =>
             html`
-              <span></span>
+              <div>
+                <button class="accordion active" @click="${this.handleClick}">
+                  ${contentItem.title}
+                </button>
+                <ul class="panel">
+                  ${repeat(
+                    contentItem.items,
+                    i =>
+                      html`
+                        <li>
+                          <a href=${i.link}>${i.text}</a>
+                        </li>
+                      `
+                  )}
+                </ul>
+              </div>
             `
         )}
       </article>
     `;
+    // ${repeat(this.iconArea.icons, icon => svg([face || '']))}
+
     // <button class="accordion active" @click="${this.handleClick}">
     //   Section 1
     // </button>
