@@ -60,34 +60,12 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
-    // const accordion = this.shadowRoot.querySelector('.panel');
-    // console.log(accordion);
-    // accordion.style.maxHeight = 'unset';
-
     this.content = this.content.map(c => {
       c.active = false;
       return c;
     });
 
     this.content[index].active = true;
-
-    console.log('e', e);
-    console.log('i', index);
-    this.requestUpdate();
-
-    // var acc = this.getElementsByClassName('accordion');
-    // var i;
-    // for (i = 0; i < acc.length; i++) {
-    //   acc[i].addEventListener('click', function() {
-    //     this.classList.toggle('active');
-    //     var panel = this.nextElementSibling;
-    //     if (panel.style.maxHeight) {
-    //       panel.style.maxHeight = null;
-    //     } else {
-    //       panel.style.maxHeight = panel.scrollHeight + 'px';
-    //     }
-    //   });
-    // }
   }
 
   render() {
@@ -112,7 +90,6 @@ class AXAFooter extends LitElement {
                       html`
                         <li>
                           <a href=${i.link}>${i.text}</a>
-                          ${index}
                         </li>
                       `
                   )}
