@@ -4,11 +4,9 @@ import { LitElement, svg } from 'lit-element';
 import {
   ArrowRightSvg,
   CollapseSvg,
-  DocumentSvg,
   DownloadSvg,
   EmailSvg,
   ExpandSvg,
-  MobileSvg,
   PhoneSvg,
   PlusSvg,
   SearchSvg,
@@ -25,11 +23,9 @@ class AXAIcon extends LitElement {
     return {
       'arrow-right': ArrowRightSvg,
       collapse: CollapseSvg,
-      document: DocumentSvg,
       download: DownloadSvg,
       email: EmailSvg,
       expand: ExpandSvg,
-      mobile: MobileSvg,
       phone: PhoneSvg,
       plus: PlusSvg,
       search: SearchSvg,
