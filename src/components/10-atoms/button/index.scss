@@ -55,8 +55,9 @@
 }
 
 .a-button--upload {
-  display: inline-block;
-  // TODO
+  display: inline-flex;
+  align-items: center;
+
   &__icon {
     margin-right: 12px;
     margin-left: 0px;
