@@ -2,11 +2,6 @@
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
 
-  a {
-    display: block;
-    padding: 10px;
-  }
-  
   &__accordion {
     @include typo(primary, default, medium);
 
@@ -32,8 +27,9 @@
     }
     
     &-caret {
+      transition: transform .3s ease-in-out;
       transform: rotate(180deg);
-      
+
       &--open {
         transform: rotate(0deg);
       }
@@ -91,6 +87,9 @@
       height: 25px;
     }
   
-
+    a {
+      display: block;
+      padding: 10px;
+    }
   }
 }
