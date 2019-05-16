@@ -39,7 +39,7 @@ const commonPlugins = [
 ];
 
 const lib = {
-  input: 'index.js',
+  input: ['index.js', 'index.react.js'], // Globbing is not a benefit as the config needs to be adapted and checked anyways if new files
   external: [
     'lit-element',
     'lit-html/directives/class-map',
@@ -47,8 +47,8 @@ const lib = {
     '@skatejs/val',
   ],
   output: {
-    file: './lib/index.js',
-    format: 'esm',
+    dir: './lib',
+    format: 'es',
   },
   plugins: [
     ...commonPlugins,
@@ -60,6 +60,7 @@ const lib = {
       ...customBabelRc,
       sourceMap: false,
       exclude: ['node_modules/**'], // /node_modules/,
+      // exclude: ['node_modules/@skatejs/val/**', 'node_modules/@babel/**'],
       runtimeHelpers: false,
     }),
     resolve({
@@ -83,6 +84,12 @@ const dist = {
     resolve({
       mainFields: ['module', 'main', 'browser'],
     }),
+    commonjs({
+      namedExports: {
+        '@skatejs/val': ['val'],
+      },
+      include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
+    }),
     babel({
       babelrc: false,
       runtimeHelpers: true,
@@ -101,15 +108,9 @@ const dist = {
         ],
       ],
       exclude: [
-        'node_modules/@skatejs/val/**',
+        '../../../../node_modules/@skatejs/val/**',
         '../../../../node_modules/@babel/**',
       ],
-    }),
-    commonjs({
-      namedExports: {
-        '@skatejs/val': ['val'],
-      },
-      include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
     }),
     uglify(),
   ],
