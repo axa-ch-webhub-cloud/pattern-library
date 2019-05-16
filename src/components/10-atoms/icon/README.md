@@ -51,9 +51,11 @@ Import the icon-defining script and use icons like so:
 | -------------------- |
 | `icon="arrow-right"` |
 | `icon="collapse"`    |
+| `icon="document"`    |
 | `icon="download"`    |
 | `icon="email"`       |
 | `icon="expand"`      |
+| `icon="mobile"`      |
 | `icon="phone"`       |
 | `icon="plus"`        |
 | `icon="search"`      |
