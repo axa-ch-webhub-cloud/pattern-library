@@ -1,4 +1,5 @@
 import '@webcomponents/webcomponentsjs';
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   FacebookSvg,
   InstagramSvg,
