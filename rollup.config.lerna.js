@@ -21,24 +21,21 @@ const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
-  // sass({
-  //   insert: true,
-  //   include: 'index.scss',
-  //   options: {
-  //     includePaths: [
-  //       'node_modules',
-  //       path.resolve(
-  //         path.dirname(require.resolve('breakpoint-sass/package.json')),
-  //         'stylesheets'
-  //       ),
-  //     ],
-  //     data: globalSassImports,
-  //   },
-  //   processor: css =>
-  //     postcss([autoprefixer, stripFontFace])
-  //       .process(css)
-  //       .then(result => result.css),
-  // }),
+  sass({
+    insert: true,
+    include: 'index.scss',
+    options: {
+      from: undefined,
+      includePaths: [
+        'node_modules',
+        path.resolve(
+          path.dirname(require.resolve('breakpoint-sass/package.json')),
+          'stylesheets'
+        ),
+      ],
+      data: globalSassImports,
+    },
+  }),
 ];
 
 const lib = {
@@ -59,10 +56,10 @@ const lib = {
       // presets: ['@babel/preset-env'],
       // plugins: ['@babel/plugin-proposal-class-properties'],
       // Better include it from babel rc
+      babelrc: false,
       ...customBabelRc,
       sourceMap: false,
-      babelrc: false,
-      exclude: ['node_modules/**'],
+      exclude: ['node_modules/**'], // /node_modules/,
       runtimeHelpers: false,
     }),
     resolve({
@@ -82,7 +79,7 @@ const dist = {
     name: 'window',
   },
   plugins: [
-    // ...commonPlugins,
+    ...commonPlugins,
     resolve({
       mainFields: ['module', 'main', 'browser'],
     }),
@@ -104,11 +101,7 @@ const dist = {
         ],
       ],
       exclude: [
-        '@babel/plugin-transform-runtime',
         'node_modules/@skatejs/val/**',
-        'node_modules/@babel/**',
-        'node_modules/@babel/runtime/**',
-        '//core-js//',
         '../../../../node_modules/@babel/**',
       ],
     }),
@@ -116,10 +109,10 @@ const dist = {
       namedExports: {
         '@skatejs/val': ['val'],
       },
-      // include: ['node_modules/**'],
+      include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
     }),
-    // uglify(),
+    uglify(),
   ],
 };
 
-export default [dist];
+export default [lib, dist];
