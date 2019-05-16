@@ -1,10 +1,4 @@
 import '@webcomponents/webcomponentsjs';
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
-/* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
-import styles from './index.scss';
-
 import {
   FacebookSvg,
   InstagramSvg,
@@ -14,6 +8,11 @@ import {
   LinkedinSvg,
   CaretSvg,
 } from '@axa-ch/materials';
+import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { repeat } from 'lit-html/directives/repeat';
+/* eslint-disable import/no-extraneous-dependencies */
+import defineOnce from '../../../utils/define-once';
+import styles from './index.scss';
 
 class AXAFooter extends LitElement {
   static get tagName() {
