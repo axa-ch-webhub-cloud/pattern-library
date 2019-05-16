@@ -10,7 +10,6 @@ module.exports = {
     ],
   ],
   plugins: [
-    'transform-custom-element-classes',
     '@babel/plugin-proposal-class-properties',
   ]
 };
