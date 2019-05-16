@@ -1,3 +1,5 @@
+$button-icon-margin: 12px !default;
+
 .a-button {
   @include typo(primary, x-small, medium);
   position: relative;
@@ -41,7 +43,7 @@
   }
 
   &__icon {
-    margin-left: 12px;
+    margin-left: $button-icon-margin;
   }
 
   &__input {
@@ -59,7 +61,7 @@
   align-items: center;
 
   &__icon {
-    margin-right: 12px;
+    margin-right: $button-icon-margin;
     margin-left: 0px;
   }
 }
