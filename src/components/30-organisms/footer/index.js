@@ -5,16 +5,14 @@ import { repeat } from 'lit-html/directives/repeat';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-import FacebookSvg from '../../00-materials/lib/icon-set/facebook.svg';
-
-// import {
-//   facebookSvg,
-//   // instagramSvg,
-//   // twitterSvg,
-//   // xingSvg,
-//   // youtubeSvg,
-//   // linkedinSvg,
-// } from '@axa-ch/materials';
+import {
+  FacebookSvg,
+  InstagramSvg,
+  TwitterSvg,
+  XingSvg,
+  YoutubeSvg,
+  LinkedinSvg,
+} from '@axa-ch/materials';
 
 class AXAFooter extends LitElement {
   static get tagName() {
@@ -102,7 +100,7 @@ class AXAFooter extends LitElement {
             ${repeat(this.iconArea.icons, icon => {
               return html`
                 <li>
-                  <a href="https://google.com">${svg([FacebookSvg || ''])}</a>
+                  <a href="https://google.com">${svg([''])}</a>
                 </li>
               `;
             })}
