@@ -30,6 +30,7 @@ import {
 | PlusSvg      |
 | SearchSvg    |
 | UploadSvg    |
+| TwitterSvg   |
 | FacebookSvg  |
 | XingSvg      |
 | InstagramSvg |

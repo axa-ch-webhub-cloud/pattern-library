@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/fieldset",
   "version": "1.0.0",
-  "description": "> TODO: description",
+  "description": "The AXA Fieldset component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/fieldset#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
