@@ -45,12 +45,15 @@ storiesOf('Organisms/Footer', module)
     const iconArea = JSON.stringify({
       title: 'stay in touch',
       icons: [
-        'facebook',
-        'instagram',
-        'twitter',
-        'xing',
-        'youtube',
-        'linkedin',
+        { title: 'facebook', link: 'https://www.facebook.com/axach/' },
+        {
+          title: 'instagram',
+          link: 'https://www.instagram.com/axaswitzerland/',
+        },
+        { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
+        { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
+        { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
+        { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
       ],
     });
 
