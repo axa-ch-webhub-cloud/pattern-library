@@ -15,7 +15,7 @@ import {
 } from '@axa-ch/materials';
 ```
 
-### Properties
+### SVGs
 
 | icon-set     |
 | ------------ |
@@ -30,3 +30,8 @@ import {
 | PlusSvg      |
 | SearchSvg    |
 | UploadSvg    |
+| FacebookSvg  |
+| XingSvg      |
+| InstagramSvg |
+| LinkedinSvg  |
+| YoutubeSvg   |
