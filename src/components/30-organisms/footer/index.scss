@@ -1,41 +1,17 @@
 .o-footer {
-  // color: $color-prim-white;
-  // background: $color-prim-blue-dark-indigo;
+  color: $color-prim-white;
+  background-color: $color-prim-blue-dark-indigo;
 
-  // @include typo(primary, x-small, default);
-
-  // &__list {
-  //   // ### Reset browser styles for ul
-  //   margin: 0;
-  //   padding: 0;
-  //   text-indent: 0;
-  //   list-style-type: none;
-
-  //   padding-right: 5px;
-  // }
-
-  // &__list-item {
-  //   display: inline-block;
-
-  //   &::after {
-  //     content: '|';
-  //     margin-left: 5px;
-  //     margin-right: 5px;
-  //     opacity: 0.65;
-  //   }
-
-  //   &:last-child::after {
-  //     content: '';
-  //     display: inline-block;
-  //     margin-left: 5px;
-  //     margin-right: 5px;
-  //   }
-  // }
-
-  // @include typo(primary, x-small, x-small);
+  ul {
+    // Reset browser styles for ul
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    list-style-type: none;
+  }
 
   button {
-    // Reset browser style for button-border
+    // Reset browser styles for button
    border: none;
    outline: 0;
   }
@@ -56,12 +32,6 @@
   
   
   .panel {
-    // ### Reset browser styles for ul
-    margin: 0;
-    padding: 0;
-    text-indent: 0;
-    list-style-type: none;
-    
     background-color: $color-prim-blue-dark-indigo;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -91,5 +61,7 @@
     max-height: unset;
   }
 
-  
+  svg {
+    width: 20px;
+  }
 }
