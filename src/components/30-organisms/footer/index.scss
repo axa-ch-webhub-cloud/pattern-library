@@ -1,11 +1,28 @@
 .o-footer {
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
+  
+  &__social-media {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+
+    svg {
+      color: $color-prim-white;
+      width: 25px;
+      height: 25px;
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+    }
+  }
 
   ul {
     // Reset browser styles for ul
     margin: 0;
-    padding: 0;
+    // padding: 0;
     text-indent: 0;
     list-style-type: none;
   }
@@ -59,9 +76,5 @@
 
   .panel.is-active {
     max-height: unset;
-  }
-
-  svg {
-    width: 20px;
   }
 }

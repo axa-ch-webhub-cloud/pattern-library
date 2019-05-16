@@ -70,7 +70,6 @@ class AXAFooter extends LitElement {
   }
 
   render() {
-    console.log('rerender');
     return html`
       <article class="o-footer">
         ${repeat(
@@ -99,10 +98,12 @@ class AXAFooter extends LitElement {
             `
         )}
         <div>
-          <ul>
+          <ul class="o-footer__social-media">
             ${repeat(this.iconArea.icons, icon => {
               return html`
-                <li>${svg([FacebookSvg || ''])}</li>
+                <li>
+                  <a href="https://google.com">${svg([FacebookSvg || ''])}</a>
+                </li>
               `;
             })}
           </ul>
