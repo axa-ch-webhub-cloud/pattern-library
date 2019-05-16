@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      '@babel/env',
       {
         targets: {
           browsers: ['last 2 versions', 'safari >= 8', 'not ie <= 10']
@@ -10,7 +10,6 @@ module.exports = {
     ],
   ],
   plugins: [
-    'transform-custom-element-classes',
     '@babel/plugin-proposal-class-properties',
   ]
 };

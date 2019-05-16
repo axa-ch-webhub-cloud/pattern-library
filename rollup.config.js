@@ -61,10 +61,12 @@ const generatePlugins = type => {
     return [
       ...commons,
       babel({
-        ...babelOptions,
+        plugins: [
+          '@babel/plugin-proposal-class-properties',
+        ],
         babelrc: false,
         exclude: ['node_modules/**'],
-        runtimeHelpers: true,
+        runtimeHelpers: false,
       }),
       resolve({
         mainFields: ['module', 'main'],
