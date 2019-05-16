@@ -12,6 +12,7 @@ import {
   XingSvg,
   YoutubeSvg,
   LinkedinSvg,
+  CaretSvg,
 } from '@axa-ch/materials';
 
 class AXAFooter extends LitElement {
@@ -71,7 +72,10 @@ class AXAFooter extends LitElement {
                   class="accordion"
                   @click="${ev => this.handleClick(ev, index)}"
                 >
-                  ${contentItem.title}
+                  <span>
+                    ${contentItem.title}
+                  </span>
+                  <span>${svg([CaretSvg || ''])}</span>
                 </button>
                 <ul class="panel ${contentItem.active ? 'is-active' : ''}">
                   ${repeat(
@@ -102,12 +106,6 @@ class AXAFooter extends LitElement {
         <div>
       </article>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 
