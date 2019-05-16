@@ -61,4 +61,17 @@ storiesOf('Atoms/Button', module)
   .add(
     'Button - icon',
     () => `<axa-button icon="arrow-right">Icon</axa-button>`
+  )
+
+  /* Update */
+  .add(
+    'Button - upload',
+    () => `
+    <div>
+      <axa-button type="file">I&apos;m default btn with a upload function</axa-button>
+      <axa-button type="file" icon="arrow-right">I&apos;m variant: custom icon</axa-button>
+      <axa-button type="file" multiple="multiple">I&apos;m variant: multiple upload</axa-button>
+      <axa-button type="file" multiple="multiple" accept="image/jpg, image/jpeg, application/pdf, image/png">I&apos;m variant: specify accepted file types</axa-button>
+      <axa-button type="file" capture>I&apos;m variant: capture</axa-button>
+    </div>`
   );
