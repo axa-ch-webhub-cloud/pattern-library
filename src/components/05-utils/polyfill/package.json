@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "core-js": "^2.6.5"
+    "core-js": "^3.0.1"
   }
 }
