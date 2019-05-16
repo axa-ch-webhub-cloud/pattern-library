@@ -1,5 +1,5 @@
-import '@webcomponents/webcomponentsjs';
 /* eslint-disable import/no-extraneous-dependencies */
+import '@webcomponents/webcomponentsjs';
 import {
   FacebookSvg,
   InstagramSvg,
@@ -11,7 +11,6 @@ import {
 } from '@axa-ch/materials';
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
-/* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 

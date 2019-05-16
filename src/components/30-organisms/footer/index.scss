@@ -2,6 +2,11 @@
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
 
+  a {
+    display: block;
+    padding: 10px;
+  }
+  
   &__accordion {
     @include typo(primary, default, medium);
 
@@ -86,9 +91,6 @@
       height: 25px;
     }
   
-    a {
-      display: block;
-      padding: 10px;
-    }
+
   }
 }
