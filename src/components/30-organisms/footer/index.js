@@ -69,15 +69,24 @@ class AXAFooter extends LitElement {
             html`
               <div>
                 <button
-                  class="accordion"
+                  class="o-footer__accordion"
                   @click="${ev => this.handleClick(ev, index)}"
                 >
                   <span>
                     ${contentItem.title}
                   </span>
-                  <span>${svg([CaretSvg || ''])}</span>
+                  <span
+                    class="o-footer__accordion-caret o-footer__accordion-caret${contentItem.active
+                      ? '--open'
+                      : ''}"
+                    >${svg([CaretSvg || ''])}</span
+                  >
                 </button>
-                <ul class="panel ${contentItem.active ? 'is-active' : ''}">
+                <ul
+                  class="o-footer__accordion-panel o-footer__accordion-panel${contentItem.active
+                    ? '--open'
+                    : ''}"
+                >
                   ${repeat(
                     contentItem.items,
                     i =>
