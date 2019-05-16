@@ -61,6 +61,13 @@ const generatePlugins = type => {
     return [
       ...commons,
       babel({
+        presets: [
+          [ '@babel/preset-env', {
+            targets: {
+              esmodules: true
+            }
+          }]
+        ],
         plugins: [
           '@babel/plugin-proposal-class-properties',
         ],
