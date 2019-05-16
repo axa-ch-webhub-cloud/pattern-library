@@ -43,8 +43,8 @@ class AXAButton extends LitElement {
     this.motionOff = false;
     this.disabled = false;
     this.accept = 'image/jpg, image/jpeg, application/pdf, image/png'
-    this.capture = '';
-    this.multiple = '';
+    this.capture = false;
+    this.multiple = true;
     this.onClick = () => {};
   }
 
@@ -71,7 +71,7 @@ class AXAButton extends LitElement {
       icon = '',
       accept,
       capture,
-      multiple
+      multiple,
     } = this;
 
     const classes = {
