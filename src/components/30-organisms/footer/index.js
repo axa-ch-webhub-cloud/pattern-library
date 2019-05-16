@@ -38,22 +38,14 @@ class AXAFooter extends LitElement {
     this.content = [];
     this.iconArea = {};
     this.dynamic = false;
-  }
 
-  firstUpdated() {
-    // var acc = document.getElementsByClassName('accordion');
-    // var i;
-    // for (i = 0; i < acc.length; i++) {
-    //   acc[i].addEventListener('click', function() {
-    //     this.classList.toggle('active');
-    //     var panel = this.nextElementSibling;
-    //     if (panel.style.maxHeight) {
-    //       panel.style.maxHeight = null;
-    //     } else {
-    //       panel.style.maxHeight = panel.scrollHeight + 'px';
-    //     }
-    //   });
-    // }
+    this.iconMap = new Map();
+    this.iconMap.set('facebook', FacebookSvg);
+    this.iconMap.set('instagram', InstagramSvg);
+    this.iconMap.set('twitter', TwitterSvg);
+    this.iconMap.set('xing', XingSvg);
+    this.iconMap.set('youtube', YoutubeSvg);
+    this.iconMap.set('linkedin', LinkedinSvg);
   }
 
   handleClick(e, index) {
@@ -100,7 +92,9 @@ class AXAFooter extends LitElement {
             ${repeat(this.iconArea.icons, icon => {
               return html`
                 <li>
-                  <a href="https://google.com">${svg([''])}</a>
+                  <a href="${icon.link}" target="_blank"
+                    >${svg([this.iconMap.get(icon.title) || ''])}</a
+                  >
                 </li>
               `;
             })}
@@ -108,23 +102,6 @@ class AXAFooter extends LitElement {
         <div>
       </article>
     `;
-    // ${repeat(this.iconArea.icons, icon => svg([face || '']))}
-
-    // <button class="accordion active" @click="${this.handleClick}">
-    //   Section 1
-    // </button>
-    // <ul class="panel">
-    //   <li>hello</li>
-    //   <li>bonjour</li>
-    //   <li>hallo</li>
-    // </ul>
-
-    // <button class="accordion">Section 2</button>
-    // <ul class="panel">
-    //   <li>hello</li>
-    //   <li>bonjour</li>
-    //   <li>hallo</li>
-    // </ul>
   }
 
   disconnectedCallback() {
