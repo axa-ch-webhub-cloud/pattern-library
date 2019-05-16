@@ -22,7 +22,7 @@
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "node scripts/test.unit.js --env=jsdom",
-    "new": "node scripts/create-a-m-o/index.js"
+    "new": "node scripts/create-a`-m-o/index.js"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
@@ -31,7 +31,7 @@
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
-    "@axa-ch/patterns-library-polyfill": "^1.0.0-alpha.1",
+    "@axa-ch/patterns-library-polyfill": "^1.4.0",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-transform-regenerator": "^7.4.4",
@@ -49,7 +49,6 @@
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "breakpoint-sass": "^2.7.1",
     "chalk": "^2.4.2",
-    "core-js": "^2.6.5",
     "cp": "^0.2.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",

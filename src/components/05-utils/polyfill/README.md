@@ -67,9 +67,9 @@ import '@axa-ch/patterns-library-polyfill/lib/index.webcomponents';
 
 ## Polyfills used:
 
-- core-js/stable/reflect
-- core-js/stable/promise
-- core-js/stable/array/includes
-- core-js/stable/array/from
-- core-js/stable/object/assign
+- core-js/es6/reflect
+- core-js/es6/promise
+- core-js/fn/array/includes
+- core-js/fn/array/from
+- core-js/fn/object/assign
 - @webcomponents/webcomponentsjs
