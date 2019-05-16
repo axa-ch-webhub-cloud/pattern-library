@@ -1,39 +1,10 @@
 .o-footer {
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
-  
-  &__social-media {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 15px 20px;
 
-    svg {
-      color: $color-prim-white;
-      width: 25px;
-      height: 25px;
-    }
+  &__accordion {
+    @include typo(primary, default, medium);
 
-    a {
-      display: block;
-      padding: 10px;
-    }
-  }
-
-  ul {
-    // Reset browser styles for ul
-    margin: 0;
-    // padding: 0;
-    text-indent: 0;
-    list-style-type: none;
-  }
-
-  button {
-    // Reset browser styles for button
-   border: none;
-   outline: 0;
-  }
-
-  .accordion {
     display: flex;
     justify-content: space-between;
     color: $color-prim-white;
@@ -41,48 +12,83 @@
     padding: 20px 30px 20px 30px;
     width: 100%;
     text-align: left;
-    // transition: 0.4s;
-
-    @include typo(primary, default, medium);
-
+    
+    // Reset browser styles for button
+    border: none;
+    outline: 0;
+    
     border-bottom: 1px solid $color-prim-blue-st-tropaz;
     text-transform: uppercase;
-
+    
     svg {
       width: 10px;
       height: 10px;
       color: $color-prim-gray-dusty;
     }
-  }
-  
-  
-  .panel {
-    background-color: $color-prim-blue-dark-indigo;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-
-    max-height: 0;
-
-    background-color: $color-prim-blue-azure;
-
-    li {
-      @include typo(primary, xx-small, default);
-
-      padding: 20px 30px;
-      border-bottom: 1px solid $color-prim-blue-dark-indigo;
-
-      &:last-child {
-        border-bottom: none;
+    
+    &-caret {
+      transform: rotate(180deg);
+      
+      &--open {
+        transform: rotate(0deg);
       }
+    }
+    
+    &-panel {
+      // Reset browser styles for ul
+      margin: 0;
+      text-indent: 0;
+      list-style-type: none;
+      padding: 0;
 
-      a {
-        text-decoration: none;
-        color: $color-prim-white;
+      background-color: $color-prim-blue-azure;
+      overflow: hidden;
+      
+      max-height: 0;
+      
+      &--open {
+        max-height: unset;
+      }
+      
+      li {
+        @include typo(primary, xx-small, default);
+        
+        padding: 0;
+        padding: 20px 30px;
+        border-bottom: 1px solid $color-prim-blue-dark-indigo;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        a {
+          text-decoration: none;
+          color: $color-prim-white;
+        }
       }
     }
   }
+  
+  &__social-media {
+    // Reset browser styles for ul
+    margin: 0;
+    text-indent: 0;
+    list-style-type: none;
+    padding: 0;
 
-  .panel.is-active {
-    max-height: unset;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+  
+    svg {
+      color: $color-prim-white;
+      width: 25px;
+      height: 25px;
+    }
+  
+    a {
+      display: block;
+      padding: 10px;
+    }
   }
 }
