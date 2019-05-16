@@ -38,6 +38,7 @@ storiesOf('Atoms/Button', module)
       <axa-button>Button</axa-button>
       <axa-button type="submit">Submit</axa-button>
       <axa-button type="reset">Reset</axa-button>
+      <axa-button type="file">File</axa-button>
     </div>`
   )
 
@@ -63,16 +64,15 @@ storiesOf('Atoms/Button', module)
     () => `<axa-button icon="arrow-right">Icon</axa-button>`
   )
 
-  /* Update */
+  /* File */
   .add(
-    'Button - upload',
+    'Button - File',
     () => `
     <div>
-      <axa-button type="file">I&apos;m default upload-btn</axa-button>
-      <axa-button type="file" large>I&apos;m default large upload-btn</axa-button>
-      <axa-button type="file" icon="arrow-right" variant="red">I&apos;m variant: custom icon</axa-button>
-      <axa-button type="file" multiple="multiple">I&apos;m variant: multiple upload</axa-button>
-      <axa-button type="file" multiple="multiple" accept="application/pdf">I&apos;m variant: specify accepted file types (pdf)</axa-button>
-      <axa-button type="file" capture>I&apos;m variant: capture</axa-button>
+      <axa-button type="file">File</axa-button>
+      <axa-button type="file" icon="arrow-right">File + Icon</axa-button>
+      <axa-button type="file" multiple="multiple">File + Multiple</axa-button>
+      <axa-button type="file" accept="application/pdf">File + Accept (PDF)</axa-button>
+      <axa-button type="file" capture>File + Capture</axa-button>
     </div>`
   );

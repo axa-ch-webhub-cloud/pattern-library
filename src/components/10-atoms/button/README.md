@@ -71,6 +71,7 @@ Import the button-defining script and use a button like this:
 | `type="button"` | Default button type (default if omitted) |
 | `type="submit"` | Submit button submit for forms           |
 | `type="reset"`  | Reset button for forms                   |
+| `type="file"`   | Upload files for forms                   |
 
 ### Large
 
