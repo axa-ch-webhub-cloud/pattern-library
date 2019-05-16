@@ -34,9 +34,11 @@
   }
 
   .accordion {
+    display: flex;
+    justify-content: space-between;
     color: $color-prim-white;
     background-color: $color-prim-blue-dark-indigo;
-    padding: 20px 60px 20px 30px;
+    padding: 20px 30px 20px 30px;
     width: 100%;
     text-align: left;
     // transition: 0.4s;
@@ -45,6 +47,12 @@
 
     border-bottom: 1px solid $color-prim-blue-st-tropaz;
     text-transform: uppercase;
+
+    svg {
+      width: 10px;
+      height: 10px;
+      color: $color-prim-gray-dusty;
+    }
   }
   
   
