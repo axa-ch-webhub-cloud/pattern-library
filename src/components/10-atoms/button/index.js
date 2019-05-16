@@ -86,21 +86,19 @@ class AXAButton extends LitElement {
     return html`
       ${this.type === 'file'
         ? html`
-          <button
-            type="${type}"
+          <label
             class="a-button ${classMap(classes)}"
+            for="file-upload"
             ?disabled="${disabled}"
             @click="${this.onClick}"
-          >
-            <label for="file-upload">
-              <div class="a-button__flex-wrapper">
-                ${icon && html`
-                  <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
-                `}
-                <slot></slot>
-              </div>
-            </label>
-          </button>
+          ><div class="a-button__flex-wrapper">
+          ${icon &&
+            html`
+              <axa-icon class="a-button--upload__icon" icon="${icon}"></axa-icon>
+            `}
+            <slot></slot>
+          </div>
+          </label>
           <input
             type="${type}"
             accept="${accept}"
