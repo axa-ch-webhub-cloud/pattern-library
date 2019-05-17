@@ -98,8 +98,13 @@
 
 
   @media screen and (min-width: 576px) {
+    // The accordion is only for small mobile devices
     &__accordion {
       display: none;
+    }
+
+    &__collection {
+      display: flex;
     }
   }
 }

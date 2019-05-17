@@ -104,22 +104,22 @@ class AXAFooter extends LitElement {
 
 
 
-      <div class="">
+      <div class="o-footer__collection">
         ${repeat(
           this.content,
           (contentItem, index) =>
             html`
               <div>
-                <div></div>
-                <ul class="">
-                  ${repeat(contentItem.items, i => {
-                    html`
+                <div>${contentItem.title}</div>
+                <ul>
+                  ${repeat(
+                    contentItem.items,
+                    i => html`
                       <li>
                         <a href=${i.link}>${i.text}</a>
                       </li>
-                    `;
-                    return '';
-                  })}
+                    `
+                  )}
                 </ul>
               </div>
             `
