@@ -62,7 +62,6 @@ class AXAFooter extends LitElement {
   render() {
     return html`
       <article class="o-footer">
-
         ${repeat(
           this.content,
           (contentItem, index) =>
@@ -101,33 +100,27 @@ class AXAFooter extends LitElement {
             `
         )}
 
-
-
-
-      <div class="o-footer__collection">
-        ${repeat(
-          this.content,
-          (contentItem, index) =>
-            html`
-              <div>
-                <div>${contentItem.title}</div>
-                <ul>
-                  ${repeat(
-                    contentItem.items,
-                    i => html`
-                      <li>
-                        <a href=${i.link}>${i.text}</a>
-                      </li>
-                    `
-                  )}
-                </ul>
-              </div>
-            `
-        )}
-      </div>
-
-
-
+        <div class="o-footer__collection">
+          ${repeat(
+            this.content,
+            (contentItem, index) =>
+              html`
+                <div class="o-footer__collection-container">
+                  <div>${contentItem.title}</div>
+                  <div class="o-footer__collection-container-list">
+                    ${repeat(
+                      contentItem.items,
+                      i => html`
+                        <div class="o-footer__collection-container-list-item">
+                          <a href=${i.link}>${i.text}</a>
+                        </div>
+                      `
+                    )}
+                  </div>
+                </div>
+              `
+          )}
+        </div>
 
         <div>
           <ul class="o-footer__social-media">
@@ -141,7 +134,7 @@ class AXAFooter extends LitElement {
               `;
             })}
           </ul>
-        <div>
+        </div>
       </article>
     `;
   }

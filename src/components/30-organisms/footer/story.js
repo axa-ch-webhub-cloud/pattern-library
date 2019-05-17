@@ -17,6 +17,10 @@ storiesOf('Organisms/Footer', module)
             link: 'https://axa.ch/en/private-customers.html',
           },
           {
+            text: 'Broker',
+            link: 'https://axa.ch/en/private-customers.html',
+          },
+          {
             text: 'Job vacancies',
             link: 'https://axa.ch/en/private-customers.html',
           },
