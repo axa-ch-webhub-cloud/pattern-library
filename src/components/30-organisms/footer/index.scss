@@ -2,6 +2,7 @@
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
 
+  // ### Mobile
   &__accordion {
     @include typo(primary, default, medium);
 
@@ -91,6 +92,14 @@
     a {
       display: block;
       padding: 10px;
+    }
+  }
+  // ### /Mobile
+
+
+  @media screen and (min-width: 576px) {
+    .mobile {
+      display: none;
     }
   }
 }
