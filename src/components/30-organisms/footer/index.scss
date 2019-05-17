@@ -114,12 +114,15 @@
     }
 
     .tablet {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     &__collection {
       display: flex;
-      justify-content: center;
+      // justify-content: center;
 
       &-container {
         max-width: 400px; //todo change to relative size
@@ -137,6 +140,7 @@
     }
 
     &__social-media {
+      width: 100%;
       // Reset browser styles for ul
       margin: 0;
       text-indent: 0;
