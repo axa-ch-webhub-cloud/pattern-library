@@ -3,10 +3,12 @@ import { storiesOf } from '@storybook/html';
 import './index';
 
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
+import withBodyReset from '../../../../.storybook/addons/reset-body';
 import Readme from './README.md';
 
 storiesOf('Molecules/Footer Small', module)
   .addDecorator(withMarkdown(Readme))
+  .addDecorator(withBodyReset())
   .add('Footer Small', () => {
     const languages = JSON.stringify([
       { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
