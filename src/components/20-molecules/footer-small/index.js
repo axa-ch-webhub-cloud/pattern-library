@@ -1,5 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
+/* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/container';
 
 import footerSmallCSS from './index.scss';
