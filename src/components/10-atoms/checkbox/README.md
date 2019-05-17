@@ -61,10 +61,6 @@ Import the checkbox-defining script and use a checkbox like this:
 Unless otherwise noted, properties can be set via attributes or properties.
 Starred property names are reflected to attributes.
 
-### type
-
-The string-valued `type` of the axa-checkbox (default: _checkbox_).
-
 ### name\*
 
 The string-valued `name` of the checkbox for purposes of form submission.
