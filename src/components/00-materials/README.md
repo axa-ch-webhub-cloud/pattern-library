@@ -17,6 +17,8 @@ import {
 
 ### SVGs
 
+(Complete list is visible [here](https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/icons))
+
 | icon-set     |
 | ------------ |
 | CollapseSvg  |
