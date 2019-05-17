@@ -67,23 +67,23 @@ class AXAFooter extends LitElement {
           this.content,
           (contentItem, index) =>
             html`
-              <div class="mobile">
+              <div class="o-footer__accordion">
                 <button
-                  class="o-footer__accordion"
+                  class="o-footer__accordion-content"
                   @click="${ev => this.handleClick(ev, index)}"
                 >
                   <span>
                     ${contentItem.title}
                   </span>
                   <span
-                    class="o-footer__accordion-caret o-footer__accordion-caret${contentItem.active
+                    class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
                       ? '--open'
                       : ''}"
                     >${svg([CaretSvg || ''])}</span
                   >
                 </button>
                 <ul
-                  class="o-footer__accordion-panel o-footer__accordion-panel${contentItem.active
+                  class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
                     ? '--open'
                     : ''}"
                 >
@@ -104,27 +104,22 @@ class AXAFooter extends LitElement {
 
 
 
-      <div class="non-mobile">
+      <div class="">
         ${repeat(
           this.content,
           (contentItem, index) =>
             html`
               <div>
                 <div></div>
-                <ul
-                  class="o-footer__accordion-panel o-footer__accordion-panel${contentItem.active
-                    ? '--open'
-                    : ''}"
-                >
-                  ${repeat(
-                    contentItem.items,
-                    i =>
-                      html`
-                        <li>
-                          <a href=${i.link}>${i.text}</a>
-                        </li>
-                      `
-                  )}
+                <ul class="">
+                  ${repeat(contentItem.items, i => {
+                    html`
+                      <li>
+                        <a href=${i.link}>${i.text}</a>
+                      </li>
+                    `;
+                    return '';
+                  })}
                 </ul>
               </div>
             `
