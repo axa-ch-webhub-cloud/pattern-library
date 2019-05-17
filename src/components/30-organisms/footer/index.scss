@@ -3,7 +3,7 @@
   background-color: $color-prim-blue-dark-indigo;
 
   // ### Mobile
-  &__accordion {
+  &__accordion-content {
     @include typo(primary, default, medium);
 
     display: flex;
@@ -98,7 +98,7 @@
 
 
   @media screen and (min-width: 576px) {
-    .mobile {
+    &__accordion {
       display: none;
     }
   }
