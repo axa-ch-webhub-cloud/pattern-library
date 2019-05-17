@@ -5,11 +5,11 @@
   // ### Mobile
   @media screen and (max-width: 576px) {
     // The accordion is only for small mobile devices
-    &__accordion {
+    .mobile {
       display: block;
     }
 
-    &__collection {
+    .tablet {
       display: none;
     }
   }
@@ -24,29 +24,29 @@
     padding: 20px 30px 20px 30px;
     width: 100%;
     text-align: left;
-    
+
     // Reset browser styles for button
     border: none;
     outline: 0;
-    
+
     border-bottom: 1px solid $color-prim-blue-st-tropaz;
     text-transform: uppercase;
-    
+
     svg {
       width: 10px;
       height: 10px;
       color: $color-prim-gray-dusty;
     }
-    
+
     &-caret {
-      transition: transform .3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
       transform: rotate(180deg);
 
       &--open {
         transform: rotate(0deg);
       }
     }
-    
+
     &-panel {
       // Reset browser styles for ul
       margin: 0;
@@ -56,25 +56,25 @@
 
       background-color: $color-prim-blue-azure;
       overflow: hidden;
-      
+
       max-height: 0;
-      transition:max-height 0.3s ease-out;
-      
+      transition: max-height 0.3s ease-out;
+
       &--open {
         max-height: 400px;
       }
-      
+
       li {
         @include typo(primary, xx-small, default);
-        
+
         padding: 0;
         padding: 20px 30px;
         border-bottom: 1px solid $color-prim-blue-dark-indigo;
-        
+
         &:last-child {
           border-bottom: none;
         }
-        
+
         a {
           text-decoration: none;
           color: $color-prim-white;
@@ -82,7 +82,7 @@
       }
     }
   }
-  
+
   &__social-media {
     // Reset browser styles for ul
     margin: 0;
@@ -93,13 +93,13 @@
     display: flex;
     flex-wrap: wrap;
     padding: 15px 20px;
-  
+
     svg {
       color: $color-prim-white;
       width: 25px;
       height: 25px;
     }
-  
+
     a {
       display: block;
       padding: 10px;
@@ -107,26 +107,28 @@
   }
   // ### /Mobile
 
-
-  
   @media screen and (min-width: 576px) {
     // The accordion is only for small mobile devices
-    &__accordion {
+    .mobile {
       display: none;
+    }
+
+    .tablet {
+      display: block;
     }
 
     &__collection {
       display: flex;
       justify-content: center;
-      
+
       &-container {
         max-width: 400px; //todo change to relative size
-  
+
         &-list {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-  
+
           &-item {
             width: 200px;
           }
@@ -135,7 +137,26 @@
     }
 
     &__social-media {
-      justify-content: center;
+      // Reset browser styles for ul
+      margin: 0;
+      text-indent: 0;
+      list-style-type: none;
+      padding: 0;
+
+      display: flex;
+      flex-wrap: wrap;
+      padding: 15px 20px;
+
+      svg {
+        color: $color-prim-white;
+        width: 25px;
+        height: 25px;
+      }
+
+      a {
+        display: block;
+        padding: 10px;
+      }
     }
   }
 }
