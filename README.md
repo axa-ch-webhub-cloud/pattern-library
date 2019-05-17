@@ -18,6 +18,7 @@
 - [AXA Button](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button)
 - [AXA Button Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button-link)
 - [AXA Checkbox](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/checkbox)
+- [AXA Container](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/container)
 - [AXA Icon](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/icon)
 - [AXA Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/link)
 - [AXA Fieldset](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/fieldset)
