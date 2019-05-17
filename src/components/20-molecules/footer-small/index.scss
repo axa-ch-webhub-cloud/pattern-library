@@ -1,22 +1,23 @@
 .m-footer-small {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 15px;
 
-  color: $color-prim-white;
   background: $color-prim-blue-azure;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
-  @include typo(primary, x-small, default);
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 15px;
+    color: $color-prim-white;
+    @include typo(primary, x-small, default);
 
-  @include breakpoint($mediaquery-md-up) {
-    flex-direction: row;
-    justify-content: space-between;
+    @include breakpoint($mediaquery-md-up) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
-
   &__list {
     // ### Reset browser styles for ul
     margin: 0;
