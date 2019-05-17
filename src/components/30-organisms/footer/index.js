@@ -62,11 +62,12 @@ class AXAFooter extends LitElement {
   render() {
     return html`
       <article class="o-footer">
+
         ${repeat(
           this.content,
           (contentItem, index) =>
             html`
-              <div>
+              <div class="mobile">
                 <button
                   class="o-footer__accordion"
                   @click="${ev => this.handleClick(ev, index)}"
@@ -99,6 +100,40 @@ class AXAFooter extends LitElement {
               </div>
             `
         )}
+
+
+
+
+      <div class="non-mobile">
+        ${repeat(
+          this.content,
+          (contentItem, index) =>
+            html`
+              <div>
+                <div></div>
+                <ul
+                  class="o-footer__accordion-panel o-footer__accordion-panel${contentItem.active
+                    ? '--open'
+                    : ''}"
+                >
+                  ${repeat(
+                    contentItem.items,
+                    i =>
+                      html`
+                        <li>
+                          <a href=${i.link}>${i.text}</a>
+                        </li>
+                      `
+                  )}
+                </ul>
+              </div>
+            `
+        )}
+      </div>
+
+
+
+
         <div>
           <ul class="o-footer__social-media">
             ${repeat(this.iconArea.icons, icon => {
