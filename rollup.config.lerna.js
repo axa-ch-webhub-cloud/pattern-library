@@ -4,7 +4,6 @@ const babel = require('rollup-plugin-babel');
 const replace = require('rollup-plugin-replace'); // use to setup project enviroment variables
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
-const stripFontFace = require('postcss-strip-font-face'); // strip all font faces in the bundled css
 const postcss = require('postcss');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const path = require('path');
