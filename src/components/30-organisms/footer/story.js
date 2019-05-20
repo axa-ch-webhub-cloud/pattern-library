@@ -6,7 +6,7 @@ import Readme from './README.md';
 
 storiesOf('Organisms/Footer', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Footer - default', () => {
+  .add('Footer', () => {
     const content = JSON.stringify([
       {
         title: 'axa & you',
