@@ -126,6 +126,13 @@
       &-container {
         max-width: 400px; //todo change to relative size
 
+        strong {
+          @include typo(primary, medium, bold);
+
+          text-transform: uppercase;
+          line-height: 1.5;
+        }
+
         &-list {
           display: flex;
           flex-direction: row;

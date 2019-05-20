@@ -126,7 +126,7 @@ class AXAFooter extends LitElement {
                   (contentItem, index) =>
                     html`
                       <div class="o-footer__collection-container">
-                        <div>${contentItem.title}</div>
+                        <strong>${contentItem.title}</strong>
                         <div class="o-footer__collection-container-list">
                           ${repeat(
                             contentItem.items,
