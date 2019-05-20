@@ -22,7 +22,7 @@ interface Content {
 }
 
 interface AXAFooterProps {
-  content: Content;
+  content: Content[];
   social: Social;
 }
 
