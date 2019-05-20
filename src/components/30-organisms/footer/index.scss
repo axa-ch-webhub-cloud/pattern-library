@@ -113,7 +113,6 @@
 
   // ### Tablet
   @include breakpoint($mediaquery-sm-up) {
-    // The accordion is only for small mobile devices
     .mobile {
       display: none;
     }
@@ -162,8 +161,6 @@
             @include typo(primary, default, default);
             line-height: 1.21;
             padding: 0;
-            // padding: 20px 30px;
-            border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
             &:last-child {
               border-bottom: none;
