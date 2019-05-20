@@ -39,7 +39,7 @@ const commonPlugins = [
 ];
 
 const lib = {
-  input: ['index.js', 'index.react.js'], // Globbing is not a benefit as the config needs to be adapted and checked anyways if new files
+  input: ['index.js'], // Globbing is not a benefit as the config needs to be adapted and checked anyways if new files
   external: [
     'lit-element',
     'lit-html/directives/class-map',
@@ -53,10 +53,7 @@ const lib = {
   plugins: [
     ...commonPlugins,
     babel({
-      // presets: ['@babel/preset-env'],
-      // plugins: ['@babel/plugin-proposal-class-properties'],
-      // Better include it from babel rc
-      babelrc: false,
+      babelrc: false, // babel under the hood: {presets: ['@babel/preset-env'], plugins: ['@babel/plugin-proposal-class-properties']}
       ...customBabelRc,
       sourceMap: false,
       exclude: ['node_modules/**'], // /node_modules/,
