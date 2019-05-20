@@ -116,40 +116,50 @@ class AXAFooter extends LitElement {
         </div>
 
         <div class="tablet">
-          <div class="o-footer__collection">
-            ${repeat(
-              this.content,
-              (contentItem, index) =>
-                html`
-                  <div class="o-footer__collection-container">
-                    <div>${contentItem.title}</div>
-                    <div class="o-footer__collection-container-list">
-                      ${repeat(
-                        contentItem.items,
-                        i => html`
-                          <div class="o-footer__collection-container-list-item">
-                            <a href=${i.link}>${i.text}</a>
-                          </div>
-                        `
-                      )}
-                    </div>
-                  </div>
-                `
-            )}
-          </div>
+          <div></div>
+
           <div>
-            <ul class="o-footer__social-media">
-              ${repeat(this.iconArea.icons, icon => {
-                return html`
-                  <li>
-                    <a href="${icon.link}" target="_blank"
-                      >${svg([this.iconMap.get(icon.title) || ''])}</a
-                    >
-                  </li>
-                `;
-              })}
-            </ul>
+            <div>
+              <div class="o-footer__collection">
+                ${repeat(
+                  this.content,
+                  (contentItem, index) =>
+                    html`
+                      <div class="o-footer__collection-container">
+                        <div>${contentItem.title}</div>
+                        <div class="o-footer__collection-container-list">
+                          ${repeat(
+                            contentItem.items,
+                            i => html`
+                              <div
+                                class="o-footer__collection-container-list-item"
+                              >
+                                <a href=${i.link}>${i.text}</a>
+                              </div>
+                            `
+                          )}
+                        </div>
+                      </div>
+                    `
+                )}
+              </div>
+            </div>
+            <div>
+              <ul class="o-footer__social-media">
+                ${repeat(this.iconArea.icons, icon => {
+                  return html`
+                    <li>
+                      <a href="${icon.link}" target="_blank"
+                        >${svg([this.iconMap.get(icon.title) || ''])}</a
+                      >
+                    </li>
+                  `;
+                })}
+              </ul>
+            </div>
           </div>
+
+          <div></div>
         </div>
       </article>
     `;

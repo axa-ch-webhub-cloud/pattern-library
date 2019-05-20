@@ -115,14 +115,13 @@
     }
 
     .tablet {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-columns: auto 600px auto;
     }
 
     &__collection {
       display: flex;
-      // justify-content: center;
+      padding: 15px 20px;
 
       &-container {
         max-width: 400px; //todo change to relative size
@@ -159,6 +158,23 @@
       a {
         display: block;
         padding: 10px;
+      }
+    }
+
+    &__collection-container-list-item {
+      @include typo(primary, default, default);
+      line-height: 1.21;
+      padding: 0;
+      // padding: 20px 30px;
+      border-bottom: 1px solid $color-prim-blue-dark-indigo;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-prim-white;
       }
     }
   }
