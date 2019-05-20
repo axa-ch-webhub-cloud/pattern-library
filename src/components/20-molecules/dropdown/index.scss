@@ -3,6 +3,8 @@ $dropdown-color--hover: $color-axa-blue !default;
 $dropdown-border-width: 1px;
 $dropdown-border-style: $dropdown-border-width solid $color-prim-gray-silver;
 $dropdown-height: 40px;
+$dropdown-icon-width: 10px;
+$dropdown-icon-height: 6px;
 
 @mixin normalize-native-select-styles() {
   appearance: none;
@@ -53,7 +55,7 @@ axa-dropdown {
 
 .m-dropdown {
   position: relative;
-  @include typo(primary, medium);
+  @include typo(primary, small);
 
   &__list {
     padding: 10.5px 20px 10.5px 12px;
@@ -98,6 +100,7 @@ axa-dropdown {
     display: block;
     width: 40px;
     height: $dropdown-height;
+    line-height: $dropdown-height - $dropdown-icon-height;
     background: $color-prim-white;
     position: absolute;
     right: 0;
@@ -106,9 +109,9 @@ axa-dropdown {
     text-align: center;
 
     svg {
-      width: 15px;
-      height: $dropdown-height;
-      color: $color-prim-gray-dusty;
+      width: $dropdown-icon-width;
+      height: $dropdown-icon-height;
+      color: $color-axa-blue;
       transition: transform 0.3s ease;
       pointer-events: none;
       line-height: 0;
@@ -127,7 +130,7 @@ axa-dropdown {
     height: $dropdown-height;
     text-align: left;
     cursor: pointer;
-    line-height: 24px;
+    line-height: 20px;
 
     &:hover,
     &:active,
@@ -147,11 +150,6 @@ axa-dropdown {
     min-width: 100%;
     overflow: hidden;
     transition: height 0.3s ease;
-
-    .is-dropdown-open & {
-      height: auto;
-    }
-
     margin-top: -$dropdown-border-width;
     background: $color-prim-white;
   }
@@ -159,11 +157,12 @@ axa-dropdown {
   &__option,
   &__toggle,
   &__button {
-    padding: 10px 40px 10px 10px;
+    padding: 10px 40px 10px 20px;
     width: 100%;
   }
 
   &__button {
+    @include typo(primary, small);
     display: block;
     width: 100%;
     text-align: left;
