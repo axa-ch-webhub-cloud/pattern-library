@@ -30,6 +30,7 @@ class AXAFooter extends LitElement {
       content: { type: Array },
       iconArea: { type: Object },
       dynamic: { type: Boolean },
+      external: { type: Boolean },
     };
   }
 
@@ -38,6 +39,7 @@ class AXAFooter extends LitElement {
     this.content = [];
     this.iconArea = {};
     this.dynamic = false;
+    this.external = false;
 
     this.iconMap = new Map();
     this.iconMap.set('facebook', FacebookSvg);
@@ -92,7 +94,11 @@ class AXAFooter extends LitElement {
                       i =>
                         html`
                           <li>
-                            <a href=${i.link}>${i.text}</a>
+                            <a
+                              href=${i.link}
+                              target="${i.external ? '_blank' : '_top'}"
+                              >${i.text}</a
+                            >
                           </li>
                         `
                     )}
@@ -128,7 +134,11 @@ class AXAFooter extends LitElement {
                         contentItem.items,
                         i => html`
                           <div class="o-footer__collection-container-list-item">
-                            <a href=${i.link}>${i.text}</a>
+                            <a
+                              href=${i.link}
+                              target="${i.external ? '_blank' : '_top'}"
+                              >${i.text}</a
+                            >
                           </div>
                         `
                       )}
