@@ -1,9 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { ExpandSvg } from '@axa-ch/materials/icons';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
+import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 
@@ -77,15 +78,13 @@ const contentItemsMapper = clickHandler => ({
 };
 
 // CE
-class AXADropdown extends LitElement {
+class AXADropdown extends NoShadowDOM {
   static get tagName() {
     return 'axa-dropdown';
   }
 
   static get styles() {
-    return css`
-      ${unsafeCSS(styles)}
-    `;
+    return styles;
   }
 
   static get properties() {
@@ -124,7 +123,7 @@ class AXADropdown extends LitElement {
 
   firstUpdated() {
     this.open = false;
-    this.dropdown = this.shadowRoot.querySelector('.js-dropdown__content');
+    this.dropdown = this.querySelector('.js-dropdown__content');
     this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
 
     window.addEventListener('resize', this.handleResize);
@@ -179,7 +178,7 @@ class AXADropdown extends LitElement {
 
   openDropdown(open) {
     this.open = open;
-    const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
+    const links = this.querySelectorAll('.js-dropdown__button');
     forEach(links, (_, link) =>
       link.setAttribute('tabindex', open ? '0' : '-1')
     );

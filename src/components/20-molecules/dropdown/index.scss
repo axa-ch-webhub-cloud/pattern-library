@@ -34,17 +34,21 @@ $dropdown-height: 40px;
   }
 }
 
-:host([open]) .m-dropdown__content {
-  height: auto;
-}
+axa-dropdown {
+  &[open] {
+    .m-dropdown__content {
+      height: auto;
+    }
 
-:host([open]) svg {
-  transform: rotate(180deg);
-}
+    svg {
+      transform: rotate(180deg);
+    }
+  }
 
-:host([max-height]) .m-dropdown__content {
-  max-height: 347px;
-  overflow: auto;
+  &[max-height] .m-dropdown__content {
+      max-height: 347px;
+      overflow: auto;
+  }
 }
 
 .m-dropdown {
