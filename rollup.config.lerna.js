@@ -76,7 +76,7 @@ const lib = {
     }),
     resolve({
       mainFields: ['module', 'main'],
-      only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
+      only: [/^\.{0,2}\/|\.scss$/i], // TODO:: What is this doing? Threat all node_modules as external apart od .scss files
     }),
   ],
 };
