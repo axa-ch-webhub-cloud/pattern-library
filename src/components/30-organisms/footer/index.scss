@@ -150,7 +150,7 @@
           flex-direction: row;
           flex-wrap: wrap;
           padding-top: 10px;
-          max-width: 400px;
+          max-width: 300px;
 
           &-item {
             width: 150px;
@@ -216,6 +216,9 @@
   @include breakpoint($mediaquery-lg-up) {
     .tablet {
       grid-template-areas: 'collection social';
+
+      margin-left: 10%;
+      margin-right: 10%;
     }
 
     &__social-media {
@@ -240,8 +243,8 @@
 
   @include breakpoint($mediaquery-xlg-up) {
     .tablet {
-      margin-left: 20%;
-      margin-right: 20%;
+      margin-left: 15%;
+      margin-right: 15%;
     }
   }
   // ### /Tablet
