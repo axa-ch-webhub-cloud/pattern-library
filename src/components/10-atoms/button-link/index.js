@@ -43,6 +43,15 @@ class AXAButtonLink extends LitElement {
     this.onClick = () => {};
   }
 
+  firstUpdated() {
+    const { style } = this;
+    style.appearance = 'none';
+    style.mozAppearance = 'none';
+    style.webkitAppearance = 'none';
+    style.msAppearance = 'none';
+    style.oAppearance = 'none';
+  }
+
   render() {
     const {
       href,
@@ -72,12 +81,10 @@ class AXAButtonLink extends LitElement {
         @click="${this.onClick}"
       >
         <div class="a-button-link__flex-wrapper">
-          <slot></slot> ${
-            icon &&
-              html`
-                <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
-              `
-          }
+          <slot></slot> ${icon &&
+            html`
+              <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
+            `}
         </div>
       </a>
     `;
