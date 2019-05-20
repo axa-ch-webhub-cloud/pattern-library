@@ -127,17 +127,19 @@
       grid-template-areas:
         'collection'
         'social';
+
+      margin-left: 10%;
+      margin-right: 10%;
     }
 
     &__collection {
       display: flex;
       padding: 15px 20px;
+      min-width: 600px;
 
       grid-area: collection;
 
       &-container {
-        max-width: 400px; //todo change to relative size
-
         strong {
           @include typo(primary, medium, bold);
 
@@ -150,6 +152,7 @@
           flex-direction: row;
           flex-wrap: wrap;
           padding-top: 10px;
+          max-width: 400px;
 
           &-item {
             width: 180px;
@@ -229,6 +232,13 @@
 
       text-transform: uppercase;
       line-height: 1.5;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .tablet {
+      margin-left: 20%;
+      margin-right: 20%;
     }
   }
   // ### /Tablet
