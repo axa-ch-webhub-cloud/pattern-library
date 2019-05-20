@@ -6,6 +6,7 @@ const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
+const fs = require('fs');
 const path = require('path');
 const { uglify } = require('rollup-plugin-uglify');
 
@@ -42,8 +43,13 @@ const commonPlugins = [
   }),
 ];
 
+const files = ['index.js'];
+if (fs.existsSync('./index.react.js')) {
+  files.push('index.react.js');
+}
+
 const lib = {
-  input: ['index.js', 'index.react.js'], // Globbing is not a benefit as the config needs to be adapted and checked anyways if new files
+  input: files, // Globbing is not a benefit as the config needs to be adapted and checked anyways if new files
   external: [
     'lit-element',
     'lit-html/directives/class-map',
@@ -83,7 +89,7 @@ const dist = {
   input: 'index.js',
   context: 'window',
   output: {
-    file: './dist/index.js',
+    file: './dist/index.js', // no react dist on purpose
     format: 'iife',
     extend: false,
     name: 'window',
