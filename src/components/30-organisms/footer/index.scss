@@ -117,16 +117,16 @@
     .mobile {
       display: none;
     }
-    
+
     .desktop {
       display: none;
     }
 
     .tablet {
       display: grid;
-      grid-template-areas: 
-      'collection'
-      'social'
+      grid-template-areas:
+        'collection'
+        'social';
     }
 
     &__collection {
@@ -161,11 +161,11 @@
             padding: 0;
             // padding: 20px 30px;
             border-bottom: 1px solid $color-prim-blue-dark-indigo;
-      
+
             &:last-child {
               border-bottom: none;
             }
-      
+
             a {
               text-decoration: none;
               color: $color-prim-white;
@@ -175,45 +175,60 @@
       }
     }
 
-    &__social-media-list {
-      // Reset browser styles for ul
-      margin: 0;
-      text-indent: 0;
-      list-style-type: none;
-      padding: 0;
-
-      display: flex;
-      flex-wrap: wrap;
-      padding: 15px 20px;
-
-      grid-area: social-media;
-
-      svg {
-        color: $color-prim-white;
-        width: 25px;
-        height: 25px;
+    &__social-media {
+      &-title {
+        display: none;
       }
 
-      a {
-        display: block;
-        padding: 10px;
+      &-list {
+        // Reset browser styles for ul
+        margin: 0;
+        text-indent: 0;
+        list-style-type: none;
+        padding: 0;
+
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+
+        grid-area: social;
+
+        svg {
+          color: $color-prim-white;
+          width: 25px;
+          height: 25px;
+        }
+
+        a {
+          display: block;
+          padding: 10px;
+        }
       }
     }
   }
 
   @media screen and (min-width: 992px) {
     .tablet {
-      grid-template-areas: 
-      'collection social'
+      grid-template-areas: 'collection social';
     }
 
-    // .o-footer__collection {
-      strong {
-        @include typo(primary, medium, bold);
+    &__social-media {
+      padding: 15px 20px;
 
-        text-transform: uppercase;
-        line-height: 1.5;
-      // }
+      &-title {
+        display: block;
+      }
+
+      &-list {
+        padding: 20px 0;
+      }
+    }
+
+    strong {
+      @include typo(primary, medium, bold);
+
+      text-transform: uppercase;
+      line-height: 1.5;
     }
   }
   // ### /Tablet
