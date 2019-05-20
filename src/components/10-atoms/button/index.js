@@ -44,6 +44,7 @@ class AXAButton extends LitElement {
   isTypeSubmitOrReset = () => this.type === 'submit' || this.type === 'reset';
 
   firstUpdated() {
+    const { style } = this;
     // shadow dom submit btn workaround
     if (this.isTypeSubmitOrReset()) {
       const fakeButton = document.createElement('button');
@@ -52,6 +53,12 @@ class AXAButton extends LitElement {
       this.appendChild(fakeButton);
       this.onclick = () => fakeButton.click();
     }
+
+    style.appearance = 'none';
+    style.mozAppearance = 'none';
+    style.webkitAppearance = 'none';
+    style.msAppearance = 'none';
+    style.oAppearance = 'none';
   }
 
   render() {
