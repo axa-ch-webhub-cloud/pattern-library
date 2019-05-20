@@ -127,18 +127,17 @@
         'collection'
         'social';
 
-      margin-left: 10%;
-      margin-right: 10%;
+      margin-left: 5%;
+      margin-right: 5%;
     }
 
     &__collection {
       display: flex;
-      padding: 15px 20px;
-      min-width: 600px;
-
       grid-area: collection;
 
       &-container {
+        margin: 10px;
+
         strong {
           @include typo(primary, medium, bold);
 
@@ -154,7 +153,7 @@
           max-width: 400px;
 
           &-item {
-            width: 180px;
+            width: 150px;
             margin-top: 8px;
             padding: 5px 0 !important;
 
@@ -189,7 +188,7 @@
 
         display: flex;
         flex-wrap: wrap;
-        padding: 15px 20px;
+        padding: 15px 0;
 
         grid-area: social;
 
@@ -213,7 +212,7 @@
     }
 
     &__social-media {
-      padding: 15px 20px;
+      // padding: 15px 20px;
 
       &-title {
         display: block;
