@@ -206,13 +206,20 @@
     }
   }
 
+  @include breakpoint($mediaquery-md-up) {
+    .tablet {
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+  }
+
   @include breakpoint($mediaquery-lg-up) {
     .tablet {
       grid-template-areas: 'collection social';
     }
 
     &__social-media {
-      // padding: 15px 20px;
+      margin: 10px;
 
       &-title {
         display: block;
