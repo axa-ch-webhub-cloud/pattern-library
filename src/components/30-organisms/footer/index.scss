@@ -107,6 +107,7 @@
   }
   // ### /Mobile
 
+  // ### Tablet
   @media screen and (min-width: 576px) {
     // The accordion is only for small mobile devices
     .mobile {
@@ -117,7 +118,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
     }
 
     &__collection {
@@ -140,7 +140,6 @@
     }
 
     &__social-media {
-      width: 100%;
       // Reset browser styles for ul
       margin: 0;
       text-indent: 0;
@@ -163,4 +162,5 @@
       }
     }
   }
+  // ### /Tablet
 }
