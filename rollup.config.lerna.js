@@ -35,6 +35,12 @@ const commonPlugins = [
       ],
       data: globalSassImports,
     },
+    processor: css =>
+      postcss({
+        plugins: [autoprefixer()],
+      })
+        .process(css, { from: undefined })
+        .then(result => result.css),
   }),
 ];
 
