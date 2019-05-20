@@ -2,7 +2,7 @@ export default (
   eventName,
   detail,
   target,
-  { bubbles = true, composed = true }
+  { bubbles = true, composed = true } = {}
 ) => {
   const event = new CustomEvent(eventName, {
     detail,
