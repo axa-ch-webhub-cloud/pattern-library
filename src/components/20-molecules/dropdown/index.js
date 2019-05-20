@@ -5,11 +5,14 @@ import debounce from './utils/debounce';
 import styles from './index.scss';
 import defineOnce from '../../../utils/define-once';
 
+// module globals
 const ArrowIcon = svg([ExpandSvg]);
 
 const DEFAULTS = {
   selectClass: 'js-dropdown__content',
 };
+
+let openDropdownInstance;
 
 class AXADropdown extends LitElement {
   static get tagName() {
@@ -41,7 +44,6 @@ class AXADropdown extends LitElement {
   }
 
   firstUpdated() {
-    window.axaComponents = window.axaComponents || {};
     this.open = false;
     this.dropdown = this.shadowRoot.querySelector(`.${DEFAULTS.selectClass}`);
 
@@ -145,10 +147,10 @@ class AXADropdown extends LitElement {
     this.forEach(links, (index, link) => {
       link.setAttribute('tabindex', '0');
     });
-    if (window.axaComponents.openDropdownInstance) {
-      window.axaComponents.openDropdownInstance.open = false;
+    if (openDropdownInstance) {
+      openDropdownInstance.open = false;
     }
-    window.axaComponents.openDropdownInstance = this;
+    openDropdownInstance = this;
   }
 
   closeDropdown() {
@@ -157,7 +159,7 @@ class AXADropdown extends LitElement {
     this.forEach(links, (index, link) => {
       link.setAttribute('tabindex', '-1');
     });
-    window.axaComponents.openDropdownInstance = false;
+    openDropdownInstance = null; // help GC
   }
 
   updateCurrentItem(value) {
