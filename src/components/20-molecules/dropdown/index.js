@@ -12,14 +12,14 @@ const DEFAULTS = {
 };
 
 class AXADropdown extends LitElement {
-  static tagName = 'axa-dropdown';
-  static styles = css`
-    ${unsafeCSS(styles)}
-  `;
+  static get tagName() {
+    return 'axa-dropdown';
+  }
 
-  constructor() {
-    super();
-    this.onAXAValueChange = () => {};
+  static get styles() {
+    return css`
+      ${unsafeCSS(styles)}
+    `;
   }
 
   static get properties() {
@@ -33,6 +33,11 @@ class AXADropdown extends LitElement {
       size: { type: String },
       onAXAValueChange: { type: Function },
     };
+  }
+
+  constructor() {
+    super();
+    this.onAXAValueChange = () => {};
   }
 
   firstUpdated() {
