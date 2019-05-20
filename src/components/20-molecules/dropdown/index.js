@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { ExpandSvg } from '@axa-ch/materials/icons';
-import debounce from './utils/debounce';
+import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import defineOnce from '../../../utils/define-once';
 
