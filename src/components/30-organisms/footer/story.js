@@ -11,14 +11,20 @@ storiesOf('Organisms/Footer', module)
       {
         title: 'axa & you',
         items: [
-          { text: 'Contact', link: 'https://axa.ch/en/private-customers.html' },
+          {
+            text: 'Contact',
+            link: 'https://axa.ch/en/private-customers.html',
+            external: true,
+          },
           {
             text: 'Report a claim',
             link: 'https://axa.ch/en/private-customers.html',
+            external: true,
           },
           {
             text: 'Broker',
             link: 'https://axa.ch/en/private-customers.html',
+            external: true,
           },
           {
             text: 'Job vacancies',
@@ -41,6 +47,7 @@ storiesOf('Organisms/Footer', module)
           {
             text: 'AXA worldwide',
             link: 'https://axa.ch/en/private-customers.html',
+            external: true,
           },
         ],
       },
