@@ -12,6 +12,10 @@
     .tablet {
       display: none;
     }
+
+    .desktop {
+      display: none;
+    }
   }
 
   &__accordion-content {
@@ -83,7 +87,7 @@
     }
   }
 
-  &__social-media {
+  &__social-media-list {
     // Reset browser styles for ul
     margin: 0;
     text-indent: 0;
@@ -113,15 +117,23 @@
     .mobile {
       display: none;
     }
+    
+    .desktop {
+      display: none;
+    }
 
     .tablet {
       display: grid;
-      grid-template-columns: auto 600px auto;
+      grid-template-areas: 
+      'collection'
+      'social'
     }
 
     &__collection {
       display: flex;
       padding: 15px 20px;
+
+      grid-area: collection;
 
       &-container {
         max-width: 400px; //todo change to relative size
@@ -143,12 +155,27 @@
             width: 180px;
             margin-top: 8px;
             padding: 5px 0 !important;
+
+            @include typo(primary, default, default);
+            line-height: 1.21;
+            padding: 0;
+            // padding: 20px 30px;
+            border-bottom: 1px solid $color-prim-blue-dark-indigo;
+      
+            &:last-child {
+              border-bottom: none;
+            }
+      
+            a {
+              text-decoration: none;
+              color: $color-prim-white;
+            }
           }
         }
       }
     }
 
-    &__social-media {
+    &__social-media-list {
       // Reset browser styles for ul
       margin: 0;
       text-indent: 0;
@@ -158,6 +185,8 @@
       display: flex;
       flex-wrap: wrap;
       padding: 15px 20px;
+
+      grid-area: social-media;
 
       svg {
         color: $color-prim-white;
@@ -170,22 +199,21 @@
         padding: 10px;
       }
     }
+  }
 
-    &__collection-container-list-item {
-      @include typo(primary, default, default);
-      line-height: 1.21;
-      padding: 0;
-      // padding: 20px 30px;
-      border-bottom: 1px solid $color-prim-blue-dark-indigo;
+  @media screen and (min-width: 992px) {
+    .tablet {
+      grid-template-areas: 
+      'collection social'
+    }
 
-      &:last-child {
-        border-bottom: none;
-      }
+    // .o-footer__collection {
+      strong {
+        @include typo(primary, medium, bold);
 
-      a {
-        text-decoration: none;
-        color: $color-prim-white;
-      }
+        text-transform: uppercase;
+        line-height: 1.5;
+      // }
     }
   }
   // ### /Tablet
