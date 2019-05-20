@@ -8,9 +8,6 @@
   "scripts": {
     "build": "rollup --silent --config ../../../../rollup.config.lerna.js"
   },
-  "directories": {
-    "lib": "lib"
-  },
   "files": [
     "lib",
     "dist"
