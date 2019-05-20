@@ -25,7 +25,6 @@ const commonPlugins = [
     insert: true,
     include: 'index.scss',
     options: {
-      from: undefined,
       includePaths: [
         'node_modules',
         path.resolve(
