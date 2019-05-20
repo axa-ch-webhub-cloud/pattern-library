@@ -53,7 +53,7 @@ storiesOf('Organisms/Footer', module)
       },
     ]);
 
-    const iconArea = JSON.stringify({
+    const social = JSON.stringify({
       title: 'stay in touch',
       icons: [
         { title: 'facebook', link: 'https://www.facebook.com/axach/' },
@@ -68,5 +68,5 @@ storiesOf('Organisms/Footer', module)
       ],
     });
 
-    return `<axa-footer content='${content}' iconarea='${iconArea}'></axa-footer>`;
+    return `<axa-footer content='${content}' social='${social}'></axa-footer>`;
   });

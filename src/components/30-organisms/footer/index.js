@@ -28,7 +28,7 @@ class AXAFooter extends LitElement {
   static get properties() {
     return {
       content: { type: Array },
-      iconArea: { type: Object },
+      social: { type: Object },
       dynamic: { type: Boolean },
       external: { type: Boolean },
     };
@@ -37,7 +37,7 @@ class AXAFooter extends LitElement {
   constructor() {
     super();
     this.content = [];
-    this.iconArea = {};
+    this.social = {};
     this.dynamic = false;
     this.external = false;
 
@@ -108,7 +108,7 @@ class AXAFooter extends LitElement {
           )}
           <div>
             <ul class="o-footer__social-media-list">
-              ${repeat(this.iconArea.icons, icon => {
+              ${repeat(this.social.icons, icon => {
                 return html`
                   <li>
                     <a href="${icon.link}" target="_blank"
@@ -153,7 +153,7 @@ class AXAFooter extends LitElement {
                 >Stay in touch</strong
               >
               <ul class="o-footer__social-media-list">
-                ${repeat(this.iconArea.icons, icon => {
+                ${repeat(this.social.icons, icon => {
                   return html`
                     <li>
                       <a href="${icon.link}" target="_blank"
