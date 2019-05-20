@@ -4,6 +4,7 @@ import { ExpandSvg } from '@axa-ch/materials/icons';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import defineOnce from '../../../utils/define-once';
+import fireCustomEvent from '../../../utils/custom-event';
 
 // module globals
 const ArrowIcon = svg([ExpandSvg]);
@@ -36,6 +37,7 @@ const forEach = (array, callback, scope) => {
   }
 };
 
+// CE
 class AXADropdown extends LitElement {
   static get tagName() {
     return 'axa-dropdown';
@@ -105,33 +107,23 @@ class AXADropdown extends LitElement {
     this.toggleDropdown();
   }
 
-  handleDropdownValueClick(e) {
+  handleDropdownValueEvent(type, e) {
     e.preventDefault();
     e.stopPropagation();
-    this.title = e.target.dataset.name;
-    this.value = e.target.dataset.value;
-    this.updateCurrentItem(e.target.dataset.value);
+    const { target } = e;
+    this.title = type === 'native' ? target.name : target.dataset.name;
+    this.value = type === 'native' ? target.value : target.dataset.value;
+    this.updateCurrentItem(this.value);
     this.closeDropdown();
-    const event = new CustomEvent('axa-change', {
-      detail: e.target.dataset.value,
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
+    fireCustomEvent('axa-change', this.value, this);
+  }
+
+  handleDropdownValueClick(e) {
+    this.handleDropdownValueEvent('value', e);
   }
 
   handleDropdownNativeValueChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.value = e.target.value;
-    this.title = e.target.value;
-    this.updateCurrentItem(e.target.value);
-    const event = new CustomEvent('axa-change', {
-      detail: e.target.value,
-      bubbles: true,
-      cancelable: true,
-    });
-    this.dispatchEvent(event);
+    this.handleDropdownValueEvent('native', e);
   }
 
   toggleDropdown() {
