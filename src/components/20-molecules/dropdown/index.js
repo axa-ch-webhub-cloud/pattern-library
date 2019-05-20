@@ -14,6 +14,28 @@ const DEFAULTS = {
 
 let openDropdownInstance;
 
+// helper functions
+const shouldMove = elem => {
+  const bounding = elem.getBoundingClientRect();
+  const bottomIsInViewport =
+    bounding.bottom <=
+    (window.innerHeight || document.documentElement.clientHeight);
+  const enoughSpaceToMove = bounding.top > bounding.height;
+  return !bottomIsInViewport && enoughSpaceToMove;
+};
+
+const handleViewportCheck = elem => {
+  if (shouldMove(elem)) {
+    elem.style.maxHeight = '200px';
+  }
+};
+
+const forEach = (array, callback, scope) => {
+  for (let i = 0, n = array.length; i < n; i++) {
+    callback.call(scope, i, array[i]); // passes back stuff we need
+  }
+};
+
 class AXADropdown extends LitElement {
   static get tagName() {
     return 'axa-dropdown';
@@ -41,18 +63,25 @@ class AXADropdown extends LitElement {
   constructor() {
     super();
     this.onAXAValueChange = () => {};
+    this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
+    this.handleWindowClick = this.handleWindowClick.bind(this);
+    this.handleResize = debounce(() => handleViewportCheck(this.dropdown), 250);
+  }
+
+  updateTitle() {
+    const selectedItem = this.items.filter(item => item.isSelected);
+    if (selectedItem.length > 0) {
+      this.title = selectedItem[0].name;
+    }
   }
 
   firstUpdated() {
     this.open = false;
     this.dropdown = this.shadowRoot.querySelector(`.${DEFAULTS.selectClass}`);
 
-    window.addEventListener(
-      'resize',
-      debounce(() => this.handleViewportCheck(this.dropdown), 250)
-    );
-    window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
-    window.addEventListener('click', e => this.handleWindowClick(e));
+    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('keydown', this.handleWindowKeyDown);
+    window.addEventListener('click', this.handleWindowClick);
 
     this.updateTitle();
   }
@@ -63,33 +92,11 @@ class AXADropdown extends LitElement {
     }
   }
 
-  updateTitle() {
-    const selectedItem = this.items.filter(item => item.isSelected);
-    if (selectedItem.length > 0) {
-      this.title = selectedItem[0].name;
-    }
-  }
-
   handleWindowKeyDown(e) {
     if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
       e.preventDefault();
       this.closeDropdown();
     }
-  }
-
-  handleViewportCheck(elem) {
-    if (this.shouldMove(elem)) {
-      elem.style.maxHeight = '200px';
-    }
-  }
-
-  shouldMove(elem) {
-    const bounding = elem.getBoundingClientRect();
-    const bottomIsInViewport =
-      bounding.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight);
-    const enoughSpaceToMove = bounding.top > bounding.height;
-    return !bottomIsInViewport && enoughSpaceToMove;
   }
 
   handleDropdownClick(e) {
@@ -127,12 +134,6 @@ class AXADropdown extends LitElement {
     this.dispatchEvent(event);
   }
 
-  forEach(array, callback, scope) {
-    for (let i = 0; i < array.length; i++) {
-      callback.call(scope, i, array[i]); // passes back stuff we need
-    }
-  }
-
   toggleDropdown() {
     if (!this.open) {
       this.openDropdown();
@@ -144,7 +145,7 @@ class AXADropdown extends LitElement {
   openDropdown() {
     this.open = true;
     const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
-    this.forEach(links, (index, link) => {
+    forEach(links, (index, link) => {
       link.setAttribute('tabindex', '0');
     });
     if (openDropdownInstance) {
@@ -156,7 +157,7 @@ class AXADropdown extends LitElement {
   closeDropdown() {
     this.open = false;
     const links = this.shadowRoot.querySelectorAll('.js-dropdown__button');
-    this.forEach(links, (index, link) => {
+    forEach(links, (index, link) => {
       link.setAttribute('tabindex', '-1');
     });
     openDropdownInstance = null; // help GC
@@ -196,12 +197,9 @@ class AXADropdown extends LitElement {
   }
 
   disconnectedCallback() {
-    window.removeEventListener(
-      'resize',
-      debounce(() => this.handleViewportCheck(this.dropdown), 250)
-    );
-    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
-    window.removeEventListener('click', e => this.handleWindowClick(e));
+    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('keydown', this.handleWindowKeyDown);
+    window.removeEventListener('click', this.handleWindowClick);
   }
 
   render() {
