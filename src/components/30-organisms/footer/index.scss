@@ -3,7 +3,7 @@
   background-color: $color-prim-blue-dark-indigo;
 
   // ### Mobile
-  @media screen and (max-width: 576px) {
+  @include breakpoint($mediaquery-xsm) {
     // The accordion is only for small mobile devices
     .mobile {
       display: block;
@@ -112,7 +112,7 @@
   // ### /Mobile
 
   // ### Tablet
-  @media screen and (min-width: 576px) {
+  @include breakpoint($mediaquery-sm-up) {
     // The accordion is only for small mobile devices
     .mobile {
       display: none;
@@ -210,7 +210,7 @@
     }
   }
 
-  @media screen and (min-width: 992px) {
+  @include breakpoint($mediaquery-lg-up) {
     .tablet {
       grid-template-areas: 'collection social';
     }
@@ -235,7 +235,7 @@
     }
   }
 
-  @media screen and (min-width: 1600px) {
+  @include breakpoint($mediaquery-xlg-up) {
     .tablet {
       margin-left: 20%;
       margin-right: 20%;
