@@ -2,6 +2,8 @@
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
 
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+
   // ### Mobile
   @include breakpoint($mediaquery-xsm) {
     // The accordion is only for small mobile devices
@@ -129,8 +131,8 @@
         'collection'
         'social';
 
-      margin-left: 5%;
-      margin-right: 5%;
+      margin-left: 2%;
+      margin-right: 2%;
     }
 
     &__collection {
@@ -152,10 +154,10 @@
           flex-direction: row;
           flex-wrap: wrap;
           padding-top: 10px;
-          max-width: 300px;
+          max-width: 350px;
 
           &-item {
-            width: 150px;
+            width: 165px;
             margin-top: 8px;
             padding: 5px 0 !important;
 
