@@ -51,7 +51,6 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
-    // todo save state instead of looping over array
     const oldState = this.content[index].active;
     this.content = this.content.map(c => {
       c.active = false;
