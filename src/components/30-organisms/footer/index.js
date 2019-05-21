@@ -30,7 +30,6 @@ class AXAFooter extends LitElement {
       content: { type: Array },
       social: { type: Object },
       dynamic: { type: Boolean },
-      external: { type: Boolean },
     };
   }
 
@@ -39,7 +38,6 @@ class AXAFooter extends LitElement {
     this.content = [];
     this.social = {};
     this.dynamic = false;
-    this.external = false;
     this.onItemClick = () => {};
 
     this.iconMap = new Map();
@@ -64,15 +62,17 @@ class AXAFooter extends LitElement {
   }
 
   handleLinkClick = (ev, text) => {
-    ev.preventDefault();
-    this.onItemClick(text);
-    this.dispatchEvent(
-      new CustomEvent('axa-link-click', {
-        detail: text,
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    if (this.dynamic) {
+      ev.preventDefault();
+      this.onItemClick(text);
+      this.dispatchEvent(
+        new CustomEvent('axa-link-click', {
+          detail: text,
+          bubbles: true,
+          cancelable: true,
+        })
+      );
+    }
   };
 
   render() {
