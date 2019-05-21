@@ -23,4 +23,20 @@ storiesOf('Molecules/Top content bar', module)
           Some children Some children Some children Some children
           Some children Some children Some children
        </axa-top-content-bar>`
+  )
+  .add(
+    'Top content bar - Red with button',
+    () =>
+      `<axa-top-content-bar variant="warning" cta="Click me">
+          Some children Some children Some children Some children
+          Some children Some children Some children
+       </axa-top-content-bar>`
+  )
+  .add(
+    'Top content bar - Red no button',
+    () =>
+      `<axa-top-content-bar variant="warning">
+          Some children Some children Some children Some children
+          Some children Some children Some children
+       </axa-top-content-bar>`
   );

@@ -31,8 +31,6 @@
 }
 
 
-.m-top-content-bar--warning {
-  &__container {
-    background-color: $color-sec-shy-tomato;
-  }
+.m-top-content-bar__container--warning {
+  background-color: $color-sec-shy-tomato;
 }
