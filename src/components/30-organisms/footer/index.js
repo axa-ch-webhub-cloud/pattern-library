@@ -146,9 +146,7 @@ class AXAFooter extends LitElement {
                   </div>
                 `
             )}
-            <div>
-              ${this.getFooterIcons()}
-            </div>
+            ${this.getFooterIcons()}
           </div>
 
           <div class="o-footer__tablet">
@@ -183,10 +181,7 @@ class AXAFooter extends LitElement {
                   `
               )}
             </div>
-
-            <div class="o-footer__social-media">
-              ${this.getFooterIcons()}
-            </div>
+            ${this.getFooterIcons()}
           </div>
         </axa-container>
       </footer>
