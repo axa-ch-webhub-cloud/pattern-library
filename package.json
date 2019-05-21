@@ -7,6 +7,7 @@
     "postinstall": "npx lerna bootstrap --hoist && npm run build-materials",
     "build-components": "npx lerna run build --parallel",
     "watch-components": "npx lerna run watch --parallel",
+    "setup-npm-links": "node scripts/setup-npm-link.js",
     "build": "npm run clean-build && npm run build-materials && cross-env NODE_ENV=production rollup --config ./rollup.config.js && node scripts/build.finalise.js",
     "build-materials": "npm run build-icons && node scripts/build.materials.js",
     "build-icons": "npm run clean-materials && svgo --disable=removeViewBox -f src/components/00-materials/icons -o src/components/00-materials/icons/.tmp && node scripts/build.icon-set.js && npm run clean-tmp-icons",
@@ -24,8 +25,7 @@
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "node scripts/test.unit.js --env=jsdom",
-    "new": "node scripts/create-a-m-o/index.js",
-    "setup-npm-links": "node scripts/setup-npm-link.js"
+    "new": "node scripts/create-a-m-o/index.js"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
