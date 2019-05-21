@@ -1,0 +1,31 @@
+.m-top-content-bar {
+  display: block;
+
+  &__container {
+    @include typo(primary, small, medium);
+
+    background-color: $color-prim-blue-deep-sapphire;
+    color: $color-prim-white;
+
+    min-height: 50px;
+    vertical-align: middle;
+
+    text-align: center;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    box-sizing: border-box;
+
+    axa-container {
+      min-height: 40px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      axa-button {
+        margin-left: 10px;
+      }
+    }
+  }
+}
