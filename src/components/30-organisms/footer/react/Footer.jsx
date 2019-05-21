@@ -4,31 +4,79 @@ import createAXAFooterReact from '../index.react';
 const AXAFooterReact = createAXAFooterReact(createElement);
 
 const DemoFooter = () => {
-  //   const languages = [
-  //     { text: 'DE' },
-  //     { text: 'FR' },
-  //     { text: 'IT' },
-  //     { text: 'EN' },
-  //   ];
+  const content = [
+    {
+      title: 'axa & you',
+      items: [
+        {
+          text: 'Contact',
+          link: 'https://axa.ch/en/private-customers.html',
+          external: true,
+        },
+        {
+          text: 'Report a claim',
+          link: 'https://axa.ch/en/private-customers.html',
+          external: true,
+        },
+        {
+          text: 'Broker',
+          link: 'https://axa.ch/en/private-customers.html',
+          external: true,
+        },
+        {
+          text: 'Job vacancies',
+          link: 'https://axa.ch/en/private-customers.html',
+        },
+        { text: 'MyAXA', link: 'https://axa.ch/en/private-customers.html' },
+        {
+          text: 'Customer reviews',
+          link: 'https://axa.ch/en/private-customers.html',
+        },
+        {
+          text: 'Garage Portal',
+          link: 'https://axa.ch/en/private-customers.html',
+        },
+      ],
+    },
+    {
+      title: 'axa worldwide',
+      items: [
+        {
+          text: 'AXA worldwide',
+          link: 'https://axa.ch/en/private-customers.html',
+          external: true,
+        },
+      ],
+    },
+  ];
 
-  //   const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
+  const social = {
+    title: 'stay in touch',
+    icons: [
+      { title: 'facebook', link: 'https://www.facebook.com/axach/' },
+      {
+        title: 'instagram',
+        link: 'https://www.instagram.com/axaswitzerland/',
+      },
+      { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
+      { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
+      { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
+      { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
+    ],
+  };
 
-  //   const initialLanguage = 'EN';
-  //   const [activeLanguage, setActiveLanguage] = useState(initialLanguage);
-
-  //   const [disclaimerChange, setDisclaimerChange] = useState('-');
-
-  //   const handleAXAFooterLanguageChange = language => {
-  //     setActiveLanguage(language);
-  //   };
-
-  //   const handleAXAFooterDisclaimerChange = disclaimer => {
-  //     setDisclaimerChange(disclaimer);
-  //   };
+  const clickedyClickClickSir = () => {
+    console.log('clickedy');
+  };
 
   return (
     <div>
-      <AXAFooterReact dynamic />
+      <AXAFooterReact
+        content={content}
+        social={social}
+        onItemClick={clickedyClickClickSir}
+        dynamic
+      />
     </div>
   );
 };

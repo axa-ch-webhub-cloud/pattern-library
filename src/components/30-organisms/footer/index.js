@@ -40,6 +40,7 @@ class AXAFooter extends LitElement {
     this.social = {};
     this.dynamic = false;
     this.external = false;
+    this.onItemClick = () => {};
 
     this.iconMap = new Map();
     this.iconMap.set('facebook', FacebookSvg);
@@ -52,6 +53,7 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
+    //todo save state instead of looping over array
     const oldState = this.content[index].active;
     this.content = this.content.map(c => {
       c.active = false;
@@ -61,9 +63,21 @@ class AXAFooter extends LitElement {
     this.content[index].active = !oldState;
   }
 
+  handleLinkClick = (ev, text) => {
+    ev.preventDefault();
+    this.onItemClick(text);
+    this.dispatchEvent(
+      new CustomEvent('axa-link-click', {
+        detail: text,
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  };
+
   render() {
     return html`
-      <article class="o-footer">
+      <footer class="o-footer">
         <div class="mobile">
           ${repeat(
             this.content,
@@ -97,6 +111,7 @@ class AXAFooter extends LitElement {
                             <a
                               href=${i.link}
                               target="${i.external ? '_blank' : '_top'}"
+                              @click="${ev => this.handleLinkClick(ev, i.text)}"
                               >${i.text}</a
                             >
                           </li>
@@ -111,7 +126,10 @@ class AXAFooter extends LitElement {
               ${repeat(this.social.icons, icon => {
                 return html`
                   <li>
-                    <a href="${icon.link}" target="_blank"
+                    <a
+                      href="${icon.link}"
+                      target="_blank"
+                      @click="${ev => this.handleLinkClick(ev, icon.title)}"
                       >${svg([this.iconMap.get(icon.title) || ''])}</a
                     >
                   </li>
@@ -137,6 +155,7 @@ class AXAFooter extends LitElement {
                             <a
                               href=${i.link}
                               target="${i.external ? '_blank' : '_top'}"
+                              @click="${ev => this.handleLinkClick(ev, i.text)}"
                               >${i.text}</a
                             >
                           </div>
@@ -156,7 +175,11 @@ class AXAFooter extends LitElement {
                 ${repeat(this.social.icons, icon => {
                   return html`
                     <li>
-                      <a href="${icon.link}" target="_blank"
+                      <a
+                        href="${icon.link}"
+                        target="_blank"
+                        @click="${ev =>
+                          this.handleLinkClick(ev, languageItem.text)}"
                         >${svg([this.iconMap.get(icon.title) || ''])}</a
                       >
                     </li>
@@ -166,7 +189,7 @@ class AXAFooter extends LitElement {
             </div>
           </div>
         </div>
-      </article>
+      </footer>
     `;
   }
 }
