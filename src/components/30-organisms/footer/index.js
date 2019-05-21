@@ -53,7 +53,7 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
-    //todo save state instead of looping over array
+    // todo save state instead of looping over array
     const oldState = this.content[index].active;
     this.content = this.content.map(c => {
       c.active = false;
@@ -178,8 +178,7 @@ class AXAFooter extends LitElement {
                       <a
                         href="${icon.link}"
                         target="_blank"
-                        @click="${ev =>
-                          this.handleLinkClick(ev, languageItem.text)}"
+                        @click="${ev => this.handleLinkClick(ev, icon.title)}"
                         >${svg([this.iconMap.get(icon.title) || ''])}</a
                       >
                     </li>
