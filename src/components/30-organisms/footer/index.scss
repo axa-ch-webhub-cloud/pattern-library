@@ -12,6 +12,13 @@
     }
   }
 
+  &__title {
+    @include typo(primary, medium, bold);
+
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
   // ### Mobile
   @include breakpoint($mediaquery-xsm) {
     // The accordion is only for small mobile devices
@@ -133,13 +140,6 @@
       &-container {
         margin: 0 10px;
 
-        strong {
-          @include typo(primary, medium, bold);
-
-          text-transform: uppercase;
-          line-height: 1.5;
-        }
-
         &-list {
           display: flex;
           flex-direction: row;
@@ -210,13 +210,6 @@
       &-list {
         padding: 20px 0;
       }
-    }
-
-    strong {
-      @include typo(primary, medium, bold);
-
-      text-transform: uppercase;
-      line-height: 1.5;
     }
   } // ### /Tablet
 }

@@ -147,7 +147,9 @@ class AXAFooter extends LitElement {
                 contentItem =>
                   html`
                     <div class="o-footer__collection-container">
-                      <strong>${contentItem.title}</strong>
+                      <strong class="o-footer__title"
+                        >${contentItem.title}</strong
+                      >
                       <div class="o-footer__collection-container-list">
                         ${repeat(
                           contentItem.items,
@@ -172,7 +174,7 @@ class AXAFooter extends LitElement {
             </div>
             <div class="o-footer__social-media">
               <div>
-                <strong class="o-footer__social-media-title">
+                <strong class="o-footer__title o-footer__social-media-title">
                   ${this.social.title}
                 </strong>
                 <ul class="o-footer__social-media-list">
