@@ -22,7 +22,8 @@
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "node scripts/test.unit.js --env=jsdom",
-    "new": "node scripts/create-a-m-o/index.js"
+    "new": "node scripts/create-a-m-o/index.js",
+    "setup-npm-links": "node scripts/setup-npm-link.js"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
@@ -49,6 +50,7 @@
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "breakpoint-sass": "^2.7.1",
     "chalk": "^2.4.2",
+    "clipboardy": "^2.0.0",
     "core-js": "^2.6.5",
     "cp": "^0.2.0",
     "cross-env": "^5.2.0",
