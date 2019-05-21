@@ -5,6 +5,14 @@
   padding: 0 30px;
   margin: 0;
   min-height: 40px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  text-transform: uppercase;
+  color: $color-prim-white;
+  background-color: $color-axa-blue;
+  border: solid 2px $color-axa-blue;
+  border-bottom-color: $color-prim-blue-deep-sapphire;
 
   @include breakpoint($mediaquery-sm-up) {
     @include _text(default)
@@ -39,12 +47,12 @@
 
 .a-button--large {
   min-height: 40px;
-  // @include _text(default);
+  @include _text(default);
 
-  // @include breakpoint($mediaquery-sm-up) {
-  //   min-height: 50px;
-  //   @include _text(medium)
-  // }
+  @include breakpoint($mediaquery-sm-up) {
+    min-height: 50px;
+    @include _text(medium)
+  }
 }
 
 .a-button--motion {
