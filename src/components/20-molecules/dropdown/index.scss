@@ -59,6 +59,7 @@ axa-dropdown {
   &[valid] .m-dropdown__valid-icon {
     line-height: $dropdown-height;
     color: $color-validation-valid;
+
     svg {
       margin-left: 15px;
       width: 16px;

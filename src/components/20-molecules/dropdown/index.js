@@ -13,6 +13,7 @@ const ARROW_ICON = svg([ExpandSvg]);
 const VALID_ICON = svg([FilledTickSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
+const EMPTY_FUNCTION = () => {};
 
 // module globals
 let openDropdownInstance;
@@ -39,28 +40,27 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ name, value, isSelected, isInitialItem }) =>
+const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
   html`
     <option
       class="m-dropdown__option"
-      ?disabled="${isInitialItem}"
+      ?disabled="${disabled}"
       value="${value}"
-      ?selected="${isSelected}"
+      ?selected="${selected}"
+      data-index="${index}"
       >${name}</option
     >
   `;
 
-const contentItemsMapper = clickHandler => ({
-  name,
-  value,
-  isSelected,
-  isInitialItem,
-}) => {
+const contentItemsMapper = clickHandler => (
+  { name, selected, disabled },
+  index
+) => {
   const classes = {
     'm-dropdown__item': true,
-    'm-dropdown__item--is-selected': isSelected,
+    'm-dropdown__item--is-selected': selected,
   };
-  return isInitialItem
+  return disabled
     ? html``
     : html`
         <li class="${classMap(classes)}">
@@ -68,9 +68,7 @@ const contentItemsMapper = clickHandler => ({
             @click="${clickHandler}"
             tabindex="-1"
             class="m-dropdown__button js-dropdown__button"
-            data-name="${name}"
-            data-value="${value}"
-            data-selected="${isSelected ? 'true' : 'false'}"
+            data-index="${index}"
           >
             ${name}
           </button>
@@ -102,23 +100,44 @@ class AXADropdown extends NoShadowDOM {
       'data-test-id': { type: String, reflect: true },
       items: { type: Array },
       open: { type: Boolean, reflect: true },
-      value: { type: String, reflect: true },
+      value: { type: String },
       title: { type: String, reflect: true },
       native: { type: Boolean },
       valid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
+      isReact: { type: Boolean },
       onAXAValueChange: { type: Function },
     };
+  }
+
+  set value(newValue) {
+    const {
+      state: { isControlled, value },
+    } = this;
+    // first value coming in indicates controlledness?
+    if (!isControlled && newValue !== undefined) {
+      // yes, remember in model state
+      this.state.isControlled = true;
+    }
+    this.state.value = newValue;
+    this.requestUpdate('value', value);
+  }
+
+  get value() {
+    return this.state.value;
   }
 
   constructor() {
     super();
     // property defaults
-    this.onAXAValueChange = () => {};
+    this.onChange = EMPTY_FUNCTION;
+    this.onAXAValueChange = EMPTY_FUNCTION;
+    // internal properties
+    this.state = { isControlled: false };
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
-    this.handleDropdownValueClick = this.handleDropdownValueClick.bind(this);
+    this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
     this.handleResize = debounce(
       () => handleViewportCheck(this.dropdown),
       DEBOUNCE_DELAY
@@ -126,22 +145,21 @@ class AXADropdown extends NoShadowDOM {
   }
 
   updateTitle(items) {
-    const selectedItems = (items || this.items).filter(item => item.isSelected);
-    const firstSelectedItem = selectedItems[0];
-    this.title = firstSelectedItem ? firstSelectedItem.name : this.title;
-    return firstSelectedItem;
+    const selectedItem = (items || this.items)[this.selectedIndex];
+    this.title = (selectedItem || { name: this.title }).name;
+    return selectedItem;
   }
 
-  firstUpdated() {
-    this.open = false;
-    this.dropdown = this.querySelector('.js-dropdown__content');
-    this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
-
-    window.addEventListener('resize', this.handleResize);
-    window.addEventListener('keydown', this.handleWindowKeyDown);
-    window.addEventListener('click', this.handleWindowClick);
-
-    this.updateTitle();
+  openDropdown(open) {
+    this.open = open;
+    const links = this.querySelectorAll('.js-dropdown__button');
+    forEach(links, (_, link) =>
+      link.setAttribute('tabindex', open ? '0' : '-1')
+    );
+    if (open && openDropdownInstance) {
+      openDropdownInstance.open = false;
+    }
+    openDropdownInstance = open ? this : /* help GC */ null;
   }
 
   handleWindowClick() {
@@ -161,54 +179,40 @@ class AXADropdown extends NoShadowDOM {
   handleDropdownClick(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.toggleDropdown();
-  }
-
-  handleDropdownValueEvent(type, e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const { target } = e;
-    this.title = type === 'native' ? target.name : target.dataset.name;
-    this.value = type === 'native' ? target.value : target.dataset.value;
-    this.updateCurrentItems(this.value);
-    this.openDropdown(false);
-    fireCustomEvent('axa-change', this.value, this);
-  }
-
-  handleDropdownValueClick(e) {
-    this.handleDropdownValueEvent('value', e);
-  }
-
-  handleDropdownNativeValueChange(e) {
-    this.handleDropdownValueEvent('native', e);
-  }
-
-  toggleDropdown() {
+    // toggle dropdown
     this.openDropdown(!this.open);
   }
 
-  openDropdown(open) {
-    this.open = open;
-    const links = this.querySelectorAll('.js-dropdown__button');
-    forEach(links, (_, link) =>
-      link.setAttribute('tabindex', open ? '0' : '-1')
-    );
-    if (open && openDropdownInstance) {
-      openDropdownInstance.open = false;
-    }
-    openDropdownInstance = open ? this : /* help GC */ null;
+  handleDropdownItemClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.openDropdown(false);
+    // causes re-render in next microtask!
+    this.updateCurrentItems(e.target.dataset.index); // side-effect: changed this.value
+    fireCustomEvent('axa-change', this.value, this);
   }
 
-  updateCurrentItems(value) {
-    this.items = this.items.map(item => {
-      if (item.value.toString() === value.toString()) {
-        item.isSelected = true;
-        this.selectedItem = item;
-      } else {
-        item.isSelected = false;
-      }
+  updateCurrentItems(_item) {
+    const { items } = this;
+    let itemIndex = _item | 0; // | 0: coerce to integer
+    if (typeof _item !== 'number') {
+      itemIndex = items.findIndex(currentItem => currentItem.value === _item);
+    }
+    if (itemIndex < 0) {
+      return;
+    }
+    const { name, value } = items[itemIndex];
+    if (typeof name !== 'string') {
+      return;
+    }
+    this.selectedIndex = itemIndex;
+    this.title = name;
+    this.value = value || name;
+    const newItems = items.map((item, index) => {
+      item.selected = index === itemIndex;
       return item;
     });
+    this.items = newItems;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -245,7 +249,16 @@ class AXADropdown extends NoShadowDOM {
   }
 
   render() {
-    const { items, native, valid, error } = this;
+    const {
+      items,
+      native,
+      valid,
+      error,
+      isReact,
+      state: { isControlled },
+    } = this;
+    this.state.isControlled = isReact && isControlled;
+
     const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
     const validationUI = (valid && validHTML) || (error && errorHTML(error));
     return html`
@@ -253,7 +266,7 @@ class AXADropdown extends NoShadowDOM {
         <div class="m-dropdown__list m-dropdown__list--native">
           <select
             class="m-dropdown__select"
-            @change="${this.handleDropdownNativeValueChange}"
+            @change="${this.handleDropdownItemClick}"
           >
             ${items && items.map(nativeItemsMapper)}
           </select>
@@ -270,12 +283,23 @@ class AXADropdown extends NoShadowDOM {
           </button>
           <ul class="m-dropdown__content js-dropdown__content">
             ${items &&
-              items.map(contentItemsMapper(this.handleDropdownValueClick))}
+              items.map(contentItemsMapper(this.handleDropdownItemClick))}
           </ul>
         </div>
         ${validationUI}
       </div>
     `;
+  }
+
+  firstUpdated() {
+    this.open = false;
+    this.dropdown = this.querySelector('.js-dropdown__content');
+
+    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('keydown', this.handleWindowKeyDown);
+    window.addEventListener('click', this.handleWindowClick);
+
+    this.updateTitle();
   }
 }
 
