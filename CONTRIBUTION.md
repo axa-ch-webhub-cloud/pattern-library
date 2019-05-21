@@ -1,6 +1,7 @@
 # Contribution
 
 ## Install the AXA Pattern Library
+
 ```js
 npm install // automatically runs `npm run bootstrap as postinstall hook`
 npm start
@@ -23,9 +24,11 @@ Open your code editor of choice and edit your desired component/package in
 - We won't have settings for vertical rhythm or global spacing.
 
 ### JS Rules
+
 - We reuse the Patterns Lib v1 JavaScript linting settings.
 
 ### Git Commit Message Rules
+
 - must be English only,
 - must be written in present tense or imperative,
 - must start with a verb and initial capital letter.
@@ -33,18 +36,18 @@ Open your code editor of choice and edit your desired component/package in
 - reasonably self-contained,
 
 # Testing
+
 - Library uses testcafe for ui testing
 - Library uses Jest for unit testing
 
 ## UI Testing
+
 - Are written in ui.test.js
 - A Component should have at least a smoke test
 
 ```js
 // React smoke test
-fixture('Button').page(
-  `${host}/iframe.html?id=your-component-page`
-);
+fixture('Button').page(`${host}/iframe.html?id=your-component-page`);
 test('should render a button as reactified component', async t => {
   const button = await Selector(() =>
     document.querySelector(`axa-button[data-test-id="button"]`)
@@ -56,6 +59,7 @@ test('should render a button as reactified component', async t => {
 ## Unit Testing
 
 ### How-to write and run tests
+
 - `npm run test-jest` // Jest will launch in the watch mode. Every time you save a file, it will re-run the tests.
 - Tests should be written with the `it()` function, i.e `it('should render correctly')`.
 - You may optionally want to describe and group them in `describe()` blocks.
@@ -73,6 +77,7 @@ it('should sum numbers', () => {
 ## Create a new component
 
 ### How-to start a new component
+
 - `npm run start`
 - `npm run new` and follow the instructions in the CLI.
 
@@ -93,7 +98,10 @@ import Readme from './README.md';
 storiesOf('Molecules/Top content bar', module)
   .addDecorator(withMarkdown(Readme))
   .addDecorator(withBodyReset())
-  .add('Top content bar - default', () => '<axa-top-content-bar>Some children</axa-top-content-bar>');
+  .add(
+    'Top content bar - default',
+    () => '<axa-top-content-bar>Some children</axa-top-content-bar>'
+  );
 ```
 
 ## How-to release a component
