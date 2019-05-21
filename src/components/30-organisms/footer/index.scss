@@ -31,6 +31,10 @@
     }
   }
 
+  &__social-media-title {
+    display: none;
+  }
+
   &__accordion-content {
     @include typo(primary, default, medium);
 

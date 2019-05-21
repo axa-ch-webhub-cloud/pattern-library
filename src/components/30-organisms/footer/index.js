@@ -76,20 +76,25 @@ class AXAFooter extends LitElement {
 
   getFooterIcons() {
     return html`
-      <ul class="o-footer__social-media-list">
-        ${repeat(this.social.icons, icon => {
-          return html`
-            <li>
-              <a
-                href="${icon.link}"
-                target="_blank"
-                @click="${ev => this.handleLinkClick(ev, icon.title)}"
-                >${svg([this.iconMap.get(icon.title) || ''])}</a
-              >
-            </li>
-          `;
-        })}
-      </ul>
+      <div>
+        <strong class="o-footer__title o-footer__social-media-title">
+          ${this.social.title}
+        </strong>
+        <ul class="o-footer__social-media-list">
+          ${repeat(this.social.icons, icon => {
+            return html`
+              <li>
+                <a
+                  href="${icon.link}"
+                  target="_blank"
+                  @click="${ev => this.handleLinkClick(ev, icon.title)}"
+                  >${svg([this.iconMap.get(icon.title) || ''])}</a
+                >
+              </li>
+            `;
+          })}
+        </ul>
+      </div>
     `;
   }
 
@@ -180,12 +185,7 @@ class AXAFooter extends LitElement {
             </div>
 
             <div class="o-footer__social-media">
-              <div>
-                <strong class="o-footer__title o-footer__social-media-title">
-                  ${this.social.title}
-                </strong>
-                ${this.getFooterIcons()}
-              </div>
+              ${this.getFooterIcons()}
             </div>
           </div>
         </axa-container>
