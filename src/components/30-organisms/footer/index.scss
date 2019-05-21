@@ -7,11 +7,11 @@
   // ### Mobile
   @include breakpoint($mediaquery-xsm) {
     // The accordion is only for small mobile devices
-    .mobile {
+    &__mobile {
       display: block;
     }
 
-    .tablet {
+    &__tablet {
       display: none;
     }
   }
@@ -113,18 +113,15 @@
   @include breakpoint($mediaquery-sm-up) {
     padding: 40px 0;
 
-    .mobile {
+    &__mobile {
       display: none;
     }
 
-    .tablet {
+    &__tablet {
       display: grid;
       grid-template-areas:
         'collection'
         'social';
-
-      // margin-left: 2%;
-      // margin-right: 2%;
     }
 
     &__collection {
@@ -202,19 +199,9 @@
     }
   }
 
-  @include breakpoint($mediaquery-md-up) {
-    .tablet {
-      // margin-left: 15%;
-      // margin-right: 15%;
-    }
-  }
-
   @include breakpoint($mediaquery-lg-up) {
-    .tablet {
+    &__tablet {
       grid-template-areas: 'collection social';
-
-      // margin-left: 10%;
-      // margin-right: 10%;
     }
 
     &__social-media {
@@ -235,13 +222,5 @@
       text-transform: uppercase;
       line-height: 1.5;
     }
-  }
-
-  @include breakpoint($mediaquery-xlg-up) {
-    .tablet {
-      // margin-left: 15%;
-      // margin-right: 15%;
-    }
-  }
-  // ### /Tablet
+  } // ### /Tablet
 }
