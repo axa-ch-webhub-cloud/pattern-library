@@ -1,6 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/container';
+import '@axa-ch/button';
 
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';

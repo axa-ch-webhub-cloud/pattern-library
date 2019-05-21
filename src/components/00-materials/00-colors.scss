@@ -40,6 +40,8 @@ $color-sec-green-acid: #f0ff93 !default;
 $color-sec-orange-dune: #fcd385 !default;
 $color-sec-orange-apache: #ddbe65 !default;
 $color-sec-red-tosca: #914146 !default;
+$color-sec-shy-tomato: #c91432 !default;
+$color-sec-ocean-blue: #4976ba !default;
 
 // Validation
-$color-validation-error: #c91432 !default;
+$color-validation-error: $color-sec-shy-tomato;

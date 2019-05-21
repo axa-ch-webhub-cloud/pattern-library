@@ -4,7 +4,7 @@
   &__container {
     @include typo(primary, small, medium);
 
-    background-color: $color-prim-blue-deep-sapphire;
+    background-color: $color-sec-ocean-blue;
     color: $color-prim-white;
 
     min-height: 50px;
@@ -27,5 +27,12 @@
         margin-left: 10px;
       }
     }
+  }
+}
+
+
+.m-top-content-bar--warning {
+  &__container {
+    background-color: $color-sec-shy-tomato;
   }
 }
