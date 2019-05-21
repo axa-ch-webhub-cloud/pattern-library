@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop)](https://travis-ci.org/axa-ch/patterns-library)
 
-[Pattern Library Preview](https://patternslibrary.azurewebsites.net)
+[Pattern Library Preview](https://patterns.axa.ch)
 
 [Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
 [Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md)
