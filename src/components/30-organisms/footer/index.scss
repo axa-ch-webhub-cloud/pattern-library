@@ -4,6 +4,14 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  &__social-media-list {
+    svg {
+      color: $color-prim-white;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
   // ### Mobile
   @include breakpoint($mediaquery-xsm) {
     // The accordion is only for small mobile devices
@@ -96,12 +104,6 @@
     flex-wrap: wrap;
     padding: 15px 20px;
 
-    svg {
-      color: $color-prim-white;
-      width: 25px;
-      height: 25px;
-    }
-
     a {
       display: block;
       padding: 10px;
@@ -184,12 +186,6 @@
         padding-top: 15px;
 
         grid-area: social;
-
-        svg {
-          color: $color-prim-white;
-          width: 25px;
-          height: 25px;
-        }
 
         a {
           display: block;
