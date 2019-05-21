@@ -1,6 +1,8 @@
 import { Selector } from 'testcafe';
 
-fixture('Footer - basic functionality').page('http://localhost:9999/iframe.html?id=organisms-footer--footer-default');
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+
+fixture('Footer - basic functionality').page(`${host}/iframe.html?id=organisms-footer--footer-default`);
 
 const TAG = 'axa-footer';
 const CLASS = '.o-footer';
