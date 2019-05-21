@@ -2,12 +2,14 @@ $dropdown-color: $color-prim-gray-mine-shaft !default;
 $dropdown-color--hover: $color-axa-blue !default;
 $dropdown-border-width: 1px;
 $dropdown-border-style: $dropdown-border-width solid $color-prim-gray-silver;
+$dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
 $dropdown-icon-width: 10px;
 $dropdown-icon-height: 6px;
 
 @mixin normalize-native-select-styles() {
   appearance: none;
+  -webkit-appearance: none;
   background: transparent;
   border: none;
   color: inherit;
@@ -37,12 +39,14 @@ $dropdown-icon-height: 6px;
 }
 
 axa-dropdown {
+  display: block;
+
   &[open] {
     .m-dropdown__content {
       height: auto;
     }
 
-    svg {
+    .m-dropdown__select-icon svg {
       transform: rotate(180deg);
     }
   }
@@ -51,9 +55,34 @@ axa-dropdown {
       max-height: 347px;
       overflow: auto;
   }
+
+  &[valid] .m-dropdown__valid-icon {
+    line-height: $dropdown-height;
+    color: $color-validation-valid;
+    svg {
+      margin-left: 15px;
+      width: 16px;
+      height: 14px;
+    }
+  }
+
+  &[error] .m-dropdown {
+    flex-direction: column;
+
+    &__list {
+      border-color: $color-validation-error;
+    }
+
+    .m-dropdown__error {
+      margin-top: 10px;
+      line-height: 1.2;
+      color: $color-validation-error;
+    }
+  }
 }
 
 .m-dropdown {
+  display: flex;
   position: relative;
   @include typo(primary, small);
 
@@ -84,9 +113,10 @@ axa-dropdown {
 
   &__select {
     @include normalize-native-select-styles();
+    @include typo(primary, small);
     min-width: 100px;
     width: 100%;
-    padding: 10px 40px 10px 10px;
+    padding: 10px 40px 10px 20px;
     height: $dropdown-height;
     line-height: normal;
   }
@@ -145,6 +175,8 @@ axa-dropdown {
     list-style: none;
     position: absolute;
     top: 100%;
+    left: -1px;
+    right: -1px;
     z-index: 2;
     height: 0;
     min-width: 100%;
@@ -196,7 +228,7 @@ axa-dropdown {
     }
 
     &:last-child {
-      border-bottom: 3px solid $color-prim-gray-silver;
+      border-bottom: $dropdown-bottom-border-width solid $color-prim-gray-silver;
     }
   }
 

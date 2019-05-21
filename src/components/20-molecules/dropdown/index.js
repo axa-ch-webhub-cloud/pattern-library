@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { ExpandSvg } from '@axa-ch/materials/icons';
+import { ExpandSvg, FilledTickSvg } from '@axa-ch/materials/icons';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -10,6 +10,7 @@ import fireCustomEvent from '../../../utils/custom-event';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
+const VALID_ICON = svg([FilledTickSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
 
@@ -77,6 +78,15 @@ const contentItemsMapper = clickHandler => ({
       `;
 };
 
+const validHTML = html`
+  <div class="m-dropdown__valid-icon">${VALID_ICON}</div>
+`;
+
+const errorHTML = error =>
+  html`
+    <div class="m-dropdown__error">${error}</div>
+  `;
+
 // CE
 class AXADropdown extends NoShadowDOM {
   static get tagName() {
@@ -95,7 +105,8 @@ class AXADropdown extends NoShadowDOM {
       value: { type: String, reflect: true },
       title: { type: String, reflect: true },
       native: { type: Boolean },
-      size: { type: String },
+      valid: { type: Boolean, reflect: true },
+      error: { type: String, reflect: true },
       onAXAValueChange: { type: Function },
     };
   }
@@ -234,9 +245,9 @@ class AXADropdown extends NoShadowDOM {
   }
 
   render() {
-    const { items, native } = this;
+    const { items, native, valid, error } = this;
     const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
-
+    const validationUI = (valid && validHTML) || (error && errorHTML(error));
     return html`
       <div class="${classMap(classes)}">
         <div class="m-dropdown__list m-dropdown__list--native">
@@ -262,6 +273,7 @@ class AXADropdown extends NoShadowDOM {
               items.map(contentItemsMapper(this.handleDropdownValueClick))}
           </ul>
         </div>
+        ${validationUI}
       </div>
     `;
   }
