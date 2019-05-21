@@ -11,7 +11,7 @@ storiesOf('Molecules/Top content bar', module)
   .add(
     'Top content bar - Default with button',
     () =>
-      `<axa-top-content-bar cta="Click me">
+      `<axa-top-content-bar ctatext="Click me">
           Some children Some children Some children Some children
           Some children Some children Some children
        </axa-top-content-bar>`
@@ -27,7 +27,7 @@ storiesOf('Molecules/Top content bar', module)
   .add(
     'Top content bar - Red with button',
     () =>
-      `<axa-top-content-bar variant="warning" cta="Click me">
+      `<axa-top-content-bar variant="warning" ctatext="Click me">
           Some children Some children Some children Some children
           Some children Some children Some children
        </axa-top-content-bar>`
@@ -36,6 +36,21 @@ storiesOf('Molecules/Top content bar', module)
     'Top content bar - Red no button',
     () =>
       `<axa-top-content-bar variant="warning">
+          Some children Some children Some children Some children
+          Some children Some children Some children
+       </axa-top-content-bar>`
+  )
+  .add(
+    'Top content bar - Default in text link',
+    () =>
+      `<axa-top-content-bar>
+          Some children <axa-link>and a link<axa-link> in the text
+       </axa-top-content-bar>`
+  )
+  .add(
+    'Top content bar - Default Button-link',
+    () =>
+      `<axa-top-content-bar ctatext="Click Me" href="http://www.axa.ch">
           Some children Some children Some children Some children
           Some children Some children Some children
        </axa-top-content-bar>`

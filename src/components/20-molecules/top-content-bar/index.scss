@@ -23,8 +23,12 @@
       justify-content:center;
       align-items:center;
 
-      axa-button {
+      axa-button, axa-button-link {
         margin-left: 10px;
+      }
+
+      axa-button-link {
+        display: inline-flex;
       }
     }
   }

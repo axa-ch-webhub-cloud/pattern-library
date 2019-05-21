@@ -3,6 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/container';
 import '@axa-ch/button';
+import '@axa-ch/button-link';
 
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
@@ -21,13 +22,48 @@ class AXATopContentBar extends LitElement {
   static get properties() {
     // Define properties and types
     return {
-      cta: { type: String },
+      ctatext: { type: String },
+      href: { type: String },
       variant: { type: String },
+      onClick: { type: Function },
     };
   }
 
+  constructor() {
+    super();
+    this.onClick = () => {};
+  }
+
+  getButtonHtml() {
+    console.log(ctatext);
+    const { ctatext, href } = this;
+
+    console.log(ctatext);
+
+    if (href && ctatext) {
+      return html`
+        <axa-button-link
+          href="${href}"
+          @click="${this.onClick}"
+          variant="inverted"
+        >
+          ${ctatext}
+        </axa-button-link>
+      `;
+    } else if (ctatext) {
+      return html`
+        <axa-button @click="${this.onClick}" variant="inverted">
+          ${ctatext}
+        </axa-button>
+      `;
+    }
+    return '';
+  }
+
   render() {
-    const { cta, variant } = this;
+    const { variant } = this;
+
+    const btnHtml = this.getButtonHtml();
 
     const classes = {
       'm-top-content-bar__container--warning': variant === 'warning',
@@ -38,11 +74,7 @@ class AXATopContentBar extends LitElement {
         <div class="m-top-content-bar__container ${classMap(classes)}">
           <axa-container>
             <span><slot></slot></span>
-            ${cta
-              ? html`
-                  <axa-button variant="inverted">${cta}</axa-button>
-                `
-              : ''}
+            ${btnHtml}
           </axa-container>
         </div>
       </article>
