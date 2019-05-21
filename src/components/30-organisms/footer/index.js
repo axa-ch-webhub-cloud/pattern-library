@@ -172,9 +172,9 @@ class AXAFooter extends LitElement {
             </div>
             <div class="o-footer__social-media">
               <div>
-                <strong class="o-footer__social-media-title"
-                  >Stay in touch</strong
-                >
+                <strong class="o-footer__social-media-title">
+                  ${this.social.title}
+                </strong>
                 <ul class="o-footer__social-media-list">
                   ${repeat(this.social.icons, icon => {
                     return html`
