@@ -5,8 +5,8 @@
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
-  "directories": {
-    "lib": "lib"
+  "scripts": {
+    "build": "rollup --silent --config ./rollup.config.js"
   },
   "files": [
     "lib",
@@ -19,10 +19,10 @@
     "type": "git",
     "url": "git+https://github.com/axa-ch/patterns-library.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "rollup-plugin-svgo": "^1.0.2"
   }
 }
