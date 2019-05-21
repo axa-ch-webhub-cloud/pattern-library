@@ -78,99 +78,52 @@ class AXAFooter extends LitElement {
   render() {
     return html`
       <footer class="o-footer">
-        <div class="mobile">
-          ${repeat(
-            this.content,
-            (contentItem, index) =>
-              html`
-                <div class="o-footer__accordion">
-                  <button
-                    class="o-footer__accordion-content"
-                    @click="${ev => this.handleClick(ev, index)}"
-                  >
-                    <span>
-                      ${contentItem.title}
-                    </span>
-                    <span
-                      class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
-                        ? '--open'
-                        : ''}"
-                      >${svg([CaretSvg || ''])}</span
-                    >
-                  </button>
-                  <ul
-                    class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
-                      ? '--open'
-                      : ''}"
-                  >
-                    ${repeat(
-                      contentItem.items,
-                      i =>
-                        html`
-                          <li>
-                            <a
-                              href=${i.link}
-                              target="${i.external ? '_blank' : '_top'}"
-                              @click="${ev => this.handleLinkClick(ev, i.text)}"
-                              >${i.text}</a
-                            >
-                          </li>
-                        `
-                    )}
-                  </ul>
-                </div>
-              `
-          )}
-          <div>
-            <ul class="o-footer__social-media-list">
-              ${repeat(this.social.icons, icon => {
-                return html`
-                  <li>
-                    <a
-                      href="${icon.link}"
-                      target="_blank"
-                      @click="${ev => this.handleLinkClick(ev, icon.title)}"
-                      >${svg([this.iconMap.get(icon.title) || ''])}</a
-                    >
-                  </li>
-                `;
-              })}
-            </ul>
-          </div>
-        </div>
-
-        <div class="tablet">
-          <div class="o-footer__collection">
+        <axa-container>
+          <div class="mobile">
             ${repeat(
               this.content,
-              contentItem =>
+              (contentItem, index) =>
                 html`
-                  <div class="o-footer__collection-container">
-                    <strong>${contentItem.title}</strong>
-                    <div class="o-footer__collection-container-list">
+                  <div class="o-footer__accordion">
+                    <button
+                      class="o-footer__accordion-content"
+                      @click="${ev => this.handleClick(ev, index)}"
+                    >
+                      <span>
+                        ${contentItem.title}
+                      </span>
+                      <span
+                        class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
+                          ? '--open'
+                          : ''}"
+                        >${svg([CaretSvg || ''])}</span
+                      >
+                    </button>
+                    <ul
+                      class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
+                        ? '--open'
+                        : ''}"
+                    >
                       ${repeat(
                         contentItem.items,
-                        i => html`
-                          <div class="o-footer__collection-container-list-item">
-                            <a
-                              href=${i.link}
-                              target="${i.external ? '_blank' : '_top'}"
-                              @click="${ev => this.handleLinkClick(ev, i.text)}"
-                              >${i.text}</a
-                            >
-                          </div>
-                        `
+                        i =>
+                          html`
+                            <li>
+                              <a
+                                href=${i.link}
+                                target="${i.external ? '_blank' : '_top'}"
+                                @click="${ev =>
+                                  this.handleLinkClick(ev, i.text)}"
+                                >${i.text}</a
+                              >
+                            </li>
+                          `
                       )}
-                    </div>
+                    </ul>
                   </div>
                 `
             )}
-          </div>
-          <div class="o-footer__social-media">
             <div>
-              <strong class="o-footer__social-media-title"
-                >Stay in touch</strong
-              >
               <ul class="o-footer__social-media-list">
                 ${repeat(this.social.icons, icon => {
                   return html`
@@ -187,7 +140,60 @@ class AXAFooter extends LitElement {
               </ul>
             </div>
           </div>
-        </div>
+
+          <div class="tablet">
+            <div class="o-footer__collection">
+              ${repeat(
+                this.content,
+                contentItem =>
+                  html`
+                    <div class="o-footer__collection-container">
+                      <strong>${contentItem.title}</strong>
+                      <div class="o-footer__collection-container-list">
+                        ${repeat(
+                          contentItem.items,
+                          i => html`
+                            <div
+                              class="o-footer__collection-container-list-item"
+                            >
+                              <a
+                                href=${i.link}
+                                target="${i.external ? '_blank' : '_top'}"
+                                @click="${ev =>
+                                  this.handleLinkClick(ev, i.text)}"
+                                >${i.text}</a
+                              >
+                            </div>
+                          `
+                        )}
+                      </div>
+                    </div>
+                  `
+              )}
+            </div>
+            <div class="o-footer__social-media">
+              <div>
+                <strong class="o-footer__social-media-title"
+                  >Stay in touch</strong
+                >
+                <ul class="o-footer__social-media-list">
+                  ${repeat(this.social.icons, icon => {
+                    return html`
+                      <li>
+                        <a
+                          href="${icon.link}"
+                          target="_blank"
+                          @click="${ev => this.handleLinkClick(ev, icon.title)}"
+                          >${svg([this.iconMap.get(icon.title) || ''])}</a
+                        >
+                      </li>
+                    `;
+                  })}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </axa-container>
       </footer>
     `;
   }

@@ -131,8 +131,8 @@
         'collection'
         'social';
 
-      margin-left: 2%;
-      margin-right: 2%;
+      // margin-left: 2%;
+      // margin-right: 2%;
     }
 
     &__collection {
@@ -212,8 +212,8 @@
 
   @include breakpoint($mediaquery-md-up) {
     .tablet {
-      margin-left: 15%;
-      margin-right: 15%;
+      // margin-left: 15%;
+      // margin-right: 15%;
     }
   }
 
@@ -221,8 +221,8 @@
     .tablet {
       grid-template-areas: 'collection social';
 
-      margin-left: 10%;
-      margin-right: 10%;
+      // margin-left: 10%;
+      // margin-right: 10%;
     }
 
     &__social-media {
@@ -247,8 +247,8 @@
 
   @include breakpoint($mediaquery-xlg-up) {
     .tablet {
-      margin-left: 15%;
-      margin-right: 15%;
+      // margin-left: 15%;
+      // margin-right: 15%;
     }
   }
   // ### /Tablet
