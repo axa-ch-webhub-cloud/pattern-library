@@ -37,13 +37,6 @@
     pointer-events: none;
   }
 
-  &__flex-wrapper {
-    // display: flex;
-    // align-items: center;
-    // display: inline-block;
-    //   align-items: center;
-  }
-
   &__icon {
     margin-right: 12px;
     margin-left: 0px;
@@ -58,11 +51,6 @@
   	z-index: -1;
   }
 }
-
-// .a-input-file--upload {
-//   display: inline-block;
-//   align-items: center;
-// }
 
 .a-input-file--large {
   min-height: 40px;
