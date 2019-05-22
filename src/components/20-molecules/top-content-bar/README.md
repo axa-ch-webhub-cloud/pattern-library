@@ -11,7 +11,7 @@ npm install @axa-ch/top-content-bar
 ```js
 import '@axa-ch/top-content-bar';
 ...
-<axa-top-content-bar></axa-top-content-bar>
+<axa-top-content-bar ctatext="Click Me">Some Text</axa-top-content-bar>
 ```
 
 ### React
@@ -28,8 +28,7 @@ export default AXATopContentBarReact;
 ```
 
 ```js
-<AXATopContentBarReact onClick={handler}>
-</AXATopContentBarReact>
+<AXATopContentBarReact onClick={handler} ctatext="Click Me" />
 ```
 
 ### Pure HTML pages
@@ -46,7 +45,9 @@ Import the top-content-bar-defining script and use a top-content-bar like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-top-content-bar></axa-top-content-bar>
+    <axa-top-content-bar ctatext="Click Me" href="http://www.axa.ch">
+      Some Text
+    </axa-top-content-bar>
     <script src="node_modules/@axa-ch/top-content-bar/dist/index.js"></script>
   </body>
 </html>
@@ -56,13 +57,18 @@ Import the top-content-bar-defining script and use a top-content-bar like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute           | Details                                        |
+| ------------------- | ---------------------------------------------- |
+| `variant="warning"` | Show a red top content bar as a warning banner |
 
-### Bar
+### ctatext
 
-The attribute `bar` specifies...
+The attribute `ctatext` specifies the text displayed on the button.
+If no attribute `href` is set, it will render a `axa-button` and only onClick callback will work. If omitted, no button will be shown.
+
+### href
+
+The attribute `href` specifies the link that should be opened by pressing on the button with text defined in `ctatext`
 
 ### onClick
 

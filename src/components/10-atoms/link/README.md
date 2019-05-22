@@ -106,13 +106,16 @@ Import the link-defining script and use a link like this:
 
 #### white color
 
-| Attribute                             | Details                           |
-| ------------------------------------- | --------------------------------- |
-| `variant="icon-white"`                | Link with an icon displayed       |
-| `variant="arrowright-white"`          | Link with arrow icon to the right |
-| `variant="arrowleft-white"`           | Link with arrow icon to the left  |
-| `variant="arrowleft-animated-white"`  | Link with animated arrow icon     |
-| `variant="arrowright-animated-white"` | Link with animated arrow icon     |
+| Attribute                             | Details                                |
+| ------------------------------------- | -------------------------------------- |
+| `variant="white"`                     | Link white                             |
+| `variant="hyperlink-white"`           | Link white in lowercase                |
+| `variant="intext-white"`              | Link white in lowercase and underlined |
+| `variant="icon-white"`                | Link with an icon displayed            |
+| `variant="arrowright-white"`          | Link with arrow icon to the right      |
+| `variant="arrowleft-white"`           | Link with arrow icon to the left       |
+| `variant="arrowleft-animated-white"`  | Link with animated arrow icon          |
+| `variant="arrowright-animated-white"` | Link with animated arrow icon          |
 
 ### href
 

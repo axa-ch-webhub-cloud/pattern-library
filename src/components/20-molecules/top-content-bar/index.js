@@ -34,11 +34,15 @@ class AXATopContentBar extends LitElement {
     this.onClick = () => {};
   }
 
-  getButtonHtml() {
-    console.log(ctatext);
-    const { ctatext, href } = this;
+  firstUpdated() {
+    const links = Array.prototype.slice.call(this.querySelectorAll('axa-link'));
+    links.forEach(link => {
+      link.setAttribute('variant', 'intext-white');
+    });
+  }
 
-    console.log(ctatext);
+  getButtonHtml() {
+    const { ctatext, href } = this;
 
     if (href && ctatext) {
       return html`

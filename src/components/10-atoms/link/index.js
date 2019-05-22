@@ -30,19 +30,21 @@ class AXALink extends LitElement {
   }
 
   render() {
+    const { variant } = this;
     const classes = classMap({
-      'a-link--simple': this.variant,
+      'a-link--simple':
+        variant && variant !== 'hyperlink-white' && variant !== 'intext-white',
       'a-link--icon':
-        this.variant.includes('arrowleft') ||
-        this.variant.includes('arrowright') ||
-        this.variant.includes('icon'),
-      'a-link--red':
-        this.variant.includes('red') && !this.variant.includes('white'),
-      'a-link--white':
-        this.variant.includes('white') && !this.variant.includes('red'),
+        variant.includes('arrowleft') ||
+        variant.includes('arrowright') ||
+        variant.includes('icon'),
+      'a-link--red': variant.includes('red') && !variant.includes('white'),
+      'a-link--hyperlink-white': variant === 'hyperlink-white',
+      'a-link--intext-white': variant === 'intext-white',
+      'a-link--white': variant === 'white' && !variant.includes('red'),
       'a-link--motion':
-        this.variant.includes('arrowleft-animated') ||
-        this.variant.includes('arrowright-animated'),
+        variant.includes('arrowleft-animated') ||
+        variant.includes('arrowright-animated'),
     });
 
     return html`
