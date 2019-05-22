@@ -21,7 +21,7 @@ test('should render footer', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should correctly render footer titles', async t => {
+test.only('should correctly render footer titles', async t => {
   const $footerTitle = Selector(() =>
     document
       .querySelector('axa-footer')
@@ -30,7 +30,14 @@ test('should correctly render footer titles', async t => {
   );
 
   await t.expect($footerTitle.textContent).contains('axa & you');
-  await t.expect().ok();
+  await t
+    .expect($footerTitle.getStyleProperty('color'))
+    .eql('rgb(255, 255, 255)');
+  await t.expect($footerTitle.getStyleProperty('font-weight')).eql('700');
+  await t.expect($footerTitle.getStyleProperty('font-size')).eql('16px');
+  await t
+    .expect($footerTitle.getStyleProperty('text-transform'))
+    .eql('uppercase');
 });
 
 test('should correctly render footer link content', async t => {
