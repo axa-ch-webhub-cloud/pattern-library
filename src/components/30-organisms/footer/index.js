@@ -112,9 +112,9 @@ class AXAFooter extends LitElement {
                       class="o-footer__accordion-content"
                       @click="${ev => this.handleClick(ev, index)}"
                     >
-                      <span>
+                      <strong class="o-footer__title">
                         ${contentItem.title}
-                      </span>
+                      </strong>
                       <span
                         class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
                           ? '--open'
