@@ -12,7 +12,7 @@ interface AXAButtonProps {
   accept?: String;
   multiple?: boolean;
   capture?: String;
-  onClick?: () => void;
+  onChange?: () => void;
 }
 
 declare function createAXAButton(
