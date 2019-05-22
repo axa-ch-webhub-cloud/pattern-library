@@ -64,20 +64,7 @@ test('should correctly render footer link content', async t => {
   await t.expect($contactLink.getStyleProperty('font-size')).eql('14px');
 });
 
-test('should render accordion only in mobile mode', async t => {
-  await t.resizeWindow(576, 400);
-  const $accordion = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__accordion-content')
-  );
-
-  await t.expect($accordion.visible).notOk();
-  await t.resizeWindow(575, 400);
-  await t.expect($accordion.visible).ok();
-});
-
-test.only('should render facebook social media button', async t => {
+test('should render facebook social media button', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
@@ -95,11 +82,57 @@ test.only('should render facebook social media button', async t => {
     .eql('rgb(255, 255, 255)');
 });
 
+test('should render accordion only in mobile mode', async t => {
+  await t.resizeWindow(576, 400);
+  const $accordion = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__accordion-content')
+  );
+
+  await t.expect($accordion.visible).notOk();
+  await t.resizeWindow(575, 400);
+  await t.expect($accordion.visible).ok();
+});
+
+test.only('should correctly open accordion on click', async t => {
+  await t.resizeWindow(575, 400);
+
+  const $footer = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__mobile')
+  );
+
+  const $contactLink = $footer.find('a').withText('Contact');
+  await t.expect($contactLink.visible).notOk();
+
+  const $accordionFirstButton = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__accordion-content')
+  );
+
+  await t.click($accordionFirstButton);
+
+  await t.expect($contactLink.visible).ok();
+
+  const $accordionSecondButtons = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelectorAll('.o-footer__accordion-content')
+  );
+  const $accordionSecondButton = $accordionSecondButtons.find('strong');
+  await t.click($accordionSecondButton);
+
+  await t.expect($contactLink.visible).ok();
+});
+
 test('should correctly render social media title in desktop view', async t => {
   const $socialMediaTitle = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__mobile')
       .querySelector('.o-footer__social-media-title')
   );
 
