@@ -31,20 +31,40 @@ class AXALink extends LitElement {
 
   render() {
     const { variant } = this;
+
+    const isSimple =
+      variant &&
+      variant !== 'hyperlink-white' &&
+      variant !== 'hyperlink-white-underline';
+
+    const isIcon =
+      variant.includes('arrowleft') ||
+      variant.includes('arrowright') ||
+      variant.includes('icon');
+
+    const isRed = variant.includes('red') && !variant.includes('white');
+
+    const islinkWhite = variant === 'hyperlink-white';
+
+    const islinkWhiteUnderline = variant === 'hyperlink-white-underline';
+
+    const isWhite =
+      variant.includes('white') &&
+      !variant.includes('red') &&
+      !variant.includes('hyperlink');
+
+    const isMotion =
+      variant.includes('arrowleft-animated') ||
+      variant.includes('arrowright-animated');
+
     const classes = classMap({
-      'a-link--simple':
-        variant && variant !== 'hyperlink-white' && variant !== 'intext-white',
-      'a-link--icon':
-        variant.includes('arrowleft') ||
-        variant.includes('arrowright') ||
-        variant.includes('icon'),
-      'a-link--red': variant.includes('red') && !variant.includes('white'),
-      'a-link--hyperlink-white': variant === 'hyperlink-white',
-      'a-link--intext-white': variant === 'intext-white',
-      'a-link--white': variant === 'white' && !variant.includes('red'),
-      'a-link--motion':
-        variant.includes('arrowleft-animated') ||
-        variant.includes('arrowright-animated'),
+      'a-link--simple': isSimple,
+      'a-link--icon': isIcon,
+      'a-link--red': isRed,
+      'a-link--hyperlink-white': islinkWhite,
+      'a-link--hyperlink-white-underline': islinkWhiteUnderline,
+      'a-link--white': isWhite,
+      'a-link--motion': isMotion,
     });
 
     return html`

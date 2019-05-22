@@ -53,7 +53,7 @@
   }
 
   &--hyperlink-white,
-  &--intext-white {
+  &--hyperlink-white-underline {
     color: $color-prim-white;
     opacity: 1;
 
@@ -65,7 +65,7 @@
     }
   }
 
-  &--intext-white {
+  &--hyperlink-white-underline {
     text-decoration: underline;
   }
 
