@@ -1,20 +1,20 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
+import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
 
 const TYPE = 'file';
-class AXAInputFile extends LitElement {
+class AXAInputFile extends NoShadowDOM {
   static get tagName() {
     return 'axa-input-file';
   }
 
   static get styles() {
-    return css`
-      ${unsafeCSS(styles)}
-    `;
+    return styles;
   }
 
   static get properties() {
@@ -39,7 +39,7 @@ class AXAInputFile extends LitElement {
     this.large = false;
     this.motionOff = false;
     this.disabled = false;
-    this.accept = 'image/jpg, image/jpeg, application/pdf, image/png'
+    this.accept = 'image/jpg, image/jpeg, application/pdf, image/png';
     this.capture = false;
     this.multiple = false;
     this.onClick = () => {};
@@ -71,11 +71,12 @@ class AXAInputFile extends LitElement {
         for="file-upload"
         ?disabled="${disabled}"
         @click="${this.onClick}"
-      ><div class="a-input-file__flex-wrapper">
-          ${icon && html`
-            <axa-icon class="a-input-file__icon" icon="${icon}"></axa-icon>
-          `}
-          <slot></slot>
+        ><div class="a-input-file__flex-wrapper">
+          ${icon &&
+            html`
+              <axa-icon class="a-input-file__icon" icon="${icon}"></axa-icon>
+            `}
+          ${unsafeHTML(this.innerHTML)}
         </div>
       </label>
       <input
