@@ -28,7 +28,6 @@ class AXAInputFile extends NoShadowDOM {
       accept: { type: String },
       capture: { type: String },
       multiple: { type: Boolean },
-      onClick: { type: Function },
     };
   }
 
@@ -42,7 +41,7 @@ class AXAInputFile extends NoShadowDOM {
     this.accept = 'image/jpg, image/jpeg, application/pdf, image/png';
     this.capture = false;
     this.multiple = false;
-    this.onClick = () => {};
+    this.onChange = () => {};
   }
 
   render() {
@@ -70,7 +69,6 @@ class AXAInputFile extends NoShadowDOM {
         class="a-input-file ${classMap(classes)}"
         for="file-upload"
         ?disabled="${disabled}"
-        @click="${this.onClick}"
         ><div class="a-input-file__flex-wrapper">
           ${icon &&
             html`
@@ -84,6 +82,7 @@ class AXAInputFile extends NoShadowDOM {
         accept="${accept}"
         ?multiple="${multiple}"
         ?capture="${capture}"
+        @change="${this.onChange}"
         class="a-input-file__input"
         id="file-upload"
       />

@@ -28,7 +28,7 @@ export default AXAInputFileReact;
 ```
 
 ```js
-<AXAInputFileReact onClick={handler}>I am a</AXAInputFileReact>
+<AXAInputFileReact onChange={handler}>I am a</AXAInputFileReact>
 ```
 
 ### Pure HTML pages
@@ -110,6 +110,6 @@ The Boolean attribute `disabled` disables the button natively.
 
 Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) README.
 
-### onClick
+### onChange
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.

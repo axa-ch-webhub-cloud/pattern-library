@@ -19,7 +19,10 @@ storiesOf('Atoms/Input File/React', module)
   /* Icon */
   .add('InputFile - Icon', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AXAInputFileReact icon="arrow-right">Icon</AXAInputFileReact>, div);
+    ReactDOM.render(
+      <AXAInputFileReact icon="arrow-right">Icon</AXAInputFileReact>,
+      div
+    );
     return div;
   })
 
@@ -27,7 +30,14 @@ storiesOf('Atoms/Input File/React', module)
   .add('InputFile - Multiple', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <AXAInputFileReact multiple>Multiple</AXAInputFileReact>,
+      <AXAInputFileReact
+        onChange={e => {
+          console.log('files selected: ', e.target.files);
+        }}
+        multiple
+      >
+        Multiple
+      </AXAInputFileReact>,
       div
     );
     return div;
@@ -37,7 +47,9 @@ storiesOf('Atoms/Input File/React', module)
   .add('InputFile - Accept', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <AXAInputFileReact accept="application/pdf">Accept only PDF</AXAInputFileReact>,
+      <AXAInputFileReact accept="application/pdf">
+        Accept only PDF
+      </AXAInputFileReact>,
       div
     );
     return div;
@@ -48,9 +60,13 @@ storiesOf('Atoms/Input File/React', module)
     const div = document.createElement('div');
     ReactDOM.render(
       <div>
-        <AXAInputFileReact accept="image" capture>Capture</AXAInputFileReact>
+        <AXAInputFileReact accept="image" capture>
+          Capture
+        </AXAInputFileReact>
         <AXAInputFileReact capture="user">Capture User</AXAInputFileReact>
-        <AXAInputFileReact capture="environment">Capture Environment</AXAInputFileReact>
+        <AXAInputFileReact capture="environment">
+          Capture Environment
+        </AXAInputFileReact>
       </div>,
       div
     );
