@@ -56,7 +56,12 @@ test('should correctly render footer link content', async t => {
   await t
     .expect($contactLink.getStyleProperty('color'))
     .eql('rgb(255, 255, 255)');
-  await t.expect($contactLink.getStyleProperty('text-decoration')).eql('none');
+  await t
+    .expect($contactLink.getStyleProperty('text-decoration'))
+    .eql('none solid rgb(255, 255, 255)');
+  await t.expect($contactLink.getStyleProperty('font-weight')).eql('400');
+  await t.expect($contactLink.getStyleProperty('font-style')).eql('normal');
+  await t.expect($contactLink.getStyleProperty('font-size')).eql('14px');
 });
 
 test('should render accordion only in mobile mode', async t => {
@@ -70,6 +75,24 @@ test('should render accordion only in mobile mode', async t => {
   await t.expect($accordion.visible).notOk();
   await t.resizeWindow(575, 400);
   await t.expect($accordion.visible).ok();
+});
+
+test.only('should render facebook social media button', async t => {
+  const $facebookButton = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__tablet')
+      .querySelector('.o-footer__social-media-list')
+      .querySelector('a[href="https://www.facebook.com/axach/"]')
+      .querySelector('svg')
+  );
+
+  await t.expect($facebookButton.visible).ok();
+  await t.expect($facebookButton.getStyleProperty('width')).eql('25px');
+  await t.expect($facebookButton.getStyleProperty('height')).eql('25px');
+  await t
+    .expect($facebookButton.find('path').getStyleProperty('color'))
+    .eql('rgb(255, 255, 255)');
 });
 
 test('should correctly render social media title in desktop view', async t => {
