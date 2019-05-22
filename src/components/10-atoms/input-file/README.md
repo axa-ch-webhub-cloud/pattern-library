@@ -71,22 +71,24 @@ inputFile.addEventListener('input', e => {
 
 The String attribute `accept` specifies a filter for which file types the user can pick from.
 
-| Attribute          | Details                                       |
-| ------------------ | --------------------------------------------- |
-| `accept=""`        | Allow every file type                         |
-| `accept="image/*"` | Files with media type image are accepted      |
-| `accept="video/*"` | Files with media type video are accepted      |
-| `accept="audio/*"` | Files with media type audio are accepted      |
-| `accept=".png"`    | files of the specified extension are accepted |
+| Attribute                                   | Details                                       |
+| ------------------------------------------- | --------------------------------------------- |
+| `accept=""`                                 | Allow every file type                         |
+| `accept="image/*"`                          | Files with media type image are accepted      |
+| `accept="video/*"`                          | Files with media type video are accepted      |
+| `accept="audio/*"`                          | Files with media type audio are accepted      |
+| `accept=".png"`                             | files of the specified extension are accepted |
+| `accept="image/jpg, image/jpeg, image/png"` | Allow multiple file types                     |
 
 ### Capture
 
 The String attribute `capture` specifies which camera or microphone to use for capture of image, video and audio data.
-| Attribute               | Details                                      |
-| ----------------------- | ---------------------------------------------|
-| `capture=""`            | Allow every file type                        |
-| `capture="user"`        | Use user-facing camera and/or microphone     |
-| `capture="environment"` | Use outward-facing camera and/or microphone  |
+
+| Attribute               | Details                                     |
+| ----------------------- | ------------------------------------------- |
+| `capture=""`            | Allow every file type                       |
+| `capture="user"`        | Use user-facing camera and/or microphone    |
+| `capture="environment"` | Use outward-facing camera and/or microphone |
 
 If this attribute is missing, the user agent is free to decide on its own what to do. If the requested facing mode isn't available, the user agent may fall back to its preferred default mode.
 
