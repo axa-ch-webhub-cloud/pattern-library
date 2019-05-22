@@ -28,9 +28,7 @@ export default AXAInputFileReact;
 ```
 
 ```js
-<AXAInputFileReact onClick={handler}>
-  I am a
-</AXAInputFileReact>
+<AXAInputFileReact onClick={handler}>I am a</AXAInputFileReact>
 ```
 
 ### Pure HTML pages
@@ -51,6 +49,20 @@ Import the input-file-defining script and use a input-file like this:
     <script src="node_modules/@axa-ch/input-file/dist/index.js"></script>
   </body>
 </html>
+```
+
+When using the input file element natively, all `<input type="file">` events will be available, like so:
+
+```js
+const inputFile = document.createElement('axa-input-file');
+inputFile.setAttribute('multiple', 'multiple');
+
+inputFile.addEventListener('input', e => {
+  const {
+    target: { files },
+  } = e;
+  console.log('Here are all selected files', files);
+});
 ```
 
 ## Properties
