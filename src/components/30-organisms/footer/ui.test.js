@@ -11,7 +11,7 @@ fixture('Footer - basic functionality')
 const TAG = 'axa-footer';
 const CLASS = '.o-footer';
 
-test('should render footer', async t => {
+test('should render footer with correct background color', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -19,9 +19,12 @@ test('should render footer', async t => {
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('background-color'))
+    .eql('rgb(59, 63, 216)');
 });
 
-test.only('should correctly render footer titles', async t => {
+test('should correctly render footer titles', async t => {
   const $footerTitle = Selector(() =>
     document
       .querySelector('axa-footer')
@@ -47,8 +50,13 @@ test('should correctly render footer link content', async t => {
       .shadowRoot.querySelector('.o-footer__tablet')
   );
 
-  const contactLink = $footer.find('a').withText('Contact');
-  await t.expect(contactLink.exists).ok();
+  const $contactLink = $footer.find('a').withText('Contact');
+  await t.expect($contactLink.exists).ok();
+
+  await t
+    .expect($contactLink.getStyleProperty('color'))
+    .eql('rgb(255, 255, 255)');
+  await t.expect($contactLink.getStyleProperty('text-decoration')).eql('none');
 });
 
 test('should render accordion only in mobile mode', async t => {
