@@ -3,6 +3,7 @@ import AXAInputFile from './index';
 
 export default createElement => ({
   icon = '',
+  id = '',
   variant = '',
   motionOff = false,
   disabled = false,
@@ -16,6 +17,7 @@ export default createElement => ({
     AXAInputFile.tagName,
     {
       icon,
+      id,
       variant,
       motionOff,
       disabled,

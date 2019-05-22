@@ -22,6 +22,7 @@ class AXAInputFile extends NoShadowDOM {
       // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
       icon: { type: String },
+      id: { type: String },
       large: { type: Boolean },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
@@ -35,6 +36,11 @@ class AXAInputFile extends NoShadowDOM {
     super();
     this.variant = '';
     this.icon = '';
+    this.refId =
+      this.id ||
+      `input-file-${Math.random()
+        .toString(36)
+        .slice(2)}`;
     this.large = false;
     this.motionOff = false;
     this.disabled = false;
@@ -67,7 +73,7 @@ class AXAInputFile extends NoShadowDOM {
     return html`
       <label
         class="a-input-file ${classMap(classes)}"
-        for="file-upload"
+        for="${this.refId}"
         ?disabled="${disabled}"
         ><div class="a-input-file__flex-wrapper">
           ${icon &&
@@ -84,7 +90,7 @@ class AXAInputFile extends NoShadowDOM {
         ?capture="${capture}"
         @change="${this.onChange}"
         class="a-input-file__input"
-        id="file-upload"
+        id="${this.refId}"
       />
     `;
   }

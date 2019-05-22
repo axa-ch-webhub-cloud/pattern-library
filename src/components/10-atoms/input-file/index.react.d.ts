@@ -6,6 +6,7 @@ type Variant = 'secondary' | 'red' | 'inverted';
 interface AXAButtonProps {
   variant?: Variant;
   icon?: Icon;
+  id?: String;
   large?: boolean;
   motionOff?: boolean;
   disabled?: boolean;
