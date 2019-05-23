@@ -12,7 +12,16 @@ storiesOf('Atoms/Input File/React', module)
   /* Default */
   .add('InputFile - Default', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AXAInputFileReact>Default</AXAInputFileReact>, div);
+    ReactDOM.render(
+      <AXAInputFileReact
+        onChange={e => {
+          console.log('files selected: ', e.target.files);
+        }}
+      >
+        Default
+      </AXAInputFileReact>,
+      div
+    );
     return div;
   })
 
@@ -20,7 +29,14 @@ storiesOf('Atoms/Input File/React', module)
   .add('InputFile - Icon', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <AXAInputFileReact icon="arrow-right">Icon</AXAInputFileReact>,
+      <AXAInputFileReact
+        onChange={e => {
+          console.log('files selected: ', e.target.files);
+        }}
+        icon="arrow-right"
+      >
+        Icon
+      </AXAInputFileReact>,
       div
     );
     return div;
@@ -47,7 +63,12 @@ storiesOf('Atoms/Input File/React', module)
   .add('InputFile - Accept', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <AXAInputFileReact accept="application/pdf">
+      <AXAInputFileReact
+        onChange={e => {
+          console.log('files selected: ', e.target.files);
+        }}
+        accept="application/pdf"
+      >
         Accept only PDF
       </AXAInputFileReact>,
       div
@@ -60,12 +81,31 @@ storiesOf('Atoms/Input File/React', module)
     const div = document.createElement('div');
     ReactDOM.render(
       <div>
-        <AXAInputFileReact accept="image" capture>
+        <AXAInputFileReact
+          onChange={e => {
+            console.log('files selected: ', e.target.files);
+          }}
+          capture
+        >
           Capture
         </AXAInputFileReact>
-        <AXAInputFileReact capture="user">Capture User</AXAInputFileReact>
-        <AXAInputFileReact capture="environment">
-          Capture Environment
+        <AXAInputFileReact
+          onChange={e => {
+            console.log('files selected: ', e.target.files);
+          }}
+          accept="image/*"
+          capture="capture"
+        >
+          Capture Image
+        </AXAInputFileReact>
+        <AXAInputFileReact
+          onChange={e => {
+            console.log('files selected: ', e.target.files);
+          }}
+          accept="video/*"
+          capture
+        >
+          Capture Video
         </AXAInputFileReact>
       </div>,
       div
