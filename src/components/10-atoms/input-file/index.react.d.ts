@@ -12,7 +12,7 @@ interface AXAButtonProps {
   disabled?: boolean;
   accept?: String;
   multiple?: boolean;
-  capture?: String;
+  capture?: boolean;
   onChange?: () => void;
 }
 

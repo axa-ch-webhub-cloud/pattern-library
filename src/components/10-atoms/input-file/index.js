@@ -27,7 +27,7 @@ class AXAInputFile extends NoShadowDOM {
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
       accept: { type: String },
-      capture: { type: String },
+      capture: { type: Boolean },
       multiple: { type: Boolean },
     };
   }
