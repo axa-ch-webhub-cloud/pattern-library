@@ -35,8 +35,8 @@ const DemoFooter = () => {
     ],
   };
 
-  const clickedyClickClickSir = () => {
-    console.log('clickedy');
+  const clickHandler = () => {
+    console.log('I was clicked!');
   };
 
   return (
@@ -44,7 +44,7 @@ const DemoFooter = () => {
       <AXAFooterReact
         content={content}
         social={social}
-        onItemClick={clickedyClickClickSir}
+        onItemClick={clickHandler}
         dynamic
       />
     </div>
