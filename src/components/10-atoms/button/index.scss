@@ -43,17 +43,7 @@ $button-icon-margin: 12px !default;
   }
 
   &__icon {
-    margin-left: $button-icon-margin;
-  }
-}
-
-.a-button--upload {
-  display: inline-flex;
-  align-items: center;
-
-  &__icon {
-    margin-right: $button-icon-margin;
-    margin-left: 0px;
+    margin-left: 12px;
   }
 }
 
