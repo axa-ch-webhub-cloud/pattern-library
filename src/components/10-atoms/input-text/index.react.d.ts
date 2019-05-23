@@ -1,11 +1,19 @@
 import React from 'react';
 
 interface AXAInputTextProps {
-  /* Your type declarations for props go here, e.g.:
-  languageItems: Item[];
-  copyrightText: String;
-  dynamic?: boolean;
-  */ 
+  id: string;
+  name: string;
+  label: string;
+  placeholder: string;
+  info: string;
+  error: string;
+  required: boolean;
+  disabled: boolean;
+  isReact: boolean;
+  debug: boolean;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  onChange?: () => void;
 }
 
 declare function createAXAInputText(

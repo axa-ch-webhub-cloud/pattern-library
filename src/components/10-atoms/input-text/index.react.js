@@ -2,13 +2,36 @@ import withReact from '../../../utils/with-react';
 import AXAInputText from './index';
 
 export default createElement => ({
-  /* props here, same as in the constructor of index.js */
-  children,
-}) =>
-  withReact(createElement)(
-    AXAInputText.tagName,
-    {
-      /* props here, same as in the constructor of index.js */
-    },
-    children
-  );
+  id = '',
+  name = '',
+  label = '',
+  placeholder = '',
+  value,
+  error = '',
+  info = '',
+  valid = true,
+  required = false,
+  disabled = false,
+  debug = false,
+  onFocus = () => {},
+  onBlur = () => {},
+  onChange = () => {}
+}) => {
+  return withReact(createElement)(AXAInputText.tagName, {
+    id,
+    name,
+    label,
+    placeholder,
+    value,
+    valid,
+    error,
+    info,
+    required,
+    disabled,
+    debug,
+    onChange,
+    onFocus,
+    onBlur,
+    isReact: true,
+  });
+}
