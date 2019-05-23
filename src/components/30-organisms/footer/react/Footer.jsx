@@ -8,60 +8,30 @@ const DemoFooter = () => {
     {
       title: 'axa & you',
       items: [
-        {
-          text: 'Contact',
-          link: 'https://axa.ch/en/private-customers.html',
-          external: true,
-        },
-        {
-          text: 'Report a claim',
-          link: 'https://axa.ch/en/private-customers.html',
-          external: true,
-        },
-        {
-          text: 'Broker',
-          link: 'https://axa.ch/en/private-customers.html',
-          external: true,
-        },
-        {
-          text: 'Job vacancies',
-          link: 'https://axa.ch/en/private-customers.html',
-        },
-        { text: 'MyAXA', link: 'https://axa.ch/en/private-customers.html' },
-        {
-          text: 'Customer reviews',
-          link: 'https://axa.ch/en/private-customers.html',
-        },
-        {
-          text: 'Garage Portal',
-          link: 'https://axa.ch/en/private-customers.html',
-        },
+        { text: 'Contact' },
+        { text: 'Report a claim' },
+        { text: 'Broker' },
+        { text: 'Job vacancies' },
+        { text: 'MyAXA' },
+        { text: 'Customer reviews' },
+        { text: 'Garage Portal' },
       ],
     },
     {
       title: 'axa worldwide',
-      items: [
-        {
-          text: 'AXA worldwide',
-          link: 'https://axa.ch/en/private-customers.html',
-          external: true,
-        },
-      ],
+      items: [{ text: 'AXA worldwide' }],
     },
   ];
 
   const social = {
     title: 'stay in touch',
     icons: [
-      { title: 'facebook', link: 'https://www.facebook.com/axach/' },
-      {
-        title: 'instagram',
-        link: 'https://www.instagram.com/axaswitzerland/',
-      },
-      { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
-      { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
-      { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
-      { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
+      { title: 'facebook' },
+      { title: 'instagram' },
+      { title: 'twitter' },
+      { title: 'xing' },
+      { title: 'youtube' },
+      { title: 'linkedin' },
     ],
   };
 
