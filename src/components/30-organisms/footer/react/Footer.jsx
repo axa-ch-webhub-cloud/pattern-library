@@ -46,7 +46,7 @@ const DemoFooter = () => {
         onItemClick={clickHandler}
         dynamic
       />
-      <p id="clicked-link">Last clicked linky: {clickHandlerOutput}</p>
+      <p id="clicked-link">Last clicked link: {clickHandlerOutput}</p>
     </div>
   );
 };
