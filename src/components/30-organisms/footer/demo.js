@@ -7,7 +7,7 @@ import Readme from './README.md';
 
 storiesOf('Organisms/Footer/Demos', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Footer - Dynamic Links', () => {
+  .add('Feature - Footer Callbacks', () => {
     const content = [
       {
         title: 'axa & you',
