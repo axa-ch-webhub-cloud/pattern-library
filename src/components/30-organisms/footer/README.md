@@ -1,6 +1,6 @@
 # Footer
 
-TODO Description
+The big version of the footer. It is made for the use of several custom links and also to display social media buttons to the user.
 
 ## Usage
 
@@ -11,7 +11,69 @@ npm install @axa-ch/footer
 ```js
 import '@axa-ch/footer';
 ...
-<axa-footer></axa-footer>
+
+const content = JSON.stringify([
+  {
+    title: 'axa & you',
+    items: [
+      {
+        text: 'Contact',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+      {
+        text: 'Report a claim',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+      {
+        text: 'Broker',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+      {
+        text: 'Job vacancies',
+        link: 'https://axa.ch/en/private-customers.html',
+      },
+      { text: 'MyAXA', link: 'https://axa.ch/en/private-customers.html' },
+      {
+        text: 'Customer reviews',
+        link: 'https://axa.ch/en/private-customers.html',
+      },
+      {
+        text: 'Garage Portal',
+        link: 'https://axa.ch/en/private-customers.html',
+      },
+    ],
+  },
+  {
+    title: 'axa worldwide',
+    items: [
+      {
+        text: 'AXA worldwide',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+    ],
+  },
+]);
+
+const social = JSON.stringify({
+  title: 'stay in touch',
+  icons: [
+    { title: 'facebook', link: 'https://www.facebook.com/axach/' },
+    {
+      title: 'instagram',
+      link: 'https://www.instagram.com/axaswitzerland/',
+    },
+    { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
+    { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
+    { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
+    { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
+  ],
+});
+
+return `<axa-footer content='${content}' social='${social}'></axa-footer>`;
 ```
 
 ### React
@@ -28,8 +90,82 @@ export default AXAFooterReact;
 ```
 
 ```js
-<AXAFooterReact onClick={handler}>
-</AXAFooterReact>
+...
+
+const content = [
+  {
+    title: 'axa & you',
+    items: [
+      {
+        text: 'Contact',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+      {
+        text: 'Report a claim',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+      {
+        text: 'Broker',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+      {
+        text: 'Job vacancies',
+        link: 'https://axa.ch/en/private-customers.html',
+      },
+      { text: 'MyAXA', link: 'https://axa.ch/en/private-customers.html' },
+      {
+        text: 'Customer reviews',
+        link: 'https://axa.ch/en/private-customers.html',
+      },
+      {
+        text: 'Garage Portal',
+        link: 'https://axa.ch/en/private-customers.html',
+      },
+    ],
+  },
+  {
+    title: 'axa worldwide',
+    items: [
+      {
+        text: 'AXA worldwide',
+        link: 'https://axa.ch/en/private-customers.html',
+        external: true,
+      },
+    ],
+  },
+];
+
+const social = {
+  title: 'stay in touch',
+  icons: [
+    { title: 'facebook', link: 'https://www.facebook.com/axach/' },
+    {
+      title: 'instagram',
+      link: 'https://www.instagram.com/axaswitzerland/',
+    },
+    { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
+    { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
+    { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
+    { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
+  ],
+};
+
+const reactToItemClick = () => {
+  console.log('A link in the footer was clicked');
+};
+
+...
+
+<AXAFooterReact
+  content={content}
+  social={social}
+  onItemClick={reactToItemClick}
+  dynamic // Necessary switch from static links to callbacks
+/>
+);
 ```
 
 ### Pure HTML pages
@@ -54,16 +190,14 @@ Import the footer-defining script and use a footer like this:
 
 ## Properties
 
-### Variant
+### content
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+Title and links to display within the footer.
 
-### Bar
+### social
 
-The attribute `bar` specifies...
+Social media icons and their corresponding links. Also coming with a customizable title.
 
-### onClick
+### dynamic
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+Dynamic specifies, if you want the footer to contain static links, that will just route you forward, or if you want to use callback to react on clicks yourself. If dynamic is not set, the callbacks you hand into the component will not have any effect.
