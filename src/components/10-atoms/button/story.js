@@ -38,7 +38,6 @@ storiesOf('Atoms/Button', module)
       <axa-button>Button</axa-button>
       <axa-button type="submit">Submit</axa-button>
       <axa-button type="reset">Reset</axa-button>
-      <axa-button type="file">File</axa-button>
     </div>`
   )
 

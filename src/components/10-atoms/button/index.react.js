@@ -9,9 +9,6 @@ export default createElement => ({
   disabled = false,
   onClick,
   children,
-  accept = 'image/jpg, image/jpeg, application/pdf, image/png',
-  capture = false,
-  multiple = true,
 }) =>
   withReact(createElement)(
     AXAButton.tagName,
@@ -22,9 +19,6 @@ export default createElement => ({
       motionOff,
       disabled,
       onClick,
-      accept,
-      capture,
-      multiple,
     },
     children
   );
