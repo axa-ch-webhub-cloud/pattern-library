@@ -182,7 +182,11 @@ Import the footer-defining script and use a footer like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-footer></axa-footer>
+    <axa-footer
+      content='[{"title":"axa &amp; you","items":[{"text":"Contact","link":"https://axa.ch/en/private-customers.html","external":true},{"text":"Report a claim","link":"https://axa.ch/en/private-customers.html","external":true},{"text":"Broker","link":"https://axa.ch/en/private-customers.html","external":true},{"text":"Job vacancies","link":"https://axa.ch/en/private-customers.html"},{"text":"MyAXA","link":"https://axa.ch/en/private-customers.html"},{"text":"Customer reviews","link":"https://axa.ch/en/private-customers.html"},{"text":"Garage Portal","link":"https://axa.ch/en/private-customers.html"}]},{"title":"axa worldwide","items":[{"text":"AXA worldwide","link":"https://axa.ch/en/private-customers.html","external":true}]}]'
+      social='{"title":"stay in touch","icons":[{"title":"facebook","link":"https://www.facebook.com/axach/"},{"title":"instagram","link":"https://www.instagram.com/axaswitzerland/"},{"title":"twitter","link":"https://twitter.com/axa_schweiz"},{"title":"xing","link":"https://www.xing.com/companies/AXAWINTERTHUR"},{"title":"youtube","link":"https://www.youtube.com/axaschweiz"},{"title":"linkedin","link":"https://www.linkedin.com/company/axa/"}]}'
+    ></axa-footer>
+
     <script src="node_modules/@axa-ch/footer/dist/index.js"></script>
   </body>
 </html>
