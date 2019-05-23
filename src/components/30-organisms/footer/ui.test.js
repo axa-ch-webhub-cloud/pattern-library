@@ -218,3 +218,58 @@ test('should render footer with working callbacks', async t => {
 
   await t.expect($result.innerText).contains('facebook');
 });
+
+fixture('Footer - Demo Smoketest').page(
+  `${host}/iframe.html?id=organisms-footer-demos--feature-footer-callbacks`
+);
+
+test('should render footer with working callbacks', async t => {
+  // Smoketest
+  const $axaElem = await Selector(TAG);
+  await t.expect($axaElem.exists).ok();
+  const $axaElemShadow = await Selector(
+    () => document.querySelector('axa-footer').shadowRoot
+  );
+  const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
+  await t.expect($axaElemShadowEl.exists).ok();
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('background-color'))
+    .eql('rgb(59, 63, 216)');
+
+  const $footer = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__tablet')
+  );
+  // /Smoketest
+
+  const $contactLink = $footer.find('a').withText('Contact');
+  await t.expect($contactLink.visible).ok();
+
+  const $result = Selector('#clicked-link');
+  await t.expect($result.innerText).contains(' -');
+
+  await t.click($contactLink);
+
+  await t.expect($result.innerText).contains('Contact');
+
+  const $axaWorldwideLink = $footer.find('a').withText('AXA worldwide');
+  await t.expect($axaWorldwideLink.visible).ok();
+
+  await t.click($axaWorldwideLink);
+
+  await t.expect($result.innerText).contains('AXA worldwide');
+
+  const $facebookButton = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__tablet')
+      .querySelector('.o-footer__social-media-list')
+      .querySelector('a')
+  );
+
+  await t.expect($facebookButton.visible).ok();
+  await t.click($facebookButton);
+
+  await t.expect($result.innerText).contains('facebook');
+});
