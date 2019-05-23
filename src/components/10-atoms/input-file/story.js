@@ -8,10 +8,7 @@ storiesOf('Atoms/Input File', module)
   .addDecorator(withMarkdown(Readme))
 
   /* Default */
-  .add(
-    'Input File - Default',
-    () => '<axa-input-file>Default</axa-input-file>'
-  )
+  .add('Input File - Default', () => '<axa-input-file>Default</axa-input-file>')
 
   /* Icon */
   .add(
@@ -28,7 +25,8 @@ storiesOf('Atoms/Input File', module)
   /* Accept */
   .add(
     'Input File - Accept',
-    () => '<axa-input-file accept="application/pdf">Accept only PDF</axa-input-file>'
+    () =>
+      '<axa-input-file accept="application/pdf">Accept only PDF</axa-input-file>'
   )
 
   /* Capture */
@@ -36,8 +34,8 @@ storiesOf('Atoms/Input File', module)
     'Input File - Capture',
     () => `
     <div>
-      <axa-input-file accept="image" capture>Capture</axa-input-file>
-      <axa-input-file capture="user">Capture User</axa-input-file>
-      <axa-input-file capture="environment">Capture Environment</axa-input-file>
+      <axa-input-file capture="capture">Capture</axa-input-file>
+      <axa-input-file accept="image/*" capture>Capture Image</axa-input-file>
+      <axa-input-file accept="video/*" capture>Capture Video</axa-input-file>
     </div>`
   );

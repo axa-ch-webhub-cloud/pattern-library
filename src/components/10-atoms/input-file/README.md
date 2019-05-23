@@ -82,15 +82,15 @@ The String attribute `accept` specifies a filter for which file types the user c
 
 ### Capture
 
-The String attribute `capture` specifies which camera or microphone to use for capture of image, video and audio data.
+The Boolean attribute `capture` indicates that the capture of media directly from the device’s camera and/or microphone is preferred.
 
-| Attribute               | Details                                     |
-| ----------------------- | ------------------------------------------- |
-| `capture=""`            | Allow every file type                       |
-| `capture="user"`        | Use user-facing camera and/or microphone    |
-| `capture="environment"` | Use outward-facing camera and/or microphone |
+| Attribute                            | Details                           |
+| ------------------------------------ | --------------------------------- |
+| `capture`                            | Allow capturing media from device |
+| `accept="audio/*" capture="capture"` | Allow capturing audio from device |
+| `accept="video/*" capture=""`        | Allow capturing video from device |
 
-If this attribute is missing, the user agent is free to decide on its own what to do. If the requested facing mode isn't available, the user agent may fall back to its preferred default mode.
+You can restrict the different media types like audio, video or photo with the accept attribute.
 
 ### Multiple
 
