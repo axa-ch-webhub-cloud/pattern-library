@@ -83,7 +83,6 @@ storiesOf('Organisms/Footer/Demos', module)
     wrapper.appendChild(clickedLink);
 
     footer.addEventListener('axa-link-click', ev => {
-      const clickedLink = document.getElementById('clicked-link');
       clickedLink.innerText = `Last clicked link: ${ev.detail}`;
     });
 
