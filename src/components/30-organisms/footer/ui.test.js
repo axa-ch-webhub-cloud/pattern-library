@@ -153,13 +153,13 @@ test('should correctly render social media title in desktop view', async t => {
   await t.expect($socialMediaTitle.textContent).contains('stay in touch');
 
   await t.resizeWindow(575, 400);
-  await t.expect($socialMediaTitle.visible).notOk();
+  await t.expect($socialMediaTitle.getStyleProperty('display')).eql('none');
   await t.resizeWindow(767, 400);
-  await t.expect($socialMediaTitle.visible).notOk();
+  await t.expect($socialMediaTitle.getStyleProperty('display')).eql('none');
   await t.resizeWindow(991, 400);
-  await t.expect($socialMediaTitle.visible).notOk();
+  await t.expect($socialMediaTitle.getStyleProperty('display')).eql('none');
   await t.resizeWindow(992, 400);
-  await t.expect($socialMediaTitle.visible).ok();
+  await t.expect($socialMediaTitle.getStyleProperty('display')).eql('block');
   await t.resizeWindow(1200, 400);
-  await t.expect($socialMediaTitle.visible).ok();
+  await t.expect($socialMediaTitle.getStyleProperty('display')).eql('block');
 });
