@@ -18,9 +18,9 @@ storiesOf('Atoms/Input File/Demos', module)
       const {
         target: { files },
       } = e;
-      counter += files.length;
+      counter = files.length;
       inputFile.querySelector(
-        '.a-input-file__flex-wrapper'
+        '.a-input-file'
       ).innerHTML = `You have chosen ${counter} files`;
     });
     return inputFile;
