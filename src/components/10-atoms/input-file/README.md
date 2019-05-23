@@ -98,7 +98,7 @@ The Boolean attribute `multiple` specifies how many file the user can select.
 
 ### Large
 
-The Boolean attribute `large` specifies the size of a button. Setting this attribute will change the height of a button.
+The Boolean attribute `large` specifies the size of an input file. Setting this attribute will change the height of an input file.
 
 ### motionOff
 
@@ -106,7 +106,7 @@ The Boolean attribute `motionoff` deactivates hover animation.
 
 ### disabled
 
-The Boolean attribute `disabled` disables the button natively.
+The Boolean attribute `disabled` disables the input file, but not natively like in the button.
 
 ### icon
 
