@@ -8,7 +8,7 @@ import Readme from '../README.md';
 
 storiesOf('Organisms/Footer/React', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Footer React', () => {
+  .add('Feature - Footer Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
     ReactDOM.render(<DemoFooter />, div);
