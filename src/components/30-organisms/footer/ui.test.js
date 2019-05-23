@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Footer - basic functionality')
+fixture('Footer - Basic Functionality')
   .page(`${host}/iframe.html?id=organisms-footer--footer`)
   .beforeEach(async t => {
     await t.maximizeWindow();
@@ -162,4 +162,44 @@ test('should correctly render social media title in desktop view', async t => {
   await t.expect($socialMediaTitle.getStyleProperty('display')).eql('block');
   await t.resizeWindow(1200, 400);
   await t.expect($socialMediaTitle.getStyleProperty('display')).eql('block');
+});
+
+fixture('Footer - React Smoketest').page(
+  `${host}/iframe.html?id=organisms-footer-react--feature-footer-callbacks`
+);
+
+test('should render footer with working callbacks', async t => {
+  const $axaElem = await Selector(TAG);
+  await t.expect($axaElem.exists).ok();
+  const $axaElemShadow = await Selector(
+    () => document.querySelector('axa-footer').shadowRoot
+  );
+  const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
+  await t.expect($axaElemShadowEl.exists).ok();
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('background-color'))
+    .eql('rgb(59, 63, 216)');
+
+  const $footer = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__tablet')
+  );
+
+  const $contactLink = $footer.find('a').withText('Contact');
+  await t.expect($contactLink.exists).ok();
+
+  const $axaWorldwideLink = $footer.find('a').withText('AXA worldwide');
+  await t.expect($axaWorldwideLink.exists).ok();
+
+  const $facebookButton = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector('.o-footer__tablet')
+      .querySelector('.o-footer__social-media-list')
+      .querySelector('a[href="https://www.facebook.com/axach/"]')
+      .querySelector('svg')
+  );
+
+  await t.expect($facebookButton.visible).ok();
 });
