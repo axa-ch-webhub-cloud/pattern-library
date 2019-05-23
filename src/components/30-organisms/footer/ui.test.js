@@ -169,6 +169,7 @@ fixture('Footer - React Smoketest').page(
 );
 
 test('should render footer with working callbacks', async t => {
+  // Smoketest
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -185,12 +186,24 @@ test('should render footer with working callbacks', async t => {
       .querySelector('axa-footer')
       .shadowRoot.querySelector('.o-footer__tablet')
   );
+  // /Smoketest
 
   const $contactLink = $footer.find('a').withText('Contact');
   await t.expect($contactLink.visible).ok();
 
+  const $result = Selector('#clicked-link');
+  await t.expect($result.innerText).contains(' -');
+
+  await t.click($contactLink);
+
+  await t.expect($result.innerText).contains('Contact');
+
   const $axaWorldwideLink = $footer.find('a').withText('AXA worldwide');
   await t.expect($axaWorldwideLink.visible).ok();
+
+  await t.click($axaWorldwideLink);
+
+  await t.expect($result.innerText).contains('AXA worldwide');
 
   const $facebookButton = Selector(() =>
     document
@@ -201,4 +214,7 @@ test('should render footer with working callbacks', async t => {
   );
 
   await t.expect($facebookButton.visible).ok();
+  await t.click($facebookButton);
+
+  await t.expect($result.innerText).contains('facebook');
 });
