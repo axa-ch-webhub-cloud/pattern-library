@@ -62,17 +62,4 @@ storiesOf('Atoms/Button', module)
   .add(
     'Button - icon',
     () => `<axa-button icon="arrow-right">Icon</axa-button>`
-  )
-
-  /* File */
-  .add(
-    'Button - File',
-    () => `
-    <div>
-      <axa-button type="file">File</axa-button>
-      <axa-button type="file" icon="arrow-right">File + Icon</axa-button>
-      <axa-button type="file" multiple="multiple">File + Multiple</axa-button>
-      <axa-button type="file" accept="application/pdf">File + Accept (PDF)</axa-button>
-      <axa-button type="file" capture>File + Capture</axa-button>
-    </div>`
   );
