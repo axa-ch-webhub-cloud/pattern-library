@@ -168,7 +168,7 @@ fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-react--feature-footer-callbacks`
 );
 
-test('should render footer with working callbacks', async t => {
+test('should render footer with working react callbacks', async t => {
   // Smoketest
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
@@ -223,7 +223,7 @@ fixture('Footer - Demo Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-demos--feature-footer-callbacks`
 );
 
-test('should render footer with working callbacks', async t => {
+test('should render footer with working native callbacks', async t => {
   // Smoketest
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
