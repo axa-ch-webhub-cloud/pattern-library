@@ -95,37 +95,51 @@ test('should render accordion only in mobile mode', async t => {
   await t.expect($accordion.visible).ok();
 });
 
-test.only('should correctly open accordion on click', async t => {
+test('should correctly open accordion on click', async t => {
   await t.resizeWindow(575, 400);
 
-  const $footer = Selector(() =>
+  const $accordionButtons = Selector(
+    () => document.querySelector('axa-footer').shadowRoot
+  );
+
+  const $accordionFirstButton = $accordionButtons
+    .find('.o-footer__accordion-content')
+    .nth(0);
+
+  const $accordionSecondButton = $accordionButtons
+    .find('.o-footer__accordion-content')
+    .nth(1);
+
+  await t.expect($accordionSecondButton.exists).ok();
+  await t.expect($accordionSecondButton.visible).ok();
+
+  const $footerMobile = Selector(() =>
     document
       .querySelector('axa-footer')
       .shadowRoot.querySelector('.o-footer__mobile')
   );
+  const $accordionFirstContent = $footerMobile
+    .find('.o-footer__accordion-content-panel')
+    .nth(0);
+  const $accordionSecondContent = $footerMobile
+    .find('.o-footer__accordion-content-panel')
+    .nth(1);
 
-  const $contactLink = $footer.find('a').withText('Contact');
-  await t.expect($contactLink.visible).notOk();
-
-  const $accordionFirstButton = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__accordion-content')
-  );
+  await t
+    .expect($accordionFirstContent.getStyleProperty('max-height'))
+    .eql('0px');
+  await t
+    .expect($accordionSecondContent.getStyleProperty('max-height'))
+    .eql('0px');
 
   await t.click($accordionFirstButton);
 
-  await t.expect($contactLink.visible).ok();
-
-  const $accordionSecondButtons = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelectorAll('.o-footer__accordion-content')
-  );
-  const $accordionSecondButton = $accordionSecondButtons.find('strong');
-  await t.click($accordionSecondButton);
-
-  await t.expect($contactLink.visible).ok();
+  await t
+    .expect($accordionFirstContent.getStyleProperty('max-height'))
+    .notEql('0px');
+  await t
+    .expect($accordionSecondContent.getStyleProperty('max-height'))
+    .eql('0px');
 });
 
 test('should correctly render social media title in desktop view', async t => {
