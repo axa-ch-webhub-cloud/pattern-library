@@ -35,9 +35,8 @@ const DemoFooter = () => {
     ],
   };
 
-  const clickHandler = () => {
-    console.log('I was clicked!');
-  };
+  const [clickHandlerOutput, setClickHandlerOutput] = useState('-');
+  const clickHandler = ev => setClickHandlerOutput(ev);
 
   return (
     <div>
@@ -47,6 +46,7 @@ const DemoFooter = () => {
         onItemClick={clickHandler}
         dynamic
       />
+      <p id="clicked-link">Last clicked linky: {clickHandlerOutput}</p>
     </div>
   );
 };
