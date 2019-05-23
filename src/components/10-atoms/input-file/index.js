@@ -68,14 +68,11 @@ class AXAInputFile extends NoShadowDOM {
       'a-input-file--inverted': variant === 'inverted',
       'a-input-file--large': large,
       'a-input-file--motion': !motionOff,
+      'a-input-file--disabled': disabled,
     };
 
     return html`
-      <label
-        class="a-input-file ${classMap(classes)}"
-        for="${this.refId}"
-        ?disabled="${disabled}"
-      >
+      <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
         ${icon &&
           html`
             <axa-icon class="a-input-file__icon" icon="${icon}"></axa-icon>

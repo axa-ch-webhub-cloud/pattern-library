@@ -16,6 +16,12 @@ storiesOf('Atoms/Input File', module)
     () => '<axa-input-file icon="arrow-right">Icon</axa-input-file>'
   )
 
+  /* Disabled */
+  .add(
+    'Input File - Disabled',
+    () => '<axa-input-file disabled>Disabled</axa-input-file>'
+  )
+
   /* Multiple */
   .add(
     'Input File - Multiple',

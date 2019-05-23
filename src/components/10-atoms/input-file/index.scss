@@ -29,14 +29,6 @@
     border-color: $color-prim-blue-deep-sapphire;
   }
 
-  &:disabled {
-    color: $color-prim-gray-dusty;
-    background-color: $color-prim-gray-mercury;
-    border-color: $color-prim-gray-mercury;
-    border-bottom-color: $color-prim-gray-silver;
-    pointer-events: none;
-  }
-
   &__icon {
     margin-right: 12px;
     margin-left: 0px;
@@ -169,4 +161,12 @@
       background-color: $color-prim-white;
     }
   }
+}
+
+.a-input-file--disabled {
+  color: $color-prim-gray-dusty;
+  background-color: $color-prim-gray-mercury;
+  border-color: $color-prim-gray-mercury;
+  border-bottom-color: $color-prim-gray-silver;
+  pointer-events: none;
 }
