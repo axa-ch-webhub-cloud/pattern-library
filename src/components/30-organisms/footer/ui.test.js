@@ -187,18 +187,17 @@ test('should render footer with working callbacks', async t => {
   );
 
   const $contactLink = $footer.find('a').withText('Contact');
-  await t.expect($contactLink.exists).ok();
+  await t.expect($contactLink.visible).ok();
 
   const $axaWorldwideLink = $footer.find('a').withText('AXA worldwide');
-  await t.expect($axaWorldwideLink.exists).ok();
+  await t.expect($axaWorldwideLink.visible).ok();
 
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
       .shadowRoot.querySelector('.o-footer__tablet')
       .querySelector('.o-footer__social-media-list')
-      .querySelector('a[href="https://www.facebook.com/axach/"]')
-      .querySelector('svg')
+      .querySelector('a')
   );
 
   await t.expect($facebookButton.visible).ok();
