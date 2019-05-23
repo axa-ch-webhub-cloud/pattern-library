@@ -18,7 +18,7 @@ class AXAButton extends LitElement {
 
   static get properties() {
     return {
-      // button, submit, reset, file
+      // button, submit, reset
       type: { type: String, reflect: true },
       // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
@@ -26,11 +26,7 @@ class AXAButton extends LitElement {
       large: { type: Boolean },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-      accept: { type: String },
-      capture: { type: Boolean },
-      multiple: { type: Boolean },
       onClick: { type: Function },
-
     };
   }
 
@@ -42,9 +38,6 @@ class AXAButton extends LitElement {
     this.large = false;
     this.motionOff = false;
     this.disabled = false;
-    this.accept = 'image/jpg, image/jpeg, application/pdf, image/png'
-    this.capture = false;
-    this.multiple = true;
     this.onClick = () => {};
   }
 
@@ -69,66 +62,30 @@ class AXAButton extends LitElement {
   }
 
   render() {
-    const {
-      type,
-      large,
-      motionOff,
-      disabled,
-      variant = '',
-      icon = '',
-      accept,
-      capture,
-      multiple,
-    } = this;
-
+    const { type, large, motionOff, disabled, variant = '', icon = '' } = this;
     const classes = {
       'a-button--secondary': variant === 'secondary',
       'a-button--red': variant === 'red',
       'a-button--inverted': variant === 'inverted',
       'a-button--large': large,
       'a-button--motion': !motionOff,
-      'a-button--upload': this.type === 'file',
     };
 
     return html`
-      ${this.type === 'file'
-        ? html`
-          <label
-            class="a-button ${classMap(classes)}"
-            for="file-upload"
-            ?disabled="${disabled}"
-            @click="${this.onClick}"
-          ><div class="a-button__flex-wrapper">
-          ${icon &&
+      <button
+        type="${type}"
+        class="a-button ${classMap(classes)}"
+        ?disabled="${disabled}"
+        @click="${this.onClick}"
+      >
+        <div class="a-button__flex-wrapper">
+          <slot></slot> ${icon &&
             html`
-              <axa-icon class="a-button--upload__icon" icon="${icon}"></axa-icon>
+              <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
             `}
-            <slot></slot>
-          </div>
-          </label>
-          <input
-            type="${type}"
-            accept="${accept}"
-            ?multiple="${multiple}"
-            ?capture="${capture}"
-            class="a-button__input"
-            id="file-upload"
-          />`
-        : html`
-          <button
-            type="${type}"
-            class="a-button ${classMap(classes)}"
-            ?disabled="${disabled}"
-            @click="${this.onClick}"
-          >
-            <div class="a-button__flex-wrapper">
-              <slot></slot> ${icon &&
-                html`
-                  <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
-                `}
-            </div>
-          </button>`
-      }`;
+        </div>
+      </button>
+    `;
   }
 
   disconnectedCallback() {
