@@ -44,7 +44,7 @@ storiesOf('Molecules/Top content bar', module)
     'Top content bar - Default in text link',
     () =>
       `<axa-top-content-bar>
-          Some children <axa-link> and a link </axa-link> in the text
+          Some children <axa-link>and a link</axa-link> in the text
        </axa-top-content-bar>`
   )
   .add(

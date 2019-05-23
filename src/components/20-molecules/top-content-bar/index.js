@@ -37,7 +37,7 @@ class AXATopContentBar extends LitElement {
   firstUpdated() {
     const links = Array.prototype.slice.call(this.querySelectorAll('axa-link'));
     links.forEach(link => {
-      link.setAttribute('variant', 'intext-white');
+      link.setAttribute('variant', 'hyperlink-white-underline');
     });
   }
 

@@ -57,7 +57,7 @@ class AXALink extends LitElement {
       variant.includes('arrowleft-animated') ||
       variant.includes('arrowright-animated');
 
-    const classes = classMap({
+    const classes = {
       'a-link--simple': isSimple,
       'a-link--icon': isIcon,
       'a-link--red': isRed,
@@ -65,11 +65,11 @@ class AXALink extends LitElement {
       'a-link--hyperlink-white-underline': islinkWhiteUnderline,
       'a-link--white': isWhite,
       'a-link--motion': isMotion,
-    });
+    };
 
     return html`
       <a
-        class="a-link ${classes}"
+        class="a-link ${classMap(classes)}"
         href="${this.href}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
