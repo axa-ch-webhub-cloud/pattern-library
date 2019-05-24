@@ -3,7 +3,7 @@ import { Icon } from '@axa-ch/icon/lib/index.d';
 
 type Variant = 'secondary' | 'red' | 'inverted';
 
-interface AXAButtonProps {
+interface AXAInputFileProps {
   variant?: Variant;
   icon?: Icon;
   id?: String;
@@ -16,8 +16,8 @@ interface AXAButtonProps {
   onChange?: () => void;
 }
 
-declare function createAXAButton(
+declare function createAXAInputFile(
   createElement: typeof React.createElement
-): React.ComponentType<AXAButtonProps>;
+): React.ComponentType<AXAInputFileProps>;
 
-export = createAXAButton;
+export = createAXAInputFile;
