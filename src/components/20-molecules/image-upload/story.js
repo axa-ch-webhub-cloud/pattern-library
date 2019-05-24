@@ -6,4 +6,7 @@ import Readme from './README.md';
 
 storiesOf('Molecules/Image upload', module)
   .addDecorator(withMarkdown(Readme))
-  .add('Image upload - default', () => '<axa-image-upload>Some children</axa-image-upload>')
+  .add(
+    'Image upload - default',
+    () => '<axa-image-upload>Image Upload</axa-image-upload>'
+  );

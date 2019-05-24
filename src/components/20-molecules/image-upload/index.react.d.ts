@@ -1,9 +1,7 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
-
 interface AXAImageUploadProps {
-  variant?: Variant;
+  inputFileText?: String;
   onClick?: () => void;
 }
 
