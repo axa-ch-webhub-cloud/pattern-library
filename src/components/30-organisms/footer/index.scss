@@ -6,93 +6,139 @@
 
   // ### Baustelle
   @include breakpoint($mediaquery-xsm) {
-    &__accordion-content-panel {
-      // Reset browser styles for ul
-      margin: 0;
-      text-indent: 0;
-      list-style-type: none;
-      padding: 0;
+    &__title-desktop {
+      display: none;
+    }
 
-      background-color: $color-prim-blue-azure;
-      overflow: hidden;
+    &__accordion-content {
+      @include typo(primary, default, medium);
+      display: flex;
+      justify-content: space-between;
+      color: $color-prim-white;
+      background-color: $color-prim-blue-dark-indigo;
+      padding: 20px 30px 20px 30px;
+      width: 100%;
+      text-align: left;
 
-      max-height: 0;
-      transition: max-height 0.2s ease-out;
+      // Reset browser styles for button
+      border: none;
+      outline: 0;
 
-      &--open {
-        max-height: 400px;
+      border-bottom: 1px solid $color-prim-blue-st-tropaz;
+      text-transform: uppercase;
+
+      svg {
+        width: 10px;
+        height: 10px;
+        color: $color-prim-gray-dusty;
       }
 
-      li {
-        @include typo(primary, xx-small, default);
+      &-caret {
+        transition: transform 0.2s ease-in-out;
+        transform: rotate(180deg);
 
+        &--open {
+          transform: rotate(0deg);
+        }
+      }
+
+      &-panel {
+        // Reset browser styles for ul
+        margin: 0;
+        text-indent: 0;
+        list-style-type: none;
         padding: 0;
-        padding: 20px 30px;
-        border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
-        &:last-child {
-          border-bottom: none;
+        background-color: $color-prim-blue-azure;
+        overflow: hidden;
+
+        max-height: 0;
+        transition: max-height 0.2s ease-out;
+
+        &--open {
+          max-height: 400px;
         }
 
-        a {
-          text-decoration: none;
-          color: $color-prim-white;
+        li {
+          @include typo(primary, xx-small, default);
+
+          padding: 0;
+          padding: 20px 30px;
+          border-bottom: 1px solid $color-prim-blue-dark-indigo;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          a {
+            text-decoration: none;
+            color: $color-prim-white;
+          }
         }
       }
     }
   }
 
   @include breakpoint($mediaquery-sm-up) {
+    &__title-desktop {
+      display: block;
+      @include typo(primary, medium, bold);
+
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    &__accordion-content {
+      display: none;
+    }
+
     &__accordion {
       margin: 0 10px;
     }
 
-    &__accordion-content-panel {
-      // Reset browser styles for ul
-      margin: 0;
-      text-indent: 0;
-      list-style-type: none;
-      padding: 0;
-
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      padding-top: 10px;
-      max-width: 350px;
-
-      &-list-item {
-        width: 165px;
-        margin-top: 8px;
-        padding: 5px 0 !important;
-
-        @include typo(primary, default, default);
-        line-height: 1.21;
+    &__accordion-content {
+      &-panel {
+        // Reset browser styles for ul
+        margin: 0;
+        text-indent: 0;
+        list-style-type: none;
         padding: 0;
 
-        &:last-child {
-          border-bottom: none;
-        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 10px;
+        max-width: 350px;
 
-        a {
-          text-decoration: none;
-          color: $color-prim-white;
+        &-list-item {
+          width: 165px;
+          margin-top: 8px;
+          padding: 5px 0 !important;
+
+          @include typo(primary, default, default);
+          line-height: 1.21;
+          padding: 0;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          a {
+            text-decoration: none;
+            color: $color-prim-white;
+          }
         }
       }
     }
   }
 
-  // ### /Baustelle
-
-  &__title {
-    @include typo(primary, medium, bold);
-
-    text-transform: uppercase;
-    line-height: 1.5;
-  }
-
   &__social-media {
     &-title {
+      @include typo(primary, medium, bold);
       display: none;
+
+      text-transform: uppercase;
+      line-height: 1.5;
     }
 
     &-list {
@@ -119,53 +165,6 @@
     }
   }
 
-  // ### Mobile - The accordion is only for small mobile devices
-  @include breakpoint($mediaquery-xsm) {
-    &__mobile {
-      display: block;
-    }
-
-    &__non-mobile {
-      display: none;
-    }
-  }
-
-  &__accordion-content {
-    @include typo(primary, default, medium);
-
-    display: flex;
-    justify-content: space-between;
-    color: $color-prim-white;
-    background-color: $color-prim-blue-dark-indigo;
-    padding: 20px 30px 20px 30px;
-    width: 100%;
-    text-align: left;
-
-    // Reset browser styles for button
-    border: none;
-    outline: 0;
-
-    border-bottom: 1px solid $color-prim-blue-st-tropaz;
-    text-transform: uppercase;
-
-    svg {
-      width: 10px;
-      height: 10px;
-      color: $color-prim-gray-dusty;
-    }
-
-    &-caret {
-      transition: transform 0.2s ease-in-out;
-      transform: rotate(180deg);
-
-      &--open {
-        transform: rotate(0deg);
-      }
-    }
-  }
-  // ### /Mobile
-
-  // ### Non-Mobile
   @include breakpoint($mediaquery-sm-up) {
     padding: 40px 0;
 
@@ -221,5 +220,18 @@
         padding: 20px 0;
       }
     }
-  } // ### /Non-Mobile
+  }
+
+  @include breakpoint($mediaquery-xsm) {
+    &__mobile {
+      display: block;
+    }
+
+    &__non-mobile {
+      display: none;
+    }
+  }
+  // ### /Baustelle
+
+  // ### Mobile - The accordion is only for small mobile devices
 }

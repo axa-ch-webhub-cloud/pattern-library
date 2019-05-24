@@ -131,6 +131,7 @@ class AXAFooter extends LitElement {
 
   getFooterHeader(contentItem, index) {
     return html`
+      <strong class="o-footer__title-desktop">${contentItem.title}</strong>
       <button
         class="o-footer__accordion-content"
         @click="${ev => this.handleClick(ev, index)}"
@@ -175,7 +176,7 @@ class AXAFooter extends LitElement {
                 contentItem =>
                   html`
                     <div class="o-footer__accordion">
-                      ${this.getFooterHeaderDesktop(contentItem)}
+                      ${this.getFooterHeader(contentItem)}
                       ${this.getFooterContentList(contentItem)}
                     </div>
                   `
