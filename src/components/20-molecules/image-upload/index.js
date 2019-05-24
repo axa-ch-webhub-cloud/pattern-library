@@ -88,10 +88,35 @@ class AXAImageUpload extends LitElement {
     `;
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
+  handleImageUploadButtonClick(e) {
+    e.stopPropagation();
+    console.log(e, 'button klick');
+  }
 
-    // Cleanup and reset (i.e event listeners)
+  handleImageUploadButtonChange(e) {
+    e.stopPropagation();
+    console.log(e, 'button change', e.monitor);
+    const { files } = e.target;
+  }
+
+  handleImageUploadDropZoneDragover(e) {
+    e.preventDefault();
+    console.log(e, 'dragover');
+    e.dataTransfer.dropEffect = 'copy';
+  }
+
+  handleImageUploadDropZoneDragleave(e) {
+    console.log(e, 'dragleave');
+  }
+
+  handleImageUploadDropZoneDrop(e) {
+    e.preventDefault();
+    const { files } = e.dataTransfer;
+    console.log(e, 'drop');
+  }
+
+  handleImageUploadDropZoneClick(e) {
+    console.log(e, 'zone click');
   }
 }
 
