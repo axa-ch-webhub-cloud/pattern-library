@@ -220,14 +220,4 @@
       }
     }
   }
-
-  @include breakpoint($mediaquery-xsm) {
-    &__mobile {
-      display: block;
-    }
-
-    &__non-mobile {
-      display: none;
-    }
-  }
 }

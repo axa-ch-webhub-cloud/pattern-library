@@ -147,35 +147,17 @@ class AXAFooter extends LitElement {
     return html`
       <footer class="o-footer">
         <axa-container>
-          <div class="o-footer__mobile">
-            <div class="o-footer__collection">
-              ${repeat(
-                this.content,
-                (contentItem, index) =>
-                  html`
-                    <div class="o-footer__accordion">
-                      ${this.getFooterHeader(contentItem, index)}
-                      ${this.getFooterContentList(contentItem)}
-                    </div>
-                  `
-              )}
-              ${this.getFooterIcons()}
-            </div>
-          </div>
-
-          <div class="o-footer__non-mobile">
-            <div class="o-footer__collection">
-              ${repeat(
-                this.content,
-                (contentItem, index) =>
-                  html`
-                    <div class="o-footer__accordion">
-                      ${this.getFooterHeader(contentItem, index)}
-                      ${this.getFooterContentList(contentItem)}
-                    </div>
-                  `
-              )}
-            </div>
+          <div class="o-footer__collection">
+            ${repeat(
+              this.content,
+              (contentItem, index) =>
+                html`
+                  <div class="o-footer__accordion">
+                    ${this.getFooterHeader(contentItem, index)}
+                    ${this.getFooterContentList(contentItem)}
+                  </div>
+                `
+            )}
             ${this.getFooterIcons()}
           </div>
         </axa-container>
