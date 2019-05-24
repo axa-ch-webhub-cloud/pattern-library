@@ -123,12 +123,6 @@ class AXAFooter extends LitElement {
     `;
   }
 
-  getFooterHeaderDesktop(contentItem) {
-    return html`
-      <strong class="o-footer__title">${contentItem.title}</strong>
-    `;
-  }
-
   getFooterHeader(contentItem, index) {
     return html`
       <strong class="o-footer__title-desktop">${contentItem.title}</strong>
