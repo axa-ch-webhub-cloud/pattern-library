@@ -4,6 +4,7 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  // ### Baustelle
   @include breakpoint($mediaquery-xsm) {
     &__accordion-content-panel {
       // Reset browser styles for ul
@@ -75,6 +76,8 @@
       }
     }
   }
+
+  // ### /Baustelle
 
   &__title {
     @include typo(primary, medium, bold);
