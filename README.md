@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop)](https://travis-ci.org/axa-ch/patterns-library)
 
-## [>> Pattern Library](https://patterns.axa.ch)
+## [>> Pattern Library Demo](https://patterns.axa.ch)
 
 [Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
 [Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md)
@@ -10,10 +10,10 @@
 
 ## Communication
 
-Use the following channels for different kind of requests/reports:
+Use the following channels for different kinds of requests/reports:
 - Bug, small change, "wish": https://github.com/axa-ch/patterns-library/issues
-- Questions, ask for help, request presentations, etc: Slack #patterns-lib-devs
-- Feature requests: Slack @martin.stuedle
+- Questions, ask for help, request product presentations, etc: Slack #patterns-lib-devs
+- Feature requests (Components, etc): Slack @martin.stuedle
 
 ## What we deliver
 We release holistic and self contained WebComponents based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), wrapped by [LitElement](https://github.com/Polymer/lit-element) (maintained by Google).
