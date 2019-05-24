@@ -1,10 +1,7 @@
 import withReact from '../../../utils/with-react';
 import AXAImageUpload from './index';
 
-export default createElement => ({
-  inputFileText = 'Datei hochladen',
-  children,
-}) =>
+export default createElement => ({ inputFileText = 'Upload file', children }) =>
   withReact(createElement)(
     AXAImageUpload.tagName,
     {
