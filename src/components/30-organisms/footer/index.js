@@ -107,30 +107,6 @@ class AXAFooter extends LitElement {
       >
         ${repeat(
           contentItem.items,
-          i => html`
-            <li class="o-footer__accordion-content-panel-list-item">
-              <a
-                href=${i.link}
-                target="${i.external ? '_blank' : '_top'}"
-                @click="${ev => this.handleLinkClick(ev, i.text)}"
-                >${i.text}</a
-              >
-            </li>
-          `
-        )}
-      </ul>
-    `;
-  }
-
-  getMobileContentList(contentItem) {
-    return html`
-      <ul
-        class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
-          ? '--open'
-          : ''}"
-      >
-        ${repeat(
-          contentItem.items,
           i =>
             html`
               <li class="o-footer__accordion-content-panel-list-item">
@@ -171,7 +147,7 @@ class AXAFooter extends LitElement {
                         >${svg([CaretSvg || ''])}</span
                       >
                     </button>
-                    ${this.getMobileContentList(contentItem)}
+                    ${this.getFooterContentList(contentItem)}
                   </div>
                 `
             )}

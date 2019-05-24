@@ -3,9 +3,8 @@
   background-color: $color-prim-blue-dark-indigo;
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
-
-  &__accordion-content-panel {
-    @include breakpoint($mediaquery-xsm) {
+  @include breakpoint($mediaquery-xsm) {
+    &__accordion-content-panel {
       // Reset browser styles for ul
       margin: 0;
       text-indent: 0;
@@ -39,8 +38,10 @@
         }
       }
     }
+  }
 
-    @include breakpoint($mediaquery-sm-up) {
+  @include breakpoint($mediaquery-sm-up) {
+    &__accordion-content-panel {
       // Reset browser styles for ul
       margin: 0;
       text-indent: 0;
