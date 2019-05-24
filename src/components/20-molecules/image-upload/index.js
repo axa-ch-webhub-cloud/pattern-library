@@ -16,14 +16,15 @@ class AXAImageUpload extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
+      inputFileText: { type: String },
       onClick: { type: Function },
     };
   }
 
   constructor() {
     super();
+    this.inputFileText = 'Datei hochladen';
     this.onClick = () => {};
   }
 
