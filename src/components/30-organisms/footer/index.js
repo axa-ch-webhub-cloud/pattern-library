@@ -100,7 +100,11 @@ class AXAFooter extends LitElement {
 
   getFooterContentList(contentItem) {
     return html`
-      <ul class="o-footer__accordion-content-panel">
+      <ul
+        class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
+          ? '--open'
+          : ''}"
+      >
         ${repeat(
           contentItem.items,
           i => html`
@@ -129,7 +133,7 @@ class AXAFooter extends LitElement {
           contentItem.items,
           i =>
             html`
-              <li>
+              <li class="o-footer__accordion-content-panel-list-item">
                 <a
                   href=${i.link}
                   target="${i.external ? '_blank' : '_top'}"
