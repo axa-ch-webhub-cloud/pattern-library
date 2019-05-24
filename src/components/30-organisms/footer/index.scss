@@ -4,7 +4,39 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
-  // ### Baustelle
+  &__social-media {
+    &-title {
+      @include typo(primary, medium, bold);
+      display: none;
+
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    &-list {
+      // Reset browser styles for ul
+      margin: 0;
+      text-indent: 0;
+      list-style-type: none;
+      padding: 0;
+
+      display: flex;
+      flex-wrap: wrap;
+      padding: 15px 20px;
+
+      a {
+        display: block;
+        padding: 10px;
+      }
+
+      svg {
+        color: $color-prim-white;
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
   @include breakpoint($mediaquery-xsm) {
     &__title-desktop {
       display: none;
@@ -132,39 +164,6 @@
     }
   }
 
-  &__social-media {
-    &-title {
-      @include typo(primary, medium, bold);
-      display: none;
-
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-
-    &-list {
-      // Reset browser styles for ul
-      margin: 0;
-      text-indent: 0;
-      list-style-type: none;
-      padding: 0;
-
-      display: flex;
-      flex-wrap: wrap;
-      padding: 15px 20px;
-
-      a {
-        display: block;
-        padding: 10px;
-      }
-
-      svg {
-        color: $color-prim-white;
-        width: 25px;
-        height: 25px;
-      }
-    }
-  }
-
   @include breakpoint($mediaquery-sm-up) {
     padding: 40px 0;
 
@@ -231,7 +230,4 @@
       display: none;
     }
   }
-  // ### /Baustelle
-
-  // ### Mobile - The accordion is only for small mobile devices
 }
