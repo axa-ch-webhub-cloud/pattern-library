@@ -74,75 +74,6 @@ class AXAFooter extends LitElement {
     }
   };
 
-  getFooterIcons() {
-    return html`
-      <div>
-        <strong class="o-footer__title o-footer__social-media-title">
-          ${this.social.title}
-        </strong>
-        <ul class="o-footer__social-media-list">
-          ${repeat(this.social.icons, icon => {
-            return html`
-              <li>
-                <a
-                  href="${icon.link}"
-                  target="_blank"
-                  @click="${ev => this.handleLinkClick(ev, icon.title)}"
-                  >${svg([this.iconMap.get(icon.title) || ''])}</a
-                >
-              </li>
-            `;
-          })}
-        </ul>
-      </div>
-    `;
-  }
-
-  getFooterContentList(contentItem) {
-    return html`
-      <ul
-        class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
-          ? '--open'
-          : ''}"
-      >
-        ${repeat(
-          contentItem.items,
-          i =>
-            html`
-              <li class="o-footer__accordion-content-panel-list-item">
-                <a
-                  href=${i.link}
-                  target="${i.external ? '_blank' : '_top'}"
-                  @click="${ev => this.handleLinkClick(ev, i.text)}"
-                  >${i.text}</a
-                >
-              </li>
-            `
-        )}
-      </ul>
-    `;
-  }
-
-  getFooterHeader(contentItem, index) {
-    return html`
-      <strong class="o-footer__title-desktop">${contentItem.title}</strong>
-      <button
-        class="o-footer__accordion-content"
-        @click="${ev => this.handleClick(ev, index)}"
-      >
-        <strong class="o-footer__title">
-          ${contentItem.title}
-        </strong>
-        <span
-          class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
-            ? '--open'
-            : ''}"
-          >${svg([CaretSvg || ''])}</span
-        >
-      </button>
-    `;
-  }
-
   render() {
     return html`
       <footer class="o-footer">
@@ -153,12 +84,68 @@ class AXAFooter extends LitElement {
               (contentItem, index) =>
                 html`
                   <div class="o-footer__accordion">
-                    ${this.getFooterHeader(contentItem, index)}
-                    ${this.getFooterContentList(contentItem)}
+                    <strong class="o-footer__title-desktop"
+                      >${contentItem.title}</strong
+                    >
+                    <button
+                      class="o-footer__accordion-content"
+                      @click="${ev => this.handleClick(ev, index)}"
+                    >
+                      <strong class="o-footer__title">
+                        ${contentItem.title}
+                      </strong>
+                      <span
+                        class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
+                          ? '--open'
+                          : ''}"
+                        >${svg([CaretSvg || ''])}</span
+                      >
+                    </button>
+                    <ul
+                      class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
+                        ? '--open'
+                        : ''}"
+                    >
+                      ${repeat(
+                        contentItem.items,
+                        i =>
+                          html`
+                            <li
+                              class="o-footer__accordion-content-panel-list-item"
+                            >
+                              <a
+                                href=${i.link}
+                                target="${i.external ? '_blank' : '_top'}"
+                                @click="${ev =>
+                                  this.handleLinkClick(ev, i.text)}"
+                                >${i.text}</a
+                              >
+                            </li>
+                          `
+                      )}
+                    </ul>
                   </div>
                 `
             )}
-            ${this.getFooterIcons()}
+            <div>
+              <strong class="o-footer__title o-footer__social-media-title">
+                ${this.social.title}
+              </strong>
+              <ul class="o-footer__social-media-list">
+                ${repeat(this.social.icons, icon => {
+                  return html`
+                    <li>
+                      <a
+                        href="${icon.link}"
+                        target="_blank"
+                        @click="${ev => this.handleLinkClick(ev, icon.title)}"
+                        >${svg([this.iconMap.get(icon.title) || ''])}</a
+                      >
+                    </li>
+                  `;
+                })}
+              </ul>
+            </div>
           </div>
         </axa-container>
       </footer>
