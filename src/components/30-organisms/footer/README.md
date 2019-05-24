@@ -198,9 +198,40 @@ Import the footer-defining script and use a footer like this:
 
 Title and links to display within the footer.
 
+Structure:
+
+```typescript
+[
+  {
+    title: string,
+    items: [
+      {
+        text: string,
+        link: string,
+        external: boolean,
+      },
+    ],
+  },
+];
+```
+
 ### social
 
 Social media icons and their corresponding links. Also coming with a customizable title.
+
+Structure:
+
+```typescript
+{
+  title: string,
+  icons: [
+    {
+      title: string,
+      link: string
+    },
+  ],
+};
+```
 
 ### dynamic
 
