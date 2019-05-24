@@ -8,5 +8,6 @@ storiesOf('Molecules/Image upload', module)
   .addDecorator(withMarkdown(Readme))
   .add(
     'Image upload - default',
-    () => '<axa-image-upload>Image Upload</axa-image-upload>'
+    () =>
+      `<div style="width:440px;"><axa-image-upload>Image Upload</axa-image-upload></div>`
   );
