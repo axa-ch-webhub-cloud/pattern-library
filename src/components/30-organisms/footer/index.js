@@ -174,7 +174,7 @@ class AXAFooter extends LitElement {
                 this.content,
                 contentItem =>
                   html`
-                    <div class="o-footer__collection-container">
+                    <div class="o-footer__accordion">
                       ${this.getFooterHeaderDesktop(contentItem)}
                       ${this.getFooterContentList(contentItem)}
                     </div>

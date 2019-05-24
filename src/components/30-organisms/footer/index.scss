@@ -43,6 +43,10 @@
   }
 
   @include breakpoint($mediaquery-sm-up) {
+    &__accordion {
+      margin: 0 10px;
+    }
+
     &__accordion-content-panel {
       // Reset browser styles for ul
       margin: 0;
@@ -179,10 +183,6 @@
     &__collection {
       display: flex;
       grid-area: collection;
-
-      &-container {
-        margin: 0 10px;
-      }
     }
 
     &__social-media {
