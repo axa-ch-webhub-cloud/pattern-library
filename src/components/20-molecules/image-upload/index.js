@@ -47,6 +47,11 @@ class AXAImageUpload extends LitElement {
   }
 
   render() {
+    const classes = {
+      'm-image-upload__dropzone': true,
+      'js-image-upload__dropzone': true,
+      'm-image-upload__dropzone__overview': this.showImageOverview,
+    };
     return html`
       <article class="m-image-upload">
         <h1><slot></slot></h1>

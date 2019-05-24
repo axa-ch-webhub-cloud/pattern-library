@@ -1,3 +1,31 @@
+$image-upload-dropzone-border: 2px !default;
+
 .m-image-upload {
-  display: block;
+  @include typo(primary, medium);
+
+  &__dropzone {
+    display: flex;
+
+    height: 274px;
+
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
+  }
+
+  &__or {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $color-prim-red-flamingo;
+  }
+
+  // &__dropzone_dragover {
+  //   opacity: 0.6;
+  // }
+  //
+  // &__dropzone_dragleave {
+  //   border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
+  // }
 }
