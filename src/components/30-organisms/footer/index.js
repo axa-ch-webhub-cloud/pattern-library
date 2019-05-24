@@ -1,3 +1,5 @@
+// TODO fix that stuff
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   FacebookSvg,
   InstagramSvg,
@@ -147,7 +149,7 @@ class AXAFooter extends LitElement {
             ${this.getFooterIcons()}
           </div>
 
-          <div class="o-footer__tablet">
+          <div class="o-footer__non-mobile">
             <div class="o-footer__collection">
               ${repeat(
                 this.content,

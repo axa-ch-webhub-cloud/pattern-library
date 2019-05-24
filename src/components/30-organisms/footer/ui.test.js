@@ -28,7 +28,7 @@ test('should correctly render footer titles', async t => {
   const $footerTitle = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
       .querySelector('.o-footer__title')
   );
 
@@ -47,7 +47,7 @@ test('should correctly render footer link content', async t => {
   const $footer = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
   );
 
   const $contactLink = $footer.find('a').withText('Contact');
@@ -68,7 +68,7 @@ test('should render facebook social media button', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
       .querySelector('.o-footer__social-media-list')
       .querySelector('a[href="https://www.facebook.com/axach/"]')
       .querySelector('svg')
@@ -184,7 +184,7 @@ test('should render footer with working react callbacks', async t => {
   const $footer = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
   );
   // /Smoketest
 
@@ -208,7 +208,7 @@ test('should render footer with working react callbacks', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
       .querySelector('.o-footer__social-media-list')
       .querySelector('a')
   );
@@ -239,7 +239,7 @@ test('should render footer with working native callbacks', async t => {
   const $footer = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
   );
   // /Smoketest
 
@@ -263,7 +263,7 @@ test('should render footer with working native callbacks', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__tablet')
+      .shadowRoot.querySelector('.o-footer__non-mobile')
       .querySelector('.o-footer__social-media-list')
       .querySelector('a')
   );

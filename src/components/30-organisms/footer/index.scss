@@ -40,14 +40,13 @@
     }
   }
 
-  // ### Mobile
+  // ### Mobile - The accordion is only for small mobile devices
   @include breakpoint($mediaquery-xsm) {
-    // The accordion is only for small mobile devices
     &__mobile {
       display: block;
     }
 
-    &__tablet {
+    &__non-mobile {
       display: none;
     }
   }
@@ -120,26 +119,9 @@
       }
     }
   }
-
-  // &__social-media-list {
-  //   // Reset browser styles for ul
-  //   margin: 0;
-  //   text-indent: 0;
-  //   list-style-type: none;
-  //   padding: 0;
-
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   padding: 15px 20px;
-
-  //   a {
-  //     display: block;
-  //     padding: 10px;
-  //   }
-  // }
   // ### /Mobile
 
-  // ### Tablet
+  // ### Non-Mobile
   @include breakpoint($mediaquery-sm-up) {
     padding: 40px 0;
 
@@ -147,7 +129,7 @@
       display: none;
     }
 
-    &__tablet {
+    &__non-mobile {
       display: grid;
       grid-template-areas:
         'collection'
@@ -213,7 +195,7 @@
   }
 
   @include breakpoint($mediaquery-lg-up) {
-    &__tablet {
+    &__non-mobile {
       grid-template-areas: 'collection social';
     }
 
@@ -226,5 +208,5 @@
         padding: 20px 0;
       }
     }
-  } // ### /Tablet
+  } // ### /Non-Mobile
 }
