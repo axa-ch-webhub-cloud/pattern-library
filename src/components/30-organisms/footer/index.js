@@ -123,6 +123,31 @@ class AXAFooter extends LitElement {
     `;
   }
 
+  getFooterHeaderDesktop(contentItem) {
+    return html`
+      <strong class="o-footer__title">${contentItem.title}</strong>
+    `;
+  }
+
+  getFooterHeader(contentItem, index) {
+    return html`
+      <button
+        class="o-footer__accordion-content"
+        @click="${ev => this.handleClick(ev, index)}"
+      >
+        <strong class="o-footer__title">
+          ${contentItem.title}
+        </strong>
+        <span
+          class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
+            ? '--open'
+            : ''}"
+          >${svg([CaretSvg || ''])}</span
+        >
+      </button>
+    `;
+  }
+
   render() {
     return html`
       <footer class="o-footer">
@@ -133,20 +158,7 @@ class AXAFooter extends LitElement {
               (contentItem, index) =>
                 html`
                   <div class="o-footer__accordion">
-                    <button
-                      class="o-footer__accordion-content"
-                      @click="${ev => this.handleClick(ev, index)}"
-                    >
-                      <strong class="o-footer__title">
-                        ${contentItem.title}
-                      </strong>
-                      <span
-                        class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
-                          ? '--open'
-                          : ''}"
-                        >${svg([CaretSvg || ''])}</span
-                      >
-                    </button>
+                    ${this.getFooterHeader(contentItem, index)}
                     ${this.getFooterContentList(contentItem)}
                   </div>
                 `
@@ -161,9 +173,7 @@ class AXAFooter extends LitElement {
                 contentItem =>
                   html`
                     <div class="o-footer__collection-container">
-                      <strong class="o-footer__title"
-                        >${contentItem.title}</strong
-                      >
+                      ${this.getFooterHeaderDesktop(contentItem)}
                       ${this.getFooterContentList(contentItem)}
                     </div>
                   `

@@ -3,6 +3,7 @@
   background-color: $color-prim-blue-dark-indigo;
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
+
   @include breakpoint($mediaquery-xsm) {
     &__accordion-content-panel {
       // Reset browser styles for ul
