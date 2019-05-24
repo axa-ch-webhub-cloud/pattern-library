@@ -235,4 +235,4 @@ Structure:
 
 ### dynamic
 
-Dynamic specifies, if you want the footer to contain static links, that will just route you forward, or if you want to use callback to react on clicks yourself. If dynamic is not set, the callbacks you hand into the component will not have any effect.
+Set the dynamic property (boolean), if you want to use callbacks for links. Otherwise they will not work.
