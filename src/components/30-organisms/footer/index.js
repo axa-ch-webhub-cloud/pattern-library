@@ -98,6 +98,26 @@ class AXAFooter extends LitElement {
     `;
   }
 
+  getFooterContentList(contentItem) {
+    return html`
+      <ul class="o-footer__collection-container-list">
+        ${repeat(
+          contentItem.items,
+          i => html`
+            <li class="o-footer__collection-container-list-item">
+              <a
+                href=${i.link}
+                target="${i.external ? '_blank' : '_top'}"
+                @click="${ev => this.handleLinkClick(ev, i.text)}"
+                >${i.text}</a
+              >
+            </li>
+          `
+        )}
+      </ul>
+    `;
+  }
+
   render() {
     return html`
       <footer class="o-footer">
@@ -159,24 +179,7 @@ class AXAFooter extends LitElement {
                       <strong class="o-footer__title"
                         >${contentItem.title}</strong
                       >
-                      <ul class="o-footer__collection-container-list">
-                        ${repeat(
-                          contentItem.items,
-                          i => html`
-                            <li
-                              class="o-footer__collection-container-list-item"
-                            >
-                              <a
-                                href=${i.link}
-                                target="${i.external ? '_blank' : '_top'}"
-                                @click="${ev =>
-                                  this.handleLinkClick(ev, i.text)}"
-                                >${i.text}</a
-                              >
-                            </li>
-                          `
-                        )}
-                      </ul>
+                      ${this.getFooterContentList(contentItem)}
                     </div>
                   `
               )}
