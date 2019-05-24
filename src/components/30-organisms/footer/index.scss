@@ -144,6 +144,12 @@
         margin: 0 10px;
 
         &-list {
+          // Reset browser styles for ul
+          margin: 0;
+          text-indent: 0;
+          list-style-type: none;
+          padding: 0;
+
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;

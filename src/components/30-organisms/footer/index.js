@@ -159,11 +159,11 @@ class AXAFooter extends LitElement {
                       <strong class="o-footer__title"
                         >${contentItem.title}</strong
                       >
-                      <div class="o-footer__collection-container-list">
+                      <ul class="o-footer__collection-container-list">
                         ${repeat(
                           contentItem.items,
                           i => html`
-                            <div
+                            <li
                               class="o-footer__collection-container-list-item"
                             >
                               <a
@@ -173,10 +173,10 @@ class AXAFooter extends LitElement {
                                   this.handleLinkClick(ev, i.text)}"
                                 >${i.text}</a
                               >
-                            </div>
+                            </li>
                           `
                         )}
-                      </div>
+                      </ul>
                     </div>
                   `
               )}
