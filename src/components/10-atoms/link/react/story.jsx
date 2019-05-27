@@ -34,6 +34,21 @@ storiesOf('Atoms/Link/React', module)
     );
   })
 
+  .add('Link - icon onClick', () => {
+    return wrap(
+      <AXALinkReact
+        onClick={() => {
+          // eslint-disable-next-line no-alert, no-undef
+          alert('on link click');
+        }}
+        variant="icon"
+        icon="arrow-right"
+      >
+        Icon
+      </AXALinkReact>
+    );
+  })
+
   .add('Link - custom icon', () => {
     return wrap(
       <AXALinkReact variant="icon" icon={customIcon}>

@@ -18,6 +18,7 @@ class AXALink extends LitElement {
       variant: { type: String },
       icon: { type: String },
       external: { type: Boolean },
+      onClick: { type: Function },
     };
   }
 
@@ -30,25 +31,53 @@ class AXALink extends LitElement {
   }
 
   render() {
-    const classes = classMap({
-      'a-link--simple': this.variant,
-      'a-link--icon':
-        this.variant.includes('arrowleft') ||
-        this.variant.includes('arrowright') ||
-        this.variant.includes('icon'),
-      'a-link--red':
-        this.variant.includes('red') && !this.variant.includes('white'),
-      'a-link--white':
-        this.variant.includes('white') && !this.variant.includes('red'),
-      'a-link--motion':
-        this.variant.includes('arrowleft-animated') ||
-        this.variant.includes('arrowright-animated'),
-    });
+    const { variant } = this;
+
+    const isSimple =
+      variant &&
+      variant !== 'hyperlink-white' &&
+      variant !== 'hyperlink-white-underline';
+
+    const isIcon =
+      variant.includes('arrowleft') ||
+      variant.includes('arrowright') ||
+      variant.includes('icon');
+
+    const isRed = variant.includes('red') && !variant.includes('white');
+
+    const islinkWhite = variant === 'hyperlink-white';
+
+    const islinkWhiteUnderline = variant === 'hyperlink-white-underline';
+
+    const isWhite =
+      variant.includes('white') &&
+      !variant.includes('red') &&
+      !variant.includes('hyperlink');
+
+    const isMotion =
+      variant.includes('arrowleft-animated') ||
+      variant.includes('arrowright-animated');
+
+    const classes = {
+      'a-link--simple': isSimple,
+      'a-link--icon': isIcon,
+      'a-link--red': isRed,
+      'a-link--hyperlink-white': islinkWhite,
+      'a-link--hyperlink-white-underline': islinkWhiteUnderline,
+      'a-link--white': isWhite,
+      'a-link--motion': isMotion,
+    };
 
     return html`
       <a
-        class="a-link ${classes}"
+        class="a-link ${classMap(classes)}"
         href="${this.href}"
+        @click="${ev => {
+          if (typeof this.onClick === 'function') {
+            ev.preventDefault();
+            this.onClick();
+          }
+        }}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
