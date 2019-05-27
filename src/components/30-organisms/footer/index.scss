@@ -1,4 +1,7 @@
 .o-footer {
+  // Avoid property being inherited
+  text-align: initial;
+
   color: $color-prim-white;
   background-color: $color-prim-blue-dark-indigo;
 
