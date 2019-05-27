@@ -78,7 +78,7 @@ class AXAFooter extends LitElement {
     return html`
       <footer class="o-footer">
         <axa-container>
-          <div class="o-footer__grid-wrapper">
+          <div class="o-footer__content">
             <div class="o-footer__collection">
               ${repeat(
                 this.content,

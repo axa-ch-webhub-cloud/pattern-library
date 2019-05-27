@@ -112,7 +112,7 @@
   @include breakpoint($mediaquery-sm-up) {
     padding: 40px 0;
 
-    &__grid-wrapper {
+    &__content {
       // IE11 workaround
       display: -ms-grid;
       -ms-grid-columns: 1fr 1fr;
@@ -207,7 +207,7 @@
   }
 
   @include breakpoint($mediaquery-lg-up) {
-    &__grid-wrapper {
+    &__content {
       grid-template-areas: 'links social';
     }
 
