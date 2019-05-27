@@ -43,13 +43,8 @@ const commonPlugins = [
   }),
 ];
 
-const files = ['index.js'];
-if (fs.existsSync('./index.react.js')) {
-  files.push('index.react.js');
-}
-
 const lib = {
-  input: files, // Globbing is not a benefit as the config needs to be adapted and checked anyways if new files
+  input: 'index.js',
   external: [
     'lit-element',
     'lit-html/directives/class-map',
@@ -57,7 +52,7 @@ const lib = {
     '@skatejs/val',
   ],
   output: {
-    dir: './lib',
+    file: './lib/index.js',
     format: 'es',
   },
   plugins: [
@@ -74,13 +69,13 @@ const lib = {
         ],
       ],
       plugins: ['@babel/plugin-proposal-class-properties'],
-      sourceMap: false,
-      exclude: /node_modules/, // /node_modules/,
+      babelrc: false,
+      exclude: ['node_modules/**'],
       runtimeHelpers: false,
     }),
     resolve({
       mainFields: ['module', 'main'],
-      only: [/^\.{0,2}\/|\.scss$/i], // TODO:: What is this doing? Threat all node_modules as external apart od .scss files
+      only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
     }),
   ],
 };
@@ -131,4 +126,25 @@ const dist = {
   ],
 };
 
-export default [lib, dist];
+// While running the index.react.js file, Rollup would not resolve the import of the index.js.
+// Because the index.js alrady created a lib/index.js, so rollup takes this as a reference.
+// That's why we pass the react lib as seperate rollup config.
+// We want the import of index.js to be resolved in the index.react.js
+
+const libReact = {
+  ...lib,
+  input: 'index.react.js',
+  output: {
+    file: './lib/index.react.js',
+    format: 'es',
+  },
+};
+
+// Sometimes there is no react version to build. I.e icons
+const rollupConfig = [lib];
+if (fs.existsSync('./index.react.js')) {
+  rollupConfig.push(libReact);
+}
+rollupConfig.push(dist);
+
+export default rollupConfig;

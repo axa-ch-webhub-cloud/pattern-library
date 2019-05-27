@@ -1,6 +1,13 @@
 module.exports = {
-  presets: ['@babel/preset-env'],
-  plugins: [
-    '@babel/plugin-proposal-class-properties',
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          browsers: ['last 2 versions', 'safari >= 8', 'not ie <= 10'],
+        },
+      },
+    ],
   ],
+  plugins: ['@babel/plugin-proposal-class-properties'],
 };
