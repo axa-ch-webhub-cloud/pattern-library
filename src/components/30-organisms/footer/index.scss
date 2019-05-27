@@ -74,19 +74,15 @@
     }
   }
 
-  @include breakpoint($mediaquery-xsm) {
-    &__main-content-panel {
-      max-height: 0;
-      transition: max-height 0.2s ease-out;
-    }
-  }
-
   &__main-content-panel {
     // Reset browser styles for ul
     margin: 0;
     text-indent: 0;
     list-style-type: none;
     padding: 0;
+
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
 
     overflow: hidden;
     background-color: $color-prim-blue-azure;
@@ -152,6 +148,8 @@
       max-width: 350px;
 
       background-color: unset;
+
+      max-height: unset;
 
       &-list-item {
         @include typo(primary, default, default);
