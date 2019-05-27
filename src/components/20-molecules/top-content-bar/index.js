@@ -29,11 +29,6 @@ class AXATopContentBar extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this.onClick = () => {};
-  }
-
   firstUpdated() {
     const links = Array.prototype.slice.call(this.querySelectorAll('axa-link'));
     links.forEach(link => {
@@ -49,8 +44,10 @@ class AXATopContentBar extends LitElement {
         <axa-button-link
           href="${href}"
           @click="${ev => {
-            ev.preventDefault();
-            this.onClick();
+            if (typeof this.onClick === 'function') {
+              ev.preventDefault();
+              this.onClick();
+            }
           }}"
           variant="inverted"
         >
@@ -59,7 +56,15 @@ class AXATopContentBar extends LitElement {
       `;
     } else if (ctatext) {
       return html`
-        <axa-button @click="${this.onClick}" variant="inverted">
+        <axa-button
+          @click="${ev => {
+            if (typeof this.onClick === 'function') {
+              ev.preventDefault();
+              this.onClick();
+            }
+          }}"
+          variant="inverted"
+        >
           ${ctatext}
         </axa-button>
       `;
