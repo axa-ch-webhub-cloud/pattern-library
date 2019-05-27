@@ -5,6 +5,7 @@
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/footer-small/README.md",
   "license": "Copyright 2019 AXA Versicherungen AG",
+  "main": "lib/index.js",
   "scripts": {
     "build": "rollup --silent --config ../../../../rollup.config.js",
     "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
