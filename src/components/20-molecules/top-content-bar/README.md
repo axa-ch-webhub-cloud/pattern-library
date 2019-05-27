@@ -1,6 +1,6 @@
 # Top content bar
 
-TODO Description
+Used as top of the page Warning or info box that can show text and have a CTA
 
 ## Usage
 
