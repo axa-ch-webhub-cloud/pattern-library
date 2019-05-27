@@ -147,9 +147,12 @@
       padding-top: 10px;
       max-width: 350px;
 
-      background-color: unset;
+      // Does not work on IE11
+      // background-color: unset;
+      // max-height: unset;
 
-      max-height: unset;
+      background-color: $color-prim-blue-dark-indigo;
+      max-height: 1000px;
 
       &-list-item {
         @include typo(primary, default, default);
