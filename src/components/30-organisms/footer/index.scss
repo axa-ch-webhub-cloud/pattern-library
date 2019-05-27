@@ -114,20 +114,16 @@
   @include breakpoint($mediaquery-sm-up) {
     padding: 40px 0;
 
-    &__mobile {
-      display: none;
-    }
-
-    &__non-mobile {
+    &__grid-wrapper {
       display: grid;
       grid-template-areas:
-        'collection'
+        'links'
         'social';
     }
 
     &__collection {
       display: flex;
-      grid-area: collection;
+      grid-area: links;
     }
 
     &__title-desktop {
@@ -182,6 +178,8 @@
     }
 
     &__social-media {
+      grid-area: social;
+
       &-list {
         // Reset browser styles for ul
         margin: 0;
@@ -193,8 +191,6 @@
         flex-wrap: wrap;
         padding-top: 15px;
 
-        grid-area: social;
-
         a {
           display: block;
           padding: 10px 10px 0 10px;
@@ -204,8 +200,8 @@
   }
 
   @include breakpoint($mediaquery-lg-up) {
-    &__non-mobile {
-      grid-template-areas: 'collection social';
+    &__grid-wrapper {
+      grid-template-areas: 'links social';
     }
 
     &__social-media {

@@ -78,55 +78,59 @@ class AXAFooter extends LitElement {
     return html`
       <footer class="o-footer">
         <axa-container>
-          <div class="o-footer__collection">
-            ${repeat(
-              this.content,
-              (contentItem, index) =>
-                html`
-                  <div class="o-footer__main">
-                    <strong class="o-footer__title-desktop"
-                      >${contentItem.title}</strong
-                    >
-                    <button
-                      class="o-footer__accordion-button"
-                      @click="${ev => this.handleClick(ev, index)}"
-                    >
-                      <strong class="o-footer__title">
-                        ${contentItem.title}
-                      </strong>
-                      <span
-                        class="o-footer__accordion-button-caret o-footer__accordion-button-caret${contentItem.active
+          <div class="o-footer__grid-wrapper">
+            <div class="o-footer__collection">
+              ${repeat(
+                this.content,
+                (contentItem, index) =>
+                  html`
+                    <div class="o-footer__main">
+                      <strong class="o-footer__title-desktop"
+                        >${contentItem.title}</strong
+                      >
+                      <button
+                        class="o-footer__accordion-button"
+                        @click="${ev => this.handleClick(ev, index)}"
+                      >
+                        <strong class="o-footer__title">
+                          ${contentItem.title}
+                        </strong>
+                        <span
+                          class="o-footer__accordion-button-caret o-footer__accordion-button-caret${contentItem.active
+                            ? '--open'
+                            : ''}"
+                          >${svg([CaretSvg || ''])}</span
+                        >
+                      </button>
+                      <ul
+                        class="o-footer__main-content-panel o-footer__main-content-panel${contentItem.active
                           ? '--open'
                           : ''}"
-                        >${svg([CaretSvg || ''])}</span
                       >
-                    </button>
-                    <ul
-                      class="o-footer__main-content-panel o-footer__main-content-panel${contentItem.active
-                        ? '--open'
-                        : ''}"
-                    >
-                      ${repeat(
-                        contentItem.items,
-                        i =>
-                          html`
-                            <li class="o-footer__main-content-panel-list-item">
-                              <a
-                                href=${i.link}
-                                target="${i.external ? '_blank' : '_top'}"
-                                @click="${ev =>
-                                  this.handleLinkClick(ev, i.text)}"
-                                >${i.text}</a
+                        ${repeat(
+                          contentItem.items,
+                          i =>
+                            html`
+                              <li
+                                class="o-footer__main-content-panel-list-item"
                               >
-                            </li>
-                          `
-                      )}
-                    </ul>
-                  </div>
-                `
-            )}
-            <div>
-              <strong class="o-footer__title o-footer__social-media-title">
+                                <a
+                                  href=${i.link}
+                                  target="${i.external ? '_blank' : '_top'}"
+                                  @click="${ev =>
+                                    this.handleLinkClick(ev, i.text)}"
+                                  >${i.text}</a
+                                >
+                              </li>
+                            `
+                        )}
+                      </ul>
+                    </div>
+                  `
+              )}
+            </div>
+            <div class="o-footer__social-media">
+              <strong class="o-footer__social-media-title">
                 ${this.social.title}
               </strong>
               <ul class="o-footer__social-media-list">
