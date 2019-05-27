@@ -1,9 +1,11 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
+type Variant = 'warning';
 
 interface AXATopContentBarProps {
   variant?: Variant;
+  ctatext: String;
+  href?: String;
   onClick?: () => void;
 }
 
