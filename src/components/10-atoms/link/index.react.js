@@ -6,6 +6,7 @@ export default createElement => ({
   variant = '',
   icon = '',
   external = false,
+  onClick,
   children,
 }) =>
   withReact(createElement)(
@@ -13,6 +14,7 @@ export default createElement => ({
     {
       href,
       variant,
+      onClick,
       icon,
       external,
     },

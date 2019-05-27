@@ -18,6 +18,7 @@ class AXALink extends LitElement {
       variant: { type: String },
       icon: { type: String },
       external: { type: Boolean },
+      onClick: { type: Function },
     };
   }
 
@@ -27,6 +28,7 @@ class AXALink extends LitElement {
     this.variant = '';
     this.icon = '';
     this.external = false;
+    this.onClick = () => {};
   }
 
   render() {
@@ -71,6 +73,7 @@ class AXALink extends LitElement {
       <a
         class="a-link ${classMap(classes)}"
         href="${this.href}"
+        @click="${this.onClick}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
