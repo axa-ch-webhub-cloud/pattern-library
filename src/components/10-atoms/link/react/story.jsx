@@ -37,8 +37,7 @@ storiesOf('Atoms/Link/React', module)
   .add('Link - icon onClick', () => {
     return wrap(
       <AXALinkReact
-        onClick={ev => {
-          ev.preventDefault();
+        onClick={() => {
           // eslint-disable-next-line no-alert, no-undef
           alert('on link click');
         }}

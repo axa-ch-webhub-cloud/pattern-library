@@ -35,8 +35,7 @@ storiesOf('Molecules/Top content bar/React', module)
     return wrap(
       <AXATopContentBar
         ctatext="Click me"
-        onClick={ev => {
-          ev.preventDefault();
+        onClick={() => {
           // eslint-disable-next-line no-alert, no-undef
           alert('on AXATopContentBar click');
         }}

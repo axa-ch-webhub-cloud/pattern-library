@@ -48,7 +48,10 @@ class AXATopContentBar extends LitElement {
       return html`
         <axa-button-link
           href="${href}"
-          @click="${this.onClick}"
+          @click="${ev => {
+            ev.preventDefault();
+            this.onClick();
+          }}"
           variant="inverted"
         >
           ${ctatext}

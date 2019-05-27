@@ -73,7 +73,10 @@ class AXALink extends LitElement {
       <a
         class="a-link ${classMap(classes)}"
         href="${this.href}"
-        @click="${this.onClick}"
+        @click="${ev => {
+          ev.preventDefault();
+          this.onClick();
+        }}"
         target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
