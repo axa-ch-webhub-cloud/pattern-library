@@ -64,11 +64,11 @@ Import the top-content-bar-defining script and use a top-content-bar like this:
 ### ctatext
 
 The attribute `ctatext` specifies the text displayed on the button.
-If no attribute `href` is set, it will render a `axa-button` and only onClick callback will work. If omitted, no button will be shown.
+If no attribute `href` is set, it will render a `axa-button` and only onClick callback will work. If ctatext is omitted, no button will be shown.
 
 ### href
 
-The attribute `href` specifies the link that should be opened by pressing on the button with text defined in `ctatext`
+The attribute `href` specifies the link that should be opened by pressing on the button with text defined in `ctatext`.
 
 ### onClick
 
