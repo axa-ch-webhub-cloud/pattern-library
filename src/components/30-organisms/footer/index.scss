@@ -76,7 +76,6 @@
 
   @include breakpoint($mediaquery-xsm) {
     &__main-content-panel {
-      background-color: $color-prim-blue-azure;
       overflow: hidden;
 
       max-height: 0;
@@ -90,6 +89,8 @@
     text-indent: 0;
     list-style-type: none;
     padding: 0;
+
+    background-color: $color-prim-blue-azure;
 
     &--open {
       max-height: 400px;
@@ -150,6 +151,8 @@
       flex-wrap: wrap;
       padding-top: 10px;
       max-width: 350px;
+
+      background-color: unset;
 
       &-list-item {
         @include typo(primary, default, default);
