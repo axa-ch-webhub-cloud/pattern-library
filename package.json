@@ -11,6 +11,7 @@
     "setup-npm-links": "node scripts/setup-npm-link.js",
     "postinstall": "npx lerna bootstrap --hoist && npm run build-components",
     "release": "npm whoami && npx lerna bootstrap --hoist && npm run build && npm run test && lerna publish",
+    "prerelease": "npm whoami && npx lerna bootstrap --hoist && npm run build && lerna publish --canary --preid alpha",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
     "build-storybook": "build-storybook",
