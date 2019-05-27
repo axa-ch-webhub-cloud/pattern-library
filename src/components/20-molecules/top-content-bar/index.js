@@ -92,12 +92,6 @@ class AXATopContentBar extends LitElement {
       </article>
     `;
   }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
-  }
 }
 
 defineOnce(AXATopContentBar.tagName, AXATopContentBar);
