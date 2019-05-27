@@ -106,13 +106,16 @@ Import the link-defining script and use a link like this:
 
 #### white color
 
-| Attribute                             | Details                           |
-| ------------------------------------- | --------------------------------- |
-| `variant="icon-white"`                | Link with an icon displayed       |
-| `variant="arrowright-white"`          | Link with arrow icon to the right |
-| `variant="arrowleft-white"`           | Link with arrow icon to the left  |
-| `variant="arrowleft-animated-white"`  | Link with animated arrow icon     |
-| `variant="arrowright-animated-white"` | Link with animated arrow icon     |
+| Attribute                             | Details                                |
+| ------------------------------------- | -------------------------------------- |
+| `variant="white"`                     | Link white                             |
+| `variant="hyperlink-white"`           | Link white in lowercase                |
+| `variant="hyperlink-white-underline"` | Link white in lowercase and underlined |
+| `variant="icon-white"`                | Link with an icon displayed            |
+| `variant="arrowright-white"`          | Link with arrow icon to the right      |
+| `variant="arrowleft-white"`           | Link with arrow icon to the left       |
+| `variant="arrowleft-animated-white"`  | Link with animated arrow icon          |
+| `variant="arrowright-animated-white"` | Link with animated arrow icon          |
 
 ### href
 
@@ -125,3 +128,7 @@ The Boolean attribute `external` adds the `target="_blank"` functionality.
 ### icon
 
 If the variant is `icon`, using the attribute `icon`'s string value as icon name, an icon will be rendered. The attributes `variant=icon` and `icon=xyz` both need to exist in order for an icon to be displayed. To see the full list of possible icons and custom icon usage, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) readme.
+
+### onClick
+
+On a react-ified component this can be used as a callback function. It will prevent default 

@@ -5,6 +5,7 @@ interface AXALinkProps {
   variant;
   icon;
   external;
+  onClick?: () => void;
 }
 
 declare function createAXALink(

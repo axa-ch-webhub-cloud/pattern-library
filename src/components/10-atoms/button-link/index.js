@@ -80,12 +80,12 @@ class AXAButtonLink extends LitElement {
         aria-disabled="${disabled}"
         @click="${this.onClick}"
       >
-        <div class="a-button-link__flex-wrapper">
+        <span class="a-button-link__flex-wrapper">
           <slot></slot> ${icon &&
             html`
               <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
             `}
-        </div>
+        </span>
       </a>
     `;
   }

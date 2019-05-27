@@ -1,0 +1,39 @@
+.m-top-content-bar {
+  display: block;
+
+  &__container {
+    @include typo(primary, small, medium);
+
+    background-color: $color-sec-ocean-blue;
+    color: $color-prim-white;
+
+    min-height: 50px;
+    vertical-align: middle;
+
+    text-align: center;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    box-sizing: border-box;
+
+    axa-container {
+      min-height: 40px;
+      display:flex;
+      align-items:center;
+
+      axa-button, axa-button-link {
+        margin-left: 10px;
+      }
+
+      axa-button-link {
+        display: inline-flex;
+      }
+    }
+  }
+}
+
+
+.m-top-content-bar__container--warning {
+  background-color: $color-sec-shy-tomato;
+}

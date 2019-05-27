@@ -63,4 +63,11 @@ storiesOf('Atoms/Link', module)
       <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated-white">Motion Link Left</axa-link><br><br>
       <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated-white">Motion Link Right</axa-link>
       `
+  )
+  .add(
+    'Simple Link - White Color hyperlink and underline',
+    () => `<style>body {background-color: #3032c1;}</style>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="hyperlink-white">Hyperlink white</axa-link><br><br>
+    <axa-link href="https://axa.ch/en/private-customers.html" variant="hyperlink-white-underline">Hyperlink white underlined</axa-link><br><br>
+      `
   );

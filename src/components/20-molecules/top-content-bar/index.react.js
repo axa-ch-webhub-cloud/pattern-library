@@ -1,22 +1,20 @@
 import withReact from '../../../utils/with-react';
-import AXALink from './index';
+import AXATopContentBar from './index';
 
 export default createElement => ({
-  href = '',
-  variant = '',
-  icon = '',
-  external = false,
+  ctatext,
+  href,
   onClick,
+  variant,
   children,
 }) =>
   withReact(createElement)(
-    AXALink.tagName,
+    AXATopContentBar.tagName,
     {
+      ctatext,
       href,
-      variant,
       onClick,
-      icon,
-      external,
+      variant,
     },
     children
   );
