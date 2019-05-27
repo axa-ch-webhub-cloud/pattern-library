@@ -11,8 +11,7 @@
   },
   "files": [
     "styles",
-    "lib",
-    "dist"
+    "icons"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,7 +24,6 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "rollup-plugin-svgo": "^1.0.2",
     "svgo": "^1.2.0"
   }
 }
