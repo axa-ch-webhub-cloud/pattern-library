@@ -69,3 +69,19 @@ test('should render axa-button-link top-content-bar', async t => {
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');
   await t.expect($axaElemBtn.getAttribute('href')).eql('http://www.axa.ch');
 });
+
+fixture('Top content bar - inline link').page(
+  `${host}/iframe.html?id=molecules-top-content-bar--top-content-bar-default-in-text-link`
+);
+
+test('should render link as hyperlink and underline in top-content-bar', async t => {
+  const $axaElem = await Selector(TAG);
+  await t.expect($axaElem.exists).ok();
+  const $axaElemLink = await Selector(() =>
+    document.querySelector('axa-top-content-bar').querySelector('axa-link')
+  );
+  await t.expect($axaElemLink.exists).ok();
+  await t
+    .expect($axaElemLink.getAttribute('variant'))
+    .eql('hyperlink-white-underline');
+});
