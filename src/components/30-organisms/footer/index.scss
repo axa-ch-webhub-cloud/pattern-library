@@ -37,44 +37,44 @@
     }
   }
 
+  &__title-desktop {
+    display: none;
+  }
+
+  &__accordion-button {
+    @include typo(primary, default, medium);
+    display: flex;
+    justify-content: space-between;
+    color: $color-prim-white;
+    background-color: $color-prim-blue-dark-indigo;
+    padding: 20px 30px 20px 30px;
+    width: 100%;
+    text-align: left;
+
+    // Reset browser styles for button
+    border: none;
+    outline: 0;
+
+    border-bottom: 1px solid $color-prim-blue-st-tropaz;
+    text-transform: uppercase;
+
+    svg {
+      width: 10px;
+      height: 10px;
+      color: $color-prim-gray-dusty;
+    }
+
+    &-caret {
+      transition: transform 0.2s ease-in-out;
+      transform: rotate(180deg);
+
+      &--open {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
   @include breakpoint($mediaquery-xsm) {
-    &__title-desktop {
-      display: none;
-    }
-
-    &__accordion-button {
-      @include typo(primary, default, medium);
-      display: flex;
-      justify-content: space-between;
-      color: $color-prim-white;
-      background-color: $color-prim-blue-dark-indigo;
-      padding: 20px 30px 20px 30px;
-      width: 100%;
-      text-align: left;
-
-      // Reset browser styles for button
-      border: none;
-      outline: 0;
-
-      border-bottom: 1px solid $color-prim-blue-st-tropaz;
-      text-transform: uppercase;
-
-      svg {
-        width: 10px;
-        height: 10px;
-        color: $color-prim-gray-dusty;
-      }
-
-      &-caret {
-        transition: transform 0.2s ease-in-out;
-        transform: rotate(180deg);
-
-        &--open {
-          transform: rotate(0deg);
-        }
-      }
-    }
-
     &__main-content-panel {
       // Reset browser styles for ul
       margin: 0;
