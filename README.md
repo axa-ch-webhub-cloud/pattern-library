@@ -32,6 +32,7 @@ We release holistic and self contained WebComponents based on the [custom elemen
 - [AXA Footer Small](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/footer-small)
 - [AXA Table Sortable](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table-sortable)
 - [AXA Table](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table)
+- [AXA Top content bar](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar)
 
 ## Alpha Released Components
 - [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/datepicker)
