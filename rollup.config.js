@@ -75,7 +75,7 @@ const lib = {
       ],
       plugins: ['@babel/plugin-proposal-class-properties'],
       sourceMap: false,
-      exclude: ['node_modules/**'], // /node_modules/,
+      exclude: /node_modules/, // /node_modules/,
       runtimeHelpers: false,
     }),
     resolve({
