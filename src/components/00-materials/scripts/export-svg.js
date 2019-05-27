@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+/* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs');
 const path = require('path');
 const outdent = require('outdent');
@@ -15,7 +16,7 @@ const toClassName = _className =>
   camelCase(_className).replace(/^\w/, c => c.toUpperCase());
 
 const importPath = './icons-raw/.tmp';
-const exportPath = './lib/icons';
+const exportPath = './icons';
 
 fs.readdir(importPath, (err, items) => {
   if (err) {
