@@ -83,26 +83,26 @@ class AXAFooter extends LitElement {
               this.content,
               (contentItem, index) =>
                 html`
-                  <div class="o-footer__accordion">
+                  <div class="o-footer__main">
                     <strong class="o-footer__title-desktop"
                       >${contentItem.title}</strong
                     >
                     <button
-                      class="o-footer__accordion-content"
+                      class="o-footer__accordion-button"
                       @click="${ev => this.handleClick(ev, index)}"
                     >
                       <strong class="o-footer__title">
                         ${contentItem.title}
                       </strong>
                       <span
-                        class="o-footer__accordion-content-caret o-footer__accordion-content-caret${contentItem.active
+                        class="o-footer__accordion-button-caret o-footer__accordion-button-caret${contentItem.active
                           ? '--open'
                           : ''}"
                         >${svg([CaretSvg || ''])}</span
                       >
                     </button>
                     <ul
-                      class="o-footer__accordion-content-panel o-footer__accordion-content-panel${contentItem.active
+                      class="o-footer__main-content-panel o-footer__main-content-panel${contentItem.active
                         ? '--open'
                         : ''}"
                     >
@@ -110,9 +110,7 @@ class AXAFooter extends LitElement {
                         contentItem.items,
                         i =>
                           html`
-                            <li
-                              class="o-footer__accordion-content-panel-list-item"
-                            >
+                            <li class="o-footer__main-content-panel-list-item">
                               <a
                                 href=${i.link}
                                 target="${i.external ? '_blank' : '_top'}"
