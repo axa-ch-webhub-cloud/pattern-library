@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
 import { withMarkdown } from '../../../../../.storybook/addons/markdown';
-import withBodyReset from '../../../../../.storybook/addons/reset-body';
 import Readme from '../README.md';
 
 import wrap from '../../../../demo/react/utils/wrap-render-react';
