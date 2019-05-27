@@ -91,23 +91,23 @@
       &--open {
         max-height: 400px;
       }
+    }
+  }
 
-      li {
-        @include typo(primary, xx-small, default);
+  &-list-item {
+    @include typo(primary, xx-small, default);
 
-        padding: 0;
-        padding: 20px 30px;
-        border-bottom: 1px solid $color-prim-blue-dark-indigo;
+    padding: 0;
+    padding: 20px 30px;
+    border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
-        &:last-child {
-          border-bottom: none;
-        }
+    &:last-child {
+      border-bottom: none;
+    }
 
-        a {
-          text-decoration: none;
-          color: $color-prim-white;
-        }
-      }
+    a {
+      text-decoration: none;
+      color: $color-prim-white;
     }
   }
 
