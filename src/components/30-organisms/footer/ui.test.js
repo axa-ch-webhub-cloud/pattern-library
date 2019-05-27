@@ -28,8 +28,7 @@ test('should correctly render footer titles', async t => {
   const $footerTitle = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
-      .querySelector('.o-footer__title')
+      .shadowRoot.querySelector('.o-footer__title-desktop')
   );
 
   await t.expect($footerTitle.textContent).contains('axa & you');
@@ -44,10 +43,8 @@ test('should correctly render footer titles', async t => {
 });
 
 test('should correctly render footer link content', async t => {
-  const $footer = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
+  const $footer = Selector(
+    () => document.querySelector('axa-footer').shadowRoot
   );
 
   const $contactLink = $footer.find('a').withText('Contact');
@@ -68,8 +65,7 @@ test('should render facebook social media button', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
-      .querySelector('.o-footer__social-media-list')
+      .shadowRoot.querySelector('.o-footer__social-media-list')
       .querySelector('a[href="https://www.facebook.com/axach/"]')
       .querySelector('svg')
   );
@@ -87,7 +83,7 @@ test('should render accordion only in mobile mode', async t => {
   const $accordion = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__accordion-content')
+      .shadowRoot.querySelector('.o-footer__accordion-button')
   );
 
   await t.expect($accordion.visible).notOk();
@@ -103,26 +99,24 @@ test('should correctly open accordion on click', async t => {
   );
 
   const $accordionFirstButton = $accordionButtons
-    .find('.o-footer__accordion-content')
+    .find('.o-footer__accordion-button')
     .nth(0);
 
   const $accordionSecondButton = $accordionButtons
-    .find('.o-footer__accordion-content')
+    .find('.o-footer__accordion-button')
     .nth(1);
 
   await t.expect($accordionSecondButton.exists).ok();
   await t.expect($accordionSecondButton.visible).ok();
 
-  const $footerMobile = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__mobile')
+  const $footerMobile = Selector(
+    () => document.querySelector('axa-footer').shadowRoot
   );
   const $accordionFirstContent = $footerMobile
-    .find('.o-footer__accordion-content-panel')
+    .find('.o-footer__main-content-panel')
     .nth(0);
   const $accordionSecondContent = $footerMobile
-    .find('.o-footer__accordion-content-panel')
+    .find('.o-footer__main-content-panel')
     .nth(1);
 
   await t
@@ -146,8 +140,7 @@ test('should correctly render social media title in desktop view', async t => {
   const $socialMediaTitle = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__mobile')
-      .querySelector('.o-footer__social-media-title')
+      .shadowRoot.querySelector('.o-footer__social-media-title')
   );
 
   await t.expect($socialMediaTitle.textContent).contains('stay in touch');
@@ -181,10 +174,8 @@ test('should render footer with working react callbacks', async t => {
     .expect($axaElemShadowEl.getStyleProperty('background-color'))
     .eql('rgb(59, 63, 216)');
 
-  const $footer = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
+  const $footer = Selector(
+    () => document.querySelector('axa-footer').shadowRoot
   );
   // /Smoketest
 
@@ -208,8 +199,7 @@ test('should render footer with working react callbacks', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
-      .querySelector('.o-footer__social-media-list')
+      .shadowRoot.querySelector('.o-footer__social-media-list')
       .querySelector('a')
   );
 
@@ -236,10 +226,8 @@ test('should render footer with working native callbacks', async t => {
     .expect($axaElemShadowEl.getStyleProperty('background-color'))
     .eql('rgb(59, 63, 216)');
 
-  const $footer = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
+  const $footer = Selector(
+    () => document.querySelector('axa-footer').shadowRoot
   );
   // /Smoketest
 
@@ -263,8 +251,7 @@ test('should render footer with working native callbacks', async t => {
   const $facebookButton = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__non-mobile')
-      .querySelector('.o-footer__social-media-list')
+      .shadowRoot.querySelector('.o-footer__social-media-list')
       .querySelector('a')
   );
 
