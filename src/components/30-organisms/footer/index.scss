@@ -147,10 +147,7 @@
       padding-top: 10px;
       max-width: 350px;
 
-      // Does not work on IE11
-      // background-color: unset;
-      // max-height: unset;
-
+      // The following two lines are IE11 workarounds that could be resolved nicer with the 'unset'-property
       background-color: $color-prim-blue-dark-indigo;
       max-height: 1000px;
 
