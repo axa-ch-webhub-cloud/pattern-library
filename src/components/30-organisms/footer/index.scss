@@ -87,14 +87,14 @@
 
       max-height: 0;
       transition: max-height 0.2s ease-out;
-
-      &--open {
-        max-height: 400px;
-      }
     }
   }
 
   &__main-content-panel {
+    &--open {
+      max-height: 400px;
+    }
+
     &-list-item {
       @include typo(primary, xx-small, default);
 
