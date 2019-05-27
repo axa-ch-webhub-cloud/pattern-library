@@ -113,6 +113,10 @@
     padding: 40px 0;
 
     &__grid-wrapper {
+      // IE11 workaround
+      display: -ms-grid;
+      -ms-grid-columns: 1fr 1fr;
+
       display: grid;
       grid-template-areas:
         'links'
@@ -122,6 +126,10 @@
     &__collection {
       display: flex;
       grid-area: links;
+
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
     }
 
     &__title-desktop {
@@ -174,6 +182,10 @@
 
     &__social-media {
       grid-area: social;
+
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 2;
 
       &-list {
         // Reset browser styles for ul
