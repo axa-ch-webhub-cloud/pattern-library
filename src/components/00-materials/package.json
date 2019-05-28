@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
-  "dependencies": {
+  "devDependencies": {
     "svgo": "^1.2.0"
   }
 }
