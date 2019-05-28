@@ -331,7 +331,7 @@ class AXADropdown extends NoShadowDOM {
           <button
             @click="${handleDropdownClick}"
             type="button"
-            class="m-dropdown__toggle"
+            class="m-dropdown__toggle js-dropdown__toggle"
           >
             <span>${title}</span>
             <div class="m-dropdown__select-icon">${ARROW_ICON}</div>
