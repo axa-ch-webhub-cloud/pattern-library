@@ -51,6 +51,10 @@ module.exports = ({ config }) => {
       options: {
           /* your options here */
       }
+    },
+    {
+      test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+      loader: 'file-loader?name=favicon.png'
     }
   );
 
