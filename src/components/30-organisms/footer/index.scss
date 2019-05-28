@@ -9,6 +9,7 @@
 
   &__title {
     @include typo(primary, default, medium);
+    margin: 0;
   }
 
   &__social-media {

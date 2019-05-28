@@ -100,8 +100,9 @@ class AXAFooter extends LitElement {
                           class="o-footer__accordion-button-caret o-footer__accordion-button-caret${contentItem.active
                             ? '--open'
                             : ''}"
-                          >${svg([CaretSvg || ''])}</span
                         >
+                          ${svg([CaretSvg || ''])}
+                        </span>
                       </button>
                       <ul
                         class="o-footer__main-content-panel o-footer__main-content-panel${contentItem.active
