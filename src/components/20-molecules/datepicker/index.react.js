@@ -28,4 +28,5 @@ export default createElement => ({
     labelbuttoncancel,
     inputplaceholder,
     onAXADateChange,
+    isReact: true,
   });

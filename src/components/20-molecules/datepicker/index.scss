@@ -1,4 +1,4 @@
-:host([inputfield]) .m-datepicker__wrap {
+axa-datepicker[inputfield] .m-datepicker__wrap {
   position: absolute;
   z-index: 1;
   transform: scale(0);
@@ -6,12 +6,12 @@
   transition: transform 0.25s;
 }
 
-:host([inverted][inputfield]) .m-datepicker__wrap {
+axa-datepicker[inverted][inputfield] .m-datepicker__wrap {
   transform-origin: bottom left;
   bottom: 40px;
 }
 
-:host([inputfield][open]) .m-datepicker__wrap {
+axa-datepicker[inputfield][open] .m-datepicker__wrap {
   transform: scale(1);
 }
 

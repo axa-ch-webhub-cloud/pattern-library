@@ -16,9 +16,11 @@ const getWeekdays = (date, locale) => {
   return out;
 };
 
-const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
+const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
+
 const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
+
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // year, monthIndex, day
   const blueprint = new Date(2017, 10, 23);
@@ -33,20 +35,20 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   );
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
 
-  const usedSeperator =
-    localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
+  const usedSeparator =
+    localisedBlueprintDateString.match(ALL_DATE_SEPARATORS)[0] || null;
 
-  if (!usedSeperator) {
+  if (!usedSeparator) {
     return null;
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
   const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(
-    usedSeperator
+    usedSeparator
   );
   const splittedBlueprint = clearStringFromIEGeneratedCharacters(
     localisedBlueprintDateString
-  ).split(usedSeperator);
+  ).split(usedSeparator);
 
   // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
   // in reading gives the actual month (index + 1)

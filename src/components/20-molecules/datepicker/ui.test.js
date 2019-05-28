@@ -31,25 +31,25 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
     .expect(dropdownItems)
     .eql(
       JSON.stringify([
-        { isSelected: false, name: '1989', value: '1989' },
-        { isSelected: false, name: '1990', value: '1990' },
-        { isSelected: false, name: '1991', value: '1991' },
-        { isSelected: false, name: '1992', value: '1992' },
-        { isSelected: false, name: '1993', value: '1993' },
-        { isSelected: false, name: '1994', value: '1994' },
-        { isSelected: false, name: '1995', value: '1995' },
-        { isSelected: false, name: '1996', value: '1996' },
-        { isSelected: false, name: '1997', value: '1997' },
-        { isSelected: false, name: '1998', value: '1998' },
-        { isSelected: false, name: '1999', value: '1999' },
-        { isSelected: false, name: '2000', value: '2000' },
-        { isSelected: false, name: '2012', value: '2012' },
-        { isSelected: false, name: '2014', value: '2014' },
-        { isSelected: false, name: '2018', value: '2018' },
-        { isSelected: false, name: '2019', value: '2019' },
-        { isSelected: true, name: '2020', value: '2020' },
-        { isSelected: false, name: '2021', value: '2021' },
-        { isSelected: false, name: '2022', value: '2022' },
+        { selected: false, name: '1989', value: '1989' },
+        { selected: false, name: '1990', value: '1990' },
+        { selected: false, name: '1991', value: '1991' },
+        { selected: false, name: '1992', value: '1992' },
+        { selected: false, name: '1993', value: '1993' },
+        { selected: false, name: '1994', value: '1994' },
+        { selected: false, name: '1995', value: '1995' },
+        { selected: false, name: '1996', value: '1996' },
+        { selected: false, name: '1997', value: '1997' },
+        { selected: false, name: '1998', value: '1998' },
+        { selected: false, name: '1999', value: '1999' },
+        { selected: false, name: '2000', value: '2000' },
+        { selected: false, name: '2012', value: '2012' },
+        { selected: false, name: '2014', value: '2014' },
+        { selected: false, name: '2018', value: '2018' },
+        { selected: false, name: '2019', value: '2019' },
+        { selected: true, name: '2020', value: '2020' },
+        { selected: false, name: '2021', value: '2021' },
+        { selected: false, name: '2022', value: '2022' },
       ])
     );
 });
@@ -99,7 +99,7 @@ test('should display month in english', async t => {
   await datePickerAccessor.assertMonth('February');
 });
 
-fixture('Datepicker - Collapsable Version').page(
+fixture('Datepicker - Collapsible Version').page(
   `${host}/iframe.html?id=molecules-datepicker--datepicker-input`
 );
 
