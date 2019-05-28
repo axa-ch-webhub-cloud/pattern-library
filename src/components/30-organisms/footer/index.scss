@@ -7,9 +7,14 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  &__title {
+    @include typo(primary, default, medium);
+  }
+
   &__social-media {
     &-title {
       @include typo(primary, medium, bold);
+
       display: none;
 
       text-transform: uppercase;
