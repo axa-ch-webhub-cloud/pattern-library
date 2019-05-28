@@ -9,6 +9,7 @@ const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const fs = require('fs');
 const path = require('path');
 const { uglify } = require('rollup-plugin-uglify');
+const copy = require('rollup-plugin-copy');
 
 const base = path.resolve(__dirname, 'src').replace(/\\/g, '/');
 const globalSassImports = require('./config/globals.js')
@@ -138,6 +139,13 @@ const libReact = {
     file: './lib/index.react.js',
     format: 'es',
   },
+  plugins: [...lib.plugins, copy({
+    targets: [
+      'index.d.ts',
+      'index.react.d.ts',
+    ],
+    outputFolder: './lib'
+  })]
 };
 
 // Sometimes there is no react version to build. I.e icons
@@ -145,6 +153,7 @@ const rollupConfig = [lib];
 if (fs.existsSync('./index.react.js')) {
   rollupConfig.push(libReact);
 }
+
 rollupConfig.push(dist);
 
 export default rollupConfig;
