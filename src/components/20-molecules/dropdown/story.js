@@ -67,7 +67,7 @@ storiesOf('Molecules/Dropdown', module)
     () => `<form id="dropdown-form" onsubmit="event.preventDefault();document.getElementById('form-data').open=true;document.getElementById('form-data-lang').textContent=(new FormData(this)).get('lang')">
     <fieldset>
     <legend>Language</legend>
-    <axa-dropdown name="lang"
+    <axa-dropdown data-test-id="dropdown-forms" name="lang"
     items='[
     {"name": "Please select language", "value": "Please Select", "selected": true, "disabled": true },
     {"name": "Deutsch", "value": "DE" },

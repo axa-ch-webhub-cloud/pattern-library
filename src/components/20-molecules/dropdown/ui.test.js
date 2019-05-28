@@ -103,3 +103,35 @@ test('should exhibit controlled-component behaviour', async t => {
     .expect(await getControlledValue())
     .eql('Item 3');
 });
+
+fixture('Dropdown Form').page(
+  `${host}/iframe.html?id=molecules-dropdown--dropdown-inside-form`
+);
+
+test('should submit correct value to form', async t => {
+  const dropdown = await Selector(() =>
+    document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+  );
+  await t.expect(dropdown.exists).ok();
+  await t.click(dropdown);
+  const secondOption = await Selector(() =>
+    document.querySelector(
+      'axa-dropdown[data-test-id="dropdown-forms"] button[data-index="2"]'
+    )
+  );
+  await t.click(secondOption);
+  const submitButton = await Selector(() =>
+    document.querySelector('#dropdown-form axa-button[type="submit"]')
+  );
+  await t.click(submitButton);
+  const getFormData = ClientFunction(() => {
+    const valueSpan = document.querySelector(
+      '#dropdown-form span[id="form-data-lang"]'
+    );
+    return valueSpan.innerText;
+  });
+  await t
+    .wait(50)
+    .expect(await getFormData())
+    .eql('FR');
+});
