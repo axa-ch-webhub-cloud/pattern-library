@@ -1,3 +1,7 @@
+# Ignore everything except the src folder:
+/*
+!/src
+
 # We decided in the team to not format scss files
 *.scss
 
