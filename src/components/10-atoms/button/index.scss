@@ -14,8 +14,6 @@
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-prim-blue-deep-sapphire;
 
-  background: hotpink !important;
-
   @include breakpoint($mediaquery-sm-up) {
     @include _text(default)
   }
