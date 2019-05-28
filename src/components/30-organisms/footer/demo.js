@@ -4,9 +4,11 @@ import './index';
 
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
+import withBodyReset from '../../../../.storybook/addons/reset-body';
 
 storiesOf('Organisms/Footer/Demos', module)
   .addDecorator(withMarkdown(Readme))
+  .addDecorator(withBodyReset())
   .add('Feature - Footer Callbacks', () => {
     const content = [
       {
