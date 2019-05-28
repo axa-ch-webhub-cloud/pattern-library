@@ -93,6 +93,7 @@ class AXADropdown extends NoShadowDOM {
       items: { type: Array },
       open: { type: Boolean, reflect: true },
       value: { type: String },
+      name: { type: String, reflect: true },
       title: { type: String, reflect: true },
       native: { type: Boolean },
       valid: { type: Boolean, reflect: true },
@@ -300,6 +301,7 @@ class AXADropdown extends NoShadowDOM {
   render() {
     const {
       items = [],
+      name = '',
       title,
       native,
       valid,
@@ -318,6 +320,7 @@ class AXADropdown extends NoShadowDOM {
         <div class="m-dropdown__list m-dropdown__list--native">
           <select
             class="m-dropdown__select js-dropdown__select"
+            name="${name}"
             @change="${handleDropdownItemClick}"
           >
             ${items.map(nativeItemsMapper)}
