@@ -6,7 +6,7 @@
 
 `npm install @axa-ch/materials`
 
-## Useage
+## Usage
 
 ```
 import {
