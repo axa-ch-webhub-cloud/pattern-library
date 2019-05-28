@@ -78,6 +78,12 @@ const lib = {
       mainFields: ['module', 'main'],
       only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
     }),
+    copy({
+      targets: [
+        'index.d.ts',
+      ],
+      outputFolder: './lib'
+    })
   ],
 };
 
@@ -127,11 +133,6 @@ const dist = {
   ],
 };
 
-// While running the index.react.js file, Rollup would not resolve the import of the index.js.
-// Because the index.js alrady created a lib/index.js, so rollup takes this as a reference.
-// That's why we pass the react lib as seperate rollup config.
-// We want the import of index.js to be resolved in the index.react.js
-
 const libReact = {
   ...lib,
   input: 'index.react.js',
@@ -141,7 +142,6 @@ const libReact = {
   },
   plugins: [...lib.plugins, copy({
     targets: [
-      'index.d.ts',
       'index.react.d.ts',
     ],
     outputFolder: './lib'
