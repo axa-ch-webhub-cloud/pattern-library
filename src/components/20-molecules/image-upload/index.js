@@ -72,20 +72,12 @@ class AXAImageUpload extends LitElement {
                 </div>
                 <p class="m-image-upload__information">${INFO}</p>
                 <p class="m-image-upload__or">${OR}</p>
-                <!-- TODO: replace with AXAInputFile when released------------->
-                <label
-                  for="file-upload"
-                  class="m-button__image-upload-label"
-                ></label>
-                <input
-                  @change="${this.handleImageUploadButtonChange}"
-                  type="file"
+                <axa-input-file
                   accept="image/jpg, image/jpeg, application/pdf, image/png"
-                  capture="camera"
-                  multiple="multiple"
-                  class="m-button__image-upload-input"
-                  id="file-upload"
-                />
+                  multiple
+                >
+                  ${this.inputFileText}
+                </axa-input-file>
                 <!-- END ------------------------------------------------------>
               `}
         </section>
