@@ -21,9 +21,9 @@ $image-upload-dropzone-border: 2px !default;
     color: $color-prim-red-flamingo;
   }
 
-  // &__dropzone_dragover {
-  //   opacity: 0.6;
-  // }
+  &__dropzone_dragover {
+    opacity: 0.6;
+  }
   //
   // &__dropzone_dragleave {
   //   border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;

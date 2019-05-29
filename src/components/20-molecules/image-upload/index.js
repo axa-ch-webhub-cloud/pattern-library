@@ -51,10 +51,12 @@ class AXAImageUpload extends LitElement {
     this.compressedImages = [];
   }
 
+  firstUpdated() {
+    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
+  }
+
   render() {
     const classes = {
-      'm-image-upload__dropzone': true,
-      'js-image-upload__dropzone': true,
       'm-image-upload__dropzone__overview': this.showImageOverview,
     };
     return html`
@@ -65,7 +67,9 @@ class AXAImageUpload extends LitElement {
           @dragleave="${this.handleImageUploadDropZoneDragleave}"
           @drop="${this.handleImageUploadDropZoneDrop}"
           @click="${this.handleImageUploadDropZoneClick}"
-          class="${classMap(classes)}"
+          class="m-image-upload__dropzone js-image-upload__dropzone ${classMap(
+            classes
+          )}"
         >
           ${this.showImageOverview
             ? html`
@@ -101,7 +105,8 @@ class AXAImageUpload extends LitElement {
     e.preventDefault();
     console.log(e, 'dragover');
     e.dataTransfer.dropEffect = 'copy';
-    // TODO change style
+
+    this.dropZone.classList.add('m-image-upload__dropzone_dragover');
   }
 
   handleImageUploadDropZoneDragleave(e) {
