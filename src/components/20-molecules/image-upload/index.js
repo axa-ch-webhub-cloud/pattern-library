@@ -1,4 +1,5 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
 import {
   DeleteSvg,
