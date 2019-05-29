@@ -1,6 +1,6 @@
 # Title section
 
-This component comes with all needed styles for an AXA headline
+This gives you a fully styled section title according AXA guidelines
 
 ## Usage
 
@@ -11,7 +11,7 @@ npm install @axa-ch/title-section
 ```js
 import '@axa-ch/title-section';
 ...
-<axa-title-section></axa-title-section>
+<axa-title-section>This is a title for a section</axa-title-section>
 ```
 
 ### React
@@ -28,7 +28,7 @@ export default AXATitleSectionReact;
 ```
 
 ```js
-<AXATitleSectionReact onClick={handler} />
+<AXATitleSectionReact>A section title</AXATitleSectionReact>
 ```
 
 ### Pure HTML pages
@@ -55,14 +55,6 @@ Import the title-section-defining script and use a title-section like this:
 
 ### Variant
 
-| Attribute       | Details         |
-| --------------- | --------------- |
-| `variant="foo"` | Desc of Variant |
-
-### Bar
-
-The attribute `bar` specifies...
-
-### onClick
-
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+| Attribute         | Details                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `variant="white"` | The title in white, to be used on different backgrounds |
