@@ -2,7 +2,7 @@ import { Selector, ClientFunction } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Input file - basic functionality').page(
+fixture('Input File - basic functionality').page(
   `${host}/iframe.html?id=atoms-input-file--input-file-default`
 );
 
@@ -18,22 +18,22 @@ test('should render input-file', async t => {
   await t.expect($axaElemEl.exists).ok();
 });
 
-fixture('Input File - icon').page(
+fixture('Input File - set property icon').page(
   `${host}/iframe.html?id=atoms-input-file--input-file-icon`
 );
 
-test('should render icon', async t => {
+test('should set input file property icon', async t => {
   const $axaElem = await Selector(INPUT_FILE_TAG);
   await t.expect($axaElem.exists).ok();
   const $axaIcon = await $axaElem.find(ICON_TAG);
   await t.expect($axaIcon.exists).ok();
 });
 
-fixture('Input File - set properties').page(
+fixture('Input File - set property disabled').page(
   `${host}/iframe.html?id=atoms-input-file--input-file-default`
 );
 
-test('should set input file element disabled', async t => {
+test('should set input file property disabled', async t => {
   const setDisabled = ClientFunction(() => {
     document.querySelector('axa-input-file').disabled = true;
   });
@@ -42,15 +42,11 @@ test('should set input file element disabled', async t => {
   await t.expect(await $axaElm.hasAttribute('disabled')).ok();
 });
 
-fixture('Input File - set properties').page(
+fixture('Input File - set property accept').page(
   `${host}/iframe.html?id=atoms-input-file--input-file-accept`
 );
 
 test('should set input file accept', async t => {
-  const setAccept = ClientFunction(() => {
-    document.querySelector('axa-input-file').accept = 'application/pdf';
-  });
-  await setAccept();
   const $axaElm = await Selector('axa-input-file');
   const $axaElmInput = await $axaElm.find(INPUT_FILE_INPUT_CLASS);
   await t
@@ -58,29 +54,21 @@ test('should set input file accept', async t => {
     .ok();
 });
 
-fixture('Input File - set properties').page(
+fixture('Input File - set property multiple').page(
   `${host}/iframe.html?id=atoms-input-file--input-file-multiple`
 );
 
 test('should set input file multiple', async t => {
-  const setMultiple = ClientFunction(() => {
-    document.querySelector('axa-input-file').multiple = true;
-  });
-  await setMultiple();
   const $axaElm = await Selector('axa-input-file');
   const $axaElmInput = await $axaElm.find(INPUT_FILE_INPUT_CLASS);
   await t.expect(await $axaElmInput.hasAttribute('multiple')).ok();
 });
 
-fixture('Input File - set properties').page(
+fixture('Input File - set property capture').page(
   `${host}/iframe.html?id=atoms-input-file--input-file-capture`
 );
 
 test('should set input file capture', async t => {
-  const setCapture = ClientFunction(() => {
-    document.querySelector('axa-input-file').capture = true;
-  });
-  await setCapture();
   const $axaElm = await Selector('axa-input-file');
   const $axaElmInput = await $axaElm.find(INPUT_FILE_INPUT_CLASS);
   await t.expect(await $axaElmInput.hasAttribute('capture')).ok();
