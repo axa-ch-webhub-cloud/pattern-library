@@ -24,7 +24,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/input-file": "0.0.1-alpha.0",
+    "@axa-ch/input-file": "0.0.1-alpha.1",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
