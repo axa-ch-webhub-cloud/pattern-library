@@ -42,9 +42,13 @@ test('should set input file element disabled', async t => {
   await t.expect(await $axaElm.hasAttribute('disabled')).ok();
 });
 
+fixture('Input File - set properties').page(
+  `${host}/iframe.html?id=atoms-input-file--input-file-accept`
+);
+
 test('should set input file accept', async t => {
   const setAccept = ClientFunction(() => {
-    document.querySelector('axa-input-file > input').accept = 'application/pdf';
+    document.querySelector('axa-input-file').accept = 'application/pdf';
   });
   await setAccept();
   const $axaElm = await Selector('axa-input-file');
@@ -54,9 +58,13 @@ test('should set input file accept', async t => {
     .ok();
 });
 
+fixture('Input File - set properties').page(
+  `${host}/iframe.html?id=atoms-input-file--input-file-multiple`
+);
+
 test('should set input file multiple', async t => {
   const setMultiple = ClientFunction(() => {
-    document.querySelector('axa-input-file > input').multiple = true;
+    document.querySelector('axa-input-file').multiple = true;
   });
   await setMultiple();
   const $axaElm = await Selector('axa-input-file');
@@ -64,9 +72,13 @@ test('should set input file multiple', async t => {
   await t.expect(await $axaElmInput.hasAttribute('multiple')).ok();
 });
 
+fixture('Input File - set properties').page(
+  `${host}/iframe.html?id=atoms-input-file--input-file-capture`
+);
+
 test('should set input file capture', async t => {
   const setCapture = ClientFunction(() => {
-    document.querySelector('axa-input-file > input').capture = true;
+    document.querySelector('axa-input-file').capture = true;
   });
   await setCapture();
   const $axaElm = await Selector('axa-input-file');
