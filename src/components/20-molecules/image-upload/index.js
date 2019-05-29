@@ -1,4 +1,5 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+/* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
 import {
@@ -15,6 +16,7 @@ import styles from './index.scss';
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
 
+// TODO -> move all icons to materials
 const DeleteIcon = svg([DeleteSvg]);
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 const PlusRoundedIcon = svg([PlusRoundedSvg]);
@@ -76,6 +78,7 @@ class AXAImageUpload extends LitElement {
                 <axa-input-file
                   accept="image/jpg, image/jpeg, application/pdf, image/png"
                   multiple
+                  @change=${this.handleImageUploadButtonChange}
                 >
                   ${this.inputFileText}
                 </axa-input-file>
@@ -93,8 +96,8 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadButtonChange(e) {
     e.stopPropagation();
-    console.log(e, 'button change', e.monitor);
     const { files } = e.target;
+    console.log(files);
   }
 
   handleImageUploadDropZoneDragover(e) {
