@@ -19,7 +19,7 @@ test('should render title-section', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-fixture('Title section - basic functionality').page(
+fixture('Title section - Variant white').page(
   `${host}/iframe.html?id=atoms-title-section--title-section-white`
 );
 
