@@ -1,3 +1,4 @@
 src/**/lib
 src/**/dist
+src/**/00-materials/icons
 node_modules

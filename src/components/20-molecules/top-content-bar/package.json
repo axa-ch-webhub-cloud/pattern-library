@@ -1,13 +1,14 @@
 {
   "name": "@axa-ch/top-content-bar",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.4",
   "description": "Used as top of the page Warning or info box that can show text and have a call to action button",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
+  "scripts": {
+    "build": "rollup --silent --config ../../../../rollup.config.js",
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
   },
   "files": [
     "lib",
@@ -24,9 +25,9 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "^1.1.1",
-    "@axa-ch/button-link": "^1.1.1",
-    "@axa-ch/container": "^1.0.0",
+    "@axa-ch/button": "^1.1.3-alpha.4",
+    "@axa-ch/button-link": "^1.1.3-alpha.4",
+    "@axa-ch/container": "^1.0.1-alpha.3",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"

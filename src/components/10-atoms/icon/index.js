@@ -13,7 +13,7 @@ import {
   PlusSvg,
   SearchSvg,
   UploadSvg,
-} from '@axa-ch/materials';
+} from '@axa-ch/materials/icons';
 import defineOnce from '../../../utils/define-once';
 
 class AXAIcon extends LitElement {

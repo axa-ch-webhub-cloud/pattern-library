@@ -1,13 +1,14 @@
 {
   "name": "@axa-ch/table",
-  "version": "1.1.1",
+  "version": "1.1.2-alpha.4",
   "description": "Basic pure UI Table",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
+  "scripts": {
+    "build": "rollup --silent --config ../../../../rollup.config.js",
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
   },
   "files": [
     "lib",
@@ -24,7 +25,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "^1.1.1",
+    "@axa-ch/materials": "^1.1.2-alpha.4",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"

@@ -6,13 +6,11 @@
   "homepage": "__",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
+  "scripts": {
+    "build": "rollup --silent --config ../../../../rollup.config.js",
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
   },
-  "files": [
-    "lib",
-    "dist"
-  ],
+  "files": ["lib", "dist"],
   "publishConfig": {
     "access": "public"
   },

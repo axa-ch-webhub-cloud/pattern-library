@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { DateInputSvg } from '@axa-ch/materials';
+import { DateInputSvg } from '@axa-ch/materials/icons';
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import '@axa-ch/dropdown';
 import '@axa-ch/button';
