@@ -8,9 +8,13 @@ interface Item {
 interface AXAFooterSmallProps {
   languageItems: Item[];
   disclaimerItems: Item[];
-  copyrightText: String;
-  activeLanguage?: String;
+  copyrightText: string;
+  activeLanguage?: string;
+  /**
+   * set to true if want to use onLanguageChange cb
+   */
   dynamic?: boolean;
+  onLanguageChange: (language: string) => void;
 }
 
 declare function createAXAFooterSmall(

@@ -1,4 +1,4 @@
-export type icon =
+export type Icon =
   | 'collapse'
   | 'document'
   | 'download'
