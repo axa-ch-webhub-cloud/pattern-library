@@ -1,0 +1,68 @@
+# Title section
+
+This component comes with all needed styles for an AXA headline
+
+## Usage
+
+```bash
+npm install @axa-ch/title-section
+```
+
+```js
+import '@axa-ch/title-section';
+...
+<axa-title-section></axa-title-section>
+```
+
+### React
+
+Create a React-ified title-section with the createElement function from your React version and then use it like this:
+
+```js
+import { createElement } from 'react';
+import createAXATitleSectionReact from '@axa-ch/title-section/lib/index.react';
+
+const AXATitleSectionReact = createAXATitleSectionReact(createElement);
+
+export default AXATitleSectionReact;
+```
+
+```js
+<AXATitleSectionReact onClick={handler} />
+```
+
+### Pure HTML pages
+
+Import the title-section-defining script and use a title-section like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Your awesome title</title>
+  </head>
+  <body>
+    <axa-title-section></axa-title-section>
+    <script src="node_modules/@axa-ch/title-section/dist/index.js"></script>
+  </body>
+</html>
+```
+
+## Properties
+
+### Variant
+
+| Attribute       | Details         |
+| --------------- | --------------- |
+| `variant="foo"` | Desc of Variant |
+
+### Bar
+
+The attribute `bar` specifies...
+
+### onClick
+
+The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
