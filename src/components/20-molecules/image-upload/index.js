@@ -38,6 +38,7 @@ class AXAImageUpload extends LitElement {
     return {
       inputFileText: { type: String },
       onClick: { type: Function },
+      showImageOverview: { type: Boolean },
     };
   }
 
@@ -47,6 +48,7 @@ class AXAImageUpload extends LitElement {
     this.onClick = () => {};
 
     this.showImageOverview = false;
+    this.compressedImages = [];
   }
 
   render() {
@@ -82,42 +84,46 @@ class AXAImageUpload extends LitElement {
                 >
                   ${this.inputFileText}
                 </axa-input-file>
-                <!-- END ------------------------------------------------------>
               `}
         </section>
       </article>
     `;
   }
 
-  handleImageUploadButtonClick(e) {
-    e.stopPropagation();
-    console.log(e, 'button klick');
-  }
-
   handleImageUploadButtonChange(e) {
     e.stopPropagation();
     const { files } = e.target;
-    console.log(files);
+    console.log('via button', files);
+    this.compressImages(files);
   }
 
   handleImageUploadDropZoneDragover(e) {
     e.preventDefault();
     console.log(e, 'dragover');
     e.dataTransfer.dropEffect = 'copy';
+    // TODO change style
   }
 
   handleImageUploadDropZoneDragleave(e) {
     console.log(e, 'dragleave');
+    // TODO change style
   }
 
   handleImageUploadDropZoneDrop(e) {
     e.preventDefault();
     const { files } = e.dataTransfer;
-    console.log(e, 'drop');
+    console.log('via drop', files);
+    this.compressImages(files);
   }
 
   handleImageUploadDropZoneClick(e) {
     console.log(e, 'zone click');
+  }
+
+  compressImages() {
+    if (this.compressedImages) {
+      this.showImageOverview = true;
+    }
   }
 }
 

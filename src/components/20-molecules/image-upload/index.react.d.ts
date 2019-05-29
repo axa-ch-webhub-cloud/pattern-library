@@ -2,6 +2,7 @@ import React from 'react';
 
 interface AXAImageUploadProps {
   inputFileText?: String;
+  showImageOverview?: Boolean;
   onClick?: () => void;
 }
 
