@@ -13,5 +13,7 @@ storiesOf('Atoms/Title section', module)
   .add(
     'Title section White',
     () =>
-      `<div style="background: #00008f; padding: 50px; 100px;"><axa-title-section variant="white">This is the section title in white to be used on backgrounds</axa-title-section></div>`
+      `<article style="background: #00008f; padding: 50px; 100px;">
+        <axa-title-section variant="white">This is the section title in white to be used on backgrounds</axa-title-section>
+      </article>`
   );
