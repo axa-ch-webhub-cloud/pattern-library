@@ -1,5 +1,4 @@
 import { html, svg } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import { ArrowRightSvg } from '@axa-ch/materials';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -25,15 +24,15 @@ class AXAInputText extends NoShadowDOM {
 
       // Messages
       error: { type: String },
-      info: { type: String },
 
       inputFocus: { type: Boolean },
+      wasFocused: { type: Boolean },
+      wasBlured: { type: Boolean },
       required: { type: Boolean },
 
       disabled: { type: Boolean },
 
       isReact: { type: Boolean },
-      debug: { type: Boolean },
     };
   }
 
@@ -47,19 +46,20 @@ class AXAInputText extends NoShadowDOM {
     this.name = '';
     this.label = '';
     this.placeholder = '';
-    this.info = '';
     this.error = '';
     this.required = false;
     this.valid = true;
     this.disabled = false;
     this.isReact = false;
     this.debug = false;
-    this.inputFocus = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
 
     // internal properties
+    this.inputFocus = false;
+    this.wasFocused = false;
+    this.wasBlured = false;
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
@@ -86,29 +86,51 @@ class AXAInputText extends NoShadowDOM {
     return isControlled ? modelValue : nativeValue;
   }
 
-  get showCheckIcon() {
-    return this.valid && !!this.value && !this.inputFocus && !this.disabled;
+  get isRequiredError() {
+    return this.required && !this.value;
   }
 
-  get showError() {
-    return this.error && !this.valid && !this.disabled;
+  get isInvalid() {
+    return !this.valid && this.isRequiredError;
+  }
+
+  get showInputError() {
+    return this.isInvalid && this.wasBlured && this.wasFocused;
+  }
+
+  get hideCheckIcon() {
+    return (
+      this.inputFocus &&
+      this.isInvalid &&
+      !this.wasBlured &&
+      !this.wasFocused &&
+      this.disabled
+    );
+  }
+
+  get hideErrorMessage() {
+    return (
+      !this.error || !this.showInputError
+    );
   }
 
   handleFocus = ev => {
     this.onFocus(ev);
-
     this.inputFocus = true;
+
+    if (!this.wasFocused) {
+      this.wasFocused = true;
+    }
   };
 
   handleBlur = ev => {
+    // Validation should be on blur or submit
     this.onBlur(ev);
     this.inputFocus = false;
-    if (this.required && !this.value) {
-      this.valid = false;
-    } else {
-      this.valid = true;
+
+    if (!this.wasBlured) {
+      this.wasBlured = true;
     }
-    // Validation should be on blur or submit
   };
 
   handleInput = ev => {
@@ -130,24 +152,20 @@ class AXAInputText extends NoShadowDOM {
       name,
       required,
       value,
-      valid,
       label = '',
       error = '',
-      info = '',
       placeholder,
       disabled,
       isReact,
 
       isControlled,
       refId,
-      inputFocus,
     } = this;
 
-    const inputClasses = {
-      'a-input-text__input--error': !valid && !inputFocus,
-    };
-
     this.isControlled = isControlled && isReact;
+
+    console.log('value', !!this.value);
+    console.log('isInvalid', this.isInvalid);
 
     return html`
       <div class="a-input-text__wrapper">
@@ -168,7 +186,9 @@ class AXAInputText extends NoShadowDOM {
             @focus="${this.handleFocus}"
             @blur="${this.handleBlur}"
             id="${refId}"
-            class="a-input-text__input ${classMap(inputClasses)}"
+            class="a-input-text__input ${this.showInputError
+              ? 'a-input-text__input--error'
+              : ''}"
             autocomplete="off"
             name="${name}"
             value=${value}
@@ -178,21 +198,16 @@ class AXAInputText extends NoShadowDOM {
           />
 
           <span
-            class="a-input-text__check  ${!this.showCheckIcon
+            class="a-input-text__check ${this.hideCheckIcon
               ? 'a-input-text__check--hidden'
               : ''}"
           >
             ${svg([ArrowRightSvg])}
           </span>
-
-          ${info &&
-            html`
-              <span class="a-input-text__info">info component ${info}</span>
-            `}
         </div>
 
         <span
-          class="a-input-text__error ${!this.showError
+          class="a-input-text__error ${this.hideErrorMessage
             ? 'a-input-text__error--hidden'
             : ''}"
           >${error}</span

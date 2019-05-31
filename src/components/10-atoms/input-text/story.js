@@ -10,7 +10,7 @@ storiesOf('Atoms/Input text', module)
   .add(
     'Input text - label',
     () =>
-      '<axa-input-text label="Field Label" info="Info Message"></axa-input-text>'
+      '<axa-input-text label="Field Label"></axa-input-text>'
   )
   .add(
     'Input text - placeholder',
@@ -20,7 +20,12 @@ storiesOf('Atoms/Input text', module)
   .add(
     'Input text - value',
     () =>
-      '<axa-input-text label="Field Label" value="blalba" placeholder="Placeholder"></axa-input-text>'
+      '<axa-input-text label="Field Label" value="Example Value" placeholder="Placeholder"></axa-input-text>'
+  )
+  .add(
+    'Input text - disabled',
+    () =>
+      '<axa-input-text disabled label="Field Label" placeholder="Placeholder"></axa-input-text>'
   )
   .add(
     'Input text - required',
@@ -30,8 +35,9 @@ storiesOf('Atoms/Input text', module)
   .add('Input text - Error Message', () => {
     const inputText = document.createElement('axa-input-text');
     inputText.error = 'Error Message';
+    inputText.required = true;
     inputText.info = 'Info Message';
-    // inputText.valid = false;
+    inputText.valid = false;
 
     return inputText;
   });

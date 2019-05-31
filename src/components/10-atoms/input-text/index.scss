@@ -3,7 +3,6 @@ $border-type: solid;
 
 axa-input-text {
   .a-input-text__wrapper {
-    @include typo();
     display: flex;
     flex-direction: column;
     position: relative;
@@ -16,6 +15,7 @@ axa-input-text {
   }
 
   .a-input-text__input {
+    @include typo();
     appearance: none;
     background: $color-prim-white;
     border: 1px solid $color-prim-gray-dusty;
@@ -24,6 +24,7 @@ axa-input-text {
     color: $color-prim-gray-mine-shaft;
     height: 40px;
     padding: 0 20px;
+    width: 100%;
 
     &::placeholder {
       color: $color-prim-gray-dusty;
@@ -52,6 +53,7 @@ axa-input-text {
       &:active,
       &:focus {
         border: $border-width $border-type $color-validation-error;
+
       }
 
       &:focus {
@@ -62,19 +64,20 @@ axa-input-text {
 
     &:disabled {
       color: $color-prim-gray-dusty;
-      background-color: $color-prim-gray-mercury;
+      background-color: $color-prim-gray-alabaster;
       border-color: $color-prim-gray-mercury;
-      border-bottom-color: $color-prim-gray-silver;
     }
   }
 
   .a-input-text__label {
-    @include typo(medium, medium);
+    @include typo(primary, medium);
+    font-weight: 600;
     color: $color-prim-gray-mine-shaft;
     margin-bottom: 10px;
   }
 
   .a-input-text__error {
+    @include typo();
     margin-top: 10px;
     color: $color-validation-error;
 

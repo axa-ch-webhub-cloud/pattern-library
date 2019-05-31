@@ -1,16 +1,14 @@
 import React from 'react';
 
 interface AXAInputTextProps {
-  id: string;
+  id?: string;
   name: string;
-  label: string;
-  placeholder: string;
-  info: string;
-  error: string;
-  required: boolean;
-  disabled: boolean;
-  isReact: boolean;
-  debug: boolean;
+  label?: string;
+  placeholder?: string;
+  error?: string;
+  required?: boolean;
+  disabled?: boolean;
+  isReact?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: () => void;
