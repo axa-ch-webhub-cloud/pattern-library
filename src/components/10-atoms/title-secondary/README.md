@@ -1,39 +1,39 @@
-# Title primary
+# Title secondary
 
 Shows you an AXA conform title. A predefined size can be changed by setting a variant.
 
 ## Usage
 
 ```bash
-npm install @axa-ch/title-primary
+npm install @axa-ch/title-secondary
 ```
 
 ```js
-import '@axa-ch/title-primary';
+import '@axa-ch/title-secondary';
 ...
-<axa-title-primary></axa-title-primary>
+<axa-title-secondary></axa-title-secondary>
 ```
 
 ### React
 
-Create a React-ified title-primary with the createElement function from your React version and then use it like this:
+Create a React-ified title-secondary with the createElement function from your React version and then use it like this:
 
 ```js
 import { createElement } from 'react';
-import createAXATitlePrimaryReact from '@axa-ch/title-primary/lib/index.react';
+import createAXATitleSecondaryReact from '@axa-ch/title-secondary/lib/index.react';
 
-const AXATitlePrimaryReact = createAXATitlePrimaryReact(createElement);
+const AXATitleSecondaryReact = createAXATitleSecondaryReact(createElement);
 
-export default AXATitlePrimaryReact;
+export default AXATitleSecondaryReact;
 ```
 
 ```js
-<AXATitlePrimaryReact onClick={handler} />
+<AXATitleSecondaryReact onClick={handler} />
 ```
 
 ### Pure HTML pages
 
-Import the title-primary-defining script and use a title-primary like this:
+Import the title-secondary-defining script and use a title-secondary like this:
 
 ```html
 <!DOCTYPE html>
@@ -45,8 +45,8 @@ Import the title-primary-defining script and use a title-primary like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-title-primary></axa-title-primary>
-    <script src="node_modules/@axa-ch/title-primary/dist/index.js"></script>
+    <axa-title-secondary></axa-title-secondary>
+    <script src="node_modules/@axa-ch/title-secondary/dist/index.js"></script>
   </body>
 </html>
 ```

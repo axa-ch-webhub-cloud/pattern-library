@@ -1,0 +1,31 @@
+.a-title-secondary {
+  @include typo(secondary, larger);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(secondary, largest);
+  }
+}
+
+.a-title-secondary--size-2 {
+  @include typo(secondary, x-large);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(secondary, xx-large);
+  }
+}
+
+.a-title-secondary--size-3 {
+  @include typo(secondary, medium-large);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(secondary, large);
+  }
+}
+
+.a-title-secondary--size-4 {
+  @include typo(secondary, small);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(secondary, medium);
+  }
+}
