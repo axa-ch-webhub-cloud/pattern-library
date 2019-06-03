@@ -13,9 +13,10 @@ import '@axa-ch/container';
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import defineOnce from '../../../utils/define-once';
+import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
 
-class AXAFooter extends LitElement {
+class AXAFooter extends NoShadowDOM {
   static get tagName() {
     return 'axa-footer';
   }
@@ -74,88 +75,20 @@ class AXAFooter extends LitElement {
       );
     }
   };
-
-  render() {
-    return html`
-      <footer class="o-footer">
-        <axa-container>
-          <div class="o-footer__content">
-            <div class="o-footer__collection">
-              ${repeat(
-                this.content,
-                (contentItem, index) =>
-                  html`
-                    <div class="o-footer__main">
-                      <h1 class="o-footer__title-desktop">
-                        ${contentItem.title}
-                      </h1>
-                      <button
-                        class="o-footer__accordion-button"
-                        @click="${ev => this.handleClick(ev, index)}"
-                      >
-                        <h1 class="o-footer__title">
-                          ${contentItem.title}
-                        </h1>
-                        <span
-                          class="o-footer__accordion-button-caret o-footer__accordion-button-caret${contentItem.active
-                            ? '--open'
-                            : ''}"
-                        >
-                          ${svg([CaretSvg || ''])}
-                        </span>
-                      </button>
-                      <ul
-                        class="o-footer__main-content-panel o-footer__main-content-panel${contentItem.active
-                          ? '--open'
-                          : ''}"
-                      >
-                        ${repeat(
-                          contentItem.items,
-                          i =>
-                            html`
-                              <li
-                                class="o-footer__main-content-panel-list-item"
-                              >
-                                <a
-                                  href=${i.link}
-                                  target="${i.external ? '_blank' : '_top'}"
-                                  @click="${ev =>
-                                    this.handleLinkClick(ev, i.text)}"
-                                  >${i.text}</a
-                                >
-                              </li>
-                            `
-                        )}
-                      </ul>
-                    </div>
-                  `
-              )}
-            </div>
-            <div class="o-footer__social-media">
-              <h1 class="o-footer__social-media-title">
-                ${this.social.title}
-              </h1>
-              <ul class="o-footer__social-media-list">
-                ${repeat(this.social.icons, icon => {
-                  return html`
-                    <li>
-                      <a
-                        href="${icon.link}"
-                        target="_blank"
-                        @click="${ev => this.handleLinkClick(ev, icon.title)}"
-                        >${svg([this.iconMap.get(icon.title) || ''])}</a
-                      >
-                    </li>
-                  `;
-                })}
-              </ul>
-            </div>
-          </div>
-        </axa-container>
-      </footer>
-    `;
-  }
 }
+
+/* <footer class="o-footer">
+<axa-container>
+  <div class="o-footer__content">
+    <slot></slot>
+  </div>
+</axa-container>
+</footer> */
+
+// AXAFooter.styles = css`
+//   axa-footer {
+//   }
+// `;
 
 defineOnce(AXAFooter.tagName, AXAFooter);
 
