@@ -27,88 +27,9 @@ storiesOf('Organisms/Footer', module)
     () =>
       `
       <axa-footer>
-        <footer class="o-footer">
-          <axa-container>	
-            <div class="o-footer__content">
-              <div class="o-footer__collection">
-                <div class="o-footer__main">
-                  <h1 class="o-footer__title-desktop">
-                    axa & you
-                  </h1>
-                  <button
-                    class="o-footer__accordion-button"
-                  >
-                    <h1 class="o-footer__title">
-                      axa & you
-                    </h1>
-                    <span
-                      class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
-                    >
-                      ${svg([CaretSvg || ''])}
-                    </span>
-                  </button>
-                  <ul
-                    class="o-footer__main-content-panel o-footer__main-content-panel--open"
-                  >
-                    <li
-                      class="o-footer__main-content-panel-list-item"
-                    >
-                      <a
-                        href="https://axa.ch/en/private-customers.html"
-                        target="_blank"
-                        >Contact</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-                <div class="o-footer__main">
-                  <h1 class="o-footer__title-desktop">
-                    axa worldwide
-                  </h1>
-                  <button
-                    class="o-footer__accordion-button"
-                  >
-                    <h1 class="o-footer__title">
-                      axa worldwide
-                    </h1>
-                    <span
-                      class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
-                    >
-                      ${svg([CaretSvg || ''])}
-                    </span>
-                  </button>
-                  <ul
-                    class="o-footer__main-content-panel o-footer__main-content-panel--open"
-                  >
-                    <li
-                      class="o-footer__main-content-panel-list-item"
-                    >
-                      <a
-                        href="https://axa.ch/en/private-customers.html"
-                        target="_blank"
-                        >AXA worldwide</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="o-footer__social-media">
-                <h1 class="o-footer__social-media-title">
-                  stay in touch
-                </h1>
-                <ul class="o-footer__social-media-list">
-                  <li>
-                    <a
-                      href="https://axa.ch/en/private-customers.html"
-                      target="_blank"
-                      >${svg([FacebookSvg || ''])}</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </axa-container>	
-        </footer>
+        <h2 slot="column-1-title-desktop">axa & you</h2>
+        <h2 slot="column-1-title">axa & you</h2>
+        <h2 slot="column-3-social-title">stay in touch</h2>
       </axa-footer>`
   );
 

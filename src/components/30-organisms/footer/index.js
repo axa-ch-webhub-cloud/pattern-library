@@ -13,10 +13,9 @@ import '@axa-ch/container';
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import defineOnce from '../../../utils/define-once';
-import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
 
-class AXAFooter extends NoShadowDOM {
+class AXAFooter extends LitElement {
   static get tagName() {
     return 'axa-footer';
   }
@@ -75,20 +74,86 @@ class AXAFooter extends NoShadowDOM {
       );
     }
   };
+
+  render() {
+    return html`
+      <footer class="o-footer">
+        <axa-container>
+          <div class="o-footer__content">
+            <div class="o-footer__collection">
+              <div class="o-footer__main">
+                <slot
+                  name="column-1-title-desktop"
+                  class="o-footer__title-desktop"
+                ></slot>
+                <button class="o-footer__accordion-button">
+                  <slot name="column-1-title" class="o-footer__title"></slot>
+                  <span
+                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
+                  >
+                    ${svg([CaretSvg || ''])}
+                  </span>
+                </button>
+                <ul
+                  class="o-footer__main-content-panel o-footer__main-content-panel--open"
+                >
+                  <li class="o-footer__main-content-panel-list-item">
+                    <a
+                      href="https://axa.ch/en/private-customers.html"
+                      target="_blank"
+                      >Contact</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="o-footer__main">
+                <h1 class="o-footer__title-desktop">
+                  axa worldwide
+                </h1>
+                <button class="o-footer__accordion-button">
+                  <h1 class="o-footer__title">
+                    axa worldwide
+                  </h1>
+                  <span
+                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
+                  >
+                    ${svg([CaretSvg || ''])}
+                  </span>
+                </button>
+                <ul
+                  class="o-footer__main-content-panel o-footer__main-content-panel--open"
+                >
+                  <li class="o-footer__main-content-panel-list-item">
+                    <a
+                      href="https://axa.ch/en/private-customers.html"
+                      target="_blank"
+                      >AXA worldwide</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="o-footer__social-media">
+              <slot
+                name="column-3-social-title"
+                class="o-footer__social-media-title"
+              ></slot>
+              <ul class="o-footer__social-media-list">
+                <li>
+                  <a
+                    href="https://axa.ch/en/private-customers.html"
+                    target="_blank"
+                    >${svg([FacebookSvg || ''])}</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </axa-container>
+      </footer>
+    `;
+  }
 }
-
-/* <footer class="o-footer">
-<axa-container>
-  <div class="o-footer__content">
-    <slot></slot>
-  </div>
-</axa-container>
-</footer> */
-
-// AXAFooter.styles = css`
-//   axa-footer {
-//   }
-// `;
 
 defineOnce(AXAFooter.tagName, AXAFooter);
 
