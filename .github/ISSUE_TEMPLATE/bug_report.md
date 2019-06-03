@@ -7,4 +7,4 @@ assignees: ''
 
 ---
 
-**Please only report technical bugs. Clarify design issues with one of our designers: Ken Brossi, Jonas Güther and Thomas Veit**
+Please only report technical bugs. Clarify design issues with one of our designers: Ken Brossi, Jonas Güther and Thomas Veit
