@@ -1,0 +1,20 @@
+.a-text {
+  @include typo(primary, medium);
+  display: block;
+}
+
+.a-text--size-1 {
+  @include typo(primary, medium);
+}
+
+.a-text--size-2 {
+  @include typo(primary, large);
+}
+
+.a-text--size-3 {
+  @include typo(primary, x-large);
+}
+
+.a-text--bold {
+  @include _font(primary, bold);
+}
