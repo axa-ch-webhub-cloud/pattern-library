@@ -27,10 +27,10 @@ storiesOf('Organisms/Footer', module)
     () =>
       `
       <axa-footer>
-        <h2 slot="column-1-title-desktop">axa & you</h2>
-        <h2 slot="column-1-title">axa & you</h2>
-        <h2 slot="column-2-title-desktop">axa worldwide</h2>
-        <h2 slot="column-2-title">axa worldwide</h2>
-        <h2 slot="column-3-social-title">stay in touch</h2>
+        <h2 slot="column-0-title-desktop">axa & you</h2>
+        <h2 slot="column-0-title">axa & you</h2>
+        <h2 slot="column-1-title-desktop">axa worldwide</h2>
+        <h2 slot="column-1-title">axa worldwide</h2>
+        <h2 slot="column-2-social-title">stay in touch</h2>
       </axa-footer>`
   );

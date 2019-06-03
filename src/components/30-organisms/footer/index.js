@@ -74,7 +74,7 @@ class AXAFooter extends LitElement {
             <div class="o-footer__collection">
               <div class="o-footer__main">
                 <slot
-                  name="column-1-title-desktop"
+                  name="column-0-title-desktop"
                   class="o-footer__title-desktop"
                 ></slot>
                 <button
@@ -84,7 +84,7 @@ class AXAFooter extends LitElement {
                     this.requestUpdate();
                   }}"
                 >
-                  <slot name="column-1-title" class="o-footer__title"></slot>
+                  <slot name="column-0-title" class="o-footer__title"></slot>
                   <span
                     class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
                       .accordionActiveIndex === 0
@@ -112,7 +112,7 @@ class AXAFooter extends LitElement {
 
               <div class="o-footer__main">
                 <slot
-                  name="column-2-title-desktop"
+                  name="column-1-title-desktop"
                   class="o-footer__title-desktop"
                 ></slot>
                 <button
@@ -122,7 +122,7 @@ class AXAFooter extends LitElement {
                     this.requestUpdate();
                   }}"
                 >
-                  <slot name="column-2-title" class="o-footer__title"></slot>
+                  <slot name="column-1-title" class="o-footer__title"></slot>
                   <span
                     class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
                       .accordionActiveIndex === 1
@@ -150,7 +150,7 @@ class AXAFooter extends LitElement {
             </div>
             <div class="o-footer__social-media">
               <slot
-                name="column-3-social-title"
+                name="column-2-social-title"
                 class="o-footer__social-media-title"
               ></slot>
               <ul class="o-footer__social-media-list">
