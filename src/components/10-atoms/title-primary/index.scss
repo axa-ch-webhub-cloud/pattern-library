@@ -1,0 +1,47 @@
+.a-title-primary {
+  @include typo(primary, larger);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, largest);
+  }
+}
+
+.a-title-primary--size-2 {
+  @include typo(primary, x-large);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, xx-large);
+  }
+}
+
+.a-title-primary--size-3 {
+  @include typo(primary, medium-large);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, large);
+  }
+}
+
+.a-title-primary--size-4 {
+  @include typo(primary, small);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, medium);
+  }
+}
+
+.a-title-primary--size-5 {
+  @include typo(primary, xx-small);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, x-small);
+  }
+}
+
+.a-title-primary--size-6 {
+  @include typo(primary, smallest);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, xx-small);
+  }
+}
