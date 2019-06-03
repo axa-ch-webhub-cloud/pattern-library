@@ -34,6 +34,8 @@ class AXAFooter extends LitElement {
     };
   }
 
+  accordionActiveIndex = 0;
+
   constructor() {
     super();
     this.content = [];
@@ -52,13 +54,9 @@ class AXAFooter extends LitElement {
 
   handleClick(e, index) {
     e.stopPropagation();
-    const oldState = this.content[index].active;
-    this.content = this.content.map(c => {
-      c.active = false;
-      return c;
-    });
-
-    this.content[index].active = !oldState;
+    this.accordionActiveIndex = index;
+    // TODO Try to find a way to automate this
+    this.requestUpdate();
   }
 
   handleLinkClick = (ev, text) => {
@@ -86,16 +84,25 @@ class AXAFooter extends LitElement {
                   name="column-1-title-desktop"
                   class="o-footer__title-desktop"
                 ></slot>
-                <button class="o-footer__accordion-button">
+                <button
+                  class="o-footer__accordion-button"
+                  @click="${ev => this.handleClick(ev, 0)}"
+                >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span
-                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
+                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
+                      .accordionActiveIndex === 0
+                      ? '--open'
+                      : ''}"
                   >
                     ${svg([CaretSvg || ''])}
                   </span>
                 </button>
                 <ul
-                  class="o-footer__main-content-panel o-footer__main-content-panel--open"
+                  class="o-footer__main-content-panel o-footer__main-content-panel${this
+                    .accordionActiveIndex === 0
+                    ? '--open'
+                    : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
                     <a
@@ -106,21 +113,31 @@ class AXAFooter extends LitElement {
                   </li>
                 </ul>
               </div>
+
               <div class="o-footer__main">
                 <slot
                   name="column-2-title-desktop"
                   class="o-footer__title-desktop"
                 ></slot>
-                <button class="o-footer__accordion-button">
+                <button
+                  class="o-footer__accordion-button"
+                  @click="${ev => this.handleClick(ev, 1)}"
+                >
                   <slot name="column-2-title" class="o-footer__title"></slot>
                   <span
-                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
+                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
+                      .accordionActiveIndex === 1
+                      ? '--open'
+                      : ''}"
                   >
                     ${svg([CaretSvg || ''])}
                   </span>
                 </button>
                 <ul
-                  class="o-footer__main-content-panel o-footer__main-content-panel--open"
+                  class="o-footer__main-content-panel o-footer__main-content-panel${this
+                    .accordionActiveIndex === 1
+                    ? '--open'
+                    : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
                     <a
