@@ -11,7 +11,7 @@ npm install @axa-ch/title-primary
 ```js
 import '@axa-ch/title-primary';
 ...
-<axa-title-primary></axa-title-primary>
+<axa-title-primary>A primary title</axa-title-primary>
 ```
 
 ### React
@@ -28,7 +28,7 @@ export default AXATitlePrimaryReact;
 ```
 
 ```js
-<AXATitlePrimaryReact onClick={handler} />
+<AXATitlePrimaryReact>A primary title</AXATitlePrimaryReact>
 ```
 
 ### Pure HTML pages
@@ -45,7 +45,7 @@ Import the title-primary-defining script and use a title-primary like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-title-primary></axa-title-primary>
+    <axa-title-primary>A primary title</axa-title-primary>
     <script src="node_modules/@axa-ch/title-primary/dist/index.js"></script>
   </body>
 </html>

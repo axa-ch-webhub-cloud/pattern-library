@@ -11,7 +11,7 @@ npm install @axa-ch/title-secondary
 ```js
 import '@axa-ch/title-secondary';
 ...
-<axa-title-secondary></axa-title-secondary>
+<axa-title-secondary>A secondary title</axa-title-secondary>
 ```
 
 ### React
@@ -28,7 +28,7 @@ export default AXATitleSecondaryReact;
 ```
 
 ```js
-<AXATitleSecondaryReact onClick={handler} />
+<AXATitleSecondaryReact>A secondary title<AXATitleSecondaryReact>
 ```
 
 ### Pure HTML pages
@@ -45,7 +45,7 @@ Import the title-secondary-defining script and use a title-secondary like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-title-secondary></axa-title-secondary>
+    <axa-title-secondary>A secondary title</axa-title-secondary>
     <script src="node_modules/@axa-ch/title-secondary/dist/index.js"></script>
   </body>
 </html>
