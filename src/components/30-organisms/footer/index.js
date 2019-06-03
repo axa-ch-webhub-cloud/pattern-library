@@ -107,13 +107,12 @@ class AXAFooter extends LitElement {
                 </ul>
               </div>
               <div class="o-footer__main">
-                <h1 class="o-footer__title-desktop">
-                  axa worldwide
-                </h1>
+                <slot
+                  name="column-2-title-desktop"
+                  class="o-footer__title-desktop"
+                ></slot>
                 <button class="o-footer__accordion-button">
-                  <h1 class="o-footer__title">
-                    axa worldwide
-                  </h1>
+                  <slot name="column-2-title" class="o-footer__title"></slot>
                   <span
                     class="o-footer__accordion-button-caret o-footer__accordion-button-caret--open"
                   >
