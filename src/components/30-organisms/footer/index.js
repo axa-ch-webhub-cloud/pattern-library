@@ -79,7 +79,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${ev => {
+                  @click="${() => {
                     this.accordionActiveIndex = 0;
                     this.requestUpdate();
                   }}"
@@ -117,7 +117,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${ev => {
+                  @click="${() => {
                     this.accordionActiveIndex = 1;
                     this.requestUpdate();
                   }}"
