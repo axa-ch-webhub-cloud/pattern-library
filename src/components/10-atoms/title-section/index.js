@@ -32,9 +32,9 @@ class AXATitleSection extends LitElement {
     });
 
     return html`
-      <h1 class="a-title-section ${classes}">
+      <h2 class="a-title-section ${classes}">
         <slot></slot>
-      </h1>
+      </h2>
     `;
   }
 }
