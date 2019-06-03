@@ -38,6 +38,7 @@ storiesOf('Organisms/Footer', module)
         <a slot="column-0-item-6" href="https://axa.ch/en/private-customers.html" target="_blank">Garage Portal</a>
         <h2 slot="column-1-title-desktop">axa worldwide</h2>
         <h2 slot="column-1-title">axa worldwide</h2>
+        <a slot="column-1-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">AXA worldwide</a>
         <h2 slot="column-2-social-title">stay in touch</h2>
       </axa-footer>`
   );

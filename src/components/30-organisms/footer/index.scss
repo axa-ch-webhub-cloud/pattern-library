@@ -111,7 +111,7 @@
         border-bottom: none;
       }
 
-      a {
+      ::slotted(a) {
         text-decoration: none;
         color: $color-prim-white;
       }
@@ -182,7 +182,7 @@
           border-bottom: none;
         }
 
-        a {
+        ::slotted(a) {
           text-decoration: none;
           color: $color-prim-white;
         }

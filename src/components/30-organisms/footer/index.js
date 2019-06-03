@@ -156,11 +156,16 @@ class AXAFooter extends LitElement {
                     : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
-                    <a
-                      href="https://axa.ch/en/private-customers.html"
-                      target="_blank"
-                      >AXA worldwide</a
-                    >
+                    <slot name="column-1-item-0" />
+                  </li>
+                  <li class="o-footer__main-content-panel-list-item">
+                    <slot name="column-1-item-1" />
+                  </li>
+                  <li class="o-footer__main-content-panel-list-item">
+                    <slot name="column-1-item-2" />
+                  </li>
+                  <li class="o-footer__main-content-panel-list-item">
+                    <slot name="column-1-item-3" />
                   </li>
                 </ul>
               </div>
