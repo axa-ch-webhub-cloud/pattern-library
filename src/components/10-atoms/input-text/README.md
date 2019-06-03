@@ -1,12 +1,12 @@
 # AXA Input Text
 
 The input text component is a wrapper to the HTML input element with custom styling and additional functionality.
-It accepts most of the same properties as the HTML input, but the accept only `type=text or type=email`.
+It accepts most of the same properties as the HTML input, but the accept only `type=text or type=email type=password`.
 
 ## Usage
 
 ```bash
-npm install @axa-ch/button
+npm install @axa-ch/input-text
 ```
 
 ```js
@@ -56,27 +56,56 @@ Import the button-defining script and use a button like this:
 
 ### Type
 
-| Attribute      | Details |
-| -------------- | ------- |
-| `type="text"`  | Default |
-| `type="email"` | Email   |
+The type of control to display. The default type is text.
 
-### Large
+| Attribute         | Details  |
+| ----------------- | -------- |
+| `type="text"`     | Default  |
+| `type="email"`    | Email    |
+| `type="password"` | Passwort |
 
-The Boolean attribute `large` specifies the size of a button. Setting this attribute will change the height of a button.
+### label
 
-### motionOff
+The string-valued `label` provides the label text as HTML.
 
-The Boolean attribute `motionoff` deactivates hover animation.
+_Note: The consumer is responsible for sanitizing the label HTML!_
+
+### name\*
+
+The string-valued `name` of the checkbox for purposes of form submission.
+
+### required
+
+When true and the value isn't empty, the Boolean attribute `required` shows an animated checkmark to the right of the input-text and display `*` after the label.
+
+### placeholder
+
+Instructional text that shows before the input has a value.
+
+### valid
+
+The Boolean attribute `valid` is in default true.
+
+### validation
+
+The Boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true.  
 
 ### disabled
 
-The Boolean attribute `disabled` disables the button natively.
+The Boolean attribute `disabled` disables the input text natively.
 
-### icon
+### error\*
 
-Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) README.
+The string-valued `error` provides an error text as HTML. It sets the checkbox into a visual error state.
 
-### onClick
+### onChange
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
+
+### onFocus
+
+The function-valued property `onFocus` can be used as a callback prop for React and other frameworks.
+
+### onBlur
+
+The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.

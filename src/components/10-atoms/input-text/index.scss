@@ -88,8 +88,15 @@ axa-input-text {
 
   .a-input-text__check {
     margin-left: 10px;
+    width: 16px;
+    height: 14px;
 
-    &--hidden {
+    svg {
+      width: 16px;
+      height: 14px;
+    }
+
+    &--hidden svg {
       display: none;
     }
   }
@@ -97,4 +104,8 @@ axa-input-text {
   .a-input-text__info {
     margin-left: 10px;
   }
+}
+
+@keyframes filled-tick-animated {
+  from {stroke-linecap: round} to {stroke-linecap: round; stroke-dashoffset: 0}
 }

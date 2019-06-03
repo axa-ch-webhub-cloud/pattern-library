@@ -1,6 +1,6 @@
 import { html, svg } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
-import { ArrowRightSvg } from '@axa-ch/materials';
+import { FilledTickAnimatedSvg } from '@axa-ch/materials';
 import NoShadowDOM from '../../../utils/no-shadow';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -21,15 +21,17 @@ class AXAInputText extends NoShadowDOM {
       placeholder: { type: String },
       value: { type: String },
       valid: { type: Boolean },
-
+      validation: { type: Boolean },
       // Messages
       error: { type: String },
 
       inputFocus: { type: Boolean },
+
       wasFocused: { type: Boolean },
       wasBlured: { type: Boolean },
       required: { type: Boolean },
 
+      type: { type: String },
       disabled: { type: Boolean },
 
       isReact: { type: Boolean },
@@ -46,12 +48,16 @@ class AXAInputText extends NoShadowDOM {
     this.name = '';
     this.label = '';
     this.placeholder = '';
+    // text, email, password
+    this.type = 'text';
     this.error = '';
+    this.validation = false;
     this.required = false;
+    // Maybe its later a string
+    this.validation = false;
     this.valid = true;
     this.disabled = false;
     this.isReact = false;
-    this.debug = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
@@ -91,7 +97,7 @@ class AXAInputText extends NoShadowDOM {
   }
 
   get isInvalid() {
-    return !this.valid && this.isRequiredError;
+    return !this.valid || this.isRequiredError;
   }
 
   get showInputError() {
@@ -99,19 +105,23 @@ class AXAInputText extends NoShadowDOM {
   }
 
   get hideCheckIcon() {
-    return (
-      this.inputFocus &&
-      this.isInvalid &&
-      !this.wasBlured &&
-      !this.wasFocused &&
-      this.disabled
-    );
+    if (!this.wasBlured && !this.wasFocused) {
+      return true;
+    }
+
+    if (this.inputFocus) {
+      return true;
+    }
+
+    return this.isInvalid;
   }
 
   get hideErrorMessage() {
-    return (
-      !this.error || !this.showInputError
-    );
+    return !this.error || !this.showInputError;
+  }
+
+  get showValidation () {
+    return this.validation || this.required;
   }
 
   handleFocus = ev => {
@@ -154,6 +164,7 @@ class AXAInputText extends NoShadowDOM {
       value,
       label = '',
       error = '',
+      type = '',
       placeholder,
       disabled,
       isReact,
@@ -163,9 +174,6 @@ class AXAInputText extends NoShadowDOM {
     } = this;
 
     this.isControlled = isControlled && isReact;
-
-    console.log('value', !!this.value);
-    console.log('isInvalid', this.isInvalid);
 
     return html`
       <div class="a-input-text__wrapper">
@@ -186,6 +194,7 @@ class AXAInputText extends NoShadowDOM {
             @focus="${this.handleFocus}"
             @blur="${this.handleBlur}"
             id="${refId}"
+            type="${type}"
             class="a-input-text__input ${this.showInputError
               ? 'a-input-text__input--error'
               : ''}"
@@ -197,13 +206,17 @@ class AXAInputText extends NoShadowDOM {
             aria-required="${required}"
           />
 
-          <span
-            class="a-input-text__check ${this.hideCheckIcon
-              ? 'a-input-text__check--hidden'
-              : ''}"
-          >
-            ${svg([ArrowRightSvg])}
-          </span>
+          ${this.showValidation
+            ? html`
+                <span
+                  class="a-input-text__check ${this.hideCheckIcon
+                    ? 'a-input-text__check--hidden'
+                    : ''}"
+                >
+                  ${svg([FilledTickAnimatedSvg])}
+                </span>
+              `
+            : html``}
         </div>
 
         <span

@@ -35,8 +35,7 @@ storiesOf('Atoms/Input text', module)
   .add('Input text - Error Message', () => {
     const inputText = document.createElement('axa-input-text');
     inputText.error = 'Error Message';
-    inputText.required = true;
-    inputText.info = 'Info Message';
+    inputText.validation = true;
     inputText.valid = false;
 
     return inputText;
