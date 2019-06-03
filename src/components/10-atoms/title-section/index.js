@@ -27,14 +27,14 @@ class AXATitleSection extends LitElement {
   }
 
   render() {
-    const classes = {
+    const classes = classMap({
       'a-title-section--white': this.variant === 'white',
-    };
+    });
 
     return html`
-      <h2 class="a-title-section ${classMap(classes)}">
+      <h1 class="a-title-section ${classes}">
         <slot></slot>
-      </h2>
+      </h1>
     `;
   }
 }
