@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Title primary - basic functionality').page(
-  `${host}/iframe.html?id=atoms-title-primary--title-primary-default`
+  `${host}/iframe.html?id=atoms-title-primary--title-primary-size-1`
 );
 
 const TAG = 'axa-title-primary';
