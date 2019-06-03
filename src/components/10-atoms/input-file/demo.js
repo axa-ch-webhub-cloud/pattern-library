@@ -12,11 +12,12 @@ storiesOf('Atoms/Input File/Demos', module)
     let counter = 0;
     inputFile.innerHTML = `You have chosen ${counter} files`;
 
-    inputFile.addEventListener('input', e => {
+    inputFile.addEventListener('change', e => {
       counter = e.target.files.length;
       inputFile.querySelector(
         '.a-input-file'
       ).innerHTML = `You have chosen ${counter} files`;
+      console.log('counter!!', counter);
     });
     return inputFile;
   });

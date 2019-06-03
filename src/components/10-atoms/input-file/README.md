@@ -57,7 +57,7 @@ When using the input file element natively, all `<input type="file">` events wil
 const inputFile = document.createElement('axa-input-file');
 inputFile.setAttribute('multiple', 'multiple');
 
-inputFile.addEventListener('input', e => {
+inputFile.addEventListener('change', e => {
   const {
     target: { files },
   } = e;
