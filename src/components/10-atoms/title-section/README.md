@@ -49,7 +49,7 @@ Import the title-section-defining script and use a title-section like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-title-section></axa-title-section>
+    <axa-title-section>This is a title for a section</axa-title-section>
     <script src="node_modules/@axa-ch/title-section/dist/index.js"></script>
   </body>
 </html>
