@@ -52,13 +52,6 @@ class AXAFooter extends LitElement {
     this.iconMap.set('linkedin', LinkedinSvg);
   }
 
-  handleClick(e, index) {
-    e.stopPropagation();
-    this.accordionActiveIndex = index;
-    // TODO Try to find a way to automate this
-    this.requestUpdate();
-  }
-
   handleLinkClick = (ev, text) => {
     if (this.dynamic) {
       ev.preventDefault();
@@ -86,7 +79,10 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${ev => this.handleClick(ev, 0)}"
+                  @click="${ev => {
+                    this.accordionActiveIndex = 0;
+                    this.requestUpdate();
+                  }}"
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span
@@ -121,7 +117,10 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${ev => this.handleClick(ev, 1)}"
+                  @click="${ev => {
+                    this.accordionActiveIndex = 1;
+                    this.requestUpdate();
+                  }}"
                 >
                   <slot name="column-2-title" class="o-footer__title"></slot>
                   <span
