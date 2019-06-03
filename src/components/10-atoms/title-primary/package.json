@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/title-primary",
   "version": "0.0.0-beta.0",
-  "description": "> TODO: description",
+  "description": "Shows you an AXA conform title. A predefined size can be changed by setting a variant.",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/title-primary#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",

@@ -1,10 +1,9 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
+type Variant = 'size-1' | 'size-2' | 'size-3' | 'size-4' | 'size-5' | 'size-6';
 
 interface AXATitleSecondaryProps {
   variant?: Variant;
-  onClick?: () => void;
 }
 
 declare function createAXATitleSecondary(

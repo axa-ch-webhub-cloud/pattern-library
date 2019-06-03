@@ -1,14 +1,11 @@
 import withReact from '../../../utils/with-react';
 import AXATitlePrimary from './index';
 
-export default createElement => ({
-  /* props here, same as in the constructor of index.js */
-  children,
-}) =>
+export default createElement => ({ variant, children }) =>
   withReact(createElement)(
     AXATitlePrimary.tagName,
     {
-      /* props here, same as in the constructor of index.js */
+      variant,
     },
     children
   );
