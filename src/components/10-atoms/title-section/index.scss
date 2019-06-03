@@ -1,0 +1,11 @@
+.a-title-section {
+  @include typo(secondary, larger);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(secondary, largest);
+  }
+}
+
+.a-title-section--white {
+  color: $color-prim-white;
+}
