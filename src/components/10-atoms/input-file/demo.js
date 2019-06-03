@@ -17,6 +17,7 @@ storiesOf('Atoms/Input File/Demos', module)
       inputFile.querySelector('.a-input-file').innerHTML = `
         <span class="a-input-file__flex-wrapper">You have chosen ${counter} files</span>
       `;
+      // eslint-disable-next-line no-console
       console.log('counter!!', counter);
     });
     return inputFile;
