@@ -14,9 +14,9 @@ storiesOf('Atoms/Input File/Demos', module)
 
     inputFile.addEventListener('change', e => {
       counter = e.target.files.length;
-      inputFile.querySelector(
-        '.a-input-file'
-      ).innerHTML = `You have chosen ${counter} files`;
+      inputFile.querySelector('.a-input-file').innerHTML = `
+        <span class="a-input-file__flex-wrapper">You have chosen ${counter} files</span>
+      `;
       console.log('counter!!', counter);
     });
     return inputFile;
