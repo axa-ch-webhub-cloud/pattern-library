@@ -1,9 +1,8 @@
 .a-input-file {
   @include typo(primary, x-small, medium);
   position: relative;
-  display: inline-flex;
+  display: inline-block;
   text-align: center;
-  align-items: center;
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
@@ -19,6 +18,17 @@
 
   @include breakpoint($mediaquery-sm-up) {
     @include _text(default)
+  }
+
+  &__flex-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 36px;
+    // IE11 workaround
+    height: 35px;
+    box-sizing: border-box;
   }
 
   &:hover,
