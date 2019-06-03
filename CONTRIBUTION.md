@@ -113,6 +113,5 @@ storiesOf('Molecules/Top content bar', module)
   - `rm -rf node_modules`
   - `npx lerna clean`
 - Run `npm install`
-- Run `npx lerna bootstrap`
-- Run `npm run release`
+- Run `npm run release` or `npm run prerelease`
 - Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
