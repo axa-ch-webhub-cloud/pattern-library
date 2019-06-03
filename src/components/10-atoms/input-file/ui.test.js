@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
@@ -27,19 +27,6 @@ test('should set input file property icon', async t => {
   await t.expect($axaElem.exists).ok();
   const $axaIcon = await $axaElem.find(ICON_TAG);
   await t.expect($axaIcon.exists).ok();
-});
-
-fixture('Input File - set property disabled').page(
-  `${host}/iframe.html?id=atoms-input-file--input-file-default`
-);
-
-test('should set input file property disabled', async t => {
-  const setDisabled = ClientFunction(() => {
-    document.querySelector('axa-input-file').disabled = true;
-  });
-  await setDisabled();
-  const $axaElm = await Selector('axa-input-file');
-  await t.expect(await $axaElm.hasAttribute('disabled')).ok();
 });
 
 fixture('Input File - set property accept').page(
