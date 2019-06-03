@@ -4,7 +4,7 @@ This gives you a fully styled section title according to AXA guidelines.
 
 **Attention:**
 
-This title is rendered within an H1 Element, meaning you must wrap this component within a custom `<section>` or `<axa-container>` to be semantically correct.
+This title is rendered within an H1 Element, meaning you must wrap this component within a custom `<section>`, `<article>` or `<axa-container>` to be semantically correct.
 
 ## Usage
 
