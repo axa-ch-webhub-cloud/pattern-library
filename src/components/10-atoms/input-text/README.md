@@ -1,7 +1,7 @@
 # AXA Input Text
 
 The &lt,axa-input-text&gt; component is a wrapper for the HTML &lt;input&gt; element with custom styling and additional functionality.
-It accepts most of the same properties as HTML &lt;input&gt;, but with `type`restricted to `type=text`, `type=email `, or `type=password`.
+It accepts most of the same properties as HTML &lt;input&gt;, but with `type`restricted to `type=text`, `type=email`, or `type=password`.
 
 ## Usage
 
@@ -58,11 +58,11 @@ Import the input-text-defining script and use an &lt,axa-input-text&gt; like thi
 
 The type of input element to display.
 
-| Attribute         | Details  |
-| ----------------- | -------- |
-| `type="text"`     | (default)  |
-| `type="email"`    | Email    |
-| `type="password"` | Passwort |
+| Attribute         | Details   |
+| ----------------- | --------- |
+| `type="text"`     | (default) |
+| `type="email"`    | Email     |
+| `type="password"` | Passwort  |
 
 ### label
 
@@ -76,7 +76,7 @@ The string-valued `name` of the element for purposes of form submission.
 
 ### required
 
-The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true and the element´s `value` is not empty,  it shows an animated checkmark to the right of the element and displays `*` after the label text.
+The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true and the element´s `value` is not empty, it shows an animated checkmark to the right of the element and displays `*` after the label text.
 
 ### placeholder
 
