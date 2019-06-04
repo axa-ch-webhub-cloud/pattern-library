@@ -6,8 +6,11 @@ interface AXAInputTextProps {
   label?: string;
   placeholder?: string;
   error?: string;
+  type?: string;
+  valid?: boolean;
   required?: boolean;
   disabled?: boolean;
+  validation?: boolean;
   isReact?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;

@@ -52,9 +52,9 @@ test('should show error message and have the right color', async t => {
     document.querySelector('.a-input-text__error')
   );
   await t.expect($axaError.exists).ok();
-  await t.expect(await $axaError.getStyleProperty('color')).eql(
-    'rgb(201, 20, 50)'
-  );
+  await t
+    .expect(await $axaError.getStyleProperty('color'))
+    .eql('rgb(201, 20, 50)');
 });
 
 fixture('Input-text Form').page(
@@ -63,18 +63,14 @@ fixture('Input-text Form').page(
 
 test('should submit inputs correctly in form', async t => {
   // default
-  const $InputText = await Selector(() =>
-    document.getElementById('default')
-  );
+  const $InputText = await Selector(() => document.getElementById('default'));
 
   const $InputTextEl = await $InputText.find(CLASS);
   const text = 'Warrior';
   await t.typeText($InputTextEl, text);
 
   // email
-  const $InputEmail = await Selector(() =>
-    document.getElementById('email')
-  );
+  const $InputEmail = await Selector(() => document.getElementById('email'));
 
   const $InputEmailEl = await $InputEmail.find(CLASS);
   const email = 'pattern@warrior.ch';
@@ -88,7 +84,6 @@ test('should submit inputs correctly in form', async t => {
   const $InputPasswordEl = await $InputPassword.find(CLASS);
   const password = 'geheim';
   await t.typeText($InputPasswordEl, password);
-
 
   await t.click('#submit');
   await t

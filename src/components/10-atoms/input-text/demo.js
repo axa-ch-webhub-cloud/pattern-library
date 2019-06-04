@@ -13,8 +13,10 @@ storiesOf('Atoms/Input text/Demos', module)
       ev.preventDefault();
       document.getElementById('form-data-details').open = true;
       const $inputDemoForm = document.getElementById('input-demo-form');
+      /* eslint-disable no-undef */
       const formData = new FormData($inputDemoForm);
-      for (let pair of formData.entries()) {
+      /* eslint-disable no-restricted-syntax */
+      for (const pair of formData.entries()) {
         const container = document.createElement('span');
         container.textContent = `${pair[0]}: ${pair[1]}`;
         document.getElementById('form-data').appendChild(container);

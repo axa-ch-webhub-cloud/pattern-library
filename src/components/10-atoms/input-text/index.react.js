@@ -15,7 +15,7 @@ export default createElement => ({
   validation = false,
   onFocus = () => {},
   onBlur = () => {},
-  onChange = () => {}
+  onChange = () => {},
 }) => {
   return withReact(createElement)(AXAInputText.tagName, {
     id,
@@ -34,4 +34,4 @@ export default createElement => ({
     onBlur,
     isReact: true,
   });
-}
+};

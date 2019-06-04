@@ -120,7 +120,7 @@ class AXAInputText extends NoShadowDOM {
     return !this.error || !this.showInputError;
   }
 
-  get showValidation () {
+  get showValidation() {
     return this.validation || this.required;
   }
 

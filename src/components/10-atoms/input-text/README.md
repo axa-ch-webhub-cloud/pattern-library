@@ -54,7 +54,7 @@ Import the button-defining script and use a button like this:
 
 ## Properties
 
-### Type
+### type
 
 The type of control to display. The default type is text.
 
@@ -88,7 +88,7 @@ The Boolean attribute `valid` is in default true.
 
 ### validation
 
-The Boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true.  
+The Boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true.
 
 ### disabled
 
@@ -109,3 +109,9 @@ The function-valued property `onFocus` can be used as a callback prop for React 
 ### onBlur
 
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
+
+## Events
+
+`input`
+`focus`
+`blur`
