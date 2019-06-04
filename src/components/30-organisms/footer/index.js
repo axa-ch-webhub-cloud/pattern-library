@@ -67,17 +67,14 @@ class AXAFooter extends LitElement {
   };
 
   updated() {
-    const socialMediaItems = this.shadowRoot.querySelectorAll(
-      '.js-footer__social-media-item'
-    );
-
-    console.log('hi IE', socialMediaItems);
-    socialMediaItems.forEach(el => {
-      const socialMediaLabel = el.querySelector('slot').assignedNodes()[0]
-        .innerText;
-
-      el.innerHTML = this.iconMap.get(socialMediaLabel);
-    });
+    this.shadowRoot
+      .querySelectorAll('.js-footer__social-media-item')
+      .forEach(el => {
+        const label = el.querySelector('slot').assignedNodes()[0];
+        el.innerHTML = `<a href='${label.href}' target='${
+          label.target
+        }'>${this.iconMap.get(label.innerText)}</a>`;
+      });
   }
 
   render() {
