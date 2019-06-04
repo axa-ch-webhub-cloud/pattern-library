@@ -162,11 +162,15 @@
       flex-direction: row;
       flex-wrap: wrap;
       padding-top: 10px;
-      max-width: 350px;
+      width: 330px;
 
       // The following two lines are IE11 workarounds that could be resolved nicer with the 'unset'-property
       background-color: $color-prim-blue-dark-indigo;
       max-height: 1000px;
+
+      &--short {
+        width: 165px;
+      }
 
       &-list-item {
         @include typo(primary, default, default);

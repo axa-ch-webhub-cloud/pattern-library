@@ -161,7 +161,7 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul
-                  class="o-footer__main-content-panel o-footer__main-content-panel${this
+                  class="o-footer__main-content-panel o-footer__main-content-panel--short o-footer__main-content-panel${this
                     .accordionActiveIndex === 1
                     ? '--open'
                     : ''}"
