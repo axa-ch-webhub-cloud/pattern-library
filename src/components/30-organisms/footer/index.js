@@ -11,7 +11,6 @@ import {
 } from '@axa-ch/materials';
 import '@axa-ch/container';
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 

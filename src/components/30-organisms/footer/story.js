@@ -7,9 +7,6 @@ import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import withBodyReset from '../../../../.storybook/addons/reset-body';
 import Readme from './README.md';
 
-// todo delete the following line
-import { svg } from 'lit-element';
-
 storiesOf('Organisms/Footer', module)
   .addDecorator(withMarkdown(Readme))
   .addDecorator(withBodyReset())
