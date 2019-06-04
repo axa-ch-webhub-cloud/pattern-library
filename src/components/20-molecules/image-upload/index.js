@@ -85,6 +85,7 @@ class AXAImageUpload extends LitElement {
                   accept="image/jpg, image/jpeg, application/pdf, image/png"
                   multiple
                   @change=${this.handleImageUploadButtonChange}
+                  variant="red"
                 >
                   ${this.inputFileText}
                 </axa-input-file>
@@ -111,7 +112,7 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadDropZoneDragleave(e) {
     console.log(e, 'dragleave');
-    // TODO change style
+    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
   }
 
   handleImageUploadDropZoneDrop(e) {

@@ -15,17 +15,22 @@ $image-upload-dropzone-border: 2px !default;
     border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
   }
 
+  &__dropzone_dragover {
+    opacity: 0.6;
+  }
+
+  &__dropzone__overview {
+    border-style: solid;
+  }
+
   &__or {
     text-transform: uppercase;
     font-weight: bold;
     color: $color-prim-red-flamingo;
+    margin: 0;
   }
 
-  &__dropzone_dragover {
-    opacity: 0.6;
+  &__information {
+    margin: 0;
   }
-  //
-  // &__dropzone_dragleave {
-  //   border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
-  // }
 }
