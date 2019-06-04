@@ -12,6 +12,14 @@
   }
 
   &__social-media {
+    ::slotted(h2) {
+      // IE11 workaround
+      // @include typo(primary, medium, bold);
+      display: none;
+      // text-transform: uppercase;
+      // line-height: 1.5;
+    }
+
     &-title {
       @include typo(primary, medium, bold);
 
@@ -81,40 +89,50 @@
     }
   }
 
-  &__main-content-panel {
-    margin: 0;
-    text-indent: 0;
-    list-style-type: none;
-    padding: 0;
+  &__main {
+    // ::slotted(h2) {
+    //   // IE11 workaround
+    //   @include typo(primary, medium, bold);
+    //   // display: none;
+    //   text-transform: uppercase;
+    //   line-height: 1.5;
+    // }
 
-    max-height: 0;
-    transition: max-height 0.2s ease-out;
-
-    overflow: hidden;
-    background-color: $color-prim-blue-azure;
-
-    &--open {
-      max-height: 456px;
-    }
-
-    &-list-item {
-      @include typo(primary, xx-small, default);
-
+    &-content-panel {
+      margin: 0;
+      text-indent: 0;
+      list-style-type: none;
       padding: 0;
-      padding: 20px 30px;
-      border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
-      &:last-child {
-        border-bottom: none;
+      max-height: 0;
+      transition: max-height 0.2s ease-out;
+
+      overflow: hidden;
+      background-color: $color-prim-blue-azure;
+
+      &--open {
+        max-height: 456px;
       }
 
-      ::slotted(a) {
-        text-decoration: none;
-        color: $color-prim-white;
-      }
+      &-list-item {
+        @include typo(primary, xx-small, default);
 
-      ::slotted(a:hover) {
-        color: rgba(255, 255, 255, 0.65);
+        padding: 0;
+        padding: 20px 30px;
+        border-bottom: 1px solid $color-prim-blue-dark-indigo;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        ::slotted(a) {
+          text-decoration: none;
+          color: $color-prim-white;
+        }
+
+        ::slotted(a:hover) {
+          color: rgba(255, 255, 255, 0.65);
+        }
       }
     }
   }
@@ -243,6 +261,11 @@
       // IE11 workaround
       -ms-grid-row: 1;
       -ms-grid-column: 2;
+
+      ::slotted(h2) {
+        // IE11 workaround
+        display: block;
+      }
 
       &-title {
         display: block;
