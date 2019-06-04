@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AXAInputTextReact from './AXAInputTextReact';
 
 const DemoInputText = () => {
-  const [firstName, setFirstName] = useState('hjjh');
+  const [firstName, setFirstName] = useState('controlled');
 
   const handleChange = ev => {
     setFirstName(ev.target.value);
