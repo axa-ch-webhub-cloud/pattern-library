@@ -10,7 +10,7 @@
     "watch-components": "lerna run watch --parallel",
     "setup-npm-links": "node scripts/setup-npm-link.js",
     "postinstall": "lerna bootstrap --hoist && npm run build-components",
-    "controlled-release": "npm whoami && lerna bootstrap --hoist && npm run build && npm run test && lerna version",
+    "controlled-release": "npm whoami && lerna bootstrap --hoist && npm run build && npm run test && lerna version && lerna publish from-package",
     "release": "npm whoami && lerna bootstrap --hoist && npm run build && npm run test && lerna publish",
     "prerelease": "npm whoami && lerna bootstrap --hoist && npm run build && lerna publish prerelease",
     "start": "npm run storybook",
