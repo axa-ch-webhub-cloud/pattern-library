@@ -56,3 +56,43 @@ test('should show error message and have the right color', async t => {
     'rgb(201, 20, 50)'
   );
 });
+
+fixture('Input-text Form').page(
+  `${host}/iframe.html?id=atoms-input-text-demos--feature-input-text-works-in-a-form`
+);
+
+test('should submit inputs correctly in form', async t => {
+  // default
+  const $InputText = await Selector(() =>
+    document.getElementById('default')
+  );
+
+  const $InputTextEl = await $InputText.find(CLASS);
+  const text = 'Warrior';
+  await t.typeText($InputTextEl, text);
+
+  // email
+  const $InputEmail = await Selector(() =>
+    document.getElementById('email')
+  );
+
+  const $InputEmailEl = await $InputEmail.find(CLASS);
+  const email = 'pattern@warrior.ch';
+  await t.typeText($InputEmailEl, email);
+
+  // password
+  const $InputPassword = await Selector(() =>
+    document.getElementById('password')
+  );
+
+  const $InputPasswordEl = await $InputPassword.find(CLASS);
+  const password = 'geheim';
+  await t.typeText($InputPasswordEl, password);
+
+
+  await t.click('#submit');
+  await t
+    .wait(50)
+    .expect((await Selector('#form-data')).innerText)
+    .eql(`default: ${text}\nemail: ${email}\npassword: ${password}`);
+});

@@ -9,14 +9,20 @@ storiesOf('Atoms/Input text', module)
   .add('Input text - default', () => '<axa-input-text></axa-input-text>')
   .add(
     'Input text - label',
-    () =>
-      '<axa-input-text label="Field Label"></axa-input-text>'
+    () => '<axa-input-text label="Field Label"></axa-input-text>'
   )
   .add(
     'Input text - placeholder',
     () =>
       '<axa-input-text label="Field Label" placeholder="Pre-filled content"></axa-input-text>'
   )
+  .add('Input text - type', () => {
+    return `<div>
+          <axa-input-text label="Default Text" placeholder="Pre-filled content"></axa-input-text>
+          <axa-input-text type="email" label="Email" placeholder="Pre-filled content"></axa-input-text>
+          <axa-input-text type="password" label="Password" placeholder="Pre-filled content"></axa-input-text>
+        </div>`;
+  })
   .add(
     'Input text - value',
     () =>

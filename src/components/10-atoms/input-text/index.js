@@ -53,7 +53,7 @@ class AXAInputText extends NoShadowDOM {
     this.error = '';
     this.validation = false;
     this.required = false;
-    // Maybe its later a string
+    // experimental
     this.validation = false;
     this.valid = true;
     this.disabled = false;
