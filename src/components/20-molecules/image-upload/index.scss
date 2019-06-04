@@ -4,12 +4,14 @@ $image-upload-dropzone-border: 2px !default;
   @include typo(primary, medium);
 
   &__dropzone {
-    display: flex;
+    box-sizing: border-box;
 
+    padding: 30px 0px;
     height: 274px;
 
+    display: flex;
     flex-flow: column nowrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
     border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
