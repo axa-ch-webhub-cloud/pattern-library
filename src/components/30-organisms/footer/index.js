@@ -66,6 +66,20 @@ class AXAFooter extends LitElement {
     }
   };
 
+  updated() {
+    const socialMediaItems = this.shadowRoot.querySelectorAll(
+      '.js-footer__social-media-item'
+    );
+
+    console.log('hi IE', socialMediaItems);
+    socialMediaItems.forEach(el => {
+      const socialMediaLabel = el.querySelector('slot').assignedNodes()[0]
+        .innerText;
+
+      el.innerHTML = this.iconMap.get(socialMediaLabel);
+    });
+  }
+
   render() {
     return html`
       <footer class="o-footer">
@@ -176,12 +190,23 @@ class AXAFooter extends LitElement {
                 class="o-footer__social-media-title"
               ></slot>
               <ul class="o-footer__social-media-list">
-                <li>
-                  <a
-                    href="https://axa.ch/en/private-customers.html"
-                    target="_blank"
-                    >${svg([FacebookSvg || ''])}</a
-                  >
+                <li class="js-footer__social-media-item">
+                  <slot name="column-social-item-0"></slot>
+                </li>
+                <li class="js-footer__social-media-item">
+                  <slot name="column-social-item-1"></slot>
+                </li>
+                <li class="js-footer__social-media-item">
+                  <slot name="column-social-item-2"></slot>
+                </li>
+                <li class="js-footer__social-media-item">
+                  <slot name="column-social-item-3"></slot>
+                </li>
+                <li class="js-footer__social-media-item">
+                  <slot name="column-social-item-4"></slot>
+                </li>
+                <li class="js-footer__social-media-item">
+                  <slot name="column-social-item-5"></slot>
                 </li>
               </ul>
             </div>
