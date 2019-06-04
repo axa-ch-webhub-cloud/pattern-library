@@ -66,6 +66,12 @@ class AXAFooter extends LitElement {
     }
   };
 
+  handleAccordionClick = index => {
+    this.accordionActiveIndex =
+      index === this.accordionActiveIndex ? -1 : index;
+    this.requestUpdate();
+  };
+
   updated() {
     this.shadowRoot
       .querySelectorAll('.js-footer__social-media-item')
@@ -90,10 +96,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => {
-                    this.accordionActiveIndex = 0;
-                    this.requestUpdate();
-                  }}"
+                  @click="${() => this.handleAccordionClick(0)}"
                 >
                   <slot name="column-0-title" class="o-footer__title"></slot>
                   <span
@@ -145,10 +148,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => {
-                    this.accordionActiveIndex = 1;
-                    this.requestUpdate();
-                  }}"
+                  @click="${() => this.handleAccordionClick(1)}"
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span
