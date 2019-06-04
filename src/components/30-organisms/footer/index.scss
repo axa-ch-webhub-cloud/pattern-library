@@ -36,6 +36,7 @@
       a {
         display: block;
         padding: 10px;
+        cursor: pointer;
       }
 
       svg {
@@ -114,6 +115,10 @@
       ::slotted(a) {
         text-decoration: none;
         color: $color-prim-white;
+      }
+
+      ::slotted(a:hover) {
+        color: rgba(255, 255, 255, 0.65);
       }
     }
   }
@@ -215,6 +220,10 @@
           display: block;
           padding: 10px 10px 0 10px;
           margin-right: 10px;
+        }
+
+        a:first-of-type {
+          padding: 10px 10px 0 0;
         }
       }
     }

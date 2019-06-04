@@ -52,6 +52,33 @@ class AXAFooter extends LitElement {
     this.iconMap.set('linkedin', LinkedinSvg);
   }
 
+  updated() {
+    this.replaceSocialMediaTextsWithIcon();
+    this.removeEmptyListElements();
+  }
+
+  replaceSocialMediaTextsWithIcon() {
+    this.shadowRoot
+      .querySelectorAll('.js-footer__social-media-item')
+      .forEach(el => {
+        const label = el.querySelector('slot').assignedNodes()[0];
+        el.innerHTML = `<a href='${label.href}' target='${
+          label.target
+        }'>${this.iconMap.get(label.innerText)}</a>`;
+      });
+  }
+
+  removeEmptyListElements() {
+    this.shadowRoot
+      .querySelectorAll('.o-footer__main-content-panel-list-item')
+      .forEach(el => {
+        const label = el.querySelector('slot').assignedNodes()[0];
+        if (!label) {
+          el.style.display = 'none';
+        }
+      });
+  }
+
   handleLinkClick = (ev, text) => {
     if (this.dynamic) {
       ev.preventDefault();
@@ -71,17 +98,6 @@ class AXAFooter extends LitElement {
       index === this.accordionActiveIndex ? -1 : index;
     this.requestUpdate();
   };
-
-  updated() {
-    this.shadowRoot
-      .querySelectorAll('.js-footer__social-media-item')
-      .forEach(el => {
-        const label = el.querySelector('slot').assignedNodes()[0];
-        el.innerHTML = `<a href='${label.href}' target='${
-          label.target
-        }'>${this.iconMap.get(label.innerText)}</a>`;
-      });
-  }
 
   render() {
     return html`
