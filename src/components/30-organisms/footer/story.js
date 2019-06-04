@@ -1,15 +1,6 @@
 /* global document */
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  FacebookSvg,
-  InstagramSvg,
-  TwitterSvg,
-  XingSvg,
-  YoutubeSvg,
-  LinkedinSvg,
-  CaretSvg,
-} from '@axa-ch/materials';
 import { storiesOf } from '@storybook/html';
 import './index';
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
