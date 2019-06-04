@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/top-content-bar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Used as top of the page Warning or info box that can show text and have a call to action button",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar#readme",
@@ -25,8 +25,8 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "^1.1.4",
-    "@axa-ch/button-link": "^1.1.4",
+    "@axa-ch/button": "^1.1.5",
+    "@axa-ch/button-link": "^1.1.5",
     "@axa-ch/container": "^1.0.2",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
