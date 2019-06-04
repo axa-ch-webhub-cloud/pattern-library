@@ -39,7 +39,6 @@ class AXADropdown extends LitElement {
     window.axaComponents = window.axaComponents || {};
     this.open = false;
     this.dropdown = this.shadowRoot.querySelector(`.${DEFAULTS.selectClass}`);
-    this.dropdownLinks = this.querySelectorAll('.js-dropdown__link');
 
     window.addEventListener(
       'resize',
