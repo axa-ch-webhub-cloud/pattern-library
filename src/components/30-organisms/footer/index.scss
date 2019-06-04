@@ -1,5 +1,4 @@
 .o-footer {
-  // Avoid property being inherited
   text-align: initial;
 
   color: $color-prim-white;
@@ -23,7 +22,6 @@
     }
 
     &-list {
-      // Reset browser styles for ul
       margin: 0;
       text-indent: 0;
       list-style-type: none;
@@ -61,7 +59,6 @@
     width: 100%;
     text-align: left;
 
-    // Reset browser styles for button
     border: none;
     outline: 0;
 
@@ -85,7 +82,6 @@
   }
 
   &__main-content-panel {
-    // Reset browser styles for ul
     margin: 0;
     text-indent: 0;
     list-style-type: none;
@@ -127,14 +123,14 @@
     padding: 40px 0;
 
     &__content {
-      // IE11 workaround
-      display: -ms-grid;
-      -ms-grid-columns: 1fr 1fr;
-
       display: grid;
       grid-template-areas:
         'links'
         'social';
+
+      // IE11 workaround
+      display: -ms-grid;
+      -ms-grid-columns: 1fr;
     }
 
     &__collection {
@@ -169,7 +165,7 @@
       padding-top: 10px;
       width: 330px;
 
-      // The following two lines are IE11 workarounds that could be resolved nicer with the 'unset'-property
+      // IE11 workaround (use 'unset'-property for those two elements)
       background-color: $color-prim-blue-dark-indigo;
       max-height: 1000px;
 
@@ -202,11 +198,10 @@
       grid-area: social;
 
       // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 2;
+      -ms-grid-row: 2;
+      -ms-grid-column: 1;
 
       &-list {
-        // Reset browser styles for ul
         margin: 0;
         text-indent: 0;
         list-style-type: none;
@@ -232,9 +227,23 @@
   @include breakpoint($mediaquery-lg-up) {
     &__content {
       grid-template-areas: 'links social';
+
+      // IE11 workaround
+      display: -ms-grid;
+      -ms-grid-columns: 1fr 1fr;
+    }
+
+    &__collection {
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
     }
 
     &__social-media {
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 2;
+
       &-title {
         display: block;
       }
