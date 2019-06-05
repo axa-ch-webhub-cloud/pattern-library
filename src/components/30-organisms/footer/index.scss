@@ -1,3 +1,33 @@
+.o-footer__main {
+  ::slotted(h2) {
+    display: none; // desktop title
+  }
+}
+
+.o-footer__accordion-button {
+  ::slotted(h2) {
+    display: block; // mobile title
+    @include typo(primary, default, medium);
+  }
+}
+
+@include breakpoint($mediaquery-sm-up) {
+  .o-footer__main {
+    ::slotted(h2) {
+      @include typo(primary, medium, bold);
+      display: block; // desktop title
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+  }
+
+  .o-footer__accordion-button {
+    ::slotted(h2) {
+      display: none; // mobile title
+    }
+  }
+}
+
 .o-footer {
   text-align: initial;
 
@@ -9,16 +39,6 @@
   &__title {
     @include typo(primary, default, medium);
     margin: 0;
-  }
-
-  &__main {
-    ::slotted(h2.o-footer__title) {
-      display: block;
-    }
-
-    ::slotted(h2.o-footer__title-desktop) {
-      display: none;
-    }
   }
 
   &__social-media {
@@ -185,14 +205,6 @@
 
     &__main {
       margin: 0 10px;
-
-      ::slotted(h2.o-footer__title) {
-        display: none;
-      }
-
-      ::slotted(h2.o-footer__title-desktop) {
-        display: block;
-      }
 
       &-content-panel {
         display: flex;
