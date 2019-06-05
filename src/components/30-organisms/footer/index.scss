@@ -11,6 +11,16 @@
     margin: 0;
   }
 
+  &__main {
+    ::slotted(h2.o-footer__title) {
+      display: block;
+    }
+
+    ::slotted(h2.o-footer__title-desktop) {
+      display: none;
+    }
+  }
+
   &__social-media {
     ::slotted(h2) {
       // IE11 workaround
@@ -90,6 +100,7 @@
   }
 
   &__main {
+    // should disable title desktop
     // ::slotted(h2) {
     //   // IE11 workaround
     //   @include typo(primary, medium, bold);
@@ -174,40 +185,48 @@
 
     &__main {
       margin: 0 10px;
-    }
 
-    &__main-content-panel {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      padding-top: 10px;
-      width: 330px;
-
-      // IE11 workaround (use 'unset'-property for those two elements)
-      background-color: $color-prim-blue-dark-indigo;
-      max-height: 1000px;
-
-      &--short {
-        width: 165px;
+      ::slotted(h2.o-footer__title) {
+        display: none;
       }
 
-      &-list-item {
-        @include typo(primary, default, default);
+      ::slotted(h2.o-footer__title-desktop) {
+        display: block;
+      }
 
-        width: 165px;
-        margin-top: 8px;
-        padding: 5px 0 !important;
+      &-content-panel {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 10px;
+        width: 330px;
 
-        line-height: 1.21;
-        padding: 0;
+        // IE11 workaround (use 'unset'-property for those two elements)
+        background-color: $color-prim-blue-dark-indigo;
+        max-height: 1000px;
 
-        &:last-child {
-          border-bottom: none;
+        &--short {
+          width: 165px;
         }
 
-        ::slotted(a) {
-          text-decoration: none;
-          color: $color-prim-white;
+        &-list-item {
+          @include typo(primary, default, default);
+
+          width: 165px;
+          margin-top: 8px;
+          padding: 5px 0 !important;
+
+          line-height: 1.21;
+          padding: 0;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          ::slotted(a) {
+            text-decoration: none;
+            color: $color-prim-white;
+          }
         }
       }
     }
