@@ -1,5 +1,5 @@
 .a-button {
-  @include typo(primary, x-small, medium);
+  @include typo(primary, small);
   position: relative;
   box-sizing: border-box;
   padding: 0 30px;

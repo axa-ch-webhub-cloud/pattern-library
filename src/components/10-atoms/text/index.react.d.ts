@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'size-1' | 'size-2' | 'size-3' | 'bold';
+type Variant = 'size-2' | 'size-3' | 'size-4' | 'bold';
 
 interface AXATextProps {
   variant?: Variant;

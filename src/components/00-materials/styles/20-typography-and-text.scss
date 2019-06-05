@@ -1,9 +1,9 @@
-// =====================
-// Font, line-heights and sizes generation
-// =====================
+// ==================
+// Fonts & Typography
+// ==================
 
-/// A simplified typography and text system.
-/// AXA use two font faces - Publico Headline and Source Sans Pro.
+// A simplified typography and text system.
+// AXA use two font faces - Publico Headline and Source Sans Pro.
 /// @link https://design.axa.com/web-guidelines/typography#overview
 
 $base-font-size: 16px;
@@ -18,63 +18,69 @@ $secondary-font: $font-family-publico;
 $font-size-base: $base-font-size;
 $line-height-base: $base-line-height;
 
-$font-weight-thin: 100;
-$font-weight-light: 300;
-$font-weight-regular: 400;
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-bold: 700;
+// 10-15px -> small
+// 15-20px -> medium
+// 20-30px -> large
+// > 30 -> huge
 
-$text-sizes: (
-    default: (14, 20, 0.02em),
-    smallest: (11, 16, 0.02em),
-    xx-small: (12, 16, 0.02em),
-    x-small: (13, 16, 0.02em),
-    small: (14, 20, 0.02em),
-    medium: (16, 24, 0.02em),
-    medium-large: (18, 24, 0.01em),
-    large: (20, 28, 0.01em),
-    x-large: (24, 32, 0.01em),
-    xx-large: (32, 40, 0.01em),
-    larger: (40, 52, 0.01em),
-    largest: (72, 80, 0.01em),
+$title-sizes: (
+  default: (18, 20, -0.01em),
+  medium: (16, 18, -0.01em),
+  medium-1: (18, 20, -0.01em),
+  large: (20, 26, -0.01em),
+  large-1: (24, 29, -0.01em),
+  large-2: (25, 29, -0.01em),
+  large-3: (28, 32, -0.01em),
+  huge: (30, 34, -0.01em),
+  huge-1: (36, 42, -0.01em),
+  huge-2: (48, 54, -0.01em),
+  huge-3: (62, 72, -0.01em)
 );
 
-$primary-fonts: (
+$text-sizes: (
+  small: (13, 15, 0.02em),
+  small-1: (14, 17, 0.02em),
+  default: (14, 17, 0.02em),
+  medium: (16, 24, 0.02em),
+  medium-1: (18, 27, 0.01em),
+  large: (20, 30, 0.01em)
+);
+
+$primary-fonts-styles: (
     default: (400, normal),
     regular: (400, normal),
     medium: (600, normal),
     bold: (700, normal),
-    italic: (400, italic),
+    italic: (400, italic)
 );
 
-$secondary-fonts: (
+$secondary-fonts-styles: (
     default: (400, normal),
     light: (300, normal),
-    regular: (400, normal),
+    regular: (400, normal)
 );
 
 // Don't use this in components, use typo()
 @mixin _font($font: primary, $name: default) {
-  @if map-has-key($primary-fonts, $name) and $font == primary {
+  @if map-has-key($primary-fonts-styles, $name) and $font == primary {
     font-family: $primary-font;
-    font-weight: nth(map-get($primary-fonts, $name), 1);
-    font-style: nth(map-get($primary-fonts, $name), 2);
+    font-weight: nth(map-get($primary-fonts-styles, $name), 1);
+    font-style: nth(map-get($primary-fonts-styles, $name), 2);
   }
 
-  @else if map-has-key($secondary-fonts, $name) and $font == secondary {
+  @else if map-has-key($secondary-fonts-styles, $name) and $font == secondary {
     font-family: $secondary-font;
-    font-weight: nth(map-get($secondary-fonts, $name), 1);
-    font-style: nth(map-get($secondary-fonts, $name), 2);
+    font-weight: nth(map-get($secondary-fonts-styles, $name), 1);
+    font-style: nth(map-get($secondary-fonts-styles, $name), 2);
   }
 }
 
 // Don't use this in components, use typo()
-@mixin _text($name: default) {
-    @if (map-has-key($text-sizes, $name)) {
-        font-size: nth(map-get($text-sizes, $name), 1) + px;
-        line-height: nth(map-get($text-sizes, $name), 2) + px;
-        letter-spacing: nth(map-get($text-sizes, $name), 3);
+@mixin _text($size: default) {
+    @if (map-has-key($text-sizes, $size)) {
+        font-size: nth(map-get($text-sizes, $size), 1) + px;
+        line-height: nth(map-get($text-sizes, $size), 2) + px;
+        letter-spacing: nth(map-get($text-sizes, $size), 3);
     }
 
     @else {
@@ -84,7 +90,24 @@ $secondary-fonts: (
     }
 }
 
-@mixin typo($name: primary, $text: default, $style: default) {
+@mixin typo($name: primary, $size: default, $style: default) {
   @include _font($name, $style);
-  @include _text($text);
+  @include _text($size);
+}
+
+@mixin typo-title($size: default, $family: $primary-font) {
+  $font-style: $primary-fonts-styles;
+  $font-family: $family;
+
+  @if ($family == secondary) {
+    $font-family: $secondary-font;
+    $font-style: $secondary-fonts-styles;
+  }
+
+  font-family: $font-family;
+  font-weight: nth(map-get($primary-fonts-styles, default), 1);
+  font-style: nth(map-get($primary-fonts-styles, default), 2);
+  font-size: nth(map-get($title-sizes, $size), 1) + px;
+  line-height: nth(map-get($title-sizes, $size), 2) + px;
+  letter-spacing: nth(map-get($title-sizes, $size), 3);
 }

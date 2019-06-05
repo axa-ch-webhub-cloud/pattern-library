@@ -24,4 +24,14 @@ storiesOf('Atoms/Title secondary', module)
     'Title secondary - Size 4',
     () =>
       '<axa-title-secondary variant="size-4">Title secondary 4</axa-title-secondary>'
+  )
+  .add(
+    'Title secondary - Size 5',
+    () =>
+      '<axa-title-secondary variant="size-5">Title secondary 5</axa-title-secondary>'
+  )
+  .add(
+    'Title secondary - Size 6',
+    () =>
+      '<axa-title-secondary variant="size-6">Title secondary 6</axa-title-secondary>'
   );

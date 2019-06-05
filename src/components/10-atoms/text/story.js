@@ -7,7 +7,7 @@ import Readme from './README.md';
 storiesOf('Atoms/Text', module)
   .addDecorator(withMarkdown(Readme))
   .add(
-    'Text - Default',
+    'Text - Default (Size -1)',
     () => `<axa-text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
             Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
