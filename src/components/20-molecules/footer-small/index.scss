@@ -1,5 +1,4 @@
 .m-footer-small {
-
   background: $color-prim-blue-azure;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
@@ -9,7 +8,7 @@
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-    padding: 15px;
+    padding: 15px 0;
     color: $color-prim-white;
     @include typo(primary, x-small, default);
 
@@ -18,6 +17,7 @@
       justify-content: space-between;
     }
   }
+
   &__list {
     // ### Reset browser styles for ul
     margin: 0;
