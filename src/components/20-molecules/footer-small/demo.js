@@ -22,10 +22,10 @@ storiesOf('Molecules/Footer Small/Demos', module)
     const wrapper = document.createElement('div');
     const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
-    activeLanguage.innerText = `Current Language: ${selectedLanguage}`;
+    activeLanguage.innerText = `Currently selected language: ${selectedLanguage}`;
     const clickedDisclaimer = document.createElement('p');
     clickedDisclaimer.id = 'clicked-disclaimer';
-    clickedDisclaimer.innerText = `Current disclaimer item: -`;
+    clickedDisclaimer.innerText = `Disclaimer changed to: -`;
 
     const footerSmall = document.createElement('axa-footer-small');
     footerSmall.activeLanguage = selectedLanguage;
@@ -40,12 +40,14 @@ storiesOf('Molecules/Footer Small/Demos', module)
 
     footerSmall.addEventListener('axa-language-change', languageEvent => {
       const languageResult = document.getElementById('active-language');
-      languageResult.innerText = `Current Language: ${languageEvent.detail}`;
+      languageResult.innerText = `Currently selected language: ${
+        languageEvent.detail
+      }`;
     });
 
     footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
       const clickedDisclaimers = document.getElementById('clicked-disclaimer');
-      clickedDisclaimers.innerText = `Current disclaimer item: ${
+      clickedDisclaimers.innerText = `Disclaimer changed to: ${
         disclaimerEvent.detail
       }`;
     });
