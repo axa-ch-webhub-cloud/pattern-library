@@ -37,18 +37,23 @@ class AXAImageUpload extends LitElement {
   static get properties() {
     return {
       inputFileText: { type: String },
-      onClick: { type: Function },
+      maxSizeFileMB: { type: Number },
+      maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
+      onClick: { type: Function },
     };
   }
 
   constructor() {
     super();
     this.inputFileText = 'Upload file';
+    this.maxSizeFileMB = 15;
+    this.maxNumberOfFiles = 10;
+    this.showImageOverview = false;
     this.onClick = () => {};
 
-    this.showImageOverview = false;
     this.compressedImages = [];
+    this.allImagesInput = [];
   }
 
   firstUpdated() {
@@ -96,7 +101,6 @@ class AXAImageUpload extends LitElement {
   }
 
   handleImageUploadButtonChange(e) {
-    e.stopPropagation();
     const { files } = e.target;
     console.log('via button', files);
     this.compressImages(files);
@@ -122,11 +126,9 @@ class AXAImageUpload extends LitElement {
     this.compressImages(files);
   }
 
-  handleImageUploadDropZoneClick(e) {
-    console.log(e, 'zone click');
-  }
-
-  compressImages() {
+  compressImages(files) {
+    this.allImagesInput += files;
+    console.log('files', this.allImagesInput);
     if (this.compressedImages) {
       this.showImageOverview = true;
     }
