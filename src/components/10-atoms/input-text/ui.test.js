@@ -61,7 +61,7 @@ fixture('Input-text Form').page(
   `${host}/iframe.html?id=atoms-input-text-demos--feature-input-text-works-in-a-form`
 );
 
-test.only('should submit inputs correctly in form', async t => {
+test('should submit inputs correctly in form', async t => {
   // default
   const $InputText = await Selector(() => document.getElementById('default'));
 
