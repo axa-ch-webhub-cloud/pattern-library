@@ -61,7 +61,7 @@ fixture('Input-text Form').page(
   `${host}/iframe.html?id=atoms-input-text-demos--feature-input-text-works-in-a-form`
 );
 
-test('should submit inputs correctly in form', async t => {
+test.only('should submit inputs correctly in form', async t => {
   // default
   const $InputText = await Selector(() => document.getElementById('default'));
 
@@ -74,7 +74,7 @@ test('should submit inputs correctly in form', async t => {
 
   const $InputEmailEl = await $InputEmail.find(CLASS);
   const email = 'pattern@warrior.ch';
-  await t.typeText($InputEmailEl, email);
+  await t.typeText($InputEmailEl, email, { paste: true });
 
   // password
   const $InputPassword = await Selector(() =>
@@ -83,11 +83,17 @@ test('should submit inputs correctly in form', async t => {
 
   const $InputPasswordEl = await $InputPassword.find(CLASS);
   const password = 'geheim';
-  await t.typeText($InputPasswordEl, password);
+  await t.wait(50).typeText($InputPasswordEl, password);
 
   await t.click('#submit');
   await t
     .wait(50)
-    .expect((await Selector('#form-data')).innerText)
-    .eql(`default: ${text}\nemail: ${email}\npassword: ${password}`);
+    .expect((await Selector('#default-id')).innerText)
+    .eql(`default: ${text}`);
+  await t
+    .expect((await Selector('#email-id')).innerText)
+    .eql(`email: ${email}`);
+  await t
+    .expect((await Selector('#password-id')).innerText)
+    .eql(`password: ${password}`);
 });

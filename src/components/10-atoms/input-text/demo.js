@@ -19,6 +19,7 @@ storiesOf('Atoms/Input text/Demos', module)
       for (const pair of formData.entries()) {
         const container = document.createElement('span');
         container.textContent = `${pair[0]}: ${pair[1]}`;
+        container.id = `${pair[0]}-id`;
         document.getElementById('form-data').appendChild(container);
       }
     };
