@@ -2,6 +2,8 @@ import React from 'react';
 
 interface AXAImageUploadProps {
   inputFileText?: String;
+  maxSizeFileMB?: Number;
+  maxNumberOfFiles?: Number;
   showImageOverview?: Boolean;
   onClick?: () => void;
 }
