@@ -90,3 +90,11 @@ The string-valued `error` provides an error text as HTML. It sets the checkbox i
 ### onChange
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
+
+### onFocus
+
+The function-valued property `onFocus` can be used as a callback prop for React and other frameworks.
+
+### onBlur
+
+The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
