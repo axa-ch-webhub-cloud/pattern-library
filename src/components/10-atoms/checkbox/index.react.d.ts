@@ -8,6 +8,8 @@ interface AXACheckboxProps {
   disabled?: boolean;
   error?: string;
   onChange?: (value: any) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 declare function createAXACheckbox(

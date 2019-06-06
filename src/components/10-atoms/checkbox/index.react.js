@@ -9,6 +9,8 @@ export default createElement => ({
   disabled,
   error,
   onChange,
+  onFocus = () => {},
+  onBlur = () => {},
   children,
 }) =>
   withReact(createElement)(
@@ -21,6 +23,8 @@ export default createElement => ({
       disabled,
       error,
       onChange,
+      onFocus,
+      onBlur,
       isReact: true,
     },
     children

@@ -29,7 +29,6 @@ class AXACheckbox extends NoShadowDOM {
         },
       },
       isReact: { type: Boolean },
-      onChange: { type: Function },
     };
   }
 
@@ -55,6 +54,8 @@ class AXACheckbox extends NoShadowDOM {
     this.disabled = false;
     this.error = '';
     this.isReact = false;
+    this.onFocus = () => {};
+    this.onBlur = () => {};
     this.onChange = () => {};
   }
 
@@ -126,6 +127,8 @@ class AXACheckbox extends NoShadowDOM {
     return html`
       <label class="a-checkbox__wrapper">
         <input
+          @focus="${this.onFocus}"
+          @blur="${this.onBlur}"
           id="${id}"
           class="a-checkbox__input"
           type="checkbox"
