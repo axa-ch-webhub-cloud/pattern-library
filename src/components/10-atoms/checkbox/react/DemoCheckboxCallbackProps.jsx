@@ -7,9 +7,7 @@ const DemoCheckboxCallbackProps = () => {
   const [blur, setBlur] = useState(false);
 
   const handleCheckboxChange = () => {
-    console.log('aOO');
     setChecked(!checked);
-    console.log(checked);
   };
 
   const handleCheckboxBlur = () => {
