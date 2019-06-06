@@ -30,7 +30,7 @@ test('should type something input-text', async t => {
     .eql('Pattern Warriors');
 });
 
-fixture('Input text - basic functionality').page(
+fixture('Input text - label').page(
   `${host}/iframe.html?id=atoms-input-text--input-text-label`
 );
 
@@ -39,7 +39,7 @@ test('should render label', async t => {
   await t.expect($axaLabel.exists).ok();
 });
 
-fixture('Input text - basic functionality').page(
+fixture('Input text - error').page(
   `${host}/iframe.html?id=atoms-input-text--input-text-required`
 );
 
@@ -57,7 +57,7 @@ test('should show error message and have the right color', async t => {
     .eql('rgb(201, 20, 50)');
 });
 
-fixture('Input-text Form').page(
+fixture('Input text - Form').page(
   `${host}/iframe.html?id=atoms-input-text-demos--feature-input-text-works-in-a-form`
 );
 

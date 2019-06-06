@@ -3,9 +3,11 @@ import { storiesOf } from '@storybook/html';
 import './index';
 import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
+import withBodyReset from '../../../../.storybook/addons/reset-body';
 
 storiesOf('Atoms/Input text', module)
   .addDecorator(withMarkdown(Readme))
+  .addDecorator(withBodyReset())
   .add('Input text - default', () => '<axa-input-text></axa-input-text>')
   .add(
     'Input text - label',
@@ -16,13 +18,14 @@ storiesOf('Atoms/Input text', module)
     () =>
       '<axa-input-text label="Field Label" placeholder="Pre-filled content"></axa-input-text>'
   )
-  .add('Input text - type', () => {
-    return `<div>
+  .add(
+    'Input text - type',
+    () => `<div>
           <axa-input-text label="Default Text" placeholder="Pre-filled content"></axa-input-text>
           <axa-input-text type="email" label="Email" placeholder="Pre-filled content"></axa-input-text>
           <axa-input-text type="password" label="Password" placeholder="Pre-filled content"></axa-input-text>
-        </div>`;
-  })
+        </div>`
+  )
   .add(
     'Input text - value',
     () =>
