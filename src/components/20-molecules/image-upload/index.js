@@ -14,6 +14,7 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import { fileKey } from './utils/fileKey';
 import compressImage from './utils/imageCompressor';
+import makeImageFigure from './utils/makeImageFigure';
 
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
@@ -146,7 +147,14 @@ class AXAImageUpload extends LitElement {
     this.finalFiles = finalFiles;
     this.wrongFiles = wrongFiles;
     this.showImageOverview = true;
+
+    this.loadImages();
   }
+
+  loadImages() {
+    Array.from(this.finalFiles).forEach(file =>
+      makeImageFigure(this.dropZone, file)
+    );
   }
 }
 
