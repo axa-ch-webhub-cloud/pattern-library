@@ -8,7 +8,7 @@ export default createElement => ({
   checked,
   disabled,
   error,
-  onChange,
+  onChange = () => {},
   onFocus = () => {},
   onBlur = () => {},
   children,
