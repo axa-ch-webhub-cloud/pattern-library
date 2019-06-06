@@ -12,6 +12,8 @@ import {
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import { fileKey } from './utils/fileKey';
+import compressImage from './utils/imageCompressor';
 
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
@@ -52,8 +54,9 @@ class AXAImageUpload extends LitElement {
     this.showImageOverview = false;
     this.onClick = () => {};
 
-    this.compressedImages = [];
     this.allImagesInput = [];
+    this.finalFiles = [];
+    this.wrongFiles = [];
   }
 
   firstUpdated() {
@@ -103,19 +106,17 @@ class AXAImageUpload extends LitElement {
   handleImageUploadButtonChange(e) {
     const { files } = e.target;
     console.log('via button', files);
-    this.compressImages(files);
+    this.addFiles(files);
   }
 
   handleImageUploadDropZoneDragover(e) {
     e.preventDefault();
-    console.log(e, 'dragover');
     e.dataTransfer.dropEffect = 'copy';
 
     this.dropZone.classList.add('m-image-upload__dropzone_dragover');
   }
 
-  handleImageUploadDropZoneDragleave(e) {
-    console.log(e, 'dragleave');
+  handleImageUploadDropZoneDragleave() {
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
   }
 
@@ -123,15 +124,29 @@ class AXAImageUpload extends LitElement {
     e.preventDefault();
     const { files } = e.dataTransfer;
     console.log('via drop', files);
-    this.compressImages(files);
+    this.addFiles(files);
   }
 
-  compressImages(files) {
-    this.allImagesInput += files;
-    console.log('files', this.allImagesInput);
-    if (this.compressedImages) {
-      this.showImageOverview = true;
+  async addFiles(droppedFiles) {
+    // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
+    const pdfs = [...droppedFiles].filter(file => ~file.type.indexOf('pdf'));
+    console.log('pdf', pdfs);
+    const compressedImages = await compressImage(droppedFiles);
+    console.log('compressedImages', compressedImages);
+    const finalFiles = pdfs.concat(compressedImages);
+    console.log('finalFiles', finalFiles);
+    const wrongFiles = [];
+    for (let i = 0; i < droppedFiles.length; i++) {
+      const dKey = fileKey(droppedFiles[i], true);
+      if (!finalFiles.some(finalFile => fileKey(finalFile, true) === dKey)) {
+        wrongFiles.push(droppedFiles[i]);
+      }
     }
+
+    this.finalFiles = finalFiles;
+    this.wrongFiles = wrongFiles;
+    this.showImageOverview = true;
+  }
   }
 }
 

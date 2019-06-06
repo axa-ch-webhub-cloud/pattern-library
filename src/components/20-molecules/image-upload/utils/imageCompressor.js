@@ -253,7 +253,6 @@ const compressedImage = (filesList, _options) => {
       promises.push(filePromise);
     }
   });
-  console.log('end', Promise.all(promises));
   return Promise.all(promises);
 };
 
