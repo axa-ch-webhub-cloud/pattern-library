@@ -6,6 +6,7 @@
     "src/components/10-atoms/button",
     "src/components/10-atoms/button-link",
     "src/components/10-atoms/checkbox",
+    "src/components/10-atoms/input-text",
     "src/components/10-atoms/fieldset",
     "src/components/10-atoms/input-file",
     "src/components/10-atoms/link",
