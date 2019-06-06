@@ -9,7 +9,7 @@
     color: $color-prim-blue-deep-sapphire;
   }
 
-  // Simple links == Everything except the normal hyperlinks
+  // Simple Link == Everything except the normal hyperlinks
   &--simple {
     @include typo(primary, default, medium);
     text-transform: uppercase;
@@ -17,11 +17,14 @@
   }
 
   &__icon {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
     margin-left: 10px;
 
     &--left {
       margin-left: 0;
-      margin-right: 10px;
+      margin-right: 3px;
     }
   }
 
