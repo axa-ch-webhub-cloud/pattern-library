@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/materials",
-  "version": "1.1.2",
+  "version": "1.2.1",
   "description": "Materials like typography, colors, grid, layout, icons...",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/#readme",
@@ -25,5 +25,8 @@
   },
   "devDependencies": {
     "svgo": "^1.2.0"
+  },
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1"
   }
 }
