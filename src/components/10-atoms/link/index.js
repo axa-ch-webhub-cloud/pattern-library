@@ -68,7 +68,7 @@ class AXALink extends LitElement {
       'a-link--motion': isMotion,
     };
 
-    // prettier-ignore
+    // prettier-ignore Prettier sets the closing template string literal on a new line, which causes a whitespace after the link.
     return html`
       <a
         class="a-link ${classMap(classes)}"
@@ -106,7 +106,8 @@ class AXALink extends LitElement {
               <axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>
             `
           : ''}
-      </a>`;
+      </a>
+    `;
   }
 }
 
