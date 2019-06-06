@@ -14,26 +14,20 @@ class AXAInputText extends NoShadowDOM {
 
   static get properties() {
     return {
-      // Could be Field class
       id: { type: String },
       name: { type: String },
       label: { type: String },
       placeholder: { type: String },
       value: { type: String },
+      type: { type: String },
+      error: { type: String },
       valid: { type: Boolean },
       validation: { type: Boolean },
-      // Messages
-      error: { type: String },
-
       inputFocus: { type: Boolean },
-
       wasFocused: { type: Boolean },
       wasBlured: { type: Boolean },
       required: { type: Boolean },
-
-      type: { type: String },
       disabled: { type: Boolean },
-
       isReact: { type: Boolean },
     };
   }
@@ -53,8 +47,6 @@ class AXAInputText extends NoShadowDOM {
     this.error = '';
     this.validation = false;
     this.required = false;
-    // experimental
-    this.validation = false;
     this.valid = true;
     this.disabled = false;
     this.isReact = false;
@@ -65,7 +57,7 @@ class AXAInputText extends NoShadowDOM {
     // internal properties
     this.inputFocus = false;
     this.wasFocused = false;
-    this.wasBlured = false;
+    this.wasBlurred = false;
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
