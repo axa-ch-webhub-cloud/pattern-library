@@ -9,7 +9,7 @@
     color: $color-prim-blue-deep-sapphire;
   }
 
-  // Simple links == Everything except the normal hyperlinks
+  // Simple Link == Everything except the normal hyperlinks
   &--simple {
     @include typo(primary, default, medium);
     text-transform: uppercase;
