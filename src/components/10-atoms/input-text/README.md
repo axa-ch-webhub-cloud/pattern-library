@@ -76,7 +76,7 @@ The string-valued `name` of the element for purposes of form submission.
 
 ### required
 
-The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true and the element´s `value` is not empty, it shows an animated checkmark to the right of the element and displays `*` after the label text.
+The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true and the element´s `value` is not empty, it shows an animated checkmark to the right of the element and displays `*` after the label text.
 
 ### placeholder
 
@@ -84,11 +84,11 @@ String-valued `placeholder`specifies the placeholder text shown when the element
 
 ### valid
 
-The Boolean attribute `valid` serves to indicate the validity of the element (default: `true`).
+The boolean attribute `valid` serves to indicate the validity of the element (default: `true`).
 
 ### validation
 
-The Boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true (default: `false`).
+The boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true (default: `false`).
 
 ### value
 
@@ -96,7 +96,7 @@ The string-valued `value` sets the value of the underlying native HTML &lt;input
 
 ### disabled
 
-The Boolean attribute `disabled` disables the underlying native HTML &lt;input&gt; text.
+The boolean attribute `disabled` disables the underlying native HTML &lt;input&gt; text.
 
 ### error
 
