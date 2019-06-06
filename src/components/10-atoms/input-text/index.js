@@ -1,4 +1,5 @@
 import { html, svg } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import { FilledTickAnimatedSvg } from '@axa-ch/materials/icons';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -167,18 +168,30 @@ class AXAInputText extends NoShadowDOM {
 
     this.isControlled = isControlled && isReact;
 
+    const inputErrorClass = {
+      'a-input-text__input--error': this.showInputError,
+    };
+
+    const hideCheckClass = {
+      'a-input-text__check--hidden': this.hideCheckIcon,
+    };
+
+    const hideErrorMessageClass = {
+      'a-input-text__error--hidden': this.hideErrorMessage,
+    };
+
     return html`
       <div class="a-input-text__wrapper">
         ${label &&
           html`
-            <label for="${refId}" class="a-input-text__label"
-              >${label}
+            <label for="${refId}" class="a-input-text__label">
+              ${label}
               ${required
                 ? html`
                     *
                   `
-                : html``}</label
-            >
+                : ''}
+            </label>
           `}
         <div class="a-input-text__input-wrapper">
           <input
@@ -187,12 +200,10 @@ class AXAInputText extends NoShadowDOM {
             @blur="${this.handleBlur}"
             id="${refId}"
             type="${type}"
-            class="a-input-text__input ${this.showInputError
-              ? 'a-input-text__input--error'
-              : ''}"
+            class="a-input-text__input ${classMap(inputErrorClass)}"
             autocomplete="off"
             name="${name}"
-            value=${value}
+            value="${value}"
             placeholder="${placeholder}"
             ?disabled="${disabled}"
             aria-required="${required}"
@@ -200,21 +211,13 @@ class AXAInputText extends NoShadowDOM {
 
           ${this.showValidation
             ? html`
-                <span
-                  class="a-input-text__check ${this.hideCheckIcon
-                    ? 'a-input-text__check--hidden'
-                    : ''}"
-                >
+                <span class="a-input-text__check ${classMap(hideCheckClass)}">
                   ${svg([FilledTickAnimatedSvg])}
                 </span>
               `
-            : html``}
+            : ''}
         </div>
-
-        <span
-          class="a-input-text__error ${this.hideErrorMessage
-            ? 'a-input-text__error--hidden'
-            : ''}"
+        <span class="a-input-text__error ${classMap(hideErrorMessageClass)}"
           >${error}</span
         >
       </div>
