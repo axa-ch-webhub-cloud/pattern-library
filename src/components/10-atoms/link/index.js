@@ -68,6 +68,7 @@ class AXALink extends LitElement {
       'a-link--motion': isMotion,
     };
 
+    // prettier-ignore
     return html`
       <a
         class="a-link ${classMap(classes)}"
@@ -105,8 +106,7 @@ class AXALink extends LitElement {
               <axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>
             `
           : ''}
-      </a>
-    `;
+      </a>`;
   }
 }
 
