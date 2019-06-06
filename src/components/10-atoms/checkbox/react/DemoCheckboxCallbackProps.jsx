@@ -35,7 +35,6 @@ const DemoCheckboxCallbackProps = () => {
         <span>focus: { String(focus) }</span>
         <span>blur: { String(blur) }</span>
       </div>
-      <input type="text" />
     </fieldset>
   );
 };
