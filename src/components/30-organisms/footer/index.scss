@@ -28,13 +28,6 @@
   }
 }
 
-// ::slotted(a) {
-//   display: block;
-//   width: 100% !important;
-//   height: 100%;
-//   padding: 20px 30px !important;
-// }
-
 .o-footer {
   text-align: initial;
 
@@ -51,10 +44,7 @@
   &__social-media {
     ::slotted(h2) {
       // IE11 workaround
-      // @include typo(primary, medium, bold);
       display: none;
-      // text-transform: uppercase;
-      // line-height: 1.5;
     }
 
     &-title {
