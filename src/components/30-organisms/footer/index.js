@@ -75,7 +75,8 @@ class AXAFooter extends LitElement {
       .querySelectorAll('.o-footer__main-content-panel-list-item')
       .forEach(el => {
         const label = el.querySelector('slot').assignedNodes()[0];
-        if (!label) {
+        // Second part of IF-statement is an IE11 workaround
+        if (!label || label.toString() === '[object Text]') {
           el.style.display = 'none';
         }
       });
