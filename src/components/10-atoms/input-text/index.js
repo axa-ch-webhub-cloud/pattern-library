@@ -1,9 +1,7 @@
-import { html, svg } from 'lit-element';
+import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
-import { FilledTickAnimatedSvg } from '@axa-ch/materials/icons';
 import NoShadowDOM from '../../../utils/no-shadow';
-/* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
@@ -26,7 +24,7 @@ class AXAInputText extends NoShadowDOM {
       validation: { type: Boolean },
       inputFocus: { type: Boolean },
       wasFocused: { type: Boolean },
-      wasBlured: { type: Boolean },
+      wasBlurred: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
       isReact: { type: Boolean },
@@ -94,19 +92,15 @@ class AXAInputText extends NoShadowDOM {
   }
 
   get showInputError() {
-    return this.isInvalid && this.wasBlured && this.wasFocused;
+    return this.isInvalid && this.wasBlurred && this.wasFocused;
   }
 
   get hideCheckIcon() {
-    if (!this.wasBlured && !this.wasFocused) {
-      return true;
-    }
-
-    if (this.inputFocus) {
-      return true;
-    }
-
-    return this.isInvalid;
+    return (
+      (!this.wasBlurred && !this.wasFocused) ||
+      this.inputFocus ||
+      this.isInvalid
+    );
   }
 
   get hideErrorMessage() {
@@ -127,12 +121,11 @@ class AXAInputText extends NoShadowDOM {
   };
 
   handleBlur = ev => {
-    // Validation should be on blur or submit
     this.onBlur(ev);
     this.inputFocus = false;
 
-    if (!this.wasBlured) {
-      this.wasBlured = true;
+    if (!this.wasBlurred) {
+      this.wasBlurred = true;
     }
   };
 
@@ -211,9 +204,11 @@ class AXAInputText extends NoShadowDOM {
 
           ${this.showValidation
             ? html`
-                <span class="a-input-text__check ${classMap(hideCheckClass)}">
-                  ${svg([FilledTickAnimatedSvg])}
-                </span>
+                <div class="a-input-text__check-wrapper">
+                  <span
+                    class="a-input-text__check ${classMap(hideCheckClass)}"
+                  ></span>
+                </div>
               `
             : ''}
         </div>
