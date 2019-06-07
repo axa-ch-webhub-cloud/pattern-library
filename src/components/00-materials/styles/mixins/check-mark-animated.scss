@@ -1,0 +1,58 @@
+$check-mark-animated-size: 26px;
+
+@mixin check-mark-animated-wrapper {
+  display: block;
+  width: $check-mark-animated-size;
+  height: $check-mark-animated-size;
+}
+
+@mixin check-mark-animated {
+  $check-mark-bg: #1cc54e;
+
+  display: block;
+  width: $check-mark-animated-size;
+  height: $check-mark-animated-size;
+  position: relative;
+  transform: rotate(45deg);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 69%;
+    left: 22%;
+    height: 13%;
+    background: $check-mark-bg;
+    border-radius: 6px;
+    animation: short .3s ease-in forwards;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 80%; left: 52%;
+    height: 12%;
+    background: $check-mark-bg;
+    border-radius: 6px;
+    transform: rotate(-90deg);
+    transform-origin:0 0;
+    animation: long .3s ease-out .3s forwards;
+  }
+
+  @keyframes short {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 45%;
+    }
+  }
+
+  @keyframes long {
+    0%   {
+      width: 0;
+    }
+    100% {
+      width: 70%;
+    }
+  }
+}

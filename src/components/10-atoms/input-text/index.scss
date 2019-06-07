@@ -1,3 +1,5 @@
+@import '../../00-materials/styles/mixins/check-mark-animated';
+
 $border-width: 1px;
 $border-type: solid;
 
@@ -86,26 +88,16 @@ axa-input-text {
     }
   }
 
-  .a-input-text__check {
+  .a-input-text__check-wrapper {
+    @include check-mark-animated-wrapper();
     margin-left: 10px;
-    width: 16px;
-    height: 14px;
 
-    svg {
-      width: 16px;
-      height: 14px;
-    }
+    .a-input-text__check {
+      @include check-mark-animated();
 
-    &--hidden svg {
-      display: none;
+      &--hidden {
+        display: none;
+      }
     }
   }
-
-  .a-input-text__info {
-    margin-left: 10px;
-  }
-}
-
-@keyframes filled-tick-animated {
-  from {stroke-linecap: round} to {stroke-linecap: round; stroke-dashoffset: 0}
 }
