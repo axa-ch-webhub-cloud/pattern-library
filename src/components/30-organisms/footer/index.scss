@@ -28,6 +28,13 @@
   }
 }
 
+// ::slotted(a) {
+//   display: block;
+//   width: 100% !important;
+//   height: 100%;
+//   padding: 20px 30px !important;
+// }
+
 .o-footer {
   text-align: initial;
 
@@ -140,7 +147,6 @@
         @include typo(primary, xx-small, default);
 
         padding: 0;
-        padding: 20px 30px;
         border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
         &:last-child {
@@ -148,8 +154,10 @@
         }
 
         ::slotted(a) {
+          display: block;
           text-decoration: none;
           color: $color-prim-white;
+          padding: 20px 30px !important; // Needed to dominate body reset
         }
 
         ::slotted(a:hover) {
