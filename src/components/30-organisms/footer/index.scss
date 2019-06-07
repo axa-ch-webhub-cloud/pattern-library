@@ -225,8 +225,10 @@
           }
 
           ::slotted(a) {
+            display: inline;
             text-decoration: none;
             color: $color-prim-white;
+            padding: 0 !important; // Needed to dominate body reset
           }
         }
       }
