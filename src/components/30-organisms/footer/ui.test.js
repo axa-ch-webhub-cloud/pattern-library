@@ -25,10 +25,12 @@ test('should render footer with correct background color', async t => {
 });
 
 test('should correctly render footer titles', async t => {
-  const $footerTitle = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__title-desktop')
+  const $footerTitle = Selector(
+    () =>
+      document
+        .querySelector('axa-footer')
+        .shadowRoot.querySelector('.o-footer__title-desktop')
+        .assignedNodes()[0]
   );
 
   await t.expect($footerTitle.textContent).contains('axa & you');
