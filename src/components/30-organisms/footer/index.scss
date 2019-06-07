@@ -286,7 +286,10 @@
 
       ::slotted(h2) {
         // IE11 workaround
-        display: block;
+        @include typo(primary, medium, bold);
+        display: block; // desktop title
+        text-transform: uppercase;
+        line-height: 1.5;
       }
 
       &-title {
