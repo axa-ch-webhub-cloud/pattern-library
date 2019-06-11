@@ -21,8 +21,12 @@ $image-upload-dropzone-border: 2px !default;
     opacity: 0.6;
   }
 
-  &__dropzone__overview {
+  &__dropzone-file-overview {
     border-style: solid;
+    overflow: auto;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   &__or {
@@ -35,4 +39,42 @@ $image-upload-dropzone-border: 2px !default;
   &__information {
     margin: 0;
   }
+
+  &__icon-hover-area {
+    height: 80px;
+    width: 120px;
+    border: 1px solid black;
+  }
+
+  &__icon-delete {
+    height: 36px;
+  }
+
+  &__img-element {
+    width: inherit;
+    height: inherit;
+  }
+
+  &__img-caption {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  // &__img-caption-wrapper {
+  //   width: 120px;
+  //   position: relative;
+  //   :after {
+  //     content: attr('data-filetype');
+  //     position: absolute;
+  //     left: 100%;
+  //     top: 0;
+  //   }
+  // }
+&__icon-layer {
+  position: absolute;
+  color: $color-axa-blue;
+  height: 36px;
+}
+
 }

@@ -62,11 +62,14 @@ class AXAImageUpload extends LitElement {
 
   firstUpdated() {
     this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
+    this.addImageButton = this.shadowRoot.querySelector(
+      '.js-image-upload__icon-hover-area'
+    );
   }
 
   render() {
     const classes = {
-      'm-image-upload__dropzone__overview': this.showImageOverview,
+      'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
     return html`
       <article class="m-image-upload">
@@ -80,11 +83,8 @@ class AXAImageUpload extends LitElement {
             classes
           )}"
         >
-          ${this.showImageOverview
+          ${!this.showImageOverview
             ? html`
-                <p>TODO</p>
-              `
-            : html`
                 <div class="m-image-upload__icons">
                   ${ImageUploadGroupIcon}
                 </div>
@@ -98,7 +98,8 @@ class AXAImageUpload extends LitElement {
                 >
                   ${this.inputFileText}
                 </axa-input-file>
-              `}
+              `
+            : ``}
         </section>
       </article>
     `;
@@ -106,7 +107,6 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadButtonChange(e) {
     const { files } = e.target;
-    console.log('via button', files);
     this.addFiles(files);
   }
 
@@ -123,19 +123,16 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadDropZoneDrop(e) {
     e.preventDefault();
+    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
-    console.log('via drop', files);
     this.addFiles(files);
   }
 
   async addFiles(droppedFiles) {
     // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
     const pdfs = [...droppedFiles].filter(file => ~file.type.indexOf('pdf'));
-    console.log('pdf', pdfs);
     const compressedImages = await compressImage(droppedFiles);
-    console.log('compressedImages', compressedImages);
     const finalFiles = pdfs.concat(compressedImages);
-    console.log('finalFiles', finalFiles);
     const wrongFiles = [];
     for (let i = 0; i < droppedFiles.length; i++) {
       const dKey = fileKey(droppedFiles[i], true);
