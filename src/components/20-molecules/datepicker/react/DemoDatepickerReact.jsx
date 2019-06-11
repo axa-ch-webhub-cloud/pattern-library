@@ -20,11 +20,15 @@ const DemoDatepicker = () => {
         With the React wrapper - controlled &lt;axa-datepicker&gt; component
         with callback prop and date-error validation!
       </p>
-      <AXACheckboxReact onChange={handleValueFreeze} label="freeze value" />
+      <AXACheckboxReact
+        name="datepicker-controlled-react-checkbox"
+        onChange={handleValueFreeze}
+        label="freeze value"
+      />
       <br />
       <AXADatepickerReact
         inputfield
-        data-test-id="Datepicker-controlled-react"
+        data-test-id="datepicker-controlled-react"
         onChange={handleChange}
         value={value}
         locale="de-CH"
@@ -38,7 +42,9 @@ const DemoDatepicker = () => {
       <br />
       <p>
         Controlled value &quot;
-        <span data-test-id="Datepicker-react-controlled-value">{value}</span>
+        <span data-test-id="datepicker-react-controlled-value">
+          {`${value}${frozen ? ' (frozen)' : ''}`}
+        </span>
         &quot;.
       </p>
     </div>

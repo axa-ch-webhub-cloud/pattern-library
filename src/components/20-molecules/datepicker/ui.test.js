@@ -163,6 +163,56 @@ test('should render datepicker as reactified component', async t => {
   await t.expect(datepickerReact.exists).ok();
 });
 
+// React controlled-component test
+fixture('Datepicker React controlled').page(
+  `${host}/iframe.html?id=molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
+);
+test('datepicker should behave correctly when controlled', async t => {
+  const datepickerReact = await Selector(() =>
+    document.querySelector(
+      `axa-datepicker[data-test-id="datepicker-controlled-react"]`
+    )
+  );
+  await t.expect(datepickerReact.exists).ok();
+
+  const getInputValue = ClientFunction(
+    () =>
+      document.querySelector(
+        `axa-datepicker[data-test-id="datepicker-controlled-react"]`
+      ).value
+  );
+
+  await t.expect(await getInputValue()).eql('4.6.2019');
+
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-controlled-react"] .js-datepicker__input`,
+    '28.2.2019',
+    { replace: true }
+  );
+
+  await t.expect(await getInputValue()).eql('28.2.2019');
+  const checkbox = Selector(
+    'axa-checkbox[name="datepicker-controlled-react-checkbox"] .a-checkbox__wrapper'
+  );
+
+  await t.click(checkbox);
+
+  await t
+    .expect(
+      (await Selector('[data-test-id="datepicker-react-controlled-value"]'))
+        .innerText
+    )
+    .eql('28.2.2019 (frozen)');
+
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-controlled-react"] .js-datepicker__input`,
+    '5.6.2019',
+    { replace: true }
+  );
+
+  await t.expect(await getInputValue()).eql('28.2.2019');
+});
+
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
 );

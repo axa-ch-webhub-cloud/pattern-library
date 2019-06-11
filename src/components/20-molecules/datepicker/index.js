@@ -45,8 +45,11 @@ const applyEffect = self =>
       const effect = 'm-datepicker__wrap-effect';
       const hasEffect = datepickerWrapper.classList.contains(effect);
       datepickerWrapper.classList[hasEffect ? 'remove' : 'add'](effect);
-      setTimeout(() => resolve(), 250 /* milliseconds */);
-    }, 0 /* allow rendering first */);
+      setTimeout(
+        () => resolve(),
+        250 /* effect duration - keep in sync with CSS */
+      );
+    }, 0 /* execute after render() */);
   });
 
 // CE
@@ -118,6 +121,7 @@ class AXADatepicker extends NoShadowDOM {
     // property initializations
     this.locale = 'de-CH';
     this.open = false;
+    this.inverted = false;
     this.name = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
@@ -148,7 +152,7 @@ class AXADatepicker extends NoShadowDOM {
         isReact,
         state: { isControlled },
       } = this;
-      // controlledness only makes sense when used under React
+      // controlledness is a React-only concept
       this.state.isControlled = isReact && isControlled;
     }
     return true;
@@ -302,22 +306,23 @@ class AXADatepicker extends NoShadowDOM {
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
     const { store, date, allowedyears } = this;
-    if (newValue !== null && name === 'date' && store && date) {
-      // validate year
-      const year = date.getFullYear();
-      const isValidYear = allowedyears.indexOf(year) > -1;
-      if (!isValidYear) {
-        return;
-      }
-      // fire custom success events
-      fireCustomEvent('axa-change', date, this);
-      this.onAXADateChange(date);
-      fireCustomEvent(
-        'axa-validation',
-        { type: 'success', message: 'valid' },
-        this
-      );
+    if (newValue === null || name !== 'date' || !store || !date) {
+      return;
     }
+    // validate year
+    const year = date.getFullYear();
+    const isValidYear = allowedyears.indexOf(year) > -1;
+    if (!isValidYear) {
+      return;
+    }
+    // fire custom success events
+    fireCustomEvent('axa-change', date, this);
+    this.onAXADateChange(date);
+    fireCustomEvent(
+      'axa-validation',
+      { type: 'success', message: 'valid' },
+      this
+    );
   }
 
   disconnectedCallback() {
