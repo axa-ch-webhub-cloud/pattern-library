@@ -28,11 +28,11 @@ storiesOf('Organisms/Footer', module)
         <h2 slot="column-1-title">axa worldwide</h2>
         <a slot="column-1-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">AXA worldwide</a>
         <h2 slot="column-2-social-title">stay in touch</h2>
-        <a slot="column-social-item-0" href="https://www.facebook.com/axach/" target="_blank">facebook</a>
-        <a slot="column-social-item-1" href="https://www.instagram.com/axaswitzerland/" target="_blank">instagram</a>
-        <a slot="column-social-item-2" href="https://twitter.com/axa_schweiz" target="_blank">twitter</a>
-        <a slot="column-social-item-3" href="https://www.xing.com/companies/AXAWINTERTHUR" target="_blank">xing</a>
-        <a slot="column-social-item-4" href="https://www.youtube.com/axaschweiz" target="_blank">youtube</a>
-        <a slot="column-social-item-5" href="https://www.linkedin.com/company/axa/" target="_blank">linkedin</a>
+        <a slot="column-social-item-0" href="https://www.facebook.com/axach/" target="_blank"></a>
+        <a slot="column-social-item-1" href="https://www.instagram.com/axaswitzerland/" target="_blank"></a>
+        <a slot="column-social-item-2" href="https://twitter.com/axa_schweiz" target="_blank"></a>
+        <a slot="column-social-item-3" href="https://www.xing.com/companies/AXAWINTERTHUR" target="_blank"></a>
+        <a slot="column-social-item-4" href="https://www.youtube.com/axaschweiz" target="_blank"></a>
+        <a slot="column-social-item-5" href="https://www.linkedin.com/company/axa/" target="_blank"></a>
       </axa-footer>`
   );

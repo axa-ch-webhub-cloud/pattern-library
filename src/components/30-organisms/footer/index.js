@@ -33,7 +33,7 @@ class AXAFooter extends LitElement {
     };
   }
 
-  accordionActiveIndex = 0;
+  accordionActiveIndex = -1;
 
   constructor() {
     super();
@@ -52,22 +52,7 @@ class AXAFooter extends LitElement {
   }
 
   updated() {
-    this.replaceSocialMediaTextsWithIcon();
     this.removeEmptyListElements();
-  }
-
-  replaceSocialMediaTextsWithIcon() {
-    this.shadowRoot
-      .querySelectorAll('.js-footer__social-media-item')
-      .forEach(el => {
-        const slot = el.querySelector('slot');
-        if (slot) {
-          const label = slot.assignedNodes()[0];
-          el.innerHTML = `<a href='${label.href}' target='${
-            label.target
-          }'>${this.iconMap.get(label.innerText)}</a>`;
-        }
-      });
   }
 
   removeEmptyListElements() {
@@ -243,7 +228,10 @@ class AXAFooter extends LitElement {
                 class="o-footer__social-media-title"
               ></slot>
               <ul class="o-footer__social-media-list">
-                <li class="js-footer__social-media-item">
+                <li
+                  class="js-footer__social-media-item"
+                  @click="${this.handleLinkClick}"
+                >
                   <slot name="column-social-item-0"></slot>
                 </li>
                 <li class="js-footer__social-media-item">
