@@ -76,7 +76,6 @@
         width: 25px;
         height: 25px;
         padding: 10px !important;
-        margin: 1px !important;
 
         background-size: 25px 25px;
         background-repeat: no-repeat;
@@ -328,6 +327,7 @@
 
       &-list {
         padding: 20px 0;
+        margin-left: -10px;
       }
     }
   }
