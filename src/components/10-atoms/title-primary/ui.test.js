@@ -8,15 +8,10 @@ fixture('Title primary - basic functionality')
     await t.resizeWindow(380, 680);
   });
 
-// test('should render title-primary', async t => {
-//   const $axaElem = await Selector(TAG);
-//   await t.expect($axaElem.exists).ok();
-//   const $axaElemShadow = await Selector(
-//     () => document.querySelector('axa-title-primary').shadowRoot
-//   );
-//   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
-//   await t.expect($axaElemShadowEl.exists).ok();
-// });
+test('should render title-primary', async t => {
+  const $axaElem = await Selector('axa-title-primary');
+  await t.expect($axaElem.exists).ok();
+});
 
 test('should have correct font definitions for title size 1', async t => {
   const $axaElemShadow = await Selector(() =>
@@ -233,7 +228,4 @@ test('should have correct font definitions for title size 6', async t => {
   await t
     .expect(await $axaElemShadow.getStyleProperty('line-height'))
     .eql('26px');
-
-  // reset
-  // await t.resizeWindowToFitDevice(1400, 800);
 });
