@@ -82,7 +82,8 @@ class AXAFooter extends LitElement {
       });
   }
 
-  handleLinkClick = (ev, text) => {
+  handleLinkClick = ev => {
+    console.log('cliccedy', ev.target);
     if (this.dynamic) {
       ev.preventDefault();
       this.onItemClick(text);
@@ -134,28 +135,52 @@ class AXAFooter extends LitElement {
                     : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-0" />
+                    <slot
+                      name="column-0-item-0"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-1" />
+                    <slot
+                      name="column-0-item-1"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-2" />
+                    <slot
+                      name="column-0-item-2"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-3" />
+                    <slot
+                      name="column-0-item-3"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-4" />
+                    <slot
+                      name="column-0-item-4"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-5" />
+                    <slot
+                      name="column-0-item-5"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-6" />
+                    <slot
+                      name="column-0-item-6"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-0-item-7" />
+                    <slot
+                      name="column-0-item-7"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                 </ul>
               </div>
@@ -186,16 +211,28 @@ class AXAFooter extends LitElement {
                     : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-1-item-0" />
+                    <slot
+                      name="column-1-item-0"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-1-item-1" />
+                    <slot
+                      name="column-1-item-1"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-1-item-2" />
+                    <slot
+                      name="column-1-item-2"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
-                    <slot name="column-1-item-3" />
+                    <slot
+                      name="column-1-item-3"
+                      @click="${this.handleLinkClick}"
+                    />
                   </li>
                 </ul>
               </div>
