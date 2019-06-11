@@ -57,7 +57,6 @@ Import the title-primary-defining script and use a title-primary like this:
 
 | Attribute          | Details |
 | ------------------ | ------- |
-| `variant="size-1"` | Size 1  |
 | `variant="size-2"` | Size 2  |
 | `variant="size-3"` | Size 3  |
 | `variant="size-4"` | Size 4  |
