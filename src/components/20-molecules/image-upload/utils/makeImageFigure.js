@@ -1,5 +1,6 @@
+import { DeleteSvg } from './../icons';
+
 export default (dropZone, file) => {
-  console.log('makeImageFigure', window, file); // TODO when pdf -> doesn't work
   const urlCreator = window.URL || window.webkitURL;
   const imageUrl = urlCreator.createObjectURL(file);
 
@@ -19,24 +20,17 @@ export default (dropZone, file) => {
 
   const iconLayer = document.createElement('div');
   iconLayer.className = 'm-image-upload__icon-layer';
+  iconLayer.innerHTML = DeleteSvg;
   hoverArea.appendChild(iconLayer);
 
-  const binIcon = document.createElement('axa-icon');
-  console.log('binIcon', binIcon);
-  // TODO class doesn't get set
-  binIcon.classList.add('m-image-upload__icon-baseline-delete-forever');
-  console.log('binIcon', binIcon.classList);
-  binIcon.setAttribute('icon', 'baseline-delete-forever');
-  iconLayer.appendChild(binIcon);
+  const wrapper = document.createElement('div');
+  wrapper.className = 'm-image-upload__img-caption-wrapper';
+  wrapper.dataset.filetype = 'txt';
+  hoverArea.appendChild(wrapper);
 
   const figCaption = document.createElement('figcaption');
   figCaption.className = 'm-image-upload__img-caption';
-  const node = document.createTextNode('der titel');
+  const node = document.createTextNode('der titel ist sooooo lang');
   figCaption.appendChild(node);
-  figure.appendChild(figCaption);
-  // this.wcNode.setAttribute('data-image-set', 'true');
-  // TODO
-  // on(hoverArea, 'click', () => console.log('image entfernen'), {
-  //   passive: false,
-  // });
+  wrapper.appendChild(figCaption);
 };
