@@ -7,7 +7,7 @@ $breakpoint-xxlarge: 1440px;
 
 // https://github.com/at-import/breakpoint/wiki/Basic-Media-Queries
 // Breakpoints in pixel - auto converted to em!
-@import 'breakpoint-sass';
+@import 'breakpoint';
 @include bkpt-set('to ems', true); // TODO -> SERIOUS EVALUATION HERE NEEDED
 
 $mediaquery-xsm: 0 ($breakpoint-small - 1); // (min-width: 0 and max-width: 575px)
