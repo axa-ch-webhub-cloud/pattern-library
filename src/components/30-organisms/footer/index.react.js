@@ -2,14 +2,15 @@ import withReact from '../../../utils/with-react';
 import AXAFooter from './index';
 
 export default createElement => ({
-  content = [],
-  social = {},
   onItemClick = {},
   dynamic = false,
+  children,
 }) =>
-  withReact(createElement)(AXAFooter.tagName, {
-    content,
-    social,
-    onItemClick,
-    dynamic,
-  });
+  withReact(createElement)(
+    AXAFooter.tagName,
+    {
+      onItemClick,
+      dynamic,
+    },
+    children
+  );
