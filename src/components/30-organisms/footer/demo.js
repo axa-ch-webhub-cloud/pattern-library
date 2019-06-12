@@ -37,9 +37,15 @@ storiesOf('Organisms/Footer/Demos', module)
 
     wrapper.innerHTML = footerMarkup;
 
-    document.addEventListener('axa-footer-click', ev =>
-      console.log('reachced document', ev)
-    );
+    const lastClicked = document.createElement('span');
+    lastClicked.id = 'last-clicked';
+    lastClicked.innerText = 'Last clicked link: -';
+    wrapper.appendChild(lastClicked);
+
+    document.addEventListener('axa-footer-click', ev => {
+      const span = document.getElementById(lastClicked.id);
+      span.innerText = `Last clicked link: ${ev.detail}`;
+    });
 
     return wrapper;
   });
