@@ -5,9 +5,8 @@ $image-upload-dropzone-border: 2px !default;
 
   &__dropzone {
     box-sizing: border-box;
-
-    padding: 30px 0px;
-    height: 274px;
+    padding: 30px 0;
+    height: 280px;
 
     display: flex;
     flex-flow: column nowrap;
@@ -22,11 +21,12 @@ $image-upload-dropzone-border: 2px !default;
   }
 
   &__dropzone-file-overview {
-    border-style: solid;
-    overflow: auto;
+    padding: 22px 7px 0px 22px;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: flex-start;
+    overflow-y: scroll;
+    border-style: solid;
   }
 
   &__or {
@@ -40,19 +40,52 @@ $image-upload-dropzone-border: 2px !default;
     margin: 0;
   }
 
+  &__img-figure {
+    margin: 0;
+    margin-right: 15px
+  }
+
   &__icon-hover-area {
+    position: relative;
     height: 80px;
     width: 120px;
-    border: 1px solid black;
+  }
+
+  &__icon-hover-area:hover {
+
+    .m-image-upload__img-element {
+      opacity: 0.6;
+    }
+    .m-image-upload__img-caption-wrapper {
+      color: $color-axa-blue;
+    }
+    .m-image-upload__icon-layer {
+      display: block;
+    }
+  }
+
+  &__img-element {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__icon-layer {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: $color-axa-blue;
   }
 
   &__icon-delete {
     height: 36px;
   }
 
-  &__img-element {
-    width: inherit;
-    height: inherit;
+  &__img-caption-wrapper {
+    position: relative;
+    width: 100%;
   }
 
   &__img-caption {
