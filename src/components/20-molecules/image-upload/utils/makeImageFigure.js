@@ -25,12 +25,11 @@ export default (dropZone, file) => {
 
   const wrapper = document.createElement('div');
   wrapper.className = 'm-image-upload__img-caption-wrapper';
-  wrapper.dataset.filetype = 'txt';
   hoverArea.appendChild(wrapper);
 
   const figCaption = document.createElement('figcaption');
   figCaption.className = 'm-image-upload__img-caption';
-  const node = document.createTextNode('der titel ist sooooo lang');
+  const node = document.createTextNode('ExtremLangerTiteln ochlängere rer.txt');
   figCaption.appendChild(node);
   wrapper.appendChild(figCaption);
 };
