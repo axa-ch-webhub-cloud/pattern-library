@@ -64,6 +64,7 @@ class AXAButton extends LitElement {
   render() {
     const { type, large, motionOff, disabled, variant = '', icon = '' } = this;
     const classes = {
+      'a-button': true,
       'a-button--secondary': variant === 'secondary',
       'a-button--red': variant === 'red',
       'a-button--inverted': variant === 'inverted',
@@ -74,16 +75,16 @@ class AXAButton extends LitElement {
     return html`
       <button
         type="${type}"
-        class="a-button ${classMap(classes)}"
+        class="${classMap(classes)}"
         ?disabled="${disabled}"
         @click="${this.onClick}"
       >
-        <div class="a-button__flex-wrapper">
+        <span class="a-button__flex-wrapper">
           <slot></slot> ${icon &&
             html`
               <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
             `}
-        </div>
+        </span>
       </button>
     `;
   }

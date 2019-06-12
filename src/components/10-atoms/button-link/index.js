@@ -64,6 +64,7 @@ class AXAButtonLink extends LitElement {
     } = this;
 
     const classes = {
+      'a-button-link': true,
       'a-button-link--secondary': variant === 'secondary',
       'a-button-link--red': variant === 'red',
       'a-button-link--inverted': variant === 'inverted',
@@ -73,7 +74,7 @@ class AXAButtonLink extends LitElement {
 
     return html`
       <a
-        class="a-button-link ${classMap(classes)}"
+        class="${classMap(classes)}"
         href="${href}"
         target="${external ? '_blank' : '_top'}"
         rel="${external ? 'noreferrer noopener' : ''}"

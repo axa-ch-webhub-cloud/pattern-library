@@ -107,10 +107,6 @@ class AXAInputText extends NoShadowDOM {
     return !this.error || !this.showInputError;
   }
 
-  get showValidation() {
-    return this.validation || this.required;
-  }
-
   handleFocus = ev => {
     this.onFocus(ev);
     this.inputFocus = true;
@@ -119,6 +115,10 @@ class AXAInputText extends NoShadowDOM {
       this.wasFocused = true;
     }
   };
+
+  get showValidation() {
+    return this.validation || this.required;
+  }
 
   handleBlur = ev => {
     this.onBlur(ev);
@@ -161,15 +161,18 @@ class AXAInputText extends NoShadowDOM {
 
     this.isControlled = isControlled && isReact;
 
-    const inputErrorClass = {
+    const inputClasses = {
+      'a-input-text__input': true,
       'a-input-text__input--error': this.showInputError,
     };
 
-    const hideCheckClass = {
+    const checkClasses = {
+      'a-input-text__check': true,
       'a-input-text__check--hidden': this.hideCheckIcon,
     };
 
-    const hideErrorMessageClass = {
+    const errorMessageClasses = {
+      'a-input-text__error': true,
       'a-input-text__error--hidden': this.hideErrorMessage,
     };
 
@@ -193,7 +196,7 @@ class AXAInputText extends NoShadowDOM {
             @blur="${this.handleBlur}"
             id="${refId}"
             type="${type}"
-            class="a-input-text__input ${classMap(inputErrorClass)}"
+            class=" ${classMap(inputClasses)}"
             autocomplete="off"
             name="${name}"
             value="${value}"
@@ -202,19 +205,17 @@ class AXAInputText extends NoShadowDOM {
             aria-required="${required}"
           />
 
-          ${this.showValidation
-            ? html`
-                <div class="a-input-text__check-wrapper">
-                  <span
-                    class="a-input-text__check ${classMap(hideCheckClass)}"
-                  ></span>
-                </div>
-              `
-            : ''}
+          ${html`
+            <div class="a-input-text__check-wrapper">
+              ${this.showValidation
+                ? html`
+                    <span class="${classMap(checkClasses)}"></span>
+                  `
+                : ''}
+            </div>
+          `}
         </div>
-        <span class="a-input-text__error ${classMap(hideErrorMessageClass)}"
-          >${error}</span
-        >
+        <span class="${classMap(errorMessageClasses)}">${error}</span>
       </div>
     `;
   }
