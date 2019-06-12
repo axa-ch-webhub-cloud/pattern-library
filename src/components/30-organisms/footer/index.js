@@ -68,7 +68,7 @@ class AXAFooter extends LitElement {
       ev.preventDefault();
       this.onItemClick(ev.target.href);
       this.dispatchEvent(
-        new CustomEvent('axa-link-click', {
+        new CustomEvent('axa-footer-click', {
           detail: ev.target.href,
           bubbles: true,
           cancelable: true,
