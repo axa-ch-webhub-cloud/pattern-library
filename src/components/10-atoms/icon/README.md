@@ -67,7 +67,7 @@ The icon resource path must have `.svg` extension.
 
 ### Size
 
-The default behavior set the size of the svgs to 16x16 px, to use default size use `size="auto"`.
+The default behavior set the size of the svgs to 16x16 px, to use original size on the svg use `size="auto"`.
 
 | Attribute     |
 | ------------- |
