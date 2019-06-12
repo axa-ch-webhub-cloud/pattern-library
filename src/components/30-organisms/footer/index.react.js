@@ -5,8 +5,9 @@ export default createElement => ({
   onItemClick = {},
   dynamic = false,
   children,
-}) =>
-  withReact(createElement)(
+}) => {
+  console.log(dynamic);
+  return withReact(createElement)(
     AXAFooter.tagName,
     {
       onItemClick,
@@ -14,3 +15,4 @@ export default createElement => ({
     },
     children
   );
+};

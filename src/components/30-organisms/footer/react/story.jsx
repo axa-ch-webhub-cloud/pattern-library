@@ -15,7 +15,7 @@ storiesOf('Organisms/Footer/React', module)
     div.id = 'footer';
     ReactDOM.render(
       <div>
-        <AXAFooterReact onItemClick={ev => console.log(ev)} dynamic>
+        <AXAFooterReact onItemClick={ev => console.log(ev)} dynamic={true}>
           <h2 slot="column-0-title-desktop">axa & you</h2>
           <h2 slot="column-0-title">axa & you</h2>
           <a

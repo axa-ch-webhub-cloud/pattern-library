@@ -8,7 +8,7 @@ import {
   YoutubeSvg,
   LinkedinSvg,
   CaretSvg,
-} from '@axa-ch/materials';
+} from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
@@ -89,7 +89,7 @@ class AXAFooter extends LitElement {
 
   render() {
     return html`
-      ${this.dynamic} ${this.hans}
+      ${this.dynamic}
       <footer class="o-footer">
         <axa-container>
           <div class="o-footer__content">
