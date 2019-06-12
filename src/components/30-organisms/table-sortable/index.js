@@ -53,16 +53,21 @@ class AXATableSortable extends LitElement {
 
   validateModel() {
     const {
-      thead: { length: theadL },
+      thead: {
+        length: theadL
+      },
       tbody: {
-        0: { length: tbodyL },
+        0: {
+          length: tbodyL
+        }
       },
-      tfoot: {
-        0: { length: tfootL },
-      },
+      tfoot
     } = this.model;
-
-    return !(theadL !== tbodyL && (!tfootL || tfootL === tbodyL));
+    let tfootL = 0;
+    if (tfoot && tfoot[0]) {
+      tfootL = tfoot.length;
+    }
+    return !tbodyL || !((theadL !== tbodyL) && (!tfootL || tfootL === tbodyL));
   }
 
   getSortingAria(config) {
@@ -83,7 +88,12 @@ class AXATableSortable extends LitElement {
     const { tbody, tfoot } = this.model;
 
     tmpModel.tbody = this.sort(tbody, index, sortAs);
-    tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+    if (tfoot && tfoot[0]) {
+      tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+    } else {
+      tmpModel.tfoot = [[]];
+    }
+
     tmpModel.thead[index].sort = mapAsc[sortAs];
 
     this.lastIndex = index;
