@@ -88,7 +88,12 @@ class AXATableSortable extends LitElement {
     const { tbody, tfoot } = this.model;
 
     tmpModel.tbody = this.sort(tbody, index, sortAs);
-    tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+    if (tfoot && tfoot[0]) {
+      tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+    } else {
+      tmpModel.tfoot = [[]];
+    }
+
     tmpModel.thead[index].sort = mapAsc[sortAs];
 
     this.lastIndex = index;
