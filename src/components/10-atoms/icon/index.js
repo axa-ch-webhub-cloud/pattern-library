@@ -1,4 +1,4 @@
-import { LitElement, svg } from 'lit-element';
+import { LitElement, svg, css, unsafeCSS } from 'lit-element';
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import {
@@ -14,11 +14,18 @@ import {
   SearchSvg,
   UploadSvg,
 } from '@axa-ch/materials/icons';
+import iconCSS from './index.scss';
 import defineOnce from '../../../utils/define-once';
 
 class AXAIcon extends LitElement {
   static get tagName() {
     return 'axa-icon';
+  }
+
+  static get styles() {
+    return css`
+      ${unsafeCSS(iconCSS)}
+    `;
   }
 
   static get iconsMapping() {
@@ -40,6 +47,7 @@ class AXAIcon extends LitElement {
   static get properties() {
     return {
       icon: { type: String },
+      size: { type: String, reflect: true },
     };
   }
 
@@ -56,6 +64,7 @@ class AXAIcon extends LitElement {
       req.open('GET', icon);
       req.onreadystatechange = () => {
         if (req.readyState === 4 && req.status === 200) {
+          this.size = 'auto';
           this.shadowRoot.innerHTML = req.response;
         }
       };
