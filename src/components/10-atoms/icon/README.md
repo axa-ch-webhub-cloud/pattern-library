@@ -65,14 +65,28 @@ Import the icon-defining script and use icons like so:
 
 The icon resource path must have `.svg` extension.
 
+### Size
+
+The default behavior set the size of the svgs to 16x16 px, to use default size use `size="auto"`.
+
+| Attribute     |
+| ------------- |
+| `size="auto"` |
+
 ## Using custom icons
 
 Typical icon SVG looks similar to
 
 ```html
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="10px" height="12px" viewBox="0 0 10 12">
-  <path fill="currentColor" d="M9.7,4.3H7v-4H3v4H0.3L5,9L9.7,4.3z"/>
-  <path fill="currentColor" d="M0.3,10.3v1.3h9.3v-1.3H0.3z"/>
+<svg
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  width="10px"
+  height="12px"
+  viewBox="0 0 10 12"
+>
+  <path fill="currentColor" d="M9.7,4.3H7v-4H3v4H0.3L5,9L9.7,4.3z" />
+  <path fill="currentColor" d="M0.3,10.3v1.3h9.3v-1.3H0.3z" />
 </svg>
 ```
 
