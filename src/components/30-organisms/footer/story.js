@@ -13,8 +13,7 @@ storiesOf('Organisms/Footer', module)
   .add(
     'Footer',
     () =>
-      `
-      <axa-footer>
+      `<axa-footer>
         <h2 slot="column-0-title-desktop">axa & you deskertop</h2>
         <h2 slot="column-0-title">axa & you</h2>
         <a slot="column-0-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>

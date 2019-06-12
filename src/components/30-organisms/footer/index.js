@@ -27,8 +27,6 @@ class AXAFooter extends LitElement {
 
   static get properties() {
     return {
-      content: { type: Array },
-      social: { type: Object },
       dynamic: { type: Boolean },
     };
   }
@@ -37,8 +35,6 @@ class AXAFooter extends LitElement {
 
   constructor() {
     super();
-    this.content = [];
-    this.social = {};
     this.dynamic = false;
     this.onItemClick = () => {};
 
@@ -68,13 +64,12 @@ class AXAFooter extends LitElement {
   }
 
   handleLinkClick = ev => {
-    console.log('cliccedy', ev.target);
     if (this.dynamic) {
       ev.preventDefault();
-      this.onItemClick(text);
+      this.onItemClick(ev.target.href);
       this.dispatchEvent(
         new CustomEvent('axa-link-click', {
-          detail: text,
+          detail: ev.target.href,
           bubbles: true,
           cancelable: true,
         })
@@ -228,26 +223,41 @@ class AXAFooter extends LitElement {
                 class="o-footer__social-media-title"
               ></slot>
               <ul class="o-footer__social-media-list">
-                <li
-                  class="js-footer__social-media-item"
-                  @click="${this.handleLinkClick}"
-                >
-                  <slot name="column-social-item-0"></slot>
+                <li class="js-footer__social-media-item">
+                  <slot
+                    name="column-social-item-0"
+                    @click="${this.handleLinkClick}"
+                  ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
-                  <slot name="column-social-item-1"></slot>
+                  <slot
+                    name="column-social-item-1"
+                    @click="${this.handleLinkClick}"
+                  ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
-                  <slot name="column-social-item-2"></slot>
+                  <slot
+                    name="column-social-item-2"
+                    @click="${this.handleLinkClick}"
+                  ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
-                  <slot name="column-social-item-3"></slot>
+                  <slot
+                    name="column-social-item-3"
+                    @click="${this.handleLinkClick}"
+                  ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
-                  <slot name="column-social-item-4"></slot>
+                  <slot
+                    name="column-social-item-4"
+                    @click="${this.handleLinkClick}"
+                  ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
-                  <slot name="column-social-item-5"></slot>
+                  <slot
+                    name="column-social-item-5"
+                    @click="${this.handleLinkClick}"
+                  ></slot>
                 </li>
               </ul>
             </div>
