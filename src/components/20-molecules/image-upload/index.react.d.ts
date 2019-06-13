@@ -5,6 +5,7 @@ interface AXAImageUploadProps {
   maxSizeFileMB?: Number;
   maxNumberOfFiles?: Number;
   showImageOverview?: Boolean;
+  icon?: String;
   onClick?: () => void;
 }
 
