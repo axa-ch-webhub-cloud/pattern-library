@@ -4,7 +4,7 @@ $checkbox-label-left-margin: 15px;
 $checkbox-error-top-margin: 10px;
 
 axa-checkbox {
-    @include typo(primary, default, default);
+    @include typo(primary, default);
     display: block;
 
     .a-checkbox__wrapper {

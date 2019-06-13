@@ -1,0 +1,35 @@
+.a-text {
+  @include typo(primary, medium-1);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, large);
+  }
+}
+
+.a-text--size-2 {
+  @include typo(primary, medium);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, medium-1);
+  }
+}
+
+.a-text--size-3 {
+  @include typo(primary, small-1);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, medium);
+  }
+}
+
+.a-text--size-4 {
+  @include typo(primary, small);
+
+  @include breakpoint($mediaquery-md-up) {
+    @include typo(primary, small-1);
+  }
+}
+
+.a-text--bold {
+  @include _font(primary, bold);
+}
