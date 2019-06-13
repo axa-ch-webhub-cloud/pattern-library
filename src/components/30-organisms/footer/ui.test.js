@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import FooterAccessor from './ui.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
@@ -166,9 +167,7 @@ fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-react--feature-footer-callbacks`
 );
 
-// TODO Fix
-test.skip('should render footer with working react callbacks', async t => {
-  // Smoketest
+test.only('should render footer with working react callbacks', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -180,12 +179,9 @@ test.skip('should render footer with working react callbacks', async t => {
     .expect($axaElemShadowEl.getStyleProperty('background-color'))
     .eql('rgb(59, 63, 216)');
 
-  const $footer = Selector(
-    () => document.querySelector('axa-footer').shadowRoot
-  );
-  // /Smoketest
+  const $contactLink = FooterAccessor.getSlotNode();
 
-  const $contactLink = $footer.find('a').withText('Contact');
+  await t.expect($contactLink.textContent).eql('Contact');
   await t.expect($contactLink.visible).ok();
 
   const $result = Selector('#clicked-link');
@@ -193,26 +189,35 @@ test.skip('should render footer with working react callbacks', async t => {
 
   await t.click($contactLink);
 
-  await t.expect($result.innerText).contains('Contact');
+  await t
+    .expect($result.innerText)
+    .contains('https://axa.ch/en/private-customers.html');
 
-  const $axaWorldwideLink = $footer.find('a').withText('AXA worldwide');
+  const $axaWorldwideLink = Selector(
+    () =>
+      document
+        .querySelector('axa-footer')
+        .shadowRoot.querySelector('slot[name="column-0-title-desktop"]')
+        .assignedNodes()[0]
+  );
   await t.expect($axaWorldwideLink.visible).ok();
+  await t.expect($axaWorldwideLink.textContent).eql('axa & you');
 
   await t.click($axaWorldwideLink);
 
-  await t.expect($result.innerText).contains('AXA worldwide');
-
-  const $facebookButton = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__social-media-list')
-      .querySelector('a')
+  const $facebookButton = Selector(
+    () =>
+      document
+        .querySelector('axa-footer')
+        .shadowRoot.querySelector('.o-footer__social-media-list')
+        .querySelector('slot[name="column-social-item-0"]')
+        .assignedNodes()[0]
   );
 
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
 
-  await t.expect($result.innerText).contains('facebook');
+  await t.expect($result.innerText).contains('https://www.facebook.com/axach/');
 });
 
 fixture('Footer - Demo Smoketest').page(

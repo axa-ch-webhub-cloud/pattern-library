@@ -17,7 +17,7 @@ storiesOf('Organisms/Footer/React', module)
   .addDecorator(withMarkdown(Readme))
   // TODO Body-Reset makes react unable to pass down props to the component
   // .addDecorator(withBodyReset())
-  .add('Footer Callbacks', () => {
+  .add('Feature - Footer Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
     ReactDOM.render(
