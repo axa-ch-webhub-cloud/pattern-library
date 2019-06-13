@@ -7,7 +7,7 @@ import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 // import withBodyReset from '../../../../../.storybook/addons/reset-body';
 
-function setActiveLanguage(link) {
+function setNewlyClickedLink(link) {
   document.getElementById(
     'clicked-link'
   ).innerText = `Last clicked link: ${link}`;
@@ -22,7 +22,7 @@ storiesOf('Organisms/Footer/React', module)
     div.id = 'footer';
     ReactDOM.render(
       <div>
-        <AXAFooterReact onItemClick={link => setActiveLanguage(link)} dynamic>
+        <AXAFooterReact onItemClick={link => setNewlyClickedLink(link)} dynamic>
           <h2 slot="column-0-title-desktop">axa & you</h2>
           <h2 slot="column-0-title">axa & you</h2>
           <a
