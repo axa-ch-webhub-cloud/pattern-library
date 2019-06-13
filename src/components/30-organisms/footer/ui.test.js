@@ -26,13 +26,7 @@ test('should render footer with correct background color', async t => {
 });
 
 test('should correctly render footer titles', async t => {
-  const $footerTitle = Selector(
-    () =>
-      document
-        .querySelector('axa-footer')
-        .shadowRoot.querySelector('.o-footer__title-desktop')
-        .assignedNodes()[0]
-  );
+  const $footerTitle = FooterAccessor.getSlotNode('column-0-title-desktop');
 
   await t.expect($footerTitle.textContent).contains('axa & you');
   await t
@@ -46,9 +40,7 @@ test('should correctly render footer titles', async t => {
 });
 
 test('should correctly render footer link content', async t => {
-  const $footer = Selector('axa-footer');
-
-  const $contactLink = $footer.find('a').withText('Contact');
+  const $contactLink = FooterAccessor.getSlotNode('column-0-item-0');
   await t.expect($contactLink.exists).ok();
 
   await t
