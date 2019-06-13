@@ -62,20 +62,23 @@ test('should correctly render footer link content', async t => {
 });
 
 test('should render facebook social media button', async t => {
-  const $facebookButton = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__social-media-list')
-      .querySelector('a[href="https://www.facebook.com/axach/"]')
-      .querySelector('svg')
+  const $facebookButton = Selector(
+    () =>
+      document
+        .querySelector('axa-footer')
+        .shadowRoot.querySelector('.o-footer__social-media-list')
+        .querySelector('slot[name="column-social-item-0"]')
+        .assignedNodes()[0]
   );
 
   await t.expect($facebookButton.visible).ok();
   await t.expect($facebookButton.getStyleProperty('width')).eql('25px');
   await t.expect($facebookButton.getStyleProperty('height')).eql('25px');
   await t
-    .expect($facebookButton.find('path').getStyleProperty('color'))
-    .eql('rgb(255, 255, 255)');
+    .expect($facebookButton.getStyleProperty('background-image'))
+    .eql(
+      `url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\' width=\'100%25\' height=\'100%25\'%3E%3Cpath fill=\'white\' d=\'M6.39 5.88H4.77v2.17h1.62v6.51h2.72V8.05h2l.19-2.17H9.11V5c0-.52.1-.72.6-.72h1.57V1.54H9.21c-2 0-2.82.86-2.82 2.5z\'%3E%3C/path%3E%3C/svg%3E%0A")`
+    );
 });
 
 test('should render accordion only in mobile mode', async t => {
@@ -91,7 +94,7 @@ test('should render accordion only in mobile mode', async t => {
   await t.expect($accordion.visible).ok();
 });
 
-test.only('should correctly open accordion on click', async t => {
+test('should correctly open accordion on click', async t => {
   await t.resizeWindow(575, 400);
 
   const $accordionButtons = Selector(
