@@ -12,68 +12,29 @@ npm install @axa-ch/footer
 import '@axa-ch/footer';
 ...
 
-const content = JSON.stringify([
-  {
-    title: 'axa & you',
-    items: [
-      {
-        text: 'Contact',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-      {
-        text: 'Report a claim',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-      {
-        text: 'Broker',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-      {
-        text: 'Job vacancies',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-      { text: 'MyAXA', link: 'https://axa.ch/en/private-customers.html' },
-      {
-        text: 'Customer reviews',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-      {
-        text: 'Garage Portal',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-    ],
-  },
-  {
-    title: 'axa worldwide',
-    items: [
-      {
-        text: 'AXA worldwide',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-    ],
-  },
-]);
-
-const social = JSON.stringify({
-  title: 'stay in touch',
-  icons: [
-    { title: 'facebook', link: 'https://www.facebook.com/axach/' },
-    {
-      title: 'instagram',
-      link: 'https://www.instagram.com/axaswitzerland/',
-    },
-    { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
-    { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
-    { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
-    { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
-  ],
-});
-
-return `<axa-footer content='${content}' social='${social}'></axa-footer>`;
+return `
+<axa-footer>
+  <h2 slot="column-0-title-desktop">axa & you</h2>
+  <h2 slot="column-0-title">axa & you</h2>
+  <a slot="column-0-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>
+  <a slot="column-0-item-1" href="https://axa.ch/en/private-customers.html" target="_blank">Report a claim</a>
+  <a slot="column-0-item-2" href="https://axa.ch/en/private-customers.html" target="_blank">Broker</a>
+  <a slot="column-0-item-3" href="https://axa.ch/en/private-customers.html" target="_blank">Job vacancies</a>
+  <a slot="column-0-item-4" href="https://axa.ch/en/private-customers.html" target="_blank">MyAXA</a>
+  <a slot="column-0-item-5" href="https://axa.ch/en/private-customers.html" target="_blank">Customer reviews</a>
+  <a slot="column-0-item-6" href="https://axa.ch/en/private-customers.html" target="_blank">Garage Portal</a>
+  <h2 slot="column-1-title-desktop">axa worldwide</h2>
+  <h2 slot="column-1-title">axa worldwide</h2>
+  <a slot="column-1-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">AXA worldwide</a>
+  <h2 slot="column-2-social-title">stay in touch</h2>
+  <a slot="column-social-item-0" href="https://www.facebook.com/axach/" target="_blank"></a>
+  <a slot="column-social-item-1" href="https://www.instagram.com/axaswitzerland/" target="_blank"></a>
+  <a slot="column-social-item-2" href="https://twitter.com/axa_schweiz" target="_blank"></a>
+  <a slot="column-social-item-3" href="https://www.xing.com/companies/AXAWINTERTHUR" target="_blank"></a>
+  <a slot="column-social-item-4" href="https://www.youtube.com/axaschweiz" target="_blank"></a>
+  <a slot="column-social-item-5" href="https://www.linkedin.com/company/axa/" target="_blank"></a>
+</axa-footer>
+`;
 ```
 
 ### React
@@ -81,6 +42,7 @@ return `<axa-footer content='${content}' social='${social}'></axa-footer>`;
 Create a React-ified footer with the createElement function from your React version and then use it like this:
 
 ```js
+// axa-footer.js
 import { createElement } from 'react';
 import createAXAFooterReact from '@axa-ch/footer/lib/index.react';
 
@@ -91,81 +53,111 @@ export default AXAFooterReact;
 
 ```js
 ...
+// axa-footer.jsx
+import React, { Component } from 'react';
+import AXAFooterReact from 'axa-footer';
 
-const content = [
-  {
-    title: 'axa & you',
-    items: [
-      {
-        text: 'Contact',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-      {
-        text: 'Report a claim',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-      {
-        text: 'Broker',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-      {
-        text: 'Job vacancies',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-      { text: 'MyAXA', link: 'https://axa.ch/en/private-customers.html' },
-      {
-        text: 'Customer reviews',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-      {
-        text: 'Garage Portal',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-    ],
-  },
-  {
-    title: 'axa worldwide',
-    items: [
-      {
-        text: 'AXA worldwide',
-        link: 'https://axa.ch/en/private-customers.html',
-        external: true,
-      },
-    ],
-  },
-];
+class HelloWorld extends Component {
+  const reactToItemClick = link => {
+    console.log('A link in the footer was clicked', link);
+  };
 
-const social = {
-  title: 'stay in touch',
-  icons: [
-    { title: 'facebook', link: 'https://www.facebook.com/axach/' },
-    {
-      title: 'instagram',
-      link: 'https://www.instagram.com/axaswitzerland/',
-    },
-    { title: 'twitter', link: 'https://twitter.com/axa_schweiz' },
-    { title: 'xing', link: 'https://www.xing.com/companies/AXAWINTERTHUR' },
-    { title: 'youtube', link: 'https://www.youtube.com/axaschweiz' },
-    { title: 'linkedin', link: 'https://www.linkedin.com/company/axa/' },
-  ],
-};
-
-const reactToItemClick = () => {
-  console.log('A link in the footer was clicked');
-};
-
-...
-
-<AXAFooterReact
-  content={content}
-  social={social}
-  onItemClick={reactToItemClick}
-  dynamic // Necessary switch from static links to callbacks
-/>
-);
+  render() {
+    <AXAFooterReact onItemClick={link => reactToItemClick(link)} dynamic>
+      <h2 slot="column-0-title-desktop">axa & you</h2>
+      <h2 slot="column-0-title">axa & you</h2>
+      <a
+        slot="column-0-item-0"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        Contact
+      </a>
+      <a
+        slot="column-0-item-1"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        Report a claim
+      </a>
+      <a
+        slot="column-0-item-2"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        Broker
+      </a>
+      <a
+        slot="column-0-item-3"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        Job vacancies
+      </a>
+      <a
+        slot="column-0-item-4"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        MyAXA
+      </a>
+      <a
+        slot="column-0-item-5"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        Customer reviews
+      </a>
+      <a
+        slot="column-0-item-6"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        Garage Portal
+      </a>
+      <h2 slot="column-1-title-desktop">axa worldwide</h2>
+      <h2 slot="column-1-title">axa worldwide</h2>
+      <a
+        slot="column-1-item-0"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+      >
+        AXA worldwide
+      </a>
+      <h2 slot="column-2-social-title">stay in touch</h2>
+      <a
+        slot="column-social-item-0"
+        href="https://www.facebook.com/axach/"
+        target="_blank"
+      />
+      <a
+        slot="column-social-item-1"
+        href="https://www.instagram.com/axaswitzerland/"
+        target="_blank"
+      />
+      <a
+        slot="column-social-item-2"
+        href="https://twitter.com/axa_schweiz"
+        target="_blank"
+      />
+      <a
+        slot="column-social-item-3"
+        href="https://www.xing.com/companies/AXAWINTERTHUR"
+        target="_blank"
+      />
+      <a
+        slot="column-social-item-4"
+        href="https://www.youtube.com/axaschweiz"
+        target="_blank"
+      />
+      <a
+        slot="column-social-item-5"
+        href="https://www.linkedin.com/company/axa/"
+        target="_blank"
+      />
+  </AXAFooterReact>
+  }
+}
 ```
 
 ### Pure HTML pages
@@ -182,10 +174,91 @@ Import the footer-defining script and use a footer like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-footer
-      content='[{"title":"axa &amp; you","items":[{"text":"Contact","link":"https://axa.ch/en/private-customers.html","external":true},{"text":"Report a claim","link":"https://axa.ch/en/private-customers.html","external":true},{"text":"Broker","link":"https://axa.ch/en/private-customers.html","external":true},{"text":"Job vacancies","link":"https://axa.ch/en/private-customers.html"},{"text":"MyAXA","link":"https://axa.ch/en/private-customers.html"},{"text":"Customer reviews","link":"https://axa.ch/en/private-customers.html"},{"text":"Garage Portal","link":"https://axa.ch/en/private-customers.html"}]},{"title":"axa worldwide","items":[{"text":"AXA worldwide","link":"https://axa.ch/en/private-customers.html","external":true}]}]'
-      social='{"title":"stay in touch","icons":[{"title":"facebook","link":"https://www.facebook.com/axach/"},{"title":"instagram","link":"https://www.instagram.com/axaswitzerland/"},{"title":"twitter","link":"https://twitter.com/axa_schweiz"},{"title":"xing","link":"https://www.xing.com/companies/AXAWINTERTHUR"},{"title":"youtube","link":"https://www.youtube.com/axaschweiz"},{"title":"linkedin","link":"https://www.linkedin.com/company/axa/"}]}'
-    ></axa-footer>
+    <axa-footer>
+      <h2 slot="column-0-title-desktop">axa & you</h2>
+      <h2 slot="column-0-title">axa & you</h2>
+      <a
+        slot="column-0-item-0"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >Contact</a
+      >
+      <a
+        slot="column-0-item-1"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >Report a claim</a
+      >
+      <a
+        slot="column-0-item-2"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >Broker</a
+      >
+      <a
+        slot="column-0-item-3"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >Job vacancies</a
+      >
+      <a
+        slot="column-0-item-4"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >MyAXA</a
+      >
+      <a
+        slot="column-0-item-5"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >Customer reviews</a
+      >
+      <a
+        slot="column-0-item-6"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >Garage Portal</a
+      >
+      <h2 slot="column-1-title-desktop">axa worldwide</h2>
+      <h2 slot="column-1-title">axa worldwide</h2>
+      <a
+        slot="column-1-item-0"
+        href="https://axa.ch/en/private-customers.html"
+        target="_blank"
+        >AXA worldwide</a
+      >
+      <h2 slot="column-2-social-title">stay in touch</h2>
+      <a
+        slot="column-social-item-0"
+        href="https://www.facebook.com/axach/"
+        target="_blank"
+      ></a>
+      <a
+        slot="column-social-item-1"
+        href="https://www.instagram.com/axaswitzerland/"
+        target="_blank"
+      ></a>
+      <a
+        slot="column-social-item-2"
+        href="https://twitter.com/axa_schweiz"
+        target="_blank"
+      ></a>
+      <a
+        slot="column-social-item-3"
+        href="https://www.xing.com/companies/AXAWINTERTHUR"
+        target="_blank"
+      ></a>
+      <a
+        slot="column-social-item-4"
+        href="https://www.youtube.com/axaschweiz"
+        target="_blank"
+      ></a>
+      <a
+        slot="column-social-item-5"
+        href="https://www.linkedin.com/company/axa/"
+        target="_blank"
+      ></a>
+    </axa-footer>
 
     <script src="node_modules/@axa-ch/footer/dist/index.js"></script>
   </body>
@@ -194,45 +267,47 @@ Import the footer-defining script and use a footer like this:
 
 ## Properties
 
-### content
-
-Title and links to display within the footer.
-
-Structure:
-
-```typescript
-[
-  {
-    title: string,
-    items: [
-      {
-        text: string,
-        link: string,
-        external: boolean,
-      },
-    ],
-  },
-];
-```
-
-### social
-
-Social media icons and their corresponding links. Also coming with a customizable title.
-
-Structure:
-
-```typescript
-{
-  title: string,
-  icons: [
-    {
-      title: string,
-      link: string
-    },
-  ],
-};
-```
-
 ### dynamic
 
-Set the dynamic property (boolean), if you want to use callbacks for links. Otherwise they will not work.
+Set the dynamic property (boolean), if you want to use callbacks for footer-links. Otherwise the links will work the static way.
+
+Example:
+
+```html
+<axa-footer dynamic>
+  ...
+</axa-footer>
+```
+
+### onItemClick
+
+**Important:** `dynamic` needs to be set in order for this to work!
+
+`onItemClick` is a callback function that will return the href attribute of the link that the user clicked.
+
+Example:
+
+```js
+<axa-footer
+  dynamic
+  onItemClick={link => console.log('A link in the footer was clicked', link)}
+>
+  ...
+</axa-footer>
+```
+
+### children
+
+Because of SEO (Search Enginge Optimization), we had to ditch the easier model-based approach use use childfragments. Here is a little documentation of each slot:
+
+| Slot                                                          | Details                                                         |
+| ------------------------------------------------------------- | --------------------------------------------------------------- |
+| `<h2 slot="column-0-title-desktop">axa & you</h2>`            | The title for the first column (bigger screens)                 |
+| `<h2 slot="column-0-title">axa & you</h2>`                    | The title for the first column (smaller screens)                |
+| `<a slot="column-0-item-X" href="" target="_blank"></a>`      | X = Number of item within the first column, supported: up to 8  |
+| `<a slot="column-1-item-X" href="" target="_blank"></a>`      | X = Number of item within the second column, supported: up to 4 |
+| `<h2 slot="column-2-social-title"></h2>`                      | The title for the social media section                          |
+| `<a slot="column-social-item-X" href="" target="_blank"></a>` | X = Index of social media item                                  |
+|                                                               |                                                                 |
+
+**IMPORTANT:** Because of internet explorer, the list of social media buttons is currently fixed and must not be rearranged and all items are necessary!
