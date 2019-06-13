@@ -1,15 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Selector } from 'testcafe';
 
 class FooterAccessor {
-  getSlotNode() {
-    return Selector(
-      () =>
-        document
-          .querySelector('axa-footer')
-          .shadowRoot.querySelector('slot[name="column-0-item-0"]')
-          .assignedNodes()[0]
-    );
+  getSlotNode(slotName) {
+    return Selector(this._getSlotNode(slotName));
   }
+
+  _getSlotNode = Selector(
+    slotName =>
+      document
+        .querySelector('axa-footer')
+        .shadowRoot.querySelector(`slot[name='${slotName}']`)
+        .assignedNodes()[0]
+  );
 }
 
 export default new FooterAccessor();
