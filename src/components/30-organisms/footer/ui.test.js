@@ -91,7 +91,7 @@ test('should render accordion only in mobile mode', async t => {
   await t.expect($accordion.visible).ok();
 });
 
-test('should correctly open accordion on click', async t => {
+test.only('should correctly open accordion on click', async t => {
   await t.resizeWindow(575, 400);
 
   const $accordionButtons = Selector(
@@ -119,10 +119,9 @@ test('should correctly open accordion on click', async t => {
     .find('.o-footer__main-content-panel')
     .nth(1);
 
-  // TODO This is wrong. The footer should be closed initially, please fix.
   await t
     .expect($accordionFirstContent.getStyleProperty('max-height'))
-    .eql('456px');
+    .eql('0px');
   await t
     .expect($accordionSecondContent.getStyleProperty('max-height'))
     .eql('0px');
