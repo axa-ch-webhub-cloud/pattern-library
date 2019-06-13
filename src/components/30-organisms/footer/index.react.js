@@ -2,7 +2,7 @@ import withReact from '../../../utils/with-react';
 import AXAFooter from './index';
 
 export default createElement => ({
-  onItemClick = {},
+  onItemClick = () => {},
   dynamic = false,
   children,
 }) => {

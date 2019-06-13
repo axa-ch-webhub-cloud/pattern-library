@@ -37,7 +37,6 @@ class AXAFooter extends LitElement {
     super();
     this.dynamic = false;
     this.onItemClick = () => {};
-
     this.iconMap = new Map();
     this.iconMap.set('facebook', FacebookSvg);
     this.iconMap.set('instagram', InstagramSvg);
@@ -64,9 +63,6 @@ class AXAFooter extends LitElement {
   }
 
   handleLinkClick = ev => {
-    console.log(this.onItemClick);
-    this.onItemClick(ev.target.href);
-
     if (this.dynamic) {
       console.log('im here2');
       ev.preventDefault();

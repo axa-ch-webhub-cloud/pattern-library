@@ -9,13 +9,14 @@ import withBodyReset from '../../../../../.storybook/addons/reset-body';
 
 storiesOf('Organisms/Footer/React', module)
   .addDecorator(withMarkdown(Readme))
-  .addDecorator(withBodyReset())
-  .add('Feature - Footer Callbacks', () => {
+  // TODO Body-Reset makes react unable to pass down props to the component
+  // .addDecorator(withBodyReset())
+  .add('Footer Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
     ReactDOM.render(
       <div>
-        <AXAFooterReact onItemClick={ev => console.log(ev)} dynamic={true}>
+        <AXAFooterReact dynamic>
           <h2 slot="column-0-title-desktop">axa & you</h2>
           <h2 slot="column-0-title">axa & you</h2>
           <a

@@ -1,4 +1,4 @@
-import React, { createElement, useState } from 'react';
+import { createElement } from 'react';
 import createAXAFooterReact from '../index.react';
 
 const AXAFooterReact = createAXAFooterReact(createElement);
