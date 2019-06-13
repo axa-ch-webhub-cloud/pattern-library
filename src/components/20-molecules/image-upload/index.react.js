@@ -6,6 +6,7 @@ export default createElement => ({
   maxSizeFileMB = 15,
   maxNumberOfFiles = 10,
   showImageOverview = false,
+  icon = 'upload-cloud',
   children,
 }) =>
   withReact(createElement)(
@@ -15,6 +16,7 @@ export default createElement => ({
       maxSizeFileMB,
       maxNumberOfFiles,
       showImageOverview,
+      icon,
     },
     children
   );

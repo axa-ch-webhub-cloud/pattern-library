@@ -2,13 +2,7 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
-import {
-  DeleteSvg,
-  ImageUploadGroupSvg,
-  PlusRoundedSvg,
-  UploadCloudSvg,
-  TickSvg,
-} from './icons';
+import { ImageUploadGroupSvg } from './icons';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
@@ -20,11 +14,7 @@ const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
 
 // TODO -> move all icons to materials
-const DeleteIcon = svg([DeleteSvg]);
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
-const PlusRoundedIcon = svg([PlusRoundedSvg]);
-const UploadCloudIcon = svg([UploadCloudSvg]);
-const TickIcon = svg([TickSvg]);
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -43,6 +33,7 @@ class AXAImageUpload extends LitElement {
       maxSizeFileMB: { type: Number },
       maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
+      icon: { type: String },
       onClick: { type: Function },
     };
   }
@@ -53,6 +44,7 @@ class AXAImageUpload extends LitElement {
     this.maxSizeFileMB = 15;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
+    this.icon = 'upload-cloud';
     this.onClick = () => {};
 
     this.allImagesInput = [];
@@ -92,6 +84,7 @@ class AXAImageUpload extends LitElement {
                 <p class="m-image-upload__or">${OR}</p>
                 <axa-input-file
                   accept="image/jpg, image/jpeg, application/pdf, image/png"
+                  icon="${this.icon}"
                   multiple
                   @change=${this.handleImageUploadButtonChange}
                   variant="red"

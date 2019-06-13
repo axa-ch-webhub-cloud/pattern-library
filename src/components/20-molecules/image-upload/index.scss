@@ -42,7 +42,8 @@ $image-upload-dropzone-border: 2px !default;
 
   &__img-figure {
     margin: 0;
-    margin-right: 15px
+    margin-right: 15px;
+    margin-bottom: 45px;
   }
 
   &__icon-hover-area {
@@ -96,5 +97,6 @@ $image-upload-dropzone-border: 2px !default;
     overflow: hidden;
     text-overflow: unset; // TODO ?
     word-wrap: break-word;
+    // z-index: 100; TODO
   }
 }
