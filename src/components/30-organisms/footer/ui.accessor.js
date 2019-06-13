@@ -6,6 +6,12 @@ class FooterAccessor {
     return Selector(this._getSlotNode(slotName));
   }
 
+  async assertBackgroundColor(t, element) {
+    await t
+      .expect(element.getStyleProperty('background-color'))
+      .eql('rgb(59, 63, 216)');
+  }
+
   _getSlotNode = Selector(
     slotName =>
       document

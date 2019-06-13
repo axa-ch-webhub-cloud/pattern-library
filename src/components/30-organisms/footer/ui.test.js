@@ -179,6 +179,8 @@ test.only('should render footer with working react callbacks', async t => {
     .expect($axaElemShadowEl.getStyleProperty('background-color'))
     .eql('rgb(59, 63, 216)');
 
+  await FooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
+
   const $contactLink = FooterAccessor.getSlotNode('column-0-item-0');
 
   await t.expect($contactLink.textContent).eql('Contact');
@@ -193,26 +195,16 @@ test.only('should render footer with working react callbacks', async t => {
     .expect($result.innerText)
     .contains('https://axa.ch/en/private-customers.html');
 
-  const $axaWorldwideLink = Selector(
-    () =>
-      document
-        .querySelector('axa-footer')
-        .shadowRoot.querySelector('slot[name="column-0-title-desktop"]')
-        .assignedNodes()[0]
+  const $axaWorldwideLink = FooterAccessor.getSlotNode(
+    'column-0-title-desktop'
   );
+
   await t.expect($axaWorldwideLink.visible).ok();
   await t.expect($axaWorldwideLink.textContent).eql('axa & you');
 
   await t.click($axaWorldwideLink);
 
-  const $facebookButton = Selector(
-    () =>
-      document
-        .querySelector('axa-footer')
-        .shadowRoot.querySelector('.o-footer__social-media-list')
-        .querySelector('slot[name="column-social-item-0"]')
-        .assignedNodes()[0]
-  );
+  const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
