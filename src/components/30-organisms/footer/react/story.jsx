@@ -5,7 +5,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
-import withBodyReset from '../../../../../.storybook/addons/reset-body';
+// import withBodyReset from '../../../../../.storybook/addons/reset-body';
+
+function setActiveLanguage(link) {
+  document.getElementById(
+    'clicked-link'
+  ).innerText = `Last clicked link: ${link}`;
+}
 
 storiesOf('Organisms/Footer/React', module)
   .addDecorator(withMarkdown(Readme))
@@ -16,7 +22,7 @@ storiesOf('Organisms/Footer/React', module)
     div.id = 'footer';
     ReactDOM.render(
       <div>
-        <AXAFooterReact dynamic>
+        <AXAFooterReact onItemClick={link => setActiveLanguage(link)} dynamic>
           <h2 slot="column-0-title-desktop">axa & you</h2>
           <h2 slot="column-0-title">axa & you</h2>
           <a
@@ -110,7 +116,7 @@ storiesOf('Organisms/Footer/React', module)
           />
         </AXAFooterReact>
         <br />
-        <p id="clicked-link">Last clicked link: </p>
+        <p id="clicked-link">Last clicked link: -</p>
       </div>,
       div
     );
