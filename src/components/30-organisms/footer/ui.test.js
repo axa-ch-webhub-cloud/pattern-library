@@ -164,7 +164,7 @@ fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-react--feature-footer-callbacks`
 );
 
-//TODO Fix
+// TODO Fix
 test.skip('should render footer with working react callbacks', async t => {
   // Smoketest
   const $axaElem = await Selector(TAG);
