@@ -1,9 +1,6 @@
 import { DeleteSvg } from './../icons';
 
 export default (dropZone, file) => {
-  const urlCreator = window.URL || window.webkitURL;
-  const imageUrl = urlCreator.createObjectURL(file);
-
   const figure = document.createElement('figure');
   figure.className = 'm-image-upload__img-figure';
   dropZone.appendChild(figure);
@@ -12,11 +9,16 @@ export default (dropZone, file) => {
   hoverArea.className = 'm-image-upload__icon-hover-area';
   figure.appendChild(hoverArea);
 
-  const img = document.createElement('img');
-  img.className = 'm-image-upload__img-element';
-  img.src = imageUrl;
-  img.alt = '';
-  hoverArea.appendChild(img);
+  if (!(file.type === 'application/pdf')) {
+    const urlCreator = window.URL || window.webkitURL;
+    const imageUrl = urlCreator.createObjectURL(file);
+
+    const img = document.createElement('img');
+    img.className = 'm-image-upload__img-element';
+    img.src = imageUrl;
+    img.alt = file.name;
+    hoverArea.appendChild(img);
+  }
 
   const iconLayer = document.createElement('div');
   iconLayer.className = 'm-image-upload__icon-layer';
@@ -29,7 +31,7 @@ export default (dropZone, file) => {
 
   const figCaption = document.createElement('figcaption');
   figCaption.className = 'm-image-upload__img-caption';
-  const node = document.createTextNode('ExtremLangerTiteln ochlängere rer.txt');
+  const node = document.createTextNode(file.name);
   figCaption.appendChild(node);
   wrapper.appendChild(figCaption);
 };
