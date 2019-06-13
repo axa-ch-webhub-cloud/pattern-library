@@ -20,9 +20,7 @@ test('should render footer with correct background color', async t => {
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
-  await t
-    .expect($axaElemShadowEl.getStyleProperty('background-color'))
-    .eql('rgb(59, 63, 216)');
+  await FooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
 });
 
 test('should correctly render footer titles', async t => {
@@ -55,14 +53,7 @@ test('should correctly render footer link content', async t => {
 });
 
 test('should render facebook social media button', async t => {
-  const $facebookButton = Selector(
-    () =>
-      document
-        .querySelector('axa-footer')
-        .shadowRoot.querySelector('.o-footer__social-media-list')
-        .querySelector('slot[name="column-social-item-0"]')
-        .assignedNodes()[0]
-  );
+  const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.expect($facebookButton.getStyleProperty('width')).eql('25px');
