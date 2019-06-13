@@ -141,13 +141,7 @@ test('should correctly open accordion on click', async t => {
 });
 
 test('should correctly render social media title in desktop view', async t => {
-  const $socialMediaTitle = Selector(
-    () =>
-      document
-        .querySelector('axa-footer')
-        .shadowRoot.querySelector('.o-footer__social-media-title')
-        .assignedNodes()[0]
-  );
+  const $socialMediaTitle = FooterAccessor.getSlotNode('column-2-social-title');
 
   await t.expect($socialMediaTitle.textContent).contains('stay in touch');
 
