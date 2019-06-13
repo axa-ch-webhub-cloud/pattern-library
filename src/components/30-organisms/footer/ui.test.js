@@ -167,7 +167,7 @@ fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-react--feature-footer-callbacks`
 );
 
-test.only('should render footer with working react callbacks', async t => {
+test('should render footer with working react callbacks', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -175,9 +175,6 @@ test.only('should render footer with working react callbacks', async t => {
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
-  await t
-    .expect($axaElemShadowEl.getStyleProperty('background-color'))
-    .eql('rgb(59, 63, 216)');
 
   await FooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
 
@@ -202,8 +199,6 @@ test.only('should render footer with working react callbacks', async t => {
   await t.expect($axaWorldwideLink.visible).ok();
   await t.expect($axaWorldwideLink.textContent).eql('axa & you');
 
-  await t.click($axaWorldwideLink);
-
   const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
 
   await t.expect($facebookButton.visible).ok();
@@ -216,9 +211,7 @@ fixture('Footer - Demo Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-demos--feature-footer-callbacks`
 );
 
-// TODO Fix
-test.skip('should render footer with working native callbacks', async t => {
-  // Smoketest
+test('should render footer with working native callbacks', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -226,16 +219,12 @@ test.skip('should render footer with working native callbacks', async t => {
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
-  await t
-    .expect($axaElemShadowEl.getStyleProperty('background-color'))
-    .eql('rgb(59, 63, 216)');
 
-  const $footer = Selector(
-    () => document.querySelector('axa-footer').shadowRoot
-  );
-  // /Smoketest
+  await FooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
 
-  const $contactLink = $footer.find('a').withText('Contact');
+  const $contactLink = FooterAccessor.getSlotNode('column-0-item-0');
+
+  await t.expect($contactLink.textContent).eql('Contact');
   await t.expect($contactLink.visible).ok();
 
   const $result = Selector('#clicked-link');
@@ -243,24 +232,21 @@ test.skip('should render footer with working native callbacks', async t => {
 
   await t.click($contactLink);
 
-  await t.expect($result.innerText).contains('Contact');
+  await t
+    .expect($result.innerText)
+    .contains('https://axa.ch/en/private-customers.html');
 
-  const $axaWorldwideLink = $footer.find('a').withText('AXA worldwide');
-  await t.expect($axaWorldwideLink.visible).ok();
-
-  await t.click($axaWorldwideLink);
-
-  await t.expect($result.innerText).contains('AXA worldwide');
-
-  const $facebookButton = Selector(() =>
-    document
-      .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__social-media-list')
-      .querySelector('a')
+  const $axaWorldwideLink = FooterAccessor.getSlotNode(
+    'column-0-title-desktop'
   );
+
+  await t.expect($axaWorldwideLink.visible).ok();
+  await t.expect($axaWorldwideLink.textContent).eql('axa & you');
+
+  const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
 
-  await t.expect($result.innerText).contains('facebook');
+  await t.expect($result.innerText).contains('https://www.facebook.com/axach/');
 });

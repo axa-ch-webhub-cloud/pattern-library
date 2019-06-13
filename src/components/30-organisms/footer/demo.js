@@ -38,7 +38,7 @@ storiesOf('Organisms/Footer/Demos', module)
     wrapper.innerHTML = footerMarkup;
 
     const lastClicked = document.createElement('span');
-    lastClicked.id = 'last-clicked';
+    lastClicked.id = 'clicked-link';
     lastClicked.innerText = 'Last clicked link: -';
     wrapper.appendChild(lastClicked);
 
