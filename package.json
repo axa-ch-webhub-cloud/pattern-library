@@ -20,6 +20,8 @@
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "node scripts/test.unit.js --env=jsdom",
+    "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
+    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js"
   },
   "dependencies": {
