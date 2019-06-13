@@ -2,7 +2,7 @@
   display: block;
 
   &__container {
-    @include typo(primary, small, medium);
+    @include typo(primary, small);
 
     background-color: $color-sec-ocean-blue;
     color: $color-prim-white;

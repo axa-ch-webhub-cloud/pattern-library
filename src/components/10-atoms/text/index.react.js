@@ -1,9 +1,9 @@
 import withReact from '../../../utils/with-react';
-import AXATitleSection from './index';
+import AXAText from './index';
 
 export default createElement => ({ variant = '', children }) =>
   withReact(createElement)(
-    AXATitleSection.tagName,
+    AXAText.tagName,
     {
       variant,
     },
