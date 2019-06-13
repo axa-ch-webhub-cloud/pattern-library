@@ -64,7 +64,6 @@ class AXAFooter extends LitElement {
 
   handleLinkClick = ev => {
     if (this.dynamic) {
-      console.log('im here2');
       ev.preventDefault();
       this.onItemClick(ev.target.href);
       this.dispatchEvent(
@@ -85,7 +84,6 @@ class AXAFooter extends LitElement {
 
   render() {
     return html`
-      ${this.dynamic}
       <footer class="o-footer">
         <axa-container>
           <div class="o-footer__content">
