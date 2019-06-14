@@ -2,7 +2,6 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 import DemoButtonClick from './DemoButtonLinkClick';
 

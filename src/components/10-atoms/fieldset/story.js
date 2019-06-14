@@ -8,7 +8,8 @@ storiesOf('Atoms/Fieldset', module)
     readme: {
       sidebar: Readme,
     },
-  }).add(
+  })
+  .add(
     'Fieldset - default',
     () => `<axa-fieldset>
   <axa-checkbox label="Ja, ich möchte online einen

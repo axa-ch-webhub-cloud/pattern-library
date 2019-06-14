@@ -2,7 +2,6 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 import DemoButtonClick from './DemoButtonClick';
 import DemoButtonForm from './DemoButtonForm';
@@ -12,7 +11,8 @@ storiesOf('Atoms/Button/React/Demos', module)
     readme: {
       sidebar: Readme,
     },
-  }).add('Feature - Button clickable', () => {
+  })
+  .add('Feature - Button clickable', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonClick />, div);
     return div;

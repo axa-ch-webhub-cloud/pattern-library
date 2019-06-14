@@ -1,8 +1,7 @@
-import DemoFooterSmall from './FooterSmall';
-
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DemoFooterSmall from './FooterSmall';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Footer Small/React', module)
