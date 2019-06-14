@@ -33,6 +33,11 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  ::slotted(h2) {
+    margin: 0;
+    padding: 0;
+  }
+
   .js-footer__social-media-item ::slotted(a) {
     display: block;
     width: 25px;
@@ -260,6 +265,8 @@
   }
 
   @include breakpoint($mediaquery-lg-up) {
+    padding: 50px 0;
+
     &__content {
       grid-template-areas: 'links social';
 
