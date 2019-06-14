@@ -19,11 +19,10 @@
     @include breakpoint($mediaquery-sm-up) {
       display: none; // mobile title
     }
-  }
-}
 
-.js-footer__social-media-item {
-  margin-right: 10px;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .js-footer__social-media-item ::slotted(a) {
