@@ -1,11 +1,10 @@
-import { addParameters, configure } from '@storybook/html';
+import { addParameters, configure, addDecorator } from '@storybook/html';
 import { create } from '@storybook/theming';
-
+import { addReadme } from 'storybook-readme/html';
 import '@axa-ch/patterns-library-polyfill';
-
 import logo from '../src/static/svg/logo-axa.svg';
 
-// theme - logo some sort of broken
+addDecorator(addReadme);
 addParameters({
   options: {
     sortStoriesByKind: true,
@@ -19,10 +18,9 @@ addParameters({
 });
 
 const materials = require.context('../src/components/00-materials', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const atoms = require.context('../src/components/10-atoms', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const atoms = require.context('../src/components/10-atoms/button', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const molecules = require.context('../src/components/20-molecules', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const organisms = require.context('../src/components/30-organisms', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-
 const demo = require.context('../src/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
 configure(

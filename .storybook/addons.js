@@ -1,2 +1,1 @@
-import './addons/markdown';
-import './addons/reset-body';
+import 'storybook-readme/register';
