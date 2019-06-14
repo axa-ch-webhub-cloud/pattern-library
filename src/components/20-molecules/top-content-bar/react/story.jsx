@@ -2,14 +2,16 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
 import wrap from '../../../../demo/react/utils/wrap-render-react';
 
 storiesOf('Molecules/Top content bar/React', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   /* Default */
   .add('Top content bar - default', () => {
     return wrap(

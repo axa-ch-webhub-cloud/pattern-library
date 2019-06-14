@@ -7,7 +7,11 @@ import Readme from '../README.md';
 import DemoButtonClick from './DemoButtonLinkClick';
 
 storiesOf('Atoms/Button Link/React/Demos', module)
-  .addDecorator(withMarkdown(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Feature - Button Link clickable', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonClick />, div);

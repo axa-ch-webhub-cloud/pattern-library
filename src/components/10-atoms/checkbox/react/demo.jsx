@@ -7,8 +7,11 @@ import Readme from '../README.md';
 import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
 
 storiesOf('Atoms/Checkbox/React/Demo', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })\n
   .add('Checkbox - default with label', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoCheckboxCallbackProps />, div);

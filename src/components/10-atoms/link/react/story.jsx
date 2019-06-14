@@ -2,15 +2,17 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import AXALinkReact from './AXALinkReact';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
 import customIcon from '../../../../static/svg/logo-axa.svg';
 import wrap from '../../../../demo/react/utils/wrap-render-react';
 
 storiesOf('Atoms/Link/React', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   /* Default */
   .add('Link - default', () => {
     return wrap(<AXALinkReact>Default</AXALinkReact>);

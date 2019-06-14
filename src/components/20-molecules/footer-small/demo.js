@@ -1,14 +1,16 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 
 const selectedLanguage = 'EN';
 
 storiesOf('Molecules/Footer Small/Demos', module)
-  .addDecorator(withMarkdown(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Footer Small - Dynamic Links', () => {
     const languages = [
       { text: 'DE' },

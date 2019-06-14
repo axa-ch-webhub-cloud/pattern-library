@@ -8,8 +8,11 @@ import DemoButtonClick from './DemoButtonClick';
 import DemoButtonForm from './DemoButtonForm';
 
 storiesOf('Atoms/Button/React/Demos', module)
-  .addDecorator(withMarkdown(Readme))
-  .add('Feature - Button clickable', () => {
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  }).add('Feature - Button clickable', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonClick />, div);
     return div;
