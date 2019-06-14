@@ -33,6 +33,10 @@
   padding: 10px;
 }
 
+::slotted(a) {
+  padding: 10px;
+}
+
 .o-footer {
   text-align: initial;
 
@@ -290,7 +294,7 @@
       }
 
       &-list {
-        padding: 20px 0;
+        padding: 10px 0;
         margin-left: -10px;
       }
     }
