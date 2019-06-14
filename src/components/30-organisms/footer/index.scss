@@ -25,17 +25,6 @@
   }
 }
 
-.js-footer__social-media-item ::slotted(a) {
-  display: block;
-  width: 25px;
-  height: 25px;
-  padding: 10px;
-}
-
-::slotted(a) {
-  padding: 10px;
-}
-
 .o-footer {
   text-align: initial;
 
@@ -43,6 +32,16 @@
   background-color: $color-prim-blue-dark-indigo;
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+  .js-footer__social-media-item ::slotted(a) {
+    display: block;
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+  }
+  ::slotted(a) {
+    padding: 10px;
+  }
 
   &__title {
     @include typo(primary, default, medium);
