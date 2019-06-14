@@ -1,6 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
+import Readme from './README.md';
 
 storiesOf('Atoms/Button Link/Demos', module)
   .addParameters({

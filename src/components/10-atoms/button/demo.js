@@ -2,6 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import './index';
+import Readme from './README.md';
 
 storiesOf('Atoms/Button/Demos', module)
   .addParameters({
