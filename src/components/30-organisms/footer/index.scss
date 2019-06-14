@@ -1,6 +1,13 @@
 .o-footer__main {
   ::slotted(h2) {
     display: none; // desktop title
+
+    @include breakpoint($mediaquery-sm-up) {
+      @include typo(primary, medium, bold);
+      display: block; // desktop title
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
   }
 }
 
@@ -8,23 +15,20 @@
   ::slotted(h2) {
     display: block; // mobile title
     @include typo(primary, default, medium);
+
+    @include breakpoint($mediaquery-sm-up) {
+      display: none; // mobile title
+    }
   }
 }
 
-@include breakpoint($mediaquery-sm-up) {
-  .o-footer__main {
-    ::slotted(h2) {
-      @include typo(primary, medium, bold);
-      display: block; // desktop title
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
+.o-footer__main {
+  ::slotted(h2) {
   }
+}
 
-  .o-footer__accordion-button {
-    ::slotted(h2) {
-      display: none; // mobile title
-    }
+.o-footer__accordion-button {
+  ::slotted(h2) {
   }
 }
 
