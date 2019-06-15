@@ -1,65 +1,39 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Atoms/Button', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  .add('Button - default', () => '<axa-button>Default</axa-button>')
+const storyButton = storiesOf('Atoms/Button', module);
+storyButton.addDecorator(withKnobs);
+storyButton.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
 
-  /* Variants */
-  .add(
-    'Button - variant: red',
-    () => '<axa-button variant="red">Red</axa-button>'
-  )
-  .add(
-    'Button - variant: secondary',
-    () => '<axa-button variant="secondary">Secondary</axa-button>'
-  )
-  .add(
-    'Button - variant: inverted',
-    () => `
-    <div style="background-color: #00008f; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button variant='inverted'>Inverted</axa-button>
-    </div>`
-  )
+const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
 
-  /* Disabled */
-  .add('Button - disabled', () => '<axa-button disabled>Disabled</axa-button>')
+storyButton.add('Button - default', () => {
+  const options = {
+    None: '',
+    Red: 'red',
+    Secondary: 'secondary',
+    Inverted: 'inverted',
+    // large should be a variant and not a separate prop as it's a visual prop
+  };
 
-  /* Type */
-  .add(
-    'Button - type',
-    () => `
-    <div>
-      <axa-button>Button</axa-button>
-      <axa-button type="submit">Submit</axa-button>
-      <axa-button type="reset">Reset</axa-button>
-    </div>`
-  )
+  const buttonText = text('Text', 'Click me');
+  const variants = radios('Variant', options, '');
+  const motionOff = boolean('motionOff', false);
+  const disabled = boolean('disabled', false);
+  const large = boolean('large', false); // should probably be a variant.
+  const type = radios('Types', { submit: 'submit', reset: 'reset' });
 
-  /* Large */
-  .add('Button - large', () => `<axa-button large>Large</axa-button>`)
-
-  /* MotionOff */
-  .add(
-    'Button - motionOff',
-    () => `
-    <div>
-        <axa-button motionoff>MotionOff</axa-button>
-        <axa-button motionoff variant="red">MotionOff + Red</axa-button>
-        <axa-button motionoff variant="secondary">MotionOff + Secondary</axa-button>
-        <axa-button motionoff variant="inverted">MotionOff + Inverted</axa-button>
-      </div>
-    </div>`
-  )
-
-  /* Icon */
-  .add(
-    'Button - icon',
-    () => `<axa-button icon="arrow-right">Icon</axa-button>`
-  );
+  return `<div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
+    <axa-button ${disabled ? 'disabled' : ''} ${
+    large ? 'large' : ''
+  } type='${type}' variant='${variants}' ${
+    motionOff ? 'motionoff' : ''
+  }>${buttonText}</axa-button></div>`;
+});
