@@ -1,0 +1,99 @@
+@import '../../00-materials/styles/mixins/check-mark-animated';
+
+$border-width: 1px;
+$border-type: solid;
+
+axa-textarea {
+  .a-textarea__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+
+  //.a-input-text__input-wrapper {
+  //  display: flex;
+  //  align-items: center;
+  //}
+
+  .a-textarea__textarea {
+    @include typo();
+    appearance: none;
+    background: $color-prim-white;
+    border: 1px solid $color-prim-gray-dusty;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: $color-prim-gray-mine-shaft;
+    height: 169px;
+    padding: 0 20px;
+    width: 100%;
+
+    &::placeholder {
+      color: $color-prim-gray-dusty;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      border: $border-width $border-type $color-axa-blue;
+    }
+
+    &:focus {
+      border: $border-width $border-type $color-axa-blue;
+      outline: $border-width $border-type $color-axa-blue;
+      outline-offset: -2px;
+    }
+
+    &--error {
+      border: $border-width $border-type $color-validation-error;
+
+      &:hover,
+      &:active,
+      &:focus {
+        border: $border-width $border-type $color-validation-error;
+
+      }
+
+      &:focus {
+        outline: $border-width $border-type $color-validation-error;
+        outline-offset: -2px;
+      }
+    }
+
+    &:disabled {
+      color: $color-prim-gray-dusty;
+      background-color: $color-prim-gray-alabaster;
+      border-color: $color-prim-gray-mercury;
+    }
+  }
+
+  .a-textarea__label {
+    @include typo(primary, medium);
+    font-weight: 600;
+    color: $color-prim-gray-mine-shaft;
+    margin-bottom: 10px;
+  }
+
+  .a-textarea__error {
+    @include typo();
+    margin-top: 10px;
+    color: $color-validation-error;
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  //.a-textarea__check-wrapper {
+  //  @include check-mark-animated-wrapper();
+  //  margin-left: 10px;
+  //
+  //  .a-textarea__check {
+  //    @include check-mark-animated();
+  //
+  //    &--hidden {
+  //      display: none;
+  //    }
+  //  }
+  //}
+}
