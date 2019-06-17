@@ -65,10 +65,23 @@ class AXAFooter extends LitElement {
   handleLinkClick = ev => {
     if (this.dynamic) {
       ev.preventDefault();
-      this.onItemClick(ev.target.href);
+
+      let element = undefined;
+      if (!ev.target || !ev.target.href) {
+        element = ev;
+        while (!element.href) {
+          if (element.target && element.target.parentNode)
+            element = element.target.parentNode;
+          else if (element.parentNode) element = element.parentNode;
+          else return;
+        }
+      }
+
+      const href = element === undefined ? event.target.href : element.href;
+      this.onItemClick(href);
       this.dispatchEvent(
         new CustomEvent('axa-footer-click', {
-          detail: ev.target.href,
+          detail: href,
           bubbles: true,
           cancelable: true,
         })
