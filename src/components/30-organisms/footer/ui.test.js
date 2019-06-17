@@ -193,7 +193,7 @@ fixture('Footer - Demo Smoketest').page(
   `${host}/iframe.html?id=organisms-footer-demos--feature-footer-callbacks`
 );
 
-test.only('should render footer with working native callbacks', async t => {
+test('should render footer with working native callbacks', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
