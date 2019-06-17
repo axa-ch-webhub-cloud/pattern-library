@@ -214,7 +214,7 @@ test('should render footer with working native callbacks', async t => {
 
   await t.click($contactLink);
 
-  const $resultAfterLinkClick = Selector('#clicked-link');
+  // const $resultAfterLinkClick = Selector('#clicked-link');
   // await t
   //   .expect($resultAfterLinkClick.innerText)
   //   .contains('https://axa.ch/en/private-customers.html');
