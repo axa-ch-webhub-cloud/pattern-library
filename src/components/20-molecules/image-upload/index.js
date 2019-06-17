@@ -96,19 +96,18 @@ class AXAImageUpload extends LitElement {
             : this.finalFiles.map(file => {
                 const imageUrl = urlCreator.createObjectURL(file);
                 return html`
-                <figure class="m-image-upload__img-figure">
-                  <div class="m-image-upload__icon-hover-area">
+                <figure class="m-image-upload__img-figure js-image-upload__img-figure">
+                  <div class="m-image-upload__icon-hover-area"
+                  @click=${this.handleImageClick}>
                     <img
                       class="m-image-upload__img-element"
                       src="${imageUrl}"
                       alt="${file.name}">
                     </img>
                     <div class="m-image-upload__icon-layer">${DeleteIcon}</div>
-                    <div class="m-image-upload__img-caption-wrapper">
-                      <figcaption class="m-image-upload__img-caption"><p>${
-                        file.name
-                      }</p></figcaption>
-                    </div>
+                    <figcaption class="m-image-upload__img-caption">${
+                      file.name
+                    }</figcaption>
                   </div>
                 </figure>
               `;
@@ -139,6 +138,10 @@ class AXAImageUpload extends LitElement {
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
     this.addFiles(files);
+  }
+
+  handleImageClick() {
+    this.shadowRoot.querySelector('.js-image-upload__img-figure').remove();
   }
 
   async addFiles(droppedFiles) {
