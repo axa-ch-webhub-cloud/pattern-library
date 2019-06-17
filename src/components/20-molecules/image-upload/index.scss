@@ -57,7 +57,7 @@ $image-upload-dropzone-border: 2px !default;
     .m-image-upload__img-element {
       opacity: 0.6;
     }
-    .m-image-upload__img-caption-wrapper {
+    .m-image-upload__img-caption {
       color: $color-axa-blue;
     }
     .m-image-upload__icon-layer {
@@ -89,12 +89,12 @@ $image-upload-dropzone-border: 2px !default;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    min-width: 0;
+    cursor: default;
   }
 
   &__img-caption:hover {
     white-space: normal;
-    overflow: hidden;
+    overflow: visible;
     text-overflow: unset; // TODO ?
     word-wrap: break-word;
     // z-index: 100; TODO
