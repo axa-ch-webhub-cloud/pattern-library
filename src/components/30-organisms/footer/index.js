@@ -66,7 +66,7 @@ class AXAFooter extends LitElement {
     if (this.dynamic) {
       ev.preventDefault();
 
-      let element = undefined;
+      let element;
       if (!ev.target || !ev.target.href) {
         element = ev;
         while (!element.href) {
@@ -77,7 +77,7 @@ class AXAFooter extends LitElement {
         }
       }
 
-      const href = element === undefined ? event.target.href : element.href;
+      const href = element === undefined ? ev.target.href : element.href;
       this.onItemClick(href);
       this.dispatchEvent(
         new CustomEvent('axa-footer-click', {

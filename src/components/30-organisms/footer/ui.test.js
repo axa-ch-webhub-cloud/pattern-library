@@ -58,11 +58,16 @@ test('should render facebook social media button', async t => {
   await t.expect($facebookButton.visible).ok();
   await t.expect($facebookButton.getStyleProperty('width')).eql('25px');
   await t.expect($facebookButton.getStyleProperty('height')).eql('25px');
-  await t
-    .expect($facebookButton.getStyleProperty('background-image'))
-    .eql(
-      `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='100%25' height='100%25'%3E%3Cpath fill='white' d='M6.39 5.88H4.77v2.17h1.62v6.51h2.72V8.05h2l.19-2.17H9.11V5c0-.52.1-.72.6-.72h1.57V1.54H9.21c-2 0-2.82.86-2.82 2.5z'%3E%3C/path%3E%3C/svg%3E%0A")`
-    );
+  await t.expect($facebookButton.childElementCount).eql(1);
+
+  const $facebookSvg = await $facebookButton.find('svg');
+  await t.expect($facebookSvg.getAttribute('height')).eql('25');
+  await t.expect($facebookSvg.getAttribute('width')).eql('25');
+  await t.expect($facebookSvg.getAttribute('viewBox')).eql('0 0 25 25');
+  await t.expect($facebookSvg.childElementCount).eql(1);
+
+  const $facebookSvgSubElement = await $facebookSvg.find('path');
+  await t.expect($facebookSvgSubElement.childElementCount).eql(0);
 });
 
 test('should render accordion only in mobile mode', async t => {
