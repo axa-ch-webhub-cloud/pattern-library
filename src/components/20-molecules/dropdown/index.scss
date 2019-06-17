@@ -226,6 +226,7 @@ axa-dropdown {
     border: 0;
     color: $dropdown-color;
     white-space: nowrap;
+    margin: 0; /* for Safari, who'd impose 2px margins otherwise */
 
 
     &:hover,
