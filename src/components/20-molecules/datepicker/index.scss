@@ -26,6 +26,7 @@ axa-datepicker {
   &[error]:not([error=""]) {
     .m-datepicker__input, .m-datepicker__input-button {
       border-color: $color-validation-error;
+      outline-color: $color-validation-error;
     }
   }
 }
@@ -51,6 +52,11 @@ axa-datepicker {
     border-left: none;
     line-height: 0;
     padding: 1px 3px 2px;
+
+    &:focus {
+      outline: 2px solid $color-axa-blue;
+      outline-offset: -2px;
+    }
 
     svg {
       color: $color-axa-blue;
@@ -87,6 +93,11 @@ axa-datepicker {
       + .m-datepicker__input-button {
         border-color: $color-axa-blue;
       }
+    }
+
+    &:focus {
+      outline: 2px solid $color-axa-blue;
+      outline-offset: -2px;
     }
   }
 
