@@ -2,19 +2,19 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
-import { ImageUploadGroupSvg } from './icons';
+import { ImageUploadGroupSvg, DeleteSvg } from './icons';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import { fileKey } from './utils/fileKey';
 import compressImage from './utils/imageCompressor';
-import makeImageFigure from './utils/makeImageFigure';
 
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
 
 // TODO -> move all icons to materials
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
+const DeleteIcon = svg([DeleteSvg]);
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -45,11 +45,11 @@ class AXAImageUpload extends LitElement {
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'upload-cloud';
+    this.finalFiles = [];
+    this.wrongFiles = [];
     this.onClick = () => {};
 
     this.allImagesInput = [];
-    this.finalFiles = [];
-    this.wrongFiles = [];
   }
 
   firstUpdated() {
@@ -63,6 +63,7 @@ class AXAImageUpload extends LitElement {
     const classes = {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
+    const urlCreator = window.URL || window.webkitURL;
     return html`
       <article class="m-image-upload">
         <h1><slot></slot></h1>
@@ -92,7 +93,26 @@ class AXAImageUpload extends LitElement {
                   ${this.inputFileText}
                 </axa-input-file>
               `
-            : ``}
+            : this.finalFiles.map(file => {
+                const imageUrl = urlCreator.createObjectURL(file);
+                return html`
+                <figure class="m-image-upload__img-figure">
+                  <div class="m-image-upload__icon-hover-area">
+                    <img
+                      class="m-image-upload__img-element"
+                      src="${imageUrl}"
+                      alt="${file.name}">
+                    </img>
+                    <div class="m-image-upload__icon-layer">${DeleteIcon}</div>
+                    <div class="m-image-upload__img-caption-wrapper">
+                      <figcaption class="m-image-upload__img-caption"><p>${
+                        file.name
+                      }</p></figcaption>
+                    </div>
+                  </div>
+                </figure>
+              `;
+              })}
         </section>
       </article>
     `;
@@ -137,14 +157,6 @@ class AXAImageUpload extends LitElement {
     this.finalFiles = finalFiles;
     this.wrongFiles = wrongFiles;
     this.showImageOverview = true;
-
-    this.loadImages();
-  }
-
-  loadImages() {
-    Array.from(this.finalFiles).forEach(file =>
-      makeImageFigure(this.dropZone, file)
-    );
   }
 }
 
