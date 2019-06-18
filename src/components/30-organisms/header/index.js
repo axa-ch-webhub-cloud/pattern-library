@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import '@axa-ch/container';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -15,35 +16,14 @@ class AXAHeader extends LitElement {
     `;
   }
 
-  static get properties() {
-    // Define properties and types
-    return {
-      onClick: { type: Function },
-    };
-  }
-
-  constructor() {
-    super();
-    this.onClick = () => {};
-  }
-
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
-  }
-
   render() {
     return html`
-      <article class="o-header">
-        <slot></slot>
-      </article>
+      <header class="o-header">
+        <axa-container>
+          <slot></slot>
+        </axa-container>
+      </header>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 
