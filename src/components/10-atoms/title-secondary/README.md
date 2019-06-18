@@ -6,6 +6,8 @@ Shows you an AXA conform title. A predefined size can be changed by setting a va
 
 ## Usage
 
+**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+
 ```bash
 npm install @axa-ch/title-secondary
 ```

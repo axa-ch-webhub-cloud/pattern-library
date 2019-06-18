@@ -2,8 +2,9 @@
 
 _WARNING: For mobile use, currently the innerscroll property must be set. This restriction will be lifted in the future._
 
-
 ## Usage
+
+**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
 
 Install it with your CLI:
 `npm install @axa-ch/table-sortable`
@@ -111,10 +112,10 @@ export default App;
 
 ## Properties
 
-| Attribute           | Details                                                                                   |
-| ------------------- | ----------------------------------------------------------------------------------------- |
+| Attribute           | Details                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `innerscroll="500"` | set a min width and if the viewport width is less than _innerscroll_ pixels, add a horizontal scrollbar. This property obligatorily requires thead and tbody. |
-| `model="{}"`        | sets the model from which the component should render. See example below.                      |
+| `model="{}"`        | sets the model from which the component should render. See example below.                                                                                     |
 
 Model example:
 
