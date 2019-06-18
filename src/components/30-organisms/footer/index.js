@@ -54,27 +54,33 @@ class AXAFooter extends LitElement {
     if (this.dynamic) {
       ev.preventDefault();
 
-      let element;
-      if (!ev.target || !ev.target.href) {
-        element = ev;
-        while (!element.href) {
-          if (element.target && element.target.parentNode)
-            element = element.target.parentNode;
-          else if (element.parentNode) element = element.parentNode;
-          else return;
-        }
-      }
+      const href = this._extractNestedHref(ev);
 
-      const href = element === undefined ? ev.target.href : element.href;
-      this.onItemClick(href);
-      this.dispatchEvent(
-        new CustomEvent('axa-footer-click', {
-          detail: href,
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      if (href) {
+        this.onItemClick(href);
+        this.dispatchEvent(
+          new CustomEvent('axa-footer-click', {
+            detail: href,
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      }
     }
+  };
+
+  _extractNestedHref = ev => {
+    let element;
+    if (!ev.target || !ev.target.href) {
+      element = ev;
+      while (!element.href) {
+        if (element.target && element.target.parentNode)
+          element = element.target.parentNode;
+        else if (element.parentNode) element = element.parentNode;
+        else return;
+      }
+    }
+    return element === undefined ? ev.target.href : element.href;
   };
 
   _handleAccordionClick = index => {
