@@ -24,10 +24,11 @@ const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
 
 const zeroFill = (number, width) => {
-  const n_ = Math.abs(number);
+  const _number = number | 0; // coerce number to integer
+  const n_ = Math.abs(_number);
   const zeros = Math.max(0, width - Math.floor(n_).toString().length);
   const zeroString = (10 ** zeros).toString().slice(1);
-  return `${number < 0 ? '-' : ''}${zeroString}${number}`;
+  return `${_number < 0 ? '-' : ''}${zeroString}${_number}`;
 };
 
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
@@ -81,7 +82,8 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
     `${zeroFill(year, 4)}-${zeroFill(month, 2)}-${zeroFill(day, 2)}T00:00:00`
   );
 
-  const isValid = !Number.isNaN(dateAsUnixEpochInteger);
+  const isValid =
+    !Number.isNaN(dateAsUnixEpochInteger) && dateAsUnixEpochInteger >= 0;
 
   return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };

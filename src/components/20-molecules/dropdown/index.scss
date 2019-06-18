@@ -154,7 +154,7 @@ axa-dropdown {
     display: block;
     width: 40px;
     height: $dropdown-height;
-    line-height: $dropdown-height - $dropdown-icon-height;
+    line-height: $dropdown-height - $dropdown-icon-height + 4px;
     background: $color-prim-white;
     position: absolute;
     right: 0;
@@ -169,6 +169,7 @@ axa-dropdown {
       transition: transform 0.3s ease;
       pointer-events: none;
       line-height: 0;
+      -ms-interpolation-mode: nearest-neighbor;
     }
   }
 
@@ -213,7 +214,7 @@ axa-dropdown {
   &__option,
   &__toggle,
   &__button {
-    padding: 10px 40px 10px 20px;
+    padding: 10px 40px 10px 10px;
     width: 100%;
   }
 

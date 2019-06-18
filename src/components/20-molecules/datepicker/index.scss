@@ -53,6 +53,7 @@ axa-datepicker {
     line-height: 0;
     padding: 1px 3px 2px;
     margin-left: 0; /* suppress Safari 2px margin */
+    width: 40px;
 
     &:focus {
       outline: 2px solid $color-axa-blue;
