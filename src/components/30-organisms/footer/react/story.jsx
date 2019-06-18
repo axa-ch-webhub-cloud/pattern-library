@@ -7,11 +7,11 @@ import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 // import withBodyReset from '../../../../../.storybook/addons/reset-body';
 
-function setNewlyClickedLink(link) {
+const setNewlyClickedLink = link => {
   document.getElementById(
     'clicked-link'
   ).innerText = `Last clicked link: ${link}`;
-}
+};
 
 storiesOf('Organisms/Footer/React', module)
   .addDecorator(withMarkdown(Readme))
