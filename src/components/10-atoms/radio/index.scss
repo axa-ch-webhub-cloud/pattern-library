@@ -1,0 +1,96 @@
+axa-radio {
+  @include typo(primary, default);
+  display: block;
+
+  &:hover:not([disabled]):not(.a-radio--error) {
+    color: #00008f;
+
+    & .a-radio__icon {
+      border-color: #00008f;
+
+      &::after {
+        border-color: #00008f;
+      }
+    }
+  }
+
+  .a-radio__wrapper {
+    position: relative;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    min-height: 20px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    line-height: 1.5;
+  }
+
+  .a-radio__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px;
+    overflow: hidden;
+
+    &:focus + .a-radio__icon {
+    }
+
+    &:checked + .a-radio__icon::after {
+      border-color: #999;
+      background-color: #00008f;
+    }
+
+    &:disabled + .a-radio__icon {
+      cursor: default;
+      border-color: #ccc;
+
+      &::after {
+        border-color: #ccc;
+        background-color: #ccc;
+      }
+    }
+  }
+
+  .a-radio__icon {
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    width: 18px;
+    height: 18px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin-right: 20px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background: #fff;
+    border: 1px solid #999;
+    cursor: pointer;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    &::after {
+      width: 8px;
+      height: 8px;
+      display: block;
+      border: 1px solid transparent;
+      content: "";
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+  }
+
+  .a-radio__content {
+      display: block;
+      margin: 0;
+      line-height: 1.37;
+      color: $color-prim-gray-mine-shaft;
+  }
+}
