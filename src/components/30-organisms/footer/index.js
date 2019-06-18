@@ -224,7 +224,7 @@ class AXAFooter extends LitElement {
       .forEach(el => {
         const label = el.querySelector('slot').assignedNodes()[0];
         // Second part of IF-statement is an IE11 workaround
-        if (this._listElementHasNoContent(label)) {
+        if (AXAFooter._listElementHasNoContent(label)) {
           el.style.display = 'none';
         }
       });
@@ -236,15 +236,11 @@ class AXAFooter extends LitElement {
     this.requestUpdate();
   };
 
-  _listElementHasNoContent(label) {
-    return !label || label.toString() === '[object Text]';
-  }
-
   _handleLinkClick = ev => {
     if (this.dynamic) {
       ev.preventDefault();
 
-      const href = this._extractNestedHref(ev);
+      const href = AXAFooter._extractNestedHref(ev);
 
       if (href) {
         this.onItemClick(href);
@@ -259,7 +255,11 @@ class AXAFooter extends LitElement {
     }
   };
 
-  _extractNestedHref(ev) {
+  static _listElementHasNoContent(label) {
+    return !label || label.toString() === '[object Text]';
+  }
+
+  static _extractNestedHref(ev) {
     let element;
     if (!ev.target || !ev.target.href) {
       element = ev;
