@@ -30,65 +30,6 @@ class AXAFooter extends LitElement {
     this._accordionActiveIndex = -1;
   }
 
-  updated() {
-    this._removeEmptyListElements();
-  }
-
-  _removeEmptyListElements() {
-    this.shadowRoot
-      .querySelectorAll('.o-footer__main-content-panel-list-item')
-      .forEach(el => {
-        const label = el.querySelector('slot').assignedNodes()[0];
-        // Second part of IF-statement is an IE11 workaround
-        if (this._listElementHasNoContent(label)) {
-          el.style.display = 'none';
-        }
-      });
-  }
-
-  _listElementHasNoContent(label) {
-    return !label || label.toString() === '[object Text]';
-  }
-
-  _handleLinkClick = ev => {
-    if (this.dynamic) {
-      ev.preventDefault();
-
-      const href = this._extractNestedHref(ev);
-
-      if (href) {
-        this.onItemClick(href);
-        this.dispatchEvent(
-          new CustomEvent('axa-footer-click', {
-            detail: href,
-            bubbles: true,
-            cancelable: true,
-          })
-        );
-      }
-    }
-  };
-
-  _extractNestedHref(ev) {
-    let element;
-    if (!ev.target || !ev.target.href) {
-      element = ev;
-      while (!element.href) {
-        if (element.target && element.target.parentNode)
-          element = element.target.parentNode;
-        else if (element.parentNode) element = element.parentNode;
-        else return undefined;
-      }
-    }
-    return element === undefined ? ev.target.href : element.href;
-  }
-
-  _handleAccordionClick = index => {
-    this._accordionActiveIndex =
-      index === this._accordionActiveIndex ? -1 : index;
-    this.requestUpdate();
-  };
-
   render() {
     return html`
       <footer class="o-footer">
@@ -271,6 +212,65 @@ class AXAFooter extends LitElement {
         </axa-container>
       </footer>
     `;
+  }
+
+  updated() {
+    this._removeEmptyListElements();
+  }
+
+  _removeEmptyListElements() {
+    this.shadowRoot
+      .querySelectorAll('.o-footer__main-content-panel-list-item')
+      .forEach(el => {
+        const label = el.querySelector('slot').assignedNodes()[0];
+        // Second part of IF-statement is an IE11 workaround
+        if (this._listElementHasNoContent(label)) {
+          el.style.display = 'none';
+        }
+      });
+  }
+
+  _handleAccordionClick = index => {
+    this._accordionActiveIndex =
+      index === this._accordionActiveIndex ? -1 : index;
+    this.requestUpdate();
+  };
+
+  _listElementHasNoContent(label) {
+    return !label || label.toString() === '[object Text]';
+  }
+
+  _handleLinkClick = ev => {
+    if (this.dynamic) {
+      ev.preventDefault();
+
+      const href = this._extractNestedHref(ev);
+
+      if (href) {
+        this.onItemClick(href);
+        this.dispatchEvent(
+          new CustomEvent('axa-footer-click', {
+            detail: href,
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      }
+    }
+  };
+
+  _extractNestedHref(ev) {
+    let element;
+    if (!ev.target || !ev.target.href) {
+      element = ev;
+      while (!element.href) {
+        if (element.target && element.target.parentNode)
+          element = element.target.parentNode;
+        else if (element.parentNode) element = element.parentNode;
+        else return undefined;
+      }
+    }
+    return element === undefined ? ev.target.href : element.href;
   }
 }
 
