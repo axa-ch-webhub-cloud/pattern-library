@@ -214,19 +214,6 @@ test('should render footer with working native callbacks', async t => {
 
   await t.click($contactLink);
 
-  // Travis cannot handle the following block of code, for whatever reason.
-  // const $resultAfterLinkClick = Selector('#clicked-link');
-  // await t
-  //   .expect($resultAfterLinkClick.innerText)
-  //   .contains('https://axa.ch/en/private-customers.html');
-
-  // const $axaWorldwideLink = FooterAccessor.getSlotNode(
-  //   'column-0-title-desktop'
-  // );
-
-  // await t.expect($axaWorldwideLink.visible).ok();
-  // await t.expect($axaWorldwideLink.textContent).eql('axa & you');
-
   const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
 
   await t.expect($facebookButton.visible).ok();
