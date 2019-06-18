@@ -1,30 +1,3 @@
-.o-footer__main {
-  ::slotted(h2) {
-    display: none; // desktop title
-
-    @include breakpoint($mediaquery-sm-up) {
-      @include typo(primary, medium, bold);
-      display: block; // desktop title
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-  }
-}
-
-.o-footer__accordion-button {
-  ::slotted(h2) {
-    display: block; // mobile title
-    @include typo(primary, default, medium);
-
-    @include breakpoint($mediaquery-sm-up) {
-      display: none; // mobile title
-    }
-
-    padding: 0;
-    margin: 0;
-  }
-}
-
 .o-footer {
   text-align: initial;
 
@@ -33,12 +6,39 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  &__main {
+    ::slotted(h2) {
+      display: none; // desktop title
+
+      @include breakpoint($mediaquery-sm-up) {
+        @include typo(primary, medium, bold);
+        display: block; // desktop title
+        text-transform: uppercase;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  &__accordion-button {
+    ::slotted(h2) {
+      display: block; // mobile title
+      @include typo(primary, default, medium);
+
+      @include breakpoint($mediaquery-sm-up) {
+        display: none; // mobile title
+      }
+
+      padding: 0;
+      margin: 0;
+    }
+  }
+
   ::slotted(h2) {
     margin: 0;
     padding: 0;
   }
 
-  .js-footer__social-media-item ::slotted(a) {
+  .o-footer__social-media-item ::slotted(a) {
     display: block;
     width: 25px;
     height: 25px;
