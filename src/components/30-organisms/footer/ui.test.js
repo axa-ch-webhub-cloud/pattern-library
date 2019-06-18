@@ -220,9 +220,9 @@ test('should render footer with working native callbacks', async t => {
   //   .expect($resultAfterLinkClick.innerText)
   //   .contains('https://axa.ch/en/private-customers.html');
 
-  const $axaWorldwideLink = FooterAccessor.getSlotNode(
-    'column-0-title-desktop'
-  );
+  // const $axaWorldwideLink = FooterAccessor.getSlotNode(
+  //   'column-0-title-desktop'
+  // );
 
   // await t.expect($axaWorldwideLink.visible).ok();
   // await t.expect($axaWorldwideLink.textContent).eql('axa & you');
