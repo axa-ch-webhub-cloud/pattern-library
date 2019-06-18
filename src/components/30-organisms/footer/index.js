@@ -40,13 +40,13 @@ class AXAFooter extends LitElement {
       .forEach(el => {
         const label = el.querySelector('slot').assignedNodes()[0];
         // Second part of IF-statement is an IE11 workaround
-        if (this.__listElementHasNoContent()) {
+        if (this.__listElementHasNoContent(label)) {
           el.style.display = 'none';
         }
       });
   }
 
-  _listElementHasNoContent() {
+  _listElementHasNoContent(label) {
     return !label || label.toString() === '[object Text]';
   }
 
@@ -69,7 +69,7 @@ class AXAFooter extends LitElement {
     }
   };
 
-  _extractNestedHref = ev => {
+  _extractNestedHref(ev) {
     let element;
     if (!ev.target || !ev.target.href) {
       element = ev;
@@ -77,11 +77,11 @@ class AXAFooter extends LitElement {
         if (element.target && element.target.parentNode)
           element = element.target.parentNode;
         else if (element.parentNode) element = element.parentNode;
-        else return;
+        else return undefined;
       }
     }
     return element === undefined ? ev.target.href : element.href;
-  };
+  }
 
   _handleAccordionClick = index => {
     this._accordionActiveIndex =
