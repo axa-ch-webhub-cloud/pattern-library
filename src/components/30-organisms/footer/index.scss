@@ -6,6 +6,14 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
+  @include breakpoint($mediaquery-sm-up) {
+    padding: 40px 0;
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    padding: 50px 0;
+  }
+
   &__main {
     ::slotted(h2) {
       display: none; // desktop title
@@ -44,8 +52,47 @@
     height: 25px;
     padding: 10px;
   }
+
   ::slotted(a) {
     padding: 10px;
+  }
+
+  &__content {
+    @include breakpoint($mediaquery-sm-up) {
+      display: grid;
+      grid-template-areas:
+        'links'
+        'social';
+
+      // IE11 workaround
+      display: -ms-grid;
+      -ms-grid-columns: 1fr;
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+      grid-template-areas: 'links social';
+
+      // IE11 workaround
+      display: -ms-grid;
+      -ms-grid-columns: 1fr 1fr;
+    }
+  }
+
+  &__collection {
+    @include breakpoint($mediaquery-sm-up) {
+      display: flex;
+      grid-area: links;
+
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
+    }
   }
 
   &__title {
@@ -54,9 +101,31 @@
   }
 
   &__social-media {
+    @include breakpoint($mediaquery-sm-up) {
+      grid-area: social;
+
+      // IE11 workaround
+      -ms-grid-row: 2;
+      -ms-grid-column: 1;
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+      // IE11 workaround
+      -ms-grid-row: 1;
+      -ms-grid-column: 2;
+    }
+
     ::slotted(h2) {
       // IE11 workaround
       display: none;
+
+      @include breakpoint($mediaquery-lg-up) {
+        // IE11 workaround
+        @include typo(primary, medium, bold);
+        display: block; // desktop title
+        text-transform: uppercase;
+        line-height: 1.5;
+      }
     }
 
     &-title {
@@ -66,6 +135,10 @@
 
       text-transform: uppercase;
       line-height: 1.5;
+
+      @include breakpoint($mediaquery-lg-up) {
+        display: block;
+      }
     }
 
     &-list {
@@ -77,11 +150,47 @@
       display: flex;
       flex-wrap: wrap;
       padding: 15px 20px;
+
+      @include breakpoint($mediaquery-sm-up) {
+        margin: 0;
+        text-indent: 0;
+        list-style-type: none;
+        padding: 0;
+
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 15px;
+      }
+
+      @include breakpoint($mediaquery-lg-up) {
+        padding: 10px 0;
+        margin-left: -10px;
+      }
+
+      @include breakpoint($mediaquery-sm-up) {
+        a {
+          display: block;
+          padding: 10px 10px 0 10px;
+          margin-right: 10px;
+        }
+
+        a:first-of-type {
+          padding: 10px 10px 0 0;
+        }
+      }
     }
   }
 
   &__title-desktop {
     display: none;
+
+    @include breakpoint($mediaquery-sm-up) {
+      display: block;
+      @include typo(primary, medium, bold);
+
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
   }
 
   &__accordion-button {
@@ -114,9 +223,17 @@
         transform: rotate(0deg);
       }
     }
+
+    @include breakpoint($mediaquery-sm-up) {
+      display: none;
+    }
   }
 
   &__main {
+    @include breakpoint($mediaquery-sm-up) {
+      margin: 0 10px;
+    }
+
     &-content-panel {
       margin: 0;
       text-indent: 0;
@@ -154,48 +271,8 @@
           color: rgba(255, 255, 255, 0.65);
         }
       }
-    }
-  }
 
-  @include breakpoint($mediaquery-sm-up) {
-    padding: 40px 0;
-
-    &__content {
-      display: grid;
-      grid-template-areas:
-        'links'
-        'social';
-
-      // IE11 workaround
-      display: -ms-grid;
-      -ms-grid-columns: 1fr;
-    }
-
-    &__collection {
-      display: flex;
-      grid-area: links;
-
-      // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 1;
-    }
-
-    &__title-desktop {
-      display: block;
-      @include typo(primary, medium, bold);
-
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-
-    &__accordion-button {
-      display: none;
-    }
-
-    &__main {
-      margin: 0 10px;
-
-      &-content-panel {
+      @include breakpoint($mediaquery-sm-up) {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -231,76 +308,6 @@
             padding: 0 !important; // Needed to dominate body reset
           }
         }
-      }
-    }
-
-    &__social-media {
-      grid-area: social;
-
-      // IE11 workaround
-      -ms-grid-row: 2;
-      -ms-grid-column: 1;
-
-      &-list {
-        margin: 0;
-        text-indent: 0;
-        list-style-type: none;
-        padding: 0;
-
-        display: flex;
-        flex-wrap: wrap;
-        padding-top: 15px;
-
-        a {
-          display: block;
-          padding: 10px 10px 0 10px;
-          margin-right: 10px;
-        }
-
-        a:first-of-type {
-          padding: 10px 10px 0 0;
-        }
-      }
-    }
-  }
-
-  @include breakpoint($mediaquery-lg-up) {
-    padding: 50px 0;
-
-    &__content {
-      grid-template-areas: 'links social';
-
-      // IE11 workaround
-      display: -ms-grid;
-      -ms-grid-columns: 1fr 1fr;
-    }
-
-    &__collection {
-      // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 1;
-    }
-
-    &__social-media {
-      // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 2;
-
-      ::slotted(h2) {
-        // IE11 workaround
-        @include typo(primary, medium, bold);
-        display: block; // desktop title
-        text-transform: uppercase;
-        line-height: 1.5;
-      }
-
-      &-title {
-        display: block;
-      }
-
-      &-list {
-        padding: 10px 0;
-        margin-left: -10px;
       }
     }
   }
