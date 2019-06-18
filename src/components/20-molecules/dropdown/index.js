@@ -124,7 +124,8 @@ class AXADropdown extends NoShadowDOM {
     super();
     // property defaults
     this.onChange = EMPTY_FUNCTION;
-    this.onAXAValueChange = EMPTY_FUNCTION;
+    this.onFocus = EMPTY_FUNCTION;
+    this.onBlur = EMPTY_FUNCTION;
     // internal properties
     this.state = { isControlled: false };
     // bound event handlers (so scope and de-registration work as expected)
@@ -271,12 +272,13 @@ class AXADropdown extends NoShadowDOM {
     // note: it's crucial to *not* update this.value here (otherwise endless update loop)!
     const value = firstSelectedItem ? firstSelectedItem.value : '';
 
-    // fire custom events and callback
+    // fire custom events
     fireCustomEvent('axa-change', value, this);
-    this.onAXAValueChange(value);
   }
 
   disconnectedCallback() {
+    this.removeEventListener('focus', this.onFocus, false);
+    this.removeEventListener('blur', this.onBlur, false);
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);
@@ -357,6 +359,8 @@ class AXADropdown extends NoShadowDOM {
     this.open = false;
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
+    this.addEventListener('focus', this.onFocus, false);
+    this.addEventListener('blur', this.onBlur, false);
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);

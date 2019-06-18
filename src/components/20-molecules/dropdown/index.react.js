@@ -11,7 +11,8 @@ export default createElement => ({
   valid,
   error,
   onChange = () => {},
-  onAXAValueChange,
+  onFocus = () => {},
+  onBlur = () => {},
   style,
 }) =>
   withReact(createElement)(AXADropdown.tagName, {
@@ -24,7 +25,8 @@ export default createElement => ({
     valid,
     error,
     onChange,
+    onFocus,
+    onBlur,
     isReact: true,
-    onAXAValueChange,
     style,
   });
