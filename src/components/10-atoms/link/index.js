@@ -87,26 +87,29 @@ class AXALink extends LitElement {
       >
         ${this.variant.includes('arrowleft')
           ? html`
+            <span class="a-link__icon-wrapper">
               <axa-icon
                 icon="arrow-right"
                 class="a-link__icon a-link__icon--left"
               ></axa-icon>
-            `
+            </span>`
           : ''}
         ${this.icon &&
         this.variant.includes('icon') &&
         !this.variant.includes('arrow')
           ? html`
+            <span class="a-link__icon-wrapper">
               <axa-icon
                 icon="${this.icon}"
                 class="a-link__icon a-link__icon--left"
               ></axa-icon>
-            `
+            </span>`
           : ''}
           <slot></slot>${this.variant.includes('arrowright')
           ? html`
+            <span class="a-link__icon-wrapper">
               <axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>
-            `
+            </span>`
           : ''}</a
       >`;
   }
