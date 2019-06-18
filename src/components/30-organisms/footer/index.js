@@ -40,7 +40,7 @@ class AXAFooter extends LitElement {
       .forEach(el => {
         const label = el.querySelector('slot').assignedNodes()[0];
         // Second part of IF-statement is an IE11 workaround
-        if (this.__listElementHasNoContent(label)) {
+        if (this._listElementHasNoContent(label)) {
           el.style.display = 'none';
         }
       });
