@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
-// import withBodyReset from '../../../../../.storybook/addons/reset-body';
 
 const setNewlyClickedLink = link => {
   document.getElementById(
@@ -15,8 +14,6 @@ const setNewlyClickedLink = link => {
 
 storiesOf('Organisms/Footer/React', module)
   .addDecorator(withMarkdown(Readme))
-  // TODO Body-Reset makes react unable to pass down props to the component
-  // .addDecorator(withBodyReset())
   .add('Feature - Footer Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
