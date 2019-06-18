@@ -1,14 +1,6 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  FacebookSvg,
-  InstagramSvg,
-  TwitterSvg,
-  XingSvg,
-  YoutubeSvg,
-  LinkedinSvg,
-  CaretSvg,
-} from '@axa-ch/materials/icons';
+import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
@@ -31,38 +23,34 @@ class AXAFooter extends LitElement {
     };
   }
 
-  accordionActiveIndex = -1;
-
   constructor() {
     super();
     this.dynamic = false;
-    this.onItemClick = () => {};
-    this.iconMap = new Map();
-    this.iconMap.set('facebook', FacebookSvg);
-    this.iconMap.set('instagram', InstagramSvg);
-    this.iconMap.set('twitter', TwitterSvg);
-    this.iconMap.set('xing', XingSvg);
-    this.iconMap.set('youtube', YoutubeSvg);
-    this.iconMap.set('linkedin', LinkedinSvg);
+    this.onItemClick = () => {}; // Only for react
+    this._accordionActiveIndex = -1;
   }
 
   updated() {
-    this.removeEmptyListElements();
+    this._removeEmptyListElements();
   }
 
-  removeEmptyListElements() {
+  _removeEmptyListElements() {
     this.shadowRoot
       .querySelectorAll('.o-footer__main-content-panel-list-item')
       .forEach(el => {
         const label = el.querySelector('slot').assignedNodes()[0];
         // Second part of IF-statement is an IE11 workaround
-        if (!label || label.toString() === '[object Text]') {
+        if (this.__listElementHasNoContent()) {
           el.style.display = 'none';
         }
       });
   }
 
-  handleLinkClick = ev => {
+  _listElementHasNoContent() {
+    return !label || label.toString() === '[object Text]';
+  }
+
+  _handleLinkClick = ev => {
     if (this.dynamic) {
       ev.preventDefault();
 
@@ -89,9 +77,9 @@ class AXAFooter extends LitElement {
     }
   };
 
-  handleAccordionClick = index => {
-    this.accordionActiveIndex =
-      index === this.accordionActiveIndex ? -1 : index;
+  _handleAccordionClick = index => {
+    this._accordionActiveIndex =
+      index === this._accordionActiveIndex ? -1 : index;
     this.requestUpdate();
   };
 
@@ -108,12 +96,12 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => this.handleAccordionClick(0)}"
+                  @click="${() => this._handleAccordionClick(0)}"
                 >
                   <slot name="column-0-title" class="o-footer__title"></slot>
                   <span
                     class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
-                      .accordionActiveIndex === 0
+                      ._accordionActiveIndex === 0
                       ? '--open'
                       : ''}"
                   >
@@ -122,56 +110,56 @@ class AXAFooter extends LitElement {
                 </button>
                 <ul
                   class="o-footer__main-content-panel o-footer__main-content-panel${this
-                    .accordionActiveIndex === 0
+                    ._accordionActiveIndex === 0
                     ? '--open'
                     : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-0"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-1"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-2"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-3"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-4"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-5"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-6"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-7"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                 </ul>
@@ -184,12 +172,12 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => this.handleAccordionClick(1)}"
+                  @click="${() => this._handleAccordionClick(1)}"
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span
                     class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
-                      .accordionActiveIndex === 1
+                      ._accordionActiveIndex === 1
                       ? '--open'
                       : ''}"
                   >
@@ -198,32 +186,32 @@ class AXAFooter extends LitElement {
                 </button>
                 <ul
                   class="o-footer__main-content-panel o-footer__main-content-panel--short o-footer__main-content-panel${this
-                    .accordionActiveIndex === 1
+                    ._accordionActiveIndex === 1
                     ? '--open'
                     : ''}"
                 >
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-1-item-0"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-1-item-1"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-1-item-2"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-1-item-3"
-                      @click="${this.handleLinkClick}"
+                      @click="${this._handleLinkClick}"
                     />
                   </li>
                 </ul>
@@ -238,37 +226,37 @@ class AXAFooter extends LitElement {
                 <li class="js-footer__social-media-item">
                   <slot
                     name="column-social-item-0"
-                    @click="${this.handleLinkClick}"
+                    @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
                   <slot
                     name="column-social-item-1"
-                    @click="${this.handleLinkClick}"
+                    @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
                   <slot
                     name="column-social-item-2"
-                    @click="${this.handleLinkClick}"
+                    @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
                   <slot
                     name="column-social-item-3"
-                    @click="${this.handleLinkClick}"
+                    @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
                   <slot
                     name="column-social-item-4"
-                    @click="${this.handleLinkClick}"
+                    @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="js-footer__social-media-item">
                   <slot
                     name="column-social-item-5"
-                    @click="${this.handleLinkClick}"
+                    @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
               </ul>
