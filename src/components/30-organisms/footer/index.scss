@@ -303,16 +303,6 @@
         &--short {
           width: 165px;
         }
-
-        &-list-item {
-          // &:last-child {           // Eventuell nicht gebraucht TODO
-          //   border-bottom: none;
-          // }
-
-          ::slotted(a) {
-
-          }
-        }
       }
     }
   }
