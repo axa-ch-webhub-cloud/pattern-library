@@ -184,7 +184,6 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
         </AXAFooterReact>
-        <br />
         <p id="clicked-link">Last clicked link: -</p>
       </div>,
       div
