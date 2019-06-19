@@ -265,10 +265,27 @@
           text-decoration: none;
           color: $color-prim-white;
           padding: 20px 30px !important; // Needed to dominate body reset
+
+          @include breakpoint($mediaquery-sm-up) {
+            display: inline;
+            text-decoration: none;
+            color: $color-prim-white;
+            padding: 0 !important; // Needed to dominate body reset
+          }
         }
 
         ::slotted(a:hover) {
           color: rgba(255, 255, 255, 0.65);
+        }
+
+        @include breakpoint($mediaquery-sm-up) {
+          @include typo(primary, default, default);
+
+          width: 165px;
+          margin-top: 8px;
+          padding: 5px 0;
+
+          line-height: 1.21;
         }
       }
 
@@ -288,24 +305,12 @@
         }
 
         &-list-item {
-          @include typo(primary, default, default);
-
-          width: 165px;
-          margin-top: 8px;
-          padding: 5px 0 !important;
-
-          line-height: 1.21;
-          padding: 0;
-
-          &:last-child {
-            border-bottom: none;
-          }
+          // &:last-child {           // Eventuell nicht gebraucht TODO
+          //   border-bottom: none;
+          // }
 
           ::slotted(a) {
-            display: inline;
-            text-decoration: none;
-            color: $color-prim-white;
-            padding: 0 !important; // Needed to dominate body reset
+
           }
         }
       }
