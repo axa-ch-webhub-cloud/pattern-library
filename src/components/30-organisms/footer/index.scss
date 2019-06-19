@@ -264,7 +264,7 @@
           display: block;
           text-decoration: none;
           color: $color-prim-white;
-          padding: 20px 30px !important; // Needed to dominate body reset
+          padding: 20px 30px;
 
           @include breakpoint($mediaquery-sm-up) {
             display: inline;
