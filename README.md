@@ -6,7 +6,9 @@
 ## [>> Pattern Library Demo](https://patterns.axa.ch)
 
 [Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
+
 [Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md)
+
 [Check out our Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md)
 
 ## Communication
@@ -49,5 +51,5 @@ Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tr
 ## Code of Conduct
 We are is dedicated to building a welcoming, diverse, safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/CODE_OF_CONDUCT.md)
 
-A note on how this repository is organized
-This repository is a monorepo managed using Lerna. This means all components are managed in this codebase, even though we publish them to NPM as separate packages.
+## Version Control
+This repository is a monorepo managed using Lerna. This means all components are managed here, even though we publish them to NPM as separate packages.
