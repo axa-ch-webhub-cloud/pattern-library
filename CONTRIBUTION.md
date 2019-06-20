@@ -1,6 +1,11 @@
 # Contribution
 
-## Install the AXA Pattern Library
+## What you need to contribute
+
+- [Node](https://nodejs.org/en/) (v10.15.3), which is the same version that runs on the pipeline.
+- [Prettier](https://prettier.io/) - A code styling tool. You don't explicitly need it, but without fitting the ruleset, you will not be able to merge.
+
+## Install and run the AXA Pattern Library
 
 ```js
 npm install // automatically runs `npm run bootstrap as postinstall hook`
@@ -15,17 +20,12 @@ Open your code editor of choice and edit your desired component/package in
 
 - We export only Web Components. No separate distribution of SASS mixins, JS, HTML and SCSS files.
 - We use [prettier](https://prettier.io/).
-  - Make sure you install eslint checker and prettier in your IDE
 
 ### Style Rules
 
 - We follow DRY, KISS, YAGNI principles when we write SCSS. This includes variables, mixins, etc.
 - We remove the linting of ordering and grouping of CSS properties. Only includes have to be at the beginning.
 - We won't have settings for vertical rhythm or global spacing.
-
-### JS Rules
-
-- We reuse the Patterns Lib v1 JavaScript linting settings.
 
 ### Git Commit Message Rules
 
@@ -37,8 +37,8 @@ Open your code editor of choice and edit your desired component/package in
 
 # Testing
 
-- Library uses testcafe for ui testing
-- Library uses Jest for unit testing
+- Library uses [TestCafe](https://devexpress.github.io/testcafe/) for ui testing
+- Library uses [Jest](https://jestjs.io/) for unit testing
 
 ## UI Testing
 
@@ -60,7 +60,7 @@ test('should render a button as reactified component', async t => {
 
 ### How-to write and run tests
 
-- `npm run test-jest` // Jest will launch in the watch mode. Every time you save a file, it will re-run the tests.
+- `npm run test-jest` Jest will launch in the watch mode. Every time you save a file, it will re-run the tests.
 - Tests should be written with the `it()` function, i.e `it('should render correctly')`.
 - You may optionally want to describe and group them in `describe()` blocks.
 - Optional: Coverage: Run `npm test -- --coverage`
@@ -76,10 +76,9 @@ it('should sum numbers', () => {
 
 ## Create a new component
 
-### How-to start a new component
+### How-to create a new component
 
-- `npm run start`
-- `npm run new` and follow the instructions in the CLI.
+`npm run new` and follow the instructions in the CLI.
 
 ### How-to write a story
 
