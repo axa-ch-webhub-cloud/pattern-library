@@ -40,7 +40,7 @@ We release holistic and self contained WebComponents based on the [custom elemen
 - [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/datepicker)
 - [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/dropdown)
 
-## Design guidelines can be found here
+## Design guidelines
 [Link to Patterns Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
 
 ## How to contribute
