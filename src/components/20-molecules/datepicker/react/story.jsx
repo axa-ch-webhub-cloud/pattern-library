@@ -30,6 +30,7 @@ storiesOf('Molecules/Datepicker/React', module)
     ReactDOM.render(
       <AXADatepickerReact
         inputfield
+        inputplaceholder="Wählen Sie ein Datum"
         data-test-id="datepicker-react"
         locale="de-CH"
         day={25}
