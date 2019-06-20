@@ -1,6 +1,7 @@
 # Cookie disclaimer
 
-TODO Description
+Shows a message that explains the conditions of the Data Protection Act. By
+clicking on the button, the component stores in the local storage the date and time of when the user has clicked
 
 ## Usage
 
@@ -28,7 +29,20 @@ export default AXACookieDisclaimerReact;
 ```
 
 ```js
-<AXACookieDisclaimerReact onClick={handler}>
+<AXACookieDisclaimerReact
+  onClick={handler}
+  title="Any Title"
+  buttonname="Click me"
+>
+  <p>
+    Any Description for the cookie disclaimer with a link
+    <AXALinkReact
+      variant="arrowright-animated-white"
+      href="https://axa.ch/de/informationen/datenschutz.html"
+    >
+      Data protection
+    </AXALinkReact>
+  </p>
 </AXACookieDisclaimerReact>
 ```
 
@@ -46,7 +60,16 @@ Import the cookie-disclaimer-defining script and use a cookie-disclaimer like th
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-cookie-disclaimer></axa-cookie-disclaimer>
+    <axa-cookie-disclaimer title="Any Title" buttonname="Click me">
+      <p>
+        Any Description for the cookie disclaimer with a link
+        <axa-link
+          variant="arrowright-animated-white"
+          href="https://axa.ch/de/informationen/datenschutz.html"
+          >Data protection</axa-link
+        >
+      </p>
+    </axa-cookie-disclaimer>
     <script src="node_modules/@axa-ch/cookie-disclaimer/dist/index.js"></script>
   </body>
 </html>
@@ -56,13 +79,17 @@ Import the cookie-disclaimer-defining script and use a cookie-disclaimer like th
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute         | Details                                                   |
+| ----------------- | --------------------------------------------------------- |
+| `variant="fixed"` | Adds position fixed and put it to the end of the viewport |
 
-### Bar
+### Title
 
-The attribute `bar` specifies...
+The attribute `title` specifies the title of the cookie disclaimer
+
+### Button Name
+
+The attribute `buttonname` specifies the text on the accept button
 
 ### onClick
 

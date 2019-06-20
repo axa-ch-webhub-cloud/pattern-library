@@ -1,9 +1,11 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
+type Variant = 'fixed';
 
 interface AXACookieDisclaimerProps {
   variant?: Variant;
+  title?: String;
+  buttonname?: String;
   onClick?: () => void;
 }
 

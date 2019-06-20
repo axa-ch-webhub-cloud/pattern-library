@@ -22,6 +22,8 @@ class AXACookieDisclaimer extends LitElement {
     return {
       onClick: { type: Function },
       buttonname: { type: String },
+      title: { type: String },
+      variant: { type: String },
     };
   }
 
@@ -66,9 +68,12 @@ class AXACookieDisclaimer extends LitElement {
   }
 
   render() {
-    const { buttonname, title } = this;
+    const { buttonname, title, variant } = this;
+    const fixed = variant === 'fixed';
     return html`
-      <article class="m-cookie-disclaimer">
+      <article
+        class="m-cookie-disclaimer${fixed ? ' m-cookie-disclaimer--fixed' : ''}"
+      >
         <axa-container>
           <div class="m-cookie-disclaimer__container">
             <div class="m-cookie-disclaimer__container--lx">
