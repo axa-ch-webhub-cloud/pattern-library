@@ -54,6 +54,7 @@ export default AXADatepickerReact;
 | `allowedyears='["1989-2010", 2012, 2014]'` | allowed years as range or mix of range and numbers |
 | `labelbuttoncancel="Schliessen"`           | Label for OK button                                |
 | `labelbuttonok="OK"`                       | Label for Cancel button                            |
+| `inputPlaceholder="Wählen Sie ein Datum"`  | Text for inputfield                                |
 
 ## Callbacks
 
