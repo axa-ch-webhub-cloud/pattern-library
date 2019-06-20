@@ -21,6 +21,6 @@ storiesOf('Molecules/Datepicker', module)
     () => `
       <axa-datepicker inputfield year="2019" month="0" day="1" data-test-id="datepicker-input-2019"></axa-datepicker>
       <axa-datepicker inputfield year="2020" month="1" day="2" data-test-id="datepicker-input-2020"></axa-datepicker>
-      <axa-datepicker inputfield inputPlaceholder="Wählen Sie ein Datum aus" year="2021" month="2" day="3" data-test-id="datepicker-input-2021"></axa-datepicker>
+      <axa-datepicker inputfield inputplaceholder="Wählen Sie ein Datum aus" year="2021" month="2" day="3" data-test-id="datepicker-input-2021"></axa-datepicker>
     `
   );

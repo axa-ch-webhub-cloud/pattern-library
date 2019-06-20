@@ -37,7 +37,7 @@ class AXADatepicker extends LitElement {
       cells: { type: Array },
       labelbuttoncancel: { type: String },
       labelbuttonok: { type: String },
-      inputPlaceholder: { type: String },
+      inputplaceholder: { type: String },
       onAXADateChange: { type: Function },
     };
   }
@@ -53,7 +53,7 @@ class AXADatepicker extends LitElement {
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
     this.allowedyears = [this.year];
-    this.inputPlaceholder = 'Please select a date';
+    this.inputplaceholder = 'Please select a date';
     this.outputdate = '';
     this.onAXADateChange = () => {};
   }
@@ -147,7 +147,7 @@ class AXADatepicker extends LitElement {
                 @keyup="${this.handleInputChange}"
                 class="m-datepicker__input js-datepicker__input"
                 type="text"
-                placeholder="${this.inputPlaceholder}"
+                placeholder="${this.inputplaceholder}"
                 value="${this.outputdate}"
               />
               <button

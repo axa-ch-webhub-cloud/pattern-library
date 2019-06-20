@@ -12,7 +12,7 @@ export default createElement => ({
   allowedyears = [year],
   labelbuttonok = 'OK',
   labelbuttoncancel = 'Cancel',
-  inputPlaceholder = 'Please select a date',
+  inputplaceholder = 'Please select a date',
   onAXADateChange = () => {},
 }) =>
   withReact(createElement)(AXADatepicker.tagName, {
@@ -26,6 +26,6 @@ export default createElement => ({
     allowedyears,
     labelbuttonok,
     labelbuttoncancel,
-    inputPlaceholder,
+    inputplaceholder,
     onAXADateChange,
   });
