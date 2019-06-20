@@ -13,7 +13,7 @@ In that context, we document everything that is relevant for other developers.
 Given multiple conflicting opinions, we make decisions purely based on democratic principles, i.e. the opinion that gets approved by the majority wins. We write down such decisions, so that we won't lose time over the same topic in the future. Once a decision is approved, personal opinions are ignored.
 
 ## Our coding agreements
-We make sure that our code respects **ESlint, StyleLint and EditorConfig** settings. We can challenge those settings, but won't add our own code style if it goes against those settings.
+We make sure that our code respects **Prettier, ESlint, StyleLint and EditorConfig** settings. We can challenge those settings, but won't add our own code style if it goes against those settings.
 
 ## Our Pull Request culture
 We love to give and receive feedbacks on our pull requests (short: PRs). Every feedback is *per se* legitimate.
@@ -26,16 +26,4 @@ In a PR we avoid to change established conventions. We will challenge those in a
 
 **We always respects each other's opinion, as every opinion is valid**. The better idea always wins, whether it comes from an apprentice or from a CTO. If a clash of opinions arises, we discuss it in a constructive way.
 
-We assume that a PR creator already knows standard HTML, CSS and JS. We therefore won't explain such basics in a PR, but are very happy to help verbally and bilaterally those new future frontend heroes who might struggle in such areas. Everyone of us started from the beginning at some point, and helping someone is a honor for us.
-
-An example of what a constructive conversation should (not) look like:
-
-* DON'T SAY: This is wrong, here is the link to the spec!
-* DO SAY: I'd like to refer to our coding style defined in our style document XXX; here, this code snippet xxxx would be more correct because of...
-
 **We aim to be as efficient as possible.** On a PR review, we try to explain before referring to specs as we assume everyone have read the specs but maybe not understood it. We use links to specs as a nice add-on to the explanation, not as a minimum viable argument. Of course, if an explanation requires lots of text and time, just referring to a spec might be ok. As a rule of thumb, always choose the review strategy that solves the PR creator's issue as soon as possible, as our goal is to merge a PR as quickly as possible. In a review context, we also assume that everyone is willing to learn. Elements of teaching as part of a review are very welcome, but are based on individual good will rather than being obligatory.
-
-## Enforcement
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at luca.mele@axa-winterthur.ch. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate, given the circumstances. The project team is obliged to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
-
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
