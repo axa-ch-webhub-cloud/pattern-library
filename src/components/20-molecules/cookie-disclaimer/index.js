@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -72,11 +73,12 @@ class AXACookieDisclaimer extends LitElement {
 
   render() {
     const { buttonname, title, variant } = this;
-    const fixed = variant === 'fixed';
+    const classes = {
+      'm-cookie-disclaimer': true,
+      'm-cookie-disclaimer--fixed': variant === 'fixed',
+    };
     return html`
-      <article
-        class="m-cookie-disclaimer${fixed ? ' m-cookie-disclaimer--fixed' : ''}"
-      >
+      <article class="${classMap(classes)}">
         <axa-container>
           <div class="m-cookie-disclaimer__container">
             <div class="m-cookie-disclaimer__container--lx">
