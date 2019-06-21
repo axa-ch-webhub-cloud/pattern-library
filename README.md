@@ -27,6 +27,7 @@ We release holistic and self contained WebComponents based on the [custom elemen
 - [AXA Button Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button-link)
 - [AXA Checkbox](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/checkbox)
 - [AXA Container](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/container)
+- [AXA Cookie Disclaimer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/cookie-disclaimer)
 - [AXA Icon](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/icon)
 - [AXA Input File](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/input-file)
 - [AXA Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/link)
