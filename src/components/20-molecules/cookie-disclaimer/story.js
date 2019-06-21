@@ -5,9 +5,7 @@ import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border/no-border';
 
 storiesOf('Molecules/Cookie disclaimer', module)
-  .addDecorator(story => {
-    return withNoBorder(story);
-  })
+  .addDecorator(withNoBorder)
   .addParameters({
     readme: {
       sidebar: Readme,
