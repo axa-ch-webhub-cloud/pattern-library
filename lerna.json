@@ -10,7 +10,6 @@
     "src/components/10-atoms/fieldset",
     "src/components/10-atoms/input-file",
     "src/components/10-atoms/link",
-    "src/components/10-atoms/text",
     "src/components/20-molecules/footer-small",
     "src/components/20-molecules/cookie-disclaimer",
     "src/components/30-organisms/table",
