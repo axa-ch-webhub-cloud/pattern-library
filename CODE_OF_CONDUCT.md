@@ -13,7 +13,7 @@ In that context, we document everything that is relevant for other developers.
 Given multiple conflicting opinions, we make decisions purely based on democratic principles, i.e. the opinion that gets approved by the majority wins. We write down such decisions, so that we won't lose time over the same topic in the future. Once a decision is approved, personal opinions are ignored.
 
 ## Our coding agreements
-We make sure that our code respects **ESlint, StyleLint and EditorConfig** settings. We can challenge those settings, but won't add our own code style if it goes against those settings.
+We make sure that our code respects **Prettier, ESlint, StyleLint and EditorConfig** settings. We can challenge those settings, but won't add our own code style if it goes against those settings.
 
 ## Our Pull Request culture
 We love to give and receive feedbacks on our pull requests (short: PRs). Every feedback is *per se* legitimate.
