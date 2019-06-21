@@ -44,7 +44,7 @@ module.exports = ({ config }) => {
       exclude: /node_modules\/(?![lit\-element|lit\-html])/,
       loader: 'babel-loader',
       options: {...babelOptions, presets: [...babelOptions.presets, '@babel/preset-react']},
-    }
+    },
   );
 
   return config;
