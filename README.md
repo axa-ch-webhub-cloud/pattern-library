@@ -30,6 +30,7 @@ We release holistic and self contained WebComponents based on the [custom elemen
 - [AXA Cookie Disclaimer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/cookie-disclaimer)
 - [AXA Icon](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/icon)
 - [AXA Input File](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/input-file)
+- [AXA Input Text](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/input-text)
 - [AXA Materials](https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials)
 - [AXA Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/link)
 - [AXA Fieldset](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/fieldset)
