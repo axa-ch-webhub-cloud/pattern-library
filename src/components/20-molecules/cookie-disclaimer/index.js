@@ -35,6 +35,10 @@ class AXACookieDisclaimer extends LitElement {
     if (this.hasAccepted()) {
       this.selfDestruction();
     } else {
+      // Necessary to inject in the local dom a style tag for resetting
+      // the p tag as its is within 2 shadow roots (axa-cookie-disclaimer and axa-container).
+      // Property ::slotted has not beign used due to IE and EDGE compatibility
+      // and its standard-ification is still "Working Draft" the 21.06.2019
       const resetStyle = document.createElement('style');
       resetStyle.textContent = `
         axa-cookie-disclaimer p {
