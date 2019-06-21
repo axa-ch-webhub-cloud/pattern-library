@@ -20,7 +20,6 @@ storyButton.add('Button - default', () => {
     Red: 'red',
     Secondary: 'secondary',
     Inverted: 'inverted',
-    // large should be a variant and not a separate prop as it's a visual prop
   };
 
   const buttonText = text('Text', 'Click me');
