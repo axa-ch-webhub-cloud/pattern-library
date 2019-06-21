@@ -60,7 +60,7 @@ class AXAInputText extends NoShadowDOM {
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
-    this.refId = this.id || `input-text-${createRefId()}`;
+    this.refId = '';
   }
 
   set value(val) {
@@ -141,6 +141,7 @@ class AXAInputText extends NoShadowDOM {
 
   firstUpdated() {
     this.nativeInput = this.querySelector('input');
+    this.refId = this.id || `input-text-${createRefId()}`;
   }
 
   render() {

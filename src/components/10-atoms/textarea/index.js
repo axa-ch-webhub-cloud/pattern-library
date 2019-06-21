@@ -16,7 +16,6 @@ class AXATextarea extends NoShadowDOM {
   }
 
   static get properties() {
-    // Define properties and types
     return {
       id: { type: String },
       name: { type: String },
@@ -25,12 +24,18 @@ class AXATextarea extends NoShadowDOM {
       value: { type: String },
       error: { type: String },
       valid: { type: Boolean },
+      validation: { type: Boolean },
       inputFocus: { type: Boolean },
       wasFocused: { type: Boolean },
       wasBlurred: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
       isReact: { type: Boolean },
+
+      counter: { type: String },
+      modelCounter: { type: String },
+      counterError: { type: String },
+      maxLength: { type: Number },
     };
   }
 
@@ -41,10 +46,15 @@ class AXATextarea extends NoShadowDOM {
     this.label = '';
     this.placeholder = '';
     this.error = '';
+    this.validation = false;
     this.required = false;
     this.valid = true;
     this.disabled = false;
     this.isReact = false;
+    this.counter = '';
+    this.modelCounter = '';
+    this.maxLength = 0;
+
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
@@ -56,16 +66,18 @@ class AXATextarea extends NoShadowDOM {
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
-    this.refId = this.id || `textarea-${createRefId()}`;
+    this.refId = '';
   }
 
   set value(val) {
     const { isControlled } = this;
+
     if (!isControlled && val !== undefined) {
       this.isControlled = true;
     }
     const oldVal = this.modelValue;
     this.modelValue = val;
+
     this.requestUpdate('value', oldVal);
   }
 
@@ -77,6 +89,60 @@ class AXATextarea extends NoShadowDOM {
     } = this;
 
     return isControlled ? modelValue : nativeValue;
+  }
+
+  get charsLeft() {
+    const {
+      maxLength,
+      nativeInput: { value: nativeValue },
+    } = this;
+
+    if (nativeValue) {
+      return maxLength - nativeValue.length;
+    }
+
+    return maxLength;
+  }
+
+  get getCounterText() {
+    return this.counter.replace(/##.*##/, this.charsLeft);
+  }
+
+  get areCharsLeft() {
+    return this.charsLeft !== 0;
+  }
+
+  get isRequiredError() {
+    return this.required && !this.value;
+  }
+
+  get isInvalid() {
+    return !this.valid || this.isRequiredError;
+  }
+
+  get isErrorOrCounterError() {
+    return this.isInvalid && !this.inputFocus || this.maxLength && !this.areCharsLeft && this.touched;
+  }
+
+  get showCounter() {
+    return this.maxLength && !this.isInvalid && this.areCharsLeft;
+  }
+
+  get touched() {
+    return this.wasBlurred && this.wasFocused;
+  }
+
+  get showError() {
+    return this.error && this.isInvalid && this.touched;
+  }
+
+  get showCounterError() {
+    return (
+      this.maxLength &&
+      this.counterError &&
+      this.charsLeft === 0 &&
+      !this.isInvalid
+    );
   }
 
   handleFocus = ev => {
@@ -109,10 +175,18 @@ class AXATextarea extends NoShadowDOM {
       // yes, set UI from model state
       this.nativeInput.value = this.modelValue;
     }
+
+    if (this.maxLength) {
+      this.modelCounter = this.getCounterText;
+    }
   };
 
   firstUpdated() {
-    this.nativeInput = this.querySelector('input');
+    this.nativeInput = this.querySelector('textarea');
+    this.refId = this.id || `textarea-${createRefId()}`;
+    this.modelCounter =
+      (this.maxLength && this.counter && this.getCounterText) ||
+      `${this.charsLeft}`;
   }
 
   render() {
@@ -122,6 +196,9 @@ class AXATextarea extends NoShadowDOM {
       value,
       label = '',
       error = '',
+      modelCounter = '',
+      counterError = '',
+      maxLength = 0,
       placeholder,
       disabled,
       isReact,
@@ -133,7 +210,12 @@ class AXATextarea extends NoShadowDOM {
 
     const textareaClasses = {
       'a-textarea__textarea': true,
-      'a-textarea__textarea--error': this.showInputError,
+      'a-textarea__textarea--error': this.isErrorOrCounterError,
+    };
+
+    const textareaMessagesClasses = {
+      'a-textarea__messages': true,
+      'a-textarea__messages--error': this.isErrorOrCounterError,
     };
 
     return html`
@@ -153,15 +235,28 @@ class AXATextarea extends NoShadowDOM {
           @input="${this.handleInput}"
           @focus="${this.handleFocus}"
           @blur="${this.handleBlur}"
+          maxlength="${maxLength}"
           id="${refId}"
-          class=" ${classMap(textareaClasses)}"
+          class="${classMap(textareaClasses)}"
           autocomplete="off"
           name="${name}"
           value="${value}"
           placeholder="${placeholder}"
           ?disabled="${disabled}"
           aria-required="${required}"
-        />
+        ></textarea>
+        <div class="${classMap(textareaMessagesClasses)}">
+          ${this.showCounter
+            ? html`
+                <span>${modelCounter}</span>
+              `
+            : ''}
+          ${this.showCounterError ?
+            html`
+              <span>${counterError}</span>
+            ` : ''}
+          ${this.showError ? html`<span>${error}</span>` : ''}
+        </div>
       </div>
     `;
   }

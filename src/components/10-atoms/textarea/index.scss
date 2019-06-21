@@ -25,7 +25,7 @@ axa-textarea {
     box-sizing: border-box;
     color: $color-prim-gray-mine-shaft;
     height: 169px;
-    padding: 0 20px;
+    padding: 10px 20px;
     width: 100%;
 
     &::placeholder {
@@ -74,14 +74,13 @@ axa-textarea {
     margin-bottom: 10px;
   }
 
-  .a-textarea__error {
+  .a-textarea__messages {
     @include typo();
     margin-top: 10px;
-    color: $color-validation-error;
+  }
 
-    &--hidden {
-      display: none;
-    }
+  .a-textarea__messages--error {
+    color: $color-validation-error;
   }
 
   //.a-textarea__check-wrapper {

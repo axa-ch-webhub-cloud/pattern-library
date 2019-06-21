@@ -5,13 +5,17 @@ interface AXATextareaProps {
   name: string;
   label?: string;
   placeholder?: string;
+  value?: string;
   error?: string;
   type?: string;
   valid?: boolean;
+  validation?: boolean;
   required?: boolean;
   disabled?: boolean;
-  validation?: boolean;
   isReact?: boolean;
+  counter?: string;
+  counterError?: string;
+  maxLength?: number;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: () => void;
