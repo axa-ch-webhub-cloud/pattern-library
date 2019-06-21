@@ -51,7 +51,7 @@ class AXACookieDisclaimer extends LitElement {
     }
   }
 
-  handleButtonClick() {
+  handleButtonClick(ev) {
     const { localStorage } = _global;
     if (localStorage) {
       this.selfDestruction();
@@ -60,6 +60,7 @@ class AXACookieDisclaimer extends LitElement {
         new Date().getTime()
       );
     }
+    this.onClick(ev);
   }
 
   selfDestruction() {
@@ -86,13 +87,7 @@ class AXACookieDisclaimer extends LitElement {
               <slot></slot>
             </div>
             <div class="m-cookie-disclaimer__container--rx">
-              <axa-button
-                @click="${ev => {
-                  this.onClick(ev);
-                  this.handleButtonClick();
-                }}"
-                variant="inverted"
-              >
+              <axa-button @click="${this.handleButtonClick}" variant="inverted">
                 ${buttonname}
               </axa-button>
             </div>
