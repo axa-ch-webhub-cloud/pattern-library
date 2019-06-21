@@ -37,7 +37,7 @@ test('should store in localStorage the date of when accepted', async t => {
   const time = new Date().getTime();
   await t
     .expect(parseInt(await timeStamp(), 10))
-    .within(time - 100, time + 100);
+    .within(time - 1000, time + 1000);
 });
 
 test('should not render once accepted', async t => {

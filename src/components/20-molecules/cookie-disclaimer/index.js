@@ -18,7 +18,6 @@ class AXACookieDisclaimer extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
       onClick: { type: Function },
       buttonname: { type: String },
