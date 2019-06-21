@@ -28,8 +28,7 @@ export default AXAImageUploadReact;
 ```
 
 ```js
-<AXAImageUploadReact onClick={handler}>
-</AXAImageUploadReact>
+<AXAImageUploadReact onClick={handler} />
 ```
 
 ### Pure HTML pages
@@ -56,9 +55,18 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute                     | Details         |
+| ----------------------------- | --------------- |
+| `inputFileText="foo"`         | Desc of Variant |
+| `maxSizeOfSingleFileMB="foo"` | Desc of Variant |
+| `maxSizeOfAllFilesMB="foo"`   | Desc of Variant |
+| `maxNumberOfFiles="foo"`      | Desc of Variant |
+| `showImageOverview="foo"`     | Desc of Variant |
+| `icon="foo"`                  | Desc of Variant |
+| `finalFiles="foo"`            | Desc of Variant |
+| `wrongFiles="foo"`            | Desc of Variant |
+| `errorStatusText="foo"`       | Desc of Variant |
+| `deleteStatusText="foo"`      | Desc of Variant |
 
 ### Bar
 

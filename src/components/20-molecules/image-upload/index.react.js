@@ -3,20 +3,30 @@ import AXAImageUpload from './index';
 
 export default createElement => ({
   inputFileText = 'Upload file',
-  maxSizeFileMB = 15,
+  maxSizeOfSingleFileMB = 15,
+  maxSizeOfAllFilesMB = 20,
   maxNumberOfFiles = 10,
   showImageOverview = false,
   icon = 'upload-cloud',
+  finalFiles = [],
+  wrongFiles = [],
+  errorStatusText = 'Error occured',
+  deleteStatusText = 'Delete',
   children,
 }) =>
   withReact(createElement)(
     AXAImageUpload.tagName,
     {
       inputFileText,
-      maxSizeFileMB,
+      maxSizeOfSingleFileMB,
+      maxSizeOfAllFilesMB,
       maxNumberOfFiles,
       showImageOverview,
       icon,
+      finalFiles,
+      wrongFiles,
+      errorStatusText,
+      deleteStatusText,
     },
     children
   );

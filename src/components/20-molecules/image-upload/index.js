@@ -30,10 +30,15 @@ class AXAImageUpload extends LitElement {
   static get properties() {
     return {
       inputFileText: { type: String },
-      maxSizeFileMB: { type: Number },
+      maxSizeOfSingleFileMB: { type: Number },
+      maxSizeOfAllFilesMB: { type: Number },
       maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
       icon: { type: String },
+      finalFiles: { type: Object },
+      wrongFiles: { type: Object },
+      errorStatusText: { type: String },
+      deleteStatusText: { type: String },
       onClick: { type: Function },
     };
   }
@@ -41,12 +46,16 @@ class AXAImageUpload extends LitElement {
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeFileMB = 15;
+    this.maxSizeOfSingleFileMB = 10;
+    this.maxSizeOfAllFilesMB = 20;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
-    this.icon = 'upload-cloud';
+    this.icon = 'upload'; // TODO change to upload-cloud
     this.finalFiles = [];
     this.wrongFiles = [];
+    this.allFiles = [];
+    this.errorStatusText = 'Error occured';
+    this.deleteStatusText = 'Delete';
     this.onClick = () => {};
 
     this.allImagesInput = [];
