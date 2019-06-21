@@ -4,21 +4,9 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
-// import withNoBorder from '../../../../../.storybook/addons/no-border/react/no-border-react';
+import { withNoBorderReact as withNoBorder } from '../../../../../.storybook/addons/no-border/no-border';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
-
-// TODO:: Make it work in react. We receive a HTMLObject and have to wrap it.
-const withNoBorder = storyFn => {
-  const div = document.createElement('div');
-  // const existingElement = wrapper; // story is a [HTMLObject...]
-  // If we get this work, we can als render a style tag;
-  ReactDOM.render(
-    <div style={{ padding: '10px', background: 'hotpink' }}>{storyFn()}</div>,
-    div
-  );
-  return div;
-};
 
 storiesOf('Molecules/Cookie disclaimer/React', module)
   .addDecorator(withNoBorder)
@@ -33,6 +21,7 @@ storiesOf('Molecules/Cookie disclaimer/React', module)
     ReactDOM.render(
       <AXACookieDisclaimerReact
         onClick={() => {
+          // eslint-disable-next-line no-console
           console.log('Pressed');
         }}
         title="Any Title"
