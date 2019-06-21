@@ -14,7 +14,6 @@ const INFO = 'Drag and drop to upload your file';
 
 // TODO -> move all icons to materials
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
-const DeleteIcon = svg([DeleteSvg]);
 
 class AXAImageUpload extends LitElement {
   static get tagName() {

@@ -9,5 +9,5 @@ storiesOf('Molecules/Image upload', module)
   .add(
     'Image upload - default',
     () =>
-      `<div style="width:453px;"><axa-image-upload>Image Upload</axa-image-upload></div>`
+      `<div style="width:453px;"><axa-image-upload>Folgende Dateien werden übertragen</axa-image-upload></div>`
   );
