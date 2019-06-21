@@ -1,0 +1,1 @@
+export default story => `<style>.sb-show-main{margin: 0}</style><div>${story()}</div>`

@@ -1,7 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import withNoBorder from '../../../../.storybook/addons/no-border';
+import withNoBorder from '../../../../.storybook/addons/no-border/no-border';
 import Readme from './README.md';
 
 storiesOf('Molecules/Footer Small', module)
