@@ -62,6 +62,7 @@ class AXAImageUpload extends LitElement {
 
   firstUpdated() {
     this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
+    this.inputFile = this.shadowRoot.querySelector('.m-image-upload__input');
     this.addImageButton = this.shadowRoot.querySelector(
       '.js-image-upload__icon-hover-area'
     );
@@ -92,28 +93,32 @@ class AXAImageUpload extends LitElement {
                 <p class="m-image-upload__information">${INFO}</p>
                 <p class="m-image-upload__or">${OR}</p>
                 <axa-input-file
+                  class="m-image-upload__input"
                   accept="image/jpg, image/jpeg, application/pdf, image/png"
                   icon="${this.icon}"
                   multiple
                   @change=${this.handleImageUploadButtonChange}
+                  @click=${this.handleImageUploadButtonClick}
                   variant="red"
                 >
                   ${this.inputFileText}
                 </axa-input-file>
               `
-            : this.finalFiles.map(file => {
+            : this.allFiles.map((file, i) => {
                 const imageUrl = urlCreator.createObjectURL(file);
                 return html`
                 <figure class="m-image-upload__img-figure js-image-upload__img-figure">
                   <div class="m-image-upload__icon-hover-area"
-                  @click=${this.handleImageClick}>
+                  @click=${this.handleImageClick}
+                  @mouseover=${e => this.handleImageMouseover(i, e)}
+                  @mouseout=${e => this.handleImageMouseout(i, e)}>
                     <img
                       class="m-image-upload__img-element"
                       src="${imageUrl}"
                       alt="${file.name}">
                     </img>
-                    <div class="m-image-upload__icon-layer">${DeleteIcon}</div>
-                    <figcaption class="m-image-upload__img-caption">${
+                    <div class="m-image-upload__icon-layer js-image-upload__icon-layer"></div>
+                    <figcaption class="m-image-upload__img-caption js-image-upload__img-caption">${
                       file.name
                     }</figcaption>
                   </div>
@@ -123,6 +128,14 @@ class AXAImageUpload extends LitElement {
         </section>
       </article>
     `;
+  }
+
+  handleImageUploadDropZoneClick() {
+    // this.inputFile.querySelector('input').click();
+  }
+
+  handleImageUploadButtonClick(e) {
+    e.stopPropagation();
   }
 
   handleImageUploadButtonChange(e) {
@@ -150,7 +163,42 @@ class AXAImageUpload extends LitElement {
 
   handleImageClick() {
     this.shadowRoot.querySelector('.js-image-upload__img-figure').remove();
+    if (this.dropZone.children.length === 0) {
+      this.showImageOverview = false;
+    }
   }
+
+  handleImageMouseover = i => {
+    console.log('i,this', i, this);
+
+    this.imgCaptions = this.shadowRoot.querySelectorAll(
+      '.js-image-upload__img-caption'
+    );
+    this.iconLayers = this.shadowRoot.querySelectorAll(
+      '.js-image-upload__icon-layer'
+    );
+
+    if (this.wrongFiles.length > 0) {
+      this.wrongFiles.forEach(file => {
+        if (this.finalFiles[i] === file) {
+          this.imgCaptions[i].innerHTML = this.errorStatusText;
+          this.iconLayers[i].innerHTML = DeleteSvg; // TODO error image
+        } else {
+          this.imgCaptions[i].innerHTML = this.deleteStatusText;
+          this.iconLayers[i].innerHTML = DeleteSvg;
+        }
+      });
+    } else {
+      this.imgCaptions[i].innerHTML = this.deleteStatusText;
+      this.iconLayers[i].innerHTML = DeleteSvg;
+    }
+  };
+
+  handleImageMouseout = i => {
+    this.shadowRoot.querySelectorAll('.js-image-upload__img-caption')[
+      i
+    ].innerHTML = this.finalFiles[i].name;
+  };
 
   async addFiles(droppedFiles) {
     // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
@@ -165,8 +213,14 @@ class AXAImageUpload extends LitElement {
       }
     }
 
-    this.finalFiles = finalFiles;
-    this.wrongFiles = wrongFiles;
+    this.finalFiles = this.finalFiles.concat(finalFiles);
+    this.wrongFiles = this.wrongFiles.concat(wrongFiles);
+    this.allFiles = this.finalFiles.concat(this.wrongFiles);
+
+    console.log('this.finalFiles', this.finalFiles);
+    console.log('this.wrongFiles', this.wrongFiles);
+    console.log('this.allFiles', this.allFiles);
+
     this.showImageOverview = true;
   }
 }
