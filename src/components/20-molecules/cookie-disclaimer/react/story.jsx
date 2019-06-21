@@ -2,15 +2,18 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
+import wrap from '../../../../demo/react/utils/wrap-render-react';
 import AXALinkReact from './AXALinkReact';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
-import wrap from '../../../../demo/react/utils/wrap-render-react';
-
 storiesOf('Molecules/Cookie disclaimer/React', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addDecorator(withNoBorder)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   /* Default */
   .add('Cookie disclaimer - default', () => {
     return wrap(

@@ -1,13 +1,16 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
-import withBodyReset from '../../../../.storybook/addons/reset-body';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 
 storiesOf('Molecules/Cookie disclaimer', module)
-  .addDecorator(withMarkdown(Readme))
-  .addDecorator(withBodyReset())
+  .addDecorator(withNoBorder)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Cookie disclaimer - default', () => {
     const cookieDisclaimer = document.createElement('axa-cookie-disclaimer');
     cookieDisclaimer.setAttribute('buttonname', 'Akzeptieren');
