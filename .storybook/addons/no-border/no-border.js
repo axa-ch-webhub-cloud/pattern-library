@@ -9,4 +9,7 @@ export const withNoBorderReact = storyFn => {
     return div;
 };
 
-export default story => `<style>${noBorderStyles}</style><div>${story()}</div>`
+export default story => `
+    <style>${noBorderStyles}</style>
+    <div>${story()}</div>
+`
