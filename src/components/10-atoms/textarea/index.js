@@ -25,7 +25,6 @@ class AXATextarea extends NoShadowDOM {
       error: { type: String },
       valid: { type: Boolean },
       validation: { type: Boolean },
-      inputFocus: { type: Boolean },
       wasFocused: { type: Boolean },
       wasBlurred: { type: Boolean },
       required: { type: Boolean },
@@ -53,7 +52,6 @@ class AXATextarea extends NoShadowDOM {
     this.isReact = false;
     this.counter = '';
     this.modelCounter = '';
-    this.maxLength = 0;
 
     this.onFocus = () => {};
     this.onBlur = () => {};
@@ -67,6 +65,7 @@ class AXATextarea extends NoShadowDOM {
     this.modelValue = '';
     this.isControlled = false;
     this.refId = '';
+    this.isPlaceholderInCounter = false;
   }
 
   set value(val) {
@@ -104,8 +103,20 @@ class AXATextarea extends NoShadowDOM {
     return maxLength;
   }
 
-  get getCounterText() {
+  get replaceCounterPlaceholder() {
     return this.counter.replace(/##.*##/, this.charsLeft);
+  }
+
+  get getCounterText() {
+    if (this.counter && this.isPlaceholderInCounter) {
+      return this.replaceCounterPlaceholder;
+    }
+
+    if (this.counter) {
+      return `${this.charsLeft} ${this.counter}`;
+    }
+
+    return this.charsLeft;
   }
 
   get areCharsLeft() {
@@ -120,16 +131,19 @@ class AXATextarea extends NoShadowDOM {
     return !this.valid || this.isRequiredError;
   }
 
+  get touched() {
+    return this.wasBlurred && this.wasFocused;
+  }
+
   get isErrorOrCounterError() {
-    return this.isInvalid && !this.inputFocus || this.maxLength && !this.areCharsLeft && this.touched;
+    return (
+      (this.isInvalid && !this.inputFocus && this.touched) ||
+      (this.maxLength && !this.areCharsLeft && this.touched)
+    );
   }
 
   get showCounter() {
     return this.maxLength && !this.isInvalid && this.areCharsLeft;
-  }
-
-  get touched() {
-    return this.wasBlurred && this.wasFocused;
   }
 
   get showError() {
@@ -140,7 +154,7 @@ class AXATextarea extends NoShadowDOM {
     return (
       this.maxLength &&
       this.counterError &&
-      this.charsLeft === 0 &&
+      !this.areCharsLeft &&
       !this.isInvalid
     );
   }
@@ -153,10 +167,6 @@ class AXATextarea extends NoShadowDOM {
       this.wasFocused = true;
     }
   };
-
-  get showValidation() {
-    return this.validation || this.required;
-  }
 
   handleBlur = ev => {
     this.onBlur(ev);
@@ -184,9 +194,8 @@ class AXATextarea extends NoShadowDOM {
   firstUpdated() {
     this.nativeInput = this.querySelector('textarea');
     this.refId = this.id || `textarea-${createRefId()}`;
-    this.modelCounter =
-      (this.maxLength && this.counter && this.getCounterText) ||
-      `${this.charsLeft}`;
+    this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
+    this.modelCounter = this.getCounterText;
   }
 
   render() {
@@ -198,7 +207,7 @@ class AXATextarea extends NoShadowDOM {
       error = '',
       modelCounter = '',
       counterError = '',
-      maxLength = 0,
+      maxLength,
       placeholder,
       disabled,
       isReact,
@@ -222,7 +231,7 @@ class AXATextarea extends NoShadowDOM {
       <div class="a-textarea__wrapper">
         ${label &&
           html`
-            <label for="${refId}" class="a-textarea__label}}">
+            <label for="${refId}" class="a-textarea__label">
               ${label}
               ${required
                 ? html`
@@ -235,8 +244,8 @@ class AXATextarea extends NoShadowDOM {
           @input="${this.handleInput}"
           @focus="${this.handleFocus}"
           @blur="${this.handleBlur}"
-          maxlength="${maxLength}"
           id="${refId}"
+          maxlength="${maxLength}"
           class="${classMap(textareaClasses)}"
           autocomplete="off"
           name="${name}"
@@ -251,11 +260,16 @@ class AXATextarea extends NoShadowDOM {
                 <span>${modelCounter}</span>
               `
             : ''}
-          ${this.showCounterError ?
-            html`
-              <span>${counterError}</span>
-            ` : ''}
-          ${this.showError ? html`<span>${error}</span>` : ''}
+          ${this.showCounterError
+            ? html`
+                <span>${counterError}</span>
+              `
+            : ''}
+          ${this.showError
+            ? html`
+                <span>${error}</span>
+              `
+            : ''}
         </div>
       </div>
     `;

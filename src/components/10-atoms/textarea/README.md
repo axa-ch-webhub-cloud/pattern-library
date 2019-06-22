@@ -1,6 +1,6 @@
 # Textarea
 
-TODO Description
+The &lt;axa-textarea&gt; component is a wrapper for the HTML &lt;textarea&gt; element with custom styling and additional functionality, amongst other things a counter.
 
 ## Usage
 
@@ -28,8 +28,7 @@ export default AXATextareaReact;
 ```
 
 ```js
-<AXATextareaReact onClick={handler}>
-</AXATextareaReact>
+<AXATextareaReact onChange={handleChange} />
 ```
 
 ### Pure HTML pages
@@ -54,16 +53,60 @@ Import the textarea-defining script and use a textarea like this:
 
 ## Properties
 
-### Variant
+#### label
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+The string-valued `label` provides the label text as HTML.
 
-### Bar
+_Note: The consumer is responsible for sanitizing the HTML provided!_
 
-The attribute `bar` specifies...
+### name\*
 
-### onClick
+The string-valued `name` of the element for purposes of form submission.
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+### required
+
+The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true and the element´s `value` is not empty, it shows an animated checkmark to the right of the element and displays `*` after the label text.
+
+### placeholder
+
+String-valued `placeholder`specifies the placeholder text shown when the element is empty.
+
+### valid
+
+The boolean attribute `valid` serves to indicate the validity of the element (default: `true`), if `false` it sets the element into a visual error state.
+
+### validation
+
+The boolean attribute `validation` shows an animated checkmark to the right of the textarea, if `valid` is true (default: `false`).
+
+### value
+
+The string-valued `value` sets the value of the underlying native HTML &lt;textarea&gt;
+
+### disabled
+
+The boolean attribute `disabled` disables the underlying native HTML &lt;textarea&gt; text.
+
+### error
+
+The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
+
+### counter
+
+The string-valued `counter` provides error text as HTML. It sets the element into a visual error state, if `maxlength` is set.
+
+### counterError
+
+The string-valued `countererror` provides error text as HTML, if `maxlength` is set.
+
+### onChange
+
+The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
+
+### onFocus
+
+The function-valued property `onFocus` can be used as a callback prop for React and other frameworks.
+
+### onBlur
+
+The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
