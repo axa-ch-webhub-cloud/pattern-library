@@ -51,10 +51,15 @@ storyButton.add('Button - default', () => {
   const large = boolean('large', false); // should probably be a variant.
   const type = radios('Types', { submit: 'submit', reset: 'reset' });
 
-  return `<div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
-    <axa-button ${disabled ? 'disabled' : ''} ${
-    large ? 'large' : ''
-  } type='${type}' variant='${variants}' ${
-    motionOff ? 'motionoff' : ''
-  } icon='${icons}'>${buttonText}</axa-button></div>`;
+  return `
+  <div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
+    <axa-button
+      ${disabled ? 'disabled' : ''}
+      ${large ? 'large' : ''}
+      type='${type}'
+      variant='${variants}'
+      ${motionOff ? 'motionoff' : ''}
+      icon='${icons}'>${buttonText}
+    </axa-button>
+  </div>`;
 });

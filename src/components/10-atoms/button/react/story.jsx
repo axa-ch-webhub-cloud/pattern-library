@@ -72,14 +72,4 @@ storyButton
       div
     );
     return div;
-  })
-
-  /* Icon */
-  .add('Button - icon', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonReact icon="arrow-right">Icon</AXAButtonReact>,
-      div
-    );
-    return div;
   });
