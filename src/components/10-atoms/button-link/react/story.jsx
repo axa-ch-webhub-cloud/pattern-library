@@ -19,7 +19,7 @@ storiesOf('Atoms/Button Link/React', module)
   })
 
   /* External */
-  .add('Button-Link - default', () => {
+  .add('Button-Link - default - External', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <AXAButtonLinkReact href="https://axa.ch/" external>
