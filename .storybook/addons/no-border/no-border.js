@@ -1,15 +1,21 @@
-const noBorderStyles = '.sb-show-main{margin: 0}';
+// Sometimes we receive (storyFn()) a DOMNode which we have to append
+// Sometimes it's already the finalized HTML String.
+export default storyFn => {
+    const noBorderStyles = '.sb-show-main{ margin: 0; }';
 
-export const withNoBorderReact = storyFn => {
-    const div = document.createElement('div');
-    const style = document.createElement('style');
-    style.innerHTML = noBorderStyles;
-    div.appendChild(style);
-    div.appendChild(storyFn());
-    return div;
+    if (typeof storyFn() === 'string') {
+        return `
+            <style>${noBorderStyles}</style>
+            <div>${storyFn()}<div>
+        `
+    };
+
+    if (typeof storyFn() === 'object') {
+        const div = document.createElement('div');
+        const style = document.createElement('style');
+        style.innerHTML = noBorderStyles;
+        div.appendChild(style);
+        div.appendChild(storyFn());
+        return div;
+    };
 };
-
-export default story => `
-    <style>${noBorderStyles}</style>
-    <div>${story()}</div>
-`
