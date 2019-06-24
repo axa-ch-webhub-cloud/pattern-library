@@ -12,6 +12,7 @@ export default createElement => ({
   wrongFiles = [],
   errorStatusText = 'Error occured',
   deleteStatusText = 'Delete',
+  addStatusText = 'Add more',
   children,
 }) =>
   withReact(createElement)(
@@ -27,6 +28,7 @@ export default createElement => ({
       wrongFiles,
       errorStatusText,
       deleteStatusText,
+      addStatusText,
     },
     children
   );

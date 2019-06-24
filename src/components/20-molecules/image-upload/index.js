@@ -2,7 +2,12 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
-import { ImageUploadGroupSvg, DeleteSvg } from './icons';
+import {
+  ImageUploadGroupSvg,
+  DeleteSvg,
+  PlusRoundedSvg,
+  TickSvg,
+} from './icons';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
@@ -14,6 +19,10 @@ const INFO = 'Drag and drop to upload your file';
 
 // TODO -> move all icons to materials
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
+const PlusRoundedIcon = svg([PlusRoundedSvg]);
+const DeleteIcon = svg([DeleteSvg]);
+const TickIcon = svg([TickSvg]);
+// upload-cloud, cross
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -38,6 +47,7 @@ class AXAImageUpload extends LitElement {
       wrongFiles: { type: Object },
       errorStatusText: { type: String },
       deleteStatusText: { type: String },
+      addStatusText: { type: String },
       onClick: { type: Function },
     };
   }
@@ -52,9 +62,9 @@ class AXAImageUpload extends LitElement {
     this.icon = 'upload'; // TODO change to upload-cloud
     this.finalFiles = [];
     this.wrongFiles = [];
-    this.allFiles = [];
     this.errorStatusText = 'Error occured';
     this.deleteStatusText = 'Delete';
+    this.addStatusText = 'Add more';
     this.onClick = () => {};
 
     this.allImagesInput = [];
@@ -72,7 +82,61 @@ class AXAImageUpload extends LitElement {
     const classes = {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
+
     const urlCreator = window.URL || window.webkitURL;
+    const imageOverview = this.finalFiles.map((file, i) => {
+      const isFile = ~file.type.indexOf('application');
+      const imageUrl = urlCreator.createObjectURL(file);
+      return html`
+        <figure class="m-image-upload__img-figure js-image-upload__img-figure">
+          <div
+            class="m-image-upload__icon-hover-area"
+            @click=${e => this.handleImageClick(i, e)}
+            @mouseover=${e => this.handleImageMouseover(i, e)}
+            @mouseout=${e => this.handleImageMouseout(i, e)}
+          >
+            ${isFile
+              ? html`
+                  <span className="m-image-upload__file-element">
+                    ${TickIcon}</span
+                  >
+                `
+              : html`
+                  <img
+                    class="m-image-upload__img-element"
+                    src="${imageUrl}"
+                    alt="${file.name}"
+                  />
+                `}
+            <div
+              class="m-image-upload__icon-layer js-image-upload__icon-layer"
+            ></div>
+          </div>
+          <figcaption
+            class="m-image-upload__img-caption js-image-upload__img-caption"
+          >
+            ${file.name}
+          </figcaption>
+        </figure>
+      `;
+    });
+
+    const addMoreInputFile = html`
+      <figure
+        class="m-image-upload__img-figure m-image-upload__add-more js-image-upload__img-figure"
+      >
+        <div
+          class="m-image-upload__icon-layer"
+          @click=${this.handleAddMoreInputClick}
+        >
+          ${PlusRoundedIcon}
+        </div>
+        <figcaption class="m-image-upload__img-caption">
+          ${this.addStatusText}
+        </figcaption>
+      </figure>
+    `;
+
     return html`
       <article class="m-image-upload">
         <h1><slot></slot></h1>
@@ -80,14 +144,13 @@ class AXAImageUpload extends LitElement {
           @dragover="${this.handleImageUploadDropZoneDragover}"
           @dragleave="${this.handleImageUploadDropZoneDragleave}"
           @drop="${this.handleImageUploadDropZoneDrop}"
-          @click="${this.handleImageUploadDropZoneClick}"
           class="m-image-upload__dropzone js-image-upload__dropzone ${classMap(
             classes
           )}"
         >
           ${!this.showImageOverview
             ? html`
-                <div class="m-image-upload__icons">
+                <div>
                   ${ImageUploadGroupIcon}
                 </div>
                 <p class="m-image-upload__information">${INFO}</p>
@@ -104,34 +167,16 @@ class AXAImageUpload extends LitElement {
                   ${this.inputFileText}
                 </axa-input-file>
               `
-            : this.allFiles.map((file, i) => {
-                const imageUrl = urlCreator.createObjectURL(file);
-                return html`
-                <figure class="m-image-upload__img-figure js-image-upload__img-figure">
-                  <div class="m-image-upload__icon-hover-area"
-                  @click=${this.handleImageClick}
-                  @mouseover=${e => this.handleImageMouseover(i, e)}
-                  @mouseout=${e => this.handleImageMouseout(i, e)}>
-                    <img
-                      class="m-image-upload__img-element"
-                      src="${imageUrl}"
-                      alt="${file.name}">
-                    </img>
-                    <div class="m-image-upload__icon-layer js-image-upload__icon-layer"></div>
-                    <figcaption class="m-image-upload__img-caption js-image-upload__img-caption">${
-                      file.name
-                    }</figcaption>
-                  </div>
-                </figure>
-              `;
-              })}
+            : html`
+                ${imageOverview} ${addMoreInputFile}
+              `}
         </section>
       </article>
     `;
   }
 
-  handleImageUploadDropZoneClick() {
-    // this.inputFile.querySelector('input').click();
+  handleAddMoreInputClick() {
+    this.inputFile.querySelector('input').click();
   }
 
   handleImageUploadButtonClick(e) {
@@ -157,14 +202,20 @@ class AXAImageUpload extends LitElement {
   handleImageUploadDropZoneDrop(e) {
     e.preventDefault();
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-    const { files } = e.dataTransfer;
-    this.addFiles(files);
+    this.addFiles(e.dataTransfer.files);
   }
 
-  handleImageClick() {
-    this.shadowRoot.querySelector('.js-image-upload__img-figure').remove();
-    if (this.dropZone.children.length === 0) {
+  handleImageClick(i, e) {
+    console.log('e', e, e.target.parentNode.nodeName);
+
+    this.shadowRoot
+      .querySelectorAll('.js-image-upload__img-figure')
+      [i].remove();
+    // TODO remove from array
+    if (this.dropZone.children.length === 1) {
       this.showImageOverview = false;
+      this.wrongFiles = [];
+      this.finalFile = [];
     }
   }
 
@@ -183,21 +234,23 @@ class AXAImageUpload extends LitElement {
         if (this.finalFiles[i] === file) {
           this.imgCaptions[i].innerHTML = this.errorStatusText;
           this.iconLayers[i].innerHTML = DeleteSvg; // TODO error image
+          this.imgCaptions[i].setAttribute('style', 'color:red;'); // todo axa color
         } else {
           this.imgCaptions[i].innerHTML = this.deleteStatusText;
           this.iconLayers[i].innerHTML = DeleteSvg;
+          this.imgCaptions[i].setAttribute('style', 'color:blue;');
         }
       });
     } else {
       this.imgCaptions[i].innerHTML = this.deleteStatusText;
       this.iconLayers[i].innerHTML = DeleteSvg;
+      this.imgCaptions[i].setAttribute('style', 'color:blue;');
     }
   };
 
   handleImageMouseout = i => {
-    this.shadowRoot.querySelectorAll('.js-image-upload__img-caption')[
-      i
-    ].innerHTML = this.finalFiles[i].name;
+    this.imgCaptions[i].innerHTML = this.finalFiles[i].name;
+    this.imgCaptions[i].removeAttribute('style');
   };
 
   async addFiles(droppedFiles) {
@@ -215,11 +268,9 @@ class AXAImageUpload extends LitElement {
 
     this.finalFiles = this.finalFiles.concat(finalFiles);
     this.wrongFiles = this.wrongFiles.concat(wrongFiles);
-    this.allFiles = this.finalFiles.concat(this.wrongFiles);
 
     console.log('this.finalFiles', this.finalFiles);
     console.log('this.wrongFiles', this.wrongFiles);
-    console.log('this.allFiles', this.allFiles);
 
     this.showImageOverview = true;
   }

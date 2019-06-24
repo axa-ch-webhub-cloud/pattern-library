@@ -11,6 +11,7 @@ interface AXAImageUploadProps {
   wrongFiles?: Object;
   errorStatusText?: String;
   deleteStatusText?: String;
+  addStatusText?: String;
   onClick?: () => void;
 }
 

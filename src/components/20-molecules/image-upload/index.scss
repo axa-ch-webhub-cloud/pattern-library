@@ -1,4 +1,6 @@
-$image-upload-dropzone-border: 2px !default;
+$image-upload-dropzone-border-width: 2px !default;
+
+$image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
 
 .m-image-upload {
   @include typo(primary, medium);
@@ -13,7 +15,7 @@ $image-upload-dropzone-border: 2px !default;
     justify-content: space-between;
     align-items: center;
 
-    border: $image-upload-dropzone-border dashed $color-prim-gray-dusty;
+    border: $image-upload-dropzone-border;
   }
 
   &__dropzone_dragover {
@@ -57,8 +59,8 @@ $image-upload-dropzone-border: 2px !default;
     .m-image-upload__img-element {
       opacity: 0.6;
     }
-    .m-image-upload__img-caption {
-      color: $color-axa-blue;
+    .m-image-upload__file-element {
+      opacity: 0.6;
     }
     .m-image-upload__icon-layer {
       display: block;
@@ -68,6 +70,10 @@ $image-upload-dropzone-border: 2px !default;
   &__img-element {
     width: 100%;
     height: 100%;
+  }
+
+  &__file-element {
+    // TODO einmitten
   }
 
   &__icon-layer {
@@ -96,8 +102,29 @@ $image-upload-dropzone-border: 2px !default;
   &__img-caption:hover {
     white-space: normal;
     overflow: visible;
-    text-overflow: unset; // TODO ?
+    text-overflow: unset;
     word-wrap: break-word;
-    // z-index: 100; TODO
+  }
+
+  &__add-more {
+    position: static;
+    height: 80px;
+    width: 120px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: $image-upload-dropzone-border;
+    color: $color-prim-gray-dusty;
+    .m-image-upload__icon-layer {
+      height: 80px;
+      width: 120px;
+      display: block;
+      position: relative;
+      text-align: center; // TODO vertical align
+      color: currentColor;// TODO set color
+    }
+    .m-image-upload__img-caption {
+      position: block;
+    }
+
   }
 }
