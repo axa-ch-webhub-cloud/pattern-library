@@ -227,7 +227,10 @@ test('should submit datepicker correctly in form', async t => {
   );
   await t.click('#datepicker-forms-submit');
   await t
-    .wait(50)
+    .wait(
+      50 /* give click handler time to set innerText below,
+            and then time for the DOM to stabilize */
+    )
     .expect((await Selector('#datepicker-forms-content')).innerText)
     .eql('date = 29.2.2020 (of 1 submittable elements)');
 });

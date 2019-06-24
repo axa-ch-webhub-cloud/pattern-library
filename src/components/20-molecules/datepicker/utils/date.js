@@ -1,8 +1,9 @@
 export const getStartOfWeek = date => {
-  const iDayOfWeek = date.getDay();
-  const iDifference = date.getDate() - iDayOfWeek + (iDayOfWeek === 0 ? -6 : 1);
+  const dayOfWeek = date.getDay();
+  const daysSinceBeginningOfMonth =
+    date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
   const newDate = new Date(date);
-  newDate.setDate(iDifference);
+  newDate.setDate(daysSinceBeginningOfMonth);
   return newDate;
 };
 
@@ -23,12 +24,12 @@ const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
 const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
 
-const zeroFill = (number, width) => {
-  const _number = number | 0; // coerce number to integer
-  const n_ = Math.abs(_number);
-  const zeros = Math.max(0, width - Math.floor(n_).toString().length);
-  const zeroString = (10 ** zeros).toString().slice(1);
-  return `${_number < 0 ? '-' : ''}${zeroString}${_number}`;
+const addLeadingZeroes = (rawNumber, numDigits) => {
+  const number = Math.abs(rawNumber | 0); // coerce number to integer >= 0
+  const rawNumDigits = number.toString().length;
+  const numMissingZeroes = Math.max(0, numDigits - rawNumDigits);
+  const leadingZeroesString = (10 ** numMissingZeroes).toString().slice(1); // slice(1): cut off leading '1'
+  return `${leadingZeroesString}${number}`;
 };
 
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
@@ -79,7 +80,10 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // explicitly constructing an unambiguous date string here,
   // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
   const dateAsUnixEpochInteger = Date.parse(
-    `${zeroFill(year, 4)}-${zeroFill(month, 2)}-${zeroFill(day, 2)}T00:00:00`
+    `${addLeadingZeroes(year, 4)}-${addLeadingZeroes(
+      month,
+      2
+    )}-${addLeadingZeroes(day, 2)}T00:00:00`
   );
 
   const isValid =

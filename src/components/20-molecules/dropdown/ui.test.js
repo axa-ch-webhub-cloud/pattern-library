@@ -41,10 +41,7 @@ test('should show error message and correct colors', async t => {
     return errorDiv.innerText;
   });
 
-  await t
-    .wait(50)
-    .expect(await getErrorMessage())
-    .eql('please select an item');
+  await t.expect(await getErrorMessage()).eql('please select an item');
 
   const getBorderColor = ClientFunction(() => {
     return window
@@ -56,10 +53,7 @@ test('should show error message and correct colors', async t => {
       .getPropertyValue('border-color');
   });
 
-  await t
-    .wait(50)
-    .expect(await getBorderColor())
-    .eql('rgb(201, 20, 50)');
+  await t.expect(await getBorderColor()).eql('rgb(201, 20, 50)');
 });
 
 // Dropdown react
@@ -99,7 +93,9 @@ test('should exhibit controlled-component behaviour', async t => {
   await t.click(dropdownReact);
   await t.click(thirdOption);
   await t
-    .wait(50)
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
     .expect(await getControlledValue())
     .eql('Item 3');
 });
@@ -131,7 +127,7 @@ test('should submit correct value to form', async t => {
     return valueSpan.innerText;
   });
   await t
-    .wait(50)
+    .wait(50 /* give click handler time to execute and influence form data */)
     .expect(await getFormData())
     .eql('FR');
 });

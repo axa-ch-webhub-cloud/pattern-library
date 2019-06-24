@@ -18,7 +18,6 @@ export default createElement => ({
   monthtitle = 'Choose Month',
   yeartitle = 'Choose Year',
   invaliddatetext = 'Invalid date',
-  onAXADateChange = () => {},
   id,
 }) =>
   withReact(createElement)(AXADatepicker.tagName, {
@@ -38,7 +37,6 @@ export default createElement => ({
     monthtitle,
     yeartitle,
     invaliddatetext,
-    onAXADateChange,
     id,
     isReact: true,
   });

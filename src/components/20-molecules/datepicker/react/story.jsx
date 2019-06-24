@@ -42,8 +42,6 @@ storiesOf('Molecules/Datepicker/React', module)
         labelbuttoncancel="Cancel"
         labelbuttonok="OK"
         allowedyears={[2019, 2020]}
-        // eslint-disable-next-line no-console
-        onAXADateChange={date => console.log(`date changed ${date}`)}
       />,
       div
     );

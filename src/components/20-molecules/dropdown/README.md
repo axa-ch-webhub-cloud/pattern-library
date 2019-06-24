@@ -64,11 +64,8 @@ The String-valued attribute `value` sets the initial title of the closed dropdow
 
 ### value
 
-The String-valued attribute `value` sets the selected dropdown option to the one with matching value. Restricted to controlled-component behaviour in React.
-
-### onChange
-
-The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.
+The String-valued attribute `value` sets the selected dropdown option to the one with matching value. When reading `value`, it returns the
+currently selected value.
 
 ### native
 
@@ -81,9 +78,23 @@ When true, the Boolean attribute `valid` shows an animated checkmark to the righ
 
 ### error
 
-The String-valued attribute `error` shows a red error text under the dropdown if nonempty, and colours the dropdown border
-in red.
+When nonempty, the String-valued attribute `error` causes a red error text to be displayed under the dropdown proper,
+as well as colouring the dropdown border in red.
 
 ### embedded
 
 When true, the Boolean attribute `embedded` suppresses the default space around the dropdown otherwise reserved for showing valid/error UI states. It is meant for embedding a dropdown as a subcomponent of other components (cf. axa-datepicker for an example).
+
+## Callback Properties
+
+### onChange
+
+The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
+the selected dropdown option changes. Its only parameter is an event-like object with `{target:value}` structure, where `value` is
+the currently selected value.
+
+## Events
+
+### axa-change
+
+If not in controlled-component mode, a custom event `axa-change` is fired on &lt;axa-dropdown&gt; itself whenever the `onChange` callback from above gets invoked. It's event `detail` is the currently selected value.

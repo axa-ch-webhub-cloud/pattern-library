@@ -94,15 +94,16 @@ These string-valued properties are all used to internationalize various texts in
 
 ### value
 
-The string-valued `value` sets the content of the free-form date-input field.
+The string-valued `value` sets the content of the free-form date-input field. When reading from `value`, it contains
+the date-input field's current content.
 
-It is especially relevant for controlled-component behaviour under React.
+This property is especially relevant for controlled-component behaviour under React.
 
 ### name
 
 The string-valued `name` sets the name attribute of the free-form date-input field.
 
-It is especially relevant for using &lt;axa-datepicker&gt; inside a &lt;form&gt;.
+This property is especially relevant for using &lt;axa-datepicker&gt; inside a &lt;form&gt;.
 
 ### outputdate
 
@@ -113,25 +114,11 @@ The string-valued `outputdate` (read-only) reflects the currently selected date.
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.
-The callback is invoked on every `input` event emitted from the free-form date-input field.
+The callback is invoked on every [`input`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) event
+emitted from the free-form date-input field.
+It is also invoked whenever the user presses the OK button to accept a date selected from the calendar.
 
-The property is especially relevant for controlled-component behaviour under React.
+This property is especially relevant for controlled-component behaviour under React.
 
 An `input` event with `target:{value}` is passed as parameter 1 of the callback, in which `value` represents
 the new date-input string from the free-form date-input field.
-
-### onDateChange
-
-The function-valued attribute `onDateChange` can be used as a callback prop for React and other frameworks.
-The callback is invoked whenever the `date` property/attribute changes.
-
-A `Date` object is passed as parameter 1 of the callback.
-
-## Events
-
-### axa-change
-
-The custom event `axa-change` is fired on the &lt;axa-datepicker&gt; element itself whenever the `date` property/attribute changes
-and the resulting year is within the `allowedyears.`
-
-Its `detail` value is a `Date` object.

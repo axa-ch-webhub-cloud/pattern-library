@@ -12,7 +12,6 @@ import {
 
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
-import fireCustomEvent from '../../../utils/custom-event';
 import debounce from '../../../utils/debounce';
 
 import Store from './utils/Store';
@@ -136,7 +135,6 @@ class AXADatepicker extends NoShadowDOM {
     this.allowedyears = [this.year];
     this.inputplaceholder = 'Please select a date';
     this.outputdate = '';
-    this.onDateChange = EMPTY_FUNCTION;
     this.onChange = EMPTY_FUNCTION;
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
@@ -301,28 +299,6 @@ class AXADatepicker extends NoShadowDOM {
     }
 
     this.initDate();
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    const { store, date, allowedyears } = this;
-    if (newValue === null || name !== 'date' || !store || !date) {
-      return;
-    }
-    // validate year
-    const year = date.getFullYear();
-    const isValidYear = allowedyears.indexOf(year) > -1;
-    if (!isValidYear) {
-      return;
-    }
-    // fire custom success events
-    fireCustomEvent('axa-change', date, this);
-    this.onDateChange(date);
-    fireCustomEvent(
-      'axa-validation',
-      { type: 'success', message: 'valid' },
-      this
-    );
   }
 
   disconnectedCallback() {
@@ -528,7 +504,7 @@ class AXADatepicker extends NoShadowDOM {
   handleDatepickerCalendarCellClick(e) {
     e.preventDefault();
     e.stopPropagation();
-    e.target.blur(); // Prevent the ugly focus ring after the click
+    e.target.blur(); // prevent the ugly focus ring after the click
     const cellIndex = parseInt(e.target.dataset.index, 10);
     const date = e.target.dataset.value;
     this.index = cellIndex;
