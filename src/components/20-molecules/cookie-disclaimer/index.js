@@ -32,6 +32,8 @@ class AXACookieDisclaimer extends LitElement {
     this.onClick = () => {};
   }
 
+  //  With this, it removes it itself if you use the static <axa-cookie-disclaimer> tag.
+  //  Needs to be re-evaluated.
   firstUpdated() {
     if (this.hasAccepted()) {
       this.selfDestruction();
