@@ -1,6 +1,12 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
+import {
+  boolean,
+  select,
+  radios,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import './index';
 import Readme from './README.md';
 
@@ -22,8 +28,24 @@ storyButton.add('Button - default', () => {
     Inverted: 'inverted',
   };
 
+  // TODO:: Move icon variants into icons and export it from there
+  const iconOptions = {
+    None: '',
+    'Arrow Right': 'arrow-right',
+    Collapse: 'collapse',
+    Document: 'document',
+    Download: 'download',
+    Email: 'email',
+    Expand: 'expand',
+    Mobile: 'mobile',
+    Phone: 'phone',
+    Search: 'search',
+    Upload: 'upload',
+  };
+
   const buttonText = text('Text', 'Click me');
   const variants = radios('Variant', options, '');
+  const icons = select('Icon', iconOptions);
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
   const large = boolean('large', false); // should probably be a variant.
@@ -34,5 +56,5 @@ storyButton.add('Button - default', () => {
     large ? 'large' : ''
   } type='${type}' variant='${variants}' ${
     motionOff ? 'motionoff' : ''
-  }>${buttonText}</axa-button></div>`;
+  } icon='${icons}'>${buttonText}</axa-button></div>`;
 });
