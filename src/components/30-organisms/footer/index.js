@@ -6,6 +6,24 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
+const _listElementHasNoContent = label => {
+  return !label || label.toString() === '[object Text]';
+};
+
+const _extractNestedHref = ev => {
+  let element;
+  if (!ev.target || !ev.target.href) {
+    element = ev;
+    while (!element.href) {
+      if (element.target && element.target.parentNode)
+        element = element.target.parentNode;
+      else if (element.parentNode) element = element.parentNode;
+      else return undefined;
+    }
+  }
+  return element === undefined ? ev.target.href : element.href;
+};
+
 class AXAFooter extends LitElement {
   static get tagName() {
     return 'axa-footer';
@@ -224,7 +242,7 @@ class AXAFooter extends LitElement {
       .forEach(el => {
         const label = el.querySelector('slot').assignedNodes()[0];
         // Second part of IF-statement is an IE11 workaround
-        if (AXAFooter._listElementHasNoContent(label)) {
+        if (_listElementHasNoContent(label)) {
           el.style.display = 'none';
         }
       });
@@ -240,7 +258,7 @@ class AXAFooter extends LitElement {
     if (this.dynamic) {
       ev.preventDefault();
 
-      const href = AXAFooter._extractNestedHref(ev);
+      const href = _extractNestedHref(ev);
 
       if (href) {
         this.onItemClick(href);
@@ -254,24 +272,6 @@ class AXAFooter extends LitElement {
       }
     }
   };
-
-  static _listElementHasNoContent(label) {
-    return !label || label.toString() === '[object Text]';
-  }
-
-  static _extractNestedHref(ev) {
-    let element;
-    if (!ev.target || !ev.target.href) {
-      element = ev;
-      while (!element.href) {
-        if (element.target && element.target.parentNode)
-          element = element.target.parentNode;
-        else if (element.parentNode) element = element.parentNode;
-        else return undefined;
-      }
-    }
-    return element === undefined ? ev.target.href : element.href;
-  }
 }
 
 defineOnce(AXAFooter.tagName, AXAFooter);
