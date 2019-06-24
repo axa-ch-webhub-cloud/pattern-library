@@ -6,6 +6,9 @@ import logo from '../src/static/svg/logo-axa.svg';
 
 addDecorator(addReadme);
 addParameters({
+  readme: {
+    codeTheme: 'github',
+  },
   options: {
     sortStoriesByKind: true,
     theme: create({
