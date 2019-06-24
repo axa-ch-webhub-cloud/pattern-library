@@ -4,18 +4,17 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
-import { withNoBorderReact as withNoBorder } from '../../../../../.storybook/addons/no-border/no-border';
+import { withNoBorderReact } from '../../../../../.storybook/addons/no-border/no-border';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Cookie disclaimer/React', module)
-  .addDecorator(withNoBorder)
+  .addDecorator(withNoBorderReact)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  /* Default */
   .add('Cookie disclaimer - default', () => {
     const div = document.createElement('div');
     ReactDOM.render(

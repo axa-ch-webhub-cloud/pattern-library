@@ -13,11 +13,10 @@ storiesOf('Molecules/Cookie disclaimer', module)
   })
   .add(
     'Cookie disclaimer - Default',
-    () =>
-      `<axa-cookie-disclaimer buttonname="Akzeptieren" title="This website uses cookies">
-        <p>Any Description for the cookie disclaimer</p>
-        <axa-link variant="arrowright-animated-white" href="https://axa.ch/de/informationen/datenschutz.html">
-          Data protection
-        </axa-link>
-      </axa-cookie-disclaimer>`
+    () => `<axa-cookie-disclaimer buttonname="Akzeptieren" title="This website uses cookies">
+                  <p>Any Description for the cookie disclaimer</p>
+                  <axa-link variant="arrowright-animated-white" href="https://axa.ch/de/informationen/datenschutz.html">
+                    Data protection
+                  </axa-link>
+          </axa-cookie-disclaimer>`
   );
