@@ -25,7 +25,7 @@ storiesOf('Molecules/Cookie disclaimer', module)
         <!-- This is code only for the demo -->
         <br/>
         <div style="border: 1px solid red; padding: 10px;">
-        <h1>This is not rendered by the component. This story disappears after click (Empty your cache and/or localStorage if this page is empty)</h1>
+        <h1>This is not rendered by the component. This story disappears after click (Empty your cache and/or localStorage if this page is only showing this message)</h1>
         </div>
         `
   );
