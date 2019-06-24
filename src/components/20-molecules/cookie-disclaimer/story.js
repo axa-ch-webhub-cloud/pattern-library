@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
-import withNoBorder from '../../../../.storybook/addons/no-border/no-border';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
 storiesOf('Molecules/Cookie disclaimer', module)
   .addDecorator(withNoBorder)

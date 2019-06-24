@@ -1,7 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import '../index';
-import withNoBorder from '../../../../../.storybook/addons/no-border/no-border';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 storiesOf('Molecules/Cookie disclaimer/demo', module)
   .addDecorator(story => withNoBorder(story))
