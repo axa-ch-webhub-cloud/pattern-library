@@ -1,6 +1,6 @@
 # Image upload
 
-TODO Description
+image-upload is a component used for uploading files in forms.
 
 ## Usage
 
@@ -55,18 +55,19 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute                     | Details         |
-| ----------------------------- | --------------- |
-| `inputFileText="foo"`         | Desc of Variant |
-| `maxSizeOfSingleFileMB="foo"` | Desc of Variant |
-| `maxSizeOfAllFilesMB="foo"`   | Desc of Variant |
-| `maxNumberOfFiles="foo"`      | Desc of Variant |
-| `showImageOverview="foo"`     | Desc of Variant |
-| `icon="foo"`                  | Desc of Variant |
-| `finalFiles="foo"`            | Desc of Variant |
-| `wrongFiles="foo"`            | Desc of Variant |
-| `errorStatusText="foo"`       | Desc of Variant |
-| `deleteStatusText="foo"`      | Desc of Variant |
+| Attribute                         | Details                                         |
+| --------------------------------- | ----------------------------------------------- |
+| `inputFileText="Upload file"`     | Text in the input-file component                |
+| `maxSizeOfSingleFileMB="10"`      | Maximal size of a single file in mb             |
+| `maxSizeOfAllFilesMB="15"`        | Maximal size of a all files together in mb      |
+| `maxNumberOfFiles="10"`           | Maximal number of files                         |
+| `showImageOverview="false"`       | Switch between normal view and image overview   |
+| `icon="upload-cloud"`             | Specify the upload icon in input-file component |
+| `finalFiles="foo"`                | Returns compressed and converted images         |
+| `wrongFiles="foo"`                | Returns wrong files                             |
+| `errorStatusText="Error occured"` | Specify the caption for wrong files             |
+| `deleteStatusText="Delete"`       | Specify the caption when hovering over a file   |
+| `addStatusText="Add more"`        | Specify the caption of dashed input-file        |
 
 ### Bar
 
