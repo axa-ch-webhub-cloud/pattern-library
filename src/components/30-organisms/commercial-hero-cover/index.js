@@ -18,13 +18,25 @@ class AXACommercialHeroCover extends LitElement {
   static get properties() {
     // Define properties and types
     return {
-      onClick: { type: Function },
+      // onClick: { type: Function },
+      src: { type: string },
+      alt: { type: string },
+      gradient: { type: string }, // PropTypes.oneOf(['white', 'black']),
+      contentAlign: { type: string }, //PropTypes.oneOf(['left', 'right']),
+      pictureClasses: { type: string },
+      heroObjectPosition: { type: string },
     };
   }
 
   constructor() {
     super();
-    this.onClick = () => {};
+    // this.onClick = () => {};
+    this.src = '';
+    this.alt = '';
+    this.gradient = 'white'; // PropTypes.oneOf(['white', 'black']),
+    this.contentAlign = 'left'; //PropTypes.oneOf(['left', 'right']),
+    this.pictureClasses = '';
+    this.heroObjectPosition = '';
   }
 
   firstUpdated() {
