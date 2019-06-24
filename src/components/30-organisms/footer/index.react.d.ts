@@ -2,7 +2,7 @@ import React from 'react';
 
 interface AXAFooterProps {
   onItemClick?: Function;
-  dynamic?: Boolean;
+  clickevents?: Boolean;
 }
 
 declare function createAXAFooter(

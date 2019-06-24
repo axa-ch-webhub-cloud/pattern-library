@@ -75,7 +75,7 @@ class HelloWorld extends Component {
 
   render() {
     return (
-      <AXAFooterReact onItemClick={link => this.reactToItemClick(link)} dynamic>
+      <AXAFooterReact onItemClick={link => this.reactToItemClick(link)} clickevents>
         <h2 slot="column-0-title-desktop">axa & you</h2>
         <h2 slot="column-0-title">axa & you</h2>
         <a slot="column-0-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">
@@ -311,21 +311,21 @@ Import the footer-defining script and use a footer like this:
 
 ## Properties
 
-### dynamic
+### clickevents
 
-Set the dynamic property (boolean), if you want to use callbacks for footer-links. Otherwise the links will work the static way.
+Set the clickevents property (boolean), if you want to use callbacks for footer-links. Otherwise the links will work the static way.
 
 Example:
 
 ```html
-<axa-footer dynamic>
+<axa-footer clickevents>
   ...
 </axa-footer>
 ```
 
 ### onItemClick
 
-**Important:** `dynamic` needs to be set in order for this to work!
+**Important:** `clickevents` needs to be set in order for this to work!
 
 `onItemClick` is a callback function that will return the href attribute of the link that the user clicked.
 
@@ -333,7 +333,7 @@ Example:
 
 ```js
 <axa-footer
-  dynamic
+  clickevents
   onItemClick={link => console.log('A link in the footer was clicked', link)}
 >
   ...

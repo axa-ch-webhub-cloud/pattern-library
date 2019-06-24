@@ -11,7 +11,7 @@ storiesOf('Organisms/Footer/Demos', module)
     const wrapper = document.createElement('div');
 
     const footerMarkup = `
-    <axa-footer dynamic>
+    <axa-footer clickevents>
       <h2 slot="column-0-title-desktop">axa & you</h2>
       <h2 slot="column-0-title">axa & you</h2>
       <a slot="column-0-item-0" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>

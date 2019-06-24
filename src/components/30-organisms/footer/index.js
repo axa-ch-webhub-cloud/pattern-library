@@ -37,13 +37,13 @@ class AXAFooter extends LitElement {
 
   static get properties() {
     return {
-      dynamic: { type: Boolean },
+      clickevents: { type: Boolean },
     };
   }
 
   constructor() {
     super();
-    this.dynamic = false;
+    this.clickevents = false;
     this.onItemClick = () => {}; // Only for react
     this._accordionActiveIndex = -1;
   }
@@ -255,7 +255,7 @@ class AXAFooter extends LitElement {
   };
 
   _handleLinkClick = ev => {
-    if (this.dynamic) {
+    if (this.clickevents) {
       ev.preventDefault();
 
       const href = _extractNestedHref(ev);

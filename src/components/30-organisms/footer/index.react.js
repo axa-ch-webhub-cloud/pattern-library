@@ -3,14 +3,14 @@ import AXAFooter from './index';
 
 export default createElement => ({
   onItemClick = () => {},
-  dynamic = false,
+  clickevents = false,
   children,
 }) =>
   withReact(createElement)(
     AXAFooter.tagName,
     {
       onItemClick,
-      dynamic,
+      clickevents,
     },
     children
   );
