@@ -188,6 +188,7 @@ class AXADatepicker extends NoShadowDOM {
             <div class="m-datepicker__input-wrap">
               <input
                 @input="${this.handleInputChange}"
+                @blur="${this.handleBlur}"
                 class="m-datepicker__input js-datepicker__input"
                 type="text"
                 name="${this.name}"
@@ -463,17 +464,16 @@ class AXADatepicker extends NoShadowDOM {
 
   handleInputChange(e) {
     e.preventDefault();
-    let {
-      target: { value },
-    } = e;
     const { onChange = () => {}, input, state } = this;
     onChange(e);
     if (state.isControlled) {
       const { value: stateValue } = state;
       input.value = stateValue;
-      value = stateValue;
     }
-    this.validate(value);
+  }
+
+  handleBlur() {
+    this.validate(this.input.value);
   }
 
   handleButtonOkClick() {

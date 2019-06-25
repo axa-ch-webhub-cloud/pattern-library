@@ -216,6 +216,9 @@ axa-dropdown {
   &__button {
     padding: 10px 40px 10px 10px;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__button {
