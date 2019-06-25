@@ -79,6 +79,12 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   // note: we can use Date.parse despite caveats about browser-specific implementation differences by
   // explicitly constructing an unambiguous date string here,
   // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
+
+  // CAVEAT: Unix Epoch starts in 1970, as a consequence
+  // years < 1970 lead to negative integers which are considered
+  // invalid below! Rethink validity once such old dates need to be
+  // considered.
+
   const dateAsUnixEpochInteger = Date.parse(
     `${addLeadingZeroes(year, 4)}-${addLeadingZeroes(
       month,
