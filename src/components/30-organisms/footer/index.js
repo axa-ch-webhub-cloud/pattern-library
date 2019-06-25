@@ -37,6 +37,7 @@ class AXAFooter extends LitElement {
 
   static get properties() {
     return {
+      // 'clickevents' prevents the throwing of native click events and sends a custom axa-footer-click event.
       clickevents: { type: Boolean },
     };
   }
