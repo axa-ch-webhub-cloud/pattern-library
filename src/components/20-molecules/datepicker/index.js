@@ -395,10 +395,11 @@ class AXADatepicker extends NoShadowDOM {
 
   validate(value) {
     this.initDate();
-    const { locale, invaliddatetext } = this;
+    const { locale, invaliddatetext, allowedyears } = this;
     const validDate = parseLocalisedDateIfValid(locale, value);
+    const validYear = date => allowedyears.indexOf(date.getFullYear()) > -1;
     this.error = null;
-    if (validDate) {
+    if (validDate && validYear(validDate)) {
       this.date = validDate;
       this.updateDatepickerProps(validDate);
       this.outputdate = validDate.toLocaleString(locale, {
