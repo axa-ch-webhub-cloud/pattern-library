@@ -17,6 +17,13 @@ const DemoInputText = () => {
         value={firstName}
         onChange={handleChange}
       />
+      <AXAInputTextReact
+        required
+        label="uncontrolled"
+        name="lastname"
+        value="test"
+        defaulValue="test"
+      />
     </div>
   );
 };

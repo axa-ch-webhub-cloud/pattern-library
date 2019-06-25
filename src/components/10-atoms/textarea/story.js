@@ -8,11 +8,14 @@ storiesOf('Atoms/Textarea', module)
   .addDecorator(withMarkdown(Readme))
   .add('Textarea - default', () => '<axa-textarea></axa-textarea>')
   .add('Textarea - label', () => '<axa-textarea label="Label"></axa-textarea>')
-  .add('Textarea - placeholder', () => '<axa-textarea placeholder="Placeholder"></axa-textarea>')
+  .add(
+    'Textarea - placeholder',
+    () => '<axa-textarea placeholder="Placeholder"></axa-textarea>'
+  )
   .add('Textarea - disabled', () => '<axa-textarea disabled></axa-textarea>')
   .add(
     'Textarea - value',
-    () => '<axa-textarea value="prefilled value" label="Label"></axa-textarea>'
+    () => '<axa-textarea label="Label">prefilled content</axa-textarea>'
   )
 
   // required add * if label exist and valid isRequired validation
@@ -47,9 +50,16 @@ storiesOf('Atoms/Textarea', module)
     'Textarea - counterError',
     () =>
       `<axa-textarea
-        label="Counter Error maxlength 3 Characters"
+        label="Counter Error"
         value="123"
         maxlength="3"
         counterError="The maximum character length has been reached"
       ></axa-textarea>`
+  )
+  .add(
+    'Textarea - children (default Value)',
+    () =>
+      `<axa-textarea
+        label="children (default Value)"
+      >prefilled value</axa-textarea>`
   );

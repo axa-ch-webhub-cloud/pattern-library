@@ -29,7 +29,10 @@ class AXATextarea extends NoShadowDOM {
       wasBlurred: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
+      inputFocus: { type: Boolean },
+
       isReact: { type: Boolean },
+      defaultValue: { type: String },
 
       counter: { type: String },
       modelCounter: { type: String },
@@ -50,8 +53,10 @@ class AXATextarea extends NoShadowDOM {
     this.valid = true;
     this.disabled = false;
     this.isReact = false;
+    this.defaultValue = '';
     this.counter = '';
     this.modelCounter = '';
+    this.nativeDefaultValue = this.textContent;
 
     this.onFocus = () => {};
     this.onBlur = () => {};
@@ -66,14 +71,23 @@ class AXATextarea extends NoShadowDOM {
     this.isControlled = false;
     this.refId = '';
     this.isPlaceholderInCounter = false;
+    this.firstUpdate = true;
   }
 
   set value(val) {
-    const { isControlled } = this;
+    const { isControlled, firstUpdate } = this;
 
     if (!isControlled && val !== undefined) {
       this.isControlled = true;
     }
+
+    // The native textarea element have no value attribute but value property.
+    // React for example add value attribute to the textarea.
+    if (firstUpdate) {
+      this.firstUpdate = false;
+      this.defaultValue = val;
+    }
+
     const oldVal = this.modelValue;
     this.modelValue = val;
 
@@ -192,7 +206,19 @@ class AXATextarea extends NoShadowDOM {
   };
 
   firstUpdated() {
+    const { nativeDefaultValue, defaultValue, isReact, value } = this;
+
     this.nativeInput = this.querySelector('textarea');
+    this.nativeInput.value = value;
+
+    if (nativeDefaultValue && !isReact) {
+      this.nativeInput.value = nativeDefaultValue;
+    }
+
+    if (isReact) {
+      this.nativeInput.value = defaultValue || value;
+    }
+
     this.refId = this.id || `textarea-${createRefId()}`;
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
@@ -202,12 +228,11 @@ class AXATextarea extends NoShadowDOM {
     const {
       name,
       required,
-      value,
       label = '',
       error = '',
       modelCounter = '',
       counterError = '',
-      maxLength,
+      maxLength = '',
       placeholder,
       disabled,
       isReact,
@@ -247,9 +272,9 @@ class AXATextarea extends NoShadowDOM {
           id="${refId}"
           maxlength="${maxLength}"
           class="${classMap(textareaClasses)}"
+          value="${this.value}"
           autocomplete="off"
           name="${name}"
-          value="${value}"
           placeholder="${placeholder}"
           ?disabled="${disabled}"
           aria-required="${required}"
