@@ -3,10 +3,12 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
 import Readme from '../README.md';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 import wrap from '../../../../demo/react/utils/wrap-render-react';
 
 storiesOf('Molecules/Top content bar/React', module)
+  .addDecorator(withNoBorder)
   .addParameters({
     readme: {
       sidebar: Readme,
