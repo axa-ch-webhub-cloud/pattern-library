@@ -89,9 +89,9 @@ storiesOf('Organisms/Footer/React', module)
           >
             AXA worldwide
           </a>
-          <h2 slot="column-2-social-title">stay in touch</h2>
+          <h2 slot="social-title">stay in touch</h2>
           <a
-            slot="column-social-item-0"
+            slot="social-item-0"
             href="https://www.facebook.com/axach/"
             target="_blank"
           >
@@ -108,7 +108,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="column-social-item-1"
+            slot="social-item-1"
             href="https://www.instagram.com/axaswitzerland/"
             target="_blank"
           >
@@ -125,7 +125,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="column-social-item-2"
+            slot="social-item-2"
             href="https://twitter.com/axa_schweiz"
             target="_blank"
           >
@@ -142,7 +142,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="column-social-item-3"
+            slot="social-item-3"
             href="https://www.xing.com/companies/AXAWINTERTHUR"
             target="_blank"
           >
@@ -159,7 +159,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="column-social-item-4"
+            slot="social-item-4"
             href="https://www.youtube.com/axaschweiz"
             target="_blank"
           >
@@ -176,7 +176,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="column-social-item-5"
+            slot="social-item-5"
             href="https://www.linkedin.com/company/axa/"
             target="_blank"
           >

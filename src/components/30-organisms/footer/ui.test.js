@@ -53,7 +53,7 @@ test('should correctly render footer link content', async t => {
 });
 
 test('should render facebook social media button', async t => {
-  const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
+  const $facebookButton = FooterAccessor.getSlotNode('social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.expect($facebookButton.getStyleProperty('width')).eql('25px');
@@ -129,7 +129,7 @@ test('should correctly open accordion on click', async t => {
 });
 
 test('should correctly render social media title in desktop view', async t => {
-  const $socialMediaTitle = FooterAccessor.getSlotNode('column-2-social-title');
+  const $socialMediaTitle = FooterAccessor.getSlotNode('social-title');
 
   await t.expect($socialMediaTitle.textContent).contains('stay in touch');
 
@@ -181,7 +181,7 @@ test('should render footer with working react callbacks', async t => {
   await t.expect($axaWorldwideLink.visible).ok();
   await t.expect($axaWorldwideLink.textContent).eql('axa & you');
 
-  const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
+  const $facebookButton = FooterAccessor.getSlotNode('social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
@@ -214,7 +214,7 @@ test('should render footer with working native callbacks', async t => {
 
   await t.click($contactLink);
 
-  const $facebookButton = FooterAccessor.getSlotNode('column-social-item-0');
+  const $facebookButton = FooterAccessor.getSlotNode('social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);

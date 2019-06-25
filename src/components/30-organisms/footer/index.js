@@ -189,43 +189,43 @@ class AXAFooter extends LitElement {
             </div>
             <div class="o-footer__social-media">
               <slot
-                name="column-2-social-title"
+                name="social-title"
                 class="o-footer__social-media-title"
               ></slot>
               <ul class="o-footer__social-media-list">
                 <li class="o-footer__social-media-item">
                   <slot
-                    name="column-social-item-0"
+                    name="social-item-0"
                     @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="o-footer__social-media-item">
                   <slot
-                    name="column-social-item-1"
+                    name="social-item-1"
                     @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="o-footer__social-media-item">
                   <slot
-                    name="column-social-item-2"
+                    name="social-item-2"
                     @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="o-footer__social-media-item">
                   <slot
-                    name="column-social-item-3"
+                    name="social-item-3"
                     @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="o-footer__social-media-item">
                   <slot
-                    name="column-social-item-4"
+                    name="social-item-4"
                     @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
                 <li class="o-footer__social-media-item">
                   <slot
-                    name="column-social-item-5"
+                    name="social-item-5"
                     @click="${this._handleLinkClick}"
                   ></slot>
                 </li>
