@@ -5,6 +5,8 @@ It accepts most of the same properties as HTML &lt;input&gt;, but with `type`res
 
 ## Usage
 
+**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+
 ```bash
 npm install @axa-ch/input-text
 ```

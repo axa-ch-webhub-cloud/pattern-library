@@ -6,6 +6,8 @@ All links support the colors "red" and "white" if declared within the `variant` 
 
 ## Usage
 
+**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+
 ```bash
 npm install @axa-ch/link
 ```
@@ -131,4 +133,4 @@ If the variant is `icon`, using the attribute `icon`'s string value as icon name
 
 ### onClick
 
-On a react-ified component this can be used as a callback function. It will prevent default 
+On a React-ified component this can be used as a callback function. It will prevent default
