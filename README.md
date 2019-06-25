@@ -14,12 +14,12 @@
 ## Communication
 
 Use the following channels for different kinds of requests/reports:
-- Bug, small change, "wish": https://github.com/axa-ch/patterns-library/issues
-- Questions, ask for help, request product presentations, etc: Slack #patterns-lib-devs
+- Bug reports, small change requests, "wishes": https://github.com/axa-ch/patterns-library/issues
+- Questions, requests for help, requests for product presentations, etc: Slack #patterns-lib-devs
 - Feature requests (Components, etc): Slack @martin.stuedle
 
 ## What we deliver
-We release holistic and self contained WebComponents based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), wrapped by [LitElement](https://github.com/Polymer/lit-element) (maintained by Google).
+We release self-contained plug-and-play web components based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), derived from the [lit-element](https://github.com/Polymer/lit-element) base class (maintained by Google).
 
 ## Released Polyfills
 - [AXA Polyfills](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill)
@@ -41,21 +41,35 @@ We release holistic and self contained WebComponents based on the [custom elemen
 - [AXA Table](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table)
 - [AXA Top content bar](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar)
 
-## Alpha Released Components
+## Alpha-Released Components
 - [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/datepicker)
 - [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/dropdown)
 
-## Design guidelines
-[Link to Patterns Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
+## Design Guidelines
+[Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
 
 ## How to contribute
-Whether you are helping us to fix bugs, or creating components,
+Whether you are helping us to fix bugs, or you are more into creating components,
 we would love to have you as contributor of the AXA Pattern Library!
 
 Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tree/develop/CONTRIBUTION.md) for ideas on contributing and setup steps for getting the repository up and running on your local machine.
 
 ## Code of Conduct
-We are is dedicated to building a welcoming, diverse, safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/CODE_OF_CONDUCT.md)
+We are dedicated to building a welcoming, diverse, and safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/CODE_OF_CONDUCT.md)
 
 ## Version Control
-This repository is a monorepo managed using Lerna. This means all components are managed here, even though we publish them to NPM as separate packages.
+This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
+
+## Testing with Enzyme or similar test frameworks
+At the moment, our wrapped custom elements display as an `<Unknown>` tag in React Dev Tools. Therefore, if Enzyme selection methods like `wrapper.find(AXAButton)` do not work as expected, please add a display name to your mounted React component like so:
+
+```js
+import { createElement } from 'react';
+
+import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+
+export const AXAButton = createAXAButtonReact(createElement);
+
+AXAButton.displayName = 'AXAButton';
+```
+In the future, the Pattern Library will take care of this automatically.
