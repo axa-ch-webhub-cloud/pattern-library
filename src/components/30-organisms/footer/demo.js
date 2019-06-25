@@ -2,11 +2,17 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 
 storiesOf('Organisms/Footer/Demos', module)
-  .addDecorator(withMarkdown(Readme))
+  .addDecorator(withNoBorder)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+
   .add('Feature - Footer Callbacks', () => {
     const wrapper = document.createElement('div');
 

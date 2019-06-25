@@ -3,8 +3,8 @@ import AXAFooterReact from './Footer';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
-import Readme from '../README.md';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
+import Readme from './README.md';
 
 const setNewlyClickedLink = link => {
   document.getElementById(
@@ -13,7 +13,13 @@ const setNewlyClickedLink = link => {
 };
 
 storiesOf('Organisms/Footer/React', module)
-  .addDecorator(withMarkdown(Readme))
+  .addDecorator(withNoBorder)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+
   .add('Feature - Footer Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
