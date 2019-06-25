@@ -16,10 +16,13 @@ const _extractNestedHref = ev => {
   if (!target || !target.href) {
     element = ev;
     while (!element.href) {
-      if (element.target && element.target.parentNode)
+      if (element.target && element.target.parentNode) {
         element = element.target.parentNode;
-      else if (element.parentNode) element = element.parentNode;
-      else return undefined;
+      } else if (element.parentNode) {
+        element = element.parentNode;
+      } else {
+        return undefined;
+      }
     }
   }
   return element === undefined ? target.href : element.href;
