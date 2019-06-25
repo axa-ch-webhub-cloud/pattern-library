@@ -209,11 +209,14 @@ const createFiles = (store, a, m, o, done) => () => {
     /* global document */
     import { storiesOf } from '@storybook/html';
     import './index';
-    import { withMarkdown } from '../../../../.storybook/addons/markdown';
     import Readme from './README.md';
 
     storiesOf('${titleMap[type]}/${compTitle}', module)
-      .addDecorator(withMarkdown(Readme))
+      .addParameters({
+        readme: {
+          sidebar: Readme,
+        },
+      })
       .add('${compTitle} - default', () => '<axa-${fileName}>Some children</axa-${fileName}>')
     `,
     'utf8',

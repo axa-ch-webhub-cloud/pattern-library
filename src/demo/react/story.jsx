@@ -5,10 +5,7 @@ import DemoTable from './DemoTable';
 import DemoControlledInputsApp from '../demo-controlled-inputs/App';
 import DemoDynamicChildrenApp from '../demo-dynamic-children/App';
 
-import { withMarkdown } from '../../../.storybook/addons/markdown';
-
 storiesOf('Demos', module)
-  .addDecorator(withMarkdown())
   .add('Controlled Inputs React', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoControlledInputsApp />, div);

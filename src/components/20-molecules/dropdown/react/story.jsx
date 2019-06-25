@@ -3,11 +3,14 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXADropdownReact from './AXADropdownReact';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Dropdown/React', module)
-  .addDecorator(withMarkdown(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Dropdown as React Component', () => {
     const div = document.createElement('div');
     ReactDOM.render(

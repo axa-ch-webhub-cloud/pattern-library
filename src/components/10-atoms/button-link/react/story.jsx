@@ -3,12 +3,14 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXAButtonLinkReact from './AXAButtonLinkReact';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
 storiesOf('Atoms/Button Link/React', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   /* Default */
   .add('Button-Link - default', () => {
     const div = document.createElement('div');
@@ -17,7 +19,7 @@ storiesOf('Atoms/Button Link/React', module)
   })
 
   /* External */
-  .add('Button-Link - default', () => {
+  .add('Button-Link - default - External', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <AXAButtonLinkReact href="https://axa.ch/" external>

@@ -1,11 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 import './index';
 
 storiesOf('Atoms/Button Link', module)
-  .addDecorator(withMarkdown(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add(
     'Button Link - default',
     () => '<axa-button-link href="https://axa.ch/">Default</axa-button-link>'
