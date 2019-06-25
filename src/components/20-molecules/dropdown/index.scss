@@ -209,6 +209,7 @@ axa-dropdown {
     transition: height 0.3s ease;
     margin-top: -$dropdown-border-width;
     background: $color-prim-white;
+    border-bottom: 1px solid $color-prim-gray-silver;
   }
 
   &__option,
