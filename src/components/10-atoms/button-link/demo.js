@@ -1,11 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
-import Readme from './README.md';
 import './index';
+import Readme from './README.md';
 
 storiesOf('Atoms/Button Link/Demos', module)
-  .addDecorator(withMarkdown(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Feature - Button clickable', () => {
     const btn = document.createElement('axa-button-link');
     let counter = 0;

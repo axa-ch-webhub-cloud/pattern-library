@@ -1,11 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 
 storiesOf('Atoms/Checkbox', module)
-  .addDecorator(withMarkdown(Readme))
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Checkbox - preselected, clickable, with label', () => {
     const checkbox = document.createElement('axa-checkbox');
     checkbox.name = 'my-checkbox';

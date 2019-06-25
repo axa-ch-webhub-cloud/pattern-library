@@ -3,12 +3,14 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXACheckbox from './AXACheckboxReact';
-import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
 storiesOf('Atoms/Checkbox/React', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   /* Default */
   .add('Checkbox - uncontrolled', () => {
     const div = document.createElement('div');

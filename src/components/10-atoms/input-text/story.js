@@ -1,13 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
-import withBodyReset from '../../../../.storybook/addons/reset-body';
 
 storiesOf('Atoms/Input text', module)
-  .addDecorator(withMarkdown(Readme))
-  .addDecorator(withBodyReset())
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Input text - default', () => '<axa-input-text></axa-input-text>')
   .add(
     'Input text - label',

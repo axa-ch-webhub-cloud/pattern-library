@@ -1,13 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import AXAIcon from './index';
-
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 
 storiesOf('Atoms/Icon', module)
-  .addDecorator(withMarkdown(Readme))
-  .add('Icon - show all icons', () => {
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  }).add('Icon - show all icons', () => {
     const list = document.createElement('ul');
 
     Object.keys(AXAIcon.iconsMapping).forEach(iconName => {

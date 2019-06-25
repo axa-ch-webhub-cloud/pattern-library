@@ -1,13 +1,15 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 import './index';
 
 storiesOf('Atoms/Input text/Demos', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Feature - Input Text works in a form', () => {
     const handleSubmit = ev => {
       ev.preventDefault();

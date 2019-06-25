@@ -3,6 +3,12 @@
   font-family: $font-family-source-sans, Arial;
   text-decoration: none;
   color: $color-axa-blue;
+  align-items: center;
+
+  axa-icon {
+    width: 16px;
+    height: 16px;
+  }
 
   &:active,
   &:hover {
@@ -17,9 +23,17 @@
     letter-spacing: 0.4px;
   }
 
+  &__icon-wrapper {
+    width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__icon {
     display: inline-block;
-    width: 20px;
     text-align: center;
     margin-left: 10px;
 

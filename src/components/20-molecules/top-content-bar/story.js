@@ -1,13 +1,16 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
-import withBodyReset from '../../../../.storybook/addons/reset-body';
 import Readme from './README.md';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
 storiesOf('Molecules/Top content bar', module)
-  .addDecorator(withMarkdown(Readme))
-  .addDecorator(withBodyReset())
+  .addDecorator(withNoBorder)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add(
     'Top content bar - Default with button',
     () =>

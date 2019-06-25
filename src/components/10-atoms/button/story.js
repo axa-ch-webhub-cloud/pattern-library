@@ -1,13 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 
 storiesOf('Atoms/Button', module)
-  .addDecorator(withMarkdown(Readme))
-
-  /* Default */
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add('Button - default', () => '<axa-button>Default</axa-button>')
 
   /* Variants */

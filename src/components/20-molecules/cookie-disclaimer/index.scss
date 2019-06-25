@@ -1,0 +1,62 @@
+.m-cookie-disclaimer {
+  @include typo(primary, medium, default);
+
+  display: block;
+
+  background-color: $color-prim-gray-scorpion;
+  color: $color-prim-white;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 15px;
+
+    @include breakpoint($mediaquery-md-up) {
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+  }
+
+  &--fixed {
+    z-index: 2000;
+
+    position: fixed;
+    bottom: 0;
+
+    width: 100%;
+  }
+
+  &__title {
+    text-transform: uppercase;
+
+    font-size: $font-size-base;
+
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  &__container--lx {
+    @include breakpoint($mediaquery-md-up) {
+      width: 70%;
+    }
+  }
+
+  &__container--rx {
+    margin-top: 16px;
+    text-align: center;
+
+    @include breakpoint($mediaquery-md-up) {
+      width: calc(30% - 30px);
+
+      margin-top: 0;
+
+      margin-left: 30px;
+
+      text-align: left;
+    }
+  }
+}
