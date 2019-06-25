@@ -61,15 +61,12 @@ We are is dedicated to building a welcoming, diverse, safe community. We expect 
 This repository is a monorepo managed using Lerna. This means all components are managed here, even though we publish them to NPM as separate packages.
 
 ## Testing with Enzyme or similar
-Our wrapped Custom Element at the moment render a `<Unknow>` tag in React. If enzyme slection like `wrapper.find(AXAButton)` doesn't work please add a display name to your mounted react component like so:
+Our wrapped Custom Element at the moment renders an `<Unknow>` tag in React. If enzyme selections like `wrapper.find(AXAButton)` do not work, please add a display name to your mounted react component like this:
 
 ```js
 import { createElement } from 'react';
-
 import createAXAButtonReact from '@axa-ch/button/lib/index.react';
-
 export const AXAButton = createAXAButtonReact(createElement);
-
 AXAButton.displayName = 'AXAButton';
 ```
-In future the patterns library will take care of this automatically
+In the future, the pattern library will take care of this automatically.
