@@ -11,8 +11,9 @@ const _listElementHasNoContent = label => {
 };
 
 const _extractNestedHref = ev => {
+  const { target } = ev;
   let element;
-  if (!ev.target || !ev.target.href) {
+  if (!target || !target.href) {
     element = ev;
     while (!element.href) {
       if (element.target && element.target.parentNode)
@@ -21,7 +22,7 @@ const _extractNestedHref = ev => {
       else return undefined;
     }
   }
-  return element === undefined ? ev.target.href : element.href;
+  return element === undefined ? target.href : element.href;
 };
 
 class AXAFooter extends LitElement {
@@ -45,7 +46,7 @@ class AXAFooter extends LitElement {
   constructor() {
     super();
     this.clickevents = false;
-    this.onItemClick = () => {}; // Only for react
+    this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
   }
 
