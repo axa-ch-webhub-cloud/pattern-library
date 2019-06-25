@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
-import Readme from './README.md';
+import Readme from '../README.md';
 
 const setNewlyClickedLink = link => {
   document.getElementById(
