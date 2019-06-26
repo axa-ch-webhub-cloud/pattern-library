@@ -6,8 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production npm run build-components",
     "watch": "npm run watch-components",
-    "build-components": "lerna run --parallel build",
-    "watch-components": "lerna run --parallel watch",
+    "build-components": "lerna run build --parallel",
+    "watch-components": "lerna run watch --parallel",
     "setup-npm-links": "node scripts/setup-npm-link.js",
     "postinstall": "lerna bootstrap --hoist && npm run build-components",
     "release": "npm whoami && lerna bootstrap --hoist && npm run build && npm run test && lerna publish",
