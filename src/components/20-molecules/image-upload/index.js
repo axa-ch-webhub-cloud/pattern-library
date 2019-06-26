@@ -8,6 +8,8 @@ import {
   PlusRoundedSvg,
   TickSvg,
 } from './icons';
+import { ImageUploadGroupSvg } from './icons';
+
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
