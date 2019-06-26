@@ -27,7 +27,6 @@ const commonPlugins = [
     include: 'index.scss',
     options: {
       includePaths: [
-        'node_modules',
         '../../../../node_modules',
         path.resolve(
           path.dirname(require.resolve('breakpoint-sass/package.json')),
