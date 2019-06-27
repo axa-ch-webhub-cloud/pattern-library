@@ -9,6 +9,8 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
 const _listElementHasNoContent = label => {
+  // Second part of statement is an IE11 workaround, because a slotted
+  // empty node is not empty on IE11 (with the ShadyCss polyfill).
   return !label || label.nodeType === 3;
 };
 
@@ -164,7 +166,6 @@ class AXAFooter extends LitElement {
   _removeEmptyListElements() {
     this.shadowRoot.querySelectorAll('.js-footer_list-item').forEach(el => {
       const label = el.querySelector('slot').assignedNodes()[0];
-      // Second part of IF-statement is an IE11 workaround
       if (_listElementHasNoContent(label)) {
         el.style.display = 'none';
       }
