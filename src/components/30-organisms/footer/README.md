@@ -344,15 +344,15 @@ Example:
 
 Because of SEO (Search Enginge Optimization), we had to ditch the easier model-based approach use use childfragments. Here is a little documentation of each slot:
 
-| Slot                                                          | Details                                                         |
-| ------------------------------------------------------------- | --------------------------------------------------------------- |
-| `<h2 slot="column-0-title-desktop">axa & you</h2>`            | The title for the first column (bigger screens)                 |
-| `<h2 slot="column-0-title">axa & you</h2>`                    | The title for the first column (smaller screens)                |
-| `<a slot="column-0-item-X" href="" target="_blank"></a>`      | X = Number of item within the first column, supported: up to 8  |
-| `<a slot="column-1-item-X" href="" target="_blank"></a>`      | X = Number of item within the second column, supported: up to 4 |
-| `<h2 slot="social-title"></h2>`                               | The title for the social media section                          |
-| `<a slot="column-social-item-X" href="" target="_blank"></a>` | X = Index of social media item                                  |
-|                                                               |                                                                 |
+| Slot                                                          | Details                                                              |
+| ------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `<h2 slot="column-0-title-desktop">axa & you</h2>`            | The title for the first column (bigger screens)                      |
+| `<h2 slot="column-0-title">axa & you</h2>`                    | The title for the first column (smaller screens)                     |
+| `<a slot="column-0-item-X" href="" target="_blank"></a>`      | X = Number of item within the first column, has two internal columns |
+| `<a slot="column-1-item-X" href="" target="_blank"></a>`      | X = Number of item within the second column, has one internal column |
+| `<h2 slot="social-title"></h2>`                               | The title for the social media section                               |
+| `<a slot="column-social-item-X" href="" target="_blank"></a>` | X = Index of social media item                                       |
+|                                                               |                                                                      |
 
 **IMPORTANT:** Because of internet explorer, the list of social media buttons is currently fixed and must not be rearranged and all items are necessary!
 
