@@ -1,7 +1,10 @@
 export const getStartOfWeek = date => {
-  const iDayOfWeek = date.getDay();
-  const iDifference = date.getDate() - iDayOfWeek + (iDayOfWeek === 0 ? -6 : 1);
-  return new Date(date.setDate(iDifference));
+  const dayOfWeek = date.getDay();
+  const daysSinceBeginningOfMonth =
+    date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+  const newDate = new Date(date);
+  newDate.setDate(daysSinceBeginningOfMonth);
+  return newDate;
 };
 
 const getWeekdays = (date, locale) => {
@@ -16,55 +19,83 @@ const getWeekdays = (date, locale) => {
   return out;
 };
 
-const ALL_DATE_SEPERATORS = / |,|\.|-|\//;
+const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
+
 const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
+
+const addLeadingZeroes = (rawNumber, numDigits) => {
+  const number = Math.abs(rawNumber | 0); // coerce number to integer >= 0
+  const rawNumDigits = number.toString().length;
+  const numMissingZeroes = Math.max(0, numDigits - rawNumDigits);
+  const leadingZeroesString = (10 ** numMissingZeroes).toString().slice(1); // slice(1): cut off leading '1'
+  return `${leadingZeroesString}${number}`;
+};
+
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
-  // year, monthIndex, day
-  const blueprint = new Date(2017, 10, 23);
+  const BLUEPRINT_YEAR = 2017;
+  const BLUEPRINT_MONTH = 10; // 0-based index
+  const BLUEPRINT_DAY = 23;
+
+  const blueprint = new Date(BLUEPRINT_YEAR, BLUEPRINT_MONTH, BLUEPRINT_DAY);
 
   if (!Intl.DateTimeFormat.supportedLocalesOf(locale).length) {
     throw new Error(`locale not supported: ${locale}`);
   }
 
-  // find out which out of 4 valid seperator the current locale has
+  // find out which valid separator the current locale uses
   const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(
     blueprint
   );
   const localisedBlueprintDateString = localisedBlueprintDate.toString();
 
-  const usedSeperator =
-    localisedBlueprintDateString.match(ALL_DATE_SEPERATORS)[0] || null;
+  const usedSeparator =
+    localisedBlueprintDateString.match(ALL_DATE_SEPARATORS)[0] || null;
 
-  if (!usedSeperator) {
+  if (!usedSeparator) {
     return null;
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
-  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(
-    usedSeperator
+  const splitValue = clearStringFromIEGeneratedCharacters(inputValue).split(
+    usedSeparator
   );
-  const splittedBlueprint = clearStringFromIEGeneratedCharacters(
+  const splitBlueprint = clearStringFromIEGeneratedCharacters(
     localisedBlueprintDateString
-  ).split(usedSeperator);
+  ).split(usedSeparator);
 
-  // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
-  // in reading gives the actual month (index + 1)
-  const monthIndex = splittedBlueprint.indexOf('11');
-  const dayIndex = splittedBlueprint.indexOf('23');
-  const yearIndex = splittedBlueprint.indexOf('2017');
+  const [yearIndex, monthIndex, dayIndex] = [
+    splitBlueprint.indexOf(`${BLUEPRINT_YEAR}`),
+    splitBlueprint.indexOf(`${BLUEPRINT_MONTH + 1}`),
+    splitBlueprint.indexOf(`${BLUEPRINT_DAY}`),
+  ];
 
-  const dateUnderValidation = new Date(
-    splittedValue[yearIndex],
-    splittedValue[monthIndex] - 1,
-    splittedValue[dayIndex]
+  const [year, month, day] = [
+    splitValue[yearIndex],
+    splitValue[monthIndex],
+    splitValue[dayIndex],
+  ];
+
+  // note: we can use Date.parse despite caveats about browser-specific implementation differences by
+  // explicitly constructing an unambiguous date string here,
+  // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
+
+  // CAVEAT: Unix Epoch starts in 1970, as a consequence
+  // years < 1970 lead to negative integers which are considered
+  // invalid below! Rethink validity once such old dates need to be
+  // considered.
+
+  const dateAsUnixEpochInteger = Date.parse(
+    `${addLeadingZeroes(year, 4)}-${addLeadingZeroes(
+      month,
+      2
+    )}-${addLeadingZeroes(day, 2)}T00:00:00`
   );
 
-  // eslint-disable-next-line no-restricted-globals
-  if (dateUnderValidation instanceof Date && !isNaN(dateUnderValidation)) {
-    return dateUnderValidation;
-  }
-  return null;
+  const isValid =
+    !Number.isNaN(dateAsUnixEpochInteger) && dateAsUnixEpochInteger >= 0;
+
+  return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };
 
 const getAllLocaleMonthsArray = (locale = 'en-UK') => {

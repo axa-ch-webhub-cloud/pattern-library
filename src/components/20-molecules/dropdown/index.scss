@@ -1,11 +1,19 @@
+@import '../../00-materials/styles/mixins/check-mark-animated';
+
+$border-width: 1px;
 $dropdown-color: $color-prim-gray-mine-shaft !default;
 $dropdown-color--hover: $color-axa-blue !default;
 $dropdown-border-width: 1px;
 $dropdown-border-style: $dropdown-border-width solid $color-prim-gray-silver;
+$dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
+$dropdown-icon-width: 10px;
+$dropdown-icon-height: 6px;
+$dropdown-error-minheight: 19px;
 
 @mixin normalize-native-select-styles() {
   appearance: none;
+  -webkit-appearance: none;
   background: transparent;
   border: none;
   color: inherit;
@@ -34,22 +42,52 @@ $dropdown-height: 40px;
   }
 }
 
-:host([open]) .m-dropdown__content {
-  height: auto;
-}
+axa-dropdown {
+  display: block;
 
-:host([open]) svg {
-  transform: rotate(180deg);
-}
+  &[open] {
+    .m-dropdown__content {
+      height: auto;
+    }
 
-:host([max-height]) .m-dropdown__content {
-  max-height: 347px;
-  overflow: auto;
+    .m-dropdown__select-icon svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &[max-height] .m-dropdown__content {
+      max-height: 347px;
+      overflow: auto;
+  }
+
+  &[valid] .m-dropdown__valid-icon {
+    visibility: visible;
+  }
+
+  &[error] .m-dropdown {
+
+    &__list {
+      border-color: $color-validation-error;
+    }
+
+    &__error {
+      visibility: visible;
+    }
+  }
+
+  &[embedded] {
+    .m-dropdown__valid-icon,
+    .m-dropdown__error {
+      display: none;
+    }
+  }
 }
 
 .m-dropdown {
+  display: flex;
+  align-items: center;
   position: relative;
-  @include typo(primary, medium);
+  @include typo(primary, small);
 
   &__list {
     padding: 10.5px 20px 10.5px 12px;
@@ -76,11 +114,33 @@ $dropdown-height: 40px;
     }
   }
 
+  &__valid-icon {
+    visibility: hidden;
+    line-height: $dropdown-height;
+    color: $color-validation-valid;
+      @include check-mark-animated-wrapper();
+      margin-left: 10px;
+
+      &-inner-active {
+        @include check-mark-animated();
+        margin-top: -4px;
+      }
+  }
+
+  &__error {
+    visibility: hidden;
+    margin-top: 10px;
+    line-height: 1.2;
+    color: $color-validation-error;
+    min-height: $dropdown-error-minheight;
+  }
+
   &__select {
     @include normalize-native-select-styles();
+    @include typo(primary, small);
     min-width: 100px;
     width: 100%;
-    padding: 10px 40px 10px 10px;
+    padding: 10px 40px 10px 20px;
     height: $dropdown-height;
     line-height: normal;
   }
@@ -94,6 +154,7 @@ $dropdown-height: 40px;
     display: block;
     width: 40px;
     height: $dropdown-height;
+    line-height: $dropdown-height - $dropdown-icon-height + 4px;
     background: $color-prim-white;
     position: absolute;
     right: 0;
@@ -102,12 +163,13 @@ $dropdown-height: 40px;
     text-align: center;
 
     svg {
-      width: 15px;
-      height: $dropdown-height;
-      color: $color-prim-gray-dusty;
+      width: $dropdown-icon-width;
+      height: $dropdown-icon-height;
+      color: $color-axa-blue;
       transition: transform 0.3s ease;
       pointer-events: none;
       line-height: 0;
+      -ms-interpolation-mode: nearest-neighbor;
     }
   }
 
@@ -123,7 +185,7 @@ $dropdown-height: 40px;
     height: $dropdown-height;
     text-align: left;
     cursor: pointer;
-    line-height: 24px;
+    line-height: 20px;
 
     &:hover,
     &:active,
@@ -138,18 +200,16 @@ $dropdown-height: 40px;
     list-style: none;
     position: absolute;
     top: 100%;
+    left: -1px;
+    right: -1px;
     z-index: 2;
     height: 0;
     min-width: 100%;
     overflow: hidden;
     transition: height 0.3s ease;
-
-    .is-dropdown-open & {
-      height: auto;
-    }
-
     margin-top: -$dropdown-border-width;
     background: $color-prim-white;
+    border-bottom: 1px solid $color-prim-gray-silver;
   }
 
   &__option,
@@ -157,9 +217,13 @@ $dropdown-height: 40px;
   &__button {
     padding: 10px 40px 10px 10px;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__button {
+    @include typo(primary, small);
     display: block;
     width: 100%;
     text-align: left;
@@ -167,6 +231,7 @@ $dropdown-height: 40px;
     border: 0;
     color: $dropdown-color;
     white-space: nowrap;
+    margin: 0; /* for Safari, who'd impose 2px margins otherwise */
 
 
     &:hover,
@@ -193,7 +258,7 @@ $dropdown-height: 40px;
     }
 
     &:last-child {
-      border-bottom: 3px solid $color-prim-gray-silver;
+      border-bottom: $dropdown-bottom-border-width solid $color-prim-gray-silver;
     }
   }
 

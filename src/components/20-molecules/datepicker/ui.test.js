@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
@@ -31,25 +31,25 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
     .expect(dropdownItems)
     .eql(
       JSON.stringify([
-        { isSelected: false, name: '1989', value: '1989' },
-        { isSelected: false, name: '1990', value: '1990' },
-        { isSelected: false, name: '1991', value: '1991' },
-        { isSelected: false, name: '1992', value: '1992' },
-        { isSelected: false, name: '1993', value: '1993' },
-        { isSelected: false, name: '1994', value: '1994' },
-        { isSelected: false, name: '1995', value: '1995' },
-        { isSelected: false, name: '1996', value: '1996' },
-        { isSelected: false, name: '1997', value: '1997' },
-        { isSelected: false, name: '1998', value: '1998' },
-        { isSelected: false, name: '1999', value: '1999' },
-        { isSelected: false, name: '2000', value: '2000' },
-        { isSelected: false, name: '2012', value: '2012' },
-        { isSelected: false, name: '2014', value: '2014' },
-        { isSelected: false, name: '2018', value: '2018' },
-        { isSelected: false, name: '2019', value: '2019' },
-        { isSelected: true, name: '2020', value: '2020' },
-        { isSelected: false, name: '2021', value: '2021' },
-        { isSelected: false, name: '2022', value: '2022' },
+        { selected: false, name: '1989', value: '1989' },
+        { selected: false, name: '1990', value: '1990' },
+        { selected: false, name: '1991', value: '1991' },
+        { selected: false, name: '1992', value: '1992' },
+        { selected: false, name: '1993', value: '1993' },
+        { selected: false, name: '1994', value: '1994' },
+        { selected: false, name: '1995', value: '1995' },
+        { selected: false, name: '1996', value: '1996' },
+        { selected: false, name: '1997', value: '1997' },
+        { selected: false, name: '1998', value: '1998' },
+        { selected: false, name: '1999', value: '1999' },
+        { selected: false, name: '2000', value: '2000' },
+        { selected: false, name: '2012', value: '2012' },
+        { selected: false, name: '2014', value: '2014' },
+        { selected: false, name: '2018', value: '2018' },
+        { selected: false, name: '2019', value: '2019' },
+        { selected: true, name: '2020', value: '2020' },
+        { selected: false, name: '2021', value: '2021' },
+        { selected: false, name: '2022', value: '2022' },
       ])
     );
 });
@@ -99,7 +99,7 @@ test('should display month in english', async t => {
   await datePickerAccessor.assertMonth('February');
 });
 
-fixture('Datepicker - Collapsable Version').page(
+fixture('Datepicker - Collapsible Version').page(
   `${host}/iframe.html?id=molecules-datepicker--datepicker-input`
 );
 
@@ -128,8 +128,15 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor2019.chooseFebruary();
   await datePickerAccessor2019.selectDayOfCurrentMonth(14);
   await datePickerAccessor2019.submit();
-
-  await datePickerAccessor2019.assertDatepickerInput('14.2.2019');
+  // we need to do things on our own here since property access
+  // is *not* supported by the TestCafe API (here for 'value')
+  const getInputValue = ClientFunction(
+    () =>
+      document.querySelector(
+        `axa-datepicker[data-test-id="datepicker-input-2019"]`
+      ).value
+  );
+  await t.expect(await getInputValue()).eql('14.2.2019');
 });
 
 test('should change enhanced dropdown title (only on large screens) on month change', async t => {
@@ -154,4 +161,76 @@ test('should render datepicker as reactified component', async t => {
     document.querySelector(`axa-datepicker[data-test-id="datepicker-react"]`)
   );
   await t.expect(datepickerReact.exists).ok();
+});
+
+// React controlled-component test
+fixture('Datepicker React controlled').page(
+  `${host}/iframe.html?id=molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
+);
+test('datepicker should behave correctly when controlled', async t => {
+  const datepickerReact = await Selector(() =>
+    document.querySelector(
+      `axa-datepicker[data-test-id="datepicker-controlled-react"]`
+    )
+  );
+  await t.expect(datepickerReact.exists).ok();
+
+  const getInputValue = ClientFunction(
+    () =>
+      document.querySelector(
+        `axa-datepicker[data-test-id="datepicker-controlled-react"]`
+      ).value
+  );
+
+  await t.expect(await getInputValue()).eql('4.6.2019');
+
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-controlled-react"] .js-datepicker__input`,
+    '28.2.2019',
+    { replace: true }
+  );
+
+  await t.expect(await getInputValue()).eql('28.2.2019');
+  const checkbox = Selector(
+    'axa-checkbox[name="datepicker-controlled-react-checkbox"] .a-checkbox__wrapper'
+  );
+
+  await t.click(checkbox);
+
+  await t
+    .expect(
+      (await Selector('[data-test-id="datepicker-react-controlled-value"]'))
+        .innerText
+    )
+    .eql('28.2.2019 (frozen)');
+
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-controlled-react"] .js-datepicker__input`,
+    '5.6.2019',
+    { replace: true }
+  );
+
+  await t.expect(await getInputValue()).eql('28.2.2019');
+});
+
+fixture('Datepicker Form').page(
+  `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
+);
+test('should submit datepicker correctly in form', async t => {
+  const datepickerForm = await Selector(() =>
+    document.querySelector(`axa-datepicker[data-test-id="datepicker-forms"]`)
+  );
+  await t.expect(datepickerForm.exists).ok();
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-forms"] .js-datepicker__input`,
+    '29.2.2020'
+  );
+  await t.click('#datepicker-forms-submit');
+  await t
+    .wait(
+      50 /* give click handler time to set innerText below,
+            and then time for the DOM to stabilize */
+    )
+    .expect((await Selector('#datepicker-forms-content')).innerText)
+    .eql('date = 29.2.2020 (of 1 submittable elements)');
 });

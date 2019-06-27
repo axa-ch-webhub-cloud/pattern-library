@@ -58,13 +58,6 @@ class DatePickerAccessor {
     await this.t.expect(datepicker.hasAttribute('open')).ok();
   }
 
-  async assertDatepickerInput(date) {
-    const datepicker = await Selector(
-      this.datepickerInputFieldSelector(this.id)
-    );
-    await this.t.expect(datepicker.getAttribute('value')).eql(date);
-  }
-
   async assertDropdownTitle(title) {
     const dropdownButton = await Selector(
       this.datepickerDropdownButton(this.id)
@@ -80,22 +73,20 @@ class DatePickerAccessor {
   submitButtonSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector('axa-button[class*="js-datepicker__button-ok"]')
+      .querySelector('axa-button[class*="js-datepicker__button-ok"]')
   );
 
   datepickerInputFieldSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector('input[class*="js-datepicker__input"]')
+      .querySelector('input[class*="js-datepicker__input"]')
   );
 
   datepickerDropdownButton = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector(
-        'axa-dropdown[class*="js-datepicker__dropdown-month"]'
-      )
-      .shadowRoot.querySelector('.js-dropdown__toggle span')
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('.js-dropdown__toggle span')
   );
 
   calendarSelector = Selector(id =>
@@ -103,58 +94,49 @@ class DatePickerAccessor {
   );
 
   daySelector = Selector((day, currentMonth) => {
+    const month = currentMonth ? '' : '-not';
     return document
       .querySelector('axa-datepicker')
-      .shadowRoot.querySelector(
-        currentMonth
-          ? `button[class*="m-datepicker__calendar-current-month"][data-day="${day}"]`
-          : `button[class*="m-datepicker__calendar-not-current-month"][data-day="${day}"]`
+      .querySelector(
+        `button[class*="m-datepicker__calendar${month}-current-month"][data-day="${day}"]`
       );
   });
 
   openCalendarSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector('button[class*="m-datepicker__input-button"]')
+      .querySelector('button[class*="m-datepicker__input-button"]')
   );
 
   selectFebruarySelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector(
-        'axa-dropdown[class*="js-datepicker__dropdown-month"]'
-      )
-      .shadowRoot.querySelector('button[data-value="1"]')
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('button[data-index="1"]')
   );
 
   selectMonthDropdownSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector('axa-dropdown')
+      .querySelector('axa-dropdown')
   );
 
   yearDropdownSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector(
-        'axa-dropdown[class*="js-datepicker__dropdown-year"]'
-      )
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
   );
 
   monthDropdownSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector(
-        'axa-dropdown[class*="js-datepicker__dropdown-month"]'
-      )
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
   );
 
   dayListSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .shadowRoot.querySelector(
-        'button[class*="m-datepicker__calendar-selected-day"]'
-      )
+      .querySelector('button[class*="m-datepicker__calendar-selected-day"]')
   );
 }
 

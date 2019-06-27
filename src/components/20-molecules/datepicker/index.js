@@ -1,28 +1,72 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { DateInputSvg } from '@axa-ch/materials/icons';
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { html, svg } from 'lit-element';
 import '@axa-ch/dropdown';
 import '@axa-ch/button';
-import datepickerCSS from './index.scss';
+import styles from './index.scss';
 import {
   getWeekdays,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
 } from './utils/date';
+
+import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
+import debounce from '../../../utils/debounce';
+
 import Store from './utils/Store';
 
+// module constants
 const dateInputIcon = svg([DateInputSvg]);
-class AXADatepicker extends LitElement {
-  static tagName = 'axa-datepicker';
-  static styles = css`
-    ${unsafeCSS(datepickerCSS)}
-  `;
+const EMPTY_FUNCTION = () => {};
+
+// module globals
+let openDatepickerInstance;
+
+// helper functions
+const range = (start, end) =>
+  new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+
+const shouldMove = elem => {
+  const element = elem.getBoundingClientRect();
+  const moreSpaceOnTopThanBottom =
+    element.top > window.innerHeight - element.bottom;
+  return moreSpaceOnTopThanBottom;
+};
+
+const applyEffect = self =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      const datepickerWrapper = self.querySelector('.js-datepicker__wrap');
+      if (!datepickerWrapper) {
+        return;
+      }
+      const effect = 'm-datepicker__wrap-effect';
+      const hasEffect = datepickerWrapper.classList.contains(effect);
+      datepickerWrapper.classList[hasEffect ? 'remove' : 'add'](effect);
+      setTimeout(
+        () => resolve(),
+        250 /* effect duration - keep in sync with CSS */
+      );
+    }, 0 /* execute after render() */);
+  });
+
+// CE
+class AXADatepicker extends NoShadowDOM {
+  static get tagName() {
+    return 'axa-datepicker';
+  }
+
+  static get styles() {
+    return styles;
+  }
 
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
+      value: { type: String },
+      name: { type: String, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
       outputdate: { type: String, reflect: true },
@@ -37,17 +81,53 @@ class AXADatepicker extends LitElement {
       cells: { type: Array },
       labelbuttoncancel: { type: String },
       labelbuttonok: { type: String },
-      inputplaceholder: { type: String },
-      onAXADateChange: { type: Function },
+      placeholder: { type: String },
+      monthtitle: { type: String },
+      yeartitle: { type: String },
+      invaliddatetext: { type: String },
+      error: { type: String, reflect: true },
     };
+  }
+
+  set value(newValue) {
+    const {
+      state: { isControlled, value },
+    } = this;
+    // first value coming in indicates controlledness?
+    if (!isControlled && newValue !== undefined) {
+      // yes, remember in model state
+      this.state.isControlled = true;
+    }
+    // update state
+    this.state.value = newValue;
+    this.validate(newValue);
+    // manual re-render, necessary for custom setters
+    this.requestUpdate('value', value);
+  }
+
+  get value() {
+    const {
+      input = { value: '' },
+      state: { isControlled, value },
+    } = this;
+    return isControlled ? value : input.value;
   }
 
   constructor() {
     super();
+    // internal model state
+    this.state = {};
+    // property initializations
     this.locale = 'de-CH';
     this.open = false;
+    this.inverted = false;
+    this.name = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
+    this.placeholder = 'Please select a date';
+    this.monthtitle = 'Choose Month';
+    this.yeartitle = 'Choose Year';
+    this.invaliddatetext = 'Invalid date';
     this.startDate = new Date();
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
@@ -55,31 +135,185 @@ class AXADatepicker extends LitElement {
     this.allowedyears = [this.year];
     this.inputplaceholder = 'Please select a date';
     this.outputdate = '';
-    this.onAXADateChange = () => {};
+    this.onChange = EMPTY_FUNCTION;
+    this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
+    this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.debouncedHandleViewportCheck = debounce(
+      () => this.handleViewportCheck(this.input),
+      250
+    );
   }
 
-  range(start, end) {
-    return new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+  shouldUpdate(changedProperties) {
+    if (changedProperties.has('value')) {
+      const {
+        isReact,
+        state: { isControlled },
+      } = this;
+      // controlledness is a React-only concept
+      this.state.isControlled = isReact && isControlled;
+    }
+    return true;
+  }
+
+  render() {
+    const {
+      date,
+      state: { isControlled, value },
+    } = this;
+
+    const [month, year] = [
+      date ? date.getMonth() : this.month,
+      date ? date.getFullYear() : this.year,
+    ];
+
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
+      (item, index) => ({
+        selected: index === month,
+        name: item.toString(),
+        value: index.toString(),
+      })
+    );
+
+    this.yearitems = this.allowedyears.map(item => ({
+      selected: item === year,
+      name: item.toString(),
+      value: item.toString(),
+    }));
+
+    return html`
+      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
+        ${this.inputfield &&
+          html`
+            <div class="m-datepicker__input-wrap">
+              <input
+                @input="${this.handleInputChange}"
+                @blur="${this.handleBlur}"
+                class="m-datepicker__input js-datepicker__input"
+                type="text"
+                name="${this.name}"
+                placeholder="${this.placeholder}"
+                .value="${isControlled ? value : this.outputdate}"
+              />
+              <button
+                type="button"
+                class="m-datepicker__input-button"
+                @click="${this.handleInputButtonClick}"
+              >
+                <span>${dateInputIcon}</span>
+              </button>
+            </div>
+          `}
+        ${this.open || !this.inputfield
+          ? html`
+              <div class="m-datepicker__wrap js-datepicker__wrap">
+                <div class="m-datepicker__article">
+                  <div class="m-datepicker__dropdown-wrap">
+                    <axa-dropdown
+                      @axa-change="${this.handleChangeDropdownMonth}"
+                      class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
+                      max-height
+                      items="${JSON.stringify(this.monthitems)}"
+                      title="${this.monthtitle}"
+                      embedded
+                    >
+                    </axa-dropdown>
+
+                    <axa-dropdown
+                      @axa-change="${this.handleChangeDropdownYear}"
+                      class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
+                      max-height
+                      items="${JSON.stringify(this.yearitems)}"
+                      title="${this.yeartitle}"
+                      embedded
+                    >
+                    </axa-dropdown>
+                  </div>
+
+                  <div class="m-datepicker__weekdays">
+                    ${this.weekdays &&
+                      this.weekdays.map(
+                        day =>
+                          html`
+                            <span class="m-datepicker__weekdays-day"
+                              >${day}</span
+                            >
+                          `
+                      )}
+                  </div>
+
+                  <div class="m-datepicker__calendar js-datepicker__calendar">
+                    ${this.cells &&
+                      this.cells.map(
+                        (cell, index) =>
+                          html`
+                            <button
+                              @click="${this.handleDatepickerCalendarCellClick}"
+                              type="button"
+                              tabindex="0"
+                              data-index="${index}"
+                              data-value="${cell.value}"
+                              data-day="${cell.text}"
+                              class="m-datepicker__calendar-cell ${cell.className}"
+                            >
+                              ${cell.text}
+                            </button>
+                          `
+                      )}
+                  </div>
+                  <div class="m-datepicker__buttons">
+                    <axa-button
+                      variant="secondary"
+                      class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
+                      @click="${this.handleButtonCancelClick}"
+                      >${this.labelbuttoncancel}</axa-button
+                    >
+                    <axa-button
+                      class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
+                      @click="${this.handleButtonOkClick}"
+                      >${this.labelbuttonok}</axa-button
+                    >
+                  </div>
+                </div>
+              </div>
+            `
+          : ''}
+        <span class="m-datepicker__error"
+          >${this.error && this.invaliddatetext}</span
+        >
+      </article>
+    `;
   }
 
   firstUpdated() {
-    window.axaComponents = window.axaComponents || {};
-    this.inputfield = this.shadowRoot.querySelector('.js-datepicker__input');
-    window.addEventListener('keydown', e => this.handleWindowKeyDown(e));
-    window.addEventListener('click', e => this.handleBodyClick(e));
+    this.input = this.querySelector('.js-datepicker__input');
 
-    if (this.inputfield) {
+    window.addEventListener('keydown', this.handleWindowKeyDown);
+    window.addEventListener('click', this.handleBodyClick);
+
+    if (this.input) {
       window.setTimeout(() => {
-        window.addEventListener(
-          'resize',
-          this.debounce(() => this.handleViewportCheck(this.inputfield), 250)
-        );
-        window.addEventListener(
-          'scroll',
-          this.debounce(() => this.handleViewportCheck(this.inputfield), 250)
-        );
-        this.handleViewportCheck(this.inputfield);
+        window.addEventListener('resize', this.debouncedHandleViewportCheck);
+        window.addEventListener('scroll', this.debouncedHandleViewportCheck);
+        this.handleViewportCheck(this.input);
       }, 100);
+    }
+
+    this.initDate();
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('keydown', this.handleWindowKeyDown);
+    window.removeEventListener('click', this.handleBodyClick);
+    window.removeEventListener('resize', this.debouncedHandleViewportCheck);
+    window.removeEventListener('scroll', this.debouncedHandleViewportCheck);
+  }
+
+  // Methods
+  initDate() {
+    // not first-time initialization?
+    if (this.store) {
+      return;
     }
 
     if (this.year >= 0) {
@@ -90,15 +324,20 @@ class AXADatepicker extends LitElement {
       this.startDate.setMonth(this.month);
     }
 
-    if (this.day >= 0 && typeof this.day === 'number') {
+    if (typeof this.day === 'number') {
+      // day 1 = first day, day 0 = last day of prev. month
+      // day -1 = one day before last day of prev. month, ...
       this.startDate.setDate(this.day);
     }
-
-    let allowedYearsFinal = [this.year]; // the chosen start year is in the allowed years
+    this.startDate.setHours(0);
+    this.startDate.setMinutes(0);
+    this.startDate.setSeconds(0);
+    // the chosen start year is in the allowed years
+    let allowedYearsFinal = [this.year];
     this.allowedyears.forEach(years => {
       if (typeof years === 'string') {
         const splitYears = years.split('-');
-        const generatedYears = this.range(
+        const generatedYears = range(
           parseInt(splitYears[0], 10),
           parseInt(splitYears[1], 10)
         );
@@ -110,7 +349,7 @@ class AXADatepicker extends LitElement {
 
     this.allowedyears = allowedYearsFinal
       .filter((item, index) => allowedYearsFinal.indexOf(item) >= index)
-      .sort(); // Performance maniacs can puke (O...notation I know. ou ou ou).
+      .sort();
 
     this.date = this.startDate;
     this.store = new Store(this.locale, this.date, this.allowedyears);
@@ -118,149 +357,8 @@ class AXADatepicker extends LitElement {
     this.weekdays = getWeekdays(this.date, this.locale);
   }
 
-  disconnectedCallback() {
-    window.removeEventListener('click', e => this.handleBodyClick(e));
-    window.removeEventListener('keydown', e => this.handleWindowKeyDown(e));
-  }
-
-  render() {
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
-      (item, index) => ({
-        isSelected: index === this.month,
-        name: item.toString(),
-        value: index.toString(),
-      })
-    );
-
-    this.yearitems = this.allowedyears.map(item => ({
-      isSelected: item === this.year,
-      name: item.toString(),
-      value: item.toString(),
-    }));
-
-    return html`
-      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
-        ${this.inputfield &&
-          html`
-            <div class="m-datepicker__input-wrap">
-              <input
-                @keyup="${this.handleInputChange}"
-                class="m-datepicker__input js-datepicker__input"
-                type="text"
-                placeholder="${this.inputplaceholder}"
-                value="${this.outputdate}"
-              />
-              <button
-                type="button"
-                class="m-datepicker__input-button"
-                @click="${this.handleInputButtonClick}"
-              >
-                <span>${dateInputIcon}</span>
-              </button>
-            </div>
-          `}
-        <div class="m-datepicker__wrap">
-          <div class="m-datepicker__article">
-            <div class="m-datepicker__dropdown-wrap">
-              <axa-dropdown
-                @axa-change="${this.handleChangeDropdownMonth}"
-                class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-                max-height
-                items="${JSON.stringify(this.monthitems)}"
-                title="Choose Month"
-              >
-              </axa-dropdown>
-
-              <axa-dropdown
-                @axa-change="${this.handleChangeDropdownYear}"
-                class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-                max-height
-                items="${JSON.stringify(this.yearitems)}"
-                title="Choose Year"
-              >
-              </axa-dropdown>
-            </div>
-
-            <div class="m-datepicker__weekdays">
-              ${this.weekdays &&
-                this.weekdays.map(
-                  day =>
-                    html`
-                      <span class="m-datepicker__weekdays-day">${day}</span>
-                    `
-                )}
-            </div>
-
-            <div class="m-datepicker__calendar js-datepicker__calendar">
-              ${this.cells &&
-                this.cells.map(
-                  (cell, index) =>
-                    html`
-                      <button
-                        @click="${this.handleDatepickerCalendarCellClick}"
-                        type="button"
-                        tabindex="0"
-                        data-index="${index}"
-                        data-value="${cell.value}"
-                        data-day="${cell.text}"
-                        class="m-datepicker__calendar-cell ${cell.className}"
-                      >
-                        ${cell.text}
-                      </button>
-                    `
-                )}
-            </div>
-            <div class="m-datepicker__buttons">
-              <axa-button
-                variant="secondary"
-                class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
-                @click="${this.handleButtonCancelClick}"
-                >${this.labelbuttoncancel}</axa-button
-              >
-              <axa-button
-                class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
-                @click="${this.handleButtonOkClick}"
-                >${this.labelbuttonok}</axa-button
-              >
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    const hasValue = newValue !== null;
-    if (hasValue && name === 'date' && this.store && this.date) {
-      const newDate = this.date;
-
-      // Validation
-      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-        // return;
-      }
-
-      // Fire custom success events
-      const eventChange = new CustomEvent('axa-change', {
-        detail: newDate,
-        bubbles: true,
-        cancelable: true,
-      });
-      this.dispatchEvent(eventChange);
-      this.onAXADateChange(newDate);
-
-      const eventValidation = new CustomEvent('AXA_VALIDATION', {
-        detail: { type: 'success', message: 'valid' },
-        bubbles: true,
-        cancelable: true,
-      });
-      this.dispatchEvent(eventValidation);
-    }
-  }
-
-  // Methods
-  handleViewportCheck(baseElem, elem) {
-    if (this.shouldMove(baseElem, elem)) {
+  handleViewportCheck(baseElem) {
+    if (shouldMove(baseElem)) {
       if (!this.inverted) {
         this.inverted = true;
       }
@@ -269,73 +367,50 @@ class AXADatepicker extends LitElement {
     }
   }
 
-  shouldMove(elem) {
-    const element = elem.getBoundingClientRect();
-    const moreSpaceOnTopThanBottom =
-      element.top > window.innerHeight - element.bottom;
-    return moreSpaceOnTopThanBottom;
-  }
-
   toggleDatepicker() {
     if (!this.open) {
-      if (
-        window.axaComponents.openDatepickerInstance &&
-        window.axaComponents.openDatepickerInstance !== this
-      ) {
-        window.axaComponents.openDatepickerInstance.open = false;
+      if (openDatepickerInstance && openDatepickerInstance !== this) {
+        openDatepickerInstance.open = false;
       }
       this.open = true;
-      window.axaComponents.openDatepickerInstance = this;
+      openDatepickerInstance = this;
+      applyEffect(this);
     } else {
-      this.open = false;
-      window.axaComponents.openDatepickerInstance = null;
+      openDatepickerInstance = null;
+      applyEffect(this).then(() => {
+        this.open = false;
+      });
     }
-  }
-
-  isValidDate(date) {
-    let out = false;
-    try {
-      const parsedDate = new Date(Date.parse(date));
-      // eslint-disable-next-line no-restricted-properties
-      const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
-      const isValidDateLocalized = parseLocalisedDateIfValid(this.locale, date);
-      if (
-        (isValid && isValidDateLocalized) ||
-        (!isValid && isValidDateLocalized)
-      ) {
-        out = isValidDateLocalized;
-      }
-    } catch (e) {
-      out = false;
-    }
-    return out;
-  }
-
-  isYearInValidDateRange(year) {
-    return this.allowedyears.indexOf(year) > -1;
-  }
-
-  debounce(func, wait, immediate) {
-    let timeout;
-    return (...args) => {
-      const context = this;
-      const later = () => {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
   }
 
   updateDatepickerProps(date) {
     this.month = date.getMonth();
     this.day = date.getDate();
     this.year = date.getFullYear();
+    if (!this.store) {
+      return;
+    }
     this.store.update(date);
     this.cells = this.store.getCells();
+  }
+
+  validate(value) {
+    this.initDate();
+    const { locale, invaliddatetext, allowedyears } = this;
+    const validDate = parseLocalisedDateIfValid(locale, value);
+    const validYear = date => allowedyears.indexOf(date.getFullYear()) > -1;
+    this.error = null;
+    if (validDate && validYear(validDate)) {
+      this.date = validDate;
+      this.updateDatepickerProps(validDate);
+      this.outputdate = validDate.toLocaleString(locale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      });
+    } else if (value && invaliddatetext) {
+      this.error = invaliddatetext;
+    }
   }
 
   // Events
@@ -355,7 +430,7 @@ class AXADatepicker extends LitElement {
   handleBodyClick(e) {
     e.stopPropagation();
     if (this.open) {
-      this.open = false;
+      this.toggleDatepicker();
     }
   }
 
@@ -389,28 +464,38 @@ class AXADatepicker extends LitElement {
 
   handleInputChange(e) {
     e.preventDefault();
-    const validDate = this.isValidDate(e.target.value);
-    if (validDate) {
-      this.date = validDate;
-      this.updateDatepickerProps(this.date);
-      this.outputdate = validDate.toLocaleString(this.locale, {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
-      });
+    const { onChange = () => {}, input, state } = this;
+    onChange(e);
+    if (state.isControlled) {
+      const { value: stateValue } = state;
+      input.value = stateValue;
     }
   }
 
-  handleButtonOkClick() {
-    if (this.inputfield) {
-      this.toggleDatepicker();
-    }
+  handleBlur() {
+    this.validate(this.input.value);
+  }
 
-    this.outputdate = this.date.toLocaleString(this.locale, {
+  handleButtonOkClick() {
+    const {
+      locale,
+      date,
+      inputfield,
+      input,
+      onChange,
+      state: { isControlled, value: stateValue },
+    } = this;
+    const value = date.toLocaleString(locale, {
       day: 'numeric',
       month: 'numeric',
       year: 'numeric',
     });
+    this.outputdate = value;
+    onChange({ target: { value } });
+    if (inputfield) {
+      this.toggleDatepicker();
+      input.value = isControlled ? stateValue : value;
+    }
   }
 
   handleButtonCancelClick() {
@@ -420,7 +505,7 @@ class AXADatepicker extends LitElement {
   handleDatepickerCalendarCellClick(e) {
     e.preventDefault();
     e.stopPropagation();
-    e.target.blur(); // Prevent the ugly focus ring after the click
+    e.target.blur(); // prevent the ugly focus ring after the click
     const cellIndex = parseInt(e.target.dataset.index, 10);
     const date = e.target.dataset.value;
     this.index = cellIndex;
@@ -429,14 +514,14 @@ class AXADatepicker extends LitElement {
 
     this.monthitems = getAllLocaleMonthsArray(this.locale).map(
       (item, index) => ({
-        isSelected: index === this.month,
+        selected: index === this.month,
         name: item.toString(),
         value: index.toString(),
       })
     );
 
     this.yearitems = this.allowedyears.map(item => ({
-      isSelected: item === this.year,
+      selected: item === this.year,
       name: item.toString(),
       value: item.toString(),
     }));
