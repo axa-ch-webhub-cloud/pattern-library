@@ -136,7 +136,7 @@ class AXADatepicker extends NoShadowDOM {
     this.allowedyears = [this.year];
     this.inputplaceholder = 'Please select a date';
     this.outputdate = '';
-    this.onAXADateChange = EMPTY_FUNCTION;
+    this.onDateChange = EMPTY_FUNCTION;
     this.onChange = EMPTY_FUNCTION;
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
@@ -317,7 +317,7 @@ class AXADatepicker extends NoShadowDOM {
     }
     // fire custom success events
     fireCustomEvent('axa-change', date, this);
-    this.onAXADateChange(date);
+    this.onDateChange(date);
     fireCustomEvent(
       'axa-validation',
       { type: 'success', message: 'valid' },
