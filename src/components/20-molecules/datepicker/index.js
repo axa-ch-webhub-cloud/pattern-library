@@ -53,6 +53,20 @@ const isValidDate = (locale, date) => {
   return out;
 };
 
+const applyEffect = self =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      const datepickerWrapper = self.querySelector('.js-datepicker__wrap');
+      if (!datepickerWrapper) {
+        return;
+      }
+      const effect = 'm-datepicker__wrap-effect';
+      const hasEffect = datepickerWrapper.classList.contains(effect);
+      datepickerWrapper.classList[hasEffect ? 'remove' : 'add'](effect);
+      setTimeout(() => resolve(), 250 /* milliseconds */);
+    }, 0 /* allow rendering first */);
+  });
+
 // CE
 class AXADatepicker extends NoShadowDOM {
   static get tagName() {
@@ -67,6 +81,7 @@ class AXADatepicker extends NoShadowDOM {
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
+      name: { type: String, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
       outputdate: { type: String, reflect: true },
@@ -81,8 +96,11 @@ class AXADatepicker extends NoShadowDOM {
       cells: { type: Array },
       labelbuttoncancel: { type: String },
       labelbuttonok: { type: String },
-      inputplaceholder: { type: String },
-      onAXADateChange: { type: Function },
+      placeholder: { type: String },
+      monthtitle: { type: String },
+      yeartitle: { type: String },
+      invaliddatetext: { type: String },
+      error: { type: String, reflect: true },
     };
   }
 
@@ -90,8 +108,13 @@ class AXADatepicker extends NoShadowDOM {
     super();
     this.locale = 'de-CH';
     this.open = false;
+    this.name = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
+    this.placeholder = 'Please select a date';
+    this.monthtitle = 'Choose Month';
+    this.yeartitle = 'Choose Year';
+    this.invaliddatetext = 'Invalid date';
     this.startDate = new Date();
     this.year = this.startDate.getFullYear();
     this.month = this.startDate.getMonth();
@@ -189,7 +212,8 @@ class AXADatepicker extends NoShadowDOM {
                 @keyup="${this.handleInputChange}"
                 class="m-datepicker__input js-datepicker__input"
                 type="text"
-                placeholder="${this.inputplaceholder}"
+                name="${this.name}"
+                placeholder="${this.placeholder}"
                 value="${this.outputdate}"
               />
               <button
@@ -201,74 +225,83 @@ class AXADatepicker extends NoShadowDOM {
               </button>
             </div>
           `}
-        <div class="m-datepicker__wrap">
-          <div class="m-datepicker__article">
-            <div class="m-datepicker__dropdown-wrap">
-              <axa-dropdown
-                @axa-change="${this.handleChangeDropdownMonth}"
-                class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-                max-height
-                items="${JSON.stringify(this.monthitems)}"
-                title="Choose Month"
-                embedded
-              >
-              </axa-dropdown>
+        ${this.open || !this.inputfield
+          ? html`
+              <div class="m-datepicker__wrap js-datepicker__wrap">
+                <div class="m-datepicker__article">
+                  <div class="m-datepicker__dropdown-wrap">
+                    <axa-dropdown
+                      @axa-change="${this.handleChangeDropdownMonth}"
+                      class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
+                      max-height
+                      items="${JSON.stringify(this.monthitems)}"
+                      title="${this.monthtitle}"
+                      embedded
+                    >
+                    </axa-dropdown>
 
-              <axa-dropdown
-                @axa-change="${this.handleChangeDropdownYear}"
-                class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-                max-height
-                items="${JSON.stringify(this.yearitems)}"
-                title="Choose Year"
-                embedded
-              >
-              </axa-dropdown>
-            </div>
+                    <axa-dropdown
+                      @axa-change="${this.handleChangeDropdownYear}"
+                      class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
+                      max-height
+                      items="${JSON.stringify(this.yearitems)}"
+                      title="${this.yeartitle}"
+                      embedded
+                    >
+                    </axa-dropdown>
+                  </div>
 
-            <div class="m-datepicker__weekdays">
-              ${this.weekdays &&
-                this.weekdays.map(
-                  day =>
-                    html`
-                      <span class="m-datepicker__weekdays-day">${day}</span>
-                    `
-                )}
-            </div>
+                  <div class="m-datepicker__weekdays">
+                    ${this.weekdays &&
+                      this.weekdays.map(
+                        day =>
+                          html`
+                            <span class="m-datepicker__weekdays-day"
+                              >${day}</span
+                            >
+                          `
+                      )}
+                  </div>
 
-            <div class="m-datepicker__calendar js-datepicker__calendar">
-              ${this.cells &&
-                this.cells.map(
-                  (cell, index) =>
-                    html`
-                      <button
-                        @click="${this.handleDatepickerCalendarCellClick}"
-                        type="button"
-                        tabindex="0"
-                        data-index="${index}"
-                        data-value="${cell.value}"
-                        data-day="${cell.text}"
-                        class="m-datepicker__calendar-cell ${cell.className}"
-                      >
-                        ${cell.text}
-                      </button>
-                    `
-                )}
-            </div>
-            <div class="m-datepicker__buttons">
-              <axa-button
-                variant="secondary"
-                class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
-                @click="${this.handleButtonCancelClick}"
-                >${this.labelbuttoncancel}</axa-button
-              >
-              <axa-button
-                class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
-                @click="${this.handleButtonOkClick}"
-                >${this.labelbuttonok}</axa-button
-              >
-            </div>
-          </div>
-        </div>
+                  <div class="m-datepicker__calendar js-datepicker__calendar">
+                    ${this.cells &&
+                      this.cells.map(
+                        (cell, index) =>
+                          html`
+                            <button
+                              @click="${this.handleDatepickerCalendarCellClick}"
+                              type="button"
+                              tabindex="0"
+                              data-index="${index}"
+                              data-value="${cell.value}"
+                              data-day="${cell.text}"
+                              class="m-datepicker__calendar-cell ${cell.className}"
+                            >
+                              ${cell.text}
+                            </button>
+                          `
+                      )}
+                  </div>
+                  <div class="m-datepicker__buttons">
+                    <axa-button
+                      variant="secondary"
+                      class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
+                      @click="${this.handleButtonCancelClick}"
+                      >${this.labelbuttoncancel}</axa-button
+                    >
+                    <axa-button
+                      class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
+                      @click="${this.handleButtonOkClick}"
+                      >${this.labelbuttonok}</axa-button
+                    >
+                  </div>
+                </div>
+              </div>
+            `
+          : ''}
+        <span class="m-datepicker__error"
+          >${this.error && this.invaliddatetext}</span
+        >
       </article>
     `;
   }
@@ -314,9 +347,12 @@ class AXADatepicker extends NoShadowDOM {
       }
       this.open = true;
       openDatepickerInstance = this;
+      applyEffect(this);
     } else {
-      this.open = false;
       openDatepickerInstance = null;
+      applyEffect(this).then(() => {
+        this.open = false;
+      });
     }
   }
 
@@ -352,7 +388,7 @@ class AXADatepicker extends NoShadowDOM {
   handleBodyClick(e) {
     e.stopPropagation();
     if (this.open) {
-      this.open = false;
+      this.toggleDatepicker();
     }
   }
 
@@ -386,7 +422,11 @@ class AXADatepicker extends NoShadowDOM {
 
   handleInputChange(e) {
     e.preventDefault();
-    const validDate = isValidDate(this.locale, e.target.value);
+    const {
+      target: { value },
+    } = e;
+    const validDate = isValidDate(this.locale, value);
+    this.error = null;
     if (validDate) {
       this.date = validDate;
       this.updateDatepickerProps(this.date);
@@ -395,6 +435,8 @@ class AXADatepicker extends NoShadowDOM {
         month: 'numeric',
         year: 'numeric',
       });
+    } else if (value && this.invaliddatetext) {
+      this.error = this.invaliddatetext;
     }
   }
 

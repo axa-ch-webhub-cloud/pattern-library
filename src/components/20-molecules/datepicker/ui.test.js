@@ -155,3 +155,22 @@ test('should render datepicker as reactified component', async t => {
   );
   await t.expect(datepickerReact.exists).ok();
 });
+
+fixture('Datepicker Form').page(
+  `${host}/iframe.html?id=molecules-datepicker--datepicker-inside-form`
+);
+test('should submit datepicker correctly in form', async t => {
+  const datepickerForm = await Selector(() =>
+    document.querySelector(`axa-datepicker[data-test-id="datepicker-forms"]`)
+  );
+  await t.expect(datepickerForm.exists).ok();
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-forms"] .js-datepicker__input`,
+    '29.2.2020'
+  );
+  await t.click('#datepicker-forms-submit');
+  await t
+    .wait(50)
+    .expect((await Selector('#datepicker-forms-content')).innerText)
+    .eql('date = 29.2.2020 (of 1 submittable elements)');
+});

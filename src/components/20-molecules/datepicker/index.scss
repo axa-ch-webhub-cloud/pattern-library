@@ -1,19 +1,35 @@
-axa-datepicker[inputfield] .m-datepicker__wrap {
-  position: absolute;
-  z-index: 1;
-  transform: scale(0);
-  transform-origin: top left;
-  transition: transform 0.25s;
+axa-datepicker {
+  display: inline-block;
+  vertical-align: top;
+
+  &[inputfield] {
+
+    .m-datepicker__wrap {
+      position: absolute;
+      z-index: 1;
+      transform: scale(0);
+      transform-origin: top left;
+      transition: transform 0.25s;
+    }
+
+    &[inverted] .m-datepicker__wrap {
+      transform-origin: bottom left;
+      bottom: 40px;
+    }
+
+    &[open] .m-datepicker__wrap.m-datepicker__wrap-effect {
+      transform: scale(1);
+      margin-bottom: 1px;
+    }
+  }
+
+  &[error]:not([error=""]) {
+    .m-datepicker__input, .m-datepicker__input-button {
+      border-color: $color-validation-error;
+    }
+  }
 }
 
-axa-datepicker[inverted][inputfield] .m-datepicker__wrap {
-  transform-origin: bottom left;
-  bottom: 40px;
-}
-
-axa-datepicker[inputfield][open] .m-datepicker__wrap {
-  transform: scale(1);
-}
 
 .m-datepicker {
   position: relative;
@@ -26,15 +42,14 @@ axa-datepicker[inputfield][open] .m-datepicker__wrap {
 
   &__input-wrap {
     display: flex;
-    margin-bottom: 1px;
-    border: solid 1px $color-prim-gray-mercury;
     width: 197px;
   }
 
   &__input-button {
     background: $color-prim-white;
-    cursor: pointer;
-    border: 0;
+    cursor: pointer;border: 1px solid;
+    border-color: $color-prim-gray-mercury;
+    border-left: none;
     line-height: 0;
     padding: 1px 3px 2px;
 
@@ -50,7 +65,9 @@ axa-datepicker[inputfield][open] .m-datepicker__wrap {
   &__input {
     @include typo(primary, small);
 
-    border: 0;
+    border: 1px solid;
+    border-color: $color-prim-gray-mercury;
+    border-right: none;
     padding: 8px;
     min-width: 0;
     width: 100%;
@@ -64,11 +81,20 @@ axa-datepicker[inputfield][open] .m-datepicker__wrap {
     &::-ms-clear {
       display: none;
     }
+
+    &:hover {
+      border-color: $color-axa-blue;
+
+      + .m-datepicker__input-button {
+        border-color: $color-axa-blue;
+      }
+    }
   }
 
   &__wrap {
     background: $color-prim-white;
     max-width: 260px;
+    margin-top: 1px;
     padding: 20px 30px;
     background: $color-prim-white;
     border: solid 1px $color-prim-gray-silver;
@@ -207,6 +233,14 @@ axa-datepicker[inputfield][open] .m-datepicker__wrap {
     justify-content: space-between;
   }
 
+  &__error {
+    display: inline-block;
+    color: $color-validation-error;
+    @include typo(primary,default);
+    line-height: 1.2;
+    margin-top: 10px;
+    min-height: 16px;
+  }
   .m-datepicker__button-cancel {
     margin-right: 4px;
   }
