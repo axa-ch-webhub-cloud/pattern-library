@@ -17,10 +17,11 @@ const _extractNestedHref = ev => {
   if (!eventOrElement.target || !eventOrElement.target.href) {
     // This for-loop replaced a while-loop that could potentially run infinitely.
     for (let maxCycle = 0; maxCycle < 50; maxCycle++) {
-      if (eventOrElement.href) {
-        return eventOrElement.href;
-      } else if (eventOrElement.target && eventOrElement.target.parentNode) {
-        eventOrElement = eventOrElement.target.parentNode;
+      const { href, target } = eventOrElement;
+      if (href) {
+        return href;
+      } else if (target && target.parentNode) {
+        eventOrElement = target.parentNode;
       } else if (eventOrElement.parentNode) {
         eventOrElement = eventOrElement.parentNode;
       } else {
