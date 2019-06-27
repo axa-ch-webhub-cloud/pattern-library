@@ -7,7 +7,7 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
 const _listElementHasNoContent = label => {
-  return !label || label.toString() === '[object Text]';
+  return !label || label.nodeType === 3;
 };
 
 const _extractNestedHref = ev => {
