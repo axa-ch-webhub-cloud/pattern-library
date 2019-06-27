@@ -15,7 +15,11 @@ const _listElementHasNoContent = label => {
 const _extractNestedHref = ev => {
   let eventOrElement = ev;
   if (!eventOrElement.target || !eventOrElement.target.href) {
+    let counter = 0;
     while (!eventOrElement.href) {
+      if (counter++ > 50) {
+        return undefined;
+      }
       if (eventOrElement.target && eventOrElement.target.parentNode) {
         eventOrElement = eventOrElement.target.parentNode;
       } else if (eventOrElement.parentNode) {
