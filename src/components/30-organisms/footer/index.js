@@ -12,26 +12,6 @@ const _listElementHasNoContent = label => {
   return !label || label.nodeType === 3;
 };
 
-const _extractNestedHref = ev => {
-  let eventOrElement = ev;
-  if (!eventOrElement.target || !eventOrElement.target.href) {
-    // This for-loop replaced a while-loop that could potentially run infinitely.
-    for (let maxCycle = 0; maxCycle < 50; maxCycle++) {
-      const { href, target } = eventOrElement;
-      if (href) {
-        return href;
-      } else if (target && target.parentNode) {
-        eventOrElement = target.parentNode;
-      } else if (eventOrElement.parentNode) {
-        eventOrElement = eventOrElement.parentNode;
-      } else {
-        return undefined;
-      }
-    }
-  }
-  return eventOrElement.target.href;
-};
-
 class AXAFooter extends LitElement {
   static get tagName() {
     return 'axa-footer';
@@ -79,6 +59,11 @@ class AXAFooter extends LitElement {
 
     const showCaret = svg([CaretSvg || '']);
 
+    const links = this.querySelectorAll('a');
+    [].forEach.call(links, link => {
+      link.addEventListener('click', this._handleLinkClick);
+    });
+
     return html`
       <footer class="o-footer">
         <axa-container>
@@ -99,8 +84,11 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(accordionContent)}">
-                  ${repeat(new Array(8), (item, index) =>
-                    this.renderFooterLinks(0, index)
+                  ${repeat(
+                    new Array(
+                      this.querySelectorAll('[slot^="column-0-item-"]').length
+                    ),
+                    (item, index) => this.renderFooterLinks(0, index)
                   )}
                 </ul>
               </div>
@@ -120,8 +108,11 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(shortAccordionContent)}">
-                  ${repeat(new Array(4), (item, index) =>
-                    this.renderFooterLinks(1, index)
+                  ${repeat(
+                    new Array(
+                      this.querySelectorAll('[slot^="column-1-item-"]').length
+                    ),
+                    (item, index) => this.renderFooterLinks(1, index)
                   )}
                 </ul>
               </div>
@@ -133,13 +124,12 @@ class AXAFooter extends LitElement {
               ></slot>
               <ul class="o-footer__social-media-list">
                 ${repeat(
-                  new Array(6),
+                  new Array(
+                    this.querySelectorAll('[slot^="social-item-"]').length
+                  ),
                   (item, index) => html`
                     <li class="o-footer__social-media-item">
-                      <slot
-                        name="social-item-${index}"
-                        @click="${this._handleLinkClick}"
-                      ></slot>
+                      <slot name="social-item-${index}"></slot>
                     </li>
                   `
                 )}
@@ -154,10 +144,7 @@ class AXAFooter extends LitElement {
   renderFooterLinks(columnIndex, itemIndex) {
     return html`
       <li class="o-footer__main-content-panel-list-item js-footer_list-item">
-        <slot
-          name="column-${columnIndex}-item-${itemIndex}"
-          @click="${this._handleLinkClick}"
-        />
+        <slot name="column-${columnIndex}-item-${itemIndex}" />
       </li>
     `;
   }
@@ -186,13 +173,13 @@ class AXAFooter extends LitElement {
     if (this.clickevents) {
       ev.preventDefault();
 
-      const href = _extractNestedHref(ev);
+      const { currentTarget } = ev;
 
-      if (href) {
-        this.onItemClick(href);
+      if (currentTarget) {
+        this.onItemClick(currentTarget);
         this.dispatchEvent(
           new CustomEvent('axa-footer-click', {
-            detail: href,
+            detail: currentTarget,
             bubbles: true,
             cancelable: true,
           })
