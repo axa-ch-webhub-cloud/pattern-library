@@ -67,6 +67,14 @@ class AXAFooter extends LitElement {
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
     };
 
+    const accordionCaretState = index => {
+      return {
+        'o-footer__accordion-button-caret': true,
+        'o-footer__accordion-button-caret':
+          this._accordionActiveIndex === index,
+      };
+    };
+
     return html`
       <footer class="o-footer">
         <axa-container>
@@ -82,12 +90,7 @@ class AXAFooter extends LitElement {
                   @click="${() => this._handleAccordionClick(0)}"
                 >
                   <slot name="column-0-title" class="o-footer__title"></slot>
-                  <span
-                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
-                      ._accordionActiveIndex === 0
-                      ? '--open'
-                      : ''}"
-                  >
+                  <span class="${classMap(accordionCaretState(0))}">
                     ${svg([CaretSvg || ''])}
                   </span>
                 </button>
@@ -153,12 +156,7 @@ class AXAFooter extends LitElement {
                   @click="${() => this._handleAccordionClick(1)}"
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
-                  <span
-                    class="o-footer__accordion-button-caret o-footer__accordion-button-caret${this
-                      ._accordionActiveIndex === 1
-                      ? '--open'
-                      : ''}"
-                  >
+                  <span class="${classMap(accordionCaretState(1))}">
                     ${svg([CaretSvg || ''])}
                   </span>
                 </button>
