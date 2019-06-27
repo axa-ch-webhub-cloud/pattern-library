@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AXADropdownReact from './AXADropdownReact';
+import DemoDropdownReact from './AXADropdownReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Dropdown/React', module)
@@ -13,24 +13,6 @@ storiesOf('Molecules/Dropdown/React', module)
   })
   .add('Dropdown as React Component', () => {
     const div = document.createElement('div');
-    ReactDOM.render(
-      <AXADropdownReact
-        data-test-id="dropdown-react"
-        items={[
-          {
-            name: 'Please Select',
-            value: 'Please Select',
-            url: '#',
-            isSelected: true,
-            isInitialItem: true,
-          },
-          { name: 'Item 1', value: 'Item 1', url: '#', isSelected: false },
-          { name: 'Item 2', value: 'Item 2', url: '#', isSelected: false },
-          { name: 'Item 3', value: 'Item 3', url: '#', isSelected: false },
-        ]}
-        onAXAValueChange={value => console.log(`value changed ${value}`)}
-      />,
-      div
-    );
+    ReactDOM.render(<DemoDropdownReact />, div);
     return div;
   });

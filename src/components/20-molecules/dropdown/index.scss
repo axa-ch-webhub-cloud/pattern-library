@@ -6,6 +6,7 @@ $dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
 $dropdown-icon-width: 10px;
 $dropdown-icon-height: 6px;
+$dropdown-error-minheight: 19px;
 
 @mixin normalize-native-select-styles() {
   appearance: none;
@@ -57,27 +58,17 @@ axa-dropdown {
   }
 
   &[valid] .m-dropdown__valid-icon {
-    line-height: $dropdown-height;
-    color: $color-validation-valid;
-
-    svg {
-      margin-left: 15px;
-      width: 16px;
-      height: 14px;
-    }
+    visibility: visible;
   }
 
   &[error] .m-dropdown {
-    flex-direction: column;
 
     &__list {
       border-color: $color-validation-error;
     }
 
-    .m-dropdown__error {
-      margin-top: 10px;
-      line-height: 1.2;
-      color: $color-validation-error;
+    &__error {
+      visibility: visible;
     }
   }
 }
@@ -110,6 +101,26 @@ axa-dropdown {
         color: $dropdown-color--hover;
       }
     }
+  }
+
+  &__valid-icon {
+    visibility: hidden;
+    line-height: $dropdown-height;
+    color: $color-validation-valid;
+
+    svg {
+      margin-left: 15px;
+      width: 16px;
+      height: 14px;
+    }
+  }
+
+  &__error {
+    visibility: hidden;
+    margin-top: 10px;
+    line-height: 1.2;
+    color: $color-validation-error;
+    min-height: $dropdown-error-minheight;
   }
 
   &__select {

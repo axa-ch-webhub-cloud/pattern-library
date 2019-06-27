@@ -10,8 +10,9 @@ export default createElement => ({
   native,
   valid,
   error,
-  onChange,
+  onChange = () => {},
   onAXAValueChange,
+  style,
 }) =>
   withReact(createElement)(AXADropdown.tagName, {
     'data-test-id': dataTestId,
@@ -25,4 +26,5 @@ export default createElement => ({
     onChange,
     isReact: true,
     onAXAValueChange,
+    style,
   });

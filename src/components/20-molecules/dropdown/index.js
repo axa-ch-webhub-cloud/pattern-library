@@ -29,7 +29,7 @@ const shouldMove = elem => {
 };
 
 const handleViewportCheck = elem => {
-  if (shouldMove(elem)) {
+  if (elem && shouldMove(elem)) {
     elem.style.maxHeight = DROPDOWN_UL_MAXHEIGHT;
   }
 };
@@ -76,15 +76,6 @@ const contentItemsMapper = clickHandler => (
       `;
 };
 
-const validHTML = html`
-  <div class="m-dropdown__valid-icon">${VALID_ICON}</div>
-`;
-
-const errorHTML = error =>
-  html`
-    <div class="m-dropdown__error">${error}</div>
-  `;
-
 // CE
 class AXADropdown extends NoShadowDOM {
   static get tagName() {
@@ -106,7 +97,6 @@ class AXADropdown extends NoShadowDOM {
       valid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
       isReact: { type: Boolean },
-      onAXAValueChange: { type: Function },
     };
   }
 
@@ -138,15 +128,29 @@ class AXADropdown extends NoShadowDOM {
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
     this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
     this.handleResize = debounce(
       () => handleViewportCheck(this.dropdown),
       DEBOUNCE_DELAY
     );
   }
 
+  findSelected(items) {
+    this.selectedIndex = (items || this.items).findIndex(item => item.selected);
+    return this.selectedIndex;
+  }
+
+  findByValue(value) {
+    this.selectedIndex = this.items.findIndex(item => item.value === value);
+    return this.selectedIndex;
+  }
+
   updateTitle(items) {
     const selectedItem = (items || this.items)[this.selectedIndex];
     this.title = (selectedItem || { name: this.title }).name;
+    if (this.select) {
+      this.select.selectedIndex = this.selectedIndex;
+    }
     return selectedItem;
   }
 
@@ -186,16 +190,30 @@ class AXADropdown extends NoShadowDOM {
   handleDropdownItemClick(e) {
     e.preventDefault();
     e.stopPropagation();
+    const { target } = e;
+    const clickedItemIndex =
+      target instanceof HTMLSelectElement
+        ? target.selectedIndex
+        : target.dataset.index;
+    const {
+      items,
+      state: { isControlled },
+      onChange,
+    } = this;
+    const syntheticEvent = { target: items[clickedItemIndex | 0] };
+    onChange(syntheticEvent);
     this.openDropdown(false);
-    // causes re-render in next microtask!
-    this.updateCurrentItems(e.target.dataset.index); // side-effect: changed this.value
-    fireCustomEvent('axa-change', this.value, this);
+    if (!isControlled) {
+      // causes re-render in next microtask!
+      this.updateCurrentItems(clickedItemIndex); // side-effect: changed this.value
+      fireCustomEvent('axa-change', this.value, this);
+    }
   }
 
   updateCurrentItems(_item) {
     const { items } = this;
     let itemIndex = _item | 0; // | 0: coerce to integer
-    if (typeof _item !== 'number') {
+    if (!/^\d+$/.test(_item)) {
       itemIndex = items.findIndex(currentItem => currentItem.value === _item);
     }
     if (itemIndex < 0) {
@@ -206,6 +224,9 @@ class AXADropdown extends NoShadowDOM {
       return;
     }
     this.selectedIndex = itemIndex;
+    if (this.select) {
+      this.select.selectedIndex = itemIndex;
+    }
     this.title = name;
     this.value = value || name;
     const newItems = items.map((item, index) => {
@@ -232,7 +253,7 @@ class AXADropdown extends NoShadowDOM {
         `axa-dropdown: skipped illformed 'items' attribute JSON string "${newValue}"`
       );
     }
-
+    this.findSelected();
     const firstSelectedItem = this.updateTitle(currentItems);
     // note: it's crucial to *not* update this.value here (otherwise endless update loop)!
     const value = firstSelectedItem ? firstSelectedItem.value : '';
@@ -248,57 +269,75 @@ class AXADropdown extends NoShadowDOM {
     window.removeEventListener('click', this.handleWindowClick);
   }
 
+  shouldUpdate(changedProperties) {
+    if (
+      changedProperties.has('value') &&
+      this.state.isControlled &&
+      this.isReact
+    ) {
+      this.updateCurrentItems(this.findByValue(this.value));
+    }
+    return true;
+  }
+
+  /* note: js-XXX classes mark DOM nodes independently of styling needs for
+     purposes of programmatic DOM access, therefore need to be preserved even
+     when style refactoring would rename other classes.
+  */
   render() {
     const {
-      items,
+      items = [],
+      title,
       native,
-      valid,
       error,
       isReact,
       state: { isControlled },
+      handleDropdownItemClick,
+      handleDropdownClick,
     } = this;
     this.state.isControlled = isReact && isControlled;
 
     const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
-    const validationUI = (valid && validHTML) || (error && errorHTML(error));
     return html`
       <div class="${classMap(classes)}">
         <div class="m-dropdown__list m-dropdown__list--native">
           <select
-            class="m-dropdown__select"
-            @change="${this.handleDropdownItemClick}"
+            class="m-dropdown__select js-dropdown__select"
+            @change="${handleDropdownItemClick}"
           >
-            ${items && items.map(nativeItemsMapper)}
+            ${items.map(nativeItemsMapper)}
           </select>
           <div class="m-dropdown__select-icon">${ARROW_ICON}</div>
         </div>
         <div class="m-dropdown__list m-dropdown__list--enhanced">
           <button
-            @click="${this.handleDropdownClick}"
+            @click="${handleDropdownClick}"
             type="button"
             class="m-dropdown__toggle js-dropdown__toggle"
           >
-            <span>${this.title}</span>
+            <span>${title}</span>
             <div class="m-dropdown__select-icon">${ARROW_ICON}</div>
           </button>
           <ul class="m-dropdown__content js-dropdown__content">
-            ${items &&
-              items.map(contentItemsMapper(this.handleDropdownItemClick))}
+            ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
         </div>
-        ${validationUI}
+        <div class="m-dropdown__valid-icon">${VALID_ICON}</div>
       </div>
+      <div class="m-dropdown__error">${error}</div>
     `;
   }
 
   firstUpdated() {
     this.open = false;
     this.dropdown = this.querySelector('.js-dropdown__content');
-
+    this.select = this.querySelector('.js-dropdown__select');
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);
+  }
 
+  updated() {
     this.updateTitle();
   }
 }
