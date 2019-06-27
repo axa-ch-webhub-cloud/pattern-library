@@ -21,12 +21,5 @@
     "src/components/20-molecules/datepicker"
   ],
   "version": "independent",
-  "command": {
-    "bootstrap": {
-      "nohoist": [
-        "breakpoint-sass"
-      ]
-    }
-  },
   "npmClient": "npm"
 }

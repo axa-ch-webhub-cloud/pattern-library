@@ -26,7 +26,6 @@ module.exports = ({ config }) => {
           loader: 'sass-loader',
           options: {
             sourceMap: true,
-            includePaths: [path.resolve(path.dirname(require.resolve('breakpoint-sass/package.json')), 'stylesheets')],
             data: globals,
           },
         },
