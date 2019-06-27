@@ -35,7 +35,7 @@ test('should show error message and have the right color', async t => {
   const $messages = await Selector(() =>
     document.querySelector('.a-textarea__messages')
   );
-  await t.expect($messages.innerText).eql('error');
+  await t.expect($messages.innerText).contains('error');
   await t
     .expect(await $messages.getStyleProperty('color'))
     .eql('rgb(201, 20, 50)');
@@ -51,7 +51,7 @@ test('should show counter', async t => {
   });
   await setCounter();
   const $messages = await Selector(() => document.querySelector('.counter'));
-  await t.expect($messages.innerText).eql('still 3 characters left');
+  await t.expect($messages.innerText).contains('still 3 characters left');
 });
 
 test('should show counterMax', async t => {
