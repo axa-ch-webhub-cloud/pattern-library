@@ -70,7 +70,7 @@ class AXAFooter extends LitElement {
     const accordionCaretState = index => {
       return {
         'o-footer__accordion-button-caret': true,
-        'o-footer__accordion-button-caret':
+        'o-footer__accordion-button-caret--open':
           this._accordionActiveIndex === index,
       };
     };
