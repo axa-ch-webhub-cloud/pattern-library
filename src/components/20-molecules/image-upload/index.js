@@ -2,12 +2,15 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
+
 import {
-  ImageUploadGroupSvg,
-  DeleteSvg,
-  PlusRoundedSvg,
-  TickSvg,
-} from './icons';
+  AddSvg,
+  CheckCircleSvg,
+  DeleteForeverSvg,
+  ClearSvg,
+  AttachFileSvg,
+} from '@axa-ch/materials/icons';
+
 import { ImageUploadGroupSvg } from './icons';
 
 /* eslint-disable import/no-extraneous-dependencies */
@@ -19,12 +22,12 @@ import compressImage from './utils/imageCompressor';
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
 
-// TODO -> move all icons to materials
+const AddIcon = svg([AddSvg]);
+const AttachFileIcon = svg([AttachFileSvg]);
+const ClearIcon = svg([ClearSvg]);
+const CheckCircleIcon = svg([CheckCircleSvg]);
+
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
-const PlusRoundedIcon = svg([PlusRoundedSvg]);
-const DeleteIcon = svg([DeleteSvg]);
-const TickIcon = svg([TickSvg]);
-// upload-cloud, cross
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -61,7 +64,7 @@ class AXAImageUpload extends LitElement {
     this.maxSizeOfAllFilesMB = 20;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
-    this.icon = 'upload'; // TODO change to upload-cloud
+    this.icon = 'cloud-upload'; // TODO change to upload-cloud
     this.finalFiles = [];
     this.wrongFiles = [];
     this.errorStatusText = 'Error occured';
@@ -100,7 +103,7 @@ class AXAImageUpload extends LitElement {
             ${isFile
               ? html`
                   <span className="m-image-upload__file-element">
-                    ${TickIcon}</span
+                    ${AttachFileIcon}</span
                   >
                 `
               : html`
@@ -131,7 +134,7 @@ class AXAImageUpload extends LitElement {
           class="m-image-upload__icon-layer"
           @click=${this.handleAddMoreInputClick}
         >
-          ${PlusRoundedIcon}
+          ${AddIcon}
         </div>
         <figcaption class="m-image-upload__img-caption">
           ${this.addStatusText}
