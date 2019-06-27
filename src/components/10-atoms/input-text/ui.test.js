@@ -43,7 +43,7 @@ fixture('Input text - error').page(
   `${host}/iframe.html?id=atoms-input-text--input-text-required`
 );
 
-test.only('should show error message and have the right color', async t => {
+test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
     document.querySelector('axa-input-text').valid = false;
     document.querySelector('axa-input-text').error = 'error';
