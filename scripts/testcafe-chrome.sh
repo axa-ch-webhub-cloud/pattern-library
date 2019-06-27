@@ -6,7 +6,7 @@ export $(egrep -v '^#' .env | xargs)
 
 npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci --quiet > /dev/null 2>&1 &
 npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
-npx testcafe "chrome:headless" ./**/ui.test.js
+npx testcafe "chrome:headless" -c 4 ./**/ui.test.js
 test_status=$?
 
 # Kill storybook (cleanup) - By port
