@@ -1,6 +1,7 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
@@ -96,54 +97,17 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(accordionContent)}">
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-0"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-1"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-2"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-3"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-4"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-5"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-6"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-0-item-7"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
+                  ${repeat(
+                    new Array(8),
+                    (item, index) => html`
+                      <li class="o-footer__main-content-panel-list-item">
+                        <slot
+                          name="column-0-item-${index}"
+                          @click="${this._handleLinkClick}"
+                        />
+                      </li>
+                    `
+                  )}
                 </ul>
               </div>
 
