@@ -26,7 +26,5 @@
   "devDependencies": {
     "svgo": "^1.2.0"
   },
-  "dependencies": {
-    "breakpoint-sass": "^2.7.1"
-  }
+  "dependencies": {}
 }
