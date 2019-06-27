@@ -294,7 +294,7 @@
 
         // IE11 workaround (use 'unset'-property for those two elements)
         background-color: $color-prim-blue-dark-indigo;
-        max-height: 1000px;
+        max-height: 1000px !important;
 
         &--short {
           width: 165px;
