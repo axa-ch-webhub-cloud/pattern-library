@@ -1,12 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { withMarkdown } from '../../../../.storybook/addons/markdown';
 import Readme from './README.md';
 import './index';
 
 storiesOf('Atoms/Textarea/Demos', module)
-  .addDecorator(withMarkdown(Readme))
-
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   // show error if (error && (!valid || isInvalid[required && !this.value]) && wasBlurred && wasFocused
   .add('Feature - Textarea error', () => {
     const textarea = document.createElement('axa-textarea');
