@@ -1,6 +1,6 @@
 import { createElement } from 'react';
-import createAXADatepickerReact from '../index.react';
+import createAXADropdownReact from '../index.react';
 
-const AXADatepickerReact = createAXADatepickerReact(createElement);
+const AXADropdownReact = createAXADropdownReact(createElement);
 
-export default AXADatepickerReact;
+export default AXADropdownReact;

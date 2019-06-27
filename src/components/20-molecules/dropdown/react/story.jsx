@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DemoDropdownReact from './AXADropdownReact';
+import DemoDropdownReact from './DemoDropdownReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Dropdown/React', module)
