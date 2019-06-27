@@ -1,12 +1,11 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
-
-import { classMap } from 'lit-html/directives/class-map';
 
 const _listElementHasNoContent = label => {
   return !label || label.nodeType === 3;
