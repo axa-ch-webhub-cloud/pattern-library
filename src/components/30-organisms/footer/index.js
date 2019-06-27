@@ -40,11 +40,13 @@ class AXAFooter extends LitElement {
   render() {
     const accordionContent = {
       'o-footer__main-content-panel': true,
+      'js-footer__main-content-panel': true,
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 0,
     };
 
     const shortAccordionContent = {
       'o-footer__main-content-panel': true,
+      'js-footer__main-content-panel': true,
       'o-footer__main-content-panel--short': true,
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
     };
@@ -76,7 +78,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => this._handleAccordionClick(0)}"
+                  @click="${ev => this._handleAccordionClick(0, ev)}"
                 >
                   <slot name="column-0-title" class="o-footer__title"></slot>
                   <span class="${classMap(accordionCaretState(0))}">
@@ -100,7 +102,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => this._handleAccordionClick(1)}"
+                  @click="${ev => this._handleAccordionClick(1, ev)}"
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span class="${classMap(accordionCaretState(1))}">
@@ -163,10 +165,39 @@ class AXAFooter extends LitElement {
     });
   }
 
-  _handleAccordionClick = index => {
+  _resetMaxHeight(panel) {
+    panel.style.maxHeight = '0px';
+  }
+
+  _handleAccordionClick = (index, ev) => {
+    // reset all
+    const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+      '.js-footer__main-content-panel'
+    );
+
+    [].forEach.call(panels, panel => {
+      this._resetMaxHeight(panel);
+    });
+
+    // get current panel
+    const panel = ev.currentTarget.parentNode.querySelector(
+      '.js-footer__main-content-panel'
+    );
+
+    // toggle active index and if cirrent one closes, index is -1
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
     this.requestUpdate();
+
+    if (this._accordionActiveIndex > -1) {
+      const {
+        parentNode: { offsetHeight },
+        children,
+      } = panel;
+      panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
+    } else {
+      this._resetMaxHeight(panel);
+    }
   };
 
   _handleLinkClick = ev => {

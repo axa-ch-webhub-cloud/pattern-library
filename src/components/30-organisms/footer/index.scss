@@ -246,10 +246,6 @@
       overflow: hidden;
       background-color: $color-prim-blue-azure;
 
-      &--open {
-        max-height: 456px;
-      }
-
       &-list-item {
         @include typo(primary, xx-small, default);
 
