@@ -18,6 +18,14 @@ const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
 
+const _renderFooterLinks = (columnIndex, itemIndex) => {
+  return html`
+    <li class="o-footer__main-content-panel-list-item js-footer_list-item">
+      <slot name="column-${columnIndex}-item-${itemIndex}" />
+    </li>
+  `;
+};
+
 class AXAFooter extends LitElement {
   static get tagName() {
     return 'axa-footer';
@@ -98,7 +106,7 @@ class AXAFooter extends LitElement {
                     new Array(
                       this.querySelectorAll('[slot^="column-0-item-"]').length
                     ),
-                    (item, index) => this.renderFooterLinks(0, index)
+                    (item, index) => _renderFooterLinks(0, index)
                   )}
                 </ul>
               </div>
@@ -122,7 +130,7 @@ class AXAFooter extends LitElement {
                     new Array(
                       this.querySelectorAll('[slot^="column-1-item-"]').length
                     ),
-                    (item, index) => this.renderFooterLinks(1, index)
+                    (item, index) => _renderFooterLinks(1, index)
                   )}
                 </ul>
               </div>
@@ -148,14 +156,6 @@ class AXAFooter extends LitElement {
           </div>
         </axa-container>
       </footer>
-    `;
-  }
-
-  renderFooterLinks(columnIndex, itemIndex) {
-    return html`
-      <li class="o-footer__main-content-panel-list-item js-footer_list-item">
-        <slot name="column-${columnIndex}-item-${itemIndex}" />
-      </li>
     `;
   }
 
