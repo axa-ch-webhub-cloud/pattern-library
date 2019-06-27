@@ -13,21 +13,21 @@ const _listElementHasNoContent = label => {
 };
 
 const _extractNestedHref = ev => {
-  const { target } = ev;
-  let element;
-  if (!target || !target.href) {
-    element = ev;
-    while (!element.href) {
-      if (element.target && element.target.parentNode) {
-        element = element.target.parentNode;
-      } else if (element.parentNode) {
-        element = element.parentNode;
+  let eventOrElement = ev;
+  if (!eventOrElement.target || !eventOrElement.target.href) {
+    while (!eventOrElement.href) {
+      if (eventOrElement.target && eventOrElement.target.parentNode) {
+        eventOrElement = eventOrElement.target.parentNode;
+      } else if (eventOrElement.parentNode) {
+        eventOrElement = eventOrElement.parentNode;
       } else {
         return undefined;
       }
     }
   }
-  return element === undefined ? target.href : element.href;
+  return eventOrElement.href !== undefined
+    ? eventOrElement.href
+    : eventOrElement.target.href;
 };
 
 class AXAFooter extends LitElement {
