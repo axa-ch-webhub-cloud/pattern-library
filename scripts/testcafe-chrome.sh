@@ -1,4 +1,5 @@
 #!/bin/bash
+NUM_CPUS=$(python -c 'import multiprocessing as mp; print(mp.cpu_count())')
 
 # Import environment variables from .env file
 export $(egrep -v '^#' .env.defaults | xargs) > /dev/null 2>&1
@@ -9,9 +10,9 @@ npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
 
 if [ -z "$1" ]
 then
-    npx testcafe "chrome:headless" -c 4 ./**/ui.test.js
+    npx testcafe -c ${NUM_CPUS} "chrome:headless" -c 4 ./**/ui.test.js
 else
-    npx testcafe -F "${1}" "chrome:headless" -c 4 ./**/ui.test.js
+    npx testcafe -F "${1}" -c ${NUM_CPUS} "chrome:headless" -c 4 ./**/ui.test.js
 fi
 
 test_status=$?

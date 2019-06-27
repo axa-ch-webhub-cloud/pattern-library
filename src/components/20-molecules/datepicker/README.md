@@ -8,7 +8,12 @@
 npm install @axa-ch/datepicker
 ```
 
-## Native Example Usage
+## Usage
+
+**Important:** If this component needs to run in Internet Explorer 11,
+[you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+
+### Native Example
 
 ```js
 import '@axa-ch/datepicker';
@@ -16,7 +21,7 @@ import '@axa-ch/datepicker';
 `<axa-datepicker locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`;
 ```
 
-## React Example Usage
+### React Example
 
 Create a React-ified datepicker with the createElement function from your React version and then use it like this:
 
