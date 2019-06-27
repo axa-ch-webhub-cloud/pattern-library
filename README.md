@@ -30,6 +30,8 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Checkbox](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/checkbox)
 - [AXA Container](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/container)
 - [AXA Cookie Disclaimer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/cookie-disclaimer)
+- [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/datepicker)
+- [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/dropdown)
 - [AXA Icon](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/icon)
 - [AXA Input File](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/input-file)
 - [AXA Input Text](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/input-text)
@@ -42,8 +44,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Top content bar](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar)
 
 ## Alpha-Released Components
-- [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/datepicker)
-- [AXA Dropdown](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/dropdown)
+- [AXA Footer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/footer)
 
 ## Design Guidelines
 [Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
