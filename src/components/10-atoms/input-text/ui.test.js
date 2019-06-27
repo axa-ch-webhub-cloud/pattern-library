@@ -43,15 +43,16 @@ fixture('Input text - error').page(
   `${host}/iframe.html?id=atoms-input-text--input-text-required`
 );
 
-test('should show error message and have the right color', async t => {
+test.only('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
     document.querySelector('axa-input-text').valid = false;
+    document.querySelector('axa-input-text').error = 'error';
   });
   await setInvalid();
   const $axaError = await Selector(() =>
     document.querySelector('.a-input-text__error')
   );
-  await t.expect($axaError.exists).ok();
+  await t.expect($axaError.innerText).eql('error');
   await t
     .expect(await $axaError.getStyleProperty('color'))
     .eql('rgb(201, 20, 50)');
