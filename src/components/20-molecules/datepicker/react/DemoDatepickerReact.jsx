@@ -28,6 +28,7 @@ const DemoDatepicker = () => {
       <br />
       <AXADatepickerReact
         inputfield
+        id="datepicker-controlled-react"
         data-test-id="datepicker-controlled-react"
         onChange={handleChange}
         value={value}
