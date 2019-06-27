@@ -1,3 +1,6 @@
+@import '../../00-materials/styles/mixins/check-mark-animated';
+
+$border-width: 1px;
 $dropdown-color: $color-prim-gray-mine-shaft !default;
 $dropdown-color--hover: $color-axa-blue !default;
 $dropdown-border-width: 1px;
@@ -82,6 +85,7 @@ axa-dropdown {
 
 .m-dropdown {
   display: flex;
+  align-items: center;
   position: relative;
   @include typo(primary, small);
 
@@ -114,12 +118,13 @@ axa-dropdown {
     visibility: hidden;
     line-height: $dropdown-height;
     color: $color-validation-valid;
+      @include check-mark-animated-wrapper();
+      margin-left: 10px;
 
-    svg {
-      margin-left: 15px;
-      width: 16px;
-      height: 14px;
-    }
+      &-inner-active {
+        @include check-mark-animated();
+        margin-top: -4px;
+      }
   }
 
   &__error {
@@ -277,8 +282,4 @@ axa-dropdown {
       }
     }
   }
-}
-
-@keyframes filled-tick-animated {
-  from {stroke-linecap: round} to {stroke-linecap: round; stroke-dashoffset: 0}
 }

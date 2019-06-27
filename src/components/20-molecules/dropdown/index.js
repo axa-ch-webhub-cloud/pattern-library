@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { ExpandSvg, FilledTickAnimatedSvg } from '@axa-ch/materials/icons';
+import { ExpandSvg } from '@axa-ch/materials/icons';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -10,8 +10,6 @@ import fireCustomEvent from '../../../utils/custom-event';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
-const VALID_ICON = svg([FilledTickAnimatedSvg]);
-const EMPTY_ICON = svg(['<svg xmlns="http://www.w3.org/2000/svg"></svg>']);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
 const EMPTY_FUNCTION = () => {};
@@ -312,6 +310,11 @@ class AXADropdown extends NoShadowDOM {
 
     const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
 
+    const validClasses = {
+      'm-dropdown__valid-icon-inner': true,
+      'm-dropdown__valid-icon-inner-active': valid,
+    };
+
     // note: js-XXX classes mark DOM nodes independently of styling needs for
     // purposes of programmatic DOM access, therefore need to be preserved even
     // when style refactoring would rename other classes.
@@ -341,7 +344,7 @@ class AXADropdown extends NoShadowDOM {
           </ul>
         </div>
         <div class="m-dropdown__valid-icon">
-          ${valid ? VALID_ICON : EMPTY_ICON}
+          <span class="${classMap(validClasses)}"></span>
         </div>
       </div>
       <div class="m-dropdown__error">${error}</div>

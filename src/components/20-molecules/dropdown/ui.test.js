@@ -17,7 +17,7 @@ fixture('Dropdown valid').page(
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
     document.querySelector(
-      `axa-dropdown[data-test-id="dropdown-valid"] .m-dropdown__valid-icon > svg > path`
+      `axa-dropdown[data-test-id="dropdown-valid"] .m-dropdown__valid-icon .m-dropdown__valid-icon-inner-active`
     )
   );
   await t.expect(dropdownCheckmark.exists).ok();

@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXADatepickerReact from './AXADatepickerReact';
-import DemoControlledDatepickerReact from './DemoDatepickerReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Datepicker/React', module)
