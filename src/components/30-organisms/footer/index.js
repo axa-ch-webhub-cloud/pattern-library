@@ -15,11 +15,9 @@ const _listElementHasNoContent = label => {
 const _extractNestedHref = ev => {
   let eventOrElement = ev;
   if (!eventOrElement.target || !eventOrElement.target.href) {
-    let counter = 0;
-    while (!eventOrElement.href) {
-      if (counter++ > 50) {
-        return undefined;
-      }
+    // This for-loop replaced a while-loop that could potentially run infinitely.
+    for (let maxCycle = 0; maxCycle < 50; maxCycle++) {
+      if (eventOrElement.href) return eventOrElement.href;
       if (eventOrElement.target && eventOrElement.target.parentNode) {
         eventOrElement = eventOrElement.target.parentNode;
       } else if (eventOrElement.parentNode) {
@@ -29,9 +27,7 @@ const _extractNestedHref = ev => {
       }
     }
   }
-  return eventOrElement.href !== undefined
-    ? eventOrElement.href
-    : eventOrElement.target.href;
+  return eventOrElement.target.href;
 };
 
 class AXAFooter extends LitElement {
