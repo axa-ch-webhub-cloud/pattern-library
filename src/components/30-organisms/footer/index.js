@@ -62,6 +62,8 @@ class AXAFooter extends LitElement {
     const showCaret = svg([CaretSvg || '']);
 
     const links = this.querySelectorAll('a');
+    // add event listsner on the A tag itself that is inside a slot element.
+    // Thats why we cant use @click as it comes from light dom
     [].forEach.call(links, link => {
       link.addEventListener('click', this._handleLinkClick);
     });
