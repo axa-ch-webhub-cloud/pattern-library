@@ -34,25 +34,6 @@ const shouldMove = elem => {
   return moreSpaceOnTopThanBottom;
 };
 
-const isValidDate = (locale, date) => {
-  let out = false;
-  try {
-    const parsedDate = new Date(Date.parse(date));
-    // eslint-disable-next-line no-restricted-properties
-    const isValid = parsedDate instanceof Date && !window.isNaN(parsedDate);
-    const isValidDateLocalized = parseLocalisedDateIfValid(locale, date);
-    if (
-      (isValid && isValidDateLocalized) ||
-      (!isValid && isValidDateLocalized)
-    ) {
-      out = isValidDateLocalized;
-    }
-  } catch (e) {
-    out = false;
-  }
-  return out;
-};
-
 const applyEffect = self =>
   new Promise(resolve => {
     setTimeout(() => {
@@ -81,6 +62,7 @@ class AXADatepicker extends NoShadowDOM {
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
+      value: { type: String },
       name: { type: String, reflect: true },
       locale: { type: String, reflect: true },
       date: { type: Object, reflect: true },
@@ -104,8 +86,31 @@ class AXADatepicker extends NoShadowDOM {
     };
   }
 
+  set value(newValue) {
+    const {
+      state: { isControlled, value },
+    } = this;
+    // first value coming in indicates controlledness?
+    if (!isControlled && newValue !== undefined) {
+      // yes, remember in model state
+      this.state.isControlled = true;
+    }
+    // update state
+    this.state.value = newValue;
+    this.validate(newValue);
+    // manual re-render, necessary for custom setters
+    this.requestUpdate('value', value);
+  }
+
+  get value() {
+    return this.state.value;
+  }
+
   constructor() {
     super();
+    // internal model state
+    this.state = {};
+    // property initializations
     this.locale = 'de-CH';
     this.open = false;
     this.name = '';
@@ -126,23 +131,15 @@ class AXADatepicker extends NoShadowDOM {
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.debouncedHandleViewportCheck = debounce(
-      () => this.handleViewportCheck(this.inputfield),
+      () => this.handleViewportCheck(this.input),
       250
     );
   }
 
-  firstUpdated() {
-    this.inputfield = this.querySelector('.js-datepicker__input');
-
-    window.addEventListener('keydown', this.handleWindowKeyDown);
-    window.addEventListener('click', this.handleBodyClick);
-
-    if (this.inputfield) {
-      window.setTimeout(() => {
-        window.addEventListener('resize', this.debouncedHandleViewportCheck);
-        window.addEventListener('scroll', this.debouncedHandleViewportCheck);
-        this.handleViewportCheck(this.inputfield);
-      }, 100);
+  initDate() {
+    // not first-time initialization?
+    if (this.store) {
+      return;
     }
 
     if (this.year >= 0) {
@@ -181,6 +178,23 @@ class AXADatepicker extends NoShadowDOM {
     this.weekdays = getWeekdays(this.date, this.locale);
   }
 
+  firstUpdated() {
+    this.input = this.querySelector('.js-datepicker__input');
+
+    window.addEventListener('keydown', this.handleWindowKeyDown);
+    window.addEventListener('click', this.handleBodyClick);
+
+    if (this.input) {
+      window.setTimeout(() => {
+        window.addEventListener('resize', this.debouncedHandleViewportCheck);
+        window.addEventListener('scroll', this.debouncedHandleViewportCheck);
+        this.handleViewportCheck(this.input);
+      }, 100);
+    }
+
+    this.initDate();
+  }
+
   disconnectedCallback() {
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleBodyClick);
@@ -188,17 +202,38 @@ class AXADatepicker extends NoShadowDOM {
     window.removeEventListener('scroll', this.debouncedHandleViewportCheck);
   }
 
+  shouldUpdate(changedProperties) {
+    if (changedProperties.has('value')) {
+      const {
+        isReact,
+        state: { isControlled },
+      } = this;
+      this.state.isControlled = isReact && isControlled;
+    }
+    return true;
+  }
+
   render() {
+    const {
+      date,
+      state: { isControlled, value },
+    } = this;
+
+    const [month, year] = [
+      date ? date.getMonth() : this.month,
+      date ? date.getFullYear() : this.year,
+    ];
+
     this.monthitems = getAllLocaleMonthsArray(this.locale).map(
       (item, index) => ({
-        selected: index === this.month,
+        selected: index === month,
         name: item.toString(),
         value: index.toString(),
       })
     );
 
     this.yearitems = this.allowedyears.map(item => ({
-      selected: item === this.year,
+      selected: item === year,
       name: item.toString(),
       value: item.toString(),
     }));
@@ -209,12 +244,12 @@ class AXADatepicker extends NoShadowDOM {
           html`
             <div class="m-datepicker__input-wrap">
               <input
-                @keyup="${this.handleInputChange}"
+                @input="${this.handleInputChange}"
                 class="m-datepicker__input js-datepicker__input"
                 type="text"
                 name="${this.name}"
                 placeholder="${this.placeholder}"
-                value="${this.outputdate}"
+                value="${isControlled ? value : this.outputdate}"
               />
               <button
                 type="button"
@@ -420,24 +455,37 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
-  handleInputChange(e) {
-    e.preventDefault();
-    const {
-      target: { value },
-    } = e;
-    const validDate = isValidDate(this.locale, value);
+  validate(value) {
+    this.initDate();
+    const { locale, invaliddatetext } = this;
+    const validDate = parseLocalisedDateIfValid(locale, value);
     this.error = null;
     if (validDate) {
       this.date = validDate;
-      this.updateDatepickerProps(this.date);
-      this.outputdate = validDate.toLocaleString(this.locale, {
+      this.updateDatepickerProps(validDate);
+      this.outputdate = validDate.toLocaleString(locale, {
         day: 'numeric',
         month: 'numeric',
         year: 'numeric',
       });
-    } else if (value && this.invaliddatetext) {
-      this.error = this.invaliddatetext;
+    } else if (value && invaliddatetext) {
+      this.error = invaliddatetext;
     }
+  }
+
+  handleInputChange(e) {
+    e.preventDefault();
+    let {
+      target: { value },
+    } = e;
+    const { onChange = () => {}, input, state } = this;
+    onChange(e);
+    if (state.isControlled) {
+      const { value: stateValue } = state;
+      input.value = stateValue;
+      value = stateValue;
+    }
+    this.validate(value);
   }
 
   handleButtonOkClick() {

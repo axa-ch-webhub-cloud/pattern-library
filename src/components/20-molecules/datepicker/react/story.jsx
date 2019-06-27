@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXADatepickerReact from './AXADatepickerReact';
+import DemoControlledDatepickerReact from './DemoDatepickerReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Datepicker/React', module)
@@ -42,9 +43,15 @@ storiesOf('Molecules/Datepicker/React', module)
         labelbuttoncancel="Cancel"
         labelbuttonok="OK"
         allowedyears={[2019, 2020]}
+        // eslint-disable-next-line no-console
         onAXADateChange={date => console.log(`date changed ${date}`)}
       />,
       div
     );
+    return div;
+  })
+  .add('Controlled-component React-ified Datepicker with inputfield', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoControlledDatepickerReact />, div);
     return div;
   });

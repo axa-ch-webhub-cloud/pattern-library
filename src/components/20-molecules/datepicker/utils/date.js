@@ -22,14 +22,17 @@ const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
 
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
-  // year, monthIndex, day
-  const blueprint = new Date(2017, 10, 23);
+  const BLUEPRINT_YEAR = 2017;
+  const BLUEPRINT_MONTH = 10; // 0-based index
+  const BLUEPRINT_DAY = 23;
+
+  const blueprint = new Date(BLUEPRINT_YEAR, BLUEPRINT_MONTH, BLUEPRINT_DAY);
 
   if (!Intl.DateTimeFormat.supportedLocalesOf(locale).length) {
     throw new Error(`locale not supported: ${locale}`);
   }
 
-  // find out which out of 4 valid seperator the current locale has
+  // find out which valid separator the current locale uses
   const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(
     blueprint
   );
@@ -43,30 +46,42 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   }
 
   // find out how the locale date is structured (YYYY-MM-DD, YYYY-DD-MM, etc) using the blueprint
-  const splittedValue = clearStringFromIEGeneratedCharacters(inputValue).split(
+  const splitValue = clearStringFromIEGeneratedCharacters(inputValue).split(
     usedSeparator
   );
-  const splittedBlueprint = clearStringFromIEGeneratedCharacters(
+  const splitBlueprint = clearStringFromIEGeneratedCharacters(
     localisedBlueprintDateString
   ).split(usedSeparator);
 
-  // we know month is 3 cause we set 2 in the date creation. In the creation it take 2 as monthIndex and
-  // in reading gives the actual month (index + 1)
-  const monthIndex = splittedBlueprint.indexOf('11');
-  const dayIndex = splittedBlueprint.indexOf('23');
-  const yearIndex = splittedBlueprint.indexOf('2017');
+  const [yearIndex, monthIndex, dayIndex] = [
+    splitBlueprint.indexOf(`${BLUEPRINT_YEAR}`),
+    splitBlueprint.indexOf(`${BLUEPRINT_MONTH + 1}`),
+    splitBlueprint.indexOf(`${BLUEPRINT_DAY}`),
+  ];
 
-  const dateUnderValidation = new Date(
-    splittedValue[yearIndex],
-    splittedValue[monthIndex] - 1,
-    splittedValue[dayIndex]
+  const [year, month, day] = [
+    splitValue[yearIndex],
+    splitValue[monthIndex],
+    splitValue[dayIndex],
+  ];
+
+  const zeroFill = (number, width) => {
+    const n_ = Math.abs(number);
+    const zeros = Math.max(0, width - Math.floor(n_).toString().length);
+    const zeroString = (10 ** zeros).toString().slice(1);
+    return `${number < 0 ? '-' : ''}${zeroString}${number}`;
+  };
+
+  // note: we can use Date.parse despite caveats about browser-specific implementation differences by
+  // explicitly constructing an unambiguous date string here,
+  // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
+  const dateAsUnixEpochInteger = Date.parse(
+    `${zeroFill(year, 4)}-${zeroFill(month, 2)}-${zeroFill(day, 2)}T00:00:00`
   );
 
-  // eslint-disable-next-line no-restricted-globals
-  if (dateUnderValidation instanceof Date && !isNaN(dateUnderValidation)) {
-    return dateUnderValidation;
-  }
-  return null;
+  const isValid = !Number.isNaN(dateAsUnixEpochInteger);
+
+  return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };
 
 const getAllLocaleMonthsArray = (locale = 'en-UK') => {

@@ -1,12 +1,5 @@
 # AXA Datepicker
 
-[axa-datepicker](https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/datepicker/README.md).
-
-Note:
-
-- Controled inputs for the react component are coming within the next minor release (1.1.0).
-- Due to limitations of ShadowDom, sent input values won't be visible within native form data (WIP)
-
 ## Install
 
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
