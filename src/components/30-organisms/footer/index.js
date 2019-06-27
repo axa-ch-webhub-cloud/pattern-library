@@ -12,24 +12,8 @@ const _listElementHasNoContent = label => {
   return !label || label.nodeType === 3;
 };
 
-const _extractNestedHref = ev => {
-  let eventOrElement = ev;
-  if (!eventOrElement.target || !eventOrElement.target.href) {
-    // This for-loop replaced a while-loop that could potentially run infinitely.
-    for (let maxCycle = 0; maxCycle < 50; maxCycle++) {
-      const { href, target } = eventOrElement;
-      if (href) {
-        return href;
-      } else if (target && target.parentNode) {
-        eventOrElement = target.parentNode;
-      } else if (eventOrElement.parentNode) {
-        eventOrElement = eventOrElement.parentNode;
-      } else {
-        return undefined;
-      }
-    }
-  }
-  return eventOrElement.target.href;
+const _setMaxHeightToZero = panel => {
+  panel.style.maxHeight = '0px';
 };
 
 class AXAFooter extends LitElement {
@@ -61,12 +45,14 @@ class AXAFooter extends LitElement {
     const accordionContent = {
       'o-footer__main-content-panel': true,
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 0,
+      'js-footer__main-content-panel': true,
     };
 
     const shortAccordionContent = {
       'o-footer__main-content-panel': true,
       'o-footer__main-content-panel--short': true,
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
+      'js-footer__main-content-panel': true,
     };
 
     const accordionCaretState = index => {
@@ -78,6 +64,13 @@ class AXAFooter extends LitElement {
     };
 
     const showCaret = svg([CaretSvg || '']);
+
+    const links = this.querySelectorAll('a');
+    // Add event listsner on the <a> tag, which is inside a slot element.
+    // That's why we cannot use @click, as it comes from light dom
+    [].forEach.call(links, link => {
+      link.addEventListener('click', this._handleLinkClick);
+    });
 
     return html`
       <footer class="o-footer">
@@ -91,7 +84,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => this._handleAccordionClick(0)}"
+                  @click="${ev => this._handleAccordionClick(0, ev)}"
                 >
                   <slot name="column-0-title" class="o-footer__title"></slot>
                   <span class="${classMap(accordionCaretState(0))}">
@@ -99,8 +92,11 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(accordionContent)}">
-                  ${repeat(new Array(8), (item, index) =>
-                    this.renderFooterLinks(0, index)
+                  ${repeat(
+                    new Array(
+                      this.querySelectorAll('[slot^="column-0-item-"]').length
+                    ),
+                    (item, index) => this.renderFooterLinks(0, index)
                   )}
                 </ul>
               </div>
@@ -112,7 +108,7 @@ class AXAFooter extends LitElement {
                 ></slot>
                 <button
                   class="o-footer__accordion-button"
-                  @click="${() => this._handleAccordionClick(1)}"
+                  @click="${ev => this._handleAccordionClick(1, ev)}"
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span class="${classMap(accordionCaretState(1))}">
@@ -120,8 +116,11 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(shortAccordionContent)}">
-                  ${repeat(new Array(4), (item, index) =>
-                    this.renderFooterLinks(1, index)
+                  ${repeat(
+                    new Array(
+                      this.querySelectorAll('[slot^="column-1-item-"]').length
+                    ),
+                    (item, index) => this.renderFooterLinks(1, index)
                   )}
                 </ul>
               </div>
@@ -133,13 +132,12 @@ class AXAFooter extends LitElement {
               ></slot>
               <ul class="o-footer__social-media-list">
                 ${repeat(
-                  new Array(6),
+                  new Array(
+                    this.querySelectorAll('[slot^="social-item-"]').length
+                  ),
                   (item, index) => html`
                     <li class="o-footer__social-media-item">
-                      <slot
-                        name="social-item-${index}"
-                        @click="${this._handleLinkClick}"
-                      ></slot>
+                      <slot name="social-item-${index}"></slot>
                     </li>
                   `
                 )}
@@ -154,10 +152,7 @@ class AXAFooter extends LitElement {
   renderFooterLinks(columnIndex, itemIndex) {
     return html`
       <li class="o-footer__main-content-panel-list-item js-footer_list-item">
-        <slot
-          name="column-${columnIndex}-item-${itemIndex}"
-          @click="${this._handleLinkClick}"
-        />
+        <slot name="column-${columnIndex}-item-${itemIndex}" />
       </li>
     `;
   }
@@ -176,23 +171,46 @@ class AXAFooter extends LitElement {
     });
   }
 
-  _handleAccordionClick = index => {
+  _handleAccordionClick = (index, ev) => {
+    // Toggle opening of correct accordion
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
     this.requestUpdate();
+
+    const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+      '.js-footer__main-content-panel'
+    );
+
+    [].forEach.call(panels, panel => {
+      _setMaxHeightToZero(panel);
+    });
+
+    const panel = ev.currentTarget.parentNode.querySelector(
+      '.js-footer__main-content-panel'
+    );
+    if (this._accordionActiveIndex > -1) {
+      const {
+        parentNode: { offsetHeight },
+        children,
+      } = panel;
+      // Set maxHeight to exactly the height of all elements combined
+      panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
+    } else {
+      _setMaxHeightToZero(panel);
+    }
   };
 
   _handleLinkClick = ev => {
     if (this.clickevents) {
       ev.preventDefault();
 
-      const href = _extractNestedHref(ev);
+      const { currentTarget } = ev;
 
-      if (href) {
-        this.onItemClick(href);
+      if (currentTarget) {
+        this.onItemClick(currentTarget);
         this.dispatchEvent(
           new CustomEvent('axa-footer-click', {
-            detail: href,
+            detail: currentTarget,
             bubbles: true,
             cancelable: true,
           })
