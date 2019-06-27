@@ -151,7 +151,7 @@ class AXAFooter extends LitElement {
 
   renderFooterLinks(columnIndex, itemIndex) {
     return html`
-      <li class="o-footer__main-content-panel-list-item">
+      <li class="o-footer__main-content-panel-list-item js-footer_list-item">
         <slot
           name="column-${columnIndex}-item-${itemIndex}"
           @click="${this._handleLinkClick}"
@@ -165,15 +165,13 @@ class AXAFooter extends LitElement {
   }
 
   _removeEmptyListElements() {
-    this.shadowRoot
-      .querySelectorAll('.o-footer__main-content-panel-list-item')
-      .forEach(el => {
-        const label = el.querySelector('slot').assignedNodes()[0];
-        // Second part of IF-statement is an IE11 workaround
-        if (_listElementHasNoContent(label)) {
-          el.style.display = 'none';
-        }
-      });
+    this.shadowRoot.querySelectorAll('.js-footer_list-item').forEach(el => {
+      const label = el.querySelector('slot').assignedNodes()[0];
+      // Second part of IF-statement is an IE11 workaround
+      if (_listElementHasNoContent(label)) {
+        el.style.display = 'none';
+      }
+    });
   }
 
   _handleAccordionClick = index => {
