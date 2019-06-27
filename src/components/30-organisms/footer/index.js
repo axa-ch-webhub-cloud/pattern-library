@@ -97,16 +97,8 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(accordionContent)}">
-                  ${repeat(
-                    new Array(8),
-                    (item, index) => html`
-                      <li class="o-footer__main-content-panel-list-item">
-                        <slot
-                          name="column-0-item-${index}"
-                          @click="${this._handleLinkClick}"
-                        />
-                      </li>
-                    `
+                  ${repeat(new Array(8), (item, index) =>
+                    this.renderFooterLinks(0, index)
                   )}
                 </ul>
               </div>
@@ -126,30 +118,9 @@ class AXAFooter extends LitElement {
                   </span>
                 </button>
                 <ul class="${classMap(shortAccordionContent)}">
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-1-item-0"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-1-item-1"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-1-item-2"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
-                  <li class="o-footer__main-content-panel-list-item">
-                    <slot
-                      name="column-1-item-3"
-                      @click="${this._handleLinkClick}"
-                    />
-                  </li>
+                  ${repeat(new Array(4), (item, index) =>
+                    this.renderFooterLinks(1, index)
+                  )}
                 </ul>
               </div>
             </div>
@@ -159,47 +130,33 @@ class AXAFooter extends LitElement {
                 class="o-footer__social-media-title"
               ></slot>
               <ul class="o-footer__social-media-list">
-                <li class="o-footer__social-media-item">
-                  <slot
-                    name="social-item-0"
-                    @click="${this._handleLinkClick}"
-                  ></slot>
-                </li>
-                <li class="o-footer__social-media-item">
-                  <slot
-                    name="social-item-1"
-                    @click="${this._handleLinkClick}"
-                  ></slot>
-                </li>
-                <li class="o-footer__social-media-item">
-                  <slot
-                    name="social-item-2"
-                    @click="${this._handleLinkClick}"
-                  ></slot>
-                </li>
-                <li class="o-footer__social-media-item">
-                  <slot
-                    name="social-item-3"
-                    @click="${this._handleLinkClick}"
-                  ></slot>
-                </li>
-                <li class="o-footer__social-media-item">
-                  <slot
-                    name="social-item-4"
-                    @click="${this._handleLinkClick}"
-                  ></slot>
-                </li>
-                <li class="o-footer__social-media-item">
-                  <slot
-                    name="social-item-5"
-                    @click="${this._handleLinkClick}"
-                  ></slot>
-                </li>
+                ${repeat(
+                  new Array(6),
+                  (item, index) => html`
+                    <li class="o-footer__social-media-item">
+                      <slot
+                        name="social-item-${index}"
+                        @click="${this._handleLinkClick}"
+                      ></slot>
+                    </li>
+                  `
+                )}
               </ul>
             </div>
           </div>
         </axa-container>
       </footer>
+    `;
+  }
+
+  renderFooterLinks(columnIndex, itemIndex) {
+    return html`
+      <li class="o-footer__main-content-panel-list-item">
+        <slot
+          name="column-${columnIndex}-item-${itemIndex}"
+          @click="${this._handleLinkClick}"
+        />
+      </li>
     `;
   }
 
