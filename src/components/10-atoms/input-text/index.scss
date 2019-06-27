@@ -82,10 +82,6 @@ axa-input-text {
     @include typo();
     margin-top: 10px;
     color: $color-validation-error;
-
-    &--hidden {
-      display: none;
-    }
   }
 
   .a-input-text__check-wrapper {

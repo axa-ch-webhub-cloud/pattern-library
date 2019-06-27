@@ -12,17 +12,28 @@ const DemoInputText = () => {
     <div>
       <AXAInputTextReact
         required
-        label="Vorname"
+        label="Controlled"
         name="firstname"
         value={firstName}
         onChange={handleChange}
       />
       <AXAInputTextReact
         required
-        label="uncontrolled"
+        label="Controlled value freeze"
+        name="freeze"
+        value="freeze"
+        onChange={handleChange}
+      />
+      <AXAInputTextReact
+        required
+        label="Uncontrolled"
         name="lastname"
-        value="test"
-        defaulValue="test"
+      />
+      <AXAInputTextReact
+        required
+        label="Uncontrolled Default Value"
+        name="lastname_3"
+        defaultValue="test"
       />
     </div>
   );

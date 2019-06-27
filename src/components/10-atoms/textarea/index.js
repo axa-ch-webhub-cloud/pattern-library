@@ -22,22 +22,19 @@ class AXATextarea extends NoShadowDOM {
       label: { type: String },
       placeholder: { type: String },
       value: { type: String },
+      defaultValue: { type: String },
       error: { type: String },
       valid: { type: Boolean },
       validation: { type: Boolean },
-      wasFocused: { type: Boolean },
-      wasBlurred: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
-      inputFocus: { type: Boolean },
-
-      isReact: { type: Boolean },
-      defaultValue: { type: String },
 
       counter: { type: String },
-      modelCounter: { type: String },
-      counterError: { type: String },
+      counterMax: { type: String },
       maxLength: { type: Number },
+
+      isReact: { type: Boolean },
+      modelCounter: { type: String },
     };
   }
 
@@ -47,45 +44,36 @@ class AXATextarea extends NoShadowDOM {
     this.name = '';
     this.label = '';
     this.placeholder = '';
+    // only for React(frameworks) users
+    this.defaultValue = '';
     this.error = '';
     this.validation = false;
     this.required = false;
     this.valid = true;
     this.disabled = false;
-    this.isReact = false;
-    this.defaultValue = '';
     this.counter = '';
-    this.modelCounter = '';
-    this.nativeDefaultValue = this.textContent;
+    this.counterMax = '';
 
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
 
     // internal properties
-    this.inputFocus = false;
-    this.wasFocused = false;
-    this.wasBlurred = false;
+    this.refId = '';
+    this.isReact = false;
+    this.modelCounter = '';
     this.nativeInput = { value: '' };
+    this.nativeDefaultValue = this.textContent;
     this.modelValue = '';
     this.isControlled = false;
-    this.refId = '';
     this.isPlaceholderInCounter = false;
-    this.firstUpdate = true;
   }
 
   set value(val) {
-    const { isControlled, firstUpdate } = this;
+    const { isControlled } = this;
 
     if (!isControlled && val !== undefined) {
       this.isControlled = true;
-    }
-
-    // The native textarea element have no value attribute but value property.
-    // React for example add value attribute to the textarea.
-    if (firstUpdate) {
-      this.firstUpdate = false;
-      this.defaultValue = val;
     }
 
     const oldVal = this.modelValue;
@@ -134,61 +122,32 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get areCharsLeft() {
-    return this.charsLeft !== 0;
-  }
-
-  get isRequiredError() {
-    return this.required && !this.value;
-  }
-
-  get isInvalid() {
-    return !this.valid || this.isRequiredError;
-  }
-
-  get touched() {
-    return this.wasBlurred && this.wasFocused;
-  }
-
-  get isErrorOrCounterError() {
-    return (
-      (this.isInvalid && !this.inputFocus && this.touched) ||
-      (this.maxLength && !this.areCharsLeft && this.touched)
-    );
+    return this.charsLeft > 0;
   }
 
   get showCounter() {
-    return this.maxLength && !this.isInvalid && this.areCharsLeft;
+    return this.maxLength && this.valid && this.areCharsLeft;
   }
 
   get showError() {
-    return this.error && this.isInvalid && this.touched;
+    return this.error && !this.valid;
   }
 
   get showCounterError() {
     return (
       this.maxLength &&
-      this.counterError &&
-      !this.areCharsLeft &&
-      !this.isInvalid
+      this.counterMax &&
+      !this.showError &&
+      !this.areCharsLeft
     );
   }
 
   handleFocus = ev => {
     this.onFocus(ev);
-    this.inputFocus = true;
-
-    if (!this.wasFocused) {
-      this.wasFocused = true;
-    }
   };
 
   handleBlur = ev => {
     this.onBlur(ev);
-    this.inputFocus = false;
-
-    if (!this.wasBlurred) {
-      this.wasBlurred = true;
-    }
   };
 
   handleInput = ev => {
@@ -206,10 +165,9 @@ class AXATextarea extends NoShadowDOM {
   };
 
   firstUpdated() {
-    const { nativeDefaultValue, defaultValue, isReact, value } = this;
+    const { id, nativeDefaultValue, defaultValue, isReact, value } = this;
 
     this.nativeInput = this.querySelector('textarea');
-    this.nativeInput.value = value;
 
     if (nativeDefaultValue && !isReact) {
       this.nativeInput.value = nativeDefaultValue;
@@ -219,7 +177,7 @@ class AXATextarea extends NoShadowDOM {
       this.nativeInput.value = defaultValue || value;
     }
 
-    this.refId = this.id || `textarea-${createRefId()}`;
+    this.refId = id || `textarea-${createRefId()}`;
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
   }
@@ -231,25 +189,32 @@ class AXATextarea extends NoShadowDOM {
       label = '',
       error = '',
       modelCounter = '',
-      counterError = '',
+      counterMax = '',
       maxLength = '',
       placeholder,
       disabled,
       isReact,
       isControlled,
       refId,
+      valid,
+      validation
     } = this;
 
     this.isControlled = isControlled && isReact;
 
     const textareaClasses = {
       'a-textarea__textarea': true,
-      'a-textarea__textarea--error': this.isErrorOrCounterError,
+      'a-textarea__textarea--error': !valid,
     };
 
     const textareaMessagesClasses = {
       'a-textarea__messages': true,
-      'a-textarea__messages--error': this.isErrorOrCounterError,
+      'a-textarea__messages--error': !valid,
+    };
+
+    const checkClasses = {
+      'a-textarea__check': true,
+      'a-textarea__check--hidden': !valid,
     };
 
     return html`
@@ -265,20 +230,29 @@ class AXATextarea extends NoShadowDOM {
                 : ''}</label
             >
           `}
-        <textarea
-          @input="${this.handleInput}"
-          @focus="${this.handleFocus}"
-          @blur="${this.handleBlur}"
-          id="${refId}"
-          maxlength="${maxLength}"
-          class="${classMap(textareaClasses)}"
-          value="${this.value}"
-          autocomplete="off"
-          name="${name}"
-          placeholder="${placeholder}"
-          ?disabled="${disabled}"
-          aria-required="${required}"
-        ></textarea>
+        <div class="a-textarea__textarea-wrapper">
+          <textarea
+            @input="${this.handleInput}"
+            @focus="${this.handleFocus}"
+            @blur="${this.handleBlur}"
+            id="${refId}"
+            maxlength="${maxLength}"
+            class="${classMap(textareaClasses)}"
+            autocomplete="off"
+            name="${name}"
+            placeholder="${placeholder}"
+            ?disabled="${disabled}"
+            aria-required="${required}"
+          ></textarea>
+
+          <div class="a-textarea__check-wrapper">
+            ${validation
+              ? html`
+                  <span class="${classMap(checkClasses)}"></span>
+                `
+              : ''}
+          </div>
+        </div>
         <div class="${classMap(textareaMessagesClasses)}">
           ${this.showCounter
             ? html`
@@ -287,7 +261,7 @@ class AXATextarea extends NoShadowDOM {
             : ''}
           ${this.showCounterError
             ? html`
-                <span>${counterError}</span>
+                <span>${counterMax}</span>
               `
             : ''}
           ${this.showError

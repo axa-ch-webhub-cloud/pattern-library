@@ -14,16 +14,13 @@ storiesOf('Atoms/Textarea', module)
   )
   .add('Textarea - disabled', () => '<axa-textarea disabled></axa-textarea>')
   .add(
-    'Textarea - value',
-    () => '<axa-textarea label="Label">prefilled content</axa-textarea>'
-  )
-
-  // required add * if label exist and valid isRequired validation
-  .add(
     'Textarea - required',
     () => '<axa-textarea required label="Label"></axa-textarea>'
   )
-
+  .add(
+    'Textarea - validation',
+    () => '<axa-textarea validation></axa-textarea>'
+  )
   .add('Textarea - error', () => {
     const textarea = document.createElement('axa-textarea');
     textarea.error = 'Error Message';
@@ -31,35 +28,25 @@ storiesOf('Atoms/Textarea', module)
 
     return textarea;
   })
-
-  // show counter if (maxlength && counter) show  show charsLeft if (maxlength)
   .add(
     'Textarea - counter',
     () =>
       `<div>
         <axa-textarea
-          style="margin-bottom: 20px;"
-          label="Counter with placeholder"
           maxlength="3"
           counter="still ##counter## characters left"
         ></axa-textarea>
       </div>`
   )
-  // show counterError if (maxlength && counterError && !areCharsLeft && isInvalid)
   .add(
-    'Textarea - counterError',
+    'Textarea - counterMax',
     () =>
       `<axa-textarea
-        label="Counter Error"
-        value="123"
         maxlength="3"
-        counterError="The maximum character length has been reached"
-      ></axa-textarea>`
+        counterMax="The maximum character length has been reached"
+      >123</axa-textarea>`
   )
   .add(
     'Textarea - children (default Value)',
-    () =>
-      `<axa-textarea
-        label="children (default Value)"
-      >prefilled value</axa-textarea>`
+    () => `<axa-textarea>prefilled value</axa-textarea>`
   );

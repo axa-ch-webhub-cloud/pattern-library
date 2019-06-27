@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXATextareaReact from './AXATextareaReact';
 
-const DemoTextarea = () => {
+const DemoContUncontTextarea = () => {
   const [message, setMessage] = useState('controlled');
 
   const handleChange = ev => {
@@ -38,4 +38,4 @@ const DemoTextarea = () => {
   );
 };
 
-export default DemoTextarea;
+export default DemoContUncontTextarea;

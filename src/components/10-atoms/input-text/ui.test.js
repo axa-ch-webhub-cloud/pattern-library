@@ -23,10 +23,10 @@ test('should type something input-text', async t => {
   const $axaTag = await Selector(() =>
     document.querySelector('axa-input-text')
   );
-  const $axaButtonTagEl = await $axaTag.find(CLASS);
+  const $axaTagElem = await $axaTag.find(CLASS);
   await t
-    .typeText($axaButtonTagEl, 'Pattern Warriors')
-    .expect($axaButtonTagEl.value)
+    .typeText($axaTagElem, 'Pattern Warriors')
+    .expect($axaTagElem.value)
     .eql('Pattern Warriors');
 });
 

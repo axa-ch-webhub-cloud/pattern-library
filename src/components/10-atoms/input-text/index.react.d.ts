@@ -5,6 +5,7 @@ interface AXAInputTextProps {
   name: string;
   label?: string;
   placeholder?: string;
+  defaultValue?: string;
   error?: string;
   type?: string;
   valid?: boolean;

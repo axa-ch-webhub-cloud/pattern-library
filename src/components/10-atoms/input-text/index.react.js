@@ -7,7 +7,7 @@ export default createElement => ({
   label = '',
   placeholder = '',
   value,
-  defaultValue,
+  defaultValue = '',
   error = '',
   type = 'text',
   valid = true,

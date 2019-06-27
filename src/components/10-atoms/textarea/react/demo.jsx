@@ -2,18 +2,18 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DemoTextarea from './DemoTextarea';
+import DemoContUncontTextarea from './DemoContUncontTextarea';
 import { withMarkdown } from '../../../../../.storybook/addons/markdown';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Textarea/React', module)
+storiesOf('Atoms/Textarea/React/Demos', module)
   .addDecorator(withMarkdown(Readme))
 
   /* Default */
-  .add('Input Text - default', () => {
+  .add('Feature - Textarea controlled/uncontrolled', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <DemoTextarea />,
+      <DemoContUncontTextarea />,
       div
     );
     return div;

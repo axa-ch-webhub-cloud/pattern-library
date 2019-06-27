@@ -5,8 +5,9 @@ interface AXATextareaProps {
   name: string;
   label?: string;
   placeholder?: string;
-  value?: string;
   error?: string;
+  defaultValue?: string;
+  value?: string;
   valid?: boolean;
   validation?: boolean;
   required?: boolean;
