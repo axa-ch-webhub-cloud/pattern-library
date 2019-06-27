@@ -12,6 +12,10 @@ const _listElementHasNoContent = label => {
   return !label || label.nodeType === 3;
 };
 
+const _setMaxHeightToZero = panel => {
+  panel.style.maxHeight = '0px';
+};
+
 class AXAFooter extends LitElement {
   static get tagName() {
     return 'axa-footer';
@@ -40,15 +44,15 @@ class AXAFooter extends LitElement {
   render() {
     const accordionContent = {
       'o-footer__main-content-panel': true,
-      'js-footer__main-content-panel': true,
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 0,
+      'js-footer__main-content-panel': true,
     };
 
     const shortAccordionContent = {
       'o-footer__main-content-panel': true,
-      'js-footer__main-content-panel': true,
       'o-footer__main-content-panel--short': true,
       'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
+      'js-footer__main-content-panel': true,
     };
 
     const accordionCaretState = index => {
@@ -62,8 +66,8 @@ class AXAFooter extends LitElement {
     const showCaret = svg([CaretSvg || '']);
 
     const links = this.querySelectorAll('a');
-    // add event listsner on the A tag itself that is inside a slot element.
-    // Thats why we cant use @click as it comes from light dom
+    // Add event listsner on the <a> tag, which is inside a slot element.
+    // That's why we cannot use @click, as it comes from light dom
     [].forEach.call(links, link => {
       link.addEventListener('click', this._handleLinkClick);
     });
@@ -167,38 +171,32 @@ class AXAFooter extends LitElement {
     });
   }
 
-  _resetMaxHeight(panel) {
-    panel.style.maxHeight = '0px';
-  }
-
   _handleAccordionClick = (index, ev) => {
-    // reset all
+    // Toggle opening of correct accordion
+    this._accordionActiveIndex =
+      index === this._accordionActiveIndex ? -1 : index;
+    this.requestUpdate();
+
     const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
       '.js-footer__main-content-panel'
     );
 
     [].forEach.call(panels, panel => {
-      this._resetMaxHeight(panel);
+      _setMaxHeightToZero(panel);
     });
 
-    // get current panel
     const panel = ev.currentTarget.parentNode.querySelector(
       '.js-footer__main-content-panel'
     );
-
-    // toggle active index and if cirrent one closes, index is -1
-    this._accordionActiveIndex =
-      index === this._accordionActiveIndex ? -1 : index;
-    this.requestUpdate();
-
     if (this._accordionActiveIndex > -1) {
       const {
         parentNode: { offsetHeight },
         children,
       } = panel;
+      // Set maxHeight to exactly the height of all elements combined
       panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
     } else {
-      this._resetMaxHeight(panel);
+      _setMaxHeightToZero(panel);
     }
   };
 
