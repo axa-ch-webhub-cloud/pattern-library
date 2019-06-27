@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/cookie-disclaimer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Shows a message that explains the conditions of the Data Protection Act and let you click and accept",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/cookie-disclaimer#readme",
@@ -25,9 +25,9 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "^1.1.9",
-    "@axa-ch/container": "^1.0.6",
-    "@axa-ch/materials": "^1.3.2",
+    "@axa-ch/button": "^1.1.10",
+    "@axa-ch/container": "^1.0.7",
+    "@axa-ch/materials": "^1.3.3",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0"
