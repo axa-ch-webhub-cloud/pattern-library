@@ -50,4 +50,15 @@ storiesOf('Molecules/Dropdown', module)
     {"name": "Item 3", "value": "Item 3" }
     ]'></axa-dropdown>
     `
+  )
+  .add(
+    'Dropdown embedded, w/o space for valid checkmark or error message',
+    () => `<axa-dropdown embedded
+    items='[
+    {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
+    {"name": "Item 1", "value": "Item 1" },
+    {"name": "Item 2", "value": "Item 2" },
+    {"name": "Item 3", "value": "Item 3" }
+    ]'></axa-dropdown>
+    `
   );

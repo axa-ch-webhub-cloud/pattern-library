@@ -71,6 +71,13 @@ axa-dropdown {
       visibility: visible;
     }
   }
+
+  &[embedded] {
+    .m-dropdown__valid-icon,
+    .m-dropdown__error {
+      display: none;
+    }
+  }
 }
 
 .m-dropdown {
@@ -270,4 +277,8 @@ axa-dropdown {
       }
     }
   }
+}
+
+@keyframes filled-tick-animated{
+  from {stroke-linecap: round} to {stroke-linecap: round; stroke-dashoffset: 0}
 }

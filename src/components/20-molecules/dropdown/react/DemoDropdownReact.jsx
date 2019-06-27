@@ -53,6 +53,12 @@ const DemoDropdown = () => {
         valid={!frozen}
         error={error}
       />
+      <br />
+      <p>
+        Controlled value &quot;
+        <span data-test-id="dropdown-react-controlled-value">{value}</span>
+        &quot;.
+      </p>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { ExpandSvg, FilledTickSvg } from '@axa-ch/materials/icons';
+import { ExpandSvg, FilledTickAnimatedSvg } from '@axa-ch/materials/icons';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -10,7 +10,8 @@ import fireCustomEvent from '../../../utils/custom-event';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
-const VALID_ICON = svg([FilledTickSvg]);
+const VALID_ICON = svg([FilledTickAnimatedSvg]);
+const EMPTY_ICON = svg(['<svg xmlns="http://www.w3.org/2000/svg"></svg>']);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
 const EMPTY_FUNCTION = () => {};
@@ -96,6 +97,7 @@ class AXADropdown extends NoShadowDOM {
       native: { type: Boolean },
       valid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
+      embedded: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
     };
   }
@@ -109,7 +111,9 @@ class AXADropdown extends NoShadowDOM {
       // yes, remember in model state
       this.state.isControlled = true;
     }
+    // update state
     this.state.value = newValue;
+    // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);
   }
 
@@ -191,6 +195,8 @@ class AXADropdown extends NoShadowDOM {
     e.preventDefault();
     e.stopPropagation();
     const { target } = e;
+    // if click 'lands' on native <select> (narrow window widths or 'native' mode),
+    // use DOM-API 'selectedIndex' to find out which option the click targeted
     const clickedItemIndex =
       target instanceof HTMLSelectElement
         ? target.selectedIndex
@@ -200,7 +206,8 @@ class AXADropdown extends NoShadowDOM {
       state: { isControlled },
       onChange,
     } = this;
-    const syntheticEvent = { target: items[clickedItemIndex | 0] };
+    // allow idiomatic event.target.value in onChange callback!
+    const syntheticEvent = { target: items[clickedItemIndex | 0] }; // | 0: coerce to integer
     onChange(syntheticEvent);
     this.openDropdown(false);
     if (!isControlled) {
@@ -213,9 +220,12 @@ class AXADropdown extends NoShadowDOM {
   updateCurrentItems(_item) {
     const { items } = this;
     let itemIndex = _item | 0; // | 0: coerce to integer
+    // not a stringified data-index value?
     if (!/^\d+$/.test(_item)) {
+      // compute index by scanning all items for matching value
       itemIndex = items.findIndex(currentItem => currentItem.value === _item);
     }
+    // matching value not found?
     if (itemIndex < 0) {
       return;
     }
@@ -223,12 +233,16 @@ class AXADropdown extends NoShadowDOM {
     if (typeof name !== 'string') {
       return;
     }
+    // equip our dropdown with same DOM API as native
     this.selectedIndex = itemIndex;
     if (this.select) {
+      // ... and keep in sync with embedded <select>
       this.select.selectedIndex = itemIndex;
     }
     this.title = name;
     this.value = value || name;
+    // clone items array with updated selected property
+    // (the fact that items are cloned ensures re-render!)
     const newItems = items.map((item, index) => {
       item.selected = index === itemIndex;
       return item;
@@ -269,35 +283,36 @@ class AXADropdown extends NoShadowDOM {
     window.removeEventListener('click', this.handleWindowClick);
   }
 
+  /* last overrideable lifecycle point *before* render:
+     put side-effects there that influence render *and* need access to changed
+     properties */
   shouldUpdate(changedProperties) {
-    if (
-      changedProperties.has('value') &&
-      this.state.isControlled &&
-      this.isReact
-    ) {
+    // controlledness is only meaningful if the isReact property has been set
+    // via the React wrapper
+    this.state.isControlled = this.state.isControlled && this.isReact;
+    // controlling React application imposes new 'value'?
+    if (changedProperties.has('value') && this.state.isControlled) {
       this.updateCurrentItems(this.findByValue(this.value));
     }
     return true;
   }
 
-  /* note: js-XXX classes mark DOM nodes independently of styling needs for
-     purposes of programmatic DOM access, therefore need to be preserved even
-     when style refactoring would rename other classes.
-  */
   render() {
     const {
       items = [],
       title,
       native,
+      valid,
       error,
-      isReact,
-      state: { isControlled },
       handleDropdownItemClick,
       handleDropdownClick,
     } = this;
-    this.state.isControlled = isReact && isControlled;
 
     const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
+
+    // note: js-XXX classes mark DOM nodes independently of styling needs for
+    // purposes of programmatic DOM access, therefore need to be preserved even
+    // when style refactoring would rename other classes.
     return html`
       <div class="${classMap(classes)}">
         <div class="m-dropdown__list m-dropdown__list--native">
@@ -313,7 +328,7 @@ class AXADropdown extends NoShadowDOM {
           <button
             @click="${handleDropdownClick}"
             type="button"
-            class="m-dropdown__toggle js-dropdown__toggle"
+            class="m-dropdown__toggle"
           >
             <span>${title}</span>
             <div class="m-dropdown__select-icon">${ARROW_ICON}</div>
@@ -322,13 +337,17 @@ class AXADropdown extends NoShadowDOM {
             ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
         </div>
-        <div class="m-dropdown__valid-icon">${VALID_ICON}</div>
+        <div class="m-dropdown__valid-icon">
+          ${valid ? VALID_ICON : EMPTY_ICON}
+        </div>
       </div>
       <div class="m-dropdown__error">${error}</div>
     `;
   }
 
   firstUpdated() {
+    // dropdowns cannot meaningfully be initially open, since the underlying
+    // <select> cannot be force-opened natively
     this.open = false;
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
