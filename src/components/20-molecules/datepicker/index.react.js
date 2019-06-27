@@ -6,7 +6,7 @@ export default createElement => ({
   inputfield,
   open,
   value,
-  onChange,
+  onChange = () => {},
   locale,
   day,
   month,

@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
@@ -128,8 +128,15 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor2019.chooseFebruary();
   await datePickerAccessor2019.selectDayOfCurrentMonth(14);
   await datePickerAccessor2019.submit();
-
-  await datePickerAccessor2019.assertDatepickerInput('14.2.2019');
+  // we need to do things on our own here since property access
+  // is *not* supported by the TestCafe API (here for 'value')
+  const getInputValue = ClientFunction(
+    () =>
+      document.querySelector(
+        `axa-datepicker[data-test-id="datepicker-input-2019"]`
+      ).value
+  );
+  await t.expect(await getInputValue()).eql('14.2.2019');
 });
 
 test('should change enhanced dropdown title (only on large screens) on month change', async t => {
@@ -157,7 +164,7 @@ test('should render datepicker as reactified component', async t => {
 });
 
 fixture('Datepicker Form').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker-inside-form`
+  `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
 );
 test('should submit datepicker correctly in form', async t => {
   const datepickerForm = await Selector(() =>

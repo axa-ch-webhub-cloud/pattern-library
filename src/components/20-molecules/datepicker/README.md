@@ -18,9 +18,7 @@ import '@axa-ch/datepicker';
 
 ## Usage React
 
-Create a React-ified datepicker with the createElement function from your React version and then use it like this.
-
-Controled input is coming within the next major release.
+Create a React-ified datepicker with the createElement function from your React version and then use it like this:
 
 ```js
 import { createElement } from 'react';

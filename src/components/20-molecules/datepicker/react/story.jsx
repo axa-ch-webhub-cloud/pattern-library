@@ -49,9 +49,4 @@ storiesOf('Molecules/Datepicker/React', module)
       div
     );
     return div;
-  })
-  .add('Controlled-component React-ified Datepicker with inputfield', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoControlledDatepickerReact />, div);
-    return div;
   });

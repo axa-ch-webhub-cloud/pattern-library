@@ -1,7 +1,9 @@
 export const getStartOfWeek = date => {
   const iDayOfWeek = date.getDay();
   const iDifference = date.getDate() - iDayOfWeek + (iDayOfWeek === 0 ? -6 : 1);
-  return new Date(date.setDate(iDifference));
+  const newDate = new Date(date);
+  newDate.setDate(iDifference);
+  return newDate;
 };
 
 const getWeekdays = (date, locale) => {
@@ -20,6 +22,13 @@ const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
 
 const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
+
+const zeroFill = (number, width) => {
+  const n_ = Math.abs(number);
+  const zeros = Math.max(0, width - Math.floor(n_).toString().length);
+  const zeroString = (10 ** zeros).toString().slice(1);
+  return `${number < 0 ? '-' : ''}${zeroString}${number}`;
+};
 
 const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
   const BLUEPRINT_YEAR = 2017;
@@ -64,13 +73,6 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
     splitValue[monthIndex],
     splitValue[dayIndex],
   ];
-
-  const zeroFill = (number, width) => {
-    const n_ = Math.abs(number);
-    const zeros = Math.max(0, width - Math.floor(n_).toString().length);
-    const zeroString = (10 ** zeros).toString().slice(1);
-    return `${number < 0 ? '-' : ''}${zeroString}${number}`;
-  };
 
   // note: we can use Date.parse despite caveats about browser-specific implementation differences by
   // explicitly constructing an unambiguous date string here,

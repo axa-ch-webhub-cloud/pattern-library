@@ -58,13 +58,6 @@ class DatePickerAccessor {
     await this.t.expect(datepicker.hasAttribute('open')).ok();
   }
 
-  async assertDatepickerInput(date) {
-    const datepicker = await Selector(
-      this.datepickerInputFieldSelector(this.id)
-    );
-    await this.t.expect(datepicker.getAttribute('value')).eql(date);
-  }
-
   async assertDropdownTitle(title) {
     const dropdownButton = await Selector(
       this.datepickerDropdownButton(this.id)

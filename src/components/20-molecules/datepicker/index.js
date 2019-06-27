@@ -19,6 +19,7 @@ import Store from './utils/Store';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
+const EMPTY_FUNCTION = () => {};
 
 // module globals
 let openDatepickerInstance;
@@ -103,7 +104,11 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   get value() {
-    return this.state.value;
+    const {
+      input = { value: '' },
+      state: { isControlled, value },
+    } = this;
+    return isControlled ? value : input.value;
   }
 
   constructor() {
@@ -127,7 +132,8 @@ class AXADatepicker extends NoShadowDOM {
     this.allowedyears = [this.year];
     this.inputplaceholder = 'Please select a date';
     this.outputdate = '';
-    this.onAXADateChange = () => {};
+    this.onAXADateChange = EMPTY_FUNCTION;
+    this.onChange = EMPTY_FUNCTION;
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.debouncedHandleViewportCheck = debounce(
@@ -136,78 +142,13 @@ class AXADatepicker extends NoShadowDOM {
     );
   }
 
-  initDate() {
-    // not first-time initialization?
-    if (this.store) {
-      return;
-    }
-
-    if (this.year >= 0) {
-      this.startDate.setFullYear(this.year);
-    }
-
-    if (this.month >= 0 && typeof this.month === 'number') {
-      this.startDate.setMonth(this.month);
-    }
-
-    if (this.day >= 0 && typeof this.day === 'number') {
-      this.startDate.setDate(this.day);
-    }
-
-    let allowedYearsFinal = [this.year]; // the chosen start year is in the allowed years
-    this.allowedyears.forEach(years => {
-      if (typeof years === 'string') {
-        const splitYears = years.split('-');
-        const generatedYears = range(
-          parseInt(splitYears[0], 10),
-          parseInt(splitYears[1], 10)
-        );
-        allowedYearsFinal = allowedYearsFinal.concat(generatedYears);
-      } else {
-        allowedYearsFinal.push(years);
-      }
-    });
-
-    this.allowedyears = allowedYearsFinal
-      .filter((item, index) => allowedYearsFinal.indexOf(item) >= index)
-      .sort(); // Performance maniacs can puke (O...notation I know. ou ou ou).
-
-    this.date = this.startDate;
-    this.store = new Store(this.locale, this.date, this.allowedyears);
-    this.cells = this.store.getCells();
-    this.weekdays = getWeekdays(this.date, this.locale);
-  }
-
-  firstUpdated() {
-    this.input = this.querySelector('.js-datepicker__input');
-
-    window.addEventListener('keydown', this.handleWindowKeyDown);
-    window.addEventListener('click', this.handleBodyClick);
-
-    if (this.input) {
-      window.setTimeout(() => {
-        window.addEventListener('resize', this.debouncedHandleViewportCheck);
-        window.addEventListener('scroll', this.debouncedHandleViewportCheck);
-        this.handleViewportCheck(this.input);
-      }, 100);
-    }
-
-    this.initDate();
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('keydown', this.handleWindowKeyDown);
-    window.removeEventListener('click', this.handleBodyClick);
-    window.removeEventListener('resize', this.debouncedHandleViewportCheck);
-    window.removeEventListener('scroll', this.debouncedHandleViewportCheck);
-  }
-
   shouldUpdate(changedProperties) {
     if (changedProperties.has('value')) {
       const {
         isReact,
         state: { isControlled },
       } = this;
+      // controlledness only makes sense when used under React
       this.state.isControlled = isReact && isControlled;
     }
     return true;
@@ -249,7 +190,7 @@ class AXADatepicker extends NoShadowDOM {
                 type="text"
                 name="${this.name}"
                 placeholder="${this.placeholder}"
-                value="${isControlled ? value : this.outputdate}"
+                .value="${isControlled ? value : this.outputdate}"
               />
               <button
                 type="button"
@@ -341,30 +282,99 @@ class AXADatepicker extends NoShadowDOM {
     `;
   }
 
+  firstUpdated() {
+    this.input = this.querySelector('.js-datepicker__input');
+
+    window.addEventListener('keydown', this.handleWindowKeyDown);
+    window.addEventListener('click', this.handleBodyClick);
+
+    if (this.input) {
+      window.setTimeout(() => {
+        window.addEventListener('resize', this.debouncedHandleViewportCheck);
+        window.addEventListener('scroll', this.debouncedHandleViewportCheck);
+        this.handleViewportCheck(this.input);
+      }, 100);
+    }
+
+    this.initDate();
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    const hasValue = newValue !== null;
-    if (hasValue && name === 'date' && this.store && this.date) {
-      const newDate = this.date;
-
-      // Validation
-      if (!this.isYearInValidDateRange(newDate.getFullYear())) {
-        // return;
+    const { store, date, allowedyears } = this;
+    if (newValue !== null && name === 'date' && store && date) {
+      // validate year
+      const year = date.getFullYear();
+      const isValidYear = allowedyears.indexOf(year) > -1;
+      if (!isValidYear) {
+        return;
       }
-
-      // Fire custom success events
-      fireCustomEvent('axa-change', newDate, this);
-      this.onAXADateChange(newDate);
-
+      // fire custom success events
+      fireCustomEvent('axa-change', date, this);
+      this.onAXADateChange(date);
       fireCustomEvent(
-        'AXA_VALIDATION',
+        'axa-validation',
         { type: 'success', message: 'valid' },
         this
       );
     }
   }
 
+  disconnectedCallback() {
+    window.removeEventListener('keydown', this.handleWindowKeyDown);
+    window.removeEventListener('click', this.handleBodyClick);
+    window.removeEventListener('resize', this.debouncedHandleViewportCheck);
+    window.removeEventListener('scroll', this.debouncedHandleViewportCheck);
+  }
+
   // Methods
+  initDate() {
+    // not first-time initialization?
+    if (this.store) {
+      return;
+    }
+
+    if (this.year >= 0) {
+      this.startDate.setFullYear(this.year);
+    }
+
+    if (this.month >= 0 && typeof this.month === 'number') {
+      this.startDate.setMonth(this.month);
+    }
+
+    if (typeof this.day === 'number') {
+      // day 1 = first day, day 0 = last day of prev. month
+      // day -1 = one day before last day of prev. month, ...
+      this.startDate.setDate(this.day);
+    }
+    this.startDate.setHours(0);
+    this.startDate.setMinutes(0);
+    this.startDate.setSeconds(0);
+    // the chosen start year is in the allowed years
+    let allowedYearsFinal = [this.year];
+    this.allowedyears.forEach(years => {
+      if (typeof years === 'string') {
+        const splitYears = years.split('-');
+        const generatedYears = range(
+          parseInt(splitYears[0], 10),
+          parseInt(splitYears[1], 10)
+        );
+        allowedYearsFinal = allowedYearsFinal.concat(generatedYears);
+      } else {
+        allowedYearsFinal.push(years);
+      }
+    });
+
+    this.allowedyears = allowedYearsFinal
+      .filter((item, index) => allowedYearsFinal.indexOf(item) >= index)
+      .sort();
+
+    this.date = this.startDate;
+    this.store = new Store(this.locale, this.date, this.allowedyears);
+    this.cells = this.store.getCells();
+    this.weekdays = getWeekdays(this.date, this.locale);
+  }
+
   handleViewportCheck(baseElem) {
     if (shouldMove(baseElem)) {
       if (!this.inverted) {
@@ -391,10 +401,6 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
-  isYearInValidDateRange(year) {
-    return this.allowedyears.indexOf(year) > -1;
-  }
-
   updateDatepickerProps(date) {
     this.month = date.getMonth();
     this.day = date.getDate();
@@ -404,6 +410,24 @@ class AXADatepicker extends NoShadowDOM {
     }
     this.store.update(date);
     this.cells = this.store.getCells();
+  }
+
+  validate(value) {
+    this.initDate();
+    const { locale, invaliddatetext } = this;
+    const validDate = parseLocalisedDateIfValid(locale, value);
+    this.error = null;
+    if (validDate) {
+      this.date = validDate;
+      this.updateDatepickerProps(validDate);
+      this.outputdate = validDate.toLocaleString(locale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      });
+    } else if (value && invaliddatetext) {
+      this.error = invaliddatetext;
+    }
   }
 
   // Events
@@ -455,24 +479,6 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
-  validate(value) {
-    this.initDate();
-    const { locale, invaliddatetext } = this;
-    const validDate = parseLocalisedDateIfValid(locale, value);
-    this.error = null;
-    if (validDate) {
-      this.date = validDate;
-      this.updateDatepickerProps(validDate);
-      this.outputdate = validDate.toLocaleString(locale, {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
-      });
-    } else if (value && invaliddatetext) {
-      this.error = invaliddatetext;
-    }
-  }
-
   handleInputChange(e) {
     e.preventDefault();
     let {
@@ -489,15 +495,25 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   handleButtonOkClick() {
-    if (this.inputfield) {
-      this.toggleDatepicker();
-    }
-
-    this.outputdate = this.date.toLocaleString(this.locale, {
+    const {
+      locale,
+      date,
+      inputfield,
+      input,
+      onChange,
+      state: { isControlled, value: stateValue },
+    } = this;
+    const value = date.toLocaleString(locale, {
       day: 'numeric',
       month: 'numeric',
       year: 'numeric',
     });
+    this.outputdate = value;
+    onChange({ target: { value } });
+    if (inputfield) {
+      this.toggleDatepicker();
+      input.value = isControlled ? stateValue : value;
+    }
   }
 
   handleButtonCancelClick() {
