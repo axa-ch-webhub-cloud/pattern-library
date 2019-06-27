@@ -6,6 +6,8 @@ import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
+import { classMap } from 'lit-html/directives/class-map';
+
 const _listElementHasNoContent = label => {
   return !label || label.nodeType === 3;
 };
@@ -54,6 +56,17 @@ class AXAFooter extends LitElement {
   }
 
   render() {
+    const accordionContent = {
+      'o-footer__main-content-panel': true,
+      'o-footer__main-content-panel--open': this._accordionActiveIndex === 0,
+    };
+
+    const shortAccordionContent = {
+      'o-footer__main-content-panel': true,
+      'o-footer__main-content-panel--short': true,
+      'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
+    };
+
     return html`
       <footer class="o-footer">
         <axa-container>
@@ -78,12 +91,7 @@ class AXAFooter extends LitElement {
                     ${svg([CaretSvg || ''])}
                   </span>
                 </button>
-                <ul
-                  class="o-footer__main-content-panel o-footer__main-content-panel${this
-                    ._accordionActiveIndex === 0
-                    ? '--open'
-                    : ''}"
-                >
+                <ul class="${classMap(accordionContent)}">
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-0-item-0"
@@ -154,12 +162,7 @@ class AXAFooter extends LitElement {
                     ${svg([CaretSvg || ''])}
                   </span>
                 </button>
-                <ul
-                  class="o-footer__main-content-panel o-footer__main-content-panel--short o-footer__main-content-panel${this
-                    ._accordionActiveIndex === 1
-                    ? '--open'
-                    : ''}"
-                >
+                <ul class="${classMap(shortAccordionContent)}">
                   <li class="o-footer__main-content-panel-list-item">
                     <slot
                       name="column-1-item-0"
