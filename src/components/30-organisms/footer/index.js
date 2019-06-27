@@ -1,8 +1,8 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
+import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
