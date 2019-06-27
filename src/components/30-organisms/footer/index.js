@@ -75,6 +75,8 @@ class AXAFooter extends LitElement {
       };
     };
 
+    const showCaret = svg([CaretSvg || '']);
+
     return html`
       <footer class="o-footer">
         <axa-container>
@@ -91,7 +93,7 @@ class AXAFooter extends LitElement {
                 >
                   <slot name="column-0-title" class="o-footer__title"></slot>
                   <span class="${classMap(accordionCaretState(0))}">
-                    ${svg([CaretSvg || ''])}
+                    ${showCaret}
                   </span>
                 </button>
                 <ul class="${classMap(accordionContent)}">
@@ -157,7 +159,7 @@ class AXAFooter extends LitElement {
                 >
                   <slot name="column-1-title" class="o-footer__title"></slot>
                   <span class="${classMap(accordionCaretState(1))}">
-                    ${svg([CaretSvg || ''])}
+                    ${showCaret}
                   </span>
                 </button>
                 <ul class="${classMap(shortAccordionContent)}">
