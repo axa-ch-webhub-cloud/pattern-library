@@ -49,6 +49,7 @@ class AXATableSortable extends LitElement {
     return {
       model: { type: Object },
       innerscroll: { type: Number },
+      maxheight: { type: Number },
     };
   }
 
