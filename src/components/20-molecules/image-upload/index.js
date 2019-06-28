@@ -72,7 +72,12 @@ class AXAImageUpload extends LitElement {
     this.addStatusText = 'Add more';
     this.onClick = () => {};
 
-    this.allImagesInput = [];
+    this.maxSizeOfSingleFileB = getBytesFromMegabyte(
+      this.maxSizeOfSingleFileMB
+    );
+    this.maxSizeOfAllFilesB = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
+
+    this.sizeOfAllFilesB = 0;
   }
 
   firstUpdated() {
@@ -259,15 +264,31 @@ class AXAImageUpload extends LitElement {
   };
 
   async addFiles(droppedFiles) {
+    let filesLeftOver = this.maxNumberOfFiles - this.finalFiles.length;
+    filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
+    const slicedFiles = Array.prototype.slice.call(
+      droppedFiles,
+      0,
+      filesLeftOver
+    );
     // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
-    const pdfs = [...droppedFiles].filter(file => ~file.type.indexOf('pdf'));
-    const compressedImages = await compressImage(droppedFiles);
+    const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
+    const compressedImages = await compressImage(slicedFiles);
     const finalFiles = pdfs.concat(compressedImages);
     const wrongFiles = [];
-    for (let i = 0; i < droppedFiles.length; i++) {
-      const dKey = fileKey(droppedFiles[i], true);
+    for (let i = 0; i < slicedFiles.length; i++) {
+      const dKey = fileKey(slicedFiles[i], true);
+      this.sizeOfAllFilesB += slicedFiles[i].size;
+
       if (!finalFiles.some(finalFile => fileKey(finalFile, true) === dKey)) {
-        wrongFiles.push(droppedFiles[i]);
+        wrongFiles.push(slicedFiles[i]);
+      }
+      if (slicedFiles[i].size > this.maxSizeOfSingleFileB) {
+        wrongFiles.push(slicedFiles[i]);
+        console.log('onetobig', slicedFiles[i], this.maxSizeOfSingleFileB);
+      } else if (this.sizeOfAllFilesB > this.maxSizeOfAllFilesB) {
+        wrongFiles.push(slicedFiles[i]);
+        console.log('alltobig', this.sizeOfAllFilesB, this.maxSizeOfAllFilesB);
       }
     }
 
