@@ -45,7 +45,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Footer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/footer)
 
 ## Alpha-Released Components
-- -
+- 
 
 ## Design Guidelines
 [Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
