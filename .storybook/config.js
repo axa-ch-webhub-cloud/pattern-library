@@ -1,7 +1,7 @@
+import '@axa-ch/patterns-library-polyfill';
 import { addParameters, configure, addDecorator } from '@storybook/html';
 import { create } from '@storybook/theming';
 import { addReadme } from 'storybook-readme/html';
-import '@axa-ch/patterns-library-polyfill';
 import logo from '../src/static/svg/logo-axa.svg';
 
 addDecorator(addReadme);

@@ -34,13 +34,13 @@ module.exports = ({ config }) => {
     },
     {
       test: /\.js$/,
-      exclude: /node_modules\/(?![lit\-element|lit\-html])/,
+      exclude: /node_modules\/(?!lit\-element|lit\-html|@axa\-ch)/,
       loader: 'babel-loader',
       options: babelOptions,
     },
     {
       test: /\.jsx/,
-      exclude: /node_modules\/(?![lit\-element|lit\-html])/,
+      exclude: /node_modules\/(?!lit\-element|lit\-html|@axa\-ch)/,
       loader: 'babel-loader',
       options: {...babelOptions, presets: [...babelOptions.presets, '@babel/preset-react']},
     }
