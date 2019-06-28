@@ -1,7 +1,7 @@
 {
   "packages": [
     "src/components/30-organisms/table",
-    "src/components/30-organisms/table-sortable",
+    "src/components/30-organisms/table-sortable"
   ],
   "version": "independent",
   "npmClient": "npm"
