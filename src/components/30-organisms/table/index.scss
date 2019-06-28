@@ -157,8 +157,21 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
       }
     }
   }
-}
 
+  &[maxheight]:not([maxheight="0"]) {
+    tbody {
+      display: block;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    thead, tbody tr {
+      display:table;
+      width:100%;
+      table-layout:fixed;
+    }
+  }
+}
 
 td.o-table--light {
   color: $color-prim-gray;

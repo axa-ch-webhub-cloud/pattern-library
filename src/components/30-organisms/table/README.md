@@ -115,6 +115,7 @@ export default App;
 | Attribute           | Details                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `innerscroll="500"` | set a min width and if the viewport width is less than _innerscroll_ pixels, add a horizontal scrollbar. This property obligatorily requires thead and tbody. |
+| `maxheight="500"`   | set a min height and if the viewport height is less than _maxheight_ pixels, add a vertical scrollbar. This property obligatorily requires thead and tbody.   |
 
 ## Variants
 
