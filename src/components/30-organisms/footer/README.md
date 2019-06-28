@@ -354,6 +354,4 @@ Because of SEO (Search Enginge Optimization), we had to ditch the easier model-b
 | `<a slot="column-social-item-X" href="" target="_blank"></a>` | X = Index of social media item                                       |
 |                                                               |                                                                      |
 
-**IMPORTANT:** Because of internet explorer, the list of social media buttons is currently fixed and must not be rearranged and all items are necessary!
-
 We currently need the social media svgs as child elements of the slot link tags, because there is no way to have them in the template
