@@ -3,7 +3,9 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Table Sortable - basic functionality')
-  .page(`${host}/iframe.html?id=organisms-table--table-sortable-default`)
+  .page(
+    `${host}/iframe.html?id=organisms-table-sortable--table-sortable-default`
+  )
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -162,7 +164,7 @@ test('should add a fix css class when sorted is clicked', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=organisms-table--table-sortable-innerscroll`
+  `${host}/iframe.html?id=organisms-table-sortable--table-sortable-innerscroll`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -218,4 +220,68 @@ test('should sort also when innerscroll is set ', async t => {
   await t
     .expect(parseInt(await $el.getStyleProperty('width'), 10))
     .within(250, 305);
+});
+
+fixture('Table Sortable - maxheight functionality').page(
+  `${host}/iframe.html?id=organisms-table-sortable--table-sortable-maxheight`
+);
+
+test('should sort also when maxheight is set ', async t => {
+  await t.resizeWindow(300, 400);
+  const $elRoot = await Selector('axa-table-sortable');
+
+  const $el = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelector('axa-table');
+  });
+
+  const $elTableBody = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelector('axa-table tbody');
+  });
+
+  const $elChild = $el.find('table');
+
+  await t.expect($elRoot.exists).ok();
+  const $columnOne = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelectorAll('th')[0];
+  });
+
+  const $columnOneFirstRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+    return firstRow.querySelectorAll('td')[0];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const $columnOneLastRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    return firstRow.querySelectorAll('td')[0];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('descending');
+  await t
+    .expect(await $columnOneFirstRow.innerHTML)
+    .eql('<!----><span>11 Some Text</span><!---->');
+  await t
+    .expect(await $columnOneLastRow.innerHTML)
+    .eql('<!----><span>1 Some Text</span><!---->');
+
+  await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
+  const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
+  await t
+    .expect(parseInt(await $elChild.getStyleProperty('height'), 10))
+    .within(innerscroll - 60, innerscroll + 60);
+
+  await t
+    .expect(parseInt(await $el.getStyleProperty('height'), 10))
+    .within(200, 250);
 });

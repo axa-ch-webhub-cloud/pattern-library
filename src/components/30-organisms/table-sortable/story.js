@@ -50,4 +50,14 @@ storiesOf('Organisms/Table Sortable', module)
       <axa-table-sortable innerscroll="500" model='${JSON.stringify(model)}'>
       </axa-table-sortable>
       `
+  )
+  .add(
+    'Table Sortable - maxheight',
+    () => `
+      <axa-table-sortable
+        maxheight="160"
+        innerscroll="500"
+        model='${JSON.stringify(model)}'>
+      </axa-table-sortable>
+      `
   );

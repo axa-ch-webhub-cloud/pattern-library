@@ -23,6 +23,7 @@ class AXATableSortable extends LitElement {
     };
     this.model = { ...this.defaultModel };
     this.innerscroll = 0;
+    this.maxheight = 0;
     this.firstRender = true;
     this.numCollator = new Intl.Collator(undefined, {
       numeric: true,
@@ -53,21 +54,17 @@ class AXATableSortable extends LitElement {
 
   validateModel() {
     const {
-      thead: {
-        length: theadL
-      },
+      thead: { length: theadL },
       tbody: {
-        0: {
-          length: tbodyL
-        }
+        0: { length: tbodyL },
       },
-      tfoot
+      tfoot,
     } = this.model;
     let tfootL = 0;
     if (tfoot && tfoot[0]) {
       tfootL = tfoot.length;
     }
-    return !tbodyL || !((theadL !== tbodyL) && (!tfootL || tfootL === tbodyL));
+    return !tbodyL || !(theadL !== tbodyL && (!tfootL || tfootL === tbodyL));
   }
 
   getSortingAria(config) {
@@ -143,7 +140,11 @@ class AXATableSortable extends LitElement {
     const { thead, tbody, tfoot } = this.model;
 
     return html`
-      <axa-table class="o-table-sortable" innerscroll="${this.innerscroll}">
+      <axa-table
+        class="o-table-sortable"
+        maxheight="${this.maxheight}"
+        innerscroll="${this.innerscroll}"
+      >
         <table>
           <thead>
             <tr>
