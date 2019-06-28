@@ -7,6 +7,7 @@ class AXATable extends NoShadowDOM {
     super();
     // property defaults
     this.innerscroll = 0;
+    this.maxheight = -1;
   }
 
   static get tagName() {
@@ -23,11 +24,15 @@ class AXATable extends NoShadowDOM {
         type: Number,
         reflect: true /* for attribute-selector styling */,
       },
+      maxheight: {
+        type: Number,
+        reflect: true /* for attribute-selector styling */,
+      },
     };
   }
 
   updated() {
-    // whenever 'innerscroll' is updated,
+    // whenever 'innerscroll' or maxheight is updated,
     // update the topmost <table's> own inline style accordingly.
     // CAVEATS: this messes with the children, but is unavoidable here
     // to insure correct only-table-scrolls-horizontally behaviour!
@@ -40,6 +45,13 @@ class AXATable extends NoShadowDOM {
       return;
     }
     topMostTable.style.minWidth = `${this.innerscroll}px`;
+
+    if (this.maxheight > 0) {
+      const tableBody = topMostTable.querySelector('tbody');
+      if (tableBody) {
+        tableBody.style.maxHeight = `${this.maxheight}px`;
+      }
+    }
   }
 }
 

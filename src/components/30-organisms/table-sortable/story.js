@@ -28,10 +28,28 @@ const model = {
       { html: '<span>Cell 2</span>' },
       { html: 'C' },
     ],
+    [
+      { html: '<span>A2 Some Text</span>' },
+      { html: '<span>AA Some Text</span>' },
+      { html: '<span>Cell 2A</span>' },
+      { html: 'D' },
+    ],
+    [
+      { html: '<span>56 Some Text</span>' },
+      { html: '<span>G Some Text</span>' },
+      { html: '<span>Cell 24</span>' },
+      { html: 'E' },
+    ],
+    [
+      { html: '<span>22 Some Text</span>' },
+      { html: '<span>AA Some Text</span>' },
+      { html: '<span>Cell 22</span>' },
+      { html: 'F' },
+    ],
   ],
 };
 
-storiesOf('Organisms/Table', module)
+storiesOf('Organisms/Table Sortable', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -48,6 +66,16 @@ storiesOf('Organisms/Table', module)
     'Table Sortable - innerscroll',
     () => `
       <axa-table-sortable innerscroll="500" model='${JSON.stringify(model)}'>
+      </axa-table-sortable>
+      `
+  )
+  .add(
+    'Table Sortable - maxheight',
+    () => `
+      <axa-table-sortable
+        maxheight="160"
+        innerscroll="500"
+        model='${JSON.stringify(model)}'>
       </axa-table-sortable>
       `
   );
