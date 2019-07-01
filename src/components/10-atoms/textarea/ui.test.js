@@ -28,7 +28,7 @@ test('should type something in textarea', async t => {
 
 test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
-    document.querySelector('axa-textarea').valid = false;
+    document.querySelector('axa-textarea').invalid = true;
     document.querySelector('axa-textarea').error = 'error';
   });
   await setInvalid();

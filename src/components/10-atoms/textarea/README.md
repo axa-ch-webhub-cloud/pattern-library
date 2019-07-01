@@ -73,9 +73,9 @@ The boolean attribute `required` visualizes an element that must obligatorily be
 
 String-valued `placeholder`specifies the placeholder text shown when the element is empty.
 
-### valid
+### invalid
 
-The boolean attribute `valid` serves to indicate the validity of the element (default: `true`), if `false` it sets the element into a visual error state.
+The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`), if `false` it sets the element into a visual error state.
 
 ### validation
 

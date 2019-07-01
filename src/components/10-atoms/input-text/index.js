@@ -21,7 +21,7 @@ class AXAInputText extends NoShadowDOM {
       defaultValue: { type: String },
       type: { type: String },
       error: { type: String },
-      valid: { type: Boolean },
+      invalid: { type: Boolean },
       validation: { type: Boolean },
       disabled: { type: Boolean },
 
@@ -46,7 +46,7 @@ class AXAInputText extends NoShadowDOM {
     this.error = '';
     this.validation = false;
     this.required = false;
-    this.valid = true;
+    this.invalid = false;
     this.disabled = false;
     this.isReact = false;
     this.onFocus = () => {};
@@ -81,7 +81,7 @@ class AXAInputText extends NoShadowDOM {
   }
 
   get showError() {
-    return this.error && !this.valid;
+    return this.error && this.invalid;
   }
 
   handleFocus = ev => {
@@ -124,7 +124,7 @@ class AXAInputText extends NoShadowDOM {
       placeholder,
       disabled,
       isReact,
-      valid,
+      invalid,
       validation,
       isControlled,
       refId,
@@ -134,12 +134,12 @@ class AXAInputText extends NoShadowDOM {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error': !valid,
+      'a-input-text__input--error': invalid,
     };
 
     const checkClasses = {
       'a-input-text__check': true,
-      'a-input-text__check--hidden': !valid,
+      'a-input-text__check--hidden': invalid,
     };
 
     const errorMessageClasses = {

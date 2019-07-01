@@ -24,13 +24,16 @@ storiesOf('Atoms/Textarea', module)
     'Textarea - validation',
     () => '<axa-textarea validation></axa-textarea>'
   )
-  .add('Textarea - error', () => {
-    const textarea = document.createElement('axa-textarea');
-    textarea.error = 'Error Message';
-    textarea.valid = false;
-
-    return textarea;
-  })
+  .add(
+    'Textarea - invalid',
+    () =>
+      '<axa-textarea invalid ></axa-textarea>'
+  )
+  .add(
+    'Textarea - error',
+    () =>
+      '<axa-textarea invalid error="Error Message"></axa-textarea>'
+  )
   .add(
     'Textarea - counter',
     () =>

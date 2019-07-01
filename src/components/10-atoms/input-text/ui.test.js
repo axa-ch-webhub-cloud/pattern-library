@@ -45,7 +45,7 @@ fixture('Input text - error').page(
 
 test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
-    document.querySelector('axa-input-text').valid = false;
+    document.querySelector('axa-input-text').invalid = true;
     document.querySelector('axa-input-text').error = 'error';
   });
   await setInvalid();

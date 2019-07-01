@@ -47,11 +47,9 @@ storiesOf('Atoms/Input text', module)
     () =>
       '<axa-input-text required label="Field Label"></axa-input-text>'
   )
-  .add('Input text - Error Message', () => {
-    const inputText = document.createElement('axa-input-text');
-    inputText.error = 'Error Message';
-    inputText.validation = true;
-    inputText.valid = false;
-
-    return inputText;
-  });
+  .add(
+    'Input text - invalid',
+    () =>
+      '<axa-input-text invalid></axa-input-text>'
+  )
+  .add('Input text - Error Message', () => '<axa-input-text required invalid label="Field Label"></axa-input-text>');

@@ -24,7 +24,7 @@ class AXATextarea extends NoShadowDOM {
       value: { type: String },
       defaultValue: { type: String },
       error: { type: String },
-      valid: { type: Boolean },
+      invalid: { type: Boolean },
       validation: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
@@ -49,7 +49,7 @@ class AXATextarea extends NoShadowDOM {
     this.error = '';
     this.validation = false;
     this.required = false;
-    this.valid = true;
+    this.invalid = false;
     this.disabled = false;
     this.counter = '';
     this.counterMax = '';
@@ -126,11 +126,11 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get showCounter() {
-    return this.maxLength && this.valid && this.areCharsLeft;
+    return this.maxLength && !this.invalid && this.areCharsLeft;
   }
 
   get showError() {
-    return this.error && !this.valid;
+    return this.error && this.invalid;
   }
 
   get showCounterError() {
@@ -196,7 +196,7 @@ class AXATextarea extends NoShadowDOM {
       isReact,
       isControlled,
       refId,
-      valid,
+      invalid,
       validation
     } = this;
 
@@ -204,17 +204,17 @@ class AXATextarea extends NoShadowDOM {
 
     const textareaClasses = {
       'a-textarea__textarea': true,
-      'a-textarea__textarea--error': !valid,
+      'a-textarea__textarea--error': invalid,
     };
 
     const textareaMessagesClasses = {
       'a-textarea__messages': true,
-      'a-textarea__messages--error': !valid,
+      'a-textarea__messages--error': invalid,
     };
 
     const checkClasses = {
       'a-textarea__check': true,
-      'a-textarea__check--hidden': !valid,
+      'a-textarea__check--hidden': invalid,
     };
 
     return html`
