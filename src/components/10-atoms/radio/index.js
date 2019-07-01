@@ -5,8 +5,10 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
+// module globals
 const selectedRadioButton = {};
 
+// CE
 class AXARadio extends NoShadowDOM {
   static get tagName() {
     return 'axa-radio';
@@ -66,6 +68,7 @@ class AXARadio extends NoShadowDOM {
     return isControlled ? checked : native;
   }
 
+  // event handlers
   handleChange(event) {
     const {
       state: { isControlled, checked },
@@ -143,17 +146,13 @@ class AXARadio extends NoShadowDOM {
           value="${value}"
           ?disabled="${disabled}"
           @change="${this.handleChange}"
+          @focus="${this.onFocus}"
+          @blur="${this.onBlur}"
         />
         <span class="a-radio__icon"></span>
         <div class="a-radio__content">${label}</div>
       </label>
     `;
-  }
-
-  firstUpdated() {
-    this.input = this.querySelector('input');
-    this.addEventListener('focus', this.onFocus, false);
-    this.addEventListener('blur', this.onBlur, false);
   }
 
   updated() {
@@ -164,7 +163,8 @@ class AXARadio extends NoShadowDOM {
     } = this;
     // we are the selected element of a group of controlled inputs?
     if (isControlled && checked && name) {
-      // yes, re-select the selected radio button natively
+      // yes, perform forced re-select of radio button
+      // to maintain controlledness in the face of native UI-state changes
       input.checked = checked;
     }
   }
@@ -175,9 +175,6 @@ class AXARadio extends NoShadowDOM {
     if (name) {
       selectedRadioButton[name] = null; // help GC
     }
-
-    this.removeEventListener('focus', this.onFocus, false);
-    this.removeEventListener('blur', this.onBlur, false);
   }
 }
 
