@@ -1,12 +1,53 @@
-.a-tooltip {
+@import '../../00-materials/styles/mixins/reset-button-completely';
+
+.m-tooltip {
   display: block;
 
   &__button {
-
+    @include reset-button-completely();
+    width: 24px;
+    height: 24px;
   }
 
   &__content {
+    position: relative;
+    background-color: $color-prim-blue-st-tropaz;
+    color: $color-prim-white;
+    padding: 10px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-top: 11px;
 
+    // TODO *1
+    margin-left: -10px;
+
+    &:before {
+      position: absolute;
+      top: -12px;
+      // TODO *1
+      left: 10px;
+      width: 0;
+      height: 0;
+      font-size: 0;
+      line-height: 0;
+      content: '';
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 12px solid $color-prim-blue-st-tropaz;
+      z-index: 1;
+
+      @include breakpoint($mediaquery-sm-up) {
+
+      }
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  svg {
+    color: $color-axa-blue;
   }
 }
 
