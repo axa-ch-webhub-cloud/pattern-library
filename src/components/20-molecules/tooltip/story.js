@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Atoms/Tooltip', module)
+storiesOf('Molecules/Tooltip', module)
   .addParameters({
     readme: {
       sidebar: Readme,

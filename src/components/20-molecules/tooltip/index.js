@@ -1,6 +1,6 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
-
+import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
+import { InfoSvg } from '@axa-ch/materials/icons';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
@@ -27,16 +27,20 @@ class AXATooltip extends LitElement {
     this.onClick = () => {};
   }
 
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
-  }
+  handleClick = () => {
+    console.log('Aoo');
+  };
 
   render() {
     return html`
-      <article class="a-tooltip">
-        <slot></slot>
-      </article>
+      <div class="m-tooltip">
+        <button class="m-tooltip__button" @click="${this.handleClick}">
+          ${svg([InfoSvg])}
+        </button>
+        <article class="m-tooltip__content">
+          <slot></slot>
+        </article>
+      </div>
     `;
   }
 
