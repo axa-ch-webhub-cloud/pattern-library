@@ -16,8 +16,7 @@ storiesOf('Atoms/Input text', module)
   )
   .add(
     'Input text - placeholder',
-    () =>
-      '<axa-input-text placeholder="Pre-filled content"></axa-input-text>'
+    () => '<axa-input-text placeholder="Pre-filled content"></axa-input-text>'
   )
   .add(
     'Input text - validation',
@@ -34,22 +33,22 @@ storiesOf('Atoms/Input text', module)
   )
   .add(
     'Input text - value',
-    () =>
-      '<axa-input-text value="Example Value"></axa-input-text>'
+    () => '<axa-input-text value="Example Value"></axa-input-text>'
   )
   .add(
     'Input text - disabled',
-    () =>
-      '<axa-input-text disabled></axa-input-text>'
+    () => '<axa-input-text disabled></axa-input-text>'
   )
   .add(
     'Input text - required',
-    () =>
-      '<axa-input-text required label="Field Label"></axa-input-text>'
+    () => '<axa-input-text required label="Field Label"></axa-input-text>'
   )
   .add(
     'Input text - invalid',
-    () =>
-      '<axa-input-text invalid></axa-input-text>'
+    () => '<axa-input-text invalid></axa-input-text>'
   )
-  .add('Input text - Error Message', () => '<axa-input-text required invalid label="Field Label"></axa-input-text>');
+  .add(
+    'Input text - Error Message',
+    () =>
+      '<axa-input-text required invalid error="Error Message"></axa-input-text>'
+  );

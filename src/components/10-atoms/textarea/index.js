@@ -135,10 +135,7 @@ class AXATextarea extends NoShadowDOM {
 
   get showCounterError() {
     return (
-      this.maxLength &&
-      this.counterMax &&
-      !this.showError &&
-      !this.areCharsLeft
+      this.maxLength && this.counterMax && !this.showError && !this.areCharsLeft
     );
   }
 
@@ -197,7 +194,7 @@ class AXATextarea extends NoShadowDOM {
       isControlled,
       refId,
       invalid,
-      validation
+      validation,
     } = this;
 
     this.isControlled = isControlled && isReact;
