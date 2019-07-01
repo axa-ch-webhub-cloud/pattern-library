@@ -68,5 +68,5 @@ test('should show counterMax', async t => {
   await t
     .typeText($textarea, '123')
     .expect($messages.innerText)
-    .eql('The maximum character length has been reached');
+    .contains('The maximum character length has been reached');
 });
