@@ -133,7 +133,6 @@ class AXADatepicker extends NoShadowDOM {
     this.month = this.startDate.getMonth();
     this.day = this.startDate.getDate();
     this.allowedyears = [this.year];
-    this.inputplaceholder = 'Please select a date';
     this.outputdate = '';
     this.onChange = EMPTY_FUNCTION;
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
