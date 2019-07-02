@@ -96,7 +96,7 @@ The boolean attribute `checkMark` shows an animated check mark to the right of t
 
 The string-valued `value` sets the value of the underlying native HTML &lt;input&gt;
 
-## defaultValue
+### defaultValue
 
 The string-valued `defaultValue` can only be used for React and other frameworks. In native you set the value
 
