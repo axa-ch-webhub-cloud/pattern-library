@@ -23,10 +23,10 @@ test('should type something input-text', async t => {
   const $axaTag = await Selector(() =>
     document.querySelector('axa-input-text')
   );
-  const $axaButtonTagEl = await $axaTag.find(CLASS);
+  const $axaTagElem = await $axaTag.find(CLASS);
   await t
-    .typeText($axaButtonTagEl, 'Pattern Warriors')
-    .expect($axaButtonTagEl.value)
+    .typeText($axaTagElem, 'Pattern Warriors')
+    .expect($axaTagElem.value)
     .eql('Pattern Warriors');
 });
 
@@ -45,13 +45,14 @@ fixture('Input text - error').page(
 
 test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
-    document.querySelector('axa-input-text').valid = false;
+    document.querySelector('axa-input-text').invalid = true;
+    document.querySelector('axa-input-text').error = 'error';
   });
   await setInvalid();
   const $axaError = await Selector(() =>
     document.querySelector('.a-input-text__error')
   );
-  await t.expect($axaError.exists).ok();
+  await t.expect($axaError.innerText).eql('error');
   await t
     .expect(await $axaError.getStyleProperty('color'))
     .eql('rgb(201, 20, 50)');

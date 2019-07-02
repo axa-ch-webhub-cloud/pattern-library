@@ -2,18 +2,21 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DemoInputText from './DemoInputText';
+import DemoContUncontTextarea from './DemoContUncontTextarea';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Input Text/React', module)
+storiesOf('Atoms/Textarea/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   /* Default */
-  .add('Input Text - default', () => {
+  .add('Feature - Textarea controlled/uncontrolled', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<DemoInputText />, div);
+    ReactDOM.render(
+      <DemoContUncontTextarea />,
+      div
+    );
     return div;
   });

@@ -18,15 +18,13 @@ class AXAInputText extends NoShadowDOM {
       label: { type: String },
       placeholder: { type: String },
       value: { type: String },
+      defaultValue: { type: String },
       type: { type: String },
       error: { type: String },
-      valid: { type: Boolean },
-      validation: { type: Boolean },
-      inputFocus: { type: Boolean },
-      wasFocused: { type: Boolean },
-      wasBlurred: { type: Boolean },
-      required: { type: Boolean },
+      invalid: { type: Boolean },
+      checkMark: { type: Boolean },
       disabled: { type: Boolean },
+
       isReact: { type: Boolean },
     };
   }
@@ -41,12 +39,14 @@ class AXAInputText extends NoShadowDOM {
     this.name = '';
     this.label = '';
     this.placeholder = '';
+    // only for React(frameworks) users
+    this.defaultValue = '';
     // text, email, password
     this.type = 'text';
     this.error = '';
-    this.validation = false;
+    this.checkMark = false;
     this.required = false;
-    this.valid = true;
+    this.invalid = false;
     this.disabled = false;
     this.isReact = false;
     this.onFocus = () => {};
@@ -54,13 +54,10 @@ class AXAInputText extends NoShadowDOM {
     this.onChange = () => {};
 
     // internal properties
-    this.inputFocus = false;
-    this.wasFocused = false;
-    this.wasBlurred = false;
+    this.refId = '';
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
-    this.refId = this.id || `input-text-${createRefId()}`;
   }
 
   set value(val) {
@@ -83,50 +80,16 @@ class AXAInputText extends NoShadowDOM {
     return isControlled ? modelValue : nativeValue;
   }
 
-  get isRequiredError() {
-    return this.required && !this.value;
-  }
-
-  get isInvalid() {
-    return !this.valid || this.isRequiredError;
-  }
-
-  get showInputError() {
-    return this.isInvalid && this.wasBlurred && this.wasFocused;
-  }
-
-  get hideCheckIcon() {
-    return (
-      (!this.wasBlurred && !this.wasFocused) ||
-      this.inputFocus ||
-      this.isInvalid
-    );
-  }
-
-  get hideErrorMessage() {
-    return !this.error || !this.showInputError;
+  get showError() {
+    return this.error && this.invalid;
   }
 
   handleFocus = ev => {
     this.onFocus(ev);
-    this.inputFocus = true;
-
-    if (!this.wasFocused) {
-      this.wasFocused = true;
-    }
   };
-
-  get showValidation() {
-    return this.validation || this.required;
-  }
 
   handleBlur = ev => {
     this.onBlur(ev);
-    this.inputFocus = false;
-
-    if (!this.wasBlurred) {
-      this.wasBlurred = true;
-    }
   };
 
   handleInput = ev => {
@@ -140,7 +103,14 @@ class AXAInputText extends NoShadowDOM {
   };
 
   firstUpdated() {
+    const { id, defaultValue, isReact } = this;
     this.nativeInput = this.querySelector('input');
+
+    if (isReact && defaultValue) {
+      this.nativeInput.value = defaultValue;
+    }
+
+    this.refId = id || `input-text-${createRefId()}`;
   }
 
   render() {
@@ -154,7 +124,8 @@ class AXAInputText extends NoShadowDOM {
       placeholder,
       disabled,
       isReact,
-
+      invalid,
+      checkMark,
       isControlled,
       refId,
     } = this;
@@ -163,17 +134,16 @@ class AXAInputText extends NoShadowDOM {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error': this.showInputError,
+      'a-input-text__input--error': invalid,
     };
 
     const checkClasses = {
       'a-input-text__check': true,
-      'a-input-text__check--hidden': this.hideCheckIcon,
+      'a-input-text__check--hidden': invalid,
     };
 
     const errorMessageClasses = {
       'a-input-text__error': true,
-      'a-input-text__error--hidden': this.hideErrorMessage,
     };
 
     return html`
@@ -204,18 +174,19 @@ class AXAInputText extends NoShadowDOM {
             ?disabled="${disabled}"
             aria-required="${required}"
           />
-
-          ${html`
-            <div class="a-input-text__check-wrapper">
-              ${this.showValidation
-                ? html`
-                    <span class="${classMap(checkClasses)}"></span>
-                  `
-                : ''}
-            </div>
-          `}
+          <div class="a-input-text__check-wrapper">
+            ${checkMark
+              ? html`
+                  <span class="${classMap(checkClasses)}"></span>
+                `
+              : ''}
+          </div>
         </div>
-        <span class="${classMap(errorMessageClasses)}">${error}</span>
+        ${this.showError
+          ? html`
+              <span class="${classMap(errorMessageClasses)}">${error}</span>
+            `
+          : ''}
       </div>
     `;
   }

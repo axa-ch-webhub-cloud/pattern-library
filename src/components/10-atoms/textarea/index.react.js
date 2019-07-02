@@ -1,39 +1,43 @@
 import withReact from '../../../utils/with-react';
-import AXAInputText from './index';
+import AXATextarea from './index';
 
 export default createElement => ({
   id = '',
   name = '',
   label = '',
   placeholder = '',
-  value,
-  defaultValue = '',
   error = '',
-  type = 'text',
+  defaultValue = '',
+  value,
   invalid = false,
   required = false,
   disabled = false,
   checkMark = false,
+  counter = '',
+  counterMax = '',
+  maxLength,
   onFocus = () => {},
   onBlur = () => {},
   onChange = () => {},
 }) => {
-  return withReact(createElement)(AXAInputText.tagName, {
+  return withReact(createElement)(AXATextarea.tagName, {
     id,
     name,
     label,
     placeholder,
-    value,
-    defaultValue,
-    invalid,
     error,
-    type,
+    defaultValue,
+    value,
+    invalid,
     required,
     disabled,
     checkMark,
-    onChange,
+    counter,
+    counterMax,
+    maxLength,
     onFocus,
     onBlur,
+    onChange,
     isReact: true,
   });
 };

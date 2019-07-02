@@ -3,20 +3,20 @@
 $border-width: 1px;
 $border-type: solid;
 
-axa-input-text {
-  .a-input-text__wrapper {
+axa-textarea {
+  .a-textarea__wrapper {
     display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
   }
 
-  .a-input-text__input-wrapper {
+  .a-textarea__textarea-wrapper {
     display: flex;
     align-items: center;
   }
 
-  .a-input-text__input {
+  .a-textarea__textarea {
     @include typo();
     appearance: none;
     background: $color-prim-white;
@@ -24,16 +24,12 @@ axa-input-text {
     border-radius: 0;
     box-sizing: border-box;
     color: $color-prim-gray-mine-shaft;
-    height: 40px;
-    padding: 0 20px;
+    height: 169px;
+    padding: 10px 20px;
     width: 100%;
 
     &::placeholder {
       color: $color-prim-gray-dusty;
-    }
-
-    &::-ms-clear {
-      display: none;
     }
 
     &:hover,
@@ -71,24 +67,27 @@ axa-input-text {
     }
   }
 
-  .a-input-text__label {
+  .a-textarea__label {
     @include typo(primary, medium);
     font-weight: 600;
     color: $color-prim-gray-mine-shaft;
     margin-bottom: 10px;
   }
 
-  .a-input-text__error {
+  .a-textarea__messages {
     @include typo();
     margin-top: 10px;
+  }
+
+  .a-textarea__messages--error {
     color: $color-validation-error;
   }
 
-  .a-input-text__check-wrapper {
+  .a-textarea__check-wrapper {
     @include check-mark-animated-wrapper();
     margin-left: 10px;
 
-    .a-input-text__check {
+    .a-textarea__check {
       @include check-mark-animated();
 
       &--hidden {

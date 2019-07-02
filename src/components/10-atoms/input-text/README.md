@@ -1,6 +1,6 @@
 # AXA Input Text
 
-The &lt,axa-input-text&gt; component is a wrapper for the HTML &lt;input&gt; element with custom styling and additional functionality.
+The &lt;axa-input-text&gt; component is a wrapper for the HTML &lt;input&gt; element with custom styling and additional functionality.
 It accepts most of the same properties as HTML &lt;input&gt;, but with `type`restricted to `type=text`, `type=email`, or `type=password`.
 
 ## Usage
@@ -84,17 +84,21 @@ The boolean attribute `required` visualizes an element that must obligatorily be
 
 String-valued `placeholder`specifies the placeholder text shown when the element is empty.
 
-### valid
+### invalid
 
-The boolean attribute `valid` serves to indicate the validity of the element (default: `true`).
+The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). if `false` it sets the element into a visual error state.
 
-### validation
+### checkMark
 
-The boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true (default: `false`).
+The boolean attribute `checkMark` shows an animated check mark to the right of the input (default: `false`), if `valid` is true .
 
 ### value
 
 The string-valued `value` sets the value of the underlying native HTML &lt;input&gt;
+
+## defaultValue
+
+The string-valued `defaultValue` can only be used for React and other frameworks. In native you set the value
 
 ### disabled
 

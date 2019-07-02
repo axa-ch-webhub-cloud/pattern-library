@@ -1,25 +1,28 @@
 import React from 'react';
 
-interface AXAInputTextProps {
+interface AXATextareaProps {
   id?: string;
   name: string;
   label?: string;
   placeholder?: string;
-  defaultValue?: string;
   error?: string;
-  type?: string;
+  defaultValue?: string;
+  value?: string;
   invalid?: boolean;
+  checkMark?: boolean;
   required?: boolean;
   disabled?: boolean;
-  checkMark?: boolean;
   isReact?: boolean;
+  counter?: string;
+  counterError?: string;
+  maxLength?: number;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: () => void;
 }
 
-declare function createAXAInputText(
+declare function createAXATextarea(
   createElement: typeof React.createElement
-): React.ComponentType<AXAInputTextProps>;
+): React.ComponentType<AXATextareaProps>;
 
-export = createAXAInputText;
+export = createAXATextarea;
