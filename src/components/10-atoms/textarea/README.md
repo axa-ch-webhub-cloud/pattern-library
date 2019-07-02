@@ -105,7 +105,7 @@ The string-valued `counter` offers the possibility of placing a string pattern (
 
 The string-valued `countermax` provides information text as HTML, if the max characters defined in `maxlength` are reached.
 
-## defaultValue
+### defaultValue
 
 The string-valued `defaultValue` can only be used for React and other frameworks. In native you set a default value in children for example: `<axa-textarea>default value</axa-textarea>`.
 
