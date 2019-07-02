@@ -21,8 +21,8 @@ storiesOf('Atoms/Textarea', module)
     () => '<axa-textarea required label="Label"></axa-textarea>'
   )
   .add(
-    'Textarea - validation',
-    () => '<axa-textarea validation></axa-textarea>'
+    'Textarea - checkMark',
+    () => '<axa-textarea checkmark></axa-textarea>'
   )
   .add(
     'Textarea - invalid',

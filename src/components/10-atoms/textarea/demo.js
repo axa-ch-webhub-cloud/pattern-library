@@ -9,34 +9,24 @@ storiesOf('Atoms/Textarea/Demos', module)
       sidebar: Readme,
     },
   })
-  // show error if (error && (!valid || isInvalid[required && !this.value]) && wasBlurred && wasFocused
-  .add('Feature - Textarea error', () => {
-    const textarea = document.createElement('axa-textarea');
-    textarea.label = 'Valid false should show Error Message';
-    textarea.error = 'Error Message';
-    textarea.valid = false;
-
-    return textarea;
-  })
-
   .add(
-    'Feature - Textarea counter(variants)',
+    'Feature - Textarea with character counter',
     () =>
       `<div>
         <axa-textarea
           style="display: block; margin-bottom: 20px;"
-          label="Counter with placeholder"
+          label="Character counter with string pattern"
           maxlength="3"
           counter="still ##counter## characters left"
         ></axa-textarea>
         <axa-textarea
           style="display: block; margin-bottom: 20px;"
-          label="Counter without placeholder"
+          label="Character counter without string pattern"
           maxlength="3"
           counter="characters left"
         ></axa-textarea>
         <axa-textarea
-          label="Counter without text"
+          label="Character counter, digits only"
           maxlength="3"
         ></axa-textarea>
       </div>`

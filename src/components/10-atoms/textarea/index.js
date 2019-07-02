@@ -25,7 +25,7 @@ class AXATextarea extends NoShadowDOM {
       defaultValue: { type: String },
       error: { type: String },
       invalid: { type: Boolean },
-      validation: { type: Boolean },
+      checkMark: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
 
@@ -194,7 +194,7 @@ class AXATextarea extends NoShadowDOM {
       isControlled,
       refId,
       invalid,
-      validation,
+      checkMark,
     } = this;
 
     this.isControlled = isControlled && isReact;
@@ -243,7 +243,7 @@ class AXATextarea extends NoShadowDOM {
           ></textarea>
 
           <div class="a-textarea__check-wrapper">
-            ${validation
+            ${checkMark
               ? html`
                   <span class="${classMap(checkClasses)}"></span>
                 `

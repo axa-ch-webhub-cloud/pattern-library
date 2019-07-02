@@ -77,9 +77,9 @@ String-valued `placeholder`specifies the placeholder text shown when the element
 
 The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`), if `false` it sets the element into a visual error state.
 
-### validation
+### checkMark
 
-The boolean attribute `validation` shows an animated checkmark to the right of the textarea, if `valid` is true (default: `false`).
+The boolean attribute `checkMark` shows an animated check mark to the right of the textarea (default: `false`), if `valid` is true .
 
 ### value
 
@@ -93,13 +93,21 @@ The boolean attribute `disabled` disables the underlying native HTML &lt;textare
 
 The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
 
+### maxLength
+
+The number-valued `maxlength` provides a maximum number of characters that the textarea allows to be entered. In addition, a character counter is added in the HTML.
+
 ### counter
 
-The string-valued `counter` provides error text as HTML. It sets the element into a visual error state, if `maxlength` is set.
+The string-valued `counter` offers the possibility of placing a string pattern (##counter##) anywhere in a string. If no character counter has been placed then the character counter is placed before the string.
 
-### counterError
+### counterMax
 
-The string-valued `countererror` provides error text as HTML, if `maxlength` is set.
+The string-valued `countermax` provides information text as HTML, if the max characters defined in `maxlength` are reached.
+
+## defaultValue
+
+The string-valued `defaultValue` can only be used for React and other frameworks. In native you set a default value in children for example: `<axa-textarea>default value</axa-textarea>`.
 
 ### onChange
 

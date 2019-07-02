@@ -88,9 +88,9 @@ String-valued `placeholder`specifies the placeholder text shown when the element
 
 The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). if `false` it sets the element into a visual error state.
 
-### validation
+### checkMark
 
-The boolean attribute `validation` shows an animated checkmark to the right of the input-text, if `valid` is true (default: `false`).
+The boolean attribute `checkMark` shows an animated check mark to the right of the input (default: `false`), if `valid` is true .
 
 ### value
 

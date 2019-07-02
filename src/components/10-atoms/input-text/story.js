@@ -19,9 +19,9 @@ storiesOf('Atoms/Input text', module)
     () => '<axa-input-text placeholder="Pre-filled content"></axa-input-text>'
   )
   .add(
-    'Input text - validation',
+    'Input text - checkMark',
     () =>
-      '<axa-input-text validation placeholder="Pre-filled content"></axa-input-text>'
+      '<axa-input-text checkmark placeholder="Pre-filled content"></axa-input-text>'
   )
   .add(
     'Input text - type',

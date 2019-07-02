@@ -22,7 +22,7 @@ class AXAInputText extends NoShadowDOM {
       type: { type: String },
       error: { type: String },
       invalid: { type: Boolean },
-      validation: { type: Boolean },
+      checkMark: { type: Boolean },
       disabled: { type: Boolean },
 
       isReact: { type: Boolean },
@@ -44,7 +44,7 @@ class AXAInputText extends NoShadowDOM {
     // text, email, password
     this.type = 'text';
     this.error = '';
-    this.validation = false;
+    this.checkMark = false;
     this.required = false;
     this.invalid = false;
     this.disabled = false;
@@ -125,7 +125,7 @@ class AXAInputText extends NoShadowDOM {
       disabled,
       isReact,
       invalid,
-      validation,
+      checkMark,
       isControlled,
       refId,
     } = this;
@@ -175,7 +175,7 @@ class AXAInputText extends NoShadowDOM {
             aria-required="${required}"
           />
           <div class="a-input-text__check-wrapper">
-            ${validation
+            ${checkMark
               ? html`
                   <span class="${classMap(checkClasses)}"></span>
                 `
