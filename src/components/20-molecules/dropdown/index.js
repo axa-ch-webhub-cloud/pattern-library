@@ -103,15 +103,16 @@ class AXADropdown extends NoShadowDOM {
 
   set value(newValue) {
     const {
-      state: { isControlled, value },
+      state: { isControlled, value, firstTime },
     } = this;
     // first value coming in indicates controlledness?
-    if (!isControlled && newValue !== undefined) {
+    if (!isControlled && newValue !== undefined && firstTime) {
       // yes, remember in model state
       this.state.isControlled = true;
     }
     // update state
     this.state.value = newValue;
+    this.state.firstTime = false;
     // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);
   }
@@ -127,7 +128,7 @@ class AXADropdown extends NoShadowDOM {
     this.onFocus = EMPTY_FUNCTION;
     this.onBlur = EMPTY_FUNCTION;
     // internal properties
-    this.state = { isControlled: false };
+    this.state = { isControlled: false, firstTime: true };
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
@@ -213,6 +214,7 @@ class AXADropdown extends NoShadowDOM {
     if (!isControlled) {
       // causes re-render in next microtask!
       this.updateCurrentItems(clickedItemIndex); // side-effect: changed this.value
+      this.updateTitle();
       fireCustomEvent('axa-change', this.value, this);
     }
   }
@@ -250,40 +252,6 @@ class AXADropdown extends NoShadowDOM {
     this.items = newItems;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    super.attributeChangedCallback(name, oldValue, newValue);
-    // irrelevant attribute change?
-    if (newValue === null || name !== 'items') {
-      return;
-    }
-    // for changed nonempty 'items' attribute value:
-    let currentItems;
-    try {
-      currentItems = JSON.parse(newValue);
-    } catch (e) {
-      currentItems = [];
-      // eslint-disable-next-line no-console
-      console.warn(
-        `axa-dropdown: skipped illformed 'items' attribute JSON string "${newValue}"`
-      );
-    }
-    this.findSelected();
-    const firstSelectedItem = this.updateTitle(currentItems);
-    // note: it's crucial to *not* update this.value here (otherwise endless update loop)!
-    const value = firstSelectedItem ? firstSelectedItem.value : '';
-
-    // fire custom events
-    fireCustomEvent('axa-change', value, this);
-  }
-
-  disconnectedCallback() {
-    this.removeEventListener('focus', this.onFocus, false);
-    this.removeEventListener('blur', this.onBlur, false);
-    window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('keydown', this.handleWindowKeyDown);
-    window.removeEventListener('click', this.handleWindowClick);
-  }
-
   /* last overrideable lifecycle point *before* render:
      put side-effects there that influence render *and* need access to changed
      properties */
@@ -294,6 +262,11 @@ class AXADropdown extends NoShadowDOM {
     // controlling React application imposes new 'value'?
     if (changedProperties.has('value') && this.state.isControlled) {
       this.updateCurrentItems(this.findByValue(this.value));
+    }
+    // 'items' property changed, potentially invalidating title?
+    if (changedProperties.has('items')) {
+      this.findSelected();
+      this.updateTitle();
     }
     return true;
   }
@@ -356,7 +329,6 @@ class AXADropdown extends NoShadowDOM {
   firstUpdated() {
     // dropdowns cannot meaningfully be initially open, since the underlying
     // <select> cannot be force-opened natively
-    this.open = false;
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
     this.addEventListener('focus', this.onFocus, false);
@@ -368,6 +340,14 @@ class AXADropdown extends NoShadowDOM {
 
   updated() {
     this.updateTitle();
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('focus', this.onFocus, false);
+    this.removeEventListener('blur', this.onBlur, false);
+    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('keydown', this.handleWindowKeyDown);
+    window.removeEventListener('click', this.handleWindowClick);
   }
 }
 

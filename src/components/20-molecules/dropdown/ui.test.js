@@ -56,7 +56,7 @@ test('should show error message and correct colors', async t => {
   await t.expect(await getBorderColor()).eql('rgb(201, 20, 50)');
 });
 
-// Dropdown react
+// Dropdown react controlled
 fixture('Dropdown React').page(
   `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
 );
@@ -98,6 +98,27 @@ test('should exhibit controlled-component behaviour', async t => {
     )
     .expect(await getControlledValue())
     .eql('Item 3');
+});
+
+// Dropdown react uncontrolled
+fixture('Dropdown React uncontrolled').page(
+  `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-uncontrolled-react-component`
+);
+
+test('should allow setting non-initial item via items property', async t => {
+  const dropdown = await Selector(() =>
+    document.querySelector(
+      'axa-dropdown[data-test-id="uncontrolled-dropdown-react"]'
+    )
+  );
+  await t.expect(dropdown.exists).ok();
+  const getVisibleItem = ClientFunction(() => {
+    const visibleItem = document.querySelector(
+      'axa-dropdown[data-test-id="uncontrolled-dropdown-react"] .m-dropdown__toggle > span'
+    );
+    return visibleItem.innerText;
+  });
+  await t.expect(await getVisibleItem()).eql('Item B');
 });
 
 fixture('Dropdown Form').page(

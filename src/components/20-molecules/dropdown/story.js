@@ -12,8 +12,8 @@ storiesOf('Molecules/Dropdown', module)
     'Dropdown',
     () => `<axa-dropdown title="Please Select" data-test-id="dropdown"
     items='[
-    {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
-    {"name": "Item 1", "value": "Item 1" },
+    {"name": "Please Select", "value": "Please Select", "disabled": true },
+    {"name": "Item 1", "value": "Item 1",  "selected": true },
     {"name": "Item 2", "value": "Item 2" },
     {"name": "Item 3", "value": "Item 3" }
     ]'></axa-dropdown>
