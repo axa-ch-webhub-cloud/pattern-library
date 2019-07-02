@@ -42,6 +42,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Footer Small](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/footer-small)
 - [AXA Table Sortable](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table-sortable)
 - [AXA Table](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table)
+- [AXA Textarea](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/textarea)
 - [AXA Top content bar](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar)
 
 ## Alpha-Released Components
