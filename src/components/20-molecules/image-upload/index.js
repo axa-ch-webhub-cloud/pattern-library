@@ -5,14 +5,13 @@ import { classMap } from 'lit-html/directives/class-map';
 
 import {
   AddSvg,
-  CheckCircleSvg,
   DeleteForeverSvg,
   ClearSvg,
   AttachFileSvg,
 } from '@axa-ch/materials/icons';
 
 import { ImageUploadGroupSvg } from './icons';
-
+import { getBytesFromMegabyte } from './utils/fileSize';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
@@ -24,8 +23,6 @@ const INFO = 'Drag and drop to upload your file';
 
 const AddIcon = svg([AddSvg]);
 const AttachFileIcon = svg([AttachFileSvg]);
-const ClearIcon = svg([ClearSvg]);
-const CheckCircleIcon = svg([CheckCircleSvg]);
 
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 
@@ -48,8 +45,8 @@ class AXAImageUpload extends LitElement {
       maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
       icon: { type: String },
-      finalFiles: { type: Object },
-      wrongFiles: { type: Object },
+      // finalFiles: { type: Object, reflect: true },
+      // wrongFiles: { type: Object, reflect: true },
       errorStatusText: { type: String },
       deleteStatusText: { type: String },
       addStatusText: { type: String },
@@ -60,11 +57,11 @@ class AXAImageUpload extends LitElement {
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMB = 10;
+    this.maxSizeOfSingleFileMB = 5;
     this.maxSizeOfAllFilesMB = 20;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
-    this.icon = 'cloud-upload'; // TODO change to upload-cloud
+    this.icon = 'cloud-upload';
     this.finalFiles = [];
     this.wrongFiles = [];
     this.errorStatusText = 'Error occured';
@@ -89,25 +86,42 @@ class AXAImageUpload extends LitElement {
   }
 
   render() {
+    console.log('render()', this.finalFiles);
     const classes = {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
 
+    console.log('qqqqq ccc');
+
     const urlCreator = window.URL || window.webkitURL;
+
+    console.log('qqqqq', this.finalFiles);
+
+    window.handleImageClick = this.handleImageClick;
+
+    window.ctx = this;
+
     const imageOverview = this.finalFiles.map((file, i) => {
       const isFile = ~file.type.indexOf('application');
       const imageUrl = urlCreator.createObjectURL(file);
+
+      console.log('dedede');
+      // TODO set icons
+
       return html`
-        <figure class="m-image-upload__img-figure js-image-upload__img-figure">
+        <figure
+          data-index="${i}"
+          class="m-image-upload__img-figure js-image-upload__img-figure"
+        >
           <div
             class="m-image-upload__icon-hover-area"
-            @click=${e => this.handleImageClick(i, e)}
-            @mouseover=${e => this.handleImageMouseover(i, e)}
-            @mouseout=${e => this.handleImageMouseout(i, e)}
+            @click=${() => this.handleImageClick(i)}
+            @mouseover=${() => this.handleImageMouseover(i)}
+            @mouseout=${() => this.handleImageMouseout(i)}
           >
             ${isFile
               ? html`
-                  <span className="m-image-upload__file-element">
+                  <span class="m-image-upload__file-element">
                     ${AttachFileIcon}</span
                   >
                 `
@@ -146,6 +160,33 @@ class AXAImageUpload extends LitElement {
         </figcaption>
       </figure>
     `;
+
+    console.log(imageOverview);
+
+    /**
+    ${!this.showImageOverview
+      ? html`
+          <div>
+            ${ImageUploadGroupIcon}
+          </div>
+          <p class="m-image-upload__information">${INFO}</p>
+          <p class="m-image-upload__or">${OR}</p>
+          <axa-input-file
+            class="m-image-upload__input"
+            accept="image/jpg, image/jpeg, application/pdf, image/png"
+            icon="${this.icon}"
+            multiple
+            @change=${this.handleImageUploadButtonChange}
+            @click=${this.handleImageUploadButtonClick}
+            variant="red"
+          >
+            ${this.inputFileText}
+          </axa-input-file>
+        `
+      : html`
+          ${imageOverview[1]} ${addMoreInputFile}
+        `}
+    */
 
     return html`
       <article class="m-image-upload">
@@ -195,6 +236,7 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadButtonChange(e) {
     const { files } = e.target;
+    console.log('files', files);
     this.addFiles(files);
   }
 
@@ -215,52 +257,52 @@ class AXAImageUpload extends LitElement {
     this.addFiles(e.dataTransfer.files);
   }
 
-  handleImageClick(i, e) {
-    console.log('e', e, e.target.parentNode.nodeName);
+  async handleImageClick(i) {
+    console.log('click', i);
 
-    this.shadowRoot
-      .querySelectorAll('.js-image-upload__img-figure')
-      [i].remove();
-    // TODO remove from array
-    if (this.dropZone.children.length === 1) {
-      this.showImageOverview = false;
-      this.wrongFiles = [];
-      this.finalFile = [];
-    }
+    const tempFinalFiles = [...this.finalFiles];
+    tempFinalFiles.splice(i, 1);
+    this.finalFiles = tempFinalFiles;
+    // console.log('this.wrongFiles', this.wrongFiles);
+    this.performUpdate();
+    console.log(await this.updateComplete);
+    console.log('herer');
+
+    // if (this.dropZone.children.length === 1) {
+    //   this.showImageOverview = false;
+    //   this.wrongFiles = [];
+    //   this.finalFiles = [];
+    // }
   }
 
   handleImageMouseover = i => {
-    console.log('i,this', i, this);
-
     this.imgCaptions = this.shadowRoot.querySelectorAll(
       '.js-image-upload__img-caption'
     );
     this.iconLayers = this.shadowRoot.querySelectorAll(
       '.js-image-upload__icon-layer'
     );
-
-    if (this.wrongFiles.length > 0) {
-      this.wrongFiles.forEach(file => {
-        if (this.finalFiles[i] === file) {
-          this.imgCaptions[i].innerHTML = this.errorStatusText;
-          this.iconLayers[i].innerHTML = DeleteSvg; // TODO error image
-          this.imgCaptions[i].setAttribute('style', 'color:red;'); // todo axa color
-        } else {
-          this.imgCaptions[i].innerHTML = this.deleteStatusText;
-          this.iconLayers[i].innerHTML = DeleteSvg;
-          this.imgCaptions[i].setAttribute('style', 'color:blue;');
-        }
-      });
-    } else {
-      this.imgCaptions[i].innerHTML = this.deleteStatusText;
-      this.iconLayers[i].innerHTML = DeleteSvg;
-      this.imgCaptions[i].setAttribute('style', 'color:blue;');
-    }
+    this.imgCaptions[i].innerHTML = this.deleteStatusText;
+    this.iconLayers[i].innerHTML = DeleteForeverSvg;
+    this.imgCaptions[i].setAttribute('style', 'color:#00008f;');
   };
 
   handleImageMouseout = i => {
+    this.imgCaptions = this.shadowRoot.querySelectorAll(
+      '.js-image-upload__img-caption'
+    );
+    this.iconLayers = this.shadowRoot.querySelectorAll(
+      '.js-image-upload__icon-layer'
+    );
     this.imgCaptions[i].innerHTML = this.finalFiles[i].name;
-    this.imgCaptions[i].removeAttribute('style');
+    if (false) {
+      // TODO iswrong function
+      this.iconLayers[i].innerHTML = ClearSvg;
+      this.imgCaptions[i].setAttribute('style', 'color:#00008f;');
+    } else {
+      this.iconLayers[i].innerHTML = '';
+      this.imgCaptions[i].removeAttribute('style');
+    }
   };
 
   async addFiles(droppedFiles) {
@@ -271,6 +313,10 @@ class AXAImageUpload extends LitElement {
       0,
       filesLeftOver
     );
+
+    if (slicedFiles.length < droppedFiles.length) {
+      console.log('zu viele files');
+    }
     // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
     const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
     const compressedImages = await compressImage(slicedFiles);

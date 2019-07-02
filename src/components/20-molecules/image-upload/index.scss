@@ -42,6 +42,10 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     margin: 0;
   }
 
+  &__input {
+    fill: currentColor;
+  }
+
   &__img-figure {
     margin: 0;
     margin-right: 15px;
@@ -73,24 +77,26 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   }
 
   &__file-element {
-    // TODO einmitten
-  }
-
-  &__icon-layer {
-    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    color: $color-axa-blue;
+    // height: 36px; // TODO
   }
 
-  &__icon-delete {
+  &__icon-layer {
+    position: absolute;
     height: 36px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    fill: $color-axa-blue;
   }
 
   &__img-caption {
+    // position: absolute; TODO
     width: 120px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -119,8 +125,8 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
       width: 120px;
       display: block;
       position: relative;
-      text-align: center; // TODO vertical align
-      color: currentColor;// TODO set color
+      text-align: center; // TODO
+      fill: currentColor;
     }
     .m-image-upload__img-caption {
       position: block;
