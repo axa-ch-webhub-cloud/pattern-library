@@ -12,11 +12,11 @@ storiesOf('Atoms/Button Link/Demos', module)
   .add('Feature - Button clickable', () => {
     const btn = document.createElement('axa-button-link');
     let counter = 0;
-    btn.innerHTML = `You clicked me: ${counter} mal, btw my event name is click`;
+    btn.innerHTML = `You clicked me: ${counter}`;
     btn.addEventListener('click', e => {
       e.preventDefault();
       counter += 1;
-      btn.innerHTML = `You clicked me: ${counter} times, btw my event name is click`;
+      btn.innerHTML = `You clicked me: ${counter}`;
     });
 
     return btn;
