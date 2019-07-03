@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop)](https://travis-ci.org/axa-ch/patterns-library)
 ![Deployment Status](https://ach-azureforge-iss.vsrm.visualstudio.com/_apis/public/Release/badge/4ad0f0a6-2ec1-465f-99a1-4c3726de6d35/1/3)
-[![npm version](https://img.shields.io/npm/v/@axa-ch/button.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button.svg)
+[![npm version](https://img.shields.io/npm/v/@axa-ch/button?style=flat)](https://www.npmjs.com/package/@axa-ch/button.svg)
 
 ## [>> Pattern Library Demo](https://patterns.axa.ch)
 
