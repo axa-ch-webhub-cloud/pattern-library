@@ -121,6 +121,44 @@ test('should allow setting non-initial item via items property', async t => {
   await t.expect(await getVisibleItem()).eql('Item B');
 });
 
+// Dropdown react focussable
+fixture('Dropdown React uncontrolled').page(
+  `${host}/iframe.html?id=molecules-dropdown-react-demos--focussable-react-ified-dropdown`
+);
+
+test('should fire onFocus/onBlur correctly', async t => {
+  const dropdown = await Selector(() =>
+    document.querySelector(
+      'axa-dropdown[data-test-id="focussable-dropdown-react"]'
+    )
+  );
+
+  await t.expect(dropdown.exists).ok();
+
+  const inputBeforeDropdown = await Selector(() =>
+    document.querySelector('input[placeholder="focus before dropdown"]')
+  );
+
+  await t.click(inputBeforeDropdown);
+
+  // tab into and then out of axa-dropdown
+  await t.pressKey('tab tab');
+
+  const getEventLog = ClientFunction(() => {
+    const eventLog = document.querySelector(
+      'span[data-test-id="focussable-dropdown-react-event-log"]'
+    );
+    return eventLog.innerText;
+  });
+
+  await t
+    .wait(
+      50 /* give onFocus/Blur handlers time to execute and influence event-log output */
+    )
+    .expect(await getEventLog())
+    .eql('events:focus,blur,');
+});
+
 fixture('Dropdown Form').page(
   `${host}/iframe.html?id=molecules-dropdown--dropdown-inside-form`
 );

@@ -62,6 +62,13 @@ axa-dropdown {
     }
   }
 
+  &:not([open]) {
+
+    .m-dropdown__toggle:focus {
+      outline-width:2px;
+    }
+  }
+
   &[max-height] {
     .m-dropdown__content {
       max-height: 347px;
@@ -264,6 +271,11 @@ axa-dropdown {
       text-decoration: none;
       background: $color-prim-gray-wild-sand;
     }
+
+    &:focus,
+    &:active {
+      outline: solid 2px $color-axa-blue;
+    }
   }
 
   &__item {
@@ -285,6 +297,13 @@ axa-dropdown {
   }
 
   &__list--native {
+
+    &:focus,
+    &:active {
+      outline: solid 2px $color-axa-blue;
+      border: none;
+    }
+
     @include breakpoint($mediaquery-md-up) {
       display: none;
     }

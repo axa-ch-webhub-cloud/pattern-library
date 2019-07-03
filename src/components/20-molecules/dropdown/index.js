@@ -295,11 +295,17 @@ class AXADropdown extends NoShadowDOM {
     // when style refactoring would rename other classes.
     return html`
       <div class="${classMap(classes)}">
-        <div class="m-dropdown__list m-dropdown__list--native">
+        <div
+          class="m-dropdown__list m-dropdown__list--native"
+          tabindex="0"
+          @focus="${this.onFocus}"
+          @blur="${this.onBlur}"
+        >
           <select
             class="m-dropdown__select js-dropdown__select"
             name="${name}"
             @change="${handleDropdownItemClick}"
+            tabindex="-1"
           >
             ${items.map(nativeItemsMapper)}
           </select>
@@ -308,6 +314,8 @@ class AXADropdown extends NoShadowDOM {
         <div class="m-dropdown__list m-dropdown__list--enhanced">
           <button
             @click="${handleDropdownClick}"
+            @focus="${this.onFocus}"
+            @blur="${this.onBlur}"
             type="button"
             class="m-dropdown__toggle js-dropdown__toggle"
           >
@@ -327,8 +335,6 @@ class AXADropdown extends NoShadowDOM {
   }
 
   firstUpdated() {
-    // dropdowns cannot meaningfully be initially open, since the underlying
-    // <select> cannot be force-opened natively
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
     this.addEventListener('focus', this.onFocus, false);
