@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop)](https://travis-ci.org/axa-ch/patterns-library)
 ![Deployment Status](https://ach-azureforge-iss.vsrm.visualstudio.com/_apis/public/Release/badge/4ad0f0a6-2ec1-465f-99a1-4c3726de6d35/1/3)
-[![npm version](https://img.shields.io/npm/v/@axa-ch/button.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button)
 
 ## [>> Pattern Library Demo](https://patterns.axa.ch)
 
@@ -26,9 +25,9 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Polyfills](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill)
 
 ## Released Components
-- [AXA Button](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button)
-- [AXA Button Link](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button-link)
-- [AXA Checkbox](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/checkbox)
+- AXA Button [![npm version](https://img.shields.io/npm/v/@axa-ch/button.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button)
+- AXA Button Link [![npm version](https://img.shields.io/npm/v/@axa-ch/button-link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button-link)
+- AXA Checkbox [![npm version](https://img.shields.io/npm/v/@axa-ch/checkbox.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/checkbox)
 - [AXA Container](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/container)
 - [AXA Cookie Disclaimer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/cookie-disclaimer)
 - [AXA Datepicker](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/datepicker)
