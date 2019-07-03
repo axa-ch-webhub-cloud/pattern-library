@@ -53,12 +53,6 @@ class AXATooltip extends LitElement {
       </div>
     `;
   }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
-  }
 }
 
 defineOnce(AXATooltip.tagName, AXATooltip);

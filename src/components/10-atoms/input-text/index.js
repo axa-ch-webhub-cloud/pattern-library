@@ -1,9 +1,11 @@
 import { html } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { classMap, unsafeHTML } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
+import '@axa-ch/tooltip';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
+
 import styles from './index.scss';
 
 class AXAInputText extends NoShadowDOM {
@@ -21,6 +23,7 @@ class AXAInputText extends NoShadowDOM {
       defaultValue: { type: String },
       type: { type: String },
       error: { type: String },
+      info: { type: String },
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean },
@@ -44,6 +47,7 @@ class AXAInputText extends NoShadowDOM {
     // text, email, password
     this.type = 'text';
     this.error = '';
+    this.info = '';
     this.checkMark = false;
     this.required = false;
     this.invalid = false;
@@ -120,6 +124,7 @@ class AXAInputText extends NoShadowDOM {
       value,
       label = '',
       error = '',
+      info = '',
       type = '',
       placeholder,
       disabled,
@@ -180,6 +185,10 @@ class AXAInputText extends NoShadowDOM {
                   <span class="${classMap(checkClasses)}"></span>
                 `
               : ''}
+            ${info &&
+              html`
+                <axa-tooltip>${unsafeHTML(info)}</axa-tooltip>
+              `}
           </div>
         </div>
         ${this.showError

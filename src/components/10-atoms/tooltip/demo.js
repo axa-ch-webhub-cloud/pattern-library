@@ -4,7 +4,7 @@ import './index';
 import '../../10-atoms/input-text/index';
 import Readme from './README.md';
 
-storiesOf('Molecules/Tooltip/Demos', module)
+storiesOf('Atoms/Tooltip/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
