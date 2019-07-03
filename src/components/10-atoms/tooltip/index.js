@@ -38,13 +38,13 @@ class AXATooltip extends LitElement {
     const { open } = this;
 
     const contentClasses = {
-      'm-tooltip__content': true,
-      'm-tooltip__content--hidden': !open
+      'a-tooltip__content': true,
+      'a-tooltip__content--hidden': !open
     };
 
     return html`
-      <div class="m-tooltip">
-        <button class="m-tooltip__button" @click="${this.handleClick}">
+      <div class="a-tooltip">
+        <button class="a-tooltip__button" @click="${this.handleClick}">
           ${svg([InfoSvg])}
         </button>
         <article class="${classMap(contentClasses)}">
