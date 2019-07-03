@@ -37,13 +37,13 @@ We release self-contained plug-and-play web components based on the [custom elem
 - AXA Input Text [![npm version](https://img.shields.io/npm/v/@axa-ch/input-file.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/input-file)
 - AXA Materials [![npm version](https://img.shields.io/npm/v/@axa-ch/materials.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/materials)
 - AXA Link [![npm version](https://img.shields.io/npm/v/@axa-ch/link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/link)
-- AXA Fieldset [![npm version](https://img.shields.io/npm/v/@axa-ch/link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/link)
-- [AXA Footer](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/footer)
-- [AXA Footer Small](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/footer-small)
-- [AXA Table Sortable](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table-sortable)
-- [AXA Table](https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table)
-- [AXA Textarea](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/textarea)
-- [AXA Top content bar](https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar)
+- AXA Fieldset [![npm version](https://img.shields.io/npm/v/@axa-ch/fieldset.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/fieldset)
+- AXA Footer [![npm version](https://img.shields.io/npm/v/@axa-ch/footer.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/footer)
+- AXA Footer Small [![npm version](https://img.shields.io/npm/v/@axa-ch/footer-small.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/footer-small)
+- AXA Table Sortable [![npm version](https://img.shields.io/npm/v/@axa-ch/table-sortable.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/table-sortable)
+- AXA Table [![npm version](https://img.shields.io/npm/v/@axa-ch/table.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/table)
+- AXA Textarea [![npm version](https://img.shields.io/npm/v/@axa-ch/textarea.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/textarea)
+- AXA Top content bar [![npm version](https://img.shields.io/npm/v/@axa-ch/top-content-bar.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/top-content-bar)
 
 ## Alpha-Released Components
 - 
