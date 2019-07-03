@@ -8,7 +8,7 @@ $dropdown-border-style: $dropdown-border-width solid $color-prim-gray-silver;
 $dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
 $dropdown-icon-width: 10px;
-$dropdown-icon-height: 6px;
+$dropdown-icon-height: $dropdown-icon-width;
 $dropdown-error-minheight: 19px;
 
 @mixin normalize-native-select-styles() {
@@ -180,7 +180,7 @@ axa-dropdown {
     display: block;
     width: 40px;
     height: $dropdown-height;
-    line-height: $dropdown-height - $dropdown-icon-height + 4px;
+    line-height: $dropdown-height;
     background: $color-prim-white;
     position: absolute;
     right: 0;
@@ -211,7 +211,6 @@ axa-dropdown {
     height: $dropdown-height;
     text-align: left;
     cursor: pointer;
-    line-height: 15px;
 
     &:hover,
     &:active,
@@ -249,6 +248,7 @@ axa-dropdown {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.1;
   }
 
   &__button {
