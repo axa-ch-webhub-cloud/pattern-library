@@ -59,15 +59,13 @@ Import the textarea-defining script and use a textarea like this:
 
 The string-valued `label` provides the label text as HTML.
 
-_Note: The consumer is responsible for sanitizing the HTML provided!_
-
 ### name\*
 
 The string-valued `name` of the element for purposes of form submission.
 
 ### required
 
-The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true and the element´s `value` is not empty, it shows an animated checkmark to the right of the element and displays `*` after the label text.
+The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
 
 ### placeholder
 
