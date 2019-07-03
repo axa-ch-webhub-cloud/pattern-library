@@ -40,25 +40,23 @@ class AXAImageUpload extends LitElement {
   static get properties() {
     return {
       inputFileText: { type: String },
-      maxSizeOfSingleFileMB: { type: Number },
-      maxSizeOfAllFilesMB: { type: Number },
+      maxSizeOfSingleFileMegaByte: { type: Number },
+      maxSizeOfAllFilesMegaByte: { type: Number },
       maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
       icon: { type: String },
-      // finalFiles: { type: Object, reflect: true },
-      // wrongFiles: { type: Object, reflect: true },
       errorStatusText: { type: String },
       deleteStatusText: { type: String },
       addStatusText: { type: String },
-      onClick: { type: Function },
+      // onClick: { type: Function }, // TODO Events
     };
   }
 
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMB = 5;
-    this.maxSizeOfAllFilesMB = 20;
+    this.maxSizeOfSingleFileMegaByte = 5;
+    this.maxSizeOfAllFilesMegaByte = 20;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'cloud-upload';
@@ -67,22 +65,21 @@ class AXAImageUpload extends LitElement {
     this.errorStatusText = 'Error occured';
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
-    this.onClick = () => {};
+    // this.onClick = () => {};
 
-    this.maxSizeOfSingleFileB = getBytesFromMegabyte(
-      this.maxSizeOfSingleFileMB
+    this.maxSizeOfSingleFileByte = getBytesFromMegabyte(
+      this.maxSizeOfSingleFileMegaByte
     );
-    this.maxSizeOfAllFilesB = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
+    this.maxsizeOfAllFilesByte = getBytesFromMegabyte(
+      this.maxSizeOfAllFilesMegaByte
+    );
 
-    this.sizeOfAllFilesB = 0;
+    this.sizeOfAllFilesByte = 0;
   }
 
   firstUpdated() {
     this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
     this.inputFile = this.shadowRoot.querySelector('.m-image-upload__input');
-    this.addImageButton = this.shadowRoot.querySelector(
-      '.js-image-upload__icon-hover-area'
-    );
   }
 
   render() {
@@ -90,34 +87,23 @@ class AXAImageUpload extends LitElement {
     const classes = {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
-
-    console.log('qqqqq ccc');
-
     const urlCreator = window.URL || window.webkitURL;
 
-    console.log('qqqqq', this.finalFiles);
+    // TODO set icons
 
-    window.handleImageClick = this.handleImageClick;
-
-    window.ctx = this;
-
-    const imageOverview = this.finalFiles.map((file, i) => {
+    const fileOverview = this.finalFiles.map((file, index) => {
+      if (!file) {
+        return '';
+      }
       const isFile = ~file.type.indexOf('application');
       const imageUrl = urlCreator.createObjectURL(file);
-
-      console.log('dedede');
-      // TODO set icons
-
       return html`
-        <figure
-          data-index="${i}"
-          class="m-image-upload__img-figure js-image-upload__img-figure"
-        >
+        <figure class="m-image-upload__img-figure js-image-upload__img-figure">
           <div
             class="m-image-upload__icon-hover-area"
-            @click=${() => this.handleImageClick(i)}
-            @mouseover=${() => this.handleImageMouseover(i)}
-            @mouseout=${() => this.handleImageMouseout(i)}
+            @click=${() => this.handleImageClick(index)}
+            @mouseover=${() => this.handleImageMouseover(index)}
+            @mouseout=${() => this.handleImageMouseout(index)}
           >
             ${isFile
               ? html`
@@ -161,33 +147,6 @@ class AXAImageUpload extends LitElement {
       </figure>
     `;
 
-    console.log(imageOverview);
-
-    /**
-    ${!this.showImageOverview
-      ? html`
-          <div>
-            ${ImageUploadGroupIcon}
-          </div>
-          <p class="m-image-upload__information">${INFO}</p>
-          <p class="m-image-upload__or">${OR}</p>
-          <axa-input-file
-            class="m-image-upload__input"
-            accept="image/jpg, image/jpeg, application/pdf, image/png"
-            icon="${this.icon}"
-            multiple
-            @change=${this.handleImageUploadButtonChange}
-            @click=${this.handleImageUploadButtonClick}
-            variant="red"
-          >
-            ${this.inputFileText}
-          </axa-input-file>
-        `
-      : html`
-          ${imageOverview[1]} ${addMoreInputFile}
-        `}
-    */
-
     return html`
       <article class="m-image-upload">
         <h1><slot></slot></h1>
@@ -219,7 +178,7 @@ class AXAImageUpload extends LitElement {
                 </axa-input-file>
               `
             : html`
-                ${imageOverview} ${addMoreInputFile}
+                ${fileOverview} ${addMoreInputFile}
               `}
         </section>
       </article>
@@ -236,14 +195,12 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadButtonChange(e) {
     const { files } = e.target;
-    console.log('files', files);
     this.addFiles(files);
   }
 
   handleImageUploadDropZoneDragover(e) {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'copy';
-
     this.dropZone.classList.add('m-image-upload__dropzone_dragover');
   }
 
@@ -257,62 +214,62 @@ class AXAImageUpload extends LitElement {
     this.addFiles(e.dataTransfer.files);
   }
 
-  async handleImageClick(i) {
-    console.log('click', i);
-
-    const tempFinalFiles = [...this.finalFiles];
-    tempFinalFiles.splice(i, 1);
-    this.finalFiles = tempFinalFiles;
-    // console.log('this.wrongFiles', this.wrongFiles);
+  handleImageClick(index) {
+    this.sizeOfAllFilesByte -= this.finalFiles[index].size;
+    const shallowClone = [...this.finalFiles];
+    shallowClone.splice(index, 1);
+    this.finalFiles = shallowClone;
     this.performUpdate();
-    console.log(await this.updateComplete);
-    console.log('herer');
 
-    // if (this.dropZone.children.length === 1) {
-    //   this.showImageOverview = false;
-    //   this.wrongFiles = [];
-    //   this.finalFiles = [];
-    // }
+    if (this.dropZone.children.length === 1) {
+      this.showImageOverview = false;
+      this.sizeOfAllFilesByte = 0;
+      this.wrongFiles = [];
+      this.finalFiles = [];
+    }
   }
 
-  handleImageMouseover = i => {
-    this.imgCaptions = this.shadowRoot.querySelectorAll(
-      '.js-image-upload__img-caption'
-    );
-    this.iconLayers = this.shadowRoot.querySelectorAll(
-      '.js-image-upload__icon-layer'
-    );
-    this.imgCaptions[i].innerHTML = this.deleteStatusText;
-    this.iconLayers[i].innerHTML = DeleteForeverSvg;
-    this.imgCaptions[i].setAttribute('style', 'color:#00008f;');
+  handleImageMouseover = index => {
+    // this.imgCaptions = this.shadowRoot.querySelectorAll(
+    //   '.js-image-upload__img-caption'
+    // );
+    // this.iconLayers = this.shadowRoot.querySelectorAll(
+    //   '.js-image-upload__icon-layer'
+    // );
+    // this.imgCaptions[index].innerHTML = this.deleteStatusText;
+    // this.iconLayers[index].innerHTML = DeleteForeverSvg;
+    // this.imgCaptions[index].setAttribute('style', 'color:#00008f;');
   };
 
-  handleImageMouseout = i => {
-    this.imgCaptions = this.shadowRoot.querySelectorAll(
-      '.js-image-upload__img-caption'
-    );
-    this.iconLayers = this.shadowRoot.querySelectorAll(
-      '.js-image-upload__icon-layer'
-    );
-    this.imgCaptions[i].innerHTML = this.finalFiles[i].name;
-    if (false) {
-      // TODO iswrong function
-      this.iconLayers[i].innerHTML = ClearSvg;
-      this.imgCaptions[i].setAttribute('style', 'color:#00008f;');
-    } else {
-      this.iconLayers[i].innerHTML = '';
-      this.imgCaptions[i].removeAttribute('style');
-    }
+  handleImageMouseout = index => {
+    // this.imgCaptions = this.shadowRoot.querySelectorAll(
+    //   '.js-image-upload__img-caption'
+    // );
+    // this.iconLayers = this.shadowRoot.querySelectorAll(
+    //   '.js-image-upload__icon-layer'
+    // );
+    // this.imgCaptions[index].innerHTML = this.finalFiles[index].name;
+    // if (false) {
+    //   // TODO iswrong function
+    //   this.iconLayers[index].innerHTML = ClearSvg;
+    //   this.imgCaptions[index].setAttribute('style', 'color:#00008f;');
+    // } else {
+    //   this.iconLayers[index].innerHTML = '';
+    //   this.imgCaptions[index].removeAttribute('style');
+    // }
   };
 
   async addFiles(droppedFiles) {
+    console.log('droppedFiles', droppedFiles);
     let filesLeftOver = this.maxNumberOfFiles - this.finalFiles.length;
     filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
-    const slicedFiles = Array.prototype.slice.call(
-      droppedFiles,
-      0,
-      filesLeftOver
-    );
+
+    const slicedFiles = droppedFiles; // TODO
+    // const slicedFiles = Array.prototype.slice.call(
+    //   droppedFiles,
+    //   0,
+    //   filesLeftOver
+    // );
 
     if (slicedFiles.length < droppedFiles.length) {
       console.log('zu viele files');
@@ -324,27 +281,29 @@ class AXAImageUpload extends LitElement {
     const wrongFiles = [];
     for (let i = 0; i < slicedFiles.length; i++) {
       const dKey = fileKey(slicedFiles[i], true);
-      this.sizeOfAllFilesB += slicedFiles[i].size;
 
       if (!finalFiles.some(finalFile => fileKey(finalFile, true) === dKey)) {
         wrongFiles.push(slicedFiles[i]);
-      }
-      if (slicedFiles[i].size > this.maxSizeOfSingleFileB) {
+      } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
         wrongFiles.push(slicedFiles[i]);
-        console.log('onetobig', slicedFiles[i], this.maxSizeOfSingleFileB);
-      } else if (this.sizeOfAllFilesB > this.maxSizeOfAllFilesB) {
+      } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
         wrongFiles.push(slicedFiles[i]);
-        console.log('alltobig', this.sizeOfAllFilesB, this.maxSizeOfAllFilesB);
       }
+
+      this.sizeOfAllFilesByte += finalFiles[i].size;
     }
 
     this.finalFiles = this.finalFiles.concat(finalFiles);
     this.wrongFiles = this.wrongFiles.concat(wrongFiles);
+    // this.finalFiles = [...droppedFiles];
+    this.performUpdate(); // is it needed?
 
-    console.log('this.finalFiles', this.finalFiles);
-    console.log('this.wrongFiles', this.wrongFiles);
-
-    this.showImageOverview = true;
+    if (this.finalFiles && droppedFiles.length > 0) {
+      this.showImageOverview = true;
+    } else {
+      this.finalFiles = [];
+      this.wrongFiles = [];
+    }
   }
 }
 
