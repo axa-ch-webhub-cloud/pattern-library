@@ -6,6 +6,10 @@
   }
 }
 
+p.a-text {
+  margin: 0;
+}
+
 .a-text--size-2 {
   @include typo(primary, medium);
 

@@ -1,11 +1,11 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { css, unsafeCSS } from 'lit-element';
+import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-class AXAText extends LitElement {
+class AXAText extends NoShadowDOM {
   static get tagName() {
     return 'axa-text';
   }
@@ -34,17 +34,28 @@ class AXAText extends LitElement {
     const isSize3 = variant.includes('size-3');
     const isBold = variant.includes('bold');
 
-    const classes = classMap({
-      'a-text--size-2': isSize2,
-      'a-text--size-3': isSize3,
-      'a-text--bold': isBold,
-    });
+    const classes = ['a-text'];
+    if (isSize2) {
+      classes.push('a-text--size-2');
+    }
+    if (isSize3) {
+      classes.push('a-text--size-3');
+    }
+    if (isBold) {
+      classes.push('a-text--bold');
+    }
 
-    return html`
-      <span class="a-text ${classes}">
-        <slot></slot>
-      </span>
-    `;
+    const { firstChild, firstElementChild } = this;
+
+    if (firstChild.nodeType === 3 && firstElementChild === null) {
+      const p = document.createElement('p');
+      p.innerHTML = firstChild.textContent;
+      p.className = classes.join(' ');
+      this.innerHTML = '';
+      this.appendChild(p);
+    } else {
+      classes.forEach(_class => firstElementChild.classList.add(_class));
+    }
   }
 }
 

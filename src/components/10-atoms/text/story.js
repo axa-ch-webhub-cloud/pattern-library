@@ -40,6 +40,36 @@ storiesOf('Atoms/Text', module)
           </axa-text>`
   )
   .add(
+    'Text - Size 2 with custom span tag',
+    () => `<axa-text variant="size-2">
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
+            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
+            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
+            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
+            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
+            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
+            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
+            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
+            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.</span>
+          </axa-text>`
+  )
+  .add(
+    'Text - Size 2 with custom p tag',
+    () => `<axa-text variant="size-2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
+            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
+            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
+            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
+            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
+            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
+            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
+            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
+            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.</p>
+          </axa-text>`
+  )
+  .add(
     'Text - Size 3',
     () => `<axa-text variant="size-3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
