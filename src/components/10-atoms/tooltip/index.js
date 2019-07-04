@@ -30,9 +30,17 @@ class AXATooltip extends LitElement {
     this.onClick = () => {};
   }
 
-  handleClick = () => {
-    this.open = !this.open;
+  handleClick = ev => {
+    // this.open = !this.open;
+    console.log(this.getBoundingClientRect())
+    console.log(ev);
   };
+
+  firstUpdated() {
+    if (this.parentNode) {
+      console.log(this.parentNode);
+    }
+  }
 
   render() {
     const { open } = this;

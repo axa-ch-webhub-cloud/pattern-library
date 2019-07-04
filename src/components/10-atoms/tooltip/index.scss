@@ -1,7 +1,7 @@
 @import '../../00-materials/styles/mixins/reset-button-completely';
 
 .a-tooltip {
-  display: block;
+  //display: block;
 
   &__button {
     @include reset-button-completely();
@@ -17,15 +17,16 @@
     border-radius: 2px;
     box-sizing: border-box;
     margin-top: 11px;
+    max-width: 400px;
 
     // TODO *1
-    margin-left: -10px;
+    //margin-left: -10px;
 
     &:before {
       position: absolute;
       top: -12px;
       // TODO *1
-      left: 10px;
+      //right: 10px;
       width: 0;
       height: 0;
       font-size: 0;

@@ -180,16 +180,17 @@ class AXAInputText extends NoShadowDOM {
             ?disabled="${disabled}"
             aria-required="${required}"
           />
+          ${info &&
+            html`
+              <axa-tooltip class="a-input-text__info">${unsafeHTML(info)}</axa-tooltip>
+            `}
+       
           <div class="a-input-text__check-wrapper">
             ${checkMark
               ? html`
                   <span class="${classMap(checkClasses)}"></span>
                 `
               : ''}
-            ${info &&
-              html`
-                <axa-tooltip>${unsafeHTML(info)}</axa-tooltip>
-              `}
           </div>
         </div>
         ${this.showError

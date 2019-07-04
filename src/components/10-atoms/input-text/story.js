@@ -55,5 +55,5 @@ storiesOf('Atoms/Input text', module)
   .add(
     'Input text - Info Tooltip',
     () =>
-      '<axa-input-text info="<p>paragraph</p><p>paragraph</p>" required invalid error="Error Message"></axa-input-text>'
+      '<axa-input-text info="<p>paragraph</p><p>paragraph</p>"></axa-input-text>'
   );
