@@ -15,7 +15,7 @@ test('should render text', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-text').shadowRoot
+    () => document.querySelector('axa-text')
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
@@ -23,7 +23,7 @@ test('should render text', async t => {
 
 test('should have correct font definitions for text size 1', async t => {
   const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text').shadowRoot.querySelector('.a-text')
+    document.querySelector('axa-text').querySelector('.a-text')
   );
 
   await t
@@ -55,7 +55,7 @@ test('should have correct font definitions for text size 2', async t => {
   const $axaElemShadow = await Selector(() =>
     document
       .querySelector('axa-text[variant="size-2"]')
-      .shadowRoot.querySelector('.a-text')
+      .querySelector('.a-text')
   );
 
   await t
@@ -87,7 +87,7 @@ test('should have correct font definitions for text size 3', async t => {
   const $axaElemShadow = await Selector(() =>
     document
       .querySelector('axa-text[variant="size-3"]')
-      .shadowRoot.querySelector('.a-text')
+      .querySelector('.a-text')
   );
 
   await t
@@ -109,6 +109,39 @@ test('should have correct font definitions for text size 3', async t => {
     .eql('24px');
 });
 
+fixture('Text - Size 2 with custom tag')
+  .page(`${host}/iframe.html?id=atoms-text--text-size-2-with-custom-span-tag`)
+  .beforeEach(async t => {
+    await t.resizeWindow(380, 680);
+  });
+
+test('should have correct font definitions for text size 2 with custom span tag', async t => {
+  const $axaElemShadow = await Selector(() =>
+    document
+      .querySelector('axa-text[variant="size-2"]')
+      .querySelector('.a-text')
+  );
+
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('font-size'))
+    .eql('16px');
+
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .eql('24px');
+
+  await t.resizeWindow(800, 600);
+
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('font-size'))
+    .eql('18px');
+
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .eql('27px');
+});
+
+
 fixture('Text - Bold')
   .page(`${host}/iframe.html?id=atoms-text--text-bold`)
   .beforeEach(async t => {
@@ -119,7 +152,7 @@ test('should have correct font weight for text bold', async t => {
   const $axaElemShadow = await Selector(() =>
     document
       .querySelector('axa-text[variant="bold"]')
-      .shadowRoot.querySelector('.a-text')
+      .querySelector('.a-text')
   );
 
   await t
