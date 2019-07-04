@@ -8,6 +8,9 @@ import {
   DeleteForeverSvg,
   ClearSvg,
   AttachFileSvg,
+  FacebookSvg,
+  UploadSvg,
+  InstagramSvg,
 } from '@axa-ch/materials/icons';
 
 import { ImageUploadGroupSvg } from './icons';
@@ -21,8 +24,9 @@ import compressImage from './utils/imageCompressor';
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
 
-const AddIcon = svg([AddSvg]);
-const AttachFileIcon = svg([AttachFileSvg]);
+const AddIcon = svg([UploadSvg]);
+const AttachFileIcon = svg([InstagramSvg]);
+const DeleteForeverIcon = svg([FacebookSvg]);
 
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 
@@ -102,8 +106,6 @@ class AXAImageUpload extends LitElement {
           <div
             class="m-image-upload__icon-hover-area"
             @click=${() => this.handleImageClick(index)}
-            @mouseover=${() => this.handleImageMouseover(index)}
-            @mouseout=${() => this.handleImageMouseout(index)}
           >
             ${isFile
               ? html`
@@ -118,14 +120,15 @@ class AXAImageUpload extends LitElement {
                     alt="${file.name}"
                   />
                 `}
-            <div
-              class="m-image-upload__icon-layer js-image-upload__icon-layer"
-            ></div>
+            <div class="m-image-upload__icon-layer js-image-upload__icon-layer">
+              <span class="m-image-upload__icon">${DeleteForeverIcon}</span>
+            </div>
           </div>
           <figcaption
-            class="m-image-upload__img-caption js-image-upload__img-caption"
+            class="m-image-upload__img-caption"
+            data-status="${this.deleteStatusText}"
           >
-            ${file.name}
+            <span class="m-image-upload__filename">${file.name}</span>
           </figcaption>
         </figure>
       `;
@@ -228,36 +231,6 @@ class AXAImageUpload extends LitElement {
       this.finalFiles = [];
     }
   }
-
-  handleImageMouseover = index => {
-    // this.imgCaptions = this.shadowRoot.querySelectorAll(
-    //   '.js-image-upload__img-caption'
-    // );
-    // this.iconLayers = this.shadowRoot.querySelectorAll(
-    //   '.js-image-upload__icon-layer'
-    // );
-    // this.imgCaptions[index].innerHTML = this.deleteStatusText;
-    // this.iconLayers[index].innerHTML = DeleteForeverSvg;
-    // this.imgCaptions[index].setAttribute('style', 'color:#00008f;');
-  };
-
-  handleImageMouseout = index => {
-    // this.imgCaptions = this.shadowRoot.querySelectorAll(
-    //   '.js-image-upload__img-caption'
-    // );
-    // this.iconLayers = this.shadowRoot.querySelectorAll(
-    //   '.js-image-upload__icon-layer'
-    // );
-    // this.imgCaptions[index].innerHTML = this.finalFiles[index].name;
-    // if (false) {
-    //   // TODO iswrong function
-    //   this.iconLayers[index].innerHTML = ClearSvg;
-    //   this.imgCaptions[index].setAttribute('style', 'color:#00008f;');
-    // } else {
-    //   this.iconLayers[index].innerHTML = '';
-    //   this.imgCaptions[index].removeAttribute('style');
-    // }
-  };
 
   async addFiles(droppedFiles) {
     console.log('droppedFiles', droppedFiles);
