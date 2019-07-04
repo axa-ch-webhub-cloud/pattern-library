@@ -11,6 +11,7 @@ import {
   FacebookSvg,
   UploadSvg,
   InstagramSvg,
+  LinkedinSvg,
 } from '@axa-ch/materials/icons';
 
 import { ImageUploadGroupSvg } from './icons';
@@ -27,6 +28,7 @@ const INFO = 'Drag and drop to upload your file';
 const AddIcon = svg([UploadSvg]);
 const AttachFileIcon = svg([InstagramSvg]);
 const DeleteForeverIcon = svg([FacebookSvg]);
+const ClearIcon = svg([LinkedinSvg]);
 
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 
@@ -99,6 +101,7 @@ class AXAImageUpload extends LitElement {
       if (!file) {
         return '';
       }
+      const isWrongFile = false;
       const isFile = ~file.type.indexOf('application');
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
@@ -120,15 +123,29 @@ class AXAImageUpload extends LitElement {
                     alt="${file.name}"
                   />
                 `}
-            <div class="m-image-upload__icon-layer js-image-upload__icon-layer">
-              <span class="m-image-upload__icon">${DeleteForeverIcon}</span>
+            <div class="m-image-upload__icon-layer">
+              <span class="m-image-upload__icon-error"
+                >${isWrongFile ? ClearIcon : ''}</span
+              >
+              <span class="m-image-upload__icon-delete"
+                >${DeleteForeverIcon}</span
+              >
             </div>
           </div>
           <figcaption
             class="m-image-upload__img-caption"
             data-status="${this.deleteStatusText}"
           >
-            <span class="m-image-upload__filename">${file.name}</span>
+            ${isWrongFile
+              ? html`
+                  <span
+                    class="m-image-upload__filename m-image-upload__filename-error"
+                    >${this.errorStatusText}</span
+                  >
+                `
+              : html`
+                  <span class="m-image-upload__filename">${file.name}</span>
+                `}
           </figcaption>
         </figure>
       `;

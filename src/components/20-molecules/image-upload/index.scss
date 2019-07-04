@@ -66,8 +66,11 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     .m-image-upload__file-element {
       opacity: 0.6;
     }
-    .m-image-upload__icon {
+    .m-image-upload__icon-delete {
       display: block;
+    }
+    .m-image-upload__icon-error {
+      display: none;
     }
   }
 
@@ -94,10 +97,15 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     transform: translate(-50%, -50%);
   }
 
-  &__icon {
+  &__icon-delete {
     display: none;
-    fill: $color-axa-blue;// needed?
+    fill: $color-axa-blue;// TODO needed?
     color: $color-axa-blue;
+  }
+
+  &__icon-error {
+    fill: $color-sec-shy-tomato;// TODO needed?
+    color: $color-sec-shy-tomato;
   }
 
   &__img-caption {
@@ -127,6 +135,10 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status]:after{
       content: attr(data-status);
       color: $color-axa-blue;
+  }
+
+  &__filename-error {
+    color: $color-sec-shy-tomato;
   }
 
   &__add-more {
