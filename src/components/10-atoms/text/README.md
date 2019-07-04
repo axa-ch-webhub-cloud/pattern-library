@@ -1,6 +1,8 @@
 # Text
 
-Allows you to control all the possible axa text styles by a component
+Allows you to control all the possible axa text styles by a component.
+
+It accepts a simple text as children or a HTML tag like `<p>` or `<span>`. Please make sure that only one direct HTML child is provided.
 
 ## Usage
 
