@@ -1,5 +1,5 @@
 $image-upload-dropzone-border-width: 2px !default;
-
+$image-upload-opacity: 0.6 !default;
 $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
 
 .m-image-upload {
@@ -19,7 +19,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   }
 
   &__dropzone_dragover {
-    opacity: 0.6;
+    opacity: $image-upload-opacity;
   }
 
   &__dropzone-file-overview {
@@ -49,7 +49,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   &__img-figure {
     margin: 0;
     margin-right: 15px;
-    margin-bottom: 45px;
+    margin-bottom: 25px;
   }
 
   &__icon-hover-area {
@@ -61,10 +61,10 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   &__icon-hover-area:hover {
     cursor: pointer;
     .m-image-upload__img-element {
-      opacity: 0.6;
+      opacity: $image-upload-opacity;
     }
     .m-image-upload__file-element {
-      opacity: 0.6;
+      opacity: $image-upload-opacity;
     }
     .m-image-upload__icon-delete {
       display: block;
@@ -109,7 +109,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   }
 
   &__img-caption {
-    // position: absolute; TODO
+    position: relative; // TODO
     width: 120px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -120,9 +120,11 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
 
   &__img-caption:hover {
     white-space: normal;
-    overflow: visible;
+
     text-overflow: unset;
     word-wrap: break-word;
+    height: 2em;// TODO really 2em?
+    overflow: hidden;
   }
 
   // when hovering over hover-area, hide the filname
@@ -149,12 +151,13 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     cursor: pointer;
     border: $image-upload-dropzone-border;
     color: $color-prim-gray-dusty;
-    .m-image-upload__icon-layer {
-      height: 80px;
-      width: 120px;
+    .m-image-upload__icon-wrapper {
+      height: 100%;
+      width: 100%;
       display: block;
       position: relative;
-      text-align: center; // TODO
+    }
+    .m-image-upload__icon-layer {
       fill: currentColor;
     }
     .m-image-upload__img-caption {
