@@ -61,8 +61,8 @@ class AXAImageUpload extends LitElement {
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMegaByte = 5;
-    this.maxSizeOfAllFilesMegaByte = 20;
+    this.maxSizeOfSingleFileMegaByte = 2;
+    this.maxSizeOfAllFilesMegaByte = 5;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'cloud-upload';
@@ -95,13 +95,16 @@ class AXAImageUpload extends LitElement {
     };
     const urlCreator = window.URL || window.webkitURL;
 
-    // TODO set icons
-
     const fileOverview = this.finalFiles.map((file, index) => {
+      let isWrongFile = false;
       if (!file) {
         return '';
       }
-      const isWrongFile = false;
+      this.wrongFiles.forEach(wrongfile => {
+        if (wrongfile === file) {
+          isWrongFile = true;
+        }
+      });
       const isFile = ~file.type.indexOf('application');
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
@@ -156,10 +159,12 @@ class AXAImageUpload extends LitElement {
         class="m-image-upload__img-figure m-image-upload__add-more js-image-upload__img-figure"
       >
         <div
-          class="m-image-upload__icon-layer"
+          class="m-image-upload__icon-wrapper"
           @click=${this.handleAddMoreInputClick}
         >
-          ${AddIcon}
+          <div class="m-image-upload__icon-layer">
+            ${AddIcon}
+          </div>
         </div>
         <figcaption class="m-image-upload__img-caption">
           ${this.addStatusText}
@@ -250,7 +255,6 @@ class AXAImageUpload extends LitElement {
   }
 
   async addFiles(droppedFiles) {
-    console.log('droppedFiles', droppedFiles);
     let filesLeftOver = this.maxNumberOfFiles - this.finalFiles.length;
     filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
 
@@ -273,11 +277,11 @@ class AXAImageUpload extends LitElement {
       const dKey = fileKey(slicedFiles[i], true);
 
       if (!finalFiles.some(finalFile => fileKey(finalFile, true) === dKey)) {
-        wrongFiles.push(slicedFiles[i]);
+        wrongFiles.push(finalFiles[i]);
       } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
-        wrongFiles.push(slicedFiles[i]);
+        wrongFiles.push(finalFiles[i]);
       } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
-        wrongFiles.push(slicedFiles[i]);
+        wrongFiles.push(finalFiles[i]);
       }
 
       this.sizeOfAllFilesByte += finalFiles[i].size;
@@ -285,7 +289,7 @@ class AXAImageUpload extends LitElement {
 
     this.finalFiles = this.finalFiles.concat(finalFiles);
     this.wrongFiles = this.wrongFiles.concat(wrongFiles);
-    // this.finalFiles = [...droppedFiles];
+    console.log(this.finalFiles, this.wrongFiles);
     this.performUpdate(); // is it needed?
 
     if (this.finalFiles && droppedFiles.length > 0) {
