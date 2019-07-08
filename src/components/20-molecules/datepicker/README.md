@@ -27,7 +27,7 @@ Create a React-ified datepicker with the createElement function from your React 
 
 ```js
 import { createElement } from 'react';
-import createAXADatepickerReact from '@axa-ch/Datepicker/lib/index.react';
+import createAXADatepickerReact from '@axa-ch/datepicker/lib/index.react';
 
 const AXADatepickerReact = createAXADatepickerReact(createElement);
 

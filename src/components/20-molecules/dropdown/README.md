@@ -30,7 +30,7 @@ Create a React-ified Dropdown with the createElement function from your React ve
 
 ```js
 import { createElement } from 'react';
-import createAXADropdownReact from '@axa-ch/Dropdown/lib/index.react';
+import createAXADropdownReact from '@axa-ch/dropdown/lib/index.react';
 
 const AXADropdownReact = createAXADropdownReact(createElement);
 
