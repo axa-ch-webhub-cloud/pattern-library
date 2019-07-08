@@ -162,6 +162,23 @@ test('should render datepicker as reactified component', async t => {
   );
   await t.expect(datepickerReact.exists).ok();
 });
+test('should correctly expand year ranges assigned via property', async t => {
+  const datepickerReactYearDropdown = await Selector(() =>
+    document.querySelector(
+      `axa-datepicker[data-test-id="datepicker-react"] .js-datepicker__dropdown-year`
+    )
+  );
+
+  await t.click(datepickerReactYearDropdown);
+
+  await t
+    .expect(datepickerReactYearDropdown.getAttribute('items'))
+    .contains('"value":"2019"');
+
+  await t
+    .expect(datepickerReactYearDropdown.getAttribute('items'))
+    .contains('"value":"2020"');
+});
 
 // React controlled-component test
 fixture('Datepicker React controlled').page(

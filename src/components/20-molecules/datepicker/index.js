@@ -51,6 +51,24 @@ const applyEffect = self =>
     }, 0 /* execute after render() */);
   });
 
+const parseAndFormatAllowedYears = ({ allowedyears, year }) => {
+  let result = [year];
+  allowedyears.forEach(years => {
+    if (typeof years === 'string') {
+      const splitYears = years.split('-');
+      const generatedYears = range(
+        parseInt(splitYears[0], 10),
+        parseInt(splitYears[1], 10)
+      );
+      result = result.concat(generatedYears);
+    } else {
+      result.push(years);
+    }
+  });
+
+  return result.filter((item, index) => result.indexOf(item) >= index).sort();
+};
+
 // CE
 class AXADatepicker extends NoShadowDOM {
   static get tagName() {
@@ -151,6 +169,9 @@ class AXADatepicker extends NoShadowDOM {
       } = this;
       // controlledness is a React-only concept
       this.state.isControlled = isReact && isControlled;
+    }
+    if (changedProperties.has('allowedyears')) {
+      this.allowedyears = parseAndFormatAllowedYears(this);
     }
     return true;
   }
@@ -331,24 +352,8 @@ class AXADatepicker extends NoShadowDOM {
     this.startDate.setHours(0);
     this.startDate.setMinutes(0);
     this.startDate.setSeconds(0);
-    // the chosen start year is in the allowed years
-    let allowedYearsFinal = [this.year];
-    this.allowedyears.forEach(years => {
-      if (typeof years === 'string') {
-        const splitYears = years.split('-');
-        const generatedYears = range(
-          parseInt(splitYears[0], 10),
-          parseInt(splitYears[1], 10)
-        );
-        allowedYearsFinal = allowedYearsFinal.concat(generatedYears);
-      } else {
-        allowedYearsFinal.push(years);
-      }
-    });
 
-    this.allowedyears = allowedYearsFinal
-      .filter((item, index) => allowedYearsFinal.indexOf(item) >= index)
-      .sort();
+    this.allowedyears = parseAndFormatAllowedYears(this);
 
     this.date = this.startDate;
     this.store = new Store(this.locale, this.date, this.allowedyears);

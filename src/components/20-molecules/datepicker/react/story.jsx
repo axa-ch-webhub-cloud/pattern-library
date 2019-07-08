@@ -22,7 +22,7 @@ storiesOf('Molecules/Datepicker/React', module)
         year={2020}
         labelbuttoncancel="Cancel"
         labelbuttonok="OK"
-        allowedyears={[2019, 2020]}
+        allowedyears={['2019-2020', 2024]}
       />,
       div
     );
