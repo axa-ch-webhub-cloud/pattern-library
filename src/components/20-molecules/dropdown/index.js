@@ -237,11 +237,6 @@ class AXADropdown extends NoShadowDOM {
     }
     // equip our dropdown with same DOM API as native
     this.selectedIndex = itemIndex;
-    if (this.select) {
-      // ... and keep in sync with embedded <select>
-      this.select.selectedIndex = itemIndex;
-    }
-    this.title = name;
     this.value = value || name;
     // clone items array with updated selected property
     // (the fact that items are cloned ensures re-render!)
@@ -250,6 +245,7 @@ class AXADropdown extends NoShadowDOM {
       return item;
     });
     this.items = newItems;
+    this.updateTitle();
   }
 
   /* last overrideable lifecycle point *before* render:
@@ -260,8 +256,9 @@ class AXADropdown extends NoShadowDOM {
     // via the React wrapper
     this.state.isControlled = this.state.isControlled && this.isReact;
     // controlling React application imposes new 'value'?
-    if (changedProperties.has('value') && this.state.isControlled) {
+    if (this.state.isControlled) {
       this.updateCurrentItems(this.findByValue(this.value));
+      return true;
     }
     // 'items' property changed, potentially invalidating title?
     if (changedProperties.has('items')) {
