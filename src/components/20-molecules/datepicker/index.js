@@ -110,14 +110,15 @@ class AXADatepicker extends NoShadowDOM {
   set value(newValue) {
     const {
       state: { isControlled, value },
+      state,
     } = this;
     // first value coming in indicates controlledness?
     if (!isControlled && newValue !== undefined) {
       // yes, remember in model state
-      this.state.isControlled = true;
+      state.isControlled = true;
     }
     // update state
-    this.state.value = newValue;
+    state.value = newValue;
     this.validate(newValue);
     // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);

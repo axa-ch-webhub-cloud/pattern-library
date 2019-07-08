@@ -94,8 +94,8 @@ const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
 
   const isValid =
     // IE 11 doesn't support Number.isNaN (bleeding-edge ES6)
-    // eslint-disable-next-line no-restricted-properties
-    !window.isNaN(dateAsUnixEpochInteger) && dateAsUnixEpochInteger >= 0;
+    // eslint-disable-next-line no-restricted-globals
+    !isNaN(dateAsUnixEpochInteger) && dateAsUnixEpochInteger >= 0;
 
   return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };

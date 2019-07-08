@@ -337,8 +337,6 @@ class AXADropdown extends NoShadowDOM {
   firstUpdated() {
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
-    this.addEventListener('focus', this.onFocus, false);
-    this.addEventListener('blur', this.onBlur, false);
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);
@@ -349,8 +347,6 @@ class AXADropdown extends NoShadowDOM {
   }
 
   disconnectedCallback() {
-    this.removeEventListener('focus', this.onFocus, false);
-    this.removeEventListener('blur', this.onBlur, false);
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);
