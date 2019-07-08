@@ -177,16 +177,16 @@ axa-dropdown {
   }
 
   &__select-icon {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: $dropdown-height;
-    line-height: $dropdown-height;
     background: $color-prim-white;
     position: absolute;
     right: 0;
     top: 0;
     pointer-events: none;
-    text-align: center;
 
     svg {
       width: $dropdown-icon-width;
