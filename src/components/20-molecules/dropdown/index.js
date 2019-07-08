@@ -104,15 +104,16 @@ class AXADropdown extends NoShadowDOM {
   set value(newValue) {
     const {
       state: { isControlled, value, firstTime },
+      state,
     } = this;
     // first value coming in indicates controlledness?
     if (!isControlled && newValue !== undefined && firstTime) {
       // yes, remember in model state
-      this.state.isControlled = true;
+      state.isControlled = true;
     }
     // update state
-    this.state.value = newValue;
-    this.state.firstTime = false;
+    state.value = newValue;
+    state.firstTime = false;
     // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);
   }
