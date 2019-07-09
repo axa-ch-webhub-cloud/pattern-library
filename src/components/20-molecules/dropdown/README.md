@@ -93,6 +93,10 @@ The function-valued attribute `onChange` can be used as a callback prop for Reac
 the selected dropdown option changes. Its only parameter is an event-like object with `{target:value}` structure, where `value` is
 the currently selected value.
 
+### onFocus, onBlur
+
+The function-valued attributes `onFocus, onBlur` can be used as a callback prop for React and other frameworks. The respective callback is invoked when the element receives or loses focus, respectively. Its only parameter is the original native event.
+
 ## Events
 
 ### axa-change
