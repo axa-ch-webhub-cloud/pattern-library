@@ -44,6 +44,11 @@ $dropdown-error-minheight: 19px;
 
 axa-dropdown {
   display: block;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
 
   &[open] {
     .m-dropdown__content {
@@ -52,6 +57,10 @@ axa-dropdown {
 
     .m-dropdown__select-icon svg {
       transform: rotate(180deg);
+    }
+
+    .m-dropdown__item .m-dropdown__button {
+      padding-right: 10px;
     }
 
     &[max-height][embedded] {
@@ -67,6 +76,7 @@ axa-dropdown {
     .m-dropdown__toggle:focus {
       outline-width:2px;
     }
+
   }
 
   &[max-height] {
@@ -120,7 +130,7 @@ axa-dropdown {
     background: $color-prim-white;
     border: 1px solid $color-prim-gray-silver;
     color: $dropdown-color;
-    height: $dropdown-height;
+    height: inherit;
     position: relative;
     display: block;
     width: 100%;
@@ -181,7 +191,7 @@ axa-dropdown {
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: $dropdown-height;
+    height: $dropdown-height - 2 * $dropdown-border-width;
     background: $color-prim-white;
     position: absolute;
     right: 0;
@@ -208,7 +218,7 @@ axa-dropdown {
     position: relative;
     background: transparent;
     border: none;
-    height: $dropdown-height;
+    height: $dropdown-height - 2*$dropdown-border-width;
     text-align: left;
     cursor: pointer;
 

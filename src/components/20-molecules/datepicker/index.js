@@ -51,22 +51,32 @@ const applyEffect = self =>
     }, 0 /* execute after render() */);
   });
 
-const parseAndFormatAllowedYears = ({ allowedyears, year }) => {
-  let result = [year];
-  allowedyears.forEach(years => {
-    if (typeof years === 'string') {
-      const splitYears = years.split('-');
-      const generatedYears = range(
-        parseInt(splitYears[0], 10),
-        parseInt(splitYears[1], 10)
-      );
-      result = result.concat(generatedYears);
-    } else {
-      result.push(years);
+const parseAndFormatAllowedYears = (allowedyears, setYear) => {
+  const yearSet = new Set();
+  const inputYears = [...allowedyears, setYear];
+  for (let i = 0, n = inputYears.length, years, flattenedYears; i < n; i++) {
+    years = inputYears[i];
+    // skip over non-year-like entities
+    if (!/^[\d-]+$/.test(`${years}`)) {
+      // eslint-disable-next-line no-continue
+      continue;
     }
-  });
+    // a year range like '2019-2024'?
+    if (typeof years === 'string') {
+      const [fromYear, toYear] = years.split('-');
+      flattenedYears = range(fromYear | 0, toYear | 0); // | 0: convert to 32-bit integer
+    } else {
+      flattenedYears = [years];
+    }
+    // add to *set* for de-duplication of years
+    flattenedYears.forEach(year => yearSet.add(year));
+  }
 
-  return result.filter((item, index) => result.indexOf(item) >= index).sort();
+  const result = [];
+  // convert back to array, but possibly out of order
+  yearSet.forEach(member => result.push(member));
+  // therefore sort numerically ascending
+  return result.sort();
 };
 
 // CE
@@ -172,7 +182,10 @@ class AXADatepicker extends NoShadowDOM {
       this.state.isControlled = isReact && isControlled;
     }
     if (changedProperties.has('allowedyears')) {
-      this.allowedyears = parseAndFormatAllowedYears(this);
+      this.allowedyears = parseAndFormatAllowedYears(
+        this.allowedyears,
+        this.year
+      );
     }
     return true;
   }
@@ -320,7 +333,9 @@ class AXADatepicker extends NoShadowDOM {
       }, 100);
     }
 
-    this.initDate();
+    if (!this.state.isControlled) {
+      this.initDate();
+    }
   }
 
   disconnectedCallback() {
@@ -332,32 +347,29 @@ class AXADatepicker extends NoShadowDOM {
 
   // Methods
   initDate() {
-    // not first-time initialization?
-    if (this.store) {
-      return;
+    const { year, month, day, allowedyears, locale, startDate } = this;
+
+    if (year >= 0) {
+      startDate.setFullYear(year);
     }
 
-    if (this.year >= 0) {
-      this.startDate.setFullYear(this.year);
+    if (month >= 0 && typeof month === 'number') {
+      startDate.setMonth(month);
     }
 
-    if (this.month >= 0 && typeof this.month === 'number') {
-      this.startDate.setMonth(this.month);
-    }
-
-    if (typeof this.day === 'number') {
+    if (typeof day === 'number') {
       // day 1 = first day, day 0 = last day of prev. month
       // day -1 = one day before last day of prev. month, ...
-      this.startDate.setDate(this.day);
+      startDate.setDate(day);
     }
-    this.startDate.setHours(0);
-    this.startDate.setMinutes(0);
-    this.startDate.setSeconds(0);
+    startDate.setHours(0);
+    startDate.setMinutes(0);
+    startDate.setSeconds(0);
 
-    this.allowedyears = parseAndFormatAllowedYears(this);
+    this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
 
-    this.date = this.startDate;
-    this.store = new Store(this.locale, this.date, this.allowedyears);
+    this.date = startDate;
+    this.store = new Store(locale, this.date, this.allowedyears);
     this.cells = this.store.getCells();
     this.weekdays = getWeekdays(this.date, this.locale);
   }
@@ -392,15 +404,10 @@ class AXADatepicker extends NoShadowDOM {
     this.month = date.getMonth();
     this.day = date.getDate();
     this.year = date.getFullYear();
-    if (!this.store) {
-      return;
-    }
-    this.store.update(date);
-    this.cells = this.store.getCells();
+    this.initDate();
   }
 
   validate(value) {
-    this.initDate();
     const { locale, invaliddatetext, allowedyears } = this;
     const validDate = parseLocalisedDateIfValid(locale, value);
     const validYear = date => allowedyears.indexOf(date.getFullYear()) > -1;
