@@ -44,6 +44,15 @@ class AXAButtonLink extends LitElement {
     this.onClick = () => {};
   }
 
+  firstUpdated() {
+    const { style } = this;
+    style.appearance = 'none';
+    style.mozAppearance = 'none';
+    style.webkitAppearance = 'none';
+    style.msAppearance = 'none';
+    style.oAppearance = 'none';
+  }
+
   get showIcon() {
     return this.icon && this.icon !== ARROW_RIGHT;
   }

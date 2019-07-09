@@ -57,21 +57,21 @@ class AXAButton extends LitElement {
   }
 
   firstUpdated() {
+    const { style } = this;
     // shadow dom submit btn workaround
     if (this.isTypeSubmitOrReset) {
       const fakeButton = document.createElement('button');
-
       fakeButton.type = this.type;
       fakeButton.style.display = 'none';
-      fakeButton.style.appearance = 'none';
-      fakeButton.style.mozAppearance = 'none';
-      fakeButton.style.webkitAppearance = 'none';
-      fakeButton.style.msAppearance = 'none';
-      fakeButton.style.oAppearance = 'none';
-
       this.appendChild(fakeButton);
       this.onclick = () => fakeButton.click();
     }
+
+    style.appearance = 'none';
+    style.mozAppearance = 'none';
+    style.webkitAppearance = 'none';
+    style.msAppearance = 'none';
+    style.oAppearance = 'none';
   }
 
   render() {
