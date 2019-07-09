@@ -13,4 +13,10 @@ storiesOf('Molecules/Image upload', module)
     'Image upload - default',
     () =>
       `<div style="width:453px;"><axa-image-upload>Folgende Dateien werden übertragen</axa-image-upload></div>`
+  )
+  .add(
+    'Image upload - custom',
+    () =>
+      `<div style="width:600px;"><axa-image-upload inputFileText="Datei hochladen" icon="cloud-upload" errorStatusText="Fehler aufgetreten" deleteStatusText="Löschen"
+      addStatusText="Hinzufügen">Image-Upload</axa-image-upload></div>`
   );

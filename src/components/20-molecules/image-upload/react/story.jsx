@@ -15,8 +15,10 @@ storiesOf('Molecules/Image Upload/React', module)
   .add('Image Upload - default', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <div style={{ width: '440px' }}>
-        <AXAImageUploadReact>Image Upload</AXAImageUploadReact>
+      <div style={{ width: '453px' }}>
+        <AXAImageUploadReact>
+          Folgende Dateien werden übertragen
+        </AXAImageUploadReact>
       </div>,
       div
     );

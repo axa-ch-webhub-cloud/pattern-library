@@ -55,24 +55,54 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute                         | Details                                         |
-| --------------------------------- | ----------------------------------------------- |
-| `inputFileText="Upload file"`     | Text in the input-file component                |
-| `maxSizeOfSingleFileMB="10"`      | Maximal size of a single file in mb             |
-| `maxSizeOfAllFilesMB="15"`        | Maximal size of a all files together in mb      |
-| `maxNumberOfFiles="10"`           | Maximal number of files                         |
-| `showImageOverview="false"`       | Switch between normal view and image overview   |
-| `icon="upload-cloud"`             | Specify the upload icon in input-file component |
-| `finalFiles="foo"`                | Returns compressed and converted images         |
-| `wrongFiles="foo"`                | Returns wrong files                             |
-| `errorStatusText="Error occured"` | Specify the caption for wrong files             |
-| `deleteStatusText="Delete"`       | Specify the caption when hovering over a file   |
-| `addStatusText="Add more"`        | Specify the caption of dashed input-file        |
+| Attribute                          | Details                                         |
+| ---------------------------------- | ----------------------------------------------- |
+| `inputFileText="Upload file"`      | Text in the input-file component                |
+| `maxSizeOfSingleFileMegaByte="10"` | Maximal size of a single file in mb             |
+| `maxSizeOfAllFilesMegaByte="15"`   | Maximal size of a all files together in mb      |
+| `maxNumberOfFiles="10"`            | Maximal number of files                         |
+| `showImageOverview="false"`        | Switch between normal view and image overview   |
+| `icon="cloud-upload"`              | Specify the upload icon in input-file component |
+| `errorStatusText="Error occurred"` | Specify the caption for wrong files             |
+| `deleteStatusText="Delete"`        | Specify the caption when hovering over a file   |
+| `addStatusText="Add more"`         | Specify the caption of dashed box               |
 
-### Bar
+### inputFileText
 
-The attribute `bar` specifies...
+The attribute `inputFileText` specifies the text witch appears next to the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md).
 
-### onClick
+### maxSizeOfSingleFileMegaByte
+
+The attribute `maxSizeOfSingleFileMegaByte` specifies the maximal size a single file can have. A file which is to big gets displayed as a wrong file.
+
+### maxSizeOfAllFilesMegaByte
+
+The attribute `maxSizeOfAllFilesMegaByte` specifies the maximal size all files together can have. Every File that is over the limit gets displayed as a wrong file.
+
+### maxNumberOfFiles
+
+The attribute `maxNumberOfFiles` specifies the maximal number of files. Every File that is over the limit will not be displayed. _TODO_
+
+### showImageOverview
+
+The attribute `showImageOverview` turns to the value true as soon as one file is selected. It turns false again when all files are removed through the user.
+
+### icon
+
+The attribute `icon` specifies the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md). Default is "cloud-upload".
+
+### errorStatusText
+
+The attribute `errorStatusText` specifies the text under a selected file with an error.
+
+### deleteStatusText
+
+The attribute `deleteStatusText` specifies the text that appears when hovering over a file.
+
+### addStatusText
+
+The attribute `addStatusText` specifies the text under the dashed box appearing after the last file.
+
+### onClick TODO for all Events
 
 The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
