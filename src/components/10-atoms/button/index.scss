@@ -4,7 +4,7 @@
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
-  min-height: 40px;
+  min-height: 30px;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -15,7 +15,8 @@
   border-bottom-color: $color-prim-blue-deep-sapphire;
 
   @include breakpoint($mediaquery-sm-up) {
-    @include _text(default)
+    @include _text(default);
+    min-height: 40px;
   }
 
   &:hover,
@@ -42,6 +43,11 @@
 
   &__icon {
     display: flex;
+    margin-right: 10px;
+  }
+
+  &__arrow {
+    display: flex;
     margin-left: 10px;
   }
 }
@@ -54,6 +60,11 @@
     min-height: 50px;
     @include _text(medium)
   }
+}
+
+.a-button--small {
+  min-height: 30px;
+  @include _text(small);
 }
 
 .a-button--motion {
@@ -163,4 +174,32 @@
       background-color: $color-prim-white;
     }
   }
+}
+
+@mixin inverted-color($color) {
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color;
+  }
+}
+
+.a-button--inverted-blue-ocean {
+  @include inverted-color($color-sec-blue-ocean);
+}
+
+.a-button--inverted-red-tosca {
+  @include inverted-color($color-sec-red-tosca);
+}
+
+.a-button--inverted-purple-logan {
+  @include inverted-color($color-sec-purple-logan);
+}
+
+.a-button--inverted-green-viridian {
+  @include inverted-color($color-sec-green-viridian);
+}
+
+.a-button--inverted-blue-teal {
+  @include inverted-color($color-sec-blue-teal);
 }

@@ -1,10 +1,11 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
-import buttonCSS from './index.scss';
+import buttonLinkCSS from './index.scss';
+
+const ARROW_RIGHT = 'arrow-right';
 
 class AXAButtonLink extends LitElement {
   static get tagName() {
@@ -13,7 +14,7 @@ class AXAButtonLink extends LitElement {
 
   static get styles() {
     return css`
-      ${unsafeCSS(buttonCSS)}
+      ${unsafeCSS(buttonLinkCSS)}
     `;
   }
 
@@ -21,10 +22,10 @@ class AXAButtonLink extends LitElement {
     return {
       href: { type: String },
       external: { type: Boolean },
-      // secondary, red,  inverted, inverted-green, inverted-dark-blue
+      // secondary, red,  inverted, inverted-blue-ocean, inverted-red-tosca, inverted-purple-logan, inverted-green-viridian, inverted-blue-teal
       variant: { type: String },
       icon: { type: String },
-      large: { type: Boolean },
+      size: { type: String },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
       onClick: { type: Function },
@@ -34,29 +35,28 @@ class AXAButtonLink extends LitElement {
   constructor() {
     super();
     this.href = '';
+    this.size = '';
     this.variant = '';
     this.icon = '';
     this.external = false;
-    this.large = false;
     this.motionOff = false;
     this.disabled = false;
     this.onClick = () => {};
   }
 
-  firstUpdated() {
-    const { style } = this;
-    style.appearance = 'none';
-    style.mozAppearance = 'none';
-    style.webkitAppearance = 'none';
-    style.msAppearance = 'none';
-    style.oAppearance = 'none';
+  get showIcon() {
+    return this.icon && this.icon !== ARROW_RIGHT;
+  }
+
+  get showArrow() {
+    return this.icon === ARROW_RIGHT;
   }
 
   render() {
     const {
       href,
       external,
-      large,
+      size = '',
       motionOff,
       disabled,
       variant = '',
@@ -65,11 +65,19 @@ class AXAButtonLink extends LitElement {
 
     const classes = {
       'a-button-link': true,
+      'a-button-link--large': size === 'large',
+      'a-button-link--small': size === 'small',
+      'a-button-link--motion': !motionOff,
       'a-button-link--secondary': variant === 'secondary',
       'a-button-link--red': variant === 'red',
-      'a-button-link--inverted': variant === 'inverted',
-      'a-button-link--large': large,
-      'a-button-link--motion': !motionOff,
+      'a-button-link--inverted': variant.includes('inverted'),
+      'a-button-link--inverted-blue-ocean': variant === 'inverted-blue-ocean',
+      'a-button-link--inverted-red-tosca': variant === 'inverted-red-tosca',
+      'a-button-link--inverted-purple-logan':
+        variant === 'inverted-purple-logan',
+      'a-button-link--inverted-green-viridian':
+        variant === 'inverted-green-viridian',
+      'a-button-link--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
 
     return html`
@@ -82,10 +90,20 @@ class AXAButtonLink extends LitElement {
         @click="${this.onClick}"
       >
         <span class="a-button-link__flex-wrapper">
-          <slot></slot> ${icon &&
-            html`
-              <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
-            `}
+          ${this.showIcon
+            ? html`
+                <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
+              `
+            : ''}
+          <slot></slot>
+          ${this.showArrow
+            ? html`
+                <axa-icon
+                  class="a-button-link__arrow"
+                  icon="arrow-right"
+                ></axa-icon>
+              `
+            : ''}
         </span>
       </a>
     `;

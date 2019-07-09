@@ -74,9 +74,13 @@ The string-valued attribute `href` is used like in a native &lt;a&gt; hyperlink.
 
 The Boolean attribute `external` adds the `target="_blank"` functionality.
 
-### Large
+### Size
 
-The Boolean attribute `large` specifies the size of a button link. Setting this attribute will change the height of a button link.
+| Attribute      | Details                    |
+| -------------- | -------------------------- |
+| `size=""`      | Default button medium size |
+| `size="small"` | button small size          |
+| `size="large"` | button large size          |
 
 ### motionOff
 

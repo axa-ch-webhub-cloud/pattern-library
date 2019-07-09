@@ -41,13 +41,22 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 36px;
+    min-height: 26px;
     // IE11 workaround
-    height: 35px;
+    height: 25px;
     box-sizing: border-box;
+
+    @include breakpoint($mediaquery-sm-up) {
+      min-height: 36px;
+    }
   }
 
   &__icon {
+    display: flex;
+    margin-right: 10px;
+  }
+
+  &__arrow {
     display: flex;
     margin-left: 10px;
   }
@@ -62,9 +71,16 @@
 }
 
 .a-button-link--large .a-button-link__flex-wrapper {
+  min-height: 36px;
+
   @include breakpoint($mediaquery-sm-up) {
     min-height: 46px;
   }
+}
+
+.a-button-link--small .a-button-link__flex-wrapper {
+  min-height: 26px;
+  @include _text(small);
 }
 
 .a-button-link--motion {
@@ -174,4 +190,32 @@
       background-color: $color-prim-white;
     }
   }
+}
+
+@mixin inverted-color($color) {
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color;
+  }
+}
+
+.a-button-link--inverted-blue-ocean {
+  @include inverted-color($color-sec-blue-ocean);
+}
+
+.a-button-link--inverted-red-tosca {
+  @include inverted-color($color-sec-red-tosca);
+}
+
+.a-button-link--inverted-purple-logan {
+  @include inverted-color($color-sec-purple-logan);
+}
+
+.a-button-link--inverted-green-viridian {
+  @include inverted-color($color-sec-green-viridian);
+}
+
+.a-button-link--inverted-blue-teal {
+  @include inverted-color($color-sec-blue-teal);
 }

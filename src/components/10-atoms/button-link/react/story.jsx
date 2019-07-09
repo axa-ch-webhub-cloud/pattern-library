@@ -77,9 +77,9 @@ storiesOf('Atoms/Button Link/React', module)
   })
 
   /* Large */
-  .add('Button-Link - large', () => {
+  .add('Button-Link - size', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonLinkReact large>Large</AXAButtonLinkReact>, div);
+    ReactDOM.render(<AXAButtonLinkReact size="small">Small</AXAButtonLinkReact>, div);
     return div;
   })
 
