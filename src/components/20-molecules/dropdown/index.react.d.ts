@@ -1,16 +1,30 @@
 import React from 'react';
 
-interface AXADropdownProps {
+type AXADropdownChangeEvent<T> = {
+  target: {
+    key: string;
+    name: string;
+    value: T;
+    isSelected: boolean;
+  }
+}
+
+interface AXADropdownProps<T = number|string> {
+  embedded?: boolean;
+  error?: string;
   items: Array<{
     name: string;
-    // boolean: so that false can be used instead of '' as a workaround for #1044
-    value?: boolean | number | string;
-    url?: string;
-    isSelected?: boolean;
-    isInitialItem?: boolean;
+    value?: T;
+    selected?: boolean;
+    disabled?: boolean;
   }>;
-  onAXAValueChange?: (value: string | number) => void;
+  native?: boolean,
+  onBlur?: (e?: any) => void;
+  onChange?: (e: AXADropdownChangeEvent<T>) => void;
+  onFocus?: (e?: any) => void;
   title?: string;
+  value?: T;
+  valid?: boolean;
 }
 
 declare function createAXADropdown(
