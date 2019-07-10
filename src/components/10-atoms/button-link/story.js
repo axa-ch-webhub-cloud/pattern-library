@@ -63,7 +63,7 @@ storiesOf('Atoms/Button Link', module)
   )
   /* Icon */
   .add(
-    'Button - icon',
+    'Button Link - icon',
     () => `<axa-button-link icon="download">Icon</axa-button-link>`
   )
 
