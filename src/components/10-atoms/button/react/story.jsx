@@ -73,9 +73,9 @@ storiesOf('Atoms/Button/React', module)
   })
 
   /* Large */
-  .add('Button - large', () => {
+  .add('Button - size', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonReact large>Large</AXAButtonReact>, div);
+    ReactDOM.render(<AXAButtonReact size='small'>Small</AXAButtonReact>, div);
     return div;
   })
 

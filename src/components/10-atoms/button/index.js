@@ -5,6 +5,8 @@ import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
 import buttonCSS from './index.scss';
 
+const ARROW_RIGHT = 'arrow-right';
+
 class AXAButton extends LitElement {
   static get tagName() {
     return 'axa-button';
@@ -20,10 +22,10 @@ class AXAButton extends LitElement {
     return {
       // button, submit, reset
       type: { type: String, reflect: true },
-      // secondary, red,  inverted, inverted-green, inverted-dark-blue
+      // secondary, red,  inverted, inverted-blue-ocean, inverted-red-tosca, inverted-purple-logan, inverted-green-viridian, inverted-blue-teal
       variant: { type: String },
       icon: { type: String },
-      large: { type: Boolean },
+      size: { type: String },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
       onClick: { type: Function },
@@ -33,20 +35,31 @@ class AXAButton extends LitElement {
   constructor() {
     super();
     this.type = 'button';
+    // small, large, medium is default
+    this.size = '';
     this.variant = '';
     this.icon = '';
-    this.large = false;
     this.motionOff = false;
     this.disabled = false;
     this.onClick = () => {};
   }
 
-  isTypeSubmitOrReset = () => this.type === 'submit' || this.type === 'reset';
+  get isTypeSubmitOrReset() {
+    return this.type === 'submit' || this.type === 'reset';
+  }
+
+  get showIcon() {
+    return this.icon && this.icon !== ARROW_RIGHT;
+  }
+
+  get showArrow() {
+    return this.icon === ARROW_RIGHT;
+  }
 
   firstUpdated() {
     const { style } = this;
     // shadow dom submit btn workaround
-    if (this.isTypeSubmitOrReset()) {
+    if (this.isTypeSubmitOrReset) {
       const fakeButton = document.createElement('button');
       fakeButton.type = this.type;
       fakeButton.style.display = 'none';
@@ -62,14 +75,29 @@ class AXAButton extends LitElement {
   }
 
   render() {
-    const { type, large, motionOff, disabled, variant = '', icon = '' } = this;
+    const {
+      type,
+      motionOff,
+      disabled,
+      variant = '',
+      icon = '',
+      size = '',
+    } = this;
+
     const classes = {
       'a-button': true,
+      'a-button--large': size === 'large',
+      'a-button--small': size === 'small',
+      'a-button--motion': !motionOff,
       'a-button--secondary': variant === 'secondary',
       'a-button--red': variant === 'red',
-      'a-button--inverted': variant === 'inverted',
-      'a-button--large': large,
-      'a-button--motion': !motionOff,
+      'a-button--inverted': variant.includes('inverted'),
+      'a-button--inverted-blue-ocean': variant === 'inverted-blue-ocean',
+      'a-button--inverted-red-tosca': variant === 'inverted-red-tosca',
+      'a-button--inverted-purple-logan': variant === 'inverted-purple-logan',
+      'a-button--inverted-green-viridian':
+        variant === 'inverted-green-viridian',
+      'a-button--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
 
     return html`
@@ -80,10 +108,17 @@ class AXAButton extends LitElement {
         @click="${this.onClick}"
       >
         <span class="a-button__flex-wrapper">
-          <slot></slot> ${icon &&
-            html`
-              <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
-            `}
+          ${this.showIcon
+            ? html`
+                <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
+              `
+            : ''}
+          <slot></slot>
+          ${this.showArrow
+            ? html`
+                <axa-icon class="a-button__arrow" icon="arrow-right"></axa-icon>
+              `
+            : ''}
         </span>
       </button>
     `;
@@ -92,7 +127,7 @@ class AXAButton extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    if (this.isTypeSubmitOrReset()) this.onclick = null;
+    if (this.isTypeSubmitOrReset) this.onclick = null;
   }
 }
 

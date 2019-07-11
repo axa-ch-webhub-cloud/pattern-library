@@ -30,7 +30,12 @@ storiesOf('Atoms/Button Link', module)
     'Button Link - variant: inverted',
     () => `
     <div style="background-color: #00008f; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button-link variant='inverted'>Inverted</axa-button-link>
+      <axa-button-link variant="inverted">Inverted</axa-button-link>
+      <axa-button-link variant="inverted-blue-ocean">inverted-blue-ocean</axa-button-link>
+      <axa-button-link variant="inverted-red-tosca">inverted-red-tosca</axa-button-link>
+      <axa-button-link variant="inverted-purple-logan">inverted-purple-logan</axa-button-link>
+      <axa-button-link variant="inverted-green-viridian">inverted-green-viridian</axa-button-link>
+      <axa-button-link variant="inverted-blue-teal">inverted-blue-teal</axa-button-link>
     </div>`
   )
   .add(
@@ -38,8 +43,13 @@ storiesOf('Atoms/Button Link', module)
     () => '<axa-button-link disabled>Disabled</axa-button-link>'
   )
   .add(
-    'Button Link - large',
-    () => `<axa-button-link large>Large</axa-button-link>`
+    'Button Link - size',
+    () => `
+    <div>
+      <axa-button-link size="small">Small</axa-button-link>
+      <axa-button-link>Medium</axa-button-link>
+      <axa-button-link size="large">Large</axa-button-link>
+    </div>`
   )
   .add(
     'Button Link - motionOff',
@@ -51,7 +61,14 @@ storiesOf('Atoms/Button Link', module)
       </div>
     </div>`
   )
+  /* Icon */
   .add(
     'Button Link - icon',
+    () => `<axa-button-link icon="download">Icon</axa-button-link>`
+  )
+
+  /* Arrow */
+  .add(
+    'Button - icon(arrow-right)',
     () => `<axa-button-link icon="arrow-right">Icon</axa-button-link>`
   );
