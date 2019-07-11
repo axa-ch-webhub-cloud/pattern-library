@@ -97,3 +97,7 @@ Using the attribute `icon`'s string value as icon name, an icon will be rendered
 ### onClick
 
 The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+
+### Migration version 1 to 2
+
+The large property is obsolete, use size property like `size="large"
