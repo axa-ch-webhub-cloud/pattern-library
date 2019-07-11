@@ -54,16 +54,17 @@ class AXATableSortable extends LitElement {
   }
 
   areLengthValuesConsistent(bodyLength, headLength, footLength) {
+    const footerIsConsistent = (footLength > 0) || footLength === bodyLength;
+    const headerIsConsistent = (headLength === bodyLength);
+
     if(!bodyLength) {
       return true;
-    } else {
-      const footerIsConsistent = (footLength > 0 ? true : false) || footLength === bodyLength;
-      const headerIsConsistent = (headLength === bodyLength);
-
-      if(footerIsConsistent && headerIsConsistent){
-        return true;
-      }
     }
+
+    if(footerIsConsistent && headerIsConsistent){
+      return true;
+    }
+
     return false;
   }
 
