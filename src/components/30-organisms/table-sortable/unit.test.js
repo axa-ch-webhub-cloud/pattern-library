@@ -1,11 +1,21 @@
 import AXATableSortable from './index';
 
 describe('validateModel()', () => {
-  test('should return true if no data is given', () => {
+  test('should return true if no elements are given', () => {
     AXATableSortable.prototype.model = {
       thead: [],
       tbody: [[]],
       tfoot: [[]],
+    };
+
+    expect(AXATableSortable.prototype.validateModel()).toBe(true);
+  });
+
+  test('should return true if tbody has no elements, but thead and tfoot has', () => {
+    AXATableSortable.prototype.model = {
+      thead: [''],
+      tbody: [[]],
+      tfoot: [['']],
     };
 
     expect(AXATableSortable.prototype.validateModel()).toBe(true);
