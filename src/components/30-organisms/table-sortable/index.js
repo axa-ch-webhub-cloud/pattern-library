@@ -53,6 +53,20 @@ class AXATableSortable extends LitElement {
     };
   }
 
+  areLengthValuesConsistent(bodyLength, headLength, footLength) {
+    if(!bodyLength) {
+      return true;
+    } else {
+      const footerIsConsistent = (footLength > 0 ? true : false) || footLength === bodyLength;
+      const headerIsConsistent = (headLength === bodyLength);
+
+      if(footerIsConsistent && headerIsConsistent){
+        return true;
+      }
+    }
+    return false;
+  }
+
   validateModel() {
     const {
       thead: { length: theadL },
@@ -65,7 +79,7 @@ class AXATableSortable extends LitElement {
     if (tfoot && tfoot[0]) {
       tfootL = tfoot.length;
     }
-    return !tbodyL || !(theadL !== tbodyL && (!tfootL || tfootL === tbodyL));
+    return this.areLengthValuesConsistent(tbodyL, theadL, tfootL);
   }
 
   getSortingAria(config) {
