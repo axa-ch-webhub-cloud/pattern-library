@@ -68,7 +68,7 @@ test('should sort strings', async t => {
 
   const $columnTwoLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[1];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -114,7 +114,7 @@ test('should sort numbers', async t => {
 
   const $columnOneLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -194,7 +194,7 @@ test('should sort also when innerscroll is set ', async t => {
 
   const $columnOneLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -258,7 +258,7 @@ test('should sort also when maxheight is set ', async t => {
 
   const $columnOneLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
