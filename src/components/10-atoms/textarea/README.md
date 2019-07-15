@@ -91,7 +91,6 @@ The boolean attribute `disabled` disables the underlying native HTML &lt;textare
 
 The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
 
-
 ### embedded
 
 When true, the Boolean attribute `embedded` suppresses the default space around the textarea otherwise reserved for showing valid/error UI states.

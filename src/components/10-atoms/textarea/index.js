@@ -226,7 +226,7 @@ class AXATextarea extends NoShadowDOM {
       'a-textarea__messages': true,
       'a-textarea__messages--error': invalid,
       'a-textarea__messages--reservation': !embedded,
-      'a-textarea__messages--hidden': embedded && !this.showMessages
+      'a-textarea__messages--hidden': embedded && !this.showMessages,
     };
 
     return html`

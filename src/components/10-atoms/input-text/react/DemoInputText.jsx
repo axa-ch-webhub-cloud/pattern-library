@@ -29,11 +29,7 @@ const DemoInputText = () => {
         value="freeze"
         onChange={handleChange}
       />
-      <AXAInputTextReact
-        required
-        label="Uncontrolled"
-        name="lastname"
-      />
+      <AXAInputTextReact required label="Uncontrolled" name="lastname" />
       <AXAInputTextReact
         required
         label="Uncontrolled Default Value"
@@ -48,7 +44,7 @@ const DemoInputText = () => {
         embedded
         checkMark={name === 'checkmark'}
         invalid={name === 'error'}
-        error='Error Message'
+        error="Error Message"
         onChange={handleNameChange}
       />
     </div>

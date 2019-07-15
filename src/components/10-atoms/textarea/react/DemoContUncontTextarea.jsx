@@ -45,7 +45,7 @@ const DemoContUncontTextarea = () => {
         embedded
         checkMark={name === 'checkmark'}
         invalid={name === 'error'}
-        error='Error Message'
+        error="Error Message"
         onChange={handleNameChange}
       />
     </div>

@@ -143,13 +143,12 @@ class AXAInputText extends NoShadowDOM {
     const checkClasses = {
       'a-input-text__check': true,
       'a-input-text__check--hidden': invalid,
-
     };
 
     const checkWrapperClasses = {
       'a-input-text__check-wrapper': true,
       'a-input-text__check-wrapper--reservation': !embedded,
-      'a-input-text__check-wrapper--hidden': embedded && !checkMark
+      'a-input-text__check-wrapper--hidden': embedded && !checkMark,
     };
 
     const errorMessageWrapperClasses = {
