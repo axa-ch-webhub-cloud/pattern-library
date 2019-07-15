@@ -25,6 +25,10 @@ storiesOf('Atoms/Textarea', module)
     () => '<axa-textarea checkmark></axa-textarea>'
   )
   .add(
+    'Textarea - embedded',
+    () => '<axa-textarea embedded></axa-textarea>'
+  )
+  .add(
     'Textarea - invalid',
     () =>
       '<axa-textarea invalid ></axa-textarea>'
