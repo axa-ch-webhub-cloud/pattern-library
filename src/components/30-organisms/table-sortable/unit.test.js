@@ -20,7 +20,6 @@ describe('validateModel()', () => {
       tfoot: [['']],
     };
 
-
     expect(AXATableSortable.prototype.validateModel()).toBe(true);
   });
 
@@ -48,7 +47,7 @@ describe('validateModel()', () => {
     AXATableSortable.prototype.model = {
       thead: [''],
       tbody: [['']],
-      tfoot: [[]]
+      tfoot: [[]],
     };
 
     expect(AXATableSortable.prototype.validateModel()).toBe(true);
@@ -96,5 +95,3 @@ describe('validateModel()', () => {
     expect(AXATableSortable.prototype.validateModel()).toBe(false);
   });
 });
-
-

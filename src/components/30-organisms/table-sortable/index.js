@@ -54,10 +54,10 @@ class AXATableSortable extends LitElement {
   }
 
   areValuesEqualOrZero(a, b) {
-    if(a === b) {
+    if (a === b) {
       return true;
     }
-    if(a === 0 || b === 0) {
+    if (a === 0 || b === 0) {
       return true;
     }
     return false;
@@ -65,19 +65,19 @@ class AXATableSortable extends LitElement {
 
   areLengthValuesConsistent(bodyLength = 0, headLength = 0, footLength = 0) {
     // all levels equal
-    if((headLength === bodyLength) && (bodyLength === footLength)) {
+    if (headLength === bodyLength && bodyLength === footLength) {
       return true;
     }
 
-    if(headLength === 0) {
+    if (headLength === 0) {
       return this.areValuesEqualOrZero(bodyLength, footLength);
     }
 
-    if(bodyLength === 0) {
+    if (bodyLength === 0) {
       return this.areValuesEqualOrZero(headLength, footLength);
     }
 
-    if(footLength === 0) {
+    if (footLength === 0) {
       return this.areValuesEqualOrZero(headLength, bodyLength);
     }
 
