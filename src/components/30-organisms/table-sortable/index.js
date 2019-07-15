@@ -53,16 +53,32 @@ class AXATableSortable extends LitElement {
     };
   }
 
-  areLengthValuesConsistent(bodyLength, headLength, footLength) {
-    const footerIsConsistent = (footLength > 0) || footLength === bodyLength;
-    const headerIsConsistent = (headLength === bodyLength);
+  areValuesEqualOrZero(a, b) {
+    if(a === b) {
+      return true;
+    }
+    if(a === 0 || b === 0) {
+      return true;
+    }
+    return false;
+  }
 
-    if(!bodyLength) {
+  areLengthValuesConsistent(bodyLength = 0, headLength = 0, footLength = 0) {
+    // all levels equal
+    if((headLength === bodyLength) && (bodyLength === footLength)) {
       return true;
     }
 
-    if(footerIsConsistent && headerIsConsistent){
-      return true;
+    if(headLength === 0) {
+      return this.areValuesEqualOrZero(bodyLength, footLength);
+    }
+
+    if(bodyLength === 0) {
+      return this.areValuesEqualOrZero(headLength, footLength);
+    }
+
+    if(footLength === 0) {
+      return this.areValuesEqualOrZero(headLength, bodyLength);
     }
 
     return false;
@@ -78,7 +94,7 @@ class AXATableSortable extends LitElement {
     } = this.model;
     let tfootL = 0;
     if (tfoot && tfoot[0]) {
-      tfootL = tfoot.length;
+      tfootL = tfoot[0].length;
     }
     return this.areLengthValuesConsistent(tbodyL, theadL, tfootL);
   }
