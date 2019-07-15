@@ -3,9 +3,14 @@ import AXAInputTextReact from './AXAInputTextReact';
 
 const DemoInputText = () => {
   const [firstName, setFirstName] = useState('controlled');
+  const [name, setName] = useState('');
 
   const handleChange = ev => {
     setFirstName(ev.target.value);
+  };
+
+  const handleNameChange = ev => {
+    setName(ev.target.value);
   };
 
   return (
@@ -34,6 +39,17 @@ const DemoInputText = () => {
         label="Uncontrolled Default Value"
         name="lastname_3"
         defaultValue="test"
+      />
+
+      <AXAInputTextReact
+        label="embedded: type checkmark or error"
+        name="name"
+        value={name}
+        embedded
+        checkMark={name === 'checkmark'}
+        invalid={name === 'error'}
+        error='Error Message'
+        onChange={handleNameChange}
       />
     </div>
   );

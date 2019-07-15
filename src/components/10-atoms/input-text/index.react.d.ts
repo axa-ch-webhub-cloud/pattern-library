@@ -12,6 +12,7 @@ interface AXAInputTextProps {
   required?: boolean;
   disabled?: boolean;
   checkMark?: boolean;
+  embedded?: boolean;
   isReact?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
