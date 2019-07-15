@@ -2,13 +2,13 @@ import React from 'react';
 
 type Variant = 'foo' | 'bar';
 
-interface AXATooltipProps {
+interface AXAPopupProps {
   variant?: Variant;
   onClick?: () => void;
 }
 
-declare function createAXATooltip(
+declare function createAXAPopup(
   createElement: typeof React.createElement
-): React.ComponentType<AXATooltipProps>;
+): React.ComponentType<AXAPopupProps>;
 
-export = createAXATooltip;
+export = createAXAPopup;

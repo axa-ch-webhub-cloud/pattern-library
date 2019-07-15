@@ -5,9 +5,9 @@ import { InfoSvg } from '@axa-ch/materials/icons';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-class AXATooltip extends LitElement {
+class AXAPopup extends LitElement {
   static get tagName() {
-    return 'axa-tooltip';
+    return 'axa-popup';
   }
 
   static get styles() {
@@ -46,13 +46,13 @@ class AXATooltip extends LitElement {
     const { open } = this;
 
     const contentClasses = {
-      'a-tooltip__content': true,
-      'a-tooltip__content--hidden': !open
+      'a-popup__content': true,
+      'a-popup__content--hidden': !open
     };
 
     return html`
-      <div class="a-tooltip">
-        <button class="a-tooltip__button" @click="${this.handleClick}">
+      <div class="a-popup">
+        <button class="a-popup__button" @click="${this.handleClick}">
           ${svg([InfoSvg])}
         </button>
         <article class="${classMap(contentClasses)}">
@@ -63,6 +63,6 @@ class AXATooltip extends LitElement {
   }
 }
 
-defineOnce(AXATooltip.tagName, AXATooltip);
+defineOnce(AXAPopup.tagName, AXAPopup);
 
-export default AXATooltip;
+export default AXAPopup;

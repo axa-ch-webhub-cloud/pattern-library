@@ -1,4 +1,4 @@
-# Tooltip
+# Popup
 
 TODO Description
 
@@ -11,27 +11,27 @@ npm install @axa-ch/tooltip
 ```
 
 ```js
-import '@axa-ch/tooltip';
+import '@axa-ch/popup';
 ...
 <axa-tooltip></axa-tooltip>
 ```
 
 ### React
 
-Create a React-ified tooltip with the createElement function from your React version and then use it like this:
+Create a React-ified popup with the createElement function from your React version and then use it like this:
 
 ```js
 import { createElement } from 'react';
 import createAXATooltipReact from '@axa-ch/tooltip/lib/index.react';
 
-const AXATooltipReact = createAXATooltipReact(createElement);
+const AXAPopupReact = createAXATooltipReact(createElement);
 
-export default AXATooltipReact;
+export default AXAPopupReact;
 ```
 
 ```js
-<AXATooltipReact onClick={handler}>
-</AXATooltipReact>
+<AXAPopupReact onClick={handler}>
+</AXAPopupReact>
 ```
 
 ### Pure HTML pages

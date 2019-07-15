@@ -3,10 +3,10 @@ import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Atoms/Tooltip', module)
+storiesOf('Atoms/Popup', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  .add('Tooltip - default', () => '<axa-tooltip>Some children</axa-tooltip>')
+  .add('Popup - default', () => '<axa-popup>Some children</axa-popup>')
