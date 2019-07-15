@@ -80,16 +80,21 @@ axa-input-text {
 
   .a-input-text__error {
     @include typo();
+    display: block;
     color: $color-validation-error;
+    margin-top: 10px;
   }
 
   .a-input-text__error-wrapper--reservation {
-    margin-top: 10px;
     min-height: 20px;
   }
 
   .a-input-text__error-wrapper--hidden {
     display: none;
+  }
+
+  .a-input-text__check-wrapper {
+    margin-left: 10px;
   }
 
   .a-input-text__check-wrapper--reservation {

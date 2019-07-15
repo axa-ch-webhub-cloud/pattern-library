@@ -42,11 +42,11 @@ const DemoInputText = () => {
       />
 
       <AXAInputTextReact
-        label="Controlled embedded"
+        label="embedded: type checkmark or error"
         name="name"
         value={name}
         embedded
-        checkmark={name === 'checkmark'}
+        checkMark={name === 'checkmark'}
         invalid={name === 'error'}
         error='Error Message'
         onChange={handleNameChange}
