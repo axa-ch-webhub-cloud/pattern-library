@@ -99,7 +99,6 @@ axa-input-text {
 
   .a-input-text__check-wrapper--reservation {
     @include check-mark-animated-wrapper();
-    margin-left: 10px;
   }
 
   .a-input-text__check-wrapper--hidden {
