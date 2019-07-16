@@ -25,8 +25,7 @@ storiesOf('Atoms/Input text', module)
   )
   .add(
     'Input text - embedded',
-    () =>
-      '<axa-input-text embedded></axa-input-text>'
+    () => '<axa-input-text embedded></axa-input-text>'
   )
   .add(
     'Input text - type',
