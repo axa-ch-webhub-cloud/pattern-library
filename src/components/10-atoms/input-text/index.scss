@@ -20,7 +20,7 @@ axa-input-text {
     @include typo();
     appearance: none;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-dusty;
+    border: $border-width $border-type $color-prim-gray-dusty;
     border-radius: 0;
     box-sizing: border-box;
     color: $color-prim-gray-mine-shaft;
