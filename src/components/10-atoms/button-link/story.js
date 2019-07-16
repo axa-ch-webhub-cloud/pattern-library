@@ -1,74 +1,63 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import Readme from './README.md';
+import {
+  boolean,
+  select,
+  radios,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import './index';
+import Readme from './README.md';
 
-storiesOf('Atoms/Button Link', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  .add(
-    'Button Link - default',
-    () => '<axa-button-link href="https://axa.ch/">Default</axa-button-link>'
-  )
-  .add(
-    'Button Link - external',
-    () =>
-      '<axa-button-link href="https://axa.ch/" external>External</axa-button-link>'
-  )
-  .add(
-    'Button Link - variant: red',
-    () => '<axa-button-link variant="red">Red</axa-button-link>'
-  )
-  .add(
-    'Button Link - variant: secondary',
-    () => '<axa-button-link variant="secondary">Secondary</axa-button-link>'
-  )
-  .add(
-    'Button Link - variant: inverted',
-    () => `
-    <div style="background-color: #00008f; width: 500px; height: 100px; padding-top: 30px; padding-bottom: 30px">
-      <axa-button-link variant="inverted">Inverted</axa-button-link>
-      <axa-button-link variant="inverted-blue-ocean">inverted-blue-ocean</axa-button-link>
-      <axa-button-link variant="inverted-red-tosca">inverted-red-tosca</axa-button-link>
-      <axa-button-link variant="inverted-purple-logan">inverted-purple-logan</axa-button-link>
-      <axa-button-link variant="inverted-green-viridian">inverted-green-viridian</axa-button-link>
-      <axa-button-link variant="inverted-blue-teal">inverted-blue-teal</axa-button-link>
-    </div>`
-  )
-  .add(
-    'Button Link - disabled',
-    () => '<axa-button-link disabled>Disabled</axa-button-link>'
-  )
-  .add(
-    'Button Link - size',
-    () => `
-    <div>
-      <axa-button-link size="small">Small</axa-button-link>
-      <axa-button-link>Medium</axa-button-link>
-      <axa-button-link size="large">Large</axa-button-link>
-    </div>`
-  )
-  .add(
-    'Button Link - motionOff',
-    () => `
-    <div>
-        <axa-button-link motionoff>MotionOff</axa-button-link>
-        <axa-button-link motionoff variant="red">MotionOff + Red</axa-button-link>
-        <axa-button-link motionoff variant="secondary">MotionOff + Secondary</axa-button-link>
-      </div>
-    </div>`
-  )
-  /* Icon */
-  .add(
-    'Button Link - icon',
-    () => `<axa-button-link icon="download">Icon</axa-button-link>`
-  )
+const storyButton = storiesOf('Atoms/Button Link', module);
+storyButton.addDecorator(withKnobs);
+storyButton.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
 
-  /* Arrow */
-  .add(
-    'Button - icon(arrow-right)',
-    () => `<axa-button-link icon="arrow-right">Icon</axa-button-link>`
-  );
+const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
+
+storyButton.add('Button Link', () => {
+  const options = {
+    None: '',
+    Red: 'red',
+    Secondary: 'secondary',
+    Inverted: 'inverted',
+  };
+
+  // TODO:: Move icon variants into icons and export it from there
+  const iconOptions = {
+    None: '',
+    'Arrow Right': 'arrow-right',
+    Collapse: 'collapse',
+    Document: 'document',
+    Download: 'download',
+    Email: 'email',
+    Expand: 'expand',
+    Mobile: 'mobile',
+    Phone: 'phone',
+    Search: 'search',
+    Upload: 'upload',
+  };
+
+  const buttonText = text('Text', 'Click me');
+  const variants = radios('Variant', options, '');
+  const icons = select('Icon', iconOptions);
+  const motionOff = boolean('motionOff', false);
+  const disabled = boolean('disabled', false);
+  const large = boolean('large', false); // should probably be a variant.
+
+  return `
+  <div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
+    <axa-button-link
+      ${disabled ? 'disabled' : ''}
+      ${large ? 'large' : ''}
+      variant='${variants}'
+      ${motionOff ? 'motionoff' : ''}
+      icon='${icons}'>${buttonText}
+    </axa-button-link>
+  </div>`;
+});

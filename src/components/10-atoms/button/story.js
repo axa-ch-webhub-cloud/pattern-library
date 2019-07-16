@@ -10,7 +10,7 @@ import {
 import './index';
 import Readme from './README.md';
 
-const storyButton = storiesOf('Atoms/Button Link', module);
+const storyButton = storiesOf('Atoms/Button', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {
@@ -20,7 +20,7 @@ storyButton.addParameters({
 
 const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
 
-storyButton.add('Button Link - default', () => {
+storyButton.add('Button', () => {
   const options = {
     None: '',
     Red: 'red',
@@ -49,15 +49,17 @@ storyButton.add('Button Link - default', () => {
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
   const large = boolean('large', false); // should probably be a variant.
+  const type = radios('Types', { submit: 'submit', reset: 'reset' });
 
   return `
   <div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
-    <axa-button-link
+    <axa-button
       ${disabled ? 'disabled' : ''}
       ${large ? 'large' : ''}
+      type='${type}'
       variant='${variants}'
       ${motionOff ? 'motionoff' : ''}
       icon='${icons}'>${buttonText}
-    </axa-button-link>
+    </axa-button>
   </div>`;
 });
