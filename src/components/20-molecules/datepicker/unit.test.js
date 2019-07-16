@@ -1,4 +1,3 @@
-/*
 import { getWeekdays } from './utils/date';
 
 describe('Datepicker unit tests', () => {
@@ -14,4 +13,3 @@ describe('Datepicker unit tests', () => {
     ]);
   });
 });
-*/
