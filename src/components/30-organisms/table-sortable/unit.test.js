@@ -1,8 +1,6 @@
 import AXATableSortable from './index';
 
 describe('validateModel()', () => {
-  // positive tests
-
   test('should return true if no elements are given', () => {
     AXATableSortable.prototype.model = {
       thead: [],
@@ -23,75 +21,99 @@ describe('validateModel()', () => {
     expect(AXATableSortable.prototype.validateModel()).toBe(true);
   });
 
-  test('should return true if tbody has no elements, but thead and tfoot each have one', () => {
-    AXATableSortable.prototype.model = {
-      thead: [''],
-      tbody: [[]],
-      tfoot: [['']],
-    };
+  describe('thead tests:', () => {
+    test('should return true if thead has no elements, but tfoot and tbody each have one', () => {
+      AXATableSortable.prototype.model = {
+        thead: [],
+        tbody: [['']],
+        tfoot: [['']],
+      };
 
-    expect(AXATableSortable.prototype.validateModel()).toBe(true);
+      expect(AXATableSortable.prototype.validateModel()).toBe(true);
+    });
+
+    test('should return false if thead has more elements than tbody', () => {
+      AXATableSortable.prototype.model = {
+        thead: ['', ''],
+        tbody: [['']],
+        tfoot: [[]],
+      };
+
+      expect(AXATableSortable.prototype.validateModel()).toBe(false);
+    });
   });
 
-  test('should return true if thead has no elements, but tfoot and tbody each have one', () => {
-    AXATableSortable.prototype.model = {
-      thead: [],
-      tbody: [['']],
-      tfoot: [['']],
-    };
+  describe('tbody tests:', () => {
+    test('should return true if tbody is set but nothing else', () => {
+      AXATableSortable.prototype.model = {
+        thead: [],
+        tbody: [['']],
+        tfoot: [[]],
+      };
 
-    expect(AXATableSortable.prototype.validateModel()).toBe(true);
+      expect(AXATableSortable.prototype.validateModel()).toBe(true);
+    });
+
+    test('should return false if tbody has no elements, but thead and tfoot each have one', () => {
+      AXATableSortable.prototype.model = {
+        thead: [''],
+        tbody: [[]],
+        tfoot: [['']],
+      };
+
+      expect(AXATableSortable.prototype.validateModel()).toBe(false);
+    });
+
+    test('should return false if tbody has no elements and thead.length <> tfoot.length', () => {
+      AXATableSortable.prototype.model = {
+        thead: ['', ''],
+        tbody: [[]],
+        tfoot: [['']],
+      };
+
+      expect(AXATableSortable.prototype.validateModel()).toBe(false);
+    });
+
+    test('should return false if tbody and tfoot has no elements and thead has one element', () => {
+      AXATableSortable.prototype.model = {
+        thead: [''],
+        tbody: [[]],
+        tfoot: [[]],
+      };
+
+      expect(AXATableSortable.prototype.validateModel()).toBe(false);
+    });
   });
 
-  test('should return true if tfoot has no elements, but thead and tbody each have one', () => {
-    AXATableSortable.prototype.model = {
-      thead: [''],
-      tbody: [['']],
-      tfoot: [[]],
-    };
+  describe('tfoot tests:', () => {
+    test('should return true if tfoot has no elements, but thead and tbody each have one', () => {
+      AXATableSortable.prototype.model = {
+        thead: [''],
+        tbody: [['']],
+        tfoot: [[]],
+      };
 
-    expect(AXATableSortable.prototype.validateModel()).toBe(true);
-  });
+      expect(AXATableSortable.prototype.validateModel()).toBe(true);
+    });
 
-  test('should return true if tbody is set but nothing else', () => {
-    AXATableSortable.prototype.model = {
-      thead: [],
-      tbody: [['']],
-      tfoot: [[]],
-    };
+    test('should return false if tfoot has more elements than tbody', () => {
+      AXATableSortable.prototype.model = {
+        thead: [],
+        tbody: [['']],
+        tfoot: [['', '']],
+      };
 
-    expect(AXATableSortable.prototype.validateModel()).toBe(true);
-  });
+      expect(AXATableSortable.prototype.validateModel()).toBe(false);
+    });
 
-  // negative tests
+    test('should return false if tfoot has elements but tbody has not', () => {
+      AXATableSortable.prototype.model = {
+        thead: [],
+        tbody: [[]],
+        tfoot: [['']],
+      };
 
-  test('should return false if thead has more elements than tbody', () => {
-    AXATableSortable.prototype.model = {
-      thead: ['', ''],
-      tbody: [['']],
-      tfoot: [[]],
-    };
-
-    expect(AXATableSortable.prototype.validateModel()).toBe(false);
-  });
-
-  test('should return false if tfoot has more elements than tbody', () => {
-    AXATableSortable.prototype.model = {
-      thead: [],
-      tbody: [['']],
-      tfoot: [['', '']],
-    };
-
-    expect(AXATableSortable.prototype.validateModel()).toBe(false);
-  });
-
-  test('should return false if tbody has no elements and thead.length <> tfoot.length', () => {
-    AXATableSortable.prototype.model = {
-      thead: ['', ''],
-      tbody: [[]],
-      tfoot: [['']],
-    };
-
-    expect(AXATableSortable.prototype.validateModel()).toBe(false);
+      expect(AXATableSortable.prototype.validateModel()).toBe(false);
+    });
   });
 });
