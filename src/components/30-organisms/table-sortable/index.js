@@ -69,6 +69,13 @@ class AXATableSortable extends LitElement {
       return true;
     }
 
+    // special behaviour
+    // body is mandatory if another level has elements
+    if (bodyLength === 0 && (headLength > 0 || footLength > 0)) {
+      return false;
+    }
+
+    // all levels are valid html
     if (headLength === 0) {
       return this.areValuesEqualOrZero(bodyLength, footLength);
     }
