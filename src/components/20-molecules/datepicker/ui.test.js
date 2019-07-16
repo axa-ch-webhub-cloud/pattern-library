@@ -230,6 +230,100 @@ test('datepicker should behave correctly when controlled', async t => {
   await t.expect(await getInputValue()).eql('28.2.2019');
 });
 
+fixture('Datepicker React inputfield').page(
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-with-inputfield-as-react-component`
+);
+
+test('should fire onDateChange callback on valid user input', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector(`#datepicker-react-inputfield`)
+  );
+  await t.expect(datepicker.exists).ok();
+
+  // typed-in text with valid date should trigger onDateChange...
+  await t.typeText(
+    `#datepicker-react-inputfield .js-datepicker__input`,
+    '28.2.2020',
+    { replace: true }
+  );
+
+  await t
+    .wait(50 /* allow for DOM to stabilize */)
+    .expect(datepicker.getAttribute('title')) // ... reflects onDateChange
+    .contains(' Feb 28 2020 ');
+});
+
+fixture('Datepicker React inputfield').page(
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-with-inputfield-as-react-component`
+);
+
+test('should react to programmatic date property changes', async t => {
+  // defaultValue is respected
+  const getInputValue = ClientFunction(() => {
+    const inputNode = document.querySelector(
+      `#datepicker-react-inputfield .js-datepicker__input`
+    );
+    return inputNode.value;
+  });
+
+  await t.expect(await getInputValue()).eql('25.1.2020');
+
+  // setting 'date' property works and can be read back
+  const setDate = ClientFunction(() => {
+    const domNode = document.querySelector(`#datepicker-react-inputfield`);
+    domNode.date = new Date('2019-04-27');
+    return `${domNode.date}`;
+  });
+
+  await t
+    .expect(await setDate())
+    .eql('Sat Apr 27 2019 00:00:00 GMT+0200 (Central European Summer Time)');
+
+  // now drop down the datepicker and verify it is open
+  await t
+    .wait(50 /* allow for setDate-derived re-rendering time */)
+    .click('#datepicker-react-inputfield .m-datepicker__input-button');
+
+  const datePickerIsOpen = ClientFunction(() => {
+    const domNode = document.querySelector(`#datepicker-react-inputfield`);
+    return domNode.open;
+  });
+
+  await t
+    .wait(50 /* allow for DOM to stabilize */)
+    .expect(await datePickerIsOpen())
+    .ok();
+
+  // check month, year, day meet expectations
+  const datepickerMonthDropdown = await Selector(() =>
+    document.querySelector(
+      `#datepicker-react-inputfield .js-datepicker__dropdown-month`
+    )
+  );
+
+  await t
+    .expect(datepickerMonthDropdown.getAttribute('items'))
+    .contains('{"selected":true,"name":"April","value":"3"}');
+
+  const datepickerYearDropdown = await Selector(() =>
+    document.querySelector(
+      `#datepicker-react-inputfield .js-datepicker__dropdown-year`
+    )
+  );
+
+  await t
+    .expect(datepickerYearDropdown.getAttribute('items'))
+    .contains('{"selected":true,"name":"2019","value":"2019"}');
+
+  const getSelectedDay = ClientFunction(
+    () =>
+      document.querySelector(`#datepicker-react-inputfield
+ .js-datepicker__calendar .m-datepicker__calendar-selected-day`).innerText
+  );
+
+  await t.expect(await getSelectedDay()).eql('27');
+});
+
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
 );

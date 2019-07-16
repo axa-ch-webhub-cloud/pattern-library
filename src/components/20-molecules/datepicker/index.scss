@@ -29,6 +29,11 @@ axa-datepicker {
       outline-color: $color-validation-error;
     }
   }
+
+  &[embedded] {
+    max-height: 35px;
+    overflow: hidden;
+  }
 }
 
 .m-datepicker {
