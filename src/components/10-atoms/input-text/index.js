@@ -152,7 +152,6 @@ class AXAInputText extends NoShadowDOM {
     };
 
     const errorMessageWrapperClasses = {
-      'a-input-text__error-wrapper': true,
       'a-input-text__error-wrapper--reservation': !embedded,
       'a-input-text__error-wrapper--hidden': embedded && !this.showError,
     };
