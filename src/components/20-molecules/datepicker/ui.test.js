@@ -275,9 +275,7 @@ test('should react to programmatic date property changes', async t => {
     return `${domNode.date}`;
   });
 
-  await t
-    .expect(await setDate())
-    .eql('Sat Apr 27 2019 00:00:00 GMT+0200 (Central European Summer Time)');
+  await t.expect(await setDate()).contains('Sat Apr 27 2019');
 
   // now drop down the datepicker and verify it is open
   await t
