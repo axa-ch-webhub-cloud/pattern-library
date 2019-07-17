@@ -2,8 +2,6 @@
 import { storiesOf } from '@storybook/html';
 import {
   boolean,
-  select,
-  radios,
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
