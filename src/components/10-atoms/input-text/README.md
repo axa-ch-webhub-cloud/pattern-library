@@ -106,6 +106,10 @@ The boolean attribute `disabled` disables the underlying native HTML &lt;input&g
 
 The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
 
+### embedded
+
+When true, the Boolean attribute `embedded` suppresses the default space around the input-text otherwise reserved for showing valid/error UI states.
+
 ### onChange
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.

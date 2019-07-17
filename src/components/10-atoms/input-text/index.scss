@@ -20,7 +20,7 @@ axa-input-text {
     @include typo();
     appearance: none;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-dusty;
+    border: $border-width $border-type $color-prim-gray-dusty;
     border-radius: 0;
     box-sizing: border-box;
     color: $color-prim-gray-mine-shaft;
@@ -80,20 +80,36 @@ axa-input-text {
 
   .a-input-text__error {
     @include typo();
-    margin-top: 10px;
+    display: block;
     color: $color-validation-error;
+    margin-top: 10px;
+  }
+
+  .a-input-text__error-wrapper--reservation {
+    min-height: 20px;
+  }
+
+  .a-input-text__error-wrapper--hidden {
+    display: none;
   }
 
   .a-input-text__check-wrapper {
-    @include check-mark-animated-wrapper();
     margin-left: 10px;
+  }
 
-    .a-input-text__check {
-      @include check-mark-animated();
+  .a-input-text__check-wrapper--reservation {
+    @include check-mark-animated-wrapper();
+  }
 
-      &--hidden {
-        display: none;
-      }
-    }
+  .a-input-text__check-wrapper--hidden {
+    display: none;
+  }
+
+  .a-input-text__check {
+    @include check-mark-animated();
+  }
+
+  .a-input-text__check--hidden {
+    display: none;
   }
 }

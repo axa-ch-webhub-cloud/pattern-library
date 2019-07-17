@@ -24,6 +24,10 @@ storiesOf('Atoms/Input text', module)
       '<axa-input-text checkmark placeholder="Pre-filled content"></axa-input-text>'
   )
   .add(
+    'Input text - embedded',
+    () => '<axa-input-text embedded></axa-input-text>'
+  )
+  .add(
     'Input text - type',
     () => `<div>
           <axa-input-text label="Text"></axa-input-text>
