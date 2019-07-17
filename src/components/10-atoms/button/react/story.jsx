@@ -1,11 +1,20 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import {
+  boolean,
+  select,
+  radios,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXAButtonReact from './AXAButtonReact';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Button/React', module)
+const storyButton = storiesOf('Atoms/Button/React', module);
+storyButton.addDecorator(withKnobs);
+storyButton
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -13,109 +22,53 @@ storiesOf('Atoms/Button/React', module)
   })
   /* Default */
   .add('Button - default', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonReact>Default</AXAButtonReact>, div);
-    return div;
-  })
+    const variantOptions = {
+      None: '',
+      Red: 'red',
+      Secondary: 'secondary',
+      Inverted: 'inverted',
+    };
 
-  /* Variants */
-  .add('Button - variant: red', () => {
+    // TODO:: Move icon variants into icons and export it from there there
+    const iconOptions = {
+      None: '',
+      'Arrow Right': 'arrow-right',
+      Collapse: 'collapse',
+      Document: 'document',
+      Download: 'download',
+      Email: 'email',
+      Expand: 'expand',
+      Mobile: 'mobile',
+      Phone: 'phone',
+      Search: 'search',
+      Upload: 'upload',
+    };
+
+    const buttonText = text('Text', 'Click me');
+    const variants = radios('Variant', variantOptions, '');
+    const icons = select('Icon', iconOptions);
+    const motionOff = boolean('motionOff', false);
+    const disabled = boolean('disabled', false);
+    const large = boolean('large', false); // should probably be a variant.
+    const type = radios('Types', { submit: 'submit', reset: 'reset' });
+
     const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonReact variant="red">Red</AXAButtonReact>, div);
-    return div;
-  })
-  .add('Button - variant: secondary', () => {
-    const div = document.createElement('div');
+
+    if (variants === 'inverted') {
+      div.style = 'background-color: #00008f; padding: 10px';
+    }
+
     ReactDOM.render(
-      <AXAButtonReact variant="secondary">Secondary</AXAButtonReact>,
-      div
-    );
-    return div;
-  })
-  .add('Button - variant: inverted', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div
-        style={{
-          backgroundColor: '#00008f',
-          width: '500px',
-          height: '100px',
-          paddingTop: '30px',
-          paddingBottom: '30px',
-        }}
+      <AXAButtonReact
+        variant={variants}
+        motionOff={motionOff}
+        disabled={disabled}
+        large={large}
+        type={type}
+        icon={icons}
       >
-        <AXAButtonReact variant="inverted">Inverted</AXAButtonReact>
-      </div>,
-      div
-    );
-    return div;
-  })
-
-  /* Disabled */
-  .add('Button - disabled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonReact disabled>Disabled</AXAButtonReact>, div);
-    return div;
-  })
-
-  /* Type */
-  .add('Button - variant: inverted-dark-blue', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div>
-        <AXAButtonReact>Button</AXAButtonReact>
-        <AXAButtonReact type="submit">Submit</AXAButtonReact>
-        <AXAButtonReact type="reset">Reset</AXAButtonReact>
-      </div>,
-      div
-    );
-    return div;
-  })
-
-  /* Large */
-  .add('Button - size', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonReact size="small">Small</AXAButtonReact>, div);
-    return div;
-  })
-
-  /* MotionOff */
-  .add('Button - motionOff', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div>
-        <AXAButtonReact motionoff>MotionOff</AXAButtonReact>
-        <AXAButtonReact motionoff variant="red">
-          MotionOff + Red
-        </AXAButtonReact>
-        <AXAButtonReact motionoff variant="secondary">
-          MotionOff + Secondary
-        </AXAButtonReact>
-        <AXAButtonReact motionoff variant="inverted">
-          MotionOff + Inverted
-        </AXAButtonReact>
-      </div>,
-      div
-    );
-    return div;
-  })
-
-  /* Icon */
-  .add('Button - icon', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonReact icon="arrow-right">Icon</AXAButtonReact>,
-      div
-    );
-    return div;
-  })
-
-  /* class */
-  .add('Button - class', () => {
-    const div = document.createElement('div');
-
-    ReactDOM.render(
-      <AXAButtonReact className="myCssClass">className set</AXAButtonReact>,
+        {buttonText}
+      </AXAButtonReact>,
       div
     );
     return div;
