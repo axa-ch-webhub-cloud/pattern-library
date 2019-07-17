@@ -68,7 +68,7 @@ test('should sort strings', async t => {
 
   const $columnTwoLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[1];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -80,20 +80,20 @@ test('should sort strings', async t => {
     .eql('descending');
   await t
     .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>Z Some Text</span><!---->');
+    .eql('<!----><span>Petra</span><!---->');
   await t
     .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>G Some Text</span><!---->');
+    .eql('<!----><span>Chris</span><!---->');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
   await t
     .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>A Some Text</span><!---->');
+    .eql('<!----><span>Chris</span><!---->');
   await t
     .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>AA Some Text</span><!---->');
+    .eql('<!----><span>Petra</span><!---->');
 });
 
 test('should sort numbers', async t => {
@@ -114,7 +114,7 @@ test('should sort numbers', async t => {
 
   const $columnOneLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -126,20 +126,20 @@ test('should sort numbers', async t => {
     .eql('descending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>A2 Some Text</span><!---->');
+    .eql('<!----><span>55</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>22 Some Text</span><!---->');
+    .eql('<!----><span>18</span><!---->');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>1 Some Text</span><!---->');
+    .eql('<!----><span>18</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>11 Some Text</span><!---->');
+    .eql('<!----><span>55</span><!---->');
 });
 
 test('should add a fix css class when sorted is clicked', async t => {
@@ -194,7 +194,7 @@ test('should sort also when innerscroll is set ', async t => {
 
   const $columnOneLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -206,10 +206,10 @@ test('should sort also when innerscroll is set ', async t => {
     .eql('descending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>A2 Some Text</span><!---->');
+    .eql('<!----><span>55</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>22 Some Text</span><!---->');
+    .eql('<!----><span>18</span><!---->');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
@@ -258,7 +258,7 @@ test('should sort also when maxheight is set ', async t => {
 
   const $columnOneLastRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[2];
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -270,10 +270,10 @@ test('should sort also when maxheight is set ', async t => {
     .eql('descending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>A2 Some Text</span><!---->');
+    .eql('<!----><span>55</span><!---->');
   await t
     .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>22 Some Text</span><!---->');
+    .eql('<!----><span>18</span><!---->');
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
