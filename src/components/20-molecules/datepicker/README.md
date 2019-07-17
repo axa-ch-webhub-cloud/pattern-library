@@ -72,7 +72,9 @@ Input-field content is validated.
 
 ### allowedyears
 
-The array-valued `allowedyears` specifies the years that will be visible in the date-picker dropdown. Both individual years `[2019,202]`,
+The array-valued `allowedyears` specifies the years that will be visible in the date-picker dropdown. The `year` property value is an automatic member of `allowedyears`.
+
+Both individual years `[2019,202]`,
 year ranges `["1989-2010"]`, and a mix of the two `["1989-2010", 2012, 2014]` are supported.
 
 ### labelbuttoncancel, labelbuttonok, placeholder, monthtitle, yeartitle, invaliddatetext
@@ -99,6 +101,11 @@ the date-input field's current content.
 
 This property is especially relevant for controlled-component behaviour under React.
 
+### defaultValue
+
+The string-valued `defaultValue` sets the _initial_ content of the free-form date-input field.
+This property is only available under React.
+
 ### name
 
 The string-valued `name` sets the name attribute of the free-form date-input field.
@@ -107,7 +114,18 @@ This property is especially relevant for using &lt;axa-datepicker&gt; inside a &
 
 ### outputdate
 
-The string-valued `outputdate` (read-only) reflects the currently selected date.
+The string-valued `outputdate` (read-only) reflects the currently selected date in the format of the
+current locale.
+
+### date
+
+The `date` property takes a [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object to set the current date of the datepicker.
+
+Setting `date` implies automatically derived values for `year`, `month`, and `day`.
+
+### embedded
+
+Boolean `embedded`, when true, _suppresses_ any extraneous space around the date UI proper, in particular the vertical space normally reserved below the component for displaying error messages.
 
 ## Callback Properties
 
@@ -122,3 +140,19 @@ This property is especially relevant for controlled-component behaviour under Re
 
 An `input` event with `target:{value}` is passed as parameter 1 of the callback, in which `value` represents
 the new date-input string from the free-form date-input field.
+
+Note that due to `input` event characteristics, pasting date strings into the free-form date-input field is supported (unlike in native &lt;input type="date"&gt;).
+
+### onDateChange
+
+The function-valued attribute `onDateChange` can be used as a callback prop for React and other frameworks.
+
+The callback is invoked once for every user input change that results in a valid date under the current locale and `allowedyears` restrictions.
+
+A date object is passed as parameter 1 of the callback.
+
+### onFocus, onBlur
+
+The function-valued attributes `onFocus, onBlur` can be used as callback props for React and other frameworks.
+
+The respective callbacks are invoked with the original native event as their only parameter whenever the free-form date-input field receives or loses focus. As such, they only make sense together with the `inputfield` attribute.
