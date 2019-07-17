@@ -8,10 +8,6 @@ import {
   DeleteForeverSvg,
   ClearSvg,
   AttachFileSvg,
-  FacebookSvg,
-  UploadSvg,
-  InstagramSvg,
-  LinkedinSvg,
 } from '@axa-ch/materials/icons';
 
 import { ImageUploadGroupSvg } from './icons';
@@ -25,12 +21,14 @@ import compressImage from './utils/imageCompressor';
 const OR = 'or';
 const INFO = 'Drag and drop to upload your file';
 
-const AddIcon = svg([UploadSvg]);
-const AttachFileIcon = svg([InstagramSvg]);
-const DeleteForeverIcon = svg([FacebookSvg]);
-const ClearIcon = svg([LinkedinSvg]);
+const AddIcon = svg([AddSvg]);
+const AttachFileIcon = svg([AttachFileSvg]);
+const DeleteForeverIcon = svg([DeleteForeverSvg]);
+const ClearIcon = svg([ClearSvg]);
 
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
+
+const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -61,7 +59,7 @@ class AXAImageUpload extends LitElement {
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMegaByte = 2;
+    this.maxSizeOfSingleFileMegaByte = 3;
     this.maxSizeOfAllFilesMegaByte = 5;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
@@ -89,7 +87,6 @@ class AXAImageUpload extends LitElement {
   }
 
   render() {
-    console.log('render()', this.finalFiles);
     const classes = {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
@@ -192,7 +189,7 @@ class AXAImageUpload extends LitElement {
                 <p class="m-image-upload__or">${OR}</p>
                 <axa-input-file
                   class="m-image-upload__input"
-                  accept="image/jpg, image/jpeg, application/pdf, image/png"
+                  accept="${ACCEPTED_FILE_TYPES}"
                   icon="${this.icon}"
                   multiple
                   @change=${this.handleImageUploadButtonChange}
@@ -235,8 +232,17 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadDropZoneDrop(e) {
     e.preventDefault();
+
+    const files = [...e.dataTransfer.files].filter(file => {
+      // TODO falsy stuff
+      console.log('test', ACCEPTED_FILE_TYPES.indexOf(file.type));
+      return ACCEPTED_FILE_TYPES.indexOf(file.type);
+    });
+    console.log('files on drop', files);
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-    this.addFiles(e.dataTransfer.files);
+    if (files.length > 0) {
+      this.addFiles(files);
+    }
   }
 
   handleImageClick(index) {
@@ -255,16 +261,16 @@ class AXAImageUpload extends LitElement {
   }
 
   async addFiles(droppedFiles) {
+    // TODO refine with Designer
     let filesLeftOver = this.maxNumberOfFiles - this.finalFiles.length;
     filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
 
-    const slicedFiles = droppedFiles; // TODO
-    // const slicedFiles = Array.prototype.slice.call(
-    //   droppedFiles,
-    //   0,
-    //   filesLeftOver
-    // );
-
+    // const slicedFiles = droppedFiles; // TODO
+    const slicedFiles = Array.prototype.slice.call(
+      droppedFiles,
+      0,
+      filesLeftOver
+    );
     if (slicedFiles.length < droppedFiles.length) {
       console.log('zu viele files');
     }
@@ -289,7 +295,7 @@ class AXAImageUpload extends LitElement {
 
     this.finalFiles = this.finalFiles.concat(finalFiles);
     this.wrongFiles = this.wrongFiles.concat(wrongFiles);
-    console.log(this.finalFiles, this.wrongFiles);
+    console.log('right', this.finalFiles, 'wrong', this.wrongFiles);
     this.performUpdate(); // is it needed?
 
     if (this.finalFiles && droppedFiles.length > 0) {
