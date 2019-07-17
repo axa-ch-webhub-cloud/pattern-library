@@ -3,13 +3,13 @@ axa-radio {
   display: block;
 
   &:hover:not([disabled]):not(.a-radio--error) {
-    color: #00008f;
+    color: $color-axa-blue;
 
     & .a-radio__icon {
-      border-color: #00008f;
+      border-color: $color-axa-blue;
 
       &::after {
-        border-color: #00008f;
+        border-color: $color-axa-blue;
       }
     }
   }
@@ -35,20 +35,22 @@ axa-radio {
     overflow: hidden;
 
     &:focus + .a-radio__icon {
+      border-width: 2px;
+      border-color: $color-axa-blue;
     }
 
     &:checked + .a-radio__icon::after {
-      border-color: #999;
-      background-color: #00008f;
+      border-color: $color-prim-gray-dusty;
+      background-color: $color-axa-blue;
     }
 
     &:disabled + .a-radio__icon {
       cursor: default;
-      border-color: #ccc;
+      border-color: $color-prim-gray-silver;
 
       &::after {
-        border-color: #ccc;
-        background-color: #ccc;
+        border-color: $color-prim-gray-silver;
+        background-color: $color-prim-gray-silver;
       }
     }
   }
@@ -69,7 +71,7 @@ axa-radio {
         -ms-flex-align: center;
             align-items: center;
     background: #fff;
-    border: 1px solid #999;
+    border: 1px solid $color-prim-gray-dusty;
     cursor: pointer;
     -ms-flex-negative: 0;
         flex-shrink: 0;
