@@ -64,9 +64,12 @@ class AXAImageUpload extends LitElement {
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'cloud-upload';
-    this.finalFiles = [];
+    this.files = [];
     this.wrongFiles = [];
-    this.errorStatusText = 'Error occured';
+    this.allFiles = [];
+    this.errorStatusText = `File bigger than ${
+      this.maxSizeOfSingleFileMegaByte
+    }mb`;
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
     // this.onClick = () => {};
@@ -91,8 +94,8 @@ class AXAImageUpload extends LitElement {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
     const urlCreator = window.URL || window.webkitURL;
-
-    const fileOverview = this.finalFiles.map((file, index) => {
+    this.allFiles = this.files.concat(this.wrongFiles);
+    const fileOverview = this.allFiles.map((file, index) => {
       let isWrongFile = false;
       if (!file) {
         return '';
@@ -110,19 +113,21 @@ class AXAImageUpload extends LitElement {
             class="m-image-upload__icon-hover-area"
             @click=${() => this.handleImageClick(index)}
           >
-            ${isFile
-              ? html`
-                  <span class="m-image-upload__file-element">
-                    ${AttachFileIcon}</span
-                  >
-                `
-              : html`
-                  <img
-                    class="m-image-upload__img-element"
-                    src="${imageUrl}"
-                    alt="${file.name}"
-                  />
-                `}
+            ${
+              isFile
+                ? html`
+                    <span class="m-image-upload__file-element">
+                      ${AttachFileIcon}</span
+                    >
+                  `
+                : html`
+                    <img
+                      class="m-image-upload__img-element"
+                      src="${imageUrl}"
+                      alt="${file.name}"
+                    />
+                  `
+            }
             <div class="m-image-upload__icon-layer">
               <span class="m-image-upload__icon-error"
                 >${isWrongFile ? ClearIcon : ''}</span
@@ -134,19 +139,33 @@ class AXAImageUpload extends LitElement {
           </div>
           <figcaption
             class="m-image-upload__img-caption"
+            title="${file.name}"
             data-status="${this.deleteStatusText}"
           >
-            ${isWrongFile
-              ? html`
-                  <span
-                    class="m-image-upload__filename m-image-upload__filename-error"
-                    >${this.errorStatusText}</span
-                  >
-                `
-              : html`
-                  <span class="m-image-upload__filename">${file.name}</span>
-                `}
-          </figcaption>
+            ${
+              isWrongFile
+                ? html`
+                    <figcaption
+                      class="m-image-upload__img-caption m-image-upload__img-caption-error"
+                      title="${this.errorStatusText}"
+                      data-status="${this.deleteStatusText}"
+                    >
+                      <span class="m-image-upload__filename"
+                        >${this.errorStatusText}</span
+                      >
+                    </figcaption>
+                  `
+                : html`
+                    <figcaption
+                      class="m-image-upload__img-caption"
+                      title="${file.name}"
+                      data-status="${this.deleteStatusText}"
+                    >
+                      <span class="m-image-upload__filename">${file.name}</span>
+                    </figcaption>
+                  `
+            }
+
         </figure>
       `;
     });
@@ -163,7 +182,10 @@ class AXAImageUpload extends LitElement {
             ${AddIcon}
           </div>
         </div>
-        <figcaption class="m-image-upload__img-caption">
+        <figcaption
+          class="m-image-upload__img-caption"
+          title="${this.addStatusText}"
+        >
           ${this.addStatusText}
         </figcaption>
       </figure>
@@ -234,8 +256,6 @@ class AXAImageUpload extends LitElement {
     e.preventDefault();
 
     const files = [...e.dataTransfer.files].filter(file => {
-      // TODO falsy stuff
-      console.log('test', ACCEPTED_FILE_TYPES.indexOf(file.type));
       return ACCEPTED_FILE_TYPES.indexOf(file.type);
     });
     console.log('files on drop', files);
@@ -246,26 +266,32 @@ class AXAImageUpload extends LitElement {
   }
 
   handleImageClick(index) {
-    this.sizeOfAllFilesByte -= this.finalFiles[index].size;
-    const shallowClone = [...this.finalFiles];
-    shallowClone.splice(index, 1);
-    this.finalFiles = shallowClone;
+    let shallowClone = [];
+    if (index >= this.files.length) {
+      shallowClone = [...this.wrongFiles];
+      shallowClone.splice(index - this.files.length, 1);
+      this.wrongFiles = shallowClone;
+    } else {
+      shallowClone = [...this.files];
+      shallowClone.splice(index, 1);
+      this.files = shallowClone;
+    }
+    this.sizeOfAllFilesByte -= this.allFiles[index].size;
     this.performUpdate();
 
     if (this.dropZone.children.length === 1) {
       this.showImageOverview = false;
       this.sizeOfAllFilesByte = 0;
+      this.files = [];
+      this.allFiles = [];
       this.wrongFiles = [];
-      this.finalFiles = [];
     }
   }
 
   async addFiles(droppedFiles) {
-    // TODO refine with Designer
-    let filesLeftOver = this.maxNumberOfFiles - this.finalFiles.length;
+    let filesLeftOver = this.maxNumberOfFiles - this.files.length;
     filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
 
-    // const slicedFiles = droppedFiles; // TODO
     const slicedFiles = Array.prototype.slice.call(
       droppedFiles,
       0,
@@ -273,36 +299,40 @@ class AXAImageUpload extends LitElement {
     );
     if (slicedFiles.length < droppedFiles.length) {
       console.log('zu viele files');
+      // TODO
     }
     // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
     const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
     const compressedImages = await compressImage(slicedFiles);
-    const finalFiles = pdfs.concat(compressedImages);
+
     const wrongFiles = [];
-    for (let i = 0; i < slicedFiles.length; i++) {
+    let finalFiles = pdfs;
+
+    for (let i = 0; i < compressedImages.length; i++) {
       const dKey = fileKey(slicedFiles[i], true);
-
-      if (!finalFiles.some(finalFile => fileKey(finalFile, true) === dKey)) {
-        wrongFiles.push(finalFiles[i]);
+      if (
+        !compressedImages.some(
+          compressedImage => fileKey(compressedImage, true) === dKey
+        )
+      ) {
+        wrongFiles.push(compressedImages[i]);
       } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
-        wrongFiles.push(finalFiles[i]);
+        wrongFiles.push(compressedImages[i]);
       } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
-        wrongFiles.push(finalFiles[i]);
+        wrongFiles.push(compressedImages[i]);
+      } else {
+        this.sizeOfAllFilesByte += compressedImages[i].size;
+        finalFiles = finalFiles.concat(compressedImages[i]);
       }
-
-      this.sizeOfAllFilesByte += finalFiles[i].size;
     }
 
-    this.finalFiles = this.finalFiles.concat(finalFiles);
+    this.files = this.files.concat(finalFiles);
     this.wrongFiles = this.wrongFiles.concat(wrongFiles);
-    console.log('right', this.finalFiles, 'wrong', this.wrongFiles);
-    this.performUpdate(); // is it needed?
+    console.log('right', this.files, 'wrong', this.wrongFiles);
+    this.performUpdate();
 
-    if (this.finalFiles && droppedFiles.length > 0) {
+    if (this.files && droppedFiles.length > 0) {
       this.showImageOverview = true;
-    } else {
-      this.finalFiles = [];
-      this.wrongFiles = [];
     }
   }
 }

@@ -119,30 +119,25 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     cursor: default;
   }
 
-  &__img-caption:hover {
-    position: absolute;
-    white-space: normal;
-
-    text-overflow: unset;
-    word-wrap: break-word;
-    max-height: 3em;// TODO really 2em?
-    overflow: hidden;
+  &__img-caption-error {
+    color: $color-sec-shy-tomato;
   }
 
   // when hovering over hover-area, hide the filname
-  &__icon-hover-area:hover ~ .m-image-upload__img-caption{
+  &__icon-hover-area:hover ~ .m-image-upload__img-caption {
     .m-image-upload__filename {
       display: none;
     }
   }
+  
   // show delete-status instead of filename
-  &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status]:after{
+  &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status]:after {
       content: attr(data-status);
-      color: $color-axa-blue;
   }
 
-  &__filename-error {
-    color: $color-sec-shy-tomato;
+  // color delete-status and ellipsis
+  &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status] {
+    color: $color-axa-blue;
   }
 
   &__add-more {
