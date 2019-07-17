@@ -18,6 +18,9 @@ class AXACheckbox extends NoShadowDOM {
         type: Boolean,
         reflect: true,
       },
+      defaultChecked: {
+        type: Boolean,
+      },
       disabled: { type: Boolean, reflect: true },
       error: {
         type: String,
@@ -27,6 +30,10 @@ class AXACheckbox extends NoShadowDOM {
             return value ? String(value) : null;
           },
         },
+      },
+      embedded: {
+        type: Boolean,
+        reflect: true,
       },
       isReact: { type: Boolean },
     };
@@ -88,16 +95,13 @@ class AXACheckbox extends NoShadowDOM {
 
   handleChange(event) {
     // initialize
-    const {
-      state: { native },
-      onChange,
-    } = this;
+    const { onChange } = this;
     // *schedule* a UI update from model state in the near future
     // (if no changed prop value is seen, triggering re-rendering,
     // that scheduled update actually happens!)
     this.state.timer = setTimeout(() => this.updated(), 0);
-    // toggle *uncontrolled* model state to reflect checkbox behaviour
-    this.state.native = !native;
+    // set *uncontrolled* model state from native checkbox behaviour
+    this.state.native = event.target.checked;
     // invoke event callback
     onChange(event);
   }
@@ -111,6 +115,7 @@ class AXACheckbox extends NoShadowDOM {
       checked,
       disabled,
       error = '',
+      embedded,
       id,
       isReact,
       state: { isControlled, timer },
@@ -144,12 +149,21 @@ class AXACheckbox extends NoShadowDOM {
           html`
             <span class="a-checkbox__content">${unsafeHTML(label)}</span>
           `}
-        ${error &&
-          html`
-            <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-          `}
+        ${error && !embedded
+          ? html`
+              <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+            `
+          : html``}
       </label>
     `;
+  }
+
+  firstUpdated() {
+    const { isReact, defaultChecked } = this;
+    if (isReact && defaultChecked) {
+      this.querySelector('input').checked = true;
+      this.state.native = true;
+    }
   }
 
   // this lifecycle method will regularly be called after render() -

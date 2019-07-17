@@ -2,11 +2,13 @@ import withReact from '../../../utils/with-react';
 import AXACheckbox from './index';
 
 export default createElement => ({
-  value,
-  name,
+  value = '',
+  name = '',
   label,
   checked,
+  defaultChecked,
   disabled,
+  embedded,
   error,
   className,
   onChange = () => {},
@@ -21,7 +23,9 @@ export default createElement => ({
       name,
       label,
       checked,
+      defaultChecked,
       disabled,
+      embedded,
       error,
       className,
       onChange,
