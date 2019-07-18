@@ -12,11 +12,11 @@ interface AXADatepickerProps {
   value?: string;
   defaultValue?: string;
   onChange?: (e: AXADatepickerChangeEvent) => any;
-  onDateChange?: (date: typeof Date) => any;
+  onDateChange?: (date: Date) => any;
   onFocus?: (e?: any) => void;
   onBlur?: (e?: any) => void;
   locale?: string;
-  date? : typeof Date;
+  date? : Date;
   year?: number;
   month?: number;
   day?: number;
