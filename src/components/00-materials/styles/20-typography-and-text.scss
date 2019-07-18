@@ -61,38 +61,38 @@ $secondary-fonts-styles: (
 );
 
 // Don't use this in components, use typo()
-@mixin _font($font: primary, $name: default) {
+@mixin _font($font: primary, $name: default, $important: null) {
   @if map-has-key($primary-fonts-styles, $name) and $font == primary {
-    font-family: $primary-font;
-    font-weight: nth(map-get($primary-fonts-styles, $name), 1);
-    font-style: nth(map-get($primary-fonts-styles, $name), 2);
+    font-family: $primary-font $important;
+    font-weight: nth(map-get($primary-fonts-styles, $name), 1) $important;
+    font-style: nth(map-get($primary-fonts-styles, $name), 2) $important;
   }
 
   @else if map-has-key($secondary-fonts-styles, $name) and $font == secondary {
-    font-family: $secondary-font;
-    font-weight: nth(map-get($secondary-fonts-styles, $name), 1);
-    font-style: nth(map-get($secondary-fonts-styles, $name), 2);
+    font-family: $secondary-font $important;
+    font-weight: nth(map-get($secondary-fonts-styles, $name), 1) $important;
+    font-style: nth(map-get($secondary-fonts-styles, $name), 2) $important;
   }
 }
 
 // Don't use this in components, use typo()
-@mixin _text($size: default) {
+@mixin _text($size: default, $important: null) {
     @if (map-has-key($text-sizes, $size)) {
-        font-size: nth(map-get($text-sizes, $size), 1) + px;
-        line-height: nth(map-get($text-sizes, $size), 2) + px;
-        letter-spacing: nth(map-get($text-sizes, $size), 3);
+        font-size: nth(map-get($text-sizes, $size), 1) + px $important;
+        line-height: nth(map-get($text-sizes, $size), 2) + px $important;
+        letter-spacing: nth(map-get($text-sizes, $size), 3) $important;
     }
 
     @else {
-        font-size: nth(map-get($text-sizes, default), 1) + px;
-        line-height: nth(map-get($text-sizes, default), 2) + px;
-        letter-spacing: nth(map-get($text-sizes, default), 3) + px;
+        font-size: nth(map-get($text-sizes, default), 1) + px $important;
+        line-height: nth(map-get($text-sizes, default), 2) + px $important;
+        letter-spacing: nth(map-get($text-sizes, default), 3) + px $important;
     }
 }
 
-@mixin typo($name: primary, $size: default, $style: default) {
-  @include _font($name, $style);
-  @include _text($size);
+@mixin typo($name: primary, $size: default, $style: default, $important: null) {
+  @include _font($name, $style, $important);
+  @include _text($size, $important);
 }
 
 @mixin typo-title($size: default, $family: $primary-font) {
