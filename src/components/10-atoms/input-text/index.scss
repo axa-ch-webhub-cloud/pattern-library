@@ -16,6 +16,13 @@ axa-input-text {
     align-items: center;
   }
 
+  .a-input-text__info {
+    margin-left: 10px;
+    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+  }
+
   .a-input-text__input {
     @include typo();
     appearance: none;

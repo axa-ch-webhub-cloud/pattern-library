@@ -1,12 +1,31 @@
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
+import '@axa-ch/popup-button';
+import '@axa-ch/popup-content';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
-class AXAInputText extends NoShadowDOM {
+export const popupMixin = superclass =>
+  class extends superclass {
+    static get properties() {
+      return {
+        _open: { type: Boolean },
+      };
+    }
+
+    constructor() {
+      super();
+      this._open = false;
+    }
+
+    handlePopupClick = () => (this._open = !this._open);
+  };
+
+class AXAInputText extends popupMixin(NoShadowDOM) {
   static get tagName() {
     return 'axa-input-text';
   }
@@ -21,6 +40,7 @@ class AXAInputText extends NoShadowDOM {
       defaultValue: { type: String },
       type: { type: String },
       error: { type: String },
+      info: { type: String },
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean },
@@ -60,6 +80,8 @@ class AXAInputText extends NoShadowDOM {
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
+
+    // this.handlePopupClick = this.handlePopupClick.bind(this);
   }
 
   set value(val) {
@@ -122,6 +144,7 @@ class AXAInputText extends NoShadowDOM {
       value,
       label = '',
       error = '',
+      info = '',
       type = '',
       placeholder,
       disabled,
@@ -192,6 +215,14 @@ class AXAInputText extends NoShadowDOM {
                 `
               : ''}
           </div>
+          ${info &&
+            html`
+              <axa-popup-button
+                ?open="${this._open}"
+                class="a-input-text__info"
+                @click="${this.handlePopupClick}"
+              ></axa-popup-button>
+            `}
         </div>
         <div class="${classMap(errorMessageWrapperClasses)}">
           ${this.showError
@@ -200,6 +231,13 @@ class AXAInputText extends NoShadowDOM {
               `
             : ''}
         </div>
+        ${info && this._open
+          ? html`
+              <axa-popup-content>
+                ${unsafeHTML(info)}
+              </axa-popup-content>
+            `
+          : ''}
       </div>
     `;
   }

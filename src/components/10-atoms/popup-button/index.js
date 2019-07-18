@@ -1,6 +1,7 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
+import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
@@ -16,34 +17,29 @@ class AXAPopupButton extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
+      open: { type: Boolean },
+      name: { type: String, reflect: true },
       onClick: { type: Function },
     };
   }
 
   constructor() {
     super();
+    this.open = false;
+    this.name = '';
     this.onClick = () => {};
   }
 
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
-  }
-
+  // inner padding cancel and info svg should be same
   render() {
+    const { open } = this;
+
     return html`
-      <article class="a-popup-button">
-        <slot></slot>
-      </article>
+      <button class="a-popup-button" @click="${this.onClick}">
+        ${open ? svg([CancelSvg]) : svg([InfoSvg])}
+      </button>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 

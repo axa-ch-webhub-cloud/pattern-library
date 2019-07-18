@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/popup-content",
   "version": "0.0.0-beta.0",
-  "description": "> TODO: description",
+  "description": "The AXA Popup Content component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/popup-content#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-    "lit-element": "^2.1.0",
-    "lit-html": "^1.0.0"
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.0"
   }
 }
