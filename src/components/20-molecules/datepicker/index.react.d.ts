@@ -20,7 +20,13 @@ interface AXADatepickerProps {
   year?: number;
   month?: number;
   day?: number;
-  allowedyears?: Array<string>;
+  /**
+   * Individual years need to be specified as numbers,
+   * date ranges need to be strings.
+   * This prop is required.
+   * Example: ['2010-2015', 2019, 2020]
+   */
+  allowedyears: Array<string|number>;
   labelbuttonok?: string;
   labelbuttoncancel?: string;
   placeholder?: string;
