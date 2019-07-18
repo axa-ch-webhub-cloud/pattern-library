@@ -16,45 +16,46 @@
 
   &__main {
     ::slotted(h2) {
-      display: none; // desktop title
+      display: none !important; // desktop title
 
       @include breakpoint($mediaquery-sm-up) {
-        @include typo(primary, medium, bold);
-        display: block; // desktop title
-        text-transform: uppercase;
-        line-height: 1.5;
+        @include typo(primary, medium, bold, !important); //change whole type to  !important?
+        display: block !important; // desktop title
+        text-transform: uppercase !important;
+        line-height: 1.5 !important;
       }
     }
   }
 
   &__accordion-button {
     ::slotted(h2) {
-      display: block; // mobile title
-      @include typo(primary, default, medium);
+      display: block !important; // mobile title
+      @include typo(primary, default, medium, !important);
 
       @include breakpoint($mediaquery-sm-up) {
-        display: none; // mobile title
+        display: none !important; // mobile title
       }
 
-      padding: 0;
-      margin: 0;
+      padding: 0 !important;
+      margin: 0 !important;
     }
   }
 
   ::slotted(h2) {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: $color-prim-white !important;
   }
 
   .o-footer__social-media-item ::slotted(a) {
-    display: block;
-    width: 25px;
-    height: 25px;
-    padding: 10px;
+    display: block !important;
+    width: 25px !important;
+    height: 25px !important;
+    padding: 10px !important;
   }
 
   ::slotted(a) {
-    padding: 10px;
+    padding: 10px !important;
   }
 
   &__content {
@@ -117,14 +118,14 @@
 
     ::slotted(h2) {
       // IE11 workaround
-      display: none;
+      display: none !important;
 
       @include breakpoint($mediaquery-lg-up) {
         // IE11 workaround
-        @include typo(primary, medium, bold);
-        display: block; // desktop title
-        text-transform: uppercase;
-        line-height: 1.5;
+        @include typo(primary, medium, bold, !important);
+        display: block !important; // desktop title
+        text-transform: uppercase !important;
+        line-height: 1.5 !important;
       }
     }
 
@@ -257,21 +258,21 @@
         }
 
         ::slotted(a) {
-          display: block;
-          text-decoration: none;
-          color: $color-prim-white;
-          padding: 20px 30px;
+          display: block !important;
+          text-decoration: none !important;
+          color: $color-prim-white !important;
+          padding: 20px 30px !important;
 
           @include breakpoint($mediaquery-sm-up) {
-            display: inline;
-            text-decoration: none;
-            color: $color-prim-white;
-            padding: 0;
+            display: inline !important;
+            text-decoration: none !important;
+            color: $color-prim-white !important;
+            padding: 0 !important;
           }
         }
 
         ::slotted(a:hover) {
-          color: rgba(255, 255, 255, 0.65);
+          color: rgba(255, 255, 255, 0.65) !important;
         }
 
         @include breakpoint($mediaquery-sm-up) {
