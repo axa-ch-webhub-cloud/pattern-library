@@ -129,7 +129,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
       display: none;
     }
   }
-  
+
   // show delete-status instead of filename
   &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status]:after {
       content: attr(data-status);
@@ -163,5 +163,17 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
       position: block;
     }
 
+  }
+
+  &__error-wrapper {
+    color: $color-validation-error;
+  }
+
+  &__error-wrapper--reservation {
+    min-height: 20px;
+  }
+
+  &__error-wrapper--hidden {
+    display: none;
   }
 }

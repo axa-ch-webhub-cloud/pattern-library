@@ -69,10 +69,17 @@ class AXAImageUpload extends LitElement {
     this.allFiles = [];
     this.errorStatusText = `File bigger than ${
       this.maxSizeOfSingleFileMegaByte
-    }mb`;
+    }Mb`;
+    this.errorToManyFiles = `You exeeded the maximum number of files wich is ${
+      this.maxNumberOfFiles
+    }`;
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
     // this.onClick = () => {};
+
+    this.sizeOfAllFilesByte = 0;
+    this.allDroppedFiles = 0;
+    this.isFileMaxReached = false;
 
     this.maxSizeOfSingleFileByte = getBytesFromMegabyte(
       this.maxSizeOfSingleFileMegaByte
@@ -80,13 +87,24 @@ class AXAImageUpload extends LitElement {
     this.maxsizeOfAllFilesByte = getBytesFromMegabyte(
       this.maxSizeOfAllFilesMegaByte
     );
-
-    this.sizeOfAllFilesByte = 0;
   }
 
   firstUpdated() {
+    console.log('firstUpdated');
     this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
-    this.inputFile = this.shadowRoot.querySelector('.m-image-upload__input');
+    this.inputFile = this.shadowRoot.querySelector('.js-image-upload__input');
+    this.errorWrapper = this.shadowRoot.querySelector(
+      '.js-image-upload__error-wrapper'
+    );
+  }
+
+  updated() {
+    const addMoreInputFile = this.shadowRoot.querySelector(
+      '.js-image-upload__add-more'
+    );
+    if (addMoreInputFile) {
+      this.addMoreInputFile = addMoreInputFile;
+    }
   }
 
   render() {
@@ -172,7 +190,7 @@ class AXAImageUpload extends LitElement {
 
     const addMoreInputFile = html`
       <figure
-        class="m-image-upload__img-figure m-image-upload__add-more js-image-upload__img-figure"
+        class="m-image-upload__img-figure m-image-upload__add-more js-image-upload__add-more"
       >
         <div
           class="m-image-upload__icon-wrapper"
@@ -210,7 +228,7 @@ class AXAImageUpload extends LitElement {
                 <p class="m-image-upload__information">${INFO}</p>
                 <p class="m-image-upload__or">${OR}</p>
                 <axa-input-file
-                  class="m-image-upload__input"
+                  class="m-image-upload__input js-image-upload__input"
                   accept="${ACCEPTED_FILE_TYPES}"
                   icon="${this.icon}"
                   multiple
@@ -225,6 +243,10 @@ class AXAImageUpload extends LitElement {
                 ${fileOverview} ${addMoreInputFile}
               `}
         </section>
+
+        <div
+          class="m-image-upload__error-wrapper js-image-upload__error-wrapper"
+        ></div>
       </article>
     `;
   }
@@ -244,8 +266,10 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadDropZoneDragover(e) {
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-    this.dropZone.classList.add('m-image-upload__dropzone_dragover');
+    if (!this.isFileMaxReached) {
+      e.dataTransfer.dropEffect = 'copy';
+      this.dropZone.classList.add('m-image-upload__dropzone_dragover');
+    }
   }
 
   handleImageUploadDropZoneDragleave() {
@@ -254,27 +278,44 @@ class AXAImageUpload extends LitElement {
 
   handleImageUploadDropZoneDrop(e) {
     e.preventDefault();
-
-    const files = [...e.dataTransfer.files].filter(file => {
-      return ACCEPTED_FILE_TYPES.indexOf(file.type);
-    });
-    console.log('files on drop', files);
-    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-    if (files.length > 0) {
-      this.addFiles(files);
+    if (!this.isFileMaxReached) {
+      const files = [...e.dataTransfer.files].filter(file => {
+        return ACCEPTED_FILE_TYPES.indexOf(file.type);
+      });
+      console.log('files on drop', files);
+      this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
+      if (files.length > 0) {
+        this.addFiles(files);
+      }
     }
   }
 
   handleImageClick(index) {
     let shallowClone = [];
+    if (this.files.length === this.maxNumberOfFiles) {
+      this.allDroppedFiles = this.maxNumberOfFiles - 1;
+      this.maxNumberOfFilesExeded();
+    } else {
+      this.allDroppedFiles -= 1;
+      this.maxNumberOfFilesExeded();
+    }
+    this.errorWrapper.innerHTML = '';
+
     if (index >= this.files.length) {
+      console.log('wrongfile');
       shallowClone = [...this.wrongFiles];
       shallowClone.splice(index - this.files.length, 1);
       this.wrongFiles = shallowClone;
+      this.allDroppedFiles += 1; // TODO not so beautiful
     } else {
+      console.log('wrightfile');
       shallowClone = [...this.files];
       shallowClone.splice(index, 1);
       this.files = shallowClone;
+      if (this.files.length < this.maxNumberOfFiles) {
+        console.log('this.dropZone', this.dropZone, this.addMoreInputFile);
+        this.dropZone.appendChild(this.addMoreInputFile);
+      }
     }
     this.sizeOfAllFilesByte -= this.allFiles[index].size;
     this.performUpdate();
@@ -282,6 +323,7 @@ class AXAImageUpload extends LitElement {
     if (this.dropZone.children.length === 1) {
       this.showImageOverview = false;
       this.sizeOfAllFilesByte = 0;
+      this.allDroppedFiles = 0;
       this.files = [];
       this.allFiles = [];
       this.wrongFiles = [];
@@ -289,6 +331,7 @@ class AXAImageUpload extends LitElement {
   }
 
   async addFiles(droppedFiles) {
+    this.allDroppedFiles += droppedFiles.length;
     let filesLeftOver = this.maxNumberOfFiles - this.files.length;
     filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
 
@@ -297,10 +340,7 @@ class AXAImageUpload extends LitElement {
       0,
       filesLeftOver
     );
-    if (slicedFiles.length < droppedFiles.length) {
-      console.log('zu viele files');
-      // TODO
-    }
+
     // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
     const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
     const compressedImages = await compressImage(slicedFiles);
@@ -333,6 +373,22 @@ class AXAImageUpload extends LitElement {
 
     if (this.files && droppedFiles.length > 0) {
       this.showImageOverview = true;
+    }
+    if (this.files.length === this.maxNumberOfFiles) {
+      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
+    }
+
+    this.maxNumberOfFilesExeded();
+  }
+
+  maxNumberOfFilesExeded() {
+    if (this.allDroppedFiles - this.wrongFiles.length > this.maxNumberOfFiles) {
+      this.errorWrapper.innerHTML = this.errorToManyFiles;
+    }
+    if (this.files.length === this.maxNumberOfFiles) {
+      this.isFileMaxReached = true;
+    } else {
+      this.isFileMaxReached = false;
     }
   }
 }
