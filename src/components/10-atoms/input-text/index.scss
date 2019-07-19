@@ -16,11 +16,15 @@ axa-input-text {
     align-items: center;
   }
 
-  .a-input-text__info {
+  .a-input-text__info-button {
     margin-left: 10px;
     margin-right: 5px;
     width: 24px;
     height: 24px;
+  }
+
+  .a-input-text__info-content h4 {
+    margin-top: 0;
   }
 
   .a-input-text__input {

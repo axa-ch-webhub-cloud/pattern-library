@@ -219,7 +219,7 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
             html`
               <axa-popup-button
                 ?open="${this._open}"
-                class="a-input-text__info"
+                class="a-input-text__info-button"
                 @click="${this.handlePopupClick}"
               ></axa-popup-button>
             `}
@@ -233,7 +233,7 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
         </div>
         ${info && this._open
           ? html`
-              <axa-popup-content>
+              <axa-popup-content class="a-input-text__info-content">
                 ${unsafeHTML(info)}
               </axa-popup-content>
             `

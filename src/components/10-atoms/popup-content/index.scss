@@ -5,9 +5,8 @@
   padding: 15px;
   border-radius: 2px;
   box-sizing: border-box;
-  margin-top: 11px;
+  margin-top: 10px;
   width: 100%;
-  overflow: hidden;
   //max-height: 0;
   //height: auto;
   //transition: max-height 1.15s ease-out;
@@ -26,6 +25,7 @@
     font-size: 0;
     line-height: 0;
     content: '';
+    box-sizing: content-box;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
     border-bottom: 12px solid $color-prim-blue-st-tropaz;
