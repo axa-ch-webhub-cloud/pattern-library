@@ -1,4 +1,22 @@
+.wrapper {
+  max-height: 0;
+  //transition: max-height 0.2s ease-out;
+  transition: max-height .2s ease-out;
+  overflow: hidden;
+
+  &.wrapper--test {
+    max-height: 600px;
+    transition: max-height .2s ease-in;
+  }
+
+  .a-popup-content {
+    display: none;
+  }
+
+}
+
 .a-popup-content {
+  display: block;
   position: relative;
   background-color: $color-prim-blue-st-tropaz;
   color: $color-prim-white;

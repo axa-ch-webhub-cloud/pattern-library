@@ -16,10 +16,16 @@ class AXAPopupContent extends LitElement {
     `;
   }
 
-  // static get properties() {
-  //   return {};
-  // }
+  static get properties() {
+    return {
+      open: { type: Boolean },
+    };
+  }
 
+  constructor() {
+    super();
+    this.open = false;
+  }
   // constructor() {
   //   super();
   //   this.name = '';
@@ -43,9 +49,11 @@ class AXAPopupContent extends LitElement {
 
   render() {
     return html`
-      <article class="a-popup-content">
-        <slot></slot>
-      </article>
+      <div class="wrapper ${this.open ? 'wrapper--test' : ''}">
+        <article class="a-popup-content">
+          <slot></slot>
+        </article>
+      </div>
     `;
   }
 }

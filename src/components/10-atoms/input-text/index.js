@@ -231,9 +231,9 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
               `
             : ''}
         </div>
-        ${info && this._open
+        ${info
           ? html`
-              <axa-popup-content class="a-input-text__info-content">
+              <axa-popup-content ?open="${this._open}" class="a-input-text__info-content">
                 ${unsafeHTML(info)}
               </axa-popup-content>
             `
