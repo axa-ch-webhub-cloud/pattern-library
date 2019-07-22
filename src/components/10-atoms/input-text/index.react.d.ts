@@ -15,9 +15,9 @@ interface AXAInputTextProps {
   checkMark?: boolean;
   embedded?: boolean;
   isReact?: boolean;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onFocus?: (e?: FocusEvent) => void;
+  onBlur?: (e?: FocusEvent) => void;
+  onChange?: (e?: UIEvent) => void;
 }
 
 declare function createAXAInputText(
