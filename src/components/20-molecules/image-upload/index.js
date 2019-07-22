@@ -44,14 +44,17 @@ class AXAImageUpload extends LitElement {
   static get properties() {
     return {
       inputFileText: { type: String },
-      maxSizeOfSingleFileMegaByte: { type: Number },
-      maxSizeOfAllFilesMegaByte: { type: Number },
+      maxSizeOfSingleFileMB: { type: Number },
+      maxSizeOfAllFilesMB: { type: Number },
       maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
       icon: { type: String },
-      errorStatusText: { type: String },
       deleteStatusText: { type: String },
       addStatusText: { type: String },
+      fileToBigStatusText: { type: String },
+      filesToBigStatusText: { type: String },
+      toManyFilesStatusText: { type: String },
+      embedded: { type: Boolean },
       // onClick: { type: Function }, // TODO Events
     };
   }
@@ -59,22 +62,27 @@ class AXAImageUpload extends LitElement {
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMegaByte = 3;
-    this.maxSizeOfAllFilesMegaByte = 5;
+    this.maxSizeOfSingleFileMB = 3;
+    this.maxSizeOfAllFilesMB = 5;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'cloud-upload';
+    this.deleteStatusText = 'Delete';
+    this.addStatusText = 'Add more';
+    this.fileToBigStatusText = `File bigger than ${
+      this.maxSizeOfSingleFileMB
+    }Mb`;
+    this.filesToBigStatusText = `File bigger than ${
+      this.maxSizeOfAllFilesMB
+    }Mb`;
+    this.toManyFilesStatusText = `You exceeded the maximum number of files wich is ${
+      this.maxNumberOfFiles
+    }`;
+    this.embedded = false;
     this.files = [];
     this.wrongFiles = [];
     this.allFiles = [];
-    this.errorStatusText = `File bigger than ${
-      this.maxSizeOfSingleFileMegaByte
-    }Mb`;
-    this.errorToManyFiles = `You exeeded the maximum number of files wich is ${
-      this.maxNumberOfFiles
-    }`;
-    this.deleteStatusText = 'Delete';
-    this.addStatusText = 'Add more';
+
     // this.onClick = () => {};
 
     this.sizeOfAllFilesByte = 0;
@@ -82,15 +90,12 @@ class AXAImageUpload extends LitElement {
     this.isFileMaxReached = false;
 
     this.maxSizeOfSingleFileByte = getBytesFromMegabyte(
-      this.maxSizeOfSingleFileMegaByte
+      this.maxSizeOfSingleFileMB
     );
-    this.maxsizeOfAllFilesByte = getBytesFromMegabyte(
-      this.maxSizeOfAllFilesMegaByte
-    );
+    this.maxsizeOfAllFilesByte = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
   }
 
   firstUpdated() {
-    console.log('firstUpdated');
     this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
     this.inputFile = this.shadowRoot.querySelector('.js-image-upload__input');
     this.errorWrapper = this.shadowRoot.querySelector(
@@ -107,10 +112,154 @@ class AXAImageUpload extends LitElement {
     }
   }
 
+  handleAddMoreInputClick() {
+    this.inputFile.querySelector('input').click();
+  }
+
+  handleImageUploadButtonClick(e) {
+    e.stopPropagation();
+  }
+
+  handleImageUploadButtonChange(e) {
+    const { files } = e.target;
+    this.addFiles(files);
+  }
+
+  handleImageUploadDropZoneDragover(e) {
+    e.preventDefault();
+    if (!this.isFileMaxReached) {
+      e.dataTransfer.dropEffect = 'copy';
+      this.dropZone.classList.add('m-image-upload__dropzone_dragover');
+    }
+  }
+
+  handleImageUploadDropZoneDragleave() {
+    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
+  }
+
+  handleImageUploadDropZoneDrop(e) {
+    e.preventDefault();
+    if (!this.isFileMaxReached) {
+      const files = [...e.dataTransfer.files].filter(file => {
+        return ACCEPTED_FILE_TYPES.indexOf(file.type);
+      });
+      console.log('files on drop', files);
+      this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
+      if (files.length > 0) {
+        this.addFiles(files);
+      }
+    }
+  }
+
+  handleImageClick(index) {
+    let shallowClone = [];
+    if (this.files.length === this.maxNumberOfFiles) {
+      this.allDroppedFiles = this.maxNumberOfFiles - 1;
+      this.maxNumberOfFilesExceeded();
+    } else {
+      this.allDroppedFiles -= 1;
+      this.maxNumberOfFilesExceeded();
+    }
+    this.errorWrapper.innerHTML = '';
+
+    if (index >= this.files.length) {
+      shallowClone = [...this.wrongFiles];
+      shallowClone.splice(index - this.files.length, 1);
+      this.wrongFiles = shallowClone;
+      this.allDroppedFiles += 1; // TODO not so beautiful
+    } else {
+      shallowClone = [...this.files];
+      shallowClone.splice(index, 1);
+      this.files = shallowClone;
+      if (this.files.length + 1 === this.maxNumberOfFiles) {
+        this.dropZone.appendChild(this.addMoreInputFile);
+      }
+    }
+    this.sizeOfAllFilesByte -= this.allFiles[index].size;
+    this.performUpdate();
+
+    if (this.files.length === 0) {
+      this.showImageOverview = false;
+      this.sizeOfAllFilesByte = 0;
+      this.allDroppedFiles = 0;
+      this.files = [];
+      this.allFiles = [];
+      this.wrongFiles = [];
+      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
+    }
+  }
+
+  async addFiles(droppedFiles) {
+    this.allDroppedFiles += droppedFiles.length;
+    let filesLeftOver = this.maxNumberOfFiles - this.files.length;
+    filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
+
+    const slicedFiles = Array.prototype.slice.call(
+      droppedFiles,
+      0,
+      filesLeftOver
+    );
+
+    // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
+    const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
+    const compressedImages = await compressImage(slicedFiles);
+
+    const wrongFiles = [];
+    let finalFiles = pdfs;
+
+    for (let i = 0; i < compressedImages.length; i++) {
+      const dKey = fileKey(slicedFiles[i], true);
+      if (
+        !compressedImages.some(
+          compressedImage => fileKey(compressedImage, true) === dKey
+        )
+      ) {
+        wrongFiles.push(compressedImages[i]);
+      } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
+        wrongFiles.push(compressedImages[i]);
+      } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
+        wrongFiles.push(compressedImages[i]);
+      } else {
+        this.sizeOfAllFilesByte += compressedImages[i].size;
+        finalFiles = finalFiles.concat(compressedImages[i]);
+      }
+    }
+
+    this.files = this.files.concat(finalFiles);
+    this.wrongFiles = this.wrongFiles.concat(wrongFiles);
+    console.log('right', this.files, 'wrong', this.wrongFiles);
+    this.performUpdate();
+
+    if (this.files && droppedFiles.length > 0) {
+      this.showImageOverview = true;
+    }
+    if (this.files.length === this.maxNumberOfFiles) {
+      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
+    }
+
+    this.maxNumberOfFilesExceeded();
+  }
+
+  maxNumberOfFilesExceeded() {
+    if (this.allDroppedFiles - this.wrongFiles.length > this.maxNumberOfFiles) {
+      this.errorWrapper.innerHTML = this.toManyFilesStatusText;
+    }
+    if (this.files.length === this.maxNumberOfFiles) {
+      this.isFileMaxReached = true;
+    } else {
+      this.isFileMaxReached = false;
+    }
+  }
+
   render() {
-    const classes = {
+    const imageOverviewClasses = {
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
     };
+    const errorMessageWrapperClasses = {
+      'm-image-upload__error-wrapper--reservation': !this.embedded,
+      'm-image-upload__error-wrapper--hidden': this.embedded && !this.showError,
+    };
+
     const urlCreator = window.URL || window.webkitURL;
     this.allFiles = this.files.concat(this.wrongFiles);
     const fileOverview = this.allFiles.map((file, index) => {
@@ -165,11 +314,11 @@ class AXAImageUpload extends LitElement {
                 ? html`
                     <figcaption
                       class="m-image-upload__img-caption m-image-upload__img-caption-error"
-                      title="${this.errorStatusText}"
+                      title="${this.fileToBigStatusText}"
                       data-status="${this.deleteStatusText}"
                     >
                       <span class="m-image-upload__filename"
-                        >${this.errorStatusText}</span
+                        >${this.fileToBigStatusText}</span
                       >
                     </figcaption>
                   `
@@ -183,7 +332,6 @@ class AXAImageUpload extends LitElement {
                     </figcaption>
                   `
             }
-
         </figure>
       `;
     });
@@ -217,7 +365,7 @@ class AXAImageUpload extends LitElement {
           @dragleave="${this.handleImageUploadDropZoneDragleave}"
           @drop="${this.handleImageUploadDropZoneDrop}"
           class="m-image-upload__dropzone js-image-upload__dropzone ${classMap(
-            classes
+            imageOverviewClasses
           )}"
         >
           ${!this.showImageOverview
@@ -245,151 +393,12 @@ class AXAImageUpload extends LitElement {
         </section>
 
         <div
-          class="m-image-upload__error-wrapper js-image-upload__error-wrapper"
+          class="m-image-upload__error-wrapper js-image-upload__error-wrapper ${classMap(
+            errorMessageWrapperClasses
+          )}"
         ></div>
       </article>
     `;
-  }
-
-  handleAddMoreInputClick() {
-    this.inputFile.querySelector('input').click();
-  }
-
-  handleImageUploadButtonClick(e) {
-    e.stopPropagation();
-  }
-
-  handleImageUploadButtonChange(e) {
-    const { files } = e.target;
-    this.addFiles(files);
-  }
-
-  handleImageUploadDropZoneDragover(e) {
-    e.preventDefault();
-    if (!this.isFileMaxReached) {
-      e.dataTransfer.dropEffect = 'copy';
-      this.dropZone.classList.add('m-image-upload__dropzone_dragover');
-    }
-  }
-
-  handleImageUploadDropZoneDragleave() {
-    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-  }
-
-  handleImageUploadDropZoneDrop(e) {
-    e.preventDefault();
-    if (!this.isFileMaxReached) {
-      const files = [...e.dataTransfer.files].filter(file => {
-        return ACCEPTED_FILE_TYPES.indexOf(file.type);
-      });
-      console.log('files on drop', files);
-      this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-      if (files.length > 0) {
-        this.addFiles(files);
-      }
-    }
-  }
-
-  handleImageClick(index) {
-    let shallowClone = [];
-    if (this.files.length === this.maxNumberOfFiles) {
-      this.allDroppedFiles = this.maxNumberOfFiles - 1;
-      this.maxNumberOfFilesExeded();
-    } else {
-      this.allDroppedFiles -= 1;
-      this.maxNumberOfFilesExeded();
-    }
-    this.errorWrapper.innerHTML = '';
-
-    if (index >= this.files.length) {
-      console.log('wrongfile');
-      shallowClone = [...this.wrongFiles];
-      shallowClone.splice(index - this.files.length, 1);
-      this.wrongFiles = shallowClone;
-      this.allDroppedFiles += 1; // TODO not so beautiful
-    } else {
-      console.log('wrightfile');
-      shallowClone = [...this.files];
-      shallowClone.splice(index, 1);
-      this.files = shallowClone;
-      if (this.files.length < this.maxNumberOfFiles) {
-        console.log('this.dropZone', this.dropZone, this.addMoreInputFile);
-        this.dropZone.appendChild(this.addMoreInputFile);
-      }
-    }
-    this.sizeOfAllFilesByte -= this.allFiles[index].size;
-    this.performUpdate();
-
-    if (this.dropZone.children.length === 1) {
-      this.showImageOverview = false;
-      this.sizeOfAllFilesByte = 0;
-      this.allDroppedFiles = 0;
-      this.files = [];
-      this.allFiles = [];
-      this.wrongFiles = [];
-    }
-  }
-
-  async addFiles(droppedFiles) {
-    this.allDroppedFiles += droppedFiles.length;
-    let filesLeftOver = this.maxNumberOfFiles - this.files.length;
-    filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
-
-    const slicedFiles = Array.prototype.slice.call(
-      droppedFiles,
-      0,
-      filesLeftOver
-    );
-
-    // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
-    const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
-    const compressedImages = await compressImage(slicedFiles);
-
-    const wrongFiles = [];
-    let finalFiles = pdfs;
-
-    for (let i = 0; i < compressedImages.length; i++) {
-      const dKey = fileKey(slicedFiles[i], true);
-      if (
-        !compressedImages.some(
-          compressedImage => fileKey(compressedImage, true) === dKey
-        )
-      ) {
-        wrongFiles.push(compressedImages[i]);
-      } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
-        wrongFiles.push(compressedImages[i]);
-      } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
-        wrongFiles.push(compressedImages[i]);
-      } else {
-        this.sizeOfAllFilesByte += compressedImages[i].size;
-        finalFiles = finalFiles.concat(compressedImages[i]);
-      }
-    }
-
-    this.files = this.files.concat(finalFiles);
-    this.wrongFiles = this.wrongFiles.concat(wrongFiles);
-    console.log('right', this.files, 'wrong', this.wrongFiles);
-    this.performUpdate();
-
-    if (this.files && droppedFiles.length > 0) {
-      this.showImageOverview = true;
-    }
-    if (this.files.length === this.maxNumberOfFiles) {
-      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
-    }
-
-    this.maxNumberOfFilesExeded();
-  }
-
-  maxNumberOfFilesExeded() {
-    if (this.allDroppedFiles - this.wrongFiles.length > this.maxNumberOfFiles) {
-      this.errorWrapper.innerHTML = this.errorToManyFiles;
-    }
-    if (this.files.length === this.maxNumberOfFiles) {
-      this.isFileMaxReached = true;
-    } else {
-      this.isFileMaxReached = false;
-    }
   }
 }
 

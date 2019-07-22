@@ -55,33 +55,36 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute                          | Details                                         |
-| ---------------------------------- | ----------------------------------------------- |
-| `inputFileText="Upload file"`      | Text in the input-file component                |
-| `maxSizeOfSingleFileMegaByte="10"` | Maximal size of a single file in mb             |
-| `maxSizeOfAllFilesMegaByte="15"`   | Maximal size of a all files together in mb      |
-| `maxNumberOfFiles="10"`            | Maximal number of files                         |
-| `showImageOverview="false"`        | Switch between normal view and image overview   |
-| `icon="cloud-upload"`              | Specify the upload icon in input-file component |
-| `errorStatusText="Error occurred"` | Specify the caption for wrong files             |
-| `deleteStatusText="Delete"`        | Specify the caption when hovering over a file   |
-| `addStatusText="Add more"`         | Specify the caption of dashed box               |
+| Attribute                                | Details                                               |
+| ---------------------------------------- | ----------------------------------------------------- |
+| `inputFileText="Upload file"`            | Text in the input-file component                      |
+| `maxSizeOfSingleFileMB="10"`             | Maximal size of a single file in mb                   |
+| `maxSizeOfAllFilesMB="15"`               | Maximal size of a all files together in mb            |
+| `maxNumberOfFiles="10"`                  | Maximal number of files                               |
+| `showImageOverview="false"`              | Switch between normal view and image overview         |
+| `icon="cloud-upload"`                    | Specify the upload icon in input-file component       |
+| `fileToBigStatusText="Error occurred"`   | Specify the error message for to big files            |
+| `toManyFilesStatusText="Error occurred"` | Specify the error message for to many files           |
+| `filesToBigStatusText="Error occurred"`  | Specify the error message when maximal size of all fi |
+| `deleteStatusText="Delete"`              | Specify the caption when hovering over a file         |
+| `addStatusText="Add more"`               | Specify the caption of dashed box                     |
+| `embedded=true`                          | Suppresses the default space around the image-upload  |
 
 ### inputFileText
 
 The attribute `inputFileText` specifies the text witch appears next to the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md).
 
-### maxSizeOfSingleFileMegaByte
+### maxSizeOfSingleFileMB
 
-The attribute `maxSizeOfSingleFileMegaByte` specifies the maximal size a single file can have. A file which is to big gets displayed as a wrong file.
+The attribute `maxSizeOfSingleFileMB` specifies the maximal size a single file can have. A file which is to big gets displayed as a wrong file.
 
-### maxSizeOfAllFilesMegaByte
+### maxSizeOfAllFilesMB
 
-The attribute `maxSizeOfAllFilesMegaByte` specifies the maximal size all files together can have. Every File that is over the limit gets displayed as a wrong file.
+The attribute `maxSizeOfAllFilesMB` specifies the maximal size all files together can have. Every File that is over the limit gets displayed as a wrong file.
 
 ### maxNumberOfFiles
 
-The attribute `maxNumberOfFiles` specifies the maximal number of files. Every File that is over the limit will not be displayed. _TODO_
+The attribute `maxNumberOfFiles` specifies the maximal number of files. Every File that is over the limit will not be displayed.
 
 ### showImageOverview
 
@@ -91,9 +94,17 @@ The attribute `showImageOverview` turns to the value true as soon as one file is
 
 The attribute `icon` specifies the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md). Default is "cloud-upload".
 
-### errorStatusText
+### fileToBigStatusText
 
-The attribute `errorStatusText` specifies the text under a selected file with an error.
+The attribute `fileToBigStatusText` specifies the error text under a file, which is bigger than allowed.
+
+### toManyFilesStatusText
+
+The attribute `toManyFilesStatusText` specifies the global error text when the maximal number of files is exceeded.
+
+### filesToBigStatusText
+
+The attribute `filesToBigStatusText` specifies the global error text when all files together exceed the maximal file size.
 
 ### deleteStatusText
 
@@ -102,6 +113,10 @@ The attribute `deleteStatusText` specifies the text that appears when hovering o
 ### addStatusText
 
 The attribute `addStatusText` specifies the text under the dashed box appearing after the last file.
+
+### embedded
+
+When true, the Boolean attribute `embedded` suppresses the default space around the image-upload otherwise reserved for showing valid/error UI states.
 
 ### onClick TODO for all Events
 

@@ -8,11 +8,14 @@ export default createElement => ({
   maxNumberOfFiles = 10,
   showImageOverview = false,
   icon = 'cloud-upload',
-  finalFiles = [],
-  wrongFiles = [],
-  errorStatusText = 'Error occured',
   deleteStatusText = 'Delete',
   addStatusText = 'Add more',
+  fileToBigStatusText = `File bigger than ${this.maxSizeOfSingleFileMB}Mb`,
+  filesToBigStatusText = `Files bigger than ${this.maxSizeOfAllFilesMB}Mb`,
+  toManyFilesStatusText = `You exceeded the maximum number of files wich is ${
+    this.maxNumberOfFiles
+  }`,
+  embedded = false,
   children,
 }) =>
   withReact(createElement)(
@@ -24,11 +27,12 @@ export default createElement => ({
       maxNumberOfFiles,
       showImageOverview,
       icon,
-      finalFiles,
-      wrongFiles,
-      errorStatusText,
       deleteStatusText,
       addStatusText,
+      fileToBigStatusText,
+      filesToBigStatusText,
+      toManyFilesStatusText,
+      embedded,
     },
     children
   );

@@ -7,11 +7,12 @@ interface AXAImageUploadProps {
   maxNumberOfFiles?: Number;
   showImageOverview?: Boolean;
   icon?: String;
-  finalFiles?: Object;
-  wrongFiles?: Object;
-  errorStatusText?: String;
   deleteStatusText?: String;
   addStatusText?: String;
+  fileToBigStatusText?: String;
+  filesToBigStatusText?: String;
+  toManyFilesStatusText?: String;
+  embedded?: Boolean;
   onClick?: () => void;
 }
 
