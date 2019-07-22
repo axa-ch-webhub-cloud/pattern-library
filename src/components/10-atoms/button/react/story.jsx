@@ -75,7 +75,7 @@ storiesOf('Atoms/Button/React', module)
   /* Large */
   .add('Button - size', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonReact size='small'>Small</AXAButtonReact>, div);
+    ReactDOM.render(<AXAButtonReact size="small">Small</AXAButtonReact>, div);
     return div;
   })
 
@@ -105,6 +105,18 @@ storiesOf('Atoms/Button/React', module)
     const div = document.createElement('div');
     ReactDOM.render(
       <AXAButtonReact icon="arrow-right">Icon</AXAButtonReact>,
+      div
+    );
+    return div;
+  })
+
+  /* class */
+  .add('Button - class', () => {
+    // const cssClass = document.createElement('class');
+    const div = document.createElement('div');
+
+    ReactDOM.render(
+      <AXAButtonReact className="myCssClass">className set</AXAButtonReact>,
       div
     );
     return div;
