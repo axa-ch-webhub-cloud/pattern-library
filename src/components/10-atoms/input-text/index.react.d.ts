@@ -5,6 +5,7 @@ interface AXAInputTextProps {
   name: string;
   label?: string;
   placeholder?: string;
+  value?: string | number;
   defaultValue?: string;
   error?: string;
   type?: string;
@@ -14,9 +15,9 @@ interface AXAInputTextProps {
   checkMark?: boolean;
   embedded?: boolean;
   isReact?: boolean;
-  onFocus?: () => void;
-  onBlur?: () => void;
-  onChange?: () => void;
+  onFocus?: (e?: FocusEvent) => void;
+  onBlur?: (e?: FocusEvent) => void;
+  onChange?: (e?: UIEvent) => void;
 }
 
 declare function createAXAInputText(
