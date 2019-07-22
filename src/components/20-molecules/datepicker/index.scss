@@ -32,7 +32,10 @@ axa-datepicker {
 
   &[embedded] {
     max-height: 35px;
-    overflow: hidden;
+
+    &:not([open]) {
+      overflow: hidden;
+    }
   }
 }
 

@@ -127,6 +127,9 @@ Setting `date` implies automatically derived values for `year`, `month`, and `da
 
 Boolean `embedded`, when true, _suppresses_ any extraneous space around the date UI proper, in particular the vertical space normally reserved below the component for displaying error messages.
 
+While no error message will be shown, internal validation continues to be performed. As a result,
+UI state still changes to red border, and the `error` attribute still is being set upon validation failure.
+
 ## Callback Properties
 
 ### onChange

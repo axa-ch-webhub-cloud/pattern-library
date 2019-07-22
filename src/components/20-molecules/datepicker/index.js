@@ -336,9 +336,13 @@ class AXADatepicker extends NoShadowDOM {
               </div>
             `
           : ''}
-        <span class="m-datepicker__error"
-          >${this.error && this.invaliddatetext}</span
-        >
+        ${!this.embedded
+          ? html`
+              <span class="m-datepicker__error"
+                >${this.error && this.invaliddatetext}</span
+              >
+            `
+          : html``}
       </article>
     `;
   }
