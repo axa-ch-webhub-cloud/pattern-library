@@ -112,7 +112,6 @@ storiesOf('Atoms/Button/React', module)
 
   /* class */
   .add('Button - class', () => {
-    // const cssClass = document.createElement('class');
     const div = document.createElement('div');
 
     ReactDOM.render(
