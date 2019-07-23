@@ -26,10 +26,10 @@ storiesOf('Atoms/Checkbox', module)
           ${disabled ? 'disabled' : ''}
           onChange = 'console.log("checkbox", this.name, " changed to: ", this.checked)'
           error = '${
-  errortext
-    ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
-    : ''
-}'
+      errortext
+        ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
+        : ''
+      }'
           className = ${className}
         </axa-checkbox>`;
   });

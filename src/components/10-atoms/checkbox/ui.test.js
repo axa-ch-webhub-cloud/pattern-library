@@ -113,7 +113,7 @@ fixture('Checkbox - React, uncontrolled').page(
   `${host}/iframe.html?id=atoms-checkbox-react--checkbox-uncontrolled`
 );
 
-test('should show default-checked embedded red checkbox and allow unchecking', async t => {
+test('should show default-checked red checkbox and allow unchecking', async t => {
   const $axaCheckbox = await Selector(TAG);
   const getIconBackgroundColor = ClientFunction(() => {
     const checkbox = document.querySelector('axa-checkbox');
@@ -129,10 +129,4 @@ test('should show default-checked embedded red checkbox and allow unchecking', a
     .wait(50)
     .expect($axaCheckbox.checked)
     .notOk();
-
-  // embedded property suppresses error message (used here as proxy for tight bounding box)
-  const isPresentErrorMessage = ClientFunction(
-    () => !!document.querySelector('axa-checkbox .a-checkbox__error')
-  );
-  await t.expect(await isPresentErrorMessage()).notOk();
 });
