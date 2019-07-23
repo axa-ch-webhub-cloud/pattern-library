@@ -5,12 +5,13 @@ interface AXACheckboxProps {
   name?: string;
   label?: string;
   checked?: boolean;
+  defaultChecked?: boolean;
   disabled?: boolean;
   error?: string;
   className?: string;
-  onChange?: (value: any) => void;
-  onFocus?: () => void;
-  onBlur?: () => void;
+  onChange?: (e: UIEvent) => void;
+  onFocus?: (e?: FocusEvent) => void;
+  onBlur?: (e?: FocusEvent) => void;
 }
 
 declare function createAXACheckbox(

@@ -93,12 +93,6 @@ The Boolean `disabled` disables the checkbox natively.
 
 The string-valued `error` provides an error text as HTML. It sets the checkbox into a visual error state.
 
-### embedded\*
-
-The Boolean `embedded` _suppresses_ any reserved visual space, in particular the extra vertical space below the checkbox proper otherwise reserved for error messages.
-
-When set, error messages will not be rendered.
-
 ## Callbacks
 
 ### onChange

@@ -35,6 +35,7 @@ class AXACheckbox extends NoShadowDOM {
         type: Boolean,
         reflect: true,
       },
+      invalid: { type: Boolean },
       isReact: { type: Boolean },
     };
   }
@@ -58,6 +59,7 @@ class AXACheckbox extends NoShadowDOM {
     this.value = '';
     this.name = '';
     this.label = '';
+    this.invalid = false;
     this.disabled = false;
     this.error = '';
     this.isReact = false;
@@ -115,6 +117,7 @@ class AXACheckbox extends NoShadowDOM {
       checked,
       disabled,
       error = '',
+      invalid,
       embedded,
       id,
       isReact,
@@ -141,7 +144,7 @@ class AXACheckbox extends NoShadowDOM {
           ?checked="${checked}"
           value="${value}"
           ?disabled="${disabled}"
-          ?error="${!!error}"
+          ?error="${invalid}"
           @change=${this.handleChange}
         />
         <span class="a-checkbox__icon"></span>
@@ -149,7 +152,7 @@ class AXACheckbox extends NoShadowDOM {
           html`
             <span class="a-checkbox__content">${unsafeHTML(label)}</span>
           `}
-        ${error && !embedded
+        ${error
           ? html`
               <span class="a-checkbox__error">${unsafeHTML(error)}</span>
             `
