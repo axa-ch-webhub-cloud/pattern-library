@@ -322,6 +322,104 @@ test('should react to programmatic date property changes', async t => {
   await t.expect(await getSelectedDay()).eql('27');
 });
 
+fixture('Datepicker React empty inputfield').page(
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-with-empty-inputfield-as-react-component`
+);
+
+test('should allow month change from default date', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector(`#datepicker-empty-react-inputfield`)
+  );
+  await t.expect(datepicker.exists).ok();
+
+  // open it
+  await t.click(
+    '#datepicker-empty-react-inputfield .m-datepicker__input-button'
+  );
+
+  const datePickerIsOpen = ClientFunction(() => {
+    const domNode = document.querySelector(
+      `#datepicker-empty-react-inputfield`
+    );
+    return domNode.open;
+  });
+
+  await t
+    .wait(50 /* allow for DOM to stabilize */)
+    .expect(await datePickerIsOpen())
+    .ok();
+
+  // verify datepicker displays current date:
+
+  // open month dropdown
+  await t.click(
+    '#datepicker-empty-react-inputfield .js-datepicker__dropdown-month'
+  );
+
+  // commit current date
+  await t
+    .wait(50)
+    .click(`#datepicker-empty-react-inputfield .js-datepicker__button-ok`);
+
+  const getInputValue = ClientFunction(
+    () =>
+      document.querySelector(
+        `#datepicker-empty-react-inputfield .js-datepicker__input`
+      ).value
+  );
+
+  const d = new Date();
+  const currentMonth = d.getMonth();
+  const currentDateString = `${d.getDate()}.${currentMonth +
+    1}.${d.getFullYear()}`;
+
+  // verify committed date meets expectation
+  await t
+    .wait(50)
+    .expect(await getInputValue())
+    .eql(currentDateString);
+
+  // select previous (not January) or next (January) month and commit:
+
+  // open it
+  await t
+    .wait(50)
+    .click('#datepicker-empty-react-inputfield .m-datepicker__input-button');
+
+  await t
+    .wait(50 /* allow for DOM to stabilize */)
+    .expect(await datePickerIsOpen())
+    .ok();
+
+  // open month dropdown
+  await t.click(
+    '#datepicker-empty-react-inputfield .js-datepicker__dropdown-month'
+  );
+
+  const JANUARY = 0;
+  const newMonth = currentMonth + (currentMonth === JANUARY ? 1 : -1);
+
+  // click on new month
+  await t
+    .wait(50)
+    .click(
+      `#datepicker-empty-react-inputfield .js-dropdown__button[data-index="${newMonth}"]`
+    );
+
+  // commit new date
+  await t
+    .wait(50)
+    .click(`#datepicker-empty-react-inputfield .js-datepicker__button-ok`);
+
+  // verify committed date meets expectation
+  const newDateString = `${d.getDate()}.${newMonth + 1}.${d.getFullYear()}`;
+
+  await t
+    .wait(50)
+    .expect(await getInputValue())
+    .eql(newDateString);
+});
+
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
 );
