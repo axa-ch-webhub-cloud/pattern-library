@@ -490,7 +490,6 @@ class AXADatepicker extends NoShadowDOM {
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
       this._date = null;
-      this.outputdate = '';
     }
     return this._date;
   }
