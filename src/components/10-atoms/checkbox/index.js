@@ -31,10 +31,6 @@ class AXACheckbox extends NoShadowDOM {
           },
         },
       },
-      embedded: {
-        type: Boolean,
-        reflect: true,
-      },
       invalid: { type: Boolean },
       isReact: { type: Boolean },
     };
@@ -118,7 +114,6 @@ class AXACheckbox extends NoShadowDOM {
       disabled,
       error = '',
       invalid,
-      embedded,
       id,
       isReact,
       state: { isControlled, timer },
