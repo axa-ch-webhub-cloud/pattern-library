@@ -35,6 +35,7 @@ class AXAPolicyFeatures extends LitElement {
   render() {
     return html`
       <article class="m-policy-features">
+        <h1>ThisIsMYTitle</h1>
         <slot></slot>
       </article>
     `;
