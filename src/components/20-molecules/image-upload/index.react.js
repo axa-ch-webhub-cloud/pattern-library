@@ -10,9 +10,9 @@ export default createElement => ({
   icon = 'cloud-upload',
   deleteStatusText = 'Delete',
   addStatusText = 'Add more',
-  fileToBigStatusText = `File bigger than ${this.maxSizeOfSingleFileMB}Mb`,
-  filesToBigStatusText = `Files bigger than ${this.maxSizeOfAllFilesMB}Mb`,
-  toManyFilesStatusText = `You exceeded the maximum number of files wich is ${
+  fileTooBigStatusText = `File bigger than ${this.maxSizeOfSingleFileMB}Mb`,
+  filesTooBigStatusText = `Files bigger than ${this.maxSizeOfAllFilesMB}Mb`,
+  tooManyFilesStatusText = `You exceeded the maximum number of files wich is ${
     this.maxNumberOfFiles
   }`,
   embedded = false,
@@ -29,9 +29,9 @@ export default createElement => ({
       icon,
       deleteStatusText,
       addStatusText,
-      fileToBigStatusText,
-      filesToBigStatusText,
-      toManyFilesStatusText,
+      fileTooBigStatusText,
+      filesTooBigStatusText,
+      tooManyFilesStatusText,
       embedded,
     },
     children
