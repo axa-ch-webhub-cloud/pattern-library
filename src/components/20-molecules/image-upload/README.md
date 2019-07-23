@@ -55,20 +55,20 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute                                | Details                                               |
-| ---------------------------------------- | ----------------------------------------------------- |
-| `inputFileText="Upload file"`            | Text in the input-file component                      |
-| `maxSizeOfSingleFileMB="10"`             | Maximal size of a single file in mb                   |
-| `maxSizeOfAllFilesMB="15"`               | Maximal size of a all files together in mb            |
-| `maxNumberOfFiles="10"`                  | Maximal number of files                               |
-| `showImageOverview="false"`              | Switch between normal view and image overview         |
-| `icon="cloud-upload"`                    | Specify the upload icon in input-file component       |
-| `fileToBigStatusText="Error occurred"`   | Specify the error message for to big files            |
-| `toManyFilesStatusText="Error occurred"` | Specify the error message for to many files           |
-| `filesToBigStatusText="Error occurred"`  | Specify the error message when maximal size of all fi |
-| `deleteStatusText="Delete"`              | Specify the caption when hovering over a file         |
-| `addStatusText="Add more"`               | Specify the caption of dashed box                     |
-| `embedded=true`                          | Suppresses the default space around the image-upload  |
+| Attribute                                 | Details                                               |
+| ----------------------------------------- | ----------------------------------------------------- |
+| `inputFileText="Upload file"`             | Text in the input-file component                      |
+| `maxSizeOfSingleFileMB="10"`              | Maximal size of a single file in mb                   |
+| `maxSizeOfAllFilesMB="15"`                | Maximal size of a all files together in mb            |
+| `maxNumberOfFiles="10"`                   | Maximal number of files                               |
+| `showImageOverview="false"`               | Switch between normal view and image overview         |
+| `icon="cloud-upload"`                     | Specify the upload icon in input-file component       |
+| `fileTooBigStatusText="Error occurred"`   | Specify the error message for to big files            |
+| `tooManyFilesStatusText="Error occurred"` | Specify the error message for to many files           |
+| `filesTooBigStatusText="Error occurred"`  | Specify the error message when maximal size of all fi |
+| `deleteStatusText="Delete"`               | Specify the caption when hovering over a file         |
+| `addStatusText="Add more"`                | Specify the caption of dashed box                     |
+| `embedded=true`                           | Suppresses the default space around the image-upload  |
 
 ### inputFileText
 
@@ -94,17 +94,19 @@ The attribute `showImageOverview` turns to the value true as soon as one file is
 
 The attribute `icon` specifies the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md). Default is "cloud-upload".
 
-### fileToBigStatusText
+### fileTooBigStatusText
 
-The attribute `fileToBigStatusText` specifies the error text under a file, which is bigger than allowed.
+The attribute `fileTooBigStatusText` specifies the error text under a file, which is bigger than allowed. Recommended is the following pattern of the message: Recommended is the following pattern of the message: `File size exceeds ${ this.maxSizeOfSingleFileMB }MB`
 
-### toManyFilesStatusText
+### tooManyFilesStatusText
 
-The attribute `toManyFilesStatusText` specifies the global error text when the maximal number of files is exceeded.
+The attribute `tooManyFilesStatusText` specifies the global error text when the maximal number of files is exceeded.
+Recommended is the following pattern of the message: `You exceeded the maximum number of files: ${ this.maxNumberOfFiles }`
 
-### filesToBigStatusText
+### filesTooBigStatusText
 
-The attribute `filesToBigStatusText` specifies the global error text when all files together exceed the maximal file size.
+The attribute `filesTooBigStatusText` specifies the global error text when all files together exceed the maximal file size.
+Recommended is the following pattern of the message: `File sizes exceed ${ this.maxSizeOfAllFilesMB }MB`
 
 ### deleteStatusText
 

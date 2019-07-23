@@ -38,7 +38,7 @@ storiesOf('Molecules/Image Upload/Demos', module)
         listWrapperElement.parentNode.removeChild(listWrapperElement);
       }
 
-      if (imgUpload.finalFiles.length > 0) {
+      if (imgUpload.files.length > 0) {
         const listWrapper = document.createElement('div');
         listWrapper.classList.add('js-image-upload__list-wrapper');
 
@@ -48,7 +48,7 @@ storiesOf('Molecules/Image Upload/Demos', module)
         );
 
         const ol = document.createElement('ol');
-        imgUpload.finalFiles.forEach(file => {
+        imgUpload.files.forEach(file => {
           const li = document.createElement('li');
           li.innerHTML = file.name;
           ol.appendChild(li);

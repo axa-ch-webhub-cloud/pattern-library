@@ -10,12 +10,10 @@ import {
   AttachFileSvg,
 } from '@axa-ch/materials/icons';
 
-import { ImageUploadGroupSvg } from './icons';
-import { getBytesFromMegabyte } from './utils/fileSize';
+import { ImageUploadGroupSvg } from './icons'; // Icon isolated from others, because it's a component specific icon
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
-import { fileKey } from './utils/fileKey';
 import compressImage from './utils/imageCompressor';
 
 const OR = 'or';
@@ -25,10 +23,19 @@ const AddIcon = svg([AddSvg]);
 const AttachFileIcon = svg([AttachFileSvg]);
 const DeleteForeverIcon = svg([DeleteForeverSvg]);
 const ClearIcon = svg([ClearSvg]);
-
 const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
+
+/* Helperfunctions */
+export const getBytesFromMegabyte = megabyte => 1024 * 1024 * megabyte;
+//
+export const fileKey = (file, soft = false) =>
+  file.name
+    .replace(/\.[^/.]+$/, '')
+    .replace(/\s/g, '_')
+    .replace(/[.]/g, '')
+    .replace(/[^a-zA-Z0-9][-_]/g, '') + (soft ? '__' : file.lastModified);
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -51,11 +58,10 @@ class AXAImageUpload extends LitElement {
       icon: { type: String },
       deleteStatusText: { type: String },
       addStatusText: { type: String },
-      fileToBigStatusText: { type: String },
-      filesToBigStatusText: { type: String },
-      toManyFilesStatusText: { type: String },
-      embedded: { type: Boolean },
-      // onClick: { type: Function }, // TODO Events
+      fileTooBigStatusText: { type: String },
+      filesTooBigStatusText: { type: String },
+      tooManyFilesStatusText: { type: String },
+      embedded: { type: Boolean, reflected: true },
     };
   }
 
@@ -69,21 +75,21 @@ class AXAImageUpload extends LitElement {
     this.icon = 'cloud-upload';
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
-    this.fileToBigStatusText = `File bigger than ${
+    this.fileTooBigStatusText = `File size exceeds ${
       this.maxSizeOfSingleFileMB
-    }Mb`;
-    this.filesToBigStatusText = `File bigger than ${
+    }MB`;
+    this.filesTooBigStatusText = `File sizes exceed ${
       this.maxSizeOfAllFilesMB
-    }Mb`;
-    this.toManyFilesStatusText = `You exceeded the maximum number of files wich is ${
+    }MB`;
+    this.tooManyFilesStatusText = `You exceeded the maximum number of files: ${
       this.maxNumberOfFiles
     }`;
     this.embedded = false;
     this.files = [];
-    this.wrongFiles = [];
+    this.faultyFiles = [];
     this.allFiles = [];
 
-    // this.onClick = () => {};
+    // this.onClick = () => {}; TODO
 
     this.sizeOfAllFilesByte = 0;
     this.allDroppedFiles = 0;
@@ -95,29 +101,9 @@ class AXAImageUpload extends LitElement {
     this.maxsizeOfAllFilesByte = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
   }
 
-  firstUpdated() {
-    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
-    this.inputFile = this.shadowRoot.querySelector('.js-image-upload__input');
-    this.errorWrapper = this.shadowRoot.querySelector(
-      '.js-image-upload__error-wrapper'
-    );
-  }
-
-  updated() {
-    const addMoreInputFile = this.shadowRoot.querySelector(
-      '.js-image-upload__add-more'
-    );
-    if (addMoreInputFile) {
-      this.addMoreInputFile = addMoreInputFile;
-    }
-  }
-
   handleAddMoreInputClick() {
+    /* trigger inputFile component after clicking the "fake" inputFile (addMoreInput) */
     this.inputFile.querySelector('input').click();
-  }
-
-  handleImageUploadButtonClick(e) {
-    e.stopPropagation();
   }
 
   handleImageUploadButtonChange(e) {
@@ -126,6 +112,7 @@ class AXAImageUpload extends LitElement {
   }
 
   handleImageUploadDropZoneDragover(e) {
+    /* prevent default browser behavior to execute the link that comes with the event */
     e.preventDefault();
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
@@ -138,39 +125,45 @@ class AXAImageUpload extends LitElement {
   }
 
   handleImageUploadDropZoneDrop(e) {
+    /* prevent browser to display the file fullscreen */
     e.preventDefault();
-    if (!this.isFileMaxReached) {
-      const files = [...e.dataTransfer.files].filter(file => {
-        return ACCEPTED_FILE_TYPES.indexOf(file.type);
-      });
-      console.log('files on drop', files);
-      this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-      if (files.length > 0) {
-        this.addFiles(files);
-      }
+
+    if (this.isFileMaxReached) {
+      return;
+    }
+    const files = [...e.dataTransfer.files].filter(
+      file => ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
+    );
+    console.log('files on drop', files);
+    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
+    if (files.length > 0) {
+      this.addFiles(files);
     }
   }
 
-  handleImageClick(index) {
-    let shallowClone = [];
-    if (this.files.length === this.maxNumberOfFiles) {
-      this.allDroppedFiles = this.maxNumberOfFiles - 1;
-      this.maxNumberOfFilesExceeded();
-    } else {
-      this.allDroppedFiles -= 1;
-      this.maxNumberOfFilesExceeded();
-    }
+  handleImageDeletion(index) {
+    console.log('klick image');
+    let clonedFiles = [];
+
+    this.allDroppedFiles =
+      (this.files.length === this.maxNumberOfFiles
+        ? this.maxNumberOfFiles
+        : this.allDroppedFiles) - 1;
+    this.handleMaxNumberOfFiles();
+
     this.errorWrapper.innerHTML = '';
 
     if (index >= this.files.length) {
-      shallowClone = [...this.wrongFiles];
-      shallowClone.splice(index - this.files.length, 1);
-      this.wrongFiles = shallowClone;
+      /* wrong file */
+      clonedFiles = [...this.faultyFiles];
+      clonedFiles.splice(index - this.files.length, 1);
+      this.faultyFiles = clonedFiles;
       this.allDroppedFiles += 1; // TODO not so beautiful
     } else {
-      shallowClone = [...this.files];
-      shallowClone.splice(index, 1);
-      this.files = shallowClone;
+      /* valid file */
+      clonedFiles = [...this.files];
+      clonedFiles.splice(index, 1);
+      this.files = clonedFiles;
       if (this.files.length + 1 === this.maxNumberOfFiles) {
         this.dropZone.appendChild(this.addMoreInputFile);
       }
@@ -178,107 +171,122 @@ class AXAImageUpload extends LitElement {
     this.sizeOfAllFilesByte -= this.allFiles[index].size;
     this.performUpdate();
 
-    if (this.files.length === 0) {
+    if (this.allFiles.length === 0) {
       this.showImageOverview = false;
       this.sizeOfAllFilesByte = 0;
       this.allDroppedFiles = 0;
       this.files = [];
       this.allFiles = [];
-      this.wrongFiles = [];
+      this.faultyFiles = [];
       this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
     }
   }
 
   async addFiles(droppedFiles) {
     this.allDroppedFiles += droppedFiles.length;
-    let filesLeftOver = this.maxNumberOfFiles - this.files.length;
-    filesLeftOver = filesLeftOver < 0 ? 0 : filesLeftOver;
+    const filesLeftOver = Math.max(
+      this.maxNumberOfFiles - this.files.length,
+      0
+    );
 
+    /* droppedFiles is not an Array, therefore we can not use slice */
     const slicedFiles = Array.prototype.slice.call(
       droppedFiles,
       0,
       filesLeftOver
     );
 
-    // alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted
-    const pdfs = [...slicedFiles].filter(file => ~file.type.indexOf('pdf'));
+    /* alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted */
+    const pdfs = [...slicedFiles].filter(file => file.type.indexOf('pdf') > -1);
     const compressedImages = await compressImage(slicedFiles);
 
-    const wrongFiles = [];
+    this.validateFiles(compressedImages, pdfs, slicedFiles);
+
+    console.log('right', this.files, 'wrong', this.faultyFiles);
+    this.performUpdate();
+
+    if (this.files && droppedFiles.length > 0) {
+      this.showImageOverview = true;
+    }
+    if (this.files.length >= this.maxNumberOfFiles) {
+      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
+    }
+
+    this.handleMaxNumberOfFiles();
+  }
+
+  validateFiles(compressedImages, pdfs, slicedFiles) {
+    const faultyFiles = [];
     let finalFiles = pdfs;
 
     for (let i = 0; i < compressedImages.length; i++) {
-      const dKey = fileKey(slicedFiles[i], true);
+      const fileKeyBeforeCompression = fileKey(slicedFiles[i], true);
       if (
         !compressedImages.some(
-          compressedImage => fileKey(compressedImage, true) === dKey
+          compressedImage =>
+            fileKey(compressedImage, true) === fileKeyBeforeCompression
         )
+        // TODO fehler meldung
       ) {
-        wrongFiles.push(compressedImages[i]);
+        faultyFiles.push(compressedImages[i]);
       } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
-        wrongFiles.push(compressedImages[i]);
+        faultyFiles.push(compressedImages[i]);
       } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
-        wrongFiles.push(compressedImages[i]);
+        faultyFiles.push(compressedImages[i]);
       } else {
         this.sizeOfAllFilesByte += compressedImages[i].size;
         finalFiles = finalFiles.concat(compressedImages[i]);
       }
     }
 
+    /* concat the latest valid files from a file-upload to the existing ones */
     this.files = this.files.concat(finalFiles);
-    this.wrongFiles = this.wrongFiles.concat(wrongFiles);
-    console.log('right', this.files, 'wrong', this.wrongFiles);
-    this.performUpdate();
-
-    if (this.files && droppedFiles.length > 0) {
-      this.showImageOverview = true;
-    }
-    if (this.files.length === this.maxNumberOfFiles) {
-      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
-    }
-
-    this.maxNumberOfFilesExceeded();
+    /* concat the latest faulty files from a file-upload to the existing ones */
+    this.faultyFiles = this.faultyFiles.concat(faultyFiles);
   }
 
-  maxNumberOfFilesExceeded() {
-    if (this.allDroppedFiles - this.wrongFiles.length > this.maxNumberOfFiles) {
-      this.errorWrapper.innerHTML = this.toManyFilesStatusText;
+  handleMaxNumberOfFiles() {
+    const {
+      allDroppedFiles,
+      faultyFiles,
+      maxNumberOfFiles,
+      tooManyFilesStatusText,
+    } = this;
+
+    if (allDroppedFiles - faultyFiles.length > maxNumberOfFiles) {
+      this.errorWrapper.innerHTML = tooManyFilesStatusText;
     }
-    if (this.files.length === this.maxNumberOfFiles) {
-      this.isFileMaxReached = true;
-    } else {
-      this.isFileMaxReached = false;
-    }
+
+    this.isFileMaxReached = this.files.length === maxNumberOfFiles;
   }
 
-  render() {
-    const imageOverviewClasses = {
-      'm-image-upload__dropzone-file-overview': this.showImageOverview,
-    };
-    const errorMessageWrapperClasses = {
-      'm-image-upload__error-wrapper--reservation': !this.embedded,
-      'm-image-upload__error-wrapper--hidden': this.embedded && !this.showError,
-    };
-
+  fileOverviewMapping() {
+    const { deleteStatusText, fileTooBigStatusText } = this;
     const urlCreator = window.URL || window.webkitURL;
-    this.allFiles = this.files.concat(this.wrongFiles);
-    const fileOverview = this.allFiles.map((file, index) => {
-      let isWrongFile = false;
+
+    return this.allFiles.map((file, index) => {
+      let isfaultyFile = false;
       if (!file) {
         return '';
       }
-      this.wrongFiles.forEach(wrongfile => {
-        if (wrongfile === file) {
-          isWrongFile = true;
+      for (let i = 0; i < this.faultyFiles.length; i++) {
+        if (this.faultyFiles[i] === file) {
+          isfaultyFile = true;
+          break;
+        }
+      }
+      this.faultyFiles.forEach(faultyFile => {
+        if (faultyFile === file) {
+          isfaultyFile = true;
         }
       });
-      const isFile = ~file.type.indexOf('application');
+      const isFile = file.type.indexOf('application') > -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
         <figure class="m-image-upload__img-figure js-image-upload__img-figure">
           <div
             class="m-image-upload__icon-hover-area"
-            @click=${() => this.handleImageClick(index)}
+            @click=${() => this.handleImageDeletion(index)}
           >
             ${
               isFile
@@ -297,7 +305,7 @@ class AXAImageUpload extends LitElement {
             }
             <div class="m-image-upload__icon-layer">
               <span class="m-image-upload__icon-error"
-                >${isWrongFile ? ClearIcon : ''}</span
+                >${isfaultyFile ? ClearIcon : ''}</span
               >
               <span class="m-image-upload__icon-delete"
                 >${DeleteForeverIcon}</span
@@ -307,18 +315,18 @@ class AXAImageUpload extends LitElement {
           <figcaption
             class="m-image-upload__img-caption"
             title="${file.name}"
-            data-status="${this.deleteStatusText}"
+            data-status="${deleteStatusText}"
           >
             ${
-              isWrongFile
+              isfaultyFile
                 ? html`
                     <figcaption
                       class="m-image-upload__img-caption m-image-upload__img-caption-error"
-                      title="${this.fileToBigStatusText}"
-                      data-status="${this.deleteStatusText}"
+                      title="${fileTooBigStatusText}"
+                      data-status="${deleteStatusText}"
                     >
                       <span class="m-image-upload__filename"
-                        >${this.fileToBigStatusText}</span
+                        >${fileTooBigStatusText}</span
                       >
                     </figcaption>
                   `
@@ -326,7 +334,7 @@ class AXAImageUpload extends LitElement {
                     <figcaption
                       class="m-image-upload__img-caption"
                       title="${file.name}"
-                      data-status="${this.deleteStatusText}"
+                      data-status="${deleteStatusText}"
                     >
                       <span class="m-image-upload__filename">${file.name}</span>
                     </figcaption>
@@ -335,8 +343,11 @@ class AXAImageUpload extends LitElement {
         </figure>
       `;
     });
+  }
 
-    const addMoreInputFile = html`
+  generateAddMoreInputFile() {
+    const { addStatusText } = this;
+    return html`
       <figure
         class="m-image-upload__img-figure m-image-upload__add-more js-image-upload__add-more"
       >
@@ -350,12 +361,31 @@ class AXAImageUpload extends LitElement {
         </div>
         <figcaption
           class="m-image-upload__img-caption"
-          title="${this.addStatusText}"
+          title="${addStatusText}"
         >
-          ${this.addStatusText}
+          ${addStatusText}
         </figcaption>
       </figure>
     `;
+  }
+
+  render() {
+    const imageOverviewClasses = {
+      'm-image-upload__dropzone': true,
+      'js-image-upload__dropzone': true,
+      'm-image-upload__dropzone-file-overview': this.showImageOverview,
+    };
+    const errorMessageWrapperClasses = {
+      'm-image-upload__error-wrapper': true,
+      'js-image-upload__error-wrapper': true,
+      'm-image-upload__error-wrapper--reservation': !this.embedded,
+      'm-image-upload__error-wrapper--hidden': this.embedded && !this.showError,
+    };
+
+    // displaying files with errors (e.g. too big) after valid ones
+    this.allFiles = this.files.concat(this.faultyFiles);
+    const fileOverview = this.fileOverviewMapping(this.allFiles);
+    const addMoreInputFile = this.generateAddMoreInputFile();
 
     return html`
       <article class="m-image-upload">
@@ -364,9 +394,7 @@ class AXAImageUpload extends LitElement {
           @dragover="${this.handleImageUploadDropZoneDragover}"
           @dragleave="${this.handleImageUploadDropZoneDragleave}"
           @drop="${this.handleImageUploadDropZoneDrop}"
-          class="m-image-upload__dropzone js-image-upload__dropzone ${classMap(
-            imageOverviewClasses
-          )}"
+          class="${classMap(imageOverviewClasses)}"
         >
           ${!this.showImageOverview
             ? html`
@@ -392,13 +420,30 @@ class AXAImageUpload extends LitElement {
               `}
         </section>
 
-        <div
-          class="m-image-upload__error-wrapper js-image-upload__error-wrapper ${classMap(
-            errorMessageWrapperClasses
-          )}"
-        ></div>
+        <div class="${classMap(errorMessageWrapperClasses)}"></div>
       </article>
     `;
+  }
+
+  firstUpdated() {
+    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
+    this.inputFile = this.shadowRoot.querySelector('.js-image-upload__input');
+    this.errorWrapper = this.shadowRoot.querySelector(
+      '.js-image-upload__error-wrapper'
+    );
+  }
+
+  querySelector(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  updated() {
+    const addMoreInputFile = this.shadowRoot.querySelector(
+      '.js-image-upload__add-more'
+    );
+    if (addMoreInputFile) {
+      this.addMoreInputFile = addMoreInputFile;
+    }
   }
 }
 

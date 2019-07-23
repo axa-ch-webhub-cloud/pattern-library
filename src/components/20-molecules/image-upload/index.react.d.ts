@@ -9,9 +9,9 @@ interface AXAImageUploadProps {
   icon?: String;
   deleteStatusText?: String;
   addStatusText?: String;
-  fileToBigStatusText?: String;
-  filesToBigStatusText?: String;
-  toManyFilesStatusText?: String;
+  fileTooBigStatusText?: String;
+  filesTooBigStatusText?: String;
+  tooManyFilesStatusText?: String;
   embedded?: Boolean;
   onClick?: () => void;
 }
