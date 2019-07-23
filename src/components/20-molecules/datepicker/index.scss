@@ -37,6 +37,10 @@ axa-datepicker {
       overflow: hidden;
     }
   }
+
+  &[width] {
+    display: flex;
+  }
 }
 
 .m-datepicker {
@@ -87,6 +91,7 @@ axa-datepicker {
     min-width: 0;
     width: 100%;
     line-height: normal;
+    box-sizing: border-box;
 
     &::placeholder,
     &:-ms-input-placeholder {

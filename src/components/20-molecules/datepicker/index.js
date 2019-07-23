@@ -123,6 +123,8 @@ class AXADatepicker extends NoShadowDOM {
       invaliddatetext: { type: String },
       error: { type: String, reflect: true },
       embedded: { type: Boolean, reflect: true },
+      height: { type: String, reflect: true },
+      width: { type: String, reflect: true },
     };
   }
 
@@ -244,11 +246,23 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
+    const { width = 'auto', height = 'auto' } = this;
+
+    const formattedStyle = parameter =>
+      `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
+
+    const formattedWidth = `width:${formattedStyle(width)}`;
+    const formattedHeight = `height:${formattedStyle(height)}`;
+
     return html`
-      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
+      <article
+        class="m-datepicker"
+        @click="${this.handleDatepickerClick}"
+        style="${formattedWidth}"
+      >
         ${this.inputfield &&
           html`
-            <div class="m-datepicker__input-wrap">
+            <div class="m-datepicker__input-wrap" style="${formattedWidth}">
               <input
                 @input="${this.handleInputChange}"
                 @blur="${this.handleBlur}"
@@ -257,6 +271,7 @@ class AXADatepicker extends NoShadowDOM {
                 type="text"
                 name="${this.name}"
                 placeholder="${this.placeholder}"
+                style="${formattedHeight}"
                 .value="${isControlled ? value : this.outputdate}"
               />
               <button

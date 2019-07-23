@@ -136,6 +136,14 @@ Boolean `invalid`, when set to true, forces showing the error message set with `
 
 The intended use case is to easily convey external validation failure, e.g. when an application decides the entered date is outside a permissible date range.
 
+### width, height
+
+String-valued `width, height` allow to override the intrinsic dimensions of the datepicker (default: `auto`).
+
+For example, setting `width=100%` makes the datepicker assume its parent's width, whereas `height=45` sets the height of the input field to 45px.
+
+Note that missing `px` is added to numeric values automatically.
+
 ## Callback Properties
 
 ### onChange
