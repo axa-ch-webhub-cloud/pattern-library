@@ -1,3 +1,7 @@
 .m-policy-features {
-  display: block;
+
+
+  &__slot {
+    display: flex;
+  }
 }

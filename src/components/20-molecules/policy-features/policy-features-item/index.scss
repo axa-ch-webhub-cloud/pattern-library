@@ -1,0 +1,26 @@
+.policy-features-item {
+  display: block;
+  width: 255px;
+  text-align: center;
+  margin: 5px;
+
+  background-color: olive;
+  flex-basis:50%;
+
+  &__icon {
+    margin: 5px auto 0 auto;
+    max-width: 100%;
+
+    /*@include respond-up(md) {
+      height: $policy-feature-item-icon-height-md;
+    }*/
+  }
+
+  &__title {
+    @include typo(primary, large, bold);
+  }
+
+  &__description {
+    @include typo(primary, medium-1, default);
+  }
+}
