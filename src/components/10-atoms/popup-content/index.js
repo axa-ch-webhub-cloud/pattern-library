@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
-// import { classMap } from 'lit-html/directives/class-map';
+import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -48,9 +48,21 @@ class AXAPopupContent extends LitElement {
   // }
 
   render() {
+    const { open } = this;
+
+    const wrapperClasses = {
+      'a-popup__wrapper': true,
+      'a-popup__wrapper--open': open
+    };
+
+    const contentClasses = {
+      'a-popup__content': true,
+      'a-popup__content': open
+    };
+
     return html`
-      <div class="wrapper ${this.open ? 'wrapper--test' : ''}">
-        <article class="a-popup-content">
+      <div class="${wrapperClasses}">
+        <article class="${contentClasses}">
           <slot></slot>
         </article>
       </div>

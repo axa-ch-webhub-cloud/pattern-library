@@ -1,21 +1,20 @@
-.wrapper {
+.a-popup__wrapper {
   max-height: 0;
   //transition: max-height 0.2s ease-out;
   transition: max-height .2s ease-out;
   overflow: hidden;
 
-  &.wrapper--test {
+  &.a-popup__wrapper--open {
     max-height: 600px;
     transition: max-height .2s ease-in;
-  }
 
-  .a-popup-content {
-    display: none;
+    .a-popup__content {
+      display: none;
+    }
   }
-
 }
 
-.a-popup-content {
+.a-popup__content {
   display: block;
   position: relative;
   background-color: $color-prim-blue-st-tropaz;
@@ -25,13 +24,6 @@
   box-sizing: border-box;
   margin-top: 10px;
   width: 100%;
-  //max-height: 0;
-  //height: auto;
-  //transition: max-height 1.15s ease-out;
-
-
-  // TODO *1
-  //margin-left: -10px;
 
   &:before {
     position: absolute;

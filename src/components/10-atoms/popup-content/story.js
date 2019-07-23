@@ -9,4 +9,4 @@ storiesOf('Atoms/Popup content', module)
       sidebar: Readme,
     },
   })
-  .add('Popup content - default', () => '<axa-popup-content>Some children</axa-popup-content>')
+  .add('Popup content - default', () => '<axa-popup-content open>Some children</axa-popup-content>')
