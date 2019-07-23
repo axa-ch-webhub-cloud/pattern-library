@@ -12,11 +12,17 @@
 
   @include breakpoint($mediaquery-lg-up) {
     padding: 50px 0;
+
+    h2 {
+      color: $color-prim-white !important;
+    }
   }
 
   &__main {
     ::slotted(h2) {
       display: none !important; // desktop title
+      color: $color-prim-white !important;
+      margin: 0 !important;
 
       @include breakpoint($mediaquery-sm-up) {
         @include typo(primary, medium, bold, !important); //change whole type to  !important?
@@ -36,6 +42,7 @@
         display: none !important; // mobile title
       }
 
+      color: $color-prim-white !important;
       padding: 0 !important;
       margin: 0 !important;
     }
@@ -119,6 +126,8 @@
     ::slotted(h2) {
       // IE11 workaround
       display: none !important;
+      color: $color-prim-white !important;
+      margin: 0 !important;
 
       @include breakpoint($mediaquery-lg-up) {
         // IE11 workaround
