@@ -1,3 +1,7 @@
+/*
+::slotted attributes do not have enough specificity. We have to set it to be decoupled.
+*/
+
 .o-footer {
   text-align: initial;
 
