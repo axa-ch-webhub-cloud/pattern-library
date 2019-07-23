@@ -22,6 +22,7 @@ export default createElement => ({
   monthtitle = 'Choose Month',
   yeartitle = 'Choose Year',
   invaliddatetext = 'Invalid date',
+  invalid,
   embedded,
   id,
 }) =>
@@ -46,6 +47,7 @@ export default createElement => ({
     monthtitle,
     yeartitle,
     invaliddatetext,
+    invalid,
     embedded,
     id,
     isReact: true,

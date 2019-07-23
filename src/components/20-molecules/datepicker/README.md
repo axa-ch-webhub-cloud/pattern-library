@@ -130,6 +130,12 @@ Boolean `embedded`, when true, _suppresses_ any extraneous space around the date
 While no error message will be shown, internal validation continues to be performed. As a result,
 UI state still changes to red border, and the `error` attribute still is being set upon validation failure.
 
+### invalid
+
+Boolean `invalid`, when set to true, forces showing the error message set with `invaliddatetext` even when user input is valid.
+
+The intended use case is to easily convey external validation failure, e.g. when an application decides the entered date is outside a permissible date range.
+
 ## Callback Properties
 
 ### onChange

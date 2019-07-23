@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoControlledDatepickerReact from './DemoDatepickerReact';
 import DemoDatepickerOnDateChange from './DemoDatepickerOnDateChange';
+import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Datepicker/React/Demos', module)
@@ -22,6 +23,14 @@ storiesOf('Molecules/Datepicker/React/Demos', module)
     () => {
       const div = document.createElement('div');
       ReactDOM.render(<DemoDatepickerOnDateChange />, div);
+      return div;
+    }
+  )
+  .add(
+    'External validation using onDateChange-driven React-ified Datepicker with inputfield',
+    () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<DemoDatepickerExternalValidation />, div);
       return div;
     }
   );

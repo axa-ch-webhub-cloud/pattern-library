@@ -119,6 +119,7 @@ class AXADatepicker extends NoShadowDOM {
       placeholder: { type: String },
       monthtitle: { type: String },
       yeartitle: { type: String },
+      invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String },
       error: { type: String, reflect: true },
       embedded: { type: Boolean, reflect: true },
@@ -189,6 +190,7 @@ class AXADatepicker extends NoShadowDOM {
     this.locale = 'de-CH';
     this.open = false;
     this.inverted = false;
+    this.invalid = false;
     this.name = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
@@ -343,7 +345,7 @@ class AXADatepicker extends NoShadowDOM {
         ${!this.embedded
           ? html`
               <span class="m-datepicker__error"
-                >${this.error && this.invaliddatetext}</span
+                >${this.error || this.invalid ? this.invaliddatetext : ''}</span
               >
             `
           : html``}
