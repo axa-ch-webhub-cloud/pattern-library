@@ -57,12 +57,12 @@ class AXAPopupContent extends LitElement {
 
     const contentClasses = {
       'a-popup__content': true,
-      'a-popup__content': open
+      'a-popup__content--open': open
     };
 
     return html`
-      <div class="${wrapperClasses}">
-        <article class="${contentClasses}">
+      <div class="${classMap(wrapperClasses)}">
+        <article class="${classMap(contentClasses)}">
           <slot></slot>
         </article>
       </div>

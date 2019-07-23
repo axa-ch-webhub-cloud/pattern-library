@@ -193,51 +193,64 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
             </label>
           `}
         <div class="a-input-text__input-wrapper">
-          <input
-            @input="${this.handleInput}"
-            @focus="${this.handleFocus}"
-            @blur="${this.handleBlur}"
-            id="${refId}"
-            type="${type}"
-            class=" ${classMap(inputClasses)}"
-            autocomplete="off"
-            name="${name}"
-            value="${value}"
-            placeholder="${placeholder}"
-            ?disabled="${disabled}"
-            aria-required="${required}"
-          />
-
-          <div class="${classMap(checkWrapperClasses)}">
-            ${checkMark
-              ? html`
-                  <span class="${classMap(checkClasses)}"></span>
-                `
-              : ''}
+          <div class="a-input-text__input-elements">
+            <input
+              @input="${this.handleInput}"
+              @focus="${this.handleFocus}"
+              @blur="${this.handleBlur}"
+              id="${refId}"
+              type="${type}"
+              class=" ${classMap(inputClasses)}"
+              autocomplete="off"
+              name="${name}"
+              value="${value}"
+              placeholder="${placeholder}"
+              ?disabled="${disabled}"
+              aria-required="${required}"
+            />
+  
+            <div class="${classMap(checkWrapperClasses)}">
+              ${
+                checkMark
+                  ? html`
+                      <span class="${classMap(checkClasses)}"></span>
+                    `
+                  : ''
+              }
+            </div>
           </div>
-          ${info &&
-            html`
-              <axa-popup-button
-                ?open="${this._open}"
-                class="a-input-text__info-button"
-                @click="${this.handlePopupClick}"
-              ></axa-popup-button>
-            `}
+         
+            ${info &&
+              html`
+                <axa-popup-button
+                  ?open="${this._open}"
+                  class="a-input-text__info-button"
+                  @click="${this.handlePopupClick}"
+                ></axa-popup-button>
+              `}
+          </div>
+          <div class="${classMap(errorMessageWrapperClasses)}">
+            ${
+              this.showError
+                ? html`
+                    <span class="a-input-text__error">${error}</span>
+                  `
+                : ''
+            }
+          </div>
         </div>
-        <div class="${classMap(errorMessageWrapperClasses)}">
-          ${this.showError
+        ${
+          info
             ? html`
-                <span class="a-input-text__error">${error}</span>
+                <axa-popup-content
+                  ?open="${this._open}"
+                  class="a-input-text__info-content"
+                >
+                  ${unsafeHTML(info)}
+                </axa-popup-content>
               `
-            : ''}
-        </div>
-        ${info
-          ? html`
-              <axa-popup-content ?open="${this._open}" class="a-input-text__info-content">
-                ${unsafeHTML(info)}
-              </axa-popup-content>
-            `
-          : ''}
+            : ''
+        }
       </div>
     `;
   }
