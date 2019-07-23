@@ -108,25 +108,3 @@ test('should set checkbox element to disabled + not change state', async t => {
   await t.click($axaCheckbox);
   await t.expect($axaCheckbox.checked).notOk();
 });
-
-fixture('Checkbox - React, uncontrolled').page(
-  `${host}/iframe.html?id=atoms-checkbox-react--checkbox-uncontrolled`
-);
-
-test('should show default-checked red checkbox and allow unchecking', async t => {
-  const $axaCheckbox = await Selector(TAG);
-  const getIconBackgroundColor = ClientFunction(() => {
-    const checkbox = document.querySelector('axa-checkbox');
-    return window
-      .getComputedStyle(checkbox.querySelector('.a-checkbox__icon'), ':after')
-      .getPropertyValue('background-color');
-  });
-
-  await t.expect(await getIconBackgroundColor()).eql('rgb(201, 20, 50)');
-  await t.click($axaCheckbox);
-
-  await t
-    .wait(50)
-    .expect($axaCheckbox.checked)
-    .notOk();
-});
