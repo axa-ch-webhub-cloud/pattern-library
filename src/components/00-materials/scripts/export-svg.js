@@ -37,6 +37,7 @@ fs.readdir(importPath, (err, items) => {
     /*eslint-disable */
     // Generate a js file forEach svg file found
   try{
+    console.log('writeFile ', fileName);
     fs.writeFileSync(
       `${exportPath}/${fileName}.js`,
       outdent`export default '${contents}';`,
