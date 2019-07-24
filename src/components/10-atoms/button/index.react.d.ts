@@ -21,6 +21,7 @@ interface AXAButtonProps {
   motionOff?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 declare function createAXAButton(

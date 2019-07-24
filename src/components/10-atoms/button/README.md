@@ -103,6 +103,10 @@ Based on the string-valued attribute `icon`, interpreted as icon name, an icon w
 
 The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
 
+### className
+
+With this string attribute you can set a CSS class to the component. 
+
 ### Migration version 1 to 2
 
 The large property is obsolete, use size property like `size="large"`
