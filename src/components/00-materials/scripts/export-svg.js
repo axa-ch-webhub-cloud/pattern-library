@@ -35,11 +35,16 @@ fs.readdir(importPath, (err, items) => {
     }
 
     // Generate a js file forEach svg file found
+  try{
     fs.writeFileSync(
       `${exportPath}/${fileName}.js`,
       outdent`export default '${contents}';`,
       'utf8'
     );
+  } catch (e) {
+    console.log('Error in export-svg.js: ', e);
+  }
+
 
     namedExports += outdent`
       export { default as ${className} } from './${fileName}.js';
