@@ -2,6 +2,23 @@
 
 image-upload is a component used for uploading files in forms.
 
+## Requirements
+
+- Design requirements on [zeplin](https://zpl.io/2ZrKE7G)
+- The only filetypes allowed are `image/jpg, image/jpeg, application/pdf, image/png`
+- The image-upload has 2 states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of 4 subjects and the input-file-component with an icon. The file overview shows all uploaded files. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or has other file specific, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless when hovering over it shows the bin-icon.
+- To remove a file, the user has to hover over a file and click it
+- Is a filename or a status text to long it's going to be cut off and 3 dots will be added at the end. To show the full text, the user has to hover over.
+- After the file limit is reached, the dropzone is not longer active and the input-file gets deactivated
+- Is the file limit exceeded, the unused file are cut off and a matching error message is displayed under the image-upload
+- When all files together exceed the maximal file size a matching error message is displayed under the image-upload
+- The file overview is scrollable after the files use more than 2 rows
+- All files are compromised and .png are converted to .jpg
+
+### Mobile requirements
+
+- Mobile isn't implemented and the requirements aren't defined yet
+
 ## Usage
 
 ```bash
@@ -68,7 +85,6 @@ Import the image-upload-defining script and use a image-upload like this:
 | `filesTooBigStatusText="Error occurred"`  | Specify the error message when maximal size of all fi |
 | `deleteStatusText="Delete"`               | Specify the caption when hovering over a file         |
 | `addStatusText="Add more"`                | Specify the caption of dashed box                     |
-| `embedded=true`                           | Suppresses the default space around the image-upload  |
 
 ### inputFileText
 
@@ -115,10 +131,6 @@ The attribute `deleteStatusText` specifies the text that appears when hovering o
 ### addStatusText
 
 The attribute `addStatusText` specifies the text under the dashed box appearing after the last file.
-
-### embedded
-
-When true, the Boolean attribute `embedded` suppresses the default space around the image-upload otherwise reserved for showing valid/error UI states.
 
 ### onClick TODO for all Events
 
