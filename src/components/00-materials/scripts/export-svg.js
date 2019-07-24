@@ -47,13 +47,20 @@ fs.readdir(importPath, (err, items) => {
     console.log('Error in export-svg.js: ', e);
   }
 
-    /*eslint-enable */
+
     namedExports += outdent`
       export { default as ${className} } from './${fileName}.js';
 
     `;
   });
 
-  // Make index file with named exports forEach svg
-  fs.writeFileSync(`${exportPath}/index.js`, namedExports, 'utf8');
+  try{
+// Make index file with named exports forEach svg
+    fs.writeFileSync(`${exportPath}/index.js`, namedExports, 'utf8');
+  } catch (e) {
+    console.log('Error 2 in export-svg.js: ', e);
+  }
+
+  console.log('FERTIG');
 });
+/*eslint-enable */
