@@ -15,7 +15,6 @@ export default createElement => ({
   tooManyFilesStatusText = `You exceeded the maximum number of files wich is ${
     this.maxNumberOfFiles
   }`,
-  embedded = false,
   children,
 }) =>
   withReact(createElement)(
@@ -32,7 +31,6 @@ export default createElement => ({
       fileTooBigStatusText,
       filesTooBigStatusText,
       tooManyFilesStatusText,
-      embedded,
     },
     children
   );

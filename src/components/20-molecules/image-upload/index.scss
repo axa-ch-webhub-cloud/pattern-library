@@ -168,12 +168,4 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   &__error-wrapper {
     color: $color-validation-error;
   }
-
-  &__error-wrapper--reservation {
-    min-height: 20px;
-  }
-
-  &__error-wrapper--hidden {
-    display: none;
-  }
 }

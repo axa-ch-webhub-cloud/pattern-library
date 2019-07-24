@@ -10,7 +10,9 @@ import {
   AttachFileSvg,
 } from '@axa-ch/materials/icons';
 
-import { ImageUploadGroupSvg } from './icons'; // Icon isolated from others, because it's a component specific icon
+/* Icon isolated from others, because it's a component specific icon */
+import { ImageUploadGroupSvg } from './icons';
+
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
@@ -29,7 +31,7 @@ const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
 /* Helperfunctions */
 export const getBytesFromMegabyte = megabyte => 1024 * 1024 * megabyte;
-//
+
 export const fileKey = (file, soft = false) =>
   file.name
     .replace(/\.[^/.]+$/, '')
@@ -61,7 +63,8 @@ class AXAImageUpload extends LitElement {
       fileTooBigStatusText: { type: String },
       filesTooBigStatusText: { type: String },
       tooManyFilesStatusText: { type: String },
-      embedded: { type: Boolean, reflected: true },
+      files: { type: Object },
+      faultyFiles: { type: Object },
     };
   }
 
@@ -84,7 +87,6 @@ class AXAImageUpload extends LitElement {
     this.tooManyFilesStatusText = `You exceeded the maximum number of files: ${
       this.maxNumberOfFiles
     }`;
-    this.embedded = false;
     this.files = [];
     this.faultyFiles = [];
     this.allFiles = [];
@@ -114,6 +116,7 @@ class AXAImageUpload extends LitElement {
   handleImageUploadDropZoneDragover(e) {
     /* prevent default browser behavior to execute the link that comes with the event */
     e.preventDefault();
+    console.log('this.isFileMaxReached', this.isFileMaxReached);
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
       this.dropZone.classList.add('m-image-upload__dropzone_dragover');
@@ -149,7 +152,6 @@ class AXAImageUpload extends LitElement {
       (this.files.length === this.maxNumberOfFiles
         ? this.maxNumberOfFiles
         : this.allDroppedFiles) - 1;
-    this.handleMaxNumberOfFiles();
 
     this.errorWrapper.innerHTML = '';
 
@@ -168,6 +170,9 @@ class AXAImageUpload extends LitElement {
         this.dropZone.appendChild(this.addMoreInputFile);
       }
     }
+
+    this.handleMaxNumberOfFiles();
+
     this.sizeOfAllFilesByte -= this.allFiles[index].size;
     this.performUpdate();
 
@@ -258,6 +263,7 @@ class AXAImageUpload extends LitElement {
     }
 
     this.isFileMaxReached = this.files.length === maxNumberOfFiles;
+    console.log('this.isFileMaxReached handler', this.isFileMaxReached);
   }
 
   fileOverviewMapping() {
@@ -378,11 +384,9 @@ class AXAImageUpload extends LitElement {
     const errorMessageWrapperClasses = {
       'm-image-upload__error-wrapper': true,
       'js-image-upload__error-wrapper': true,
-      'm-image-upload__error-wrapper--reservation': !this.embedded,
-      'm-image-upload__error-wrapper--hidden': this.embedded && !this.showError,
     };
 
-    // displaying files with errors (e.g. too big) after valid ones
+    /* displaying files with errors (e.g. too big) after valid ones */
     this.allFiles = this.files.concat(this.faultyFiles);
     const fileOverview = this.fileOverviewMapping(this.allFiles);
     const addMoreInputFile = this.generateAddMoreInputFile();
