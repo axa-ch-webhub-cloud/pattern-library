@@ -105,7 +105,7 @@ The function-valued attribute `onClick` can be used as a callback prop for React
 
 ### className
 
-With this string attribute you can set a CSS class to the component.
+With this string attribute you can set a CSS class to the component. 
 
 ### Migration version 1 to 2
 
