@@ -27,7 +27,20 @@ story.add('Policy features', () => {
   const type = radios('Types', { submit: 'submit', reset: 'reset' });
 
   return `
-  <axa-policy-features>
+  <axa-policy-features 
+  title="A 5 star car insurance with affordable premium services"
+  axaStyle="wild-sand"
+  >
+    <axa-policy-features-item title="Get Discount"
+                         icon="email"
+                         alt="Discount Svg Icon"
+                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
+    </axa-policy-features-item>
+    <axa-policy-features-item title="Get Discount"
+                         icon="download"
+                         alt="Discount Svg Icon"
+                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
+    </axa-policy-features-item>
     <axa-policy-features-item title="Get Discount"
                          icon="email"
                          alt="Discount Svg Icon"
