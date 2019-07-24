@@ -34,19 +34,12 @@ fs.readdir(importPath, (err, items) => {
       fs.mkdirSync(exportPath);
     }
 
-    /*eslint-disable */
     // Generate a js file forEach svg file found
-  try{
-    console.log('writeFile ', fileName);
     fs.writeFileSync(
       `${exportPath}/${fileName}.js`,
       outdent`export default '${contents}';`,
       'utf8'
     );
-  } catch (e) {
-    console.log('Error in export-svg.js: ', e);
-  }
-
 
     namedExports += outdent`
       export { default as ${className} } from './${fileName}.js';
@@ -54,13 +47,6 @@ fs.readdir(importPath, (err, items) => {
     `;
   });
 
-  try{
-// Make index file with named exports forEach svg
-    fs.writeFileSync(`${exportPath}/index.js`, namedExports, 'utf8');
-  } catch (e) {
-    console.log('Error 2 in export-svg.js: ', e);
-  }
-
-  console.log('FERTIG');
+  // Make index file with named exports forEach svg
+  fs.writeFileSync(`${exportPath}/index.js`, namedExports, 'utf8');
 });
-/*eslint-enable */
