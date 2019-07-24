@@ -90,7 +90,7 @@ $secondary-fonts-styles: (
     }
 }
 
-//$important (optional) - possibility to set css !important (for example at ::slottet)
+//$important (optional) - possibility to set css !important (for example for ::slottet attributes)
 @mixin typo($name: primary, $size: default, $style: default, $important: null) {
   @include _font($name, $style, $important);
   @include _text($size, $important);
