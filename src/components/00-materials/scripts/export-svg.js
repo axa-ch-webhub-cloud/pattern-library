@@ -34,6 +34,7 @@ fs.readdir(importPath, (err, items) => {
       fs.mkdirSync(exportPath);
     }
 
+    /*eslint-disable */
     // Generate a js file forEach svg file found
   try{
     fs.writeFileSync(
@@ -45,7 +46,7 @@ fs.readdir(importPath, (err, items) => {
     console.log('Error in export-svg.js: ', e);
   }
 
-
+    /*eslint-enable */
     namedExports += outdent`
       export { default as ${className} } from './${fileName}.js';
 
