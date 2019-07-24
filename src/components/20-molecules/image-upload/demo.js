@@ -1,6 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-// import { html, render } from 'lit-html';
+import { html, render } from 'lit-html';
 import Readme from './README.md';
 import './index';
 
@@ -10,54 +10,45 @@ storiesOf('Molecules/Image Upload/Demos', module)
       sidebar: Readme,
     },
   })
-  .add('Feature - image upload in a form', () => {
-    const form = document.createElement('form');
-
-    const submitButton = document.createElement('button');
-    submitButton.innerHTML = 'Submit';
-    submitButton.style = 'margin-top: 40px;';
-    submitButton.setAttribute('type', 'submit');
-
-    const wrapper = document.createElement('div');
-    wrapper.setAttribute('style', 'width:453px');
-
-    const imgUpload = document.createElement('axa-image-upload');
-    imgUpload.innerHTML = 'Folgende Dateien werden übertragen';
-
-    form.appendChild(wrapper);
-    wrapper.appendChild(imgUpload);
-    form.appendChild(submitButton);
-
-    form.addEventListener('submit', e => {
+  .add('Feature - image-upload in a form', () => {
+    const handleSubmit = e => {
       e.preventDefault();
-      const listWrapperElement = document.querySelector(
-        '.js-image-upload__list-wrapper'
+
+      const imgUpload = document.querySelector(
+        '.js-image-upload__image-upload'
       );
 
-      if (listWrapperElement) {
-        listWrapperElement.parentNode.removeChild(listWrapperElement);
-      }
-
       if (imgUpload.files.length > 0) {
-        const listWrapper = document.createElement('div');
-        listWrapper.classList.add('js-image-upload__list-wrapper');
+        const listWrapper = html`
+          <div class="js-image-upload__list-wrapper">
+            <h3>Folgende Dateien wurden ausgewählt</h3>
+            <ol>
+              ${imgUpload.files.map(file => {
+                return html`
+                  <li>${file.name}</li>
+                `;
+              })}
+            </ol>
+          </div>
+        `;
 
-        const header = document.createElement('h3');
-        const textNode = document.createTextNode(
-          'Folgende Dateien wurden ausgewählt'
-        );
-
-        const ol = document.createElement('ol');
-        imgUpload.files.forEach(file => {
-          const li = document.createElement('li');
-          li.innerHTML = file.name;
-          ol.appendChild(li);
-        });
-        header.appendChild(textNode);
-        form.appendChild(listWrapper);
-        listWrapper.appendChild(header);
-        listWrapper.appendChild(ol);
+        render(listWrapper, document.getElementById('listWrapper'));
       }
-    });
-    return form;
+    };
+
+    const template = html`
+      <div style="width:453px;">
+        <axa-image-upload class="js-image-upload__image-upload"
+          >These files are going to be uploaded</axa-image-upload
+        >
+      </div>
+      <form @click="${handleSubmit}" style="margin-top:40px;">
+        <axa-button type="submit">Submit</axa-button>
+      </form>
+      <div id="listWrapper"></div>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
   });
