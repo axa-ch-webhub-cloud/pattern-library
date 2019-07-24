@@ -2,18 +2,18 @@
   display: block;
   width: 255px;
   text-align: center;
-  margin: 5px;
-
-  background-color: olive;
-  flex-basis:50%;
+  padding: 11.5px;
 
   &__icon {
-    margin: 5px auto 0 auto;
-    max-width: 100%;
+    > svg {
+      width: 42px;
+      height: 42px;
 
-    /*@include respond-up(md) {
-      height: $policy-feature-item-icon-height-md;
-    }*/
+      @include breakpoint($mediaquery-md-up) {
+        width: 96px;
+        height: 96px;
+      }
+    }
   }
 
   &__title {

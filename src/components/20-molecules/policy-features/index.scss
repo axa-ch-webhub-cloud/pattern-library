@@ -1,7 +1,42 @@
 .m-policy-features {
+  &__title {
+    @include typo-title(huge-2, secondary); //xs
 
+    @include breakpoint($mediaquery-md) {
+
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+
+    }
+
+    text-align: center;
+  }
 
   &__slot {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+}
+
+.m-policy-features__style-dark-indigo,
+.m-policy-features__style-default {
+  background: $color-prim-blue-dark-indigo;
+  color: $color-prim-white;
+}
+
+.m-policy-features__style-axa-blue {
+  background: $color-axa-blue;
+  color: $color-prim-white;
+}
+
+.m-policy-features__style-wild-sand {
+  background: $color-prim-gray-wild-sand;
+  color: $color-prim-gray-mine-shaft;
+}
+
+.m-policy-features__style-white {
+  background: $color-prim-white;
+  color: $color-prim-gray-mine-shaft;
 }

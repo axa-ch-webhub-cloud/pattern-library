@@ -4,6 +4,9 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
+const STYLE_WHITELIST = ['default', 'dark-indigo', 'axa-blue', 'wild-sand', 'white'];
+const DEFAULT_AXA_STYLE = 'dark-indigo';
+
 class AXAPolicyFeatures extends LitElement {
   static get tagName() {
     return 'axa-policy-features';
@@ -19,12 +22,15 @@ class AXAPolicyFeatures extends LitElement {
     // Define properties and types
     return {
       onClick: { type: Function },
+      title: { type: String },
+      axaStyle: { type: String },
     };
   }
 
   constructor() {
     super();
     this.onClick = () => {};
+    this.axaStyle = DEFAULT_AXA_STYLE;
   }
 
   firstUpdated() {
@@ -32,10 +38,20 @@ class AXAPolicyFeatures extends LitElement {
     // This will be rendered when the component is connected to the DOM
   }
 
+  getAllowedAxaStyleName(potentialAxaStyle) {
+    if(STYLE_WHITELIST.indexOf(potentialAxaStyle) > -1) {
+      return potentialAxaStyle;
+    }
+
+    return DEFAULT_AXA_STYLE;
+  }
+
   render() {
+    const { title, axaStyle } = this;
+
     return html`
-      <article class="m-policy-features">
-        <h1>ThisIsMYTitle</h1>
+      <article class="m-policy-features m-policy-features__style-${ this.getAllowedAxaStyleName(axaStyle) }">
+        <h1 class="m-policy-features__title">${title}</h1>
         <slot class="m-policy-features__slot"></slot>
       </article>
     `;
