@@ -15,40 +15,48 @@ const story = storiesOf('Molecules/Policy features', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
-    sidebar: Readme,
+    sidebar: Readme
   },
 });
 
+const STYLE_WHITELIST = [
+  'default',
+  'dark-indigo',
+  'axa-blue',
+  'wild-sand',
+  'white',
+];
+
+const ITEM_ICONS = ['email', 'download'];
+
 story.add('Policy features', () => {
-  const buttonText = text('Text', 'Click me');
-  const motionOff = boolean('motionOff', false);
-  const disabled = boolean('disabled', false);
-  const large = boolean('large', false); // should probably be a variant.
-  const type = radios('Types', { submit: 'submit', reset: 'reset' });
+  const axaStyles = select('axaStyle', STYLE_WHITELIST, STYLE_WHITELIST[0]);
+  const title = text('title', 'A 5 star car insurance with affordable premium services');
+
+  // props of axa-policy-features-item
+  const itemTitle = text('axa-policy-features-item: title', 'Get Discount');
+  const itemIcon = select('axa-policy-features-item: icon', ITEM_ICONS, ITEM_ICONS[0]);
+  const itemDescription = text('axa-policy-features-item: description', 'A 5 star car insurance with affordable premium services');
 
   return `
   <axa-policy-features 
-  title="A 5 star car insurance with affordable premium services"
-  axaStyle="wild-sand"
+  title="${title}"
+  axaStyle="${axaStyles}"
   >
-    <axa-policy-features-item title="Get Discount"
-                         icon="email"
-                         alt="Discount Svg Icon"
-                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
+    <axa-policy-features-item title="${itemTitle}"
+                         icon="${itemIcon}"
+                         description="${itemDescription}">
     </axa-policy-features-item>
-    <axa-policy-features-item title="Get Discount"
+    <axa-policy-features-item title="24/7 assistance"
                          icon="download"
-                         alt="Discount Svg Icon"
-                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
+                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text.">
     </axa-policy-features-item>
-    <axa-policy-features-item title="Get Discount"
-                         icon="email"
-                         alt="Discount Svg Icon"
-                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
+    <axa-policy-features-item title="Discount partners"
+                         icon="http://localhost:6006/static/media/logo-axa.ce44e802.svg"
+                         description="This SVG is loaded externally.">
     </axa-policy-features-item>
-    <axa-policy-features-item title="Get Discount"
+    <axa-policy-features-item title="Online & Apps"
                          icon="download"
-                         alt="Discount Svg Icon"
                          description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
     </axa-policy-features-item>
   </axa-policy-features>
