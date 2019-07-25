@@ -1,12 +1,6 @@
 # Policy features
 
-TODO Description
-
-- icons anbieten (erstmal aus vorhandenen)
-- icons nachladbar, siehe icon component
-- items als unterordner, tagname ist dann dem verwender autom. bekannt
-- css aus dem browser kopieren
-- in den build einpflegen
+With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it. This component changes sizes according to Viewport.
 
 ## Usage
 
@@ -18,27 +12,21 @@ npm install @axa-ch/policy-features
 
 ```js
 import '@axa-ch/policy-features';
-...
-<axa-policy-features></axa-policy-features>
+```
+
+```html
+<axa-policy-features title="Your main title" axaStyle="dark-indigo">
+  <axa-policy-features-item
+    title="The title of item"
+    icon="email"
+    description="A text which can be as long as you want."
+  ></axa-policy-features-item>
+</axa-policy-features>
 ```
 
 ### React
 
-Create a React-ified policy-features with the createElement function from your React version and then use it like this:
-
-```js
-import { createElement } from 'react';
-import createAXAPolicyFeaturesReact from '@axa-ch/policy-features/lib/index.react';
-
-const AXAPolicyFeaturesReact = createAXAPolicyFeaturesReact(createElement);
-
-export default AXAPolicyFeaturesReact;
-```
-
-```js
-<AXAPolicyFeaturesReact onClick={handler}>
-</AXAPolicyFeaturesReact>
-```
+You can use this component directly in your JSX without further React-ification (see Usage above).
 
 ### Pure HTML pages
 
@@ -54,7 +42,13 @@ Import the policy-features-defining script and use a policy-features like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-policy-features></axa-policy-features>
+    <axa-policy-features title="Your main title" axaStyle="dark-indigo">
+      <axa-policy-features-item
+        title="The title of item"
+        icon="email"
+        description="A text which can be as long as you want."
+      ></axa-policy-features-item>
+    </axa-policy-features>
     <script src="node_modules/@axa-ch/policy-features/dist/index.js"></script>
   </body>
 </html>
@@ -64,18 +58,48 @@ Import the policy-features-defining script and use a policy-features like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute                | Details                                                          |
+| ------------------------ | ---------------------------------------------------------------- |
+| `axaStyle="default"`     | background is `dark-indigo` and font color is set automatically. |
+| `axaStyle="dark-indigo"` | background is `dark-indigo` and font color is set automatically. |
+| `axaStyle="axa-blue"`    | background is `axa-blue` and font color is set automatically.    |
+| `axaStyle="wild-sand"`   | background is `wild-sand` and font color is set automatically.   |
+| `axaStyle="white"`       | background is `white` and font color is set automatically.       |
 
-### Bar
+### title
 
-The attribute `bar` specifies...
+The attribute `title` (optional) specifies the main title at the top.
 
-### onClick
+### axaStyle
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+The attribute `axaStyle` (optional) specifies the background and the font color of this component and all its children.
+
 
 ### Migration Notes
 
 You don't have to pay attention to anything for upgrading to newer version.
+
+# axa-policy-features-item
+
+You have to set `axa-policy-features-item` as childs of `axa-polica-features`. It renders a icon on top, a headline and a description text. Usage see examples above.
+
+## Properties
+
+### Variant
+
+| Attribute                | Details                                                          |
+| ------------------------ | ---------------------------------------------------------------- |
+| `icon="email"`     | The email icon of our icon-set. |
+| `icon="https://url-to-svg-icon.svg"`     | Loads the url and sets content as icon. |
+
+### title
+
+The attribute `title` (optional) specifies the title of your feature.
+
+### icon
+
+You can set a icon of our icon-set (variants above) or a URL to a svg.
+
+### description
+
+A text that describes your feature. 
