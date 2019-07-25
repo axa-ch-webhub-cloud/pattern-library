@@ -1,22 +1,32 @@
 .m-policy-features {
+  padding: 24px 15px; //xs
+
+  @include breakpoint($mediaquery-md-up) {
+    padding: 48px 90px;
+  }
+
   &__title {
-    @include typo-title(huge-2, secondary); //xs
+    text-align: center;
+    margin: 0;
+
+    @include typo-title(large-1, secondary); //xs
 
     @include breakpoint($mediaquery-md) {
-
+      @include typo-title(huge-1, secondary);
     }
 
     @include breakpoint($mediaquery-lg-up) {
-
+      @include typo-title(
+        huge-2,
+        secondary
+      ); // TODO: schaut minimal anders aus (bei v1 greift family nicht?)
     }
-
-    text-align: center;
   }
 
   &__slot {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
   }
 }
 

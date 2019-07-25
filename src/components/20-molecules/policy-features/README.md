@@ -6,6 +6,7 @@ TODO Description
 - icons nachladbar, siehe icon component
 - items als unterordner, tagname ist dann dem verwender autom. bekannt
 - css aus dem browser kopieren
+- in den build einpflegen
 
 ## Usage
 
