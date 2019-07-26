@@ -1,14 +1,8 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import {
-  boolean,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import './index';
 import Readme from './README.md';
-
-
 
 storiesOf('Atoms/Checkbox', module)
   .addParameters({
@@ -22,6 +16,7 @@ storiesOf('Atoms/Checkbox', module)
     const checked = boolean('checked', true);
     const disabled = boolean('disabled', false);
     const errortext = boolean('Error Text', false);
+    const className = text('className', 'hover');
 
     return `
         <axa-checkbox
@@ -30,39 +25,11 @@ storiesOf('Atoms/Checkbox', module)
           ${checked ? 'checked' : ''}
           ${disabled ? 'disabled' : ''}
           onChange = 'console.log("checkbox", this.name, " changed to: ", this.checked)'
-          error = '${errortext ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.' : ''}'
+          error = '${
+  errortext
+    ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
+    : ''
+}'
+          className = ${className}
         </axa-checkbox>`;
-  })
-
-
-
-  .add('Checkbox - hover, unchecked, with label', () => {
-    const checkbox = document.createElement('axa-checkbox');
-    checkbox.name = 'my-checkbox1';
-    checkbox.id = 'checkbox04';
-    checkbox.label = 'mit Label';
-    checkbox.className = 'hover';
-    return checkbox;
-  })
-  .add('Checkbox - hover, checked, with label', () => {
-    const checkbox = document.createElement('axa-checkbox');
-    checkbox.name = 'my-checkbox1';
-    checkbox.id = 'checkbox04a';
-    checkbox.checked = true;
-    checkbox.label = 'mit Label';
-    checkbox.className = 'hover';
-    return checkbox;
-  })
-
-
-  .add('Checkbox - alternating checked/unchecked, with label', () => {
-    const checkbox = document.createElement('axa-checkbox');
-    checkbox.name = 'my-checkbox1';
-    checkbox.id = 'checkbox07';
-    checkbox.checked = false;
-    checkbox.label = 'changes every 1 second';
-    setInterval(() => {
-      checkbox.checked = !checkbox.checked;
-    }, 1000);
-    return checkbox;
   });
