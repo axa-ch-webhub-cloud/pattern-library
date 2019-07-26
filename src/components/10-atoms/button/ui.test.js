@@ -75,7 +75,7 @@ test('should render icon', async t => {
 });
 
 fixture('Button - react smoke test').page(
-  `${host}/iframe.html?id=atoms-button-react--button`
+  `${host}/iframe.html?id=atoms-button-react--button-default`
 );
 
 test('should render react button', async t => {

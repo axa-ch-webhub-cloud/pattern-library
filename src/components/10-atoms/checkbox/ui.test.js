@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Checkbox - basic functionality').page(
-  `${host}/iframe.html?id=atoms-checkbox--checkbox-preselected-clickable-with-label`
+  `${host}/iframe.html?id=atoms-checkbox--checkbox`
 );
 
 const TAG = 'axa-checkbox';

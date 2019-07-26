@@ -1,7 +1,9 @@
 import { Selector } from 'testcafe';
 
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+
 fixture('Fieldset - basic functionality').page(
-  'http://localhost:9999/iframe.html?id=atoms-fieldset--fieldset-default'
+  `${host}/iframe.html?id=atoms-fieldset--fieldset-default`
 );
 
 const TAG = 'axa-fieldset';
