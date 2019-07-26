@@ -3,10 +3,10 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Button Link - basic functionality').page(
-  `${host}/iframe.html?id=atoms-button-link--button-link-default`
+  `${host}/iframe.html?id=atoms-button-link--button-link`
 );
 
-test('should render button', async t => {
+test('should render button-link', async t => {
   const $axaButton = await Selector('axa-button-link');
   await t.expect($axaButton.exists).ok();
   const $axaButtonShadow = await Selector(
@@ -16,7 +16,7 @@ test('should render button', async t => {
   await t.expect($axaButtonShadowEl.exists).ok();
 });
 
-test('should style button default css (test axa blue bg color)', async t => {
+test('should style button-link default css (test axa blue bg color)', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button-link').shadowRoot
   );
@@ -27,7 +27,7 @@ test('should style button default css (test axa blue bg color)', async t => {
 });
 
 fixture('Button Link - set properties').page(
-  `${host}/iframe.html?id=atoms-button-link--button-link-default`
+  `${host}/iframe.html?id=atoms-button-link--button-link`
 );
 
 test('should set button element disabled', async t => {
@@ -40,7 +40,7 @@ test('should set button element disabled', async t => {
 });
 
 fixture('Button Link - icon').page(
-  `${host}/iframe.html?id=atoms-button-link--button-link-icon`
+  `${host}/iframe.html?id=atoms-button-link--button-link`
 );
 
 test('should render icon', async t => {
