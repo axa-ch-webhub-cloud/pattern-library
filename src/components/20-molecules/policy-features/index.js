@@ -4,14 +4,14 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
-const STYLE_WHITELIST = [
+export const STYLE_WHITELIST = [
   'default',
   'dark-indigo',
   'axa-blue',
   'wild-sand',
   'white',
 ];
-const DEFAULT_AXA_STYLE = 'dark-indigo';
+export const DEFAULT_AXA_STYLE = 'dark-indigo';
 
 class AXAPolicyFeatures extends LitElement {
   static get tagName() {
