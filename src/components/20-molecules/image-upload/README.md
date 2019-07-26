@@ -17,7 +17,7 @@ image-upload is a component used for uploading files in forms.
 
 ### Mobile requirements
 
-- Mobile isn't implemented and the requirements aren't defined yet
+- The mobile version isn't implemented and the requirements aren't defined yet
 
 ## Usage
 
@@ -72,19 +72,21 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute                                 | Details                                               |
-| ----------------------------------------- | ----------------------------------------------------- |
-| `inputFileText="Upload file"`             | Text in the input-file component                      |
-| `maxSizeOfSingleFileMB="10"`              | Maximal size of a single file in mb                   |
-| `maxSizeOfAllFilesMB="15"`                | Maximal size of a all files together in mb            |
-| `maxNumberOfFiles="10"`                   | Maximal number of files                               |
-| `showImageOverview="false"`               | Switch between normal view and image overview         |
-| `icon="cloud-upload"`                     | Specify the upload icon in input-file component       |
-| `fileTooBigStatusText="Error occurred"`   | Specify the error message for to big files            |
-| `tooManyFilesStatusText="Error occurred"` | Specify the error message for to many files           |
-| `filesTooBigStatusText="Error occurred"`  | Specify the error message when maximal size of all fi |
-| `deleteStatusText="Delete"`               | Specify the caption when hovering over a file         |
-| `addStatusText="Add more"`                | Specify the caption of dashed box                     |
+| Attribute                                  | Details                                               |
+| ------------------------------------------ | ----------------------------------------------------- |
+| `inputFileText="Upload file"`              | Text in the input-file component                      |
+| `maxSizeOfSingleFileMB="10"`               | Maximal size of a single file in mb                   |
+| `maxSizeOfAllFilesMB="15"`                 | Maximal size of a all files together in mb            |
+| `maxNumberOfFiles="10"`                    | Maximal number of files                               |
+| `showImageOverview="false"`                | Switch between normal view and image overview         |
+| `icon="cloud-upload"`                      | Specify the upload icon in input-file component       |
+| `fileTooBigStatusText="Error occurred"`    | Specify the error message for to big files            |
+| `tooManyFilesStatusText="Error occurred"`  | Specify the error message for to many files           |
+| `filesTooBigStatusText="Error occurred"`   | Specify the error message when maximal size of all fi |
+| `deleteStatusText="Delete"`                | Specify the caption when hovering over a file         |
+| `addStatusText="Add more"`                 | Specify the caption of dashed box                     |
+| `infoText="drag and drop your files here"` | Specify the text on the start view                    |
+| `orText="or"`                              | Specify the text on the start view box                |
 
 ### inputFileText
 

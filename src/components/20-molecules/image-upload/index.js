@@ -18,9 +18,6 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import compressImage from './utils/imageCompressor';
 
-const OR = 'or';
-const INFO = 'Drag and drop to upload your file';
-
 const AddIcon = svg([AddSvg]);
 const AttachFileIcon = svg([AttachFileSvg]);
 const DeleteForeverIcon = svg([DeleteForeverSvg]);
@@ -65,13 +62,15 @@ class AXAImageUpload extends LitElement {
       tooManyFilesStatusText: { type: String },
       files: { type: Object },
       faultyFiles: { type: Object },
+      orText: { type: String },
+      infoText: { type: String },
     };
   }
 
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMB = 3;
+    this.maxSizeOfSingleFileMB = 5;
     this.maxSizeOfAllFilesMB = 5;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
@@ -87,6 +86,8 @@ class AXAImageUpload extends LitElement {
     this.tooManyFilesStatusText = `You exceeded the maximum number of files: ${
       this.maxNumberOfFiles
     }`;
+    this.orText = 'or';
+    this.infoText = 'Drag and drop to upload your file';
     this.files = [];
     this.faultyFiles = [];
     this.allFiles = [];
@@ -116,7 +117,6 @@ class AXAImageUpload extends LitElement {
   handleImageUploadDropZoneDragover(e) {
     /* prevent default browser behavior to execute the link that comes with the event */
     e.preventDefault();
-    console.log('this.isFileMaxReached', this.isFileMaxReached);
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
       this.dropZone.classList.add('m-image-upload__dropzone_dragover');
@@ -145,7 +145,6 @@ class AXAImageUpload extends LitElement {
   }
 
   handleImageDeletion(index) {
-    console.log('klick image');
     let clonedFiles = [];
 
     this.allDroppedFiles =
@@ -231,8 +230,8 @@ class AXAImageUpload extends LitElement {
           compressedImage =>
             fileKey(compressedImage, true) === fileKeyBeforeCompression
         )
-        // TODO fehler meldung
       ) {
+        // TODO fehler meldung
         faultyFiles.push(compressedImages[i]);
       } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
         faultyFiles.push(compressedImages[i]);
@@ -405,8 +404,8 @@ class AXAImageUpload extends LitElement {
                 <div>
                   ${ImageUploadGroupIcon}
                 </div>
-                <p class="m-image-upload__information">${INFO}</p>
-                <p class="m-image-upload__or">${OR}</p>
+                <p class="m-image-upload__information">${this.infoText}</p>
+                <p class="m-image-upload__or">${this.orText}</p>
                 <axa-input-file
                   class="m-image-upload__input js-image-upload__input"
                   accept="${ACCEPTED_FILE_TYPES}"

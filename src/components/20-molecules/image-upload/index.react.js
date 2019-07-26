@@ -15,6 +15,8 @@ export default createElement => ({
   tooManyFilesStatusText = `You exceeded the maximum number of files wich is ${
     this.maxNumberOfFiles
   }`,
+  infoText = 'Drag and drop to upload your file',
+  orText = 'or',
   children,
 }) =>
   withReact(createElement)(
@@ -31,6 +33,8 @@ export default createElement => ({
       fileTooBigStatusText,
       filesTooBigStatusText,
       tooManyFilesStatusText,
+      infoText,
+      orText,
     },
     children
   );

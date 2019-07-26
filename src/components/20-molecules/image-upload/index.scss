@@ -8,7 +8,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
   &__dropzone {
     box-sizing: border-box;
     padding: 30px 0;
-    height: 280px;
+    height: 290px;
 
     display: flex;
     flex-flow: column nowrap;
@@ -27,6 +27,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: flex-start;
+    align-content: flex-start;
     overflow-y: scroll;
     border-style: solid;
   }
@@ -50,7 +51,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     position: relative;
     margin: 0;
     margin-right: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 
   &__icon-hover-area {
