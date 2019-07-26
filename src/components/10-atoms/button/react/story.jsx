@@ -51,6 +51,7 @@ storyButton
     const disabled = boolean('disabled', false);
     const large = boolean('large', false); // should probably be a variant.
     const type = radios('Types', { submit: 'submit', reset: 'reset' });
+    const className = text('className', 'myCssClass');
 
     const div = document.createElement('div');
 
@@ -66,6 +67,7 @@ storyButton
         large={large}
         type={type}
         icon={icons}
+        className={className}
       >
         {buttonText}
       </AXAButtonReact>,
@@ -73,3 +75,4 @@ storyButton
     );
     return div;
   });
+
