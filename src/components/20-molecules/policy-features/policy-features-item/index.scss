@@ -1,8 +1,8 @@
 .policy-features-item {
   display: block;
-  width: 255px; // TODO: wert?
+  width: 255px; // TODO: wert für 3 grössen?
   text-align: center;
-  padding: 0 11.5px; // TODO: wert?
+  padding: 0 11.5px; // TODO: wert für 3 grössen?
 
   &__icon {
     max-width: 100%;
@@ -30,6 +30,6 @@
   }
 
   &__description {
-    @include typo(primary, medium-1, default); // TODO: weicht ab
+    @include typo(primary, medium-1, default);
   }
 }
