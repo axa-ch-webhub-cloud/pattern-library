@@ -44,6 +44,11 @@ $dropdown-error-minheight: 19px;
 
 axa-dropdown {
   display: block;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
 
   &[open] {
     .m-dropdown__content {
@@ -54,6 +59,10 @@ axa-dropdown {
       transform: rotate(180deg);
     }
 
+    .m-dropdown__item .m-dropdown__button {
+      padding-right: 10px;
+    }
+
     &[max-height][embedded] {
       .m-dropdown__content {
         border: $dropdown-border-style;
@@ -62,11 +71,25 @@ axa-dropdown {
     }
   }
 
+  &[max-height][embedded] {
+
+    .m-dropdown__toggle span {
+      display: inline-block;
+      padding-left: 0;
+    }
+
+    .m-dropdown__select-icon {
+      width: 36px;
+    }
+
+  }
+
   &:not([open]) {
 
     .m-dropdown__toggle:focus {
       outline-width:2px;
     }
+
   }
 
   &[max-height] {
@@ -120,7 +143,7 @@ axa-dropdown {
     background: $color-prim-white;
     border: 1px solid $color-prim-gray-silver;
     color: $dropdown-color;
-    height: $dropdown-height;
+    height: inherit;
     position: relative;
     display: block;
     width: 100%;
@@ -168,7 +191,7 @@ axa-dropdown {
     width: 100%;
     padding: 10px 40px 10px 20px;
     height: $dropdown-height;
-    line-height: normal;
+    line-height: 20px;
   }
 
   &__select,
@@ -181,7 +204,7 @@ axa-dropdown {
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: $dropdown-height;
+    height: $dropdown-height - 2 * $dropdown-border-width;
     background: $color-prim-white;
     position: absolute;
     right: 0;
@@ -208,7 +231,7 @@ axa-dropdown {
     position: relative;
     background: transparent;
     border: none;
-    height: $dropdown-height;
+    height: $dropdown-height - 2*$dropdown-border-width;
     text-align: left;
     cursor: pointer;
 
@@ -219,6 +242,7 @@ axa-dropdown {
     }
 
     span {
+      color: $color-prim-gray-dark;
       padding-left: 10px;
     }
   }
@@ -248,7 +272,7 @@ axa-dropdown {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.1;
+    line-height: 20px;
   }
 
   &__button {
@@ -297,6 +321,7 @@ axa-dropdown {
   }
 
   &__list--native {
+    height: $dropdown-height;
 
     &:focus,
     &:active {

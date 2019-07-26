@@ -53,6 +53,44 @@ class AXATableSortable extends LitElement {
     };
   }
 
+  areValuesEqualOrZero(a, b) {
+    if (a === b) {
+      return true;
+    }
+    if (a === 0 || b === 0) {
+      return true;
+    }
+    return false;
+  }
+
+  areLengthValuesConsistent(bodyLength = 0, headLength = 0, footLength = 0) {
+    // all levels equal
+    if (headLength === bodyLength && bodyLength === footLength) {
+      return true;
+    }
+
+    // special behaviour
+    // body is mandatory if another level has elements
+    if (bodyLength === 0 && (headLength > 0 || footLength > 0)) {
+      return false;
+    }
+
+    // all levels are valid html
+    if (headLength === 0) {
+      return this.areValuesEqualOrZero(bodyLength, footLength);
+    }
+
+    if (bodyLength === 0) {
+      return this.areValuesEqualOrZero(headLength, footLength);
+    }
+
+    if (footLength === 0) {
+      return this.areValuesEqualOrZero(headLength, bodyLength);
+    }
+
+    return false;
+  }
+
   validateModel() {
     const {
       thead: { length: theadL },
@@ -63,9 +101,9 @@ class AXATableSortable extends LitElement {
     } = this.model;
     let tfootL = 0;
     if (tfoot && tfoot[0]) {
-      tfootL = tfoot.length;
+      tfootL = tfoot[0].length;
     }
-    return !tbodyL || !(theadL !== tbodyL && (!tfootL || tfootL === tbodyL));
+    return this.areLengthValuesConsistent(tbodyL, theadL, tfootL);
   }
 
   getSortingAria(config) {

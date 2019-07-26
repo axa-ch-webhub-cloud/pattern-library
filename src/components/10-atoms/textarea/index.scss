@@ -83,16 +83,28 @@ axa-textarea {
     color: $color-validation-error;
   }
 
+  .a-textarea__messages--reservation {
+    min-height: 20px;
+  }
+
+  .a-textarea__messages--hidden {
+    display: none;
+  }
+
   .a-textarea__check-wrapper {
+    margin-left: 10px;
+  }
+
+  .a-textarea__check-wrapper--reservation {
     @include check-mark-animated-wrapper();
     margin-left: 10px;
+  }
 
-    .a-textarea__check {
-      @include check-mark-animated();
+  .a-textarea__check {
+    @include check-mark-animated();
+  }
 
-      &--hidden {
-        display: none;
-      }
-    }
+  .a-textarea__check--hidden {
+    display: none;
   }
 }

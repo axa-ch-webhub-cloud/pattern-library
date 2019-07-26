@@ -207,11 +207,20 @@ class AXADropdown extends NoShadowDOM {
       items,
       state: { isControlled },
       onChange,
+      selectedIndex,
     } = this;
+
+    this.openDropdown(false);
+
+    // no change compared to previous selection?
+    // eslint-disable-next-line eqeqeq
+    if (selectedIndex == clickedItemIndex) {
+      // ==: indices may be number or string
+      return;
+    }
     // allow idiomatic event.target.value in onChange callback!
     const syntheticEvent = { target: items[clickedItemIndex | 0] }; // | 0: coerce to integer
     onChange(syntheticEvent);
-    this.openDropdown(false);
     if (!isControlled) {
       // causes re-render in next microtask!
       this.updateCurrentItems(clickedItemIndex); // side-effect: changed this.value

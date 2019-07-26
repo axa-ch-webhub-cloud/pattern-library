@@ -10,6 +10,7 @@ interface AXATextareaProps {
   value?: string;
   invalid?: boolean;
   checkMark?: boolean;
+  embedded?: boolean;
   required?: boolean;
   disabled?: boolean;
   isReact?: boolean;

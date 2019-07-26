@@ -10,6 +10,7 @@ export default createElement => ({
   disabled = false,
   onClick,
   children,
+  className,
 }) =>
   withReact(createElement)(
     AXAButton.tagName,
@@ -21,6 +22,7 @@ export default createElement => ({
       motionOff,
       disabled,
       onClick,
+      className
     },
     children
   );

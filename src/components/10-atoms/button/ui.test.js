@@ -87,3 +87,14 @@ test('should render react button', async t => {
   const $axaButtonShadowEl = await $axaButtonShadow.find(BUTTON_CLASS);
   await t.expect($axaButtonShadowEl.exists).ok();
 });
+
+fixture('Button - react with attributes').page(
+  `${host}/iframe.html?id=atoms-button-react--button-class`
+);
+
+test('should set className', async t => {
+  const $axaButton = await Selector(BUTTON_TAG);
+  await t.expect($axaButton.exists).ok();
+
+  await t.expect(await $axaButton.getAttribute('class')).eql('myCssClass');
+});

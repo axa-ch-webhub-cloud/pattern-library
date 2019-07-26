@@ -24,6 +24,7 @@ class AXAInputText extends NoShadowDOM {
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean },
+      embedded: { type: Boolean },
 
       isReact: { type: Boolean },
     };
@@ -48,6 +49,7 @@ class AXAInputText extends NoShadowDOM {
     this.required = false;
     this.invalid = false;
     this.disabled = false;
+    this.embedded = false;
     this.isReact = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
@@ -126,6 +128,7 @@ class AXAInputText extends NoShadowDOM {
       isReact,
       invalid,
       checkMark,
+      embedded,
       isControlled,
       refId,
     } = this;
@@ -142,8 +145,15 @@ class AXAInputText extends NoShadowDOM {
       'a-input-text__check--hidden': invalid,
     };
 
-    const errorMessageClasses = {
-      'a-input-text__error': true,
+    const checkWrapperClasses = {
+      'a-input-text__check-wrapper': true,
+      'a-input-text__check-wrapper--reservation': !embedded,
+      'a-input-text__check-wrapper--hidden': embedded && !checkMark,
+    };
+
+    const errorMessageWrapperClasses = {
+      'a-input-text__error-wrapper--reservation': !embedded,
+      'a-input-text__error-wrapper--hidden': embedded && !this.showError,
     };
 
     return html`
@@ -174,7 +184,8 @@ class AXAInputText extends NoShadowDOM {
             ?disabled="${disabled}"
             aria-required="${required}"
           />
-          <div class="a-input-text__check-wrapper">
+
+          <div class="${classMap(checkWrapperClasses)}">
             ${checkMark
               ? html`
                   <span class="${classMap(checkClasses)}"></span>
@@ -182,11 +193,13 @@ class AXAInputText extends NoShadowDOM {
               : ''}
           </div>
         </div>
-        ${this.showError
-          ? html`
-              <span class="${classMap(errorMessageClasses)}">${error}</span>
-            `
-          : ''}
+        <div class="${classMap(errorMessageWrapperClasses)}">
+          ${this.showError
+            ? html`
+                <span class="a-input-text__error">${error}</span>
+              `
+            : ''}
+        </div>
       </div>
     `;
   }
