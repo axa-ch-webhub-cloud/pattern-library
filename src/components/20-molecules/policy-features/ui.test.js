@@ -22,6 +22,14 @@ test('should render title', async t => {
   await t
     .expect(titleElement.textContent)
     .eql('A 5 star car insurance with affordable premium services');
+});
 
+test('should render default background dark-indigo', async t => {
+  const $axaPolicyFeaturesArticleEl = Selector(
+    () => document.querySelector('axa-policy-features').shadowRoot
+  ).find('article');
 
+  await t
+    .expect(await $axaPolicyFeaturesArticleEl.getStyleProperty('background-color'))
+    .eql('rgb(59, 63, 216)');
 });
