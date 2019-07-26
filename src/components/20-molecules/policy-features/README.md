@@ -81,7 +81,7 @@ You don't have to pay attention to anything for upgrading to newer version.
 
 # axa-policy-features-item
 
-You have to set `axa-policy-features-item` as childs of `axa-polica-features`. It renders a icon on top, a headline and a description text. Usage see examples above.
+You have to set `axa-policy-features-item` as childs of `axa-policy-features`. It renders a icon on top, a headline and a description text. Usage see examples above.
 
 ## Properties
 
