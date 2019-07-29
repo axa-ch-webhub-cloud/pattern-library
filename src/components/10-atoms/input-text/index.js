@@ -2,14 +2,17 @@ import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/popup-button';
-import '@axa-ch/popup-content';
+// import '@axa-ch/popup-button';
+// import '@axa-ch/popup-content';
+import '@axa-ch/popup';
+
+
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
-export const popupMixin = superclass =>
+export const AXAPopupMixin = superclass =>
   class extends superclass {
     static get properties() {
       return {
@@ -25,7 +28,7 @@ export const popupMixin = superclass =>
     handlePopupClick = () => (this._open = !this._open);
   };
 
-class AXAInputText extends popupMixin(NoShadowDOM) {
+class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   static get tagName() {
     return 'axa-input-text';
   }
@@ -103,7 +106,7 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
   }
 
   get showError() {
-    return this.error && this.invalid && !this._open;
+    return this.error && this.invalid && !this.disabled && !this._open;
   }
 
   handleFocus = ev => {
@@ -157,8 +160,8 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error': invalid,
-      'a-input-text__input--check': checkMark,
+      'a-input-text__input--error': invalid && !disabled,
+      'a-input-text__input--check': checkMark && !disabled,
     };
 
     const errorMessageWrapperClasses = {

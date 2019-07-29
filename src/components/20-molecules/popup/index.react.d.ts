@@ -2,13 +2,13 @@ import React from 'react';
 
 type Variant = 'foo' | 'bar';
 
-interface AXAPopupContentProps {
+interface AXAPopupProps {
   variant?: Variant;
   onClick?: () => void;
 }
 
-declare function createAXAPopupContent(
+declare function createAXAPopup(
   createElement: typeof React.createElement
-): React.ComponentType<AXAPopupContentProps>;
+): React.ComponentType<AXAPopupProps>;
 
-export = createAXAPopupContent;
+export = createAXAPopup;
