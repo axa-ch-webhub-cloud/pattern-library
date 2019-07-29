@@ -1,115 +1,74 @@
 /* global document */
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { storiesOf } from '@storybook/html';
+import {
+  boolean,
+  select,
+  radios,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import AXAButtonLinkReact from './AXAButtonLinkReact';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Button Link/React', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  /* Default */
-  .add('Button-Link - default', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonLinkReact>Default</AXAButtonLinkReact>, div);
-    return div;
-  })
+const storyButton = storiesOf('Atoms/Button Link/React', module);
+storyButton.addDecorator(withKnobs);
+storyButton.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
 
-  /* External */
-  .add('Button-Link - default - External', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonLinkReact href="https://axa.ch/" external>
-        Default
-      </AXAButtonLinkReact>,
-      div
-    );
-    return div;
-  })
+const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
 
-  /* Variants */
-  .add('Button-Link - variant: red', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonLinkReact variant="red">Red</AXAButtonLinkReact>,
-      div
-    );
-    return div;
-  })
-  .add('Button-Link - variant: secondary', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonLinkReact variant="secondary">Secondary</AXAButtonLinkReact>,
-      div
-    );
-    return div;
-  })
-  .add('Button-Link - variant: inverted', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div
-        style={{
-          backgroundColor: '#00008f',
-          width: '500px',
-          height: '100px',
-          paddingTop: '30px',
-          paddingBottom: '30px',
-        }}
-      >
-        <AXAButtonLinkReact variant="inverted">Inverted</AXAButtonLinkReact>
-      </div>,
-      div
-    );
-    return div;
-  })
+storyButton.add('Button Link', () => {
+  const options = {
+    None: '',
+    Red: 'red',
+    Secondary: 'secondary',
+    Inverted: 'inverted',
+  };
 
-  /* Disabled */
-  .add('Button-Link - disabled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonLinkReact disabled>Disabled</AXAButtonLinkReact>,
-      div
-    );
-    return div;
-  })
+  // TODO:: Move icon variants into icons and export it from there
+  const iconOptions = {
+    None: '',
+    'Arrow Right': 'arrow-right',
+    Collapse: 'collapse',
+    Document: 'document',
+    Download: 'download',
+    Email: 'email',
+    Expand: 'expand',
+    Mobile: 'mobile',
+    Phone: 'phone',
+    Search: 'search',
+    Upload: 'upload',
+  };
 
-  /* Large */
-  .add('Button-Link - size', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AXAButtonLinkReact size="small">Small</AXAButtonLinkReact>, div);
-    return div;
-  })
+  const buttonText = text('Text', 'Click me');
+  const variants = radios('Variant', options, '');
+  const icons = select('Icon', iconOptions);
+  const motionOff = boolean('motionOff', false);
+  const disabled = boolean('disabled', false);
+  const large = boolean('large', false); // should probably be a variant.
 
-  /* MotionOff */
-  .add('Button-Link - motionOff', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div>
-        <AXAButtonLinkReact motionoff>MotionOff</AXAButtonLinkReact>
-        <AXAButtonLinkReact motionoff variant="red">
-          MotionOff + Red
-        </AXAButtonLinkReact>
-        <AXAButtonLinkReact motionoff variant="secondary">
-          MotionOff + Secondary
-        </AXAButtonLinkReact>
-        <AXAButtonLinkReact motionoff variant="inverted">
-          MotionOff + Inverted
-        </AXAButtonLinkReact>
-      </div>,
-      div
-    );
-    return div;
-  })
+  const div = document.createElement('div');
 
-  /* Icon */
-  .add('Button-Link - icon', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAButtonLinkReact icon="arrow-right">Icon</AXAButtonLinkReact>,
-      div
-    );
-    return div;
-  });
+  if (variants === 'inverted') {
+    div.style = blueBackgroundStyle;
+  }
+
+  ReactDOM.render(
+    <AXAButtonLinkReact
+      disabled={disabled}
+      large={large}
+      variant={variants}
+      motionOff={motionOff}
+      icon={icons}
+    >
+      {buttonText}
+    </AXAButtonLinkReact>,
+    div
+  );
+  return div;
+});
