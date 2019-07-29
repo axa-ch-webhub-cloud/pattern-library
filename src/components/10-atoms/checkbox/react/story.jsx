@@ -1,8 +1,9 @@
 /* global document */
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AXACheckbox from './AXACheckboxReact';
+import { storiesOf } from '@storybook/html';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import AXACheckboxReact from './AXACheckboxReact';
 import Readme from '../README.md';
 
 storiesOf('Atoms/Checkbox/React', module)
@@ -11,14 +12,29 @@ storiesOf('Atoms/Checkbox/React', module)
       sidebar: Readme,
     },
   })
-  /* Default */
+  .addDecorator(withKnobs)
   .add('Checkbox - uncontrolled', () => {
+    const label = text('Label Text', 'this is a label');
+    const checked = boolean('checked', true);
+    const disabled = boolean('disabled', false);
+    const errortext = boolean('Error Text', false);
+    const className = text('className', 'hover');
+
     const div = document.createElement('div');
 
     ReactDOM.render(
-      <AXACheckbox
-        label="I'm a checkbox with longer label and error"
-        error=" Im an error"
+      <AXACheckboxReact
+        name="my-checkbox"
+        label={label}
+        checked={checked}
+        disabled={disabled}
+        onChange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+        error={
+          errortext
+            ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
+            : ''
+        }
+        className={className}
       />,
       div
     );
