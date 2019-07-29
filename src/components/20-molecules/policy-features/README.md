@@ -1,6 +1,6 @@
 # Policy features
 
-With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it. This component changes sizes according to Viewport.
+With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it. This component changes sizes according to the viewport.
 
 ## Usage
 
@@ -99,6 +99,10 @@ The attribute `title` (optional) specifies the title of your feature.
 ### icon
 
 You can set a icon of our icon-set (variants above) or a URL to a svg.
+
+Sizes:
+- 42x42 px
+- `md-up`: 96x96 px
 
 ### description
 
