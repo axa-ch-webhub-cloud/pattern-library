@@ -1,6 +1,11 @@
 axa-radio {
   @include typo(primary, default);
   display: block;
+  flex: none;
+
+  *, *::after, *::before {
+    box-sizing: border-box;
+  }
 
   &:hover:not([disabled]):not(.a-radio--error) {
     color: $color-axa-blue;
@@ -95,4 +100,63 @@ axa-radio {
       line-height: 1.37;
       color: $color-prim-gray-mine-shaft;
   }
+
+  &[button] {
+    position: relative;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    height: 40px;
+
+    .a-radio__wrapper {
+      background-color: $color-prim-gray-wild-sand;
+      border: 1px solid $color-prim-gray-dusty;
+      padding: 0 20px;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $color-axa-blue;
+      }
+    }
+
+    .a-radio__content {
+        display: table;
+        background-color: $color-prim-gray-wild-sand;
+        padding: 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .a-radio__input {
+      &:checked ~ .a-radio__content {
+        color: $color-axa-blue;
+        background-color: transparent;
+        font-weight: bold;
+      }
+    }
+
+    &[checked] {
+      .a-radio__wrapper {
+        background-color: transparent;
+        border-color: $color-axa-blue;
+    }
+  }
+
+  &[disabled] {
+    .a-radio__wrapper {
+      background-color: $color-prim-gray-alabaster;
+      border-color: $color-prim-gray-mercury;
+      cursor: default;
+
+      &:hover {
+        border-color: $color-prim-gray-mercury;
+      }
+    }
+
+    .a-radio__content {
+      color: $color-prim-gray-dusty;
+      background-color: inherit;
+    }
+  }
+}
 }

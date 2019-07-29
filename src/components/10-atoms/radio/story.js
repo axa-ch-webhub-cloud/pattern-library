@@ -20,4 +20,14 @@ storiesOf('Atoms/Radio', module)
   <axa-radio name="contract" label="Nein, ich möchte keinen Versicherungsvertrag"></axa-radio>
   <axa-radio name="contract" label="Nein, ich bin bereits versichert" disabled></<axa-radio>
   </axa-fieldset>`
+  )
+  .add(
+    'Radio - button',
+    () => `
+  <axa-fieldset horizontal>
+    <axa-radio button name="insurance" label="No, I'm already insured"></axa-radio>
+    <axa-radio button nogap name="insurance" label="No, no need" ></axa-radio>
+    <axa-radio button name="insurance" label="Yes, take out insurance" checked></axa-radio>
+    <axa-radio button name="insurance" label="Yes, call me" disabled></axa-radio>
+  </axa-fieldset>`
   );
