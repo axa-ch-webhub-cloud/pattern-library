@@ -1,5 +1,5 @@
 .m-policy-features {
-  padding: 24px 15px; //xs
+  padding: 24px 15px;
 
   @include breakpoint($mediaquery-md-up) {
     padding: 48px 90px;
@@ -9,17 +9,14 @@
     text-align: center;
     margin: 0;
 
-    @include typo-title(large-1, secondary); //xs
+    @include typo-title(large-1, secondary);
 
     @include breakpoint($mediaquery-md) {
-      @include typo-title(huge-1, secondary);
+      @include typo-title(huge, secondary);
     }
 
     @include breakpoint($mediaquery-lg-up) {
-      @include typo-title(
-        huge-2,
-        secondary
-      ); // TODO: schaut minimal anders aus (bei v1 greift family nicht?)
+      @include typo-title(huge-2, secondary);
     }
   }
 
