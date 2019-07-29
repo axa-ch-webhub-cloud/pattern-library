@@ -37,7 +37,7 @@ test('should clickable (set different text after click)', async t => {
 });
 
 fixture('Button - set properties').page(
-  `${host}/iframe.html?id=atoms-button--button-default`
+  `${host}/iframe.html?id=atoms-button--button`
 );
 
 test('should set button element disabled', async t => {
@@ -66,10 +66,6 @@ test('should set button element type', async t => {
     .ok();
 });
 
-fixture('Button - icon').page(
-  `${host}/iframe.html?id=atoms-button--button-icon`
-);
-
 test('should render icon', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button').shadowRoot
@@ -91,10 +87,6 @@ test('should render react button', async t => {
   const $axaButtonShadowEl = await $axaButtonShadow.find(BUTTON_CLASS);
   await t.expect($axaButtonShadowEl.exists).ok();
 });
-
-fixture('Button - react with attributes').page(
-  `${host}/iframe.html?id=atoms-button-react--button-class`
-);
 
 test('should set className', async t => {
   const $axaButton = await Selector(BUTTON_TAG);

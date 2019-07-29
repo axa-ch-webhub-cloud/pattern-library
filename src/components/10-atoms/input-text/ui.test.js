@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Input text - basic functionality').page(
-  `${host}/iframe.html?id=atoms-input-text--input-text-default`
+  `${host}/iframe.html?id=atoms-input-text--input-text`
 );
 
 const TAG = 'axa-input-text';
@@ -25,23 +25,17 @@ test('should type something input-text', async t => {
   );
   const $axaTagElem = await $axaTag.find(CLASS);
   await t
+    .selectText($axaTagElem)
+    .pressKey('delete')
     .typeText($axaTagElem, 'Pattern Warriors')
     .expect($axaTagElem.value)
     .eql('Pattern Warriors');
 });
 
-fixture('Input text - label').page(
-  `${host}/iframe.html?id=atoms-input-text--input-text-label`
-);
-
 test('should render label', async t => {
   const $axaLabel = await Selector('.a-input-text__label');
   await t.expect($axaLabel.exists).ok();
 });
-
-fixture('Input text - error').page(
-  `${host}/iframe.html?id=atoms-input-text--input-text-required`
-);
 
 test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
