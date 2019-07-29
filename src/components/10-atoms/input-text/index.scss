@@ -17,6 +17,7 @@ axa-input-text {
   }
 
   .a-input-text__input-elements {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -89,11 +90,32 @@ axa-input-text {
     }
   }
 
+  .a-input-text__input--check {
+    padding-right: 31px;
+  }
+
   .a-input-text__label {
     @include typo(primary, medium);
     font-weight: 600;
     color: $color-prim-gray-mine-shaft;
     margin-bottom: 10px;
+  }
+
+  .a-input-text__check {
+    @include check-mark-animated();
+    position: absolute;
+    right: 5px;
+  }
+
+  .a-input-text__error-wrapper {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+
+  .a-input-text__error-wrapper--open {
+    max-height: 300px;
+    transition: max-height .2s ease-in;
   }
 
   .a-input-text__error {
@@ -102,30 +124,5 @@ axa-input-text {
     color: $color-validation-error;
     margin-top: 10px;
   }
-
-  .a-input-text__error-wrapper--hidden {
-    display: none;
-  }
-
-  .a-input-text__check-wrapper {
-    margin-left: 10px;
-  }
-
-  .a-input-text__check-wrapper--reservation {
-    position: absolute;
-    right: 5px;
-    @include check-mark-animated-wrapper();
-  }
-
-  .a-input-text__check-wrapper--hidden {
-    display: none;
-  }
-
-  .a-input-text__check {
-    @include check-mark-animated();
-  }
-
-  .a-input-text__check--hidden {
-    display: none;
-  }
 }
+

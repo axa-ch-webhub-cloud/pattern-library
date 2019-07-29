@@ -27,7 +27,6 @@ class AXAPopupButton extends LitElement {
   constructor() {
     super();
     this.open = false;
-    this.name = '';
     this.onClick = () => {};
   }
 

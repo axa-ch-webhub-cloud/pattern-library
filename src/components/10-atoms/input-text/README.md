@@ -106,9 +106,11 @@ The boolean attribute `disabled` disables the underlying native HTML &lt;input&g
 
 The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
 
-### embedded
+### info
 
-When true, the Boolean attribute `embedded` suppresses the default space around the input-text otherwise reserved for showing valid/error UI states.
+The string-valued `info` provides the label text as HTML.
+
+_Note: The consumer is responsible for sanitizing the info HTML!_
 
 ### onChange
 

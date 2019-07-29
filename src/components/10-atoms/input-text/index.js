@@ -44,7 +44,6 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean },
-      embedded: { type: Boolean },
 
       isReact: { type: Boolean },
     };
@@ -69,7 +68,6 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
     this.required = false;
     this.invalid = false;
     this.disabled = false;
-    this.embedded = false;
     this.isReact = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
@@ -105,7 +103,7 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
   }
 
   get showError() {
-    return this.error && this.invalid;
+    return this.error && this.invalid && !this._open;
   }
 
   handleFocus = ev => {
@@ -151,7 +149,6 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
       isReact,
       invalid,
       checkMark,
-      embedded,
       isControlled,
       refId,
     } = this;
@@ -161,22 +158,12 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
     const inputClasses = {
       'a-input-text__input': true,
       'a-input-text__input--error': invalid,
-    };
-
-    const checkClasses = {
-      'a-input-text__check': true,
-      'a-input-text__check--hidden': invalid,
-    };
-
-    const checkWrapperClasses = {
-      'a-input-text__check-wrapper': true,
-      'a-input-text__check-wrapper--reservation': !embedded,
-      'a-input-text__check-wrapper--hidden': embedded && !checkMark,
+      'a-input-text__input--check': checkMark,
     };
 
     const errorMessageWrapperClasses = {
-      'a-input-text__error-wrapper--reservation': !embedded,
-      'a-input-text__error-wrapper--hidden': embedded && !this.showError,
+      'a-input-text__error-wrapper': true,
+      'a-input-text__error-wrapper--open': this.showError,
     };
 
     return html`
@@ -200,7 +187,7 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
               @blur="${this.handleBlur}"
               id="${refId}"
               type="${type}"
-              class=" ${classMap(inputClasses)}"
+              class="${classMap(inputClasses)}"
               autocomplete="off"
               name="${name}"
               value="${value}"
@@ -208,18 +195,15 @@ class AXAInputText extends popupMixin(NoShadowDOM) {
               ?disabled="${disabled}"
               aria-required="${required}"
             />
-  
-            <div class="${classMap(checkWrapperClasses)}">
-              ${
-                checkMark
-                  ? html`
-                      <span class="${classMap(checkClasses)}"></span>
-                    `
-                  : ''
-              }
-            </div>
+            ${
+              checkMark
+                ? html`
+                    <span class="a-input-text__check"></span>
+                  `
+                : ''
+            }
           </div>
-         
+        
             ${info &&
               html`
                 <axa-popup-button

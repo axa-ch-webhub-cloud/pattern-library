@@ -9,6 +9,7 @@ interface AXAInputTextProps {
   defaultValue?: string;
   error?: string;
   type?: string;
+  info?: string;
   invalid?: boolean;
   required?: boolean;
   disabled?: boolean;

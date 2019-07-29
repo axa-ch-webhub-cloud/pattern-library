@@ -4,7 +4,6 @@ import { create } from '@storybook/theming';
 import { addReadme } from 'storybook-readme/html';
 import logo from '../src/static/svg/logo-axa.svg';
 
-addDecorator(addReadme);
 addParameters({
   readme: {
     codeTheme: 'github',
@@ -19,6 +18,8 @@ addParameters({
     }),
   },
 });
+
+addDecorator(addReadme);
 
 const materials = require.context('../src/components/00-materials', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const atoms = require.context('../src/components/10-atoms', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
