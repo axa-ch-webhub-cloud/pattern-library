@@ -1,9 +1,6 @@
-import { html /* , svg */, svg } from 'lit-element';
-// import { CarSvg } from '@axa-ch/materials/images';
+import { html, svg } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defaultName from '../../../utils/create-ref-id';
-
-/* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
@@ -34,7 +31,16 @@ class AXARadio extends NoShadowDOM {
       disabled: { type: Boolean, reflect: true },
       button: { type: Boolean, reflect: true },
       nogap: { type: Boolean, reflect: true },
-      icon: { type: String },
+      noautowidth: { type: Boolean, reflect: true },
+      icon: {
+        type: String,
+        reflect: true,
+        converter: {
+          toAttribute(value) {
+            return value ? '' : null;
+          },
+        },
+      },
       error: {
         type: String,
         reflect: true,
@@ -115,7 +121,6 @@ class AXARadio extends NoShadowDOM {
       native: false,
     };
     // initialize properties
-    this.type = 'radio';
     this.value = '';
     this.name = '';
     this.label = '';
@@ -171,7 +176,7 @@ class AXARadio extends NoShadowDOM {
           : html`
               <span class="a-radio__icon"></span>
             `}
-        ${icon ? svg(icon) : svg``}
+        ${icon ? svg([icon]) : svg``}
         <div class="a-radio__content">${label}</div>
       </label>
     `;
@@ -179,18 +184,37 @@ class AXARadio extends NoShadowDOM {
 
   firstUpdated() {
     this.input = this.querySelector('input');
-    const { name } = this;
+    const { name, button, noautowidth } = this;
+    const ourButton = this.querySelector('.a-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
-    radioButtonGroup[name].add(this.querySelector('.a-radio__content'));
+    radioButtonGroup[name].add(ourButton);
+
+    if (button) {
+      setTimeout(() => {
+        const { width: labelTextWidth } = this.querySelector(
+          '.a-radio__content'
+        ).getBoundingClientRect();
+        maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
+        // equalize width for all <axa-radio button> with same name:
+        const width = noautowidth ? labelTextWidth : maxWidth[name];
+        radioButtonGroup[name].forEach(radioButton => {
+          // special case 'noautowidth' only impose minWidth on ourselves
+          // (suppresses length changes .a.k.a 'punping effect' between
+          // selected/unselected state due to font-weight changes)
+          if (noautowidth && radioButton !== ourButton) return;
+          radioButton.style.minWidth = `${width}px`;
+        });
+      }, /* give DOM some time to paint before measuring width */ 10);
+    }
   }
 
   updated() {
     const {
       name,
-      button,
       input,
       state: { isControlled, checked },
     } = this;
+
     // we are the selected element of a group of controlled inputs?
     if (isControlled && checked && name) {
       // yes, perform forced re-select of radio button
@@ -199,19 +223,6 @@ class AXARadio extends NoShadowDOM {
     }
 
     if (this.checked) selectedRadioButton[name] = this;
-
-    if (button) {
-      setTimeout(() => {
-        const { width: labelTextWidth } = this.querySelector(
-          '.a-radio__content'
-        ).getBoundingClientRect();
-        maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
-        // equalize width for all <axa-radio button> with same name
-        radioButtonGroup[name].forEach(radioButton => {
-          radioButton.style.minWidth = `${maxWidth[name]}px`;
-        });
-      }, /* give DOM some time to paint before measuring width */ 10);
-    }
   }
 
   disconnectedCallback() {

@@ -125,6 +125,8 @@ axa-radio {
         padding: 0;
         text-align: center;
         text-transform: uppercase;
+        line-height: 18px;
+        letter-spacing: 0.56px;
     }
 
     .a-radio__input {
@@ -158,5 +160,24 @@ axa-radio {
       background-color: inherit;
     }
   }
-}
+
+    &[icon] {
+      height: auto;
+
+      .a-radio__wrapper {
+          padding: 26px 35px 0 35px;
+          flex-direction: column;
+          justify-content: center;
+
+        svg {
+          width: 60px;
+        }
+
+        .a-radio__content {
+          padding-bottom: 15px;
+          padding-top: inherit;
+        }
+      }
+    }
+  }
 }
