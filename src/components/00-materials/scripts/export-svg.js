@@ -30,7 +30,9 @@ fs.readdir(importIconsPath, (err, items) => {
   items.forEach(icon => {
     if (/\.svg/.test(icon)) {
       const iconPath = path.resolve(importIconsPath, icon);
-      const contents = fs.readFileSync(iconPath, 'utf8');
+      const contents = fs
+        .readFileSync(iconPath, 'utf8')
+        .replace(/(\r\n|\n|\r)/gm, '');
       const fileName = path.basename(icon);
       const className = toClassName(fileName);
 
@@ -57,14 +59,17 @@ fs.readdir(importIconsPath, (err, items) => {
 
 fs.readdir(importImagesPath, (err, items) => {
   if (err) {
-    throw new Error('Cannot find icons');
+    throw new Error('Cannot find images');
   }
 
   let namedExports = '';
   items.forEach(icon => {
     if (/\.svg/.test(icon)) {
       const iconPath = path.resolve(importImagesPath, icon);
-      const contents = fs.readFileSync(iconPath, 'utf8');
+      const contents = fs
+        .readFileSync(iconPath, 'utf8')
+        .replace(/(\r\n|\n|\r)/gm, '');
+
       const fileName = path.basename(icon);
       const className = toClassName(fileName);
 
@@ -79,9 +84,7 @@ fs.readdir(importImagesPath, (err, items) => {
         'utf8'
       );
 
-      namedExports += outdent`
-      export { default as ${className} } from './${fileName}.js';
-    `;
+      namedExports += outdent`export { default as ${className} } from './${fileName}.js';`;
     }
   });
 

@@ -10,3 +10,6 @@ node_modules
 package-lock.json
 lib
 dist
+
+/src/components/00-materials/icons-raw
+/src/components/00-materials/images-raw

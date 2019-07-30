@@ -1,4 +1,5 @@
 src/**/lib
 src/**/dist
 src/**/00-materials/icons
+src/**/00-materials/images
 node_modules
