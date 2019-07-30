@@ -1,4 +1,4 @@
-# Popup button
+# AXA Popup Button
 
 TODO Description
 
@@ -11,7 +11,7 @@ npm install @axa-ch/popup-button
 ```
 
 ```js
-import '@axa-ch/popup-button';
+import '@axa-ch/popup';
 ...
 <axa-popup-button></axa-popup-button>
 ```
