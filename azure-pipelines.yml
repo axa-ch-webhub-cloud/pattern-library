@@ -17,8 +17,7 @@ steps:
 
 - script: |
     npm install
-    npm run build
-  displayName: 'install & build'
+  displayName: 'build is in install integrated'
 
 - script: |
     npm test
