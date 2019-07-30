@@ -2,6 +2,7 @@ import withReact from '../../../utils/with-react';
 import AXARadio from './index';
 
 export default createElement => ({
+  id,
   value,
   name,
   label,
@@ -19,6 +20,7 @@ export default createElement => ({
   withReact(createElement)(
     AXARadio.tagName,
     {
+      id,
       value,
       name,
       label,
