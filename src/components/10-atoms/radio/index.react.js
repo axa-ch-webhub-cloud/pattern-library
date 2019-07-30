@@ -2,13 +2,36 @@ import withReact from '../../../utils/with-react';
 import AXARadio from './index';
 
 export default createElement => ({
-  /* props here, same as in the constructor of index.js */
+  value,
+  name,
+  label,
+  checked,
+  disabled,
+  button,
+  nogap,
+  icon,
+  error,
+  onChange = () => {},
+  onFocus = () => {},
+  onBlur = () => {},
   children,
 }) =>
   withReact(createElement)(
     AXARadio.tagName,
     {
-      /* props here, same as in the constructor of index.js */
+      value,
+      name,
+      label,
+      checked,
+      disabled,
+      button,
+      nogap,
+      icon,
+      error,
+      onChange,
+      onFocus,
+      onBlur,
+      isReact: true,
     },
     children
   );
