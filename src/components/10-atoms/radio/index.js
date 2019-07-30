@@ -89,17 +89,21 @@ class AXARadio extends NoShadowDOM {
       onChange,
     } = this;
     onChange(event);
+
     const isChecked = event.target.checked;
 
+    // uncontrolled mode:
     if (!isControlled) {
+      // deselect last selected radiobutton...
       if (isChecked && selectedRadioButton[name]) {
-        selectedRadioButton[name].checked = false;
+        selectedRadioButton[name].checked = false; // causes re-render
       }
-
-      this.checked = true;
+      // ... and select ourselves
+      this.checked = true; // causes re-render
 
       return;
     }
+    // controlled mode:
     // set UI from model state
     this.input.checked = checked;
     // get selected radio button - usually not ourselves
@@ -176,7 +180,7 @@ class AXARadio extends NoShadowDOM {
           : html`
               <span class="a-radio__icon"></span>
             `}
-        ${icon ? svg([icon]) : svg``}
+        ${icon ? svg([icon]) : html``}
         <div class="a-radio__content">${label}</div>
       </label>
     `;
@@ -222,6 +226,8 @@ class AXARadio extends NoShadowDOM {
       input.checked = checked;
     }
 
+    // register ourselves as currently selected in same-named group of all
+    // radio buttons
     if (this.checked) selectedRadioButton[name] = this;
   }
 

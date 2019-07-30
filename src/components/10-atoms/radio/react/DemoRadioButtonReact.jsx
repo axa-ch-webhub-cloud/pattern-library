@@ -36,9 +36,9 @@ const DemoRadiobuttonsControlled = () => {
         />
         &nbsp;freeze&nbsp;
       </label>
-      <label htmlFor="freeze">
+      <label htmlFor="button">
         <input
-          id="freeze"
+          id="button"
           type="checkbox"
           onChange={handleButton}
           checked={button}
@@ -50,7 +50,8 @@ const DemoRadiobuttonsControlled = () => {
       />
       <AXAFieldset horizontal>
         <AXARadioButton
-          label="Yes, I want insurance"
+          id="radio1"
+          label="No, thanks"
           name="insurance"
           checked={checked[0]}
           onFocus={handleRadioButtonFocus(0)}
@@ -59,7 +60,8 @@ const DemoRadiobuttonsControlled = () => {
           button={button}
         />
         <AXARadioButton
-          label="No, thanks"
+          id="radio2"
+          label="Yes, I want insurance"
           name="insurance"
           checked={checked[1]}
           onFocus={handleRadioButtonFocus(1)}
@@ -72,7 +74,7 @@ const DemoRadiobuttonsControlled = () => {
       <div
         style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}
       >
-        <span>
+        <span id="checked">
           checked: ⟨{String(checked[0])}, {String(checked[1])}⟩
         </span>
         <span>
