@@ -1,4 +1,6 @@
-export const AXAPopupMixin = superclass =>
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-mutable-exports */
+export let AXAPopupMixin = superclass =>
   class extends superclass {
     static get properties() {
       return {
