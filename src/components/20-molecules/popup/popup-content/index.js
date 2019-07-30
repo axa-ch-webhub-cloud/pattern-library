@@ -1,6 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import styles from './index.scss';
+import popupContentCSS from './index.scss';
 
 class AXAPopupContent extends LitElement {
   static get tagName() {
@@ -9,7 +9,7 @@ class AXAPopupContent extends LitElement {
 
   static get styles() {
     return css`
-      ${unsafeCSS(styles)}
+      ${unsafeCSS(popupContentCSS)}
     `;
   }
 

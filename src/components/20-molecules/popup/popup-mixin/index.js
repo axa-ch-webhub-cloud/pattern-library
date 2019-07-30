@@ -1,4 +1,4 @@
-const AXAPopupMixin = superclass =>
+export const AXAPopupMixin = superclass =>
   class extends superclass {
     static get properties() {
       return {
@@ -13,5 +13,3 @@ const AXAPopupMixin = superclass =>
 
     handlePopupClick = () => (this._open = !this._open);
   };
-
-export default AXAPopupMixin;

@@ -4,7 +4,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
 // import '@axa-ch/popup-button';
 // import '@axa-ch/popup-content';
-import '@axa-ch/popup';
+import { AXAPopupMixin } from '@axa-ch/popup';
 
 
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -12,21 +12,21 @@ import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
-export const AXAPopupMixin = superclass =>
-  class extends superclass {
-    static get properties() {
-      return {
-        _open: { type: Boolean },
-      };
-    }
-
-    constructor() {
-      super();
-      this._open = false;
-    }
-
-    handlePopupClick = () => (this._open = !this._open);
-  };
+// export const AXAPopupMixin = superclass =>
+//   class extends superclass {
+//     static get properties() {
+//       return {
+//         _open: { type: Boolean },
+//       };
+//     }
+//
+//     constructor() {
+//       super();
+//       this._open = false;
+//     }
+//
+//     handlePopupClick = () => (this._open = !this._open);
+//   };
 
 class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   static get tagName() {

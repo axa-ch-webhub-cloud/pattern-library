@@ -1,7 +1,7 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons';
-import styles from './index.scss';
+import popupButtonCSS from './index.scss';
 
 class AXAPopupButton extends LitElement {
   static get tagName() {
@@ -10,7 +10,7 @@ class AXAPopupButton extends LitElement {
 
   static get styles() {
     return css`
-      ${unsafeCSS(styles)}
+      ${unsafeCSS(popupButtonCSS)}
     `;
   }
 
