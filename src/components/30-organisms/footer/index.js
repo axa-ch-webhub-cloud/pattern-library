@@ -9,6 +9,8 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import childStyles from './child.scss';
 
+const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
 const _listElementHasNoContent = label => {
   // Second part of statement is an IE11 workaround, because a slotted
   // empty node is not empty on IE11 (with the ShadyCss polyfill).
@@ -57,10 +59,54 @@ class AXAFooter extends LitElement {
   }
 
   firstUpdated() {
-    console.log(childStyles);
     const resetStyle = document.createElement('style');
     resetStyle.textContent = AXAFooter.resetHeadingCss;
     this.appendChild(resetStyle);
+  }
+
+  prepareSlotsWithIndexes() {
+    // set slotted numbers automatically for all titles and all items for each column
+    // every title followed with items will be a column (dome sequence)
+    // There is no wrapper for the columns but a counter that controls which
+    // column to use
+    // EXAMPLE IN PSEUDO DOM:
+    //
+    // TITLE -> start column 0
+    // ITEM -> add item to column 0
+    // ITEM -> add item to column 0
+    // ITEM -> add item to column 0
+    // ITEM -> add item to column 0
+    //
+    // TITLE -> start column 1
+    // ITEM -> add item to column 1
+    // ITEM -> add item to column 1
+    // ITEM -> add item to column 1
+
+    const childrenArr = Array.prototype.slice.call(this.children);
+    const onlyColumns = childrenArr.filter(
+      // only accepts those slots that are columns
+      child => ~child.getAttribute('slot').indexOf('column-')
+    );
+    let currentColumnIndex = -1;
+    let totalAmountPreviousColumns = 0;
+    [].forEach.call(onlyColumns, (child, index) => {
+      const { nodeName } = child;
+      if (~HEADINGS.indexOf(nodeName.toLowerCase())) {
+        currentColumnIndex += 1;
+        totalAmountPreviousColumns = index;
+        child.setAttribute(
+          'slot',
+          child.getAttribute('slot').replace('-x-', `-${currentColumnIndex}-`)
+        );
+      } else {
+        const actualIndex =
+          index - currentColumnIndex - totalAmountPreviousColumns;
+        const slotName = `${child
+          .getAttribute('slot')
+          .replace('-x-', `-${currentColumnIndex}-`)}-${actualIndex}`;
+        child.setAttribute('slot', slotName);
+      }
+    });
   }
 
   render() {
@@ -94,13 +140,7 @@ class AXAFooter extends LitElement {
       link.addEventListener('click', this._handleLinkClick);
     });
 
-    const columns = this.querySelectorAll('[slot="column-x-title"]');
-    [].forEach.call(columns, (column, index) => {
-      column.setAttribute(
-        'slot',
-        column.getAttribute('slot').replace('-x-', `-${index}-`)
-      );
-    });
+    this.prepareSlotsWithIndexes();
 
     return html`
       <footer class="o-footer">
