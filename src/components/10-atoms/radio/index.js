@@ -9,6 +9,9 @@ const radioButtonGroup = {};
 const selectedRadioButton = {};
 const maxWidth = {};
 
+const WIDTH_SLACK = 5; // px
+const DOM_PAINT_TIME = 1000 * (2 / 60); // ms - 2 frames at 60 fps
+
 // CE
 class AXARadio extends NoShadowDOM {
   static get tagName() {
@@ -206,9 +209,9 @@ class AXARadio extends NoShadowDOM {
           // (suppresses length changes .a.k.a 'punping effect' between
           // selected/unselected state due to font-weight changes)
           if (noautowidth && radioButton !== ourButton) return;
-          radioButton.style.minWidth = `${width}px`;
+          radioButton.style.minWidth = `${width + WIDTH_SLACK}px`;
         });
-      }, /* give DOM some time to paint before measuring width */ 10);
+      }, /* give DOM some time to paint before measuring width */ DOM_PAINT_TIME);
     }
   }
 
