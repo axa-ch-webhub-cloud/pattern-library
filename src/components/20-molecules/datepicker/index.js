@@ -428,16 +428,24 @@ class AXADatepicker extends NoShadowDOM {
       startDate,
     } = this;
 
-    const year = setyear || _year;
-    const month = setmonth || _month;
-    const day = setday || _day;
+    const year = typeof setyear === 'number' ? setyear : _year;
+    const month = typeof setmonth === 'number' ? setmonth : _month;
+    const day = typeof setday === 'number' ? setday : _day;
 
-    if (year >= 0) {
+    if (typeof year === 'number' && year >= 0) {
       startDate.setFullYear(year);
     }
 
-    if (month >= 0 && typeof month === 'number') {
+    if (typeof month === 'number' && month >= 0) {
       startDate.setMonth(month);
+      // month not changed as desired due to because target day unavailable there?
+      // (e.g. July 31 =/=> June 31)
+      if (startDate.getMonth() !== month) {
+        // then choose last day of previous month to correct that
+        // FIXME: Is this always correct? Should this only be done
+        // when initDate is called from handleChangeDropdownMonth?
+        startDate.setDate(0);
+      }
     }
 
     if (typeof day === 'number') {

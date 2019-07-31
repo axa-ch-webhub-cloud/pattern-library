@@ -106,6 +106,14 @@ This property is especially relevant for controlled-component behaviour under Re
 The string-valued `defaultValue` sets the _initial_ content of the free-form date-input field.
 This property is only available under React.
 
+It is intended to be used in conjunction with `date`, which does not auto-reflect to the date-input field (
+rather, only user-initiated input does).
+
+_Note_: _initial_ refers to the [firstUpdated lifecyle point](https://lit-element.polymer-project.org/guide/lifecycle#firstupdated) of the component's internal lifecycle &mdash; the datepicker by construction is unaware of
+external lifecycles such as React's.
+
+As a consequence, React developers should avoid the pitfall of unnecessarily recreating a new instance of the datepicker from scratch on every property update, especially for `date` changes. Failure to do so not only incurs a performance penalty, it also causes `defaultValue` to be imposed after every (re)creation. This may in turn create the false impression that the datepicker is not reactive to property changes, since its input-field value would be always that of `defaultValue`.
+
 ### name
 
 The string-valued `name` sets the name attribute of the free-form date-input field.
@@ -119,9 +127,13 @@ current locale.
 
 ### date
 
-The `date` property takes a [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object to set the current date of the datepicker.
+The `date` property takes a [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object to set the current internal date of the datepicker.
 
 Setting `date` implies automatically derived values for `year`, `month`, and `day`.
+
+Defining a `date` property does **not** imply controlled-component behaviour.
+
+Likewise, `date` is **not** automatically reflected to the date input field. Rather, only _user input_ is.
 
 ### embedded
 
@@ -164,9 +176,9 @@ Note that due to `input` event characteristics, pasting date strings into the fr
 
 The function-valued attribute `onDateChange` can be used as a callback prop for React and other frameworks.
 
-The callback is invoked once for every user input change that results in a valid date under the current locale and `allowedyears` restrictions.
+The callback is invoked once for every _user input_ change that results in a valid date under the current locale and `allowedyears` restrictions.
 
-A date object is passed as parameter 1 of the callback.
+A valid [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object is passed as parameter 1 of the callback.
 
 ### onFocus, onBlur
 
