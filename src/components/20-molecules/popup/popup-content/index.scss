@@ -5,7 +5,8 @@
 
 .a-popup__wrapper--open {
   max-height: 600px;
-  transition: max-height .3s ease-out;
+  // work with scale?
+  transition: max-height .2s ease-out;
 }
 
 .a-popup__content {
@@ -14,6 +15,7 @@
   background-color: $color-prim-blue-st-tropaz;
   color: $color-prim-white;
   padding: 15px;
+  // 4px
   border-radius: 2px;
   box-sizing: border-box;
   width: 100%;
