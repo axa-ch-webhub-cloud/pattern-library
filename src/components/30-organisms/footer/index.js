@@ -83,13 +83,29 @@ class AXAFooter extends LitElement {
     // ITEM -> add item to column 1
 
     const childrenArr = Array.prototype.slice.call(this.children);
+
+    const filter = criteria => child =>
+      ~child.getAttribute('slot').indexOf(criteria);
+
+    const noHeaderFilter = criteria => child => {
+      const { nodeName } = child;
+      return (
+        filter(criteria)(child) && !~HEADINGS.indexOf(nodeName.toLowerCase())
+      );
+    };
+
     const onlyColumns = childrenArr.filter(
       // only accepts those slots that are columns
-      child => ~child.getAttribute('slot').indexOf('column-')
+      filter('column-')
     );
+    const onlySocials = childrenArr.filter(
+      // only accepts those slots that are social columns
+      noHeaderFilter('social-')
+    );
+
     let currentColumnIndex = -1;
     let totalAmountPreviousColumns = 0;
-    [].forEach.call(onlyColumns, (child, index) => {
+    onlyColumns.forEach((child, index) => {
       const { nodeName } = child;
       if (~HEADINGS.indexOf(nodeName.toLowerCase())) {
         currentColumnIndex += 1;
@@ -106,6 +122,11 @@ class AXAFooter extends LitElement {
           .replace('-x-', `-${currentColumnIndex}-`)}-${actualIndex}`;
         child.setAttribute('slot', slotName);
       }
+    });
+
+    onlySocials.forEach((child, index) => {
+      const slotName = `${child.getAttribute('slot')}-${index}`;
+      child.setAttribute('slot', slotName);
     });
   }
 
