@@ -17,6 +17,18 @@ axa-fieldset {
       margin-left: $fieldset-horizontal-margin;
     }
 
+    @include breakpoint($mediaquery-xsm) {
+      flex-wrap: wrap;
+
+      > * {
+        margin-left: 0 !important;
+        width: 100% !important;
+
+        &:not(:last-child) {
+        margin-bottom: $fieldset-vertical-margin;
+      }
+    }
+    }
   }
 
   &[error] {
