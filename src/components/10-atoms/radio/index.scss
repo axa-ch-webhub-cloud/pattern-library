@@ -29,6 +29,7 @@ axa-radio {
         -ms-flex-align: center;
             align-items: center;
     line-height: 1.5;
+    justify-content: center;
   }
 
   .a-radio__input {
@@ -113,6 +114,7 @@ axa-radio {
       border: 1px solid $color-prim-gray-dusty;
       padding: 0 20px;
       cursor: pointer;
+      width: inherit;
 
       &:hover {
         border-color: $color-axa-blue;
