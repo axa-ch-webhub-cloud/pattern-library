@@ -5,6 +5,7 @@ import AXARadioButton from './AXARadioButtonReact';
 const DemoRadiobuttonsControlled = () => {
   const [button, setButton] = useState(true);
   const [frozen, setFrozen] = useState(false);
+  const [error, setError] = useState('');
   const [checked, setChecked] = useState([true, false]);
   const [focus, setFocus] = useState([false, false]);
   const [blur, setBlur] = useState([false, false]);
@@ -24,6 +25,12 @@ const DemoRadiobuttonsControlled = () => {
 
   const handleButton = () => setButton(!button);
 
+  const handleError = () => {
+    setError(error ? '' : 'Invalid choice');
+  };
+
+  console.log('error', error);
+
   return (
     <fieldset>
       <legend>RadioButton Callback Props</legend>
@@ -31,6 +38,7 @@ const DemoRadiobuttonsControlled = () => {
         <input
           id="freeze"
           type="checkbox"
+          checked={frozen}
           onChange={handleFreeze}
           style={{ margin: 0 }}
         />
@@ -40,15 +48,24 @@ const DemoRadiobuttonsControlled = () => {
         <input
           id="button"
           type="checkbox"
-          onChange={handleButton}
           checked={button}
+          onChange={handleButton}
         />
-        &nbsp;button
+        &nbsp;button&nbsp;
+      </label>
+      <label htmlFor="error">
+        <input
+          id="error"
+          type="checkbox"
+          checked={!!error}
+          onChange={handleError}
+        />
+        &nbsp;error&nbsp;
       </label>
       <hr
         style={{ borderWidth: '.5rem', borderColor: 'transparent', margin: 0 }}
       />
-      <AXAFieldset horizontal>
+      <AXAFieldset horizontal error={error}>
         <AXARadioButton
           id="radio1"
           label="No, thanks"
