@@ -24,13 +24,11 @@
 
   &__main {
     ::slotted(h2) {
-      display: none !important; // desktop title
       color: $color-prim-white !important;
       margin: 0 !important;
 
       @include breakpoint($mediaquery-sm-up) {
         @include typo(primary, medium, bold, !important); //change whole type to  !important?
-        display: block !important; // desktop title
         text-transform: uppercase !important;
         line-height: 1.5 !important;
       }
@@ -39,12 +37,7 @@
 
   &__accordion-button {
     ::slotted(h2) {
-      display: block !important; // mobile title
       @include typo(primary, default, medium, !important);
-
-      @include breakpoint($mediaquery-sm-up) {
-        display: none !important; // mobile title
-      }
 
       color: $color-prim-white !important;
       padding: 0 !important;
@@ -56,6 +49,14 @@
     margin: 0 !important;
     padding: 0 !important;
     color: $color-prim-white !important;
+
+    @include breakpoint($mediaquery-sm-up) {
+      display: block;
+      @include typo(primary, medium, bold, !important);
+
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
   }
 
   .o-footer__social-media-item ::slotted(a) {
@@ -110,6 +111,18 @@
   &__title {
     @include typo(primary, default, medium);
     margin: 0;
+
+    ::slotted(h2) {
+      margin: 0;
+
+      @include breakpoint($mediaquery-sm-up) {
+        // IE11 workaround
+        @include typo(primary, medium, bold, !important);
+        display: block !important; // desktop title
+        text-transform: uppercase !important;
+        line-height: 1.5 !important;
+      }
+    }
   }
 
   &__social-media {
@@ -145,14 +158,8 @@
     &-title {
       @include typo(primary, medium, bold);
 
-      display: none;
-
       text-transform: uppercase;
       line-height: 1.5;
-
-      @include breakpoint($mediaquery-lg-up) {
-        display: block;
-      }
     }
 
     &-list {
@@ -195,18 +202,6 @@
     }
   }
 
-  &__title-desktop {
-    display: none;
-
-    @include breakpoint($mediaquery-sm-up) {
-      display: block;
-      @include typo(primary, medium, bold);
-
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-  }
-
   &__accordion-button {
     @include typo(primary, default, medium);
     display: flex;
@@ -236,10 +231,18 @@
       &--open {
         transform: rotate(0deg);
       }
+
+      @include breakpoint($mediaquery-sm-up) {
+        display: none;
+      }
     }
 
     @include breakpoint($mediaquery-sm-up) {
-      display: none;
+      padding: 0;
+      background-color: transparent;
+      border: 0 solid transparent;
+
+      pointer-events: none;
     }
   }
 

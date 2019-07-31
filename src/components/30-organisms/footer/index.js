@@ -82,6 +82,14 @@ class AXAFooter extends LitElement {
       link.addEventListener('click', this._handleLinkClick);
     });
 
+    const columns = this.querySelectorAll('[slot="column-x-title"]');
+    [].forEach.call(columns, (column, index) => {
+      column.setAttribute(
+        'slot',
+        column.getAttribute('slot').replace('-x-', `-${index}-`)
+      );
+    });
+
     return html`
       <footer class="o-footer">
         <axa-container>
