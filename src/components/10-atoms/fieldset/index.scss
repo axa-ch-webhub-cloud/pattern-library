@@ -2,6 +2,7 @@ $fieldset-vertical-margin: 20px;
 $fieldset-horizontal-margin: 30px;
 
 axa-fieldset {
+  position: relative;
   display: block;
 
   &:not([horizontal]) > *:not(:last-child) {
@@ -14,6 +15,21 @@ axa-fieldset {
 
     > *:not(:first-child):not([nogap]) {
       margin-left: $fieldset-horizontal-margin;
+    }
+
+  }
+
+  &[error] {
+    padding-bottom: 28px;
+
+    &:after {
+      @include typo(primary, default);
+      content: attr(error);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 0 !important;
+      color: $color-validation-error;
     }
   }
 }

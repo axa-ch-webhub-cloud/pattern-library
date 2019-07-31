@@ -16,12 +16,14 @@ class AXAFieldset extends NoShadowDOM {
   static get properties() {
     return {
       horizontal: { type: Boolean, reflect: true },
+      error: { type: String, reflect: true },
     };
   }
 
   constructor() {
     super();
     this.horizontal = false;
+    this.error = '';
   }
 }
 
