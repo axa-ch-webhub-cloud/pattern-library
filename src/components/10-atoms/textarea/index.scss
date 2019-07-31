@@ -13,7 +13,6 @@ axa-textarea {
 
   .a-textarea__textarea-wrapper {
     display: flex;
-    align-items: center;
   }
 
   .a-textarea__textarea {
@@ -67,7 +66,7 @@ axa-textarea {
     }
   }
 
-  .a-textarea__input--check {
+  .a-textarea__textarea--check {
     padding-right: 31px;
   }
 
@@ -95,5 +94,6 @@ axa-textarea {
     @include check-mark-animated();
     position: absolute;
     right: 5px;
+    top: 5px
   }
 }

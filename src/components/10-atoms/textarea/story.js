@@ -42,8 +42,7 @@ storyTextarea.add('Textarea - default', () => {
       counter="${counter}"
       countermax="${counterMax}"
       maxlength="${maxLength}"
-      ></axa-textarea
-    >
+    ></axa-textarea>
   `;
 
   render(template, wrapper);
