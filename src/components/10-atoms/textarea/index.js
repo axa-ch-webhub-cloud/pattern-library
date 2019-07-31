@@ -28,12 +28,17 @@ class AXATextarea extends NoShadowDOM {
       checkMark: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean },
-      embedded: { type: Boolean },
 
       counter: { type: String },
       counterMax: { type: String },
-      maxLength: { type: Number },
-
+      maxLength: {
+        type: Number,
+        converter: {
+          toAttribute(value) {
+            return value ? Number(value) : '';
+          },
+        },
+      },
       isReact: { type: Boolean },
       modelCounter: { type: String },
     };
@@ -52,7 +57,6 @@ class AXATextarea extends NoShadowDOM {
     this.required = false;
     this.invalid = false;
     this.disabled = false;
-    this.embedded = false;
     this.counter = '';
     this.counterMax = '';
 
@@ -128,16 +132,16 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get showCounter() {
-    return this.maxLength && !this.invalid && this.areCharsLeft;
+    return this.maxLength && !this.invalid && this.areCharsLeft && !this.disabled;
   }
 
   get showError() {
-    return this.error && this.invalid;
+    return this.error && this.invalid && !this.disabled;
   }
 
   get showCounterMax() {
     return (
-      this.maxLength && this.counterMax && !this.showError && !this.areCharsLeft
+      this.maxLength && this.counterMax && !this.showError && !this.areCharsLeft && !this.disabled
     );
   }
 
@@ -201,32 +205,20 @@ class AXATextarea extends NoShadowDOM {
       refId,
       invalid,
       checkMark,
-      embedded,
     } = this;
 
     this.isControlled = isControlled && isReact;
 
     const textareaClasses = {
       'a-textarea__textarea': true,
-      'a-textarea__textarea--error': invalid,
-    };
-
-    const checkClasses = {
-      'a-textarea__check': true,
-      'a-textarea__check--hidden': invalid,
-    };
-
-    const checkWrapperClasses = {
-      'a-textarea__check-wrapper': true,
-      'a-textarea__check-wrapper--reservation': !embedded,
-      'a-textarea__check-wrapper--hidden': embedded && !checkMark,
+      'a-textarea__textarea--error': invalid && !disabled,
+      'a-textarea__textarea--check': checkMark && !disabled,
     };
 
     const textareaMessagesClasses = {
       'a-textarea__messages': true,
-      'a-textarea__messages--error': invalid,
-      'a-textarea__messages--reservation': !embedded,
-      'a-textarea__messages--hidden': embedded && !this.showMessages,
+      'a-textarea__messages--error': invalid && !disabled,
+      'a-textarea__messages--hidden': !this.showMessages,
     };
 
     return html`
@@ -257,13 +249,11 @@ class AXATextarea extends NoShadowDOM {
             aria-required="${required}"
           ></textarea>
 
-          <div class="${classMap(checkWrapperClasses)}">
             ${checkMark
               ? html`
-                  <span class="${classMap(checkClasses)}"></span>
+                  <span class="a-textarea__check"></span>
                 `
               : ''}
-          </div>
         </div>
         <div class="${classMap(textareaMessagesClasses)}">
           ${this.showCounter

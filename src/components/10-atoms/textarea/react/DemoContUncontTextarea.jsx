@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AXATextareaReact from './AXATextareaReact';
-import AXAInputTextReact from '../../input-text/react/AXAInputTextReact';
 
 const DemoContUncontTextarea = () => {
   const [message, setMessage] = useState('controlled');
@@ -41,8 +40,7 @@ const DemoContUncontTextarea = () => {
         defaultValue="prefilled value"
       />
       <AXATextareaReact
-        label="embedded: type checkmark or error"
-        embedded
+        label="type checkmark or error"
         checkMark={name === 'checkmark'}
         invalid={name === 'error'}
         error="Error Message"

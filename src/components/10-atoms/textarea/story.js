@@ -1,62 +1,51 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Atoms/Textarea', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  .add('Textarea - default', () => '<axa-textarea></axa-textarea>')
-  .add('Textarea - label', () => '<axa-textarea label="Label"></axa-textarea>')
-  .add(
-    'Textarea - placeholder',
-    () => '<axa-textarea placeholder="Placeholder"></axa-textarea>'
-  )
-  .add('Textarea - disabled', () => '<axa-textarea disabled></axa-textarea>')
-  .add(
-    'Textarea - required',
-    () => '<axa-textarea required label="Label"></axa-textarea>'
-  )
-  .add(
-    'Textarea - checkMark',
-    () => '<axa-textarea checkmark></axa-textarea>'
-  )
-  .add(
-    'Textarea - embedded',
-    () => '<axa-textarea embedded></axa-textarea>'
-  )
-  .add(
-    'Textarea - invalid',
-    () =>
-      '<axa-textarea invalid ></axa-textarea>'
-  )
-  .add(
-    'Textarea - error',
-    () =>
-      '<axa-textarea invalid error="Error Message"></axa-textarea>'
-  )
-  .add(
-    'Textarea - counter',
-    () =>
-      `<div>
-        <axa-textarea
-          maxlength="3"
-          counter="still ##counter## characters left"
-        ></axa-textarea>
-      </div>`
-  )
-  .add(
-    'Textarea - counterMax',
-    () =>
-      `<axa-textarea
-        maxlength="3"
-        counterMax="The maximum character length has been reached"
-      >123</axa-textarea>`
-  )
-  .add(
-    'Textarea - children (default Value)',
-    () => `<axa-textarea>prefilled value</axa-textarea>`
-  );
+const storyTextarea = storiesOf('Atoms/Textarea', module);
+storyTextarea.addDecorator(withKnobs);
+storyTextarea.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
+
+storyTextarea.add('Textarea - default', () => {
+  const label = text('label*', '');
+  const name = text('name*', '');
+  const id = text('id', '');
+  const placeholder = text('placeholder', '');
+  const error = text('error', '');
+  const checkMark = boolean('checkmark', false);
+  const disabled = boolean('disabled', false);
+  const required = boolean('required', false);
+  const invalid = boolean('invalid', false);
+  const counter = text('counter', '');
+  const counterMax = text('countermax', '');
+  const maxLength = text('maxlength', '');
+
+  const wrapper = document.createElement('div');
+  const template = html`
+    <axa-textarea
+      id="${id}"
+      name="${name}"
+      label="${label}"
+      placeholder="${placeholder}"
+      ?checkmark="${checkMark}"
+      ?disabled="${disabled}"
+      ?required="${required}"
+      ?invalid="${invalid}"
+      error="${error}"
+      counter="${counter}"
+      countermax="${counterMax}"
+      maxlength="${maxLength}"
+      ></axa-textarea
+    >
+  `;
+
+  render(template, wrapper);
+  return wrapper;
+});

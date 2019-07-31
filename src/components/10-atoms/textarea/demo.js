@@ -30,4 +30,8 @@ storiesOf('Atoms/Textarea/Demos', module)
           maxlength="3"
         ></axa-textarea>
       </div>`
+  )
+  .add(
+    'Textarea - children (default Value)',
+    () => `<axa-textarea>prefilled value</axa-textarea>`
   );
