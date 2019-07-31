@@ -7,6 +7,7 @@ import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import childStyles from './child.scss';
 
 const _listElementHasNoContent = label => {
   // Second part of statement is an IE11 workaround, because a slotted
@@ -37,6 +38,10 @@ class AXAFooter extends LitElement {
     `;
   }
 
+  static get resetHeadingCss() {
+    return unsafeCSS(childStyles);
+  }
+
   static get properties() {
     return {
       // 'clickevents' prevents the throwing of native click events and sends a custom axa-footer-click event.
@@ -49,6 +54,13 @@ class AXAFooter extends LitElement {
     this.clickevents = false;
     this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
+  }
+
+  firstUpdated() {
+    console.log(childStyles);
+    const resetStyle = document.createElement('style');
+    resetStyle.textContent = AXAFooter.resetHeadingCss;
+    this.appendChild(resetStyle);
   }
 
   render() {

@@ -1,0 +1,46 @@
+axa-footer {
+  h1, h2, h3, h4, h5, h6 {
+    @include typo(primary, default, medium);
+
+    color: $color-prim-white;
+    padding: 0;
+    margin: 0;
+
+    display: block;
+    text-transform: uppercase;
+    line-height: 1.5;
+
+    @include breakpoint($mediaquery-sm-up) {
+      @include typo(primary, medium, bold);
+      line-height: 1.5;
+    }
+
+    &[slot="social-title"] {
+      display: none;
+
+      @include breakpoint($mediaquery-lg-up) {
+        display: block;
+      }
+    }
+  }
+
+  a {
+    color: $color-prim-white;
+    display: block;
+    text-decoration: none;
+
+    padding: 10px;
+
+    @include breakpoint($mediaquery-sm-up) {
+      padding: 0px;
+      display: inline;
+    }
+
+    &[slot^="social-item"] {
+      display: block;
+      width: 25px;
+      height: 25px;
+      padding: 10px;
+    }
+  }
+}
