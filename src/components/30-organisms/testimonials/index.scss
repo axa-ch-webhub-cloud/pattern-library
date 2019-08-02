@@ -1,3 +1,105 @@
 .o-testimonials {
   display: block;
+  background: $color-sec-green-viridian;
+  color: $color-prim-white;
+
+  &__title {
+    @include typo-title(huge-2, secondary);
+    margin: 30px 30px 0 30px;
+    text-align: center;
+
+    @include breakpoint($mediaquery-sm-up) {
+      margin-top: 50px;
+    }
+  }
+
+  &__subtitle {
+    @include typo(default, medium);
+    margin: 20px 30px 0 30px;
+    text-align: center;
+  }
+
+  &__navigator {
+    display: flex;
+    padding: 30px 5px 70px 5px;
+    outline: none;
+
+    @include breakpoint($mediaquery-sm-up) {
+      padding-bottom: 80px;
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+      //padding: 0 15px; //Bug in V1: lg not working. it has sm paddings
+    }
+
+    &__flexbox-container {
+      display: flex;
+      align-items: center;
+
+      :focus {
+        outline: none;
+      }
+    }
+
+    //TODO: eigene klasse für pfeil zeichnung
+    &__left {
+      padding: 6px;
+      height: 14px;
+      width: 6px;
+      border: solid $color-prim-white;
+      border-width: 2px 0 0 2px;
+      transform: rotate(-45deg);
+      cursor: pointer;
+      background: transparent;
+
+      @include breakpoint($mediaquery-sm-up) {
+        padding: 10px;
+        height: 20px;
+        width: 10px;
+      }
+    }
+
+    &__right {
+      padding: 6px;
+      height: 14px;
+      width: 6px;
+      border: solid $color-prim-white;
+      border-width: 2px 0 0 2px;
+      transform: rotate(135deg);
+      cursor: pointer;
+      background: transparent;
+
+      @include breakpoint($mediaquery-sm-up) {
+        padding: 10px;
+        height: 20px;
+        width: 10px;
+      }
+    }
+
+    macro-carousel {
+
+    }
+  }
+
 }
+
+
+
+
+/*macro-carousel-nav-button {
+  //--macro-carousel-navigation-icon-mask: svg-load('../arrow-left.svg', fill: #000);
+  --macro-carousel-navigation-color-background: blue;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(to bottom right, #f0f0f0, #c0c0c0);
+  box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, .05);
+
+  color: white;
+  font-size: 5em;
+  font-family: sans-serif;
+}*/
