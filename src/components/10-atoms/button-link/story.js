@@ -7,57 +7,76 @@ import {
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
+import { iconOptions } from '../icon/story';
 import Readme from './README.md';
 
-const storyButton = storiesOf('Atoms/Button Link', module);
-storyButton.addDecorator(withKnobs);
-storyButton.addParameters({
+const storyButtonLink = storiesOf('Atoms/Button Link', module);
+storyButtonLink.addDecorator(withKnobs);
+storyButtonLink.addParameters({
   readme: {
     sidebar: Readme,
   },
 });
 
-const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
-
-storyButton.add('Button Link', () => {
-  const options = {
-    None: '',
-    Red: 'red',
-    Secondary: 'secondary',
-    Inverted: 'inverted',
+storyButtonLink.add('Button Link', () => {
+  const variantOptions = {
+    none: '',
+    red: 'red',
+    secondary: 'secondary',
+    inverted: 'inverted',
+    'Inverted-blue-ocean': 'inverted-blue-ocean',
+    'inverted-red-tosca': 'inverted-red-tosca',
+    'inverted-purple-logan': 'inverted-purple-logan',
+    'inverted-green-viridian': 'inverted-green-viridian',
+    'inverted-blue-teal': 'inverted-blue-teal',
   };
 
-  // TODO:: Move icon variants into icons and export it from there
-  const iconOptions = {
-    None: '',
-    'Arrow Right': 'arrow-right',
-    Collapse: 'collapse',
-    Document: 'document',
-    Download: 'download',
-    Email: 'email',
-    Expand: 'expand',
-    Mobile: 'mobile',
-    Phone: 'phone',
-    Search: 'search',
-    Upload: 'upload',
+  const sizeOptions = {
+    none: '',
+    large: 'large',
+    small: 'small',
+  };
+
+  const invertedBgs = {
+    inverted: '#00008f',
+    'inverted-blue-ocean': '#4976ba',
+    'inverted-red-tosca': '#914146',
+    'inverted-purple-logan': '#9190ac',
+    'inverted-green-viridian': '#668980',
+    'inverted-blue-teal': '#027180',
   };
 
   const buttonText = text('Text', 'Click me');
-  const variants = radios('Variant', options, '');
-  const icons = select('Icon', iconOptions);
+  const href = text('href', '');
+  const external = text('external', '');
+  const variants = radios('Variant', variantOptions, '');
+  const sizes = radios('Variant', sizeOptions, '');
+  const icons = select('Icon', iconOptions, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
-  const large = boolean('large', false); // should probably be a variant.
 
-  return `
-  <div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
-    <axa-button-link
-      ${disabled ? 'disabled' : ''}
-      ${large ? 'large' : ''}
-      variant='${variants}'
-      ${motionOff ? 'motionoff' : ''}
-      icon='${icons}'>${buttonText}
-    </axa-button-link>
-  </div>`;
+  const wrapper = document.createElement('div');
+  const template = html`
+    <div
+      style="${variants.includes('inverted')
+        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+        : ''}"
+    >
+      <axa-button-link
+        ?disabled="${disabled}"
+        ?motionoff="${motionOff}"
+        variant="${variants}"
+        size="${sizes}"
+        icon="${icons}"
+        href="${href}"
+        external="${external}"
+        >${buttonText}
+      </axa-button-link>
+    </div>
+  `;
+
+  render(template, wrapper);
+  return wrapper;
 });
