@@ -30,8 +30,27 @@ class AXATestimonials extends LitElement {
     };
   }
 
+  handleKeyUp(ev) {
+    const e = ev || window.event;
+    if (+e.keyCode === 37) {
+      this.sliderElement.previous();
+    } else if (+e.keyCode === 39) {
+      this.sliderElement.next();
+    }
+  }
+
   constructor() {
     super();
+
+    // default values props
+    this.classes = '';
+    this.title = '';
+    this.subtitle = '';
+    this.autoRotateDisabled = true;
+    this.keysEnabled = true;
+    this.autoRotateTime = 5000;
+    this.showAllInline = false;
+
     this.onClickLeft = () => {
       if (this.sliderElement && this.sliderElement.previous) {
         this.sliderElement.previous();
@@ -43,16 +62,19 @@ class AXATestimonials extends LitElement {
       }
     };
     this.sliderElement = null;
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
     this.sliderElement = this.shadowRoot.querySelector('macro-carousel');
+
+    if (this.keysEnabled) {
+      this.ownerDocument.addEventListener('keyup', this.handleKeyUp);
+    }
   }
 
   render() {
-    const { title, subtitle } = this;
+    const { title, subtitle, showAllInline } = this;
 
     return html`
       <article class="o-testimonials">
@@ -65,25 +87,36 @@ class AXATestimonials extends LitElement {
             html`
               <p class="o-testimonials__subtitle">${subtitle}</p>
             `}
-
-          <div class="o-testimonials__navigator">
-            <div class="o-testimonials__navigator__flexbox-container">
-              <button
-                class="o-testimonials__navigator__left"
-                type="button"
-                @click="${this.onClickLeft}"
-              ></button>
-            </div>
-            <macro-carousel loop="true">
-              <slot></slot>
-            </macro-carousel>
-            <div class="o-testimonials__navigator__flexbox-container">
-              <button
-                class="o-testimonials__navigator__right"
-                type="button"
-                @click="${this.onClickRight}"
-              ></button>
-            </div>
+          <div class="o-testimonials__content">
+            ${showAllInline
+              ? html`
+                  <slot class="o-testimonials__content__inline"></slot>
+                `
+              : html`
+                  <div class="o-testimonials__content__carousel">
+                    <div
+                      class="o-testimonials__content__carousel__flexbox-container"
+                    >
+                      <button
+                        class="o-testimonials__content__carousel__left"
+                        type="button"
+                        @click="${this.onClickLeft}"
+                      ></button>
+                    </div>
+                    <macro-carousel loop="true">
+                      <slot></slot>
+                    </macro-carousel>
+                    <div
+                      class="o-testimonials__content__carousel__flexbox-container"
+                    >
+                      <button
+                        class="o-testimonials__content__carousel__right"
+                        type="button"
+                        @click="${this.onClickRight}"
+                      ></button>
+                    </div>
+                  </div>
+                `}
           </div>
         </axa-container>
       </article>
@@ -93,7 +126,7 @@ class AXATestimonials extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Cleanup and reset (i.e event listeners)
+    this.ownerDocument.removeEventListener('keyup', this.handleKeyUp);
   }
 }
 

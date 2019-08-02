@@ -19,67 +19,79 @@
     text-align: center;
   }
 
-  &__navigator {
-    display: flex;
-    padding: 30px 5px 70px 5px;
-    outline: none;
 
+  &__content {
+    padding: 30px 5px 70px 5px;
     @include breakpoint($mediaquery-sm-up) {
       padding-bottom: 80px;
     }
-
     @include breakpoint($mediaquery-lg-up) {
       //padding: 0 15px; //Bug in V1: lg not working. it has sm paddings
     }
 
-    &__flexbox-container {
+    &__inline {
+      &::slotted(*) {
+        margin: 20px 0; //add margin to first level elements
+      }
+    }
+
+    &__carousel {
       display: flex;
-      align-items: center;
+      outline: none;
 
-      :focus {
-        outline: none;
+      &__flexbox-container {
+        display: flex;
+        align-items: center;
+
+        :focus {
+          outline: none;
+        }
       }
-    }
 
-    //TODO: eigene klasse für pfeil zeichnung
-    &__left {
-      padding: 6px;
-      height: 14px;
-      width: 6px;
-      border: solid $color-prim-white;
-      border-width: 2px 0 0 2px;
-      transform: rotate(-45deg);
-      cursor: pointer;
-      background: transparent;
+      //TODO: eigene klasse für pfeil zeichnung
+      &__left {
+        padding: 6px;
+        height: 14px;
+        width: 6px;
+        border: solid $color-prim-white;
+        border-width: 2px 0 0 2px;
+        transform: rotate(-45deg);
+        cursor: pointer;
+        background: transparent;
 
-      @include breakpoint($mediaquery-sm-up) {
-        padding: 10px;
-        height: 20px;
-        width: 10px;
+        @include breakpoint($mediaquery-sm-up) {
+          padding: 10px;
+          height: 20px;
+          width: 10px;
+        }
       }
-    }
 
-    &__right {
-      padding: 6px;
-      height: 14px;
-      width: 6px;
-      border: solid $color-prim-white;
-      border-width: 2px 0 0 2px;
-      transform: rotate(135deg);
-      cursor: pointer;
-      background: transparent;
+      &__right {
+        padding: 6px;
+        height: 14px;
+        width: 6px;
+        border: solid $color-prim-white;
+        border-width: 2px 0 0 2px;
+        transform: rotate(135deg);
+        cursor: pointer;
+        background: transparent;
 
-      @include breakpoint($mediaquery-sm-up) {
-        padding: 10px;
-        height: 20px;
-        width: 10px;
+        @include breakpoint($mediaquery-sm-up) {
+          padding: 10px;
+          height: 20px;
+          width: 10px;
+        }
       }
-    }
 
-    macro-carousel {
+      macro-carousel {
 
+      }
     }
   }
+
+
+
+
 
 }
 
