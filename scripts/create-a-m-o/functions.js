@@ -199,7 +199,7 @@ const createFiles = (store, a, m, o, done) => () => {
     import './index';
     import Readme from './README.md';
 
-    const story${className} = storiesOf('${titleMap[type]}/${compTitle}', module)
+    const story${className} = storiesOf('${titleMap[type]}/${compTitle}', module);
     story${className}.addDecorator(withKnobs);
     story${className}.addParameters({
       readme: {
@@ -208,14 +208,16 @@ const createFiles = (store, a, m, o, done) => () => {
     });
     
     story${className}.add('${compTitle}', () => {
-      const children = text('Text', 'Some Children')
+      const children = text('Text', 'Some Children');
+      
+      const wrapper = document.createElement('div');
       const template = html\`
-        <axa-${fileName}>\${children}/axa-${fileName}>
+        <axa-${fileName}>\${children}<axa-${fileName}>
       \`;
       
       render(template, wrapper);
       return wrapper;
-    }
+    });
     `,
     'utf8',
   );
