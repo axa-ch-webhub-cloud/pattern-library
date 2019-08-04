@@ -7,6 +7,7 @@ interface AXACheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   error?: string;
+  className?: string;
   onChange?: (value: any) => void;
   onFocus?: () => void;
   onBlur?: () => void;
