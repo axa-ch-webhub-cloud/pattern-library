@@ -40,7 +40,7 @@ test('should set button element disabled', async t => {
 });
 
 fixture('Button Link - icon').page(
-  `${host}/iframe.html?id=atoms-button-link--button-link`
+  `${host}/iframe.html?id=atoms-button-link-demos--feature-button-link-icon-visible`
 );
 
 test('should render icon', async t => {

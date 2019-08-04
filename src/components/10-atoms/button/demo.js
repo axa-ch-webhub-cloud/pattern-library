@@ -10,7 +10,7 @@ storiesOf('Atoms/Button/Demos', module)
       sidebar: Readme,
     },
   })
-  .add('Feature - Button Link icon visible', () => '<axa-button icon="arrow-right">Icon</axa-button>')
+  .add('Feature - Button icon visible', () => '<axa-button icon="arrow-right">Icon</axa-button>')
   .add('Feature - Button clickable', () => {
     const btn = document.createElement('axa-button');
     let counter = 0;

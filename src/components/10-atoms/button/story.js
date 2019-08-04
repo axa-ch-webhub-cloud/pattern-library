@@ -7,7 +7,9 @@ import {
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
+import { iconOptions } from '../icon/story';
 import Readme from './README.md';
 
 const storyButton = storiesOf('Atoms/Button', module);
@@ -18,48 +20,67 @@ storyButton.addParameters({
   },
 });
 
-const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
-
 storyButton.add('Button', () => {
-  const options = {
-    None: '',
-    Red: 'red',
-    Secondary: 'secondary',
-    Inverted: 'inverted',
+  const variantOptions = {
+    none: '',
+    red: 'red',
+    secondary: 'secondary',
+    inverted: 'inverted',
+    'Inverted-blue-ocean': 'inverted-blue-ocean',
+    'inverted-red-tosca': 'inverted-red-tosca',
+    'inverted-purple-logan': 'inverted-purple-logan',
+    'inverted-green-viridian': 'inverted-green-viridian',
+    'inverted-blue-teal': 'inverted-blue-teal',
   };
 
-  // TODO:: Move icon variants into icons and export it from there
-  const iconOptions = {
-    None: '',
-    'Arrow Right': 'arrow-right',
-    Collapse: 'collapse',
-    Document: 'document',
-    Download: 'download',
-    Email: 'email',
-    Expand: 'expand',
-    Mobile: 'mobile',
-    Phone: 'phone',
-    Search: 'search',
-    Upload: 'upload',
+  const sizeOptions = {
+    none: '',
+    large: 'large',
+    small: 'small',
   };
 
-  const buttonText = text('Text', 'Click me');
-  const variants = radios('Variant', options, '');
-  const icons = select('Icon', iconOptions);
+  const typesOptions = {
+    button: 'button',
+    submit: 'submit',
+    reset: 'reset'
+  };
+
+  const invertedBgs = {
+    inverted: '#00008f',
+    'inverted-blue-ocean': '#4976ba',
+    'inverted-red-tosca': '#914146',
+    'inverted-purple-logan': '#9190ac',
+    'inverted-green-viridian': '#668980',
+    'inverted-blue-teal': '#027180',
+  };
+
+  const buttonText = text('text', 'Click me');
+  const variants = radios('variant', variantOptions, '');
+  const sizes = radios('size', sizeOptions, '');
+  const icons = select('icon', iconOptions, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
-  const large = boolean('large', false); // should probably be a variant.
-  const type = radios('Types', { submit: 'submit', reset: 'reset' });
+  const types = radios('types', typesOptions, 'button');
 
-  return `
-  <div style='${variants === 'inverted' ? blueBackgroundStyle : ''}'>
-    <axa-button
-      ${disabled ? 'disabled' : ''}
-      ${large ? 'large' : ''}
-      type='${type}'
-      variant='${variants}'
-      ${motionOff ? 'motionoff' : ''}
-      icon='${icons}'>${buttonText}
-    </axa-button>
-  </div>`;
+  const wrapper = document.createElement('div');
+  const template = html`
+    <div
+      style="${variants.includes('inverted')
+    ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+    : ''}"
+    >
+      <axa-button
+        type="${types}"
+        ?disabled="${disabled}"
+        ?motionoff="${motionOff}"
+        variant="${variants}"
+        size="${sizes}"
+        icon="${icons}"
+        >${buttonText}
+      </axa-button>
+    </div>
+  `;
+
+  render(template, wrapper);
+  return wrapper;
 });

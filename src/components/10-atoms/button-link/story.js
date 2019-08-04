@@ -48,11 +48,11 @@ storyButtonLink.add('Button Link', () => {
     'inverted-blue-teal': '#027180',
   };
 
-  const buttonText = text('Text', 'Click me');
+  const buttonText = text('text', 'Click me');
   const href = text('href', '');
   const external = text('external', '');
   const variants = radios('Variant', variantOptions, '');
-  const sizes = radios('Variant', sizeOptions, '');
+  const sizes = radios('size', sizeOptions, '');
   const icons = select('Icon', iconOptions, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
