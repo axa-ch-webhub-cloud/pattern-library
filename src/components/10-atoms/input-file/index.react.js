@@ -12,6 +12,7 @@ export default createElement => ({
   accept = 'image/jpg, image/jpeg, application/pdf, image/png',
   capture = false,
   multiple = false,
+  className,
 }) =>
   withReact(createElement)(
     AXAInputFile.tagName,
@@ -25,6 +26,7 @@ export default createElement => ({
       accept,
       capture,
       multiple,
+      className,
     },
     children
   );
