@@ -214,16 +214,21 @@ const createFiles = (store, a, m, o, done) => () => {
     outdent`
     /* global document */
     import { storiesOf } from '@storybook/html';
+    // if your need more boolean, select, radios
+    import { text, withKnobs } from '@storybook/addon-knobs';
+    import { html, render } from 'lit-html';
     import './index';
     import Readme from './README.md';
 
-    storiesOf('${titleMap[type]}/${compTitle}', module)
-      .addParameters({
-        readme: {
-          sidebar: Readme,
-        },
-      })
-      .add('${compTitle} - default', () => '<axa-${fileName}>Some children</axa-${fileName}>')
+    const story${className} = storiesOf('${titleMap[type]}/${compTitle}', module)
+    story${className}.addDecorator(withKnobs);
+    story${className}.addParameters({
+      readme: {
+        sidebar: Readme,
+      },
+    });
+    
+    story${className}.add('${compTitle}', () => '<axa-${fileName}>Some children</axa-${fileName}>')
     `,
     'utf8',
   );
@@ -256,7 +261,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default\`);
+    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}\`);
 
     const TAG = 'axa-${fileName}';
     const CLASS = '.${type}-${fileName}';
