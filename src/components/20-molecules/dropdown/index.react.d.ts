@@ -23,6 +23,7 @@ interface AXADropdownProps<T = number | string> {
   value?: T;
   valid?: boolean;
   dataTestId?: string;
+  className?: string;
 }
 
 declare function createAXADropdown(

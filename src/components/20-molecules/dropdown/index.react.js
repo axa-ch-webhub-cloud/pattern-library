@@ -9,6 +9,7 @@ export default createElement => ({
   native,
   valid,
   error,
+  className,
   onChange = () => {},
   onFocus = () => {},
   onBlur = () => {},
@@ -24,5 +25,6 @@ export default createElement => ({
     onChange,
     onFocus,
     onBlur,
+    className,
     isReact: true,
   });
