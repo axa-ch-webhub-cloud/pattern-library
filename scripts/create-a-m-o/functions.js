@@ -172,38 +172,17 @@ const createFiles = (store, a, m, o, done) => () => {
 
     export default createElement => ({
       /* props here, same as in the constructor of index.js */
+      className,
       children,
     }) =>
       withReact(createElement)(
         ${className}.tagName,
         {
           /* props here, same as in the constructor of index.js */
+          className,
         },
         children
       );
-
-    `,
-    'utf8',
-  );
-
-  fs.writeFileSync(
-    `${BASE_FOLDER}/index.react.d.ts`,
-    outdent`
-    import React from 'react';
-
-    interface ${className}Props {
-      /* Your type declarations for props go here, e.g.:
-      languageItems: Item[];
-      copyrightText: String;
-      dynamic?: boolean;
-      */
-    }
-
-    declare function create${className}(
-      createElement: typeof React.createElement
-    ): React.ComponentType<${className}Props>;
-
-    export = create${className};
 
     `,
     'utf8',
@@ -228,7 +207,15 @@ const createFiles = (store, a, m, o, done) => () => {
       },
     });
     
-    story${className}.add('${compTitle}', () => '<axa-${fileName}>Some children</axa-${fileName}>')
+    story${className}.add('${compTitle}', () => {
+      const children = text('Text', 'Some Children')
+      const template = html\`
+        <axa-${fileName}>\${children}/axa-${fileName}>
+      \`;
+      
+      render(template, wrapper);
+      return wrapper;
+    }
     `,
     'utf8',
   );
@@ -241,6 +228,7 @@ const createFiles = (store, a, m, o, done) => () => {
     type Variant = 'foo' | 'bar';
 
     interface ${className}Props {
+      className?: string;
       variant?: Variant;
       onClick?: () => void;
     }
