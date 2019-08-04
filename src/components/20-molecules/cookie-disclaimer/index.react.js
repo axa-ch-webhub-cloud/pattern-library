@@ -6,6 +6,7 @@ export default createElement => ({
   title,
   buttonname,
   variant,
+  className,
   children,
 }) =>
   withReact(createElement)(
@@ -15,6 +16,7 @@ export default createElement => ({
       title,
       variant,
       buttonname,
+      className,
     },
     children
   );

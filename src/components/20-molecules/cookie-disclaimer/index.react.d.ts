@@ -4,8 +4,9 @@ type Variant = 'fixed';
 
 interface AXACookieDisclaimerProps {
   variant?: Variant;
-  title?: String;
-  buttonname?: String;
+  title?: string;
+  buttonname?: string;
+  className?: string;
   onClick?: () => void;
 }
 
