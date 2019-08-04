@@ -35,6 +35,7 @@ interface AXADatepickerProps {
   invaliddatetext?: string;
   embedded?: boolean;
   id?: string;
+  className?: string;
 }
 
 declare function createAXADatepicker(
