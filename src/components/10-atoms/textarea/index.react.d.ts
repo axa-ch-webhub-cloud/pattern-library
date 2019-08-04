@@ -17,6 +17,7 @@ interface AXATextareaProps {
   counter?: string;
   counterError?: string;
   maxLength?: number;
+  className?: string;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: () => void;
