@@ -22,6 +22,7 @@ type ArrowVariant =
 type SharedProps = {
   href?: string;
   external?: boolean;
+  className?: string;
   onClick?: () => void;
 };
 
