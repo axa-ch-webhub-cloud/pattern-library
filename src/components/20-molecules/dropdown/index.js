@@ -96,7 +96,6 @@ class AXADropdown extends NoShadowDOM {
       native: { type: Boolean },
       valid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
-      embedded: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
     };
   }
@@ -333,9 +332,13 @@ class AXADropdown extends NoShadowDOM {
             ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
         </div>
-        <div class="m-dropdown__valid-icon">
-          <span class="${classMap(validClasses)}"></span>
-        </div>
+        ${valid
+          ? html`
+              <div class="m-dropdown__valid-icon">
+                <span class="${classMap(validClasses)}"></span>
+              </div>
+            `
+          : html``}
       </div>
       <div class="m-dropdown__error">${error}</div>
     `;
@@ -354,6 +357,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);
