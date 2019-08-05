@@ -116,8 +116,8 @@ class AXAFooter extends InlineStyles {
           child.getAttribute('slot').replace('-x-', `-${currentColumnIndex}-`)
         );
       } else {
-        const actualIndex =
-          index - currentColumnIndex - totalAmountPreviousColumns;
+        // -1 cause heading is always first of index
+        const actualIndex = index - totalAmountPreviousColumns - 1;
         const slotName = `${child
           .getAttribute('slot')
           .replace('-x-', `-${currentColumnIndex}-`)}-${actualIndex}`;

@@ -349,7 +349,7 @@ We currently need the social media svgs as child elements of the slot link tags,
 
 ### Migration version 1 to 2
 
-The changes happened in the Child Dom, therefore only there are the breaking changes, listed here:
+The breaking changes happened only in the Child Dom, and are listed here:
 
 - `<h2 slot="column-0-title-desktop">axa worldwide</h2>` -> desktop version of title has been removed.
 - `<a slot="column-0-item-X">` -> column and item index have been removed. Instead of column index, replace `-0-` with `-x-` resulting in `<a slot="column-x-item">`

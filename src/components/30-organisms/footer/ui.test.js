@@ -24,7 +24,7 @@ test('should render footer with correct background color', async t => {
 });
 
 test('should correctly render footer titles', async t => {
-  const $footerTitle = FooterAccessor.getSlotNode('column-0-title-desktop');
+  const $footerTitle = FooterAccessor.getSlotNode('column-0-title');
 
   await t.expect($footerTitle.textContent).contains('axa & you');
   await t
@@ -50,6 +50,14 @@ test('should correctly render footer link content', async t => {
   await t.expect($contactLink.getStyleProperty('font-weight')).eql('400');
   await t.expect($contactLink.getStyleProperty('font-style')).eql('normal');
   await t.expect($contactLink.getStyleProperty('font-size')).eql('14px');
+});
+
+test('should correctly render footer link content of second column', async t => {
+  const $contactLink = FooterAccessor.getSlotNode('column-1-item-0');
+  await t.expect($contactLink.exists).ok();
+
+  await t.expect($contactLink.textContent).eql('AXA worldwide');
+  await t.expect($contactLink.visible).ok();
 });
 
 test('should render facebook social media button', async t => {
@@ -174,9 +182,7 @@ test('should render footer with working react callbacks', async t => {
     .expect($result.innerText)
     .contains('https://axa.ch/en/private-customers.html');
 
-  const $axaWorldwideLink = FooterAccessor.getSlotNode(
-    'column-0-title-desktop'
-  );
+  const $axaWorldwideLink = FooterAccessor.getSlotNode('column-x-title');
 
   await t.expect($axaWorldwideLink.visible).ok();
   await t.expect($axaWorldwideLink.textContent).eql('axa & you');
