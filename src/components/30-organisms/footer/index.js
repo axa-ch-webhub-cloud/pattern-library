@@ -64,6 +64,7 @@ class AXAFooter extends InlineStyles {
   }
 
   firstUpdated() {
+    // call parent class method that add inline styles
     this.inlineStyles('resetHeadingCss');
   }
 
@@ -74,13 +75,13 @@ class AXAFooter extends InlineStyles {
     // column to use
     // EXAMPLE IN PSEUDO DOM:
     //
-    // TITLE -> start column 0
+    // TITLE* -> start column 0
     // ITEM -> add item to column 0
     // ITEM -> add item to column 0
     // ITEM -> add item to column 0
     // ITEM -> add item to column 0
     //
-    // TITLE -> start column 1
+    // TITLE* -> start column 1
     // ITEM -> add item to column 1
     // ITEM -> add item to column 1
     // ITEM -> add item to column 1
@@ -118,7 +119,7 @@ class AXAFooter extends InlineStyles {
           child.getAttribute('slot').replace('-x-', `-${currentColumnIndex}-`)
         );
       } else {
-        // -1 cause heading is always first of index
+        // -1 because TITLE is always first of dom index -> see * in big comment above
         const actualIndex = index - totalAmountPreviousColumns - 1;
         const slotName = `${child
           .getAttribute('slot')
