@@ -1,6 +1,6 @@
 # Footer
 
-The big version of the footer. It is made for the use of several custom links and also to display social media buttons to the user.
+The big version of the footer. It is SEO friendly, can take custom links and also allows displaying social-media buttons to the user.
 
 ## Usage
 
@@ -307,7 +307,7 @@ Import the footer-defining script and use a footer like this:
 
 ### clickevents
 
-Set the clickevents property (boolean), if you want to use callbacks for footer-links. Otherwise the links will work the static way.
+Set the Boolean `clickevents` property, if you want to use callbacks for footer links. By default, links will exhibit native behaviour.
 
 Example:
 
@@ -321,7 +321,7 @@ Example:
 
 **Important:** `clickevents` needs to be set in order for this to work!
 
-`onItemClick` is a callback function that will return the href attribute of the link that the user clicked.
+Function-valued `onItemClick` takes a callback function. The callback is invoked with 1 parameter, which is the value of the `href` attribute of the link that the user clicked.
 
 Example:
 
@@ -336,22 +336,24 @@ Example:
 
 ### children
 
-Because of SEO (Search Enginge Optimization), we had to ditch the easier model-based approach use use childfragments. Here is a little documentation of each slot:
+_Historical note_: Because of SEO (Search Engine Optimization) concerns, we had to ditch the easier model-based approach in favour of child fragments. 
+
+Here is a little documentation of typical slot-filling patterns:
 
 | Slot                                                   | Details                                |
 | ------------------------------------------------------ | -------------------------------------- |
-| `<h2 slot="column-x-title">axa & you</h2>`             | The title for the columns              |
+| `<h2 slot="column-x-title">AXA & you</h2>`             | The title for the columns              |
 | `<a slot="column-x-item" href="" target="_blank"></a>` | Every child item link                  |
 | `<h2 slot="social-title"></h2>`                        | The title for the social media section |
 | `<a slot="social-item" href="" target="_blank"></a>`   | Every child social link                |
 
-We currently need the social media svgs as child elements of the slot link tags, because there is no way to have them in the template
+We currently require the social media SVG icons to also be explicitly defined as children of the child social links, because there is no way to predefine them internally.
 
-### Migration version 1 to 2
+### Migrating from version 1.x.y to 2.x.y
 
-The breaking changes happened only in the Child Dom, and are listed here:
+The breaking changes happened only in the `children`, and are listed here:
 
 - `<h2 slot="column-0-title-desktop">axa worldwide</h2>` -> desktop version of title has been removed.
 - `<a slot="column-0-item-X">` -> column and item index have been removed. Instead of column index, replace `-0-` with `-x-` resulting in `<a slot="column-x-item">`
 - `<h2 slot="column-x-title>` -> title column index has been replaced with `-x-`
-- `<a slot="social-item-2">` -> item index has been removed resulting in `<a slot="social-item">`
+- `<a slot="social-item-2">` -> item index has been removed, resulting in `<a slot="social-item">`
