@@ -357,6 +357,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);

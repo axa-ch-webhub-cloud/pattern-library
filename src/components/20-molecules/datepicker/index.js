@@ -400,6 +400,7 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleBodyClick);
     window.removeEventListener('resize', this.debouncedHandleViewportCheck);
