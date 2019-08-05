@@ -58,6 +58,7 @@ class AXAFooter extends InlineStyles {
     this.clickevents = false;
     this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
+    this.firstRender = true;
   }
 
   firstUpdated() {
@@ -161,7 +162,10 @@ class AXAFooter extends InlineStyles {
       link.addEventListener('click', this._handleLinkClick);
     });
 
-    this.prepareSlotsWithIndexes();
+    if (this.firstRender) {
+      this.prepareSlotsWithIndexes();
+      this.firstRender = false;
+    }
 
     return html`
       <footer class="o-footer">
