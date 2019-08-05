@@ -47,5 +47,10 @@ axa-footer {
       height: 25px;
       padding: 10px;
     }
+
+    &:hover {
+      text-decoration: underline;
+      color: $color-prim-white;
+    }
   }
 }
