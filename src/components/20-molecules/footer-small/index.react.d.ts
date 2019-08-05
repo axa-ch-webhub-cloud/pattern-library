@@ -15,6 +15,7 @@ interface AXAFooterSmallProps {
    */
   dynamic?: boolean;
   onLanguageChange: (language: string) => void;
+  className?: string
 }
 
 declare function createAXAFooterSmall(

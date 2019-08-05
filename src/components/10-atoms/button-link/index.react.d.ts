@@ -21,6 +21,7 @@ interface AXAButtonLinkProps {
   large?: boolean;
   motionOff?: boolean;
   disabled?: boolean;
+  className?: string;
   onClick?: () => void;
 }
 

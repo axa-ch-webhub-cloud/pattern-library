@@ -15,6 +15,7 @@ interface AXAInputTextProps {
   checkMark?: boolean;
   embedded?: boolean;
   isReact?: boolean;
+  className?: string;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
   onChange?: (e?: UIEvent) => void;

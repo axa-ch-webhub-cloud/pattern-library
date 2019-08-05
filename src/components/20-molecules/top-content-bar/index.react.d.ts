@@ -4,8 +4,9 @@ type Variant = 'warning';
 
 interface AXATopContentBarProps {
   variant?: Variant;
-  ctatext: String;
-  href?: String;
+  ctatext: string;
+  href?: string;
+  className?: string;
   onClick?: () => void;
 }
 

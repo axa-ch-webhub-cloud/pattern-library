@@ -1,5 +1,11 @@
 import React from 'react';
 
-declare function createAXATable(createElement: typeof React.createElement): React.ComponentType;
+interface AXATableProps {
+  className?: string;
+}
+
+declare function createAXATable(
+  createElement: typeof React.createElement
+): React.ComponentType<AXATableProps>;
 
 export = createAXATable;
