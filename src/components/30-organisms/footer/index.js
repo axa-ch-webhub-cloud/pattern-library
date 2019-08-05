@@ -42,6 +42,8 @@ class AXAFooter extends InlineStyles {
     `;
   }
 
+  // Parent class InlineStyles needs a static method to retrive styles
+  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
   static get resetHeadingCss() {
     return childStyles;
   }
