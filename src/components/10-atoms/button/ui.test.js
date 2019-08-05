@@ -74,7 +74,6 @@ test('should render icon', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button').shadowRoot
   );
-  await t.debug();
   const $axaIcon = await $axaButtonShadow.find(ICON_TAG);
   await t.expect($axaIcon.exists).ok();
 });
