@@ -29,61 +29,59 @@ storiesOf('Organisms/Footer/React', module)
           onItemClick={link => setNewlyClickedLink(link)}
           clickevents
         >
-          <h2 slot="column-0-title-desktop">axa & you</h2>
-          <h2 slot="column-0-title">axa & you</h2>
+          <h2 slot="column-x-title">axa & you</h2>
           <a
-            slot="column-0-item-0"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Contact
           </a>
           <a
-            slot="column-0-item-1"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Report a claim
           </a>
           <a
-            slot="column-0-item-2"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Broker
           </a>
           <a
-            slot="column-0-item-3"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Job vacancies
           </a>
           <a
-            slot="column-0-item-4"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             MyAXA
           </a>
           <a
-            slot="column-0-item-5"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Customer reviews
           </a>
           <a
-            slot="column-0-item-6"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Garage Portal
           </a>
-          <h2 slot="column-1-title-desktop">axa worldwide</h2>
-          <h2 slot="column-1-title">axa worldwide</h2>
+          <h2 slot="column-x-title">axa worldwide</h2>
           <a
-            slot="column-1-item-0"
+            slot="column-x-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
@@ -91,7 +89,7 @@ storiesOf('Organisms/Footer/React', module)
           </a>
           <h2 slot="social-title">stay in touch</h2>
           <a
-            slot="social-item-0"
+            slot="social-item"
             href="https://www.facebook.com/axach/"
             target="_blank"
           >
@@ -108,7 +106,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="social-item-1"
+            slot="social-item"
             href="https://www.instagram.com/axaswitzerland/"
             target="_blank"
           >
@@ -125,7 +123,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="social-item-2"
+            slot="social-item"
             href="https://twitter.com/axa_schweiz"
             target="_blank"
           >
@@ -142,7 +140,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="social-item-3"
+            slot="social-item"
             href="https://www.xing.com/companies/AXAWINTERTHUR"
             target="_blank"
           >
@@ -159,7 +157,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="social-item-4"
+            slot="social-item"
             href="https://www.youtube.com/axaschweiz"
             target="_blank"
           >
@@ -176,7 +174,7 @@ storiesOf('Organisms/Footer/React', module)
             </svg>
           </a>
           <a
-            slot="social-item-5"
+            slot="social-item"
             href="https://www.linkedin.com/company/axa/"
             target="_blank"
           >
