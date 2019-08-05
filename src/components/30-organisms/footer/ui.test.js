@@ -83,7 +83,7 @@ test('should render accordion only in mobile mode', async t => {
   const $accordion = Selector(() =>
     document
       .querySelector('axa-footer')
-      .shadowRoot.querySelector('.o-footer__accordion-button')
+      .shadowRoot.querySelector('.o-footer__accordion-button-caret')
   );
 
   await t.expect($accordion.visible).notOk();
@@ -182,7 +182,7 @@ test('should render footer with working react callbacks', async t => {
     .expect($result.innerText)
     .contains('https://axa.ch/en/private-customers.html');
 
-  const $axaWorldwideLink = FooterAccessor.getSlotNode('column-x-title');
+  const $axaWorldwideLink = FooterAccessor.getSlotNode('column-0-title');
 
   await t.expect($axaWorldwideLink.visible).ok();
   await t.expect($axaWorldwideLink.textContent).eql('axa & you');

@@ -86,12 +86,12 @@ class AXAFooter extends InlineStyles {
     const childrenArr = Array.prototype.slice.call(this.children);
 
     const filter = criteria => child =>
-      ~child.getAttribute('slot').indexOf(criteria);
+      child.getAttribute('slot').includes(criteria);
 
     const noHeaderFilter = criteria => child => {
       const { nodeName } = child;
       return (
-        filter(criteria)(child) && !~HEADINGS.indexOf(nodeName.toLowerCase())
+        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
       );
     };
 
@@ -108,7 +108,7 @@ class AXAFooter extends InlineStyles {
     let totalAmountPreviousColumns = 0;
     onlyColumns.forEach((child, index) => {
       const { nodeName } = child;
-      if (~HEADINGS.indexOf(nodeName.toLowerCase())) {
+      if (HEADINGS.includes(nodeName.toLowerCase())) {
         currentColumnIndex += 1;
         totalAmountPreviousColumns = index;
         child.setAttribute(
