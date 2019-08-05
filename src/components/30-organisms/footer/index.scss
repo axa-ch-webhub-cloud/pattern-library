@@ -62,6 +62,14 @@
   }
 
   &__social-media {
+    // IE11 workaround: This breakpoint will make sure, that everything in it
+    // is IE10+ exclusive
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @include breakpoint($mediaquery-lg-up) {
+        margin-left: 100px;
+      }
+    }
+
     @include breakpoint($mediaquery-sm-up) {
       grid-area: social;
 
