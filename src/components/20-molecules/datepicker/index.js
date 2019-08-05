@@ -166,8 +166,8 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   setMonthAndYearItems(month, year) {
-    const _month = month || this.month;
-    const _year = year || this.year;
+    const _month = typeof month === 'number' ? month : this.month;
+    const _year = typeof year === 'number' ? year : this.year;
 
     this.monthitems = getAllLocaleMonthsArray(this.locale).map(
       (item, index) => ({
