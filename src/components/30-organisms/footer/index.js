@@ -1,6 +1,6 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
@@ -8,6 +8,8 @@ import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import childStyles from './child.scss';
+
+import InlineStyles from '../../../utils/inline-styles';
 
 const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
@@ -29,7 +31,7 @@ const _renderFooterLinks = (columnIndex, itemIndex) => {
   `;
 };
 
-class AXAFooter extends LitElement {
+class AXAFooter extends InlineStyles {
   static get tagName() {
     return 'axa-footer';
   }
@@ -41,7 +43,7 @@ class AXAFooter extends LitElement {
   }
 
   static get resetHeadingCss() {
-    return unsafeCSS(childStyles);
+    return childStyles;
   }
 
   static get properties() {
@@ -59,9 +61,7 @@ class AXAFooter extends LitElement {
   }
 
   firstUpdated() {
-    const resetStyle = document.createElement('style');
-    resetStyle.textContent = AXAFooter.resetHeadingCss;
-    this.appendChild(resetStyle);
+    this.inlineStyles('resetHeadingCss');
   }
 
   prepareSlotsWithIndexes() {
