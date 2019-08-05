@@ -117,9 +117,9 @@ storiesOf('Molecules/Top content bar', module)
 - Create a new branch that follows this pattern: `release/<component-name>`
 - Add your component to `lerna.json`
 - Clean the main and components dependencies:
-  - `rm -rf node_modules`
   - `npx lerna clean`
+  - `rm -rf node_modules`
 - Run `npm install`
 - Run `npm run release` or `npm run prerelease`
-- If you need to release after a alpha release on the same branch without changes: `npm i && npm run test && lerna version && lerna publish from-package`
+- If you need to release after a alpha release on the same branch without changes: `npm i && npm run test && npx lerna version && npx lerna publish from-package`
 - Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
