@@ -65,13 +65,13 @@ storyButtonLink.add('Button Link', () => {
         : ''}"
     >
       <axa-button-link
-        ?disabled="${disabled}"
-        ?motionoff="${motionOff}"
         variant="${variants}"
         size="${sizes}"
         icon="${icons}"
         href="${href}"
         external="${external}"
+        ?disabled="${disabled}"
+        ?motionoff="${motionOff}"
         >${buttonText}
       </axa-button-link>
     </div>

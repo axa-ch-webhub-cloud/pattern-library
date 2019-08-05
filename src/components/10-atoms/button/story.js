@@ -71,11 +71,11 @@ storyButton.add('Button', () => {
     >
       <axa-button
         type="${types}"
-        ?disabled="${disabled}"
-        ?motionoff="${motionOff}"
         variant="${variants}"
         size="${sizes}"
         icon="${icons}"
+        ?disabled="${disabled}"
+        ?motionoff="${motionOff}"
         >${buttonText}
       </axa-button>
     </div>

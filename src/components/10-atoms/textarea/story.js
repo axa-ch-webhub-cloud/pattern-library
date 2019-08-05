@@ -34,14 +34,14 @@ storyTextarea.add('Textarea - default', () => {
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"
-      ?checkmark="${checkMark}"
-      ?disabled="${disabled}"
-      ?required="${required}"
-      ?invalid="${invalid}"
       error="${error}"
       counter="${counter}"
       countermax="${counterMax}"
       maxlength="${maxLength}"
+      ?checkmark="${checkMark}"
+      ?disabled="${disabled}"
+      ?required="${required}"
+      ?invalid="${invalid}"
     ></axa-textarea>
   `;
 
