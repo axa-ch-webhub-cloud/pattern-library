@@ -52,17 +52,6 @@ storiesOf('Molecules/Dropdown', module)
     `
   )
   .add(
-    'Dropdown embedded, w/o space for valid checkmark or error message',
-    () => `<axa-dropdown embedded
-    items='[
-    {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
-    {"name": "Item 1", "value": "Item 1" },
-    {"name": "Item 2", "value": "Item 2" },
-    {"name": "Item 3", "value": "Item 3" }
-    ]'></axa-dropdown>
-    `
-  )
-  .add(
     'Dropdown inside form',
     () => `<form id="dropdown-form" onsubmit="event.preventDefault();document.getElementById('form-data').open=true;document.getElementById('form-data-lang').textContent=(new FormData(this)).get('lang')">
     <fieldset>
