@@ -1,7 +1,3 @@
-/*
-::slotted attributes do not have enough specificity. We have to set !important to be decoupled.
-*/
-
 .o-footer {
   text-align: initial;
 
@@ -20,53 +16,6 @@
     h2 {
       color: $color-prim-white !important;
     }
-  }
-
-  &__main {
-    ::slotted(h2) {
-      display: none !important; // desktop title
-      color: $color-prim-white !important;
-      margin: 0 !important;
-
-      @include breakpoint($mediaquery-sm-up) {
-        @include typo(primary, medium, bold, !important); //change whole type to  !important?
-        display: block !important; // desktop title
-        text-transform: uppercase !important;
-        line-height: 1.5 !important;
-      }
-    }
-  }
-
-  &__accordion-button {
-    ::slotted(h2) {
-      display: block !important; // mobile title
-      @include typo(primary, default, medium, !important);
-
-      @include breakpoint($mediaquery-sm-up) {
-        display: none !important; // mobile title
-      }
-
-      color: $color-prim-white !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-  }
-
-  ::slotted(h2) {
-    margin: 0 !important;
-    padding: 0 !important;
-    color: $color-prim-white !important;
-  }
-
-  .o-footer__social-media-item ::slotted(a) {
-    display: block !important;
-    width: 25px !important;
-    height: 25px !important;
-    padding: 10px !important;
-  }
-
-  ::slotted(a) {
-    padding: 10px !important;
   }
 
   &__content {
@@ -127,32 +76,11 @@
       -ms-grid-column: 2;
     }
 
-    ::slotted(h2) {
-      // IE11 workaround
-      display: none !important;
-      color: $color-prim-white !important;
-      margin: 0 !important;
-
-      @include breakpoint($mediaquery-lg-up) {
-        // IE11 workaround
-        @include typo(primary, medium, bold, !important);
-        display: block !important; // desktop title
-        text-transform: uppercase !important;
-        line-height: 1.5 !important;
-      }
-    }
-
     &-title {
       @include typo(primary, medium, bold);
 
-      display: none;
-
       text-transform: uppercase;
       line-height: 1.5;
-
-      @include breakpoint($mediaquery-lg-up) {
-        display: block;
-      }
     }
 
     &-list {
@@ -195,18 +123,6 @@
     }
   }
 
-  &__title-desktop {
-    display: none;
-
-    @include breakpoint($mediaquery-sm-up) {
-      display: block;
-      @include typo(primary, medium, bold);
-
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-  }
-
   &__accordion-button {
     @include typo(primary, default, medium);
     display: flex;
@@ -236,10 +152,19 @@
       &--open {
         transform: rotate(0deg);
       }
+
+      @include breakpoint($mediaquery-sm-up) {
+        display: none;
+      }
     }
 
     @include breakpoint($mediaquery-sm-up) {
-      display: none;
+      padding: 0;
+      background-color: transparent;
+      border: 0 solid transparent;
+
+      // remove button behaviour on desktop
+      pointer-events: none;
     }
   }
 
@@ -266,26 +191,10 @@
         padding: 0;
         border-bottom: 1px solid $color-prim-blue-dark-indigo;
 
+        color: $color-prim-white;
+
         &:last-child {
           border-bottom: none;
-        }
-
-        ::slotted(a) {
-          display: block !important;
-          text-decoration: none !important;
-          color: $color-prim-white !important;
-          padding: 20px 30px !important;
-
-          @include breakpoint($mediaquery-sm-up) {
-            display: inline !important;
-            text-decoration: none !important;
-            color: $color-prim-white !important;
-            padding: 0 !important;
-          }
-        }
-
-        ::slotted(a:hover) {
-          color: rgba(255, 255, 255, 0.65) !important;
         }
 
         @include breakpoint($mediaquery-sm-up) {

@@ -24,7 +24,7 @@ const commonPlugins = [
   }),
   sass({
     insert: true,
-    include: 'index.scss',
+    include: '**/*.scss',
     options: {
       includePaths: [
         'node_modules',

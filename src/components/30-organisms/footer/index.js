@@ -1,12 +1,17 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import childStyles from './child.scss';
+
+import InlineStyles from '../../../utils/inline-styles';
+
+const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 const _listElementHasNoContent = label => {
   // Second part of statement is an IE11 workaround, because a slotted
@@ -26,7 +31,7 @@ const _renderFooterLinks = (columnIndex, itemIndex) => {
   `;
 };
 
-class AXAFooter extends LitElement {
+class AXAFooter extends InlineStyles {
   static get tagName() {
     return 'axa-footer';
   }
@@ -35,6 +40,12 @@ class AXAFooter extends LitElement {
     return css`
       ${unsafeCSS(styles)}
     `;
+  }
+
+  // Parent class InlineStyles needs a static method to retrive styles
+  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  static get resetHeadingCss() {
+    return childStyles;
   }
 
   static get properties() {
@@ -49,6 +60,83 @@ class AXAFooter extends LitElement {
     this.clickevents = false;
     this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
+    this.slotsNotPrepared = true;
+  }
+
+  firstUpdated() {
+    // call parent class method that add inline styles
+    this.inlineStyles('resetHeadingCss');
+  }
+
+  prepareSlotsWithIndexes() {
+    // set slotted numbers automatically for all titles and all items for each column
+    // every title followed with items will be a column (DOM sequence defines order)
+    // There is no wrapper for the columns but a counter that controls which
+    // column to use
+    // EXAMPLE IN PSEUDO DOM:
+    //
+    // TITLE* -> start column 0
+    // ITEM -> add item to column 0
+    // ITEM -> add item to column 0
+    // ITEM -> add item to column 0
+    // ITEM -> add item to column 0
+    //
+    // TITLE* -> start column 1
+    // ITEM -> add item to column 1
+    // ITEM -> add item to column 1
+    // ITEM -> add item to column 1
+
+    const childrenArr = Array.prototype.slice.call(this.children);
+
+    const filter = criteria => child =>
+      child.getAttribute('slot').includes(criteria);
+
+    const noHeaderFilter = criteria => child => {
+      const { nodeName } = child;
+      return (
+        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
+      );
+    };
+
+    const onlyColumns = childrenArr.filter(
+      // only accepts those slots that are columns
+      filter('column-')
+    );
+    const onlySocials = childrenArr.filter(
+      // only accepts those slots that are social columns
+      noHeaderFilter('social-')
+    );
+
+    let currentColumnIndex = -1;
+    let totalAmountPreviousColumns = 0;
+    onlyColumns.forEach((child, index) => {
+      const { nodeName } = child;
+      if (HEADINGS.includes(nodeName.toLowerCase())) {
+        currentColumnIndex += 1;
+        totalAmountPreviousColumns = index;
+        child.setAttribute(
+          'slot',
+          child
+            .getAttribute('slot')
+            .replace('column-title', `column-${currentColumnIndex}-title`)
+        );
+      } else {
+        // -1 because TITLE is always first of dom index -> see * in big comment above
+        const actualIndex = index - totalAmountPreviousColumns - 1;
+        const slotName = `${child
+          .getAttribute('slot')
+          .replace(
+            'column-item',
+            `column-${currentColumnIndex}-item`
+          )}-${actualIndex}`;
+        child.setAttribute('slot', slotName);
+      }
+    });
+
+    onlySocials.forEach((child, index) => {
+      const slotName = `${child.getAttribute('slot')}-${index}`;
+      child.setAttribute('slot', slotName);
+    });
   }
 
   render() {
@@ -82,16 +170,17 @@ class AXAFooter extends LitElement {
       link.addEventListener('click', this._handleLinkClick);
     });
 
+    if (this.slotsNotPrepared) {
+      this.prepareSlotsWithIndexes();
+      this.slotsNotPrepared = false;
+    }
+
     return html`
       <footer class="o-footer">
         <axa-container>
           <div class="o-footer__content">
             <div class="o-footer__collection">
               <div class="o-footer__main">
-                <slot
-                  name="column-0-title-desktop"
-                  class="o-footer__title-desktop"
-                ></slot>
                 <button
                   class="o-footer__accordion-button"
                   @click="${ev => this._handleAccordionClick(0, ev)}"
@@ -112,10 +201,6 @@ class AXAFooter extends LitElement {
               </div>
 
               <div class="o-footer__main">
-                <slot
-                  name="column-1-title-desktop"
-                  class="o-footer__title-desktop"
-                ></slot>
                 <button
                   class="o-footer__accordion-button"
                   @click="${ev => this._handleAccordionClick(1, ev)}"
