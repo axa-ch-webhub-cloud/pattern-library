@@ -84,6 +84,13 @@ storiesOf('Atoms/Radio', module)
           checked
           .icon="${icon}"
         ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 4"
+          disabled
+          .icon="${icon}"
+        ></axa-radio>
       </axa-fieldset>
     `;
 

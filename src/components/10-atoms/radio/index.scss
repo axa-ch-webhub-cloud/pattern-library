@@ -118,6 +118,7 @@ axa-radio {
 
       &:hover {
         border-color: $color-axa-blue;
+        color: $color-axa-blue;
       }
     }
 
@@ -129,6 +130,7 @@ axa-radio {
         text-transform: uppercase;
         line-height: 18px;
         letter-spacing: 0.56px;
+        color: inherit;
     }
 
     .a-radio__input {
@@ -143,6 +145,7 @@ axa-radio {
       .a-radio__wrapper {
         background-color: transparent;
         border-color: $color-axa-blue;
+        color: $color-axa-blue;
     }
   }
 
@@ -150,6 +153,7 @@ axa-radio {
     .a-radio__wrapper {
       background-color: $color-prim-gray-alabaster;
       border-color: $color-prim-gray-mercury;
+      color: $color-prim-gray-silver;
       cursor: default;
 
       &:hover {
@@ -158,7 +162,7 @@ axa-radio {
     }
 
     .a-radio__content {
-      color: $color-prim-gray-dusty;
+      color: inherit;
       background-color: inherit;
     }
   }
@@ -173,6 +177,7 @@ axa-radio {
 
         svg {
           width: 60px;
+          fill: currentColor;
         }
 
         .a-radio__content {
