@@ -14,16 +14,16 @@ import '@axa-ch/footer';
 
 return `
 <axa-footer>
-  <h2 slot="column-x-title">axa & you</h2>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">Report a claim</a>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">Broker</a>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">Job vacancies</a>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">MyAXA</a>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">Customer reviews</a>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">Garage Portal</a>
-  <h2 slot="column-x-title">axa worldwide</h2>
-  <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">AXA worldwide</a>
+  <h2 slot="column-title">axa & you</h2>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Report a claim</a>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Broker</a>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Job vacancies</a>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">MyAXA</a>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Customer reviews</a>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Garage Portal</a>
+  <h2 slot="column-title">axa worldwide</h2>
+  <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">AXA worldwide</a>
   <h2 slot="social-title">stay in touch</h2>
   <a slot="social-item" href="https://www.facebook.com/axach/" target="_blank">
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><path d="M8.865 9.043H6.213v3.473h2.652v10.42h4.452v-10.42h3.274l.31-3.473h-3.584V7.634c0-.832.164-1.152.982-1.152h2.57V2.096h-3.388c-3.274 0-4.616 1.377-4.616 4.002v2.945z" fill="#FFFFFF"/></svg>
@@ -74,30 +74,30 @@ class HelloWorld extends Component {
   render() {
     return (
       <AXAFooterReact onItemClick={link => this.reactToItemClick(link)} clickevents>
-        <h2 slot="column-x-title">axa & you</h2>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <h2 slot="column-title">axa & you</h2>
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           Contact
         </a>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           Report a claim
         </a>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           Broker
         </a>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           Job vacancies
         </a>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           MyAXA
         </a>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           Customer reviews
         </a>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           Garage Portal
         </a>
-        <h2 slot="column-x-title">axa worldwide</h2>
-        <a slot="column-x-item" href="https://axa.ch/en/private-customers.html" target="_blank">
+        <h2 slot="column-title">axa worldwide</h2>
+        <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">
           AXA worldwide
         </a>
         <h2 slot="social-title">stay in touch</h2>
@@ -141,52 +141,52 @@ Import the footer-defining script and use a footer like this:
   </head>
   <body>
     <axa-footer>
-      <h2 slot="column-x-title">axa & you</h2>
+      <h2 slot="column-title">axa & you</h2>
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >Contact</a
       >
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >Report a claim</a
       >
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >Broker</a
       >
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >Job vacancies</a
       >
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >MyAXA</a
       >
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >Customer reviews</a
       >
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >Garage Portal</a
       >
-      <h2 slot="column-x-title">axa worldwide</h2>
+      <h2 slot="column-title">axa worldwide</h2>
       <a
-        slot="column-x-item"
+        slot="column-item"
         href="https://axa.ch/en/private-customers.html"
         target="_blank"
         >AXA worldwide</a
@@ -336,16 +336,16 @@ Example:
 
 ### children
 
-_Historical note_: Because of SEO (Search Engine Optimization) concerns, we had to ditch the easier model-based approach in favour of child fragments. 
+_Historical note_: Because of SEO (Search Engine Optimization) concerns, we had to ditch the easier model-based approach in favour of child fragments.
 
 Here is a little documentation of typical slot-filling patterns:
 
-| Slot                                                   | Details                                |
-| ------------------------------------------------------ | -------------------------------------- |
-| `<h2 slot="column-x-title">AXA & you</h2>`             | The title for the columns              |
-| `<a slot="column-x-item" href="" target="_blank"></a>` | Every child item link                  |
-| `<h2 slot="social-title"></h2>`                        | The title for the social media section |
-| `<a slot="social-item" href="" target="_blank"></a>`   | Every child social link                |
+| Slot                                                 | Details                                |
+| ---------------------------------------------------- | -------------------------------------- |
+| `<h2 slot="column-title">AXA & you</h2>`             | The title for the columns              |
+| `<a slot="column-item" href="" target="_blank"></a>` | Every child item link                  |
+| `<h2 slot="social-title"></h2>`                      | The title for the social media section |
+| `<a slot="social-item" href="" target="_blank"></a>` | Every child social link                |
 
 We currently require the social media SVG icons to also be explicitly defined as children of the child social links, because there is no way to predefine them internally.
 
@@ -354,6 +354,6 @@ We currently require the social media SVG icons to also be explicitly defined as
 The breaking changes happened only in the `children`, and are listed here:
 
 - `<h2 slot="column-0-title-desktop">axa worldwide</h2>` -> desktop version of title has been removed.
-- `<a slot="column-0-item-X">` -> column and item index have been removed. Instead of column index, replace `-0-` with `-x-` resulting in `<a slot="column-x-item">`
-- `<h2 slot="column-x-title>` -> title column index has been replaced with `-x-`
+- `<a slot="column-0-item-X">` -> column and item index have been removed. Instead of column index, replace `-0-` with `-` resulting in `<a slot="column-item">`
+- `<h2 slot="column-title>` -> title column index has been replaced with `-`
 - `<a slot="social-item-2">` -> item index has been removed, resulting in `<a slot="social-item">`

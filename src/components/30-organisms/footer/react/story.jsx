@@ -29,59 +29,59 @@ storiesOf('Organisms/Footer/React', module)
           onItemClick={link => setNewlyClickedLink(link)}
           clickevents
         >
-          <h2 slot="column-x-title">axa & you</h2>
+          <h2 slot="column-title">axa & you</h2>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Contact
           </a>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Report a claim
           </a>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Broker
           </a>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Job vacancies
           </a>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             MyAXA
           </a>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Customer reviews
           </a>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >
             Garage Portal
           </a>
-          <h2 slot="column-x-title">axa worldwide</h2>
+          <h2 slot="column-title">axa worldwide</h2>
           <a
-            slot="column-x-item"
+            slot="column-item"
             href="https://axa.ch/en/private-customers.html"
             target="_blank"
           >

@@ -116,14 +116,19 @@ class AXAFooter extends InlineStyles {
         totalAmountPreviousColumns = index;
         child.setAttribute(
           'slot',
-          child.getAttribute('slot').replace('-x-', `-${currentColumnIndex}-`)
+          child
+            .getAttribute('slot')
+            .replace('column-title', `column-${currentColumnIndex}-title`)
         );
       } else {
         // -1 because TITLE is always first of dom index -> see * in big comment above
         const actualIndex = index - totalAmountPreviousColumns - 1;
         const slotName = `${child
           .getAttribute('slot')
-          .replace('-x-', `-${currentColumnIndex}-`)}-${actualIndex}`;
+          .replace(
+            'column-item',
+            `column-${currentColumnIndex}-item`
+          )}-${actualIndex}`;
         child.setAttribute('slot', slotName);
       }
     });
