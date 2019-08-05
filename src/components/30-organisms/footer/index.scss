@@ -173,6 +173,10 @@
       margin: 0 10px;
     }
 
+    &:first-child {
+      margin-left: 0;
+    }
+
     &-content-panel {
       margin: 0;
       text-indent: 0;
