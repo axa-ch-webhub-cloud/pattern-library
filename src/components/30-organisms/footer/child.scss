@@ -2,6 +2,11 @@ axa-footer {
 
   * {
     box-sizing: content-box;
+
+    &:before,
+    &:after {
+      box-sizing: content-box;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -49,8 +54,7 @@ axa-footer {
     }
 
     &:hover {
-      text-decoration: underline;
-      color: $color-prim-white;
+      color: rgba($color-prim-white, 0.65);
     }
   }
 }
