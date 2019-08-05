@@ -173,10 +173,6 @@ class AXAFooter extends InlineStyles {
           <div class="o-footer__content">
             <div class="o-footer__collection">
               <div class="o-footer__main">
-                <slot
-                  name="column-0-title-desktop"
-                  class="o-footer__title-desktop"
-                ></slot>
                 <button
                   class="o-footer__accordion-button"
                   @click="${ev => this._handleAccordionClick(0, ev)}"
@@ -197,10 +193,6 @@ class AXAFooter extends InlineStyles {
               </div>
 
               <div class="o-footer__main">
-                <slot
-                  name="column-1-title-desktop"
-                  class="o-footer__title-desktop"
-                ></slot>
                 <button
                   class="o-footer__accordion-button"
                   @click="${ev => this._handleAccordionClick(1, ev)}"
