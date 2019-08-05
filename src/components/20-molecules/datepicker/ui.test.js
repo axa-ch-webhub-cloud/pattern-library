@@ -7,7 +7,7 @@ fixture('Datepicker').page(
   `${host}/iframe.html?id=molecules-datepicker--datepicker`
 );
 
-test('should select february the 13th and then the 14th', async t => {
+test('should select February the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -54,7 +54,7 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
     );
 });
 
-test('should select the first of march from within the february view', async t => {
+test('should select the first of march from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -65,7 +65,7 @@ test('should select the first of march from within the february view', async t =
   await datePickerAccessor.assertDay(1);
 });
 
-test('should select the 31th of january from within the february view', async t => {
+test('should select the 31th of January from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
@@ -76,7 +76,7 @@ test('should select the 31th of january from within the february view', async t 
   await datePickerAccessor.assertDay(31);
 });
 
-test('should have a 29th of februrary in 2020 - should correctly handle leap year', async t => {
+test('should have a 29th of February in 2020 - should correctly handle leap year', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
