@@ -60,7 +60,7 @@ class AXAFooter extends InlineStyles {
     this.clickevents = false;
     this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
-    this.firstRender = true;
+    this.slotsNotPrepared = true;
   }
 
   firstUpdated() {
@@ -165,9 +165,9 @@ class AXAFooter extends InlineStyles {
       link.addEventListener('click', this._handleLinkClick);
     });
 
-    if (this.firstRender) {
+    if (this.slotsNotPrepared) {
       this.prepareSlotsWithIndexes();
-      this.firstRender = false;
+      this.slotsNotPrepared = false;
     }
 
     return html`
