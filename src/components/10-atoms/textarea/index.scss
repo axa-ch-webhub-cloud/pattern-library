@@ -13,7 +13,6 @@ axa-textarea {
 
   .a-textarea__textarea-wrapper {
     display: flex;
-    align-items: center;
   }
 
   .a-textarea__textarea {
@@ -67,6 +66,10 @@ axa-textarea {
     }
   }
 
+  .a-textarea__textarea--check {
+    padding-right: 31px;
+  }
+
   .a-textarea__label {
     @include typo(primary, medium);
     font-weight: 600;
@@ -83,28 +86,14 @@ axa-textarea {
     color: $color-validation-error;
   }
 
-  .a-textarea__messages--reservation {
-    min-height: 20px;
-  }
-
   .a-textarea__messages--hidden {
     display: none;
   }
 
-  .a-textarea__check-wrapper {
-    margin-left: 10px;
-  }
-
-  .a-textarea__check-wrapper--reservation {
-    @include check-mark-animated-wrapper();
-    margin-left: 10px;
-  }
-
   .a-textarea__check {
     @include check-mark-animated();
-  }
-
-  .a-textarea__check--hidden {
-    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px
   }
 }

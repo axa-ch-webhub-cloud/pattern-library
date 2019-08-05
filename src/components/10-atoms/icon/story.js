@@ -3,6 +3,20 @@ import { storiesOf } from '@storybook/html';
 import AXAIcon from './index';
 import Readme from './README.md';
 
+export const iconOptions = {
+  none: '',
+  'arrow-right': 'arrow-right',
+  collapse: 'collapse',
+  document: 'document',
+  download: 'download',
+  email: 'email',
+  expand: 'expand',
+  mobile: 'mobile',
+  phone: 'phone',
+  search: 'search',
+  upload: 'upload',
+};
+
 storiesOf('Atoms/Icon', module)
   .addParameters({
     readme: {

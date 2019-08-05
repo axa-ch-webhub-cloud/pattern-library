@@ -2,9 +2,9 @@ import withReact from '../../../utils/with-react';
 import AXATextarea from './index';
 
 export default createElement => ({
-  id = '',
   name = '',
   label = '',
+  id = '',
   placeholder = '',
   error = '',
   defaultValue = '',
@@ -13,7 +13,6 @@ export default createElement => ({
   required = false,
   disabled = false,
   checkMark = false,
-  embedded = false,
   counter = '',
   counterMax = '',
   maxLength,
@@ -22,9 +21,9 @@ export default createElement => ({
   onChange = () => {},
 }) => {
   return withReact(createElement)(AXATextarea.tagName, {
-    id,
     name,
     label,
+    id,
     placeholder,
     error,
     defaultValue,
@@ -33,7 +32,6 @@ export default createElement => ({
     required,
     disabled,
     checkMark,
-    embedded,
     counter,
     counterMax,
     maxLength,

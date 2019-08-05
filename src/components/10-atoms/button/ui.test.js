@@ -66,6 +66,10 @@ test('should set button element type', async t => {
     .ok();
 });
 
+fixture('Button - render icon').page(
+  `${host}/iframe.html?id=atoms-button-demos--feature-button-icon-visible`
+);
+
 test('should render icon', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button').shadowRoot

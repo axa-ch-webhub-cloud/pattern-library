@@ -12,7 +12,6 @@ $check-mark-animated-size: 26px;
   display: block;
   width: $check-mark-animated-size;
   height: $check-mark-animated-size;
-  position: relative;
   transform: rotate(45deg);
 
   &:before {
