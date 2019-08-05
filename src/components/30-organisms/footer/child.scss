@@ -1,4 +1,14 @@
 axa-footer {
+
+  * {
+    box-sizing: content-box;
+
+    &:before,
+    &:after {
+      box-sizing: content-box;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @include typo(primary, default, medium);
 
@@ -41,6 +51,10 @@ axa-footer {
       width: 25px;
       height: 25px;
       padding: 10px;
+    }
+
+    &:hover {
+      color: rgba($color-prim-white, 0.65);
     }
   }
 }
