@@ -51,4 +51,22 @@ storiesOf('Molecules/Datepicker/React', module)
       div
     );
     return div;
+  })
+  .add('Datepicker with empty inputfield as React Component', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <AXADatepickerReact
+        inputfield
+        locale="de-CH"
+        data-test-id="datepicker-empty-react-inputfield"
+        id="datepicker-empty-react-inputfield"
+        onDateChange={newDate => {
+          document.querySelector(
+            'axa-datepicker[data-test-id="datepicker-empty-react-inputfield"]'
+          ).title = newDate;
+        }}
+      />,
+      div
+    );
+    return div;
   });

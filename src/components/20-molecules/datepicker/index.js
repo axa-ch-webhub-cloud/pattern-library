@@ -51,7 +51,7 @@ const applyEffect = self =>
     }, 0 /* execute after render() */);
   });
 
-const parseAndFormatAllowedYears = (allowedyears, setYear) => {
+const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
   const yearSet = new Set();
   const inputYears = [...allowedyears, setYear];
   for (let i = 0, n = inputYears.length, years, flattenedYears; i < n; i++) {
@@ -119,9 +119,12 @@ class AXADatepicker extends NoShadowDOM {
       placeholder: { type: String },
       monthtitle: { type: String },
       yeartitle: { type: String },
+      invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String },
       error: { type: String, reflect: true },
       embedded: { type: Boolean, reflect: true },
+      height: { type: String, reflect: true },
+      width: { type: String, reflect: true },
     };
   }
 
@@ -162,6 +165,25 @@ class AXADatepicker extends NoShadowDOM {
     return this._date;
   }
 
+  setMonthAndYearItems(month, year) {
+    const _month = typeof month === 'number' ? month : this.month;
+    const _year = typeof year === 'number' ? year : this.year;
+
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
+      (item, index) => ({
+        selected: index === _month,
+        name: item.toString(),
+        value: index.toString(),
+      })
+    );
+
+    this.yearitems = this.allowedyears.map(item => ({
+      selected: item === _year,
+      name: item.toString(),
+      value: item.toString(),
+    }));
+  }
+
   constructor() {
     super();
     // internal model state
@@ -170,6 +192,7 @@ class AXADatepicker extends NoShadowDOM {
     this.locale = 'de-CH';
     this.open = false;
     this.inverted = false;
+    this.invalid = false;
     this.name = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
@@ -177,11 +200,6 @@ class AXADatepicker extends NoShadowDOM {
     this.monthtitle = 'Choose Month';
     this.yeartitle = 'Choose Year';
     this.invaliddatetext = 'Invalid date';
-    this.startDate = new Date();
-    this.year = this.startDate.getFullYear();
-    this.month = this.startDate.getMonth();
-    this.day = this.startDate.getDate();
-    this.allowedyears = [this.year];
     this.outputdate = '';
     this.onChange = EMPTY_FUNCTION;
     this.onDateChange = EMPTY_FUNCTION;
@@ -193,6 +211,8 @@ class AXADatepicker extends NoShadowDOM {
       () => this.handleViewportCheck(this.input),
       250
     );
+
+    this.initDate(new Date());
   }
 
   shouldUpdate(changedProperties) {
@@ -224,25 +244,25 @@ class AXADatepicker extends NoShadowDOM {
       _date ? _date.getFullYear() : this.year,
     ];
 
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
-      (item, index) => ({
-        selected: index === month,
-        name: item.toString(),
-        value: index.toString(),
-      })
-    );
+    this.setMonthAndYearItems(month, year);
 
-    this.yearitems = this.allowedyears.map(item => ({
-      selected: item === year,
-      name: item.toString(),
-      value: item.toString(),
-    }));
+    const { width = 'auto', height = 'auto' } = this;
+
+    const formattedStyle = parameter =>
+      `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
+
+    const formattedWidth = `width:${formattedStyle(width)}`;
+    const formattedHeight = `height:${formattedStyle(height)}`;
 
     return html`
-      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
+      <article
+        class="m-datepicker"
+        @click="${this.handleDatepickerClick}"
+        style="${formattedWidth}"
+      >
         ${this.inputfield &&
           html`
-            <div class="m-datepicker__input-wrap">
+            <div class="m-datepicker__input-wrap" style="${formattedWidth}">
               <input
                 @input="${this.handleInputChange}"
                 @blur="${this.handleBlur}"
@@ -251,6 +271,7 @@ class AXADatepicker extends NoShadowDOM {
                 type="text"
                 name="${this.name}"
                 placeholder="${this.placeholder}"
+                style="${formattedHeight}"
                 .value="${isControlled ? value : this.outputdate}"
               />
               <button
@@ -336,9 +357,13 @@ class AXADatepicker extends NoShadowDOM {
               </div>
             `
           : ''}
-        <span class="m-datepicker__error"
-          >${this.error && this.invaliddatetext}</span
-        >
+        ${!this.embedded
+          ? html`
+              <span class="m-datepicker__error"
+                >${this.error || this.invalid ? this.invaliddatetext : ''}</span
+              >
+            `
+          : html``}
       </article>
     `;
   }
@@ -354,6 +379,8 @@ class AXADatepicker extends NoShadowDOM {
       state: { isControlled },
       isReact,
       defaultValue,
+      year,
+      startDate,
     } = this;
 
     if (input) {
@@ -369,7 +396,7 @@ class AXADatepicker extends NoShadowDOM {
     }
 
     if (!isControlled) {
-      this.initDate();
+      this.initDate(null, year || startDate.getFullYear());
     }
   }
 
@@ -381,21 +408,42 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   // Methods
-  initDate(date) {
+  initDate(date, setyear, setmonth, setday) {
     if (date) {
-      this.startDate = date;
-      this.year = date.getFullYear();
-      this.month = date.getMonth();
-      this.day = date.getDate();
+      // eslint-disable-next-line no-restricted-globals
+      const isValidDateObject = date instanceof Date && !isNaN(+date);
+      if (isValidDateObject) {
+        this.startDate = date;
+        this.year = date.getFullYear();
+        this.month = date.getMonth();
+        this.day = date.getDate();
+      }
     }
-    const { year, month, day, allowedyears, locale, startDate } = this;
+    const {
+      year: _year,
+      month: _month,
+      day: _day,
+      allowedyears,
+      locale,
+      startDate,
+    } = this;
 
-    if (year >= 0) {
+    const year = typeof setyear === 'number' ? setyear : _year;
+    const month = typeof setmonth === 'number' ? setmonth : _month;
+    let day = typeof setday === 'number' ? setday : _day;
+
+    if (typeof year === 'number' && year >= 0) {
       startDate.setFullYear(year);
     }
 
-    if (month >= 0 && typeof month === 'number') {
+    if (typeof month === 'number' && month >= 0) {
       startDate.setMonth(month);
+      // month not changed as desired due to because target day unavailable there?
+      // (e.g. July 31 =/=> June 31)
+      if (startDate.getMonth() !== month) {
+        // then choose last day of previous month to correct that
+        day = 0;
+      }
     }
 
     if (typeof day === 'number') {
@@ -443,13 +491,6 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
-  updateDatepickerProps(date) {
-    this.month = date.getMonth();
-    this.day = date.getDate();
-    this.year = date.getFullYear();
-    this.initDate();
-  }
-
   validate(value, pure) {
     const { locale, invaliddatetext, allowedyears } = this;
     const validDate = parseLocalisedDateIfValid(locale, value);
@@ -461,7 +502,7 @@ class AXADatepicker extends NoShadowDOM {
     this.error = null;
     if (isValid) {
       this._date = validDate;
-      this.updateDatepickerProps(validDate);
+      this.initDate(validDate);
       this.outputdate = validDate.toLocaleString(locale, {
         day: 'numeric',
         month: 'numeric',
@@ -470,7 +511,6 @@ class AXADatepicker extends NoShadowDOM {
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
       this._date = null;
-      this.outputdate = '';
     }
     return this._date;
   }
@@ -500,9 +540,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      const newDate = new Date(this.year, month, this.day);
-      this._date = newDate;
-      this.updateDatepickerProps(this._date);
+      this.initDate(null, null, month | 0, null);
     }
   }
 
@@ -510,10 +548,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const year = e.detail;
     if (year) {
-      const parsedDate = new Date(this._date);
-      parsedDate.setFullYear(year);
-      this._date = parsedDate;
-      this.updateDatepickerProps(this._date);
+      this.initDate(null, year | 0, null, null);
     }
   }
 
@@ -584,21 +619,8 @@ class AXADatepicker extends NoShadowDOM {
     const date = e.target.dataset.value;
     this.index = cellIndex;
     this._date = new Date(date);
-    this.updateDatepickerProps(this._date);
-
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
-      (item, index) => ({
-        selected: index === this.month,
-        name: item.toString(),
-        value: index.toString(),
-      })
-    );
-
-    this.yearitems = this.allowedyears.map(item => ({
-      selected: item === this.year,
-      name: item.toString(),
-      value: item.toString(),
-    }));
+    this.initDate(this._date);
+    this.setMonthAndYearItems();
   }
 }
 
