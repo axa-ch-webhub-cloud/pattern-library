@@ -172,38 +172,17 @@ const createFiles = (store, a, m, o, done) => () => {
 
     export default createElement => ({
       /* props here, same as in the constructor of index.js */
+      className,
       children,
     }) =>
       withReact(createElement)(
         ${className}.tagName,
         {
           /* props here, same as in the constructor of index.js */
+          className,
         },
         children
       );
-
-    `,
-    'utf8',
-  );
-
-  fs.writeFileSync(
-    `${BASE_FOLDER}/index.react.d.ts`,
-    outdent`
-    import React from 'react';
-
-    interface ${className}Props {
-      /* Your type declarations for props go here, e.g.:
-      languageItems: Item[];
-      copyrightText: String;
-      dynamic?: boolean;
-      */
-    }
-
-    declare function create${className}(
-      createElement: typeof React.createElement
-    ): React.ComponentType<${className}Props>;
-
-    export = create${className};
 
     `,
     'utf8',
@@ -214,16 +193,31 @@ const createFiles = (store, a, m, o, done) => () => {
     outdent`
     /* global document */
     import { storiesOf } from '@storybook/html';
+    // if your need more boolean, select, radios
+    import { text, withKnobs } from '@storybook/addon-knobs';
+    import { html, render } from 'lit-html';
     import './index';
     import Readme from './README.md';
 
-    storiesOf('${titleMap[type]}/${compTitle}', module)
-      .addParameters({
-        readme: {
-          sidebar: Readme,
-        },
-      })
-      .add('${compTitle} - default', () => '<axa-${fileName}>Some children</axa-${fileName}>')
+    const story${className} = storiesOf('${titleMap[type]}/${compTitle}', module);
+    story${className}.addDecorator(withKnobs);
+    story${className}.addParameters({
+      readme: {
+        sidebar: Readme,
+      },
+    });
+    
+    story${className}.add('${compTitle}', () => {
+      const children = text('Text', 'Some Children');
+      
+      const wrapper = document.createElement('div');
+      const template = html\`
+        <axa-${fileName}>\${children}<axa-${fileName}>
+      \`;
+      
+      render(template, wrapper);
+      return wrapper;
+    });
     `,
     'utf8',
   );
@@ -236,6 +230,7 @@ const createFiles = (store, a, m, o, done) => () => {
     type Variant = 'foo' | 'bar';
 
     interface ${className}Props {
+      className?: string;
       variant?: Variant;
       onClick?: () => void;
     }
@@ -256,7 +251,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}-default\`);
+    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=${titleMap[type].toLowerCase()}-${fileName}--${fileName}\`);
 
     const TAG = 'axa-${fileName}';
     const CLASS = '.${type}-${fileName}';
