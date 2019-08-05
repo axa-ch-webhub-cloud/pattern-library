@@ -93,6 +93,14 @@
       flex-wrap: wrap;
       padding: 15px 20px;
 
+      li {
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
       @include breakpoint($mediaquery-sm-up) {
         margin: 0;
         text-indent: 0;
@@ -102,23 +110,22 @@
         display: flex;
         flex-wrap: wrap;
         padding-top: 15px;
-      }
 
-      @include breakpoint($mediaquery-lg-up) {
-        padding: 10px 0;
         margin-left: -10px;
-      }
-
-      @include breakpoint($mediaquery-sm-up) {
+        
         a {
           display: block;
           padding: 10px 10px 0 10px;
           margin-right: 10px;
         }
-
+  
         a:first-of-type {
           padding: 10px 10px 0 0;
         }
+      }
+
+      @include breakpoint($mediaquery-lg-up) {
+        padding: 10px 0;
       }
     }
   }
