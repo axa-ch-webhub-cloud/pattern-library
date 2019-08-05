@@ -67,7 +67,7 @@ class AXAFooter extends InlineStyles {
 
   prepareSlotsWithIndexes() {
     // set slotted numbers automatically for all titles and all items for each column
-    // every title followed with items will be a column (dome sequence)
+    // every title followed with items will be a column (DOM sequence defines order)
     // There is no wrapper for the columns but a counter that controls which
     // column to use
     // EXAMPLE IN PSEUDO DOM:
