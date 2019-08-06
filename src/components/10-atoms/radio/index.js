@@ -10,7 +10,7 @@ const selectedRadioButton = {};
 const maxWidth = {};
 
 const WIDTH_SLACK = 5; // px
-const DOM_PAINT_TIME = 1000 * (2 / 60); // ms - 2 frames at 60 fps
+const DOM_PAINT_TIME = 1000 * (1 / 60); // ms - 2 frames at 60 fps
 
 // CE
 class AXARadio extends NoShadowDOM {
