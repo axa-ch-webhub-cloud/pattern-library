@@ -28,6 +28,7 @@
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0",
-    "picturefill": "^3.0.3"
+    "picturefill": "^3.0.3",
+    "@axa-ch/container": "1.0.11"
   }
 }
