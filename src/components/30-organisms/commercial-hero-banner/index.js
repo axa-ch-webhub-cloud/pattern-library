@@ -58,9 +58,13 @@ class AXACommercialHeroBanner extends LitElement {
         <axa-container>
           <div class="o-commercial-hero-banner__content">
             <div class="o-commercial-hero-banner__content-item">
-              <h1>Title</h1>
-              <p>This will be the content</p>
-              <button>Hello Button</button>
+              <div class="o-commercial-hero-banner__content-item-box">
+                <h1>Title</h1>
+                <p>This will be the content</p>
+                <p>This will be the content</p>
+                <p>This will be the content</p>
+                <button>Hello Button</button>
+              </div>
             </div>
             <div class="o-commercial-hero-banner__content-item"></div>
           </div>

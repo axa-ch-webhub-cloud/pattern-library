@@ -27,6 +27,7 @@
 
     display: block;
 
+    max-height: 560px;
     width: 100%;
     height: 100%;
     content: '';
@@ -35,11 +36,19 @@
   &__content {
     display: flex;
 
+    min-height: 560px;
+
     align-content: center;
     justify-content: center;
   }
 
   .o-commercial-hero-banner__content-item {
     flex-basis: 50%;
+
+    display: flex;
+
+    &-box {
+      align-self: center;
+    }
   }
 }
