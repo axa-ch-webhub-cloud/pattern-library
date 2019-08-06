@@ -20,7 +20,8 @@
     "src/components/30-organisms/table-sortable",
     "src/components/20-molecules/dropdown",
     "src/components/20-molecules/top-content-bar",
-    "src/components/20-molecules/datepicker"
+    "src/components/20-molecules/datepicker",
+    "src/components/30-organisms/commercial-hero-banner"
   ],
   "version": "independent",
   "npmClient": "npm"
