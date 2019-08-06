@@ -10,7 +10,6 @@ const selectedRadioButton = {};
 const maxWidth = {};
 
 const WIDTH_SLACK = 5; // px
-const DOM_PAINT_TIME = 1000 * (1 / 60); // ms - 2 frames at 60 fps
 
 // CE
 class AXARadio extends NoShadowDOM {
@@ -211,7 +210,7 @@ class AXARadio extends NoShadowDOM {
           if (noautowidth && radioButton !== ourButton) return;
           radioButton.style.minWidth = `${width + WIDTH_SLACK}px`;
         });
-      }, /* give DOM some time to paint before measuring width */ DOM_PAINT_TIME);
+      }, /* give DOM some time to paint before measuring width */ 1);
     }
   }
 
@@ -237,11 +236,11 @@ class AXARadio extends NoShadowDOM {
   disconnectedCallback() {
     super.disconnectedCallback();
     const { name } = this;
-    selectedRadioButton[name] = null; // help GC
-    maxWidth[name] = null; // help GC
+    delete selectedRadioButton[name]; // help GC
+    delete maxWidth[name]; // help GC
     radioButtonGroup[name].delete(this.querySelector('.a-radio__content'));
     if (radioButtonGroup[name].size === 0) {
-      radioButtonGroup[name] = null; // help GC
+      delete radioButtonGroup[name]; // help GC
     }
   }
 }

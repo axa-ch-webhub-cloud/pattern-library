@@ -12,22 +12,23 @@ axa-fieldset {
   &[horizontal]  {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    margin-top: -$fieldset-vertical-margin;
 
-    > *:not(:first-child):not([nogap]) {
-      margin-left: $fieldset-horizontal-margin;
+    > *:not(:last-child):not([nogap]) {
+      margin-right: $fieldset-horizontal-margin;
+    }
+
+    > * {
+      margin-top: $fieldset-vertical-margin;
     }
 
     @include breakpoint($mediaquery-xsm) {
-      flex-wrap: wrap;
 
-      > * {
-        margin-left: 0 !important;
-        width: 100% !important;
-
-        &:not(:last-child) {
-        margin-bottom: $fieldset-vertical-margin;
-      }
-    }
+        > * {
+          margin-right: 0 !important;
+          width: 100% !important;
+        }
     }
   }
 
