@@ -217,14 +217,19 @@ class AXADropdown extends NoShadowDOM {
       // ==: indices may be number or string
       return;
     }
+
+    const index = clickedItemIndex | 0; // | 0: coerce to integer
     // allow idiomatic event.target.value in onChange callback!
-    const syntheticEvent = { target: items[clickedItemIndex | 0] }; // | 0: coerce to integer
+    const syntheticEvent = { target: { value: items[index].value, index } };
     onChange(syntheticEvent);
     if (!isControlled) {
       // causes re-render in next microtask!
       this.updateCurrentItems(clickedItemIndex); // side-effect: changed this.value
       this.updateTitle();
-      fireCustomEvent('axa-change', this.value, this);
+      const { value } = this;
+      const details = { value, index };
+      fireCustomEvent('axa-change', value, this);
+      fireCustomEvent('change', details, this);
     }
   }
 
