@@ -1,6 +1,6 @@
-# Commercial hero banner
+# Commercial Hero Banner
 
-TODO Description
+The commercial hero banner component to really set something into the focus of the user.
 
 ## Usage
 
@@ -24,14 +24,15 @@ Create a React-ified commercial-hero-banner with the createElement function from
 import { createElement } from 'react';
 import createAXACommercialHeroBannerReact from '@axa-ch/commercial-hero-banner/lib/index.react';
 
-const AXACommercialHeroBannerReact = createAXACommercialHeroBannerReact(createElement);
+const AXACommercialHeroBannerReact = createAXACommercialHeroBannerReact(
+  createElement
+);
 
 export default AXACommercialHeroBannerReact;
 ```
 
 ```js
-<AXACommercialHeroBannerReact onClick={handler}>
-</AXACommercialHeroBannerReact>
+<AXACommercialHeroBannerReact onClick={handler} />
 ```
 
 ### Pure HTML pages
@@ -58,13 +59,9 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
-
-### Bar
-
-The attribute `bar` specifies...
+| Attribute       | Details         |
+| --------------- | --------------- |
+| `variant="foo"` | Desc of Variant |
 
 ### onClick
 
