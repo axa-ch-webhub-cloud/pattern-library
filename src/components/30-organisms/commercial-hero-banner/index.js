@@ -1,7 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import 'picturefill';
-
-/* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
@@ -24,7 +23,7 @@ class AXACommercialHeroBanner extends LitElement {
       src: { type: String },
       alt: { type: String },
       gradient: { type: String }, // PropTypes.oneOf(['white', 'black']),
-      contentAlign: { type: String }, //PropTypes.oneOf(['left', 'right']),
+      contentAlign: { type: String }, // PropTypes.oneOf(['left', 'right']),
       pictureClasses: { type: String },
       heroObjectPosition: { type: String },
       // ###
@@ -38,7 +37,7 @@ class AXACommercialHeroBanner extends LitElement {
     this.src = '';
     this.alt = '';
     this.gradient = 'white'; // PropTypes.oneOf(['white', 'black']),
-    this.contentAlign = 'left'; //PropTypes.oneOf(['left', 'right']),
+    this.contentAlign = 'left'; // PropTypes.oneOf(['left', 'right']),
     this.pictureClasses = '';
     this.heroObjectPosition = '';
     // ###
