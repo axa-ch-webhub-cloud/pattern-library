@@ -36,8 +36,8 @@ storiesOf('Atoms/Radio', module)
     'Radio - button, nogap',
     () => `
   <axa-fieldset horizontal>
-    <axa-radio button name="insurance" label="No, I'm already insured"></axa-radio>
-    <axa-radio button nogap name="insurance" label="Yes, take out insurance" checked></axa-radio>
+    <axa-radio button nogap name="insurance" label="No, I'm already insured"></axa-radio>
+    <axa-radio button name="insurance" label="Yes, take out insurance" checked></axa-radio>
   </axa-fieldset>`
   )
   .add(
