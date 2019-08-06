@@ -84,5 +84,6 @@ storiesOf('Atoms/Input text/Demos', module)
     return `<div>
               <axa-input-text invalid error="Error Message is cool" label="Cool" info="${info}"></axa-input-text>
               <axa-input-text label="Cool 2"></axa-input-text>
+              <axa-input-text label="Cool 3" info="${info}"></axa-input-text>
             </div>`;
   });

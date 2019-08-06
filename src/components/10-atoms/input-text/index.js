@@ -193,7 +193,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                 <axa-popup-button
                   ?open="${this._open}"
                   class="a-input-text__info-button"
-                  @click="${this.handlePopupClick}"
+                  @click="${this.handlePopupButtonClick}"
                 ></axa-popup-button>
               `}
           </div>

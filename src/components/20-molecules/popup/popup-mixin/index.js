@@ -1,6 +1,7 @@
-/* eslint-disable prefer-const */
-/* eslint-disable import/no-mutable-exports */
-export let AXAPopupMixin = superclass =>
+// module globals
+let openPopupInstance;
+
+export const AXAPopupMixin = superclass =>
   class extends superclass {
     static get properties() {
       return {
@@ -13,5 +14,17 @@ export let AXAPopupMixin = superclass =>
       this._open = false;
     }
 
-    handlePopupClick = () => (this._open = !this._open);
+    handlePopupButtonClick = () => {
+      if (!this._open) {
+        if (openPopupInstance && openPopupInstance !== this) {
+          console.log('AooO');
+          openPopupInstance._open = false;
+        }
+
+        this._open = true;
+        openPopupInstance = this;
+      } else {
+        openPopupInstance = null;
+      }
+    }
   };

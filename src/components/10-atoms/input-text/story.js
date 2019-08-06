@@ -19,7 +19,7 @@ const typeOptions = {
   password: 'password',
 };
 
-storyInputText.add('Input Text - default', () => {
+storyInputText.add('Input Text', () => {
   const label = text('label*', '');
   const name = text('name*', '');
   const id = text('id', '');
