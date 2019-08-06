@@ -228,7 +228,7 @@ class AXADropdown extends NoShadowDOM {
       this.updateTitle();
       const { value } = this;
       const details = { value, index };
-      fireCustomEvent('axa-change', details, this);
+      fireCustomEvent('axa-change', value, this);
       fireCustomEvent('change', details, this);
     }
   }

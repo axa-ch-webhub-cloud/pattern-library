@@ -103,6 +103,8 @@ The function-valued attributes `onFocus, onBlur` can be used as a callback prop 
 
 ### axa-change, change
 
-If not in controlled-component mode, two custom events `axa-change` and `change` are fired on &lt;axa-dropdown&gt; itself whenever the `onChange` callback from above gets invoked. Their event `detail` is an object `{value,index}`,
-where `value` is
-the currently selected value and `index` is its 0-based index.
+If not in controlled-component mode, two custom events `axa-change` and `change` are fired on &lt;axa-dropdown&gt; itself whenever the `onChange` callback from above gets invoked.
+
+`axa-change`'s event `detail` is a the currently selected value (a string).
+
+`change`'s event `detail` is an object `{value,index}`,where `value` is the currently selected value and `index` is its 0-based index.
