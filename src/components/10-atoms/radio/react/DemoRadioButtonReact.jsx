@@ -29,8 +29,6 @@ const DemoRadiobuttonsControlled = () => {
     setError(error ? '' : 'Invalid choice');
   };
 
-  console.log('error', error);
-
   return (
     <fieldset>
       <legend>RadioButton Callback Props</legend>
@@ -75,6 +73,7 @@ const DemoRadiobuttonsControlled = () => {
           onBlur={handleRadioButtonBlur(0)}
           onChange={handleRadioButtonChange}
           button={button}
+          nogap
         />
         <AXARadioButton
           id="radio2"
@@ -85,7 +84,6 @@ const DemoRadiobuttonsControlled = () => {
           onBlur={handleRadioButtonBlur(1)}
           onChange={handleRadioButtonChange}
           button={button}
-          nogap
         />
       </AXAFieldset>
       <div
