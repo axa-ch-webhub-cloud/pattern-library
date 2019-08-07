@@ -22,4 +22,8 @@ axa-commercial-hero-banner {
   p {
     @include typo(primary, medium);
   }
+
+  small {
+    @include typo(primary, small);    
+  }
 }
