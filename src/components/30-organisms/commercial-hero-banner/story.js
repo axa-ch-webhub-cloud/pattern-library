@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import '@axa-ch/button';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
 import Readme from './README.md';
