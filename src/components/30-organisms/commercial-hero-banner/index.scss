@@ -1,10 +1,13 @@
 .o-commercial-hero-banner {
   margin-bottom: 20px;
-
   background: $color-prim-gray-alabaster;
 
   // The following is needed to make the z-index of the 'picture'-tag work correctly with background-color
   opacity: 0.99;
+
+  // @include breakpoint($mediaquery-lg-up) {
+  //   background: linear-gradient(180deg, transparent 200px, white 0) !important;
+  // }
 
   img {
     display: block;
@@ -14,6 +17,11 @@
     object-fit: cover;
     min-height: 256px;
     max-height: 256px;
+
+    @include breakpoint($mediaquery-lg-up) {
+      min-height: 560px;
+      max-height: 560px;
+    }
   }
 
   picture {
@@ -32,8 +40,16 @@
   &__content {
     margin: 232px 10px 30px 10px;
     background-color: $color-prim-white;
+
     @include breakpoint($mediaquery-sm-up) {
       margin: 232px 0 30px 0;
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+      background-color: transparent;
+      color: $color-prim-white;
+
+      margin: 0;
     }
 
     &-buttons {
@@ -49,7 +65,7 @@
 // old
 @include breakpoint($mediaquery-lg-up) {
   // .o-commercial-hero-banner {
-  //   display: block;
+  //   // display: block;
 
   //   picture {
   //     max-height: 560px;
