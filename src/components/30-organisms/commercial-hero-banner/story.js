@@ -30,12 +30,11 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
     <axa-commercial-hero-banner variant="light">
       <h2 slot="category">Insurance</h2>
       <h1 slot="title">Title</h1>
-      <p slot="content">This is the content</p>
-      <p slot="content">This is the content</p>
-      <p slot="content">This is the content</p>
-      <p slot="content">This is the content</p>
-      <p slot="content">This is the content</p>
-      <small slot="disclaimer">Terms and Conditions apply...</small>
+      <p slot="content">
+        This is the content<br />And some lines below in the same paragraph.
+      </p>
+      <p slot="content">This is another content paragraph.</p>
+      <small slot="disclaimer">Terms and Conditions apply.</small>
       <axa-button slot="button">YES!</axa-button>
       <axa-button slot="button">Tell me more...</axa-button>
     </axa-commercial-hero-banner>
