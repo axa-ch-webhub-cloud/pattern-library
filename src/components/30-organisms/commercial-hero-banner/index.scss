@@ -47,12 +47,33 @@
   }
 
   .o-commercial-hero-banner__content-item {
-    flex-basis: 50%;
-
     display: flex;
+    flex-basis: 100%;
+    background-color: white;
+
+    @include breakpoint($mediaquery-lg-up) {
+      flex-basis: 50%;
+      background-color: transparent;
+    }
 
     &-box {
       align-self: center;
     }
+  }
+
+  &__content-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+  }
+
+  &__content-button {
+    // margin-right: 10px;
+    // margin-bottom: 10px;
+  }
+
+  ::slotted(*) {
+    // margin-right: 10px;
+    // margin-bottom: 10px;
   }
 }
