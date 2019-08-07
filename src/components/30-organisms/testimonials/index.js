@@ -65,7 +65,6 @@ class AXATestimonials extends LitElement {
         this.stopAutoRotate();
       }
     };
-    this._handleKeyUp = this._handleKeyUp.bind(this);
     this.sliderElement = null;
     this.autoRotateTimerID = null;
   }
@@ -101,7 +100,7 @@ class AXATestimonials extends LitElement {
                       class="o-testimonials__content__carousel__flexbox-container"
                     >
                       <button
-                        class="o-testimonials__content__carousel__left"
+                        class="o-testimonials__arrow o-testimonials__content__carousel__arrow-left"
                         type="button"
                         @click="${this.onClickLeft}"
                       ></button>
@@ -113,7 +112,7 @@ class AXATestimonials extends LitElement {
                       class="o-testimonials__content__carousel__flexbox-container"
                     >
                       <button
-                        class="o-testimonials__content__carousel__right"
+                        class="o-testimonials__arrow o-testimonials__content__carousel__arrow-right"
                         type="button"
                         @click="${this.onClickRight}"
                       ></button>

@@ -19,7 +19,6 @@
     text-align: center;
   }
 
-
   &__content {
     padding: 30px 5px 70px 5px;
     @include breakpoint($mediaquery-sm-up) {
@@ -48,55 +47,32 @@
         }
       }
 
-      //TODO: eigene klasse für pfeil zeichnung
-      &__left {
-        padding: 6px;
-        height: 14px;
-        width: 6px;
-        border: solid $color-prim-white;
-        border-width: 2px 0 0 2px;
+      &__arrow-left {
         transform: rotate(-45deg);
-        cursor: pointer;
-        background: transparent;
-
-        @include breakpoint($mediaquery-sm-up) {
-          padding: 10px;
-          height: 20px;
-          width: 10px;
-        }
       }
 
-      &__right {
-        padding: 6px;
-        height: 14px;
-        width: 6px;
-        border: solid $color-prim-white;
-        border-width: 2px 0 0 2px;
+      &__arrow-right {
         transform: rotate(135deg);
-        cursor: pointer;
-        background: transparent;
-
-        @include breakpoint($mediaquery-sm-up) {
-          padding: 10px;
-          height: 20px;
-          width: 10px;
-        }
-      }
-
-      macro-carousel {
-
       }
     }
   }
 
+  &__arrow {
+    padding: 6px;
+    height: 14px;
+    width: 6px;
+    border: solid $color-prim-white;
+    border-width: 2px 0 0 2px;
+    cursor: pointer;
+    background: transparent;
 
-
-
-
+    @include breakpoint($mediaquery-sm-up) {
+      padding: 10px;
+      height: 20px;
+      width: 10px;
+    }
+  }
 }
-
-
-
 
 /*macro-carousel-nav-button {
   //--macro-carousel-navigation-icon-mask: svg-load('../arrow-left.svg', fill: #000);
