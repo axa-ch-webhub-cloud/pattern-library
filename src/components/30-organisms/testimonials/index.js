@@ -20,23 +20,25 @@ class AXATestimonials extends LitElement {
   static get properties() {
     // Define properties and types
     return {
-      classes: { type: String },
+      classes: { type: String }, // TODO: unused in v1?
       title: { type: String },
       subtitle: { type: String },
       autoRotateDisabled: { type: Boolean },
-      keysEnabled: { type: Boolean },
       autoRotateTime: { type: Number },
       showAllInline: { type: Boolean },
     };
   }
 
-  handleKeyUp(ev) {
-    const e = ev || window.event;
-    if (+e.keyCode === 37) {
-      this.sliderElement.previous();
-    } else if (+e.keyCode === 39) {
-      this.sliderElement.next();
+  startAutoRotate() {
+    if (!this.autoRotateDisabled) {
+      this.autoRotateTimerID = setInterval(() => {
+        this.sliderElement.next();
+      }, this.autoRotateTime);
     }
+  }
+
+  stopAutoRotate() {
+    clearInterval(this.autoRotateTimerID);
   }
 
   constructor() {
@@ -46,31 +48,32 @@ class AXATestimonials extends LitElement {
     this.classes = '';
     this.title = '';
     this.subtitle = '';
-    this.autoRotateDisabled = true;
-    this.keysEnabled = true;
+    this.autoRotateDisabled = false;
     this.autoRotateTime = 5000;
     this.showAllInline = false;
 
+    // TODO: move to module variables?
     this.onClickLeft = () => {
       if (this.sliderElement && this.sliderElement.previous) {
         this.sliderElement.previous();
+        this.stopAutoRotate();
       }
     };
     this.onClickRight = () => {
       if (this.sliderElement && this.sliderElement.next) {
         this.sliderElement.next();
+        this.stopAutoRotate();
       }
     };
+    this._handleKeyUp = this._handleKeyUp.bind(this);
     this.sliderElement = null;
-    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.autoRotateTimerID = null;
   }
 
   firstUpdated() {
     this.sliderElement = this.shadowRoot.querySelector('macro-carousel');
 
-    if (this.keysEnabled) {
-      this.ownerDocument.addEventListener('keyup', this.handleKeyUp);
-    }
+    this.startAutoRotate();
   }
 
   render() {
@@ -126,7 +129,7 @@ class AXATestimonials extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    this.ownerDocument.removeEventListener('keyup', this.handleKeyUp);
+    this.stopAutoRotate();
   }
 }
 
