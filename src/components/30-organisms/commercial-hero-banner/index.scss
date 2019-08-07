@@ -1,7 +1,10 @@
 .o-commercial-hero-banner {
   margin-bottom: 20px;
 
-  // background: $color-prim-gray-alabaster;
+  background: $color-prim-gray-alabaster;
+
+  // The following is needed to make the z-index of the 'picture'-tag work correctly with background-color
+  opacity: 0.99;
 
   img {
     display: block;
@@ -15,11 +18,11 @@
 
   picture {
     position: absolute;
-    // background: $color-prim-gray-alabaster;
+
     top: 0;
     left: 0;
 
-    z-index: -1000;
+    z-index: -1;
 
     display: block;
 
