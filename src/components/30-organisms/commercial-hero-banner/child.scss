@@ -3,4 +3,23 @@ axa-commercial-hero-banner {
     margin-right: 10px;
     margin-bottom: 10px;
   }
+
+  h2 {
+    @include typo(primary, small);
+    line-height: 2.08;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.08;
+    letter-spacing: 0.07px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    @include typo-title-with-weight(large-1, secondary, 600);
+  }
+
+  p {
+    @include typo(primary, medium);
+  }
 }

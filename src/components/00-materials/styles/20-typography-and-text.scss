@@ -112,3 +112,37 @@ $secondary-fonts-styles: (
   line-height: nth(map-get($title-sizes, $size), 2) + px;
   letter-spacing: nth(map-get($title-sizes, $size), 3);
 }
+
+@mixin typo-title($size: default, $family: $primary-font) {
+  $font-style: $primary-fonts-styles;
+  $font-family: $family;
+
+  @if ($family == secondary) {
+    $font-family: $secondary-font;
+    $font-style: $secondary-fonts-styles;
+  }
+
+  font-family: $font-family;
+  font-weight: nth(map-get($primary-fonts-styles, default), 1);
+  font-style: nth(map-get($primary-fonts-styles, default), 2);
+  font-size: nth(map-get($title-sizes, $size), 1) + px;
+  line-height: nth(map-get($title-sizes, $size), 2) + px;
+  letter-spacing: nth(map-get($title-sizes, $size), 3);
+}
+
+@mixin typo-title-with-weight($size: default, $family: $primary-font, $weight: default) {
+  $font-style: $primary-fonts-styles;
+  $font-family: $family;
+
+  @if ($family == secondary) {
+    $font-family: $secondary-font;
+    $font-style: $secondary-fonts-styles;
+  }
+
+  font-family: $font-family;
+  font-weight: $weight;
+  font-style: nth(map-get($primary-fonts-styles, default), 2);
+  font-size: nth(map-get($title-sizes, $size), 1) + px;
+  line-height: nth(map-get($title-sizes, $size), 2) + px;
+  letter-spacing: nth(map-get($title-sizes, $size), 3);
+}
