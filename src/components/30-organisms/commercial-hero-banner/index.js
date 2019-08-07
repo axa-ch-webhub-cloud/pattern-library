@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import 'picturefill';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import childStyles from './child.scss';
+import InlineStyles from '../../../utils/inline-styles';
 
-class AXACommercialHeroBanner extends LitElement {
+class AXACommercialHeroBanner extends InlineStyles {
   static get tagName() {
     return 'axa-commercial-hero-banner';
   }
@@ -46,9 +48,16 @@ class AXACommercialHeroBanner extends LitElement {
     this.variant = 'light'; // PropTypes.oneOf(['light', 'dark']),
   }
 
+  // Parent class InlineStyles needs a static method to retrive styles
+  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  static get resetHeadingCss() {
+    return childStyles;
+  }
+
   firstUpdated() {
     // Add DOM changes here
     // This will be rendered when the component is connected to the DOM
+    this.inlineStyles('resetHeadingCss');
   }
 
   tempImage() {

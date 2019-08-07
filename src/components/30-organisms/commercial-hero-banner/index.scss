@@ -9,10 +9,6 @@
     }
   }
 
-  .o-commercial-hero-banner__content-item {
-    // background-color: white;
-  }
-
   img {
     display: block;
     width: 100%;
@@ -68,11 +64,6 @@
   }
 
   &__content-button {
-    // margin-right: 10px;
-    // margin-bottom: 10px;
-  }
-
-  ::slotted(*) {
     // margin-right: 10px;
     // margin-bottom: 10px;
   }
