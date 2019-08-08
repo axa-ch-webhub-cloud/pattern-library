@@ -5,18 +5,16 @@
 
 .a-popup__wrapper--open {
   max-height: 600px;
-  // work with scale?
   transition: max-height .2s ease-out;
 }
 
 .a-popup__content {
   display: none;
   position: relative;
-  background-color: $color-prim-blue-st-tropaz;
+  background-color: $color-axa-blue;
   color: $color-prim-white;
   padding: 15px;
-  // 4px
-  border-radius: 2px;
+  border-radius: 4px;
   box-sizing: border-box;
   width: 100%;
   margin-top: 12px;
@@ -24,7 +22,6 @@
   &:before {
     position: absolute;
     top: -12px;
-    // TODO *1
     right: 5px;
     width: 0;
     height: 0;
@@ -34,7 +31,7 @@
     box-sizing: content-box;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-bottom: 12px solid $color-prim-blue-st-tropaz;
+    border-bottom: 12px solid $color-axa-blue;
     z-index: 1;
   }
 }
