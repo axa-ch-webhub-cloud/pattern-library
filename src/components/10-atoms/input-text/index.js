@@ -19,6 +19,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       id: { type: String },
       name: { type: String },
       label: { type: String },
+      required: { type: Boolean },
       placeholder: { type: String },
       value: { type: String },
       defaultValue: { type: String },
@@ -98,6 +99,13 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   handleInput = ev => {
     this.onChange(ev);
+
+    // let changeNative = new CustomEvent('change', {
+    //   detail: { message: 'my-event happened.' },
+    //   bubbles: true,
+    //   composed: true,
+    // });
+    // this.dispatchEvent(myEvent);
 
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {

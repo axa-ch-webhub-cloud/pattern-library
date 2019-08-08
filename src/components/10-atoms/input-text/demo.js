@@ -78,6 +78,11 @@ storiesOf('Atoms/Input text/Demos', module)
     render(template, wrapper);
     return wrapper;
   })
+  .add(
+    'Feature - Input text native onchange event attribute',
+    () =>
+      `<axa-input-text onchange="console.log('Aoo')" invalid error="Error Message is cool" label="Cool" info="${info}"></axa-input-text>`
+  )
   .add('Feature - Input text info popup', () => {
     const info = `<h4>Zeitspanne bis zur Pensionierung</h4>
     <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
