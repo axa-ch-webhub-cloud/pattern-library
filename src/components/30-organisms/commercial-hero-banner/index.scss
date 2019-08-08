@@ -1,7 +1,6 @@
 .o-commercial-hero-banner {
-  margin-bottom: 20px;
-
   background-size: cover;
+  margin-bottom: 20px;
   min-height: 256px;
   max-height: 256px;
 
@@ -14,8 +13,8 @@
     @include breakpoint($mediaquery-lg-up) {
       background: linear-gradient(
         to right,
-        #333,
-        #333 32.2%,
+        $color-prim-black,
+        $color-prim-black 32.2%,
         transparent 70%,
         transparent
       );
