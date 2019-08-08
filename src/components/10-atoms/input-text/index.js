@@ -62,8 +62,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
-
-    // this.handlePopupClick = this.handlePopupClick.bind(this);
   }
 
   set value(val) {
@@ -145,11 +143,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       'a-input-text__input--check': checkMark && !disabled,
     };
 
-    const errorMessageWrapperClasses = {
-      'a-input-text__error-wrapper': true,
-      'a-input-text__error-wrapper--open': this.showError,
-    };
-
     return html`
       <div class="a-input-text__wrapper">
         ${label &&
@@ -187,25 +180,22 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                 : ''
             }
           </div>
-        
-            ${info &&
-              html`
-                <axa-popup-button
-                  ?open="${this._open}"
-                  class="a-input-text__info-button"
-                  @click="${this.handlePopupButtonClick}"
-                ></axa-popup-button>
-              `}
-          </div>
-          <div class="${classMap(errorMessageWrapperClasses)}">
-            ${
-              this.showError
-                ? html`
-                    <span class="a-input-text__error">${error}</span>
-                  `
-                : ''
-            }
-          </div>
+          ${info &&
+            html`
+              <axa-popup-button
+                ?open="${this._open}"
+                class="a-input-text__info-button"
+                @click="${this.handlePopupButtonClick}"
+              ></axa-popup-button>
+            `}
+        </div>
+          ${
+            this.showError
+              ? html`
+                  <span class="a-input-text__error">${error}</span>
+                `
+              : ''
+          }
         </div>
         ${
           info

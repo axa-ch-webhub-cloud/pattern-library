@@ -30,11 +30,6 @@ axa-input-text {
     height: 24px;
   }
 
-  // TODO
-  .a-input-text__info-content h4 {
-    margin-top: 0;
-  }
-
   .a-input-text__input {
     @include typo();
     appearance: none;

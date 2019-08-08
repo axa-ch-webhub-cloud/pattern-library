@@ -104,7 +104,7 @@ The boolean attribute `disabled` disables the underlying native HTML &lt;input&g
 
 ### error
 
-The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
+The string-valued `error` provides error text as HTML. It sets the element into a visual error state, if `invalid` is true.
 
 ### info
 
