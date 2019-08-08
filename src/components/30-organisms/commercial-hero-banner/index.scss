@@ -58,7 +58,12 @@
       word-wrap: break-word;
 
       @include breakpoint($mediaquery-lg-up) {
+        max-height: 550px;
+        min-height: 550px;
+
+        display: flex;
         flex-basis: 50%;
+        align-items: center;
       }
 
       &:last-child {
@@ -66,13 +71,6 @@
 
         @include breakpoint($mediaquery-lg-up) {
           display: block;
-        }
-      }
-
-      &-box {
-        @include breakpoint($mediaquery-lg-up) {
-          max-height: 550px;
-          min-height: 550px;
         }
       }
     }
@@ -85,58 +83,4 @@
       padding: 10px 15px 0 15px;
     }
   }
-}
-
-// old
-@include breakpoint($mediaquery-lg-up) {
-  // .o-commercial-hero-banner {
-  //   // display: block;
-
-  //   picture {
-  //     max-height: 560px;
-  //   }
-
-  //   .o-commercial-hero-banner__content-item:last-child {
-  //     display: none;
-
-  //     @include breakpoint($mediaquery-lg-up) {
-  //       display: block;
-  //     }
-  //   }
-
-  //   &__content {
-  //     display: flex;
-
-  //     min-height: 560px;
-
-  //     align-content: center;
-  //     justify-content: center;
-  //   }
-
-  //   .o-commercial-hero-banner__content-item {
-  //     display: flex;
-  //     flex-basis: 100%;
-  //     background-color: white;
-
-  //     @include breakpoint($mediaquery-lg-up) {
-  //       flex-basis: 50%;
-  //       background-color: transparent;
-  //     }
-
-  //     &-box {
-  //       align-self: center;
-  //     }
-  //   }
-
-  //   &__content-buttons {
-  //     display: flex;
-
-  //     flex-wrap: wrap;
-  //   }
-
-  //   &__content-button {
-  //     // margin-right: 10px;
-  //     // margin-bottom: 10px;
-  //   }
-  // }
 }
