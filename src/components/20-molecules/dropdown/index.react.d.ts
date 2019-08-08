@@ -14,6 +14,9 @@ type AXADropdownChangeEvent<T> = {
 interface AXADropdownProps<T = number | string> {
   items: Array<Item<T>>;
   embedded?: boolean;
+  refId?: string;
+  label?: string;
+  required?: boolean,
   error?: string;
   native?: boolean;
   onChange?: (e: AXADropdownChangeEvent<T>) => void;

@@ -7,6 +7,7 @@ import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
+import createRefId from '../../../utils/create-ref-id';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -88,6 +89,9 @@ class AXADropdown extends NoShadowDOM {
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
+      refId: { type: String },
+      label: { type: String },
+      required: { type: Boolean },
       items: { type: Array },
       open: { type: Boolean, reflect: true },
       value: { type: String },
@@ -124,6 +128,8 @@ class AXADropdown extends NoShadowDOM {
 
   constructor() {
     super();
+    this.refId = `dropdown-${createRefId()}`;
+    this.label = '';
     // property defaults
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
@@ -282,10 +288,13 @@ class AXADropdown extends NoShadowDOM {
     const {
       items = [],
       name = '',
+      label = '',
+      refId = '',
       title,
       native,
       valid,
       error,
+      required,
       handleDropdownItemClick,
       handleDropdownClick,
     } = this;
@@ -301,7 +310,18 @@ class AXADropdown extends NoShadowDOM {
     // purposes of programmatic DOM access, therefore need to be preserved even
     // when style refactoring would rename other classes.
     return html`
-      <div class="${classMap(classes)}">
+        ${label &&
+          html`
+            <label for="${refId}" class="m-dropdown__label">
+              ${label}
+              ${required
+                ? html`
+                    *
+                  `
+                : ''}
+            </label>
+          `}
+        <div class="${classMap(classes)}">
         <div
           class="m-dropdown__list m-dropdown__list--native"
           tabindex="0"
@@ -309,10 +329,12 @@ class AXADropdown extends NoShadowDOM {
           @blur="${this.onBlur}"
         >
           <select
+            id="${refId}"
             class="m-dropdown__select js-dropdown__select"
             name="${name}"
-            @change="${handleDropdownItemClick}"
+            aria-required="${required}"
             tabindex="-1"
+            @change="${handleDropdownItemClick}"
           >
             ${items.map(nativeItemsMapper)}
           </select>
