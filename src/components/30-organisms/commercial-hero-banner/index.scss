@@ -5,10 +5,6 @@
   // The following is needed to make the z-index of the 'picture'-tag work correctly with background-color
   opacity: 0.99;
 
-  // @include breakpoint($mediaquery-lg-up) {
-  //   background: linear-gradient(180deg, transparent 200px, white 0) !important;
-  // }
-
   img {
     display: block;
     width: 100%;
@@ -41,6 +37,8 @@
     margin: 232px 10px 30px 10px;
     background-color: $color-prim-white;
 
+    display: flex;
+
     @include breakpoint($mediaquery-sm-up) {
       margin: 232px 0 30px 0;
     }
@@ -50,10 +48,26 @@
       color: $color-prim-white;
 
       margin: 0;
+
+      flex-basis: 50%;
     }
 
-    &-item:last-child {
-      display: none;
+    &-item {
+      flex-basis: 100%;
+
+      word-wrap: break-word;
+
+      @include breakpoint($mediaquery-lg-up) {
+        flex-basis: 50%;
+      }
+
+      &:last-child {
+        display: none;
+
+        @include breakpoint($mediaquery-lg-up) {
+          display: block;
+        }
+      }
     }
 
     &-buttons {

@@ -32,7 +32,11 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
       <p slot="content">
         This is the content<br />And some lines below in the same paragraph.
       </p>
-      <p slot="content">This is another content paragraph.</p>
+      <p slot="content">
+        This is another content paragraph. It is made up with several phrases
+        that summarize a short description to what the user should know about
+        the offer or product that is being advertised.
+      </p>
       <small slot="disclaimer">Terms and Conditions apply.</small>
       <axa-button slot="button">YES!</axa-button>
       <axa-button slot="button">Tell me more...</axa-button>
