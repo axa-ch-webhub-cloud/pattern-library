@@ -5,10 +5,19 @@
   // The following is needed to make the z-index of the 'picture'-tag work correctly with background-color
   opacity: 0.99;
 
-  // .background-holder {
-  //   background: linear-gradient(to right, #333, #333 50%, transparent);
-  //   min-height: 560px;
-  // }
+  &__container {
+    @include breakpoint($mediaquery-lg-up) {
+      opacity: 0.99 !important;
+      background: linear-gradient(
+        to right,
+        #333,
+        #333 32.2%,
+        transparent 70%,
+        transparent
+      );
+      min-height: 560px;
+    }
+  }
 
   img {
     display: block;

@@ -74,29 +74,31 @@ class AXACommercialHeroBanner extends InlineStyles {
     return html`
       <header class="o-commercial-hero-banner ${classMap(variantClass)}">
         <picture><img src="${this.tempImage()}"/></picture>
-        <axa-container>
-          <div class="o-commercial-hero-banner__content">
-            <div class="o-commercial-hero-banner__content-item">
-              <div class="o-commercial-hero-banner__content-item-box">
-                <slot name="category"></slot>
-                <slot name="title"></slot>
-                <slot name="content"></slot>
-                <slot name="disclaimer"></slot>
-                <div class="o-commercial-hero-banner__content-buttons">
-                  <slot
-                    name="button"
-                    class="o-commercial-hero-banner__content-button"
-                  ></slot>
-                  <slot
-                    name="button"
-                    class="o-commercial-hero-banner__content-button"
-                  ></slot>
+        <div class="o-commercial-hero-banner__container">
+          <axa-container>
+            <div class="o-commercial-hero-banner__content">
+              <div class="o-commercial-hero-banner__content-item">
+                <div class="o-commercial-hero-banner__content-item-box">
+                  <slot name="category"></slot>
+                  <slot name="title"></slot>
+                  <slot name="content"></slot>
+                  <slot name="disclaimer"></slot>
+                  <div class="o-commercial-hero-banner__content-buttons">
+                    <slot
+                      name="button"
+                      class="o-commercial-hero-banner__content-button"
+                    ></slot>
+                    <slot
+                      name="button"
+                      class="o-commercial-hero-banner__content-button"
+                    ></slot>
+                  </div>
                 </div>
               </div>
+              <div class="o-commercial-hero-banner__content-item"></div>
             </div>
-            <div class="o-commercial-hero-banner__content-item"></div>
-          </div>
-        </axa-container>
+          </axa-container>
+        </div>
       </header>
     `;
   }
