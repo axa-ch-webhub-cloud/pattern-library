@@ -1,11 +1,17 @@
 .o-commercial-hero-banner {
   margin-bottom: 20px;
-  background: $color-prim-gray-alabaster;
+  // background: $color-prim-gray-alabaster;
+
   background: url('https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg')
     no-repeat center center fixed;
   background-size: cover;
-  // min-height: 256px;
-  // max-height: 256px;
+  min-height: 256px;
+  max-height: 256px;
+
+  @include breakpoint($mediaquery-lg-up) {
+    min-height: 560px;
+    max-height: 560px;
+  }
 
   &__container {
     @include breakpoint($mediaquery-lg-up) {
@@ -21,14 +27,10 @@
   }
 
   &__content {
-    margin: 232px 10px 30px 10px;
+    margin: 140px 10px 30px 10px;
     background-color: $color-prim-white;
 
     display: flex;
-
-    @include breakpoint($mediaquery-sm-up) {
-      margin: 0px 0 30px 0;
-    }
 
     @include breakpoint($mediaquery-lg-up) {
       background-color: transparent;
