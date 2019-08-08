@@ -66,18 +66,18 @@ class AXACommercialHeroBanner extends InlineStyles {
       'o-commercial-hero-banner__content_dark': this.variant === 'dark',
     };
 
+    //   <img
+    //   src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+    //   alt="example"
+    //   data-object-fit="cover"
+    //   data-object-position="top left"
+    // />
+
     return html`
       <header class="o-commercial-hero-banner ${classMap(variantClass)}">
-        <picture
-          ><img
-            src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
-            alt="example"
-            data-object-fit="cover"
-            data-object-position="top left"
-        /></picture>
-
         <div class="o-commercial-hero-banner__container">
           <axa-container>
+            <div class="photo-holder"></div>
             <div class="o-commercial-hero-banner__content">
               <div class="o-commercial-hero-banner__content-item">
                 <div class="o-commercial-hero-banner__content-item-box">
