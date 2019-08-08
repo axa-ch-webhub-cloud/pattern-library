@@ -1,22 +1,33 @@
 .o-testimonials {
-  display: block;
+  display: inline-block;
+  width: 100%;
   background: $color-sec-green-viridian;
   color: $color-prim-white;
 
   &__title {
-    @include typo-title(huge-2, secondary);
+    @include typo-title(large-1, secondary);
     margin: 30px 30px 0 30px;
     text-align: center;
 
     @include breakpoint($mediaquery-sm-up) {
+      @include typo-title(huge-1, secondary);
+      margin-top: 50px;
+    }
+
+    @include breakpoint($mediaquery-lg-up) {
+      @include typo-title(huge-2, secondary);
       margin-top: 50px;
     }
   }
 
   &__subtitle {
-    @include typo(default, medium);
+    @include typo(primary, default, default);
     margin: 20px 30px 0 30px;
     text-align: center;
+
+    @include breakpoint($mediaquery-sm-up) {
+      @include typo(primary, medium, default);
+    }
   }
 
   &__content {
@@ -25,12 +36,12 @@
       padding-bottom: 80px;
     }
     @include breakpoint($mediaquery-lg-up) {
-      //padding: 0 15px; //Bug in V1: lg not working. it has sm paddings
+      // padding: 0 15px; //Bug in V1: lg not working. it has sm paddings
     }
 
     &__inline {
       &::slotted(*) {
-        margin: 20px 0; //add margin to first level elements
+        margin: 20px 0;
       }
     }
 
@@ -71,6 +82,20 @@
       height: 20px;
       width: 10px;
     }
+  }
+
+  macro-carousel {
+    margin: 0 10px;
+
+    ::slotted(*) {
+      //default attributes for carousel content
+      @include typo(primary, large, default);
+      display: flex;
+      align-self: center;
+      text-align: center;
+      justify-content: center; // align the dom element itself (f.a. small spans)
+    }
+
   }
 }
 
