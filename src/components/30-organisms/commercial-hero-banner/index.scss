@@ -68,6 +68,13 @@
           display: block;
         }
       }
+
+      &-box {
+        @include breakpoint($mediaquery-lg-up) {
+          max-height: 550px;
+          min-height: 550px;
+        }
+      }
     }
 
     &-buttons {
