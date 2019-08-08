@@ -42,7 +42,7 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
       </p>
       <small slot="disclaimer">Terms and Conditions apply.</small>
       <axa-button slot="button">YES!</axa-button>
-      <axa-button slot="button">Tell me more...</axa-button>
+      <axa-button slot="button" variant="secondary">Tell me more...</axa-button>
     </axa-commercial-hero-banner>
   `;
 
