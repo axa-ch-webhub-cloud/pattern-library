@@ -69,8 +69,7 @@ class AXACommercialHeroBanner extends InlineStyles {
     return html`
       <style>
         .o-commercial-hero-banner {
-          background: url('https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg')
-            no-repeat center center;
+          background: url('${this.src}') no-repeat center center;
         }
       </style>
       <header class="o-commercial-hero-banner ${classMap(variantClass)}">
