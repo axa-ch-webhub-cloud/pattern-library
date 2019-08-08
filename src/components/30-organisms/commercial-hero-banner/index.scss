@@ -5,6 +5,11 @@
   // The following is needed to make the z-index of the 'picture'-tag work correctly with background-color
   opacity: 0.99;
 
+  // .background-holder {
+  //   background: linear-gradient(to right, #333, #333 50%, transparent);
+  //   min-height: 560px;
+  // }
+
   img {
     display: block;
     width: 100%;
@@ -53,7 +58,7 @@
     }
 
     &-item {
-      flex-basis: 100%;
+      // flex-basis: 100%;
 
       word-wrap: break-word;
 
@@ -62,7 +67,7 @@
         min-height: 550px;
 
         display: flex;
-        flex-basis: 50%;
+        flex-basis: 32.2%;
         align-items: center;
       }
 
@@ -71,6 +76,7 @@
 
         @include breakpoint($mediaquery-lg-up) {
           display: block;
+          // flex-basis: 67.8%;
         }
       }
     }
