@@ -10,7 +10,7 @@ storiesOf('Molecules/Dropdown', module)
   })
   .add(
     'Dropdown',
-    () => `<axa-dropdown title="Please Select" data-test-id="dropdown"
+    () => `<axa-dropdown title="Please Select" label="Dropdown Label" data-test-id="dropdown"
     items='[
     {"name": "Please Select", "value": "Please Select", "disabled": true },
     {"name": "Item 1", "value": "Item 1",  "selected": true },

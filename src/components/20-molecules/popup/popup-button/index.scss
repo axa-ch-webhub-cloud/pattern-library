@@ -1,0 +1,13 @@
+@import '../../../00-materials/styles/mixins/reset-button-completely';
+
+.a-popup-button {
+  @include reset-button-completely();
+  width: 32px;
+  height: 32px;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    color: $color-axa-blue;
+  }
+}

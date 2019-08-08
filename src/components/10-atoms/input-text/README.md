@@ -70,6 +70,10 @@ The type of input element to display.
 
 The string-valued `label` provides the label text as HTML.
 
+### refId
+
+The string-valued `refId` sets the reference for label and input, if no `refId` is set a random id number will be created.
+
 ### name\*
 
 The string-valued `name` of the element for purposes of form submission.
@@ -104,13 +108,15 @@ The boolean attribute `disabled` disables the underlying native HTML &lt;input&g
 
 ### error
 
-The string-valued `error` provides error text as HTML. It sets the element into a visual error state.
+The string-valued `error` provides error text as HTML. It sets the element into a visual error state, if `invalid` is true.
 
-### embedded
+### info
 
-When true, the Boolean attribute `embedded` suppresses the default space around the input-text otherwise reserved for showing valid/error UI states.
+The string-valued `info` provides the label text as HTML.
 
-### onChange
+_Note: The consumer is responsible for sanitizing the info HTML!_
+
+### onChange | native input Event
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
 

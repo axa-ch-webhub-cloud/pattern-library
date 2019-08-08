@@ -17,7 +17,7 @@ class AXATextarea extends NoShadowDOM {
 
   static get properties() {
     return {
-      id: { type: String },
+      refId: { type: String },
       name: { type: String },
       label: { type: String },
       placeholder: { type: String },
@@ -46,7 +46,7 @@ class AXATextarea extends NoShadowDOM {
 
   constructor() {
     super();
-    this.id = '';
+    this.refId = `textarea-${createRefId()}`;
     this.name = '';
     this.label = '';
     this.placeholder = '';
@@ -65,7 +65,6 @@ class AXATextarea extends NoShadowDOM {
     this.onChange = () => {};
 
     // internal properties
-    this.refId = '';
     this.isReact = false;
     this.modelCounter = '';
     this.nativeInput = { value: '' };
@@ -172,7 +171,7 @@ class AXATextarea extends NoShadowDOM {
   };
 
   firstUpdated() {
-    const { id, nativeDefaultValue, defaultValue, isReact, value } = this;
+    const { nativeDefaultValue, defaultValue, isReact, value } = this;
 
     this.nativeInput = this.querySelector('textarea');
 
@@ -184,7 +183,6 @@ class AXATextarea extends NoShadowDOM {
       this.nativeInput.value = defaultValue || value;
     }
 
-    this.refId = id || `textarea-${createRefId()}`;
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
   }

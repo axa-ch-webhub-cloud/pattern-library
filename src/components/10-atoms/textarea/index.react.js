@@ -4,7 +4,7 @@ import AXATextarea from './index';
 export default createElement => ({
   name = '',
   label = '',
-  id = '',
+  refId = '',
   placeholder = '',
   error = '',
   defaultValue = '',
@@ -24,7 +24,7 @@ export default createElement => ({
   return withReact(createElement)(AXATextarea.tagName, {
     name,
     label,
-    id,
+    refId,
     placeholder,
     error,
     defaultValue,

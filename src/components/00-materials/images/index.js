@@ -1,0 +1,1 @@
+export { default as AxaLogoOpenSvg } from './axa-logo-open.svg.js';export { default as AxaLogoSvg } from './axa-logo.svg.js';

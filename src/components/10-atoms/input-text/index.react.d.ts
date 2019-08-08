@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface AXAInputTextProps {
-  id?: string;
+  refId?: string;
   name: string;
   label?: string;
   placeholder?: string;
@@ -9,11 +9,11 @@ interface AXAInputTextProps {
   defaultValue?: string;
   error?: string;
   type?: string;
+  info?: string;
   invalid?: boolean;
   required?: boolean;
   disabled?: boolean;
   checkMark?: boolean;
-  embedded?: boolean;
   isReact?: boolean;
   className?: string;
   onFocus?: (e?: FocusEvent) => void;

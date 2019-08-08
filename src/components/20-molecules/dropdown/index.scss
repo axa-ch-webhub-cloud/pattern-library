@@ -49,6 +49,14 @@ axa-dropdown {
     box-sizing: border-box;
   }
 
+  .m-dropdown__label {
+    @include typo(primary, medium);
+    display: block;
+    font-weight: 600;
+    color: $color-prim-gray-mine-shaft;
+    margin-bottom: 10px;
+  }
+
   &[open] {
     .m-dropdown__content {
       height: auto;
@@ -133,7 +141,7 @@ axa-dropdown {
   &__list {
     padding: 10.5px 20px 10.5px 12px;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-silver;
+    border: 1px solid $color-prim-gray-dusty;
     color: $dropdown-color;
     height: inherit;
     position: relative;
