@@ -13,7 +13,7 @@ storyPopupButton.addParameters({
   },
 });
 
-storyPopupButton.add('Popup Button - default', () => {
+storyPopupButton.add('Popup Button', () => {
   const open = boolean('open', false);
 
   const wrapper = document.createElement('div');

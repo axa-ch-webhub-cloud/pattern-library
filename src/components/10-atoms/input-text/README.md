@@ -70,6 +70,10 @@ The type of input element to display.
 
 The string-valued `label` provides the label text as HTML.
 
+### refId
+
+The string-valued `refId` sets the reference for label and input, if no `refId` is set a random id number will be created.
+
 ### name\*
 
 The string-valued `name` of the element for purposes of form submission.
@@ -112,7 +116,7 @@ The string-valued `info` provides the label text as HTML.
 
 _Note: The consumer is responsible for sanitizing the info HTML!_
 
-### onChange
+### onChange | native input Event
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
 

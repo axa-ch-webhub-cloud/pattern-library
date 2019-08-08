@@ -2,7 +2,7 @@ import withReact from '../../../utils/with-react';
 import AXAInputText from './index';
 
 export default createElement => ({
-  id = '',
+  refId = '',
   name = '',
   label = '',
   placeholder = '',
@@ -21,7 +21,7 @@ export default createElement => ({
   onChange = () => {},
 }) => {
   return withReact(createElement)(AXAInputText.tagName, {
-    id,
+    refId,
     name,
     label,
     placeholder,

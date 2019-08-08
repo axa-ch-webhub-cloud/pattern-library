@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface AXAInputTextProps {
-  id?: string;
+  refId?: string;
   name: string;
   label?: string;
   placeholder?: string;

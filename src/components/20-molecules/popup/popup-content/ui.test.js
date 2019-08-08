@@ -2,10 +2,10 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Popup content - basic functionality').page(`${host}/iframe.html?id=molecules-popup--popup-content-default`);
+fixture('Popup content - basic functionality').page(`${host}/iframe.html?id=molecules-popup--popup-content`);
 
 const TAG = 'axa-popup-content';
-const CLASS = '.a-popup-content';
+const CLASS = '.a-popup__content';
 
 test('should render popup-content', async t => {
   const $axaElem = await Selector(TAG);

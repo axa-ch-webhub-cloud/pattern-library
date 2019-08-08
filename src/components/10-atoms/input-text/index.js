@@ -16,7 +16,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   static get properties() {
     return {
-      id: { type: String },
+      refId: { type: String },
       name: { type: String },
       label: { type: String },
       required: { type: Boolean },
@@ -40,7 +40,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   constructor() {
     super();
-    this.id = '';
+    this.refId = `input-text-${createRefId()}`;
     this.name = '';
     this.label = '';
     this.placeholder = '';
@@ -59,7 +59,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.onChange = () => {};
 
     // internal properties
-    this.refId = '';
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
@@ -100,13 +99,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   handleInput = ev => {
     this.onChange(ev);
 
-    // let changeNative = new CustomEvent('change', {
-    //   detail: { message: 'my-event happened.' },
-    //   bubbles: true,
-    //   composed: true,
-    // });
-    // this.dispatchEvent(myEvent);
-
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {
       // yes, set UI from model state
@@ -115,14 +107,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   firstUpdated() {
-    const { id, defaultValue, isReact } = this;
+    const { defaultValue, isReact } = this;
     this.nativeInput = this.querySelector('input');
 
     if (isReact && defaultValue) {
       this.nativeInput.value = defaultValue;
     }
-
-    this.refId = id || `input-text-${createRefId()}`;
   }
 
   render() {
@@ -167,9 +157,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         <div class="a-input-text__input-wrapper">
           <div class="a-input-text__input-elements">
             <input
-              @input="${this.handleInput}"
-              @focus="${this.handleFocus}"
-              @blur="${this.handleBlur}"
               id="${refId}"
               type="${type}"
               class="${classMap(inputClasses)}"
@@ -177,8 +164,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
               name="${name}"
               value="${value}"
               placeholder="${placeholder}"
-              ?disabled="${disabled}"
               aria-required="${required}"
+              ?disabled="${disabled}"
+              @input="${this.handleInput}"
+              @focus="${this.handleFocus}"
+              @blur="${this.handleBlur}"
             />
             ${
               checkMark

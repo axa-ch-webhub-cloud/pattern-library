@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Popup button - basic functionality').page(`${host}/iframe.html?id=molecules-popup--popup-button-default`);
+fixture('Popup button - basic functionality').page(`${host}/iframe.html?id=molecules-popup--popup-button`);
 
 const TAG = 'axa-popup-button';
 const CLASS = '.a-popup-button';

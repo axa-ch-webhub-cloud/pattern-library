@@ -32,11 +32,6 @@ test('should type something input-text', async t => {
     .eql('Pattern Warriors');
 });
 
-test('should render label', async t => {
-  const $axaLabel = await Selector('.a-input-text__label');
-  await t.expect($axaLabel.exists).ok();
-});
-
 test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
     document.querySelector('axa-input-text').invalid = true;
@@ -56,29 +51,28 @@ fixture('Input text - Form').page(
   `${host}/iframe.html?id=atoms-input-text-demos--feature-input-text-works-in-a-form`
 );
 
+test('should render label', async t => {
+  const $axaLabel = await Selector('.a-input-text__label');
+  await t.expect($axaLabel.exists).ok();
+});
+
 test('should submit inputs correctly in form', async t => {
   // default
   const $InputText = await Selector(() => document.getElementById('default'));
-
-  const $InputTextEl = await $InputText.find(CLASS);
   const text = 'Warrior';
-  await t.typeText($InputTextEl, text);
+  await t.typeText($InputText, text);
 
   // email
   const $InputEmail = await Selector(() => document.getElementById('email'));
-
-  const $InputEmailEl = await $InputEmail.find(CLASS);
   const email = 'pattern@warrior.ch';
-  await t.typeText($InputEmailEl, email, { paste: true });
+  await t.typeText($InputEmail, email, { paste: true });
 
   // password
   const $InputPassword = await Selector(() =>
     document.getElementById('password')
   );
-
-  const $InputPasswordEl = await $InputPassword.find(CLASS);
   const password = 'geheim';
-  await t.wait(50).typeText($InputPasswordEl, password);
+  await t.wait(50).typeText($InputPassword, password);
 
   await t.click('#submit');
   await t

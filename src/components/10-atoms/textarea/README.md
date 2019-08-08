@@ -59,6 +59,10 @@ Import the textarea-defining script and use a textarea like this:
 
 The string-valued `label` provides the label text as HTML.
 
+### refId
+
+The string-valued `refId` sets the reference for label and input, if no `refId` is set a random id number will be created.
+
 ### name\*
 
 The string-valued `name` of the element for purposes of form submission.

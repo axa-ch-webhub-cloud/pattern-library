@@ -13,10 +13,10 @@ storyTextarea.addParameters({
   },
 });
 
-storyTextarea.add('Textarea - default', () => {
+storyTextarea.add('Textarea', () => {
   const label = text('label*', '');
   const name = text('name*', '');
-  const id = text('id', '');
+  const refId = text('refId', '');
   const placeholder = text('placeholder', '');
   const error = text('error', '');
   const checkMark = boolean('checkmark', false);
@@ -30,7 +30,7 @@ storyTextarea.add('Textarea - default', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-textarea
-      id="${id}"
+      refId="${refId}"
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"

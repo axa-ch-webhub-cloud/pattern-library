@@ -22,7 +22,7 @@ const typeOptions = {
 storyInputText.add('Input Text', () => {
   const label = text('label*', '');
   const name = text('name*', '');
-  const id = text('id', '');
+  const refId = text('refId', '');
   const placeholder = text('placeholder', '');
   const value = text('value', '');
   const error = text('error', '');
@@ -36,7 +36,7 @@ storyInputText.add('Input Text', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-input-text
-      id="${id}"
+      refId="${refId}"
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"
