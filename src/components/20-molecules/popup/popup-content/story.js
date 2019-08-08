@@ -13,7 +13,7 @@ storyPopupContent.addParameters({
   },
 });
 
-const children = html`<h4>Zeitspanne bis zur Pensionierung</h4>
+const children = html`<h4 style="margin-top: 0">Zeitspanne bis zur Pensionierung</h4>
     <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
 
 storyPopupContent.add('Popup Content - default', () => {

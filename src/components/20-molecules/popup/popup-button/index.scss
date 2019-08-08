@@ -2,10 +2,12 @@
 
 .a-popup-button {
   @include reset-button-completely();
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 
   svg {
+    width: 32px;
+    height: 32px;
     color: $color-axa-blue;
   }
 }

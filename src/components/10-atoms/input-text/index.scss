@@ -25,9 +25,8 @@ axa-input-text {
 
   .a-input-text__info-button {
     margin-left: 10px;
-    margin-right: 5px;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
   }
 
   .a-input-text__input {
@@ -69,7 +68,6 @@ axa-input-text {
       &:active,
       &:focus {
         border: $border-width $border-type $color-validation-error;
-
       }
 
       &:focus {
@@ -100,17 +98,6 @@ axa-input-text {
     @include check-mark-animated();
     position: absolute;
     right: 5px;
-  }
-
-  .a-input-text__error-wrapper {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height .2s ease-out;
-  }
-
-  .a-input-text__error-wrapper--open {
-    max-height: 300px;
-    transition: max-height .2s ease-in;
   }
 
   .a-input-text__error {
