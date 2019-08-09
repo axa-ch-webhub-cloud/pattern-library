@@ -29,6 +29,7 @@ class AXACommercialHeroBanner extends InlineStyles {
       heroObjectPosition: { type: String },
       // ###
       variant: { type: String }, // PropTypes.oneOf(['white', 'black']),
+      imagePosition: { type: String },
     };
   }
 
@@ -44,6 +45,7 @@ class AXACommercialHeroBanner extends InlineStyles {
     this.heroObjectPosition = '';
     // ###
     this.variant = 'light'; // PropTypes.oneOf(['light', 'dark']),
+    this.imagePosition = 'center center';
   }
 
   // Parent class InlineStyles needs a static method to retrive styles
@@ -70,7 +72,7 @@ class AXACommercialHeroBanner extends InlineStyles {
     return html`
       <style>
         .o-commercial-hero-banner {
-          background: url('${this.src}') no-repeat center center;
+          background: url('${this.src}') no-repeat ${this.imagePosition};
         }
       </style>
       <header class="o-commercial-hero-banner">
