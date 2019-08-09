@@ -60,11 +60,8 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
         the offer or product that is being advertised.
       </p>
       <small slot="disclaimer">Terms and Conditions apply.</small>
-      <axa-button-link href="https://axa.ch" slot="button"
-        >YES!</axa-button-link
-      >
-      <axa-button-link href="https://axa.ch" slot="button" variant="secondary"
-        >Tell me more...</axa-button-link
+      <axa-button-link href="https://axa.ch" slot="button" variant="red"
+        >GET A QUOTE</axa-button-link
       >
     </axa-commercial-hero-banner>
   `;
