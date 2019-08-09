@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
 // import 'picturefill';
 // import 'objectFitPolyfill';
 import defineOnce from '../../../utils/define-once';
