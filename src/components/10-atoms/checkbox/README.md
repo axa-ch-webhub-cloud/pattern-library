@@ -77,6 +77,10 @@ The string-valued `label` provides the label text as HTML.
 
 _Note: The component consumer is responsible for sanitizing the label HTML!_
 
+### required
+
+The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
+
 ### checked\*
 
 The Boolean `checked` sets the checked/unchecked visual state.

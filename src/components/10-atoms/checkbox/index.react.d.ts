@@ -4,6 +4,7 @@ interface AXACheckboxProps {
   value?: string;
   name?: string;
   label?: string;
+  required?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;

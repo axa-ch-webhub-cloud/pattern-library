@@ -14,6 +14,7 @@ class AXACheckbox extends NoShadowDOM {
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
+      required: { type: Boolean },
       checked: {
         type: Boolean,
         reflect: true,
@@ -31,7 +32,6 @@ class AXACheckbox extends NoShadowDOM {
           },
         },
       },
-      invalid: { type: Boolean },
       isReact: { type: Boolean },
     };
   }
@@ -55,7 +55,7 @@ class AXACheckbox extends NoShadowDOM {
     this.value = '';
     this.name = '';
     this.label = '';
-    this.invalid = false;
+    this.required = false;
     this.disabled = false;
     this.error = '';
     this.isReact = false;
@@ -113,8 +113,7 @@ class AXACheckbox extends NoShadowDOM {
       checked,
       disabled,
       error = '',
-      invalid,
-      id,
+      required,
       isReact,
       state: { isControlled, timer },
     } = this;
@@ -130,22 +129,22 @@ class AXACheckbox extends NoShadowDOM {
     return html`
       <label class="a-checkbox__wrapper">
         <input
-          @focus="${this.onFocus}"
-          @blur="${this.onBlur}"
-          id="${id}"
           class="a-checkbox__input"
           type="checkbox"
           name="${name}"
-          ?checked="${checked}"
           value="${value}"
+          aria-required="${required}"
+          ?checked="${checked}"
           ?disabled="${disabled}"
-          ?error="${invalid}"
+          ?error="${!!error}"
+          @focus="${this.onFocus}"
+          @blur="${this.onBlur}"
           @change=${this.handleChange}
         />
         <span class="a-checkbox__icon"></span>
         ${label &&
           html`
-            <span class="a-checkbox__content">${unsafeHTML(label)}</span>
+            <span class="a-checkbox__content">${unsafeHTML(label)} ${required ? html`*` : ''}</span>
           `}
         ${error
           ? html`
