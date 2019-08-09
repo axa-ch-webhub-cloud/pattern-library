@@ -17,17 +17,7 @@ class AXACommercialHeroBanner extends InlineStyles {
   }
 
   static get properties() {
-    // Define properties and types
     return {
-      // ### Old props
-      onClick: { type: Function },
-      src: { type: String },
-      alt: { type: String },
-      gradient: { type: String }, // PropTypes.oneOf(['white', 'black']),
-      contentAlign: { type: String }, // PropTypes.oneOf(['left', 'right']),
-      pictureClasses: { type: String },
-      heroObjectPosition: { type: String },
-      // ###
       variant: { type: String }, // PropTypes.oneOf(['white', 'black']),
       imagePosition: { type: String },
     };
@@ -35,15 +25,6 @@ class AXACommercialHeroBanner extends InlineStyles {
 
   constructor() {
     super();
-    // ### Old props
-    this.onClick = () => {};
-    this.src = '';
-    this.alt = '';
-    this.gradient = 'white'; // PropTypes.oneOf(['white', 'black']),
-    this.contentAlign = 'left'; // PropTypes.oneOf(['left', 'right']),
-    this.pictureClasses = '';
-    this.heroObjectPosition = '';
-    // ###
     this.variant = 'light'; // PropTypes.oneOf(['light', 'dark']),
     this.imagePosition = 'center center';
   }
@@ -55,8 +36,6 @@ class AXACommercialHeroBanner extends InlineStyles {
   }
 
   firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
     this.inlineStyles('resetHeadingCss');
     if (this.variant === 'dark') {
       this.shadowRoot
@@ -108,8 +87,6 @@ class AXACommercialHeroBanner extends InlineStyles {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 
