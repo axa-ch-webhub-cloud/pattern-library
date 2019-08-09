@@ -1,3 +1,79 @@
 .o-carousel {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px; //for arrows
+
+  //background: inherit;
+  overflow: hidden;
+  //background-color: yellow;
+
+  :focus {
+    outline: none;
+  }
+
+  &__animation-wrapper {
+    ::slotted(*) {
+      //display: flex;
+    }
+
+  }
+
+
+  &__arrow {
+    padding: 6px;
+    height: 14px;
+    width: 6px;
+    border: solid $color-prim-white;
+    border-width: 2px 0 0 2px;
+    cursor: pointer;
+    background: transparent;
+
+    @include breakpoint($mediaquery-sm-up) {
+      padding: 10px;
+      height: 20px;
+      width: 10px;
+    }
+  }
+
+  &__arrow-left {
+    transform: rotate(-45deg);
+  }
+
+  &__arrow-right {
+    transform: rotate(135deg);
+  }
+}
+
+// animations
+.o-carousel_animation_left {
+  animation: fromLeft 0.8s;
+}
+
+.o-carousel_animation_right {
+  animation: fromRight 0.8s;
+}
+
+@keyframes fromRight {
+  from {
+    opacity: 0;
+    transform: translate(100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fromLeft {
+  from {
+    opacity: 0;
+    transform: translate(-100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
