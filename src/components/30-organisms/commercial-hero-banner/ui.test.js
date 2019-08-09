@@ -1,10 +1,10 @@
-import { Selector } from 'testcafe';
+// import { Selector } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+// const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Commercial hero banner - basic functionality').page(
-  `${host}/iframe.html?id=organisms-commercial-hero-banner--commercial-hero-banner`
-);
+// fixture('Commercial hero banner - basic functionality').page(
+//   `${host}/iframe.html?id=organisms-commercial-hero-banner--commercial-hero-banner`
+// );
 
 // const TAG = 'axa-commercial-hero-banner';
 // const CLASS = '.o-commercial-hero-banner';
