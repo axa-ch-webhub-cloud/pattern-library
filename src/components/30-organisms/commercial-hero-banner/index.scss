@@ -1,26 +1,4 @@
 .o-commercial-hero-banner {
-  &__photo-holder {
-    max-height: 0;
-  }
-
-  .o-commercial-hero-banner__text--dark {
-    @include breakpoint($mediaquery-lg-up) {
-      color: $color-prim-white;
-    }
-  }
-
-  .o-commercial-hero-banner__container--dark {
-    @include breakpoint($mediaquery-lg-up) {
-      background: linear-gradient(
-        to right,
-        $color-prim-black,
-        $color-prim-black 25%,
-        transparent 70%,
-        transparent
-      );
-    }
-  }
-
   background-size: cover;
   margin-bottom: 20px;
   min-height: 256px;
@@ -29,6 +7,16 @@
   @include breakpoint($mediaquery-lg-up) {
     min-height: 560px;
     max-height: 560px;
+  }
+
+  &__photo-holder {
+    max-height: 0;
+  }
+
+  &__text--dark {
+    @include breakpoint($mediaquery-lg-up) {
+      color: $color-prim-white;
+    }
   }
 
   &__container {
@@ -42,6 +30,18 @@
         transparent 70%,
         transparent
       );
+    }
+
+    &--dark {
+      @include breakpoint($mediaquery-lg-up) {
+        background: linear-gradient(
+          to right,
+          $color-prim-black,
+          $color-prim-black 25%,
+          transparent 70%,
+          transparent
+        );
+      }
     }
   }
 
