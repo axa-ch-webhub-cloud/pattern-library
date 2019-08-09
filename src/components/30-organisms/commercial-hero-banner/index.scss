@@ -4,7 +4,9 @@
   }
 
   .o-commercial-hero-banner__text--dark {
-    color: $color-prim-white;
+    @include breakpoint($mediaquery-lg-up) {
+      color: $color-prim-white;
+    }
   }
 
   .o-commercial-hero-banner__container--dark {
@@ -32,6 +34,14 @@
   &__container {
     @include breakpoint($mediaquery-lg-up) {
       min-height: 560px;
+
+      background: linear-gradient(
+        to right,
+        $color-prim-white,
+        $color-prim-white 25%,
+        transparent 70%,
+        transparent
+      );
     }
   }
 
