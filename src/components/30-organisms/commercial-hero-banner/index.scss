@@ -9,13 +9,13 @@
 
   .o-commercial-hero-banner__container--dark {
     @include breakpoint($mediaquery-lg-up) {
-      // background: linear-gradient(
-      //   to right,
-      //   $color-prim-black,
-      //   $color-prim-black 25%,
-      //   transparent 70%,
-      //   transparent
-      // );
+      background: linear-gradient(
+        to right,
+        $color-prim-black,
+        $color-prim-black 25%,
+        transparent 70%,
+        transparent
+      );
     }
   }
 
