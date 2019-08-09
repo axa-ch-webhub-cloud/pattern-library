@@ -19,6 +19,7 @@ class AXACommercialHeroBanner extends InlineStyles {
   static get properties() {
     return {
       variant: { type: String }, // PropTypes.oneOf(['white', 'black']),
+      src: { type: String },
       imagePosition: { type: String },
     };
   }
@@ -26,6 +27,7 @@ class AXACommercialHeroBanner extends InlineStyles {
   constructor() {
     super();
     this.variant = 'light'; // PropTypes.oneOf(['light', 'dark']),
+    this.src = '';
     this.imagePosition = 'center center';
   }
 
