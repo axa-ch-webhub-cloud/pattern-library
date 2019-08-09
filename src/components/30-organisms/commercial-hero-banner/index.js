@@ -59,20 +59,24 @@ class AXACommercialHeroBanner extends InlineStyles {
     // Add DOM changes here
     // This will be rendered when the component is connected to the DOM
     this.inlineStyles('resetHeadingCss');
+    if (this.variant === 'dark') {
+      this.shadowRoot
+        .querySelector('.o-commercial-hero-banner__content')
+        .classList.add('o-commercial-hero-banner__text--dark');
+      this.shadowRoot
+        .querySelector('.o-commercial-hero-banner__container')
+        .classList.add('o-commercial-hero-banner__container--dark');
+    }
   }
 
   render() {
-    const variantClass = {
-      'o-commercial-hero-banner__content_dark': this.variant === 'dark',
-    };
-
     return html`
       <style>
         .o-commercial-hero-banner {
           background: url('${this.src}') no-repeat center center;
         }
       </style>
-      <header class="o-commercial-hero-banner ${classMap(variantClass)}">
+      <header class="o-commercial-hero-banner">
         <div class="o-commercial-hero-banner__container">
           <axa-container>
             <div class="o-commercial-hero-banner__photo-holder">&nbsp;</div>
