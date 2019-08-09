@@ -21,8 +21,8 @@
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "jest --env=jsdom",
     "test-jest-watch": "jest --env=jsdom --watch -o",
-    "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome -c 4 ./**/ui.test.js",
-    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' -c 4 ./**/ui.test.js",
+    "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
+    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js"
   },
   "dependencies": {
