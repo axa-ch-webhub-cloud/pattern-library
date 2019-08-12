@@ -10,7 +10,6 @@ const TAG = 'axa-commercial-hero-banner';
 const CLASS = '.o-commercial-hero-banner';
 
 test('should render commercial-hero-banner', async t => {
-  await t.debug();
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
