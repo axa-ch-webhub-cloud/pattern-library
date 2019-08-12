@@ -34,11 +34,26 @@ export default AXACommercialHeroBannerReact;
 ```
 
 ```js
+import AXACommercialHeroBannerReact from './AxaCommercialHeroBanner.js';
+import AXAButtonLink from 'AxaButtonLink.js';
+
 <AXACommercialHeroBannerReact
   variant="dark"
   src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
   imagePosition="center center"
-/>
+>
+  <h2 slot="category">This example shows specific picture classes</h2>
+  <h1 slot="title">Drive with peace of mind</h1>
+  <p slot="content">
+    Whether you need to insure your first car or renew your existing car
+    insurance, AXA can provide a range of car insurance policies to suit your
+    requirements and offer great product benefits at a price you can afford
+  </p>
+  <small slot="disclaimer">Terms and Conditions apply.</small>
+  <AXAButtonLink href="https://axa.ch" slot="button" variant="red" size="large">
+    GET A QUOTE
+  </AXAButtonLink>
+</AXACommercialHeroBannerReact>;
 ```
 
 ### Pure HTML pages
