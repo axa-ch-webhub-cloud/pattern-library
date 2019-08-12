@@ -122,6 +122,38 @@ test('should use correct typography for mobile view', async t => {
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
+test.only('should use correct typography for tablet view', async t => {
+  await t.resizeWindow(576, 700);
+
+  const category = await _getCategoryNode(t);
+  await t
+    .expect(category.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect(category.getStyleProperty('font-size')).eql('14px');
+  await t.expect(category.getStyleProperty('font-weight')).eql('600');
+
+  const title = await _getTitleNode(t);
+  await t
+    .expect(title.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect(title.getStyleProperty('font-size')).eql('36px');
+  await t.expect(title.getStyleProperty('font-weight')).eql('700');
+
+  const content = await _getContentNode(t);
+  await t
+    .expect(content.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect(content.getStyleProperty('font-size')).eql('16px');
+  await t.expect(content.getStyleProperty('font-weight')).eql('400');
+
+  const disclaimer = await _getDisclaimerNode(t);
+  await t
+    .expect(disclaimer.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
+});
+
 async function _getCategoryNode(t) {
   const categoryNode = await Selector('axa-commercial-hero-banner').find(
     '[slot="category"]'
