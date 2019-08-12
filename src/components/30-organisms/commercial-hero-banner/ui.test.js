@@ -154,7 +154,7 @@ test('should use correct typography for tablet view', async t => {
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
-test.only('should use correct typography for desktop view', async t => {
+test('should use correct typography for desktop view', async t => {
   await t.resizeWindow(992, 700);
 
   const category = await _getCategoryNode(t);
