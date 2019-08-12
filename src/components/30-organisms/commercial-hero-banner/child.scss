@@ -17,7 +17,9 @@ axa-commercial-hero-banner {
   }
 
   h2 {
-    @include typo(primary, small);
+    @include typo(primary, default);
+    line-height: 1.21;
+    font-weight: 600;
     text-transform: uppercase;
   }
 
