@@ -50,13 +50,15 @@ class AXACommercialHeroBanner extends InlineStyles {
   }
 
   render() {
+    // Workaround: I had to remove the <style> tag and use inline-styles
+    // property instead, otherwise, in the testcafe chrome, it would not
+    // display the component. This seems to be connected to 'src' being
+    // a prop, because hardcoded it works. Feel free to apply magic.
     return html`
-      <style>
-        .o-commercial-hero-banner {
-          background: url('${this.src}') no-repeat ${this.imagePosition};
-        }
-      </style>
-      <header class="o-commercial-hero-banner">
+      <header
+        class="o-commercial-hero-banner"
+        style="background: url('${this.src}') no-repeat ${this.imagePosition};"
+      >
         <div class="o-commercial-hero-banner__container">
           <axa-container>
             <div class="o-commercial-hero-banner__photo-holder">&nbsp;</div>
