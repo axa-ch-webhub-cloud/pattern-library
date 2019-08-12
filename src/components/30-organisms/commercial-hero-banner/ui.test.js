@@ -90,16 +90,39 @@ async function _assertLightBackgroundGradient(t, container) {
     );
 }
 
-test.only('should use correct typography for mobile view', async t => {
+test('should use correct typography for mobile view', async t => {
   await t.resizeWindow(575, 700);
 
-  const category = await getCategory(t);
-  const title = await getTitle(t);
-  const content = await getContent(t);
-  const disclaimer = await getDisclaimer(t);
+  const category = await _getCategoryNode(t);
+  await t
+    .expect(category.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect(category.getStyleProperty('font-size')).eql('12px');
+  await t.expect(category.getStyleProperty('font-weight')).eql('600');
+
+  const title = await _getTitleNode(t);
+  await t
+    .expect(title.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect(title.getStyleProperty('font-size')).eql('24px');
+  await t.expect(title.getStyleProperty('font-weight')).eql('700');
+
+  const content = await _getContentNode(t);
+  await t
+    .expect(content.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect(content.getStyleProperty('font-size')).eql('14px');
+  await t.expect(content.getStyleProperty('font-weight')).eql('400');
+
+  const disclaimer = await _getDisclaimerNode(t);
+  await t
+    .expect(disclaimer.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
-async function getCategory(t) {
+async function _getCategoryNode(t) {
   const categoryNode = await Selector('axa-commercial-hero-banner').find(
     '[slot="category"]'
   );
@@ -107,7 +130,7 @@ async function getCategory(t) {
   return categoryNode;
 }
 
-async function getTitle(t) {
+async function _getTitleNode(t) {
   const titleNode = await Selector('axa-commercial-hero-banner').find(
     '[slot="title"]'
   );
@@ -115,14 +138,14 @@ async function getTitle(t) {
   return titleNode;
 }
 
-async function getContent(t) {
+async function _getContentNode(t) {
   const contentNode = await Selector('axa-commercial-hero-banner').find(
     '[slot="content"]'
   );
   await t.expect(contentNode.exists).ok();
   return contentNode;
 }
-async function getDisclaimer(t) {
+async function _getDisclaimerNode(t) {
   const disclaimerNode = await Selector('axa-commercial-hero-banner').find(
     '[slot="disclaimer"]'
   );
