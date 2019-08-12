@@ -54,3 +54,22 @@ async function _assertBackgroundPositionTopRight($axaElemShadow, t) {
   await t.expect(root.getStyleProperty('background-position')).eql('100% 0%');
   return root;
 }
+
+fixture('Commercial hero banner - Content').page(
+  `${host}/iframe.html?id=organisms-commercial-hero-banner--commercial-hero-banner&knob-Variant=light&knob-Src=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg&knob-Position=bottom%20left`
+);
+
+test('should correctly render all content items in the correct typography', async t => {
+  // const $axaElem = await Selector(TAG);
+  // await t.expect($axaElem.getAttribute('variant')).eql('dark');
+  // const $axaElemShadow = await Selector(
+  //   () => document.querySelector('axa-commercial-hero-banner').shadowRoot
+  // );
+  // await _assertBackgroundPositionTopRight($axaElemShadow, t);
+  // const container = $axaElemShadow.find('.o-commercial-hero-banner__container');
+  // await t.expect(container.visible).ok();
+  // await t
+  //   .expect(container.hasClass('o-commercial-hero-banner__container--dark'))
+  //   .notOk();
+  // await _assertDarkBackgroundGradient(t, container);
+});
