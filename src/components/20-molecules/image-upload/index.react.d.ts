@@ -12,6 +12,8 @@ interface AXAImageUploadProps {
   fileTooBigStatusText?: string;
   filesTooBigStatusText?: string;
   tooManyFilesStatusText?: string;
+  files?: object;
+  faultyFiles?: object;
   infoText?: string;
   orText?: string;
   onClick?: () => void;
