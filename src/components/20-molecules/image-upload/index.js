@@ -29,13 +29,6 @@ const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 /* Helperfunctions */
 export const getBytesFromMegabyte = megabyte => 1024 * 1024 * megabyte;
 
-export const fileKey = (file, soft = false) =>
-  file.name
-    .replace(/\.[^/.]+$/, '')
-    .replace(/\s/g, '_')
-    .replace(/[.]/g, '')
-    .replace(/[^a-zA-Z0-9][-_]/g, '') + (soft ? '__' : file.lastModified);
-
 class AXAImageUpload extends LitElement {
   static get tagName() {
     return 'axa-image-upload';
@@ -71,7 +64,7 @@ class AXAImageUpload extends LitElement {
     super();
     this.inputFileText = 'Upload file';
     this.maxSizeOfSingleFileMB = 5;
-    this.maxSizeOfAllFilesMB = 5;
+    this.maxSizeOfAllFilesMB = 1;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'cloud-upload';
@@ -92,16 +85,18 @@ class AXAImageUpload extends LitElement {
     this.faultyFiles = [];
     this.allFiles = [];
 
-    // this.onClick = () => {}; TODO
-
     this.sizeOfAllFilesByte = 0;
     this.allDroppedFiles = 0;
     this.isFileMaxReached = false;
 
+    this.globalErrorMessage = '';
+    this.addMoreInputFile = '';
+    this.showAddMoreInputFile = '';
+
     this.maxSizeOfSingleFileByte = getBytesFromMegabyte(
       this.maxSizeOfSingleFileMB
     );
-    this.maxsizeOfAllFilesByte = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
+    this.maxSizeOfAllFilesByte = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
   }
 
   handleAddMoreInputClick() {
@@ -152,28 +147,28 @@ class AXAImageUpload extends LitElement {
         ? this.maxNumberOfFiles
         : this.allDroppedFiles) - 1;
 
-    this.errorWrapper.innerHTML = '';
+    this.globalErrorMessage = '';
 
     if (index >= this.files.length) {
       /* wrong file */
       clonedFiles = [...this.faultyFiles];
       clonedFiles.splice(index - this.files.length, 1);
       this.faultyFiles = clonedFiles;
-      this.allDroppedFiles += 1; // TODO not so beautiful
+      this.allDroppedFiles += 1;
     } else {
       /* valid file */
       clonedFiles = [...this.files];
       clonedFiles.splice(index, 1);
       this.files = clonedFiles;
       if (this.files.length + 1 === this.maxNumberOfFiles) {
-        this.dropZone.appendChild(this.addMoreInputFile);
+        this.showAddMoreInputFile = true;
       }
     }
 
     this.handleMaxNumberOfFiles();
 
     this.sizeOfAllFilesByte -= this.allFiles[index].size;
-    this.performUpdate();
+    this.performUpdate(); // TODO
 
     if (this.allFiles.length === 0) {
       this.showImageOverview = false;
@@ -182,11 +177,13 @@ class AXAImageUpload extends LitElement {
       this.files = [];
       this.allFiles = [];
       this.faultyFiles = [];
-      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
+      this.showAddMoreInputFile = false;
     }
   }
 
   async addFiles(droppedFiles) {
+    this.showAddMoreInputFile = true;
+    this.globalErrorMessage = '';
     this.allDroppedFiles += droppedFiles.length;
     const filesLeftOver = Math.max(
       this.maxNumberOfFiles - this.files.length,
@@ -206,14 +203,13 @@ class AXAImageUpload extends LitElement {
 
     this.validateFiles(compressedImages, pdfs, slicedFiles);
 
-    console.log('right', this.files, 'wrong', this.faultyFiles);
-    this.performUpdate();
+    this.performUpdate(); // TODO
 
-    if (this.files && droppedFiles.length > 0) {
+    if (this.files.length > 0 && droppedFiles.length > 0) {
       this.showImageOverview = true;
     }
     if (this.files.length >= this.maxNumberOfFiles) {
-      this.addMoreInputFile.parentNode.removeChild(this.addMoreInputFile);
+      this.showAddMoreInputFile = false;
     }
 
     this.handleMaxNumberOfFiles();
@@ -224,17 +220,11 @@ class AXAImageUpload extends LitElement {
     let finalFiles = pdfs;
 
     for (let i = 0; i < compressedImages.length; i++) {
-      const fileKeyBeforeCompression = fileKey(slicedFiles[i], true);
       if (
-        !compressedImages.some(
-          compressedImage =>
-            fileKey(compressedImage, true) === fileKeyBeforeCompression
-        )
+        this.sizeOfAllFilesByte + compressedImages[i].size >
+        this.maxSizeOfAllFilesByte
       ) {
-        // TODO fehler meldung
-        faultyFiles.push(compressedImages[i]);
-      } else if (this.sizeOfAllFilesByte > this.maxsizeOfAllFilesByte) {
-        faultyFiles.push(compressedImages[i]);
+        this.globalErrorMessage = this.filesTooBigStatusText;
       } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
         faultyFiles.push(compressedImages[i]);
       } else {
@@ -247,6 +237,7 @@ class AXAImageUpload extends LitElement {
     this.files = this.files.concat(finalFiles);
     /* concat the latest faulty files from a file-upload to the existing ones */
     this.faultyFiles = this.faultyFiles.concat(faultyFiles);
+    console.log(this.files, this.faultyFiles);
   }
 
   handleMaxNumberOfFiles() {
@@ -257,12 +248,14 @@ class AXAImageUpload extends LitElement {
       tooManyFilesStatusText,
     } = this;
 
-    if (allDroppedFiles - faultyFiles.length > maxNumberOfFiles) {
-      this.errorWrapper.innerHTML = tooManyFilesStatusText;
+    if (
+      allDroppedFiles - faultyFiles.length > maxNumberOfFiles &&
+      faultyFiles.length + this.files.length === maxNumberOfFiles
+    ) {
+      this.globalErrorMessage = tooManyFilesStatusText;
     }
 
     this.isFileMaxReached = this.files.length === maxNumberOfFiles;
-    console.log('this.isFileMaxReached handler', this.isFileMaxReached);
   }
 
   fileOverviewMapping() {
@@ -388,7 +381,7 @@ class AXAImageUpload extends LitElement {
     /* displaying files with errors (e.g. too big) after valid ones */
     this.allFiles = this.files.concat(this.faultyFiles);
     const fileOverview = this.fileOverviewMapping(this.allFiles);
-    const addMoreInputFile = this.generateAddMoreInputFile();
+    this.addMoreInputFile = this.generateAddMoreInputFile();
 
     return html`
       <article class="m-image-upload">
@@ -419,11 +412,14 @@ class AXAImageUpload extends LitElement {
                 </axa-input-file>
               `
             : html`
-                ${fileOverview} ${addMoreInputFile}
+                ${fileOverview}
+                ${this.showAddMoreInputFile ? this.addMoreInputFile : ``}
               `}
         </section>
 
-        <div class="${classMap(errorMessageWrapperClasses)}"></div>
+        <div class="${classMap(errorMessageWrapperClasses)}">
+          ${this.globalErrorMessage}
+        </div>
       </article>
     `;
   }
@@ -438,15 +434,6 @@ class AXAImageUpload extends LitElement {
 
   querySelector(selector) {
     return this.shadowRoot.querySelector(selector);
-  }
-
-  updated() {
-    const addMoreInputFile = this.shadowRoot.querySelector(
-      '.js-image-upload__add-more'
-    );
-    if (addMoreInputFile) {
-      this.addMoreInputFile = addMoreInputFile;
-    }
   }
 }
 

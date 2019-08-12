@@ -3,18 +3,18 @@ import AXAImageUpload from './index';
 
 export default createElement => ({
   inputFileText = 'Upload file',
-  maxSizeOfSingleFileMB = 15,
+  maxSizeOfSingleFileMB = 5,
   maxSizeOfAllFilesMB = 20,
   maxNumberOfFiles = 10,
   showImageOverview = false,
   icon = 'cloud-upload',
   deleteStatusText = 'Delete',
   addStatusText = 'Add more',
-  fileTooBigStatusText = `File bigger than ${this.maxSizeOfSingleFileMB}Mb`,
-  filesTooBigStatusText = `Files bigger than ${this.maxSizeOfAllFilesMB}Mb`,
-  tooManyFilesStatusText = `You exceeded the maximum number of files wich is ${
-    this.maxNumberOfFiles
-  }`,
+  fileTooBigStatusText = `File bigger than ${maxSizeOfSingleFileMB}MB`,
+  filesTooBigStatusText = `Files bigger than ${maxSizeOfAllFilesMB}MB`,
+  tooManyFilesStatusText = `You exceeded the maximum number of files wich is ${maxNumberOfFiles}`,
+  files = [],
+  faultyFiles = [],
   infoText = 'Drag and drop to upload your file',
   orText = 'or',
   children,
@@ -33,6 +33,8 @@ export default createElement => ({
       fileTooBigStatusText,
       filesTooBigStatusText,
       tooManyFilesStatusText,
+      files,
+      faultyFiles,
       infoText,
       orText,
     },
