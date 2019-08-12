@@ -57,7 +57,8 @@ class AXACommercialHeroBanner extends InlineStyles {
     return html`
       <header
         class="o-commercial-hero-banner"
-        style="background: url('${this.src}') no-repeat ${this.imagePosition};"
+        style="background: url('${this.src}') no-repeat ${this
+          .imagePosition};background-size: cover;"
       >
         <div class="o-commercial-hero-banner__container">
           <axa-container>
