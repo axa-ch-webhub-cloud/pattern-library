@@ -3,7 +3,9 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import Swipe from './swipe';
 
+const ELEMENT_NODE = 1;
 const ANIMATION_LEFT_CLASS = 'o-carousel_animation_left';
 const ANIMATION_RIGHT_CLASS = 'o-carousel_animation_right';
 
@@ -24,34 +26,43 @@ class AXACarousel extends LitElement {
       onClick: { type: Function },
       autoRotateDisabled: { type: Boolean },
       autoRotateTime: { type: Number },
+
+      // internal props
+      animationWrapperClass: { type: String }, //TODO intern möglich?
+      mainElementMinHeight: { type: Number },
     };
   }
 
-  _getSlides() {
-    const slots = this.shadowRoot.querySelectorAll('.o-carousel__slot');
-
-    return slots[0]
-      .assignedNodes({ flatten: true })
-      .filter(node => node.nodeType === 1); //TODO 1?
+  handleNextButtonClick() {
+    this._nextSlide();
+    this._stopAutoRotate();
   }
 
+  handlePreviousButtonClick() {
+    this._previousSlide();
+    this._stopAutoRotate();
+  }
+
+  _getSlides() {
+    const slots = this.shadowRoot.querySelector('.o-carousel__slot');
+
+    return slots
+      .assignedNodes({ flatten: true })
+      .filter(node => node.nodeType === ELEMENT_NODE);
+  }
 
   _setSlideVisibleWithAnimation(slideNumber, animationClass) {
-    // TODO: nicer
     this.visibleSlide = slideNumber;
     this.slides.forEach(node => {
-      node.style = 'display: none;';
+      node.style.display = 'none';
     });
 
-    const wrapperElement = this.shadowRoot.getElementById('o-carousel__animation-wrapper');
+    this.animationWrapperClass = ''; // remove all animation classes
 
-    wrapperElement.classList.remove(ANIMATION_LEFT_CLASS);
-    wrapperElement.classList.remove(ANIMATION_RIGHT_CLASS);
-
-    // TODO: add/remove: browser needs time?!
+    // TODO: add/remove: browser needs time?! evaluate!
     setTimeout(() => {
-      wrapperElement.classList.add(animationClass);
-      this.slides[slideNumber].style = 'display:block';
+      this.animationWrapperClass = animationClass;
+      this.slides[slideNumber].style.display = 'block';
     }, 100);
   }
 
@@ -75,7 +86,7 @@ class AXACarousel extends LitElement {
     this._setSlideVisibleWithAnimation(nextSlideIndex, ANIMATION_LEFT_CLASS);
   }
 
-  startAutoRotate() {
+  _startAutoRotate() {
     if (!this.autoRotateDisabled) {
       this.autoRotateTimerID = setInterval(() => {
         this._nextSlide();
@@ -83,23 +94,37 @@ class AXACarousel extends LitElement {
     }
   }
 
-  stopAutoRotate() {
+  _stopAutoRotate() {
     clearInterval(this.autoRotateTimerID);
   }
 
-  calculateContainerMinHeight() {
-    // we need to set slider min height in case there are elements with different heights.
-    this.minHeight = 0;
-    for (let i = 0; i < this.slides.length; i++) {
-      this.slides[i].style = 'display:block'; // because only the first element has initially a height > 0
-      if (this.slides[i].clientHeight > this.minHeight) {
-        this.minHeight = this.slides[i].clientHeight;
+  _calculateContainerMinHeight() {
+    // we need to set carousel min height in case there are elements with different heights.
+    this.slides.forEach(node => {
+      node.style.display = 'block'; // not all the elements have initially a height > 0
+      if (node.clientHeight > this.carouselMinHeight) {
+        this.carouselMinHeight = node.clientHeight;
       }
-    }
+    });
+  }
 
-    this.shadowRoot.querySelector('.o-carousel').style.minHeight = `${
-      this.minHeight
-    }px`;
+  _onSwipeLeft = () => {
+    this.handleNextButtonClick();
+  };
+
+  _onSwipeRight = () => {
+    this.handlePreviousButtonClick();
+  };
+
+  _initSwipe() {
+    this.swiper = new Swipe(this, this._onSwipeLeft, this._onSwipeRight);
+    this.swiper.run();
+  }
+
+  _terminateSwipe() {
+    if (this.swiper && this.swiper.stop) {
+      this.swiper.stop();
+    }
   }
 
   constructor() {
@@ -110,32 +135,43 @@ class AXACarousel extends LitElement {
     this.autoRotateTimerID = null;
     this.slides = null;
     this.visibleSlide = 0;
+    this.animationWrapperClass = '';
+    this.carouselMinHeight = 0;
+    this.swiper = null;
   }
 
   firstUpdated() {
     // Add DOM changes here
     // This will be rendered when the component is connected to the DOM
     this.slides = this._getSlides();
-    this.calculateContainerMinHeight();
+    this._calculateContainerMinHeight(); // TODO: handle resize
     this._setSlideVisibleWithAnimation(0);
-    this.startAutoRotate();
+    this._initSwipe();
+    this._startAutoRotate();
   }
 
   render() {
     return html`
-      <article class="o-carousel">
+      <article
+        id="o-carousel-main"
+        class="o-carousel"
+        style="min-height: ${this.carouselMinHeight}px;"
+      >
         <button
           type="button"
           class="o-carousel__arrow o-carousel__arrow-left"
-          @click="${this._previousSlide}"
+          @click="${this.handlePreviousButtonClick}"
         ></button>
-        <div id="o-carousel__animation-wrapper">
+        <div
+          class="${this.animationWrapperClass}"
+          id="o-carousel__animation-wrapper"
+        >
           <slot class="o-carousel__slot"></slot>
         </div>
         <button
           type="button"
           class="o-carousel__arrow o-carousel__arrow-right"
-          @click="${this._nextSlide}"
+          @click="${this.handleNextButtonClick}"
         ></button>
       </article>
     `;
@@ -144,7 +180,8 @@ class AXACarousel extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    // Cleanup and reset (i.e event listeners)
+    this._stopAutoRotate();
+    this._terminateSwipe();
   }
 }
 
