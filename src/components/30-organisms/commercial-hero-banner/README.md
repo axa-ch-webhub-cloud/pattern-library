@@ -13,7 +13,9 @@ npm install @axa-ch/commercial-hero-banner
 ```js
 import '@axa-ch/commercial-hero-banner';
 ...
-<axa-commercial-hero-banner></axa-commercial-hero-banner>
+<axa-commercial-hero-banner variant="dark"
+      src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+      imageposition="center center"></axa-commercial-hero-banner>
 ```
 
 ### React
@@ -32,7 +34,11 @@ export default AXACommercialHeroBannerReact;
 ```
 
 ```js
-<AXACommercialHeroBannerReact onClick={handler} />
+<AXACommercialHeroBannerReact
+  variant="dark"
+  src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+  imagePosition="center center"
+/>
 ```
 
 ### Pure HTML pages
@@ -49,7 +55,11 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-commercial-hero-banner></axa-commercial-hero-banner>
+    <axa-commercial-hero-banner
+      variant="dark"
+      src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+      imageposition="center center"
+    ></axa-commercial-hero-banner>
     <script src="node_modules/@axa-ch/commercial-hero-banner/dist/index.js"></script>
   </body>
 </html>
@@ -59,13 +69,11 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 
 ### Variant
 
-| Attribute       | Details         |
-| --------------- | --------------- |
-| `variant="foo"` | Desc of Variant |
-
-### onClick
-
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+| Attribute       | Details                                                                                                      |
+| --------------- | ------------------------------------------------------------------------------------------------------------ |
+| `variant`       | 'dark' or 'light', sets the theme (gradient)                                                                 |
+| `src`           | The 'src' of the background image                                                                            |
+| `imageposition` | The position of the image. 'center center' (default), 'top left', 'top right', 'bottom right', 'bottom left' |
 
 ### Migration Notes
 
