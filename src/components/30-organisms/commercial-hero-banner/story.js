@@ -54,18 +54,20 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
       src="${src}"
       imageposition="${imagePosition}"
     >
-      <h2 slot="category">Insurance</h2>
-      <h1 slot="title">Title</h1>
+      <h2 slot="category">This example shows specific picture classes</h2>
+      <h1 slot="title">Drive with peace of mind</h1>
       <p slot="content">
-        This is the content<br />And some lines below in the same paragraph.
-      </p>
-      <p slot="content">
-        This is another content paragraph. It is made up with several phrases
-        that summarize a short description to what the user should know about
-        the offer or product that is being advertised.
+        Whether you need to insure your first car or renew your existing car
+        insurance, AXA can provide a range of car insurance policies to suit
+        your requirements and offer great product benefits at a price you can
+        afford
       </p>
       <small slot="disclaimer">Terms and Conditions apply.</small>
-      <axa-button-link href="https://axa.ch" slot="button" variant="red"
+      <axa-button-link
+        href="https://axa.ch"
+        slot="button"
+        variant="red"
+        size="large"
         >GET A QUOTE</axa-button-link
       >
     </axa-commercial-hero-banner>
