@@ -53,11 +53,8 @@
 
     @include breakpoint($mediaquery-lg-up) {
       background-color: transparent;
-      // color: $color-prim-white;
 
       margin: 0;
-
-      flex-basis: 50%;
     }
 
     &-item {
@@ -68,16 +65,8 @@
         min-height: 550px;
 
         display: flex;
-        flex-basis: 32.2%;
+        flex-basis: 50%;
         align-items: center;
-      }
-
-      &:last-child {
-        display: none;
-
-        @include breakpoint($mediaquery-lg-up) {
-          display: block;
-        }
       }
     }
 

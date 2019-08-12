@@ -1,4 +1,6 @@
 axa-commercial-hero-banner {
+  color: $color-prim-gray-dark;
+
   axa-button,
   axa-button-link {
     display: inline-block;
@@ -17,7 +19,6 @@ axa-commercial-hero-banner {
   }
 
   h2 {
-    color: $color-prim-gray-dark;
     font-family: 'Source Sans Pro', Arial, sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -28,9 +29,6 @@ axa-commercial-hero-banner {
     @include breakpoint($mediaquery-sm-up) {
       font-size: 14px;
       line-height: 1.21;
-    }
-
-    @include breakpoint($mediaquery-lg-up) {
     }
   }
 
@@ -52,7 +50,6 @@ axa-commercial-hero-banner {
   }
 
   p {
-    // @include typo(primary, medium);
     font-family: 'Source Sans Pro', Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
