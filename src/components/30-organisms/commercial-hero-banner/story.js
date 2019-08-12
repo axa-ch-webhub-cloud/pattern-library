@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
-import { radios, withKnobs } from '@storybook/addon-knobs';
+import { text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
@@ -30,6 +30,11 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
     'light'
   );
 
+  const src = text(
+    'Src',
+    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
+  );
+
   const imagePosition = radios(
     'Position',
     {
@@ -46,7 +51,7 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
   const template = html`
     <axa-commercial-hero-banner
       variant="${variant}"
-      src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+      src="${src}"
       imageposition="${imagePosition}"
     >
       <h2 slot="category">Insurance</h2>
