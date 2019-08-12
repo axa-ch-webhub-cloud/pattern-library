@@ -22,6 +22,7 @@ storyAXACarousel.add('Carousel', () => {
 <div id="colorWrapper" style="background: lightcoral; color: white;">
     <axa-carousel
     autorotatedisabled
+    keysenabled
     >
       <span
         >Very helpful once I got through to the correct person but I was

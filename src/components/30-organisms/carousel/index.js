@@ -21,11 +21,10 @@ class AXACarousel extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
-      onClick: { type: Function },
       autoRotateDisabled: { type: Boolean },
       autoRotateTime: { type: Number },
+      keysEnabled: { type: Boolean },
 
       // internal props
       animationWrapperClass: { type: String }, //TODO intern möglich?
@@ -33,6 +32,7 @@ class AXACarousel extends LitElement {
     };
   }
 
+  // public methods
   handleNextButtonClick() {
     this._nextSlide();
     this._stopAutoRotate();
@@ -43,6 +43,7 @@ class AXACarousel extends LitElement {
     this._stopAutoRotate();
   }
 
+  // private methods
   _getSlides() {
     const slots = this.shadowRoot.querySelector('.o-carousel__slot');
 
@@ -108,6 +109,7 @@ class AXACarousel extends LitElement {
     });
   }
 
+  // Swipe for mobile devices
   _onSwipeLeft = () => {
     this.handleNextButtonClick();
   };
@@ -127,12 +129,33 @@ class AXACarousel extends LitElement {
     }
   }
 
+  // Key Navigation
+  _initKeyNavigation() {
+    if(this.keysEnabled) {
+      this.ownerDocument.addEventListener('keyup', this._handleKeyUp);
+    }
+  }
+
+  _terminateKeyNavigation() {
+    this.ownerDocument.removeEventListener('keyup', this._handleKeyUp);
+  }
+
+  _handleKeyUp = ev => {
+    const e = ev || window.event;
+
+    if (e.keyCode === 37) {
+      this.handlePreviousButtonClick();
+    } else if (e.keyCode === 39) {
+      this.handleNextButtonClick();
+    }
+  };
+
   constructor() {
     super();
-    this.onClick = () => {};
     this.autoRotateDisabled = false;
     this.autoRotateTime = 5000;
     this.autoRotateTimerID = null;
+    this.keysEnabled = false;
     this.slides = null;
     this.visibleSlide = 0;
     this.animationWrapperClass = '';
@@ -182,6 +205,7 @@ class AXACarousel extends LitElement {
 
     this._stopAutoRotate();
     this._terminateSwipe();
+    this._terminateKeyNavigation();
   }
 }
 
