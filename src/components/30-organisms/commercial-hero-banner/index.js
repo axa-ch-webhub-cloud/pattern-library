@@ -61,7 +61,9 @@ class AXACommercialHeroBanner extends InlineStyles {
       >
         <div class="o-commercial-hero-banner__container">
           <axa-container>
-            <div class="o-commercial-hero-banner__photo-holder">&nbsp;</div>
+            <div class="o-commercial-hero-banner__picture-container">
+              &nbsp;
+            </div>
             <div class="o-commercial-hero-banner__content">
               <div class="o-commercial-hero-banner__content-item">
                 <div class="o-commercial-hero-banner__content-item-box">
