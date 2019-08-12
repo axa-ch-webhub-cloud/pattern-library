@@ -1,11 +1,18 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
+type Variant = 'light' | 'dark';
+type ImagePosition =
+  | 'center center'
+  | 'top left'
+  | 'top right'
+  | 'bottom right'
+  | 'bottom left';
 
 interface AXACommercialHeroBannerProps {
   className?: string;
   variant?: Variant;
-  onClick?: () => void;
+  imagePosition: ImagePosition;
+  src: string;
 }
 
 declare function createAXACommercialHeroBanner(
