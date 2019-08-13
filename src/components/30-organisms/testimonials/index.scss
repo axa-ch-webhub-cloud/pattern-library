@@ -44,61 +44,10 @@
         margin: 20px 0;
       }
     }
-
-    &__carousel {
-      display: flex;
-      outline: none;
-
-      &__flexbox-container {
-        display: flex;
-        align-items: center;
-
-        :focus {
-          outline: none;
-        }
-      }
-
-      &__arrow-left {
-        transform: rotate(-45deg);
-      }
-
-      &__arrow-right {
-        transform: rotate(135deg);
-      }
-    }
-  }
-
-  &__arrow {
-    padding: 6px;
-    height: 14px;
-    width: 6px;
-    border: solid $color-prim-white;
-    border-width: 2px 0 0 2px;
-    cursor: pointer;
-    background: transparent;
-
-    @include breakpoint($mediaquery-sm-up) {
-      padding: 10px;
-      height: 20px;
-      width: 10px;
-    }
-  }
-
-  macro-carousel {
-    margin: 0 10px;
-
-    ::slotted(*) {
-      //default attributes for carousel content
-      @include typo(primary, large, default);
-      display: flex;
-      align-self: center;
-      text-align: center;
-      justify-content: center; // align the dom element itself (f.a. small spans)
-    }
-
   }
 
   axa-carousel {
     width: 100%;
+    margin: 0 10px;
   }
 }
