@@ -171,7 +171,7 @@ test('should submit correct value to form', async t => {
   await t.click(dropdown);
   const secondOption = await Selector(() =>
     document.querySelector(
-      'axa-dropdown[data-test-id="dropdown-forms"] button[data-index="2"]'
+      'axa-dropdown[data-test-id="dropdown-forms"] button[data-value="FR"]'
     )
   );
   await t.click(secondOption);
@@ -196,5 +196,5 @@ test('should submit correct value to form', async t => {
     () => document.querySelector('#dropdown-form').title
   );
 
-  await t.expect(await getFormTitle()).eql('FR,2 ');
+  await t.expect(await getFormTitle()).eql('FR,1 ');
 });

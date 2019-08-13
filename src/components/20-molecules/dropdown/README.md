@@ -14,10 +14,8 @@
 ### Native Example
 
 ```
-<axa-dropdown title="Please Select" valid
+<axa-dropdown defaulttitle="Please Select" valid
     items='[
-    {"name": "Please Select", "value": "Please Select",
-     "selected": true, "disabled": true },
     {"name": "Item A", "value": "Item 1" },
     {"name": "Item B", "value": "Item 2" },
     {"name": "Item C", "value": "Item 3" }
@@ -58,14 +56,19 @@ export default AXADropdownReact;
 
 ## Properties
 
-### title
+### defaulttitle
 
-The String-valued attribute `value` sets the initial title of the closed dropdown (default: first selected item).
+The String-valued attribute `defaulttitle` sets the initial title of the closed dropdown (default: first selected item).
+
+Its intended use is primarily for native-HTML situations where server-generated `items` describe the choices proper,
+and a separate title like `defaulttitle-"Please select"` prompts the user to make a choice.
+
+See the above React example for an alternative parametrization strategy that relies on using `items` only.
 
 ### value
 
-The String-valued attribute `value` sets the selected dropdown option to the one with matching value. When reading `value`, it returns the
-currently selected value.
+The String-valued attribute `value` sets the selected dropdown option to the one with matching value.
+When reading `value`, it returns the currently selected value.
 
 ### native
 
@@ -90,8 +93,8 @@ When true, the Boolean attribute `embedded` suppresses the default space around 
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
-the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,index}` structure, where `value` is
-the currently selected value and `index` is its 0-based index.
+the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,index,name}` structure, where `value` is
+the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
 
 _Important_: This attribute can also be used natively. However, in this case the event parameter passed conforms to the **change** event described below.
 
@@ -105,6 +108,6 @@ The function-valued attributes `onFocus, onBlur` can be used as a callback prop 
 
 If not in controlled-component mode, two custom events `axa-change` and `change` are fired on &lt;axa-dropdown&gt; itself whenever the `onChange` callback from above gets invoked.
 
-`axa-change`'s event `detail` is a the currently selected value (a string).
+`axa-change`'s event `detail` is the currently selected value (a string).
 
-`change`'s event `detail` is an object `{value,index}`,where `value` is the currently selected value and `index` is its 0-based index.
+`change`'s event `detail` is an object `{value,index,name}`,where `value` is the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
