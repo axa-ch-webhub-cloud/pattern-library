@@ -1,7 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
-import './policy-features-item/index';
 import './index';
 import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';

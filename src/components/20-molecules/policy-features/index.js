@@ -3,6 +3,7 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import './policy-features-item/index';
 
 export const STYLE_WHITELIST = [
   'default',
