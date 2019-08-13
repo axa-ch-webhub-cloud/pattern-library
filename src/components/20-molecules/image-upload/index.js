@@ -10,7 +10,7 @@ import {
   AttachFileSvg,
 } from '@axa-ch/materials/icons';
 
-/* Icon isolated from others, because it's a component specific icon */
+/* icon isolated from others, because it's a component specific icon */
 import { ImageUploadGroupSvg } from './icons';
 
 /* eslint-disable import/no-extraneous-dependencies */
@@ -26,7 +26,7 @@ const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
-/* Helperfunctions */
+/* helperfunctions */
 export const getBytesFromMegabyte = megabyte => 1024 * 1024 * megabyte;
 
 class AXAImageUpload extends LitElement {
@@ -53,8 +53,6 @@ class AXAImageUpload extends LitElement {
       fileTooBigStatusText: { type: String },
       filesTooBigStatusText: { type: String },
       tooManyFilesStatusText: { type: String },
-      files: { type: Object },
-      faultyFiles: { type: Object },
       orText: { type: String },
       infoText: { type: String },
     };
@@ -132,7 +130,7 @@ class AXAImageUpload extends LitElement {
     const files = [...e.dataTransfer.files].filter(
       file => ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
-    console.log('files on drop', files);
+
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
     if (files.length > 0) {
       this.addFiles(files);
@@ -168,9 +166,8 @@ class AXAImageUpload extends LitElement {
     this.handleMaxNumberOfFiles();
 
     this.sizeOfAllFilesByte -= this.allFiles[index].size;
-    this.performUpdate(); // TODO
 
-    if (this.allFiles.length === 0) {
+    if (this.files.length + this.faultyFiles.length === 0) {
       this.showImageOverview = false;
       this.sizeOfAllFilesByte = 0;
       this.allDroppedFiles = 0;
@@ -179,6 +176,7 @@ class AXAImageUpload extends LitElement {
       this.faultyFiles = [];
       this.showAddMoreInputFile = false;
     }
+    this.requestUpdate();
   }
 
   async addFiles(droppedFiles) {
@@ -197,13 +195,11 @@ class AXAImageUpload extends LitElement {
       filesLeftOver
     );
 
-    /* alle pdfs compress all images. pngs will become jpes and unrecognised files will be deleted */
     const pdfs = [...slicedFiles].filter(file => file.type.indexOf('pdf') > -1);
+    /* compress all images. pngs will become jpeg's and unrecognised files will be deleted */
     const compressedImages = await compressImage(slicedFiles);
 
     this.validateFiles(compressedImages, pdfs, slicedFiles);
-
-    this.performUpdate(); // TODO
 
     if (this.files.length > 0 && droppedFiles.length > 0) {
       this.showImageOverview = true;
@@ -213,6 +209,7 @@ class AXAImageUpload extends LitElement {
     }
 
     this.handleMaxNumberOfFiles();
+    this.requestUpdate();
   }
 
   validateFiles(compressedImages, pdfs, slicedFiles) {
@@ -237,7 +234,6 @@ class AXAImageUpload extends LitElement {
     this.files = this.files.concat(finalFiles);
     /* concat the latest faulty files from a file-upload to the existing ones */
     this.faultyFiles = this.faultyFiles.concat(faultyFiles);
-    console.log(this.files, this.faultyFiles);
   }
 
   handleMaxNumberOfFiles() {
