@@ -25,7 +25,7 @@ class AXACarousel extends LitElement {
     return {
       autoRotateDisabled: { type: Boolean },
       autoRotateTime: { type: Number },
-      keysEnabled: { type: Boolean },
+      keysenabled: { type: Boolean },
 
       // internal props
       animationWrapperClass: { type: String }, //TODO intern möglich?
@@ -138,7 +138,7 @@ class AXACarousel extends LitElement {
 
   // Key Navigation
   _initKeyNavigation() {
-    if (this.keysEnabled) {
+    if (this.keysenabled) {
       this.ownerDocument.addEventListener('keyup', this._handleKeyUp);
     }
   }
@@ -162,7 +162,7 @@ class AXACarousel extends LitElement {
     this.autoRotateDisabled = false;
     this.autoRotateTime = 5000;
     this.autoRotateTimerID = null;
-    this.keysEnabled = false;
+    this.keysenabled = false;
     this.slides = null;
     this.visibleSlide = 0;
     this.animationWrapperClass = '';
@@ -177,6 +177,7 @@ class AXACarousel extends LitElement {
     this._calculateContainerMinHeight();
     this._setSlideVisibleWithAnimation(0);
     this._initSwipe();
+    this._initKeyNavigation();
     this._startAutoRotate();
     window.addEventListener('resize', this._onResize);
   }
