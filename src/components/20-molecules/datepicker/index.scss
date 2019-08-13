@@ -2,6 +2,10 @@ axa-datepicker {
   display: inline-block;
   vertical-align: top;
 
+  * {
+    box-sizing: content-box;
+  }
+
   &[inputfield] {
 
     .m-datepicker__wrap {
