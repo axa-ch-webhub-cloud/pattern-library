@@ -56,16 +56,13 @@ class AXACommercialHeroBanner extends InlineStyles {
     // display the component. This seems to be connected to 'src' being
     // a prop, because hardcoded it works. Feel free to apply magic.
     return html`
-      <header
-        class="o-commercial-hero-banner"
-        style="background: url('${this.imageSource}') no-repeat ${this
-          .imagePosition};background-size: cover;"
-      >
+      <header class="o-commercial-hero-banner">
         <div class="o-commercial-hero-banner__container">
+          <img src="${
+            this.imageSource
+          }" class="o-commercial-hero-banner__picture-container"
+          ></img>
           <axa-container>
-            <div class="o-commercial-hero-banner__picture-container">
-              &nbsp;
-            </div>
             <div class="o-commercial-hero-banner__content">
               <div class="o-commercial-hero-banner__content-item">
                 <div class="o-commercial-hero-banner__content-item-box">

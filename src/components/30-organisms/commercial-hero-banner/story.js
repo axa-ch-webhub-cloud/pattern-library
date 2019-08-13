@@ -9,7 +9,7 @@ import './index';
 import Readme from './README.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
-  'Organisms/Commercial hero banner',
+  'Organisms/Commercial Hero Banner',
   module
 );
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
@@ -20,7 +20,7 @@ storyAXACommercialHeroBanner.addParameters({
   },
 });
 
-storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
+storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
   const variant = radios(
     'Variant',
     {
@@ -69,8 +69,8 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
         variant="red"
         size="large"
         >GET A QUOTE</axa-button-link
-      >
-    </axa-commercial-hero-banner>
+      > </axa-commercial-hero-banner
+    ><br />
     <axa-commercial-hero-banner
       variant="${variant}"
       imagesource="${src}"
