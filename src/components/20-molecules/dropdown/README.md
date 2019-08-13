@@ -75,18 +75,21 @@ When reading `value`, it returns the currently selected value.
 When true, the Boolean attribute `native` enforces native &lt;select&gt; UI look-and-feel for open dropdowns irrespective of
 window widths.
 
-### valid
+### checkMark
 
-When true, the Boolean attribute `valid` shows an animated checkmark to the right of the dropdown.
+When true, the Boolean attribute `checkmark` shows an animated checkmark to the right of the dropdown.
+
+### invalid
+
+The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). if `true` it sets the element into a visual error state.
 
 ### error
 
-When nonempty, the String-valued attribute `error` causes a red error text to be displayed under the dropdown proper,
-as well as colouring the dropdown border in red.
+The string-valued `error` provides error text as HTML. It sets the element into a visual error state, if `invalid` is true.
 
-### embedded
+### disabled
 
-When true, the Boolean attribute `embedded` suppresses the default space around the dropdown otherwise reserved for showing valid/error UI states. It is meant for embedding a dropdown as a subcomponent of other components (cf. axa-datepicker for an example).
+The boolean attribute `disabled` disables the underlying element.
 
 ## Callback Properties
 
@@ -111,3 +114,7 @@ If not in controlled-component mode, two custom events `axa-change` and `change`
 `axa-change`'s event `detail` is the currently selected value (a string).
 
 `change`'s event `detail` is an object `{value,index,name}`,where `value` is the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
+
+### Migration version 2 to 3
+
+The attribute `valid` no renamed to `checkmark` in React `checkMark` 

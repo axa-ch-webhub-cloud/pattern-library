@@ -17,6 +17,7 @@ interface AXADropdownProps<T = number | string> {
   refId?: string;
   label?: string;
   required?: boolean,
+  invalid?: boolean,
   error?: string;
   native?: boolean;
   onChange?: (e: AXADropdownChangeEvent<T>) => void;
@@ -24,7 +25,8 @@ interface AXADropdownProps<T = number | string> {
   onBlur?: (e?: any) => void;
   title?: string;
   value?: T;
-  valid?: boolean;
+  checkMark?: boolean;
+  disabled?: boolean;
   dataTestId?: string;
   className?: string;
 }

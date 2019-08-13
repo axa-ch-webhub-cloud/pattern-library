@@ -100,7 +100,9 @@ class AXADropdown extends NoShadowDOM {
       name: { type: String, reflect: true },
       defaultTitle: { type: String, reflect: true },
       native: { type: Boolean },
-      valid: { type: Boolean, reflect: true },
+      checkMark: { type: Boolean, reflect: true },
+      invalid: { type: Boolean, reflect: true },
+      disabled: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
       isReact: { type: Boolean },
     };
@@ -131,6 +133,10 @@ class AXADropdown extends NoShadowDOM {
     super();
     this.refId = `dropdown-${createRefId()}`;
     this.label = '';
+    this.checkMark = false;
+    this.invalid = false;
+    this.disabled = false;
+    this.required = false;
     // property defaults
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
@@ -266,35 +272,32 @@ class AXADropdown extends NoShadowDOM {
       refId = '',
       defaultTitle,
       native,
-      valid,
+      checkMark,
+      invalid,
       error,
       required,
+      disabled,
       handleDropdownItemClick,
       handleDropdownClick,
     } = this;
     const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
 
-    const validClasses = {
-      'm-dropdown__valid-icon-inner': true,
-      'm-dropdown__valid-icon-inner-active': valid,
-    };
-
     const [selectedItem] = this.findByValue(null);
     this.title = selectedItem ? selectedItem.name : defaultTitle;
 
     return html`
-      ${label &&
-        html`
-          <label for="${refId}" class="m-dropdown__label">
-            ${label}
-            ${required
-              ? html`
-                  *
-                `
-              : ''}
-          </label>
-        `}
-      <div class="${classMap(classes)}">
+        ${label &&
+          html`
+            <label for="${refId}" class="m-dropdown__label">
+              ${label}
+              ${required
+                ? html`
+                    *
+                  `
+                : ''}
+            </label>
+          `}
+        <div class="${classMap(classes)}">
         <div
           class="m-dropdown__list m-dropdown__list--native"
           tabindex="0"
@@ -308,6 +311,7 @@ class AXADropdown extends NoShadowDOM {
             aria-required="${required}"
             tabindex="-1"
             @change="${handleDropdownItemClick}"
+            ?disabled="${disabled}"
           >
             ${[
               { name: defaultTitle, disabled: true, selected: true, value: '' },
@@ -315,7 +319,7 @@ class AXADropdown extends NoShadowDOM {
               .concat(items)
               .map(nativeItemsMapper)}
           </select>
-          <div class="m-dropdown__select-icon">${ARROW_ICON}</div>
+          <div class="m-dropdown__select-icon" aria-disabled="${disabled}">${ARROW_ICON}</div>
         </div>
         <div class="m-dropdown__list m-dropdown__list--enhanced">
           <button
@@ -332,15 +336,17 @@ class AXADropdown extends NoShadowDOM {
             ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
         </div>
-        ${valid
+        ${checkMark
           ? html`
-              <div class="m-dropdown__valid-icon">
-                <span class="${classMap(validClasses)}"></span>
-              </div>
+              <span class="m-dropdown__checkmark-icon"></span>
             `
-          : html``}
+          : ''}
       </div>
-      <div class="m-dropdown__error">${error}</div>
+      ${invalid
+        ? html`
+            <span class="m-dropdown__error">${error}</span>
+          `
+        : ''}
     `;
   }
 

@@ -11,13 +11,13 @@ test('should render correctly', async t => {
   await t.expect(dropdown.exists).ok();
 });
 
-fixture('Dropdown valid').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-w-valid-checkmark`
+fixture('Dropdown check mark').page(
+  `${host}/iframe.html?id=molecules-dropdown--dropdown-w-checkmark`
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
     document.querySelector(
-      `axa-dropdown[data-test-id="dropdown-valid"] .m-dropdown__valid-icon .m-dropdown__valid-icon-inner-active`
+      `axa-dropdown[data-test-id="dropdown-valid"] .m-dropdown__checkmark-icon`
     )
   );
   await t.expect(dropdownCheckmark.exists).ok();
@@ -27,21 +27,14 @@ fixture('Dropdown error').page(
   `${host}/iframe.html?id=molecules-dropdown--dropdown-w-error-message`
 );
 
-test('should show error message and correct colors', async t => {
-  const dropdown = await Selector(() =>
-    document.querySelector(`axa-dropdown[data-test-id="dropdown-error"]`)
+test('should show error message and have the correct color', async t => {
+  const $axaError = await Selector(() =>
+    document.querySelector(`axa-dropdown[data-test-id="dropdown-error"] .m-dropdown__error `)
   );
-
-  await t.expect(dropdown.exists).ok();
-
-  const getErrorMessage = ClientFunction(() => {
-    const errorDiv = document.querySelector(
-      'axa-dropdown[data-test-id="dropdown-error"] > .m-dropdown__error'
-    );
-    return errorDiv.innerText;
-  });
-
-  await t.expect(await getErrorMessage()).eql('please select an item');
+  await t.expect($axaError.innerText).eql('error');
+  await t
+    .expect(await $axaError.getStyleProperty('color'))
+    .eql('rgb(201, 20, 50)');
 
   const getBorderColor = ClientFunction(() => {
     return window

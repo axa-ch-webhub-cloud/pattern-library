@@ -69,13 +69,6 @@ axa-dropdown {
     .m-dropdown__item .m-dropdown__button {
       padding-right: 10px;
     }
-
-    &[max-height][data-usecase="datepicker"] {
-      .m-dropdown__content {
-        border: $dropdown-border-style;
-        border-top: none;
-      }
-    }
   }
 
   &[max-height][data-usecase="datepicker"] {
@@ -88,15 +81,13 @@ axa-dropdown {
     .m-dropdown__select-icon {
       width: 36px;
     }
-
   }
 
   &:not([open]) {
 
     .m-dropdown__toggle:focus {
-      outline-width:2px;
+      outline-width: 2px;
     }
-
   }
 
   &[max-height] {
@@ -106,22 +97,12 @@ axa-dropdown {
       overflow-x: hidden;
     }
 
-    .m-dropdown__item {
-      border-left: none;
-      border-right: none;
-    }
-
     .m-dropdown__button {
       text-overflow: initial;
     }
   }
 
-  &[valid] .m-dropdown__valid-icon {
-    visibility: visible;
-  }
-
-  &[error] .m-dropdown {
-
+  &[invalid] .m-dropdown {
     &__list {
       border-color: $color-validation-error;
     }
@@ -139,9 +120,8 @@ axa-dropdown {
   @include typo(primary, small);
 
   &__list {
-    padding: 10.5px 20px 10.5px 12px;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-dusty;
+    border: $border-width solid $color-prim-gray-dusty;
     color: $dropdown-color;
     height: inherit;
     position: relative;
@@ -163,21 +143,13 @@ axa-dropdown {
     }
   }
 
-  &__valid-icon {
-    visibility: hidden;
-    line-height: $dropdown-height;
-    color: $color-validation-valid;
-      @include check-mark-animated-wrapper();
-      margin-left: 10px;
-
-      &-inner-active {
-        @include check-mark-animated();
-        margin-top: -4px;
-      }
+  &__checkmark-icon {
+    @include check-mark-animated();
+    margin-left: 10px;
   }
 
   &__error {
-    visibility: hidden;
+    display: block;
     margin-top: 10px;
     line-height: 1.2;
     color: $color-validation-error;
@@ -248,7 +220,7 @@ axa-dropdown {
 
   &__content {
     padding: 0;
-    margin: 0;
+    margin: $dropdown-border-width 0 0 0;
     list-style: none;
     position: absolute;
     top: 100%;
@@ -259,8 +231,8 @@ axa-dropdown {
     min-width: 100%;
     overflow: hidden;
     transition: height 0.3s ease;
-    margin-top: -$dropdown-border-width;
     background: $color-prim-white;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   }
 
   &__option,
@@ -285,19 +257,20 @@ axa-dropdown {
     white-space: nowrap;
     margin: 0; /* for Safari, who'd impose 2px margins otherwise */
 
-
     &:hover,
     &:active,
     &:focus {
-      outline: 0;
       color: $dropdown-color--hover;
-      text-decoration: none;
+    }
+
+    &:hover {
       background: $color-prim-gray-wild-sand;
     }
 
-    &:focus,
-    &:active {
-      outline: solid 2px $color-axa-blue;
+    &:focus {
+      outline: solid 1px $color-axa-blue;
+      outline-offset: -1px;
+      background: $color-prim-gray-wild-sand;
     }
   }
 
@@ -305,17 +278,12 @@ axa-dropdown {
     border-left: $dropdown-border-style;
     border-right: $dropdown-border-style;
 
-    &--is-selected .m-dropdown__button {
-      background: $color-prim-gray-wild-sand;
-      color: $dropdown-color--hover;
-    }
-
-    &:first-child {
-      border-top: $dropdown-border-style;
-    }
-
     &:last-child {
       border-bottom: $dropdown-bottom-border-width solid $color-prim-gray-silver;
+    }
+
+    &--is-selected .m-dropdown__button {
+      color: $dropdown-color--hover;
     }
   }
 
@@ -352,5 +320,14 @@ axa-dropdown {
         display: none;
       }
     }
+  }
+
+  .m-dropdown__select:disabled,
+  [aria-disabled="true"] {
+    color: $color-prim-gray-dusty;
+    background-color: $color-prim-gray-mercury;
+    border-color: $color-prim-gray-mercury;
+    border-bottom-color: $color-prim-gray-silver;
+    pointer-events: none;
   }
 }

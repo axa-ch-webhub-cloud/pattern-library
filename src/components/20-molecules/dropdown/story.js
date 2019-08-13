@@ -29,8 +29,8 @@ storiesOf('Molecules/Dropdown', module)
   ]'></axa-dropdown>`
   )
   .add(
-    'Dropdown w/ valid checkmark',
-    () => `<axa-dropdown defaulttitle="Please Select" data-test-id="dropdown-valid" valid
+    'Dropdown w/ checkmark',
+    () => `<axa-dropdown defaulttitle="Please Select" data-test-id="dropdown-valid" checkmark
     items='[
     {"name": "Item 1", "value": "Item 1" },
     {"name": "Item 2", "value": "Item 2" },
@@ -40,7 +40,7 @@ storiesOf('Molecules/Dropdown', module)
   )
   .add(
     'Dropdown w/ error message',
-    () => `<axa-dropdown defaulttitle="Please Select" data-test-id="dropdown-error" error="please select an item"
+    () => `<axa-dropdown defaulttitle="Please Select" data-test-id="dropdown-error" invalid error="error"
     items='[
     {"name": "Item 1", "value": "Item 1" },
     {"name": "Item 2", "value": "Item 2" },
