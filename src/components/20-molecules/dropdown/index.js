@@ -119,6 +119,7 @@ class AXADropdown extends NoShadowDOM {
       state.isControlled = true;
     }
     // update state
+    this.updateItems(newValue);
     state.value = newValue;
     state.firstTime = false;
     // manual re-render, necessary for custom setters
@@ -221,7 +222,7 @@ class AXADropdown extends NoShadowDOM {
     const syntheticEvent = { target: { value, index, name } };
     onChange(syntheticEvent);
     if (!isControlled) {
-      this.value = value; // triggers re-render
+      this.value = value; // triggers re-render and item-selection update via value setter!
       const details = { value, index, name };
       fireCustomEvent('axa-change', value, this);
       fireCustomEvent('change', details, this);
@@ -244,8 +245,6 @@ class AXADropdown extends NoShadowDOM {
     if (!item) {
       return;
     }
-    const { name } = item;
-    this.value = value || name || '';
     // clone items array with updated selected property
     // (the fact that items are cloned ensures re-render!)
     this.items = this.items.map((_item, index) => {
@@ -260,7 +259,6 @@ class AXADropdown extends NoShadowDOM {
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
     this.state.isControlled = this.state.isControlled && this.isReact;
-    this.updateItems(this.value);
     return true;
   }
 
@@ -286,18 +284,18 @@ class AXADropdown extends NoShadowDOM {
     this.title = selectedItem ? selectedItem.name : defaultTitle;
 
     return html`
-        ${label &&
-          html`
-            <label for="${refId}" class="m-dropdown__label">
-              ${label}
-              ${required
-                ? html`
-                    *
-                  `
-                : ''}
-            </label>
-          `}
-        <div class="${classMap(classes)}">
+      ${label &&
+        html`
+          <label for="${refId}" class="m-dropdown__label">
+            ${label}
+            ${required
+              ? html`
+                  *
+                `
+              : ''}
+          </label>
+        `}
+      <div class="${classMap(classes)}">
         <div
           class="m-dropdown__list m-dropdown__list--native"
           tabindex="0"
@@ -319,7 +317,9 @@ class AXADropdown extends NoShadowDOM {
               .concat(items)
               .map(nativeItemsMapper)}
           </select>
-          <div class="m-dropdown__select-icon" aria-disabled="${disabled}">${ARROW_ICON}</div>
+          <div class="m-dropdown__select-icon" aria-disabled="${disabled}">
+            ${ARROW_ICON}
+          </div>
         </div>
         <div class="m-dropdown__list m-dropdown__list--enhanced">
           <button
