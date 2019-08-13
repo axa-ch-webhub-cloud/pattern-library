@@ -8,8 +8,6 @@ class Swipe {
 
     this.onLeftCallback = onLeftCallback;
     this.onRightCallback = onRightCallback;
-
-
   }
 
   onLeft() {
@@ -55,20 +53,18 @@ class Swipe {
       } else {
         // threshold limit not passed.
       }
-    } else {
-      if (
-        Math.abs(this.yDiff) > this.DIFF_THRESHOLD &&
-        timeDiff < this.TIME_THRESHOLD
-      ) {
-        // eslint-disable-line
-        if (this.yDiff > 0) {
-          this.onUp();
-        } else {
-          this.onDown();
-        }
+    } else if (
+      Math.abs(this.yDiff) > this.DIFF_THRESHOLD &&
+      timeDiff < this.TIME_THRESHOLD
+    ) {
+      // eslint-disable-line
+      if (this.yDiff > 0) {
+        this.onUp();
       } else {
-        // threshold limit not passed.
+        this.onDown();
       }
+    } else {
+      // threshold limit not passed.
     }
     /* reset values */
     this.xDown = null;
