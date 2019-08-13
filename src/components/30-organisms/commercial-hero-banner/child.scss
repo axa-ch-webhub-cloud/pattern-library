@@ -1,3 +1,5 @@
+// TODO Use stuff from typography file as soon as it is ready, instead of
+// hardcoding the whole typography manually.
 axa-commercial-hero-banner {
   color: $color-prim-gray-dark;
 
@@ -63,7 +65,9 @@ axa-commercial-hero-banner {
   }
 
   small {
-    @include typo(primary, small);
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
     line-height: 18px;
   }
 }
