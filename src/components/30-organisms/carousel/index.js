@@ -23,17 +23,18 @@ class AXACarousel extends LitElement {
 
   static get properties() {
     return {
-      autoRotateDisabled: { type: Boolean },
-      autoRotateTime: { type: Number },
+      autorotatedisabled: { type: Boolean },
+      autorotatetime: { type: Number },
       keysenabled: { type: Boolean },
 
       // internal props
-      animationWrapperClass: { type: String }, //TODO intern möglich?
-      carouselMinHeight: { type: Number }
+      animationWrapperClass: { type: String }, // TODO intern möglich?
+      carouselMinHeight: { type: Number },
     };
   }
 
   // public methods
+
   handleNextButtonClick() {
     this._nextSlide();
     this._stopAutoRotate();
@@ -45,6 +46,7 @@ class AXACarousel extends LitElement {
   }
 
   // private methods
+
   _getSlides() {
     const slots = this.shadowRoot.querySelector('.o-carousel__slot');
 
@@ -88,18 +90,6 @@ class AXACarousel extends LitElement {
     this._setSlideVisibleWithAnimation(nextSlideIndex, ANIMATION_LEFT_CLASS);
   }
 
-  _startAutoRotate() {
-    if (!this.autoRotateDisabled) {
-      this.autoRotateTimerID = setInterval(() => {
-        this._nextSlide();
-      }, this.autoRotateTime);
-    }
-  }
-
-  _stopAutoRotate() {
-    clearInterval(this.autoRotateTimerID);
-  }
-
   _calculateContainerMinHeight() {
     // we need to set carousel min height in case there are elements with different heights.
     this.slides.forEach(node => {
@@ -116,7 +106,22 @@ class AXACarousel extends LitElement {
     this._setSlideVisibleWithAnimation(this.visibleSlide, '');
   }, 200);
 
-  // Swipe for mobile devices
+  // AutoRotate:
+
+  _startAutoRotate() {
+    if (!this.autorotatedisabled) {
+      this.autoRotateTimerID = setInterval(() => {
+        this._nextSlide();
+      }, this.autorotatetime);
+    }
+  }
+
+  _stopAutoRotate() {
+    clearInterval(this.autoRotateTimerID);
+  }
+
+  // Swipe for mobile devices:
+
   _onSwipeLeft = () => {
     this.handleNextButtonClick();
   };
@@ -136,7 +141,8 @@ class AXACarousel extends LitElement {
     }
   }
 
-  // Key Navigation
+  // Key Navigation:
+
   _initKeyNavigation() {
     if (this.keysenabled) {
       this.ownerDocument.addEventListener('keyup', this._handleKeyUp);
@@ -159,8 +165,8 @@ class AXACarousel extends LitElement {
 
   constructor() {
     super();
-    this.autoRotateDisabled = false;
-    this.autoRotateTime = 5000;
+    this.autorotatedisabled = false;
+    this.autorotatetime = 5000;
     this.autoRotateTimerID = null;
     this.keysenabled = false;
     this.slides = null;
