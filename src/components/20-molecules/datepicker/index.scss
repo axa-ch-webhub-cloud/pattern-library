@@ -37,6 +37,34 @@ axa-datepicker {
   &[width] {
     display: flex;
   }
+
+  &[label] {
+    vertical-align: bottom;
+
+    .m-datepicker__label {
+      @include typo(primary, medium);
+      display: block;
+      font-weight: 600;
+      color: $color-prim-gray-mine-shaft;
+      margin-bottom: 10px;
+    }
+  }
+
+  &[disabled] {
+    .m-datepicker__label {
+      color: $color-prim-gray-dusty;
+    }
+
+    .m-datepicker__input,
+    .m-datepicker__input-button,
+    .m-datepicker__input-button svg {
+      outline: none;
+      border-color: $color-prim-gray-mercury !important;
+      background-color: $color-prim-gray-alabaster;
+      color: $color-prim-gray-dusty;
+      fill: $color-prim-gray-dusty;
+    }
+  }
 }
 
 .m-datepicker {

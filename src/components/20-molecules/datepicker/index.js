@@ -13,6 +13,7 @@ import {
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import debounce from '../../../utils/debounce';
+import createRefId from '../../../utils/create-ref-id';
 
 import Store from './utils/Store';
 
@@ -124,6 +125,9 @@ class AXADatepicker extends NoShadowDOM {
       error: { type: String, reflect: true },
       height: { type: String, reflect: true },
       width: { type: String, reflect: true },
+      disabled: { type: Boolean, reflect: true },
+      required: { type: Boolean, reflect: true },
+      label: { type: String, reflect: true },
     };
   }
 
@@ -187,12 +191,16 @@ class AXADatepicker extends NoShadowDOM {
     super();
     // internal model state
     this.state = {};
+    this.refId = `datepicker-${createRefId()}`;
     // property initializations
     this.locale = 'de-CH';
     this.open = false;
     this.inverted = false;
     this.invalid = false;
+    this.disabled = false;
+    this.required = false;
     this.name = '';
+    this.label = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
     this.placeholder = 'Please select a date';
@@ -242,6 +250,10 @@ class AXADatepicker extends NoShadowDOM {
     const {
       _date,
       state: { isControlled, value },
+      refId = '',
+      label,
+      required,
+      disabled,
     } = this;
 
     const [month, year] = [
@@ -267,10 +279,22 @@ class AXADatepicker extends NoShadowDOM {
         @click="${this.handleDatepickerClick}"
         style="${formattedWidth}"
       >
+        ${label &&
+          html`
+            <label for="${refId}" class="m-datepicker__label">
+              ${label}
+              ${required
+                ? html`
+                    *
+                  `
+                : ''}
+            </label>
+          `}
         ${this.inputfield &&
           html`
             <div class="m-datepicker__input-wrap" style="${formattedWidth}">
               <input
+                id="${refId}"
                 @input="${this.handleInputChange}"
                 @blur="${this.handleBlur}"
                 @focus="${this.onFocus}"
@@ -280,6 +304,7 @@ class AXADatepicker extends NoShadowDOM {
                 placeholder="${this.placeholder}"
                 style="${formattedHeight}"
                 .value="${isControlled ? value : this.outputdate}"
+                ?disabled="${disabled}"
               />
               <button
                 type="button"
@@ -290,7 +315,7 @@ class AXADatepicker extends NoShadowDOM {
               </button>
             </div>
           `}
-        ${this.open || !this.inputfield
+        ${(this.open && !disabled) || !this.inputfield
           ? html`
               <div class="m-datepicker__wrap js-datepicker__wrap">
                 <div class="m-datepicker__article">
