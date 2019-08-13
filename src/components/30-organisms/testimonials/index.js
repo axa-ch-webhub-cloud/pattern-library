@@ -1,8 +1,8 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import 'macro-carousel';
 import '@axa-ch/container';
+import '@axa-ch/carousel';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 
@@ -23,22 +23,11 @@ class AXATestimonials extends LitElement {
       classes: { type: String }, // TODO: unused in v1?
       title: { type: String },
       subtitle: { type: String },
-      autoRotateDisabled: { type: Boolean },
-      autoRotateTime: { type: Number },
-      showAllInline: { type: Boolean },
+      autorotatedisabled: { type: Boolean },
+      autorotatetime: { type: Number },
+      showallinline: { type: Boolean },
+      keysenabled: { type: Boolean },
     };
-  }
-
-  startAutoRotate() {
-    if (!this.autoRotateDisabled) {
-      this.autoRotateTimerID = setInterval(() => {
-        this.sliderElement.next();
-      }, this.autoRotateTime);
-    }
-  }
-
-  stopAutoRotate() {
-    clearInterval(this.autoRotateTimerID);
   }
 
   constructor() {
@@ -48,35 +37,21 @@ class AXATestimonials extends LitElement {
     this.classes = '';
     this.title = '';
     this.subtitle = '';
-    this.autoRotateDisabled = false;
-    this.autoRotateTime = 5000;
-    this.showAllInline = false;
-
-    // TODO: move to module variables?
-    this.onClickLeft = () => {
-      if (this.sliderElement && this.sliderElement.previous) {
-        this.sliderElement.previous();
-        this.stopAutoRotate();
-      }
-    };
-    this.onClickRight = () => {
-      if (this.sliderElement && this.sliderElement.next) {
-        this.sliderElement.next();
-        this.stopAutoRotate();
-      }
-    };
-    this.sliderElement = null;
-    this.autoRotateTimerID = null;
-  }
-
-  firstUpdated() {
-    this.sliderElement = this.shadowRoot.querySelector('macro-carousel');
-
-    this.startAutoRotate();
+    this.autorotatedisabled = false;
+    this.autorotatetime = 5000;
+    this.showallinline = false;
+    this.keysenabled = true;
   }
 
   render() {
-    const { title, subtitle, showAllInline } = this;
+    const {
+      title,
+      subtitle,
+      showallinline,
+      autorotatetime,
+      autorotatedisabled,
+      keysenabled,
+    } = this;
 
     return html`
       <article class="o-testimonials">
@@ -90,33 +65,19 @@ class AXATestimonials extends LitElement {
               <p class="o-testimonials__subtitle">${subtitle}</p>
             `}
           <div class="o-testimonials__content">
-            ${showAllInline
+            ${showallinline
               ? html`
                   <slot class="o-testimonials__content__inline"></slot>
                 `
               : html`
                   <div class="o-testimonials__content__carousel">
-                    <div
-                      class="o-testimonials__content__carousel__flexbox-container"
+                    <axa-carousel
+                      autorotatetime="${autorotatetime}"
+                      autorotatedisabled="${autorotatedisabled}"
+                      keysenabled="${keysenabled}"
                     >
-                      <button
-                        class="o-testimonials__arrow o-testimonials__content__carousel__arrow-left"
-                        type="button"
-                        @click="${this.onClickLeft}"
-                      ></button>
-                    </div>
-                    <macro-carousel loop="true">
                       <slot></slot>
-                    </macro-carousel>
-                    <div
-                      class="o-testimonials__content__carousel__flexbox-container"
-                    >
-                      <button
-                        class="o-testimonials__arrow o-testimonials__content__carousel__arrow-right"
-                        type="button"
-                        @click="${this.onClickRight}"
-                      ></button>
-                    </div>
+                    </axa-carousel>
                   </div>
                 `}
           </div>
