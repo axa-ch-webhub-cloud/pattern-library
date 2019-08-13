@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 5px; //for arrows
-  height: 1px; //set initial height because of IE bug with align-items and min-height
+  height: 100px; //set initial height because of IE bug with align-items and min-height
 
   //background: inherit;
   overflow: hidden;
