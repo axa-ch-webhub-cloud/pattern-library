@@ -10,6 +10,22 @@
     outline: none;
   }
 
+  &__wrapper {
+    margin: 0 10px;
+
+    @include breakpoint($mediaquery-sm-up) {
+      margin: 0 30px;
+    }
+
+    ::slotted(*) {
+      //default attributes for carousel content
+      @include typo(primary, large, default);
+      display: flex;
+      text-align: center;
+      justify-content: center; // align the dom element itself (f.e. small spans)
+    }
+  }
+
   &__arrow {
     padding: 6px;
     height: 14px;
@@ -35,11 +51,11 @@
   }
 
   // animations
-  .o-carousel_animation_left {
+  .animation-left {
     animation: fromLeft 0.8s;
   }
 
-  .o-carousel_animation_right {
+  .animation-right {
     animation: fromRight 0.8s;
   }
 

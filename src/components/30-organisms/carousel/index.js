@@ -7,8 +7,8 @@ import Swipe from './swipe';
 import debounce from '../../../utils/debounce';
 
 const ELEMENT_NODE = 1;
-const ANIMATION_LEFT_CLASS = 'o-carousel_animation_left';
-const ANIMATION_RIGHT_CLASS = 'o-carousel_animation_right';
+const ANIMATION_LEFT_CLASS = 'animation-left';
+const ANIMATION_RIGHT_CLASS = 'animation-right';
 
 class AXACarousel extends LitElement {
   static get tagName() {
@@ -201,8 +201,7 @@ class AXACarousel extends LitElement {
           @click="${this.handlePreviousButtonClick}"
         ></button>
         <div
-          class="${this.animationWrapperClass}"
-          id="o-carousel__animation-wrapper"
+          class="o-carousel__wrapper ${this.animationWrapperClass}"
         >
           <slot class="o-carousel__slot"></slot>
         </div>
