@@ -1,6 +1,14 @@
 $image-upload-dropzone-border-width: 2px !default;
 $image-upload-opacity: 0.25 !default;
 $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
+$image-upload-icon-size: 36px !default;
+
+@mixin iconSize($property) {
+  svg{
+    height: $property;
+    width: $property;
+  }
+}
 
 .m-image-upload {
   @include typo(primary, medium);
@@ -87,7 +95,7 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    // height: 36px; // TODO
+    @include iconSize($image-upload-icon-size)
   }
 
   &__icon-layer {
@@ -101,17 +109,16 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
 
   &__icon-delete {
     display: none;
-    fill: $color-axa-blue;// TODO needed?
-    color: $color-axa-blue;
+    fill: $color-axa-blue;
+    @include iconSize($image-upload-icon-size)
   }
 
   &__icon-error {
-    fill: $color-sec-shy-tomato;// TODO needed?
-    color: $color-sec-shy-tomato;
+    fill: $color-sec-shy-tomato;
+    @include iconSize($image-upload-icon-size)
   }
 
   &__img-caption {
-    position: relative; // TODO
     width: 120px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -157,13 +164,13 @@ $image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color
     }
     .m-image-upload__icon-layer {
       fill: currentColor;
+      @include iconSize($image-upload-icon-size)
     }
     .m-image-upload__img-caption {
       width: 116px;
       margin-top: 2px;
       position: block;
     }
-
   }
 
   &__error-wrapper {
