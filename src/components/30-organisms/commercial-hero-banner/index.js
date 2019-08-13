@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit-element';
 import '@axa-ch/container';
+import 'objectFitPolyfill';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import childStyles from './child.scss';
@@ -21,7 +22,6 @@ class AXACommercialHeroBanner extends InlineStyles {
     return {
       variant: { type: String },
       imageSource: { type: String },
-      imagePosition: { type: String },
     };
   }
 
@@ -29,7 +29,6 @@ class AXACommercialHeroBanner extends InlineStyles {
     super();
     this.variant = 'light';
     this.imageSource = '';
-    this.imagePosition = 'center center';
   }
 
   // Parent class InlineStyles needs a static method to retrive styles
