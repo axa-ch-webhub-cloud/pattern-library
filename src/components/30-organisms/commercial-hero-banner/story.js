@@ -51,7 +51,51 @@ storyAXACommercialHeroBanner.add('Commercial hero banner', () => {
   const template = html`
     <axa-commercial-hero-banner
       variant="${variant}"
-      src="${src}"
+      imagesource="${src}"
+      imageposition="${imagePosition}"
+    >
+      <h2 slot="category">This example shows specific picture classes</h2>
+      <h1 slot="title">Drive with peace of mind</h1>
+      <p slot="content">
+        Whether you need to insure your first car or renew your existing car
+        insurance, AXA can provide a range of car insurance policies to suit
+        your requirements and offer great product benefits at a price you can
+        afford
+      </p>
+      <small slot="disclaimer">Terms and Conditions apply.</small>
+      <axa-button-link
+        href="https://axa.ch"
+        slot="button"
+        variant="red"
+        size="large"
+        >GET A QUOTE</axa-button-link
+      >
+    </axa-commercial-hero-banner>
+    <axa-commercial-hero-banner
+      variant="${variant}"
+      imagesource="${src}"
+      imageposition="${imagePosition}"
+    >
+      <h2 slot="category">This example shows specific picture classes</h2>
+      <h1 slot="title">Drive with peace of mind</h1>
+      <p slot="content">
+        Whether you need to insure your first car or renew your existing car
+        insurance, AXA can provide a range of car insurance policies to suit
+        your requirements and offer great product benefits at a price you can
+        afford
+      </p>
+      <small slot="disclaimer">Terms and Conditions apply.</small>
+      <axa-button-link
+        href="https://axa.ch"
+        slot="button"
+        variant="red"
+        size="large"
+        >GET A QUOTE</axa-button-link
+      >
+    </axa-commercial-hero-banner>
+    <axa-commercial-hero-banner
+      variant="${variant}"
+      imagesource="${src}"
       imageposition="${imagePosition}"
     >
       <h2 slot="category">This example shows specific picture classes</h2>

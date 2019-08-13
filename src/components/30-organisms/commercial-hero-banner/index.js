@@ -20,7 +20,7 @@ class AXACommercialHeroBanner extends InlineStyles {
   static get properties() {
     return {
       variant: { type: String },
-      src: { type: String },
+      imageSource: { type: String },
       imagePosition: { type: String },
     };
   }
@@ -28,7 +28,7 @@ class AXACommercialHeroBanner extends InlineStyles {
   constructor() {
     super();
     this.variant = 'light';
-    this.src = '';
+    this.imageSource = '';
     this.imagePosition = 'center center';
   }
 
@@ -58,7 +58,7 @@ class AXACommercialHeroBanner extends InlineStyles {
     return html`
       <header
         class="o-commercial-hero-banner"
-        style="background: url('${this.src}') no-repeat ${this
+        style="background: url('${this.imageSource}') no-repeat ${this
           .imagePosition};background-size: cover;"
       >
         <div class="o-commercial-hero-banner__container">
