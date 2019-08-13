@@ -2,23 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5px; //for arrows
-  height: 100px; //set initial height because of IE bug with align-items and min-height
-
-  //background: inherit;
+  padding: 0 5px; // for arrows
+  height: 100px; // set initial height because of IE bug with align-items and min-height
   overflow: hidden;
-  //background-color: yellow;
 
   :focus {
     outline: none;
   }
-
-  &__animation-wrapper {
-    ::slotted(*) {
-      //display: flex;
-    }
-  }
-
 
   &__arrow {
     padding: 6px;
@@ -43,37 +33,37 @@
   &__arrow-right {
     transform: rotate(135deg);
   }
-}
 
-// animations
-.o-carousel_animation_left {
-  animation: fromLeft 0.8s;
-}
-
-.o-carousel_animation_right {
-  animation: fromRight 0.8s;
-}
-
-@keyframes fromRight {
-  from {
-    opacity: 0;
-    transform: translate(100%, 0);
+  // animations
+  .o-carousel_animation_left {
+    animation: fromLeft 0.8s;
   }
 
-  to {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes fromLeft {
-  from {
-    opacity: 0;
-    transform: translate(-100%, 0);
+  .o-carousel_animation_right {
+    animation: fromRight 0.8s;
   }
 
-  to {
-    opacity: 1;
-    transform: translate(0, 0);
+  @keyframes fromRight {
+    from {
+      opacity: 0;
+      transform: translate(100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes fromLeft {
+    from {
+      opacity: 0;
+      transform: translate(-100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 }
