@@ -91,10 +91,6 @@ class AXACommercialHeroBanner extends InlineStyles {
       </header>
     `;
   }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-  }
 }
 
 defineOnce(AXACommercialHeroBanner.tagName, AXACommercialHeroBanner);
