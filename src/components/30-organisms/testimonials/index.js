@@ -40,7 +40,7 @@ class AXATestimonials extends LitElement {
     this.autorotatedisabled = false;
     this.autorotatetime = 5000;
     this.showallinline = false;
-    this.keysenabled = true;
+    this.keysenabled = false;
   }
 
   render() {
@@ -73,8 +73,8 @@ class AXATestimonials extends LitElement {
                   <div class="o-testimonials__content__carousel">
                     <axa-carousel
                       autorotatetime="${autorotatetime}"
-                      autorotatedisabled="${autorotatedisabled}"
-                      keysenabled="${keysenabled}"
+                      ?autorotatedisabled="${autorotatedisabled}"
+                      ?keysenabled="${keysenabled}"
                     >
                       <slot></slot>
                     </axa-carousel>
@@ -88,8 +88,6 @@ class AXATestimonials extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    this.stopAutoRotate();
   }
 }
 

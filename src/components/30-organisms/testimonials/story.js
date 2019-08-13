@@ -1,18 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import {
-  boolean,
-  select,
-  radios,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, text, withKnobs, number } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const story = storiesOf('Organisms/Testimonials', module);
 story.addDecorator(withKnobs);
+story.addDecorator(withNoBorder);
 story.addParameters({
   readme: {
     sidebar: Readme,
@@ -20,18 +16,23 @@ story.addParameters({
 });
 
 story.add('Testimonials', () => {
-  const buttonText = text('Text', 'Click me');
-  const motionOff = boolean('motionOff', false);
-  const disabled = boolean('disabled', false);
-  const large = boolean('large', false); // should probably be a variant.
-  const type = radios('Types', { submit: 'submit', reset: 'reset' });
+  const title = text('title', 'Customer Reviews');
+  const subtitle = text(
+    'Text',
+    'AXA works hard to provide the best service possible to its customers.'
+  );
+  const autorotatedisabled = boolean('autorotatedisabled', false);
+  const autorotatetime = number('autorotatetime', 5000);
+  const keysenabled = boolean('keysenabled', true);
 
   const wrapper = document.createElement('div');
   const template = html`
     <axa-testimonials
-      autorotatedisabled
-      title="Customer Reviews"
-      subtitle="AXA works hard to provide the best service possible to its customers."
+      autorotatetime="${autorotatetime}"
+      ?autorotatedisabled="${autorotatedisabled}"
+      ?keysenabled="${keysenabled}"
+      title="${title}"
+      subtitle="${subtitle}"
     >
       <span
         >Very helpful once I got through to the correct person but I was
