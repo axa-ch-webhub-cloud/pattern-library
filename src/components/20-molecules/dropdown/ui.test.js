@@ -198,3 +198,28 @@ test('should submit correct value to form', async t => {
 
   await t.expect(await getFormTitle()).eql('FR,1 ');
 });
+
+test('should react to value property changes', async t => {
+  const getDropdownTitle = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+        .title
+  );
+
+  const setValue = ClientFunction(value => {
+    document.querySelector(
+      'axa-dropdown[data-test-id="dropdown-forms"]'
+    ).value = value;
+    return document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+      .value;
+  });
+
+  await t.expect(await setValue('DE')).eql('DE');
+  await t.expect(await getDropdownTitle()).eql('Deutsch');
+
+  await t.expect(await setValue('IT')).eql('IT');
+  await t.expect(await getDropdownTitle()).eql('Italiano');
+
+  await t.expect(await setValue('FR')).eql('FR');
+  await t.expect(await getDropdownTitle()).eql('Français');
+});
