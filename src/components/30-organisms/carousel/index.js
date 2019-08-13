@@ -4,6 +4,7 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import Swipe from './swipe';
+import debounce from '../../../utils/debounce';
 
 const ELEMENT_NODE = 1;
 const ANIMATION_LEFT_CLASS = 'o-carousel_animation_left';
@@ -28,7 +29,7 @@ class AXACarousel extends LitElement {
 
       // internal props
       animationWrapperClass: { type: String }, //TODO intern möglich?
-      mainElementMinHeight: { type: Number },
+      carouselMinHeight: { type: Number }
     };
   }
 
@@ -109,6 +110,12 @@ class AXACarousel extends LitElement {
     });
   }
 
+  _onResize = debounce(() => {
+    this.carouselMinHeight = 0;
+    this._calculateContainerMinHeight();
+    this._setSlideVisibleWithAnimation(this.visibleSlide, '');
+  }, 200);
+
   // Swipe for mobile devices
   _onSwipeLeft = () => {
     this.handleNextButtonClick();
@@ -131,7 +138,7 @@ class AXACarousel extends LitElement {
 
   // Key Navigation
   _initKeyNavigation() {
-    if(this.keysEnabled) {
+    if (this.keysEnabled) {
       this.ownerDocument.addEventListener('keyup', this._handleKeyUp);
     }
   }
@@ -167,10 +174,11 @@ class AXACarousel extends LitElement {
     // Add DOM changes here
     // This will be rendered when the component is connected to the DOM
     this.slides = this._getSlides();
-    this._calculateContainerMinHeight(); // TODO: handle resize
+    this._calculateContainerMinHeight();
     this._setSlideVisibleWithAnimation(0);
     this._initSwipe();
     this._startAutoRotate();
+    window.addEventListener('resize', this._onResize);
   }
 
   render() {
@@ -206,6 +214,7 @@ class AXACarousel extends LitElement {
     this._stopAutoRotate();
     this._terminateSwipe();
     this._terminateKeyNavigation();
+    window.removeEventListener('resize', this._onResize);
   }
 }
 
