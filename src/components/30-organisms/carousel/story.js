@@ -1,13 +1,15 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const storyAXACarousel = storiesOf('Organisms/Carousel', module);
 storyAXACarousel.addDecorator(withKnobs);
+storyAXACarousel.addDecorator(withNoBorder);
 storyAXACarousel.addParameters({
   readme: {
     sidebar: Readme,
@@ -15,14 +17,17 @@ storyAXACarousel.addParameters({
 });
 
 storyAXACarousel.add('Carousel', () => {
-  const children = text('Text', 'Some Children');
-  
+  const autorotatedisabled = boolean('autorotatedisabled', false);
+  const autorotatetime = number('autorotatetime', 5000);
+  const keysenabled = boolean('keysenabled', true);
+
   const wrapper = document.createElement('div');
   const template = html`
 <div id="colorWrapper" style="background: lightcoral; color: white;">
     <axa-carousel
-    autorotatedisabled
-    keysenabled
+    autorotatetime="${autorotatetime}"
+    ?autorotatedisabled="${autorotatedisabled}"
+    ?keysenabled="${keysenabled}"
     >
       <span
         >Very helpful once I got through to the correct person but I was
@@ -48,7 +53,7 @@ storyAXACarousel.add('Carousel', () => {
       <span>This is a small text.</span>
    </div> 
   `;
-  
+
   render(template, wrapper);
   return wrapper;
 });
