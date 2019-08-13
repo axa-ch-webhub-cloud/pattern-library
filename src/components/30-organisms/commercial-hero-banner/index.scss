@@ -23,22 +23,20 @@
       min-height: 560px;
 
       background: linear-gradient(
-        to right,
-        $color-prim-white,
-        $color-prim-white 25%,
-        transparent 70%,
-        transparent
+        270deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.9) 60%,
+        #fff 100%
       );
     }
 
     &--dark {
       @include breakpoint($mediaquery-lg-up) {
         background: linear-gradient(
-          to right,
-          $color-prim-black,
-          $color-prim-black 25%,
-          transparent 70%,
-          transparent
+          270deg,
+          rgba(0, 0, 0, 0) 30%,
+          rgba(0, 0, 0, 0.8) 60%,
+          #000 100%
         );
       }
     }
