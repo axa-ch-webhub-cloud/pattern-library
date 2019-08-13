@@ -45,7 +45,7 @@ async function _assertDarkBackgroundGradient(t, container) {
   await t
     .expect(container.getStyleProperty('background-image'))
     .eql(
-      'linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0) 25%, transparent 70%, transparent)'
+      'linear-gradient(270deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 60%, rgb(0, 0, 0) 100%)'
     );
 }
 
@@ -86,7 +86,7 @@ async function _assertLightBackgroundGradient(t, container) {
   await t
     .expect(container.getStyleProperty('background-image'))
     .eql(
-      'linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255) 25%, transparent 70%, transparent)'
+      'linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.9) 60%, rgb(255, 255, 255) 100%)'
     );
 }
 
