@@ -27,7 +27,7 @@ const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
 /* helperfunctions */
-export const getBytesFromMegabyte = megabyte => 1024 * 1024 * megabyte;
+export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
 class AXAImageUpload extends LitElement {
   static get tagName() {
@@ -43,8 +43,8 @@ class AXAImageUpload extends LitElement {
   static get properties() {
     return {
       inputFileText: { type: String },
-      maxSizeOfSingleFileMB: { type: Number },
-      maxSizeOfAllFilesMB: { type: Number },
+      maxSizeOfSingleFileKB: { type: Number },
+      maxSizeOfAllFilesKB: { type: Number },
       maxNumberOfFiles: { type: Number },
       showImageOverview: { type: Boolean },
       icon: { type: String },
@@ -61,22 +61,16 @@ class AXAImageUpload extends LitElement {
   constructor() {
     super();
     this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileMB = 5;
-    this.maxSizeOfAllFilesMB = 1;
+    this.maxSizeOfSingleFileKB = 100;
+    this.maxSizeOfAllFilesKB = 500;
     this.maxNumberOfFiles = 10;
     this.showImageOverview = false;
     this.icon = 'cloud-upload';
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
-    this.fileTooBigStatusText = `File size exceeds ${
-      this.maxSizeOfSingleFileMB
-    }MB`;
-    this.filesTooBigStatusText = `File sizes exceed ${
-      this.maxSizeOfAllFilesMB
-    }MB`;
-    this.tooManyFilesStatusText = `You exceeded the maximum number of files: ${
-      this.maxNumberOfFiles
-    }`;
+    this.fileTooBigStatusText = `File size exceeds maximal size`;
+    this.filesTooBigStatusText = `File sizes exceed maximal size`;
+    this.tooManyFilesStatusText = `You exceeded the maximum number of files`;
     this.orText = 'or';
     this.infoText = 'Drag and drop to upload your file';
     this.files = [];
@@ -90,11 +84,6 @@ class AXAImageUpload extends LitElement {
     this.globalErrorMessage = '';
     this.addMoreInputFile = '';
     this.showAddMoreInputFile = '';
-
-    this.maxSizeOfSingleFileByte = getBytesFromMegabyte(
-      this.maxSizeOfSingleFileMB
-    );
-    this.maxSizeOfAllFilesByte = getBytesFromMegabyte(this.maxSizeOfAllFilesMB);
   }
 
   handleAddMoreInputClick() {
@@ -199,9 +188,12 @@ class AXAImageUpload extends LitElement {
     /* compress all images. pngs will become jpeg's and unrecognised files will be deleted */
     const compressedImages = await compressImage(slicedFiles);
 
-    this.validateFiles(compressedImages, pdfs, slicedFiles);
+    this.validateFiles(compressedImages, pdfs);
 
-    if (this.files.length > 0 && droppedFiles.length > 0) {
+    if (
+      (this.files.length > 0 || this.faultyFiles.length > 0) &&
+      droppedFiles.length > 0
+    ) {
       this.showImageOverview = true;
     }
     if (this.files.length >= this.maxNumberOfFiles) {
@@ -212,17 +204,24 @@ class AXAImageUpload extends LitElement {
     this.requestUpdate();
   }
 
-  validateFiles(compressedImages, pdfs, slicedFiles) {
+  validateFiles(compressedImages, pdfs) {
+    const maxSizeOfSingleFileByte = getBytesFromKilobyte(
+      this.maxSizeOfSingleFileKB
+    );
+    const maxSizeOfAllFilesByte = getBytesFromKilobyte(
+      this.maxSizeOfAllFilesKB
+    );
+
     const faultyFiles = [];
     let finalFiles = pdfs;
 
     for (let i = 0; i < compressedImages.length; i++) {
       if (
         this.sizeOfAllFilesByte + compressedImages[i].size >
-        this.maxSizeOfAllFilesByte
+        maxSizeOfAllFilesByte
       ) {
         this.globalErrorMessage = this.filesTooBigStatusText;
-      } else if (slicedFiles[i].size > this.maxSizeOfSingleFileByte) {
+      } else if (compressedImages[i].size > maxSizeOfSingleFileByte) {
         faultyFiles.push(compressedImages[i]);
       } else {
         this.sizeOfAllFilesByte += compressedImages[i].size;
@@ -282,21 +281,19 @@ class AXAImageUpload extends LitElement {
             class="m-image-upload__icon-hover-area"
             @click=${() => this.handleImageDeletion(index)}
           >
-            ${
-              isFile
-                ? html`
-                    <span class="m-image-upload__file-element">
-                      ${AttachFileIcon}</span
-                    >
-                  `
-                : html`
-                    <img
-                      class="m-image-upload__img-element"
-                      src="${imageUrl}"
-                      alt="${file.name}"
-                    />
-                  `
-            }
+            ${isFile
+              ? html`
+                  <span class="m-image-upload__file-element">
+                    ${AttachFileIcon}</span
+                  >
+                `
+              : html`
+                  <img
+                    class="m-image-upload__img-element"
+                    src="${imageUrl}"
+                    alt="${file.name}"
+                  />
+                `}
             <div class="m-image-upload__icon-layer">
               <span class="m-image-upload__icon-error"
                 >${isfaultyFile ? ClearIcon : ''}</span
@@ -306,34 +303,27 @@ class AXAImageUpload extends LitElement {
               >
             </div>
           </div>
-          <figcaption
-            class="m-image-upload__img-caption"
-            title="${file.name}"
-            data-status="${deleteStatusText}"
-          >
-            ${
-              isfaultyFile
-                ? html`
-                    <figcaption
-                      class="m-image-upload__img-caption m-image-upload__img-caption-error"
-                      title="${fileTooBigStatusText}"
-                      data-status="${deleteStatusText}"
-                    >
-                      <span class="m-image-upload__filename"
-                        >${fileTooBigStatusText}</span
-                      >
-                    </figcaption>
-                  `
-                : html`
-                    <figcaption
-                      class="m-image-upload__img-caption"
-                      title="${file.name}"
-                      data-status="${deleteStatusText}"
-                    >
-                      <span class="m-image-upload__filename">${file.name}</span>
-                    </figcaption>
-                  `
-            }
+          ${isfaultyFile
+            ? html`
+                <figcaption
+                  class="m-image-upload__img-caption m-image-upload__img-caption-error"
+                  title="${fileTooBigStatusText}"
+                  data-status="${deleteStatusText}"
+                >
+                  <span class="m-image-upload__filename"
+                    >${fileTooBigStatusText}</span
+                  >
+                </figcaption>
+              `
+            : html`
+                <figcaption
+                  class="m-image-upload__img-caption"
+                  title="${file.name}"
+                  data-status="${deleteStatusText}"
+                >
+                  <span class="m-image-upload__filename">${file.name}</span>
+                </figcaption>
+              `}
         </figure>
       `;
     });
