@@ -49,13 +49,13 @@ class AXAPolicyFeaturesItem extends LitElement {
     const { icon, title, description } = this;
 
     return html`
-      <article class="policy-features-item">
+      <section class="policy-features-item">
         <div id="policy-features-item-icon" class="policy-features-item__icon">
           ${svg([AXAPolicyFeaturesItem.iconsMapping[icon] || ''])}
         </div>
         <h1 class="policy-features-item__title">${title}</h1>
         <p class="policy-features-item__description">${description}</p>
-      </article>
+      </section>
     `;
   }
 }

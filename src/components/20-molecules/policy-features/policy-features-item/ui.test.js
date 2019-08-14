@@ -18,9 +18,9 @@ const firstH1ElementInDocument = Selector(
 const firstPElementInDocument = Selector(
   () => document.querySelector('axa-policy-features-item').shadowRoot
 ).find('p');
-const firstArticleElementInDocument = Selector(
+const firstSectionElementInDocument = Selector(
   () => document.querySelector('axa-policy-features-item').shadowRoot
-).find('article');
+).find('section');
 
 fixture('Policy features item - basic functionality').page(
   `${host}/iframe.html?id=molecules-policy-features--policy-features`
@@ -92,7 +92,7 @@ test('should render title and description with size medium on screen size smalle
 
 test('should set width of item with screen size lg-up', async t => {
   await t
-    .expect(await firstArticleElementInDocument.getStyleProperty('width'))
+    .expect(await firstSectionElementInDocument.getStyleProperty('width'))
     .eql('255px');
 }).before(async t => {
   await t.resizeWindow(lgWindowWidth, defaultWindowHeight);
@@ -100,7 +100,7 @@ test('should set width of item with screen size lg-up', async t => {
 
 test('should set width of item with screen size md-up', async t => {
   await t
-    .expect(await firstArticleElementInDocument.getStyleProperty('width'))
+    .expect(await firstSectionElementInDocument.getStyleProperty('width'))
     .eql('210px');
 }).before(async t => {
   await t.resizeWindow(mdWindowWidth, defaultWindowHeight);
@@ -108,7 +108,7 @@ test('should set width of item with screen size md-up', async t => {
 
 test('should set width of item with screen size sm-up', async t => {
   await t
-    .expect(await firstArticleElementInDocument.getStyleProperty('width'))
+    .expect(await firstSectionElementInDocument.getStyleProperty('width'))
     .eql('240px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
