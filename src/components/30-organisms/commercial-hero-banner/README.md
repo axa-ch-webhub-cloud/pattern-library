@@ -14,8 +14,19 @@ npm install @axa-ch/commercial-hero-banner
 import '@axa-ch/commercial-hero-banner';
 ...
 <axa-commercial-hero-banner variant="dark"
-      src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
-      imageposition="center center"></axa-commercial-hero-banner>
+  imagesource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg">
+    <h2 slot="category">This example shows specific picture classes</h2>
+    <h1 slot="title">Drive with peace of mind</h1>
+    <p slot="content">
+      Whether you need to insure your first car or renew your existing car
+      insurance, AXA can provide a range of car insurance policies to suit your
+      requirements and offer great product benefits at a price you can afford
+    </p>
+    <small slot="disclaimer">Terms and Conditions apply.</small>
+    <axa-button-link href="https://axa.ch" slot="button" variant="red" size="large">
+      GET A QUOTE
+    </axa-button-link>
+</axa-commercial-hero-banner>
 ```
 
 ### React
@@ -23,6 +34,7 @@ import '@axa-ch/commercial-hero-banner';
 Create a React-ified commercial-hero-banner with the createElement function from your React version and then use it like this:
 
 ```js
+// File: AxaCommercialHeroBanner.js
 import { createElement } from 'react';
 import createAXACommercialHeroBannerReact from '@axa-ch/commercial-hero-banner/lib/index.react';
 
@@ -40,7 +52,6 @@ import AXAButtonLink from 'AxaButtonLink.js';
 <AXACommercialHeroBannerReact
   variant="dark"
   src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
-  imagePosition="center center"
 >
   <h2 slot="category">This example shows specific picture classes</h2>
   <h1 slot="title">Drive with peace of mind</h1>
@@ -73,8 +84,25 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
     <axa-commercial-hero-banner
       variant="dark"
       src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
-      imageposition="center center"
-    ></axa-commercial-hero-banner>
+    >
+      <h2 slot="category">This example shows specific picture classes</h2>
+      <h1 slot="title">Drive with peace of mind</h1>
+      <p slot="content">
+        Whether you need to insure your first car or renew your existing car
+        insurance, AXA can provide a range of car insurance policies to suit
+        your requirements and offer great product benefits at a price you can
+        afford
+      </p>
+      <small slot="disclaimer">Terms and Conditions apply.</small>
+      <axa-button-link
+        href="https://axa.ch"
+        slot="button"
+        variant="red"
+        size="large"
+      >
+        GET A QUOTE
+      </axa-button-link>
+    </axa-commercial-hero-banner>
     <script src="node_modules/@axa-ch/commercial-hero-banner/dist/index.js"></script>
   </body>
 </html>
@@ -84,11 +112,10 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 
 ### Variant
 
-| Attribute       | Details                                                                                                      |
-| --------------- | ------------------------------------------------------------------------------------------------------------ |
-| `variant`       | 'dark' or 'light', sets the theme (gradient)                                                                 |
-| `src`           | The 'src' of the background image                                                                            |
-| `imageposition` | The position of the image. 'center center' (default), 'top left', 'top right', 'bottom right', 'bottom left' |
+| Attribute     | Details                                                   |
+| ------------- | --------------------------------------------------------- |
+| `variant`     | 'dark' or 'light', sets the theme (gradient)              |
+| `imageSource` | The 'src' of the background image (link or base64 string) |
 
 ### Migration Notes
 
