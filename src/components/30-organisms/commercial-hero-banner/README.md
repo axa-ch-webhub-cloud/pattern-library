@@ -51,7 +51,7 @@ import AXAButtonLink from 'AxaButtonLink.js';
 
 <AXACommercialHeroBannerReact
   variant="dark"
-  src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+  imageSource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
 >
   <h2 slot="category">This example shows specific picture classes</h2>
   <h1 slot="title">Drive with peace of mind</h1>
@@ -83,7 +83,7 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
   <body>
     <axa-commercial-hero-banner
       variant="dark"
-      src="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
+      imageSource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
     >
       <h2 slot="category">This example shows specific picture classes</h2>
       <h1 slot="title">Drive with peace of mind</h1>
@@ -113,10 +113,10 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 
 ### Variant
 
-| Attribute     | Details                                              |
-| ------------- | ---------------------------------------------------- |
-| `variant`     | 'dark' or 'light', sets the theme (gradient)         |
-| `imagesource` | The 'src' of the cover image (link or base64 string) |
+| Attribute     | Details                                               |
+| ------------- | ----------------------------------------------------- |
+| `variant`     | 'dark' or 'light', sets the theme (gradient)          |
+| `imagesource` | The source of the cover image (link or base64 string) |
 
 ### Migration Notes
 
