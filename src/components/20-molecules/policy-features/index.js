@@ -29,27 +29,27 @@ class AXAPolicyFeatures extends LitElement {
   static get properties() {
     return {
       title: { type: String },
-      axaStyle: { type: String },
+      axastyle: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.axaStyle = DEFAULT_AXA_STYLE;
+    this.axastyle = DEFAULT_AXA_STYLE;
   }
 
   render() {
-    const { title, axaStyle } = this;
+    const { title, axastyle } = this;
 
     const classes = {
       'm-policy-features': true,
       'm-policy-features__style-dark-indigo':
-        axaStyle === 'dark-indigo' ||
+        axastyle === 'dark-indigo' ||
         'default' ||
-        STYLE_WHITELIST.indexOf(axaStyle) === -1,
-      'm-policy-features__style-axa-blue': axaStyle === 'axa-blue',
-      'm-policy-features__style-wild-sand': axaStyle === 'wild-sand',
-      'm-policy-features__style-white': axaStyle === 'white',
+        STYLE_WHITELIST.indexOf(axastyle) === -1,
+      'm-policy-features__style-axa-blue': axastyle === 'axa-blue',
+      'm-policy-features__style-wild-sand': axastyle === 'wild-sand',
+      'm-policy-features__style-white': axastyle === 'white',
     };
 
     return html`
