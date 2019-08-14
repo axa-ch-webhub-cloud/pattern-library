@@ -90,8 +90,10 @@ When true, the Boolean attribute `embedded` suppresses the default space around 
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
-the selected dropdown option changes. Its only parameter is an event-like object with `{target:value}` structure, where `value` is
-the currently selected value.
+the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,index}` structure, where `value` is
+the currently selected value and `index` is its 0-based index.
+
+_Important_: This attribute can also be used natively. However, in this case the event parameter passed conforms to the **change** event described below.
 
 ### onFocus, onBlur
 
@@ -99,6 +101,10 @@ The function-valued attributes `onFocus, onBlur` can be used as a callback prop 
 
 ## Events
 
-### axa-change
+### axa-change, change
 
-If not in controlled-component mode, a custom event `axa-change` is fired on &lt;axa-dropdown&gt; itself whenever the `onChange` callback from above gets invoked. It's event `detail` is the currently selected value.
+If not in controlled-component mode, two custom events `axa-change` and `change` are fired on &lt;axa-dropdown&gt; itself whenever the `onChange` callback from above gets invoked.
+
+`axa-change`'s event `detail` is a the currently selected value (a string).
+
+`change`'s event `detail` is an object `{value,index}`,where `value` is the currently selected value and `index` is its 0-based index.

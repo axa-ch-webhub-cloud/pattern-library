@@ -30,14 +30,6 @@ axa-datepicker {
     }
   }
 
-  &[embedded] {
-    max-height: 35px;
-
-    &:not([open]) {
-      overflow: hidden;
-    }
-  }
-
   &[width] {
     display: flex;
   }

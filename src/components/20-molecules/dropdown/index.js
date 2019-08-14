@@ -7,6 +7,7 @@ import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
+import createRefId from '../../../utils/create-ref-id';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -88,6 +89,9 @@ class AXADropdown extends NoShadowDOM {
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
+      refId: { type: String },
+      label: { type: String },
+      required: { type: Boolean },
       items: { type: Array },
       open: { type: Boolean, reflect: true },
       value: { type: String },
@@ -96,7 +100,6 @@ class AXADropdown extends NoShadowDOM {
       native: { type: Boolean },
       valid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
-      embedded: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
     };
   }
@@ -124,6 +127,8 @@ class AXADropdown extends NoShadowDOM {
 
   constructor() {
     super();
+    this.refId = `dropdown-${createRefId()}`;
+    this.label = '';
     // property defaults
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
@@ -218,14 +223,19 @@ class AXADropdown extends NoShadowDOM {
       // ==: indices may be number or string
       return;
     }
+
+    const index = clickedItemIndex | 0; // | 0: coerce to integer
     // allow idiomatic event.target.value in onChange callback!
-    const syntheticEvent = { target: items[clickedItemIndex | 0] }; // | 0: coerce to integer
+    const syntheticEvent = { target: { value: items[index].value, index } };
     onChange(syntheticEvent);
     if (!isControlled) {
       // causes re-render in next microtask!
       this.updateCurrentItems(clickedItemIndex); // side-effect: changed this.value
       this.updateTitle();
-      fireCustomEvent('axa-change', this.value, this);
+      const { value } = this;
+      const details = { value, index };
+      fireCustomEvent('axa-change', value, this);
+      fireCustomEvent('change', details, this);
     }
   }
 
@@ -282,10 +292,13 @@ class AXADropdown extends NoShadowDOM {
     const {
       items = [],
       name = '',
+      label = '',
+      refId = '',
       title,
       native,
       valid,
       error,
+      required,
       handleDropdownItemClick,
       handleDropdownClick,
     } = this;
@@ -301,7 +314,18 @@ class AXADropdown extends NoShadowDOM {
     // purposes of programmatic DOM access, therefore need to be preserved even
     // when style refactoring would rename other classes.
     return html`
-      <div class="${classMap(classes)}">
+        ${label &&
+          html`
+            <label for="${refId}" class="m-dropdown__label">
+              ${label}
+              ${required
+                ? html`
+                    *
+                  `
+                : ''}
+            </label>
+          `}
+        <div class="${classMap(classes)}">
         <div
           class="m-dropdown__list m-dropdown__list--native"
           tabindex="0"
@@ -309,10 +333,12 @@ class AXADropdown extends NoShadowDOM {
           @blur="${this.onBlur}"
         >
           <select
+            id="${refId}"
             class="m-dropdown__select js-dropdown__select"
             name="${name}"
-            @change="${handleDropdownItemClick}"
+            aria-required="${required}"
             tabindex="-1"
+            @change="${handleDropdownItemClick}"
           >
             ${items.map(nativeItemsMapper)}
           </select>
@@ -333,9 +359,13 @@ class AXADropdown extends NoShadowDOM {
             ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
         </div>
-        <div class="m-dropdown__valid-icon">
-          <span class="${classMap(validClasses)}"></span>
-        </div>
+        ${valid
+          ? html`
+              <div class="m-dropdown__valid-icon">
+                <span class="${classMap(validClasses)}"></span>
+              </div>
+            `
+          : html``}
       </div>
       <div class="m-dropdown__error">${error}</div>
     `;
@@ -354,6 +384,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);

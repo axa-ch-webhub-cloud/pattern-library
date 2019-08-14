@@ -1,30 +1,34 @@
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
+import { AXAPopupMixin } from '@axa-ch/popup';
+
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
-class AXAInputText extends NoShadowDOM {
+class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   static get tagName() {
     return 'axa-input-text';
   }
 
   static get properties() {
     return {
-      id: { type: String },
+      refId: { type: String },
       name: { type: String },
       label: { type: String },
+      required: { type: Boolean },
       placeholder: { type: String },
       value: { type: String },
       defaultValue: { type: String },
       type: { type: String },
       error: { type: String },
+      info: { type: String },
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean },
-      embedded: { type: Boolean },
 
       isReact: { type: Boolean },
     };
@@ -36,7 +40,7 @@ class AXAInputText extends NoShadowDOM {
 
   constructor() {
     super();
-    this.id = '';
+    this.refId = `input-text-${createRefId()}`;
     this.name = '';
     this.label = '';
     this.placeholder = '';
@@ -49,14 +53,12 @@ class AXAInputText extends NoShadowDOM {
     this.required = false;
     this.invalid = false;
     this.disabled = false;
-    this.embedded = false;
     this.isReact = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
 
     // internal properties
-    this.refId = '';
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
@@ -83,7 +85,7 @@ class AXAInputText extends NoShadowDOM {
   }
 
   get showError() {
-    return this.error && this.invalid;
+    return this.error && this.invalid && !this.disabled && !this._open;
   }
 
   handleFocus = ev => {
@@ -105,14 +107,12 @@ class AXAInputText extends NoShadowDOM {
   };
 
   firstUpdated() {
-    const { id, defaultValue, isReact } = this;
+    const { defaultValue, isReact } = this;
     this.nativeInput = this.querySelector('input');
 
     if (isReact && defaultValue) {
       this.nativeInput.value = defaultValue;
     }
-
-    this.refId = id || `input-text-${createRefId()}`;
   }
 
   render() {
@@ -122,13 +122,13 @@ class AXAInputText extends NoShadowDOM {
       value,
       label = '',
       error = '',
+      info = '',
       type = '',
       placeholder,
       disabled,
       isReact,
       invalid,
       checkMark,
-      embedded,
       isControlled,
       refId,
     } = this;
@@ -137,23 +137,8 @@ class AXAInputText extends NoShadowDOM {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error': invalid,
-    };
-
-    const checkClasses = {
-      'a-input-text__check': true,
-      'a-input-text__check--hidden': invalid,
-    };
-
-    const checkWrapperClasses = {
-      'a-input-text__check-wrapper': true,
-      'a-input-text__check-wrapper--reservation': !embedded,
-      'a-input-text__check-wrapper--hidden': embedded && !checkMark,
-    };
-
-    const errorMessageWrapperClasses = {
-      'a-input-text__error-wrapper--reservation': !embedded,
-      'a-input-text__error-wrapper--hidden': embedded && !this.showError,
+      'a-input-text__input--error': invalid && !disabled,
+      'a-input-text__input--check': checkMark && !disabled,
     };
 
     return html`
@@ -170,36 +155,58 @@ class AXAInputText extends NoShadowDOM {
             </label>
           `}
         <div class="a-input-text__input-wrapper">
-          <input
-            @input="${this.handleInput}"
-            @focus="${this.handleFocus}"
-            @blur="${this.handleBlur}"
-            id="${refId}"
-            type="${type}"
-            class=" ${classMap(inputClasses)}"
-            autocomplete="off"
-            name="${name}"
-            value="${value}"
-            placeholder="${placeholder}"
-            ?disabled="${disabled}"
-            aria-required="${required}"
-          />
-
-          <div class="${classMap(checkWrapperClasses)}">
-            ${checkMark
-              ? html`
-                  <span class="${classMap(checkClasses)}"></span>
-                `
-              : ''}
+          <div class="a-input-text__input-elements">
+            <input
+              id="${refId}"
+              type="${type}"
+              class="${classMap(inputClasses)}"
+              autocomplete="off"
+              name="${name}"
+              value="${value}"
+              placeholder="${placeholder}"
+              aria-required="${required}"
+              ?disabled="${disabled}"
+              @input="${this.handleInput}"
+              @focus="${this.handleFocus}"
+              @blur="${this.handleBlur}"
+            />
+            ${
+              checkMark
+                ? html`
+                    <span class="a-input-text__check"></span>
+                  `
+                : ''
+            }
           </div>
+          ${info &&
+            html`
+              <axa-popup-button
+                ?open="${this._open}"
+                class="a-input-text__info-button"
+                @click="${this.handlePopupButtonClick}"
+              ></axa-popup-button>
+            `}
         </div>
-        <div class="${classMap(errorMessageWrapperClasses)}">
-          ${this.showError
+          ${
+            this.showError
+              ? html`
+                  <span class="a-input-text__error">${error}</span>
+                `
+              : ''
+          }
+        </div>
+        ${
+          info
             ? html`
-                <span class="a-input-text__error">${error}</span>
+                <axa-popup-content
+                  ?open="${this._open}"
+                  class="a-input-text__info-content"
+                >
+                  ${unsafeHTML(info)}
+                </axa-popup-content>
               `
-            : ''}
-        </div>
+            : ''
+        }
       </div>
     `;
   }

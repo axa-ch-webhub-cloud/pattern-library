@@ -189,4 +189,12 @@ test('should submit correct value to form', async t => {
     .wait(50 /* give click handler time to execute and influence form data */)
     .expect(await getFormData())
     .eql('FR');
+
+  // test that native onchange callback fired upon selecting the 2nd option
+  // and returned the expected event.detail values
+  const getFormTitle = ClientFunction(
+    () => document.querySelector('#dropdown-form').title
+  );
+
+  await t.expect(await getFormTitle()).eql('FR,2 ');
 });

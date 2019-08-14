@@ -10,7 +10,7 @@ storiesOf('Molecules/Dropdown', module)
   })
   .add(
     'Dropdown',
-    () => `<axa-dropdown title="Please Select" data-test-id="dropdown"
+    () => `<axa-dropdown title="Please Select" label="Dropdown Label" data-test-id="dropdown"
     items='[
     {"name": "Please Select", "value": "Please Select", "disabled": true },
     {"name": "Item 1", "value": "Item 1",  "selected": true },
@@ -52,22 +52,11 @@ storiesOf('Molecules/Dropdown', module)
     `
   )
   .add(
-    'Dropdown embedded, w/o space for valid checkmark or error message',
-    () => `<axa-dropdown embedded
-    items='[
-    {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
-    {"name": "Item 1", "value": "Item 1" },
-    {"name": "Item 2", "value": "Item 2" },
-    {"name": "Item 3", "value": "Item 3" }
-    ]'></axa-dropdown>
-    `
-  )
-  .add(
     'Dropdown inside form',
     () => `<form id="dropdown-form" onsubmit="event.preventDefault();document.getElementById('form-data').open=true;document.getElementById('form-data-lang').textContent=(new FormData(this)).get('lang')">
     <fieldset>
     <legend>Language</legend>
-    <axa-dropdown data-test-id="dropdown-forms" name="lang"
+    <axa-dropdown data-test-id="dropdown-forms" name="lang" onchange="document.getElementById('dropdown-form').title += event.detail.value + ',' + event.detail.index + ' '"
     items='[
     {"name": "Please select language", "value": "Please Select", "selected": true, "disabled": true },
     {"name": "Deutsch", "value": "DE" },

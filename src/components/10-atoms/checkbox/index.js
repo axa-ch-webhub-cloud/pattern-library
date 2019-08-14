@@ -14,9 +14,13 @@ class AXACheckbox extends NoShadowDOM {
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
+      required: { type: Boolean },
       checked: {
         type: Boolean,
         reflect: true,
+      },
+      defaultChecked: {
+        type: Boolean,
       },
       disabled: { type: Boolean, reflect: true },
       error: {
@@ -51,6 +55,7 @@ class AXACheckbox extends NoShadowDOM {
     this.value = '';
     this.name = '';
     this.label = '';
+    this.required = false;
     this.disabled = false;
     this.error = '';
     this.isReact = false;
@@ -88,16 +93,13 @@ class AXACheckbox extends NoShadowDOM {
 
   handleChange(event) {
     // initialize
-    const {
-      state: { native },
-      onChange,
-    } = this;
+    const { onChange } = this;
     // *schedule* a UI update from model state in the near future
     // (if no changed prop value is seen, triggering re-rendering,
     // that scheduled update actually happens!)
     this.state.timer = setTimeout(() => this.updated(), 0);
-    // toggle *uncontrolled* model state to reflect checkbox behaviour
-    this.state.native = !native;
+    // set *uncontrolled* model state from native checkbox behaviour
+    this.state.native = event.target.checked;
     // invoke event callback
     onChange(event);
   }
@@ -111,7 +113,7 @@ class AXACheckbox extends NoShadowDOM {
       checked,
       disabled,
       error = '',
-      id,
+      required,
       isReact,
       state: { isControlled, timer },
     } = this;
@@ -127,29 +129,38 @@ class AXACheckbox extends NoShadowDOM {
     return html`
       <label class="a-checkbox__wrapper">
         <input
-          @focus="${this.onFocus}"
-          @blur="${this.onBlur}"
-          id="${id}"
           class="a-checkbox__input"
           type="checkbox"
           name="${name}"
-          ?checked="${checked}"
           value="${value}"
+          aria-required="${required}"
+          ?checked="${checked}"
           ?disabled="${disabled}"
           ?error="${!!error}"
+          @focus="${this.onFocus}"
+          @blur="${this.onBlur}"
           @change=${this.handleChange}
         />
         <span class="a-checkbox__icon"></span>
         ${label &&
           html`
-            <span class="a-checkbox__content">${unsafeHTML(label)}</span>
+            <span class="a-checkbox__content">${unsafeHTML(label)} ${required ? html`*` : ''}</span>
           `}
-        ${error &&
-          html`
-            <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-          `}
+        ${error
+          ? html`
+              <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+            `
+          : html``}
       </label>
     `;
+  }
+
+  firstUpdated() {
+    const { isReact, defaultChecked } = this;
+    if (isReact && defaultChecked) {
+      this.querySelector('input').checked = true;
+      this.state.native = true;
+    }
   }
 
   // this lifecycle method will regularly be called after render() -

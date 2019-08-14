@@ -122,7 +122,6 @@ class AXADatepicker extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String },
       error: { type: String, reflect: true },
-      embedded: { type: Boolean, reflect: true },
       height: { type: String, reflect: true },
       width: { type: String, reflect: true },
     };
@@ -246,13 +245,15 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = 'auto', height = 'auto' } = this;
+    const { width = 'auto', height = 'auto', error, invalid } = this;
 
     const formattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
 
     const formattedWidth = `width:${formattedStyle(width)}`;
     const formattedHeight = `height:${formattedStyle(height)}`;
+
+    const needToShowError = error || invalid;
 
     return html`
       <article
@@ -294,7 +295,7 @@ class AXADatepicker extends NoShadowDOM {
                       max-height
                       items="${JSON.stringify(this.monthitems)}"
                       title="${this.monthtitle}"
-                      embedded
+                      data-usecase="datepicker"
                     >
                     </axa-dropdown>
 
@@ -304,7 +305,7 @@ class AXADatepicker extends NoShadowDOM {
                       max-height
                       items="${JSON.stringify(this.yearitems)}"
                       title="${this.yeartitle}"
-                      embedded
+                      data-usecase="datepicker"
                     >
                     </axa-dropdown>
                   </div>
@@ -357,11 +358,9 @@ class AXADatepicker extends NoShadowDOM {
               </div>
             `
           : ''}
-        ${!this.embedded
+        ${needToShowError
           ? html`
-              <span class="m-datepicker__error"
-                >${this.error || this.invalid ? this.invaliddatetext : ''}</span
-              >
+              <span class="m-datepicker__error">${this.invaliddatetext}</span>
             `
           : html``}
       </article>
@@ -401,6 +400,7 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleBodyClick);
     window.removeEventListener('resize', this.debouncedHandleViewportCheck);

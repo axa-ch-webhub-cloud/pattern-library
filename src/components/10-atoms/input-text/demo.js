@@ -31,14 +31,14 @@ storiesOf('Atoms/Input text/Demos', module)
         <fieldset>
           <legend>input text types - work in forms</legend>
           <axa-input-text
-            id="default"
+            refId="default"
             required
             label="Default Label"
             name="default"
           >
           </axa-input-text>
           <axa-input-text
-            id="email"
+            refId="email"
             required
             type="email"
             name="email"
@@ -46,7 +46,7 @@ storiesOf('Atoms/Input text/Demos', module)
           >
           </axa-input-text>
           <axa-input-text
-            id="password"
+            refId="password"
             required
             label="Password Label"
             name="password"
@@ -77,4 +77,18 @@ storiesOf('Atoms/Input text/Demos', module)
     const wrapper = document.createElement('div');
     render(template, wrapper);
     return wrapper;
+  })
+  .add(
+    'Feature - Input text native oninput event attribute',
+    () =>
+      `<axa-input-text oninput="console.log('input with')"></axa-input-text>`
+  )
+  .add('Feature - Input text info popup', () => {
+    const info = `<h4>Zeitspanne bis zur Pensionierung</h4>
+    <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
+    return `<div>
+              <axa-input-text invalid error="Error Message is cool" label="Cool" info="${info}"></axa-input-text>
+              <axa-input-text label="Cool 2"></axa-input-text>
+              <axa-input-text label="Cool 3" info="${info}"></axa-input-text>
+            </div>`;
   });

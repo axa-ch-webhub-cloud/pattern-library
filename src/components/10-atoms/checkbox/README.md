@@ -34,7 +34,7 @@ export default AXACheckBox;
 ```
 
 ```js
-<AXACheckBox onChange={handler} label="I'm a checkbox"></AXACheckBox>
+<AXACheckBox onChange={handler} label="I'm a checkbox" defaultChecked></AXACheckBox>
 <AXACheckBox onChange={handler} checked={checked} label="I'm a controlled checkbox"></AXACheckBox>
 ```
 
@@ -75,11 +75,19 @@ The string-valued `value` of the checkbox for purposes of form submission.
 
 The string-valued `label` provides the label text as HTML.
 
-_Note: The consumer is responsible for sanitizing the label HTML!_
+_Note: The component consumer is responsible for sanitizing the label HTML!_
+
+### required
+
+The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
 
 ### checked\*
 
 The Boolean `checked` sets the checked/unchecked visual state.
+
+### defaultChecked
+
+The Boolean `defaultChecked` sets the initial checked state. It is only available under React.
 
 ### disabled\*
 
@@ -89,14 +97,21 @@ The Boolean `disabled` disables the checkbox natively.
 
 The string-valued `error` provides an error text as HTML. It sets the checkbox into a visual error state.
 
+## Callbacks
+
 ### onChange
 
-The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
+The function-valued property `onChange` can be used as a callback prop for React and other frameworks. Its only parameter is the corresponding native event from the underlying `<input>` element.
+
+It is especially significant when used together with `value` to implement controlled-component
+behaviour under React.
 
 ### onFocus
 
 The function-valued property `onFocus` can be used as a callback prop for React and other frameworks.
+Its only parameter is the corresponding native event from the underlying `<input>` element.
 
 ### onBlur
 
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
+Its only parameter is the corresponding native event from the underlying `<input>` element.

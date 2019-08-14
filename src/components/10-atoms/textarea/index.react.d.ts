@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface AXATextareaProps {
-  id?: string;
+  refId?: string;
   name: string;
   label?: string;
   placeholder?: string;

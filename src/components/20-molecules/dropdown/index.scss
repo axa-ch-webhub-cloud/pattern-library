@@ -9,7 +9,6 @@ $dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
 $dropdown-icon-width: 10px;
 $dropdown-icon-height: $dropdown-icon-width;
-$dropdown-error-minheight: 19px;
 
 @mixin normalize-native-select-styles() {
   appearance: none;
@@ -50,6 +49,14 @@ axa-dropdown {
     box-sizing: border-box;
   }
 
+  .m-dropdown__label {
+    @include typo(primary, medium);
+    display: block;
+    font-weight: 600;
+    color: $color-prim-gray-mine-shaft;
+    margin-bottom: 10px;
+  }
+
   &[open] {
     .m-dropdown__content {
       height: auto;
@@ -63,7 +70,7 @@ axa-dropdown {
       padding-right: 10px;
     }
 
-    &[max-height][embedded] {
+    &[max-height][data-usecase="datepicker"] {
       .m-dropdown__content {
         border: $dropdown-border-style;
         border-top: none;
@@ -71,7 +78,7 @@ axa-dropdown {
     }
   }
 
-  &[max-height][embedded] {
+  &[max-height][data-usecase="datepicker"] {
 
     .m-dropdown__toggle span {
       display: inline-block;
@@ -123,13 +130,6 @@ axa-dropdown {
       visibility: visible;
     }
   }
-
-  &[embedded] {
-    .m-dropdown__valid-icon,
-    .m-dropdown__error {
-      display: none;
-    }
-  }
 }
 
 .m-dropdown {
@@ -141,7 +141,7 @@ axa-dropdown {
   &__list {
     padding: 10.5px 20px 10.5px 12px;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-silver;
+    border: 1px solid $color-prim-gray-dusty;
     color: $dropdown-color;
     height: inherit;
     position: relative;
@@ -181,7 +181,6 @@ axa-dropdown {
     margin-top: 10px;
     line-height: 1.2;
     color: $color-validation-error;
-    min-height: $dropdown-error-minheight;
   }
 
   &__select {
