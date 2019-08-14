@@ -104,6 +104,7 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
       </axa-button-link>
     </axa-commercial-hero-banner>
     <script src="node_modules/@axa-ch/commercial-hero-banner/dist/index.js"></script>
+    <script src="node_modules/@axa-ch/axa-button-link/dist/index.js"></script>
   </body>
 </html>
 ```
