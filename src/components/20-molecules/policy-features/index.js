@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -37,23 +38,22 @@ class AXAPolicyFeatures extends LitElement {
     this.axaStyle = DEFAULT_AXA_STYLE;
   }
 
-  getAllowedAxaStyleName(potentialAxaStyle) {
-    if (STYLE_WHITELIST.indexOf(potentialAxaStyle) > -1) {
-      return potentialAxaStyle;
-    }
-
-    return DEFAULT_AXA_STYLE;
-  }
-
   render() {
     const { title, axaStyle } = this;
 
+    const classes = {
+      'm-policy-features': true,
+      'm-policy-features__style-dark-indigo':
+        axaStyle === 'dark-indigo' ||
+        'default' ||
+        STYLE_WHITELIST.indexOf(axaStyle) === -1,
+      'm-policy-features__style-axa-blue': axaStyle === 'axa-blue',
+      'm-policy-features__style-wild-sand': axaStyle === 'wild-sand',
+      'm-policy-features__style-white': axaStyle === 'white',
+    };
+
     return html`
-      <article
-        class="m-policy-features m-policy-features__style-${this.getAllowedAxaStyleName(
-          axaStyle
-        )}"
-      >
+      <article class="${classMap(classes)}">
         <h1 class="m-policy-features__title">${title}</h1>
         <slot class="m-policy-features__slot"></slot>
       </article>

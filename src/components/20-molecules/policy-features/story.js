@@ -1,7 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
-import './index';
+import { STYLE_WHITELIST } from './index';
 import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
@@ -14,20 +14,12 @@ story.addParameters({
   },
 });
 
-const STYLE_WHITELIST = [
-  'default',
-  'dark-indigo',
-  'axa-blue',
-  'wild-sand',
-  'white',
-];
-
 const ITEM_ICONS = ['email', 'download'];
 
 story.add('Policy features', () => {
   const axaStyles = select(
     'axaStyle',
-    STYLE_WHITELIST,
+    STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist'),
     STYLE_WHITELIST[0],
     'axa-policy-features'
   );

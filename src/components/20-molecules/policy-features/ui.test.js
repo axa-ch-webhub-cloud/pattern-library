@@ -7,10 +7,15 @@ const defaultWindowHeight = 1000;
 const huge2WindowWidth = 992;
 const hugeWindowWidth = 768;
 const large1WindowWidth = 576;
+const DEFAULT_AXA_STYLE = 'dark-indigo'; // should be equal to const in ./index.js
 
 const $axaPolicyFeaturesHeaderEl = Selector(
   () => document.querySelector('axa-policy-features').shadowRoot
 ).find('h1');
+
+const $axaPolicyFeaturesArticleEl = Selector(
+  () => document.querySelector('axa-policy-features').shadowRoot
+).find('article');
 
 fixture('Policy features - basic functionality').page(
   `${host}/iframe.html?id=molecules-policy-features--policy-features`
@@ -33,10 +38,6 @@ test('should render title', async t => {
 });
 
 test('should render default background dark-indigo', async t => {
-  const $axaPolicyFeaturesArticleEl = Selector(
-    () => document.querySelector('axa-policy-features').shadowRoot
-  ).find('article');
-
   await t
     .expect(
       await $axaPolicyFeaturesArticleEl.getStyleProperty('background-color')
@@ -66,4 +67,34 @@ test('should render title with size large-1 on all other screen sizes', async t 
     .eql('24px');
 }).before(async t => {
   await t.resizeWindow(large1WindowWidth, defaultWindowHeight);
+});
+
+fixture('Policy features - attribute axastyle: not set').page(
+  `${host}/iframe.html?id=molecules-policy-features-demos--without-attribute-axastyle`
+);
+
+test('should set default style if axastyle is not set', async t => {
+  await t
+    .expect(await $axaPolicyFeaturesArticleEl.getAttribute('class'))
+    .contains(DEFAULT_AXA_STYLE);
+});
+
+fixture('Policy features - attribute axastyle: not in whitelist').page(
+  `${host}/iframe.html?id=molecules-policy-features-demos--with-attribute-axastyle-that-doesnt-exist`
+);
+
+test('should set default style if axastyle string is not in whitelist', async t => {
+  await t
+    .expect(await $axaPolicyFeaturesArticleEl.getAttribute('class'))
+    .contains(DEFAULT_AXA_STYLE);
+});
+
+fixture('Policy features - attribute axastyle: is in whitelist').page(
+  `${host}/iframe.html?id=molecules-policy-features-demos--with-attribute-axastyle-set-to-wild-sand`
+);
+
+test('should set style to "wild-sand"', async t => {
+  await t
+    .expect(await $axaPolicyFeaturesArticleEl.getAttribute('class'))
+    .contains('wild-sand');
 });
