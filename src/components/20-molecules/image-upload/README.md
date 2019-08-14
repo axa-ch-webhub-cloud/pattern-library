@@ -71,8 +71,8 @@ Import the image-upload-defining script and use a image-upload like this:
 | Attribute                                  | Details                                                              |
 | ------------------------------------------ | -------------------------------------------------------------------- |
 | `inputFileText="Upload file"`              | Text in the input-file component                                     |
-| `maxSizeOfSingleFileMB="10"`               | Maximal size of a single file in mb                                  |
-| `maxSizeOfAllFilesMB="15"`                 | Maximal size of a all files together in mb                           |
+| `maxSizeOfSingleFileKB="10"`               | Maximal size of a single file in KB                                  |
+| `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all files together in KB                           |
 | `maxNumberOfFiles="10"`                    | Maximal number of files                                              |
 | `showImageOverview="false"`                | Switch between normal view and image overview                        |
 | `icon="cloud-upload"`                      | Specify the upload icon in input-file component                      |
@@ -88,13 +88,13 @@ Import the image-upload-defining script and use a image-upload like this:
 
 The attribute `inputFileText` specifies the text witch appears next to the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md).
 
-### maxSizeOfSingleFileMB
+### maxSizeOfSingleFileKB
 
-The attribute `maxSizeOfSingleFileMB` specifies the maximal size a single file can have. A file which is to big gets displayed as a wrong file.
+The attribute `maxSizeOfSingleFileKB` specifies the maximal size a single compressed file can have. A file which is to big gets displayed as a wrong file.
 
-### maxSizeOfAllFilesMB
+### maxSizeOfAllFilesKB
 
-The attribute `maxSizeOfAllFilesMB` specifies the maximal size all files together can have. Every File that is over the limit gets displayed as a wrong file.
+The attribute `maxSizeOfAllFilesKB` specifies the maximal size all compressed files together can have. Every File that is over the limit gets displayed as a wrong file.
 
 ### maxNumberOfFiles
 
