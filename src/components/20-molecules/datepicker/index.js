@@ -128,6 +128,8 @@ class AXADatepicker extends NoShadowDOM {
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
+      checkMark: { type: Boolean, reflect: true },
+      autofocus: { type: Boolean, reflect: true },
     };
   }
 
@@ -199,6 +201,7 @@ class AXADatepicker extends NoShadowDOM {
     this.invalid = false;
     this.disabled = false;
     this.required = false;
+    this.autofocus = false;
     this.name = '';
     this.label = '';
     this.labelbuttoncancel = 'Schliessen';
@@ -254,6 +257,7 @@ class AXADatepicker extends NoShadowDOM {
       label,
       required,
       disabled,
+      checkMark,
     } = this;
 
     const [month, year] = [
@@ -311,8 +315,13 @@ class AXADatepicker extends NoShadowDOM {
                 class="m-datepicker__input-button"
                 @click="${this.handleInputButtonClick}"
               >
-                <span>${dateInputIcon}</span>
+                ${dateInputIcon}
               </button>
+              ${checkMark
+                ? html`
+                    <span class="m-datepicker__check"></span>
+                  `
+                : ''}
             </div>
           `}
         ${(this.open && !disabled) || !this.inputfield
@@ -325,7 +334,7 @@ class AXADatepicker extends NoShadowDOM {
                       class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
                       max-height
                       items="${JSON.stringify(this.monthitems)}"
-                      title="${this.monthtitle}"
+                      defaulttitle="${this.monthtitle}"
                       data-usecase="datepicker"
                     >
                     </axa-dropdown>
@@ -335,7 +344,7 @@ class AXADatepicker extends NoShadowDOM {
                       class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
                       max-height
                       items="${JSON.stringify(this.yearitems)}"
-                      title="${this.yeartitle}"
+                      defaulttitle="${this.yeartitle}"
                       data-usecase="datepicker"
                     >
                     </axa-dropdown>
@@ -382,6 +391,7 @@ class AXADatepicker extends NoShadowDOM {
                     <axa-button
                       class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
                       @click="${this.handleButtonOkClick}"
+                      .disabled="${!_date}"
                       >${this.labelbuttonok}</axa-button
                     >
                   </div>
@@ -410,10 +420,14 @@ class AXADatepicker extends NoShadowDOM {
       isReact,
       defaultValue,
       year,
+      autofocus,
       startDate,
     } = this;
 
     if (input) {
+      if (autofocus) {
+        input.focus();
+      }
       window.setTimeout(() => {
         window.addEventListener('resize', this.debouncedHandleViewportCheck);
         window.addEventListener('scroll', this.debouncedHandleViewportCheck);

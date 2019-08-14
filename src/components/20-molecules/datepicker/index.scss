@@ -1,3 +1,5 @@
+@import '../../00-materials/styles/mixins/check-mark-animated';
+
 axa-datepicker {
   display: inline-block;
   vertical-align: top;
@@ -27,7 +29,8 @@ axa-datepicker {
     }
   }
 
-  &[error]:not([error=""]) {
+  &[error]:not([error=""]),
+  &[invalid] {
     .m-datepicker__input, .m-datepicker__input-button {
       border-color: $color-validation-error;
       outline-color: $color-validation-error;
@@ -77,19 +80,25 @@ axa-datepicker {
   }
 
   &__input-wrap {
+    position: relative;
     display: flex;
     width: 197px;
   }
 
   &__input-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: $color-prim-white;
-    cursor: pointer;border: 1px solid;
-    border-color: $color-prim-gray-mercury;
+    cursor: pointer;
+    border: 1px solid;
+    border-color: $color-prim-gray-dusty;
     border-left: none;
     line-height: 0;
     padding: 1px 3px 2px;
     margin-left: 0; /* suppress Safari 2px margin */
-    width: 40px;
+    min-width: 40px;
+    box-sizing: border-box;
 
     &:focus {
       outline: 2px solid $color-axa-blue;
@@ -100,26 +109,24 @@ axa-datepicker {
       color: $color-axa-blue;
       width: 24px;
       height: 24px;
-      padding-right: 6px;
       fill: $color-axa-blue;
     }
   }
 
   &__input {
-    @include typo(primary, small);
-
+    @include typo(primary, default);
+    line-height: normal;
     border: 1px solid;
-    border-color: $color-prim-gray-mercury;
+    border-color: $color-prim-gray-dusty;
     border-right: none;
-    padding: 8px;
+    padding: 10px 10px 10px 20px;
     min-width: 0;
     width: 100%;
-    line-height: normal;
     box-sizing: border-box;
 
     &::placeholder,
     &:-ms-input-placeholder {
-      @include typo(primary, small);
+      @include typo(primary, default);
     }
 
     &::-ms-clear {
@@ -147,7 +154,7 @@ axa-datepicker {
     padding: 20px 30px;
     background: $color-prim-white;
     border: solid 1px $color-prim-gray-silver;
-    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.18);
+    box-shadow: 0 5px 7px 0 $color-prim-gray-silver;
   }
 
   &__dropdown-wrap {
@@ -202,6 +209,7 @@ axa-datepicker {
     border-radius: 50%;
     border: solid 2px transparent;
     cursor: pointer;
+    box-sizing: border-box;
   }
 
   &__calendar-cell:focus {
@@ -297,5 +305,10 @@ axa-datepicker {
 
   .m-datepicker__input-icon {
     color: $color-axa-blue;
+  }
+
+  .m-datepicker__check {
+    @include check-mark-animated();
+    margin-left: 10px;
   }
 }

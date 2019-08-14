@@ -26,6 +26,12 @@ export default createElement => ({
   embedded,
   id,
   className = '',
+  width,
+  label = '',
+  disabled,
+  required,
+  checkMark,
+  autofocus,
 }) =>
   withReact(createElement)(AXADatepicker.tagName, {
     'data-test-id': dataTestId,
@@ -52,5 +58,11 @@ export default createElement => ({
     embedded,
     id,
     className,
+    width,
+    label,
+    disabled,
+    required,
+    checkMark,
+    autofocus,
     isReact: true,
   });
