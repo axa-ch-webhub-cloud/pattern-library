@@ -135,13 +135,6 @@ Defining a `date` property does **not** imply controlled-component behaviour.
 
 Likewise, `date` is **not** automatically reflected to the date input field. Rather, only _user input_ is.
 
-### embedded
-
-Boolean `embedded`, when true, _suppresses_ any extraneous space around the date UI proper, in particular the vertical space normally reserved below the component for displaying error messages.
-
-While no error message will be shown, internal validation continues to be performed. As a result,
-UI state still changes to red border, and the `error` attribute still is being set upon validation failure.
-
 ### invalid
 
 Boolean `invalid`, when set to true, forces showing the error message set with `invaliddatetext` even when user input is valid.
@@ -155,6 +148,30 @@ String-valued `width, height` allow to override the intrinsic dimensions of the 
 For example, setting `width=100%` makes the datepicker assume its parent's width, whereas `height=45` sets the height of the input field to 45px.
 
 Note that missing `px` is added to numeric values automatically.
+
+### label
+
+String-valued `label` sets a label text above the input-field part of the datepicker.
+
+### required
+
+Boolean `required`, when true, adds a star after the `label` text to visually convey to the user that filling this input-field datepicker is mandatory.
+
+### disabled
+
+Boolean `disabled`, when true, disables the datepicker, both in terms of keyboard input and dropping down the datepicker proper.
+
+This state is visually conveyed to the user via suitable grey colours.
+
+### checkMark
+
+Boolean `checkMark`, when true, paints a checkmark icon after the datepicker.
+
+Its intended use is in conjunction with external validation.
+
+### autofocus
+
+Boolean `autofocus`, when true, sets keyboard focus on the input field after initial rendering of a datepicker configured for `inputfield` mode.
 
 ## Callback Properties
 
