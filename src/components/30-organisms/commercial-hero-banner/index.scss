@@ -6,10 +6,9 @@
 
   &__picture-container {
     position: absolute;
-    object-fit: cover;
 
     height: 200px;
-    
+
     width: 100%;
     top: 0;
     left: 0;
@@ -76,7 +75,6 @@
         background-color: transparent;
       }
     }
-
 
     &-item-box {
       padding: 10px 15px 0 15px;

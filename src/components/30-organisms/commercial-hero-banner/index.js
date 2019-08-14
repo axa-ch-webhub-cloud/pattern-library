@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit-element';
 import '@axa-ch/container';
-import 'objectFitPolyfill';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import childStyles from './child.scss';
@@ -57,10 +56,11 @@ class AXACommercialHeroBanner extends InlineStyles {
     return html`
       <header class="o-commercial-hero-banner">
         <div class="o-commercial-hero-banner__container">
-          <img src="${
-            this.imageSource
-          }" class="o-commercial-hero-banner__picture-container"
-          ></img>
+          <div
+            class="o-commercial-hero-banner__picture-container"
+            style="background: url('${this
+              .imageSource}') no-repeat center center;background-size: cover;"
+          ></div>
           <axa-container>
             <div class="o-commercial-hero-banner__content">
               <div class="o-commercial-hero-banner__content-item">
