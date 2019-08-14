@@ -39,7 +39,7 @@ class AXAPolicyFeaturesItem extends LitElement {
     if (/\.svg/.test(icon)) {
       xhrCall(icon).then(result => {
         this.shadowRoot.getElementById(
-          'policy-features-item-icon'
+          'm-policy-features-item-icon'
         ).innerHTML = result;
       });
     }
@@ -49,12 +49,12 @@ class AXAPolicyFeaturesItem extends LitElement {
     const { icon, title, description } = this;
 
     return html`
-      <section class="policy-features-item">
-        <div id="policy-features-item-icon" class="policy-features-item__icon">
+      <section class="m-policy-features-item">
+        <div id="m-policy-features-item-icon" class="m-policy-features-item__icon">
           ${svg([AXAPolicyFeaturesItem.iconsMapping[icon] || ''])}
         </div>
-        <h1 class="policy-features-item__title">${title}</h1>
-        <p class="policy-features-item__description">${description}</p>
+        <h1 class="m-policy-features-item__title">${title}</h1>
+        <p class="m-policy-features-item__description">${description}</p>
       </section>
     `;
   }

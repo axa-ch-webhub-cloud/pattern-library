@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 const TAG = 'axa-policy-features-item';
-const CLASS = '.policy-features-item';
+const CLASS = '.m-policy-features-item';
 const defaultWindowHeight = 1000;
 const lgWindowWidth = 992;
 const mdWindowWidth = 768;
@@ -10,16 +10,31 @@ const smWindowWidth = 576;
 
 // Selectors
 const firstSvgElementInDocument = Selector(
-  () => document.querySelector('axa-policy-features-item').shadowRoot
+  () => {
+    return document.querySelector(TAG).shadowRoot;
+  },
+  { dependencies: { TAG } }
 ).find('svg');
+
 const firstH1ElementInDocument = Selector(
-  () => document.querySelector('axa-policy-features-item').shadowRoot
+  () => {
+    return document.querySelector(TAG).shadowRoot;
+  },
+  { dependencies: { TAG } }
 ).find('h1');
+
 const firstPElementInDocument = Selector(
-  () => document.querySelector('axa-policy-features-item').shadowRoot
+  () => {
+    return document.querySelector(TAG).shadowRoot;
+  },
+  { dependencies: { TAG } }
 ).find('p');
+
 const firstSectionElementInDocument = Selector(
-  () => document.querySelector('axa-policy-features-item').shadowRoot
+  () => {
+    return document.querySelector(TAG).shadowRoot;
+  },
+  { dependencies: { TAG } }
 ).find('section');
 
 fixture('Policy features item - basic functionality').page(
@@ -29,10 +44,12 @@ fixture('Policy features item - basic functionality').page(
 test('should render policy-features-item', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-policy-features-item').shadowRoot
-  );
-  const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
+  const $axaElemShadowEl = await Selector(
+    () => {
+      return document.querySelector(TAG).shadowRoot;
+    },
+    { dependencies: { TAG } }
+  ).find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
