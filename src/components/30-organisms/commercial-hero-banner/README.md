@@ -113,10 +113,10 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 
 ### Variant
 
-| Attribute     | Details                                                   |
-| ------------- | --------------------------------------------------------- |
-| `variant`     | 'dark' or 'light', sets the theme (gradient)              |
-| `imageSource` | The 'src' of the background image (link or base64 string) |
+| Attribute     | Details                                              |
+| ------------- | ---------------------------------------------------- |
+| `variant`     | 'dark' or 'light', sets the theme (gradient)         |
+| `imagesource` | The 'src' of the cover image (link or base64 string) |
 
 ### Migration Notes
 
