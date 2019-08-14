@@ -30,8 +30,8 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
     'light'
   );
 
-  const src = text(
-    'Src',
+  const imageSource = text(
+    'Image Source',
     'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
   );
 
@@ -39,7 +39,7 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
   const template = html`
     <axa-commercial-hero-banner
       variant="${variant}"
-      imagesource="${src}"
+      imagesource="${imageSource}"
     >
       <h2 slot="category">This example shows specific picture classes</h2>
       <h1 slot="title">Drive with peace of mind</h1>
