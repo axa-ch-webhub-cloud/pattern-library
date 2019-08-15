@@ -29,8 +29,7 @@ storyDropdown.add('Textarea', () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-textarea
-      refId="${refId}"
+    <axa-dropdown
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"
@@ -42,7 +41,7 @@ storyDropdown.add('Textarea', () => {
       ?disabled="${disabled}"
       ?required="${required}"
       ?invalid="${invalid}"
-    ></axa-textarea>
+    ></axa-dropdown>
   `;
 
   render(template, wrapper);

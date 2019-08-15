@@ -91,7 +91,6 @@ class AXADropdown extends NoShadowDOM {
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
-      refId: { type: String },
       label: { type: String },
       required: { type: Boolean },
       items: { type: Array },
@@ -102,8 +101,8 @@ class AXADropdown extends NoShadowDOM {
       native: { type: Boolean, reflect: true },
       checkMark: { type: Boolean, reflect: true },
       invalid: { type: Boolean, reflect: true },
-      disabled: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
+      disabled: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
     };
   }
