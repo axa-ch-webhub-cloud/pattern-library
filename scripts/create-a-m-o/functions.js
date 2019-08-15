@@ -13,11 +13,12 @@ const getAMOType = (type) => {
   `));
 };
 
+const capitalizeFirstLetter = string => string
+  .charAt(0)
+  .toUpperCase() + string
+  .slice(1);
+
 const prepareName = done => (userInput) => {
-  const capitalizeFirstLetter = string => string
-    .charAt(0)
-    .toUpperCase() + string
-    .slice(1);
   const camelCase = string => string
     .split(/[-_ ]+/)
     .map(capitalizeFirstLetter)
@@ -53,9 +54,11 @@ const createFiles = (store, a, m, o, done) => () => {
   };
 
   const BASE_FOLDER = `./src/components/${folderMap[type]}/${fileName}`;
-
-  let compTitle = fileName.replace(/-/g, ' ');
-  compTitle =compTitle.charAt(0).toUpperCase() + compTitle.slice(1);
+  const upperCaseWithSpace = string => string
+    .split(/[-_ ]+/)
+    .map(capitalizeFirstLetter)
+    .join(' ');
+  const compTitle = upperCaseWithSpace(fileName.replace(/-/g, ' '));
 
   if (!fs.existsSync(BASE_FOLDER)) {
     fs.mkdirSync(`${BASE_FOLDER}`);
