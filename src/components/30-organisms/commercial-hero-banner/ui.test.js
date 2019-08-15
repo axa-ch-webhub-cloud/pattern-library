@@ -15,9 +15,8 @@ test('should render commercial-hero-banner', async t => {
   const $axaElemShadow = await Selector(
     () => document.querySelector(TAG).shadowRoot,
     { dependencies: { TAG } }
-  );
-  const $axaElemShadowEl = await $axaElemShadow.find(ROOT_CLASS);
-  await t.expect($axaElemShadowEl.exists).ok();
+  ).find(ROOT_CLASS);
+  await t.expect($axaElemShadow.exists).ok();
 });
 
 fixture('Commercial Hero Banner - Dark Mode').page(
