@@ -348,8 +348,8 @@ class AXADropdown extends NoShadowDOM {
         </div>
         ${checkMark
           ? html`
-              <span class="m-dropdown__checkmark-wrapper">
-                <span class="m-dropdown__checkmark-icon"></span>
+              <span class="m-dropdown__check-wrapper">
+                <span class="m-dropdown__check"></span>
               </span>
             `
           : ''}

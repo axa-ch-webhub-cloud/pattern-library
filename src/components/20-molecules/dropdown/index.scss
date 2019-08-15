@@ -286,13 +286,13 @@ axa-dropdown {
   }
 
 
-  .m-dropdown__checkmark-wrapper {
+  .m-dropdown__check-wrapper {
     @include check-mark-animated-wrapper();
     position: relative;
     margin-left: 10px;
   }
 
-  .m-dropdown__checkmark-icon {
+  .m-dropdown__check {
     @include check-mark-animated();
     position: absolute;
     left: 0;
