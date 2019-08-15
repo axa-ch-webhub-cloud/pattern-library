@@ -306,22 +306,26 @@ class AXAImageUpload extends LitElement {
           ${isfaultyFile
             ? html`
                 <figcaption
-                  class="m-image-upload__img-caption m-image-upload__img-caption-error"
+                  class="m-image-upload__img-caption js-image-upload__img-caption m-image-upload__img-caption-error"
                   title="${fileTooBigStatusText}"
                   data-status="${deleteStatusText}"
                 >
-                  <span class="m-image-upload__filename"
+                  <span
+                    class="m-image-upload__filename js-image-upload__filename"
                     >${fileTooBigStatusText}</span
                   >
                 </figcaption>
               `
             : html`
                 <figcaption
-                  class="m-image-upload__img-caption"
+                  class="m-image-upload__img-caption js-image-upload__img-caption"
                   title="${file.name}"
                   data-status="${deleteStatusText}"
                 >
-                  <span class="m-image-upload__filename">${file.name}</span>
+                  <span
+                    class="m-image-upload__filename js-image-upload__filename"
+                    >${file.name}</span
+                  >
                 </figcaption>
               `}
         </figure>
@@ -333,7 +337,7 @@ class AXAImageUpload extends LitElement {
     const { addStatusText } = this;
     return html`
       <figure
-        class="m-image-upload__img-figure m-image-upload__add-more js-image-upload__add-more"
+        class="m-image-upload__img-figure js-image-upload__img-figure m-image-upload__add-more js-image-upload__add-more"
       >
         <div
           class="m-image-upload__icon-wrapper"
@@ -344,7 +348,7 @@ class AXAImageUpload extends LitElement {
           </div>
         </div>
         <figcaption
-          class="m-image-upload__img-caption"
+          class="m-image-upload__img-caption js-image-upload__img-caption"
           title="${addStatusText}"
         >
           ${addStatusText}
@@ -358,6 +362,7 @@ class AXAImageUpload extends LitElement {
       'm-image-upload__dropzone': true,
       'js-image-upload__dropzone': true,
       'm-image-upload__dropzone-file-overview': this.showImageOverview,
+      'js-image-upload__dropzone-file-overview': this.showImageOverview,
     };
     const errorMessageWrapperClasses = {
       'm-image-upload__error-wrapper': true,
