@@ -3,7 +3,7 @@ import React from 'react';
 type Variant = 'light' | 'dark';
 
 interface AXACommercialHeroBannerProps {
-  src: string;
+  imageSource: string;
   variant?: Variant;
   className?: string;
 }

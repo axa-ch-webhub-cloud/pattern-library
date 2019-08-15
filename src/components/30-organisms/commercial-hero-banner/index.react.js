@@ -4,8 +4,7 @@ import AXACommercialHeroBanner from './index';
 export default createElement => ({
   className,
   variant,
-  imagePosition,
-  src,
+  imageSource,
   children,
 }) =>
   withReact(createElement)(
@@ -13,8 +12,7 @@ export default createElement => ({
     {
       className,
       variant,
-      imagePosition,
-      src,
+      imageSource,
     },
     children
   );
