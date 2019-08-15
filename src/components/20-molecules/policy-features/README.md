@@ -15,7 +15,7 @@ import '@axa-ch/policy-features';
 ```
 
 ```html
-<axa-policy-features title="Your main title" axaStyle="dark-indigo">
+<axa-policy-features title="Your main title" axastyle="dark-indigo">
   <axa-policy-features-item
     title="The title of item"
     icon="email"
@@ -42,7 +42,7 @@ Import the policy-features-defining script and use a policy-features like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-policy-features title="Your main title" axaStyle="dark-indigo">
+    <axa-policy-features title="Your main title" axastyle="dark-indigo">
       <axa-policy-features-item
         title="The title of item"
         icon="email"
@@ -60,20 +60,19 @@ Import the policy-features-defining script and use a policy-features like this:
 
 | Attribute                | Details                                                          |
 | ------------------------ | ---------------------------------------------------------------- |
-| `axaStyle="default"`     | background is `dark-indigo` and font color is set automatically. |
-| `axaStyle="dark-indigo"` | background is `dark-indigo` and font color is set automatically. |
-| `axaStyle="axa-blue"`    | background is `axa-blue` and font color is set automatically.    |
-| `axaStyle="wild-sand"`   | background is `wild-sand` and font color is set automatically.   |
-| `axaStyle="white"`       | background is `white` and font color is set automatically.       |
+| `axastyle="default"`     | background is `dark-indigo` and font color is set automatically. |
+| `axastyle="dark-indigo"` | background is `dark-indigo` and font color is set automatically. |
+| `axastyle="axa-blue"`    | background is `axa-blue` and font color is set automatically.    |
+| `axastyle="wild-sand"`   | background is `wild-sand` and font color is set automatically.   |
+| `axastyle="white"`       | background is `white` and font color is set automatically.       |
 
 ### title
 
 The attribute `title` (optional) specifies the main title at the top.
 
-### axaStyle
+### axastyle
 
-The attribute `axaStyle` (optional) specifies the background and the font color of this component and all its children.
-
+The attribute `axastyle` (optional) specifies the background and the font color of this component and all its children.
 
 ### Migration Notes
 
@@ -87,10 +86,10 @@ You have to set `axa-policy-features-item` as childs of `axa-policy-features`. I
 
 ### Variant
 
-| Attribute                | Details                                                          |
-| ------------------------ | ---------------------------------------------------------------- |
-| `icon="email"`     | The email icon of our icon-set. |
-| `icon="https://url-to-svg-icon.svg"`     | Loads the url and sets content as icon. |
+| Attribute                            | Details                                 |
+| ------------------------------------ | --------------------------------------- |
+| `icon="email"`                       | The email icon of our icon-set.         |
+| `icon="https://url-to-svg-icon.svg"` | Loads the url and sets content as icon. |
 
 ### title
 
@@ -101,9 +100,10 @@ The attribute `title` (optional) specifies the title of your feature.
 You can set a icon of our icon-set (variants above) or a URL to a svg.
 
 Sizes:
+
 - 42x42 px
 - `md-up`: 96x96 px
 
 ### description
 
-A text that describes your feature. 
+A text that describes your feature.
