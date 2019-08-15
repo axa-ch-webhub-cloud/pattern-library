@@ -2,8 +2,8 @@ import React from 'react';
 
 interface AXAImageUploadProps {
   inputFileText?: string;
-  maxSizeOfSingleFileMB?: number;
-  maxSizeOfAllFilesMB?: number;
+  maxSizeOfSingleFileKB?: number;
+  maxSizeOfAllFilesKB?: number;
   maxNumberOfFiles?: number;
   showImageOverview?: boolean;
   icon?: string;
@@ -12,11 +12,8 @@ interface AXAImageUploadProps {
   fileTooBigStatusText?: string;
   filesTooBigStatusText?: string;
   tooManyFilesStatusText?: string;
-  files?: object;
-  faultyFiles?: object;
   infoText?: string;
   orText?: string;
-  onClick?: () => void;
 }
 
 declare function createAXAImageUpload(
