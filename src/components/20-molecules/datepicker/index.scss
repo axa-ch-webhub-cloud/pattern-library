@@ -307,8 +307,15 @@ axa-datepicker {
     color: $color-axa-blue;
   }
 
+  .m-datepicker__check-wrapper {
+    @include check-mark-animated-wrapper();
+    position: relative;
+    margin-left: 10px;
+  }
+
   .m-datepicker__check {
     @include check-mark-animated();
-    margin-left: 10px;
+    position: absolute;
+    left: 0;
   }
 }

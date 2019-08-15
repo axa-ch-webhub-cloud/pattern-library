@@ -319,7 +319,9 @@ class AXADatepicker extends NoShadowDOM {
               </button>
               ${checkMark
                 ? html`
-                    <span class="m-datepicker__check"></span>
+                    <span class="m-datepicker__check-wrapper">
+                      <span class="m-datepicker__check"></span>
+                    </span>
                   `
                 : ''}
             </div>
