@@ -1,7 +1,6 @@
 .o-commercial-hero-banner {
   @include breakpoint($mediaquery-lg-up) {
-    min-height: 560px;
-    max-height: 560px;
+    height: 560px;
   }
 
   &__picture-container {
