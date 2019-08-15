@@ -109,6 +109,20 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 </html>
 ```
 
+## Childfragments
+
+```js
+<axa-commercial-hero-banner>
+  <h2 slot="category">...</h2>  // Only one category
+  <h1 slot="title">...</h1> // Only one title
+  <p slot="content">...</p> // You can put multiple <p> elements with the 'content' slot
+  <small slot="disclaimer">...</small> // Only one disclaimer
+  <axa-button-link slot="button" /> // You can put multiple <p> elements with the 'content' slot
+</axa-commercial-hero-banner>
+```
+
+```
+
 ## Properties
 
 ### Variant
@@ -121,3 +135,4 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 ### Migration Notes
 
 You don't have to pay attention to anything for upgrading to newer version.
+```
