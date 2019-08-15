@@ -13,7 +13,6 @@ export const STYLE_WHITELIST = [
   'wild-sand',
   'white',
 ];
-export const DEFAULT_AXA_STYLE = 'dark-indigo';
 
 class AXAPolicyFeatures extends LitElement {
   static get tagName() {
@@ -35,7 +34,7 @@ class AXAPolicyFeatures extends LitElement {
 
   constructor() {
     super();
-    this.axastyle = DEFAULT_AXA_STYLE;
+    this.axastyle = 'dark-indigo';
   }
 
   render() {
