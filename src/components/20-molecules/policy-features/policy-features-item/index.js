@@ -1,8 +1,6 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EmailSvg, DownloadSvg } from '@axa-ch/materials/icons';
-
-/* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../../utils/define-once';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
