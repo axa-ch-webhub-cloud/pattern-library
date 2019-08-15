@@ -1,6 +1,6 @@
 # Commercial Hero Banner
 
-The commercial hero banner component to really set something into the focus of the user.
+The commercial hero banner is a component to set something into the focus of the user.
 
 ## Usage
 
