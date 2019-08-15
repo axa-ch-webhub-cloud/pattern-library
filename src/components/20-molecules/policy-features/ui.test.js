@@ -10,11 +10,13 @@ const large1WindowWidth = 576;
 const DEFAULT_AXA_STYLE = 'dark-indigo'; // should be equal to const in ./index.js
 
 const $axaPolicyFeaturesHeaderEl = Selector(
-  () => document.querySelector('axa-policy-features').shadowRoot
+  () => document.querySelector(TAG).shadowRoot,
+  { dependencies: { TAG } }
 ).find('h1');
 
 const $axaPolicyFeaturesArticleEl = Selector(
-  () => document.querySelector('axa-policy-features').shadowRoot
+  () => document.querySelector(TAG).shadowRoot,
+  { dependencies: { TAG } }
 ).find('article');
 
 fixture('Policy features - basic functionality').page(
@@ -25,7 +27,8 @@ test('should render policy-features', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-policy-features').shadowRoot
+    () => document.querySelector(TAG).shadowRoot,
+    { dependencies: { TAG } }
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
