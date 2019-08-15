@@ -21,8 +21,8 @@
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "jest --env=jsdom",
     "test-jest-watch": "jest --env=jsdom --watch -o",
-    "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome -c 4 ./**/ui.test.js",
-    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' -c 4 ./**/ui.test.js",
+    "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
+    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js"
   },
   "dependencies": {
@@ -89,8 +89,8 @@
     "sass-loader": "^7.1.0",
     "storybook-readme": "^5.0.5",
     "svgo": "^1.2.0",
-    "testcafe": "^1.1.0",
-    "testcafe-browser-provider-browserstack": "^1.8.0",
+    "testcafe": "1.4.0",
+    "testcafe-browser-provider-browserstack": "1.9.0",
     "to-string-loader": "^1.1.5"
   },
   "repository": {

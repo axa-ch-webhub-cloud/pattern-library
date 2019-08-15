@@ -1,0 +1,80 @@
+.o-commercial-hero-banner {
+  @include breakpoint($mediaquery-lg-up) {
+    height: 560px;
+  }
+
+  &__picture-container {
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -10;
+
+    @include breakpoint($mediaquery-lg-up) {
+      height: 560px;
+    }
+  }
+
+  &__text--dark {
+    @include breakpoint($mediaquery-lg-up) {
+      color: $color-prim-white;
+    }
+  }
+
+  &__container {
+    position: relative;
+
+    @include breakpoint($mediaquery-lg-up) {
+      background: linear-gradient(
+        270deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.9) 60%,
+        #fff 100%
+      );
+    }
+
+    &--dark {
+      @include breakpoint($mediaquery-lg-up) {
+        background: linear-gradient(
+          270deg,
+          rgba(0, 0, 0, 0) 30%,
+          rgba(0, 0, 0, 0.8) 60%,
+          #000 100%
+        );
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    padding: 140px 10px 30px 10px;
+    max-height: 560px;
+    overflow: hidden;
+
+    @include breakpoint($mediaquery-lg-up) {
+      padding: 0;
+      background-color: transparent;
+
+      margin: 0;
+      height: 560px;
+    }
+
+    &-item {
+      background-color: $color-prim-white;
+
+      word-wrap: break-word;
+
+      @include breakpoint($mediaquery-lg-up) {
+        display: flex;
+        flex-basis: 50%;
+        align-items: center;
+        background-color: transparent;
+      }
+    }
+
+    &-item-box {
+      padding: 10px 15px 0 15px;
+    }
+  }
+}
