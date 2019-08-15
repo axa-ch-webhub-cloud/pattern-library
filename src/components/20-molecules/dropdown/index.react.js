@@ -3,7 +3,7 @@ import AXADropdown from './index';
 
 export default createElement => ({
   'data-test-id': dataTestId,
-  title,
+  defaultTitle,
   label,
   required,
   refId,
@@ -24,7 +24,7 @@ export default createElement => ({
     label,
     required,
     refId,
-    title,
+    defaultTitle,
     items,
     value,
     native,
