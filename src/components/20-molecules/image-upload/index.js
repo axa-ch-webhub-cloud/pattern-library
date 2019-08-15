@@ -68,8 +68,8 @@ class AXAImageUpload extends LitElement {
     this.icon = 'cloud-upload';
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
-    this.fileTooBigStatusText = `File size exceeds maximal size`;
-    this.filesTooBigStatusText = `File sizes exceed maximal size`;
+    this.fileTooBigStatusText = `File size exceeds maximum size`;
+    this.filesTooBigStatusText = `File sizes exceed maximum size`;
     this.tooManyFilesStatusText = `You exceeded the maximum number of files`;
     this.orText = 'or';
     this.infoText = 'Drag and drop to upload your file';

@@ -4,16 +4,17 @@ image-upload is a component used for uploading files in forms.
 
 ## Requirements
 
-- Design requirements on [zeplin](https://zpl.io/2ZrKE7G)
-- The only filetypes allowed are `image/jpg, image/jpeg, application/pdf, image/png`
+- Design requirements on [zeplin](https://zpl.io/2ZrKE7G).
+- The only filetypes allowed are `image/jpg, image/jpeg, application/pdf, image/png`.
+- To upload a file you either drag an drop your file, or click the input-file component.
 - The image-upload has 2 states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of 4 subjects and the input-file-component with an icon. The file overview shows all uploaded files. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or has other file specific, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless when hovering over it shows the bin-icon.
-- To remove a file, the user has to hover over a file and click it
+- To remove a file, the user has to hover over a file and click it.
 - Is a filename or a status text to long it's going to be cut off and 3 dots will be added at the end. To show the full text, the user has to hover over.
-- After the file limit is reached, the dropzone is not longer active and the input-file gets deactivated
-- Is the file limit exceeded, the unused file are cut off and a matching error message is displayed under the image-upload
-- When all files together exceed the maximal file size a matching error message is displayed under the image-upload
-- The file overview is scrollable after the files use more than 2 rows
-- All files are compromised and .png are converted to .jpeg
+- After the file limit is reached, the dropzone is not longer active and the input-file gets deactivated.
+- Is the file limit exceeded, the unused file are cut off and a matching error message is displayed under the image-upload.
+- When all files together exceed the maximal file size a matching error message is displayed under the image-upload.
+- The file overview is scrollable after the files use more than 2 rows.
+- All files are compromised and .png are converted to .jpeg.
 
 ## Usage
 
@@ -110,17 +111,16 @@ The attribute `icon` specifies the icon in the [axa-input-file](https://github.c
 
 ### fileTooBigStatusText
 
-The attribute `fileTooBigStatusText` specifies the error text under a file, which is bigger than allowed. Recommended is the following pattern of the message: Recommended is the following pattern of the message: `File size exceeds ${ this.maxSizeOfSingleFileMB }MB`
+The attribute `fileTooBigStatusText` specifies the error text under a file, which is bigger than allowed. Recommended is the following pattern of the message: Recommended is to show in the message what the `maxSizeOfSingleFileKB` is.
 
 ### tooManyFilesStatusText
 
-The attribute `tooManyFilesStatusText` specifies the global error text when the maximal number of files is exceeded.
-Recommended is the following pattern of the message: `You exceeded the maximum number of files: ${ this.maxNumberOfFiles }`
+The attribute `tooManyFilesStatusText` specifies the global error text when the maximal number of files is exceeded. Recommended is to show in the message what the `maxNumberOfFiles` is.
 
 ### filesTooBigStatusText
 
 The attribute `filesTooBigStatusText` specifies the global error text when all files together exceed the maximal file size.
-Recommended is the following pattern of the message: `File sizes exceed ${ this.maxSizeOfAllFilesMB }MB`
+Recommended is to show in the message what the `maxSizeOfAllFilesKB` is.
 
 ### deleteStatusText
 
@@ -129,7 +129,3 @@ The attribute `deleteStatusText` specifies the text that appears when hovering o
 ### addStatusText
 
 The attribute `addStatusText` specifies the text under the dashed box appearing after the last file.
-
-### onClick TODO for all Events
-
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
