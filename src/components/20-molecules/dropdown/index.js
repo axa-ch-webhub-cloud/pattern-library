@@ -44,11 +44,11 @@ const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
   html`
     <option
       class="m-dropdown__option"
-      ?disabled="${disabled}"
       value="${value}"
-      ?selected="${selected}"
       data-index="${index}"
       data-value="${value}"
+      ?selected="${selected}"
+      ?disabled="${disabled}"
       >${name}</option
     >
   `;
@@ -99,7 +99,7 @@ class AXADropdown extends NoShadowDOM {
       value: { type: String },
       name: { type: String, reflect: true },
       defaultTitle: { type: String, reflect: true },
-      native: { type: Boolean },
+      native: { type: Boolean, reflect: true },
       checkMark: { type: Boolean, reflect: true },
       invalid: { type: Boolean, reflect: true },
       disabled: { type: Boolean, reflect: true },
@@ -119,7 +119,6 @@ class AXADropdown extends NoShadowDOM {
       state.isControlled = true;
     }
     // update state
-    this.updateItems(newValue);
     state.value = newValue;
     state.firstTime = false;
     // manual re-render, necessary for custom setters
@@ -222,7 +221,7 @@ class AXADropdown extends NoShadowDOM {
     const syntheticEvent = { target: { value, index, name } };
     onChange(syntheticEvent);
     if (!isControlled) {
-      this.value = value; // triggers re-render and item-selection update via value setter!
+      this.value = value; // triggers re-render
       const details = { value, index, name };
       fireCustomEvent('axa-change', value, this);
       fireCustomEvent('change', details, this);
@@ -245,6 +244,8 @@ class AXADropdown extends NoShadowDOM {
     if (!item) {
       return;
     }
+    const { name } = item;
+    this.value = value || name || '';
     // clone items array with updated selected property
     // (the fact that items are cloned ensures re-render!)
     this.items = this.items.map((_item, index) => {
@@ -259,6 +260,7 @@ class AXADropdown extends NoShadowDOM {
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
     this.state.isControlled = this.state.isControlled && this.isReact;
+    this.updateItems(this.value);
     return true;
   }
 
@@ -269,7 +271,6 @@ class AXADropdown extends NoShadowDOM {
       label = '',
       refId = '',
       defaultTitle,
-      native,
       checkMark,
       invalid,
       error,
@@ -278,7 +279,6 @@ class AXADropdown extends NoShadowDOM {
       handleDropdownItemClick,
       handleDropdownClick,
     } = this;
-    const classes = { 'm-dropdown': true, 'm-dropdown--native-only': native };
 
     const [selectedItem] = this.findByValue(null);
     this.title = selectedItem ? selectedItem.name : defaultTitle;
@@ -295,50 +295,62 @@ class AXADropdown extends NoShadowDOM {
               : ''}
           </label>
         `}
-      <div class="${classMap(classes)}">
-        <div
-          class="m-dropdown__list m-dropdown__list--native"
-          tabindex="0"
-          @focus="${this.onFocus}"
-          @blur="${this.onBlur}"
-        >
-          <select
-            id="${refId}"
-            class="m-dropdown__select js-dropdown__select"
-            name="${name}"
-            aria-required="${required}"
-            tabindex="-1"
-            @change="${handleDropdownItemClick}"
-            ?disabled="${disabled}"
-          >
-            ${[
-              { name: defaultTitle, disabled: true, selected: true, value: '' },
-            ]
-              .concat(items)
-              .map(nativeItemsMapper)}
-          </select>
-          <div class="m-dropdown__select-icon" aria-disabled="${disabled}">
-            ${ARROW_ICON}
+      <div class="m-dropdown__wrapper">
+        <div class="m-dropdown__elements">
+          <!-- NATIVE -->
+          <div class="m-dropdown__select-wrapper">
+            <select
+              id="${refId}"
+              class="m-dropdown__select js-dropdown__select"
+              name="${name}"
+              aria-required="${required}"
+              ?disabled="${disabled}"
+              @focus="${this.onFocus}"
+              @blur="${this.onBlur}"
+              @change="${handleDropdownItemClick}"
+            >
+              ${[
+                {
+                  name: defaultTitle,
+                  disabled: true,
+                  selected: true,
+                  value: '',
+                },
+              ]
+                .concat(items)
+                .map(nativeItemsMapper)}
+            </select>
+            <span class="m-dropdown__select-icon">
+              ${ARROW_ICON}
+            </span>
           </div>
-        </div>
-        <div class="m-dropdown__list m-dropdown__list--enhanced">
+          <!-- NATIVE END -->
+
+          <!-- ENHANCED -->
           <button
-            @click="${handleDropdownClick}"
+            type="button"
+            class="m-dropdown__toggle"
+            aria-disabled="${disabled}"
             @focus="${this.onFocus}"
             @blur="${this.onBlur}"
-            type="button"
-            class="m-dropdown__toggle js-dropdown__toggle"
+            @click="${handleDropdownClick}"
           >
-            <span>${this.title}</span>
-            <div class="m-dropdown__select-icon">${ARROW_ICON}</div>
+            <span class="m-dropdown__flex-wrapper">
+              <span>${this.title}</span>
+              <span class="m-dropdown__select-icon">${ARROW_ICON}</span>
+            </span>
           </button>
+
           <ul class="m-dropdown__content js-dropdown__content">
             ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
+          <!-- ENHANCED END -->
         </div>
         ${checkMark
           ? html`
-              <span class="m-dropdown__checkmark-icon"></span>
+              <span class="m-dropdown__checkmark-wrapper">
+                <span class="m-dropdown__checkmark-icon"></span>
+              </span>
             `
           : ''}
       </div>
