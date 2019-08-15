@@ -13,7 +13,8 @@ test('should render commercial-hero-banner', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-commercial-hero-banner').shadowRoot
+    () => document.querySelector(TAG).shadowRoot,
+    { dependencies: { TAG } }
   );
   const $axaElemShadowEl = await $axaElemShadow.find(ROOT_CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
@@ -27,7 +28,8 @@ test('should render in dark mode', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.getAttribute('variant')).eql('dark');
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-commercial-hero-banner').shadowRoot
+    () => document.querySelector(TAG).shadowRoot,
+    { dependencies: { TAG } }
   );
 
   const container = $axaElemShadow.find('.o-commercial-hero-banner__container');
@@ -55,9 +57,10 @@ fixture('Commercial Hero Banner - Content')
     await t.maximizeWindow();
   });
 
-test('should render in light mode with background image position bottom left', async t => {
+test('should render in light mode', async t => {
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-commercial-hero-banner').shadowRoot
+    () => document.querySelector(TAG).shadowRoot,
+    { dependencies: { TAG } }
   );
   const container = $axaElemShadow.find('.o-commercial-hero-banner__container');
   await t.expect(container.visible).ok();
@@ -172,32 +175,24 @@ test('should use correct typography for desktop view', async t => {
 });
 
 async function _getCategoryNode(t) {
-  const categoryNode = await Selector('axa-commercial-hero-banner').find(
-    '[slot="category"]'
-  );
+  const categoryNode = await Selector(TAG).find('[slot="category"]');
   await t.expect(categoryNode.exists).ok();
   return categoryNode;
 }
 
 async function _getTitleNode(t) {
-  const titleNode = await Selector('axa-commercial-hero-banner').find(
-    '[slot="title"]'
-  );
+  const titleNode = await Selector(TAG).find('[slot="title"]');
   await t.expect(titleNode.exists).ok();
   return titleNode;
 }
 
 async function _getContentNode(t) {
-  const contentNode = await Selector('axa-commercial-hero-banner').find(
-    '[slot="content"]'
-  );
+  const contentNode = await Selector(TAG).find('[slot="content"]');
   await t.expect(contentNode.exists).ok();
   return contentNode;
 }
 async function _getDisclaimerNode(t) {
-  const disclaimerNode = await Selector('axa-commercial-hero-banner').find(
-    '[slot="disclaimer"]'
-  );
+  const disclaimerNode = await Selector(TAG).find('[slot="disclaimer"]');
   await t.expect(disclaimerNode.exists).ok();
   return disclaimerNode;
 }
