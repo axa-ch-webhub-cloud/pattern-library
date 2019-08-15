@@ -48,7 +48,7 @@ test('should render default background dark-indigo', async t => {
     .eql('rgb(59, 63, 216)');
 });
 
-test('should render title with size huge-2 on screen lg', async t => {
+test('should render title with correct size on screen lg', async t => {
   await t
     .expect(await $axaPolicyFeaturesHeaderEl.getStyleProperty('font-size'))
     .eql('48px');
@@ -56,7 +56,7 @@ test('should render title with size huge-2 on screen lg', async t => {
   await t.resizeWindow(huge2WindowWidth, defaultWindowHeight);
 });
 
-test('should render title with size huge on screen md', async t => {
+test('should render title with correct size on screen md', async t => {
   await t
     .expect(await $axaPolicyFeaturesHeaderEl.getStyleProperty('font-size'))
     .eql('30px');
@@ -64,7 +64,7 @@ test('should render title with size huge on screen md', async t => {
   await t.resizeWindow(hugeWindowWidth, defaultWindowHeight);
 });
 
-test('should render title with size large-1 on all other screen sizes', async t => {
+test('should render title with correct size on all other screen sizes', async t => {
   await t
     .expect(await $axaPolicyFeaturesHeaderEl.getStyleProperty('font-size'))
     .eql('24px');

@@ -9,28 +9,28 @@ const mdWindowWidth = 768;
 const smWindowWidth = 576;
 
 // Selectors
-const firstSvgElementInDocument = Selector(
+const svgImageOfFirstPolicyFeaturesItem = Selector(
   () => {
     return document.querySelector(TAG).shadowRoot;
   },
   { dependencies: { TAG } }
 ).find('svg');
 
-const firstH1ElementInDocument = Selector(
+const titleOfFirstPolicyFeaturesItem = Selector(
   () => {
     return document.querySelector(TAG).shadowRoot;
   },
   { dependencies: { TAG } }
 ).find('h1');
 
-const firstPElementInDocument = Selector(
+const descriptionOfFirstPolicyFeaturesItem = Selector(
   () => {
     return document.querySelector(TAG).shadowRoot;
   },
   { dependencies: { TAG } }
 ).find('p');
 
-const firstSectionElementInDocument = Selector(
+const firstPolicyFeaturesItem = Selector(
   () => {
     return document.querySelector(TAG).shadowRoot;
   },
@@ -53,79 +53,79 @@ test('should render policy-features-item', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should render title of first item', async t => {
-  await t.expect(firstH1ElementInDocument.textContent).eql('Get Discount');
+test('should set correct text of title of the first policy-features-item', async t => {
+  await t.expect(titleOfFirstPolicyFeaturesItem.textContent).eql('Get Discount');
 });
 
-test('should render description of first item', async t => {
+test('should set correct text of description of the first policy-features-item', async t => {
   await t
-    .expect(firstPElementInDocument.textContent)
+    .expect(descriptionOfFirstPolicyFeaturesItem.textContent)
     .eql('A 5 star car insurance with affordable premium services');
 });
 
-test('should render svg icon of first item', async t => {
-  await t.expect(firstSvgElementInDocument.exists).ok();
+test('should render svg icon of the first policy-features-item', async t => {
+  await t.expect(svgImageOfFirstPolicyFeaturesItem.exists).ok();
 });
 
-test('should set svg size for screen size md-up', async t => {
+test('should set correct svg size for screen size md-up', async t => {
   await t
-    .expect(await firstSvgElementInDocument.getStyleProperty('width'))
+    .expect(await svgImageOfFirstPolicyFeaturesItem.getStyleProperty('width'))
     .eql('96px')
-    .expect(await firstSvgElementInDocument.getStyleProperty('height'))
+    .expect(await svgImageOfFirstPolicyFeaturesItem.getStyleProperty('height'))
     .eql('96px');
 }).before(async t => {
   await t.resizeWindow(mdWindowWidth, defaultWindowHeight);
 });
 
-test('should set svg size for screen size smaller than md', async t => {
+test('should set correct svg size for screen size smaller than md', async t => {
   await t
-    .expect(await firstSvgElementInDocument.getStyleProperty('width'))
+    .expect(await svgImageOfFirstPolicyFeaturesItem.getStyleProperty('width'))
     .eql('42px')
-    .expect(await firstSvgElementInDocument.getStyleProperty('height'))
+    .expect(await svgImageOfFirstPolicyFeaturesItem.getStyleProperty('height'))
     .eql('42px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
 });
 
-test('should render title and description with size medium-1 on screen md', async t => {
+test('should render title and description with correct sizes on screen md', async t => {
   await t
-    .expect(await firstH1ElementInDocument.getStyleProperty('font-size'))
+    .expect(await titleOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
     .eql('18px')
-    .expect(await firstPElementInDocument.getStyleProperty('font-size'))
+    .expect(await descriptionOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
     .eql('18px');
 }).before(async t => {
   await t.resizeWindow(mdWindowWidth, defaultWindowHeight);
 });
 
-test('should render title and description with size medium on screen size smaller than md', async t => {
+test('should render title and description with correct size on screen size smaller than md', async t => {
   await t
-    .expect(await firstH1ElementInDocument.getStyleProperty('font-size'))
+    .expect(await titleOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
     .eql('16px')
-    .expect(await firstPElementInDocument.getStyleProperty('font-size'))
+    .expect(await descriptionOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
     .eql('16px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
 });
 
-test('should set width of item with screen size lg-up', async t => {
+test('should set width of the first policy-features-item on screen size lg-up', async t => {
   await t
-    .expect(await firstSectionElementInDocument.getStyleProperty('width'))
+    .expect(await firstPolicyFeaturesItem.getStyleProperty('width'))
     .eql('255px');
 }).before(async t => {
   await t.resizeWindow(lgWindowWidth, defaultWindowHeight);
 });
 
-test('should set width of item with screen size md-up', async t => {
+test('should set width of the first policy-features-item with screen size md-up', async t => {
   await t
-    .expect(await firstSectionElementInDocument.getStyleProperty('width'))
+    .expect(await firstPolicyFeaturesItem.getStyleProperty('width'))
     .eql('210px');
 }).before(async t => {
   await t.resizeWindow(mdWindowWidth, defaultWindowHeight);
 });
 
-test('should set width of item with screen size sm-up', async t => {
+test('should set width of the first policy-features-item with screen size sm-up', async t => {
   await t
-    .expect(await firstSectionElementInDocument.getStyleProperty('width'))
+    .expect(await firstPolicyFeaturesItem.getStyleProperty('width'))
     .eql('240px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
