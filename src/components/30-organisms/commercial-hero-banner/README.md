@@ -121,18 +121,15 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 </axa-commercial-hero-banner>
 ```
 
-```
-
 ## Properties
 
 ### Variant
 
-| Attribute     | Details                                               |
-| ------------- | ----------------------------------------------------- |
-| `variant`     | 'dark' or 'light', sets the theme (gradient)          |
-| `imagesource` | The source of the cover image (link or base64 string) |
+| Attribute     | Details                                                            |
+| ------------- | ------------------------------------------------------------------ |
+| `variant`     | 'dark' or 'light', sets the theme (gradient), light is the default |
+| `imagesource` | The source of the cover image (link or base64 string)              |
 
 ### Migration Notes
 
 You don't have to pay attention to anything for upgrading to newer version.
-```
