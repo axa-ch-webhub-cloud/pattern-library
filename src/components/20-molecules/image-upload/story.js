@@ -11,7 +11,7 @@ storyImageUpload.addParameters({
     sidebar: Readme,
   },
 });
-
+const descriptionText = 'The following files are being transferred:';
 // TODO: Move icon variants into icons and export it from there
 const icons = {
   none: '',
@@ -28,64 +28,115 @@ const icons = {
   'cloud-upload': 'cloud-upload',
 };
 
-storyImageUpload.add('Image upload - default', () => {
-  const rangeSliderOptions = {
-    range: true,
-    min: 1,
-    max: 25,
-    step: 1,
-  };
-  const inputFileText = text('inputFileText', 'Upload file');
-  const maxSizeOfSingleFileMB = number(
-    'maxSizeOfSingleFileMB',
-    15,
-    rangeSliderOptions
-  );
-  const maxSizeOfAllFilesMB = number(
-    'maxSizeOfAllFilesMB',
-    20,
-    rangeSliderOptions
-  );
-  const maxNumberOfFiles = number('maxNumberOfFiles', 10, rangeSliderOptions);
-  const deleteStatusText = text('deleteStatusText', 'Delete');
-  const addStatusText = text('addStatusText', 'Add more');
-  const fileTooBigStatusText = text(
-    'fileTooBigStatusText',
-    `File size exceeds ${maxSizeOfSingleFileMB}MB`
-  );
-  const filesTooBigStatusText = text(
-    'filesTooBigStatusText',
-    `File sizes exceeds ${maxSizeOfAllFilesMB}MB`
-  );
-  const tooManyFilesStatusText = text(
-    'tooManyFilesStatusText',
-    `You exceeded the maximum number of files: ${maxNumberOfFiles}`
-  );
-  const orText = text('orText', 'or');
-  const infoText = text('infoText', 'Drag and drop to upload your file');
-  const iconOptions = select('Icon', icons, 'cloud-upload');
-  const wrapper = document.createElement('div');
+storyImageUpload
+  .add('Image upload - default', () => {
+    const sizeSliderOptions = {
+      range: true,
+      min: 1,
+      max: 500,
+      step: 10,
+    };
+    const numberOfFilesSliderOptions = {
+      range: true,
+      min: 1,
+      max: 20,
+      step: 1,
+    };
+    const inputFileText = text('inputFileText', 'Upload file');
+    const maxSizeOfSingleFileKB = number(
+      'maxSizeOfSingleFileKB',
+      100,
+      sizeSliderOptions
+    );
+    const maxSizeOfAllFilesKB = number(
+      'maxSizeOfAllFilesKB',
+      500,
+      sizeSliderOptions
+    );
+    const maxNumberOfFiles = number(
+      'maxNumberOfFiles',
+      10,
+      numberOfFilesSliderOptions
+    );
+    const deleteStatusText = text('deleteStatusText', 'Delete');
+    const addStatusText = text('addStatusText', 'Add more');
+    const fileTooBigStatusText = text(
+      'fileTooBigStatusText',
+      `File size exceeds maximum size`
+    );
+    const filesTooBigStatusText = text(
+      'filesTooBigStatusText',
+      `File sizes exceed maximum size`
+    );
+    const tooManyFilesStatusText = text(
+      'tooManyFilesStatusText',
+      `You exceeded the maximum number of files`
+    );
+    const orText = text('orText', 'or');
+    const infoText = text('infoText', 'Drag and drop to upload your file');
+    const iconOptions = select('icon', icons, 'cloud-upload');
+    const headerText = text('headerText', descriptionText);
+    const wrapper = document.createElement('div');
 
-  const template = html`
-    <div style="width:453px;">
-      <axa-image-upload
-        inputFileText="${inputFileText}"
-        maxSizeOfSingleFileMB="${maxSizeOfSingleFileMB}"
-        maxSizeOfAllFilesMB="${maxSizeOfAllFilesMB}"
-        maxNumberOfFiles="${maxNumberOfFiles}"
-        deleteStatusText="${deleteStatusText}"
-        addStatusText="${addStatusText}"
-        fileTooBigStatusText="${fileTooBigStatusText}"
-        filesTooBigStatusText="${filesTooBigStatusText}"
-        tooManyFilesStatusText="${tooManyFilesStatusText}"
-        orText="${orText}"
-        infoText="${infoText}"
-        icon="${iconOptions}"
-        >Folgende Dateien werden übertragen:</axa-image-upload
-      >
-    </div>
-  `;
+    const template = html`
+      <div style="width:453px;">
+        <axa-image-upload
+          inputFileText="${inputFileText}"
+          maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}"
+          maxSizeOfAllFilesKB="${maxSizeOfAllFilesKB}"
+          maxNumberOfFiles="${maxNumberOfFiles}"
+          deleteStatusText="${deleteStatusText}"
+          addStatusText="${addStatusText}"
+          fileTooBigStatusText="${fileTooBigStatusText}"
+          filesTooBigStatusText="${filesTooBigStatusText}"
+          tooManyFilesStatusText="${tooManyFilesStatusText}"
+          orText="${orText}"
+          infoText="${infoText}"
+          icon="${iconOptions}"
+          >${headerText}</axa-image-upload
+        >
+      </div>
+    `;
 
-  render(template, wrapper);
-  return wrapper;
-});
+    render(template, wrapper);
+    return wrapper;
+  })
+  .add('Image upload - maxSizeOfSingleFileKB', () => {
+    const wrapper = document.createElement('div');
+    const template = html`
+      <div style="width:453px;">
+        <axa-image-upload maxSizeOfSingleFileKB="1"
+          >${descriptionText}</axa-image-upload
+        >
+      </div>
+    `;
+
+    render(template, wrapper);
+    return wrapper;
+  })
+  .add('Image upload - maxNumberOfFiles', () => {
+    const wrapper = document.createElement('div');
+    const template = html`
+      <div style="width:453px;">
+        <axa-image-upload maxNumberOfFiles="1"
+          >${descriptionText}</axa-image-upload
+        >
+      </div>
+    `;
+
+    render(template, wrapper);
+    return wrapper;
+  })
+  .add('Image upload - maxSizeOfAllFilesKB', () => {
+    const wrapper = document.createElement('div');
+    const template = html`
+      <div style="width:453px;">
+        <axa-image-upload maxSizeOfAllFilesKB="1"
+          >${descriptionText}</axa-image-upload
+        >
+      </div>
+    `;
+
+    render(template, wrapper);
+    return wrapper;
+  });
