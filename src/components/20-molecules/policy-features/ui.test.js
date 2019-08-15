@@ -70,7 +70,7 @@ test('should render title with size large-1 on all other screen sizes', async t 
 });
 
 fixture('Policy features - attribute axastyle: not set').page(
-  `${host}/iframe.html?id=molecules-policy-features-demos--without-attribute-axastyle`
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-axastyle=&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
 );
 
 test('should set default style if axastyle is not set', async t => {
@@ -80,7 +80,7 @@ test('should set default style if axastyle is not set', async t => {
 });
 
 fixture('Policy features - attribute axastyle: not in whitelist').page(
-  `${host}/iframe.html?id=molecules-policy-features-demos--with-attribute-axastyle-that-doesnt-exist`
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-axastyle=thisStyleIsNotInWhitelist&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
 );
 
 test('should set default style if axastyle string is not in whitelist', async t => {
@@ -90,7 +90,7 @@ test('should set default style if axastyle string is not in whitelist', async t 
 });
 
 fixture('Policy features - attribute axastyle: is in whitelist').page(
-  `${host}/iframe.html?id=molecules-policy-features-demos--with-attribute-axastyle-set-to-wild-sand`
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-axastyle=wild-sand&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
 );
 
 test('should set style to "wild-sand"', async t => {

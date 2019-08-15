@@ -19,7 +19,7 @@ const ITEM_ICONS = ['email', 'download'];
 story.add('Policy features', () => {
   const axastyles = select(
     'axastyle',
-    STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist'),
+    STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
     STYLE_WHITELIST[0],
     'axa-policy-features'
   );
