@@ -55,7 +55,7 @@ class AXAPolicyFeatures extends LitElement {
     return html`
       <article class="${classMap(classes)}">
         <h1 class="m-policy-features__title">${title}</h1>
-        <slot class="m-policy-features__slot"></slot>
+        <div class="m-policy-features__slot"><slot></slot></div>
       </article>
     `;
   }
