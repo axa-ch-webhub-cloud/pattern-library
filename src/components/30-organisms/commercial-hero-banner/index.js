@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
@@ -38,31 +39,33 @@ class AXACommercialHeroBanner extends InlineStyles {
 
   firstUpdated() {
     this.inlineStyles('resetHeadingCss');
-    if (this.variant === 'dark') {
-      this.shadowRoot
-        .querySelector('.o-commercial-hero-banner__content')
-        .classList.add('o-commercial-hero-banner__text--dark');
-      this.shadowRoot
-        .querySelector('.o-commercial-hero-banner__container')
-        .classList.add('o-commercial-hero-banner__container--dark');
-    }
   }
 
   render() {
+    const contentClasses = {
+      'o-commercial-hero-banner__content': true,
+      'o-commercial-hero-banner__text--dark': this.variant === 'dark',
+    };
+
+    const containerClasses = {
+      'o-commercial-hero-banner__container': true,
+      'o-commercial-hero-banner__container--dark': this.variant === 'dark',
+    };
+
     // Workaround: I had to remove the <style> tag and use inline-styles
     // property instead, otherwise, in the testcafe chrome, it would not
     // display the component. This seems to be connected to 'src' being
     // a prop, because hardcoded it works. Feel free to apply magic.
     return html`
       <header class="o-commercial-hero-banner">
-        <div class="o-commercial-hero-banner__container">
+        <div class="${classMap(containerClasses)}">
           <div
             class="o-commercial-hero-banner__picture-container"
             style="background: url('${this
               .imageSource}') no-repeat center center;background-size: cover;"
           ></div>
           <axa-container>
-            <div class="o-commercial-hero-banner__content">
+            <div class="${classMap(contentClasses)}">
               <div class="o-commercial-hero-banner__content-item">
                 <div class="o-commercial-hero-banner__content-item-box">
                   <slot name="category"></slot>
