@@ -1,15 +1,10 @@
 # AXA Dropdown
 
-## Installation
+## Usage
 
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
 
 `npm install @axa-ch/dropdown`
-
-## Usage
-
-**Important:** If this component needs to run in Internet Explorer 11,
-[you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
 
 ### Native Example
 
@@ -117,4 +112,4 @@ If not in controlled-component mode, two custom events `axa-change` and `change`
 
 ### Migration version 2 to 3
 
-The attribute `valid` no renamed to `checkmark` in React `checkMark` 
+The attribute `valid` no renamed to `checkmark` in React `checkMark`

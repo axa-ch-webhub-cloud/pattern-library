@@ -97,7 +97,7 @@ class DatePickerAccessor {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
-      .querySelector('.js-dropdown__toggle span')
+      .querySelector('.js-dropdown__title')
   );
 
   calendarSelector = Selector(id =>

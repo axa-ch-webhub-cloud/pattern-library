@@ -6,30 +6,30 @@ fixture('Dropdown').page(`${host}/iframe.html?id=molecules-dropdown--dropdown`);
 
 test('should render correctly', async t => {
   const dropdown = await Selector(() =>
-    document.querySelector(`axa-dropdown[data-test-id="dropdown"]`)
+    document.querySelector(`axa-dropdown`)
   );
   await t.expect(dropdown.exists).ok();
 });
 
 fixture('Dropdown check mark').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-w-checkmark`
+  `${host}/iframe.html?id=molecules-dropdown--dropdown&knob-checkmark=true`
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
     document.querySelector(
-      `axa-dropdown[data-test-id="dropdown-valid"] .m-dropdown__checkmark-icon`
+      `axa-dropdown .m-dropdown__check`
     )
   );
   await t.expect(dropdownCheckmark.exists).ok();
 });
 
 fixture('Dropdown error').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-w-error-message`
+  `${host}/iframe.html?id=molecules-dropdown--dropdown&knob-invalid=true&knob-error=error`
 );
 
 test('should show error message and have the correct color', async t => {
   const $axaError = await Selector(() =>
-    document.querySelector(`axa-dropdown[data-test-id="dropdown-error"] .m-dropdown__error `)
+    document.querySelector(`axa-dropdown .m-dropdown__error `)
   );
   await t.expect($axaError.innerText).eql('error');
   await t
@@ -40,7 +40,7 @@ test('should show error message and have the correct color', async t => {
     return window
       .getComputedStyle(
         document.querySelector(
-          'axa-dropdown[data-test-id="dropdown-error"] .m-dropdown__list--enhanced'
+          'axa-dropdown .m-dropdown__toggle'
         )
       )
       .getPropertyValue('border-color');
@@ -153,7 +153,7 @@ test('should fire onFocus/onBlur correctly', async t => {
 });
 
 fixture('Dropdown Form').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-inside-form`
+  `${host}/iframe.html?id=molecules-dropdown-demos--dropdown-inside-form`
 );
 
 test('should submit correct value to form', async t => {
