@@ -4,6 +4,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
+import createRefId from '../../../utils/create-ref-id';
 import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
 
@@ -36,11 +37,7 @@ class AXAInputFile extends NoShadowDOM {
     super();
     this.variant = '';
     this.icon = '';
-    this.refId =
-      this.id ||
-      `input-file-${Math.random()
-        .toString(36)
-        .slice(2)}`;
+    this.refId = `input-file-${createRefId()}`;
     this.large = false;
     this.motionOff = false;
     this.disabled = false;
@@ -87,7 +84,7 @@ class AXAInputFile extends NoShadowDOM {
         ?multiple="${multiple}"
         ?capture="${capture}"
         @change="${this.onChange}"
-        class="a-input-file__input"
+        class="a-input-file__input js-input-file__input"
         id="${this.refId}"
       />
     `;
