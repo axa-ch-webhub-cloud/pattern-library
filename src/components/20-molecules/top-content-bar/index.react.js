@@ -6,7 +6,7 @@ export default createElement => ({
   href,
   onClick,
   variant,
-  className,
+  className = '',
   children,
 }) =>
   withReact(createElement)(

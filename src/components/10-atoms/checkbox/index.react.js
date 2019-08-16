@@ -10,7 +10,7 @@ export default createElement => ({
   disabled,
   required,
   error,
-  className,
+  className = '',
   onChange = () => {},
   onFocus = () => {},
   onBlur = () => {},
