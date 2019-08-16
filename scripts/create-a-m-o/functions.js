@@ -172,7 +172,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     export default createElement => ({
       /* props here, same as in the constructor of index.js */
-      className,
+      className = '',
       children,
     }) =>
       withReact(createElement)(
