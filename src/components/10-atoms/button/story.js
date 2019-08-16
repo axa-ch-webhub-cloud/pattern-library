@@ -22,7 +22,7 @@ storyButton.addParameters({
 
 storyButton.add('Button', () => {
   const variantOptions = {
-    none: '',
+    default: '',
     red: 'red',
     secondary: 'secondary',
     inverted: 'inverted',
@@ -34,7 +34,7 @@ storyButton.add('Button', () => {
   };
 
   const sizeOptions = {
-    none: '',
+    default: '',
     large: 'large',
     small: 'small',
   };
