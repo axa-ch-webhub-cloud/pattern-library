@@ -30,7 +30,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Checkbox](./src/components/10-atoms/checkbox) [![npm version](https://img.shields.io/npm/v/@axa-ch/checkbox.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/checkbox)
 - [AXA Commercial Hero Banner](./src/components/30-organisms/commercial-hero-banner) [![npm version](https://img.shields.io/npm/v/@axa-ch/commercial-hero-banner.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/commercial-hero-banner)
 - [AXA Container](./src/components/30-organisms/container) [![npm version](https://img.shields.io/npm/v/@axa-ch/container.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/container)
-- [AXA Cookie Disclaimer](./src/components/20-molecules/cookie-dislaimer) [![npm version](https://img.shields.io/npm/v/@axa-ch/cookie-disclaimer.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/cookie-disclaimer)
+- [AXA Cookie Disclaimer](./src/components/20-molecules/cookie-disclaimer) [![npm version](https://img.shields.io/npm/v/@axa-ch/cookie-disclaimer.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/cookie-disclaimer)
 - [AXA Datepicker](./src/components/20-molecules/datepicker) [![npm version](https://img.shields.io/npm/v/@axa-ch/datepicker.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/datepicker)
 - [AXA Dropdown](./src/components/20-molecules/dropdown) [![npm version](https://img.shields.io/npm/v/@axa-ch/dropdown.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/dropdown)
 - [AXA Fieldset](./src/components/10-atoms/fieldset) [![npm version](https://img.shields.io/npm/v/@axa-ch/fieldset.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/fieldset)
