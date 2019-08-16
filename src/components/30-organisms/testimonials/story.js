@@ -24,6 +24,7 @@ story.add('Testimonials', () => {
   const autorotatedisabled = boolean('autorotatedisabled', false);
   const autorotatetime = number('autorotatetime', 5000);
   const keysenabled = boolean('keysenabled', true);
+  const showallinline = boolean('showallinline', false);
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -31,6 +32,7 @@ story.add('Testimonials', () => {
       autorotatetime="${autorotatetime}"
       ?autorotatedisabled="${autorotatedisabled}"
       ?keysenabled="${keysenabled}"
+      ?showallinline="${showallinline}"
       title="${title}"
       subtitle="${subtitle}"
     >

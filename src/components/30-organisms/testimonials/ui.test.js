@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('Testimonials - basic functionality').page(
-  `${host}/iframe.html?id=organisms-testimonials--testimonials-default`
+  `${host}/iframe.html?id=organisms-testimonials--testimonials`
 );
 
 const TAG = 'axa-testimonials';
@@ -37,7 +37,7 @@ test('should find axa-carousel tag if attribute showallinline is not set', async
 });
 
 fixture('Testimonials - attribute showallinline is set').page(
-  `${host}/iframe.html?id=organisms-testimonials--testimonials-default`
+  `${host}/iframe.html?id=organisms-testimonials--testimonials&knob-title=Customer Reviews&knob-Text=AXA works hard to provide the best service possible to its customers.&knob-autorotatedisabled=&knob-autorotatetime=5000&knob-keysenabled=true&knob-showallinline=true`
 );
 
 test('should find inline class if attribute showallinline is set', async t => {
