@@ -67,6 +67,12 @@ axa-textarea {
     }
   }
 
+  &[disabled] {
+    .a-textarea__label {
+      color: $color-prim-gray-dusty;
+    }
+  }
+
   .a-textarea__textarea--check {
     padding-right: 31px;
   }

@@ -28,7 +28,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       info: { type: String },
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
-      disabled: { type: Boolean },
+      disabled: { type: Boolean, reflect: true },
 
       isReact: { type: Boolean },
     };

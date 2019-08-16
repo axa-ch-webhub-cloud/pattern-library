@@ -27,7 +27,7 @@ class AXATextarea extends NoShadowDOM {
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       required: { type: Boolean },
-      disabled: { type: Boolean },
+      disabled: { type: Boolean, reflect: true },
 
       counter: { type: String },
       counterMax: { type: String },

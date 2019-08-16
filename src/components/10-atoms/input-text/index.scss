@@ -4,6 +4,7 @@ $border-width: 1px;
 $border-type: solid;
 
 axa-input-text {
+
   .a-input-text__wrapper {
     display: flex;
     flex-direction: column;
@@ -80,6 +81,12 @@ axa-input-text {
       color: $color-prim-gray-dusty;
       background-color: $color-prim-gray-alabaster;
       border-color: $color-prim-gray-mercury;
+    }
+  }
+
+  &[disabled] {
+    .a-input-text__label {
+      color: $color-prim-gray-dusty;
     }
   }
 
