@@ -1,6 +1,6 @@
 # Carousel
 
-TODO Description
+Every child is renderd as a slide. Only one child is visible at one time.
 
 ## Usage
 
@@ -12,8 +12,15 @@ npm install @axa-ch/carousel
 
 ```js
 import '@axa-ch/carousel';
-...
-<axa-carousel></axa-carousel>
+
+<axa-carousel
+  autorotatetime="1000"
+  autorotatedisabled="true"
+  keysenabled="true"
+>
+  <span>This is the first slide.</span>
+  <span>This is the second slide.</span>
+</axa-carousel>;
 ```
 
 ### React
@@ -30,8 +37,7 @@ export default AXACarouselReact;
 ```
 
 ```js
-<AXACarouselReact onClick={handler}>
-</AXACarouselReact>
+<AXACarouselReact onClick={handler} />
 ```
 
 ### Pure HTML pages
@@ -48,7 +54,14 @@ Import the carousel-defining script and use a carousel like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-carousel></axa-carousel>
+    <axa-carousel
+      autorotatetime="1000"
+      autorotatedisabled="true"
+      keysenabled="true"
+    >
+      <span>This is the first slide.</span>
+      <span>This is the second slide.</span>
+    </axa-carousel>
     <script src="node_modules/@axa-ch/carousel/dist/index.js"></script>
   </body>
 </html>
@@ -56,20 +69,18 @@ Import the carousel-defining script and use a carousel like this:
 
 ## Properties
 
-### Variant
+### autorotatedisabled
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+This boolean attribute specifies if the slides will automatically rotate.
 
-### Bar
+### autorotatetime
 
-The attribute `bar` specifies...
+This number specifies the milliseconds the slides will automatically rotate.
 
-### onClick
+### keysenabled
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+This boolean attribute specifies if the keyboard navigation (left/right keys) should be enabled.
 
-### Migration Notes
+## Migration Notes
 
 You don't have to pay attention to anything for upgrading to newer version.
