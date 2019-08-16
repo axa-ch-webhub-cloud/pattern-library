@@ -45,12 +45,14 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Table Sortable](./src/components/30-organisms/table-sortable) [![npm version](https://img.shields.io/npm/v/@axa-ch/table-sortable.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/table-sortable)
 - [AXA Text](./src/components/10-atoms/text) [![npm version](https://img.shields.io/npm/v/@axa-ch/text.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/text)
 - [AXA Textarea](./src/components/10-atoms/textarea) [![npm version](https://img.shields.io/npm/v/@axa-ch/textarea.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/textarea)
-- [AXA Title Primary](./src/components/10-atoms/title-primary) [![npm version](https://img.shields.io/npm/v/@axa-ch/title-primary.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/title-primary)
-- [AXA Title Secondary](./src/components/10-atoms/title-secondary) [![npm version](https://img.shields.io/npm/v/@axa-ch/title-secondary.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/title-secondary)
-- [AXA Top content bar](./src/components/20-molecules/top-content-bar) [![npm version](https://img.shields.io/npm/v/@axa-ch/top-content-bar.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/top-content-bar)
+- [AXA Top Content Bar](./src/components/20-molecules/top-content-bar) [![npm version](https://img.shields.io/npm/v/@axa-ch/top-content-bar.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/top-content-bar)
 
 ## Alpha-Released Components
-- 
+- [AXA Popup](./src/components/20-molecules/popup) [![npm version](https://img.shields.io/npm/v/@axa-ch/popup.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/popup)
+
+## Unreleased Components
+- [AXA Title Primary](./src/components/10-atoms/title-primary) [![npm version](https://img.shields.io/npm/v/@axa-ch/title-primary.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/title-primary)
+- [AXA Title Secondary](./src/components/10-atoms/title-secondary) [![npm version](https://img.shields.io/npm/v/@axa-ch/title-secondary.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/title-secondary)
 
 ## Design Guidelines
 [Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
