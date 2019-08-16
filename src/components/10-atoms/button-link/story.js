@@ -22,7 +22,7 @@ storyButtonLink.addParameters({
 
 storyButtonLink.add('Button Link', () => {
   const variantOptions = {
-    none: '',
+    default: '',
     red: 'red',
     secondary: 'secondary',
     inverted: 'inverted',
@@ -34,7 +34,7 @@ storyButtonLink.add('Button Link', () => {
   };
 
   const sizeOptions = {
-    none: '',
+    default: '',
     large: 'large',
     small: 'small',
   };
@@ -49,7 +49,7 @@ storyButtonLink.add('Button Link', () => {
   };
 
   const buttonText = text('text', 'Click me');
-  const href = text('href', '');
+  const href = text('href', '#');
   const external = text('external', '');
   const variants = radios('Variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
