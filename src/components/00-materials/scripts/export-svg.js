@@ -14,6 +14,9 @@ const camelCase = _camelCase =>
   camelise(componentName(_camelCase.replace('.', '-')).replace(/-/g, ' '));
 const toClassName = _className =>
   camelCase(_className).replace(/^\w/, c => c.toUpperCase());
+const cleanFileName = _fileName => {
+  return _fileName.replace(/ /g, '-').replace(/&/, '').toLowerCase();
+}
 
 const importIconsPath = './icons-raw';
 const exportIconsPath = './icons';
@@ -57,37 +60,56 @@ fs.readdir(importIconsPath, (err, items) => {
   fs.writeFileSync(`${exportIconsPath}/index.js`, namedExports, 'utf8');
 });
 
-fs.readdir(importImagesPath, (err, items) => {
+function readdirAndSaveSvgToJs(importPath) {
+  fs.readdir(importPath, (err, items) => {
+    if (err) {
+      throw new Error('Cannot find images');
+    }
+
+    let namedExports = '';
+    items.forEach(icon => {
+      if (/\.svg/.test(icon)) {
+        const iconPath = path.resolve(importPath, icon);
+        const contents = fs
+          .readFileSync(iconPath, 'utf8')
+          .replace(/(\r\n|\n|\r)/gm, '');
+
+        let fileName = path.basename(icon);
+        fileName = cleanFileName(fileName);
+        const className = toClassName(fileName);
+
+        if (!fs.existsSync(exportImagesPath)) {
+          fs.mkdirSync(exportImagesPath);
+        }
+
+        // Generate a js file forEach svg file found
+        fs.writeFileSync(
+          `${exportImagesPath}/${fileName}.js`,
+          outdent`export default '${contents}';`,
+          'utf8'
+        );
+
+        namedExports += outdent`export { default as ${className} } from './${fileName}.js';`;
+      }
+    });
+
+    // Make index file with named exports forEach svg
+    fs.writeFileSync(`${exportImagesPath}/index.js`, namedExports, 'utf8');
+  });
+}
+
+fs.readdir(importImagesPath,{withFileTypes: true}, (err, dirents) => {
   if (err) {
-    throw new Error('Cannot find images');
+    throw new Error(err);
   }
 
-  let namedExports = '';
-  items.forEach(icon => {
-    if (/\.svg/.test(icon)) {
-      const iconPath = path.resolve(importImagesPath, icon);
-      const contents = fs
-        .readFileSync(iconPath, 'utf8')
-        .replace(/(\r\n|\n|\r)/gm, '');
-
-      const fileName = path.basename(icon);
-      const className = toClassName(fileName);
-
-      if (!fs.existsSync(exportImagesPath)) {
-        fs.mkdirSync(exportImagesPath);
-      }
-
-      // Generate a js file forEach svg file found
-      fs.writeFileSync(
-        `${exportImagesPath}/${fileName}.js`,
-        outdent`export default '${contents}';`,
-        'utf8'
-      );
-
-      namedExports += outdent`export { default as ${className} } from './${fileName}.js';`;
+  // check directories
+  dirents.forEach((dirent)=>{
+    if(dirent.isDirectory() && dirent.name !== '.tmp') {
+      readdirAndSaveSvgToJs(`${importImagesPath}/${dirent.name}`);
     }
   });
 
-  // Make index file with named exports forEach svg
-  fs.writeFileSync(`${exportImagesPath}/index.js`, namedExports, 'utf8');
+  // check files of first level dir
+  readdirAndSaveSvgToJs(importImagesPath);
 });
