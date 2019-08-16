@@ -67,7 +67,7 @@ class AXATestimonials extends LitElement {
           <div class="o-testimonials__content">
             ${showallinline
               ? html`
-                  <slot class="o-testimonials__content__inline"></slot>
+                  <div class="o-testimonials__content__inline"><slot></slot></div>
                 `
               : html`
                   <div class="o-testimonials__content__carousel">

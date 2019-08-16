@@ -40,8 +40,11 @@
     }
 
     &__inline {
-      &::slotted(*) {
-        margin: 20px 0;
+      slot {
+        &::slotted(*) {
+          display: block;
+          margin: 20px 0;
+        }
       }
     }
   }
