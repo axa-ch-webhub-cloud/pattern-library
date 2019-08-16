@@ -131,7 +131,9 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get showCounter() {
-    return this.maxLength && !this.invalid && this.areCharsLeft && !this.disabled;
+    return (
+      this.maxLength && !this.invalid && this.areCharsLeft && !this.disabled
+    );
   }
 
   get showError() {
@@ -140,7 +142,11 @@ class AXATextarea extends NoShadowDOM {
 
   get showCounterMax() {
     return (
-      this.maxLength && this.counterMax && !this.showError && !this.areCharsLeft && !this.disabled
+      this.maxLength &&
+      this.counterMax &&
+      !this.showError &&
+      !this.areCharsLeft &&
+      !this.disabled
     );
   }
 
@@ -220,56 +226,54 @@ class AXATextarea extends NoShadowDOM {
     };
 
     return html`
-      <div class="a-textarea__wrapper">
-        ${label &&
-          html`
-            <label for="${refId}" class="a-textarea__label">
-              ${label}
-              ${required
-                ? html`
-                    *
-                  `
-                : ''}</label
-            >
-          `}
-        <div class="a-textarea__textarea-wrapper">
-          <textarea
-            @input="${this.handleInput}"
-            @focus="${this.handleFocus}"
-            @blur="${this.handleBlur}"
-            id="${refId}"
-            maxlength="${maxLength}"
-            class="${classMap(textareaClasses)}"
-            autocomplete="off"
-            name="${name}"
-            placeholder="${placeholder}"
-            ?disabled="${disabled}"
-            aria-required="${required}"
-          ></textarea>
-
-            ${checkMark
+      ${label &&
+        html`
+          <label for="${refId}" class="a-textarea__label">
+            ${label}
+            ${required
               ? html`
-                  <span class="a-textarea__check"></span>
+                  *
                 `
-              : ''}
-        </div>
-        <div class="${classMap(textareaMessagesClasses)}">
-          ${this.showCounter
-            ? html`
-                <span>${modelCounter}</span>
-              `
-            : ''}
-          ${this.showCounterMax
-            ? html`
-                <span>${counterMax}</span>
-              `
-            : ''}
-          ${this.showError
-            ? html`
-                <span>${error}</span>
-              `
-            : ''}
-        </div>
+              : ''}</label
+          >
+        `}
+      <div class="a-textarea__textarea-wrapper">
+        <textarea
+          @input="${this.handleInput}"
+          @focus="${this.handleFocus}"
+          @blur="${this.handleBlur}"
+          id="${refId}"
+          maxlength="${maxLength}"
+          class="${classMap(textareaClasses)}"
+          autocomplete="off"
+          name="${name}"
+          placeholder="${placeholder}"
+          ?disabled="${disabled}"
+          aria-required="${required}"
+        ></textarea>
+
+        ${checkMark
+          ? html`
+              <span class="a-textarea__check"></span>
+            `
+          : ''}
+      </div>
+      <div class="${classMap(textareaMessagesClasses)}">
+        ${this.showCounter
+          ? html`
+              <span>${modelCounter}</span>
+            `
+          : ''}
+        ${this.showCounterMax
+          ? html`
+              <span>${counterMax}</span>
+            `
+          : ''}
+        ${this.showError
+          ? html`
+              <span>${error}</span>
+            `
+          : ''}
       </div>
     `;
   }
