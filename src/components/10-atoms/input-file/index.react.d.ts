@@ -14,6 +14,8 @@ interface AXAInputFileProps {
   multiple?: boolean;
   capture?: boolean;
   className?: string;
+  slot?: string;
+
   onChange?: () => void;
 }
 

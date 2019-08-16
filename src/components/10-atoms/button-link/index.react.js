@@ -10,7 +10,8 @@ export default createElement => ({
   motionOff = false,
   disabled = false,
   onClick,
-  className,
+  className = '',
+  slot = '',
   children,
 }) =>
   withReact(createElement)(
@@ -24,6 +25,7 @@ export default createElement => ({
       motionOff,
       disabled,
       className,
+      slot,
       onClick,
     },
     children
