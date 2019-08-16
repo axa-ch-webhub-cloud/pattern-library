@@ -29,7 +29,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Button Link](./src/components/10-atoms/button-link) [![npm version](https://img.shields.io/npm/v/@axa-ch/button-link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button-link)
 - [AXA Checkbox](./src/components/10-atoms/checkbox) [![npm version](https://img.shields.io/npm/v/@axa-ch/checkbox.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/checkbox)
 - [AXA Commercial Hero Banner](./src/components/30-organisms/commercial-hero-banner) [![npm version](https://img.shields.io/npm/v/@axa-ch/commercial-hero-banner.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/commercial-hero-banner)
-- [AXA Container](./src/components/10-atoms/container) [![npm version](https://img.shields.io/npm/v/@axa-ch/container.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/container)
+- [AXA Container](./src/components/30-organisms/container) [![npm version](https://img.shields.io/npm/v/@axa-ch/container.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/container)
 - [AXA Cookie Disclaimer](./src/components/20-molecules/cookie-dislaimer) [![npm version](https://img.shields.io/npm/v/@axa-ch/cookie-disclaimer.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/cookie-disclaimer)
 - [AXA Datepicker](./src/components/20-molecules/datepicker) [![npm version](https://img.shields.io/npm/v/@axa-ch/datepicker.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/datepicker)
 - [AXA Dropdown](./src/components/20-molecules/dropdown) [![npm version](https://img.shields.io/npm/v/@axa-ch/dropdown.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/dropdown)
