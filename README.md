@@ -40,7 +40,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 - [AXA Input File](./src/components/10-atoms/input-file) [![npm version](https://img.shields.io/npm/v/@axa-ch/input-file.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/input-file)
 - [AXA Input Text](./src/components/10-atoms/input-text) [![npm version](https://img.shields.io/npm/v/@axa-ch/input-text.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/input-text)
 - [AXA Link](./src/components/10-atoms/link) [![npm version](https://img.shields.io/npm/v/@axa-ch/link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/link)
-- [AXA Materials](./src/components/10-atoms/materials) [![npm version](https://img.shields.io/npm/v/@axa-ch/materials.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/materials)
+- [AXA Materials](./src/components/00-materials) [![npm version](https://img.shields.io/npm/v/@axa-ch/materials.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/materials)
 - [AXA Table](./src/components/30-organisms/table) [![npm version](https://img.shields.io/npm/v/@axa-ch/table.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/table)
 - [AXA Table Sortable](./src/components/30-organisms/table-sortable) [![npm version](https://img.shields.io/npm/v/@axa-ch/table-sortable.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/table-sortable)
 - [AXA Text](./src/components/10-atoms/text) [![npm version](https://img.shields.io/npm/v/@axa-ch/text.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/text)
