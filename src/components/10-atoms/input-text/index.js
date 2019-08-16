@@ -142,73 +142,71 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     };
 
     return html`
-      <div class="a-input-text__wrapper">
-        ${label &&
-          html`
-            <label for="${refId}" class="a-input-text__label">
-              ${label}
-              ${required
-                ? html`
-                    *
-                  `
-                : ''}
-            </label>
-          `}
-        <div class="a-input-text__input-wrapper">
-          <div class="a-input-text__input-elements">
-            <input
-              id="${refId}"
-              type="${type}"
-              class="${classMap(inputClasses)}"
-              autocomplete="off"
-              name="${name}"
-              value="${value}"
-              placeholder="${placeholder}"
-              aria-required="${required}"
-              ?disabled="${disabled}"
-              @input="${this.handleInput}"
-              @focus="${this.handleFocus}"
-              @blur="${this.handleBlur}"
-            />
-            ${
-              checkMark
-                ? html`
-                    <span class="a-input-text__check"></span>
-                  `
-                : ''
-            }
-          </div>
-          ${info &&
-            html`
-              <axa-popup-button
-                ?open="${this._open}"
-                class="a-input-text__info-button"
-                @click="${this.handlePopupButtonClick}"
-              ></axa-popup-button>
-            `}
-        </div>
-          ${
-            this.showError
+      ${label &&
+        html`
+          <label for="${refId}" class="a-input-text__label">
+            ${label}
+            ${required
               ? html`
-                  <span class="a-input-text__error">${error}</span>
+                  *
+                `
+              : ''}
+          </label>
+        `}
+      <div class="a-input-text__input-wrapper">
+        <div class="a-input-text__input-elements">
+          <input
+            id="${refId}"
+            type="${type}"
+            class="${classMap(inputClasses)}"
+            autocomplete="off"
+            name="${name}"
+            value="${value}"
+            placeholder="${placeholder}"
+            aria-required="${required}"
+            ?disabled="${disabled}"
+            @input="${this.handleInput}"
+            @focus="${this.handleFocus}"
+            @blur="${this.handleBlur}"
+          />
+          ${
+            checkMark
+              ? html`
+                  <span class="a-input-text__check"></span>
                 `
               : ''
           }
         </div>
+        ${info &&
+          html`
+            <axa-popup-button
+              ?open="${this._open}"
+              class="a-input-text__info-button"
+              @click="${this.handlePopupButtonClick}"
+            ></axa-popup-button>
+          `}
+      </div>
         ${
-          info
+          this.showError
             ? html`
-                <axa-popup-content
-                  ?open="${this._open}"
-                  class="a-input-text__info-content"
-                >
-                  ${unsafeHTML(info)}
-                </axa-popup-content>
+                <span class="a-input-text__error">${error}</span>
               `
             : ''
         }
       </div>
-    `;
+      ${
+        info
+          ? html`
+              <axa-popup-content
+                ?open="${this._open}"
+                class="a-input-text__info-content"
+              >
+                ${unsafeHTML(info)}
+              </axa-popup-content>
+            `
+          : ''
+      }
+  `;
   }
 }
 

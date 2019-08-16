@@ -5,16 +5,10 @@ $border-type: solid;
 
 axa-input-text {
 
-  .a-input-text__wrapper {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-  }
-
   .a-input-text__input-wrapper {
     display: flex;
     align-items: center;
+    width: 100%
   }
 
   .a-input-text__input-elements {
@@ -84,21 +78,22 @@ axa-input-text {
     }
   }
 
-  &[disabled] {
-    .a-input-text__label {
-      color: $color-prim-gray-dusty;
-    }
-  }
-
   .a-input-text__input--check {
     padding-right: 31px;
   }
 
   .a-input-text__label {
     @include typo(primary, medium);
+    display: block;
     font-weight: 600;
     color: $color-prim-gray-mine-shaft;
     margin-bottom: 10px;
+  }
+
+  &[disabled] {
+    .a-input-text__label {
+      color: $color-prim-gray-dusty;
+    }
   }
 
   .a-input-text__check {
