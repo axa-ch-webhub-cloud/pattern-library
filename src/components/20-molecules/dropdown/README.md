@@ -76,7 +76,7 @@ When true, the Boolean attribute `checkmark` shows an animated checkmark to the 
 
 ### invalid
 
-The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). if `true` it sets the element into a visual error state.
+The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). If `true`, it sets the element into a visual error state.
 
 ### error
 
@@ -110,6 +110,8 @@ If not in controlled-component mode, two custom events `axa-change` and `change`
 
 `change`'s event `detail` is an object `{value,index,name}`,where `value` is the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
 
-### Migration version 2 to 3
+### Migrating from version 2 to 3
 
-The attribute `valid` no renamed to `checkmark` in React `checkMark`
+The attribute `valid` was renamed to `checkmark` (respectively to the camel-case `checkMark` property used e.g. under React).
+
+The behaviour of `error` changed, now being reduced to specifying the error text only, whereas `invalid` controls when the error will be displayed.
