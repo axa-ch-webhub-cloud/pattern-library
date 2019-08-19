@@ -11,17 +11,34 @@ storiesOf('Atoms/Radio', module)
       sidebar: Readme,
     },
   })
-  .add(
-    'Radio - default',
-    () => `
-  <axa-fieldset error="Bitte wählen Sie eine Option aus.">
-  <axa-radio name="contract" label="Ja,
-  Versicherungsvertrag abschliessen."></axa-radio>
-  <axa-radio name="contract" label="Ich brauche noch mehr Informationen"></axa-radio>
-  <axa-radio name="contract" label="Nein, ich möchte keinen Versicherungsvertrag"></axa-radio>
-  <axa-radio name="contract" label="Nein, ich bin bereits versichert" disabled></<axa-radio>
-  </axa-fieldset>`
-  )
+  .add('Radio - default', () => {
+    const root = document.createElement('div');
+    const error = 'Bitte wählen Sie eine Option aus.';
+
+    const handleClick = () => {
+      setTimeout(() => {
+        const atLeastOneChecked = [
+          ...document.querySelectorAll('axa-radio[name="contract"]'),
+        ]
+          .map(radio => radio.checked)
+          .reduce((acc, curr) => acc | curr, 0);
+        document.querySelector('axa-fieldset').error = atLeastOneChecked
+          ? ''
+          : error;
+      }, 0);
+    };
+
+    const template = html`
+      <axa-fieldset error="${error}" @click="${handleClick}" >
+      <axa-radio name="contract" label="Ja,
+      Versicherungsvertrag abschliessen." value="1"></axa-radio>
+      <axa-radio name="contract" label="Ich brauche noch mehr Informationen" value="2"></axa-radio>
+      <axa-radio name="contract" label="Nein, ich möchte keinen Versicherungsvertrag" value="3"></axa-radio>
+      <axa-radio name="contract" label="Nein, ich bin bereits versichert" disabled></<axa-radio>
+      </axa-fieldset>`;
+    render(template, root);
+    return root;
+  })
   .add(
     'Radio - button, autowidth',
     () => `
