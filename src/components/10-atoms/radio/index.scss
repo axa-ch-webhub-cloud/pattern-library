@@ -1,6 +1,6 @@
 axa-radio {
   @include typo(primary, default);
-  display: block;
+  display: table;
   flex: none;
 
   *, *::after, *::before {
