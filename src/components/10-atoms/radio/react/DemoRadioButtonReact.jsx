@@ -63,7 +63,7 @@ const DemoRadiobuttonsControlled = () => {
       <hr
         style={{ borderWidth: '.5rem', borderColor: 'transparent', margin: 0 }}
       />
-      <AXAFieldset horizontal error={error}>
+      <AXAFieldset horizontal={button} error={error}>
         <AXARadioButton
           id="radio1"
           label="No, thanks"

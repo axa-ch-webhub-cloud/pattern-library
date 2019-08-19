@@ -5,7 +5,8 @@ obey correct spacing as per the style guide.
 
 By default, the element children's layout direction is vertical.
 
-Vertical direction is typically used to used to ensure correct layout for a group of &lt;axa-checkbox&gt; elements.
+Vertical direction is typically used to used to ensure correct layout for a group of &lt;axa-checkbox&gt; or non-button
+&lt;axa-radio&gt; elements.
 
 ## Usage
 
@@ -74,3 +75,5 @@ The `horizontal` attribute is typically used to ensure correct layout for a grou
 ### error\*
 
 The string-valued `error` attribute, when nonempty, displays its value as an error message below the fieldset's children.
+
+As a special case, it also colors the border of unselected &lt;axa-radio&gt; components in the error color.

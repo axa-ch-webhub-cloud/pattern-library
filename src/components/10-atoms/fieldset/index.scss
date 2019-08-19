@@ -32,8 +32,19 @@ axa-fieldset {
     }
   }
 
-  &[error] {
+  &[error]:not([error=""]) {
     padding-bottom: 28px;
+
+    axa-radio:not(:hover):not([disabled]):not([checked]) {
+
+      &[button] .a-radio__wrapper {
+          border-color: $color-validation-error;
+      }
+
+      .a-radio__icon {
+        border-color: $color-validation-error;
+      }
+    }
 
     &:after {
       @include typo(primary, default);

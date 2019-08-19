@@ -14,9 +14,9 @@ storiesOf('Atoms/Radio', module)
   .add(
     'Radio - default',
     () => `
-  <axa-fieldset horizontal>
+  <axa-fieldset error="Bitte wählen Sie eine Option aus.">
   <axa-radio name="contract" label="Ja,
-  Versicherungsvertrag abschliessen." error="Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen." checked></axa-radio>
+  Versicherungsvertrag abschliessen."></axa-radio>
   <axa-radio name="contract" label="Ich brauche noch mehr Informationen"></axa-radio>
   <axa-radio name="contract" label="Nein, ich möchte keinen Versicherungsvertrag"></axa-radio>
   <axa-radio name="contract" label="Nein, ich bin bereits versichert" disabled></<axa-radio>

@@ -7,7 +7,7 @@ axa-radio {
     box-sizing: border-box;
   }
 
-  &:hover:not([disabled]):not(.a-radio--error) {
+  &:hover:not([disabled]) {
     color: $color-axa-blue;
 
     & .a-radio__icon {
