@@ -42,6 +42,7 @@ storyButton.add('Button', () => {
       <AXAButton
         type={types}
         variant={variants}
+        className='myCssClass'
         size={sizes}
         icon={icons}
         disabled={disabled}

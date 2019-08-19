@@ -42,7 +42,7 @@ storyTextarea.add('Textarea', () => {
       ?disabled="${disabled}"
       ?required="${required}"
       ?invalid="${invalid}"
-    >prefilled value</axa-textarea>
+    ></axa-textarea>
   `;
 
   render(template, wrapper);
