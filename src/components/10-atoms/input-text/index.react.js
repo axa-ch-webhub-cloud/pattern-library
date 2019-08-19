@@ -1,8 +1,9 @@
 import withReact from '../../../utils/with-react';
+import createRefId from '../../../utils/create-ref-id';
 import AXAInputText from './index';
 
 export default createElement => ({
-  refId = '',
+  refId = `input-text-${createRefId()}`,
   name = '',
   label = '',
   placeholder = '',

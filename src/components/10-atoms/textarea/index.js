@@ -68,7 +68,7 @@ class AXATextarea extends NoShadowDOM {
     this.isReact = false;
     this.modelCounter = '';
     this.nativeInput = { value: '' };
-    this.nativeDefaultValue = this.textContent;
+    this.nativeDefaultValue = this.textContent || this.innerText;
     this.modelValue = '';
     this.isControlled = false;
     this.isPlaceholderInCounter = false;
