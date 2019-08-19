@@ -43,15 +43,6 @@ class AXARadio extends NoShadowDOM {
           },
         },
       },
-      error: {
-        type: String,
-        reflect: true,
-        converter: {
-          toAttribute(value) {
-            return value ? String(value) : null;
-          },
-        },
-      },
       isReact: { type: Boolean },
     };
   }
