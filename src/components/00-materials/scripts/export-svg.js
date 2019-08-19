@@ -48,10 +48,6 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
         fileName = cleanFileName(fileName);
         const className = toClassName(fileName);
 
-        if (!fs.existsSync(exportPath)) {
-          fs.mkdirSync(exportPath);
-        }
-
         // Generate a js file forEach svg file found
         fs.writeFileSync(
           `${exportPath}/${fileName}.js`,
@@ -68,6 +64,12 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
 }
 
 // clear output files
+if (!fs.existsSync(exportIconsPath)) {
+  fs.mkdirSync(exportIconsPath);
+}
+if (!fs.existsSync(exportImagesPath)) {
+  fs.mkdirSync(exportImagesPath);
+}
 fs.writeFileSync(`${exportIconsPath}/index.js`, '');
 fs.writeFileSync(`${exportImagesPath}/index.js`, '');
 
