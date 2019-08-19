@@ -15,7 +15,7 @@ import '@axa-ch/policy-features';
 ```
 
 ```html
-<axa-policy-features title="Your main title" axastyle="dark-indigo">
+<axa-policy-features title="Your main title" variant="dark-indigo">
   <axa-policy-features-item
     title="The title of item"
     icon="email"
@@ -42,7 +42,7 @@ Import the policy-features-defining script and use a policy-features like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-policy-features title="Your main title" axastyle="dark-indigo">
+    <axa-policy-features title="Your main title" variant="dark-indigo">
       <axa-policy-features-item
         title="The title of item"
         icon="email"
@@ -56,23 +56,20 @@ Import the policy-features-defining script and use a policy-features like this:
 
 ## Properties
 
-### Variant
+### variant
 
-| Attribute                | Details                                                          |
-| ------------------------ | ---------------------------------------------------------------- |
-| `axastyle="default"`     | background is `dark-indigo` and font color is set automatically. |
-| `axastyle="dark-indigo"` | background is `dark-indigo` and font color is set automatically. |
-| `axastyle="axa-blue"`    | background is `axa-blue` and font color is set automatically.    |
-| `axastyle="wild-sand"`   | background is `wild-sand` and font color is set automatically.   |
-| `axastyle="white"`       | background is `white` and font color is set automatically.       |
+The attribute `variant` (optional) specifies the background and the font color of this component and all its children.
+
+| Attribute               | Details                                                          |
+| ----------------------- | ---------------------------------------------------------------- |
+| `variant="dark-indigo"` | background is `dark-indigo` and font color is set automatically. |
+| `variant="axa-blue"`    | background is `axa-blue` and font color is set automatically.    |
+| `variant="wild-sand"`   | background is `wild-sand` and font color is set automatically.   |
+| `variant="white"`       | background is `white` and font color is set automatically.       |
 
 ### title
 
 The attribute `title` (optional) specifies the main title at the top.
-
-### axastyle
-
-The attribute `axastyle` (optional) specifies the background and the font color of this component and all its children.
 
 ### Migration Notes
 

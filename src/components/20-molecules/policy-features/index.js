@@ -7,7 +7,6 @@ import styles from './index.scss';
 import './policy-features-item/index';
 
 export const STYLE_WHITELIST = [
-  'default',
   'dark-indigo',
   'axa-blue',
   'wild-sand',
@@ -28,27 +27,25 @@ class AXAPolicyFeatures extends LitElement {
   static get properties() {
     return {
       title: { type: String },
-      axastyle: { type: String },
+      variant: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.axastyle = 'dark-indigo';
+    this.variant = 'dark-indigo';
   }
 
   render() {
-    const { title, axastyle } = this;
+    const { title, variant } = this;
 
     const classes = {
       'm-policy-features': true,
       'm-policy-features__style-dark-indigo':
-        axastyle === 'dark-indigo' ||
-        'default' ||
-        STYLE_WHITELIST.indexOf(axastyle) === -1,
-      'm-policy-features__style-axa-blue': axastyle === 'axa-blue',
-      'm-policy-features__style-wild-sand': axastyle === 'wild-sand',
-      'm-policy-features__style-white': axastyle === 'white',
+        variant === 'dark-indigo' || STYLE_WHITELIST.indexOf(variant) === -1,
+      'm-policy-features__style-axa-blue': variant === 'axa-blue',
+      'm-policy-features__style-wild-sand': variant === 'wild-sand',
+      'm-policy-features__style-white': variant === 'white',
     };
 
     return html`

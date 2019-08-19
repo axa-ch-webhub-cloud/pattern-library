@@ -17,8 +17,8 @@ story.addParameters({
 const ITEM_ICONS = ['email', 'download'];
 
 story.add('Policy features', () => {
-  const axastyles = select(
-    'axastyle',
+  const variants = select(
+    'variant',
     STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
     STYLE_WHITELIST[0],
     'axa-policy-features'
@@ -61,7 +61,7 @@ story.add('Policy features', () => {
   return `
   <axa-policy-features 
   title="${title}"
-  axastyle="${axastyles}"
+  variant="${variants}"
   >
     <axa-policy-features-item title="${itemTitleRadio === 'y' ? itemTitle : ''}"
                          icon="${itemIconUrl || itemIcon}"
