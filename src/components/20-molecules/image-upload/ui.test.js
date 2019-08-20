@@ -44,7 +44,7 @@ test('should upload file and switch view', async t => {
   await t.expect($fileOverviewElem.exists).ok();
 });
 
-test("shouldn't upload file because its an invalid type", async t => {
+test("shouldn't upload file because it's an invalid type", async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-image-upload')
@@ -62,7 +62,7 @@ test("shouldn't upload file because its an invalid type", async t => {
   await t.expect($fileOverviewElem.exists).notOk();
 });
 
-test('should cobvert .png file to .jpg', async t => {
+test('should convert .png file to .jpg', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-image-upload')
@@ -100,13 +100,13 @@ test('should delete image', async t => {
       .shadowRoot.querySelector('.js-image-upload__img-figure')
   );
 
-  const $figureElemsbBefore = await Selector(() =>
+  const $figureElemsBefore = await Selector(() =>
     document
       .querySelector('axa-image-upload')
       .shadowRoot.querySelectorAll('.js-image-upload__img-figure')
   );
 
-  await t.expect($figureElemsbBefore.count).eql(2); // one file + addMoreInputFile
+  await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
 
   await t.click($figureElem);
 
