@@ -11,7 +11,7 @@ const smWindowWidth = 576;
 // Selectors
 const svgImageOfFirstPolicyFeaturesItem = Selector(
   () => {
-    return document.querySelector(TAG).shadowRoot;
+    return document.querySelector(TAG);
   },
   { dependencies: { TAG } }
 ).find('svg');
@@ -63,7 +63,7 @@ test('should set correct text of description of the first policy-features-item',
     .eql('A 5 star car insurance with affordable premium services');
 });
 
-test('should render svg icon of the first policy-features-item', async t => {
+test('should render svg icon of the first policy-features-item (if set as a child)', async t => {
   await t.expect(svgImageOfFirstPolicyFeaturesItem.exists).ok();
 });
 
@@ -129,4 +129,12 @@ test('should set width of the first policy-features-item with screen size sm-up'
     .eql('240px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
+});
+
+fixture('Policy features item - svg loading').page(
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant=dark-indigo&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon - load svg icon from this url instead:=${host}/static/media/logo-axa.ce44e802.svg&knob-description=A 5 star car insurance with affordable premium services`
+);
+
+test('should render svg icon of the first policy-features-item (if set with url)', async t => {
+  await t.expect(svgImageOfFirstPolicyFeaturesItem.exists).ok();
 });
