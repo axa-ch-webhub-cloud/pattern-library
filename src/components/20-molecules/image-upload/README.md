@@ -1,4 +1,4 @@
-# Image upload
+# File upload
 
 A component used for uploading files in forms.
 
@@ -7,7 +7,7 @@ A component used for uploading files in forms.
 - Design requirements on [zeplin](https://zpl.io/2ZrKE7G).
 - The only filetypes allowed are `image/jpg, image/jpeg, application/pdf, image/png`.
 - To upload a file, you either drag an drop your file, or click the input-file component.
-- The image-upload has two states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of four subjects and the input-file-component with an icon. The file overview shows all files ready to upload. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or is of the wrong type, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless, when hovering over, it shows the bin-icon.
+- The file-upload has two states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of four subjects and the input-file-component with an icon. The file overview shows all files ready to upload. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or is of the wrong type, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless, when hovering over, it shows the bin-icon.
 - To remove a file, the user has to hover over a file and click it.
 - If a filename or a status text is too long it's going to be cut off and three dots will be added at the end. To show the full text, the user has to hover over.
 - After the file limit is reached, the dropzone is not longer active and the input-file gets deactivated.
