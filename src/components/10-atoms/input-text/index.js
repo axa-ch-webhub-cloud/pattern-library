@@ -131,6 +131,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       checkMark,
       isControlled,
       refId,
+      _open,
     } = this;
 
     this.isControlled = isControlled && isReact;
@@ -180,7 +181,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         ${info &&
           html`
             <axa-popup-button
-              ?open="${this._open}"
+              ?open="${_open}"
               class="a-input-text__info-button"
               @click="${this.handlePopupButtonClick}"
             ></axa-popup-button>
@@ -198,7 +199,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         info
           ? html`
               <axa-popup-content
-                ?open="${this._open}"
+                ?open="${_open}"
                 class="a-input-text__info-content"
               >
                 ${unsafeHTML(info)}

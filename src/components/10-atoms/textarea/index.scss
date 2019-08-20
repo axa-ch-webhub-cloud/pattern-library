@@ -79,10 +79,8 @@ axa-textarea {
     margin-bottom: 10px;
   }
 
-  &[disabled] {
-    .a-textarea__label {
-      color: $color-prim-gray-dusty;
-    }
+  &[disabled] .a-textarea__label {
+    color: $color-prim-gray-dusty;
   }
 
   .a-textarea__messages {

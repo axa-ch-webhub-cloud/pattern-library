@@ -132,7 +132,7 @@ class AXATextarea extends NoShadowDOM {
 
   get showCounter() {
     return (
-      this.maxLength && !this.invalid && this.areCharsLeft && !this.disabled
+      this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled
     );
   }
 
@@ -142,7 +142,7 @@ class AXATextarea extends NoShadowDOM {
 
   get showCounterMax() {
     return (
-      this.maxLength &&
+      this.maxLength > 0 &&
       this.counterMax &&
       !this.showError &&
       !this.areCharsLeft &&

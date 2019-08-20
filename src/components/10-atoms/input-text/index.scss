@@ -90,10 +90,8 @@ axa-input-text {
     margin-bottom: 10px;
   }
 
-  &[disabled] {
-    .a-input-text__label {
-      color: $color-prim-gray-dusty;
-    }
+  &[disabled] .a-input-text__label {
+    color: $color-prim-gray-dusty;
   }
 
   .a-input-text__check {
