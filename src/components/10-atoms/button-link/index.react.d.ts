@@ -23,6 +23,7 @@ interface AXAButtonLinkProps {
   disabled?: boolean;
   className?: string;
   onClick?: () => void;
+  slot?: string;
 }
 
 declare function createAXAButtonLink(

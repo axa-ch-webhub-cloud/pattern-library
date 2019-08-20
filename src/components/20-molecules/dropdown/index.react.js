@@ -12,7 +12,7 @@ export default createElement => ({
   native,
   valid,
   error,
-  className,
+  className = '',
   onChange = () => {},
   onFocus = () => {},
   onBlur = () => {},

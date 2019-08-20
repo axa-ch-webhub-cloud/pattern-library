@@ -6,7 +6,8 @@ export default createElement => ({
   variant = '',
   icon = '',
   external = false,
-  className,
+  className = '',
+  slot = '',
   onClick,
   children,
 }) =>
@@ -19,6 +20,7 @@ export default createElement => ({
       icon,
       external,
       className,
+      slot,
     },
     children
   );

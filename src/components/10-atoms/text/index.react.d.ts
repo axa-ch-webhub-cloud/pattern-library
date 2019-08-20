@@ -4,6 +4,7 @@ type Variant = 'size-2' | 'size-3' | 'size-4' | 'bold';
 
 interface AXATextProps {
   className?: string;
+  slot?: string;
   variant?: Variant;
 }
 

@@ -2,7 +2,7 @@ import withReact from '../../../utils/with-react';
 import AXACommercialHeroBanner from './index';
 
 export default createElement => ({
-  className,
+  className = '',
   variant,
   imageSource,
   children,

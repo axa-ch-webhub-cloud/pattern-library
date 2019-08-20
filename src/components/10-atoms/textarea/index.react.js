@@ -16,7 +16,7 @@ export default createElement => ({
   counter = '',
   counterMax = '',
   maxLength,
-  className,
+  className = '',
   onFocus = () => {},
   onBlur = () => {},
   onChange = () => {},

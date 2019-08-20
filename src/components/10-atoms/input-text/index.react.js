@@ -15,7 +15,7 @@ export default createElement => ({
   required = false,
   disabled = false,
   checkMark = false,
-  className,
+  className = '',
   onFocus = () => {},
   onBlur = () => {},
   onChange = () => {},

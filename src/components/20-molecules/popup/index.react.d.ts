@@ -4,6 +4,7 @@ type Variant = 'foo' | 'bar';
 
 interface AXAPopupProps {
   variant?: Variant;
+  slot?: string;
   onClick?: () => void;
 }
 
