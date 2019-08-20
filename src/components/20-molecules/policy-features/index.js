@@ -33,6 +33,7 @@ class AXAPolicyFeatures extends LitElement {
 
   constructor() {
     super();
+    this.title = '';
     this.variant = 'dark-indigo';
   }
 
