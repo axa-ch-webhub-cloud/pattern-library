@@ -17,9 +17,9 @@ class AXAPolicyFeaturesItem extends LitElement {
 
   static get properties() {
     return {
-      iconUrl: { type: String },
       title: { type: String },
       description: { type: String },
+      icon: { type: String },
       _loadedSvg: { type: String },
     };
   }
@@ -27,18 +27,20 @@ class AXAPolicyFeaturesItem extends LitElement {
   constructor() {
     super();
     this.title = '';
-    this.iconUrl = '';
+    this.icon = '';
     this.description = '';
     this._loadedSvg = null;
   }
 
   firstUpdated() {
-    const { iconUrl } = this;
+    const { icon } = this;
 
-    if (/\.svg/.test(iconUrl)) {
-      xhrCall(iconUrl).then(result => {
+    if (/\.svg/.test(icon)) {
+      xhrCall(icon).then(result => {
         this._loadedSvg = result;
       });
+    } else if (/<svg/.test(icon)) {
+      this._loadedSvg = icon;
     }
   }
 
@@ -51,11 +53,7 @@ class AXAPolicyFeaturesItem extends LitElement {
           id="m-policy-features-item-icon"
           class="m-policy-features-item__icon"
         >
-          ${_loadedSvg
-            ? svg([_loadedSvg])
-            : html`
-                <slot></slot>
-              `}
+          ${_loadedSvg && svg([_loadedSvg])}
         </div>
         <h1 class="m-policy-features-item__title">${title}</h1>
         <p class="m-policy-features-item__description">${description}</p>

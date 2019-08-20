@@ -19,7 +19,7 @@
   &__icon {
     max-width: 100%;
 
-    > svg, ::slotted(svg) { // TODO: test with IE
+    > svg {
       width: 42px;
       height: 42px;
       margin: 50px auto 0 auto;

@@ -58,29 +58,24 @@ story.add('Policy features', () => {
     <axa-policy-features title="${title}" variant="${variants}">
       <axa-policy-features-item
         title="${itemTitleRadio === 'y' ? itemTitle : ''}"
-        iconurl="${itemIconUrl}"
         description="${itemDescription}"
-      >
-        ${svg([EmailSvg])}
-      </axa-policy-features-item>
+        icon="${itemIconUrl || EmailSvg}"
+      ></axa-policy-features-item>
       <axa-policy-features-item
         title="24/7 assistance"
         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text."
-      >
-        ${svg([EmailSvg])}
-      </axa-policy-features-item>
+        icon="${EmailSvg}"
+      ></axa-policy-features-item>
       <axa-policy-features-item
         title="Discount partners"
         description="This SVG is loaded externally."
-      >
-        ${svg([EmailSvg])}
-      </axa-policy-features-item>
+        icon="${EmailSvg}"
+      ></axa-policy-features-item>
       <axa-policy-features-item
         title="Online & Apps"
         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
-      >
-        ${svg([EmailSvg])}
-      </axa-policy-features-item>
+        icon="${EmailSvg}"
+      ></axa-policy-features-item>
     </axa-policy-features>
   `;
 
