@@ -6,12 +6,7 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import './policy-features-item/index';
 
-export const STYLE_WHITELIST = [
-  'dark-indigo',
-  'axa-blue',
-  'wild-sand',
-  'white',
-];
+export const STYLE_WHITELIST = ['axa-blue', 'wild-sand', 'white'];
 
 class AXAPolicyFeatures extends LitElement {
   static get tagName() {
@@ -34,7 +29,7 @@ class AXAPolicyFeatures extends LitElement {
   constructor() {
     super();
     this.title = '';
-    this.variant = 'dark-indigo';
+    this.variant = '';
   }
 
   render() {
@@ -42,8 +37,6 @@ class AXAPolicyFeatures extends LitElement {
 
     const classes = {
       'm-policy-features': true,
-      'm-policy-features__style-dark-indigo':
-        variant === 'dark-indigo' || STYLE_WHITELIST.indexOf(variant) === -1,
       'm-policy-features__style-axa-blue': variant === 'axa-blue',
       'm-policy-features__style-wild-sand': variant === 'wild-sand',
       'm-policy-features__style-white': variant === 'white',

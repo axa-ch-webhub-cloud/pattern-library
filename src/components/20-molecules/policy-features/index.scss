@@ -1,5 +1,7 @@
 .m-policy-features {
   padding: 24px 15px;
+  background: $color-prim-blue-dark-indigo;
+  color: $color-prim-white;
 
   @include breakpoint($mediaquery-md-up) {
     padding: 48px 90px;
@@ -25,11 +27,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
   }
-}
-
-.m-policy-features__style-dark-indigo {
-  background: $color-prim-blue-dark-indigo;
-  color: $color-prim-white;
 }
 
 .m-policy-features__style-axa-blue {

@@ -7,7 +7,7 @@ const defaultWindowHeight = 1000;
 const huge2WindowWidth = 992;
 const hugeWindowWidth = 768;
 const large1WindowWidth = 576;
-const DEFAULT_AXA_STYLE = 'dark-indigo'; // should be equal to const in ./index.js
+const DEFAULT_BACKGROUND_RGB = 'rgb(59, 63, 216)';
 
 const $axaPolicyFeaturesHeaderEl = Selector(
   () => document.querySelector(TAG).shadowRoot,
@@ -40,12 +40,12 @@ test('should render title', async t => {
     .eql('A 5 star car insurance with affordable premium services');
 });
 
-test('should render default background dark-indigo', async t => {
+test('should render default background (dark-indigo)', async t => {
   await t
     .expect(
       await $axaPolicyFeaturesArticleEl.getStyleProperty('background-color')
     )
-    .eql('rgb(59, 63, 216)');
+    .eql(DEFAULT_BACKGROUND_RGB);
 });
 
 test('should render title with correct size on screen lg', async t => {
@@ -76,10 +76,12 @@ fixture('Policy features - attribute variant: not set').page(
   `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant=&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
 );
 
-test('should set default style if variant is not set', async t => {
+test('should set default background-color if variant is not set', async t => {
   await t
-    .expect(await $axaPolicyFeaturesArticleEl.getAttribute('class'))
-    .contains(DEFAULT_AXA_STYLE);
+    .expect(
+      await $axaPolicyFeaturesArticleEl.getStyleProperty('background-color')
+    )
+    .eql(DEFAULT_BACKGROUND_RGB);
 });
 
 fixture('Policy features - attribute variant: not in whitelist').page(
@@ -88,8 +90,12 @@ fixture('Policy features - attribute variant: not in whitelist').page(
 
 test('should set default style if variant string is not in whitelist', async t => {
   await t
+    .expect(
+      await $axaPolicyFeaturesArticleEl.getStyleProperty('background-color')
+    )
+    .eql(DEFAULT_BACKGROUND_RGB)
     .expect(await $axaPolicyFeaturesArticleEl.getAttribute('class'))
-    .contains(DEFAULT_AXA_STYLE);
+    .eql('m-policy-features');
 });
 
 fixture('Policy features - attribute variant: is in whitelist').page(

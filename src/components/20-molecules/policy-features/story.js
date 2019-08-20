@@ -21,7 +21,7 @@ story.add('Policy features', () => {
   const variants = select(
     'variant',
     STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
-    STYLE_WHITELIST[0],
+    '',
     'axa-policy-features'
   );
   const title = text(
