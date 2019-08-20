@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AXATextareaReact from './AXATextareaReact';
+import AXATextarea from './AXATextarea';
 
 const DemoContUncontTextarea = () => {
   const [message, setMessage] = useState('controlled');
@@ -15,31 +15,32 @@ const DemoContUncontTextarea = () => {
 
   return (
     <div>
-      <AXATextareaReact
+      <AXATextarea
         required
         label="Message controlled"
         name="message"
         value={message}
+        maxLength
         onChange={handleChange}
       />
-      <AXATextareaReact
+      <AXATextarea
         required
         label="Message controlled freeze"
         name="message"
         value="freeze"
       />
-      <AXATextareaReact
+      <AXATextarea
         required
         label="Message uncontrolled"
         name="message_2"
       />
-      <AXATextareaReact
+      <AXATextarea
         required
         label="Message uncontrolled default value"
         name="message_3"
         defaultValue="prefilled value"
       />
-      <AXATextareaReact
+      <AXATextarea
         label="type checkmark or error"
         checkMark={name === 'checkmark'}
         invalid={name === 'error'}

@@ -30,7 +30,7 @@ storyTextarea.add('Textarea', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-textarea
-      refId="${refId}"
+      refid="${refId}"
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"

@@ -9,7 +9,13 @@ import {
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
-import AXAButtonLinkReact from './AXAButtonLinkReact';
+import AXAButtonLink from './AXAButtonLink';
+import { iconOptions } from '../../icon/story';
+import {
+  variantOptions,
+  sizeOptions,
+  invertedBgs,
+} from '../story';
 import Readme from '../README.md';
 
 const storyButton = storiesOf('Atoms/Button Link/React', module);
@@ -20,55 +26,32 @@ storyButton.addParameters({
   },
 });
 
-const blueBackgroundStyle = 'background-color: #00008f; padding: 10px;';
-
 storyButton.add('Button Link', () => {
-  const options = {
-    None: '',
-    Red: 'red',
-    Secondary: 'secondary',
-    Inverted: 'inverted',
-  };
-
-  // TODO:: Move icon variants into icons and export it from there
-  const iconOptions = {
-    None: '',
-    'Arrow Right': 'arrow-right',
-    Collapse: 'collapse',
-    Document: 'document',
-    Download: 'download',
-    Email: 'email',
-    Expand: 'expand',
-    Mobile: 'mobile',
-    Phone: 'phone',
-    Search: 'search',
-    Upload: 'upload',
-  };
-
-  const buttonText = text('Text', 'Click me');
-  const variants = radios('Variant', options, '');
-  const icons = select('Icon', iconOptions);
+  const buttonText = text('text', 'Click me');
+  const href = text('href', '#');
+  const external = text('external', '');
+  const variants = radios('variant', variantOptions, '');
+  const sizes = radios('size', sizeOptions, '');
+  const icons = select('Icon', iconOptions, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
-  const large = boolean('large', false); // should probably be a variant.
 
-  const div = document.createElement('div');
-
-  if (variants === 'inverted') {
-    div.style = blueBackgroundStyle;
-  }
-
+  const wrapper = document.createElement('div');
   ReactDOM.render(
-    <AXAButtonLinkReact
-      disabled={disabled}
-      large={large}
-      variant={variants}
-      motionOff={motionOff}
-      icon={icons}
-    >
-      {buttonText}
-    </AXAButtonLinkReact>,
-    div
+    <div style={{ backgroundColor: invertedBgs[variants], padding: '10px' }}>
+      <AXAButtonLink
+        href={href}
+        external={external}
+        variant={variants}
+        size={sizes}
+        icon={icons}
+        disabled={disabled}
+        motionOff={motionOff}
+      >
+        {buttonText}
+      </AXAButtonLink>
+    </div>,
+    wrapper
   );
-  return div;
+  return wrapper;
 });

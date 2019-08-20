@@ -1,11 +1,13 @@
 /* global document */
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { storiesOf } from '@storybook/html';
 import { boolean, text, radios, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
-import './index';
-import Readme from './README.md';
+import AXAInputText from './AXAInputText';
+import { typeOptions } from '../story';
+import Readme from '../README.md';
 
-const storyInputText = storiesOf('Atoms/Input Text', module);
+const storyInputText = storiesOf('Atoms/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme: {
@@ -13,45 +15,40 @@ storyInputText.addParameters({
   },
 });
 
-export const typeOptions = {
-  text: 'text',
-  email: 'email',
-  password: 'password',
-};
-
 storyInputText.add('Input Text', () => {
   const label = text('label*', '');
   const name = text('name*', '');
-  const refId = text('refid', '');
+  const refId = text('refId', '');
   const placeholder = text('placeholder', '');
   const value = text('value', '');
   const error = text('error', '');
   const info = text('info', '');
-  const checkMark = boolean('checkmark', false);
+  const defaultValue = text('defaultValue', '');
+  const checkMark = boolean('checkMark', false);
   const disabled = boolean('disabled', false);
   const required = boolean('required', false);
   const invalid = boolean('invalid', false);
   const types = radios('type', typeOptions, 'text');
 
   const wrapper = document.createElement('div');
-  const template = html`
-    <axa-input-text
-      refid="${refId}"
-      name="${name}"
-      label="${label}"
-      placeholder="${placeholder}"
-      ?checkmark="${checkMark}"
-      ?disabled="${disabled}"
-      ?required="${required}"
-      ?invalid="${invalid}"
-      value="${value}"
-      type="${types}"
-      error="${error}"
-      info="${info}"
-      ></axa-input-text
-    >
-  `;
+  ReactDOM.render(
+    <AXAInputText
+      refId={refId}
+      name={name}
+      label={label}
+      placeholder={placeholder}
+      checkMark={checkMark}
+      disabled={disabled}
+      required={required}
+      invalid={invalid}
+      value={value}
+      defaultValue={defaultValue}
+      type={types}
+      error={error}
+      info={info}
+    />,
+    wrapper
+  );
 
-  render(template, wrapper);
   return wrapper;
 });

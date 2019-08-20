@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AXAButtonLinkReact from './AXAButtonLinkReact';
+import AXAButtonLink from './AXAButtonLink';
 
 const DemoButtonLinkClick = () => {
   const [count, setCount] = useState(0);
@@ -11,9 +11,9 @@ const DemoButtonLinkClick = () => {
   return (
     <div>
       <p>With the react wrapper - callback props are possible!</p>
-      <AXAButtonLinkReact onClick={handleAXAButtonClick}>
+      <AXAButtonLink onClick={handleAXAButtonClick}>
         You clicked me: {count} times!
-      </AXAButtonLinkReact>
+      </AXAButtonLink>
     </div>
   );
 };
