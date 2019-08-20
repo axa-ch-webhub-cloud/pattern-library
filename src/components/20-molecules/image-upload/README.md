@@ -1,20 +1,20 @@
-# Image upload
+# File upload
 
-image-upload is a component used for uploading files in forms.
+A component used for uploading files in forms.
 
 ## Requirements
 
 - Design requirements on [zeplin](https://zpl.io/2ZrKE7G).
 - The only filetypes allowed are `image/jpg, image/jpeg, application/pdf, image/png`.
-- To upload a file you either drag an drop your file, or click the input-file component.
-- The image-upload has 2 states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of 4 subjects and the input-file-component with an icon. The file overview shows all uploaded files. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or has other file specific, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless when hovering over it shows the bin-icon.
+- To upload a file, you either drag an drop your file, or click the input-file component.
+- The file-upload has two states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of four subjects and the input-file-component with an icon. The file overview shows all files ready to upload. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or is of the wrong type, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless, when hovering over, it shows the bin-icon.
 - To remove a file, the user has to hover over a file and click it.
-- Is a filename or a status text to long it's going to be cut off and 3 dots will be added at the end. To show the full text, the user has to hover over.
+- If a filename or a status text is too long it's going to be cut off and three dots will be added at the end. To show the full text, the user has to hover over.
 - After the file limit is reached, the dropzone is not longer active and the input-file gets deactivated.
-- Is the file limit exceeded, the unused file are cut off and a matching error message is displayed under the image-upload.
-- When all files together exceed the maximal file size a matching error message is displayed under the image-upload.
+- If the file limit exceeds, the over-limit files are cut off and a matching error message is displayed under the file-upload.
+- When all files together exceed the maximum file size, a matching error message is displayed under the file-upload.
 - The file overview is scrollable after the files use more than 2 rows.
-- All files are compromised and .png are converted to .jpeg.
+- All images are compressed and .png are converted to .jpeg.
 
 ## Usage
 
@@ -30,7 +30,7 @@ import '@axa-ch/image-upload';
 
 ### React
 
-Create a React-ified image-upload with the createElement function from your React version and then use it like this:
+Create a React-ified file-upload with the createElement function from your React version and then use it like this:
 
 ```js
 import { createElement } from 'react';
@@ -47,7 +47,7 @@ export default AXAImageUploadReact;
 
 ### Pure HTML pages
 
-Import the image-upload-defining script and use a image-upload like this:
+Use the file-upload like this:
 
 ```html
 <!DOCTYPE html>
@@ -69,21 +69,21 @@ Import the image-upload-defining script and use a image-upload like this:
 
 ### Variant
 
-| Attribute                                  | Details                                                              |
-| ------------------------------------------ | -------------------------------------------------------------------- |
-| `inputFileText="Upload file"`              | Text in the input-file component                                     |
-| `maxSizeOfSingleFileKB="10"`               | Maximal size of a single file in KB                                  |
-| `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all files together in KB                           |
-| `maxNumberOfFiles="10"`                    | Maximal number of files                                              |
-| `showImageOverview="false"`                | Switch between normal view and image overview                        |
-| `icon="cloud-upload"`                      | Specify the upload icon in input-file component                      |
-| `fileTooBigStatusText="Error occurred"`    | Specify the error message for to big files                           |
-| `tooManyFilesStatusText="Error occurred"`  | Specify the error message for to many files                          |
-| `filesTooBigStatusText="Error occurred"`   | Specify the error message when maximal size of all files is exceeded |
-| `deleteStatusText="Delete"`                | Specify the caption when hovering over a file                        |
-| `addStatusText="Add more"`                 | Specify the caption of dashed box                                    |
-| `infoText="drag and drop your files here"` | Specify the text on the start view                                   |
-| `orText="or"`                              | Specify the text on the start view box                               |
+| Attribute                                  | Details                                                               |
+| ------------------------------------------ | --------------------------------------------------------------------- |
+| `inputFileText="Upload file"`              | Text in the input-file component                                      |
+| `maxSizeOfSingleFileKB="10"`               | Maximal size of a single file in KB                                   |
+| `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all files together in KB                            |
+| `maxNumberOfFiles="10"`                    | Maximal number of files                                               |
+| `showImageOverview="false"`                | Switch between normal view and image overview                         |
+| `icon="cloud-upload"`                      | Specify the upload icon in input-file component                       |
+| `fileTooBigStatusText="Error occurred"`    | Specify the error message for too big files                           |
+| `tooManyFilesStatusText="Error occurred"`  | Specify the error message for too many files                          |
+| `filesTooBigStatusText="Error occurred"`   | Specify the error message when maximum size of all files is exceeded  |
+| `deleteStatusText="Delete"`                | Specify the caption when hovering over a file                         |
+| `addStatusText="Add more"`                 | Specify the caption of dashed box                                     |
+| `infoText="drag and drop your files here"` | Specify the text on the start view                                    |
+| `orText="or"`                              | Specify the text on the start view box                                |
 
 ### inputFileText
 
@@ -91,15 +91,15 @@ The attribute `inputFileText` specifies the text witch appears next to the icon 
 
 ### maxSizeOfSingleFileKB
 
-The attribute `maxSizeOfSingleFileKB` specifies the maximal size a single compressed file can have. A file which is to big gets displayed as a wrong file.
+The attribute `maxSizeOfSingleFileKB` specifies the maximum size a single compressed file can have. A file which is too big gets displayed as a wrong file.
 
 ### maxSizeOfAllFilesKB
 
-The attribute `maxSizeOfAllFilesKB` specifies the maximal size all compressed files together can have. Every File that is over the limit gets displayed as a wrong file.
+The attribute `maxSizeOfAllFilesKB` specifies the maximal size all compressed files together can have. Every file that is over the limit gets displayed as a wrong file.
 
 ### maxNumberOfFiles
 
-The attribute `maxNumberOfFiles` specifies the maximal number of files. Every File that is over the limit will not be displayed.
+The attribute `maxNumberOfFiles` specifies the maximum number of files. Every File that is over the limit will not be displayed.
 
 ### showImageOverview
 
@@ -111,21 +111,21 @@ The attribute `icon` specifies the icon in the [axa-input-file](https://github.c
 
 ### fileTooBigStatusText
 
-The attribute `fileTooBigStatusText` specifies the error text under a file, which is bigger than allowed. Recommended is the following pattern of the message: Recommended is to show in the message what the `maxSizeOfSingleFileKB` is.
+The attribute `fileTooBigStatusText` specifies the error text under a file, which is bigger than allowed. Recommended is, to show in the message, what the `maxSizeOfSingleFileKB` is.
 
 ### tooManyFilesStatusText
 
-The attribute `tooManyFilesStatusText` specifies the global error text when the maximal number of files is exceeded. Recommended is to show in the message what the `maxNumberOfFiles` is.
+The attribute `tooManyFilesStatusText` specifies the global error text, when the maximum number of files is exceeded. Recommended is, to show in the message what the `maxNumberOfFiles` is.
 
 ### filesTooBigStatusText
 
-The attribute `filesTooBigStatusText` specifies the global error text when all files together exceed the maximal file size.
-Recommended is to show in the message what the `maxSizeOfAllFilesKB` is.
+The attribute `filesTooBigStatusText` specifies the global error text, when all files together exceed the maximum file size.
+Recommended is, to show in the message, what the `maxSizeOfAllFilesKB` is.
 
 ### deleteStatusText
 
-The attribute `deleteStatusText` specifies the text that appears when hovering over a file.
+The attribute `deleteStatusText` specifies the text that appears, when hovering over a file.
 
 ### addStatusText
 
-The attribute `addStatusText` specifies the text under the dashed box appearing after the last file.
+The attribute `addStatusText` specifies the text under the dashed box, appearing after the last file.
