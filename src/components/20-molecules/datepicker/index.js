@@ -226,9 +226,10 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
-  async performUpdate() {
-    await new Promise(resolve => window.requestAnimationFrame(() => resolve()));
-    super.performUpdate();
+  performUpdate() {
+    new Promise(resolve => window.requestAnimationFrame(() => resolve())).then(
+      () => super.performUpdate()
+    );
   }
 
   shouldUpdate(changedProperties) {
@@ -267,7 +268,7 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = 'auto', height = 'auto', error, invalid } = this;
+    const { width = 'auto', height = '40px', error, invalid } = this;
 
     const formattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
@@ -602,6 +603,7 @@ class AXADatepicker extends NoShadowDOM {
   handleInputButtonClick(e) {
     e.stopPropagation();
     if (this.inputfield) {
+      this.initDate(this._date);
       this.toggleDatepicker();
     }
   }
@@ -665,8 +667,7 @@ class AXADatepicker extends NoShadowDOM {
     const cellIndex = parseInt(e.target.dataset.index, 10);
     const date = e.target.dataset.value;
     this.index = cellIndex;
-    this._date = new Date(date);
-    this.initDate(this._date);
+    this.initDate(new Date(date));
     this.setMonthAndYearItems();
   }
 }
