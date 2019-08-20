@@ -1,6 +1,6 @@
 # Policy features
 
-With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it. This component changes sizes according to the viewport.
+With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it.
 
 ## Usage
 
@@ -12,14 +12,22 @@ npm install @axa-ch/policy-features
 
 ```js
 import '@axa-ch/policy-features';
+import { EmailSvg } from '@axa-ch/materials/icons';
+import { svg } from 'lit-element';
 ```
 
 ```html
 <axa-policy-features title="Your main title" variant="dark-indigo">
   <axa-policy-features-item
     title="The title of item"
-    icon="email"
-    description="A text which can be as long as you want."
+    description="In this example the svg is set as a child with lit html."
+  >
+    ${svg([EmailSvg])}
+  </axa-policy-features-item>
+  <axa-policy-features-item
+    title="Title no. 2"
+    description="You can set your ican with a url."
+    iconurl="https://here-is-my-icon.svg"
   ></axa-policy-features-item>
 </axa-policy-features>
 ```
@@ -45,8 +53,24 @@ Import the policy-features-defining script and use a policy-features like this:
     <axa-policy-features title="Your main title" variant="dark-indigo">
       <axa-policy-features-item
         title="The title of item"
-        icon="email"
-        description="A text which can be as long as you want."
+        description="In this example the svg is set as a child."
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M6.167 1.519c-.562 0-1.1.222-1.495.617a2.082 2.082 0 0 0-.611 1.488v16.752a2.082 2.082 0 0 0 .611 1.488c.395.395.933.617 1.495.617h12.666a2.114 2.114 0 0 0 2.106-2.09V7.82l-6.333-6.286-8.44-.015zm7.394 7.338V3.09l5.795 5.767H13.56z"
+            fill="currentColor"
+          />
+        </svg>
+      </axa-policy-features-item>
+      <axa-policy-features-item
+        title="Title no. 2"
+        description="You can set your ican with a url."
+        iconurl="https://here-is-my-icon.svg"
       ></axa-policy-features-item>
     </axa-policy-features>
     <script src="node_modules/@axa-ch/policy-features/dist/index.js"></script>
@@ -81,25 +105,20 @@ You have to set `axa-policy-features-item` as childs of `axa-policy-features`. I
 
 ## Properties
 
-### Variant
-
-| Attribute                            | Details                                 |
-| ------------------------------------ | --------------------------------------- |
-| `icon="email"`                       | The email icon of our icon-set.         |
-| `icon="https://url-to-svg-icon.svg"` | Loads the url and sets content as icon. |
-
 ### title
 
 The attribute `title` (optional) specifies the title of your feature.
 
-### icon
+### iconurl
 
-You can set a icon of our icon-set (variants above) or a URL to a svg.
+You can set a URL to a svg, for example `https://url-to-svg-icon.svg`. The size of the svg will be set to:
 
-Sizes:
+- Tablet and bigger (`md-up`): 96x96 px
+- All smaller devices: 42x42 px
 
-- 42x42 px
-- `md-up`: 96x96 px
+### icon (as a child)
+
+You can also set any svg you want if you set it as a child of dom node `axa-policy-features-item`. See example above.
 
 ### description
 

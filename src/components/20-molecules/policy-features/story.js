@@ -1,6 +1,8 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
+import { EmailSvg } from '@axa-ch/materials/icons';
+import { html, render, svg } from 'lit-html';
 import { STYLE_WHITELIST } from './index';
 import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
@@ -13,8 +15,6 @@ story.addParameters({
     sidebar: Readme,
   },
 });
-
-const ITEM_ICONS = ['email', 'download'];
 
 story.add('Policy features', () => {
   const variants = select(
@@ -41,12 +41,6 @@ story.add('Policy features', () => {
     'Get Discount',
     'axa-policy-features-item'
   );
-  const itemIcon = select(
-    'icon',
-    ITEM_ICONS,
-    ITEM_ICONS[0],
-    'axa-policy-features-item'
-  );
   const itemIconUrl = text(
     'icon - load svg icon from this url instead:',
     '',
@@ -58,27 +52,37 @@ story.add('Policy features', () => {
     'axa-policy-features-item'
   );
 
-  return `
-  <axa-policy-features 
-  title="${title}"
-  variant="${variants}"
-  >
-    <axa-policy-features-item title="${itemTitleRadio === 'y' ? itemTitle : ''}"
-                         icon="${itemIconUrl || itemIcon}"
-                         description="${itemDescription}">
-    </axa-policy-features-item>
-    <axa-policy-features-item title="24/7 assistance"
-                         icon="download"
-                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text.">
-    </axa-policy-features-item>
-    <axa-policy-features-item title="Discount partners"
-                         icon="email"
-                         description="This SVG is loaded externally.">
-    </axa-policy-features-item>
-    <axa-policy-features-item title="Online & Apps"
-                         icon="download"
-                         description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online">
-    </axa-policy-features-item>
-  </axa-policy-features>
+  const wrapper = document.createElement('div');
+  const template = html`
+    <axa-policy-features title="${title}" variant="${variants}">
+      <axa-policy-features-item
+        title="${itemTitleRadio === 'y' ? itemTitle : ''}"
+        iconurl="${itemIconUrl}"
+        description="${itemDescription}"
+      >
+        ${svg([EmailSvg])}
+      </axa-policy-features-item>
+      <axa-policy-features-item
+        title="24/7 assistance"
+        description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text."
+      >
+        ${svg([EmailSvg])}
+      </axa-policy-features-item>
+      <axa-policy-features-item
+        title="Discount partners"
+        description="This SVG is loaded externally."
+      >
+        ${svg([EmailSvg])}
+      </axa-policy-features-item>
+      <axa-policy-features-item
+        title="Online & Apps"
+        description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+      >
+        ${svg([EmailSvg])}
+      </axa-policy-features-item>
+    </axa-policy-features>
   `;
+
+  render(template, wrapper);
+  return wrapper;
 });
