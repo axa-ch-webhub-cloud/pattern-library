@@ -74,6 +74,11 @@ request.
 
 We adhere to our [Code of Conduct](https://raw.githubusercontent.com/axa-ch/patterns-library/develop/CODE_OF_CONDUCT.md).
 
+## Release Policies
+
+We rely strictly on [semver](https://semver.org/) in how we version our components. One special exeption is with components that depend on each other. If a parent component includes another component as child and the child gets a major-release update, then its parent should also undergo a major release even though there is no breaking change. 
+
+If a consumer mixes components with different major versions, we cannot garantee the correct functioning of those components. This can happen for example if the datepicker has a new major release and &mdash; by the above principle &mdash; a parallel major release for its dropdown. In that scenario component consumers should update their dropdowns as well even if used without the datepicker.
 
 
 
