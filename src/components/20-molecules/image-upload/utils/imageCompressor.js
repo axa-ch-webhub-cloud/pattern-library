@@ -21,12 +21,6 @@ const DEFAULTS = {
 
 const isImageType = value => /^image\/.+$/.test(value);
 
-/**
- * @param {String} value
- * @param {boolean} includeDot
- * @return {String}
- * @function imageTypeToExtension
- */
 const imageTypeToExtension = (value, includeDot = true) => {
   let extension = isImageType(value) ? value.substr(6) : '';
   if (extension === 'jpeg') {
@@ -38,13 +32,6 @@ const imageTypeToExtension = (value, includeDot = true) => {
   return extension;
 };
 
-/**
- * @param {String} url
- * @param {object} file
- * @param {object} image
- * @return {Promise}
- * @function createImage
- */
 const createImage = (url, file, image) => {
   const _image = image;
   return new Promise((resolve, reject) => {
@@ -61,15 +48,6 @@ const createImage = (url, file, image) => {
   });
 };
 
-/**
- * @param {number} width
- * @param {number} height
- * @param {object} _options
- * @param {object} file
- * @param {object} image
- * @return {Promise}
- * @function appendToCanvas
- */
 const appendToCanvas = (width, height, _options, file, image) =>
   new Promise(resolve => {
     const options = _options;
@@ -136,14 +114,6 @@ const appendToCanvas = (width, height, _options, file, image) =>
     }
   });
 
-/**
- * @param {object} res
- * @param {object} _image
- * @param {object} _options
- * @param {object} file
- * @return {Promise}
- * @function onResultCanvas
- */
 const onResultCanvas = (res, _image, _options, file) => {
   const image = _image;
   const options = _options;
@@ -189,12 +159,6 @@ const onResultCanvas = (res, _image, _options, file) => {
   return Promise.resolve(_result);
 };
 
-/**
- * @param {object} file
- * @param {object} _options
- * @return {Promise}
- * @function createPromise
- */
 const createPromise = (file, _options) => {
   const options = _options;
   if (!isBlob(file)) {
@@ -234,12 +198,6 @@ const createPromise = (file, _options) => {
     });
 };
 
-/**
- * @param {object} filesList
- * @param {object} _options
- * @return {Promise}
- * @function compressedImage
- */
 const compressedImage = (filesList, _options) => {
   if (!filesList.length) {
     return false;
