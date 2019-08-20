@@ -1,6 +1,5 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { EmailSvg, DownloadSvg } from '@axa-ch/materials/icons';
 import defineOnce from '../../../../utils/define-once';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
@@ -18,38 +17,45 @@ class AXAPolicyFeaturesItem extends LitElement {
 
   static get properties() {
     return {
-      icon: { type: String },
+      iconUrl: { type: String },
       title: { type: String },
       description: { type: String },
+      _loadedSvg: { type: String },
     };
   }
 
-  static get iconsMapping() {
-    return {
-      download: DownloadSvg,
-      email: EmailSvg,
-    };
+  constructor() {
+    super();
+    this.title = '';
+    this.iconUrl = '';
+    this.description = '';
+    this._loadedSvg = null;
   }
 
   firstUpdated() {
-    const { icon } = this;
+    const { iconUrl } = this;
 
-    if (/\.svg/.test(icon)) {
-      xhrCall(icon).then(result => {
-        this.shadowRoot.getElementById(
-          'm-policy-features-item-icon'
-        ).innerHTML = result;
+    if (/\.svg/.test(iconUrl)) {
+      xhrCall(iconUrl).then(result => {
+        this._loadedSvg = result;
       });
     }
   }
 
   render() {
-    const { icon, title, description } = this;
+    const { _loadedSvg, title, description } = this;
 
     return html`
       <section class="m-policy-features-item">
-        <div id="m-policy-features-item-icon" class="m-policy-features-item__icon">
-          ${svg([AXAPolicyFeaturesItem.iconsMapping[icon] || ''])}
+        <div
+          id="m-policy-features-item-icon"
+          class="m-policy-features-item__icon"
+        >
+          ${_loadedSvg
+            ? svg([_loadedSvg])
+            : html`
+                <slot></slot>
+              `}
         </div>
         <h1 class="m-policy-features-item__title">${title}</h1>
         <p class="m-policy-features-item__description">${description}</p>
