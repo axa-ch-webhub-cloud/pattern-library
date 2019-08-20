@@ -1,9 +1,10 @@
 import withReact from '../../../utils/with-react';
 import AXAInputFile from './index';
+import createRefId from '../../../utils/create-ref-id';
 
 export default createElement => ({
   icon = '',
-  id = '',
+  refId = `input-file-${createRefId()}`,
   variant = '',
   motionOff = false,
   disabled = false,
@@ -19,7 +20,7 @@ export default createElement => ({
     AXAInputFile.tagName,
     {
       icon,
-      id,
+      refId,
       variant,
       motionOff,
       disabled,
