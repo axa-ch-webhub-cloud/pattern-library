@@ -46,7 +46,7 @@ class AXAImageUpload extends LitElement {
       maxSizeOfSingleFileKB: { type: Number },
       maxSizeOfAllFilesKB: { type: Number },
       maxNumberOfFiles: { type: Number },
-      showImageOverview: { type: Boolean },
+      showFileOverview: { type: Boolean },
       icon: { type: String },
       deleteStatusText: { type: String },
       addStatusText: { type: String },
@@ -64,7 +64,7 @@ class AXAImageUpload extends LitElement {
     this.maxSizeOfSingleFileKB = 100;
     this.maxSizeOfAllFilesKB = 500;
     this.maxNumberOfFiles = 10;
-    this.showImageOverview = false;
+    this.showFileOverview = false;
     this.icon = 'cloud-upload';
     this.deleteStatusText = 'Delete';
     this.addStatusText = 'Add more';
@@ -112,20 +112,17 @@ class AXAImageUpload extends LitElement {
     /* prevent browser to display the file fullscreen */
     e.preventDefault();
 
-    if (this.isFileMaxReached) {
-      return;
-    }
     const files = [...e.dataTransfer.files].filter(
       file => ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
 
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
-    if (files.length > 0) {
+    if (files.length > 0 && !this.isFileMaxReached) {
       this.addFiles(files);
     }
   }
 
-  handleImageDeletion(index) {
+  handleFileDeletion(index) {
     let clonedFiles = [];
 
     this.allDroppedFiles =
@@ -156,7 +153,7 @@ class AXAImageUpload extends LitElement {
     this.sizeOfAllFilesByte -= this.allFiles[index].size;
 
     if (this.files.length + this.faultyFiles.length === 0) {
-      this.showImageOverview = false;
+      this.showFileOverview = false;
       this.sizeOfAllFilesByte = 0;
       this.allDroppedFiles = 0;
       this.files = [];
@@ -193,7 +190,7 @@ class AXAImageUpload extends LitElement {
       (this.files.length > 0 || this.faultyFiles.length > 0) &&
       droppedFiles.length > 0
     ) {
-      this.showImageOverview = true;
+      this.showFileOverview = true;
     }
     if (this.files.length >= this.maxNumberOfFiles) {
       this.showAddMoreInputFile = false;
@@ -278,7 +275,7 @@ class AXAImageUpload extends LitElement {
         <figure class="m-image-upload__img-figure js-image-upload__img-figure">
           <div
             class="m-image-upload__icon-hover-area"
-            @click=${() => this.handleImageDeletion(index)}
+            @click=${() => this.handleFileDeletion(index)}
           >
             ${isFile
               ? html`
@@ -357,11 +354,11 @@ class AXAImageUpload extends LitElement {
   }
 
   render() {
-    const imageOverviewClasses = {
+    const fileOverviewClasses = {
       'm-image-upload__dropzone': true,
       'js-image-upload__dropzone': true,
-      'm-image-upload__dropzone-file-overview': this.showImageOverview,
-      'js-image-upload__dropzone-file-overview': this.showImageOverview,
+      'm-image-upload__dropzone-file-overview': this.showFileOverview,
+      'js-image-upload__dropzone-file-overview': this.showFileOverview,
     };
     const errorMessageWrapperClasses = {
       'm-image-upload__error-wrapper': true,
@@ -380,9 +377,9 @@ class AXAImageUpload extends LitElement {
           @dragover="${this.handleDropZoneDragover}"
           @dragleave="${this.handleDropZoneDragleave}"
           @drop="${this.handleDropZoneDrop}"
-          class="${classMap(imageOverviewClasses)}"
+          class="${classMap(fileOverviewClasses)}"
         >
-          ${!this.showImageOverview
+          ${!this.showFileOverview
             ? html`
                 <div>
                   ${ImageUploadGroupIcon}

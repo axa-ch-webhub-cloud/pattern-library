@@ -5,7 +5,7 @@ interface AXAImageUploadProps {
   maxSizeOfSingleFileKB?: number;
   maxSizeOfAllFilesKB?: number;
   maxNumberOfFiles?: number;
-  showImageOverview?: boolean;
+  showFileOverview?: boolean;
   icon?: string;
   deleteStatusText?: string;
   addStatusText?: string;
