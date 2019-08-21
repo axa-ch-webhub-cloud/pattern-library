@@ -91,12 +91,11 @@ class AXAImageUpload extends LitElement {
     this.inputFile.querySelector('input').click();
   }
 
-  handleImageUploadButtonChange(e) {
-    const { files } = e.target;
-    this.addFiles(files);
+  handleInputFileChange(e) {
+    this.addFiles(e.target.files);
   }
 
-  handleImageUploadDropZoneDragover(e) {
+  handleDropZoneDragover(e) {
     /* prevent default browser behavior to execute the link that comes with the event */
     e.preventDefault();
     if (!this.isFileMaxReached) {
@@ -105,11 +104,11 @@ class AXAImageUpload extends LitElement {
     }
   }
 
-  handleImageUploadDropZoneDragleave() {
+  handleDropZoneDragleave() {
     this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
   }
 
-  handleImageUploadDropZoneDrop(e) {
+  handleDropZoneDrop(e) {
     /* prevent browser to display the file fullscreen */
     e.preventDefault();
 
@@ -378,9 +377,9 @@ class AXAImageUpload extends LitElement {
       <article class="m-image-upload">
         <h1><slot></slot></h1>
         <section
-          @dragover="${this.handleImageUploadDropZoneDragover}"
-          @dragleave="${this.handleImageUploadDropZoneDragleave}"
-          @drop="${this.handleImageUploadDropZoneDrop}"
+          @dragover="${this.handleDropZoneDragover}"
+          @dragleave="${this.handleDropZoneDragleave}"
+          @drop="${this.handleDropZoneDrop}"
           class="${classMap(imageOverviewClasses)}"
         >
           ${!this.showImageOverview
@@ -395,8 +394,7 @@ class AXAImageUpload extends LitElement {
                   accept="${ACCEPTED_FILE_TYPES}"
                   icon="${this.icon}"
                   multiple
-                  @change=${this.handleImageUploadButtonChange}
-                  @click=${this.handleImageUploadButtonClick}
+                  @change=${this.handleInputFileChange}
                   variant="red"
                 >
                   ${this.inputFileText}
