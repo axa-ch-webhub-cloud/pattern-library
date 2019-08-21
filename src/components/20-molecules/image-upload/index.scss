@@ -165,7 +165,6 @@ $image-upload-icon-size: 36px !default;
       position: relative;
     }
     .m-image-upload__icon-layer {
-      //fill: currentColor;
       @include iconSize($image-upload-icon-size)
     }
     .m-image-upload__img-caption {
