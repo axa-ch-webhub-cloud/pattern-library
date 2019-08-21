@@ -2,12 +2,12 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
-fixture('Image upload - default').page(
-  `${host}/iframe.html?id=molecules-image-upload--image-upload-default`
+fixture('File upload - default').page(
+  `${host}/iframe.html?id=molecules-file-upload--file-upload-default`
 );
 
-const IMAGE_UPLOAD_TAG = 'axa-image-upload';
-const IMAGE_UPLOAD_CLASS = '.m-image-upload';
+const FILE_UPLOAD_TAG = 'axa-file-upload';
+const FILE_UPLOAD_CLASS = '.m-file-upload';
 
 const validFiles = [
   './ui-test-files/test.jpg',
@@ -15,13 +15,13 @@ const validFiles = [
   './ui-test-files/test.pdf',
 ];
 
-test('should render image-upload', async t => {
-  const $axaElem = await Selector(IMAGE_UPLOAD_TAG);
+test('should render file-upload', async t => {
+  const $axaElem = await Selector(FILE_UPLOAD_TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-image-upload').shadowRoot
+    () => document.querySelector('axa-file-upload').shadowRoot
   );
-  const $axaElemShadowEl = await $axaElemShadow.find(IMAGE_UPLOAD_CLASS);
+  const $axaElemShadowEl = await $axaElemShadow.find(FILE_UPLOAD_CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
@@ -29,7 +29,7 @@ test('should upload file and switch view', async t => {
   const $inputFileInputElem = await Selector(
     () =>
       document
-        .querySelector('axa-image-upload')
+        .querySelector('axa-file-upload')
         .shadowRoot.querySelector('axa-input-file .a-input-file__input') // TODO change to .js-
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -38,8 +38,8 @@ test('should upload file and switch view', async t => {
 
   const $fileOverviewElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelector('.js-image-upload__dropzone-file-overview')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__dropzone-file-overview')
   );
   await t.expect($fileOverviewElem.exists).ok();
 });
@@ -47,7 +47,7 @@ test('should upload file and switch view', async t => {
 test("shouldn't upload file because it's an invalid type", async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -56,8 +56,8 @@ test("shouldn't upload file because it's an invalid type", async t => {
 
   const $fileOverviewElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelector('.js-image-upload__dropzone-file-overview')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__dropzone-file-overview')
   );
   await t.expect($fileOverviewElem.exists).notOk();
 });
@@ -65,7 +65,7 @@ test("shouldn't upload file because it's an invalid type", async t => {
 test('should convert .png file to .jpg', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -74,9 +74,9 @@ test('should convert .png file to .jpg', async t => {
 
   const $figcaptionElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector(
-        '.js-image-upload__img-figure .js-image-upload__img-caption'
+        '.js-file-upload__img-figure .js-file-upload__img-caption'
       )
   );
   await t
@@ -87,7 +87,7 @@ test('should convert .png file to .jpg', async t => {
 test('should delete image', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -96,14 +96,14 @@ test('should delete image', async t => {
 
   const $figureElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelector('.js-image-upload__img-figure')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__img-figure')
   );
 
   const $figureElemsBefore = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__img-figure')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
   await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
@@ -112,21 +112,21 @@ test('should delete image', async t => {
 
   const $figureElemsAfter = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__img-figure')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
   await t.expect($figureElemsAfter.count).eql(0); // zero because start view has no figures
 });
 
-fixture('Image upload - maxSizeOfSingleFileKB prop').page(
-  `${host}/iframe.html?id=molecules-image-upload--image-upload-maxsizeofsinglefilekb`
+fixture('File upload - maxSizeOfSingleFileKB prop').page(
+  `${host}/iframe.html?id=molecules-file-upload--file-upload-maxsizeofsinglefilekb`
 );
 
 test('should exceed maximum size of single file', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -135,26 +135,26 @@ test('should exceed maximum size of single file', async t => {
 
   const $figureElems = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__img-figure')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
   await t.expect($figureElems.count).eql(2); // one file + addMoreInputFile
   const $fileName = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__filename')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__filename')
   );
   await t.expect($fileName.innerText).eql('File size exceeds maximum size');
 });
 
-fixture('Image upload - maxNumberOfFiles prop').page(
-  `${host}/iframe.html?id=molecules-image-upload--image-upload-maxnumberoffiles`
+fixture('File upload - maxNumberOfFiles prop').page(
+  `${host}/iframe.html?id=molecules-file-upload--file-upload-maxnumberoffiles`
 );
 test('should remove addMoreInputFile', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -163,8 +163,8 @@ test('should remove addMoreInputFile', async t => {
 
   const $addMoreInputFieldElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__add-more')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__add-more')
   );
   await t.expect($addMoreInputFieldElem.exists).notOk();
 });
@@ -172,7 +172,7 @@ test('should remove addMoreInputFile', async t => {
 test('should exceed maximum number of files', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -181,28 +181,28 @@ test('should exceed maximum number of files', async t => {
 
   const $figureElems = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__img-figure')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
   await t.expect($figureElems.count).eql(1);
   const $errorWrapper = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__error-wrapper')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
   );
   await t
     .expect($errorWrapper.innerText)
     .eql('You exceeded the maximum number of files');
 });
 
-fixture('Image upload - maxSizeOfAllFilesKB prop').page(
-  `${host}/iframe.html?id=molecules-image-upload--image-upload-maxsizeofallfileskb`
+fixture('File upload - maxSizeOfAllFilesKB prop').page(
+  `${host}/iframe.html?id=molecules-file-upload--file-upload-maxsizeofallfileskb`
 );
 test('should exceed maximum size of all files', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
+      .querySelector('axa-file-upload')
       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
@@ -211,8 +211,8 @@ test('should exceed maximum size of all files', async t => {
 
   const $errorWrapper = await Selector(() =>
     document
-      .querySelector('axa-image-upload')
-      .shadowRoot.querySelectorAll('.js-image-upload__error-wrapper')
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
   );
   await t.expect($errorWrapper.innerText).eql('File sizes exceed maximum size');
 });

@@ -1,7 +1,7 @@
-$image-upload-dropzone-border-width: 2px !default;
-$image-upload-opacity: 0.25 !default;
-$image-upload-dropzone-border: $image-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
-$image-upload-icon-size: 36px !default;
+$file-upload-dropzone-border-width: 2px !default;
+$file-upload-opacity: 0.25 !default;
+$file-upload-dropzone-border: $file-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
+$file-upload-icon-size: 36px !default;
 
 @mixin iconSize($property) {
   svg{
@@ -10,7 +10,7 @@ $image-upload-icon-size: 36px !default;
   }
 }
 
-.m-image-upload {
+.m-file-upload {
   @include typo(primary, medium);
 
   &__dropzone {
@@ -23,11 +23,11 @@ $image-upload-icon-size: 36px !default;
     justify-content: space-between;
     align-items: center;
 
-    border: $image-upload-dropzone-border;
+    border: $file-upload-dropzone-border;
   }
 
   &__dropzone_dragover {
-    opacity: $image-upload-opacity;
+    opacity: $file-upload-opacity;
   }
 
   &__dropzone-file-overview {
@@ -70,16 +70,16 @@ $image-upload-icon-size: 36px !default;
 
   &__icon-hover-area:hover {
     cursor: pointer;
-    .m-image-upload__img-element {
-      opacity: $image-upload-opacity;
+    .m-file-upload__img-element {
+      opacity: $file-upload-opacity;
     }
-    .m-image-upload__file-element {
-      opacity: $image-upload-opacity;
+    .m-file-upload__file-element {
+      opacity: $file-upload-opacity;
     }
-    .m-image-upload__icon-delete {
+    .m-file-upload__icon-delete {
       display: block;
     }
-    .m-image-upload__icon-error {
+    .m-file-upload__icon-error {
       display: none;
     }
   }
@@ -95,7 +95,7 @@ $image-upload-icon-size: 36px !default;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    @include iconSize($image-upload-icon-size)
+    @include iconSize($file-upload-icon-size)
   }
 
   &__icon-layer {
@@ -111,13 +111,13 @@ $image-upload-icon-size: 36px !default;
     display: none;
     color: $color-axa-blue;
     fill: currentColor;
-    @include iconSize($image-upload-icon-size)
+    @include iconSize($file-upload-icon-size)
   }
 
   &__icon-error {
     color: $color-sec-shy-tomato;
     fill: currentColor;
-    @include iconSize($image-upload-icon-size)
+    @include iconSize($file-upload-icon-size)
   }
 
   &__img-caption {
@@ -134,19 +134,19 @@ $image-upload-icon-size: 36px !default;
   }
 
   // when hovering over hover-area, hide the filname
-  &__icon-hover-area:hover ~ .m-image-upload__img-caption {
-    .m-image-upload__filename {
+  &__icon-hover-area:hover ~ .m-file-upload__img-caption {
+    .m-file-upload__filename {
       display: none;
     }
   }
 
   // show delete-status instead of filename
-  &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status]:after {
+  &__icon-hover-area:hover ~ .m-file-upload__img-caption[data-status]:after {
       content: attr(data-status);
   }
 
   // color delete-status and ellipsis
-  &__icon-hover-area:hover ~ .m-image-upload__img-caption[data-status] {
+  &__icon-hover-area:hover ~ .m-file-upload__img-caption[data-status] {
     color: $color-axa-blue;
   }
 
@@ -156,18 +156,18 @@ $image-upload-icon-size: 36px !default;
     width: 120px;
     box-sizing: border-box;
     cursor: pointer;
-    border: $image-upload-dropzone-border;
+    border: $file-upload-dropzone-border;
     color: $color-prim-gray-dusty;
-    .m-image-upload__icon-wrapper {
+    .m-file-upload__icon-wrapper {
       height: 100%;
       width: 100%;
       display: block;
       position: relative;
     }
-    .m-image-upload__icon-layer {
-      @include iconSize($image-upload-icon-size)
+    .m-file-upload__icon-layer {
+      @include iconSize($file-upload-icon-size)
     }
-    .m-image-upload__img-caption {
+    .m-file-upload__img-caption {
       width: 116px;
       margin-top: 2px;
       position: block;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXAImageUploadProps {
+interface AXAFileUploadProps {
   inputFileText?: string;
   maxSizeOfSingleFileKB?: number;
   maxSizeOfAllFilesKB?: number;
@@ -16,8 +16,8 @@ interface AXAImageUploadProps {
   orText?: string;
 }
 
-declare function createAXAImageUpload(
+declare function createAXAFileUpload(
   createElement: typeof React.createElement
-): React.ComponentType<AXAImageUploadProps>;
+): React.ComponentType<AXAFileUploadProps>;
 
-export = createAXAImageUpload;
+export = createAXAFileUpload;

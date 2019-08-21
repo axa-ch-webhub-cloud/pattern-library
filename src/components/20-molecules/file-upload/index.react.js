@@ -1,5 +1,5 @@
 import withReact from '../../../utils/with-react';
-import AXAImageUpload from './index';
+import AXAFileUpload from './index';
 
 export default createElement => ({
   inputFileText = 'Upload file',
@@ -18,7 +18,7 @@ export default createElement => ({
   children,
 }) =>
   withReact(createElement)(
-    AXAImageUpload.tagName,
+    AXAFileUpload.tagName,
     {
       inputFileText,
       maxSizeOfSingleFileKB,
