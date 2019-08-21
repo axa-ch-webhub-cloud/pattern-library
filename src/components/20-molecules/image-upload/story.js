@@ -4,9 +4,9 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-const storyImageUpload = storiesOf('Molecules/Image Upload', module);
-storyImageUpload.addDecorator(withKnobs);
-storyImageUpload.addParameters({
+const story = storiesOf('Molecules/Image Upload', module);
+story.addDecorator(withKnobs);
+story.addParameters({
   readme: {
     sidebar: Readme,
   },
@@ -28,7 +28,7 @@ const icons = {
   'cloud-upload': 'cloud-upload',
 };
 
-storyImageUpload
+story
   .add('Image upload - default', () => {
     const sizeSliderOptions = {
       range: true,
