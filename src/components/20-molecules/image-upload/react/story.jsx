@@ -17,7 +17,7 @@ storiesOf('Molecules/Image Upload/React', module)
     ReactDOM.render(
       <div style={{ width: '453px' }}>
         <AXAImageUploadReact>
-          Folgende Dateien werden übertragen
+          The following files are being transferred:
         </AXAImageUploadReact>
       </div>,
       div

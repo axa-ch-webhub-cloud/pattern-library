@@ -109,12 +109,14 @@ $image-upload-icon-size: 36px !default;
 
   &__icon-delete {
     display: none;
-    fill: $color-axa-blue;
+    color: $color-axa-blue;
+    fill: currentColor;
     @include iconSize($image-upload-icon-size)
   }
 
   &__icon-error {
-    fill: $color-sec-shy-tomato;
+    color: $color-sec-shy-tomato;
+    fill: currentColor;
     @include iconSize($image-upload-icon-size)
   }
 
@@ -163,7 +165,7 @@ $image-upload-icon-size: 36px !default;
       position: relative;
     }
     .m-image-upload__icon-layer {
-      fill: currentColor;
+      //fill: currentColor;
       @include iconSize($image-upload-icon-size)
     }
     .m-image-upload__img-caption {
