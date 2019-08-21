@@ -75,7 +75,7 @@ Use the file-upload like this:
 | `maxSizeOfSingleFileKB="10"`               | Maximal size of a single file in KB                                  |
 | `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all files together in KB                           |
 | `maxNumberOfFiles="10"`                    | Maximal number of files                                              |
-| `showImageOverview="false"`                | Switch between normal view and image overview                        |
+| `showFileOverview="false"`                 | Switch between normal view and image overview                        |
 | `icon="cloud-upload"`                      | Specify the upload icon in input-file component                      |
 | `fileTooBigStatusText="Error occurred"`    | Specify the error message for too big files                          |
 | `tooManyFilesStatusText="Error occurred"`  | Specify the error message for too many files                         |
@@ -101,9 +101,9 @@ The attribute `maxSizeOfAllFilesKB` specifies the maximal size all compressed fi
 
 The attribute `maxNumberOfFiles` specifies the maximum number of files. Every File that is over the limit will not be displayed.
 
-### showImageOverview
+### showFileOverview
 
-The attribute `showImageOverview` turns to the value true as soon as one file is selected. It turns false again when all files are removed through the user.
+The attribute `showFileOverview` turns to the value true as soon as one file is selected. It turns false again when all files are removed through the user.
 
 ### icon
 
