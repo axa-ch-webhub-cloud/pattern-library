@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/html';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { EmailSvg } from '@axa-ch/materials/icons';
-import { html, render, svg } from 'lit-html';
+import { html, render } from 'lit-html';
 import { STYLE_WHITELIST } from './index';
 import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
