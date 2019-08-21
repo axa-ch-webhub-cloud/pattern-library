@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import toBlob from 'blueimp-canvas-to-blob';
-import isBlob from 'is-blob';
 
 const URL = window.URL || window.webkitURL;
 const { FileReader } = window;
@@ -157,6 +156,18 @@ const onResultCanvas = (res, _image, _options, file) => {
     options.success(_result);
   }
   return Promise.resolve(_result);
+};
+
+const isBlob = input => {
+  if (typeof Blob === 'undefined') {
+    return false;
+  }
+
+  return (
+    /* global Blob */ // otherwise Blob would be marked as undefined */
+    input instanceof Blob ||
+    Object.prototype.toString.call(input) === '[object Blob]'
+  );
 };
 
 const createPromise = (file, _options) => {
