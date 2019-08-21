@@ -11,7 +11,7 @@ const smWindowWidth = 576;
 // Selectors
 const svgImageOfFirstPolicyFeaturesItem = Selector(
   () => {
-    return document.querySelector(TAG);
+    return document.querySelector(TAG).shadowRoot;
   },
   { dependencies: { TAG } }
 ).find('svg');
@@ -54,7 +54,9 @@ test('should render policy-features-item', async t => {
 });
 
 test('should set correct text of title of the first policy-features-item', async t => {
-  await t.expect(titleOfFirstPolicyFeaturesItem.textContent).eql('Get Discount');
+  await t
+    .expect(titleOfFirstPolicyFeaturesItem.textContent)
+    .eql('Get Discount');
 });
 
 test('should set correct text of description of the first policy-features-item', async t => {
@@ -63,7 +65,7 @@ test('should set correct text of description of the first policy-features-item',
     .eql('A 5 star car insurance with affordable premium services');
 });
 
-test('should render svg icon of the first policy-features-item (if set as a child)', async t => {
+test('should render svg icon of the first policy-features-item', async t => {
   await t.expect(svgImageOfFirstPolicyFeaturesItem.exists).ok();
 });
 
@@ -91,7 +93,9 @@ test('should render title and description with correct sizes on screen md', asyn
   await t
     .expect(await titleOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
     .eql('18px')
-    .expect(await descriptionOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
+    .expect(
+      await descriptionOfFirstPolicyFeaturesItem.getStyleProperty('font-size')
+    )
     .eql('18px');
 }).before(async t => {
   await t.resizeWindow(mdWindowWidth, defaultWindowHeight);
@@ -101,7 +105,9 @@ test('should render title and description with correct size on screen size small
   await t
     .expect(await titleOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
     .eql('16px')
-    .expect(await descriptionOfFirstPolicyFeaturesItem.getStyleProperty('font-size'))
+    .expect(
+      await descriptionOfFirstPolicyFeaturesItem.getStyleProperty('font-size')
+    )
     .eql('16px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
@@ -137,4 +143,12 @@ fixture('Policy features item - svg loading').page(
 
 test('should render svg icon of the first policy-features-item (if set with url)', async t => {
   await t.expect(svgImageOfFirstPolicyFeaturesItem.exists).ok();
+});
+
+fixture('Policy features item - no svg').page(
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant=dark-indigo&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon - load svg icon from this url instead:=thisisnotavalidsvg&knob-description=A 5 star car insurance with affordable premium services`
+);
+
+test('should not render svg icon of the first policy-features-item if no valid svg is set', async t => {
+  await t.expect(svgImageOfFirstPolicyFeaturesItem.exists).notOk();
 });
