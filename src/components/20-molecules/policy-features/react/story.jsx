@@ -1,6 +1,6 @@
 /* global document */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { EmailSvg } from '@axa-ch/materials/icons';
+import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
 import { storiesOf } from '@storybook/html';
 import { select, radios, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
@@ -64,22 +64,22 @@ story
         <AXAPolicyFeaturesItemReact
           title={itemTitleRadio === 'y' ? itemTitle : ''}
           description={itemDescription}
-          icon={itemIconUrl || EmailSvg}
+          icon={itemIconUrl || CarSvg}
         />
         <AXAPolicyFeaturesItemReact
           title="24/7 assistance"
           description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text."
-          icon={EmailSvg}
+          icon={UmbrellaSvg}
         />
         <AXAPolicyFeaturesItemReact
           title="Discount partners"
           description="We reward safe drivers."
-          icon={EmailSvg}
+          icon={TickSvg}
         />
         <AXAPolicyFeaturesItemReact
           title="Online & Apps"
           description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
-          icon={EmailSvg}
+          icon={CarSvg}
         />
       </AXAPolicyFeaturesReact>,
       div
