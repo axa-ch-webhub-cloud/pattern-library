@@ -26,10 +26,8 @@ class AXACarousel extends LitElement {
       autorotatedisabled: { type: Boolean },
       autorotatetime: { type: Number },
       keysenabled: { type: Boolean },
-
-      // internal props
-      animationWrapperClass: { type: String }, // TODO intern möglich?
-      carouselMinHeight: { type: Number },
+      _animationWrapperClass: { type: String },
+      _carouselMinHeight: { type: Number },
     };
   }
 
@@ -61,11 +59,11 @@ class AXACarousel extends LitElement {
       node.style.display = 'none';
     });
 
-    this.animationWrapperClass = ''; // remove all animation classes
+    this._animationWrapperClass = ''; // remove all animation classes
 
     // TODO: add/remove: browser needs time?! evaluate!
     setTimeout(() => {
-      this.animationWrapperClass = animationClass;
+      this._animationWrapperClass = animationClass;
       this.slides[slideNumber].style.display = 'block';
     }, 100);
   }
@@ -94,14 +92,14 @@ class AXACarousel extends LitElement {
     // we need to set carousel min height in case there are elements with different heights.
     this.slides.forEach(node => {
       node.style.display = 'block'; // not all the elements have initially a height > 0
-      if (node.clientHeight > this.carouselMinHeight) {
-        this.carouselMinHeight = node.clientHeight;
+      if (node.clientHeight > this._carouselMinHeight) {
+        this._carouselMinHeight = node.clientHeight;
       }
     });
   }
 
   _onResize = debounce(() => {
-    this.carouselMinHeight = 0;
+    this._carouselMinHeight = 0;
     this._calculateContainerMinHeight();
     this._setSlideVisibleWithAnimation(this.visibleSlide, '');
   }, 200);
@@ -171,14 +169,12 @@ class AXACarousel extends LitElement {
     this.keysenabled = false;
     this.slides = null;
     this.visibleSlide = 0;
-    this.animationWrapperClass = '';
-    this.carouselMinHeight = 0;
+    this._animationWrapperClass = '';
+    this._carouselMinHeight = 0;
     this.swiper = null;
   }
 
   firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
     this.slides = this._getSlides();
     this._calculateContainerMinHeight();
     this._setSlideVisibleWithAnimation(0);
@@ -193,16 +189,14 @@ class AXACarousel extends LitElement {
       <article
         id="o-carousel-main"
         class="o-carousel"
-        style="min-height: ${this.carouselMinHeight}px;"
+        style="min-height: ${this._carouselMinHeight}px;"
       >
         <button
           type="button"
           class="o-carousel__arrow o-carousel__arrow-left"
           @click="${this.handlePreviousButtonClick}"
         ></button>
-        <div
-          class="o-carousel__wrapper ${this.animationWrapperClass}"
-        >
+        <div class="o-carousel__wrapper ${this._animationWrapperClass}">
           <slot class="o-carousel__slot"></slot>
         </div>
         <button
