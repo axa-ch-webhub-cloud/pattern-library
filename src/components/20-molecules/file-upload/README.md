@@ -15,7 +15,7 @@ A component used for uploading files in forms.
 - When all files together exceed the maximum file size, a matching error message is displayed under the file-upload.
 - The file overview is scrollable after the files use more than 2 rows.
 - All images are compressed and .png are converted to .jpeg.
-- There will be a thumbnail for all images selected. For other types (.pdf) an icon will represent the file.
+- There will be a thumbnail for all images selected. For other types (for now only .pdf) an icon will represent the file.
 
 ## Usage
 
