@@ -124,11 +124,7 @@ class AXAFileUpload extends LitElement {
   handleFileDeletion(index) {
     let clonedFiles = [];
 
-    this.allDroppedFiles =
-      (this.files.length === this.maxNumberOfFiles
-        ? this.maxNumberOfFiles
-        : this.allDroppedFiles) - 1;
-
+    this.allDroppedFiles = this.files.length + this.faultyFiles.length - 1;
     this.globalErrorMessage = '';
 
     if (index >= this.files.length) {
@@ -136,7 +132,6 @@ class AXAFileUpload extends LitElement {
       clonedFiles = [...this.faultyFiles];
       clonedFiles.splice(index - this.files.length, 1);
       this.faultyFiles = clonedFiles;
-      this.allDroppedFiles += 1;
     } else {
       /* valid file */
       clonedFiles = [...this.files];
@@ -167,21 +162,12 @@ class AXAFileUpload extends LitElement {
     this.showAddMoreInputFile = true;
     this.globalErrorMessage = '';
     this.allDroppedFiles += droppedFiles.length;
-    const filesLeftOver = Math.max(
-      this.maxNumberOfFiles - this.files.length,
-      0
-    );
 
-    /* droppedFiles is not an Array, therefore we can not use slice */
-    const slicedFiles = Array.prototype.slice.call(
-      droppedFiles,
-      0,
-      filesLeftOver
+    const pdfs = [...droppedFiles].filter(
+      file => file.type.indexOf('pdf') > -1
     );
-
-    const pdfs = [...slicedFiles].filter(file => file.type.indexOf('pdf') > -1);
     /* compress all images. pngs will become jpeg's and unrecognised files will be deleted */
-    const compressedImages = await compressImage(slicedFiles);
+    const compressedImages = await compressImage(droppedFiles);
 
     this.validateFiles(compressedImages, pdfs);
 
@@ -224,8 +210,21 @@ class AXAFileUpload extends LitElement {
       }
     }
 
+    const numberOfFilesLeftOver = Math.max(
+      this.maxNumberOfFiles - this.files.length,
+      0
+    );
+
+    /* finalFiles is not an Array, therefore we can not use slice */
+    const filesLeftOver = Array.prototype.slice.call(
+      finalFiles,
+      0,
+      numberOfFilesLeftOver
+    );
+
     /* concat the latest valid files from a file-upload to the existing ones */
-    this.files = this.files.concat(finalFiles);
+    this.files = this.files.concat(filesLeftOver);
+
     /* concat the latest faulty files from a file-upload to the existing ones */
     this.faultyFiles = this.faultyFiles.concat(faultyFiles);
   }
@@ -240,7 +239,7 @@ class AXAFileUpload extends LitElement {
 
     if (
       allDroppedFiles - faultyFiles.length > maxNumberOfFiles &&
-      faultyFiles.length + this.files.length === maxNumberOfFiles
+      faultyFiles.length + this.files.length >= maxNumberOfFiles
     ) {
       this.globalErrorMessage = tooManyFilesStatusText;
     }
