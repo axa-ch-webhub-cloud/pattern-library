@@ -25,7 +25,7 @@ const FILEUPLOADGROUPICON = svg([FileUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
-/* helperfunctions */
+/* helperfunction */
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
 class AXAFileUpload extends LitElement {
