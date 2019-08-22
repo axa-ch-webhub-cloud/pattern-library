@@ -11,7 +11,6 @@ storiesOf('Molecules/File Upload/React', module)
       sidebar: Readme,
     },
   })
-  /* Default */
   .add('File Upload - default', () => {
     const div = document.createElement('div');
     ReactDOM.render(

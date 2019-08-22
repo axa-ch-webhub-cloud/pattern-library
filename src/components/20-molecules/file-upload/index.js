@@ -10,7 +10,7 @@ import {
   AttachFileSvg,
 } from '@axa-ch/materials/icons';
 
-/* icon isolated from others, because it's a component specific icon */
+// icon isolated from others, because it's a component specific icon
 import { FileUploadGroupSvg } from './icons';
 
 import defineOnce from '../../../utils/define-once';
@@ -25,7 +25,7 @@ const FILEUPLOADGROUPICON = svg([FileUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
-/* helperfunction */
+// helperfunction
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
 class AXAFileUpload extends LitElement {
@@ -86,7 +86,7 @@ class AXAFileUpload extends LitElement {
   }
 
   handleAddMoreInputClick() {
-    /* trigger inputFile component after clicking the "fake" inputFile (addMoreInput) */
+    // trigger input-file component after clicking the "fake" inputFile (addMoreInput)
     this.inputFile.querySelector('input').click();
   }
 
@@ -95,7 +95,7 @@ class AXAFileUpload extends LitElement {
   }
 
   handleDropZoneDragover(e) {
-    /* prevent default browser behavior to execute the link that comes with the event */
+    // prevent default browser behavior to execute the link that comes with the event
     e.preventDefault();
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
@@ -108,7 +108,7 @@ class AXAFileUpload extends LitElement {
   }
 
   handleDropZoneDrop(e) {
-    /* prevent browser to display the file fullscreen */
+    // prevent browser to display the file fullscreen
     e.preventDefault();
 
     const files = [...e.dataTransfer.files].filter(
@@ -128,12 +128,12 @@ class AXAFileUpload extends LitElement {
     this.globalErrorMessage = '';
 
     if (index >= this.files.length) {
-      /* wrong file */
+      // wrong file
       clonedFiles = [...this.faultyFiles];
       clonedFiles.splice(index - this.files.length, 1);
       this.faultyFiles = clonedFiles;
     } else {
-      /* valid file */
+      // valid file
       clonedFiles = [...this.files];
       clonedFiles.splice(index, 1);
       this.files = clonedFiles;
@@ -166,7 +166,7 @@ class AXAFileUpload extends LitElement {
     const pdfs = [...droppedFiles].filter(
       file => file.type.indexOf('pdf') > -1
     );
-    /* compress all images. pngs will become jpeg's and unrecognised files will be deleted */
+    // compress all images. pngs will become jpeg's and unrecognised files will be deleted
     const compressedImages = await compressImage(droppedFiles);
 
     this.validateFiles(compressedImages, pdfs);
@@ -215,17 +215,17 @@ class AXAFileUpload extends LitElement {
       0
     );
 
-    /* finalFiles is not an Array, therefore we can not use slice */
+    // finalFiles is not an Array, therefore we can not use slice
     const filesLeftOver = Array.prototype.slice.call(
       finalFiles,
       0,
       numberOfFilesLeftOver
     );
 
-    /* concat the latest valid files from a file-upload to the existing ones */
+    // concat the latest valid files from a file-upload to the existing ones
     this.files = this.files.concat(filesLeftOver);
 
-    /* concat the latest faulty files from a file-upload to the existing ones */
+    // concat the latest faulty files from a file-upload to the existing ones
     this.faultyFiles = this.faultyFiles.concat(faultyFiles);
   }
 
@@ -361,7 +361,7 @@ class AXAFileUpload extends LitElement {
       'js-file-upload__error-wrapper': true,
     };
 
-    /* displaying files with errors (e.g. too big) after valid ones */
+    // displaying files with errors (e.g. too big) after valid ones
     this.allFiles = this.files.concat(this.faultyFiles);
     const fileOverview = this.fileOverviewMapping(this.allFiles);
     this.addMoreInputFile = this.generateAddMoreInputFile();
