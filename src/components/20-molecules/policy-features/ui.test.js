@@ -19,9 +19,11 @@ const $axaPolicyFeaturesArticleEl = Selector(
   { dependencies: { TAG } }
 ).find('article');
 
-fixture('Policy features - basic functionality').page(
-  `${host}/iframe.html?id=molecules-policy-features--policy-features`
-);
+fixture('Policy features - basic functionality')
+  .page(`${host}/iframe.html?id=molecules-policy-features--policy-features`)
+  .afterEach(async t => {
+    await t.maximizeWindow();
+  });
 
 test('should render policy-features', async t => {
   const $axaElem = await Selector(TAG);

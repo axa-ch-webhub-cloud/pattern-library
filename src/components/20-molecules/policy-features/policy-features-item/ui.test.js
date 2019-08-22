@@ -39,7 +39,9 @@ const firstPolicyFeaturesItem = Selector(
 
 fixture('Policy features item - basic functionality').page(
   `${host}/iframe.html?id=molecules-policy-features--policy-features`
-);
+).afterEach(async t => {
+  await t.maximizeWindow();
+});
 
 test('should render policy-features-item', async t => {
   const $axaElem = await Selector(TAG);
