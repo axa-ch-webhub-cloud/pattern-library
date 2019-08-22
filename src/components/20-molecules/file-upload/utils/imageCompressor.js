@@ -164,7 +164,7 @@ const isBlob = input => {
   }
 
   return (
-    /* global Blob */ // otherwise Blob would be marked as undefined */
+    /* global Blob */ // otherwise Blob would be marked as undefined
     input instanceof Blob ||
     Object.prototype.toString.call(input) === '[object Blob]'
   );
