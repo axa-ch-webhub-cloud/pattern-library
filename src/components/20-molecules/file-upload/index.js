@@ -23,7 +23,11 @@ const DELETE_FOREVER_ICON = svg([DeleteForeverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
-const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
+const ACCEPTED_FILE_TYPES =
+  'image/jpg, image/jpeg, application/pdf, image/png, bla/bla';
+const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
+  type => type.indexOf('image') === -1
+);
 
 // helperfunction
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
@@ -163,13 +167,14 @@ class AXAFileUpload extends LitElement {
     this.globalErrorMessage = '';
     this.allDroppedFiles += droppedFiles.length;
 
-    const pdfs = [...droppedFiles].filter(
-      file => file.type.indexOf('pdf') > -1
+    const notImagesFiles = [...droppedFiles].filter(
+      file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
     );
+
     // compress all images. pngs will become jpeg's and unrecognised files will be deleted
     const compressedImages = await compressImage(droppedFiles);
 
-    this.validateFiles(compressedImages, pdfs);
+    this.validateFiles(compressedImages, notImagesFiles);
 
     if (
       (this.files.length > 0 || this.faultyFiles.length > 0) &&
@@ -185,7 +190,7 @@ class AXAFileUpload extends LitElement {
     this.requestUpdate();
   }
 
-  validateFiles(compressedImages, pdfs) {
+  validateFiles(compressedImages, notImagesFiles) {
     const maxSizeOfSingleFileByte = getBytesFromKilobyte(
       this.maxSizeOfSingleFileKB
     );
@@ -194,7 +199,7 @@ class AXAFileUpload extends LitElement {
     );
 
     const faultyFiles = [];
-    let finalFiles = pdfs;
+    let finalFiles = notImagesFiles;
 
     for (let i = 0; i < compressedImages.length; i++) {
       if (
