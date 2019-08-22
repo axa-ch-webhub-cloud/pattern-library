@@ -13,16 +13,15 @@ import {
 /* icon isolated from others, because it's a component specific icon */
 import { FileUploadGroupSvg } from './icons';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import compressImage from './utils/imageCompressor';
 
-const AddIcon = svg([AddSvg]);
-const AttachFileIcon = svg([AttachFileSvg]);
-const DeleteForeverIcon = svg([DeleteForeverSvg]);
-const ClearIcon = svg([ClearSvg]);
-const FileUploadGroupIcon = svg([FileUploadGroupSvg]);
+const ADDICON = svg([AddSvg]);
+const ATTACHFILEICON = svg([AttachFileSvg]);
+const DELETEFOREVERICON = svg([DeleteForeverSvg]);
+const CLEARICON = svg([ClearSvg]);
+const FILEUPLOADGROUPICON = svg([FileUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
@@ -280,7 +279,7 @@ class AXAFileUpload extends LitElement {
             ${isFile
               ? html`
                   <span class="m-file-upload__file-element">
-                    ${AttachFileIcon}</span
+                    ${ATTACHFILEICON}</span
                   >
                 `
               : html`
@@ -292,10 +291,10 @@ class AXAFileUpload extends LitElement {
                 `}
             <div class="m-file-upload__icon-layer">
               <span class="m-file-upload__icon-error"
-                >${isfaultyFile ? ClearIcon : ''}</span
+                >${isfaultyFile ? CLEARICON : ''}</span
               >
               <span class="m-file-upload__icon-delete"
-                >${DeleteForeverIcon}</span
+                >${DELETEFOREVERICON}</span
               >
             </div>
           </div>
@@ -338,7 +337,7 @@ class AXAFileUpload extends LitElement {
           @click=${this.handleAddMoreInputClick}
         >
           <div class="m-file-upload__icon-layer">
-            ${AddIcon}
+            ${ADDICON}
           </div>
         </div>
         <figcaption
@@ -380,7 +379,7 @@ class AXAFileUpload extends LitElement {
           ${!this.showFileOverview
             ? html`
                 <div>
-                  ${FileUploadGroupIcon}
+                  ${FILEUPLOADGROUPICON}
                 </div>
                 <p class="m-file-upload__information">${this.infoText}</p>
                 <p class="m-file-upload__or">${this.orText}</p>
