@@ -17,11 +17,11 @@ import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import compressImage from './utils/imageCompressor';
 
-const ADDICON = svg([AddSvg]);
-const ATTACHFILEICON = svg([AttachFileSvg]);
-const DELETEFOREVERICON = svg([DeleteForeverSvg]);
-const CLEARICON = svg([ClearSvg]);
-const FILEUPLOADGROUPICON = svg([FileUploadGroupSvg]);
+const ADD_ICON = svg([AddSvg]);
+const ATTACH_FILE_ICON = svg([AttachFileSvg]);
+const DELETE_FOREVER_ICON = svg([DeleteForeverSvg]);
+const CLEAR_ICON = svg([ClearSvg]);
+const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
@@ -278,7 +278,7 @@ class AXAFileUpload extends LitElement {
             ${isFile
               ? html`
                   <span class="m-file-upload__file-element">
-                    ${ATTACHFILEICON}</span
+                    ${ATTACH_FILE_ICON}</span
                   >
                 `
               : html`
@@ -290,10 +290,10 @@ class AXAFileUpload extends LitElement {
                 `}
             <div class="m-file-upload__icon-layer">
               <span class="m-file-upload__icon-error"
-                >${isfaultyFile ? CLEARICON : ''}</span
+                >${isfaultyFile ? CLEAR_ICON : ''}</span
               >
               <span class="m-file-upload__icon-delete"
-                >${DELETEFOREVERICON}</span
+                >${DELETE_FOREVER_ICON}</span
               >
             </div>
           </div>
@@ -336,7 +336,7 @@ class AXAFileUpload extends LitElement {
           @click=${this.handleAddMoreInputClick}
         >
           <div class="m-file-upload__icon-layer">
-            ${ADDICON}
+            ${ADD_ICON}
           </div>
         </div>
         <figcaption
@@ -378,7 +378,7 @@ class AXAFileUpload extends LitElement {
           ${!this.showFileOverview
             ? html`
                 <div>
-                  ${FILEUPLOADGROUPICON}
+                  ${FILE_UPLOAD_GROUP_ICON}
                 </div>
                 <p class="m-file-upload__information">${this.infoText}</p>
                 <p class="m-file-upload__or">${this.orText}</p>
