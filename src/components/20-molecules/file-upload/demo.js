@@ -35,7 +35,7 @@ storiesOf('Molecules/File Upload/Demos', module)
     };
 
     const template = html`
-      <div style="width:453px;">
+      <div style="width:455px;">
         <axa-file-upload class="js-file-upload__file-upload"
           >These files are going to be uploaded</axa-file-upload
         >
