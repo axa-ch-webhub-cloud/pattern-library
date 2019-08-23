@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/file-upload",
-  "version": "0.0.0-beta.0",
+  "version": "0.0.0-b",
   "description": "The file-upload for the AXA patterns library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/file-upload#readme",
