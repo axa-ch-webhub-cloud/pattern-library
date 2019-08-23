@@ -78,7 +78,7 @@ story.add('File upload - default', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div style="width:453px;">
+    <div style="width:455px;">
       <axa-file-upload
         inputFileText="${inputFileText}"
         maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}"

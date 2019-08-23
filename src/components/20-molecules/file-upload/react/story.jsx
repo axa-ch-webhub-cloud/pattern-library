@@ -14,7 +14,7 @@ storiesOf('Molecules/File Upload/React', module)
   .add('File Upload - default', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <div style={{ width: '453px' }}>
+      <div style={{ width: '455px' }}>
         <AXAFileUploadReact>
           The following files are being transferred:
         </AXAFileUploadReact>
