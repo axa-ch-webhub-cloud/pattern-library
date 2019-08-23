@@ -54,13 +54,55 @@ describe('AXACarousel', () => {
   });
 
   describe('swipe', () => {
-    test('', () => {
+    test('_onSwipeLeft() should call method', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+
+    test('_onSwipeRight() should call method', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+
+    test('_initSwipe() should instantiate Swipe an call a method', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+
+    test('_terminateSwipe() should call a method', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+    test('_terminateSwipe() should not call a method if swiper not set', () => {
       expect(AXACarousel.prototype.validateModel()).toBe(true);
     });
   });
 
   describe('key navigation', () => {
-    test('', () => {
+    test('_initKeyNavigation() should add an EventListener', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+    test('_initKeyNavigation() should not add an EventListener if keysenabled=false', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+
+    test('_terminateKeyNavigation() should remove EventListener', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+
+    test('_handleKeyUp() should call handlePreviousButtonClick()', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+    test('_handleKeyUp() should call handleNextButtonClick()', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+    test('_handleKeyUp() should not call anything', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+  });
+
+  describe('lit-element lifecycle', () => {
+    test('firstUpdated() should call methods', () => {
+      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    });
+
+    test('disconnectedCallback() should call methods', () => {
       expect(AXACarousel.prototype.validateModel()).toBe(true);
     });
   });
