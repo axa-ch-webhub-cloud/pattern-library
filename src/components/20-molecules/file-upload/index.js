@@ -29,7 +29,7 @@ const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
   type => type.indexOf('image') === -1
 );
 
-// helperfunction
+// helper-function
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
 class AXAFileUpload extends LitElement {
