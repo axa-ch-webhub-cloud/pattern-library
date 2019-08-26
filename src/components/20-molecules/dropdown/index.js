@@ -339,7 +339,7 @@ class AXADropdown extends NoShadowDOM {
           <!-- ENHANCED -->
           <button
             type="button"
-            class="m-dropdown__toggle"
+            class="m-dropdown__toggle js-dropdown__toggle"
             aria-disabled="${disabled}"
             @focus="${this.onFocus}"
             @blur="${this.onBlur}"
@@ -359,14 +359,14 @@ class AXADropdown extends NoShadowDOM {
         ${checkMark
           ? html`
               <span class="m-dropdown__check-wrapper">
-                <span class="m-dropdown__check"></span>
+                <span class="m-dropdown__check js-dropdown__check"></span>
               </span>
             `
           : ''}
       </div>
       ${invalid
         ? html`
-            <span class="m-dropdown__error">${error}</span>
+            <span class="m-dropdown__error js-dropdown__error">${error}</span>
           `
         : ''}
     `;

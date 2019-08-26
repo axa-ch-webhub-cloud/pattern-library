@@ -61,6 +61,7 @@ axa-datepicker {
     .m-datepicker__input,
     .m-datepicker__input-button,
     .m-datepicker__input-button svg {
+      pointer-events: none;
       outline: none;
       border-color: $color-prim-gray-mercury !important;
       background-color: $color-prim-gray-alabaster;

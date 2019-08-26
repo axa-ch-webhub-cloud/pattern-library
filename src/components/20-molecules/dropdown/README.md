@@ -56,7 +56,7 @@ export default AXADropdownReact;
 The String-valued attribute `defaulttitle` sets the initial title of the closed dropdown (default: first selected item).
 
 Its intended use is primarily for native-HTML situations where server-generated `items` describe the choices proper,
-and a separate title like `defaulttitle-"Please select"` prompts the user to make a choice.
+and a separate title like `defaulttitle="Please select"` prompts the user to make a choice.
 
 See the above React example for an alternative parametrization strategy that relies on using `items` only.
 

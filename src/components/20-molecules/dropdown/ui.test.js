@@ -14,7 +14,7 @@ fixture('Dropdown check mark').page(
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
-    document.querySelector(`axa-dropdown .m-dropdown__check`)
+    document.querySelector(`axa-dropdown .js-dropdown__check`)
   );
   await t.expect(dropdownCheckmark.exists).ok();
 });
@@ -25,7 +25,7 @@ fixture('Dropdown error').page(
 
 test('should show error message and have the correct color', async t => {
   const $axaError = await Selector(() =>
-    document.querySelector(`axa-dropdown .m-dropdown__error `)
+    document.querySelector(`axa-dropdown .js-dropdown__error `)
   );
   await t.expect($axaError.innerText).eql('error');
   await t
@@ -35,7 +35,7 @@ test('should show error message and have the correct color', async t => {
   const getBorderColor = ClientFunction(() => {
     return window
       .getComputedStyle(
-        document.querySelector('axa-dropdown .m-dropdown__toggle')
+        document.querySelector('axa-dropdown .js-dropdown__toggle')
       )
       .getPropertyValue('border-color');
   });
@@ -162,7 +162,7 @@ test('should allow setting non-initial item via items property', async t => {
   await t.expect(dropdown.exists).ok();
   const getVisibleItem = ClientFunction(() => {
     const visibleItem = document.querySelector(
-      'axa-dropdown[data-test-id="uncontrolled-dropdown-react"] .m-dropdown__toggle > span'
+      'axa-dropdown[data-test-id="uncontrolled-dropdown-react"] .js-dropdown__toggle > span'
     );
     return visibleItem.innerText;
   });
