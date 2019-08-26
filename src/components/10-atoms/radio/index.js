@@ -2,6 +2,7 @@ import { html, svg } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defaultName from '../../../utils/create-ref-id';
 import defineOnce from '../../../utils/define-once';
+import fireCustomEvent from '../../../utils/custom-event';
 import styles from './index.scss';
 
 // module globals
@@ -78,6 +79,7 @@ class AXARadio extends NoShadowDOM {
   handleChange(event) {
     const {
       state: { isControlled, checked },
+      value,
       name,
       onChange,
     } = this;
@@ -94,6 +96,8 @@ class AXARadio extends NoShadowDOM {
       // ... and select ourselves
       this.checked = true; // causes re-render
 
+      // fire a custom 'change' event on the component itself
+      fireCustomEvent('change', { checked: isChecked, value, name }, this);
       return;
     }
     // controlled mode:
