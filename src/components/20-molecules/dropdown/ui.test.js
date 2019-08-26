@@ -5,9 +5,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 fixture('Dropdown').page(`${host}/iframe.html?id=molecules-dropdown--dropdown`);
 
 test('should render correctly', async t => {
-  const dropdown = await Selector(() =>
-    document.querySelector(`axa-dropdown`)
-  );
+  const dropdown = await Selector(() => document.querySelector(`axa-dropdown`));
   await t.expect(dropdown.exists).ok();
 });
 
@@ -16,9 +14,7 @@ fixture('Dropdown check mark').page(
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
-    document.querySelector(
-      `axa-dropdown .m-dropdown__check`
-    )
+    document.querySelector(`axa-dropdown .m-dropdown__check`)
   );
   await t.expect(dropdownCheckmark.exists).ok();
 });
@@ -39,9 +35,7 @@ test('should show error message and have the correct color', async t => {
   const getBorderColor = ClientFunction(() => {
     return window
       .getComputedStyle(
-        document.querySelector(
-          'axa-dropdown .m-dropdown__toggle'
-        )
+        document.querySelector('axa-dropdown .m-dropdown__toggle')
       )
       .getPropertyValue('border-color');
   });
@@ -67,7 +61,7 @@ test('should exhibit controlled-component behaviour', async t => {
   );
 
   const freezeCheckbox = await Selector(() =>
-    document.querySelector('axa-checkbox')
+    document.querySelector('axa-checkbox.freeze-checkbox')
   );
 
   await t.expect(freezeCheckbox.exists).ok();
@@ -85,6 +79,67 @@ test('should exhibit controlled-component behaviour', async t => {
 
   await t.click(dropdownReact);
   await t.click(thirdOption);
+  await t
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
+    .expect(await getControlledValue())
+    .eql('Item 3');
+});
+
+// Dropdown react controlled forced native-selector
+fixture('Dropdown React native').page(
+  `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
+);
+
+test('should exhibit controlled-component behaviour when native', async t => {
+  const dropdownReact = await Selector(() =>
+    document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
+  );
+
+  const freezeCheckbox = await Selector(() =>
+    document.querySelector('axa-checkbox.freeze-checkbox')
+  );
+
+  const nativeCheckbox = await Selector(() =>
+    document.querySelector('axa-checkbox.native-checkbox')
+  );
+
+  await t.expect(freezeCheckbox.exists).ok();
+  await t.expect(nativeCheckbox.exists).ok();
+
+  const thirdOption = await Selector(() =>
+    document.querySelector('axa-dropdown button[data-index="3"]')
+  );
+
+  const firstOption = await Selector(() =>
+    document.querySelector('axa-dropdown button[data-index="1"]')
+  );
+
+  const getControlledValue = ClientFunction(() => {
+    const valueSpan = document.querySelector(
+      'span[data-test-id="dropdown-react-controlled-value"]'
+    );
+    return valueSpan.innerText;
+  });
+
+  await t.click(dropdownReact);
+  await t.click(thirdOption);
+  await t
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
+    .expect(await getControlledValue())
+    .eql('Item 3');
+
+  await t.click(freezeCheckbox);
+  await t.click(nativeCheckbox);
+  await t
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
+    .click(firstOption);
+
   await t
     .wait(
       50 /* give click handler time to execute and influence controlled value */
@@ -214,5 +269,63 @@ test('should react to value property changes', async t => {
   await t.expect(await getDropdownTitle()).eql('Italiano');
 
   await t.expect(await setValue('FR')).eql('FR');
+  await t.expect(await getDropdownTitle()).eql('Français');
+});
+
+test('should react to items property changes', async t => {
+  const getDropdownTitle = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+        .title
+  );
+
+  const setItems = ClientFunction(_items => {
+    document.querySelector(
+      'axa-dropdown[data-test-id="dropdown-forms"]'
+    ).items = _items;
+    return true;
+  });
+
+  const getValue = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+        .value
+  );
+
+  await t
+    .expect(
+      await setItems([
+        { name: 'Deutsch', value: 'DE', selected: true },
+        { name: 'Français', value: 'FR' },
+        { name: 'Italiano', value: 'IT' },
+      ])
+    )
+    .ok();
+  await t.expect(await getValue()).eql('DE');
+  await t.expect(await getDropdownTitle()).eql('Deutsch');
+
+  await t
+    .expect(
+      await setItems([
+        { name: 'Deutsch', value: 'DE' },
+        { name: 'Français', value: 'FR' },
+        { name: 'Italiano', value: 'IT', selected: true },
+      ])
+    )
+    .ok();
+  await t.expect(await getValue()).eql('IT');
+  await t.expect(await getDropdownTitle()).eql('Italiano');
+
+  await t
+    .expect(
+      await setItems([
+        { name: 'Deutsch', value: 'DE' },
+        { name: 'Français', value: 'FR', selected: true },
+        { name: 'Italiano', value: 'IT' },
+      ])
+    )
+    .ok();
+
+  await t.expect(await getValue()).eql('FR');
   await t.expect(await getDropdownTitle()).eql('Français');
 });

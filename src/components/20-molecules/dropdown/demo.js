@@ -18,7 +18,7 @@ storiesOf('Molecules/Dropdown/Demos', module)
     {"name": "Deutsch", "value": "DE" },
     {"name": "Français", "value": "FR" },
     {"name": "Italiano", "value": "IT" }
-    ]'></axa-dropdown>
+    ]' style="margin-bottom: 1rem"></axa-dropdown>
     <axa-button type="submit">OK</axa-button>
     <details id="form-data" style="display: inline-block;margin-left: 2rem">
     <summary style="background:rgb(0,0,143);color:#fff;padding:11px;font-family:sans-serif;outline:none">form content</summary>

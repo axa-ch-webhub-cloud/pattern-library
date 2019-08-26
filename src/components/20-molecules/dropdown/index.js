@@ -78,6 +78,9 @@ const contentItemsMapper = clickHandler => (
       `;
 };
 
+const defaultTitleIfNeeded = title =>
+  title ? [{ name: title, disabled: true, selected: true, value: '' }] : [];
+
 // CE
 class AXADropdown extends NoShadowDOM {
   static get tagName() {
@@ -227,12 +230,12 @@ class AXADropdown extends NoShadowDOM {
     }
   }
 
-  findByValue(value) {
+  findByValue(value, indexOnly) {
     const { items } = this;
     const itemIndex = items.findIndex(currentItem =>
       value === null ? currentItem.selected : currentItem.value === value
     );
-    return [items[itemIndex], itemIndex];
+    return indexOnly ? itemIndex : [items[itemIndex], itemIndex];
   }
 
   updateItems(value) {
@@ -255,10 +258,25 @@ class AXADropdown extends NoShadowDOM {
 
   /* last overrideable lifecycle point *before* render:
      put side-effects there that influence render */
-  shouldUpdate() {
+  shouldUpdate(changedProperties) {
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
     this.state.isControlled = this.state.isControlled && this.isReact;
+    const {
+      state: { isControlled },
+    } = this;
+    // implicit change of value via newly selected item?
+    if (
+      !isControlled &&
+      changedProperties.has('items') &&
+      changedProperties.size === 1
+    ) {
+      // make change explicit
+      const selectedItem = this.items.find(item => item.selected);
+      if (selectedItem) {
+        this.value = selectedItem.value;
+      }
+    }
     this.updateItems(this.value);
     return true;
   }
@@ -308,14 +326,7 @@ class AXADropdown extends NoShadowDOM {
               @blur="${this.onBlur}"
               @change="${handleDropdownItemClick}"
             >
-              ${[
-                {
-                  name: defaultTitle,
-                  disabled: true,
-                  selected: true,
-                  value: '',
-                },
-              ]
+              ${defaultTitleIfNeeded(defaultTitle)
                 .concat(items)
                 .map(nativeItemsMapper)}
             </select>
@@ -367,6 +378,17 @@ class AXADropdown extends NoShadowDOM {
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);
+  }
+
+  updated() {
+    const {
+      select,
+      state: { isControlled },
+    } = this;
+    if (isControlled) {
+      // adjust native <select>
+      select.selectedIndex = this.findByValue(null, true);
+    }
   }
 
   disconnectedCallback() {
