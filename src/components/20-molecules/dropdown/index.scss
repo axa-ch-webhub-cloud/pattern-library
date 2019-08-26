@@ -104,6 +104,7 @@ axa-dropdown {
     display: block;
     background-color: $color-prim-white;
     position: absolute;
+    top: 15px;
     right: 15px;
     pointer-events: none;
 
@@ -156,6 +157,7 @@ axa-dropdown {
     list-style: none;
     position: absolute;
     top: 100%;
+    left: 0;
     z-index: 2;
     height: 0;
     min-width: 100%;
