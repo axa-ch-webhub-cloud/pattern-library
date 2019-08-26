@@ -1,5 +1,4 @@
 import { LitElement, svg, css, unsafeCSS } from 'lit-element';
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import {
   ArrowRightSvg,
