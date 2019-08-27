@@ -92,10 +92,20 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
           font-size: 20px;
           line-height: 24px;
         }
+
+        .o-commercial-hero-banner-demo__addon {
+          position: absolute;
+          top: 350px;
+          right: 20px;
+        }
       }
 
       @media (min-width: 1200px) {
         .o-commercial-hero-banner-demo__badge-wrapper {
+          right: 150px;
+        }
+
+        .o-commercial-hero-banner-demo__addon {
           right: 150px;
         }
       }
