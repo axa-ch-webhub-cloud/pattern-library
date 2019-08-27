@@ -23,8 +23,7 @@ const DELETE_FOREVER_ICON = svg([DeleteForeverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
-const ACCEPTED_FILE_TYPES =
-  'image/jpg, image/jpeg, application/pdf, image/png, bla/bla';
+const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
   type => type.indexOf('image') === -1
 );
