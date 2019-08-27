@@ -99,6 +99,10 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
           right: 150px;
         }
       }
+
+      .o-commercial-hero-banner-demo__addon {
+        display: block;
+      }
     </style>
     <axa-commercial-hero-banner
       variant="${variant}"
@@ -125,17 +129,11 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
           Get up to CHF 100 discount
         </p>
       </div>
+      <div slot="addon" class="o-commercial-hero-banner-demo__addon">
+        This could be the customer review badge
+      </div>
     </axa-commercial-hero-banner>
   `;
-  // <div
-  //   slot="addon"
-  //   class="o-commercial-hero-banner-demo__badge-wrapper"
-  //   style="top: 100px"
-  // >
-  //   <p class="o-commercial-hero-banner-demo__badge-content">
-  //     Get up to CHF 100 discount
-  //   </p>
-  // </div>
 
   render(template, wrapper);
   return wrapper;

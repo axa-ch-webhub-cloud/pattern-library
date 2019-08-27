@@ -82,11 +82,11 @@ class AXACommercialHeroBanner extends InlineStyles {
                       class="o-commercial-hero-banner__content-button"
                     ></slot>
                   </div>
+                  <slot name="addon"></slot>
                 </div>
               </div>
             </div>
             <slot name="badge"></slot>
-            <slot name="addon"></slot>
           </axa-container>
         </div>
       </header>
