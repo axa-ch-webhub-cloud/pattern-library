@@ -85,6 +85,8 @@ class AXACommercialHeroBanner extends InlineStyles {
                 </div>
               </div>
             </div>
+            <slot name="badge"></slot>
+            <slot name="addon"></slot>
           </axa-container>
         </div>
       </header>

@@ -37,6 +37,63 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
 
   const wrapper = document.createElement('div');
   const template = html`
+    <style>
+      .o-commercial-hero-banner-demo__badge-wrapper {
+        position: absolute;
+        right: 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 10px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        text-align: center;
+        border-radius: 50% 50% 50% 0;
+        background: #c91432;
+        color: #fff;
+
+        top: 10px;
+        width: 120px;
+        height: 120px;
+      }
+
+      .o-commercial-hero-banner-demo__badge-content {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        font-size: 16px;
+      }
+
+      @media (min-width: 576px) {
+        .o-commercial-hero-banner-demo__badge-wrapper {
+          width: 140px;
+          height: 140px;
+        }
+
+        .o-commercial-hero-banner-demo__badge-content {
+          font-size: 18px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .o-commercial-hero-banner-demo__badge-wrapper {
+          top: 44px;
+          width: 160px;
+          height: 160px;
+        }
+
+        .o-commercial-hero-banner-demo__badge-content {
+          font-size: 20px;
+          line-height: 24px;
+        }
+      }
+    </style>
     <axa-commercial-hero-banner
       variant="${variant}"
       imagesource="${imageSource}"
@@ -57,7 +114,56 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
         size="large"
         >GET A QUOTE</axa-button-link
       >
-    </axa-commercial-hero-banner
+      <div slot="badge" class="o-commercial-hero-banner-demo__badge-wrapper">
+        <p class="o-commercial-hero-banner-demo__badge-content">
+          Get up to CHF 100 discount
+        </p>
+      </div>
+      <div
+        slot="addon"
+        class="o-commercial-hero-banner-demo__badge-wrapper"
+        style="top: 100px"
+      >
+        <p class="o-commercial-hero-banner-demo__badge-content">
+          Get up to CHF 100 discount
+        </p>
+      </div>
+    </axa-commercial-hero-banner>
+    <axa-commercial-hero-banner
+      variant="${variant}"
+      imagesource="${imageSource}"
+    >
+      <h2 slot="category">This example shows specific picture classes</h2>
+      <h1 slot="title">Drive with peace of mind</h1>
+      <p slot="content">
+        Whether you need to insure your first car or renew your existing car
+        insurance, AXA can provide a range of car insurance policies to suit
+        your requirements and offer great product benefits at a price you can
+        afford
+      </p>
+      <small slot="disclaimer">Terms and Conditions apply.</small>
+      <axa-button-link
+        href="https://axa.ch"
+        slot="button"
+        variant="red"
+        size="large"
+        >GET A QUOTE</axa-button-link
+      >
+      <div slot="badge" class="o-commercial-hero-banner-demo__badge-wrapper">
+        <p class="o-commercial-hero-banner-demo__badge-content">
+          Get up to CHF 100 discount
+        </p>
+      </div>
+      <div
+        slot="addon"
+        class="o-commercial-hero-banner-demo__badge-wrapper"
+        style="top: 100px"
+      >
+        <p class="o-commercial-hero-banner-demo__badge-content">
+          Get up to CHF 100 discount
+        </p>
+      </div>
+    </axa-commercial-hero-banner>
   `;
 
   render(template, wrapper);
