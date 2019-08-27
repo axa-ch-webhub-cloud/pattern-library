@@ -1,0 +1,49 @@
+.m-policy-features-item {
+  display: block;
+  text-align: center;
+  margin: 0 11px;
+
+  @include breakpoint($mediaquery-sm-up) {
+    width: 240px;
+  }
+
+  @include breakpoint($mediaquery-md-up) {
+    width: 210px;
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    width: 255px;
+    margin: 0; // should display 3 items in smallest lg
+  }
+
+  &__icon {
+    max-width: 100%;
+
+    > svg {
+      width: 42px;
+      height: 42px;
+      margin: 50px auto 0 auto;
+
+      @include breakpoint($mediaquery-md-up) {
+        width: 96px;
+        height: 96px;
+      }
+    }
+  }
+
+  &__title {
+    @include typo(primary, medium, bold);
+
+    @include breakpoint($mediaquery-md-up) {
+      @include typo(primary, medium-1, bold);
+    }
+  }
+
+  &__description {
+    @include typo(primary, medium, default);
+
+    @include breakpoint($mediaquery-md-up) {
+      @include typo(primary, medium-1, default);
+    }
+  }
+}

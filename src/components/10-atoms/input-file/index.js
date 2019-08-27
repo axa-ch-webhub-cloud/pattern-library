@@ -23,7 +23,7 @@ class AXAInputFile extends NoShadowDOM {
       // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
       icon: { type: String },
-      id: { type: String },
+      refId: { type: String },
       large: { type: Boolean },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },

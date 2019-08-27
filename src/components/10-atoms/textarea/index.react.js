@@ -1,10 +1,11 @@
 import withReact from '../../../utils/with-react';
+import createRefId from '../../../utils/create-ref-id';
 import AXATextarea from './index';
 
 export default createElement => ({
   name = '',
   label = '',
-  refId = '',
+  refId = `textarea-${createRefId()}`,
   placeholder = '',
   error = '',
   defaultValue = '',
@@ -16,7 +17,7 @@ export default createElement => ({
   counter = '',
   counterMax = '',
   maxLength,
-  className,
+  className = '',
   onFocus = () => {},
   onBlur = () => {},
   onChange = () => {},

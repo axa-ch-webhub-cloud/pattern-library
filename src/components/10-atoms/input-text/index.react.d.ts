@@ -18,7 +18,7 @@ interface AXAInputTextProps {
   className?: string;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
-  onChange?: (e?: UIEvent) => void;
+  onChange?: (e: { target: HTMLInputElement; }) => void;
 }
 
 declare function createAXAInputText(

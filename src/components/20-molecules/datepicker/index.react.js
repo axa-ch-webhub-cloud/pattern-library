@@ -25,7 +25,7 @@ export default createElement => ({
   invalid,
   embedded,
   id,
-  className,
+  className = '',
 }) =>
   withReact(createElement)(AXADatepicker.tagName, {
     'data-test-id': dataTestId,

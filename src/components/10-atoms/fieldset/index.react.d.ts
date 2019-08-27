@@ -2,6 +2,7 @@ import React from 'react';
 
 interface AXAFieldsetProps {
   horizontal?: boolean;
+  slot?: string;
 }
 
 declare function createAXAFieldset(

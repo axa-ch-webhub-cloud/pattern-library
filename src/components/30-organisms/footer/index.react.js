@@ -4,7 +4,7 @@ import AXAFooter from './index';
 export default createElement => ({
   onItemClick = () => {},
   clickevents = false,
-  className,
+  className = '',
   children,
 }) =>
   withReact(createElement)(

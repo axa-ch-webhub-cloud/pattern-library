@@ -6,7 +6,7 @@ export default createElement => ({
   title,
   buttonname,
   variant,
-  className,
+  className = '',
   children,
 }) =>
   withReact(createElement)(

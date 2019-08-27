@@ -5,7 +5,7 @@ export default createElement => ({
   children,
   innerscroll,
   maxheight,
-  className,
+  className = '',
 }) =>
   withReact(createElement)(
     AXATable.tagName,

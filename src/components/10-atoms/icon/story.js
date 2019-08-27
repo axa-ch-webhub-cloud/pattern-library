@@ -1,7 +1,17 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import AXAIcon from './index';
 import Readme from './README.md';
+
+const storyIcon = storiesOf('Atoms/Icon', module);
+storyIcon.addDecorator(withKnobs);
+storyIcon.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
 
 export const iconOptions = {
   none: '',
@@ -17,32 +27,40 @@ export const iconOptions = {
   upload: 'upload',
 };
 
-storiesOf('Atoms/Icon', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  }).add('Icon - show all icons', () => {
-    const list = document.createElement('ul');
+storyIcon.add('Icon', () => {
+  const icon = select('icon', iconOptions, 'download');
 
-    Object.keys(AXAIcon.iconsMapping).forEach(iconName => {
-      const listEl = document.createElement('li');
-      listEl.innerHTML = `${iconName} `;
+  const wrapper = document.createElement('div');
+  const template = html`
+    <axa-icon icon="${icon}"></axa-icon>
+  `;
 
-      const axaIcon = document.createElement('axa-icon');
-      axaIcon.icon = iconName;
+  render(template, wrapper);
+  return wrapper;
+});
 
-      listEl.appendChild(axaIcon);
-      list.appendChild(listEl);
-    });
+storyIcon.add('Icon - show all icons', () => {
+  const list = document.createElement('ul');
 
-    return list;
-  })
-  .add(
-    'Icon - icon from a resource',
-    () => '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>'
-  )
-  .add(
-    'Icon - icon undefined case',
-    () => 'should be empty: <axa-icon></axa-icon>'
-  );
+  Object.keys(AXAIcon.iconsMapping).forEach(iconName => {
+    const listEl = document.createElement('li');
+    listEl.innerHTML = `${iconName} `;
+
+    const axaIcon = document.createElement('axa-icon');
+    axaIcon.icon = iconName;
+
+    listEl.appendChild(axaIcon);
+    list.appendChild(listEl);
+  });
+
+  return list;
+});
+
+storyIcon.add(
+  'Icon - icon from a resource',
+  () => '<axa-icon icon="/svg/logo-axa.svg"></axa-icon>'
+);
+storyIcon.add(
+  'Icon - icon undefined case',
+  () => 'should be empty: <axa-icon></axa-icon>'
+);

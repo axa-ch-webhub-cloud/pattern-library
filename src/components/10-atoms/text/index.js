@@ -48,7 +48,7 @@ class AXAText extends NoShadowDOM {
     const { firstChild, firstElementChild } = this;
 
     // nodeType === 3 is Text
-    if (firstChild.nodeType === 3 && firstElementChild === null) {
+    if (firstChild && firstChild.nodeType === 3 && firstElementChild === null) {
       const p = document.createElement('p');
       p.innerHTML = firstChild.textContent;
       p.className = classes.join(' ');

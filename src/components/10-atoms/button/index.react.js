@@ -10,7 +10,8 @@ export default createElement => ({
   disabled = false,
   onClick,
   children,
-  className,
+  className = '',
+  slot = '',
 }) =>
   withReact(createElement)(
     AXAButton.tagName,
@@ -22,7 +23,8 @@ export default createElement => ({
       motionOff,
       disabled,
       onClick,
-      className
+      className,
+      slot,
     },
     children
   );

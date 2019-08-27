@@ -74,8 +74,13 @@ axa-textarea {
   .a-textarea__label {
     @include typo(primary, medium);
     font-weight: 600;
+    display: block;
     color: $color-prim-gray-mine-shaft;
     margin-bottom: 10px;
+  }
+
+  &[disabled] .a-textarea__label {
+    color: $color-prim-gray-dusty;
   }
 
   .a-textarea__messages {

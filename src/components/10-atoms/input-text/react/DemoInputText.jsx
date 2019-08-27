@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AXAInputTextReact from './AXAInputTextReact';
+import AXAInputText from './AXAInputText';
 
 const DemoInputText = () => {
   const [firstName, setFirstName] = useState('controlled');
@@ -15,29 +15,29 @@ const DemoInputText = () => {
 
   return (
     <div>
-      <AXAInputTextReact
+      <AXAInputText
         required
         label="Controlled"
         name="firstname"
         value={firstName}
         onChange={handleChange}
       />
-      <AXAInputTextReact
+      <AXAInputText
         required
         label="Controlled value freeze"
         name="freeze"
         value="freeze"
         onChange={handleChange}
       />
-      <AXAInputTextReact required label="Uncontrolled" name="lastname" />
-      <AXAInputTextReact
+      <AXAInputText required label="Uncontrolled" name="lastname" />
+      <AXAInputText
         required
         label="Uncontrolled Default Value"
         name="lastname_3"
         defaultValue="test"
       />
 
-      <AXAInputTextReact
+      <AXAInputText
         label="Type checkmark or error"
         name="name"
         value={name}
