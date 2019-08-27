@@ -2,7 +2,7 @@ import withReact from '../../../utils/with-react';
 import AXAPolicyFeatures from './index';
 import AXAPolicyFeaturesItem from './policy-features-item';
 
-export default createElement => ({
+export default createAXAPolicyFeaturesReact => ({
   title,
   variant,
   children,
@@ -18,7 +18,7 @@ export default createElement => ({
     children
   );
 
-export const policyFeaturesItem = createElement => ({
+export const createAXAPolicyFeaturesItemReact = createElement => ({
   icon,
   title,
   description,
