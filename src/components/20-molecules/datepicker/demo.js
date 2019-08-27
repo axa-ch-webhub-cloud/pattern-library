@@ -25,11 +25,13 @@ storiesOf('Molecules/Datepicker/Demos', module)
     const template = html`
       <form id="datepicker-form" @submit="${handleSubmit}">
         <fieldset>
-          <legend>Language</legend>
+          <legend>Date</legend>
           <axa-datepicker
             data-test-id="datepicker-forms"
             name="date"
             inputfield
+            required
+            label="Insurance date"
             placeholder="Bitte Datum wählen"
             year="2020"
             month="1"
@@ -51,6 +53,17 @@ storiesOf('Molecules/Datepicker/Demos', module)
               date = <span id="form-data-date"></span>
             </div>
           </details>
+          <label>
+            <input
+              type="checkbox"
+              @change="${({ target }) => {
+                document.querySelector(
+                  'axa-datepicker[data-test-id="datepicker-forms"]'
+                ).disabled = target.checked;
+              }}"
+            />
+            disable datepicker
+          </label>
         </fieldset>
       </form>
     `;

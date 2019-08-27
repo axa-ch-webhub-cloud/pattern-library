@@ -5,50 +5,37 @@ const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 fixture('Dropdown').page(`${host}/iframe.html?id=molecules-dropdown--dropdown`);
 
 test('should render correctly', async t => {
-  const dropdown = await Selector(() =>
-    document.querySelector(`axa-dropdown[data-test-id="dropdown"]`)
-  );
+  const dropdown = await Selector(() => document.querySelector(`axa-dropdown`));
   await t.expect(dropdown.exists).ok();
 });
 
-fixture('Dropdown valid').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-w-valid-checkmark`
+fixture('Dropdown check mark').page(
+  `${host}/iframe.html?id=molecules-dropdown--dropdown&knob-checkmark=true`
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
-    document.querySelector(
-      `axa-dropdown[data-test-id="dropdown-valid"] .m-dropdown__valid-icon .m-dropdown__valid-icon-inner-active`
-    )
+    document.querySelector(`axa-dropdown .js-dropdown__check`)
   );
   await t.expect(dropdownCheckmark.exists).ok();
 });
 
 fixture('Dropdown error').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-w-error-message`
+  `${host}/iframe.html?id=molecules-dropdown--dropdown&knob-invalid=true&knob-error=error`
 );
 
-test('should show error message and correct colors', async t => {
-  const dropdown = await Selector(() =>
-    document.querySelector(`axa-dropdown[data-test-id="dropdown-error"]`)
+test('should show error message and have the correct color', async t => {
+  const $axaError = await Selector(() =>
+    document.querySelector(`axa-dropdown .js-dropdown__error `)
   );
-
-  await t.expect(dropdown.exists).ok();
-
-  const getErrorMessage = ClientFunction(() => {
-    const errorDiv = document.querySelector(
-      'axa-dropdown[data-test-id="dropdown-error"] > .m-dropdown__error'
-    );
-    return errorDiv.innerText;
-  });
-
-  await t.expect(await getErrorMessage()).eql('please select an item');
+  await t.expect($axaError.innerText).eql('error');
+  await t
+    .expect(await $axaError.getStyleProperty('color'))
+    .eql('rgb(201, 20, 50)');
 
   const getBorderColor = ClientFunction(() => {
     return window
       .getComputedStyle(
-        document.querySelector(
-          'axa-dropdown[data-test-id="dropdown-error"] .m-dropdown__list--enhanced'
-        )
+        document.querySelector('axa-dropdown .js-dropdown__toggle')
       )
       .getPropertyValue('border-color');
   });
@@ -74,7 +61,7 @@ test('should exhibit controlled-component behaviour', async t => {
   );
 
   const freezeCheckbox = await Selector(() =>
-    document.querySelector('axa-checkbox')
+    document.querySelector('axa-checkbox.freeze-checkbox')
   );
 
   await t.expect(freezeCheckbox.exists).ok();
@@ -100,6 +87,67 @@ test('should exhibit controlled-component behaviour', async t => {
     .eql('Item 3');
 });
 
+// Dropdown react controlled forced native-selector
+fixture('Dropdown React native').page(
+  `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
+);
+
+test('should exhibit controlled-component behaviour when native', async t => {
+  const dropdownReact = await Selector(() =>
+    document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
+  );
+
+  const freezeCheckbox = await Selector(() =>
+    document.querySelector('axa-checkbox.freeze-checkbox')
+  );
+
+  const nativeCheckbox = await Selector(() =>
+    document.querySelector('axa-checkbox.native-checkbox')
+  );
+
+  await t.expect(freezeCheckbox.exists).ok();
+  await t.expect(nativeCheckbox.exists).ok();
+
+  const thirdOption = await Selector(() =>
+    document.querySelector('axa-dropdown button[data-index="3"]')
+  );
+
+  const firstOption = await Selector(() =>
+    document.querySelector('axa-dropdown button[data-index="1"]')
+  );
+
+  const getControlledValue = ClientFunction(() => {
+    const valueSpan = document.querySelector(
+      'span[data-test-id="dropdown-react-controlled-value"]'
+    );
+    return valueSpan.innerText;
+  });
+
+  await t.click(dropdownReact);
+  await t.click(thirdOption);
+  await t
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
+    .expect(await getControlledValue())
+    .eql('Item 3');
+
+  await t.click(freezeCheckbox);
+  await t.click(nativeCheckbox);
+  await t
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
+    .click(firstOption);
+
+  await t
+    .wait(
+      50 /* give click handler time to execute and influence controlled value */
+    )
+    .expect(await getControlledValue())
+    .eql('Item 3');
+});
+
 // Dropdown react uncontrolled
 fixture('Dropdown React uncontrolled').page(
   `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-uncontrolled-react-component`
@@ -114,7 +162,7 @@ test('should allow setting non-initial item via items property', async t => {
   await t.expect(dropdown.exists).ok();
   const getVisibleItem = ClientFunction(() => {
     const visibleItem = document.querySelector(
-      'axa-dropdown[data-test-id="uncontrolled-dropdown-react"] .m-dropdown__toggle > span'
+      'axa-dropdown[data-test-id="uncontrolled-dropdown-react"] .js-dropdown__toggle > span'
     );
     return visibleItem.innerText;
   });
@@ -160,7 +208,7 @@ test('should fire onFocus/onBlur correctly', async t => {
 });
 
 fixture('Dropdown Form').page(
-  `${host}/iframe.html?id=molecules-dropdown--dropdown-inside-form`
+  `${host}/iframe.html?id=molecules-dropdown-demos--dropdown-inside-form`
 );
 
 test('should submit correct value to form', async t => {
@@ -171,7 +219,7 @@ test('should submit correct value to form', async t => {
   await t.click(dropdown);
   const secondOption = await Selector(() =>
     document.querySelector(
-      'axa-dropdown[data-test-id="dropdown-forms"] button[data-index="2"]'
+      'axa-dropdown[data-test-id="dropdown-forms"] button[data-value="FR"]'
     )
   );
   await t.click(secondOption);
@@ -196,5 +244,88 @@ test('should submit correct value to form', async t => {
     () => document.querySelector('#dropdown-form').title
   );
 
-  await t.expect(await getFormTitle()).eql('FR,2 ');
+  await t.expect(await getFormTitle()).eql('FR,1 ');
+});
+
+test('should react to value property changes', async t => {
+  const getDropdownTitle = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+        .title
+  );
+
+  const setValue = ClientFunction(value => {
+    document.querySelector(
+      'axa-dropdown[data-test-id="dropdown-forms"]'
+    ).value = value;
+    return document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+      .value;
+  });
+
+  await t.expect(await setValue('DE')).eql('DE');
+  await t.expect(await getDropdownTitle()).eql('Deutsch');
+
+  await t.expect(await setValue('IT')).eql('IT');
+  await t.expect(await getDropdownTitle()).eql('Italiano');
+
+  await t.expect(await setValue('FR')).eql('FR');
+  await t.expect(await getDropdownTitle()).eql('Français');
+});
+
+test('should react to items property changes', async t => {
+  const getDropdownTitle = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+        .title
+  );
+
+  const setItems = ClientFunction(_items => {
+    document.querySelector(
+      'axa-dropdown[data-test-id="dropdown-forms"]'
+    ).items = _items;
+    return true;
+  });
+
+  const getValue = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
+        .value
+  );
+
+  await t
+    .expect(
+      await setItems([
+        { name: 'Deutsch', value: 'DE', selected: true },
+        { name: 'Français', value: 'FR' },
+        { name: 'Italiano', value: 'IT' },
+      ])
+    )
+    .ok();
+  await t.expect(await getValue()).eql('DE');
+  await t.expect(await getDropdownTitle()).eql('Deutsch');
+
+  await t
+    .expect(
+      await setItems([
+        { name: 'Deutsch', value: 'DE' },
+        { name: 'Français', value: 'FR' },
+        { name: 'Italiano', value: 'IT', selected: true },
+      ])
+    )
+    .ok();
+  await t.expect(await getValue()).eql('IT');
+  await t.expect(await getDropdownTitle()).eql('Italiano');
+
+  await t
+    .expect(
+      await setItems([
+        { name: 'Deutsch', value: 'DE' },
+        { name: 'Français', value: 'FR', selected: true },
+        { name: 'Italiano', value: 'IT' },
+      ])
+    )
+    .ok();
+
+  await t.expect(await getValue()).eql('FR');
+  await t.expect(await getDropdownTitle()).eql('Français');
 });

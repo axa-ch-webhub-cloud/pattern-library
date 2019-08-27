@@ -1,74 +1,53 @@
+/* global document */
 import { storiesOf } from '@storybook/html';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Molecules/Dropdown', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  .add(
-    'Dropdown',
-    () => `<axa-dropdown title="Please Select" label="Dropdown Label" data-test-id="dropdown"
-    items='[
-    {"name": "Please Select", "value": "Please Select", "disabled": true },
-    {"name": "Item 1", "value": "Item 1",  "selected": true },
-    {"name": "Item 2", "value": "Item 2" },
-    {"name": "Item 3", "value": "Item 3" }
-    ]'></axa-dropdown>
-    `
-  )
-  .add(
-    'Dropdown Forced Native',
-    () => `<axa-dropdown native title="Please Select" data-test-id="dropdown-native"
-  items='[
-  {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
-  {"name": "Item 1", "value": "Item 1" },
-  {"name": "Item 2", "value": "Item 2" },
-  {"name": "Item 3", "value": "Item 3" }
-  ]'></axa-dropdown>`
-  )
-  .add(
-    'Dropdown w/ valid checkmark',
-    () => `<axa-dropdown title="Please Select" data-test-id="dropdown-valid" valid
-    items='[
-    {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
-    {"name": "Item 1", "value": "Item 1" },
-    {"name": "Item 2", "value": "Item 2" },
-    {"name": "Item 3", "value": "Item 3" }
-    ]'></axa-dropdown>
-    `
-  )
-  .add(
-    'Dropdown w/ error message',
-    () => `<axa-dropdown title="Please Select" data-test-id="dropdown-error" error="please select an item"
-    items='[
-    {"name": "Please Select", "value": "Please Select", "selected": true, "disabled": true },
-    {"name": "Item 1", "value": "Item 1" },
-    {"name": "Item 2", "value": "Item 2" },
-    {"name": "Item 3", "value": "Item 3" }
-    ]'></axa-dropdown>
-    `
-  )
-  .add(
-    'Dropdown inside form',
-    () => `<form id="dropdown-form" onsubmit="event.preventDefault();document.getElementById('form-data').open=true;document.getElementById('form-data-lang').textContent=(new FormData(this)).get('lang')">
-    <fieldset>
-    <legend>Language</legend>
-    <axa-dropdown data-test-id="dropdown-forms" name="lang" onchange="document.getElementById('dropdown-form').title += event.detail.value + ',' + event.detail.index + ' '"
-    items='[
-    {"name": "Please select language", "value": "Please Select", "selected": true, "disabled": true },
-    {"name": "Deutsch", "value": "DE" },
-    {"name": "Français", "value": "FR" },
-    {"name": "Italiano", "value": "IT" }
-    ]'></axa-dropdown>
-    <axa-button type="submit">OK</axa-button>
-    <details id="form-data" style="display: inline-block;margin-left: 2rem">
-    <summary style="background:rgb(0,0,143);color:#fff;padding:11px;font-family:sans-serif;outline:none">form content</summary>
-    <div style="display:table; padding: 5px 0">lang = <span id="form-data-lang"></span></div>
-    </details>
-    </fieldset>
-    </form>
-    `
-  );
+const storyDropdown = storiesOf('Molecules/Dropdown', module);
+storyDropdown.addDecorator(withKnobs);
+storyDropdown.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
+
+storyDropdown.add('Dropdown', () => {
+  const label = text('label', '');
+  const value = text('value', '');
+  const defaultTitle = text('defaulttitle', 'Please Select');
+  const name = text('name', '');
+  const invalid = boolean('invalid', false);
+  const error = text('error', 'Error Message');
+  const native = boolean('native', false);
+  const required = boolean('required', false);
+  const checkMark = boolean('checkmark', false);
+  const disabled = boolean('disabled', false);
+  const dataTestId = text('data-test-id', '');
+
+  const wrapper = document.createElement('div');
+  const template = html`
+    <axa-dropdown
+      defaultTitle="${defaultTitle}"
+      value="${value}"
+      label="${label}"
+      name="${name}"
+      dataTestId="${dataTestId}"
+      error="${error}"
+      ?invalid="${invalid}"
+      ?checkmark="${checkMark}"
+      ?disabled="${disabled}"
+      ?required="${required}"
+      ?native="${native}"
+      items='[
+        {"name": "Item 1", "value": "Item 1" },
+        {"name": "Item 2", "value": "Item 2" },
+        {"name": "Item 3", "value": "Item 3" }
+     ]'
+    ></axa-dropdown>
+  `;
+
+  render(template, wrapper);
+  return wrapper;
+});

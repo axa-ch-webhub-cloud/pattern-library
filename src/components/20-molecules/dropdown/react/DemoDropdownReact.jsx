@@ -18,6 +18,7 @@ const DemoDropdown = () => {
   const [value, setValue] = useState(items[0].value);
   const [frozen, setFrozen] = useState(false);
   const [error, setError] = useState('');
+  const [native, setNative] = useState(false);
 
   const findName = val =>
     items[items.findIndex(item => item.value === val)].name;
@@ -37,20 +38,35 @@ const DemoDropdown = () => {
     setFrozen(!frozen);
   };
 
+  const handleNative = () => {
+    setNative(!native);
+  };
+
   return (
     <div>
       <p>
         With the React wrapper - controlled &lt;axa-dropdown&gt; component with
         callback prop, valid checkmark and error message!
       </p>
-      <AXACheckboxReact onChange={handleValueFreeze} label="freeze value" />
+      <AXACheckboxReact
+        className="freeze-checkbox"
+        onChange={handleValueFreeze}
+        label="freeze value"
+      />
+      <AXACheckboxReact
+        className="native-checkbox"
+        onChange={handleNative}
+        label="native"
+      />
       <br />
       <AXADropdownReact
+        native={native}
         data-test-id="dropdown-react"
         items={items}
         onChange={handleChange}
         value={value}
-        valid={!frozen}
+        invalid={frozen}
+        checkMark={!frozen}
         error={error}
       />
       <br />

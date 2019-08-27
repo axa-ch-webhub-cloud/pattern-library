@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import DemoControlledDatepickerReact from './DemoDatepickerReact';
 import DemoDatepickerOnDateChange from './DemoDatepickerOnDateChange';
 import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation';
+import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDateChange';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Datepicker/React/Demos', module)
@@ -31,6 +32,14 @@ storiesOf('Molecules/Datepicker/React/Demos', module)
     () => {
       const div = document.createElement('div');
       ReactDOM.render(<DemoDatepickerExternalValidation />, div);
+      return div;
+    }
+  )
+  .add(
+    'Re-rendering on every keystroke React-ified Datepicker with inputfield',
+    () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<DemoDatepickerReRenderOnEveryKeyStroke />, div);
       return div;
     }
   );

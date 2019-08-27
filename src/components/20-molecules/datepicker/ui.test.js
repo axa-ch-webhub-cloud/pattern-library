@@ -160,6 +160,7 @@ test('should render datepicker as reactified component', async t => {
   const datepickerReact = await Selector(() =>
     document.querySelector(`axa-datepicker[data-test-id="datepicker-react"]`)
   );
+  await t.setTestSpeed(0.5);
   await t.expect(datepickerReact.exists).ok();
 });
 test('should correctly expand year ranges assigned via property', async t => {
@@ -168,7 +169,7 @@ test('should correctly expand year ranges assigned via property', async t => {
       `axa-datepicker[data-test-id="datepicker-react"] .js-datepicker__dropdown-year`
     )
   );
-
+  await t.setTestSpeed(0.5);
   await t.click(datepickerReactYearDropdown);
 
   await t
@@ -190,6 +191,7 @@ test('datepicker should behave correctly when controlled', async t => {
       `axa-datepicker[data-test-id="datepicker-controlled-react"]`
     )
   );
+  await t.setTestSpeed(0.5);
   await t.expect(datepickerReact.exists).ok();
 
   const getInputValue = ClientFunction(
@@ -238,6 +240,7 @@ test('should fire onDateChange callback on valid user input', async t => {
   const datepicker = await Selector(() =>
     document.querySelector(`#datepicker-react-inputfield`)
   );
+  await t.setTestSpeed(0.5);
   await t.expect(datepicker.exists).ok();
 
   // typed-in text with valid date should trigger onDateChange...
@@ -265,7 +268,7 @@ test('should react to programmatic date property changes', async t => {
     );
     return inputNode.value;
   });
-
+  await t.setTestSpeed(0.5);
   await t.expect(await getInputValue()).eql('25.1.2020');
 
   // setting 'date' property works and can be read back
@@ -330,6 +333,7 @@ test('should allow month change from default date', async t => {
   const datepicker = await Selector(() =>
     document.querySelector(`#datepicker-empty-react-inputfield`)
   );
+  await t.setTestSpeed(0.5);
   await t.expect(datepicker.exists).ok();
 
   // open it
@@ -427,6 +431,7 @@ test('should submit datepicker correctly in form', async t => {
   const datepickerForm = await Selector(() =>
     document.querySelector(`axa-datepicker[data-test-id="datepicker-forms"]`)
   );
+  await t.setTestSpeed(0.5);
   await t.expect(datepickerForm.exists).ok();
   await t.typeText(
     `axa-datepicker[data-test-id="datepicker-forms"] .js-datepicker__input`,

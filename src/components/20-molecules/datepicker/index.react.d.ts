@@ -33,8 +33,10 @@ interface AXADatepickerProps {
   monthtitle?: string;
   yeartitle?: string;
   invaliddatetext?: string;
-  embedded?: boolean;
-  id?: string;
+  disabled?: boolean;
+  checkMark?: boolean;
+  label?: string;
+  required?: boolean;
   className?: string;
 }
 
