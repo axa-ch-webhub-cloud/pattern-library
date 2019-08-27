@@ -93,6 +93,12 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
           line-height: 24px;
         }
       }
+
+      @media (min-width: 1200px) {
+        .o-commercial-hero-banner-demo__badge-wrapper {
+          right: 150px;
+        }
+      }
     </style>
     <axa-commercial-hero-banner
       variant="${variant}"
@@ -119,52 +125,17 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
           Get up to CHF 100 discount
         </p>
       </div>
-      <div
-        slot="addon"
-        class="o-commercial-hero-banner-demo__badge-wrapper"
-        style="top: 100px"
-      >
-        <p class="o-commercial-hero-banner-demo__badge-content">
-          Get up to CHF 100 discount
-        </p>
-      </div>
-    </axa-commercial-hero-banner>
-    <axa-commercial-hero-banner
-      variant="${variant}"
-      imagesource="${imageSource}"
-    >
-      <h2 slot="category">This example shows specific picture classes</h2>
-      <h1 slot="title">Drive with peace of mind</h1>
-      <p slot="content">
-        Whether you need to insure your first car or renew your existing car
-        insurance, AXA can provide a range of car insurance policies to suit
-        your requirements and offer great product benefits at a price you can
-        afford
-      </p>
-      <small slot="disclaimer">Terms and Conditions apply.</small>
-      <axa-button-link
-        href="https://axa.ch"
-        slot="button"
-        variant="red"
-        size="large"
-        >GET A QUOTE</axa-button-link
-      >
-      <div slot="badge" class="o-commercial-hero-banner-demo__badge-wrapper">
-        <p class="o-commercial-hero-banner-demo__badge-content">
-          Get up to CHF 100 discount
-        </p>
-      </div>
-      <div
-        slot="addon"
-        class="o-commercial-hero-banner-demo__badge-wrapper"
-        style="top: 100px"
-      >
-        <p class="o-commercial-hero-banner-demo__badge-content">
-          Get up to CHF 100 discount
-        </p>
-      </div>
     </axa-commercial-hero-banner>
   `;
+  // <div
+  //   slot="addon"
+  //   class="o-commercial-hero-banner-demo__badge-wrapper"
+  //   style="top: 100px"
+  // >
+  //   <p class="o-commercial-hero-banner-demo__badge-content">
+  //     Get up to CHF 100 discount
+  //   </p>
+  // </div>
 
   render(template, wrapper);
   return wrapper;
