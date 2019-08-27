@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/policy-features",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "description": "Displays as much policy features as you want.",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/policy-features#readme",
