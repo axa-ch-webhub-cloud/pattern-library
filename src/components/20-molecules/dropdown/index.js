@@ -94,6 +94,7 @@ class AXADropdown extends NoShadowDOM {
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
+      maxHeight: { type: Boolean, reflect: true },
       label: { type: String },
       required: { type: Boolean },
       items: { type: Array },

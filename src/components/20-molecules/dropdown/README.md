@@ -84,7 +84,15 @@ The string-valued `error` provides error text as HTML. It sets the element into 
 
 ### disabled
 
-The boolean attribute `disabled` disables the underlying element.
+The Boolean attribute `disabled` disables the underlying element, both visually and functionally.
+
+Note that a disabled dropdown will not participate in form submission.
+
+### maxHeight
+
+When true, the Boolean attribute `maxHeight` limits the height of an active dropdown to a sensible default and allows scrolling through its options.
+
+This property is most useful in space-constrained scenarios or with many options, e.g. in a country selector.
 
 ## Callback Properties
 

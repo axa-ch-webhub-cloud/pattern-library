@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
+import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Dropdown/React/Demos', module)
@@ -14,5 +15,10 @@ storiesOf('Molecules/Dropdown/React/Demos', module)
   .add('Focussable React-ified Dropdown', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoFocussableDropdownReact />, div);
+    return div;
+  })
+  .add('Many-options React-ified Dropdown', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoManyOptionsDropdownReact />, div);
     return div;
   });
