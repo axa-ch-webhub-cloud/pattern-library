@@ -1,6 +1,6 @@
 {
   "packages": [
-    "src/components/00-materials"
+    "src/components/20-molecules/policy-features"
   ],
   "version": "independent",
   "npmClient": "npm"
