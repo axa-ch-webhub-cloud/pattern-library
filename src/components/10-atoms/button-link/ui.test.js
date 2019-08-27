@@ -44,6 +44,8 @@ fixture('Button Link - icon').page(
 );
 
 test('should render icon', async t => {
+  // give axa-button-link time to instantiate
+  await t.wait(50);
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button-link').shadowRoot
   );
