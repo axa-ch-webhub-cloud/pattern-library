@@ -1,9 +1,59 @@
 $fieldset-vertical-margin: 20px;
+$fieldset-horizontal-margin: 30px;
 
 axa-fieldset {
+  position: relative;
   display: block;
 
   &:not([horizontal]) > *:not(:last-child) {
     margin-bottom: $fieldset-vertical-margin;
+  }
+
+  &[horizontal]  {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -$fieldset-vertical-margin;
+
+    > *:not(:last-child):not([nogap]) {
+      margin-right: $fieldset-horizontal-margin;
+    }
+
+    > * {
+      margin-top: $fieldset-vertical-margin;
+    }
+
+    @include breakpoint($mediaquery-xsm) {
+
+        > * {
+          margin-right: 0 !important;
+          width: 100% !important;
+        }
+    }
+  }
+
+  &[error]:not([error=""]) {
+    padding-bottom: 28px;
+
+    axa-radio:not(:hover):not([disabled]):not([checked]) {
+
+      &[button] .a-radio__wrapper {
+          border-color: $color-validation-error;
+      }
+
+      .a-radio__icon {
+        border-color: $color-validation-error;
+      }
+    }
+
+    &:after {
+      @include typo(primary, default);
+      content: attr(error);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 0 !important;
+      color: $color-validation-error;
+    }
   }
 }

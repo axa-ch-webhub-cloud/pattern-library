@@ -1,0 +1,176 @@
+axa-radio {
+  @include typo(primary, default);
+  display: table;
+  flex: none;
+
+  *, *::after, *::before {
+    box-sizing: border-box;
+  }
+
+  &:hover:not([disabled]) {
+    color: $color-axa-blue;
+
+    & .a-radio__icon {
+      border-color: $color-axa-blue;
+
+      &::after {
+        border-color: $color-axa-blue;
+      }
+    }
+  }
+
+  .a-radio__wrapper {
+    position: relative;
+    display: inline-flex;
+    min-height: 20px;
+    align-items: center;
+    line-height: 1.5;
+    justify-content: center;
+  }
+
+  .a-radio__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px;
+    overflow: hidden;
+
+    &:focus + .a-radio__icon {
+      border-width: 2px;
+      border-color: $color-axa-blue;
+    }
+
+    &:checked + .a-radio__icon::after {
+      border-color: $color-prim-gray-dusty;
+      background-color: $color-axa-blue;
+    }
+
+    &:disabled + .a-radio__icon {
+      cursor: default;
+      border-color: $color-prim-gray-silver;
+
+      &::after {
+        border-color: $color-prim-gray-silver;
+        background-color: $color-prim-gray-silver;
+      }
+    }
+  }
+
+  .a-radio__icon {
+    transition: all 0.2s ease;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border: 1px solid $color-prim-gray-dusty;
+    cursor: pointer;
+    flex-shrink: 0;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    &::after {
+      width: 8px;
+      height: 8px;
+      display: block;
+      border: 1px solid transparent;
+      content: "";
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+  }
+
+  .a-radio__content {
+      display: block;
+      margin: 0;
+      line-height: 1.37;
+      color: $color-prim-gray-mine-shaft;
+  }
+
+  &[button] {
+    position: relative;
+    display: inline-flex;
+    height: 40px;
+
+    .a-radio__wrapper {
+      background-color: $color-prim-gray-wild-sand;
+      border: 1px solid $color-prim-gray-dusty;
+      padding: 0 20px;
+      cursor: pointer;
+      width: inherit;
+
+      &:hover {
+        border-color: $color-axa-blue;
+        color: $color-axa-blue;
+      }
+    }
+
+    .a-radio__content {
+        display: table;
+        background-color: $color-prim-gray-wild-sand;
+        padding: 0;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 18px;
+        letter-spacing: 0.56px;
+        color: inherit;
+    }
+
+    .a-radio__input {
+      &:checked ~ .a-radio__content {
+        color: $color-axa-blue;
+        background-color: transparent;
+        font-weight: bold;
+      }
+    }
+
+    &[checked] {
+      .a-radio__wrapper {
+        background-color: transparent;
+        border-color: $color-axa-blue;
+        color: $color-axa-blue;
+    }
+  }
+
+  &[disabled] {
+    .a-radio__wrapper {
+      background-color: $color-prim-gray-alabaster;
+      border-color: $color-prim-gray-mercury;
+      color: $color-prim-gray-silver;
+      cursor: default;
+
+      &:hover {
+        border-color: $color-prim-gray-mercury;
+      }
+    }
+
+    .a-radio__content {
+      color: inherit;
+      background-color: inherit;
+    }
+  }
+
+    &[icon] {
+      height: auto;
+
+      .a-radio__wrapper {
+          padding: 26px 35px 0 35px;
+          flex-direction: column;
+          justify-content: center;
+
+        svg {
+          width: 60px;
+          fill: currentColor;
+        }
+
+        .a-radio__content {
+          padding-bottom: 15px;
+          padding-top: inherit;
+        }
+      }
+    }
+  }
+}
