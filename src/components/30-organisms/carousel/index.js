@@ -45,8 +45,9 @@ class AXACarousel extends LitElement {
 
   // private methods
 
-  _getSlides() {
-    const slots = this.shadowRoot.querySelector('.o-carousel__slot');
+  _getSlides(usedShadowRoot = this.shadowRoot) {
+    // usedShadowRoot as a property to encapsulate for unit tests
+    const slots = usedShadowRoot.querySelector('.o-carousel__slot');
 
     return slots
       .assignedNodes({ flatten: true })
