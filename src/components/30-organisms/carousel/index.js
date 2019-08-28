@@ -141,14 +141,16 @@ class AXACarousel extends LitElement {
 
   // Key Navigation:
 
-  _initKeyNavigation() {
+  _initKeyNavigation(usedDocument = this.ownerDocument) {
+    // usedDocument as a property to encapsulate for unit tests
     if (this.keysenabled) {
-      this.ownerDocument.addEventListener('keyup', this._handleKeyUp);
+      usedDocument.addEventListener('keyup', this._handleKeyUp);
     }
   }
 
-  _terminateKeyNavigation() {
-    this.ownerDocument.removeEventListener('keyup', this._handleKeyUp);
+  _terminateKeyNavigation(usedDocument = this.ownerDocument) {
+    // usedDocument as a property to encapsulate for unit tests
+    usedDocument.removeEventListener('keyup', this._handleKeyUp);
   }
 
   _handleKeyUp = ev => {
