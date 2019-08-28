@@ -40,7 +40,7 @@ describe('AXACarousel', () => {
   });
 
   describe('allgemeine private methods', () => {
-    /*test('_getSlides() should call querySelector with correct selector', () => {
+    /* test('_getSlides() should call querySelector with correct selector', () => {
       const mockedQuerySelector = jest.fn(() => {});
       //document = {shadowRoot: {querySelector: mockedQuerySelector}}; //TODO how to mock document? evtol per spy?
       // AXACarousel.prototype.shadowRoot.querySelector = mockedQuerySelector;
@@ -51,7 +51,7 @@ describe('AXACarousel', () => {
 
       // check first arg of first call
       expect(mockedQuerySelector.mock.calls[0][0]).toBe('.o-carousel__slot');
-    });*/
+    }); */
 
     test('_setSlideVisibleWithAnimation() should set _animationWrapperClass', () => {
       const givenAnimationClass = 'myclass';
@@ -229,15 +229,15 @@ describe('AXACarousel', () => {
 
   describe('swipe', () => {
     test('_initSwipe() should instantiate Swipe an call a method', () => {
-      /*AXACarousel.prototype.swiper = null;
+      /* AXACarousel.prototype.swiper = null;
 
       AXACarousel.prototype._initSwipe(); // TODO: mock new Swipe?
 
-      expect(AXACarousel.prototype.swiper).not.toBe(null);*/
+      expect(AXACarousel.prototype.swiper).not.toBe(null); */
     });
 
     test('_terminateSwipe() should call a method', () => {
-      const mockedStop = jest.fn(() => {}); //TODO: refactor. shorter!
+      const mockedStop = jest.fn(() => {}); // TODO: refactor. shorter!
       AXACarousel.prototype.swiper = {
         stop: mockedStop,
       };
