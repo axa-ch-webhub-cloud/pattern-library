@@ -15,8 +15,8 @@ describe('AXACarousel', () => {
 
   describe('public methods', () => {
     test('handleNextButtonClick() should call methods', () => {
-      const mockedNextSlide = jest.fn(() => {});
-      const mockedStopAutoRotate = jest.fn(() => {});
+      const mockedNextSlide = jest.fn();
+      const mockedStopAutoRotate = jest.fn();
       AXACarousel.prototype._nextSlide = mockedNextSlide;
       AXACarousel.prototype._stopAutoRotate = mockedStopAutoRotate;
 
@@ -27,8 +27,8 @@ describe('AXACarousel', () => {
     });
 
     test('handlePreviousButtonClick() should call methods', () => {
-      const mockedPreviousSlide = jest.fn(() => {});
-      const mockedStopAutoRotate = jest.fn(() => {});
+      const mockedPreviousSlide = jest.fn();
+      const mockedStopAutoRotate = jest.fn();
       AXACarousel.prototype._previousSlide = mockedPreviousSlide;
       AXACarousel.prototype._stopAutoRotate = mockedStopAutoRotate;
 
@@ -40,18 +40,21 @@ describe('AXACarousel', () => {
   });
 
   describe('allgemeine private methods', () => {
-    /* test('_getSlides() should call querySelector with correct selector', () => {
-      const mockedQuerySelector = jest.fn(() => {});
-      //document = {shadowRoot: {querySelector: mockedQuerySelector}}; //TODO how to mock document? evtol per spy?
-      // AXACarousel.prototype.shadowRoot.querySelector = mockedQuerySelector;
+    test('_getSlides() should call querySelector with correct attribute', () => {
+      const mockedQuerySelector = jest.fn(() => {
+        return {
+          assignedNodes: () => {
+            return { filter: () => {} };
+          },
+        };
+      });
+      const mockedShadowRoot = {
+        querySelector: mockedQuerySelector,
+      };
+      AXACarousel.prototype._getSlides(mockedShadowRoot);
 
-      //global.document.shadowRoot = {querySelector: mockedQuerySelector}; //TODO: erstmal auskommentieren....
-      AXACarousel.prototype.shadowRoot = {querySelector: mockedQuerySelector}; // error only getter
-      AXACarousel.prototype._getSlides();
-
-      // check first arg of first call
-      expect(mockedQuerySelector.mock.calls[0][0]).toBe('.o-carousel__slot');
-    }); */
+      expect(mockedQuerySelector).toHaveBeenCalledWith('.o-carousel__slot');
+    });
 
     test('_setSlideVisibleWithAnimation() should set _animationWrapperClass', () => {
       const givenAnimationClass = 'myclass';
@@ -85,7 +88,7 @@ describe('AXACarousel', () => {
     });
 
     test('_nextSlide() should call method with nextSlideIndex = 1', () => {
-      const mockedSetSlideVisibleWithAnimation = jest.fn(() => {});
+      const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 0;
       const expectedNextSlideIndex = visibleSlideIndex + 1;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
@@ -100,7 +103,7 @@ describe('AXACarousel', () => {
       );
     });
     test('_nextSlide() should call method with nextSlideIndex = 0', () => {
-      const mockedSetSlideVisibleWithAnimation = jest.fn(() => {});
+      const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 2;
       const expectedNextSlideIndex = 0;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
@@ -115,7 +118,7 @@ describe('AXACarousel', () => {
       );
     });
     test('_nextSlide() should call method with correct second argument', () => {
-      const mockedSetSlideVisibleWithAnimation = jest.fn(() => {});
+      const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 0;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
       AXACarousel.prototype.visibleSlide = visibleSlideIndex;
@@ -130,7 +133,7 @@ describe('AXACarousel', () => {
     });
 
     test('_previousSlide() should call method with nextSlideIndex = thePreviousIndexInArray', () => {
-      const mockedSetSlideVisibleWithAnimation = jest.fn(() => {});
+      const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 2;
       const expectedPreviousSlideIndex = visibleSlideIndex - 1;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
@@ -145,7 +148,7 @@ describe('AXACarousel', () => {
       );
     });
     test('_previousSlide() should call method with nextSlideIndex = theLastIndexInArray', () => {
-      const mockedSetSlideVisibleWithAnimation = jest.fn(() => {});
+      const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 0;
       const expectedPreviousSlideIndex = 2;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
@@ -160,7 +163,7 @@ describe('AXACarousel', () => {
       );
     });
     test('_previousSlide() should call method with correct second argument', () => {
-      const mockedSetSlideVisibleWithAnimation = jest.fn(() => {});
+      const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 0;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
       AXACarousel.prototype.visibleSlide = visibleSlideIndex;
@@ -205,7 +208,7 @@ describe('AXACarousel', () => {
       expect(AXACarousel.prototype.autoRotateTimerID).toBeGreaterThan(-1);
     });
     test('_startAutoRotate() should call _nextSlide()', () => {
-      const mockedNextSlide = jest.fn(() => {});
+      const mockedNextSlide = jest.fn();
       AXACarousel.prototype._nextSlide = mockedNextSlide;
 
       AXACarousel.prototype._startAutoRotate();
@@ -237,7 +240,7 @@ describe('AXACarousel', () => {
     });
 
     test('_terminateSwipe() should call a method', () => {
-      const mockedStop = jest.fn(() => {}); // TODO: refactor. shorter!
+      const mockedStop = jest.fn();
       AXACarousel.prototype.swiper = {
         stop: mockedStop,
       };
