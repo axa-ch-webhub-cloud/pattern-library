@@ -97,6 +97,7 @@ axa-input-text {
   .a-input-text__check {
     @include check-mark-animated();
     position: absolute;
+    top: 7px;
     right: 5px;
   }
 

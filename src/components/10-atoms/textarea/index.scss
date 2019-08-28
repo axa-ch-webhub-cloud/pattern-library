@@ -27,6 +27,7 @@ axa-textarea {
     height: 169px;
     padding: 10px 20px;
     width: 100%;
+    overflow: auto;
 
     &::placeholder {
       color: $color-prim-gray-dusty;
