@@ -219,7 +219,7 @@ describe('AXACarousel', () => {
       expect(setInterval).not.toHaveBeenCalled();
     });
 
-    test('_stopAutoRotate() should call clearInterval with correct property', () => {
+    test('_stopAutoRotate() should call clearInterval with correct argument', () => {
       AXACarousel.prototype._stopAutoRotate();
       expect(clearInterval).toHaveBeenCalledWith(
         AXACarousel.prototype.autoRotateTimerID
@@ -229,11 +229,11 @@ describe('AXACarousel', () => {
 
   describe('swipe', () => {
     test('_initSwipe() should instantiate Swipe an call a method', () => {
-      AXACarousel.prototype.swiper = null;
+      /*AXACarousel.prototype.swiper = null;
 
       AXACarousel.prototype._initSwipe(); // TODO: mock new Swipe?
 
-      expect(AXACarousel.prototype.swiper).not.toBe(null);
+      expect(AXACarousel.prototype.swiper).not.toBe(null);*/
     });
 
     test('_terminateSwipe() should call a method', () => {
@@ -269,27 +269,60 @@ describe('AXACarousel', () => {
     });
 
     test('_terminateKeyNavigation() should remove EventListener', () => {
-      expect(AXACarousel.prototype.validateModel()).toBe(true);
-    });
+      const mockedRemoveEventListener = jest.fn();
+      const mockedDocument = { removeEventListener: mockedRemoveEventListener };
 
-    test('_handleKeyUp() should call handlePreviousButtonClick()', () => {
-      expect(AXACarousel.prototype.validateModel()).toBe(true);
-    });
-    test('_handleKeyUp() should call handleNextButtonClick()', () => {
-      expect(AXACarousel.prototype.validateModel()).toBe(true);
-    });
-    test('_handleKeyUp() should not call anything', () => {
-      expect(AXACarousel.prototype.validateModel()).toBe(true);
+      AXACarousel.prototype._terminateKeyNavigation(mockedDocument);
+
+      expect(mockedRemoveEventListener).toHaveBeenCalled();
     });
   });
 
   describe('lit-element lifecycle', () => {
-    test('firstUpdated() should call methods', () => {
-      expect(AXACarousel.prototype.validateModel()).toBe(true);
+    test('firstUpdated() should call methods (with correct arguments)', () => {
+      AXACarousel.prototype._onResize = 'thisIsACallback';
+      AXACarousel.prototype._getSlides = jest.fn();
+      AXACarousel.prototype._calculateContainerMinHeight = jest.fn();
+      AXACarousel.prototype._setSlideVisibleWithAnimation = jest.fn();
+      AXACarousel.prototype._initSwipe = jest.fn();
+      AXACarousel.prototype._initKeyNavigation = jest.fn();
+      AXACarousel.prototype._startAutoRotate = jest.fn();
+      global.addEventListener = jest.fn();
+
+      AXACarousel.prototype.firstUpdated();
+
+      expect(AXACarousel.prototype._getSlides).toHaveBeenCalled();
+      expect(
+        AXACarousel.prototype._calculateContainerMinHeight
+      ).toHaveBeenCalled();
+      expect(
+        AXACarousel.prototype._setSlideVisibleWithAnimation
+      ).toHaveBeenCalledWith(0);
+      expect(AXACarousel.prototype._initSwipe).toHaveBeenCalled();
+      expect(AXACarousel.prototype._initKeyNavigation).toHaveBeenCalled();
+      expect(AXACarousel.prototype._startAutoRotate).toHaveBeenCalled();
+      expect(global.addEventListener).toHaveBeenCalledWith(
+        'resize',
+        'thisIsACallback'
+      );
     });
 
     test('disconnectedCallback() should call methods', () => {
-      expect(AXACarousel.prototype.validateModel()).toBe(true);
+      AXACarousel.prototype._onResize = 'thisIsACallback';
+      AXACarousel.prototype._stopAutoRotate = jest.fn();
+      AXACarousel.prototype._terminateSwipe = jest.fn();
+      AXACarousel.prototype._terminateKeyNavigation = jest.fn();
+      global.removeEventListener = jest.fn();
+
+      AXACarousel.prototype.disconnectedCallback();
+
+      expect(AXACarousel.prototype._stopAutoRotate).toHaveBeenCalled();
+      expect(AXACarousel.prototype._terminateSwipe).toHaveBeenCalled();
+      expect(AXACarousel.prototype._terminateKeyNavigation).toHaveBeenCalled();
+      expect(global.removeEventListener).toHaveBeenCalledWith(
+        'resize',
+        'thisIsACallback'
+      );
     });
   });
 });
