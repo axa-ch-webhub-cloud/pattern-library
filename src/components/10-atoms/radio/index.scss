@@ -21,13 +21,9 @@ axa-radio {
 
   .a-radio__wrapper {
     position: relative;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
     min-height: 20px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     line-height: 1.5;
     justify-content: center;
   }
@@ -62,25 +58,17 @@ axa-radio {
   }
 
   .a-radio__icon {
-    -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
     width: 18px;
     height: 18px;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
     margin-right: 20px;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    justify-content: center;
+    align-items: center;
     background: #fff;
     border: 1px solid $color-prim-gray-dusty;
     cursor: pointer;
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
+    flex-shrink: 0;
     border-radius: 50%;
     box-sizing: border-box;
 
@@ -104,8 +92,6 @@ axa-radio {
 
   &[button] {
     position: relative;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
     height: 40px;
 
