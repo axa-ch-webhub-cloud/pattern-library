@@ -117,8 +117,124 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
   <h1 slot="title">...</h1> // Only one title
   <p slot="content">...</p> // You can put multiple <p> elements with the 'content' slot
   <small slot="disclaimer">...</small> // Only one disclaimer
-  <axa-button-link slot="button" /> // You can put multiple <p> elements with the 'content' slot
+  <axa-button-link slot="button" /> // Can also be 'axa-button', meant as CTA (Call to Action)
+  <div slot="badge">...</div> // Any DOM node, meant to visualize a badge displayed at the upper right position
+  <div slot="addon">...</div> // Any DOM node, meant to visualize something at the lower right (usually 'customer reviews')
 </axa-commercial-hero-banner>
+```
+
+### slot="badge"
+
+This slot is highly optional. The styling and positioning is completely up to you, the hero banner component only gives you the ability to easily embed it.
+
+Here is a complete example of how a badge can look, including the positioning:
+
+```html
+<div slot="badge" class="o-commercial-hero-banner-demo__badge-wrapper">
+  <p class="o-commercial-hero-banner-demo__badge-content">
+    Get up to CHF 100 discount
+  </p>
+</div>
+```
+
+```css
+.o-commercial-hero-banner-demo__badge-wrapper {
+  position: absolute;
+  right: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 50% 50% 50% 0;
+  background: #c91432;
+  color: #fff;
+
+  top: 10px;
+  width: 120px;
+  height: 120px;
+}
+
+.o-commercial-hero-banner-demo__badge-content {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  font-size: 16px;
+}
+
+@media (min-width: 576px) {
+  .o-commercial-hero-banner-demo__badge-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .o-commercial-hero-banner-demo__badge-content {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 992px) {
+  .o-commercial-hero-banner-demo__badge-wrapper {
+    top: 44px;
+    width: 160px;
+    height: 160px;
+  }
+
+  .o-commercial-hero-banner-demo__badge-content {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .o-commercial-hero-banner-demo__badge-wrapper {
+    right: 150px;
+  }
+}
+```
+
+### slot="addon"
+
+This slot is meant for a DOM node placed at the bottom. It should stay at the very bottom of the component on mobile screens.
+
+Here is a complete example of how an addon can look, including the positioning:
+
+```html
+<div slot="addon" class="o-commercial-hero-banner-demo__addon">
+  This could be the customer review badge
+</div>
+```
+
+```css
+.o-commercial-hero-banner-demo__addon {
+  display: block;
+  background: blue;
+  color: white;
+  height: 100px;
+  width: 200px;
+}
+
+@media (min-width: 992px) {
+  .o-commercial-hero-banner-demo__addon {
+    position: absolute;
+    top: 380px;
+    right: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .o-commercial-hero-banner-demo__addon {
+    right: 150px;
+  }
+}
 ```
 
 ## Properties
