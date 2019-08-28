@@ -1,4 +1,4 @@
-export default () =>
-  Math.random()
+export default (prefix = '') =>
+  `${prefix}${Math.random()
     .toString(36)
-    .slice(2);
+    .slice(2)}`;

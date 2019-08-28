@@ -87,9 +87,9 @@ The Boolean attribute `disabled` controls whether the radio button can be user-m
 
 A `disabled` radio button will not be submitted in a form.
 
-### id
+### refId
 
-The string-valued `id` sets the `id` attribute of the component.
+The string-valued `refId` sets the `id` attribute of the component's hidden &lt;input&gt;.
 
 ### value
 
@@ -114,6 +114,10 @@ The string-valued `label` sets the visible text of this radio button (default: `
 The Boolean `nogap` attribute, when true, suppresses the horizontal gap between this radio button and its left neighbour in conjunction with an enclosing &lt;axa-fieldset horizontal&gt;.
 
 It is intended for two-radio-button choices.
+
+### noAutoWidth
+
+The Boolean `noAutoWidth` attribute, when true, suppresses the auto-width calculation for `button`-type radio buttons.
 
 ### icon
 

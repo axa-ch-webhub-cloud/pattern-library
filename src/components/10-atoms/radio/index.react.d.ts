@@ -1,10 +1,22 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
-
 interface AXARadioProps {
-  variant?: Variant;
-  onClick?: () => void;
+  id?: string;
+  refId?: string;
+  className?: string;
+  value?: string;
+  name?: string;
+  label?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  button?: boolean;
+  noGap?: boolean;
+  noAutoWidth?: boolean;
+  icon?: string;
+  error?: string;
+  onChange?: () => void;
+  onFocus?: (e?: FocusEvent) => {};
+  onBlur?: (e?: FocusEvent) => {};
 }
 
 declare function createAXARadio(

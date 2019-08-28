@@ -73,7 +73,7 @@ const DemoRadiobuttonsControlled = () => {
           onBlur={handleRadioButtonBlur(0)}
           onChange={handleRadioButtonChange}
           button={button}
-          nogap
+          noGap
         />
         <AXARadioButton
           id="radio2"

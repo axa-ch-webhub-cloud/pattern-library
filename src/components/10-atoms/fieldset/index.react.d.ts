@@ -2,6 +2,7 @@ import React from 'react';
 
 interface AXAFieldsetProps {
   horizontal?: boolean;
+  error?: string;
   slot?: string;
 }
 

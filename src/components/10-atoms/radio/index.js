@@ -1,8 +1,9 @@
 import { html, svg } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
-import defaultName from '../../../utils/create-ref-id';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
+import createRefId from '../../../utils/create-ref-id';
+
 import styles from './index.scss';
 
 // module globals
@@ -24,6 +25,7 @@ class AXARadio extends NoShadowDOM {
 
   static get properties() {
     return {
+      refId: { type: String },
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
@@ -33,8 +35,8 @@ class AXARadio extends NoShadowDOM {
       },
       disabled: { type: Boolean, reflect: true },
       button: { type: Boolean, reflect: true },
-      nogap: { type: Boolean, reflect: true },
-      noautowidth: { type: Boolean, reflect: true },
+      noGap: { type: Boolean, reflect: true },
+      noAutoWidth: { type: Boolean, reflect: true },
       icon: {
         type: String,
         reflect: true,
@@ -122,6 +124,7 @@ class AXARadio extends NoShadowDOM {
       native: false,
     };
     // initialize properties
+    this.refId = createRefId('axa-radio-');
     this.value = '';
     this.name = '';
     this.label = '';
@@ -129,7 +132,7 @@ class AXARadio extends NoShadowDOM {
     this.error = '';
     this.disabled = false;
     this.button = false;
-    this.nogap = false;
+    this.noGap = false;
     this.isReact = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
@@ -137,13 +140,13 @@ class AXARadio extends NoShadowDOM {
   }
 
   getDefaultName() {
-    this.name = this.name || defaultName();
+    this.name = this.name || createRefId();
     return this.name;
   }
 
   render() {
     const {
-      id,
+      refId,
       name = this.getDefaultName(),
       button,
       icon,
@@ -161,7 +164,7 @@ class AXARadio extends NoShadowDOM {
     return html`
       <label class="a-radio__wrapper">
         <input
-          id="${id}"
+          id="${refId}"
           class="a-radio__input"
           type="radio"
           name="${name}"
@@ -185,7 +188,7 @@ class AXARadio extends NoShadowDOM {
 
   firstUpdated() {
     this.input = this.querySelector('input');
-    const { name, button, noautowidth } = this;
+    const { name, button, noAutoWidth } = this;
     const ourButton = this.querySelector('.a-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
     radioButtonGroup[name].add(ourButton);
@@ -197,12 +200,12 @@ class AXARadio extends NoShadowDOM {
         ).getBoundingClientRect();
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
-        const width = noautowidth ? labelTextWidth : maxWidth[name];
+        const width = noAutoWidth ? labelTextWidth : maxWidth[name];
         radioButtonGroup[name].forEach(radioButton => {
-          // special case 'noautowidth' only impose minWidth on ourselves
+          // special case 'noAutoWidth' only impose minWidth on ourselves
           // (suppresses length changes .a.k.a 'punping effect' between
           // selected/unselected state due to font-weight changes)
-          if (noautowidth && radioButton !== ourButton) return;
+          if (noAutoWidth && radioButton !== ourButton) return;
           radioButton.style.minWidth = `${width + WIDTH_SLACK}px`;
         });
       }, /* give DOM some time to paint before measuring width */ 1);
