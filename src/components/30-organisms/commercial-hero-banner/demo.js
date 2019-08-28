@@ -70,6 +70,14 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
         font-size: 16px;
       }
 
+      .o-commercial-hero-banner-demo__addon {
+        display: block;
+        background: blue;
+        color: white;
+        height: 100px;
+        width: 200px;
+      }
+
       @media (min-width: 576px) {
         .o-commercial-hero-banner-demo__badge-wrapper {
           width: 140px;
@@ -108,14 +116,6 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
         .o-commercial-hero-banner-demo__addon {
           right: 150px;
         }
-      }
-
-      .o-commercial-hero-banner-demo__addon {
-        display: block;
-        background: blue;
-        color: white;
-        height: 100px;
-        width: 200px;
       }
     </style>
     <axa-commercial-hero-banner
