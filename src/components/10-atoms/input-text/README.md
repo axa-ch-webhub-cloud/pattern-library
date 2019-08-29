@@ -53,7 +53,6 @@ Import the input-text-defining script and use an &lt,axa-input-text&gt; like thi
   </body>
 </html>
 ```
-
 ## Properties
 
 ### type
