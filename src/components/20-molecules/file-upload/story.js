@@ -4,7 +4,7 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-const story = storiesOf('Molecules/Image Upload', module);
+const story = storiesOf('Molecules/File Upload', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
@@ -29,7 +29,7 @@ const icons = {
 };
 
 story
-  .add('Image upload - default', () => {
+  .add('File upload - default', () => {
     const sizeSliderOptions = {
       range: true,
       min: 1,
@@ -80,7 +80,7 @@ story
 
     const template = html`
       <div style="width:453px;">
-        <axa-image-upload
+        <axa-file-upload
           inputFileText="${inputFileText}"
           maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}"
           maxSizeOfAllFilesKB="${maxSizeOfAllFilesKB}"
@@ -93,7 +93,7 @@ story
           orText="${orText}"
           infoText="${infoText}"
           icon="${iconOptions}"
-          >${headerText}</axa-image-upload
+          >${headerText}</axa-file-upload
         >
       </div>
     `;
@@ -101,12 +101,12 @@ story
     render(template, wrapper);
     return wrapper;
   })
-  .add('Image upload - maxSizeOfSingleFileKB', () => {
+  .add('File upload - maxSizeOfSingleFileKB', () => {
     const wrapper = document.createElement('div');
     const template = html`
       <div style="width:453px;">
-        <axa-image-upload maxSizeOfSingleFileKB="1"
-          >${descriptionText}</axa-image-upload
+        <axa-file-upload maxSizeOfSingleFileKB="1"
+          >${descriptionText}</axa-file-upload
         >
       </div>
     `;
@@ -114,12 +114,12 @@ story
     render(template, wrapper);
     return wrapper;
   })
-  .add('Image upload - maxNumberOfFiles', () => {
+  .add('File upload - maxNumberOfFiles', () => {
     const wrapper = document.createElement('div');
     const template = html`
       <div style="width:453px;">
-        <axa-image-upload maxNumberOfFiles="1"
-          >${descriptionText}</axa-image-upload
+        <axa-file-upload maxNumberOfFiles="1"
+          >${descriptionText}</axa-file-upload
         >
       </div>
     `;
@@ -127,12 +127,12 @@ story
     render(template, wrapper);
     return wrapper;
   })
-  .add('Image upload - maxSizeOfAllFilesKB', () => {
+  .add('File upload - maxSizeOfAllFilesKB', () => {
     const wrapper = document.createElement('div');
     const template = html`
       <div style="width:453px;">
-        <axa-image-upload maxSizeOfAllFilesKB="1"
-          >${descriptionText}</axa-image-upload
+        <axa-file-upload maxSizeOfAllFilesKB="1"
+          >${descriptionText}</axa-file-upload
         >
       </div>
     `;

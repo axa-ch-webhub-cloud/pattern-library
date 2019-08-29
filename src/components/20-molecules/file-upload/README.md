@@ -19,13 +19,13 @@ A component used for uploading files in forms.
 ## Usage
 
 ```bash
-npm install @axa-ch/image-upload
+npm install @axa-ch/file-upload
 ```
 
 ```js
-import '@axa-ch/image-upload';
+import '@axa-ch/file-upload';
 ...
-<axa-image-upload></axa-image-upload>
+<axa-file-upload></axa-file-upload>
 ```
 
 ### React
@@ -34,15 +34,15 @@ Create a React-ified file-upload with the createElement function from your React
 
 ```js
 import { createElement } from 'react';
-import createAXAImageUploadReact from '@axa-ch/image-upload/lib/index.react';
+import createAXAFileUploadReact from '@axa-ch/file-upload/lib/index.react';
 
-const AXAImageUploadReact = createAXAImageUploadReact(createElement);
+const AXAFileUploadReact = createAXAFileUploadReact(createElement);
 
-export default AXAImageUploadReact;
+export default AXAFileUploadReact;
 ```
 
 ```js
-<AXAImageUploadReact onClick={handler} />
+<AXAFileUploadReact onClick={handler} />
 ```
 
 ### Pure HTML pages
@@ -59,8 +59,8 @@ Use the file-upload like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-image-upload></axa-image-upload>
-    <script src="node_modules/@axa-ch/image-upload/dist/index.js"></script>
+    <axa-file-upload></axa-file-upload>
+    <script src="node_modules/@axa-ch/file-upload/dist/index.js"></script>
   </body>
 </html>
 ```
@@ -92,7 +92,7 @@ Use the file-upload like this:
 | `maxSizeOfSingleFileKB="10"`               | Maximal size of a single file in KB                                  |
 | `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all files together in KB                           |
 | `maxNumberOfFiles="10"`                    | Maximal number of files                                              |
-| `showFileOverview="false"`                 | Switch between normal view and image overview                        |
+| `showFileOverview="false"`                 | Switch between normal view and file overview                         |
 | `icon="cloud-upload"`                      | Specify the upload icon in input-file component                      |
 | `fileTooBigStatusText="Error occurred"`    | Specify the error message for too big files                          |
 | `tooManyFilesStatusText="Error occurred"`  | Specify the error message for too many files                         |

@@ -17,7 +17,11 @@
     "src/components/20-molecules/datepicker",
     "src/components/20-molecules/dropdown",
     "src/components/20-molecules/footer-small",
+<<<<<<< HEAD
     "src/components/20-molecules/policy-features",
+=======
+    "src/components/20-molecules/file-upload",
+>>>>>>> rename whole component to file-upload
     "src/components/20-molecules/popup",
     "src/components/20-molecules/top-content-bar",
     "src/components/30-organisms/commercial-hero-banner",

@@ -11,7 +11,7 @@ import {
 } from '@axa-ch/materials/icons';
 
 /* icon isolated from others, because it's a component specific icon */
-import { ImageUploadGroupSvg } from './icons';
+import { FileUploadGroupSvg } from './icons';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -22,16 +22,16 @@ const AddIcon = svg([AddSvg]);
 const AttachFileIcon = svg([AttachFileSvg]);
 const DeleteForeverIcon = svg([DeleteForeverSvg]);
 const ClearIcon = svg([ClearSvg]);
-const ImageUploadGroupIcon = svg([ImageUploadGroupSvg]);
+const FileUploadGroupIcon = svg([FileUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
 
 /* helperfunctions */
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
-class AXAImageUpload extends LitElement {
+class AXAFileUpload extends LitElement {
   static get tagName() {
-    return 'axa-image-upload';
+    return 'axa-file-upload';
   }
 
   static get styles() {
@@ -100,12 +100,12 @@ class AXAImageUpload extends LitElement {
     e.preventDefault();
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
-      this.dropZone.classList.add('m-image-upload__dropzone_dragover');
+      this.dropZone.classList.add('m-file-upload__dropzone_dragover');
     }
   }
 
   handleDropZoneDragleave() {
-    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
+    this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
   }
 
   handleDropZoneDrop(e) {
@@ -116,7 +116,7 @@ class AXAImageUpload extends LitElement {
       file => ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
 
-    this.dropZone.classList.remove('m-image-upload__dropzone_dragover');
+    this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     if (files.length > 0 && !this.isFileMaxReached) {
       this.addFiles(files);
     }
@@ -272,29 +272,29 @@ class AXAImageUpload extends LitElement {
       const isFile = file.type.indexOf('application') > -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
-        <figure class="m-image-upload__img-figure js-image-upload__img-figure">
+        <figure class="m-file-upload__img-figure js-file-upload__img-figure">
           <div
-            class="m-image-upload__icon-hover-area"
+            class="m-file-upload__icon-hover-area"
             @click=${() => this.handleFileDeletion(index)}
           >
             ${isFile
               ? html`
-                  <span class="m-image-upload__file-element">
+                  <span class="m-file-upload__file-element">
                     ${AttachFileIcon}</span
                   >
                 `
               : html`
                   <img
-                    class="m-image-upload__img-element"
+                    class="m-file-upload__img-element"
                     src="${imageUrl}"
                     alt="${file.name}"
                   />
                 `}
-            <div class="m-image-upload__icon-layer">
-              <span class="m-image-upload__icon-error"
+            <div class="m-file-upload__icon-layer">
+              <span class="m-file-upload__icon-error"
                 >${isfaultyFile ? ClearIcon : ''}</span
               >
-              <span class="m-image-upload__icon-delete"
+              <span class="m-file-upload__icon-delete"
                 >${DeleteForeverIcon}</span
               >
             </div>
@@ -302,24 +302,22 @@ class AXAImageUpload extends LitElement {
           ${isfaultyFile
             ? html`
                 <figcaption
-                  class="m-image-upload__img-caption js-image-upload__img-caption m-image-upload__img-caption-error"
+                  class="m-file-upload__img-caption js-file-upload__img-caption m-file-upload__img-caption-error"
                   title="${fileTooBigStatusText}"
                   data-status="${deleteStatusText}"
                 >
-                  <span
-                    class="m-image-upload__filename js-image-upload__filename"
+                  <span class="m-file-upload__filename js-file-upload__filename"
                     >${fileTooBigStatusText}</span
                   >
                 </figcaption>
               `
             : html`
                 <figcaption
-                  class="m-image-upload__img-caption js-image-upload__img-caption"
+                  class="m-file-upload__img-caption js-file-upload__img-caption"
                   title="${file.name}"
                   data-status="${deleteStatusText}"
                 >
-                  <span
-                    class="m-image-upload__filename js-image-upload__filename"
+                  <span class="m-file-upload__filename js-file-upload__filename"
                     >${file.name}</span
                   >
                 </figcaption>
@@ -333,18 +331,18 @@ class AXAImageUpload extends LitElement {
     const { addStatusText } = this;
     return html`
       <figure
-        class="m-image-upload__img-figure js-image-upload__img-figure m-image-upload__add-more js-image-upload__add-more"
+        class="m-file-upload__img-figure js-file-upload__img-figure m-file-upload__add-more js-file-upload__add-more"
       >
         <div
-          class="m-image-upload__icon-wrapper"
+          class="m-file-upload__icon-wrapper"
           @click=${this.handleAddMoreInputClick}
         >
-          <div class="m-image-upload__icon-layer">
+          <div class="m-file-upload__icon-layer">
             ${AddIcon}
           </div>
         </div>
         <figcaption
-          class="m-image-upload__img-caption js-image-upload__img-caption"
+          class="m-file-upload__img-caption js-file-upload__img-caption"
           title="${addStatusText}"
         >
           ${addStatusText}
@@ -355,14 +353,14 @@ class AXAImageUpload extends LitElement {
 
   render() {
     const fileOverviewClasses = {
-      'm-image-upload__dropzone': true,
-      'js-image-upload__dropzone': true,
-      'm-image-upload__dropzone-file-overview': this.showFileOverview,
-      'js-image-upload__dropzone-file-overview': this.showFileOverview,
+      'm-file-upload__dropzone': true,
+      'js-file-upload__dropzone': true,
+      'm-file-upload__dropzone-file-overview': this.showFileOverview,
+      'js-file-upload__dropzone-file-overview': this.showFileOverview,
     };
     const errorMessageWrapperClasses = {
-      'm-image-upload__error-wrapper': true,
-      'js-image-upload__error-wrapper': true,
+      'm-file-upload__error-wrapper': true,
+      'js-file-upload__error-wrapper': true,
     };
 
     /* displaying files with errors (e.g. too big) after valid ones */
@@ -371,7 +369,7 @@ class AXAImageUpload extends LitElement {
     this.addMoreInputFile = this.generateAddMoreInputFile();
 
     return html`
-      <article class="m-image-upload">
+      <article class="m-file-upload">
         <h1><slot></slot></h1>
         <section
           @dragover="${this.handleDropZoneDragover}"
@@ -382,12 +380,12 @@ class AXAImageUpload extends LitElement {
           ${!this.showFileOverview
             ? html`
                 <div>
-                  ${ImageUploadGroupIcon}
+                  ${FileUploadGroupIcon}
                 </div>
-                <p class="m-image-upload__information">${this.infoText}</p>
-                <p class="m-image-upload__or">${this.orText}</p>
+                <p class="m-file-upload__information">${this.infoText}</p>
+                <p class="m-file-upload__or">${this.orText}</p>
                 <axa-input-file
-                  class="m-image-upload__input js-image-upload__input"
+                  class="m-file-upload__input js-file-upload__input"
                   accept="${ACCEPTED_FILE_TYPES}"
                   icon="${this.icon}"
                   multiple
@@ -411,10 +409,10 @@ class AXAImageUpload extends LitElement {
   }
 
   firstUpdated() {
-    this.dropZone = this.shadowRoot.querySelector('.js-image-upload__dropzone');
-    this.inputFile = this.shadowRoot.querySelector('.js-image-upload__input');
+    this.dropZone = this.shadowRoot.querySelector('.js-file-upload__dropzone');
+    this.inputFile = this.shadowRoot.querySelector('.js-file-upload__input');
     this.errorWrapper = this.shadowRoot.querySelector(
-      '.js-image-upload__error-wrapper'
+      '.js-file-upload__error-wrapper'
     );
   }
 
@@ -423,6 +421,6 @@ class AXAImageUpload extends LitElement {
   }
 }
 
-defineOnce(AXAImageUpload.tagName, AXAImageUpload);
+defineOnce(AXAFileUpload.tagName, AXAFileUpload);
 
-export default AXAImageUpload;
+export default AXAFileUpload;

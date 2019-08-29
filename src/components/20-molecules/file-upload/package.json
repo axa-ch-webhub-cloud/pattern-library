@@ -1,9 +1,9 @@
 {
-  "name": "@axa-ch/image-upload",
+  "name": "@axa-ch/file-upload",
   "version": "0.0.0-beta.0",
-  "description": "The image-upload for the AXA patterns library",
+  "description": "The file-upload for the AXA patterns library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/image-upload#readme",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/file-upload#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "main": "lib/index.js",
   "directories": {

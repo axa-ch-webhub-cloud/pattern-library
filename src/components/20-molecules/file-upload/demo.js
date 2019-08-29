@@ -4,24 +4,22 @@ import { html, render } from 'lit-html';
 import Readme from './README.md';
 import './index';
 
-storiesOf('Molecules/Image Upload/Demos', module)
+storiesOf('Molecules/File Upload/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  .add('Feature - image-upload in a form', () => {
+  .add('Feature - file-upload in a form', () => {
     const handleSubmit = e => {
       e.preventDefault();
 
-      const imgUpload = document.querySelector(
-        '.js-image-upload__image-upload'
-      );
+      const imgUpload = document.querySelector('.js-file-upload__file-upload');
 
       if (imgUpload.files.length > 0) {
         const listWrapper = html`
-          <div class="js-image-upload__list-wrapper">
-            <h3>Folgende Dateien wurden ausgewählt</h3>
+          <div class="js-file-upload__list-wrapper">
+            <h3>The following files were selected:</h3>
             <ol>
               ${imgUpload.files.map(file => {
                 return html`
@@ -38,8 +36,8 @@ storiesOf('Molecules/Image Upload/Demos', module)
 
     const template = html`
       <div style="width:453px;">
-        <axa-image-upload class="js-image-upload__image-upload"
-          >These files are going to be uploaded</axa-image-upload
+        <axa-file-upload class="js-file-upload__file-upload"
+          >These files are going to be uploaded</axa-file-upload
         >
       </div>
       <form @click="${handleSubmit}" style="margin-top:40px;">
