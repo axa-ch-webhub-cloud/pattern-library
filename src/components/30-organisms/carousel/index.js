@@ -129,8 +129,9 @@ class AXACarousel extends LitElement {
     this.handlePreviousButtonClick();
   };
 
-  _initSwipe() {
-    this.swiper = new Swipe(this, this._onSwipeLeft, this._onSwipeRight);
+  _initSwipe(usedElement = this) {
+    // usedElement as a property to encapsulate for unit tests
+    this.swiper = new Swipe(usedElement, usedElement._onSwipeLeft, usedElement._onSwipeRight);
     this.swiper.run();
   }
 
