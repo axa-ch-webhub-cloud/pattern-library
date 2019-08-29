@@ -109,15 +109,6 @@ $file-upload-icon-size: 36px !default;
 
   &__icon-delete {
     display: none;
-<<<<<<< HEAD:src/components/20-molecules/image-upload/index.scss
-    fill: $color-axa-blue;
-    @include iconSize($image-upload-icon-size)
-  }
-
-  &__icon-error {
-    fill: $color-sec-shy-tomato;
-    @include iconSize($image-upload-icon-size)
-=======
     color: $color-axa-blue;
     fill: currentColor;
     @include iconSize($file-upload-icon-size)
@@ -127,7 +118,6 @@ $file-upload-icon-size: 36px !default;
     color: $color-sec-shy-tomato;
     fill: currentColor;
     @include iconSize($file-upload-icon-size)
->>>>>>> rename whole component to file-upload:src/components/20-molecules/file-upload/index.scss
   }
 
   &__img-caption {
@@ -174,14 +164,9 @@ $file-upload-icon-size: 36px !default;
       display: block;
       position: relative;
     }
-<<<<<<< HEAD:src/components/20-molecules/image-upload/index.scss
     .m-image-upload__icon-layer {
       fill: currentColor;
-      @include iconSize($image-upload-icon-size)
-=======
-    .m-file-upload__icon-layer {
       @include iconSize($file-upload-icon-size)
->>>>>>> rename whole component to file-upload:src/components/20-molecules/file-upload/index.scss
     }
     .m-file-upload__img-caption {
       width: 116px;
