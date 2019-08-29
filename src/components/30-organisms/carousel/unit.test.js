@@ -231,12 +231,15 @@ describe('AXACarousel', () => {
   });
 
   describe('swipe', () => {
-    test('_initSwipe() should instantiate Swipe an call a method', () => {
-      /* AXACarousel.prototype.swiper = null;
+    test('_initSwipe() should instantiate Swipe', () => {
+      const mockedAddEventListener = jest.fn();
+      const mockedThisElement = { addEventListener: mockedAddEventListener }; // addEventListener is called internally at Swipe class
+      AXACarousel.prototype.swiper = null;
 
-      AXACarousel.prototype._initSwipe(); // TODO: mock new Swipe?
+      AXACarousel.prototype._initSwipe(mockedThisElement);
 
-      expect(AXACarousel.prototype.swiper).not.toBe(null); */
+      expect(AXACarousel.prototype.swiper).not.toBe(null);
+      expect(mockedAddEventListener).toHaveBeenCalled();
     });
 
     test('_terminateSwipe() should call a method', () => {
