@@ -18,9 +18,7 @@ class AXATestimonials extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
-      classes: { type: String }, // TODO: unused in v1?
       title: { type: String },
       subtitle: { type: String },
       autorotatedisabled: { type: Boolean },
@@ -34,7 +32,6 @@ class AXATestimonials extends LitElement {
     super();
 
     // default values props
-    this.classes = '';
     this.title = '';
     this.subtitle = '';
     this.autorotatedisabled = false;
@@ -67,7 +64,9 @@ class AXATestimonials extends LitElement {
           <div class="o-testimonials__content">
             ${showallinline
               ? html`
-                  <div class="o-testimonials__content__inline"><slot></slot></div>
+                  <div class="o-testimonials__content__inline">
+                    <slot></slot>
+                  </div>
                 `
               : html`
                   <div class="o-testimonials__content__carousel">
