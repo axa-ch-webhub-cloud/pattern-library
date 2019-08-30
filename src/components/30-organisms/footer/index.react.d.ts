@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXAFooterProps {
+export interface AXAFooterProps {
   onItemClick?: Function;
   clickevents?: Boolean;
   className?: string;
@@ -10,4 +10,4 @@ declare function createAXAFooter(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAFooterProps>;
 
-export = createAXAFooter;
+export default createAXAFooter;

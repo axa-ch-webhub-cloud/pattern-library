@@ -6,7 +6,7 @@ type AXADatepickerChangeEvent = {
   }
 }
 
-interface AXADatepickerProps {
+export interface AXADatepickerProps {
   dataTestId?: string;
   inputfield?: boolean;
   value?: string;
@@ -44,4 +44,4 @@ declare function createAXADatepicker(
   createElement: typeof React.createElement
 ): React.ComponentType<AXADatepickerProps>;
 
-export = createAXADatepicker;
+export default createAXADatepicker;

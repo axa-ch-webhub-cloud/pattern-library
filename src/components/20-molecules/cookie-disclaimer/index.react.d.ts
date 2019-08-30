@@ -2,7 +2,7 @@ import React from 'react';
 
 type Variant = 'fixed';
 
-interface AXACookieDisclaimerProps {
+export interface AXACookieDisclaimerProps {
   variant?: Variant;
   title?: string;
   buttonname?: string;
@@ -14,4 +14,4 @@ declare function createAXACookieDisclaimer(
   createElement: typeof React.createElement
 ): React.ComponentType<AXACookieDisclaimerProps>;
 
-export = createAXACookieDisclaimer;
+export default createAXACookieDisclaimer;

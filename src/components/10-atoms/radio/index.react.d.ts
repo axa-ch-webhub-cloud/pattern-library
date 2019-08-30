@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXARadioProps {
+export interface AXARadioProps {
   id?: string;
   refId?: string;
   className?: string;
@@ -23,4 +23,4 @@ declare function createAXARadio(
   createElement: typeof React.createElement
 ): React.ComponentType<AXARadioProps>;
 
-export = createAXARadio;
+export default createAXARadio;

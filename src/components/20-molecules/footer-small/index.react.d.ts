@@ -5,7 +5,7 @@ interface Item {
   link?: string;
 }
 
-interface AXAFooterSmallProps {
+export interface AXAFooterSmallProps {
   languageItems: Item[];
   disclaimerItems: Item[];
   copyrightText: string;
@@ -22,4 +22,4 @@ declare function createAXAFooterSmall(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAFooterSmallProps>;
 
-export = createAXAFooterSmall;
+export default createAXAFooterSmall;

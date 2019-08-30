@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXATextareaProps {
+export interface AXATextareaProps {
   refId?: string;
   name: string;
   label?: string;
@@ -26,4 +26,4 @@ declare function createAXATextarea(
   createElement: typeof React.createElement
 ): React.ComponentType<AXATextareaProps>;
 
-export = createAXATextarea;
+export default createAXATextarea;
