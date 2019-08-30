@@ -1,6 +1,6 @@
 # Testimonials
 
-TODO Description
+Shows several information in a carousel or inline and sets title and subtitle over it.
 
 ## Usage
 
@@ -12,8 +12,18 @@ npm install @axa-ch/testimonials
 
 ```js
 import '@axa-ch/testimonials';
-...
-<axa-testimonials></axa-testimonials>
+
+<axa-testimonials
+  autorotatetime="1000"
+  autorotatedisabled="false"
+  keysenabled="true"
+  showallinline="false"
+  title="The main title"
+  subtitle="This is the subtitle"
+>
+  <span>first slide</span>
+  <span>second slide</span>
+</axa-testimonials>;
 ```
 
 ### React
@@ -30,7 +40,16 @@ export default AXATestimonialsReact;
 ```
 
 ```js
-<AXATestimonialsReact onClick={handler}>
+<AXATestimonialsReact
+  autorotatetime="1000"
+  autorotatedisabled="false"
+  keysenabled="true"
+  showallinline="false"
+  title="The main title"
+  subtitle="This is the subtitle"
+>
+  <span>first slide</span>
+  <span>second slide</span>
 </AXATestimonialsReact>
 ```
 
@@ -48,7 +67,17 @@ Import the testimonials-defining script and use a testimonials like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-testimonials></axa-testimonials>
+    <axa-testimonials
+      autorotatetime="1000"
+      autorotatedisabled="false"
+      keysenabled="true"
+      showallinline="false"
+      title="The main title"
+      subtitle="This is the subtitle"
+    >
+      <span>first slide</span>
+      <span>second slide</span>
+    </axa-testimonials>
     <script src="node_modules/@axa-ch/testimonials/dist/index.js"></script>
   </body>
 </html>
@@ -56,19 +85,29 @@ Import the testimonials-defining script and use a testimonials like this:
 
 ## Properties
 
-### Variant
+### title
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+The main title at the top.
 
-### Bar
+### subtitle
 
-The attribute `bar` specifies...
+The subtitle.
 
-### onClick
+### showallinline
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+Set it to `true` if you dont want to see the carousel. All the childs are shown below the other.
+
+### autorotatedisabled
+
+This boolean attribute specifies if the slides will automatically rotate.
+
+### autorotatetime
+
+This number specifies the milliseconds the slides will automatically rotate.
+
+### keysenabled
+
+This boolean attribute specifies if the keyboard navigation (left/right keys) should be enabled.
 
 ### Migration Notes
 
