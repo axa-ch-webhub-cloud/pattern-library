@@ -1,11 +1,10 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
-
 interface AXACarouselProps {
+  autorotatedisabled?: boolean;
+  autorotatetime?: number;
+  keysenabled?: boolean;
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
 }
 
 declare function createAXACarousel(

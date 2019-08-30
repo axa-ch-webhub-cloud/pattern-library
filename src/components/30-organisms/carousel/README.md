@@ -37,7 +37,14 @@ export default AXACarouselReact;
 ```
 
 ```js
-<AXACarouselReact onClick={handler} />
+<AXACarouselReact
+  autorotatetime="1000"
+  autorotatedisabled="false"
+  keysenabled="true"
+>
+  <span>This is the first slide.</span>
+  <span>This is the second slide.</span>
+</AXACarouselReact>
 ```
 
 ### Pure HTML pages
@@ -56,7 +63,7 @@ Import the carousel-defining script and use a carousel like this:
   <body>
     <axa-carousel
       autorotatetime="1000"
-      autorotatedisabled="true"
+      autorotatedisabled="false"
       keysenabled="true"
     >
       <span>This is the first slide.</span>
