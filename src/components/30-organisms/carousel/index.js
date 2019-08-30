@@ -56,17 +56,16 @@ class AXACarousel extends LitElement {
 
   _setSlideVisibleWithAnimation(slideNumber, animationClass) {
     this.visibleSlide = slideNumber;
+    this._animationWrapperClass = '';
     this.slides.forEach(node => {
       node.style.display = 'none';
     });
 
-    this._animationWrapperClass = ''; // remove all animation classes
-
-    // TODO: add/remove: browser needs time?! evaluate!
     setTimeout(() => {
+      // Browser needs time to render css animation (>0ms). Other workarounds doesnt have effect.
       this._animationWrapperClass = animationClass;
       this.slides[slideNumber].style.display = 'block';
-    }, 100);
+    }, 50);
   }
 
   _nextSlide() {
