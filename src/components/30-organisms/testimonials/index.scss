@@ -1,3 +1,5 @@
+@import '../carousel/index';
+
 .o-testimonials {
   display: inline-block;
   width: 100%;
@@ -42,8 +44,8 @@
     &__inline {
       slot {
         &::slotted(*) {
-          display: block;
           margin: 20px 0;
+          @include defaultAttributesChildElements();
         }
       }
     }

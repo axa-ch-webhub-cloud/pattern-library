@@ -1,3 +1,10 @@
+@mixin defaultAttributesChildElements {
+  @include typo(primary, large, default);
+  display: flex;
+  text-align: center;
+  justify-content: center; // align the dom element itself (f.e. small spans)
+}
+
 .o-carousel {
   display: flex;
   align-items: center;
@@ -18,11 +25,7 @@
     }
 
     ::slotted(*) {
-      //default attributes for carousel content
-      @include typo(primary, large, default);
-      display: flex;
-      text-align: center;
-      justify-content: center; // align the dom element itself (f.e. small spans)
+      @include defaultAttributesChildElements();
     }
   }
 
