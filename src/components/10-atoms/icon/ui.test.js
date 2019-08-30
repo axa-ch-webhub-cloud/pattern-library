@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Icon - show all icons').page(
   `${host}/iframe.html?id=atoms-icon--icon-show-all-icons`

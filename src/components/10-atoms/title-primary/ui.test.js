@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Title primary - basic functionality')
   .page(`${host}/iframe.html?id=atoms-title-primary--title-primary`)

@@ -1,6 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Top content bar - basic functionality').page(
   `${host}/iframe.html?id=molecules-top-content-bar--top-content-bar-default-with-button`

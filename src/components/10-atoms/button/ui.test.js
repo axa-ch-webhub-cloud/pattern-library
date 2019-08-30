@@ -1,6 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 const BUTTON_TAG = 'axa-button';
 const ICON_TAG = 'axa-icon';

@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 const TAG = 'axa-policy-features-item';
 const CLASS = '.m-policy-features-item';
 const defaultWindowHeight = 1000;

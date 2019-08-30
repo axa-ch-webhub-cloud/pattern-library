@@ -2,7 +2,7 @@
 
 import { Selector } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 const axaBlue = 'rgb(0, 0, 143)';
 const primRedFlamingo = 'rgb(240, 118, 98)';
