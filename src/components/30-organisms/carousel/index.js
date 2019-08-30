@@ -54,8 +54,8 @@ class AXACarousel extends LitElement {
       .filter(node => node.nodeType === ELEMENT_NODE);
   }
 
-  _setSlideVisibleWithAnimation(slideNumber, animationClass) {
-    this.visibleSlide = slideNumber;
+  _setSlideVisibleWithAnimation(slideIndex, animationClass) {
+    this.visibleSlideIndex = slideIndex;
     this._animationWrapperClass = '';
     this.slides.forEach(node => {
       node.style.display = 'none';
@@ -64,12 +64,12 @@ class AXACarousel extends LitElement {
     setTimeout(() => {
       // Browser needs time to render css animation (>0ms). Other workarounds doesnt have effect.
       this._animationWrapperClass = animationClass;
-      this.slides[slideNumber].style.display = 'block';
+      this.slides[slideIndex].style.display = 'block';
     }, 50);
   }
 
   _nextSlide() {
-    let nextSlideIndex = this.visibleSlide + 1;
+    let nextSlideIndex = this.visibleSlideIndex + 1;
 
     if (nextSlideIndex > this.slides.length - 1) {
       nextSlideIndex = 0;
@@ -79,7 +79,7 @@ class AXACarousel extends LitElement {
   }
 
   _previousSlide() {
-    let nextSlideIndex = this.visibleSlide - 1;
+    let nextSlideIndex = this.visibleSlideIndex - 1;
 
     if (nextSlideIndex < 0) {
       nextSlideIndex = this.slides.length - 1;
@@ -101,7 +101,7 @@ class AXACarousel extends LitElement {
   _onResize = debounce(() => {
     this._carouselMinHeight = 0;
     this._calculateContainerMinHeight();
-    this._setSlideVisibleWithAnimation(this.visibleSlide, '');
+    this._setSlideVisibleWithAnimation(this.visibleSlideIndex, '');
   }, 200);
 
   // AutoRotate:
@@ -166,14 +166,16 @@ class AXACarousel extends LitElement {
 
   constructor() {
     super();
+    // Props
     this.autorotatedisabled = false;
     this.autorotatetime = 5000;
-    this.autoRotateTimerID = null;
     this.keysenabled = false;
-    this.slides = null;
-    this.visibleSlide = 0;
     this._animationWrapperClass = '';
     this._carouselMinHeight = 0;
+    // Internal
+    this.autoRotateTimerID = null;
+    this.slides = null;
+    this.visibleSlideIndex = 0;
     this.swiper = null;
   }
 

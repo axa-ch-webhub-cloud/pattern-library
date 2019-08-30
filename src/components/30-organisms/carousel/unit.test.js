@@ -92,7 +92,7 @@ describe('AXACarousel', () => {
       const visibleSlideIndex = 0;
       const expectedNextSlideIndex = visibleSlideIndex + 1;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
-      AXACarousel.prototype.visibleSlide = visibleSlideIndex;
+      AXACarousel.prototype.visibleSlideIndex = visibleSlideIndex;
       AXACarousel.prototype.slides = { length: 2 };
 
       AXACarousel.prototype._nextSlide();
@@ -107,7 +107,7 @@ describe('AXACarousel', () => {
       const visibleSlideIndex = 2;
       const expectedNextSlideIndex = 0;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
-      AXACarousel.prototype.visibleSlide = visibleSlideIndex;
+      AXACarousel.prototype.visibleSlideIndex = visibleSlideIndex;
       AXACarousel.prototype.slides = { length: 2 };
 
       AXACarousel.prototype._nextSlide();
@@ -121,7 +121,7 @@ describe('AXACarousel', () => {
       const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 0;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
-      AXACarousel.prototype.visibleSlide = visibleSlideIndex;
+      AXACarousel.prototype.visibleSlideIndex = visibleSlideIndex;
       AXACarousel.prototype.slides = { length: 0 };
 
       AXACarousel.prototype._nextSlide();
@@ -137,7 +137,7 @@ describe('AXACarousel', () => {
       const visibleSlideIndex = 2;
       const expectedPreviousSlideIndex = visibleSlideIndex - 1;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
-      AXACarousel.prototype.visibleSlide = visibleSlideIndex;
+      AXACarousel.prototype.visibleSlideIndex = visibleSlideIndex;
       AXACarousel.prototype.slides = { length: 2 };
 
       AXACarousel.prototype._previousSlide();
@@ -152,7 +152,7 @@ describe('AXACarousel', () => {
       const visibleSlideIndex = 0;
       const expectedPreviousSlideIndex = 2;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
-      AXACarousel.prototype.visibleSlide = visibleSlideIndex;
+      AXACarousel.prototype.visibleSlideIndex = visibleSlideIndex;
       AXACarousel.prototype.slides = { length: expectedPreviousSlideIndex + 1 };
 
       AXACarousel.prototype._previousSlide();
@@ -166,7 +166,7 @@ describe('AXACarousel', () => {
       const mockedSetSlideVisibleWithAnimation = jest.fn();
       const visibleSlideIndex = 0;
       AXACarousel.prototype._setSlideVisibleWithAnimation = mockedSetSlideVisibleWithAnimation;
-      AXACarousel.prototype.visibleSlide = visibleSlideIndex;
+      AXACarousel.prototype.visibleSlideIndex = visibleSlideIndex;
       AXACarousel.prototype.slides = { length: 0 };
 
       AXACarousel.prototype._previousSlide();
