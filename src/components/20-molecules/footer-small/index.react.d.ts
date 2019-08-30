@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Item {
+export interface Item {
   text: string;
   link?: string;
 }

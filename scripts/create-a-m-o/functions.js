@@ -230,9 +230,9 @@ const createFiles = (store, a, m, o, done) => () => {
     outdent`
     import React from 'react';
 
-    type Variant = 'foo' | 'bar';
+    export type Variant = 'foo' | 'bar';
 
-    interface ${className}Props {
+    export interface ${className}Props {
       className?: string;
       variant?: Variant;
       onClick?: () => void;
@@ -242,7 +242,7 @@ const createFiles = (store, a, m, o, done) => () => {
       createElement: typeof React.createElement
     ): React.ComponentType<${className}Props>;
 
-    export = create${className};
+    export default create${className};
     `,
     'utf8',
   );
