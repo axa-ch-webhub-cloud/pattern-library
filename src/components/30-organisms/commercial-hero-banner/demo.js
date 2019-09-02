@@ -20,7 +20,7 @@ storyAXACommercialHeroBanner.addParameters({
   },
 });
 
-storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
+storyAXACommercialHeroBanner.add('With Badges', () => {
   const variant = radios(
     'Variant',
     {
