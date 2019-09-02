@@ -181,7 +181,7 @@ fixture('Commercial Hero Banner - Check addons')
     await t.maximizeWindow();
   });
 
-test.only('should render badge and addon', async t => {
+test('should render badge and addon', async t => {
   const $axaHeroBanner = await Selector(TAG);
 
   const $addon = $axaHeroBanner.find(
