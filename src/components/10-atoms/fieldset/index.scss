@@ -15,7 +15,7 @@ axa-fieldset {
     flex-wrap: wrap;
     margin-top: -$fieldset-vertical-margin;
 
-    > *:not(:last-child):not([nogap]) {
+    > *:not([nogap]) {
       margin-right: $fieldset-horizontal-margin;
     }
 
