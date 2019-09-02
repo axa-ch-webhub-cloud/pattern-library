@@ -53,7 +53,7 @@ describe('AXACarousel', () => {
       };
       AXACarousel.prototype._getSlides(mockedShadowRoot);
 
-      expect(mockedQuerySelector).toHaveBeenCalledWith('.o-carousel__slot');
+      expect(mockedQuerySelector).toHaveBeenCalledWith('.js-carousel__slot');
     });
 
     test('_setSlideVisibleWithAnimation() should set _animationWrapperClass', () => {

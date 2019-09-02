@@ -62,7 +62,7 @@ class AXACarousel extends LitElement {
 
   _getSlides(usedShadowRoot = this.shadowRoot) {
     // usedShadowRoot as a property to encapsulate for unit tests
-    const slots = usedShadowRoot.querySelector('.o-carousel__slot');
+    const slots = usedShadowRoot.querySelector('.js-carousel__slot');
 
     return slots
       .assignedNodes({ flatten: true })
@@ -206,7 +206,7 @@ class AXACarousel extends LitElement {
           @click="${this.handlePreviousButtonClick}"
         ></button>
         <div class="o-carousel__wrapper ${this._animationWrapperClass}">
-          <slot class="o-carousel__slot"></slot>
+          <slot class="o-carousel__slot js-carousel__slot"></slot>
         </div>
         <button
           type="button"
