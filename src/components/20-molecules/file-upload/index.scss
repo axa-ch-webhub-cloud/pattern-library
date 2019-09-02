@@ -1,0 +1,181 @@
+$file-upload-dropzone-border-width: 2px !default;
+$file-upload-opacity: 0.25 !default;
+$file-upload-dropzone-border: $file-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
+$file-upload-icon-size: 36px !default;
+
+@mixin iconSize($property) {
+  svg{
+    height: $property;
+    width: $property;
+  }
+}
+
+.m-file-upload {
+  @include typo(primary, medium);
+
+  &__dropzone {
+    box-sizing: border-box;
+    padding: 30px 0;
+    height: 290px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    border: $file-upload-dropzone-border;
+  }
+
+  &__dropzone_dragover {
+    opacity: $file-upload-opacity;
+  }
+
+  &__dropzone-file-overview {
+    padding: 22px 7px 0px 22px;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow-y: scroll;
+    border-style: solid;
+  }
+
+  &__or {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $color-prim-red-flamingo;
+    margin: 0;
+  }
+
+  &__information {
+    margin: 0;
+  }
+
+  &__input {
+    fill: currentColor;
+  }
+
+  &__img-figure {
+    position: relative;
+    margin: 0;
+    margin-right: 15px;
+    margin-bottom: 20px;
+  }
+
+  &__icon-hover-area {
+    position: relative;
+    height: 80px;
+    width: 120px;
+  }
+
+  &__icon-hover-area:hover {
+    cursor: pointer;
+    .m-file-upload__img-element {
+      opacity: $file-upload-opacity;
+    }
+    .m-file-upload__file-element {
+      opacity: $file-upload-opacity;
+    }
+    .m-file-upload__icon-delete {
+      display: block;
+    }
+    .m-file-upload__icon-error {
+      display: none;
+    }
+  }
+
+  &__img-element {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__file-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    @include iconSize($file-upload-icon-size)
+  }
+
+  &__icon-layer {
+    position: absolute;
+    height: 36px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__icon-delete {
+    display: none;
+    color: $color-axa-blue;
+    fill: currentColor;
+    @include iconSize($file-upload-icon-size)
+  }
+
+  &__icon-error {
+    color: $color-sec-shy-tomato;
+    fill: currentColor;
+    @include iconSize($file-upload-icon-size)
+  }
+
+  &__img-caption {
+    width: 120px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    cursor: default;
+  }
+
+  &__img-caption-error {
+    color: $color-sec-shy-tomato;
+  }
+
+  // when hovering over hover-area, hide the filname
+  &__icon-hover-area:hover ~ .m-file-upload__img-caption {
+    .m-file-upload__filename {
+      display: none;
+    }
+  }
+
+  // show delete-status instead of filename
+  &__icon-hover-area:hover ~ .m-file-upload__img-caption[data-status]:after {
+      content: attr(data-status);
+  }
+
+  // color delete-status and ellipsis
+  &__icon-hover-area:hover ~ .m-file-upload__img-caption[data-status] {
+    color: $color-axa-blue;
+  }
+
+  &__add-more {
+    position: relative;
+    height: 80px;
+    width: 120px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: $file-upload-dropzone-border;
+    color: $color-prim-gray-dusty;
+    .m-file-upload__icon-wrapper {
+      height: 100%;
+      width: 100%;
+      display: block;
+      position: relative;
+    }
+    .m-image-upload__icon-layer {
+      fill: currentColor;
+      @include iconSize($file-upload-icon-size)
+    }
+    .m-file-upload__img-caption {
+      width: 116px;
+      margin-top: 2px;
+      position: block;
+    }
+  }
+
+  &__error-wrapper {
+    color: $color-validation-error;
+  }
+}

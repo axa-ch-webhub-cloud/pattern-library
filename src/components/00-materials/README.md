@@ -42,33 +42,41 @@ this.render() {
 
 (Complete list is visible [here](https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/icons))
 
-| icons         |
-| ------------- |
-| ArrowRightSvg |
-| CaretSvg      |
-| CollapseSvg   |
-| DateInputSvg  |
-| DocumentSvg   |
-| DownloadSvg   |
-| EmailSvg      |
-| ExpandSvg     |
-| FacebookSvg   |
-| InstagramSvg  |
-| LinkedinSvg   |
-| MobileSvg     |
-| PhoneSvg      |
-| PlusSvg       |
-| SearchSvg     |
-| TwitterSvg    |
-| UploadSvg     |
-| XingSvg       |
-| YoutubeSvg    |
+| icons            |
+| ---------------- |
+| AddSvg           |
+| ArrowRightSvg    |
+| AttachFileSvg    |
+| CancelSvg        |
+| CaretSvg         |
+| CheckCircleSvg   |
+| ClearSvg         |
+| CloudUploadSvg   |
+| CollapseSvg      |
+| DateInputSvg     |
+| DeleteForeverSvg |
+| DocumentSvg      |
+| DownloadSvg      |
+| EmailSvg         |
+| ExpandSvg        |
+| FacebookSvg      |
+| InfoFlatSvg      |
+| InfoSvg          |
+| InstagramSvg     |
+| LinkedinSvg      |
+| MobileSvg        |
+| PhoneSvg         |
+| PlusSvg          |
+| SearchSvg        |
+| TwitterSvg       |
+| UploadSvg        |
+| XingSvg          |
+| YoutubeSvg       |
 
 | images         |
 | -------------- |
 | AxaLogoSvg     |
 | AxaLogoOpenSvg |
-
 
 ## Contribution
 
