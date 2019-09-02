@@ -139,4 +139,4 @@ The size of the svg will be set to:
 
 ### description
 
-A text that describes your feature.
+A text that describes your feature. 
