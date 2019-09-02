@@ -175,21 +175,27 @@ test('should use correct typography for desktop view', async t => {
 
 fixture('Commercial Hero Banner - Check addons')
   .page(
-    `${host}/iframe.html?id=organisms-commercial-hero-banner-demos--commercial-hero-banner`
+    `${host}/iframe.html?id=organisms-commercial-hero-banner-demos--with-badges`
   )
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render badge and addon', async t => {
+test.only('should render badge and addon', async t => {
   const $axaHeroBanner = await Selector(TAG);
-  const $badge = $axaHeroBanner.find('[slot="badge"]');
+
+  const $addon = $axaHeroBanner.find(
+    '.o-commercial-hero-banner-demo__addon-example'
+  );
+  await t.expect($addon.visible).ok();
+
+  const $badge = $axaHeroBanner.find(
+    '.o-commercial-hero-banner-demo__badge-wrapper'
+  );
   await t.expect($badge.visible).ok();
   await t
     .expect($badge.getStyleProperty('background-color'))
     .eql('rgb(201, 20, 50)');
-  const $addon = $axaHeroBanner.find('[slot="addon"]');
-  await t.expect($addon.visible).ok();
 });
 
 async function _getCategoryNode(t) {
