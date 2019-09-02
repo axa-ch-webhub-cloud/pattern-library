@@ -31,6 +31,21 @@ class AXACarousel extends LitElement {
     };
   }
 
+  constructor() {
+    super();
+    // Props
+    this.autorotatedisabled = false;
+    this.autorotatetime = 5000;
+    this.keysenabled = false;
+    this._animationWrapperClass = '';
+    this._carouselMinHeight = 0;
+    // Internal
+    this.autoRotateTimerID = null;
+    this.slides = null;
+    this.visibleSlideIndex = 0;
+    this.swiper = null;
+  }
+
   // public methods
 
   handleNextButtonClick() {
@@ -130,7 +145,11 @@ class AXACarousel extends LitElement {
 
   _initSwipe(usedElement = this) {
     // usedElement as a property to encapsulate for unit tests
-    this.swiper = new Swipe(usedElement, usedElement._onSwipeLeft, usedElement._onSwipeRight);
+    this.swiper = new Swipe(
+      usedElement,
+      usedElement._onSwipeLeft,
+      usedElement._onSwipeRight
+    );
     this.swiper.run();
   }
 
@@ -163,21 +182,6 @@ class AXACarousel extends LitElement {
       this.handleNextButtonClick();
     }
   };
-
-  constructor() {
-    super();
-    // Props
-    this.autorotatedisabled = false;
-    this.autorotatetime = 5000;
-    this.keysenabled = false;
-    this._animationWrapperClass = '';
-    this._carouselMinHeight = 0;
-    // Internal
-    this.autoRotateTimerID = null;
-    this.slides = null;
-    this.visibleSlideIndex = 0;
-    this.swiper = null;
-  }
 
   firstUpdated() {
     this.slides = this._getSlides();
