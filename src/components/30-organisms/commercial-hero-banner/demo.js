@@ -76,6 +76,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
         color: white;
         height: 100px;
         width: 200px;
+        margin-top: 20px;
       }
 
       @media (min-width: 576px) {
@@ -91,6 +92,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
 
       @media (min-width: 992px) {
         .o-commercial-hero-banner-demo__badge-wrapper {
+          margin-top: 0;
           top: 44px;
           width: 160px;
           height: 160px;
