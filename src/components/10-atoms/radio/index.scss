@@ -102,6 +102,10 @@ axa-radio {
       cursor: pointer;
       width: inherit;
 
+      &.focus {
+        border: 2px solid $color-axa-blue;
+      }
+
       &:hover {
         border-color: $color-axa-blue;
         color: $color-axa-blue;

@@ -162,7 +162,7 @@ class AXARadio extends NoShadowDOM {
     this.state.isControlled = isControlled && isReact;
 
     return html`
-      <label class="a-radio__wrapper">
+      <label class="a-radio__wrapper js-radio__wrapper">
         <input
           id="${refId}"
           class="a-radio__input"
@@ -172,8 +172,8 @@ class AXARadio extends NoShadowDOM {
           value="${value}"
           ?disabled="${disabled}"
           @change="${this.handleChange}"
-          @focus="${this.onFocus}"
-          @blur="${this.onBlur}"
+          @focus="${this.handleFocus}"
+          @blur="${this.handleBlur}"
         />
         ${button
           ? html``
@@ -188,6 +188,7 @@ class AXARadio extends NoShadowDOM {
 
   firstUpdated() {
     this.input = this.querySelector('input');
+    this.wrapper = this.querySelector('.js-radio__wrapper');
     const { name, button, noAutoWidth } = this;
     const ourButton = this.querySelector('.a-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
@@ -240,6 +241,16 @@ class AXARadio extends NoShadowDOM {
     if (radioButtonGroup[name].size === 0) {
       delete radioButtonGroup[name]; // help GC
     }
+  }
+
+  handleFocus(e) {
+    this.wrapper.classList.add('focus');
+    this.onFocus(e);
+  }
+
+  handleBlur(e) {
+    this.wrapper.classList.remove('focus');
+    this.onBlur(e);
   }
 }
 
