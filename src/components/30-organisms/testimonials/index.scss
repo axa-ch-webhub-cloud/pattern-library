@@ -23,12 +23,12 @@
   }
 
   &__subtitle {
-    @include typo(primary, default, default);
+    @include typo();
     margin: 20px 30px 0 30px;
     text-align: center;
 
     @include breakpoint($mediaquery-sm-up) {
-      @include typo(primary, medium, default);
+      @include typo(primary, medium);
     }
   }
 
@@ -38,7 +38,7 @@
       padding-bottom: 80px;
     }
     @include breakpoint($mediaquery-lg-up) {
-      // padding: 0 15px; //Bug in V1: lg not working. it has sm paddings
+      padding: 30px 15px;
     }
 
     &__inline {
@@ -49,10 +49,5 @@
         }
       }
     }
-  }
-
-  axa-carousel {
-    width: 100%;
-    margin: 0 10px;
   }
 }
