@@ -1,6 +1,6 @@
 # Carousel
 
-Every child is renderd as a slide. Only one child is visible at one time.
+Every child is rendered as a slide. Only one child is visible at one time.
 
 ## Usage
 
