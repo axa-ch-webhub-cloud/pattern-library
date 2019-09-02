@@ -208,13 +208,13 @@ This slot is meant for a DOM node placed at the bottom. It should stay at the ve
 Here is a complete example of how an addon can look, including the positioning:
 
 ```html
-<div slot="addon" class="o-commercial-hero-banner-demo__addon">
+<div slot="addon" class="o-commercial-hero-banner-demo__addon-example">
   This could be the customer review badge
 </div>
 ```
 
 ```css
-.o-commercial-hero-banner-demo__addon {
+.o-commercial-hero-banner-demo__addon-example {
   display: block;
   background: blue;
   color: white;
@@ -223,7 +223,7 @@ Here is a complete example of how an addon can look, including the positioning:
 }
 
 @media (min-width: 992px) {
-  .o-commercial-hero-banner-demo__addon {
+  .o-commercial-hero-banner-demo__addon-example {
     position: absolute;
     top: 380px;
     right: 20px;
@@ -231,7 +231,7 @@ Here is a complete example of how an addon can look, including the positioning:
 }
 
 @media (min-width: 1200px) {
-  .o-commercial-hero-banner-demo__addon {
+  .o-commercial-hero-banner-demo__addon-example {
     right: 150px;
   }
 }

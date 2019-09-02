@@ -70,7 +70,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
         font-size: 16px;
       }
 
-      .o-commercial-hero-banner-demo__addon {
+      .o-commercial-hero-banner-demo__addon-example {
         display: block;
         background: blue;
         color: white;
@@ -101,7 +101,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
           line-height: 24px;
         }
 
-        .o-commercial-hero-banner-demo__addon {
+        .o-commercial-hero-banner-demo__addon-example {
           position: absolute;
           top: 380px;
           right: 20px;
@@ -113,7 +113,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
           right: 150px;
         }
 
-        .o-commercial-hero-banner-demo__addon {
+        .o-commercial-hero-banner-demo__addon-example {
           right: 150px;
         }
       }
@@ -138,13 +138,15 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
         size="large"
         >GET A QUOTE</axa-button-link
       >
-      <div slot="badge" class="o-commercial-hero-banner-demo__badge-wrapper">
-        <p class="o-commercial-hero-banner-demo__badge-content">
-          Get up to CHF 100 discount
-        </p>
-      </div>
-      <div slot="addon" class="o-commercial-hero-banner-demo__addon">
-        This could be the customer review badge
+      <div slot="addon-section">
+        <div class="o-commercial-hero-banner-demo__badge-wrapper">
+          <p class="o-commercial-hero-banner-demo__badge-content">
+            Get up to CHF 100 discount
+          </p>
+        </div>
+        <div class="o-commercial-hero-banner-demo__addon-example">
+          This could be the customer review badge
+        </div>
       </div>
     </axa-commercial-hero-banner>
   `;
