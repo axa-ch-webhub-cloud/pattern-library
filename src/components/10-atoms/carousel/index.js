@@ -196,21 +196,21 @@ class AXACarousel extends LitElement {
   render() {
     return html`
       <article
-        id="o-carousel-main"
-        class="o-carousel"
+        id="a-carousel-main"
+        class="a-carousel"
         style="min-height: ${this._carouselMinHeight}px;"
       >
         <button
           type="button"
-          class="o-carousel__arrow o-carousel__arrow-left"
+          class="a-carousel__arrow a-carousel__arrow-left"
           @click="${this.handlePreviousButtonClick}"
         ></button>
-        <div class="o-carousel__wrapper ${this._animationWrapperClass}">
-          <slot class="o-carousel__slot js-carousel__slot"></slot>
+        <div class="a-carousel__wrapper ${this._animationWrapperClass}">
+          <slot class="a-carousel__slot js-carousel__slot"></slot>
         </div>
         <button
           type="button"
-          class="o-carousel__arrow o-carousel__arrow-right"
+          class="a-carousel__arrow a-carousel__arrow-right"
           @click="${this.handleNextButtonClick}"
         ></button>
       </article>
