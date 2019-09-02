@@ -41,16 +41,9 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
       .o-commercial-hero-banner-demo__badge-wrapper {
         position: absolute;
         right: 20px;
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         padding: 10px;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
         justify-content: center;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
         flex-direction: column;
         text-align: center;
         border-radius: 50% 50% 50% 0;
