@@ -173,6 +173,31 @@ test('should use correct typography for desktop view', async t => {
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
+fixture('Commercial Hero Banner - Check addons')
+  .page(
+    `${host}/iframe.html?id=organisms-commercial-hero-banner-demos--with-badges`
+  )
+  .beforeEach(async t => {
+    await t.maximizeWindow();
+  });
+
+test('should render badge and addon', async t => {
+  const $axaHeroBanner = await Selector(TAG);
+
+  const $addon = $axaHeroBanner.find(
+    '.o-commercial-hero-banner-demo__addon-example'
+  );
+  await t.expect($addon.visible).ok();
+
+  const $badge = $axaHeroBanner.find(
+    '.o-commercial-hero-banner-demo__badge-wrapper'
+  );
+  await t.expect($badge.visible).ok();
+  await t
+    .expect($badge.getStyleProperty('background-color'))
+    .eql('rgb(201, 20, 50)');
+});
+
 async function _getCategoryNode(t) {
   const categoryNode = await Selector(TAG).find('[slot="category"]');
   await t.expect(categoryNode.exists).ok();
@@ -190,6 +215,7 @@ async function _getContentNode(t) {
   await t.expect(contentNode.exists).ok();
   return contentNode;
 }
+
 async function _getDisclaimerNode(t) {
   const disclaimerNode = await Selector(TAG).find('[slot="disclaimer"]');
   await t.expect(disclaimerNode.exists).ok();

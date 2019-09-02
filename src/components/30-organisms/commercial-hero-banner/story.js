@@ -59,7 +59,6 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
       >
     </axa-commercial-hero-banner
   `;
-
   render(template, wrapper);
   return wrapper;
 });
