@@ -2,7 +2,7 @@ import React from 'react';
 
 type Variant = 'axa-blue' | 'wild-sand' | 'white';
 
-interface AXAPolicyFeaturesProps {
+export interface AXAPolicyFeaturesProps {
   title: string;
   variant?: Variant;
   className?: string;
@@ -12,7 +12,7 @@ export function createAXAPolicyFeatures(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAPolicyFeaturesProps>;
 
-interface AXAPolicyFeaturesItemProps {
+export interface AXAPolicyFeaturesItemProps {
   title: string;
   description: string;
   icon?: string;
