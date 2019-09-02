@@ -40,6 +40,7 @@ const applyEffect = self =>
     setTimeout(() => {
       const datepickerWrapper = self.querySelector('.js-datepicker__wrap');
       if (!datepickerWrapper) {
+        resolve();
         return;
       }
       const effect = 'm-datepicker__wrap-effect';
@@ -447,6 +448,12 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
+  updated(changedProperties) {
+    if (changedProperties.has('open') && this.open) {
+      applyEffect(this);
+    }
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener('keydown', this.handleWindowKeyDown);
@@ -530,7 +537,6 @@ class AXADatepicker extends NoShadowDOM {
       }
       this.open = true;
       openDatepickerInstance = this;
-      applyEffect(this);
     } else {
       openDatepickerInstance = null;
       applyEffect(this).then(() => {
