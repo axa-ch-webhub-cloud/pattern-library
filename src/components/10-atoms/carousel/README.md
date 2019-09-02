@@ -11,7 +11,7 @@ npm install @axa-ch/carousel
 ```
 
 ```js
-import '@axa-ch/carousel';
+import 'src/components/10-atoms/carousel/lib/index';
 
 <axa-carousel
   autorotatetime="1000"
