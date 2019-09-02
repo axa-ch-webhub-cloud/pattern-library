@@ -13,7 +13,7 @@ type Variant =
   | 'inverted-green-viridian'
   | 'inverted-blue-teal';
 
-interface AXAButtonProps {
+export interface AXAButtonProps {
   type?: ButtonType;
   variant?: Variant;
   icon?: Icon;
@@ -29,4 +29,4 @@ declare function createAXAButton(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAButtonProps>;
 
-export = createAXAButton;
+export default createAXAButton;

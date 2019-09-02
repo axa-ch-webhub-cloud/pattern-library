@@ -2,7 +2,7 @@ import React from 'react';
 
 type Variant = 'warning';
 
-interface AXATopContentBarProps {
+export interface AXATopContentBarProps {
   variant?: Variant;
   ctatext: string;
   href?: string;
@@ -14,4 +14,4 @@ declare function createAXATopContentBar(
   createElement: typeof React.createElement
 ): React.ComponentType<AXATopContentBarProps>;
 
-export = createAXATopContentBar;
+export default createAXATopContentBar;

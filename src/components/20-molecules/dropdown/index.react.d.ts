@@ -11,7 +11,7 @@ type AXADropdownChangeEvent<T> = {
   target: Item<T>;
 };
 
-interface AXADropdownProps<T = number | string> {
+export interface AXADropdownProps<T = number | string> {
   items: Array<Item<T>>;
   embedded?: boolean;
   refId?: string;
@@ -35,4 +35,4 @@ declare function createAXADropdown(
   createElement: typeof React.createElement
 ): React.ComponentType<AXADropdownProps>;
 
-export = createAXADropdown;
+export default createAXADropdown;

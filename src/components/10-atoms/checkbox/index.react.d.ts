@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXACheckboxProps {
+export interface AXACheckboxProps {
   value?: string;
   name?: string;
   label?: string;
@@ -19,4 +19,4 @@ declare function createAXACheckbox(
   createElement: typeof React.createElement
 ): React.ComponentType<AXACheckboxProps>;
 
-export = createAXACheckbox;
+export default createAXACheckbox;

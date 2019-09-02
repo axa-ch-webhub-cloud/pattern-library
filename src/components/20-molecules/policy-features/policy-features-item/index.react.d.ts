@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXAPolicyFeaturesItemProps {
+export interface AXAPolicyFeaturesItemProps {
   title: string;
   description: string;
   icon?: string;
@@ -11,4 +11,4 @@ declare function createAXAPolicyFeaturesItem(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAPolicyFeaturesItemProps>;
 
-export = createAXAPolicyFeaturesItem;
+export default createAXAPolicyFeaturesItem;

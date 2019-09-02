@@ -3,7 +3,7 @@ import { Icon } from '@axa-ch/icon/lib/index.d';
 
 type Variant = 'secondary' | 'red' | 'inverted';
 
-interface AXAInputFileProps {
+export interface AXAInputFileProps {
   variant?: Variant;
   icon?: Icon;
   id?: String;
@@ -23,4 +23,4 @@ declare function createAXAInputFile(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAInputFileProps>;
 
-export = createAXAInputFile;
+export default createAXAInputFile;

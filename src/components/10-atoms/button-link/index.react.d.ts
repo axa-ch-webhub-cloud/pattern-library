@@ -12,7 +12,7 @@ type Variant =
   | 'inverted-green-viridian'
   | 'inverted-blue-teal';
 
-interface AXAButtonLinkProps {
+export interface AXAButtonLinkProps {
   href?: string;
   external?: boolean;
   size?: Size;
@@ -30,4 +30,4 @@ declare function createAXAButtonLink(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAButtonLinkProps>;
 
-export = createAXAButtonLink;
+export default createAXAButtonLink;

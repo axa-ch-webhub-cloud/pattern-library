@@ -35,4 +35,4 @@ declare function createAXALink(
   createElement: typeof React.createElement
 ): React.ComponentType<AXALinkProps>;
 
-export = createAXALink;
+export default createAXALink;

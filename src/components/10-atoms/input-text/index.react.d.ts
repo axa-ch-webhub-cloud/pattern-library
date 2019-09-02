@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXAInputTextProps {
+export interface AXAInputTextProps {
   refId?: string;
   name: string;
   label?: string;
@@ -25,4 +25,4 @@ declare function createAXAInputText(
   createElement: typeof React.createElement
 ): React.ComponentType<AXAInputTextProps>;
 
-export = createAXAInputText;
+export default createAXAInputText;
