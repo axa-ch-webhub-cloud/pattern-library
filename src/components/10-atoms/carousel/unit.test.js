@@ -287,6 +287,7 @@ describe('AXACarousel', () => {
   describe('lit-element lifecycle', () => {
     test('firstUpdated() should call methods (with correct arguments)', () => {
       AXACarousel.prototype._onResize = 'thisIsACallback';
+      AXACarousel.prototype.inlineStyles = jest.fn();
       AXACarousel.prototype._getSlides = jest.fn();
       AXACarousel.prototype._calculateContainerMinHeight = jest.fn();
       AXACarousel.prototype._setSlideVisibleWithAnimation = jest.fn();
@@ -297,6 +298,9 @@ describe('AXACarousel', () => {
 
       AXACarousel.prototype.firstUpdated();
 
+      expect(AXACarousel.prototype.inlineStyles).toHaveBeenCalledWith(
+        'childStyles'
+      );
       expect(AXACarousel.prototype._getSlides).toHaveBeenCalled();
       expect(
         AXACarousel.prototype._calculateContainerMinHeight
@@ -308,24 +312,6 @@ describe('AXACarousel', () => {
       expect(AXACarousel.prototype._initKeyNavigation).toHaveBeenCalled();
       expect(AXACarousel.prototype._startAutoRotate).toHaveBeenCalled();
       expect(global.addEventListener).toHaveBeenCalledWith(
-        'resize',
-        'thisIsACallback'
-      );
-    });
-
-    test('disconnectedCallback() should call methods', () => {
-      AXACarousel.prototype._onResize = 'thisIsACallback';
-      AXACarousel.prototype._stopAutoRotate = jest.fn();
-      AXACarousel.prototype._terminateSwipe = jest.fn();
-      AXACarousel.prototype._terminateKeyNavigation = jest.fn();
-      global.removeEventListener = jest.fn();
-
-      AXACarousel.prototype.disconnectedCallback();
-
-      expect(AXACarousel.prototype._stopAutoRotate).toHaveBeenCalled();
-      expect(AXACarousel.prototype._terminateSwipe).toHaveBeenCalled();
-      expect(AXACarousel.prototype._terminateKeyNavigation).toHaveBeenCalled();
-      expect(global.removeEventListener).toHaveBeenCalledWith(
         'resize',
         'thisIsACallback'
       );
