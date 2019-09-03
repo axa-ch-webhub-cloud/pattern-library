@@ -19,6 +19,10 @@ axa-fieldset {
       margin-right: $fieldset-horizontal-margin;
     }
 
+    > *[nogap]:not(:first-child) {
+      margin-left: -2px;
+    }
+
     > * {
       margin-top: $fieldset-vertical-margin;
     }

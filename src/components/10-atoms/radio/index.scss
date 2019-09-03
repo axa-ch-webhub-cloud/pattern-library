@@ -2,6 +2,12 @@ axa-radio {
   @include typo(primary, default);
   display: table;
   flex: none;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+
+  &[focus] {
+    border-color: $color-axa-blue;
+  }
 
   *, *::after, *::before {
     box-sizing: border-box;
@@ -101,10 +107,6 @@ axa-radio {
       padding: 0 20px;
       cursor: pointer;
       width: inherit;
-
-      &.focus {
-        border: 2px solid $color-axa-blue;
-      }
 
       &:hover {
         border-color: $color-axa-blue;
