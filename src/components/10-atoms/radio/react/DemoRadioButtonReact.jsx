@@ -84,6 +84,7 @@ const DemoRadiobuttonsControlled = () => {
           onBlur={handleRadioButtonBlur(1)}
           onChange={handleRadioButtonChange}
           button={button}
+          noGap
         />
       </AXAFieldset>
       <div

@@ -46,6 +46,10 @@ class AXARadio extends NoShadowDOM {
           },
         },
       },
+      focus: {
+        type: Boolean,
+        reflect: true,
+      },
       isReact: { type: Boolean },
     };
   }
@@ -98,6 +102,8 @@ class AXARadio extends NoShadowDOM {
       // ... and select ourselves
       this.checked = true; // causes re-render
 
+      // prevent bubbling
+      event.stopPropagation();
       // fire a custom 'change' event on the component itself
       fireCustomEvent('change', { checked: isChecked, value, name }, this);
       return;
@@ -133,6 +139,7 @@ class AXARadio extends NoShadowDOM {
     this.disabled = false;
     this.button = false;
     this.noGap = false;
+    this.focus = false;
     this.isReact = false;
     this.onFocus = () => {};
     this.onBlur = () => {};
@@ -162,7 +169,7 @@ class AXARadio extends NoShadowDOM {
     this.state.isControlled = isControlled && isReact;
 
     return html`
-      <label class="a-radio__wrapper">
+      <label class="a-radio__wrapper js-radio__wrapper">
         <input
           id="${refId}"
           class="a-radio__input"
@@ -172,8 +179,8 @@ class AXARadio extends NoShadowDOM {
           value="${value}"
           ?disabled="${disabled}"
           @change="${this.handleChange}"
-          @focus="${this.onFocus}"
-          @blur="${this.onBlur}"
+          @focus="${this.handleFocus}"
+          @blur="${this.handleBlur}"
         />
         ${button
           ? html``
@@ -188,13 +195,15 @@ class AXARadio extends NoShadowDOM {
 
   firstUpdated() {
     this.input = this.querySelector('input');
+    this.wrapper = this.querySelector('.js-radio__wrapper');
     const { name, button, noAutoWidth } = this;
     const ourButton = this.querySelector('.a-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
     radioButtonGroup[name].add(ourButton);
 
     if (button) {
-      setTimeout(() => {
+      // give DOM some time to paint before measuring width
+      window.requestAnimationFrame(() => {
         const { width: labelTextWidth } = this.querySelector(
           '.a-radio__content'
         ).getBoundingClientRect();
@@ -203,12 +212,12 @@ class AXARadio extends NoShadowDOM {
         const width = noAutoWidth ? labelTextWidth : maxWidth[name];
         radioButtonGroup[name].forEach(radioButton => {
           // special case 'noAutoWidth' only impose minWidth on ourselves
-          // (suppresses length changes .a.k.a 'punping effect' between
+          // (suppresses length changes .a.k.a 'pumping effect' between
           // selected/unselected state due to font-weight changes)
           if (noAutoWidth && radioButton !== ourButton) return;
           radioButton.style.minWidth = `${width + WIDTH_SLACK}px`;
         });
-      }, /* give DOM some time to paint before measuring width */ 1);
+      });
     }
   }
 
@@ -240,6 +249,16 @@ class AXARadio extends NoShadowDOM {
     if (radioButtonGroup[name].size === 0) {
       delete radioButtonGroup[name]; // help GC
     }
+  }
+
+  handleFocus(e) {
+    this.focus = true;
+    this.onFocus(e);
+  }
+
+  handleBlur(e) {
+    this.focus = false;
+    this.onBlur(e);
   }
 }
 
