@@ -196,7 +196,6 @@ class AXACarousel extends LitElement {
   render() {
     return html`
       <article
-        id="a-carousel-main"
         class="a-carousel"
         style="min-height: ${this._carouselMinHeight}px;"
       >
