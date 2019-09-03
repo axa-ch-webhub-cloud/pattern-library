@@ -1,16 +1,18 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import Swipe from './swipe';
 import debounce from '../../../utils/debounce';
+import InlineStyles from '../../../utils/inline-styles';
+import childStyles from './child.scss';
 
 const ELEMENT_NODE = 1;
 const ANIMATION_LEFT_CLASS = 'animation-left';
 const ANIMATION_RIGHT_CLASS = 'animation-right';
 
-class AXACarousel extends LitElement {
+class AXACarousel extends InlineStyles {
   static get tagName() {
     return 'axa-carousel';
   }
@@ -19,6 +21,10 @@ class AXACarousel extends LitElement {
     return css`
       ${unsafeCSS(styles)}
     `;
+  }
+
+  static get childStyles() {
+    return childStyles;
   }
 
   static get properties() {
@@ -184,6 +190,7 @@ class AXACarousel extends LitElement {
   };
 
   firstUpdated() {
+    this.inlineStyles('childStyles');
     this.slides = this._getSlides();
     this._calculateContainerMinHeight();
     this._setSlideVisibleWithAnimation(0);

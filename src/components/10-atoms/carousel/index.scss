@@ -1,10 +1,3 @@
-@mixin defaultAttributesChildElements {
-  @include typo(primary, large, default);
-  display: flex;
-  text-align: center;
-  justify-content: center; // align the dom element itself (f.e. small spans)
-}
-
 .a-carousel {
   display: flex;
   align-items: center;
@@ -22,10 +15,6 @@
 
     @include breakpoint($mediaquery-sm-up) {
       margin: 0 30px;
-    }
-
-    ::slotted(*) {
-      @include defaultAttributesChildElements();
     }
   }
 
