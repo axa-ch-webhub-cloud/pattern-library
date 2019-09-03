@@ -70,23 +70,6 @@ Use the file-upload like this:
 
 ### Variant
 
-<<<<<<< HEAD
-| Attribute                                  | Details                                                               |
-| ------------------------------------------ | --------------------------------------------------------------------- |
-| `inputFileText="Upload file"`              | Text in the input-file component                                      |
-| `maxSizeOfSingleFileKB="10"`               | Maximal size of a single file in KB                                   |
-| `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all files together in KB                            |
-| `maxNumberOfFiles="10"`                    | Maximal number of files                                               |
-| `showImageOverview="false"`                | Switch between normal view and image overview                         |
-| `icon="cloud-upload"`                      | Specify the upload icon in input-file component                       |
-| `fileTooBigStatusText="Error occurred"`    | Specify the error message for too big files                           |
-| `tooManyFilesStatusText="Error occurred"`  | Specify the error message for too many files                          |
-| `filesTooBigStatusText="Error occurred"`   | Specify the error message when maximum size of all files is exceeded  |
-| `deleteStatusText="Delete"`                | Specify the caption when hovering over a file                         |
-| `addStatusText="Add more"`                 | Specify the caption of dashed box                                     |
-| `infoText="drag and drop your files here"` | Specify the text on the start view                                    |
-| `orText="or"`                              | Specify the text on the start view box                                |
-=======
 | Attribute                                  | Details                                                              |
 | ------------------------------------------ | -------------------------------------------------------------------- |
 | `inputFileText="Upload file"`              | Text in the input-file component                                     |
@@ -102,7 +85,6 @@ Use the file-upload like this:
 | `addStatusText="Add more"`                 | Specify the caption of dashed box                                    |
 | `infoText="drag and drop your files here"` | Specify the text on the start view                                   |
 | `orText="or"`                              | Specify the text on the start view box                               |
->>>>>>> Change readme
 
 ### inputFileText
 
