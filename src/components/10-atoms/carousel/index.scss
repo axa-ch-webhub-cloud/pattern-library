@@ -55,14 +55,14 @@
 
   // animations
   .animation-left {
-    animation: fromLeft 0.8s;
+    animation: patternslibCarouselFromLeft 0.8s;
   }
 
   .animation-right {
-    animation: fromRight 0.8s;
+    animation: patternslibCarouselFromRight 0.8s;
   }
 
-  @keyframes fromRight {
+  @keyframes patternslibCarouselFromRight {
     from {
       opacity: 0;
       transform: translate(100%, 0);
@@ -74,7 +74,7 @@
     }
   }
 
-  @keyframes fromLeft {
+  @keyframes patternslibCarouselFromLeft {
     from {
       opacity: 0;
       transform: translate(-100%, 0);
