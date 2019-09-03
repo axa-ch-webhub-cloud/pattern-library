@@ -98,6 +98,8 @@ class AXARadio extends NoShadowDOM {
       // ... and select ourselves
       this.checked = true; // causes re-render
 
+      // prevent bubbling
+      event.stopPropagation();
       // fire a custom 'change' event on the component itself
       fireCustomEvent('change', { checked: isChecked, value, name }, this);
       return;
