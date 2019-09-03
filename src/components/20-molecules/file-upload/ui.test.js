@@ -84,40 +84,40 @@ test('should convert .png file to .jpg', async t => {
     .ok();
 });
 
-test('should delete image', async t => {
-  const $inputFileInputElem = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelector('axa-input-file .a-input-file__input')
-  );
-  await t.expect($inputFileInputElem.exists).ok();
+// test('should delete image', async t => {
+//   const $inputFileInputElem = await Selector(() =>
+//     document
+//       .querySelector('axa-file-upload')
+//       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
+//   );
+//   await t.expect($inputFileInputElem.exists).ok();
 
-  await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
+//   await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
 
-  const $figureElem = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelector('.js-file-upload__img-figure')
-  );
+//   const $figureElem = await Selector(() =>
+//     document
+//       .querySelector('axa-file-upload')
+//       .shadowRoot.querySelector('.js-file-upload__img-figure')
+//   );
 
-  const $figureElemsBefore = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
-  );
+//   const $figureElemsBefore = await Selector(() =>
+//     document
+//       .querySelector('axa-file-upload')
+//       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
+//   );
 
-  await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
+//   await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
 
-  await t.click($figureElem);
+//   await t.click($figureElem);
 
-  const $figureElemsAfter = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
-  );
+//   const $figureElemsAfter = await Selector(() =>
+//     document
+//       .querySelector('axa-file-upload')
+//       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
+//   );
 
-  await t.expect($figureElemsAfter.count).eql(0); // zero because start view has no figures
-});
+//   await t.expect($figureElemsAfter.count).eql(0); // zero because start view has no figures
+// });
 
 fixture('File upload - maxSizeOfSingleFileKB prop').page(
   `${host}/iframe.html?id=molecules-file-upload--file-upload-default&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1&knob-maxSizeOfAllFilesKB=500&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
