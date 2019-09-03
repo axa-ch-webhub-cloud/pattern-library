@@ -1,12 +1,14 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/container';
 import '@axa-ch/carousel';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
+import InlineStyles from '../../../utils/inline-styles';
+import childStyles from './child.scss';
 
-class AXATestimonials extends LitElement {
+class AXATestimonials extends InlineStyles {
   static get tagName() {
     return 'axa-testimonials';
   }
@@ -15,6 +17,10 @@ class AXATestimonials extends LitElement {
     return css`
       ${unsafeCSS(styles)}
     `;
+  }
+
+  static get childStyles() {
+    return childStyles;
   }
 
   static get properties() {
@@ -38,6 +44,10 @@ class AXATestimonials extends LitElement {
     this.autorotatetime = 5000;
     this.showallinline = false;
     this.keysenabled = false;
+  }
+
+  firstUpdated() {
+    this.inlineStyles('childStyles');
   }
 
   render() {

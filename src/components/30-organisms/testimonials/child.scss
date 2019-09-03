@@ -1,0 +1,8 @@
+@import '../../10-atoms/carousel/child';
+
+axa-testimonials[showallinline] {
+  > * {
+    margin: 20px 0;
+    @include defaultAttributesChildElements();
+  }
+}
