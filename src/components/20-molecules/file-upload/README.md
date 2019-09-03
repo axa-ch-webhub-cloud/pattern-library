@@ -74,7 +74,7 @@ Use the file-upload like this:
 | ------------------------------------------ | -------------------------------------------------------------------- |
 | `inputFileText="Upload file"`              | Text in the input-file component                                     |
 | `maxSizeOfSingleFileKB="10"`               | Maximal size of a single, already compromised file in KB             |
-| `maxSizeOfAllFilesKB="15"`                 | Maximal size of a all compromised files together in KB               |
+| `maxSizeOfAllFilesKB="15"`                 | Maximal size of all compromised files together in KB                 |
 | `maxNumberOfFiles="10"`                    | Maximal number of files                                              |
 | `showFileOverview="false"`                 | Switch between normal view and file overview                         |
 | `icon="cloud-upload"`                      | Specify the upload icon in input-file component                      |
