@@ -7,7 +7,7 @@ import './index';
 import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const storyAXACarousel = storiesOf('Organisms/Carousel', module);
+const storyAXACarousel = storiesOf('Atoms/Carousel', module);
 storyAXACarousel.addDecorator(withKnobs);
 storyAXACarousel.addDecorator(withNoBorder);
 storyAXACarousel.addParameters({
