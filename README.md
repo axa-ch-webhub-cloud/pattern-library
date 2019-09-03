@@ -57,6 +57,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 ## Alpha-Released Components
 
 - [AXA Popup](./src/components/20-molecules/popup) [![npm version](https://img.shields.io/npm/v/@axa-ch/popup.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/popup)
+- [AXA File Upload](./src/components/20-molecules/file-upload) [![npm version](https://img.shields.io/npm/v/@axa-ch/file-upload.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/file-upload)
 
 ## Unreleased Components
 
