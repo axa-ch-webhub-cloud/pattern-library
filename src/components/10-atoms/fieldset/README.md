@@ -8,6 +8,8 @@ By default, the element children's layout direction is vertical.
 Vertical direction is typically used to used to ensure correct layout for a group of &lt;axa-checkbox&gt; or non-button
 &lt;axa-radio&gt; elements.
 
+_Note: This component only styles its immediate children! For best results, avoid extra &lt;div&gt; wrappers or similar around children components._
+
 ## Usage
 
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
