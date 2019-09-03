@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Commercial Hero Banner - basic functionality').page(
   `${host}/iframe.html?id=organisms-commercial-hero-banner--commercial-hero-banner`

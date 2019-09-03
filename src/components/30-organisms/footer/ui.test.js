@@ -1,7 +1,7 @@
 import { Selector } from 'testcafe';
 import FooterAccessor from './ui.accessor';
 
-const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer - Basic Functionality')
   .page(`${host}/iframe.html?id=organisms-footer--footer`)
