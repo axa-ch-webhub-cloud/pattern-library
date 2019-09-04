@@ -12,8 +12,10 @@ $file-upload-icon-size: 36px !default;
 
 .m-file-upload {
   @include typo(primary, medium);
+  color: $color-prim-black;
 
   &__dropzone {
+    background-color: $color-prim-white;
     box-sizing: border-box;
     padding: 30px 0;
     height: 290px;
@@ -163,8 +165,6 @@ $file-upload-icon-size: 36px !default;
       width: 100%;
       display: block;
       position: relative;
-    }
-    .m-image-upload__icon-layer {
       fill: currentColor;
       @include iconSize($file-upload-icon-size)
     }
