@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Carousel - basic functionality').page(`${host}/iframe.html?id=organisms-carousel--carousel`);
+fixture('Carousel - basic functionality').page(`${host}/iframe.html?id=atoms-carousel--carousel`);
 
 const TAG = 'axa-carousel';
 const CLASS = '.a-carousel';
