@@ -109,20 +109,34 @@ class AXACarousel extends InlineStyles {
     this._setSlideVisibleWithAnimation(nextSlideIndex, ANIMATION_LEFT_CLASS);
   }
 
+  // Resize:
+
+  _setSlideVisibleAndAllOthersNone(inputNode) {
+    this.slides.forEach(node => {
+      if (node === inputNode) {
+        node.style.display = 'block';
+      } else {
+        node.style.display = 'none';
+      }
+    });
+  }
+
   _calculateContainerMinHeight() {
     // we need to set carousel min height in case there are elements with different heights.
     this.slides.forEach(node => {
-      node.style.display = 'block'; // not all the elements have initially a height > 0
+      this._setSlideVisibleAndAllOthersNone(node);
+
       if (node.clientHeight > this._carouselMinHeight) {
         this._carouselMinHeight = node.clientHeight;
       }
     });
+
+    this._setSlideVisibleAndAllOthersNone(this.slides[this.visibleSlideIndex]);
   }
 
   _onResize = debounce(() => {
     this._carouselMinHeight = 0;
     this._calculateContainerMinHeight();
-    this._setSlideVisibleWithAnimation(this.visibleSlideIndex, '');
   }, 200);
 
   // AutoRotate:

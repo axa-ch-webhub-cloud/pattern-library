@@ -177,7 +177,26 @@ describe('AXACarousel', () => {
       );
     });
 
+    test('_setSlideVisibleAndAllOthersNone() should set correct node to visible', () => {
+      const nodeWithExpectedVisibility = {
+        style: { display: '' },
+        clientHeight: 1,
+      };
+      const node2 = { style: { display: '' }, clientHeight: 2 };
+      const node3 = { style: { display: '' }, clientHeight: 3 };
+      AXACarousel.prototype.slides = [nodeWithExpectedVisibility, node2, node3];
+
+      AXACarousel.prototype._setSlideVisibleAndAllOthersNone(
+        nodeWithExpectedVisibility
+      );
+
+      expect(nodeWithExpectedVisibility.style.display).toBe('block');
+      expect(node2.style.display).toBe('none');
+      expect(node3.style.display).toBe('none');
+    });
+
     test('_calculateContainerMinHeight() should set biggest height', () => {
+      AXACarousel.prototype._setSlideVisibleAndAllOthersNone = () => {};
       AXACarousel.prototype.slides = [
         { style: { display: '' }, clientHeight: 1 },
         { style: { display: '' }, clientHeight: 2 },
@@ -189,6 +208,7 @@ describe('AXACarousel', () => {
       expect(AXACarousel.prototype._carouselMinHeight).toBe(2);
     });
     test('_calculateContainerMinHeight() should not change _carouselMinHeight', () => {
+      AXACarousel.prototype._setSlideVisibleAndAllOthersNone = () => {};
       AXACarousel.prototype.slides = [
         { style: { display: '' }, clientHeight: 1 },
         { style: { display: '' }, clientHeight: 2 },
@@ -198,6 +218,18 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._calculateContainerMinHeight();
 
       expect(AXACarousel.prototype._carouselMinHeight).toBe(999);
+    });
+    test('_calculateContainerMinHeight() should call _setSlideVisibleAndAllOthersNone() twice', () => {
+      AXACarousel.prototype._setSlideVisibleAndAllOthersNone = jest.fn();
+      AXACarousel.prototype.slides = [
+        { style: { display: '' }, clientHeight: 1 },
+      ];
+
+      AXACarousel.prototype._calculateContainerMinHeight();
+
+      expect(
+        AXACarousel.prototype._setSlideVisibleAndAllOthersNone
+      ).toHaveBeenCalledTimes(2);
     });
   });
 
