@@ -109,6 +109,10 @@ This number specifies the milliseconds the slides will automatically rotate.
 
 This boolean attribute specifies if the keyboard navigation (left/right keys) should be enabled.
 
-### Migration Notes
+## Child Elements
+
+Do not set more than ~100 child elements. Because of height calculation the performance will be slow down.
+
+## Migration Notes
 
 You don't have to pay attention to anything for upgrading to newer version.
