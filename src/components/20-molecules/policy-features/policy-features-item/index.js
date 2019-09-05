@@ -54,9 +54,9 @@ class AXAPolicyFeaturesItem extends LitElement {
 
     const classes = {
       'm-policy-features-item__icon': true,
-      'm-policy-features-item__icon__style-axa-blue': _parentVariant === 'axa-blue',
-      'm-policy-features-item__icon__style-wild-sand': _parentVariant === 'wild-sand',
-      'm-policy-features-item__icon__style-white': _parentVariant === 'white',
+      'm-policy-features-item__icon--axa-blue': _parentVariant === 'axa-blue',
+      'm-policy-features-item__icon--wild-sand': _parentVariant === 'wild-sand',
+      'm-policy-features-item__icon--white': _parentVariant === 'white',
     };
 
     return html`
