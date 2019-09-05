@@ -13,6 +13,8 @@ import {
   SearchSvg,
   UploadSvg,
   CloudUploadSvg,
+  AxaLogoSvg,
+  AxaLogoOpenSvg,
 } from '@axa-ch/materials/icons';
 import iconCSS from './index.scss';
 import defineOnce from '../../../utils/define-once';
@@ -42,6 +44,8 @@ class AXAIcon extends LitElement {
       search: SearchSvg,
       upload: UploadSvg,
       'cloud-upload': CloudUploadSvg,
+      'axa-logo': AxaLogoSvg,
+      'axa-logo-open': AxaLogoOpenSvg,
     };
   }
 

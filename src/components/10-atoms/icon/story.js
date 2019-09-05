@@ -25,6 +25,9 @@ export const iconOptions = {
   phone: 'phone',
   search: 'search',
   upload: 'upload',
+  'cloud-upload': 'cloud-upload',
+  'axa-logo': 'axa-logo',
+  'axa-logo-open': 'axa-logo-open',
 };
 
 storyIcon.add('Icon', () => {
