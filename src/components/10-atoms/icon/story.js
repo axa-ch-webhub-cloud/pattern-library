@@ -26,7 +26,8 @@ export const iconOptions = {
   search: 'search',
   upload: 'upload',
   'cloud-upload': 'cloud-upload',
-  'logo-axa': 'logo-axa',
+  'axa-logo': 'axa-logo',
+  'axa-logo-open': 'axa-logo-open',
 };
 
 storyIcon.add('Icon', () => {
