@@ -1,5 +1,16 @@
 import React from 'react';
 
+type Item = {
+name: string;
+value?: string;
+checked?: boolean;
+disabled?: boolean;
+};
+
+type AXARadioChangeEvent = {
+target: Item;
+};
+
 export interface AXARadioProps {
   id?: string;
   refId?: string;
@@ -14,7 +25,7 @@ export interface AXARadioProps {
   noAutoWidth?: boolean;
   icon?: string;
   error?: string;
-  onChange?: () => void;
+  onChange?: (e: AXARadioChangeEvent) => void;
   onFocus?: (e?: FocusEvent) => {};
   onBlur?: (e?: FocusEvent) => {};
 }
