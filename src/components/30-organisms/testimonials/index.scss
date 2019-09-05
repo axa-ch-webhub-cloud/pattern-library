@@ -31,12 +31,12 @@
   }
 
   &__content {
-    padding: 30px 5px 70px 5px;
+    padding: 20px 5px 30px 5px;
     @include breakpoint($mediaquery-sm-up) {
-      padding-bottom: 80px;
+      padding: 30px 5px 50px 5px;
     }
-    @include breakpoint($mediaquery-lg-up) {
-      padding: 30px 15px;
+    @include breakpoint($mediaquery-xlg-up) {
+      padding: 30px 5px 80px 5px;
     }
   }
 }
