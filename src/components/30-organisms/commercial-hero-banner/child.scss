@@ -38,6 +38,8 @@ axa-commercial-hero-banner {
     line-height: 1.17;
     letter-spacing: -0.01em;
 
+    overflow-wrap: break-word;
+
     @include breakpoint($mediaquery-sm-up) {
       font-size: 36px;
       line-height: 1.13;
