@@ -94,11 +94,11 @@ test('should delete image', async t => {
 
   await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
 
-  // const $figureElem = await Selector(() =>
-  //   document
-  //     .querySelector('axa-file-upload')
-  //     .shadowRoot.querySelector('.js-file-upload__img-figure')
-  // );
+  const $figureElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__img-figure')
+  );
 
   const $figureElemsBefore = await Selector(() =>
     document
@@ -108,15 +108,15 @@ test('should delete image', async t => {
 
   await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
 
-  //   await t.click($figureElem);
+  await t.click($figureElem);
 
-  //   const $figureElemsAfter = await Selector(() =>
-  //     document
-  //       .querySelector('axa-file-upload')
-  //       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
-  //   );
+  const $figureElemsAfter = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
+  );
 
-  //   await t.expect($figureElemsAfter.count).eql(0); // zero because start view has no figures
+  await t.expect($figureElemsAfter.count).eql(0); // zero because start view has no figures
 });
 
 fixture('File upload - maxSizeOfSingleFileKB prop').page(
