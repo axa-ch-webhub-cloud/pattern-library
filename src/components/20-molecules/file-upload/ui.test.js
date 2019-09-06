@@ -94,12 +94,6 @@ test('should delete image', async t => {
 
   await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
 
-  const $figureElem = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelector('.js-file-upload__img-figure')
-  );
-
   const $figureElemsBefore = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -108,7 +102,7 @@ test('should delete image', async t => {
 
   await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
 
-  await t.click($figureElem);
+  await t.click($figureElemsBefore[0]);
 
   const $figureElemsAfter = await Selector(() =>
     document
