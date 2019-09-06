@@ -18,6 +18,20 @@
 
   &__icon {
     max-width: 100%;
+    color: $color-prim-blue-dark-indigo; // default background color for svgs
+
+    // because of fill=currentColor we need to set color to the backgroundColor of the variant
+    &--axa-blue {
+      color: $color-axa-blue;
+    }
+
+    &--wild-sand {
+      color: $color-prim-gray-wild-sand;
+    }
+
+    &--white {
+      color: $color-prim-white;
+    }
 
     > svg {
       width: 42px;

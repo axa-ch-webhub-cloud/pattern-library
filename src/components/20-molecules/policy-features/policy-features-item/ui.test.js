@@ -30,6 +30,13 @@ const descriptionOfFirstPolicyFeaturesItem = Selector(
   { dependencies: { TAG } }
 ).find('p');
 
+const svgWrapperDivOfFirstPolicyFeaturesItem = Selector(
+  () => {
+    return document.querySelector(TAG).shadowRoot;
+  },
+  { dependencies: { TAG } }
+).find('div');
+
 const firstPolicyFeaturesItem = Selector(
   () => {
     return document.querySelector(TAG).shadowRoot;
@@ -37,11 +44,11 @@ const firstPolicyFeaturesItem = Selector(
   { dependencies: { TAG } }
 ).find('section');
 
-fixture('Policy features item - basic functionality').page(
-  `${host}/iframe.html?id=molecules-policy-features--policy-features`
-).afterEach(async t => {
-  await t.maximizeWindow();
-});
+fixture('Policy features item - basic functionality')
+  .page(`${host}/iframe.html?id=molecules-policy-features--policy-features`)
+  .afterEach(async t => {
+    await t.maximizeWindow();
+  });
 
 test('should render policy-features-item', async t => {
   const $axaElem = await Selector(TAG);
@@ -137,6 +144,16 @@ test('should set width of the first policy-features-item with screen size sm-up'
     .eql('240px');
 }).before(async t => {
   await t.resizeWindow(smWindowWidth, defaultWindowHeight);
+});
+
+fixture('Policy features item - svg loading').page(
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant=wild-sand&knob-title=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services&knob-Show%20title?=y&knob-title%20(of%20item)=Get%20Discount&knob-icon%20-%20load%20svg%20icon%20from%20this%20url%20instead:=&knob-description=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services`
+);
+
+test('should set style to "wild-sand" on svg wrapper', async t => {
+  await t
+    .expect(await svgWrapperDivOfFirstPolicyFeaturesItem.getAttribute('class'))
+    .contains('wild-sand');
 });
 
 fixture('Policy features item - svg loading').page(
