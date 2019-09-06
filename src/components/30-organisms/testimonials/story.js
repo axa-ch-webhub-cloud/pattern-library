@@ -36,28 +36,34 @@ story.add('Testimonials', () => {
       title="${title}"
       subtitle="${subtitle}"
     >
-      <span
-        >Very helpful once I got through to the correct person but I was
-        constantly being transferred from person to person, in the end I called
-        into my local axa once in the city and got sorted in 10 minutes after 3
-        weeks of phone calls.</span
-      >
-      <span
-        >Very helpful once I got through to the correct person but I was
-        constantly being transferred from person to person, in the end I called
-        into my local axa once in the city and got sorted in 10 minutes after 3
-        weeks of phone calls. Very helpful once I got through to the correct
-        person but I was constantly being transferred from person to person, in
-        the end I called into my local axa once in the city and got sorted in 10
-        minutes after 3 weeks of phone calls. Very helpful once I got through to
-        the correct person but I was constantly being transferred from person to
-        person, in the end I called into my local axa once in the city and got
-        sorted in 10 minutes after 3 weeks of phone calls. Very helpful once I
-        got through to the correct person but I was constantly being transferred
-        from person to person, in the end I called into my local axa once in the
-        city and got sorted in 10 minutes after 3 weeks of phone calls.</span
-      >
-      <span>This is a small text.</span>
+     <div>
+        <span
+          >Very helpful once I got through to the correct person but I was
+          constantly being transferred from person to person, in the end I
+          called into my local axa once in the city and got sorted in 10 minutes
+          after 3 weeks of phone calls.</span
+        >
+        <span slot="author">Andrew Jackson, Advocate</span>
+      </div>
+      <div>
+        <span
+          >Very helpful once I got through to the correct person but I was
+          constantly being transferred from person to person, in the end I called
+          into my local axa once in the city and got sorted in 10 minutes after 3
+          weeks of phone calls. Very helpful once I got through to the correct
+          person but I was constantly being transferred from person to person, in
+          the end I called into my local axa once in the city and got sorted in 10
+          minutes after 3 weeks of phone calls. Very helpful once I got through to
+          the correct person but I was constantly being transferred from person to
+          person, in the end I called into my local axa once in the city and got
+          sorted in 10 minutes after 3 weeks of phone calls. Very helpful once I
+          got through to the correct person but I was constantly being transferred
+          from person to person, in the end I called into my local axa once in the
+          city and got sorted in 10 minutes after 3 weeks of phone calls.</span
+        >
+        <span slot="author">Andrew Müller, Advocate</span>
+      </div>
+      <span>This is a small text without an author.</span>
     </axa-testimonials>
   `;
 

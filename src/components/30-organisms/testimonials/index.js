@@ -75,7 +75,9 @@ class AXATestimonials extends InlineStyles {
             ${showallinline
               ? html`
                   <div class="o-testimonials__content__inline">
-                    <slot></slot>
+                    <slot>
+                      <slot name="author"></slot>
+                    </slot>
                   </div>
                 `
               : html`
@@ -85,7 +87,9 @@ class AXATestimonials extends InlineStyles {
                       ?autorotatedisabled="${autorotatedisabled}"
                       ?keysenabled="${keysenabled}"
                     >
-                      <slot></slot>
+                      <slot>
+                        <slot name="author"></slot>
+                      </slot>
                     </axa-carousel>
                   </div>
                 `}

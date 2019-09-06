@@ -1,6 +1,7 @@
 @mixin defaultAttributesChildElements {
   @include typo(primary);
   display: flex;
+  flex-direction: column;
   text-align: center;
   justify-content: center; // align the dom element itself (f.e. small spans)
 
