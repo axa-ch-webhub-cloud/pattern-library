@@ -6,5 +6,5 @@ npm run deploy-storybook -- --ci --host-token-env-variable=$GITHUB_TOKEN --remot
 git clone https://github.com/raphaellueckl/feature-branch-deployments.git --depth 1
 cd feature-branch-deployments
 ALL_BRANCHES=$(git --no-pager branch -a)
-ALL_FOLDERS_DEPTH_1=$(find . -maxdepth 1 -type d -exec ls -ld "{}" \;)
+ALL_FOLDERS_DEPTH_1=$(find . -maxdepth 2 -type d -exec ls -ld "{}" \;)
 
