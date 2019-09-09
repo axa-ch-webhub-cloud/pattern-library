@@ -8,6 +8,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
+import typecheck from '../../../utils/typecheck';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -97,7 +98,7 @@ class AXADropdown extends NoShadowDOM {
       maxHeight: { type: Boolean, reflect: true },
       label: { type: String },
       required: { type: Boolean },
-      items: { type: Array },
+      items: { type: Array, /* participate in typecheck'ing */ check: true },
       open: { type: Boolean, reflect: true },
       value: { type: String },
       name: { type: String, reflect: true },
@@ -260,6 +261,7 @@ class AXADropdown extends NoShadowDOM {
   /* last overrideable lifecycle point *before* render:
      put side-effects there that influence render */
   shouldUpdate(changedProperties) {
+    typecheck(this, { items: [] });
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
     this.state.isControlled = this.state.isControlled && this.isReact;
