@@ -1,4 +1,6 @@
 export type Icon =
+  | 'arrow-left'
+  | 'arrow-right'
   | 'collapse'
   | 'document'
   | 'download'

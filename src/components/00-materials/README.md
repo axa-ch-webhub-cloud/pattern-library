@@ -40,11 +40,12 @@ this.render() {
 
 ### SVGs
 
-(Complete list is visible [here](https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/icons))
+(Complete list is visible [here](https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/icons-raw))
 
 | icons            |
 | ---------------- |
 | AddSvg           |
+| ArrowLeftSvg     |
 | ArrowRightSvg    |
 | AttachFileSvg    |
 | CancelSvg        |
