@@ -14,6 +14,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import debounce from '../../../utils/debounce';
 import createRefId from '../../../utils/create-ref-id';
+import fireCustomEvent from '../../../utils/custom-event';
 
 import Store from './utils/Store';
 
@@ -596,7 +597,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      this.initDate(null, null, month | 0, null);
+      this.initDate(this._date, null, month | 0, null);
     }
   }
 
@@ -604,7 +605,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const year = e.detail;
     if (year) {
-      this.initDate(null, year | 0, null, null);
+      this.initDate(this._date, year | 0, null, null);
     }
   }
 
@@ -631,6 +632,8 @@ class AXADatepicker extends NoShadowDOM {
     if (state.isControlled) {
       const { value: stateValue } = state;
       input.value = stateValue;
+    } else {
+      this.fireEvents(validDate);
     }
   }
 
@@ -658,9 +661,19 @@ class AXADatepicker extends NoShadowDOM {
     this.outputdate = value;
     onChange({ target: { value } });
     onDateChange(_date);
+    this.fireEvents(_date);
     if (inputfield) {
       this.toggleDatepicker();
       input.value = isControlled ? stateValue : value;
+    }
+  }
+
+  fireEvents(validDate) {
+    if (validDate) {
+      const { value, name } = this;
+      const details = { value, date: validDate, name };
+      fireCustomEvent('axa-change', value, this);
+      fireCustomEvent('change', details, this);
     }
   }
 

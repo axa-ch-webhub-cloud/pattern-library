@@ -198,3 +198,11 @@ A valid [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 The function-valued attributes `onFocus, onBlur` can be used as callback props for React and other frameworks.
 
 The respective callbacks are invoked with the original native event as their only parameter whenever the free-form date-input field receives or loses focus. As such, they only make sense together with the `inputfield` attribute.
+
+## Events
+
+The custom events `axa-change` and `change` are fired on &lt;axa-datepickr&gt; itself whenever `onDateChange` fires (see above). Their `event.detail` value is the `value` property for `axa-change` (a string), and a `{value, date, name}` object for `change`.
+
+The intended usage is for native applications using the datepicker in conjunction with e.g. inline event listeners.
+
+This functionality is not available in controlled-component mode.
