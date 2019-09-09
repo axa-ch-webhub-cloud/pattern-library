@@ -1,6 +1,7 @@
 import { LitElement, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
+  ArrowLeftSvg,
   ArrowRightSvg,
   CollapseSvg,
   DocumentSvg,
@@ -32,6 +33,7 @@ class AXAIcon extends LitElement {
 
   static get iconsMapping() {
     return {
+      'arrow-left': ArrowLeftSvg,
       'arrow-right': ArrowRightSvg,
       collapse: CollapseSvg,
       document: DocumentSvg,
