@@ -8,32 +8,52 @@ fixture('Testimonials - basic functionality').page(
 
 const TAG = 'axa-testimonials';
 const CLASS = '.o-testimonials';
-const $axaElemShadow = Selector(
+const $elementTestimonialShadow = Selector(
   () => document.querySelector(TAG).shadowRoot,
   { dependencies: { TAG } }
 );
+const $elementTestimonial = Selector(() => document.querySelector(TAG), {
+  dependencies: { TAG },
+});
 
 test('should render testimonials', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
 
-  const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
-  await t.expect($axaElemShadowEl.exists).ok();
+  const $elementTestimonialShadowEl = await $elementTestimonialShadow.find(
+    CLASS
+  );
+  await t.expect($elementTestimonialShadowEl.exists).ok();
 });
 
 test('should set title text', async t => {
-  const $titleElement = await $axaElemShadow.find('.o-testimonials__title');
+  const $titleElement = await $elementTestimonialShadow.find(
+    '.o-testimonials__title'
+  );
   await t.expect($titleElement.textContent).eql('Customer Reviews');
 });
 
 test('should set subtitle text', async t => {
-  const $subTitleElement = await $axaElemShadow.find('.o-testimonials__subtitle');
-  await t.expect($subTitleElement.textContent).eql('AXA works hard to provide the best service possible to its customers.');
+  const $subTitleElement = await $elementTestimonialShadow.find(
+    '.o-testimonials__subtitle'
+  );
+  await t
+    .expect($subTitleElement.textContent)
+    .eql(
+      'AXA works hard to provide the best service possible to its customers.'
+    );
 });
 
 test('should find axa-carousel tag if attribute showallinline is not set', async t => {
-  const $carouselElement = await $axaElemShadow.find('axa-carousel');
+  const $carouselElement = await $elementTestimonialShadow.find('axa-carousel');
   await t.expect($carouselElement.exists).ok();
+});
+
+test('should set text to uppercase for slot "author"', async t => {
+  const $firstAuthorElementInDocument = await $elementTestimonial.find('[slot="author"]');
+  await t
+    .expect(await $firstAuthorElementInDocument.getStyleProperty('text-transform'))
+    .eql('uppercase');
 });
 
 fixture('Testimonials - attribute showallinline is set').page(
@@ -41,6 +61,8 @@ fixture('Testimonials - attribute showallinline is set').page(
 );
 
 test('should find inline class if attribute showallinline is set', async t => {
-  const $inlineElement = await $axaElemShadow.find('.o-testimonials__content__inline');
+  const $inlineElement = await $elementTestimonialShadow.find(
+    '.o-testimonials__content__inline'
+  );
   await t.expect($inlineElement.exists).ok();
 });
