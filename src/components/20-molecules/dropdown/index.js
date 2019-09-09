@@ -79,8 +79,10 @@ const contentItemsMapper = clickHandler => (
       `;
 };
 
-const defaultTitleIfNeeded = title =>
-  title ? [{ name: title, disabled: true, selected: true, value: '' }] : [];
+const defaultTitleIfNeeded = (title, anotherSelection) =>
+  title
+    ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
+    : [];
 
 // CE
 class AXADropdown extends NoShadowDOM {
@@ -329,7 +331,7 @@ class AXADropdown extends NoShadowDOM {
               @blur="${this.onBlur}"
               @change="${handleDropdownItemClick}"
             >
-              ${defaultTitleIfNeeded(defaultTitle)
+              ${defaultTitleIfNeeded(defaultTitle, selectedItem)
                 .concat(items)
                 .map(nativeItemsMapper)}
             </select>
@@ -384,14 +386,10 @@ class AXADropdown extends NoShadowDOM {
   }
 
   updated() {
-    const {
-      select,
-      state: { isControlled },
-    } = this;
-    if (isControlled) {
-      // adjust native <select>
-      select.selectedIndex = this.findByValue(null, true);
-    }
+    const { select, defaultTitle } = this;
+    // adjust native <select>
+    select.selectedIndex =
+      this.findByValue(null, true) + (defaultTitle ? 1 : 0);
   }
 
   disconnectedCallback() {
