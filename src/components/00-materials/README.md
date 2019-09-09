@@ -45,6 +45,7 @@ this.render() {
 | icons            |
 | ---------------- |
 | AddSvg           |
+| ArrowLeftSvg     |
 | ArrowRightSvg    |
 | AttachFileSvg    |
 | CancelSvg        |
