@@ -153,10 +153,12 @@ class AXADatepicker extends NoShadowDOM {
 
   get value() {
     const {
-      input = { value: '' },
+      inputfield,
+      input,
       state: { isControlled, value },
     } = this;
-    return isControlled ? value : input.value;
+    const inputFieldValue = inputfield && input ? input.value : '';
+    return isControlled ? value : inputFieldValue;
   }
 
   set date(value) {
