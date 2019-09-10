@@ -84,5 +84,10 @@ this.render() {
 ### Process:
 
 1. /w a designer send him the svg file, or the designer have already the file. He will review it and change something for example inner padding etc. to guarantee quality.
-2. If the designer not optimized the svg, use [Web Svg optimizer](https://jakearchibald.github.io/svgomg/] or use intern svg go script `build-icons` or `build-images` and over copy the icon from the .tmp folder to icons-raw or images-raw.
-3. Review the svg: add or edit to paths `fill="currentColor"` and remove unnecessary attributes.
+2. Remove this typical unnecessary code:
+    - a. `data-name="Layer 2"`
+    - b. `<path fill="#fff" d="M0 0h96v96H0z"/>`
+3. 
+    - a. use intern svg go script `build-icons` or `build-images` and copy the files back from `.tmp` folder to icons-raw or images-raw
+    - b. alternatively you can use [Web Svg optimizer](https://jakearchibald.github.io/svgomg/] 
+4. Review the svg: add or edit to paths and set it to`fill="currentColor"`. Set Strokes to `currentColor`. Remove unnecessary attributes.
