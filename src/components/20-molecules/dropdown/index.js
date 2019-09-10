@@ -229,8 +229,8 @@ class AXADropdown extends NoShadowDOM {
     if (!isControlled) {
       this.value = value; // triggers re-render
       const details = { value, index, name };
-      fireCustomEvent('axa-change', value, this);
-      fireCustomEvent('change', details, this);
+      fireCustomEvent('axa-change', value, this, { bubbles: false });
+      fireCustomEvent('change', details, this, { bubbles: false });
     }
   }
 
@@ -383,6 +383,7 @@ class AXADropdown extends NoShadowDOM {
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);
+    window.addEventListener('axa-dropdown-close', this.handleWindowClick);
   }
 
   updated() {
@@ -397,6 +398,7 @@ class AXADropdown extends NoShadowDOM {
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);
+    window.removeEventListener('axa-dropdown-close', this.handleWindowClick);
   }
 }
 

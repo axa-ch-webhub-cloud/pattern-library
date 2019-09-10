@@ -435,3 +435,38 @@ test('should submit datepicker correctly in form', async t => {
     .expect((await Selector('#datepicker-forms-content')).innerText)
     .eql('date = 29.2.2020 (of 1 submittable elements)');
 });
+
+fixture('Datepicker with onchange handler').page(
+  `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
+);
+test('should fire the right events', async t => {
+  const datepickerForm = await Selector(() =>
+    document.querySelector(`axa-datepicker[data-test-id="datepicker-onchange"]`)
+  );
+
+  await t.setTestSpeed(0.5);
+
+  await t.expect(datepickerForm.exists).ok();
+
+  await t.click('.js-datepicker__input-button');
+
+  await t.wait(100).click('.js-datepicker__button-ok');
+
+  await t
+    .wait(50)
+    .expect((await Selector('.event-log')).value)
+    .contains(`{"value":"29.2.2020","date":"2020-02-28`);
+
+  await t
+    .wait(50)
+    .typeText(
+      `axa-datepicker[data-test-id="datepicker-onchange"] .js-datepicker__input`,
+      '29.2.1976',
+      { replace: true }
+    );
+
+  await t
+    .wait(50)
+    .expect((await Selector('.event-log')).value)
+    .contains(`\n\n{"value":"29.2.1976","date":"1976-02-28`);
+});

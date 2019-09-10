@@ -193,6 +193,14 @@ class AXADatepicker extends NoShadowDOM {
     }));
   }
 
+  formatDate(date) {
+    return date.toLocaleString(this.locale, {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    });
+  }
+
   constructor() {
     super();
     // internal model state
@@ -307,6 +315,7 @@ class AXADatepicker extends NoShadowDOM {
                 @input="${this.handleInputChange}"
                 @blur="${this.handleBlur}"
                 @focus="${this.onFocus}"
+                @change="${e => e.stopPropagation()}"
                 class="m-datepicker__input js-datepicker__input"
                 type="text"
                 name="${this.name}"
@@ -317,7 +326,7 @@ class AXADatepicker extends NoShadowDOM {
               />
               <button
                 type="button"
-                class="m-datepicker__input-button"
+                class="m-datepicker__input-button js-datepicker__input-button"
                 @click="${this.handleInputButtonClick}"
               >
                 ${dateInputIcon}
@@ -560,11 +569,7 @@ class AXADatepicker extends NoShadowDOM {
     if (isValid) {
       this._date = validDate;
       this.initDate(validDate);
-      this.outputdate = validDate.toLocaleString(locale, {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
-      });
+      this.outputdate = this.formatDate(validDate);
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
       this._date = null;
@@ -584,6 +589,7 @@ class AXADatepicker extends NoShadowDOM {
 
   handleDatepickerClick(e) {
     e.stopPropagation();
+    fireCustomEvent('axa-dropdown-close', null, window);
   }
 
   handleBodyClick(e) {
@@ -632,7 +638,7 @@ class AXADatepicker extends NoShadowDOM {
     if (state.isControlled) {
       const { value: stateValue } = state;
       input.value = stateValue;
-    } else {
+    } else if (validDate) {
       this.fireEvents(validDate);
     }
   }
@@ -645,7 +651,6 @@ class AXADatepicker extends NoShadowDOM {
 
   handleButtonOkClick() {
     const {
-      locale,
       _date,
       inputfield,
       input,
@@ -653,11 +658,7 @@ class AXADatepicker extends NoShadowDOM {
       onDateChange,
       state: { isControlled, value: stateValue },
     } = this;
-    const value = _date.toLocaleString(locale, {
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-    });
+    const value = this.formatDate(_date);
     this.outputdate = value;
     onChange({ target: { value } });
     onDateChange(_date);
@@ -670,10 +671,11 @@ class AXADatepicker extends NoShadowDOM {
 
   fireEvents(validDate) {
     if (validDate) {
-      const { value, name } = this;
+      const { name } = this;
+      const value = this.formatDate(validDate);
       const details = { value, date: validDate, name };
-      fireCustomEvent('axa-change', value, this);
-      fireCustomEvent('change', details, this);
+      fireCustomEvent('axa-change', value, this, { bubbles: false });
+      fireCustomEvent('change', details, this, { bubbles: false });
     }
   }
 

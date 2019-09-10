@@ -203,6 +203,8 @@ The respective callbacks are invoked with the original native event as their onl
 
 The custom events `axa-change` and `change` are fired on &lt;axa-datepickr&gt; itself whenever `onDateChange` fires (see above). Their `event.detail` value is the `value` property for `axa-change` (a string), and a `{value, date, name}` object for `change`.
 
+Both events do _not_ bubble up through the DOM.
+
 The intended usage is for native applications using the datepicker in conjunction with e.g. inline event listeners.
 
 This functionality is not available in controlled-component mode.
