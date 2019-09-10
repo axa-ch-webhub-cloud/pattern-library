@@ -23,7 +23,7 @@ export interface AXADropdownProps<T = number | string> {
   onChange?: (e: AXADropdownChangeEvent<T>) => void;
   onFocus?: (e?: any) => void;
   onBlur?: (e?: any) => void;
-  title?: string;
+  defaultTitle?: string;
   value?: T;
   checkMark?: boolean;
   disabled?: boolean;
