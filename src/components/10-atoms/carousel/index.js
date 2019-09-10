@@ -50,6 +50,7 @@ class AXACarousel extends InlineStyles {
     this.slides = null;
     this.visibleSlideIndex = 0;
     this.swiper = null;
+    this.removeEventListenerAnimationEnd = null;
   }
 
   // public methods
@@ -76,18 +77,28 @@ class AXACarousel extends InlineStyles {
     return slots;
   }
 
+  _addEventListenerAnimationEnd() {
+    const eventName = 'animationend';
+    const onAnimationEnd = () => {
+      this._animationWrapperClass = '';
+    };
+    const elementWithAnimationEvent = this.shadowRoot.querySelector(
+      '.js-carousel__wrapper'
+    );
+    elementWithAnimationEvent.addEventListener(eventName, onAnimationEnd);
+
+    return () => {
+      elementWithAnimationEvent.removeEventListener(eventName, onAnimationEnd);
+    };
+  }
+
   _setSlideVisibleWithAnimation(slideIndex, animationClass) {
     this.visibleSlideIndex = slideIndex;
-    this._animationWrapperClass = '';
     this.slides.forEach(node => {
       node.style.display = 'none';
     });
-
-    setTimeout(() => {
-      // Browser needs time to render css animation (>0ms). Other workarounds doesnt have effect.
-      this._animationWrapperClass = animationClass;
-      this.slides[slideIndex].style.display = 'block';
-    }, 50);
+    this.slides[slideIndex].style.display = 'block';
+    this._animationWrapperClass = animationClass;
   }
 
   _nextSlide() {
@@ -212,6 +223,7 @@ class AXACarousel extends InlineStyles {
     this._initSwipe();
     this._initKeyNavigation();
     this._startAutoRotate();
+    this.removeEventListenerAnimationEnd = this._addEventListenerAnimationEnd();
     window.addEventListener('resize', this._onResize);
   }
 
@@ -226,7 +238,10 @@ class AXACarousel extends InlineStyles {
           class="a-carousel__arrow a-carousel__arrow-left"
           @click="${this.handlePreviousButtonClick}"
         ></button>
-        <div class="a-carousel__wrapper ${this._animationWrapperClass}">
+        <div
+          class="a-carousel__wrapper js-carousel__wrapper ${this
+            ._animationWrapperClass}"
+        >
           <slot class="a-carousel__slot js-carousel__slot"></slot>
         </div>
         <button
@@ -245,6 +260,7 @@ class AXACarousel extends InlineStyles {
     this._terminateSwipe();
     this._terminateKeyNavigation();
     window.removeEventListener('resize', this._onResize);
+    this.removeEventListenerAnimationEnd();
   }
 }
 
