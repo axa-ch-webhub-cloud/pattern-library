@@ -77,12 +77,13 @@ class AXACarousel extends InlineStyles {
     return slots;
   }
 
-  _addEventListenerAnimationEnd() {
+  _addEventListenerAnimationEnd(usedShadowRoot = this.shadowRoot) {
+    // usedShadowRoot as a property to encapsulate for unit tests
     const eventName = 'animationend';
     const onAnimationEnd = () => {
       this._animationWrapperClass = '';
     };
-    const elementWithAnimationEvent = this.shadowRoot.querySelector(
+    const elementWithAnimationEvent = usedShadowRoot.querySelector(
       '.js-carousel__wrapper'
     );
     elementWithAnimationEvent.addEventListener(eventName, onAnimationEnd);

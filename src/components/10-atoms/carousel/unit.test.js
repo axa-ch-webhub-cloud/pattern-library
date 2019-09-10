@@ -51,9 +51,59 @@ describe('AXACarousel', () => {
       const mockedShadowRoot = {
         querySelector: mockedQuerySelector,
       };
+
       AXACarousel.prototype._getSlides(mockedShadowRoot);
 
       expect(mockedQuerySelector).toHaveBeenCalledWith('.js-carousel__slot');
+    });
+
+    test('_addEventListenerAnimationEnd() should call querySelector with correct attribute', () => {
+      const mockedQuerySelector = jest.fn(() => {
+        return {
+          addEventListener: () => {},
+        };
+      });
+      const mockedShadowRoot = {
+        querySelector: mockedQuerySelector,
+      };
+
+      AXACarousel.prototype._addEventListenerAnimationEnd(mockedShadowRoot);
+
+      expect(mockedQuerySelector).toHaveBeenCalledWith('.js-carousel__wrapper');
+    });
+    test('_addEventListenerAnimationEnd() should call addEventListener', () => {
+      const mockedAddEventListener = jest.fn();
+      const mockedQuerySelector = jest.fn(() => {
+        return {
+          addEventListener: mockedAddEventListener,
+        };
+      });
+      const mockedShadowRoot = {
+        querySelector: mockedQuerySelector,
+      };
+
+      AXACarousel.prototype._addEventListenerAnimationEnd(mockedShadowRoot);
+
+      expect(mockedAddEventListener).toHaveBeenCalled();
+    });
+    test('_addEventListenerAnimationEnd() should return a function that calls removeEventListener', () => {
+      const mockedRemoveEventListener = jest.fn();
+      const mockedQuerySelector = jest.fn(() => {
+        return {
+          addEventListener: () => {},
+          removeEventListener: mockedRemoveEventListener,
+        };
+      });
+      const mockedShadowRoot = {
+        querySelector: mockedQuerySelector,
+      };
+
+      const returnedFunction = AXACarousel.prototype._addEventListenerAnimationEnd(
+        mockedShadowRoot
+      );
+      returnedFunction();
+
+      expect(mockedRemoveEventListener).toHaveBeenCalled();
     });
 
     test('_setSlideVisibleWithAnimation() should set _animationWrapperClass', () => {
@@ -65,14 +115,13 @@ describe('AXACarousel', () => {
         givenAnimationClass
       );
 
-      jest.runOnlyPendingTimers();
-
       expect(AXACarousel.prototype._animationWrapperClass).toBe(
         givenAnimationClass
       );
     });
-    test('_setSlideVisibleWithAnimation() should set block style of given slide', () => {
+    test('_setSlideVisibleWithAnimation() should set block style and visibleSlideIndex', () => {
       const activeSlideNumber = 0;
+      AXACarousel.prototype.visibleSlideIndex = null;
       AXACarousel.prototype.slides = [{ style: {} }];
 
       AXACarousel.prototype._setSlideVisibleWithAnimation(
@@ -80,11 +129,10 @@ describe('AXACarousel', () => {
         ''
       );
 
-      jest.runOnlyPendingTimers();
-
       expect(
         AXACarousel.prototype.slides[activeSlideNumber].style.display
       ).toBe('block');
+      expect(AXACarousel.prototype.visibleSlideIndex).toBe(activeSlideNumber);
     });
 
     test('_nextSlide() should call method with nextSlideIndex = 1', () => {
@@ -326,6 +374,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._initSwipe = jest.fn();
       AXACarousel.prototype._initKeyNavigation = jest.fn();
       AXACarousel.prototype._startAutoRotate = jest.fn();
+      AXACarousel.prototype._addEventListenerAnimationEnd = jest.fn();
       global.addEventListener = jest.fn();
 
       AXACarousel.prototype.firstUpdated();
@@ -343,6 +392,9 @@ describe('AXACarousel', () => {
       expect(AXACarousel.prototype._initSwipe).toHaveBeenCalled();
       expect(AXACarousel.prototype._initKeyNavigation).toHaveBeenCalled();
       expect(AXACarousel.prototype._startAutoRotate).toHaveBeenCalled();
+      expect(
+        AXACarousel.prototype._addEventListenerAnimationEnd
+      ).toHaveBeenCalled();
       expect(global.addEventListener).toHaveBeenCalledWith(
         'resize',
         'thisIsACallback'
