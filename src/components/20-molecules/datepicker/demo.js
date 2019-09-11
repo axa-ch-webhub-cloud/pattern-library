@@ -84,10 +84,10 @@ storiesOf('Molecules/Datepicker/Demos', module)
         year="2020"
         month="1"
         day="29"
-        @change="${({ detail }) => {
-          document.querySelector('.event-log').value += `${JSON.stringify(
-            detail
-          )}\n\n`;
+        @change="${({ detail: { name, value } }) => {
+          document.querySelector(
+            '.event-log'
+          ).value += `{"name":"${name}","value":"${value}"}\n\n`;
         }}"
       ></axa-datepicker>
       <textarea

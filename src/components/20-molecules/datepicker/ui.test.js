@@ -455,7 +455,7 @@ test('should fire the right events', async t => {
   await t
     .wait(50)
     .expect((await Selector('.event-log')).value)
-    .contains(`{"value":"29.2.2020","date":"2020-02-28`);
+    .eql(`{"name":"date","value":"29.2.2020"}\n\n`);
 
   await t
     .wait(50)
@@ -468,5 +468,5 @@ test('should fire the right events', async t => {
   await t
     .wait(50)
     .expect((await Selector('.event-log')).value)
-    .contains(`\n\n{"value":"29.2.1976","date":"1976-02-28`);
+    .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
 });
