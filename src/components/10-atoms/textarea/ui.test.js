@@ -60,13 +60,32 @@ test('should show counterMax', async t => {
     textarea.className = 'counter';
     textarea.maxLength = 3;
     textarea.counterMax = 'The maximum character length has been reached';
+    textarea.checkMark = true;
     document.getElementById('root').appendChild(textarea);
   });
+
   await setCounterMax();
+
   const $messages = await Selector(() => document.querySelector('.counter'));
-  const $textarea = await Selector(() => document.querySelector('.counter .a-textarea__textarea'));
+  const $textarea = await Selector(() =>
+    document.querySelector('.counter .a-textarea__textarea')
+  );
+  const $checkmark = await Selector(() =>
+    document.querySelector('.counter .a-textarea__check')
+  );
+  const $counterMaxMessage = await Selector(() =>
+    document.querySelector('.counter .a-textarea__messages--error')
+  );
+
+  // message is displayed after typing enough characters to hit the limit
   await t
     .typeText($textarea, '123')
     .expect($messages.innerText)
     .contains('The maximum character length has been reached');
+  // both the textarea UI...
+  await t.expect($textarea.hasClass('a-textarea__textarea--error')).ok();
+  // ... and the counterMax message UI are in visual error state
+  await t.expect($counterMaxMessage.exists).ok();
+  // the checkmark is missing
+  await t.expect($checkmark.exists).notOk();
 });
