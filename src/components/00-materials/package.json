@@ -7,7 +7,7 @@
   "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
     "build-icons": "svgo --quiet --disable=removeViewBox -f icons-raw -r -o icons-raw/.tmp",
-    "build-images": "svgo --quiet --disable=removeViewBox -f images-raw -r -o images-raw/.tmp",
+    "build-images": "svgo --quiet --disable=removeViewBox --config 'svgo-config.json' -f images-raw -r -o images-raw/.tmp",
     "build": "node scripts/export-svg"
   },
   "files": [

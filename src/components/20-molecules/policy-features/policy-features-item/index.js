@@ -1,5 +1,4 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import defineOnce from '../../../../utils/define-once';
 import styles from './index.scss';
@@ -31,7 +30,6 @@ class AXAPolicyFeaturesItem extends LitElement {
     this.icon = '';
     this.description = '';
     this._loadedSvg = null;
-    this._parentVariant = '';
   }
 
   firstUpdated() {
@@ -44,26 +42,14 @@ class AXAPolicyFeaturesItem extends LitElement {
     } else if (/<svg/.test(icon)) {
       this._loadedSvg = icon;
     }
-
-    // to handle svg fill color
-    this._parentVariant = this.parentNode.getAttribute('variant');
   }
 
   render() {
-    const { _loadedSvg, _parentVariant, title, description } = this;
-
-    const classes = {
-      'm-policy-features-item__icon': true,
-      'm-policy-features-item__icon--axa-blue': _parentVariant === 'axa-blue',
-      'm-policy-features-item__icon--wild-sand': _parentVariant === 'wild-sand',
-      'm-policy-features-item__icon--white': _parentVariant === 'white',
-    };
+    const { _loadedSvg, title, description } = this;
 
     return html`
       <section class="m-policy-features-item">
-        <div
-          class="${classMap(classes)}"
-        >
+        <div class="m-policy-features-item__icon">
           ${_loadedSvg && svg([_loadedSvg])}
         </div>
         <h1 class="m-policy-features-item__title">${title}</h1>
