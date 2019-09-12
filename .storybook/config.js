@@ -30,11 +30,11 @@ const demo = require.context('../src/demo', true, /(story\.(js|jsx)|demo.(js|jsx
 configure(
   () =>
     [].concat(
+      demo.keys().forEach(demo),
       materials.keys().forEach(materials),
       atoms.keys().forEach(atoms),
       molecules.keys().forEach(molecules),
-      organisms.keys().forEach(organisms),
-      demo.keys().forEach(demo)
+      organisms.keys().forEach(organisms)
     ),
   module
 );
