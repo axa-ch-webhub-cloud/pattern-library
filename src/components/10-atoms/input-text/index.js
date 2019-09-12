@@ -29,7 +29,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-
+      maxLength: { type: String },
       isReact: { type: Boolean },
     };
   }
@@ -54,6 +54,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.invalid = false;
     this.disabled = false;
     this.isReact = false;
+    this.maxLength = '524288'; // W3C Default
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
@@ -127,6 +128,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       placeholder,
       disabled,
       isReact,
+      maxLength,
       invalid,
       checkMark,
       isControlled,
@@ -165,6 +167,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             value="${value}"
             placeholder="${placeholder}"
             aria-required="${required}"
+            maxlength="${maxLength}"
             ?disabled="${disabled}"
             @input="${this.handleInput}"
             @focus="${this.handleFocus}"

@@ -91,4 +91,11 @@ storiesOf('Atoms/Input text/Demos', module)
               <axa-input-text label="Cool 2"></axa-input-text>
               <axa-input-text label="Cool 3" info="${info}"></axa-input-text>
             </div>`;
+  })
+  .add('Feature - Input with max length restriction', () => {
+    const info = `<h4>Zeitspanne bis zur Pensionierung</h4>
+    <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
+    return `<div>
+              <axa-input-text maxlength="2" label="Cool" info="${info}"></axa-input-text>
+            </div>`;
   });
