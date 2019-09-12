@@ -10,12 +10,19 @@ git push
 
 # git clone https://github.com/raphaellueckl/feature-branch-deployments.git --depth 1
 # cd feature-branch-deployments
-ALL_BRANCHES=$(git --no-pager branch -a $1)
-ALL_FOLDERS_DEPTH_1=$(find . -type d -maxdepth 2 -path ./.git -prune -o -print | cut -d '/' -f2-)
+ALL_BRANCHES=$(git --no-pager branch -a -r) # List only remote branches
+ALL_FOLDERS_DEPTH_1=$(find . -type d -maxdepth 2 -path ./.git -prune -o -print | cut -d '/' -f2-) # Find all folders for 2 levels down, ignore .git folder and cut './' at the beginning of each folder
 
 (IFS='
 '
-for x in $ALL_BRANCHES; do echo $x; done)
+for x in $ALL_BRANCHES; do
+    echo $x;
+done)
+
+string='My long string'
+if [[ $string == *"My long"* ]]; then
+  echo "It's there!"
+fi
 
 # Cleanup
 cd ..
