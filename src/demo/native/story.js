@@ -1,6 +1,8 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render, svg } from 'lit-html';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import Readme from '../../components/00-materials/README.md';
 
 const reqSvgsIcons = require.context(
   './../../components/00-materials/icons',
@@ -28,44 +30,63 @@ const images = filepathsImages.map(path => {
   };
 });
 
-storiesOf('Demos', module).add('Icons and Images overview', () => {
-  const template = html`
-    <style>
-      svg {
-        border: 5px solid green;
-      }
-      .images > div > svg {
-        width: 40px;
-        height: 40px;
-      }
-    </style>
-    <h2>
-      Note: There are green border around each SVG to better see dimensions.
-    </h2>
-    <h3>${icons.length} Icons:</h3>
-    ${svg(
-      icons.map(
-        i =>
-          `<div>${i.svgstring}<span style="padding-left: 10px;">${
-            i.path
-          }</span></div>`
-      )
-    )}
+storiesOf('Demos', module)
+  .addDecorator(withKnobs)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+  .add('Icons and Images overview', () => {
+    const backgrounds = select(
+      'background color',
+      ['red', 'blue', 'white', 'black'],
+      'white'
+    );
 
-    <h3>${images.length} Images:</h3>
-    <div class="images">
+    const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
+
+    const template = html`
+      <style>
+        body {
+          background-color: ${backgrounds};
+          color: ${colors};
+        }
+        svg {
+          border: 5px solid green;
+        }
+        .images > div > svg {
+          width: 40px;
+          height: 40px;
+        }
+      </style>
+      <h2>
+        Note: There are green border around each SVG to better see dimensions.
+      </h2>
+      <h3>${icons.length} Icons:</h3>
       ${svg(
-        images.map(
+        icons.map(
           i =>
             `<div>${i.svgstring}<span style="padding-left: 10px;">${
               i.path
             }</span></div>`
         )
       )}
-    </div>
-  `;
 
-  const wrapper = document.createElement('div');
-  render(template, wrapper);
-  return wrapper;
-});
+      <h3>${images.length} Images:</h3>
+      <div class="images">
+        ${svg(
+          images.map(
+            i =>
+              `<div>${i.svgstring}<span style="padding-left: 10px;">${
+                i.path
+              }</span></div>`
+          )
+        )}
+      </div>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
+  });
