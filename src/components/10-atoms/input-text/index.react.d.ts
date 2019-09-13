@@ -14,7 +14,9 @@ export interface AXAInputTextProps {
   required?: boolean;
   disabled?: boolean;
   checkMark?: boolean;
-  maxLength?: boolean;
+  maxLength?: string;
+  counter?: string;
+  counterMax?: string;
   isReact?: boolean;
   className?: string;
   onFocus?: (e?: FocusEvent) => void;
