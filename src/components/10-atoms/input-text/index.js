@@ -219,7 +219,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error': invalid && !disabled,
+      'a-input-text__input--error':
+        (invalid && !disabled) || this.showCounterMax,
       'a-input-text__input--check': checkMark && !disabled,
     };
 
@@ -279,7 +280,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         ${
           this.showCounter
             ? html`
-                <div class="a-input-text__validation">
+                <div class="a-input-text__counter-info">
                   ${this.charsLeft - 1}
                 </div>
               `
@@ -288,7 +289,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         ${
           this.showCounterMax
             ? html`
-                <div class="a-input-text__validation">${this.counterMax}</div>
+                <div
+                  class="a-input-text__counter-info a-input-text__character-overflow-error"
+                >
+                  ${this.counterMax}
+                </div>
               `
             : ''
         }

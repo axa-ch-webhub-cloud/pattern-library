@@ -108,8 +108,13 @@ axa-input-text {
     margin-top: 10px;
   }
 
-  .a-input-text__validation {
+  .a-input-text__character-overflow-error {
+    color: red;
+  }
+  
+  .a-input-text__counter-info {
     margin-top: 10px;
   }
+
 }
 
