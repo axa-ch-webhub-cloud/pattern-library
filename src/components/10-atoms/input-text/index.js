@@ -279,14 +279,16 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         ${
           this.showCounter
             ? html`
-                <span>${this.modelCounter}</span>
+                <div class="a-input-text__validation">
+                  ${this.charsLeft - 1}
+                </div>
               `
             : ''
         }
         ${
           this.showCounterMax
             ? html`
-                <span>${this.counterMax}</span>
+                <div class="a-input-text__validation">${this.counterMax}</div>
               `
             : ''
         }
