@@ -111,6 +111,11 @@ Defines a maximum number of characters, that a user has available. Attention: If
 ### counter
 
 Defines the text that the user will see, when he types into an input field that has the `maxLength`-attrbute set.
+This can have several options:
+
+- Leave it empty, so only the numbers of characters left will be displayed.
+- Set it to "characters left" to get a message formatted like this: `9 characters left`.
+- Set the counter between the text: "Still ##counter## characters left" will result into `Still 9 characters left'`. Keep in mind that the user can also see the number "0", so adapt the text so this will not look weird. `Still 0 characters left` does not sound so good.
 
 ### counterMax
 
