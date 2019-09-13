@@ -98,11 +98,23 @@ Valid `counter` values are:
 
 - the empty string, which will cause only the remaining character count to be displayed.
 - a nonempty string suffix, which will be appended to the remaining character count
-- a string template containing "##counter##", so that e.g. "still ##counter## characters left" will result in instantiated text like "still 9 characters left". 
+- a string template containing "##counter##", so that e.g. "still ##counter## characters left" will result in instantiated text like "still 9 characters left".
 
 ### counterMax
 
 String-valued `counterMax` defines the validation error message that the user will see upon reaching `maxLength` characters.
+
+### maxLength
+
+Defines a maximum number of characters, that a user has available. Attention: If the user uses ALL available characters, a validation message will occur and the form should not be submittable. Therefore, the counter of available characters left displays always the value of `maxLength -1`. The reason for this strange behavior is, that another implementation is not possible without getting rid of the internal html `<textfield>` element, which would degrade the accessibility rating of the component.
+
+### counter
+
+Defines the text that the user will see, when he types into an input field that has the `maxLength`-attrbute set.
+
+### counterMax
+
+Defines the validation message that the user will see, if he uses more characters than that are actually allowed.
 
 ### required
 
