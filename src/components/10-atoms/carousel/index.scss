@@ -1,5 +1,6 @@
 .a-carousel {
   display: flex;
+  flex-direction: row; // for ie
   align-items: center;
   justify-content: space-between;
   padding: 0 5px; // for arrows
