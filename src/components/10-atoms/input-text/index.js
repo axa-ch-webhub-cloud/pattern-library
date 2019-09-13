@@ -29,8 +29,19 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-      maxLength: { type: String },
       isReact: { type: Boolean },
+
+      counter: { type: String },
+      counterMax: { type: String },
+      modelCounter: { type: String },
+      maxLength: {
+        type: Number,
+        converter: {
+          toAttribute(value) {
+            return value ? Number(value) : '';
+          },
+        },
+      },
     };
   }
 
@@ -54,15 +65,72 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.invalid = false;
     this.disabled = false;
     this.isReact = false;
-    this.maxLength = '524288'; // W3C Default
+    this.modelCounter = '';
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
+
+    this.counter = '';
+    this.counterMax = '';
 
     // internal properties
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
+    this.isPlaceholderInCounter = false;
+  }
+
+  get charsLeft() {
+    const {
+      maxLength,
+      nativeInput: { value: nativeValue },
+    } = this;
+
+    if (nativeValue) {
+      return maxLength - nativeValue.length;
+    }
+
+    return maxLength;
+  }
+
+  get areCharsLeft() {
+    return this.charsLeft > 0;
+  }
+
+  get showCounter() {
+    return (
+      this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled
+    );
+  }
+
+  get showCounterMax() {
+    return (
+      this.maxLength > 0 &&
+      this.counterMax &&
+      !this.showError &&
+      !this.areCharsLeft &&
+      !this.disabled
+    );
+  }
+
+  get showMessages() {
+    return this.showError || this.showCounter || this.showCounterMax;
+  }
+
+  get replaceCounterPlaceholder() {
+    return this.counter.replace(/##.*##/, this.charsLeft);
+  }
+
+  get getCounterText() {
+    if (this.counter && this.isPlaceholderInCounter) {
+      return this.replaceCounterPlaceholder;
+    }
+
+    if (this.counter) {
+      return `${this.charsLeft} ${this.counter}`;
+    }
+
+    return this.charsLeft;
   }
 
   set value(val) {
@@ -105,15 +173,26 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       // yes, set UI from model state
       this.nativeInput.value = this.modelValue;
     }
+
+    if (this.maxLength) {
+      this.modelCounter = this.getCounterText;
+    }
   };
 
   firstUpdated() {
-    const { defaultValue, isReact } = this;
+    const { defaultValue, isReact, value } = this;
     this.nativeInput = this.querySelector('input');
+
+    if (isReact) {
+      this.nativeInput.value = value;
+    }
 
     if (isReact && defaultValue) {
       this.nativeInput.value = defaultValue;
     }
+
+    this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
+    this.modelCounter = this.getCounterText;
   }
 
   render() {
@@ -194,6 +273,20 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           this.showError
             ? html`
                 <span class="a-input-text__error">${error}</span>
+              `
+            : ''
+        }
+        ${
+          this.showCounter
+            ? html`
+                <span>${this.modelCounter}</span>
+              `
+            : ''
+        }
+        ${
+          this.showCounterMax
+            ? html`
+                <span>${this.counterMax}</span>
               `
             : ''
         }
