@@ -86,3 +86,28 @@ test('should submit inputs correctly in form', async t => {
     .expect((await Selector('#password-id')).innerText)
     .eql(`password: ${password}`);
 });
+
+fixture('Input text - Max Length').page(
+  `${host}/iframe.html?id=atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!`
+);
+
+test('should correctly show character count with counter within text', async t => {
+  const $axaTag = await Selector(() =>
+    document.querySelector('axa-input-text')
+  );
+  const $counterInfo = await $axaTag.find('.a-input-text__counter-info');
+  await t.expect($counterInfo.textContent).contains('Still 4 characters left');
+
+  const $input = await $axaTag.find(CLASS);
+  await t
+    .selectText($input)
+    .pressKey('delete')
+    .typeText($input, 'Pattern Warriors')
+    .expect($input.value)
+    .eql('Patte');
+
+  await t.expect($counterInfo.textContent).contains('Character limit reached!');
+  await t
+    .expect($counterInfo.getStyleProperty('color'))
+    .eql('rgb(201, 20, 50)');
+});

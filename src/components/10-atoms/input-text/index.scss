@@ -109,7 +109,7 @@ axa-input-text {
   }
 
   .a-input-text__character-overflow-error {
-    color: red;
+    color: $color-validation-error;
   }
   
   .a-input-text__counter-info {

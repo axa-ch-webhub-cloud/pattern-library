@@ -33,7 +33,7 @@ storyInputText.add('Input Text', () => {
   const invalid = boolean('invalid', false);
   const types = radios('type', typeOptions, 'text');
   const maxLength = text('maxlength', '50');
-  const counter = text('counter', 'still ##counter## characters left');
+  const counter = text('counter', 'Still ##counter## characters left');
   const counterMax = text('counterMax', 'Over character limit!');
 
   const wrapper = document.createElement('div');
