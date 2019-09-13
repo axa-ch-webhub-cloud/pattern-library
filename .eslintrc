@@ -74,6 +74,7 @@
     "HTMLDetailsElement": true,
     "HTMLDialogElement": true,
     "HTMLDirectoryElement": true,
+    "ShadowRoot": true,
     "HTMLDivElement": true,
     "HTMLDocument": true,
     "HTMLElement": true,

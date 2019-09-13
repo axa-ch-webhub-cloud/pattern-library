@@ -69,8 +69,7 @@ class AXACarousel extends InlineStyles {
 
   _getSlides(usedShadowRoot = this.shadowRoot) {
     // usedShadowRoot as a property to encapsulate for unit tests
-    const slots = usedShadowRoot
-      .querySelector('.js-carousel__slot')
+    const slots = this.querySelector('slot')
       .assignedNodes({ flatten: true })
       .filter(node => node.nodeType === ELEMENT_NODE);
 

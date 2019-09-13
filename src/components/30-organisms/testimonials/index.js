@@ -88,7 +88,7 @@ class AXATestimonials extends InlineStyles {
                       ?keysenabled="${keysenabled}"
                     >
                       <slot>
-                        <slot name="author"></slot>
+                        <!--slot name="author"></slot-->
                       </slot>
                     </axa-carousel>
                   </div>
