@@ -32,6 +32,9 @@ storyInputText.add('Input Text', () => {
   const required = boolean('required', false);
   const invalid = boolean('invalid', false);
   const types = radios('type', typeOptions, 'text');
+  const maxLength = text('maxlength', '50');
+  const counter = text('counter', 'still ##counter## characters left');
+  const counterMax = text('counterMax', 'Over character limit!');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -40,6 +43,9 @@ storyInputText.add('Input Text', () => {
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"
+      maxlength="${maxLength}"
+      counter="${counter}"
+      countermax="${counterMax}"
       ?checkmark="${checkMark}"
       ?disabled="${disabled}"
       ?required="${required}"
@@ -48,8 +54,7 @@ storyInputText.add('Input Text', () => {
       type="${types}"
       error="${error}"
       info="${info}"
-      ></axa-input-text
-    >
+    ></axa-input-text>
   `;
 
   render(template, wrapper);
