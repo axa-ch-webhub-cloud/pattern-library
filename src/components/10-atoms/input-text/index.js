@@ -31,9 +31,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       disabled: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
 
+      modelCounter: { type: String },
       counter: { type: String },
       counterMax: { type: String },
-      modelCounter: { type: String },
       maxLength: {
         type: Number,
         converter: {
@@ -118,7 +118,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   get replaceCounterPlaceholder() {
-    return this.counter.replace(/##.*##/, this.charsLeft);
+    return this.counter.replace(/##.*##/, this.charsLeft - 1);
   }
 
   get getCounterText() {
@@ -127,10 +127,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
 
     if (this.counter) {
-      return `${this.charsLeft} ${this.counter}`;
+      return `${this.charsLeft - 1} ${this.counter}`;
     }
 
-    return this.charsLeft;
+    return this.charsLeft - 1;
   }
 
   set value(val) {
@@ -281,7 +281,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           this.showCounter
             ? html`
                 <div class="a-input-text__counter-info">
-                  ${this.charsLeft - 1}
+                  ${this.modelCounter}
                 </div>
               `
             : ''
