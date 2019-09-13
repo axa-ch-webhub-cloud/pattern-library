@@ -61,8 +61,7 @@ storiesOf('Demos', module)
         }
       </style>
       <h2>
-        Note: There are green border around each SVG to better see
-        dimensions.
+        Note: There are green border around each SVG to better see dimensions.
       </h2>
       <h3>${icons.length} Icons:</h3>
       ${svg(
