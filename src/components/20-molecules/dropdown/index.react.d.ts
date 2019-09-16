@@ -16,8 +16,8 @@ export interface AXADropdownProps<T = number | string> {
   embedded?: boolean;
   refId?: string;
   label?: string;
-  required?: boolean,
-  invalid?: boolean,
+  required?: boolean;
+  invalid?: boolean;
   error?: string;
   native?: boolean;
   onChange?: (e: AXADropdownChangeEvent<T>) => void;

@@ -27,31 +27,20 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
 
   // Rendered array should be equal to the given ranges and custom dates we pass in in story.js allowedYears
   const dropdownItems = await dropdown().getAttribute('items');
-  await t
-    .expect(dropdownItems)
-    .eql(
-      JSON.stringify([
-        { selected: false, name: '1989', value: '1989' },
-        { selected: false, name: '1990', value: '1990' },
-        { selected: false, name: '1991', value: '1991' },
-        { selected: false, name: '1992', value: '1992' },
-        { selected: false, name: '1993', value: '1993' },
-        { selected: false, name: '1994', value: '1994' },
-        { selected: false, name: '1995', value: '1995' },
-        { selected: false, name: '1996', value: '1996' },
-        { selected: false, name: '1997', value: '1997' },
-        { selected: false, name: '1998', value: '1998' },
-        { selected: false, name: '1999', value: '1999' },
-        { selected: false, name: '2000', value: '2000' },
-        { selected: false, name: '2012', value: '2012' },
-        { selected: false, name: '2014', value: '2014' },
-        { selected: false, name: '2018', value: '2018' },
-        { selected: false, name: '2019', value: '2019' },
-        { selected: true, name: '2020', value: '2020' },
-        { selected: false, name: '2021', value: '2021' },
-        { selected: false, name: '2022', value: '2022' },
-      ])
-    );
+
+  const range = (start, end) =>
+    new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+
+  const expected = range(1971, 2000)
+    .concat([2012, 2014])
+    .concat(range(2018, 2022))
+    .map(year => ({
+      selected: year === 2020,
+      name: `${year}`,
+      value: `${year}`,
+    }));
+
+  await t.expect(dropdownItems).eql(JSON.stringify(expected));
 });
 
 test('should select the first of march from within the February view', async t => {
@@ -445,4 +434,39 @@ test('should submit datepicker correctly in form', async t => {
     )
     .expect((await Selector('#datepicker-forms-content')).innerText)
     .eql('date = 29.2.2020 (of 1 submittable elements)');
+});
+
+fixture('Datepicker with onchange handler').page(
+  `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
+);
+test('should fire the right events', async t => {
+  const datepickerForm = await Selector(() =>
+    document.querySelector(`axa-datepicker[data-test-id="datepicker-onchange"]`)
+  );
+
+  await t.setTestSpeed(0.5);
+
+  await t.expect(datepickerForm.exists).ok();
+
+  await t.click('.js-datepicker__input-button');
+
+  await t.wait(100).click('.js-datepicker__button-ok');
+
+  await t
+    .wait(50)
+    .expect((await Selector('.event-log')).value)
+    .eql(`{"name":"date","value":"29.2.2020"}\n\n`);
+
+  await t
+    .wait(50)
+    .typeText(
+      `axa-datepicker[data-test-id="datepicker-onchange"] .js-datepicker__input`,
+      '29.2.1976',
+      { replace: true }
+    );
+
+  await t
+    .wait(50)
+    .expect((await Selector('.event-log')).value)
+    .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
 });

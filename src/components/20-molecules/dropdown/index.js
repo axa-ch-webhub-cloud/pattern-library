@@ -8,6 +8,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
+import typecheck from '../../../utils/typecheck';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -66,6 +67,7 @@ const contentItemsMapper = clickHandler => (
     : html`
         <li class="${classMap(classes)}">
           <button
+            type="button"
             @click="${clickHandler}"
             tabindex="-1"
             class="m-dropdown__button js-dropdown__button"
@@ -78,8 +80,10 @@ const contentItemsMapper = clickHandler => (
       `;
 };
 
-const defaultTitleIfNeeded = title =>
-  title ? [{ name: title, disabled: true, selected: true, value: '' }] : [];
+const defaultTitleIfNeeded = (title, anotherSelection) =>
+  title
+    ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
+    : [];
 
 // CE
 class AXADropdown extends NoShadowDOM {
@@ -97,7 +101,7 @@ class AXADropdown extends NoShadowDOM {
       maxHeight: { type: Boolean, reflect: true },
       label: { type: String },
       required: { type: Boolean },
-      items: { type: Array },
+      items: { type: Array, /* participate in typecheck'ing */ check: true },
       open: { type: Boolean, reflect: true },
       value: { type: String },
       name: { type: String, reflect: true },
@@ -226,8 +230,8 @@ class AXADropdown extends NoShadowDOM {
     if (!isControlled) {
       this.value = value; // triggers re-render
       const details = { value, index, name };
-      fireCustomEvent('axa-change', value, this);
-      fireCustomEvent('change', details, this);
+      fireCustomEvent('axa-change', value, this, { bubbles: false });
+      fireCustomEvent('change', details, this, { bubbles: false });
     }
   }
 
@@ -260,6 +264,7 @@ class AXADropdown extends NoShadowDOM {
   /* last overrideable lifecycle point *before* render:
      put side-effects there that influence render */
   shouldUpdate(changedProperties) {
+    typecheck(this, { items: [] });
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
     this.state.isControlled = this.state.isControlled && this.isReact;
@@ -327,7 +332,7 @@ class AXADropdown extends NoShadowDOM {
               @blur="${this.onBlur}"
               @change="${handleDropdownItemClick}"
             >
-              ${defaultTitleIfNeeded(defaultTitle)
+              ${defaultTitleIfNeeded(defaultTitle, selectedItem)
                 .concat(items)
                 .map(nativeItemsMapper)}
             </select>
@@ -379,17 +384,14 @@ class AXADropdown extends NoShadowDOM {
     window.addEventListener('resize', this.handleResize);
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);
+    window.addEventListener('axa-dropdown-close', this.handleWindowClick);
   }
 
   updated() {
-    const {
-      select,
-      state: { isControlled },
-    } = this;
-    if (isControlled) {
-      // adjust native <select>
-      select.selectedIndex = this.findByValue(null, true);
-    }
+    const { select, defaultTitle } = this;
+    // adjust native <select>
+    select.selectedIndex =
+      this.findByValue(null, true) + (defaultTitle ? 1 : 0);
   }
 
   disconnectedCallback() {
@@ -397,6 +399,7 @@ class AXADropdown extends NoShadowDOM {
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);
+    window.removeEventListener('axa-dropdown-close', this.handleWindowClick);
   }
 }
 

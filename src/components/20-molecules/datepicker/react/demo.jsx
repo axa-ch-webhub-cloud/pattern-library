@@ -6,6 +6,7 @@ import DemoControlledDatepickerReact from './DemoDatepickerReact';
 import DemoDatepickerOnDateChange from './DemoDatepickerOnDateChange';
 import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation';
 import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDateChange';
+import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Datepicker/React/Demos', module)
@@ -42,4 +43,9 @@ storiesOf('Molecules/Datepicker/React/Demos', module)
       ReactDOM.render(<DemoDatepickerReRenderOnEveryKeyStroke />, div);
       return div;
     }
-  );
+  )
+  .add('No-inputfield React-ified Datepicker with external show/hide', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoDatepickerNoInputfield />, div);
+    return div;
+  });

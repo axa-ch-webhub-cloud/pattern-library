@@ -71,4 +71,34 @@ storiesOf('Molecules/Datepicker/Demos', module)
     const wrapper = document.createElement('div');
     render(template, wrapper);
     return wrapper;
+  })
+  .add('Feature - Datepicker with onchange handler', () => {
+    const template = html`
+      <axa-datepicker
+        inputfield
+        data-test-id="datepicker-onchange"
+        name="date"
+        required
+        label="Choose a date"
+        allowedyears='["1971-2020"]'
+        year="2020"
+        month="1"
+        day="29"
+        @change="${({ detail: { name, value } }) => {
+          document.querySelector(
+            '.event-log'
+          ).value += `{"name":"${name}","value":"${value}"}\n\n`;
+        }}"
+      ></axa-datepicker>
+      <textarea
+        class="event-log"
+        placeholder="event log..."
+        rows="31"
+        cols="30"
+      ></textarea>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
   });

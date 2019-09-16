@@ -118,6 +118,8 @@ If not in controlled-component mode, two custom events `axa-change` and `change`
 
 `change`'s event `detail` is an object `{value,index,name}`,where `value` is the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
 
+Both events do _not_ bubble up through the DOM.
+
 ### Migrating from version 2 to 3
 
 The attribute `valid` was renamed to `checkmark` (respectively to the camel-case `checkMark` property used e.g. under React).
