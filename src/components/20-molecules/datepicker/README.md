@@ -201,7 +201,7 @@ The respective callbacks are invoked with the original native event as their onl
 
 ## Events
 
-The custom events `axa-change` and `change` are fired on &lt;axa-datepickr&gt; itself whenever `onDateChange` fires (see above). Their `event.detail` value is the `value` property for `axa-change` (a string), and a `{value, date, name}` object for `change`.
+The custom events `axa-change` and `change` are fired on &lt;axa-datepicker&gt; itself whenever `onDateChange` fires (see above). Their `event.detail` value is the `value` property for `axa-change` (a string), and a `{value, date, name}` object for `change`.
 
 Both events do _not_ bubble up through the DOM.
 
