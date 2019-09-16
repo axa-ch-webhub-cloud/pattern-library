@@ -16,14 +16,14 @@ export interface AXADropdownProps<T = number | string> {
   embedded?: boolean;
   refId?: string;
   label?: string;
-  required?: boolean,
-  invalid?: boolean,
+  required?: boolean;
+  invalid?: boolean;
   error?: string;
   native?: boolean;
   onChange?: (e: AXADropdownChangeEvent<T>) => void;
   onFocus?: (e?: any) => void;
   onBlur?: (e?: any) => void;
-  title?: string;
+  defaultTitle?: string;
   value?: T;
   checkMark?: boolean;
   disabled?: boolean;
