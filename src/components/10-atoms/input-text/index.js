@@ -38,7 +38,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         type: Number,
         converter: {
           toAttribute(value) {
-            return value ? Number(value) : '';
+            // 524288 is the default value according to W3C
+            return value ? Number(value) : 524288;
           },
         },
       },
@@ -179,8 +180,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
-  isNotAtMaxLength() {
-    return this.charsLeft !== 0 && this.charsLeft !== '0';
+  showCheckMark() {
+    return this.checkMark && this.charsLeft !== 0 && this.charsLeft !== '0';
   }
 
   firstUpdated() {
@@ -258,7 +259,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             @blur="${this.handleBlur}"
           />
           ${
-            checkMark && this.isNotAtMaxLength()
+            this.showCheckMark()
               ? html`
                   <span class="a-input-text__check"></span>
                 `

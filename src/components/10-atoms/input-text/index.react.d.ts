@@ -14,7 +14,7 @@ export interface AXAInputTextProps {
   required?: boolean;
   disabled?: boolean;
   checkMark?: boolean;
-  maxLength?: string;
+  maxLength?: number;
   counter?: string;
   counterMax?: string;
   isReact?: boolean;
