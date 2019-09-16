@@ -179,6 +179,10 @@ test('should exceed maximum number of files', async t => {
 
   await t.setFilesToUpload($inputFileInputElem, validFiles);
 
+  // give component some time to stabilize DOM as a result of
+  // file-upload-triggered internal computation (flaky test otherwise)
+  await t.wait(50);
+
   const $figureElems = await Selector(() =>
     document
       .querySelector('axa-file-upload')
