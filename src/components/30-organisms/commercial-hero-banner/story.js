@@ -55,8 +55,7 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
         slot="button"
         variant="red"
         size="large"
-        >GET A QUOTE</axa-button-link
-      >
+        >GET A QUOTE</axa-button-link>
     </axa-commercial-hero-banner
   `;
   render(template, wrapper);
