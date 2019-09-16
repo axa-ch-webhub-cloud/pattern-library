@@ -67,6 +67,7 @@ const contentItemsMapper = clickHandler => (
     : html`
         <li class="${classMap(classes)}">
           <button
+            type="button"
             @click="${clickHandler}"
             tabindex="-1"
             class="m-dropdown__button js-dropdown__button"
