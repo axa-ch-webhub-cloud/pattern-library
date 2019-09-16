@@ -104,14 +104,14 @@ class AXATextarea extends NoShadowDOM {
     } = this;
 
     if (nativeValue) {
-      return maxLength - nativeValue.length;
+      return maxLength - nativeValue.length - 1;
     }
 
-    return maxLength;
+    return maxLength - 1;
   }
 
   get replaceCounterPlaceholder() {
-    return this.counter.replace(/##.*##/, this.charsLeft - 1);
+    return this.counter.replace(/##.*##/, this.charsLeft);
   }
 
   get getCounterText() {
@@ -127,7 +127,7 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get areCharsLeft() {
-    return this.charsLeft > 0;
+    return this.charsLeft >= 0;
   }
 
   get showCounter() {
