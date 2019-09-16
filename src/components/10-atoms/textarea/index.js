@@ -104,10 +104,10 @@ class AXATextarea extends NoShadowDOM {
     } = this;
 
     if (nativeValue) {
-      return maxLength - nativeValue.length;
+      return maxLength - nativeValue.length - 1;
     }
 
-    return maxLength;
+    return maxLength - 1;
   }
 
   get replaceCounterPlaceholder() {
@@ -127,7 +127,7 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get areCharsLeft() {
-    return this.charsLeft > 0;
+    return this.charsLeft >= 0;
   }
 
   get showCounter() {
@@ -144,7 +144,6 @@ class AXATextarea extends NoShadowDOM {
     return (
       this.maxLength > 0 &&
       this.counterMax &&
-      !this.showError &&
       !this.areCharsLeft &&
       !this.disabled
     );
@@ -209,19 +208,22 @@ class AXATextarea extends NoShadowDOM {
       refId,
       invalid,
       checkMark,
+      showError,
+      showCounter,
+      showCounterMax,
     } = this;
 
     this.isControlled = isControlled && isReact;
 
     const textareaClasses = {
       'a-textarea__textarea': true,
-      'a-textarea__textarea--error': invalid && !disabled,
-      'a-textarea__textarea--check': checkMark && !disabled,
+      'a-textarea__textarea--error': (invalid || showCounterMax) && !disabled,
+      'a-textarea__textarea--check': checkMark && !disabled && !showCounterMax,
     };
 
     const textareaMessagesClasses = {
       'a-textarea__messages': true,
-      'a-textarea__messages--error': invalid && !disabled,
+      'a-textarea__messages--error': (invalid || showCounterMax) && !disabled,
       'a-textarea__messages--hidden': !this.showMessages,
     };
 
@@ -252,24 +254,24 @@ class AXATextarea extends NoShadowDOM {
           aria-required="${required}"
         ></textarea>
 
-        ${checkMark
+        ${checkMark && !showCounterMax
           ? html`
               <span class="a-textarea__check"></span>
             `
           : ''}
       </div>
       <div class="${classMap(textareaMessagesClasses)}">
-        ${this.showCounter
+        ${showCounter
           ? html`
               <span>${modelCounter}</span>
             `
           : ''}
-        ${this.showCounterMax
+        ${showCounterMax
           ? html`
               <span>${counterMax}</span>
             `
           : ''}
-        ${this.showError
+        ${showError
           ? html`
               <span>${error}</span>
             `

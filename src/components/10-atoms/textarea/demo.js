@@ -18,6 +18,8 @@ storiesOf('Atoms/Textarea/Demos', module)
           label="Character counter with string pattern"
           maxlength="3"
           counter="still ##counter## characters left"
+          countermax="character limit reached"
+          checkmark
         ></axa-textarea>
         <axa-textarea
           style="display: block; margin-bottom: 20px;"
