@@ -179,6 +179,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
+  isNotAtMaxLength() {
+    return this.charsLeft !== 0 && this.charsLeft !== '0';
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
     this.nativeInput = this.querySelector('input');
@@ -254,7 +258,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             @blur="${this.handleBlur}"
           />
           ${
-            checkMark
+            checkMark && this.isNotAtMaxLength()
               ? html`
                   <span class="a-input-text__check"></span>
                 `
