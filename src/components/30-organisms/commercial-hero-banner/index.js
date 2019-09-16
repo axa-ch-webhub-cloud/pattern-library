@@ -72,6 +72,7 @@ class AXACommercialHeroBanner extends InlineStyles {
                   <slot name="title"></slot>
                   <slot name="content"></slot>
                   <slot name="disclaimer"></slot>
+                  <slot name="button"></slot>
                   <slot name="addon-section"></slot>
                 </div>
               </div>
