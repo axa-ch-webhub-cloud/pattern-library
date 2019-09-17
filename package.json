@@ -87,7 +87,7 @@
     "rollup-plugin-sass": "^1.1.0",
     "rollup-plugin-uglify": "^6.0.2",
     "sass-loader": "^7.1.0",
-    "storybook-readme": "^5.0.8",
+    "storybook-readme": "5.0.6",
     "svgo": "^1.2.0",
     "testcafe": "1.4.0",
     "testcafe-browser-provider-browserstack": "1.9.0",
