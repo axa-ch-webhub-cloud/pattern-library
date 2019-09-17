@@ -114,12 +114,18 @@ storiesOf('Molecules/Top content bar', module)
 ## How-to release a component
 
 - Ensure you have an npm account under the `@axa-ch` organisation
-- Create a new branch that follows this pattern: `release/<component-name>`
-- Add your component to `lerna.json`
+- Create a new _release branch_ that follows this pattern: `release/<component-name>`
+- Manually add your component to `lerna.json` and remove all not-to-be-released components from the same
+- commit and push your lerna.json changes to the release branch
 - Clean the main and components dependencies:
   - `npx lerna clean`
   - `rm -rf node_modules`
 - Run `npm install`
 - ~~Run `npm run release` or `npm run prerelease`~~
+- Ensure you are logged in to npm (`npm login`)
+- Ensure you have the necessary credentials to push to the Githup repo via commandline commands (the following lerna commands do this automatically)
 - Run `npm run test && npx lerna version && npx lerna publish from-package`
 - Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
+- Lerna will update the component `package.json` with new version numbers and auto-commit/push those
+- Manually undo the removal of all not-to-be-released components in lerna.json, commit and push again to the release branch
+- merge the release branch to the `develop` branch in order to preserve the new version numbers
