@@ -104,23 +104,6 @@ Valid `counter` values are:
 
 String-valued `counterMax` defines the validation error message that the user will see upon reaching `maxLength` characters.
 
-### maxLength
-
-The number-valued `maxlength` provides a maximum number of characters that the input-text component allows to be entered. However, the user will only be able to use maxLength - 1 value, without getting a 'Character limit reached!' validation message. The remaining characters are always displayed to the user, if `maxLength` is provided.
-
-### counter
-
-Defines the text that the user will see, when he/she types into an input field that has the `maxLength`-attribute set.
-This can have several options:
-
-- Leave it empty, so only the numbers of characters left will be displayed.
-- Set it to "characters left" to get a message formatted like this: `9 characters left`.
-- Set the counter between the text: "Still ##counter## characters left" will result into `Still 9 characters left'`. Keep in mind that the user can also see the number "0", so adapt the text so this will not look weird. `Still 0 characters left` does not sound so good.
-
-### counterMax
-
-Defines the validation message that the user will see, if he/she uses more characters than that are actually allowed (allowed means `maxLength - 1`).
-
 ### required
 
 The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When set to true, the element displays `*` after the label text.
