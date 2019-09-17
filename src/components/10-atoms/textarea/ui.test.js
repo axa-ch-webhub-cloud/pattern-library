@@ -18,12 +18,20 @@ test('should render textarea', async t => {
 });
 
 test('should type something in textarea', async t => {
-  const $axaTag = await Selector(() => document.querySelector('axa-textarea'));
-  const $axaButtonTagEl = await $axaTag.find(CLASS);
-  await t
-    .typeText($axaButtonTagEl, 'Pattern Warriors')
-    .expect($axaButtonTagEl.value)
-    .eql('Pattern Warriors');
+  const setupTextarea = ClientFunction(() => {
+    const textarea = document.createElement('axa-textarea');
+    textarea.className = 'my-textarea';
+    document.getElementById('root').appendChild(textarea);
+  });
+  await setupTextarea();
+  const [textarea, nativeTextarea] = [
+    await Selector('.my-textarea'),
+    await Selector(`.my-textarea ${CLASS}`),
+  ];
+  await t.expect(textarea.exists).ok();
+  await t.expect(nativeTextarea.exists).ok();
+  await t.typeText(nativeTextarea, 'Pattern Warriors');
+  await t.expect(textarea.value).eql('Pattern Warriors');
 });
 
 test('should show error message and have the right color', async t => {

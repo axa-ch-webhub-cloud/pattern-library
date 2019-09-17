@@ -31,14 +31,7 @@ class AXATextarea extends NoShadowDOM {
 
       counter: { type: String },
       counterMax: { type: String },
-      maxLength: {
-        type: Number,
-        converter: {
-          toAttribute(value) {
-            return value ? Number(value) : '';
-          },
-        },
-      },
+      maxLength: { type: Number },
       isReact: { type: Boolean },
       modelCounter: { type: String },
     };
