@@ -69,11 +69,7 @@ class AXACarousel extends InlineStyles {
 
   _getSlides(usedThis = this) {
     // usedThis as a property to encapsulate for unit tests
-    let _this = usedThis;
-    if(_this.shadowRoot) { // use shadowRoot only if carousel is not nested
-      _this = _this.shadowRoot;
-    }
-    const slots = _this
+    const slots = usedThis // do not use this.shadowRoot because of IE
       .querySelector('slot')
       .assignedNodes({ flatten: true })
       .filter(node => node.nodeType === ELEMENT_NODE);
