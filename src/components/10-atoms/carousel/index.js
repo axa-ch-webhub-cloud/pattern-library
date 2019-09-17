@@ -67,9 +67,10 @@ class AXACarousel extends InlineStyles {
 
   // private methods
 
-  _getSlides(usedShadowRoot = this.shadowRoot) {
-    // usedShadowRoot as a property to encapsulate for unit tests
-    const slots = this.querySelector('slot')
+  _getSlides(usedThis = this) {
+    // usedThis as a property to encapsulate for unit tests
+    const slots = usedThis // do not use this.shadowRoot because of IE
+      .querySelector('slot')
       .assignedNodes({ flatten: true })
       .filter(node => node.nodeType === ELEMENT_NODE);
 
@@ -242,7 +243,7 @@ class AXACarousel extends InlineStyles {
           class="a-carousel__wrapper js-carousel__wrapper ${this
             ._animationWrapperClass}"
         >
-          <slot class="a-carousel__slot js-carousel__slot"></slot>
+          <slot></slot>
         </div>
         <button
           type="button"

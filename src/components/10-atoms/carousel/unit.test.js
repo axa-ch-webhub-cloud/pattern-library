@@ -40,21 +40,23 @@ describe('AXACarousel', () => {
   });
 
   describe('allgemeine private methods', () => {
-    test('_getSlides() should call querySelector with correct attribute', () => {
+    test('_getSlides() should call querySelector(), assignedNodes() and filter()', () => {
+      const mockedFilter = jest.fn();
       const mockedQuerySelector = jest.fn(() => {
         return {
           assignedNodes: () => {
-            return { filter: () => {} };
+            return { filter: mockedFilter };
           },
         };
       });
-      const mockedShadowRoot = {
+      const mockedThis = {
         querySelector: mockedQuerySelector,
       };
 
-      AXACarousel.prototype._getSlides(mockedShadowRoot);
+      AXACarousel.prototype._getSlides(mockedThis);
 
-      expect(mockedQuerySelector).toHaveBeenCalledWith('.js-carousel__slot');
+      expect(mockedQuerySelector).toHaveBeenCalledWith('slot');
+      expect(mockedFilter).toHaveBeenCalled(); // filter is only called if assignedNodes is called too
     });
 
     test('_addEventListenerAnimationEnd() should call querySelector with correct attribute', () => {
