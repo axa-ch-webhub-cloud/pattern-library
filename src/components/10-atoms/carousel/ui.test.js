@@ -16,4 +16,4 @@ test('should render carousel', async t => {
   const $axaElemShadow = await Selector(() => document.querySelector('axa-carousel').shadowRoot);
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
-});*/
+}); */
