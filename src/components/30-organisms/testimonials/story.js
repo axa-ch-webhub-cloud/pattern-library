@@ -43,7 +43,7 @@ story.add('Testimonials', () => {
           called into my local axa once in the city and got sorted in 10 minutes
           after 3 weeks of phone calls.</span
         >
-        <span slot="author">Andrew Jackson, Advocate</span>
+        <span class="author">Andrew Jackson, Advocate</span>
       </div>
       <div>
         <span
@@ -61,7 +61,7 @@ story.add('Testimonials', () => {
           from person to person, in the end I called into my local axa once in the
           city and got sorted in 10 minutes after 3 weeks of phone calls.</span
         >
-        <span slot="author">Andrew Müller, Advocate</span>
+        <span class="author">Andrew Müller, Advocate</span>
       </div>
       <span>This is a small text without an author.</span>
     </axa-testimonials>

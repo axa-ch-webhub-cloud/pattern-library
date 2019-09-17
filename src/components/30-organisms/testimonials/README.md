@@ -22,7 +22,10 @@ import '@axa-ch/testimonials';
   subtitle="This is the subtitle"
 >
   <span>first slide</span>
-  <span>second slide</span>
+  <div>
+    <span>second slide</span>
+    <span class="author">Andrew Jackson, Advocate</span>
+  </div>
 </axa-testimonials>;
 ```
 
@@ -49,7 +52,10 @@ export default AXATestimonialsReact;
   subtitle="This is the subtitle"
 >
   <span>first slide</span>
-  <span>second slide</span>
+  <div>
+    <span>second slide</span>
+    <span class="author">Andrew Jackson, Advocate</span>
+  </div>
 </AXATestimonialsReact>
 ```
 
@@ -78,7 +84,7 @@ Import the testimonials-defining script and use a testimonials like this:
       <span>first slide</span>
       <div>
         <span>second slide</span>
-        <span slot="author">Andrew Jackson, Advocate</span>
+        <span class="author">Andrew Jackson, Advocate</span>
       </div>
     </axa-testimonials>
     <script src="node_modules/@axa-ch/testimonials/dist/index.js"></script>
@@ -113,11 +119,14 @@ This number specifies the milliseconds the slides will automatically rotate.
 This boolean attribute specifies if the keyboard navigation (left/right keys) should be enabled.
 
 ## Child Elements
+
 ### Maximum
+
 Do not set more than ~100 child elements. Because of height calculation the performance will be slow down.
 
-### slot="author"
-You can set this attribute to a span. The Text will be uppercase and above of another nested slide elements.
+### class="author"
+
+You can set this class to a span. The Text will be uppercase and above of another nested slide elements.
 
 ## Migration Notes
 
