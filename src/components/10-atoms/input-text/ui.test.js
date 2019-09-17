@@ -91,7 +91,7 @@ fixture('Input text - Max Length').page(
   `${host}/iframe.html?id=atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
 );
 
-test('should correctly show character count with counter within text', async t => {
+test.only('should correctly show character count with counter within text', async t => {
   const $axaTag = await Selector(() =>
     document.querySelector('axa-input-text')
   );
@@ -103,8 +103,16 @@ test('should correctly show character count with counter within text', async t =
   const $input = await $axaTag.find(CLASS);
   await t
     .selectText($input)
-    .pressKey('delete')
-    .typeText($input, 'Pattern Warriors')
+    .typeText($input, 'Patt', { replace: true })
+    .expect($input.value)
+    .eql('Patt');
+
+  await t.expect($checkMark.exists).ok();
+  await t.expect($counterInfo.textContent).contains('Still 0 characters');
+
+  await t
+    .selectText($input)
+    .typeText($input, 'Pattern Warriors', { replace: true })
     .expect($input.value)
     .eql('Patte');
 
