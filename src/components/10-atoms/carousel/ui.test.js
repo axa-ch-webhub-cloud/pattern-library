@@ -1,3 +1,6 @@
+/*
+// temporarly deactivate test because of issue #1338
+
 import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
@@ -13,4 +16,4 @@ test('should render carousel', async t => {
   const $axaElemShadow = await Selector(() => document.querySelector('axa-carousel').shadowRoot);
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
-});
+});*/
