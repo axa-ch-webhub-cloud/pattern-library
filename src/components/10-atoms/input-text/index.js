@@ -224,7 +224,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       'a-input-text__input': true,
       'a-input-text__input--error':
         (invalid && !disabled) || this.showCounterMax,
-      'a-input-text__input--check': checkMark && !disabled,
+      'a-input-text__input--check':
+        checkMark && !this.showCounterMax && !disabled,
     };
 
     return html`
