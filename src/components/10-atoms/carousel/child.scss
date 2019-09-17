@@ -1,0 +1,21 @@
+@mixin defaultAttributesChildElements {
+  @include typo(primary);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center; // align the dom element itself (f.e. small spans)
+
+  @include breakpoint($mediaquery-sm-up) {
+    @include typo(primary, large);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo(primary, large-1);
+  }
+}
+
+axa-carousel {
+  > * {
+    @include defaultAttributesChildElements();
+  }
+}

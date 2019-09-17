@@ -4,6 +4,7 @@
     "src/components/05-utils/polyfill",
     "src/components/10-atoms/button",
     "src/components/10-atoms/button-link",
+    "src/components/10-atoms/carousel",
     "src/components/10-atoms/checkbox",
     "src/components/10-atoms/fieldset",
     "src/components/10-atoms/radio",
@@ -25,7 +26,8 @@
     "src/components/30-organisms/container",
     "src/components/30-organisms/footer",
     "src/components/30-organisms/table",
-    "src/components/30-organisms/table-sortable"
+    "src/components/30-organisms/table-sortable",
+    "src/components/30-organisms/testimonials"
   ],
   "version": "independent",
   "npmClient": "npm"

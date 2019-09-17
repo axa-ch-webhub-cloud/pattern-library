@@ -1,7 +1,16 @@
 module.exports = {
   collectCoverageFrom: [
     'src/**/*.js',
+    '!**/dist/**',
+    '!**/lib/**',
+    '!**/demo/**',
+    '!**/00-materials/icons/**',
+    '!**/00-materials/images/**',
+    '!**/ui.test.js',
+    '!**/story.js',
+    '!**/index.react.js',
   ],
+  coverageDirectory: '.coverage',
   setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.js'],
   testMatch: [
     '<rootDir>/src/**/unit.test.{js,jsx,mjs}',
