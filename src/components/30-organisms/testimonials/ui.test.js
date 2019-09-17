@@ -49,8 +49,8 @@ test('should find axa-carousel tag if attribute showallinline is not set', async
   await t.expect($carouselElement.exists).ok();
 });
 
-test('should set text to uppercase for slot "author"', async t => {
-  const $firstAuthorElementInDocument = await $elementTestimonial.find('[slot="author"]');
+test('should set text to uppercase for elements with class "author"', async t => {
+  const $firstAuthorElementInDocument = await $elementTestimonial.find('[class="author"]');
   await t
     .expect(await $firstAuthorElementInDocument.getStyleProperty('text-transform'))
     .eql('uppercase');
