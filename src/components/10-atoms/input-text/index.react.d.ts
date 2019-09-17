@@ -14,11 +14,14 @@ export interface AXAInputTextProps {
   required?: boolean;
   disabled?: boolean;
   checkMark?: boolean;
+  maxLength?: number;
+  counter?: string;
+  counterMax?: string;
   isReact?: boolean;
   className?: string;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
-  onChange?: (e: { target: HTMLInputElement; }) => void;
+  onChange?: (e: { target: HTMLInputElement }) => void;
 }
 
 declare function createAXAInputText(

@@ -98,7 +98,7 @@ Valid `counter` values are:
 
 - the empty string, which will cause only the remaining character count to be displayed.
 - a nonempty string suffix, which will be appended to the remaining character count
-- a string template containing "##counter##", so that e.g. "still ##counter## characters left" will result in instantiated text like "still 9 characters left". 
+- a string template containing "##counter##", so that e.g. "still ##counter## characters left" will result in instantiated text like "still 9 characters left".
 
 ### counterMax
 

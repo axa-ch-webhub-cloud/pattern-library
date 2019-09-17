@@ -29,8 +29,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       invalid: { type: Boolean },
       checkMark: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-
       isReact: { type: Boolean },
+
+      modelCounter: { type: String },
+      counter: { type: String },
+      counterMax: { type: String },
+      maxLength: { type: Number },
     };
   }
 
@@ -54,14 +58,70 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.invalid = false;
     this.disabled = false;
     this.isReact = false;
+    this.modelCounter = '';
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
+
+    this.counter = '';
+    this.counterMax = '';
 
     // internal properties
     this.nativeInput = { value: '' };
     this.modelValue = '';
     this.isControlled = false;
+    this.isPlaceholderInCounter = false;
+  }
+
+  get charsLeft() {
+    const {
+      maxLength,
+      nativeInput: { value: nativeValue },
+    } = this;
+
+    if (nativeValue) {
+      return maxLength - nativeValue.length;
+    }
+
+    return maxLength;
+  }
+
+  get areCharsLeft() {
+    return this.charsLeft > 0;
+  }
+
+  get showCounter() {
+    return (
+      this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled
+    );
+  }
+
+  get showCounterMax() {
+    return (
+      this.maxLength > 0 &&
+      this.counterMax &&
+      !this.showError &&
+      !this.areCharsLeft &&
+      !this.disabled
+    );
+  }
+
+  get showMessages() {
+    return this.showError || this.showCounter || this.showCounterMax;
+  }
+
+  get getCounterText() {
+    const userCharsLeft = this.charsLeft - 1;
+
+    if (this.counter && this.isPlaceholderInCounter) {
+      return this.counter.replace(/##.*##/, userCharsLeft);
+    }
+
+    if (this.counter) {
+      return `${userCharsLeft} ${this.counter}`;
+    }
+
+    return userCharsLeft;
   }
 
   set value(val) {
@@ -88,6 +148,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     return this.error && this.invalid && !this.disabled && !this._open;
   }
 
+  get showCheckMark() {
+    return this.checkMark && this.charsLeft !== 0;
+  }
+
   handleFocus = ev => {
     this.onFocus(ev);
   };
@@ -104,15 +168,22 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       // yes, set UI from model state
       this.nativeInput.value = this.modelValue;
     }
+
+    if (this.maxLength) {
+      this.modelCounter = this.getCounterText;
+    }
   };
 
   firstUpdated() {
-    const { defaultValue, isReact } = this;
+    const { defaultValue, isReact, value } = this;
     this.nativeInput = this.querySelector('input');
 
-    if (isReact && defaultValue) {
-      this.nativeInput.value = defaultValue;
+    if (isReact) {
+      this.nativeInput.value = defaultValue || value;
     }
+
+    this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
+    this.modelCounter = this.getCounterText;
   }
 
   render() {
@@ -127,6 +198,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       placeholder,
       disabled,
       isReact,
+      maxLength,
       invalid,
       checkMark,
       isControlled,
@@ -138,8 +210,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error': invalid && !disabled,
-      'a-input-text__input--check': checkMark && !disabled,
+      'a-input-text__input--error':
+        (invalid && !disabled) || this.showCounterMax,
+      'a-input-text__input--check':
+        checkMark && !this.showCounterMax && !disabled,
     };
 
     return html`
@@ -165,13 +239,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             value="${value}"
             placeholder="${placeholder}"
             aria-required="${required}"
+            maxlength="${maxLength}"
             ?disabled="${disabled}"
             @input="${this.handleInput}"
             @focus="${this.handleFocus}"
             @blur="${this.handleBlur}"
           />
           ${
-            checkMark
+            this.showCheckMark
               ? html`
                   <span class="a-input-text__check"></span>
                 `
@@ -191,6 +266,26 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           this.showError
             ? html`
                 <span class="a-input-text__error">${error}</span>
+              `
+            : ''
+        }
+        ${
+          this.showCounter
+            ? html`
+                <div class="a-input-text__counter-info">
+                  ${this.modelCounter}
+                </div>
+              `
+            : ''
+        }
+        ${
+          this.showCounterMax
+            ? html`
+                <div
+                  class="a-input-text__counter-info a-input-text__character-overflow-error"
+                >
+                  ${this.counterMax}
+                </div>
               `
             : ''
         }
