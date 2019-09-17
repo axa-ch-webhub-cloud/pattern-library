@@ -34,9 +34,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       modelCounter: { type: String },
       counter: { type: String },
       counterMax: { type: String },
-      maxLength: {
-        type: Number,
-      },
+      maxLength: { type: Number },
     };
   }
 
