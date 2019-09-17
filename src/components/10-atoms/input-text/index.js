@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-/* eslint-disable import/no-extraneous-dependencies */
 import { AXAPopupMixin } from '@axa-ch/popup';
 
 import NoShadowDOM from '../../../utils/no-shadow';
