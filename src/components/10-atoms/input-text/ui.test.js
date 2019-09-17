@@ -91,7 +91,7 @@ fixture('Input text - Max Length').page(
   `${host}/iframe.html?id=atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
 );
 
-test.only('should correctly show character count with counter within text', async t => {
+test('should correctly show character count with counter within text', async t => {
   const $axaTag = await Selector(() =>
     document.querySelector('axa-input-text')
   );
