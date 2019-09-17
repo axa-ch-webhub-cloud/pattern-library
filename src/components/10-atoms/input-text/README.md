@@ -106,11 +106,11 @@ String-valued `counterMax` defines the validation error message that the user wi
 
 ### maxLength
 
-Defines a maximum number of characters, that a user has available. Attention: If the user uses all available characters, a validation message will occur. Therefore, the counter of available characters left always displays the value of `maxLength -1`. The reason for this strange behavior is, that another implementation is not possible without getting rid of the internal html `<textfield>` element, which would degrade the accessibility rating of the component.
+The number-valued `maxlength` provides a maximum number of characters that the input-text component allows to be entered. However, the user will only be able to use maxLength - 1 value, without getting a 'Character limit reached!' validation message. The remaining characters are always displayed to the user, if `maxLength` is provided.
 
 ### counter
 
-Defines the text that the user will see, when he types into an input field that has the `maxLength`-attribute set.
+Defines the text that the user will see, when he/she types into an input field that has the `maxLength`-attribute set.
 This can have several options:
 
 - Leave it empty, so only the numbers of characters left will be displayed.
@@ -119,7 +119,7 @@ This can have several options:
 
 ### counterMax
 
-Defines the validation message that the user will see, if he uses more characters than that are actually allowed (allowed means `maxLength - 1`).
+Defines the validation message that the user will see, if he/she uses more characters than that are actually allowed (allowed means `maxLength - 1`).
 
 ### required
 

@@ -118,20 +118,18 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     return this.showError || this.showCounter || this.showCounterMax;
   }
 
-  get replaceCounterPlaceholder() {
-    return this.counter.replace(/##.*##/, this.charsLeft - 1);
-  }
-
   get getCounterText() {
+    const userCharsLeft = this.charsLeft - 1;
+
     if (this.counter && this.isPlaceholderInCounter) {
-      return this.replaceCounterPlaceholder;
+      return this.counter.replace(/##.*##/, userCharsLeft);
     }
 
     if (this.counter) {
-      return `${this.charsLeft - 1} ${this.counter}`;
+      return `${userCharsLeft} ${this.counter}`;
     }
 
-    return this.charsLeft - 1;
+    return userCharsLeft;
   }
 
   set value(val) {
