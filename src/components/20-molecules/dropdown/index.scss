@@ -100,13 +100,14 @@ axa-dropdown {
     }
   }
 
-  .m-dropdown__select-icon {
+  .m-dropdown__select-icon.m-dropdown__select-icon {
     display: block;
     background-color: $color-prim-white;
     position: absolute;
     top: 15px;
     right: 15px;
     pointer-events: none;
+    height: auto;
 
     svg {
       display: block;
