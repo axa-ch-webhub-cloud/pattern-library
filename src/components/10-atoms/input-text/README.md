@@ -19,7 +19,7 @@ import '@axa-ch/input-text';
 
 ### React
 
-Create a React-ified &lt,axa-input-text&gt; with the `createElement` function from your React version and then use it like this:
+Create a React-ified &lt;axa-input-text&gt; with the `createElement` function from your React version and then use it like this:
 
 ```js
 import { createElement } from 'react';
@@ -31,12 +31,12 @@ export default AXAInputTextReact;
 ```
 
 ```js
-<AXAInputTextReact onChange={handeChange} />
+<AXAInputTextReact onChange={handleChange} />
 ```
 
 ### Pure HTML pages
 
-Import the input-text-defining script and use an &lt,axa-input-text&gt; like this:
+Import the input-text-defining script and use &lt;axa-input-text&gt; like this:
 
 ```html
 <!DOCTYPE html>
@@ -53,6 +53,7 @@ Import the input-text-defining script and use an &lt,axa-input-text&gt; like thi
   </body>
 </html>
 ```
+
 ## Properties
 
 ### type
@@ -63,35 +64,61 @@ The type of input element to display.
 | ----------------- | --------- |
 | `type="text"`     | (default) |
 | `type="email"`    | Email     |
-| `type="password"` | Passwort  |
+| `type="password"` | Password  |
 
 ### label
 
 The string-valued `label` provides the label text as HTML.
 
+_Note: The application is responsible for sanitizing HTML!_
+
 ### refId
 
-The string-valued `refId` sets the reference for label and input, if no `refId` is set a random id number will be created.
+The string-valued `refId` sets the reference ID for label and input. If no `refId` is set, a random ID will be created.
 
-### name\*
+### name
 
-The string-valued `name` of the element for purposes of form submission.
+The string-valued `name` of the element can be set for purposes of form submission.
+
+_Note: See the [specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#naming-form-controls:-the-name-attribute) for further details._
+
+### maxLength
+
+Numeric `maxLength`, when defined, restricts the number of characters a user can enter. The underlying native &lt;input&gt; enforces `maxLength` by blocking user input when the character limit is exceeded.
+
+The remaining characters are always displayed to the user, if `maxLength` is provided.
+
+The UI's remaining-characters message (see `counter`) will however use `maxLength - 1` internally to be able to provide advance warning when 0 characters remain. Upon hitting the character limit proper the 'character limit reached!' error message (see `counterMax`) is displayed instead.
+
+### counter
+
+String-valued `counter` defines the UI's remaining-characters message in conjunction with `maxLength`.
+
+Valid `counter` values are:
+
+- the empty string, which will cause only the remaining character count to be displayed.
+- a nonempty string suffix, which will be appended to the remaining character count
+- a string template containing "##counter##", so that e.g. "still ##counter## characters left" will result in instantiated text like "still 9 characters left". 
+
+### counterMax
+
+String-valued `counterMax` defines the validation error message that the user will see upon reaching `maxLength` characters.
 
 ### required
 
-The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
+The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When set to true, the element displays `*` after the label text.
 
 ### placeholder
 
-String-valued `placeholder`specifies the placeholder text shown when the element is empty.
+The string-valued `placeholder` specifies the placeholder text shown when the element is empty.
 
 ### invalid
 
-The boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). if `false` it sets the element into a visual error state.
+The Boolean attribute `invalid` serves to indicate the validity of the element (default: `false`). If set to `true` it sets the element into a visual error state.
 
 ### checkMark
 
-The boolean attribute `checkMark` shows an animated check mark to the right of the input (default: `false`), if `valid` is true .
+The Boolean attribute `checkMark`, when set to true, shows an animated check mark to the right of the input (default: `false`).
 
 ### value
 
@@ -99,30 +126,42 @@ The string-valued `value` sets the value of the underlying native HTML &lt;input
 
 ### defaultValue
 
-The string-valued `defaultValue` can only be used for React and other frameworks. In native you set the value
+The string-valued `defaultValue` can only be used for React.
+
+Like `value`, it sets the value of the underlying native HTML &lt;input&gt; &mdash; _but_ only once, on first render.
 
 ### disabled
 
-The boolean attribute `disabled` disables the underlying native HTML &lt;input&gt; text.
+The Boolean attribute `disabled` disables the underlying native HTML &lt;input&gt; text.
 
 ### error
 
-The string-valued `error` provides error text as HTML. It sets the element into a visual error state, if `invalid` is true.
+The string-valued `error` provides error text as HTML.
+
+This is the text shown when `invalid` is true.
 
 ### info
 
 The string-valued `info` provides the label text as HTML.
 
-_Note: The consumer is responsible for sanitizing the info HTML!_
+_Note: The application is responsible for sanitizing HTML!_
 
-### onChange | native input Event
+## Callbacks
+
+### onChange
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
+
+Its only argument is the original `change` event from the element's underlying native &lt;input&gt; field.
 
 ### onFocus
 
 The function-valued property `onFocus` can be used as a callback prop for React and other frameworks.
 
+Its only argument is the original `focus` event from the element's underlying native &lt;input&gt; field.
+
 ### onBlur
 
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
+
+Its only argument is the original `blur` event from the element's underlying native &lt;input&gt; field.
