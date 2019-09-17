@@ -5,7 +5,8 @@ git clone https://github.com/raphaellueckl/feature-branch-deployments.git --dept
 mkdir -p ./dist/$BRANCH_NAME
 mv -v ./storybook-static/* ./dist/$BRANCH_NAME/
 
-ALL_BRANCHES=$(git --no-pager branch -a -r) # List only remote branches
+# List only remote branches
+ALL_BRANCHES=$(git --no-pager branch -a -r)
 
 cd ./dist
 
