@@ -36,12 +36,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       counterMax: { type: String },
       maxLength: {
         type: Number,
-        converter: {
-          toAttribute(value) {
-            // 524288 is the default value according to W3C
-            return value ? Number(value) : 524288;
-          },
-        },
       },
     };
   }
@@ -156,6 +150,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     return this.error && this.invalid && !this.disabled && !this._open;
   }
 
+  get showCheckMark() {
+    return this.checkMark && this.charsLeft !== 0;
+  }
+
   handleFocus = ev => {
     this.onFocus(ev);
   };
@@ -178,20 +176,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
-  showCheckMark() {
-    return this.checkMark && this.charsLeft !== 0 && this.charsLeft !== '0';
-  }
-
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
     this.nativeInput = this.querySelector('input');
 
     if (isReact) {
-      this.nativeInput.value = value;
-    }
-
-    if (isReact && defaultValue) {
-      this.nativeInput.value = defaultValue;
+      this.nativeInput.value = defaultValue || value;
     }
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
@@ -258,7 +248,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             @blur="${this.handleBlur}"
           />
           ${
-            this.showCheckMark()
+            this.showCheckMark
               ? html`
                   <span class="a-input-text__check"></span>
                 `

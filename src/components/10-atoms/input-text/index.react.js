@@ -16,7 +16,7 @@ export default createElement => ({
   required = false,
   disabled = false,
   checkMark = false,
-  maxLength = 524288, // Default value according to W3C
+  maxLength,
   counter = '',
   counterMax = '',
   className = '',
