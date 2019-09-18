@@ -14,12 +14,9 @@ npm install @axa-ch/testimonials
 import '@axa-ch/testimonials';
 
 <axa-testimonials
-  autorotatetime="1000"
-  autorotatedisabled="false"
-  keysenabled="true"
-  showallinline="false"
   title="The main title"
   subtitle="This is the subtitle"
+  keysenabled=""
 >
   <span>first slide</span>
   <div>
@@ -44,12 +41,9 @@ export default AXATestimonialsReact;
 
 ```js
 <AXATestimonialsReact
-  autorotatetime="1000"
-  autorotatedisabled="false"
-  keysenabled="true"
-  showallinline="false"
   title="The main title"
   subtitle="This is the subtitle"
+  keysenabled=""
 >
   <span>first slide</span>
   <div>
@@ -74,12 +68,9 @@ Import the testimonials-defining script and use a testimonials like this:
   </head>
   <body>
     <axa-testimonials
-      autorotatetime="1000"
-      autorotatedisabled="false"
-      keysenabled="true"
-      showallinline="false"
       title="The main title"
       subtitle="This is the subtitle"
+      keysenabled=""
     >
       <span>first slide</span>
       <div>
@@ -104,11 +95,11 @@ The subtitle.
 
 ### showallinline
 
-Set it to `true` if you dont want to see the carousel. All the childs are shown below the other.
+This boolean attribute specifies the visibility of the carousel. Set this attribute if you want all the childs shown above each other.
 
 ### autorotatedisabled
 
-This boolean attribute specifies if the slides will automatically rotate.
+This boolean attribute specifies if the slides will not automatically rotate.
 
 ### autorotatetime
 

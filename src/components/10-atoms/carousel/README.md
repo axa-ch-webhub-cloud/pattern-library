@@ -13,7 +13,7 @@ npm install @axa-ch/carousel
 ```js
 import 'src/components/10-atoms/carousel/lib/index';
 
-<axa-carousel keysenabled="true">
+<axa-carousel keysenabled="">
   <span>This is the first slide.</span>
   <span>This is the second slide.</span>
 </axa-carousel>;
@@ -33,7 +33,7 @@ export default AXACarouselReact;
 ```
 
 ```js
-<AXACarouselReact keysenabled="true">
+<AXACarouselReact keysenabled="">
   <span>This is the first slide.</span>
   <span>This is the second slide.</span>
 </AXACarouselReact>
@@ -53,7 +53,7 @@ Import the carousel-defining script and use a carousel like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-carousel keysenabled="true">
+    <axa-carousel keysenabled="">
       <span>This is the first slide.</span>
       <span>This is the second slide.</span>
     </axa-carousel>
@@ -66,7 +66,7 @@ Import the carousel-defining script and use a carousel like this:
 
 ### autorotatedisabled
 
-This boolean attribute specifies if the slides will automatically rotate.
+This boolean attribute specifies if the slides will not automatically rotate.
 
 ### autorotatetime
 
