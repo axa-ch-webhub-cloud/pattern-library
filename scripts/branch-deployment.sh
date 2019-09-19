@@ -1,7 +1,7 @@
 #!/bin/bash
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 mkdir ./dist
-git clone https://github.com/raphaellueckl/feature-branch-deployments.git --depth 1 ./dist
+git clone https://github.com/axa-ch/plib-feature.git --depth 1 ./dist
 mkdir -p ./dist/$BRANCH_NAME
 mv -v ./storybook-static/* ./dist/$BRANCH_NAME/
 

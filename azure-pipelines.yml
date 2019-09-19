@@ -27,6 +27,12 @@ steps:
     npm run build-storybook
   displayName: 'build storybook'
 
+- bash: |
+    ./scripts/branch-deployment.sh
+  displayName: 'gh-pages - Push Featurebranch'
+  env:
+    GITHUB_TOKEN: $(GITHUB_TOKEN)
+
 - task: CopyFiles@2
   displayName: 'Stage Artifacts'
   inputs:
