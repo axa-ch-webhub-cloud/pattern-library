@@ -407,6 +407,18 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._startAutoRotate();
       expect(setInterval).not.toHaveBeenCalled();
     });
+    test('_startAutoRotate() should not init a interval if autorotatetime is not number', () => {
+      AXACarousel.prototype.autorotatedisabled = false;
+      AXACarousel.prototype.autorotatetime = 'thisIsNotANumber';
+      AXACarousel.prototype._startAutoRotate();
+      expect(setInterval).not.toHaveBeenCalled();
+    });
+    test('_startAutoRotate() should not init a interval if autorotatetime is a emtpy string', () => {
+      AXACarousel.prototype.autorotatedisabled = false;
+      AXACarousel.prototype.autorotatetime = ''; // because isNaN('') = false
+      AXACarousel.prototype._startAutoRotate();
+      expect(setInterval).not.toHaveBeenCalled();
+    });
 
     test('_stopAutoRotate() should call clearInterval with correct argument', () => {
       AXACarousel.prototype._stopAutoRotate();
