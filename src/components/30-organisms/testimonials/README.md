@@ -48,7 +48,7 @@ export default AXATestimonialsReact;
   <span>first slide</span>
   <div>
     <span>second slide</span>
-    <span class="author">Andrew Jackson, Advocate</span>
+    <span className="author">Andrew Jackson, Advocate</span>
   </div>
 </AXATestimonialsReact>
 ```
@@ -115,7 +115,7 @@ This boolean attribute specifies if the keyboard navigation (left/right keys) sh
 
 Do not set more than ~100 child elements. Because of height calculation the performance will be slow down.
 
-### class="author"
+### class="author" (React: className="author")
 
 You can set this class to a span. The Text will be uppercase and above of another nested slide elements.
 
