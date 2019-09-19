@@ -37,7 +37,7 @@ done)
 
 git add .
 git commit -m "Deploy Branch: ${BRANCH_NAME}"
-git push
+git push -f
 
 # Move everything back to not mess with the other tasks.
 cd ..
