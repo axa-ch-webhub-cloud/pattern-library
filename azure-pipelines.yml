@@ -35,6 +35,7 @@ steps:
   displayName: 'Gh-Pages - Notify Users about successful deployment'
   env:
     SLACK_TOKEN: $(SLACK_TOKEN)
+    BRANCH_NAME: $(System.PullRequest.SourceBranch)
 
 - task: CopyFiles@2
   displayName: 'Stage Artifacts'

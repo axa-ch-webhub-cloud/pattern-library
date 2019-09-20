@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Do not forget to have the $SLACK_TOKEN as environment variable
-echo $SLACK_TOKEN
 slackhost=axa-ch
 channel=plib-deployments
 
