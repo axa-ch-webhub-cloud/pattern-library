@@ -32,7 +32,7 @@ steps:
   displayName: 'Gh-Pages - Push Featurebranch'
   env:
     GITHUB_TOKEN: $(GITHUB_TOKEN)
-    BRANCH_NAME: $(Build.SourceBranchName)
+    BRANCH_NAME: $(System.PullRequest.TargetBranch)
 
 - task: CopyFiles@2
   displayName: 'Stage Artifacts'
