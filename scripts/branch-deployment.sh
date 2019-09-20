@@ -35,6 +35,8 @@ for x in $ALL_FOLDERS_DEPTH_1; do
     fi
 done)
 
+git config --global user.email "don@duck.ch"
+git config --global user.name "Donald Duck"
 git add .
 git commit -m "Deploy Branch: ${BRANCH_NAME}"
 git push -f
