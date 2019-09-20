@@ -17,11 +17,11 @@ steps:
 
 - script: |
     npm install
-  displayName: 'build is in install integrated'
+  displayName: 'build is integrated in install'
 
-- script: |
-    npm test
-  displayName: 'test'
+# - script: |
+#     npm test
+#   displayName: 'test'
 
 - script: |
     npm run build-storybook
