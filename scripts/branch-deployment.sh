@@ -31,7 +31,7 @@ ALL_FOLDERS_DEPTH_1=$(find . -type d -maxdepth 2 -path ./.git -prune -o -print |
 for x in $ALL_FOLDERS_DEPTH_1; do
     # If folder is no longer linked to a remote branch, remove it.
     if [[ $ALL_BRANCHES != *"$x"* ]]; then
-      rm -rf $x
+      rm -rf $x || echo "Could not remove $x"
     fi
 done)
 
