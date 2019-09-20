@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Do not forget to have the $SLACK_TOKEN set as environment variable
+# External environment variables: $SLACK_TOKEN, $BRANCH_NAME
 
 text="$BRANCH_NAME was deployed here: https://axa-ch.github.io/plib-feature/$BRANCH_NAME"
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# External environment variables: $GITHUB_TOKEN, $BRANCH_NAME
+
 echo "Branch name that will be deployed: $BRANCH_NAME"
 
 mkdir ./dist
