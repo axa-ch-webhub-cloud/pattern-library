@@ -1,5 +1,7 @@
 #!/bin/bash
-BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+echo "Branch name that will be deployed: $BRANCH_NAME"
+# BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 mkdir ./dist
 git clone https://$GITHUB_TOKEN@github.com/axa-ch/plib-feature.git --depth 1 ./dist
 mkdir -p ./dist/$BRANCH_NAME
@@ -35,7 +37,7 @@ for x in $ALL_FOLDERS_DEPTH_1; do
     fi
 done)
 
-git config --global user.email "don@duck.ch"
+git config --global user.email "raphael.lueckl@axa.ch"
 git config --global user.name "Donald Duck"
 git add .
 git commit -m "Deploy Branch: ${BRANCH_NAME}"
