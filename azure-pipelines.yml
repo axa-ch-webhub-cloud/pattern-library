@@ -17,7 +17,7 @@ steps:
 
 - script: |
     npm install
-  displayName: 'build is integrated in install'
+  displayName: 'Install (with build included)'
 
 # - script: |
 #     npm test
@@ -25,11 +25,11 @@ steps:
 
 - script: |
     npm run build-storybook
-  displayName: 'build storybook'
+  displayName: 'Build static storybook'
 
 - bash: |
     ./scripts/branch-deployment.sh
-  displayName: 'gh-pages - Push Featurebranch'
+  displayName: 'Gh-Pages - Push Featurebranch'
   env:
     GITHUB_TOKEN: $(GITHUB_TOKEN)
 
