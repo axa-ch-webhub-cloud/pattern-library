@@ -8,8 +8,6 @@ import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
 
-const DEFAULT_AUTOROTATETIME = 5000;
-
 class AXATestimonials extends InlineStyles {
   static get tagName() {
     return 'axa-testimonials';
@@ -43,7 +41,7 @@ class AXATestimonials extends InlineStyles {
     this.title = null;
     this.subtitle = null;
     this.autorotatedisabled = false;
-    this.autorotatetime = DEFAULT_AUTOROTATETIME;
+    this.autorotatetime = 5000;
     this.showallinline = false;
     this.keysenabled = false;
   }
@@ -57,7 +55,7 @@ class AXATestimonials extends InlineStyles {
       title,
       subtitle,
       showallinline,
-      autorotatetime = DEFAULT_AUTOROTATETIME,
+      autorotatetime,
       autorotatedisabled,
       keysenabled,
     } = this;
