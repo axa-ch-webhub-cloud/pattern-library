@@ -19,9 +19,9 @@ steps:
     npm install
   displayName: 'Install (with build included)'
 
-# - script: |
-#     npm test
-#   displayName: 'test'
+- script: |
+    npm test
+  displayName: 'test'
 
 - script: |
     npm run build-storybook
@@ -33,6 +33,12 @@ steps:
   env:
     GITHUB_TOKEN: $(GITHUB_TOKEN)
     BRANCH_NAME: $(System.PullRequest.SourceBranch)
+
+- bash: |
+    ./scripts/branch-deployment-notifier.sh
+  displayName: 'Gh-Pages - Notify Users about successful deployment'
+  env:
+    SLACK_TOKEN: $(SLACK_TOKEN)
 
 - task: CopyFiles@2
   displayName: 'Stage Artifacts'
