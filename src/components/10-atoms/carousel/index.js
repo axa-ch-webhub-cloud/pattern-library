@@ -68,9 +68,17 @@ class AXACarousel extends InlineStyles {
   // private methods
 
   _getSlides(usedThis = this) {
+    console.log(this.shadowRoot.querySelector('.js-carousel__wrapper > slot'))
+
+    let nodeWithSlidesAsChildren;
+
+    if(this.shadowRoot.querySelector('.js-carousel__wrapper > slot') )
+      nodeWithSlidesAsChildren = usedThis.shadowRoot.querySelector('.js-carousel__wrapper > slot')
+    else
+      nodeWithSlidesAsChildren = usedThis.querySelector('slot');
+
     // usedThis as a property to encapsulate for unit tests
-    const slots = usedThis // do not use this.shadowRoot because of IE
-      .querySelector('slot')
+    const slots = nodeWithSlidesAsChildren
       .assignedNodes({ flatten: true })
       .filter(node => node.nodeType === ELEMENT_NODE);
 
