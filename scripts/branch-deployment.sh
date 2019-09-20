@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Branch name that will be deployed: $BRANCH_NAME"
-# BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
 mkdir ./dist
 git clone https://$GITHUB_TOKEN@github.com/axa-ch/plib-feature.git --depth 1 ./dist
 
