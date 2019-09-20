@@ -17,15 +17,29 @@ steps:
 
 - script: |
     npm install
-  displayName: 'build is in install integrated'
+  displayName: 'Install (with build included)'
 
 - script: |
-    npm test
-  displayName: 'test'
+    npm test	
+  displayName: 'Test'
 
 - script: |
     npm run build-storybook
-  displayName: 'build storybook'
+  displayName: 'Build static storybook'
+
+- bash: |
+    ./scripts/branch-deployment.sh
+  displayName: 'Gh-Pages - Push Featurebranch'
+  env:
+    GITHUB_TOKEN: $(GITHUB_TOKEN)
+    BRANCH_NAME: $(System.PullRequest.SourceBranch)
+
+- bash: |
+    ./scripts/branch-deployment-notifier.sh
+  displayName: 'Gh-Pages - Notify Users about successful deployment'
+  env:
+    SLACK_TOKEN: $(SLACK_TOKEN)
+    BRANCH_NAME: $(System.PullRequest.SourceBranch)
 
 - task: CopyFiles@2
   displayName: 'Stage Artifacts'
