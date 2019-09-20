@@ -4,9 +4,9 @@ echo "Branch name that will be deployed: $BRANCH_NAME"
 # BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 mkdir ./dist
 git clone https://$GITHUB_TOKEN@github.com/axa-ch/plib-feature.git --depth 1 ./dist
-mkdir -p ./dist/$BRANCH_NAME
 
 rm -rf ./dist/$BRANCH_NAME/
+mkdir -p ./dist/$BRANCH_NAME
 mv -v ./storybook-static/* ./dist/$BRANCH_NAME/
 
 # List only remote branches
