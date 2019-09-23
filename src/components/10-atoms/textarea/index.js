@@ -195,6 +195,7 @@ class AXATextarea extends NoShadowDOM {
   render() {
     const {
       name,
+      value,
       required,
       label = '',
       error = '',
@@ -248,6 +249,7 @@ class AXATextarea extends NoShadowDOM {
           maxlength="${maxLength}"
           class="${classMap(textareaClasses)}"
           autocomplete="off"
+          .value="${value}"
           name="${name}"
           placeholder="${placeholder}"
           ?disabled="${disabled}"
