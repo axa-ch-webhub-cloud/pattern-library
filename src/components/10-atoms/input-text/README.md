@@ -165,3 +165,17 @@ Its only argument is the original `focus` event from the element's underlying na
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
 
 Its only argument is the original `blur` event from the element's underlying native &lt;input&gt; field.
+
+## Methods
+
+### focus()
+
+The `focus()` method focusses the underlying native HTML &lt;input&gt;.
+
+Its UI consequences are the same as a keyboard/mouse-initiated focus.
+
+### blur()
+
+The `blur()` method unfocusses the underlying native HTML &lt;input&gt;.
+
+Its UI consequences are the same as a keyboard/mouse-initiated blur.
