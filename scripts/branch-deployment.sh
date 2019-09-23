@@ -51,9 +51,9 @@ done)
 git config --global user.email "raphael.lueckl@axa.ch"
 git config --global user.name "Donald Duck"
 git add .
-git commit -m "Deploy Branch: ${BRANCH_NAME}"
+git commit -m "Deploy Branch: $BRANCH_NAME"
 git push -f
 
 # Move everything back to not mess with the other tasks.
 cd ..
-mv -v ./dist/$BRANCH_NAME/* ./storybook-static/
+mv -v "./dist/$BRANCH_NAME"/* ./storybook-static/
