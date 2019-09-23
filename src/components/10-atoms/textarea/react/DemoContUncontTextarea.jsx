@@ -29,11 +29,7 @@ const DemoContUncontTextarea = () => {
         name="message"
         value="freeze"
       />
-      <AXATextarea
-        required
-        label="Message uncontrolled"
-        name="message_2"
-      />
+      <AXATextarea required label="Message uncontrolled" name="message_2" />
       <AXATextarea
         required
         label="Message uncontrolled default value"
