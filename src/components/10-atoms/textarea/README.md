@@ -144,3 +144,17 @@ The callback is invoked whenever the underlying native HTML &lt;textarea&gt;'s `
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
 
 The callback is invoked whenever the underlying native HTML &lt;textarea&gt;'s `blur` event fires. Its only argument is the original `blur` event.
+
+## Methods
+
+### focus()
+
+The `focus()` method focusses the underlying native HTML &lt;textarea&gt;.
+
+Its UI consequences are the same as a keyboard/mouse-initiated focus.
+
+### blur()
+
+The `blur()` method unfocusses the underlying native HTML &lt;textarea&gt;.
+
+Its UI consequences are the same as a keyboard/mouse-initiated blur.

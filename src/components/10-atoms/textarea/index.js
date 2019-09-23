@@ -146,11 +146,23 @@ class AXATextarea extends NoShadowDOM {
     return this.showError || this.showCounter || this.showCounterMax;
   }
 
+  focus(options = {}) {
+    this.nativeInput.focus(options);
+    this.nativeInput.classList.add('focus');
+  }
+
+  blur() {
+    this.nativeInput.blur();
+    this.nativeInput.classList.remove('focus');
+  }
+
   handleFocus = ev => {
+    this.nativeInput.classList.add('focus');
     this.onFocus(ev);
   };
 
   handleBlur = ev => {
+    this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
   };
 
@@ -185,9 +197,14 @@ class AXATextarea extends NoShadowDOM {
     this.modelCounter = this.getCounterText;
   }
 
+  updated() {
+    this.nativeInput = this.querySelector('textarea');
+  }
+
   render() {
     const {
       name,
+      value,
       required,
       label = '',
       error = '',
@@ -241,6 +258,7 @@ class AXATextarea extends NoShadowDOM {
           maxlength="${maxLength}"
           class="${classMap(textareaClasses)}"
           autocomplete="off"
+          .value="${value}"
           name="${name}"
           placeholder="${placeholder}"
           ?disabled="${disabled}"

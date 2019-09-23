@@ -30,7 +30,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       checkMark: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
-
       modelCounter: { type: String },
       counter: { type: String },
       counterMax: { type: String },
@@ -152,11 +151,23 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     return this.checkMark && this.charsLeft !== 0;
   }
 
+  focus(options = {}) {
+    this.nativeInput.focus(options);
+    this.nativeInput.classList.add('focus');
+  }
+
+  blur() {
+    this.nativeInput.blur();
+    this.nativeInput.classList.remove('focus');
+  }
+
   handleFocus = ev => {
+    this.nativeInput.classList.add('focus');
     this.onFocus(ev);
   };
 
   handleBlur = ev => {
+    this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
   };
 
@@ -176,7 +187,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
-    this.nativeInput = this.querySelector('input');
 
     if (isReact) {
       this.nativeInput.value = defaultValue || value;
@@ -184,6 +194,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
+  }
+
+  updated() {
+    this.nativeInput = this.querySelector('input');
   }
 
   render() {
@@ -236,7 +250,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             class="${classMap(inputClasses)}"
             autocomplete="off"
             name="${name}"
-            value="${value}"
+            .value="${value}"
             placeholder="${placeholder}"
             aria-required="${required}"
             maxlength="${maxLength}"
