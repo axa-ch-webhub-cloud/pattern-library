@@ -32,7 +32,8 @@ steps:
   displayName: 'Gh-Pages - Push Featurebranch'
   env:
     GITHUB_TOKEN: $(GITHUB_TOKEN)
-    BRANCH_NAME: $(System.PullRequest.SourceBranch)
+    PR_SOURCE_BRANCH_NAME: $(System.PullRequest.SourceBranch)
+    SOURCE_BRANCH_NAME: $(Build.SourceBranchName)
 
 - bash: |
     ./scripts/branch-deployment-notifier.sh
