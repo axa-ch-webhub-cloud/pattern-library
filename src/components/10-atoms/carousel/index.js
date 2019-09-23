@@ -68,19 +68,32 @@ class AXACarousel extends InlineStyles {
   // private methods
 
   _getSlides(usedThis = this) {
-    console.log(this.shadowRoot.querySelector('.js-carousel__wrapper > slot'))
-
-    let nodeWithSlidesAsChildren;
-
-    if(this.shadowRoot.querySelector('.js-carousel__wrapper > slot') )
-      nodeWithSlidesAsChildren = usedThis.shadowRoot.querySelector('.js-carousel__wrapper > slot')
-    else
-      nodeWithSlidesAsChildren = usedThis.querySelector('slot');
-
-    // usedThis as a property to encapsulate for unit tests
-    const slots = nodeWithSlidesAsChildren
+    const slotsSelectedByShadowRootFiltered = usedThis.shadowRoot
+      .querySelector('.js-carousel__wrapper > slot')
       .assignedNodes({ flatten: true })
       .filter(node => node.nodeType === ELEMENT_NODE);
+
+    const slotsSelectedWithoutShadowRoot = usedThis.querySelector('slot');
+
+    let slotsSelectedWithoutShadowRootFiltered = [];
+    let slots = [];
+
+    if (slotsSelectedWithoutShadowRoot) {
+      slotsSelectedWithoutShadowRootFiltered = slotsSelectedWithoutShadowRoot
+        .assignedNodes({ flatten: true })
+        .filter(node => node.nodeType === ELEMENT_NODE);
+    }
+
+    // IE: slotsSelectedByShadowRootFiltered is []
+    // IE and Chrome: Carousel standalone: slotsSelectedWithoutShadowRoot is null
+    if (
+      slotsSelectedByShadowRootFiltered.length > 0 &&
+      !slotsSelectedWithoutShadowRoot
+    ) {
+      slots = slotsSelectedByShadowRootFiltered;
+    } else {
+      slots = slotsSelectedWithoutShadowRootFiltered;
+    }
 
     return slots;
   }
