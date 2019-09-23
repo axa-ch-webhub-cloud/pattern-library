@@ -20,10 +20,6 @@ steps:
   displayName: 'Install (with build included)'
 
 - script: |
-    npm test	
-  displayName: 'Test'
-
-- script: |
     npm run build-storybook
   displayName: 'Build static storybook'
 
