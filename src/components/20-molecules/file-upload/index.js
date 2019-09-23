@@ -115,6 +115,7 @@ class AXAFileUpload extends LitElement {
 
   handleDropZoneDrop(e) {
     const { files } = e.dataTransfer;
+    let removeGlobalMessage = true;
     // prevent browser to display the file fullscreen
     e.preventDefault();
 
@@ -123,11 +124,15 @@ class AXAFileUpload extends LitElement {
     );
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
+
     if (validFileTypesFiles.length < files.length) {
       this.globalErrorMessage = this.wrongFileTypeStatusText;
+      removeGlobalMessage = false;
       this.requestUpdate();
-    } else if (validFileTypesFiles.length > 0 && !this.isFileMaxReached) {
-      this.addFiles(validFileTypesFiles);
+    }
+
+    if (validFileTypesFiles.length > 0) {
+      this.addFiles(validFileTypesFiles, removeGlobalMessage);
     }
   }
 
@@ -168,9 +173,13 @@ class AXAFileUpload extends LitElement {
     this.requestUpdate();
   }
 
-  async addFiles(droppedFiles) {
+  async addFiles(droppedFiles, removeGlobalMessage) {
     this.showAddMoreInputFile = true;
-    this.globalErrorMessage = '';
+
+    if (removeGlobalMessage) {
+      this.globalErrorMessage = '';
+    }
+
     this.allDroppedFiles += droppedFiles.length;
 
     const notImagesFiles = [...droppedFiles].filter(
