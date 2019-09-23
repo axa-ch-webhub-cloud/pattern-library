@@ -86,10 +86,7 @@ class AXACarousel extends InlineStyles {
 
     // IE: slotsSelectedByShadowRootFiltered is []
     // IE and Chrome: Carousel standalone: slotsSelectedWithoutShadowRoot is null
-    if (
-      slotsSelectedByShadowRootFiltered.length > 0 &&
-      !slotsSelectedWithoutShadowRoot
-    ) {
+    if (slotsSelectedByShadowRootFiltered.length > 0) {
       slots = slotsSelectedByShadowRootFiltered;
     } else {
       slots = slotsSelectedWithoutShadowRootFiltered;
