@@ -236,7 +236,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             class="${classMap(inputClasses)}"
             autocomplete="off"
             name="${name}"
-            value="${value}"
+            .value="${value}"
             placeholder="${placeholder}"
             aria-required="${required}"
             maxlength="${maxLength}"
