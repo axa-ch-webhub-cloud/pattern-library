@@ -43,7 +43,7 @@ export default AXATestimonialsReact;
 <AXATestimonialsReact
   title="The main title"
   subtitle="This is the subtitle"
-  keysenabled=""
+  keysenabled
 >
   <span>first slide</span>
   <div>

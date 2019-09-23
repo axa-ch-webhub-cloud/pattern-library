@@ -33,7 +33,7 @@ export default AXACarouselReact;
 ```
 
 ```js
-<AXACarouselReact keysenabled="">
+<AXACarouselReact keysenabled>
   <span>This is the first slide.</span>
   <span>This is the second slide.</span>
 </AXACarouselReact>
