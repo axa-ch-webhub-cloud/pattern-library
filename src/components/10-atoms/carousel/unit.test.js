@@ -389,12 +389,14 @@ describe('AXACarousel', () => {
 
   describe('auto rotate', () => {
     test('_startAutoRotate() should init a interval', () => {
+      AXACarousel.prototype.autorotatetime = 5000;
       AXACarousel.prototype._startAutoRotate();
       expect(setInterval).toHaveBeenCalled();
       expect(AXACarousel.prototype.autoRotateTimerID).toBeGreaterThan(-1);
     });
     test('_startAutoRotate() should call _nextSlide()', () => {
       const mockedNextSlide = jest.fn();
+      AXACarousel.prototype.autorotatetime = 5000;
       AXACarousel.prototype._nextSlide = mockedNextSlide;
 
       AXACarousel.prototype._startAutoRotate();
