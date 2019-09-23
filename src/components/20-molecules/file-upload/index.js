@@ -114,7 +114,7 @@ class AXAFileUpload extends LitElement {
     e.preventDefault();
 
     const files = [...e.dataTransfer.files].filter(
-      file => ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
+      file => file.type ? ACCEPTED_FILE_TYPES.indexOf(file.type) > -1 : false
     );
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
@@ -161,6 +161,7 @@ class AXAFileUpload extends LitElement {
   }
 
   async addFiles(droppedFiles) {
+    console.log('droppedFiles', droppedFiles)
     this.showAddMoreInputFile = true;
     this.globalErrorMessage = '';
     this.allDroppedFiles += droppedFiles.length;
