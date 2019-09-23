@@ -56,6 +56,7 @@ class AXAFileUpload extends LitElement {
       tooManyFilesStatusText: { type: String },
       orText: { type: String },
       infoText: { type: String },
+      wrongFileTypeStatusText: { type: String },
     };
   }
 
@@ -74,6 +75,9 @@ class AXAFileUpload extends LitElement {
     this.tooManyFilesStatusText = `You exceeded the maximum number of files`;
     this.orText = 'or';
     this.infoText = 'Drag and drop to upload your file';
+    this.wrongFileTypeStatusText =
+      'Your file does not correspond with our allowed file-types';
+
     this.files = [];
     this.faultyFiles = [];
     this.allFiles = [];
@@ -110,16 +114,20 @@ class AXAFileUpload extends LitElement {
   }
 
   handleDropZoneDrop(e) {
+    const { files } = e.dataTransfer;
     // prevent browser to display the file fullscreen
     e.preventDefault();
 
-    const files = [...e.dataTransfer.files].filter(
-      file => file.type ? ACCEPTED_FILE_TYPES.indexOf(file.type) > -1 : false
+    const validFileTypesFiles = [...files].filter(file =>
+      file.type ? ACCEPTED_FILE_TYPES.indexOf(file.type) > -1 : false
     );
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
-    if (files.length > 0 && !this.isFileMaxReached) {
-      this.addFiles(files);
+    if (validFileTypesFiles.length < files.length) {
+      this.globalErrorMessage = this.wrongFileTypeStatusText;
+      this.requestUpdate();
+    } else if (validFileTypesFiles.length > 0 && !this.isFileMaxReached) {
+      this.addFiles(validFileTypesFiles);
     }
   }
 
@@ -161,7 +169,6 @@ class AXAFileUpload extends LitElement {
   }
 
   async addFiles(droppedFiles) {
-    console.log('droppedFiles', droppedFiles)
     this.showAddMoreInputFile = true;
     this.globalErrorMessage = '';
     this.allDroppedFiles += droppedFiles.length;

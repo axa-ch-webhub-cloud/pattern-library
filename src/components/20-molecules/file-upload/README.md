@@ -70,21 +70,22 @@ Use the file-upload like this:
 
 ### Variant
 
-| Attribute                                  | Details                                                              |
-| ------------------------------------------ | -------------------------------------------------------------------- |
-| `inputFileText="Upload file"`              | Text in the input-file component                                     |
-| `maxSizeOfSingleFileKB="10"`               | Maximal size of a single, already compromised file in KB             |
-| `maxSizeOfAllFilesKB="15"`                 | Maximal size of all compromised files together in KB                 |
-| `maxNumberOfFiles="10"`                    | Maximal number of files                                              |
-| `showFileOverview="false"`                 | Switch between normal view and file overview                         |
-| `icon="cloud-upload"`                      | Specify the upload icon in input-file component                      |
-| `fileTooBigStatusText="Error occurred"`    | Specify the error message for too big files                          |
-| `tooManyFilesStatusText="Error occurred"`  | Specify the error message for too many files                         |
-| `filesTooBigStatusText="Error occurred"`   | Specify the error message when maximum size of all files is exceeded |
-| `deleteStatusText="Delete"`                | Specify the caption when hovering over a file                        |
-| `addStatusText="Add more"`                 | Specify the caption of dashed box                                    |
-| `infoText="drag and drop your files here"` | Specify the text on the start view                                   |
-| `orText="or"`                              | Specify the text on the start view box                               |
+| Attribute                                   | Details                                                              |
+| ------------------------------------------- | -------------------------------------------------------------------- |
+| `inputFileText="Upload file"`               | Text in the input-file component                                     |
+| `maxSizeOfSingleFileKB="10"`                | Maximal size of a single, already compromised file in KB             |
+| `maxSizeOfAllFilesKB="15"`                  | Maximal size of all compromised files together in KB                 |
+| `maxNumberOfFiles="10"`                     | Maximal number of files                                              |
+| `showFileOverview="false"`                  | Switch between normal view and file overview                         |
+| `icon="cloud-upload"`                       | Specify the upload icon in input-file component                      |
+| `fileTooBigStatusText="Error occurred"`     | Specify the error message for too big files                          |
+| `tooManyFilesStatusText="Error occurred"`   | Specify the error message for too many files                         |
+| `filesTooBigStatusText="Error occurred"`    | Specify the error message when maximum size of all files is exceeded |
+| `deleteStatusText="Delete"`                 | Specify the caption when hovering over a file                        |
+| `addStatusText="Add more"`                  | Specify the caption of dashed box                                    |
+| `infoText="drag and drop your files here"`  | Specify the text on the start view                                   |
+| `orText="or"`                               | Specify the text on the start view box                               |
+| `wrongFileTypeStatusText="Wrong file-type"` | Specify the error message for dropped files with wrong file-type     |
 
 ### inputFileText
 
@@ -130,3 +131,15 @@ The attribute `deleteStatusText` specifies the text that appears, when hovering 
 ### addStatusText
 
 The attribute `addStatusText` specifies the text under the dashed box, appearing after the last file.
+
+### infoText
+
+The attribute `infoText` specifies the text in the dropzone. It draws attention to drop a file.
+
+### forText
+
+The attribute `forText` specifies the orange text in the dropzone.
+
+### wrongFileTypeStatusText
+
+The attribute `wrongFileTypeStatusText` specifies the global error text, when a file without a valid file-type is dropped.
