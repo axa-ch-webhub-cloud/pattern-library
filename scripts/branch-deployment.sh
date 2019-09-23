@@ -1,8 +1,15 @@
 #!/bin/bash
 
-# External environment variables: $GITHUB_TOKEN, $BRANCH_NAME
+# External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
 
-echo "Branch name that will be deployed: $BRANCH_NAME"
+# If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could be resolved, which means,
+# that the build does not originate form a pull request.
+# This is an issue with azure, that the source_branch contains whatever reference, but the actua
+# source branch that we would be interested in.
+[[ $PR_SOURCE_BRANCH_NAME != *"$"* ]] && BRANCH_NAME="$PR_SOURCE_BRANCH_NAME" || BRANCH_NAME="$SOURCE_BRANCH_NAME"
+echo "PR-Source-Branch-Name:              $PR_SOURCE_BRANCH_NAME"
+echo "Source-Branch-Name:                 $SOURCE_BRANCH_NAME"
+echo "Branch name that will be deployed:  $BRANCH_NAME"
 
 mkdir ./dist
 git clone https://$GITHUB_TOKEN@github.com/axa-ch/plib-feature.git --depth 1 ./dist
