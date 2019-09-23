@@ -37,14 +37,14 @@ class AXAFooterSmall extends LitElement {
     this.onDisclaimerChange = () => {};
   }
 
-  handleLanguageClick = (ev, language) => {
+  handleLanguageClick = (ev, languageKey) => {
     ev.preventDefault();
-    if (this.activeLanguage !== language) {
-      this.activeLanguage = language;
-      this.onLanguageChange(language);
+    if (this.activeLanguage !== languageKey) {
+      this.activeLanguage = languageKey;
+      this.onLanguageChange(languageKey);
       this.dispatchEvent(
         new CustomEvent('axa-language-change', {
-          detail: language,
+          detail: languageKey,
           bubbles: true,
           cancelable: true,
         })
@@ -52,12 +52,12 @@ class AXAFooterSmall extends LitElement {
     }
   };
 
-  handleDisclaimerClick = (ev, disclaimer) => {
+  handleDisclaimerClick = (ev, disclaimerKey) => {
     ev.preventDefault();
-    this.onDisclaimerChange(disclaimer);
+    this.onDisclaimerChange(disclaimerKey);
     this.dispatchEvent(
       new CustomEvent('axa-disclaimer-change', {
-        detail: disclaimer,
+        detail: disclaimerKey,
         bubbles: true,
         cancelable: true,
       })
@@ -77,18 +77,18 @@ class AXAFooterSmall extends LitElement {
                     ${this.dynamic
                       ? html`
                           <a
-                            class="m-footer-small__link--bold ${languageItem.text ===
+                            class="m-footer-small__link--bold ${languageItem.key ===
                             this.activeLanguage
                               ? 'm-footer-small__link--active'
                               : ''}"
                             @click="${ev =>
-                              this.handleLanguageClick(ev, languageItem.text)}"
+                              this.handleLanguageClick(ev, languageItem.key)}"
                             >${languageItem.text}</a
                           >
                         `
                       : html`
                           <a
-                            class="m-footer-small__link--bold ${languageItem.text ===
+                            class="m-footer-small__link--bold ${languageItem.key ===
                             this.activeLanguage
                               ? 'm-footer-small__link--active'
                               : ''}"
@@ -114,7 +114,7 @@ class AXAFooterSmall extends LitElement {
                               @click="${ev =>
                                 this.handleDisclaimerClick(
                                   ev,
-                                  disclaimerItem.text
+                                  disclaimerItem.key
                                 )}"
                               >${disclaimerItem.text}</a
                             >
