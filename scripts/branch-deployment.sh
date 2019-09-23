@@ -2,8 +2,8 @@
 
 # External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
 
-# If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could be resolved, which means,
-# that the build does not originate form a pull request.
+# If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could not be resolved, which means,
+# that the build does not originate form a pull request. In that case, we go after the branch name.
 # This is an issue with azure, that the source_branch contains whatever reference, but the actual
 # source branch that we would be interested in.
 [[ $PR_SOURCE_BRANCH_NAME != *"$"* ]] && BRANCH_NAME="$PR_SOURCE_BRANCH_NAME" || BRANCH_NAME="$SOURCE_BRANCH_NAME"
