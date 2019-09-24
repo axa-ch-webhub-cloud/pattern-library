@@ -56,13 +56,16 @@ export default AXAFooterSmallReact;
 
 ```js
 const languages = [
-  { text: 'DE' },
-  { text: 'FR' },
-  { text: 'IT' },
-  { text: 'EN' },
+  { key: 'de', text: 'DE' },
+  { key: 'fr', text: 'FR' },
+  { key: 'it', text: 'IT' },
+  { key: 'en', text: 'EN' },
 ];
 
-const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
+const disclaimer = [
+  { key: 'tos', text: 'Terms of use' },
+  { key: 'privacy', text: 'Data protection' },
+];
 
 const handleAXAFooterLanguageChange = language => {
   console.log(language); // EN, DE, ...
@@ -79,7 +82,7 @@ return (
       disclaimerItems={disclaimer}
       onLanguageChange={handleAXAFooterLanguageChange}
       onDisclaimerChange={handleAXAFooterDisclaimerChange}
-      activeLanguage="EN"
+      activeLanguage="de"
       copyrightText="© 2019 AXA Insurance Ltd."
       dynamic
     />
@@ -102,7 +105,7 @@ If want a footer with static links, that will route to wherever the `href` attri
   </head>
   <body>
     <axa-footer-small
-      activelanguage="DE"
+      activelanguage="de"
       languageitems="${languages}"
       disclaimeritems="${disclaimer}"
       copyrighttext="© 2019 AXA Insurance Ltd."
@@ -117,7 +120,7 @@ If you want to listen for changes, pass in the additional `dynamic` boolean attr
 ```html
 ....
 <axa-footer-small
-  activelanguage="DE"
+  activelanguage="de"
   languageitems="${languages}"
   disclaimeritems="${disclaimer}"
   copyrighttext="© 2019 AXA Insurance Ltd."
@@ -144,24 +147,26 @@ Check the demo folder for this use case.
 
 ## Properties
 
-### languageitems - Example
+### dynamic
 
-An array of items that represent the language section.
+Add this boolean attribute if you want to have control over what happens if a user clicks one of the language- or disclaimer-items.
+
+### languageitems & disclaimeritems
+
+An array of items that represents the language- / disclaimer-section.
+
+`key`: The value that will be yielded, if the `dynamic` property is set and a user clicks on a link.
 
 ```js
 const languages = [
-  { text: string, link: string },
+  { key: string, text: string, link: string },
   ...
 ];
 ```
 
-### disclaimeritems - Example
-
-An array of items that represent the disclaimer section.
-
 ```js
 const disclaimers = [
-  { text: string, link: string },
+  { key: string, text: string, link: string },
   ...
 ];
 ```
@@ -172,4 +177,4 @@ A string representing the text in the copyright section.
 
 ### activelanguage
 
-A string representing the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.
+A string representing the key of the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.

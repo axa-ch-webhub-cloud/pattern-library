@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface Item {
   text: string;
-  key?: string;
+  key: string;
   link?: string;
 }
 
