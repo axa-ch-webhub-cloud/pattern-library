@@ -18,7 +18,7 @@ const debounce = function debounce(
    * @function
    */
   function debounced(...rest) {
-    // cash stuff in closure
+    // cache stuff in closure
     args = rest;
 
     if (waitFlag) {
@@ -80,7 +80,7 @@ const debounce = function debounce(
 
   /**
    * This function gets called after [wait] or [maxWait] ms have elapsed
-   * and will trigger debounced function, if [trailing=true]
+   * and will trigger the debounced function, if [trailing=true]
    * @private
    */
   function complete() {
@@ -109,7 +109,7 @@ const debounce = function debounce(
   }
 
   /**
-   * Cancel execution of debounced function and cleanup
+   * Cancel execution of debounced function and clean up
    * @private
    */
   function cancel() {

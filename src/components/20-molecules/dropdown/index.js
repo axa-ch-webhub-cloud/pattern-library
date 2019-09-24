@@ -15,6 +15,9 @@ const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
 const EMPTY_FUNCTION = () => {};
+const WORD_END = '\x00';
+const INDEX_END = '\x01';
+const AUTOSUGGEST_INACTIVITY_DELAY = 200; // milliseconds
 
 // module globals
 let openDropdownInstance;
@@ -85,6 +88,24 @@ const defaultTitleIfNeeded = (title, anotherSelection) =>
     ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
     : [];
 
+// build one long string of words paired with their indices in `items`,
+// separating the elements in each pair with suitable control characters
+// that do not occur in typed input
+const buildAutosuggestDictionary = (items, letters) =>
+  items
+    .filter(item => !item.disabled)
+    .map((item, index) => {
+      // normalize word for purposes of matching
+      const word = item.name.toLowerCase();
+      // construct a set of all letters in word
+      // (used for an early filter over keystrokes)
+      word.split('').forEach(letter => {
+        letters.add(letter.toLowerCase());
+      });
+      return `${INDEX_END}${word}${WORD_END}${index}`;
+    })
+    .join('') + INDEX_END;
+
 // CE
 class AXADropdown extends NoShadowDOM {
   static get tagName() {
@@ -150,6 +171,7 @@ class AXADropdown extends NoShadowDOM {
     this.onBlur = EMPTY_FUNCTION;
     // internal properties
     this.state = { isControlled: false, firstTime: true };
+    this._typedSofar = '';
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
@@ -183,8 +205,46 @@ class AXADropdown extends NoShadowDOM {
     const { key, keyCode } = e;
     if (key === 'Escape' || key === 'Esc' || keyCode === 27) {
       e.preventDefault();
-      this.openDropdown(false);
+      return this.openDropdown(false);
     }
+    return this.handleAutosuggest(key, e);
+  }
+
+  handleAutosuggest(key) {
+    // ready for autosuggestions, by having focus on the non-native UI?
+    if (document.activeElement !== this.button) {
+      // no, bail out
+      return;
+    }
+    // do we have even a chance of matching for the key that was just pressed?
+    const character = key.toLowerCase();
+    if (!this._autosuggestLetters.has(character)) {
+      // no, bail out
+      return;
+    }
+    this._typedSofar += character;
+    // wait for certain period of keyboard inactivitity...
+    clearTimeout(this._timer);
+    this._timer = setTimeout(() => {
+      // ... before trying to match what was typed sofar against items
+      const { _autosuggestDictionary, _typedSofar, items } = this;
+      const match = _autosuggestDictionary.indexOf(INDEX_END + _typedSofar);
+      if (match > -1) {
+        // we have a match, determine the corresponding item ...
+        const matchIndexPos =
+          _autosuggestDictionary.indexOf(WORD_END, match) + 1;
+        const firstSelectedItem = parseInt(
+          _autosuggestDictionary.slice(matchIndexPos),
+          10
+        );
+        // ... and its value
+        const { value } = items[firstSelectedItem];
+        // re-render to visually select matched item
+        this.updateItems(value);
+      }
+      // next characters start a *new* autosuggestion
+      this._typedSofar = '';
+    }, AUTOSUGGEST_INACTIVITY_DELAY);
   }
 
   handleDropdownClick(e) {
@@ -379,6 +439,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   firstUpdated() {
+    this.button = this.querySelector('.js-dropdown__toggle');
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
     window.addEventListener('resize', this.handleResize);
@@ -387,11 +448,20 @@ class AXADropdown extends NoShadowDOM {
     window.addEventListener('axa-dropdown-close', this.handleWindowClick);
   }
 
-  updated() {
-    const { select, defaultTitle } = this;
+  updated(changedProperties) {
+    const { select, defaultTitle, items } = this;
     // adjust native <select>
     select.selectedIndex =
       this.findByValue(null, true) + (defaultTitle ? 1 : 0);
+
+    if (changedProperties.has('items')) {
+      // rebuild keyboard-autosuggestion data structures
+      this._autosuggestLetters = new Set();
+      this._autosuggestDictionary = buildAutosuggestDictionary(
+        items,
+        this._autosuggestLetters
+      );
+    }
   }
 
   disconnectedCallback() {
