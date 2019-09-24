@@ -117,7 +117,7 @@ Do not set more than ~100 child elements. Because of height calculation the perf
 
 ### class="author" (React: className="author")
 
-You can set this class to a span. The Text will be uppercase and above of another nested slide elements.
+The Text of the element where you set this class will be uppercase. It has a margin-top to have some space to the elements above.
 
 ## Migration Notes
 

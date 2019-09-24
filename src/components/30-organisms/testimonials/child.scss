@@ -1,7 +1,7 @@
 @import '../../10-atoms/carousel/child';
 
 axa-testimonials {
-  span.author{
+  .author{
     @include typo(primary, small, bold);
     display: block;
     text-transform: uppercase;
