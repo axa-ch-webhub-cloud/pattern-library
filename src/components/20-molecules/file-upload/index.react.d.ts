@@ -14,6 +14,7 @@ interface AXAFileUploadProps {
   tooManyFilesStatusText?: string;
   infoText?: string;
   orText?: string;
+  wrongFileTypeStatusText?: string;
 }
 
 declare function createAXAFileUpload(

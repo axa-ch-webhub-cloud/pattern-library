@@ -73,6 +73,10 @@ story.add('File upload - default', () => {
   );
   const orText = text('orText', 'or');
   const infoText = text('infoText', 'Drag and drop to upload your file');
+  const wrongFileTypeStatusText = text(
+    'wrongFileTypeText',
+    'Your file does not correspond with our allowed file-types'
+  );
   const iconOptions = select('icon', icons, 'cloud-upload');
   const headerText = text('headerText', descriptionText);
   const wrapper = document.createElement('div');
@@ -91,6 +95,7 @@ story.add('File upload - default', () => {
         tooManyFilesStatusText="${tooManyFilesStatusText}"
         orText="${orText}"
         infoText="${infoText}"
+        wrongFileTypeStatusText="${wrongFileTypeStatusText}"
         icon="${iconOptions}"
         >${headerText}</axa-file-upload
       >
