@@ -1,5 +1,8 @@
 #!/bin/bash
-
+#
+# This script waits for pipeline builds and deploys them to the "github pages" of plib-feature repository that can be found here: 
+# As soon as a branch gets deleted, the script will also remove that specific branch from the deployed github pages.
+#
 # External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
 
 # If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could not be resolved, which means,
