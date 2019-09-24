@@ -14,10 +14,10 @@ npm install @axa-ch/footer-small
 import '@axa-ch/footer-small';
 
 const languages = JSON.stringify([
-  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
-  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
-  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
+  { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+  { key: 'fr', text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+  { key: 'it', text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
+  { key: 'en', text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
 ]);
 
 const disclaimer = JSON.stringify([
@@ -34,7 +34,7 @@ const disclaimer = JSON.stringify([
 
 ```html
 <axa-footer-small
-  activelanguage="DE"
+  activelanguage="de"
   languageitems="${languages}"
   disclaimeritems="${disclaimer}"
   copyrighttext="© 2019 AXA Insurance Ltd."
