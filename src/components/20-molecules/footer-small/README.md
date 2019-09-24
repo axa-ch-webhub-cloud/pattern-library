@@ -178,3 +178,7 @@ A string representing the text in the copyright section.
 ### activelanguage
 
 A string representing the key of the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.
+
+## Migration Notes
+
+From 1.x to 2.x. the necessary "key" property on the items was introduced. Not providing this key will break your component after upgrading.
