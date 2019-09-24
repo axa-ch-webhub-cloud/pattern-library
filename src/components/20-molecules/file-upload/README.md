@@ -136,9 +136,9 @@ The attribute `addStatusText` specifies the text under the dashed box, appearing
 
 The attribute `infoText` specifies the text in the dropzone. It draws attention to drop a file.
 
-### forText
+### orText
 
-The attribute `forText` specifies the orange text in the dropzone.
+The attribute `orText` specifies the orange text in the dropzone.
 
 ### wrongFileTypeStatusText
 
