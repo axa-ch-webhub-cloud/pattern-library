@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface Item {
   text: string;
+  key: string;
   link?: string;
 }
 
@@ -10,12 +11,11 @@ export interface AXAFooterSmallProps {
   disclaimerItems: Item[];
   copyrightText: string;
   activeLanguage?: string;
-  /**
-   * set to true if want to use onLanguageChange cb
-   */
-  dynamic?: boolean;
   onLanguageChange: (language: string) => void;
-  className?: string
+  className?: string;
+
+  // set to true if want to use onLanguageChange/onDisclaimerChange callbacks
+  dynamic?: boolean;
 }
 
 declare function createAXAFooterSmall(

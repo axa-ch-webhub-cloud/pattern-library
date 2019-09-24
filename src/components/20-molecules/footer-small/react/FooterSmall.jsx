@@ -4,14 +4,17 @@ import createAXAFooterSmallReact from '../index.react';
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
 const DemoFooterSmall = () => {
-  const languages = [
-    { text: 'DE' },
-    { text: 'FR' },
-    { text: 'IT' },
-    { text: 'EN' },
+  const languageItems = [
+    { text: 'DE', key: 'de' },
+    { text: 'FR', key: 'fr' },
+    { text: 'IT', key: 'it' },
+    { text: 'EN', key: 'en' },
   ];
 
-  const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
+  const disclaimerItems = [
+    { text: 'Terms of use', key: 'tos' },
+    { text: 'Data protection', key: 'privacy' },
+  ];
 
   const initialLanguage = 'EN';
   const [activeLanguage, setActiveLanguage] = useState(initialLanguage);
@@ -31,8 +34,8 @@ const DemoFooterSmall = () => {
       <p>Currently selected language: {activeLanguage}</p>
       <p>Disclaimer changed to: {disclaimerChange}</p>
       <AXAFooterSmallReact
-        languageItems={languages}
-        disclaimerItems={disclaimer}
+        languageItems={languageItems}
+        disclaimerItems={disclaimerItems}
         onLanguageChange={handleAXAFooterLanguageChange}
         onDisclaimerChange={handleAXAFooterDisclaimerChange}
         activeLanguage={activeLanguage}

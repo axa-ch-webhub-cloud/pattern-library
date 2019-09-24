@@ -10,37 +10,6 @@ This is the small version of the footer. If you use multiple footers, this one s
 npm install @axa-ch/footer-small
 ```
 
-```js
-import '@axa-ch/footer-small';
-
-const languages = JSON.stringify([
-  { text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-  { text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
-  { text: 'IT', link: 'https://axa.ch/it/clienti-privati.html' },
-  { text: 'EN', link: 'https://axa.ch/en/private-customers.html' },
-]);
-
-const disclaimer = JSON.stringify([
-  {
-    text: 'Terms of use',
-    link: 'https://axa.ch/en/information/terms-of-use.html',
-  },
-  {
-    text: 'Data protection',
-    link: 'https://axa.ch/en/information/data-protection.html',
-  },
-]);
-```
-
-```html
-<axa-footer-small
-  activelanguage="DE"
-  languageitems="${languages}"
-  disclaimeritems="${disclaimer}"
-  copyrighttext="© 2019 AXA Insurance Ltd."
-/>;
-```
-
 ### React
 
 Create a React-ified small footer with the createElement function from your React version and then use it like this:
@@ -56,13 +25,16 @@ export default AXAFooterSmallReact;
 
 ```js
 const languages = [
-  { text: 'DE' },
-  { text: 'FR' },
-  { text: 'IT' },
-  { text: 'EN' },
+  { key: 'de', text: 'DE' },
+  { key: 'fr', text: 'FR' },
+  { key: 'it', text: 'IT' },
+  { key: 'en', text: 'EN' },
 ];
 
-const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
+const disclaimer = [
+  { key: 'tos', text: 'Terms of use' },
+  { key: 'privacy', text: 'Data protection' },
+];
 
 const handleAXAFooterLanguageChange = language => {
   console.log(language); // EN, DE, ...
@@ -79,7 +51,7 @@ return (
       disclaimerItems={disclaimer}
       onLanguageChange={handleAXAFooterLanguageChange}
       onDisclaimerChange={handleAXAFooterDisclaimerChange}
-      activeLanguage="EN"
+      activeLanguage="de"
       copyrightText="© 2019 AXA Insurance Ltd."
       dynamic
     />
@@ -88,6 +60,8 @@ return (
 ```
 
 ### Pure HTML pages
+
+#### Static approach
 
 If want a footer with static links, that will route to wherever the `href` attributes are pointing:
 
@@ -102,66 +76,134 @@ If want a footer with static links, that will route to wherever the `href` attri
   </head>
   <body>
     <axa-footer-small
-      activelanguage="DE"
-      languageitems="${languages}"
-      disclaimeritems="${disclaimer}"
       copyrighttext="© 2019 AXA Insurance Ltd."
+      activelanguage="de"
     ></axa-footer-small>
+
+    <script>
+      const languages = JSON.stringify([
+        { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+        { key: 'fr', text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+        {
+          key: 'it',
+          text: 'IT',
+          link: 'https://axa.ch/it/clienti-privati.html',
+        },
+        {
+          key: 'en',
+          text: 'EN',
+          link: 'https://axa.ch/en/private-customers.html',
+        },
+      ]);
+
+      const disclaimer = JSON.stringify([
+        {
+          text: 'Terms of use',
+          link: 'https://axa.ch/en/information/terms-of-use.html',
+        },
+        {
+          text: 'Data protection',
+          link: 'https://axa.ch/en/information/data-protection.html',
+        },
+      ]);
+
+      const footer = document.querySelector('axa-footer-small');
+      footer.setAttribute('languageitems', languages);
+      footer.setAttribute('disclaimeritems', disclaimer);
+    </script>
     <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
   </body>
 </html>
 ```
 
-If you want to listen for changes, pass in the additional `dynamic` boolean attribute like this:
+#### dynamic approach
+
+This approach will not redirect the user automatically, if he/she clicks on a link, but instead fire an event. If you want to listen for such events, pass in the additional `dynamic` boolean attribute and set your listeners like this:
 
 ```html
-....
-<axa-footer-small
-  activelanguage="DE"
-  languageitems="${languages}"
-  disclaimeritems="${disclaimer}"
-  copyrighttext="© 2019 AXA Insurance Ltd."
-  dynamic
-></axa-footer-small>
-....
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Your awesome title</title>
+  </head>
+  <body>
+    <axa-footer-small
+      copyrighttext="© 2019 AXA Insurance Ltd."
+      activelanguage="de"
+      dynamic
+    ></axa-footer-small>
+
+    <script>
+      const languages = JSON.stringify([
+        { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
+        { key: 'fr', text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
+        {
+          key: 'it',
+          text: 'IT',
+          link: 'https://axa.ch/it/clienti-privati.html',
+        },
+        {
+          key: 'en',
+          text: 'EN',
+          link: 'https://axa.ch/en/private-customers.html',
+        },
+      ]);
+
+      const disclaimer = JSON.stringify([
+        {
+          key: 'tos',
+          text: 'Terms of use',
+          link: 'https://axa.ch/en/information/terms-of-use.html',
+        },
+        {
+          key: 'privacy',
+          text: 'Data protection',
+          link: 'https://axa.ch/en/information/data-protection.html',
+        },
+      ]);
+
+      const footer = document.querySelector('axa-footer-small');
+      footer.setAttribute('languageitems', languages);
+      footer.setAttribute('disclaimeritems', disclaimer);
+
+      footer.addEventListener('axa-language-change', e =>
+        console.log(e.detail)
+      );
+
+      footer.addEventListener('axa-disclaimer-change', e =>
+        console.log(e.detail)
+      );
+    </script>
+    <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
+  </body>
+</html>
 ```
-
-With this, a click on any footer link will not automatically redirect the user anywhere, but instead fire an event that you can subscribe to. Example:
-
-```js
-const footerSmall = document.querySelector('axa-footer-small');
-
-footerSmall.addEventListener('axa-language-change', languageEvent => {
-  console.log(languageEvent.detail); // Content: DE, EN, ...`;
-});
-
-footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
-  console.log(disclaimerEvent.detail); // Content: Terms of use, Data protection
-});
-```
-
-Check the demo folder for this use case.
 
 ## Properties
 
-### languageitems - Example
+### dynamic
 
-An array of items that represent the language section.
+Add this boolean attribute if you want to have control over what happens if a user clicks one of the language- or disclaimer-items.
+
+### languageitems & disclaimeritems
+
+An array of items that represents the language- / disclaimer-section.
+
+`key`: The value that will be yielded, if the `dynamic` property is set and a user clicks on a link.
 
 ```js
 const languages = [
-  { text: string, link: string },
+  { key: string, text: string, link: string },
   ...
 ];
 ```
 
-### disclaimeritems - Example
-
-An array of items that represent the disclaimer section.
-
 ```js
 const disclaimers = [
-  { text: string, link: string },
+  { key: string, text: string, link: string },
   ...
 ];
 ```
@@ -172,4 +214,8 @@ A string representing the text in the copyright section.
 
 ### activelanguage
 
-A string representing the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.
+A string representing the key of the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.
+
+## Migration Notes
+
+From 1.x to 2.x. the necessary "key" property on the items was introduced. Not providing this key will break your component after upgrading.

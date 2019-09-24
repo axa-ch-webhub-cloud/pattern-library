@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
 
-const selectedLanguage = 'EN';
+const selectedLanguageKey = 'en';
 
 storiesOf('Molecules/Footer Small/Demos', module)
   .addParameters({
@@ -13,24 +13,27 @@ storiesOf('Molecules/Footer Small/Demos', module)
   })
   .add('Footer Small - Dynamic Links', () => {
     const languages = [
-      { text: 'DE' },
-      { text: 'FR' },
-      { text: 'IT' },
-      { text: 'EN' },
+      { key: 'de', text: 'DE' },
+      { key: 'fr', text: 'FR' },
+      { key: 'it', text: 'IT' },
+      { key: 'en', text: 'EN' },
     ];
 
-    const disclaimer = [{ text: 'Terms of use' }, { text: 'Data protection' }];
+    const disclaimer = [
+      { key: 'tos', text: 'Terms of use' },
+      { key: 'privacy', text: 'Data protection' },
+    ];
 
     const wrapper = document.createElement('div');
     const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
-    activeLanguage.innerText = `Currently selected language: ${selectedLanguage}`;
+    activeLanguage.innerText = `Currently selected language: ${selectedLanguageKey}`;
     const clickedDisclaimer = document.createElement('p');
     clickedDisclaimer.id = 'clicked-disclaimer';
     clickedDisclaimer.innerText = `Disclaimer changed to: -`;
 
     const footerSmall = document.createElement('axa-footer-small');
-    footerSmall.activeLanguage = selectedLanguage;
+    footerSmall.activeLanguage = selectedLanguageKey;
     footerSmall.languageItems = languages;
     footerSmall.disclaimerItems = disclaimer;
     footerSmall.copyrightText = '© 2019 AXA Insurance Ltd.';
