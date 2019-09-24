@@ -24,7 +24,8 @@ ALL_BRANCHES=$(git --no-pager branch -a -r)
 cd ./dist
 
 # Find all folders for 2 levels down, ignore .git folder and cut './' at the beginning of each folder
-ALL_FOLDERS_DEPTH_1=$(find . -maxdepth 2 -not -path "./.*" -type d | cut -d '/' -f2-)
+[[ $BRANCH_NAME == "develop" || $BRANCH_NAME == "master" ]] && MAX_DEPTH=1 || MAX_DEPTH=2
+ALL_FOLDERS_DEPTH_1=$(find . -maxdepth $MAX_DEPTH -not -path "./.*" -type d | cut -d '/' -f2-)
 
 ###################################################################################################
 # There is one issue with the loop below: It checks the branch names on the pattern-library-repo. #
