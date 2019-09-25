@@ -101,7 +101,7 @@ test('should set default style if variant string is not in whitelist', async t =
 });
 
 fixture('Policy features - attribute variant: is in whitelist').page(
-  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant=wild-sand&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
+  `${host}/iframe.html?id=molecules-policy-features-react--policy-features&knob-variant_axa-policy-features=wild-sand&knob-title_axa-policy-features=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services&knob-Show%20title?_axa-policy-features-item=y&knob-title%20(of%20item)_axa-policy-features-item=Get%20Discount&knob-icon%20-%20load%20svg%20icon%20from%20this%20url%20instead:_axa-policy-features-item=&knob-description_axa-policy-features-item=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services`
 );
 
 test('should set style to "wild-sand"', async t => {
