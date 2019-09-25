@@ -21,20 +21,10 @@ addParameters({
 
 addDecorator(addReadme);
 
-const materials = require.context('../src/components/00-materials', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const atoms = require.context('../src/components/10-atoms', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const molecules = require.context('../src/components/20-molecules', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const organisms = require.context('../src/components/30-organisms', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const demo = require.context('../src/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const components = require.context('../src/components', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const demos = require.context('../src/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
-configure(
-  () =>
-    [].concat(
-      materials.keys().forEach(materials),
-      atoms.keys().forEach(atoms),
-      molecules.keys().forEach(molecules),
-      organisms.keys().forEach(organisms),
-      demo.keys().forEach(demo)
-    ),
-  module
-);
+configure(() => {
+  components.keys().forEach(components);
+  demos.keys().forEach(demos);
+}, module);
