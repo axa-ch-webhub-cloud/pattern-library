@@ -40,23 +40,127 @@ describe('AXACarousel', () => {
   });
 
   describe('allgemeine private methods', () => {
-    test('_getSlides() should call querySelector(), assignedNodes() and filter()', () => {
-      const mockedFilter = jest.fn();
-      const mockedQuerySelector = jest.fn(() => {
-        return {
-          assignedNodes: () => {
-            return { filter: mockedFilter };
-          },
-        };
+    test('_getSlides() should get the elements and filter them (with ShadowRoot)', () => {
+      const mockedFilter = jest.fn(() => {
+        return [];
       });
+
+      const mockedShadowRoot = {
+        querySelector: () => {
+          return {
+            assignedNodes: () => {
+              return {
+                filter: mockedFilter,
+              };
+            },
+          };
+        },
+      };
+
       const mockedThis = {
-        querySelector: mockedQuerySelector,
+        querySelector: () => {},
+        shadowRoot: mockedShadowRoot,
       };
 
       AXACarousel.prototype._getSlides(mockedThis);
 
-      expect(mockedQuerySelector).toHaveBeenCalledWith('slot');
-      expect(mockedFilter).toHaveBeenCalled(); // filter is only called if assignedNodes is called too
+      expect(mockedFilter).toHaveBeenCalled();
+    });
+
+    test('_getSlides() should get the elements and filter them (withOUT ShadowRoot)', () => {
+      const mockedFilter = jest.fn(() => {
+        return [];
+      });
+
+      const mockedQuerySelector = {
+        assignedNodes: () => {
+          return {
+            filter: mockedFilter,
+          };
+        },
+      };
+
+      const mockedThis = {
+        querySelector: () => {
+          return mockedQuerySelector;
+        },
+        shadowRoot: {
+          querySelector: () => {
+            return {
+              assignedNodes: () => {
+                return {
+                  filter: () => {
+                    return [];
+                  },
+                };
+              },
+            };
+          },
+        },
+      };
+
+      AXACarousel.prototype._getSlides(mockedThis);
+
+      expect(mockedFilter).toHaveBeenCalled();
+    });
+
+    test('_getSlides() should return elements selected by shadowRoot', () => {
+      const expectedSlots = ['element'];
+
+      const mockedThis = {
+        querySelector: () => {},
+        shadowRoot: {
+          querySelector: () => {
+            return {
+              assignedNodes: () => {
+                return {
+                  filter: () => {
+                    return expectedSlots;
+                  },
+                };
+              },
+            };
+          },
+        },
+      };
+
+      const slots = AXACarousel.prototype._getSlides(mockedThis);
+
+      expect(slots).toStrictEqual(expectedSlots);
+    });
+    test('_getSlides() should return elements selected without shadowRoot', () => {
+      const expectedSlots = ['element'];
+
+      const mockedThis = {
+        querySelector: () => {
+          return {
+            assignedNodes: () => {
+              return {
+                filter: () => {
+                  return expectedSlots;
+                },
+              };
+            },
+          };
+        },
+        shadowRoot: {
+          querySelector: () => {
+            return {
+              assignedNodes: () => {
+                return {
+                  filter: () => {
+                    return [];
+                  },
+                };
+              },
+            };
+          },
+        },
+      };
+
+      const slots = AXACarousel.prototype._getSlides(mockedThis);
+
+      expect(slots).toStrictEqual(expectedSlots);
     });
 
     test('_addEventListenerAnimationEnd() should call querySelector with correct attribute', () => {
