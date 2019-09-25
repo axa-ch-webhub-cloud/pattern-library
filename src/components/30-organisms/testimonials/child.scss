@@ -11,11 +11,17 @@ axa-testimonials {
       margin-top: 20px;
     }
   }
+
+  &[showallinline] {
+    .showallinline_ie_bugfix {
+      margin: 20px 0;
+    }
+  }
 }
 
 axa-testimonials[showallinline] {
   > * {
-    margin: 20px 0;
+    margin: 20px 0; // issue #1346: this attribute is gone in IE
     @include defaultAttributesChildElements();
   }
 }
