@@ -77,11 +77,11 @@ test('should have a 29th of February in 2020 - should correctly handle leap year
 });
 
 fixture('Datepicker - With Locale').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker-translated-en-gb`
+  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-locale=en-GB`
 );
 
 test('should display month in english', async t => {
-  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-translated');
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseFebruary();
 
@@ -89,56 +89,34 @@ test('should display month in english', async t => {
 });
 
 fixture('Datepicker - Collapsible Version').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker-input`
+  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
 );
 
-test('should close calendar as soon as another one is open', async t => {
-  const datePickerAccessor2019 = new DatePickerAccessor(
-    t,
-    'datepicker-input-2019'
-  );
-  await datePickerAccessor2019.openCalendar();
-  const datePickerAccessor2020 = new DatePickerAccessor(
-    t,
-    'datepicker-input-2020'
-  );
-  await datePickerAccessor2020.openCalendar();
-  await datePickerAccessor2020.assertIsOpen();
-  await datePickerAccessor2019.assertIsClosed();
-});
-
 test('should write date into input field for input calendars', async t => {
-  const datePickerAccessor2019 = new DatePickerAccessor(
-    t,
-    'datepicker-input-2019'
-  );
-  await datePickerAccessor2019.openCalendar();
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+  await datePickerAccessor.openCalendar();
 
-  await datePickerAccessor2019.chooseFebruary();
-  await datePickerAccessor2019.selectDayOfCurrentMonth(14);
-  await datePickerAccessor2019.submit();
+  await datePickerAccessor.assertYear(2019);
+  await datePickerAccessor.chooseFebruary();
+  await datePickerAccessor.selectDayOfCurrentMonth(14);
+  await datePickerAccessor.submit();
   // we need to do things on our own here since property access
   // is *not* supported by the TestCafe API (here for 'value')
   const getInputValue = ClientFunction(
     () =>
-      document.querySelector(
-        `axa-datepicker[data-test-id="datepicker-input-2019"]`
-      ).value
+      document.querySelector(`axa-datepicker[data-test-id="datepicker"]`).value
   );
   await t.expect(await getInputValue()).eql('14.2.2019');
 });
 
 test('should change enhanced dropdown title (only on large screens) on month change', async t => {
-  const datePickerAccessor2019 = new DatePickerAccessor(
-    t,
-    'datepicker-input-2019'
-  );
-  await datePickerAccessor2019.openCalendar();
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+  await datePickerAccessor.openCalendar();
 
-  await datePickerAccessor2019.chooseFebruary();
-  await datePickerAccessor2019.selectDayOfCurrentMonth(14);
+  await datePickerAccessor.chooseFebruary();
+  await datePickerAccessor.selectDayOfCurrentMonth(14);
 
-  await datePickerAccessor2019.assertDropdownTitle('Februar');
+  await datePickerAccessor.assertDropdownTitle('Februar');
 });
 
 // React smoke test
@@ -152,6 +130,7 @@ test('should render datepicker as reactified component', async t => {
   await t.setTestSpeed(0.5);
   await t.expect(datepickerReact.exists).ok();
 });
+
 test('should correctly expand year ranges assigned via property', async t => {
   const datepickerReactYearDropdown = await Selector(() =>
     document.querySelector(
