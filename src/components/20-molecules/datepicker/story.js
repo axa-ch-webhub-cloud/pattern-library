@@ -30,7 +30,7 @@ story.addParameters({
 story.add('Datepicker', () => {
   const inputfield = boolean('inputfield', false);
   const locale = select('locale', localeOptions, defaultLocaleValue);
-  const year = number('year', 2019);
+  const year = number('year', 2020);
   const month = number('month', 4);
   const day = number('day', 22);
   const disabled = boolean('disabled', false);
