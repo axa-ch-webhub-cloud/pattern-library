@@ -97,11 +97,13 @@ This boolean attribute specifies if the keyboard navigation (left/right keys) sh
 
 Do not set more than ~100 child elements. Because of height calculation the performance will be slow down.
 
-### class="author" (React: className="author")
+<!-- prettier-ignore -->
+### class="o-testimonials__author" (React: className="o-testimonials__author")
 
 The Text of the element where you set this class will be uppercase. It has a margin-top to have some space to the elements above.
 
-### class="o-testimonials**vertical-margin" (React: className="o-testimonials**vertical-margin")
+<!-- prettier-ignore -->
+### class="o-testimonials__vertical-margin" (React: className="o-testimonials__vertical-margin")
 
 Set this class to your top level child elements. It sets a margin to your elements if you use `showallinline`.
 
