@@ -66,7 +66,7 @@ storiesOf('Organisms/Table Sortable/React', module)
       <TableSortable
         model={model}
         onClick={ev => {
-          console.log(ev);
+          window.alert(JSON.stringify(ev));
         }}
       />,
       div
