@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/testimonials",
-  "version": "0.0.1-alpha.1",
+  "version": "1.0.0",
   "description": "Shows several information in a carousel or inline and sets title and subtitle over it.",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/testimonials#readme",
