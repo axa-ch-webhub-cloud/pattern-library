@@ -3,13 +3,14 @@ import AXATable from './index';
 
 export default createElement => ({
   children,
-  model,
-  innerscroll,
-  maxheight,
+  model = null,
+  innerscroll = 0,
+  maxheight = 0,
+  onClick = () => {},
   className,
 }) =>
   withReact(createElement)(
     AXATable.tagName,
-    { model, innerscroll, maxheight, className },
+    { model, innerscroll, maxheight, className, onClick },
     children
   );

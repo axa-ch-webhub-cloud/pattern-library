@@ -3,10 +3,17 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import '@axa-ch/table';
 import defineOnce from '../../../utils/define-once';
+import fireCustomEvent from '../../../utils/custom-event';
 import tableCss from './index.scss';
 
 const ASC = 'ascending';
 const DESC = 'descending';
+const TABLE_BODY = 'tbody';
+const TABLE_FOOT = 'tfoot';
+// codes that are used to simulate click on row via keyboard
+const KEY_CODES = [13, 32];
+// key names that are used to simulate click on row via keyboard
+const KEY_NAMES = ['Space', 'Enter'];
 
 const mapAsc = {
   [ASC]: 'ASC',
@@ -21,10 +28,12 @@ class AXATableSortable extends LitElement {
       tbody: [[]],
       tfoot: [[]],
     };
+    this.listeners = [];
     this.model = { ...this.defaultModel };
     this.innerscroll = 0;
     this.maxheight = 0;
     this.firstRender = true;
+    this.onClick = () => {};
     this.numCollator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base',
@@ -175,6 +184,31 @@ class AXATableSortable extends LitElement {
     return super.shouldUpdate(...args);
   }
 
+  handleOnclick = (ev, index, type) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    const { currentTarget } = ev;
+    const trimmedRow = currentTarget.textContent.replace(/\s+/g, ' ').trim();
+    const details = {
+      type,
+      index,
+      domElement: currentTarget,
+      textArray: trimmedRow.split(' '),
+    };
+    this.onClick(details);
+    fireCustomEvent('click', details, this, { bubbles: false });
+  };
+
+  // if is focused, let the row be pressed via keyboard
+  onKeyPress = (...args) => {
+    const {
+      0: { charCode, code },
+    } = args;
+    if (~KEY_CODES.indexOf(charCode) || ~KEY_NAMES.indexOf(code)) {
+      this.handleOnclick(...args);
+    }
+  };
+
   render() {
     const { thead, tbody, tfoot } = this.model;
 
@@ -210,8 +244,16 @@ class AXATableSortable extends LitElement {
           <tbody>
             ${tbody &&
               tbody.map(
-                cells => html`
-                  <tr>
+                (cells, index) => html`
+                  <tr
+                    tabindex="0"
+                    @click=${ev => {
+                      this.handleOnclick(ev, index, TABLE_BODY);
+                    }}
+                    @keypress=${ev => {
+                      this.onKeyPress(ev, index, TABLE_FOOT);
+                    }}
+                  >
                     ${cells &&
                       cells.map(
                         cell => html`
@@ -227,8 +269,16 @@ class AXATableSortable extends LitElement {
                 <tfoot>
                   ${tbody &&
                     tfoot.map(
-                      cells => html`
-                        <tr>
+                      (cells, index) => html`
+                        <tr
+                          tabindex="0"
+                          @click=${ev => {
+                            this.handleOnclick(ev, index, TABLE_FOOT);
+                          }}
+                          @keypress=${ev => {
+                            this.onKeyPress(ev, index, TABLE_FOOT);
+                          }}
+                        >
                           ${cells &&
                             cells.map(
                               cell => html`

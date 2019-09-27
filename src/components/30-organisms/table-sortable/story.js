@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/html';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
@@ -69,6 +70,26 @@ storiesOf('Organisms/Table Sortable', module)
       </axa-table-sortable>
       `
   )
+  .add('Table Sortable - on row click', () => {
+    const wrapper = document.createElement('div');
+    window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
+      const renderArea = document.querySelector('#renderArea');
+      renderArea.innerHTML = `Pressed on row ${index} in ${type}.
+
+      Inner Text is: ${JSON.stringify(textArray)}`;
+    };
+    const template = html`
+      <axa-table-sortable
+        onclick="onCallbackClick(arguments[0])"
+        innerscroll="500"
+        model="${JSON.stringify(model)}"
+      >
+      </axa-table-sortable>
+      <div id="renderArea"></div>
+    `;
+    render(template, wrapper);
+    return wrapper;
+  })
   .add(
     'Table Sortable - maxheight',
     () => `
