@@ -38,8 +38,8 @@ class AXATestimonials extends InlineStyles {
     super();
 
     // default values props
-    this.title = null;
-    this.subtitle = null;
+    this.title = '';
+    this.subtitle = '';
     this.autorotatedisabled = false;
     this.autorotatetime = 5000;
     this.showallinline = false;
