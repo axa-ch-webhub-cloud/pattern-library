@@ -250,7 +250,7 @@ class AXATableSortable extends LitElement {
                       this.handleOnclick(ev, index, TABLE_BODY);
                     }}
                     @keypress=${ev => {
-                      this.onKeyPress(ev, index, TABLE_FOOT);
+                      this.onKeyPress(ev, index, TABLE_BODY);
                     }}
                   >
                     ${cells &&
