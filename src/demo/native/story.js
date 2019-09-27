@@ -59,10 +59,34 @@ storiesOf('Demos', module)
           width: 40px;
           height: 40px;
         }
+        .input-field {
+          height: 40px;
+          padding: 0 10px 0 20px;
+          min-width: 180px;
+          border: 1px solid;
+          font-size: 14px;
+          outline: none;
+          border-color: #e5e5e5; /* $color-prim-gray-mercury */ 
+          background-color: #fafafa; /* $color-prim-gray-alabaster */
+          color: #999; /* $color-prim-gray-dusty */
+          fill: #999; /* $color-prim-gray-dusty */
+        }
+        .input-field:hover {
+          border: 1px solid #00008f;
+        }
+        .input-field:focus {
+          outline: 2px solid #00008f;
+          outline-offset: -2px;
+          color: #000;
+        }
       </style>
       <h2>
         Note: There are green border around each SVG to better see dimensions.
       </h2>
+      <div>
+      <input class="input-field" type="text" placeholder="Find">
+      </div>
+      
       <h3>${icons.length} Icons:</h3>
       ${svg(
         icons.map(
