@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/carousel",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "Every child is rendered as a slide. Only one child is visible at one time.",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/carousel#readme",
