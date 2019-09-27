@@ -101,7 +101,7 @@ Do not set more than ~100 child elements. Because of height calculation the perf
 
 The Text of the element where you set this class will be uppercase. It has a margin-top to have some space to the elements above.
 
-### class="showallinline_ie_bugfix" (React: className="showallinline_ie_bugfix")
+### class="o-testimonials**vertical-margin" (React: className="o-testimonials**vertical-margin")
 
 Set this class to your top level child elements. It sets a margin to your elements if you use `showallinline`.
 

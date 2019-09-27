@@ -36,16 +36,16 @@ story.add('Testimonials', () => {
       title="${title}"
       subtitle="${subtitle}"
     >
-      <div class="showallinline_ie_bugfix">
+      <div class="o-testimonials__vertical-margin">
         <span
           >Very helpful once I got through to the correct person but I was
           constantly being transferred from person to person, in the end I
           called into my local axa once in the city and got sorted in 10 minutes
           after 3 weeks of phone calls.</span
         >
-        <span class="author">Andrew Jackson, Advocate</span>
+        <span class="o-testimonials__author">Andrew Jackson, Advocate</span>
       </div>
-      <div class="showallinline_ie_bugfix">
+      <div class="o-testimonials__vertical-margin">
         <span
           >Very helpful once I got through to the correct person but I was
           constantly being transferred from person to person, in the end I
@@ -62,9 +62,9 @@ story.add('Testimonials', () => {
           called into my local axa once in the city and got sorted in 10 minutes
           after 3 weeks of phone calls.</span
         >
-        <span class="author">Andrew Müller, Advocate</span>
+        <span class="o-testimonials__author">Andrew Müller, Advocate</span>
       </div>
-      <span class="showallinline_ie_bugfix"
+      <span class="o-testimonials__vertical-margin"
         >This is a small text without an author.</span
       >
     </axa-testimonials>

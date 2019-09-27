@@ -1,7 +1,7 @@
 @import '../../10-atoms/carousel/child';
 
 axa-testimonials {
-  .author{
+  .o-testimonials__author {
     @include typo(primary, small, bold);
     display: block;
     text-transform: uppercase;
@@ -13,7 +13,7 @@ axa-testimonials {
   }
 
   &[showallinline] {
-    .showallinline_ie_bugfix {
+    .o-testimonials__vertical-margin {
       margin: 20px 0;
     }
   }
