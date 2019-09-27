@@ -28,7 +28,6 @@ class AXATableSortable extends LitElement {
       tbody: [[]],
       tfoot: [[]],
     };
-    this.listeners = [];
     this.model = { ...this.defaultModel };
     this.innerscroll = 0;
     this.maxheight = 0;
