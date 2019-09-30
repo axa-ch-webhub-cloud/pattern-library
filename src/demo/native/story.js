@@ -23,7 +23,7 @@ let icons = filepathsIcons.map(path => {
     path,
   };
 });
-const images = filepathsImages.map(path => {
+let images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
     path,
@@ -48,23 +48,33 @@ storiesOf('Demos', module)
 
     window.onCallbackInput = ev => {
       const { value } = ev.target;
+      const lengthOfPrefix = 2;
+      const renderAreaIcons = document.querySelector('.icons');
+      const renderAreaImages = document.querySelector('.images');
+      const iconHeader = document.querySelector('.iconHeader');
+      const imageHeader = document.querySelector('.imageHeader');
 
       icons = icons.filter(icon => {
         const { length } = icon.path.split('.svg.js')[0];
-        const lengthOfPrefix = 2;
         const iconName = icon.path.substr(
           lengthOfPrefix,
           length - lengthOfPrefix
         );
         const foundSearchTerm = iconName.search(value) > -1;
-        console.log(iconName, foundSearchTerm);
         return foundSearchTerm ? icon : '';
       });
-      console.log(icons);
-      console.log('---------------------');
-      const renderArea = document.querySelector('.icons');
 
-      renderArea.innerHTML = icons
+      images = images.filter(image => {
+        const { length } = image.path.split('.svg.js')[0];
+        const iconName = image.path.substr(
+          lengthOfPrefix,
+          length - lengthOfPrefix
+        );
+        const foundSearchTerm = iconName.search(value) > -1;
+        return foundSearchTerm ? image : '';
+      });
+
+      renderAreaIcons.innerHTML = icons
         .map(
           i =>
             `<div>${i.svgstring}<span style="padding-left: 10px;">${
@@ -72,6 +82,23 @@ storiesOf('Demos', module)
             }</span></div>`
         )
         .join('');
+
+      iconHeader.innerHTML =
+        icons.length === 1 ? `${icons.length} Icons:` : `${icons.length} Icon:`;
+
+      renderAreaImages.innerHTML = images
+        .map(
+          i =>
+            `<div>${i.svgstring}<span style="padding-left: 10px;">${
+              i.path
+            }</span></div>`
+        )
+        .join('');
+
+      imageHeader.innerHTML =
+        images.length === 1
+          ? `${images.length} Images:`
+          : `${images.length} Image:`;
     };
     const template = html`
       <style>
@@ -119,7 +146,7 @@ storiesOf('Demos', module)
         />
       </div>
 
-      <h3>${icons.length} Icons:</h3>
+      <h3 class="iconHeader">${icons.length} Icons:</h3>
       <div class="icons">
         ${svg(
           icons.map(
@@ -131,7 +158,7 @@ storiesOf('Demos', module)
         )}
       </div>
 
-      <h3>${images.length} Images:</h3>
+      <h3 class="imageHeader">${images.length} Images:</h3>
       <div class="images">
         ${svg(
           images.map(
