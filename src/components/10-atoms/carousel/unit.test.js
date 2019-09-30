@@ -389,12 +389,14 @@ describe('AXACarousel', () => {
 
   describe('auto rotate', () => {
     test('_startAutoRotate() should init a interval', () => {
+      AXACarousel.prototype.autorotatetime = 5000;
       AXACarousel.prototype._startAutoRotate();
       expect(setInterval).toHaveBeenCalled();
       expect(AXACarousel.prototype.autoRotateTimerID).toBeGreaterThan(-1);
     });
     test('_startAutoRotate() should call _nextSlide()', () => {
       const mockedNextSlide = jest.fn();
+      AXACarousel.prototype.autorotatetime = 5000;
       AXACarousel.prototype._nextSlide = mockedNextSlide;
 
       AXACarousel.prototype._startAutoRotate();
@@ -404,6 +406,18 @@ describe('AXACarousel', () => {
     });
     test('_startAutoRotate() should not init a interval if autorotatedisabled is set', () => {
       AXACarousel.prototype.autorotatedisabled = true;
+      AXACarousel.prototype._startAutoRotate();
+      expect(setInterval).not.toHaveBeenCalled();
+    });
+    test('_startAutoRotate() should not init a interval if autorotatetime is not number', () => {
+      AXACarousel.prototype.autorotatedisabled = false;
+      AXACarousel.prototype.autorotatetime = 'thisIsNotANumber';
+      AXACarousel.prototype._startAutoRotate();
+      expect(setInterval).not.toHaveBeenCalled();
+    });
+    test('_startAutoRotate() should not init a interval if autorotatetime is a emtpy string', () => {
+      AXACarousel.prototype.autorotatedisabled = false;
+      AXACarousel.prototype.autorotatetime = ''; // because isNaN('') = false
       AXACarousel.prototype._startAutoRotate();
       expect(setInterval).not.toHaveBeenCalled();
     });

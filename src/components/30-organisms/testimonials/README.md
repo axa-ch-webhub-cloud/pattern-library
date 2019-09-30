@@ -6,29 +6,6 @@ Shows several information in a carousel or inline and sets title and subtitle ov
 
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
 
-```bash
-npm install @axa-ch/testimonials
-```
-
-```js
-import '@axa-ch/testimonials';
-
-<axa-testimonials
-  autorotatetime="1000"
-  autorotatedisabled="false"
-  keysenabled="true"
-  showallinline="false"
-  title="The main title"
-  subtitle="This is the subtitle"
->
-  <span>first slide</span>
-  <div>
-    <span>second slide</span>
-    <span class="author">Andrew Jackson, Advocate</span>
-  </div>
-</axa-testimonials>;
-```
-
 ### React
 
 Create a React-ified testimonials with the createElement function from your React version and then use it like this:
@@ -44,17 +21,14 @@ export default AXATestimonialsReact;
 
 ```js
 <AXATestimonialsReact
-  autorotatetime="1000"
-  autorotatedisabled="false"
-  keysenabled="true"
-  showallinline="false"
   title="The main title"
   subtitle="This is the subtitle"
+  keysenabled
 >
   <span>first slide</span>
   <div>
     <span>second slide</span>
-    <span class="author">Andrew Jackson, Advocate</span>
+    <span className="o-testimonials__author">Andrew Jackson, Advocate</span>
   </div>
 </AXATestimonialsReact>
 ```
@@ -74,17 +48,14 @@ Import the testimonials-defining script and use a testimonials like this:
   </head>
   <body>
     <axa-testimonials
-      autorotatetime="1000"
-      autorotatedisabled="false"
-      keysenabled="true"
-      showallinline="false"
       title="The main title"
       subtitle="This is the subtitle"
+      keysenabled=""
     >
       <span>first slide</span>
       <div>
         <span>second slide</span>
-        <span class="author">Andrew Jackson, Advocate</span>
+        <span class="o-testimonials__author">Andrew Jackson, Advocate</span>
       </div>
     </axa-testimonials>
     <script src="node_modules/@axa-ch/testimonials/dist/index.js"></script>
@@ -104,11 +75,13 @@ The subtitle.
 
 ### showallinline
 
-Set it to `true` if you dont want to see the carousel. All the childs are shown below the other.
+This boolean attribute specifies the visibility of the carousel. Set this attribute if you want all the childs shown above each other.
+
+**Dont forget** so set [this class](#classo-testimonials__vertical-margin-react-classnameo-testimonials__vertical-margin) to your top level child elements to have some margins between them.
 
 ### autorotatedisabled
 
-This boolean attribute specifies if the slides will automatically rotate.
+This boolean attribute specifies if the slides will not automatically rotate.
 
 ### autorotatetime
 
@@ -124,9 +97,15 @@ This boolean attribute specifies if the keyboard navigation (left/right keys) sh
 
 Do not set more than ~100 child elements. Because of height calculation the performance will be slow down.
 
-### class="author"
+<!-- prettier-ignore -->
+### class="o-testimonials__author" (React: className="o-testimonials__author")
 
-You can set this class to a span. The Text will be uppercase and above of another nested slide elements.
+The Text of the element where you set this class will be uppercase. It has a margin-top to have some space to the elements above.
+
+<!-- prettier-ignore -->
+### class="o-testimonials__vertical-margin" (React: className="o-testimonials__vertical-margin")
+
+Set this class to your top level child elements. It sets a margin to your elements if you use `showallinline`.
 
 ## Migration Notes
 

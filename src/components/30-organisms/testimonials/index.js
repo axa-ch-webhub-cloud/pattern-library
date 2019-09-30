@@ -29,7 +29,7 @@ class AXATestimonials extends InlineStyles {
       subtitle: { type: String },
       autorotatedisabled: { type: Boolean },
       autorotatetime: { type: Number },
-      showallinline: { type: Boolean },
+      showallinline: { type: Boolean, reflect: true },
       keysenabled: { type: Boolean },
     };
   }
@@ -75,9 +75,7 @@ class AXATestimonials extends InlineStyles {
             ${showallinline
               ? html`
                   <div class="o-testimonials__content__inline">
-                    <slot>
-                      <slot name="author"></slot>
-                    </slot>
+                    <slot></slot>
                   </div>
                 `
               : html`

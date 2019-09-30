@@ -49,10 +49,14 @@ test('should find axa-carousel tag if attribute showallinline is not set', async
   await t.expect($carouselElement.exists).ok();
 });
 
-test('should set text to uppercase for elements with class "author"', async t => {
-  const $firstAuthorElementInDocument = await $elementTestimonial.find('[class="author"]');
+test('should set text to uppercase for elements with class "o-testimonials__author"', async t => {
+  const $firstAuthorElementInDocument = await $elementTestimonial.find(
+    '[class="o-testimonials__author"]'
+  );
   await t
-    .expect(await $firstAuthorElementInDocument.getStyleProperty('text-transform'))
+    .expect(
+      await $firstAuthorElementInDocument.getStyleProperty('text-transform')
+    )
     .eql('uppercase');
 });
 
@@ -65,4 +69,18 @@ test('should find inline class if attribute showallinline is set', async t => {
     '.o-testimonials__content__inline'
   );
   await t.expect($inlineElement.exists).ok();
+});
+
+test('should set margin for elements with class "o-testimonials__vertical-margin"', async t => {
+  const $firstAuthorElementInDocument = await $elementTestimonial.find(
+    '[class="o-testimonials__vertical-margin"]'
+  );
+
+  await t
+    .expect(
+      await $firstAuthorElementInDocument.getStyleProperty('margin-bottom')
+    )
+    .eql('20px')
+    .expect(await $firstAuthorElementInDocument.getStyleProperty('margin-top'))
+    .eql('20px');
 });

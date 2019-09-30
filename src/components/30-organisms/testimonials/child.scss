@@ -1,7 +1,7 @@
 @import '../../10-atoms/carousel/child';
 
 axa-testimonials {
-  span.author{
+  .o-testimonials__author {
     @include typo(primary, small, bold);
     display: block;
     text-transform: uppercase;
@@ -11,11 +11,17 @@ axa-testimonials {
       margin-top: 20px;
     }
   }
+
+  &[showallinline] {
+    .o-testimonials__vertical-margin {
+      margin: 20px 0; // issue #1346: a workaround for that
+    }
+  }
 }
 
 axa-testimonials[showallinline] {
   > * {
-    margin: 20px 0;
+    margin: 20px 0; // issue #1346: this attribute is gone in IE
     @include defaultAttributesChildElements();
   }
 }
