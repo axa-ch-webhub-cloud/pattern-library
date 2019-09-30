@@ -64,12 +64,14 @@ storiesOf('Demos', module)
       console.log('---------------------');
       const renderArea = document.querySelector('.icons');
 
-      renderArea.innerHTML = icons.map(
-        i =>
-          `<div>${i.svgstring}<span style="padding-left: 10px;">${
-            i.path
-          }</span></div>`
-      );
+      renderArea.innerHTML = icons
+        .map(
+          i =>
+            `<div>${i.svgstring}<span style="padding-left: 10px;">${
+              i.path
+            }</span></div>`
+        )
+        .join('');
     };
     const template = html`
       <style>
