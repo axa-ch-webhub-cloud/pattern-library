@@ -17,7 +17,7 @@ const DROPDOWN_UL_MAXHEIGHT = '200px';
 const EMPTY_FUNCTION = () => {};
 const WORD_END = '\x00';
 const INDEX_END = '\x01';
-const AUTOSUGGEST_INACTIVITY_DELAY = 200; // milliseconds
+const AUTOSUGGEST_INACTIVITY_DELAY = 300; // milliseconds
 
 // module globals
 let openDropdownInstance;
@@ -88,24 +88,6 @@ const defaultTitleIfNeeded = (title, anotherSelection) =>
     ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
     : [];
 
-// build one long string of words paired with their indices in `items`,
-// separating the elements in each pair with suitable control characters
-// that do not occur in typed input
-const buildAutosuggestDictionary = (items, letters) =>
-  items
-    .filter(item => !item.disabled)
-    .map((item, index) => {
-      // normalize word for purposes of matching
-      const word = item.name.toLowerCase();
-      // construct a set of all letters in word
-      // (used for an early filter over keystrokes)
-      word.split('').forEach(letter => {
-        letters.add(letter.toLowerCase());
-      });
-      return `${INDEX_END}${word}${WORD_END}${index}`;
-    })
-    .join('') + INDEX_END;
-
 // CE
 class AXADropdown extends NoShadowDOM {
   static get tagName() {
@@ -171,7 +153,7 @@ class AXADropdown extends NoShadowDOM {
     this.onBlur = EMPTY_FUNCTION;
     // internal properties
     this.state = { isControlled: false, firstTime: true };
-    this._typedSofar = '';
+    this._typedSoFar = '';
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
@@ -210,6 +192,29 @@ class AXADropdown extends NoShadowDOM {
     return this.handleAutosuggest(key, e);
   }
 
+  // build one long string of words paired with their indices in `items`,
+  // separating the elements in each pair with suitable control characters
+  // that do not occur in typed input
+  buildAutosuggestDictionary() {
+    this._autosuggestLetters = new Set();
+    const { items, _autosuggestLetters: letters } = this;
+
+    this._autosuggestDictionary =
+      items
+        .filter(item => !item.disabled)
+        .map((item, index) => {
+          // normalize word for purposes of matching
+          const word = item.name.toLowerCase();
+          // construct a set of all letters in word
+          // (used for an early filter over keystrokes)
+          word.split('').forEach(letter => {
+            letters.add(letter.toLowerCase());
+          });
+          return `${INDEX_END}${word}${WORD_END}${index}`;
+        })
+        .join('') + INDEX_END;
+  }
+
   handleAutosuggest(key) {
     // ready for autosuggestions, by having focus on the non-native UI?
     if (document.activeElement !== this.button) {
@@ -222,13 +227,13 @@ class AXADropdown extends NoShadowDOM {
       // no, bail out
       return;
     }
-    this._typedSofar += character;
+    this._typedSoFar += character;
     // wait for certain period of keyboard inactivitity...
     clearTimeout(this._timer);
     this._timer = setTimeout(() => {
       // ... before trying to match what was typed sofar against items
-      const { _autosuggestDictionary, _typedSofar, items } = this;
-      const match = _autosuggestDictionary.indexOf(INDEX_END + _typedSofar);
+      const { _autosuggestDictionary, _typedSoFar, items } = this;
+      const match = _autosuggestDictionary.indexOf(INDEX_END + _typedSoFar);
       if (match > -1) {
         // we have a match, determine the corresponding item ...
         const matchIndexPos =
@@ -243,7 +248,7 @@ class AXADropdown extends NoShadowDOM {
         this.updateItems(value);
       }
       // next characters start a *new* autosuggestion
-      this._typedSofar = '';
+      this._typedSoFar = '';
     }, AUTOSUGGEST_INACTIVITY_DELAY);
   }
 
@@ -449,18 +454,14 @@ class AXADropdown extends NoShadowDOM {
   }
 
   updated(changedProperties) {
-    const { select, defaultTitle, items } = this;
+    const { select, defaultTitle } = this;
     // adjust native <select>
     select.selectedIndex =
       this.findByValue(null, true) + (defaultTitle ? 1 : 0);
 
     if (changedProperties.has('items')) {
       // rebuild keyboard-autosuggestion data structures
-      this._autosuggestLetters = new Set();
-      this._autosuggestDictionary = buildAutosuggestDictionary(
-        items,
-        this._autosuggestLetters
-      );
+      this.buildAutosuggestDictionary();
     }
   }
 
