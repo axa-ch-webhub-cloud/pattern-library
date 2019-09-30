@@ -19,11 +19,10 @@ Create a React-ified policy feature with the createElement function from your Re
 ```js
 // File: PolicyFeaturesReact.js
 import { createElement } from 'react';
-import createAXAPolicyFeaturesReact from '@axa-ch/policy-features/lib/index.react';
-import { policyFeaturesItem } from '@axa-ch/policy-features/lib/index.react';
+import createAXAPolicyFeaturesReact, {createAXAPolicyFeaturesItemReact} from '@axa-ch/policy-features/lib/index.react';
 
 const AXAPolicyFeaturesReact = createAXAPolicyFeaturesReact(createElement);
-const AXAPolicyFeaturesItemReact = policyFeaturesItem(createElement);
+const AXAPolicyFeaturesItemReact = createAXAPolicyFeaturesItemReact(createElement);
 
 export { AXAPolicyFeaturesReact, AXAPolicyFeaturesItemReact };
 ```
