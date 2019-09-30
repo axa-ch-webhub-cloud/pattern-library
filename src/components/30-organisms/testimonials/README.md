@@ -28,7 +28,7 @@ export default AXATestimonialsReact;
   <span>first slide</span>
   <div>
     <span>second slide</span>
-    <span className="author">Andrew Jackson, Advocate</span>
+    <span className="o-testimonials__author">Andrew Jackson, Advocate</span>
   </div>
 </AXATestimonialsReact>
 ```
@@ -55,7 +55,7 @@ Import the testimonials-defining script and use a testimonials like this:
       <span>first slide</span>
       <div>
         <span>second slide</span>
-        <span class="author">Andrew Jackson, Advocate</span>
+        <span class="o-testimonials__author">Andrew Jackson, Advocate</span>
       </div>
     </axa-testimonials>
     <script src="node_modules/@axa-ch/testimonials/dist/index.js"></script>
