@@ -245,7 +245,7 @@ class AXADropdown extends NoShadowDOM {
         // ... and its value
         const { value } = items[firstSelectedItem];
         // re-render to visually select matched item
-        this.updateItems(value);
+        this.updateItems(value, 'scrollIntoView');
       }
       // next characters start a *new* autosuggestion
       this._typedSoFar = '';
@@ -256,7 +256,13 @@ class AXADropdown extends NoShadowDOM {
     e.preventDefault();
     e.stopPropagation();
     // toggle dropdown
-    this.openDropdown(!this.open);
+    const open = !this.open;
+    this.openDropdown(open);
+    if (open) {
+      // note: without setTimeout, scrolling is off by several items, s.t. the selected
+      // element is not visible (at least with maxHeight being set)
+      setTimeout(() => this.scrollIntoView(), 1);
+    }
   }
 
   handleDropdownItemClick(e) {
@@ -308,7 +314,20 @@ class AXADropdown extends NoShadowDOM {
     return indexOnly ? itemIndex : [items[itemIndex], itemIndex];
   }
 
-  updateItems(value) {
+  scrollIntoView(index) {
+    const realIndex =
+      typeof index === 'number' ? index : this.select.selectedIndex;
+    const itemNode = this.querySelector(
+      `.js-dropdown__button[data-index="${realIndex}"]`
+    );
+    if (itemNode) {
+      // note: IE does not interpret scrollIntoView options, therefore
+      // that the selected item might not be centered there.
+      itemNode.scrollIntoView({ block: 'center' });
+    }
+  }
+
+  updateItems(value, scrollIntoView) {
     if (typeof value !== 'string') {
       return;
     }
@@ -324,6 +343,10 @@ class AXADropdown extends NoShadowDOM {
       _item.selected = index === itemIndex;
       return _item;
     });
+
+    if (scrollIntoView) {
+      this.scrollIntoView(itemIndex);
+    }
   }
 
   /* last overrideable lifecycle point *before* render:
