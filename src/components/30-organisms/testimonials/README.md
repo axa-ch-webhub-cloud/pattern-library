@@ -77,7 +77,7 @@ The subtitle.
 
 This boolean attribute specifies the visibility of the carousel. Set this attribute if you want all the childs shown above each other.
 
-**Dont forget** so set [this class](#classshowallinline_ie_bugfix-react-classnameshowallinline_ie_bugfix) to your top level child elements to have some margins between them.
+**Dont forget** so set [this class](#classo-testimonials__vertical-margin-react-classnameo-testimonials__vertical-margin) to your top level child elements to have some margins between them.
 
 ### autorotatedisabled
 

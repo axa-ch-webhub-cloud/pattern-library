@@ -37,7 +37,7 @@ story.add('Testimonials', () => {
       title={title}
       subtitle={subtitle}
     >
-      <div>
+      <div className="o-testimonials__vertical-margin">
         <span>
           Very helpful once I got through to the correct person but I was
           constantly being transferred from person to person, in the end I
@@ -46,7 +46,7 @@ story.add('Testimonials', () => {
         </span>
         <span className="o-testimonials__author">Andrew Jackson, Advocate</span>
       </div>
-      <div>
+      <div className="o-testimonials__vertical-margin">
         <span>
           Very helpful once I got through to the correct person but I was
           constantly being transferred from person to person, in the end I
@@ -65,7 +65,7 @@ story.add('Testimonials', () => {
         </span>
         <span className="o-testimonials__author">Andrew Müller, Advocate</span>
       </div>
-      <span>This is a small text without an author.</span>
+      <span className="o-testimonials__vertical-margin">This is a small text without an author.</span>
     </AXATestimonialsReact>,
     wrapper
   );

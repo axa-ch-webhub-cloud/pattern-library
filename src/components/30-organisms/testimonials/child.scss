@@ -14,7 +14,7 @@ axa-testimonials {
 
   &[showallinline] {
     .o-testimonials__vertical-margin {
-      margin: 20px 0;
+      margin: 20px 0; // issue #1346: a workaround for that
     }
   }
 }

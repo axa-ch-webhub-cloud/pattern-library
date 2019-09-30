@@ -4,7 +4,7 @@ interface AXATestimonialsProps {
   title?: string;
   subtitle?: string;
   autorotatedisabled?: boolean;
-  autorotatetime?: boolean;
+  autorotatetime?: number;
   showallinline?: boolean;
   keysenabled?: boolean;
 }
