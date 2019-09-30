@@ -17,7 +17,7 @@ const reqSvgsImages = require.context(
 );
 const filepathsImages = reqSvgsImages.keys();
 
-const icons = filepathsIcons.map(path => {
+let icons = filepathsIcons.map(path => {
   return {
     svgstring: reqSvgsIcons(path).default,
     path,
@@ -46,6 +46,31 @@ storiesOf('Demos', module)
 
     const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
 
+    window.onCallbackInput = ev => {
+      const { value } = ev.target;
+
+      icons = icons.filter(icon => {
+        const { length } = icon.path.split('.svg.js')[0];
+        const lengthOfPrefix = 2;
+        const iconName = icon.path.substr(
+          lengthOfPrefix,
+          length - lengthOfPrefix
+        );
+        const foundSearchTerm = iconName.search(value) > -1;
+        console.log(iconName, foundSearchTerm);
+        return foundSearchTerm ? icon : '';
+      });
+      console.log(icons);
+      console.log('---------------------');
+      const renderArea = document.querySelector('.icons');
+
+      renderArea.innerHTML = icons.map(
+        i =>
+          `<div>${i.svgstring}<span style="padding-left: 10px;">${
+            i.path
+          }</span></div>`
+      );
+    };
     const template = html`
       <style>
         body {
@@ -66,7 +91,7 @@ storiesOf('Demos', module)
           border: 1px solid;
           font-size: 14px;
           outline: none;
-          border-color: #e5e5e5; /* $color-prim-gray-mercury */ 
+          border-color: #e5e5e5; /* $color-prim-gray-mercury */
           background-color: #fafafa; /* $color-prim-gray-alabaster */
           color: #999; /* $color-prim-gray-dusty */
           fill: #999; /* $color-prim-gray-dusty */
@@ -84,18 +109,25 @@ storiesOf('Demos', module)
         Note: There are green border around each SVG to better see dimensions.
       </h2>
       <div>
-      <input class="input-field" type="text" placeholder="Find">
+        <input
+          class="input-field"
+          type="text"
+          placeholder="Find"
+          oninput="onCallbackInput(arguments[0])"
+        />
       </div>
-      
+
       <h3>${icons.length} Icons:</h3>
-      ${svg(
-        icons.map(
-          i =>
-            `<div>${i.svgstring}<span style="padding-left: 10px;">${
-              i.path
-            }</span></div>`
-        )
-      )}
+      <div class="icons">
+        ${svg(
+          icons.map(
+            i =>
+              `<div>${i.svgstring}<span style="padding-left: 10px;">${
+                i.path
+              }</span></div>`
+          )
+        )}
+      </div>
 
       <h3>${images.length} Images:</h3>
       <div class="images">
