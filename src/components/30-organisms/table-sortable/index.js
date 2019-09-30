@@ -203,7 +203,7 @@ class AXATableSortable extends LitElement {
     const {
       0: { charCode, code },
     } = args;
-    if (~KEY_CODES.indexOf(charCode) || ~KEY_NAMES.indexOf(code)) {
+    if (KEY_CODES.indexOf(charCode) > -1 || KEY_NAMES.indexOf(code) > -1) {
       this.handleOnClick(...args);
     }
   };
