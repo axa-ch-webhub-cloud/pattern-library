@@ -667,6 +667,9 @@ class AXADatepicker extends NoShadowDOM {
       this.toggleDatepicker();
       input.value = isControlled ? stateValue : value;
     }
+    // since the calendar UI only allows legal dates to be picked,
+    // any preexisting error should be cleared
+    this.error = null;
   }
 
   fireEvents(validDate) {
