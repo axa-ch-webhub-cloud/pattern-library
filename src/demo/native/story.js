@@ -17,13 +17,13 @@ const reqSvgsImages = require.context(
 );
 const filepathsImages = reqSvgsImages.keys();
 
-let icons = filepathsIcons.map(path => {
+const icons = filepathsIcons.map(path => {
   return {
     svgstring: reqSvgsIcons(path).default,
     path,
   };
 });
-let images = filepathsImages.map(path => {
+const images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
     path,
@@ -48,13 +48,18 @@ storiesOf('Demos', module)
 
     window.onCallbackInput = ev => {
       const { value } = ev.target;
+
+      let filteredIcons = icons;
+      let filteredImages = images;
+
       const lengthOfPrefix = 2;
+
       const renderAreaIcons = document.querySelector('.icons');
       const renderAreaImages = document.querySelector('.images');
       const iconHeader = document.querySelector('.iconHeader');
       const imageHeader = document.querySelector('.imageHeader');
 
-      icons = icons.filter(icon => {
+      filteredIcons = filteredIcons.filter(icon => {
         const { length } = icon.path.split('.svg.js')[0];
         const iconName = icon.path.substr(
           lengthOfPrefix,
@@ -64,7 +69,7 @@ storiesOf('Demos', module)
         return foundSearchTerm ? icon : '';
       });
 
-      images = images.filter(image => {
+      filteredImages = filteredImages.filter(image => {
         const { length } = image.path.split('.svg.js')[0];
         const iconName = image.path.substr(
           lengthOfPrefix,
@@ -74,7 +79,7 @@ storiesOf('Demos', module)
         return foundSearchTerm ? image : '';
       });
 
-      renderAreaIcons.innerHTML = icons
+      renderAreaIcons.innerHTML = filteredIcons
         .map(
           i =>
             `<div>${i.svgstring}<span style="padding-left: 10px;">${
@@ -84,9 +89,11 @@ storiesOf('Demos', module)
         .join('');
 
       iconHeader.innerHTML =
-        icons.length === 1 ? `${icons.length} Icons:` : `${icons.length} Icon:`;
+        filteredIcons.length === 1
+          ? `${filteredIcons.length} Icon:`
+          : `${filteredIcons.length} Icons:`;
 
-      renderAreaImages.innerHTML = images
+      renderAreaImages.innerHTML = filteredImages
         .map(
           i =>
             `<div>${i.svgstring}<span style="padding-left: 10px;">${
@@ -96,10 +103,11 @@ storiesOf('Demos', module)
         .join('');
 
       imageHeader.innerHTML =
-        images.length === 1
-          ? `${images.length} Images:`
-          : `${images.length} Image:`;
+        filteredImages.length === 1
+          ? `${filteredImages.length} Image:`
+          : `${filteredImages.length} Images:`;
     };
+
     const template = html`
       <style>
         body {
