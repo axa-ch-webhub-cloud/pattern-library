@@ -285,3 +285,30 @@ test('should sort also when maxheight is set ', async t => {
     .expect(parseInt(await $el.getStyleProperty('height'), 10))
     .within(200, 250);
 });
+
+fixture('Table Sortable - on row click').page(
+  `${host}/iframe.html?id=organisms-table-sortable--table-sortable-on-row-click`
+);
+
+test('should react to click on row', async t => {
+  await t.resizeWindow(800, 600);
+
+  const $elTableTr = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelector('axa-table tbody tr');
+  });
+
+  const $elTableRenderArea = await Selector(() => {
+    return document.querySelector('#renderArea');
+  });
+
+  await t.click($elTableTr);
+
+  const text = await $elTableRenderArea.textContent;
+
+  await t
+    .expect(text.replace(/\s+/g, ' '))
+    .eql(
+      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","A"]'
+    );
+});

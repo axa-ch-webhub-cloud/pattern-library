@@ -17,6 +17,10 @@
     }
   }
 
+  [tabindex] {
+    cursor: pointer;
+  }
+
   th[aria-sort="ascending"] {
     &:after {
       border-bottom-width: 4px;
