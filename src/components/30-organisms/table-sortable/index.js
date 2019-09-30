@@ -183,7 +183,7 @@ class AXATableSortable extends LitElement {
     return super.shouldUpdate(...args);
   }
 
-  handleOnclick = (ev, index, type) => {
+  handleOnClick = (ev, index, type) => {
     ev.preventDefault();
     ev.stopPropagation();
     const { currentTarget } = ev;
@@ -204,7 +204,7 @@ class AXATableSortable extends LitElement {
       0: { charCode, code },
     } = args;
     if (~KEY_CODES.indexOf(charCode) || ~KEY_NAMES.indexOf(code)) {
-      this.handleOnclick(...args);
+      this.handleOnClick(...args);
     }
   };
 
@@ -247,7 +247,7 @@ class AXATableSortable extends LitElement {
                   <tr
                     tabindex="0"
                     @click=${ev => {
-                      this.handleOnclick(ev, index, TABLE_BODY);
+                      this.handleOnClick(ev, index, TABLE_BODY);
                     }}
                     @keypress=${ev => {
                       this.onKeyPress(ev, index, TABLE_BODY);
@@ -272,7 +272,7 @@ class AXATableSortable extends LitElement {
                         <tr
                           tabindex="0"
                           @click=${ev => {
-                            this.handleOnclick(ev, index, TABLE_FOOT);
+                            this.handleOnClick(ev, index, TABLE_FOOT);
                           }}
                           @keypress=${ev => {
                             this.onKeyPress(ev, index, TABLE_FOOT);
