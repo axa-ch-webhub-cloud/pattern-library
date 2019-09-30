@@ -65,7 +65,7 @@ storiesOf('Demos', module)
           lengthOfPrefix,
           length - lengthOfPrefix
         );
-        const foundSearchTerm = iconName.search(value) > -1;
+        const foundSearchTerm = iconName.search(value.trim()) > -1;
         return foundSearchTerm ? icon : '';
       });
 
@@ -75,7 +75,7 @@ storiesOf('Demos', module)
           lengthOfPrefix,
           length - lengthOfPrefix
         );
-        const foundSearchTerm = iconName.search(value) > -1;
+        const foundSearchTerm = iconName.search(value.trim()) > -1;
         return foundSearchTerm ? image : '';
       });
 
