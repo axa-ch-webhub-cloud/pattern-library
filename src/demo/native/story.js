@@ -149,7 +149,7 @@ storiesOf('Demos', module)
         <input
           class="input-field"
           type="text"
-          placeholder="Find icon/imag"
+          placeholder="Find icon/image"
           oninput="onCallbackInput(arguments[0])"
         />
       </div>
