@@ -143,13 +143,13 @@ storiesOf('Demos', module)
         }
       </style>
       <h2>
-        Note: There are green border around each SVG to better see dimensions.
+        Note: The green borders reveal the dimensions of the SVGs.
       </h2>
       <div>
         <input
           class="input-field"
           type="text"
-          placeholder="Find"
+          placeholder="Find icon/imag"
           oninput="onCallbackInput(arguments[0])"
         />
       </div>
