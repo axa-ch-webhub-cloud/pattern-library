@@ -15,9 +15,12 @@ const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
 const EMPTY_FUNCTION = () => {};
-const WORD_END = '\x00';
-const INDEX_END = '\x01';
+const WORD_END = '\x00'; // separator chars, from control-char portion of ASCII
+const INDEX_END = '\x01'; // = unlikely to occur in dropdown item names
 const AUTOSUGGEST_INACTIVITY_DELAY = 300; // milliseconds
+const UP = 38;
+const DOWN = 40;
+const ARROW_KEY = { [UP]: -1, [DOWN]: +1 };
 
 // module globals
 let openDropdownInstance;
@@ -175,6 +178,10 @@ class AXADropdown extends NoShadowDOM {
       openDropdownInstance.open = false;
     }
     openDropdownInstance = open ? this : /* help GC */ null;
+    // clean up on dropdown-close
+    if (!openDropdownInstance) {
+      this.handleArrowKeys('reset');
+    }
   }
 
   handleWindowClick() {
@@ -189,7 +196,62 @@ class AXADropdown extends NoShadowDOM {
       e.preventDefault();
       return this.openDropdown(false);
     }
+    const { button, _keyboardActivatedItem } = this;
+    // does our component have focus? Are the keystrokes for us?
+    if (document.activeElement !== button) {
+      // no, bail out
+      return null;
+    }
+
+    if (_keyboardActivatedItem && (key === 'Enter' || keyCode === 13)) {
+      this.handleEnterKey(e, { target: _keyboardActivatedItem });
+    }
+
+    if (ARROW_KEY[keyCode]) {
+      return this.handleArrowKeys(keyCode, e);
+    }
+
     return this.handleAutosuggest(key, e);
+  }
+
+  handleEnterKey(e, options) {
+    this.handleDropdownItemClick(e, options);
+  }
+
+  handleArrowKeys(keyCode) {
+    const { select, _keyboardActivatedItem } = this;
+    // clean up old state first
+    if (_keyboardActivatedItem) {
+      //  visually unmark previous item
+      _keyboardActivatedItem.classList.remove('hover');
+      // special case
+      if (keyCode === 'reset') {
+        delete this._keyboardActivatedItem;
+        return;
+      }
+    }
+    // determine direction step (up, down)
+    const step = ARROW_KEY[`${keyCode}`];
+    // get next item node corresponding to that direction
+    const newIndex =
+      (_keyboardActivatedItem
+        ? _keyboardActivatedItem.dataset.index | 0 // | 0: coerce to integer
+        : (select.selectedIndex | 0) - 1) + step;
+
+    this._keyboardActivatedItem = this.querySelector(
+      `.js-dropdown__button[data-index="${newIndex}"]`
+    );
+    const { _keyboardActivatedItem: nextActiveItem } = this;
+    if (!nextActiveItem) {
+      return;
+    }
+    // mark item visually
+    nextActiveItem.classList.add('hover');
+    // and ensure it's visible
+    const supported = 'scrollIntoViewIfNeeded' in document.documentElement;
+    nextActiveItem[supported ? 'scrollIntoViewIfNeeded' : 'scrollIntoView']({
+      block: 'center',
+    });
   }
 
   // build one long string of words paired with their indices in `items`,
@@ -216,11 +278,6 @@ class AXADropdown extends NoShadowDOM {
   }
 
   handleAutosuggest(key) {
-    // ready for autosuggestions, by having focus on the non-native UI?
-    if (document.activeElement !== this.button) {
-      // no, bail out
-      return;
-    }
     // do we have even a chance of matching for the key that was just pressed?
     const character = key.toLowerCase();
     if (!this._autosuggestLetters.has(character)) {
@@ -265,10 +322,10 @@ class AXADropdown extends NoShadowDOM {
     }
   }
 
-  handleDropdownItemClick(e) {
+  handleDropdownItemClick(e, options) {
     e.preventDefault();
     e.stopPropagation();
-    const { target } = e;
+    const { target } = options || e;
 
     // if click 'lands' on native <select> (narrow window widths or 'native' mode),
     // use DOM-API 'selectedIndex' to find out which option the click targeted

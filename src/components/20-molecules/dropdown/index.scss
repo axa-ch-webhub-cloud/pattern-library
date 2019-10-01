@@ -197,7 +197,7 @@ axa-dropdown {
       color: $dropdown-color--hover;
     }
 
-    &:hover {
+    &:hover, &.hover {
       background-color: $color-prim-gray-wild-sand;
     }
 
