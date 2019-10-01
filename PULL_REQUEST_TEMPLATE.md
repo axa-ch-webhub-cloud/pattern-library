@@ -4,6 +4,7 @@ Fixes # (issue).
 - [ ] I have added UI/Unit tests for my changes
 - [ ] Design has been reviewed with (here name of reviewer)
 - [ ] Old tests and eslint rule are not broken
+- [ ] My changes are well documented in the readme and showcased in the stories 
 
 # Checklist:
 - [ ] My code follows the style guidelines of this project
