@@ -56,8 +56,8 @@ storiesOf('Demos', module)
 
       const renderAreaIcons = document.querySelector('.icons');
       const renderAreaImages = document.querySelector('.images');
-      const iconHeader = document.querySelector('.iconHeader');
-      const imageHeader = document.querySelector('.imageHeader');
+      const iconHeader = document.querySelector('.icon-header');
+      const imageHeader = document.querySelector('.image-header');
 
       filteredIcons = filteredIcons.filter(icon => {
         const { length } = icon.path.split('.svg.js')[0];
@@ -154,7 +154,7 @@ storiesOf('Demos', module)
         />
       </div>
 
-      <h3 class="iconHeader">${icons.length} Icons:</h3>
+      <h3 class="icon-header">${icons.length} Icons:</h3>
       <div class="icons">
         ${svg(
           icons.map(
@@ -166,7 +166,7 @@ storiesOf('Demos', module)
         )}
       </div>
 
-      <h3 class="imageHeader">${images.length} Images:</h3>
+      <h3 class="image-header">${images.length} Images:</h3>
       <div class="images">
         ${svg(
           images.map(
