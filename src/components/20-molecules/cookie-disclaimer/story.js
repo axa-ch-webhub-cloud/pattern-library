@@ -1,31 +1,54 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { text, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 storiesOf('Molecules/Cookie disclaimer', module)
   .addDecorator(withNoBorder)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  .add(
-    'Cookie disclaimer - Default',
-    () => `
-        <axa-cookie-disclaimer buttonname="Akzeptieren" title="This website uses cookies">
-        <p>Any Description for the cookie disclaimer</p>
-        <axa-link variant="arrowright-animated-white" href="https://axa.ch/de/informationen/datenschutz.html">
-          Data protection
+  .add('Cookie disclaimer - Default', () => {
+    const buttonname = text('buttonname', 'Akzeptieren');
+    const title = text('text', 'This website uses cookies');
+    const description = text(
+      'description (this is not a direct attribute of cookie disclaimer)',
+      'Any Description for the cookie disclaimer'
+    );
+    const dataProtection = text(
+      'dataProtection (this is not a direct attribute of cookie disclaimer)',
+      'Data protection'
+    );
+    const link = text(
+      'link (this is not a direct attribute of cookie disclaimer)',
+      'https://axa.ch/de/informationen/datenschutz.html'
+    );
+
+    const wrapper = document.createElement('div');
+    const template = html`
+      <axa-cookie-disclaimer buttonname="${buttonname}" title="${title}">
+        <p>${description}</p>
+        <axa-link variant="arrowright-animated-white" href="${link}">
+          ${dataProtection}
         </axa-link>
-        </axa-cookie-disclaimer>
+      </axa-cookie-disclaimer>
 
-
-        <!-- This is code only for the demo -->
-        <br/>
-        <div style="border: 1px solid red; padding: 10px;">
-        <h1>This is not rendered by the component. This story disappears after click (Empty your cache and/or localStorage if this page is only showing this message)</h1>
-        </div>
-        `
-  );
+      <!-- This is code only for the demo -->
+      <br />
+      <div style="border: 1px solid red; padding: 10px;">
+        <h1>
+          This is not rendered by the component. This story disappears after
+          click (Empty your cache and/or localStorage if this page is only
+          showing this message)
+        </h1>
+      </div>
+    `;
+    render(template, wrapper);
+    return wrapper;
+  });
