@@ -58,7 +58,7 @@ test('should set input file capture', async t => {
 });
 
 fixture('Input File - react smoke test').page(
-  `${host}/iframe.html?id=atoms-input-file-react--inputfile-default` // TODO knobs for react
+  `${host}/iframe.html?id=atoms-input-file-react--inputfile`
 );
 
 test('should render react input file', async t => {

@@ -1,115 +1,61 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
 
+export const iconOptions = {
+  none: '',
+  'arrow-right': 'arrow-right',
+  collapse: 'collapse',
+  document: 'document',
+  download: 'download',
+  email: 'email',
+  expand: 'expand',
+  mobile: 'mobile',
+  phone: 'phone',
+  search: 'search',
+  upload: 'upload',
+  'cloud-upload': 'cloud-upload',
+  'axa-logo': 'axa-logo',
+  'axa-logo-open': 'axa-logo-open',
+};
+
 storiesOf('Atoms/Input File/React', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  /* Default */
-  .add('InputFile - Default', () => {
+  .add('InputFile', () => {
+    const inputText = text('text', 'Upload');
+    const accept = text(
+      'accept',
+      'image/jpg, image/jpeg, application/pdf, image/png'
+    );
+    const icons = select('icon', iconOptions, 'cloud-upload');
+    const disabled = boolean('disabled', false);
+    const multiple = boolean('multiple', false);
+    const capture = boolean('capture', false);
+
     const div = document.createElement('div');
     ReactDOM.render(
       <AXAInputFileReact
         onChange={e => {
           console.log('files selected: ', e.target.files);
         }}
+        className="myCssClass"
+        icon={icons}
+        multiple={multiple}
+        accept={accept}
+        disabled={disabled}
+        capture={capture}
       >
-        Default
+        {inputText}
       </AXAInputFileReact>,
-      div
-    );
-    return div;
-  })
-
-  /* Icon */
-  .add('InputFile - Icon', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAInputFileReact
-        onChange={e => {
-          console.log('files selected: ', e.target.files);
-        }}
-        icon="arrow-right"
-      >
-        Icon
-      </AXAInputFileReact>,
-      div
-    );
-    return div;
-  })
-
-  /* Multiple */
-  .add('InputFile - Multiple', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAInputFileReact
-        onChange={e => {
-          console.log('files selected: ', e.target.files);
-        }}
-        multiple
-      >
-        Multiple
-      </AXAInputFileReact>,
-      div
-    );
-    return div;
-  })
-
-  /* Accept */
-  .add('InputFile - Accept', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <AXAInputFileReact
-        onChange={e => {
-          console.log('files selected: ', e.target.files);
-        }}
-        accept="application/pdf"
-      >
-        Accept only PDF
-      </AXAInputFileReact>,
-      div
-    );
-    return div;
-  })
-
-  /* Capture */
-  .add('InputFile - Capture', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <div>
-        <AXAInputFileReact
-          onChange={e => {
-            console.log('files selected: ', e.target.files);
-          }}
-          capture
-        >
-          Capture
-        </AXAInputFileReact>
-        <AXAInputFileReact
-          onChange={e => {
-            console.log('files selected: ', e.target.files);
-          }}
-          accept="image/*"
-          capture="capture"
-        >
-          Capture Image
-        </AXAInputFileReact>
-        <AXAInputFileReact
-          onChange={e => {
-            console.log('files selected: ', e.target.files);
-          }}
-          accept="video/*"
-          capture
-        >
-          Capture Video
-        </AXAInputFileReact>
-      </div>,
       div
     );
     return div;
