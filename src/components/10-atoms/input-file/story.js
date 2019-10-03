@@ -1,48 +1,55 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
+export const iconOptions = {
+  none: '',
+  'arrow-right': 'arrow-right',
+  collapse: 'collapse',
+  document: 'document',
+  download: 'download',
+  email: 'email',
+  expand: 'expand',
+  mobile: 'mobile',
+  phone: 'phone',
+  search: 'search',
+  upload: 'upload',
+  'cloud-upload': 'cloud-upload',
+  'axa-logo': 'axa-logo',
+  'axa-logo-open': 'axa-logo-open',
+};
+
 storiesOf('Atoms/Input File', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  .add('Input File - Default', () => '<axa-input-file>Default</axa-input-file>')
-
-  /* Icon */
-  .add(
-    'Input File - Icon',
-    () => '<axa-input-file icon="arrow-right">Icon</axa-input-file>'
-  )
-
-  /* Disabled */
-  .add(
-    'Input File - Disabled',
-    () => '<axa-input-file disabled>Disabled</axa-input-file>'
-  )
-
-  /* Multiple */
-  .add(
-    'Input File - Multiple',
-    () => `<axa-input-file multiple>Multiple</axa-input-file>`
-  )
-
-  /* Accept */
-  .add(
-    'Input File - Accept',
-    () =>
-      '<axa-input-file accept="application/pdf">Accept only PDF</axa-input-file>'
-  )
-
-  /* Capture */
-  .add(
-    'Input File - Capture',
-    () => `
-    <div>
-      <axa-input-file capture="capture">Capture</axa-input-file>
-      <axa-input-file accept="image/*" capture>Capture Image</axa-input-file>
-      <axa-input-file accept="video/*" capture>Capture Video</axa-input-file>
-    </div>`
-  );
+  .add('Input File - Default', () => {
+    const inputText = text('text', 'Upload');
+    const accept = text(
+      'accept',
+      'image/jpg, image/jpeg, application/pdf, image/png'
+    );
+    const icon = select('icon', iconOptions, 'cloud-upload');
+    const disabled = boolean('disabled', false);
+    const multiple = boolean('multiple', false);
+    const capture = boolean('capture', false);
+    const wrapper = document.createElement('div');
+    const template = html`
+      <axa-input-file
+        icon="${icon}"
+        accept="${accept}"
+        ?disabled="${disabled}"
+        ?multiple="${multiple}"
+        ?capture="${capture}"
+        >${inputText}</axa-input-file
+      >
+    `;
+    render(template, wrapper);
+    return wrapper;
+  });
