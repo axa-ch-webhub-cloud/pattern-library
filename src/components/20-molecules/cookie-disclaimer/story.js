@@ -18,15 +18,15 @@ storiesOf('Molecules/Cookie disclaimer', module)
     const buttonname = text('buttonname', 'Akzeptieren');
     const title = text('text', 'This website uses cookies');
     const description = text(
-      'description (this is not a direct attribute of cookie disclaimer)',
+      'Description (not an attribute)',
       'Any Description for the cookie disclaimer'
     );
     const dataProtection = text(
-      'dataProtection (this is not a direct attribute of cookie disclaimer)',
+      'Link text (not an attribute)',
       'Data protection'
     );
     const link = text(
-      'link (this is not a direct attribute of cookie disclaimer)',
+      'Link address (not an attribute)',
       'https://axa.ch/de/informationen/datenschutz.html'
     );
 
