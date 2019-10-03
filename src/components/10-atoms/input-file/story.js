@@ -29,7 +29,7 @@ storiesOf('Atoms/Input File', module)
       sidebar: Readme,
     },
   })
-  .add('Input File - Default', () => {
+  .add('Input File', () => {
     const inputText = text('text', 'Upload');
     const accept = text(
       'accept',
