@@ -14,11 +14,12 @@ storiesOf('Atoms/Checkbox/React', module)
   })
   .addDecorator(withKnobs)
   .add('Checkbox - uncontrolled', () => {
-    const label = text('Label Text', 'this is a label');
+    const label = text('label', 'this is a label');
+    const name = text('name', 'my-checkbox');
     const checked = boolean('checked', true);
     const disabled = boolean('disabled', false);
-    const errortext = boolean('Error Text', false);
-    const className = text('className', 'hover');
+    const errortext = boolean('error', false);
+    const required = boolean('required', false);
 
     const div = document.createElement('div');
 
@@ -28,13 +29,13 @@ storiesOf('Atoms/Checkbox/React', module)
         label={label}
         checked={checked}
         disabled={disabled}
+        required={required}
         onChange='console.log("checkbox", this.name, " changed to: ", this.checked)'
         error={
           errortext
             ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
             : ''
         }
-        className={className}
       />,
       div
     );
