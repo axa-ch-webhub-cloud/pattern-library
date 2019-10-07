@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
@@ -10,12 +11,28 @@ import Readme from '../README.md';
 
 storiesOf('Molecules/Cookie disclaimer/React', module)
   .addDecorator(withNoBorder)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   .add('Cookie disclaimer - default', () => {
+    const buttonname = text('buttonname', 'Accept');
+    const title = text('text', 'This website uses cookies');
+    const description = text(
+      'Description (not an attribute)',
+      'Any Description for the cookie disclaimer'
+    );
+    const dataProtection = text(
+      'Link text (not an attribute)',
+      'Data protection'
+    );
+    const link = text(
+      'Link address (not an attribute)',
+      'https://axa.ch/de/informationen/datenschutz.html'
+    );
+
     const div = document.createElement('div');
     ReactDOM.render(
       <AXACookieDisclaimerReact
@@ -23,16 +40,16 @@ storiesOf('Molecules/Cookie disclaimer/React', module)
           // eslint-disable-next-line no-console
           console.log('Pressed');
         }}
-        title="Any Title"
-        buttonname="Click me"
+        title={title}
+        buttonname={buttonname}
       >
         <p>
-          Any Description for the cookie disclaimer
+          {description}
           <AXALinkReact
             variant="arrowright-animated-white"
-            href="https://axa.ch/de/informationen/datenschutz.html"
+            href={link}
           >
-            Data protection
+            {dataProtection}
           </AXALinkReact>
         </p>
       </AXACookieDisclaimerReact>,
