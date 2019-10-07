@@ -43,17 +43,17 @@ storyInputText.add('Input Text', () => {
       name="${name}"
       label="${label}"
       placeholder="${placeholder}"
-      maxlength="${maxLength}"
       counter="${counter}"
       countermax="${counterMax}"
-      ?checkmark="${checkMark}"
-      ?disabled="${disabled}"
-      ?required="${required}"
-      ?invalid="${invalid}"
       value="${value}"
       type="${types}"
       error="${error}"
       info="${info}"
+      ?maxlength="${maxLength}"
+      ?checkmark="${checkMark}"
+      ?disabled="${disabled}"
+      ?required="${required}"
+      ?invalid="${invalid}"
     ></axa-input-text>
   `;
 
