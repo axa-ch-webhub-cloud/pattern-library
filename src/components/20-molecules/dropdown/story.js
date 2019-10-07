@@ -52,7 +52,7 @@ storyDropdown.add('Dropdown', () => {
   return wrapper;
 });
 
-storyDropdown.add('Dropdown items delayed', () => {
+storyDropdown.add('Dropdown items delayed and numeric values', () => {
   const label = text('label', '');
   const value = text('value', '');
   const name = text('name', '');
