@@ -4,8 +4,13 @@ import ReactDOM from 'react-dom';
 import { storiesOf } from '@storybook/html';
 import { boolean, text, radios, withKnobs } from '@storybook/addon-knobs';
 import AXAInputText from './AXAInputText';
-import { typeOptions } from '../story';
 import Readme from '../README.md';
+
+const typeOptions = {
+  text: 'text',
+  email: 'email',
+  password: 'password',
+};
 
 const storyInputText = storiesOf('Atoms/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);

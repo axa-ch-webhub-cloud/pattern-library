@@ -12,15 +12,7 @@ import './index';
 import { iconOptions } from '../icon/story';
 import Readme from './README.md';
 
-const storyButtonLink = storiesOf('Atoms/Button Link', module);
-storyButtonLink.addDecorator(withKnobs);
-storyButtonLink.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
-});
-
-export const variantOptions = {
+const variantOptions = {
   default: '',
   red: 'red',
   secondary: 'secondary',
@@ -32,13 +24,13 @@ export const variantOptions = {
   'inverted-blue-teal': 'inverted-blue-teal',
 };
 
-export const sizeOptions = {
+const sizeOptions = {
   default: '',
   large: 'large',
   small: 'small',
 };
 
-export const invertedBgs = {
+const invertedBgs = {
   inverted: '#00008f',
   'inverted-blue-ocean': '#4976ba',
   'inverted-red-tosca': '#914146',
@@ -46,6 +38,14 @@ export const invertedBgs = {
   'inverted-green-viridian': '#668980',
   'inverted-blue-teal': '#027180',
 };
+
+const storyButtonLink = storiesOf('Atoms/Button Link', module);
+storyButtonLink.addDecorator(withKnobs);
+storyButtonLink.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
 
 storyButtonLink.add('Button Link', () => {
   const buttonText = text('text', 'Click me');

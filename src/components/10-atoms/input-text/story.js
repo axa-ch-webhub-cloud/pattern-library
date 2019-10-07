@@ -13,7 +13,7 @@ storyInputText.addParameters({
   },
 });
 
-export const typeOptions = {
+const typeOptions = {
   text: 'text',
   email: 'email',
   password: 'password',
