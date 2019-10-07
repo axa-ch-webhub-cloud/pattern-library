@@ -238,7 +238,7 @@ class AXADropdown extends NoShadowDOM {
   findByValue(value, indexOnly) {
     const { items } = this;
     const itemIndex = items.findIndex(({selected, value: selectedValue}) =>
-      value === null ? selected : (selectedValue === value || selectedValue === +value)
+      value === null ? selected : (selectedValue === value || selectedValue === parseInt(value, 10))
     );
     return indexOnly ? itemIndex : [items[itemIndex], itemIndex];
   }
