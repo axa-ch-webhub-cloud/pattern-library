@@ -5,7 +5,7 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-export const iconOptions = {
+const iconOptions = {
   none: '',
   'arrow-right': 'arrow-right',
   collapse: 'collapse',

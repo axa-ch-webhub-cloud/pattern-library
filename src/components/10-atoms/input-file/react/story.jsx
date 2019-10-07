@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
 
-export const iconOptions = {
+const iconOptions = {
   none: '',
   'arrow-right': 'arrow-right',
   collapse: 'collapse',
