@@ -97,30 +97,28 @@ class AXATextarea extends NoShadowDOM {
     } = this;
 
     if (nativeValue) {
-      return maxLength - nativeValue.length - 1;
+      return maxLength - nativeValue.length;
     }
 
-    return maxLength - 1;
-  }
-
-  get replaceCounterPlaceholder() {
-    return this.counter.replace(/##.*##/, this.charsLeft);
+    return maxLength;
   }
 
   get getCounterText() {
+    const userCharsLeft = this.charsLeft - 1;
+
     if (this.counter && this.isPlaceholderInCounter) {
-      return this.replaceCounterPlaceholder;
+      return this.counter.replace(/##.*##/, userCharsLeft);
     }
 
     if (this.counter) {
-      return `${this.charsLeft} ${this.counter}`;
+      return `${userCharsLeft} ${this.counter}`;
     }
 
-    return this.charsLeft;
+    return userCharsLeft;
   }
 
   get areCharsLeft() {
-    return this.charsLeft >= 0;
+    return this.charsLeft > 0;
   }
 
   get showCounter() {
