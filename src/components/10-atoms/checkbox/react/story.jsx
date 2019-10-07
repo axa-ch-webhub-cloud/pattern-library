@@ -25,12 +25,12 @@ storiesOf('Atoms/Checkbox/React', module)
 
     ReactDOM.render(
       <AXACheckboxReact
-        name="my-checkbox"
+        name={name}
         label={label}
         checked={checked}
         disabled={disabled}
         required={required}
-        onChange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+        onChange={console.log("checkbox", name, " changed to: ", checked)}
         error={
           errortext
             ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
