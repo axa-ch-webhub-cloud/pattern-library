@@ -14,8 +14,8 @@ storiesOf('Molecules/Cookie disclaimer', module)
       sidebar: Readme,
     },
   })
-  .add('Cookie disclaimer - Default', () => {
-    const buttonname = text('buttonname', 'Akzeptieren');
+  .add('Cookie disclaimer', () => {
+    const buttonname = text('buttonname', 'Accept');
     const title = text('text', 'This website uses cookies');
     const description = text(
       'Description (not an attribute)',
