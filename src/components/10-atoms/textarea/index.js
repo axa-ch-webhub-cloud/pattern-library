@@ -31,7 +31,13 @@ class AXATextarea extends NoShadowDOM {
 
       counter: { type: String },
       counterMax: { type: String },
-      maxLength: { type: Number },
+      maxLength: {
+        converter: value =>
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(parseFloat(value)) && isFinite(value)
+            ? Number(value)
+            : undefined,
+      },
       isReact: { type: Boolean },
       modelCounter: { type: String },
     };
@@ -92,7 +98,7 @@ class AXATextarea extends NoShadowDOM {
 
   get charsLeft() {
     const {
-      maxLength,
+      maxLength = 0,
       nativeInput: { value: nativeValue },
     } = this;
 

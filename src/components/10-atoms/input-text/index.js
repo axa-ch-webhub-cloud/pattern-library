@@ -33,7 +33,13 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       modelCounter: { type: String },
       counter: { type: String },
       counterMax: { type: String },
-      maxLength: { type: Number },
+      maxLength: {
+        converter: value =>
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(parseFloat(value)) && isFinite(value)
+            ? Number(value)
+            : undefined,
+      },
     };
   }
 
@@ -74,7 +80,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   get charsLeft() {
     const {
-      maxLength,
+      maxLength = 0,
       nativeInput: { value: nativeValue },
     } = this;
 
