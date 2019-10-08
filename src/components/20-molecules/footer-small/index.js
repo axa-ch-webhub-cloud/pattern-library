@@ -130,9 +130,9 @@ class AXAFooterSmall extends LitElement {
                   `
                 )}
               </ul>
-              <div class="js-footer-small__copyright m-footer-small__copyright"><span>${
-                this.copyrightText
-              }<span></div>
+              <slot name="copyright"
+                class="js-footer-small__copyright m-footer-small__copyright"
+              ></div>
             </div>
           </div>
         </axa-container>
