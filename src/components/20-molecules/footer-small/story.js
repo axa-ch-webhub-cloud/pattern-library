@@ -45,12 +45,12 @@ storiesOf('Molecules/Footer Small', module)
       },
     ]);
 
-    return `<axa-footer-small
-      activelanguage="de"
-      languageitems='${languages}'>
+    return `<axa-footer-small>
         <a slot="disclaimer-item" href="https://google.ch">Johannes</a>
         <a slot="disclaimer-item" href="https://digitec.ch">Benjamin</a>
         <a slot="disclaimer-item">Unbekannt</a>
+        <a slot="language-item" class="m-footer-small__link--bold" href="https://google.ch">EN</a>
+        <a slot="language-item" class="m-footer-small__link--bold m-footer-small__link--active" href="https://digitec.ch">DE</a>
         <span slot="copyright">© 2019 AXA Insurance Ltd.<span>
     </axa-footer-small>`;
   });

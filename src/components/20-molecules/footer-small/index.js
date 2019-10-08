@@ -82,31 +82,10 @@ class AXAFooterSmall extends InlineStyles {
           <div class="m-footer-small__container">
             <ul class="m-footer-small__list">
               ${repeat(
-                this.languageItems,
+                this.querySelectorAll('[slot="language-item"]'),
                 languageItem => html`
                   <li class="m-footer-small__list-item">
-                    ${this.dynamic
-                      ? html`
-                          <a
-                            class="m-footer-small__link--bold ${languageItem.key ===
-                            this.activeLanguage
-                              ? 'm-footer-small__link--active'
-                              : ''}"
-                            @click="${ev =>
-                              this.handleLanguageClick(ev, languageItem.key)}"
-                            >${languageItem.text}</a
-                          >
-                        `
-                      : html`
-                          <a
-                            class="m-footer-small__link--bold ${languageItem.key ===
-                            this.activeLanguage
-                              ? 'm-footer-small__link--active'
-                              : ''}"
-                            href="${languageItem.link || ''}"
-                            >${languageItem.text}</a
-                          >
-                        `}
+                    ${languageItem}
                   </li>
                 `
               )}
@@ -116,9 +95,9 @@ class AXAFooterSmall extends InlineStyles {
               <ul class="m-footer-small__list">
                 ${repeat(
                   this.querySelectorAll('[slot="disclaimer-item"]'),
-                  item => html`
+                  disclaimerItem => html`
                     <li class="m-footer-small__list-item">
-                      ${item}
+                      ${disclaimerItem}
                     </li>
                   `
                 )}
