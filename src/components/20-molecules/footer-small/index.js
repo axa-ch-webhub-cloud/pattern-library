@@ -115,28 +115,10 @@ class AXAFooterSmall extends InlineStyles {
             <div class="m-footer-small__disclaimer">
               <ul class="m-footer-small__list">
                 ${repeat(
-                  this.disclaimerItems,
-                  disclaimerItem => html`
+                  this.querySelectorAll('[slot="disclaimer-item"]'),
+                  item => html`
                     <li class="m-footer-small__list-item">
-                      ${this.dynamic
-                        ? html`
-                            <a
-                              class="m-footer-small__link"
-                              @click="${ev =>
-                                this.handleDisclaimerClick(
-                                  ev,
-                                  disclaimerItem.key
-                                )}"
-                              >${disclaimerItem.text}</a
-                            >
-                          `
-                        : html`
-                            <a
-                              class="m-footer-small__link"
-                              href="${disclaimerItem.link}"
-                              >${disclaimerItem.text}</a
-                            >
-                          `}
+                      ${item}
                     </li>
                   `
                 )}
