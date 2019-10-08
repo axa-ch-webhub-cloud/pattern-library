@@ -1,11 +1,13 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/container';
 import footerSmallCSS from './index.scss';
+import childStyles from './child.scss';
 import defineOnce from '../../../utils/define-once';
+import InlineStyles from '../../../utils/inline-styles';
 
-class AXAFooterSmall extends LitElement {
+class AXAFooterSmall extends InlineStyles {
   static get tagName() {
     return 'axa-footer-small';
   }
@@ -20,7 +22,6 @@ class AXAFooterSmall extends LitElement {
     return {
       languageItems: { type: Array },
       disclaimerItems: { type: Array },
-      copyrightText: { type: String },
       activeLanguage: { type: String },
       dynamic: { type: Boolean },
     };
@@ -30,11 +31,16 @@ class AXAFooterSmall extends LitElement {
     super();
     this.languageItems = [];
     this.disclaimerItems = [];
-    this.copyrightText = '';
     this.activeLanguage = '';
     this.dynamic = false;
     this.onLanguageChange = () => {};
     this.onDisclaimerChange = () => {};
+  }
+
+  // Parent class InlineStyles needs a static method to retrive styles
+  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  static get resetHeadingCss() {
+    return childStyles;
   }
 
   handleLanguageClick = (ev, languageKey) => {
@@ -63,6 +69,11 @@ class AXAFooterSmall extends LitElement {
       })
     );
   };
+
+  firstUpdated() {
+    // call parent class method that add inline styles
+    this.inlineStyles('resetHeadingCss');
+  }
 
   render() {
     return html`
