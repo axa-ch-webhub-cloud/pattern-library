@@ -1,8 +1,8 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import './index';
 import { html, render } from 'lit-html';
+import './index';
 import Readme from './README.md';
 
 storiesOf('Atoms/Fieldset', module)
