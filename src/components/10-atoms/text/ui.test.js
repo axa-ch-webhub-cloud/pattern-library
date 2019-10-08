@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Text - basic functionality')
-  .page(`${host}/iframe.html?id=atoms-text--text-default`)
+  .page(`${host}/iframe.html?id=atoms-text--text`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -46,7 +46,7 @@ test('should have correct font definitions for text size 1', async t => {
 });
 
 fixture('Text - Size 2')
-  .page(`${host}/iframe.html?id=atoms-text--text-size-2`)
+  .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=size-2`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -78,7 +78,7 @@ test('should have correct font definitions for text size 2', async t => {
 });
 
 fixture('Text - Size 3')
-  .page(`${host}/iframe.html?id=atoms-text--text-size-3`)
+  .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=size-3`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -110,7 +110,7 @@ test('should have correct font definitions for text size 3', async t => {
 });
 
 fixture('Text - Size 2 with custom tag')
-  .page(`${host}/iframe.html?id=atoms-text--text-size-2-with-custom-span-tag`)
+  .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -143,7 +143,7 @@ test('should have correct font definitions for text size 2 with custom span tag'
 
 
 fixture('Text - Bold')
-  .page(`${host}/iframe.html?id=atoms-text--text-bold`)
+  .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=bold`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
