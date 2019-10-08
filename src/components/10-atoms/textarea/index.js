@@ -32,6 +32,12 @@ class AXATextarea extends NoShadowDOM {
       counter: { type: String },
       counterMax: { type: String },
       maxLength: {
+        /**
+         * Only create a Number when there is an actual value passed. If an
+         * empty "maxvalue" is used, it would otherwise convert to the type
+         * Number with the value 0 and the user would not be able write
+         * anything.
+         */
         converter: value =>
           // eslint-disable-next-line no-restricted-globals
           !isNaN(parseFloat(value)) && isFinite(value)
