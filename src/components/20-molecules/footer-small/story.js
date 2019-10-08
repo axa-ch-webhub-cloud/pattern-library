@@ -48,8 +48,7 @@ storiesOf('Molecules/Footer Small', module)
     return `<axa-footer-small
       activelanguage="de"
       languageitems='${languages}'
-      disclaimeritems='${disclaimer}'
-      copyrighttext="© 2019 AXA Insurance Ltd.">
-      <span slot="copyright">${this.copyrightText}<span>
+      disclaimeritems='${disclaimer}'>
+      <span slot="copyright">© 2019 AXA Insurance Ltd.<span>
     </axa-footer-small>`;
   });
