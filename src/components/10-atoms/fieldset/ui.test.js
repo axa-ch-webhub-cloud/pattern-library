@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Fieldset - basic functionality').page(
-  `${host}/iframe.html?id=atoms-fieldset--fieldset-default`
+  `${host}/iframe.html?id=atoms-fieldset--fieldset`
 );
 
 test('should render fieldset', async t => {
