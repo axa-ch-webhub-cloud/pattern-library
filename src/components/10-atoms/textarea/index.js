@@ -31,7 +31,19 @@ class AXATextarea extends NoShadowDOM {
 
       counter: { type: String },
       counterMax: { type: String },
-      maxLength: { type: Number },
+      maxLength: {
+        /**
+         * Only create a Number when there is an actual value passed. If an
+         * empty "maxvalue" is used, it would otherwise convert to the type
+         * Number with the value 0 and the user would not be able write
+         * anything.
+         */
+        converter: value =>
+          // eslint-disable-next-line no-restricted-globals
+          !isNaN(parseFloat(value)) && isFinite(value)
+            ? Number(value)
+            : undefined,
+      },
       isReact: { type: Boolean },
       modelCounter: { type: String },
     };
@@ -92,35 +104,33 @@ class AXATextarea extends NoShadowDOM {
 
   get charsLeft() {
     const {
-      maxLength,
+      maxLength = 0,
       nativeInput: { value: nativeValue },
     } = this;
 
     if (nativeValue) {
-      return maxLength - nativeValue.length - 1;
+      return maxLength - nativeValue.length;
     }
 
-    return maxLength - 1;
-  }
-
-  get replaceCounterPlaceholder() {
-    return this.counter.replace(/##.*##/, this.charsLeft);
+    return maxLength;
   }
 
   get getCounterText() {
+    const userCharsLeft = this.charsLeft - 1;
+
     if (this.counter && this.isPlaceholderInCounter) {
-      return this.replaceCounterPlaceholder;
+      return this.counter.replace(/##.*##/, userCharsLeft);
     }
 
     if (this.counter) {
-      return `${this.charsLeft} ${this.counter}`;
+      return `${userCharsLeft} ${this.counter}`;
     }
 
-    return this.charsLeft;
+    return userCharsLeft;
   }
 
   get areCharsLeft() {
-    return this.charsLeft >= 0;
+    return this.charsLeft > 0;
   }
 
   get showCounter() {
