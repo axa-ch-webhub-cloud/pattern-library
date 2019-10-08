@@ -7,7 +7,6 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const axaBlue = 'rgb(0, 0, 143)';
 const primRedFlamingo = 'rgb(240, 118, 98)';
 const primWhite = 'rgb(255, 255, 255)';
-const linkText = 'This is a simple link';
 
 fixture('Link - Hyperlink').page(
   `${host}/iframe.html?id=atoms-link--hyperlink`
@@ -35,18 +34,18 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkText.textContent).eql('This simple link just links');
 });
 
 fixture('Link - External').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-external=true`
+  `${host}/iframe.html?id=atoms-link--external-link`
 );
 
 test('should display correctly', async t => {
@@ -72,7 +71,7 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
@@ -80,12 +79,12 @@ test('should display correctly', async t => {
         .assignedNodes()[0]
   );
   await t
-    .expect(linkTextElement.textContent)
-    .eql("This is a simple link");
+    .expect(linkText.textContent)
+    .eql("All links with the 'external' attribute will open in a new tab");
 });
 
 fixture('Link - Simple Link - Icon').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon&knob-icon=download`
+  `${host}/iframe.html?id=atoms-link--simple-link-icon`
 );
 
 test('should display correctly', async t => {
@@ -113,18 +112,18 @@ test('should display correctly', async t => {
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('download');
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkText.textContent).eql('Download Link');
 });
 
 fixture('Link - Simple Link - Static Arrow Right').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright`
+  `${host}/iframe.html?id=atoms-link--simple-link-static-arrow-right`
 );
 
 test('should display correctly', async t => {
@@ -152,18 +151,18 @@ test('should display correctly', async t => {
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkText.textContent).eql('Arrow Right Link');
 });
 
 fixture('Link - Simple Link - Static Arrow Left').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft`
+  `${host}/iframe.html?id=atoms-link--simple-link-static-arrow-left`
 );
 
 test('should display correctly', async t => {
@@ -191,18 +190,18 @@ test('should display correctly', async t => {
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkText.textContent).eql('Arrow Left Link');
 });
 
 fixture('Link - Simple Link - Animated Arrow Right').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright-animated`
+  `${host}/iframe.html?id=atoms-link--simple-link-animated-arrow-right`
 );
 
 test('should display correctly', async t => {
@@ -231,18 +230,18 @@ test('should display correctly', async t => {
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkText.textContent).eql('Motion Link Right');
 });
 
 fixture('Link - Simple Link - Animated Arrow Left').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft-animated`
+  `${host}/iframe.html?id=atoms-link--simple-link-animated-arrow-left`
 );
 
 test('should display correctly', async t => {
@@ -271,18 +270,18 @@ test('should display correctly', async t => {
   const arrowIcon = linkElement.find('axa-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
-  const linkTextElement = Selector(
+  const linkText = Selector(
     () =>
       document
         .querySelector('axa-link')
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkText.textContent).eql('Motion Link Left');
 });
 
 fixture('Link - Simple Link - Red Color').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-red`
+  `${host}/iframe.html?id=atoms-link--simple-link-red-color`
 );
 
 test('should display correctly', async t => {
@@ -310,7 +309,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - White Color').page(
-  `${host}/iframe.html?id=atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-white`
+  `${host}/iframe.html?id=atoms-link--simple-link-white-color`
 );
 
 test('should display correctly', async t => {
