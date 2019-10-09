@@ -2,42 +2,71 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const selectedLanguageKey = 'en';
+const selectedLanguageKey = '-';
 
 storiesOf('Molecules/Footer Small/Demos', module)
+  .addDecorator(withNoBorder)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   .add('Footer Small - Dynamic Links', () => {
-    const languages = [
-      { key: 'de', text: 'DE' },
-      { key: 'fr', text: 'FR' },
-      { key: 'it', text: 'IT' },
-      { key: 'en', text: 'EN' },
-    ];
-
-    const disclaimer = [
-      { key: 'tos', text: 'Terms of use' },
-      { key: 'privacy', text: 'Data protection' },
-    ];
-
     const wrapper = document.createElement('div');
     const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
-    activeLanguage.innerText = `Currently selected language: ${selectedLanguageKey}`;
+    activeLanguage.innerText = `Clicked language index: ${selectedLanguageKey}`;
     const clickedDisclaimer = document.createElement('p');
     clickedDisclaimer.id = 'clicked-disclaimer';
-    clickedDisclaimer.innerText = `Disclaimer changed to: -`;
+    clickedDisclaimer.innerText = `Clicked disclaimer index: -`;
 
     const footerSmall = document.createElement('axa-footer-small');
-    footerSmall.activeLanguage = selectedLanguageKey;
-    footerSmall.languageItems = languages;
-    footerSmall.disclaimerItems = disclaimer;
-    footerSmall.copyrightText = '© 2019 AXA Insurance Ltd.';
     footerSmall.dynamic = true;
+
+    const deLanguageLink = document.createElement('a');
+    deLanguageLink.slot = 'language-item';
+    deLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+    deLanguageLink.textContent = 'DE';
+
+    const frLanguageLink = document.createElement('a');
+    frLanguageLink.slot = 'language-item';
+    frLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+    frLanguageLink.textContent = 'FR';
+
+    const itLanguageLink = document.createElement('a');
+    itLanguageLink.slot = 'language-item';
+    itLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+    itLanguageLink.textContent = 'IT';
+
+    const enLanguageLink = document.createElement('a');
+    enLanguageLink.slot = 'language-item';
+    enLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+    enLanguageLink.textContent = 'EN';
+
+    const termsOfUseLink = document.createElement('a');
+    termsOfUseLink.slot = 'disclaimer-item';
+    termsOfUseLink.href = 'https://axa.ch/en/information/terms-of-use.html';
+    termsOfUseLink.textContent = 'Terms of use';
+
+    const dataProtectionLink = document.createElement('a');
+    dataProtectionLink.slot = 'disclaimer-item';
+    dataProtectionLink.href =
+      'https://axa.ch/en/information/data-protection.html';
+    dataProtectionLink.textContent = 'Data protection';
+
+    const copyRightText = document.createElement('span');
+    copyRightText.slot = 'copyright';
+    copyRightText.textContent = '© 2019 AXA Insurance Ltd.';
+
+    footerSmall.appendChild(deLanguageLink);
+    footerSmall.appendChild(frLanguageLink);
+    footerSmall.appendChild(itLanguageLink);
+    footerSmall.appendChild(enLanguageLink);
+    footerSmall.appendChild(termsOfUseLink);
+    footerSmall.appendChild(dataProtectionLink);
+    footerSmall.appendChild(copyRightText);
 
     wrapper.appendChild(activeLanguage);
     wrapper.appendChild(clickedDisclaimer);
@@ -45,14 +74,14 @@ storiesOf('Molecules/Footer Small/Demos', module)
 
     footerSmall.addEventListener('axa-language-click', languageEvent => {
       const languageResult = document.getElementById('active-language');
-      languageResult.innerText = `Currently selected language: ${
+      languageResult.innerText = `Clicked language index: ${
         languageEvent.detail
       }`;
     });
 
     footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
       const clickedDisclaimers = document.getElementById('clicked-disclaimer');
-      clickedDisclaimers.innerText = `Disclaimer changed to: ${
+      clickedDisclaimers.innerText = `Clicked disclaimer index: ${
         disclaimerEvent.detail
       }`;
     });

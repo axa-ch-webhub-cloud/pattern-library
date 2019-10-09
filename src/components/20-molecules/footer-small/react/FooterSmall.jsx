@@ -4,8 +4,7 @@ import createAXAFooterSmallReact from '../index.react';
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
 const DemoFooterSmall = () => {
-  const initialLanguage = 'EN';
-  const [activeLanguage, setActiveLanguage] = useState(initialLanguage);
+  const [activeLanguage, setActiveLanguage] = useState('-');
 
   const [disclaimerChange, setDisclaimerChange] = useState('-');
 

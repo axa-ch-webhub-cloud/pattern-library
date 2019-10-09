@@ -11,10 +11,9 @@ storiesOf('Molecules/Footer Small', module)
       sidebar: Readme,
     },
   })
-
   .add(
     'Footer Small',
-    () => `<axa-footer-small dy>
+    () => `<axa-footer-small>
       <a slot="language-item" href="https://axa.ch/de/privatkunden.html">
         DE
       </a>
