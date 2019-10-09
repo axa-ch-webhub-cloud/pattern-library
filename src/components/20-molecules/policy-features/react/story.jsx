@@ -12,8 +12,8 @@ import { STYLE_WHITELIST } from '../index';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 const story = storiesOf('Molecules/Policy features/React', module);
-story.addDecorator(withKnobs);
 story.addDecorator(withNoBorder);
+story.addDecorator(withKnobs);
 story
   .addParameters({
     readme: {
