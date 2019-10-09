@@ -17,44 +17,42 @@ const DemoFooterSmall = () => {
     setDisclaimerChange(disclaimer);
   };
 
-  const handleClick = e => {
-    e.preventDefault();
-    console.log('clicc');
-  };
-
   return (
     <div>
-      <p>Currently selected language: {activeLanguage}</p>
-      <p>Disclaimer changed to: {disclaimerChange}</p>
-      <a slot="disclaimer-item" href="https://ag.ch" onClick={handleClick}>
-        asdM
-      </a>
+      <p>Language - Index Clicked: {activeLanguage}</p>
+      <p>Disclaimer - Index Clicked: {disclaimerChange}</p>
       <AXAFooterSmallReact
         onLanguageClick={handleAXAFooterLanguageChange}
         onDisclaimerClick={handleAXAFooterDisclaimerChange}
         dynamic
       >
-        <a slot="disclaimer-item" href="https://google.ch">
-          Johannes
-        </a>
-        <a slot="disclaimer-item" href="https://digitec.ch">
-          Benjamin
-        </a>
-        <a slot="language-item" href="https://google.ch">
+        <a slot="language-item" href="https://axa.ch/de/privatkunden.html">
           DE
         </a>
         <a
           slot="language-item"
           className="m-footer-small__link--active"
-          href="https://digitec.ch"
+          href="https://axa.ch/fr/particuliers.html"
         >
           FR
         </a>
-        <a slot="language-item" href="https://digitec.ch">
+        <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
           IT
         </a>
-        <a slot="language-item" href="https://digitec.ch">
+        <a slot="language-item" href="https://axa.ch/en/private-customers.html">
           EN
+        </a>
+        <a
+          slot="disclaimer-item"
+          href="https://axa.ch/en/information/terms-of-use.html"
+        >
+          Terms of use
+        </a>
+        <a
+          slot="disclaimer-item"
+          href="https://axa.ch/en/information/data-protection.html"
+        >
+          Data protection
         </a>
         <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
       </AXAFooterSmallReact>

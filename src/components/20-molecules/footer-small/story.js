@@ -15,36 +15,33 @@ storiesOf('Molecules/Footer Small', module)
   .add(
     'Footer Small',
     () => `<axa-footer-small dy>
-      <a slot="disclaimer-item" href="https://google.ch">
-        Johannes
-      </a>
-      <a slot="disclaimer-item" href="https://digitec.ch">
-        Benjamin
-      </a>
-      <a
-        slot="language-item"
-        class="m-footer-small__link--active"
-        href="https://google.ch"
-      >
+      <a slot="language-item" href="https://axa.ch/de/privatkunden.html">
         DE
       </a>
       <a
         slot="language-item"
-        href="https://digitec.ch"
+        className="m-footer-small__link--active"
+        href="https://axa.ch/fr/particuliers.html"
       >
         FR
       </a>
-      <a
-        slot="language-item"
-        href="https://digitec.ch"
-      >
+      <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
         IT
       </a>
-      <a
-        slot="language-item"
-        href="https://digitec.ch"
-      >
+      <a slot="language-item" href="https://axa.ch/en/private-customers.html">
         EN
+      </a>
+      <a
+        slot="disclaimer-item"
+        href="https://axa.ch/en/information/terms-of-use.html"
+      >
+        Terms of use
+      </a>
+      <a
+        slot="disclaimer-item"
+        href="https://axa.ch/en/information/data-protection.html"
+      >
+        Data protection
       </a>
       <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
     </axa-footer-small>`
