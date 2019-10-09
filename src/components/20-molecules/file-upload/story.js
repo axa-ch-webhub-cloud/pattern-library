@@ -4,16 +4,7 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-const story = storiesOf('Molecules/File Upload', module);
-story.addDecorator(withKnobs);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
-});
-const descriptionText = 'The following files are being transferred:';
-// TODO: Move icon variants into icons and export it from there
-const icons = {
+const iconOptions = {
   none: '',
   'arrow-right': 'arrow-right',
   collapse: 'collapse',
@@ -26,7 +17,17 @@ const icons = {
   search: 'search',
   upload: 'upload',
   'cloud-upload': 'cloud-upload',
+  'axa-logo': 'axa-logo',
+  'axa-logo-open': 'axa-logo-open',
 };
+
+const story = storiesOf('Molecules/File Upload', module);
+story.addDecorator(withKnobs);
+story.addParameters({
+  readme: {
+    sidebar: Readme,
+  },
+});
 
 story.add('File upload - default', () => {
   const sizeSliderOptions = {
@@ -77,8 +78,8 @@ story.add('File upload - default', () => {
     'wrongFileTypeText',
     'Your file does not correspond with our allowed file-types'
   );
-  const iconOptions = select('icon', icons, 'cloud-upload');
-  const headerText = text('headerText', descriptionText);
+  const icon = select('icon', iconOptions, 'cloud-upload');
+  const headerText = text('headerText', 'The following files are being transferred:');
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -96,7 +97,7 @@ story.add('File upload - default', () => {
         orText="${orText}"
         infoText="${infoText}"
         wrongFileTypeStatusText="${wrongFileTypeStatusText}"
-        icon="${iconOptions}"
+        icon="${icon}"
         >${headerText}</axa-file-upload
       >
     </div>
