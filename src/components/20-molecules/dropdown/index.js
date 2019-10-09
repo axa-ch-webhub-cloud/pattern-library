@@ -293,7 +293,7 @@ class AXADropdown extends NoShadowDOM {
       name = '',
       label = '',
       refId = '',
-      defaultTitle,
+      defaultTitle = '',
       checkMark,
       invalid,
       error,
