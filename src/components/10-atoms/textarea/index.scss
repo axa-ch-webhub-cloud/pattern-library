@@ -69,7 +69,7 @@ axa-textarea {
   }
 
   .a-textarea__textarea--check {
-    padding-right: 31px;
+    padding-right: 60px;
   }
 
   .a-textarea__label {
@@ -100,7 +100,7 @@ axa-textarea {
   .a-textarea__check {
     @include check-mark-animated();
     position: absolute;
-    right: 5px;
-    top: 5px
+    right: 25px;
+    top: 5px;
   }
 }
