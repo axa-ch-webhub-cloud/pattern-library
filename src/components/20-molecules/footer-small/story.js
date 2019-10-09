@@ -14,12 +14,11 @@ storiesOf('Molecules/Footer Small', module)
   .add(
     'Footer Small',
     () => `<axa-footer-small>
-      <a slot="language-item" href="https://axa.ch/de/privatkunden.html">
+      <a slot="language-item" href="https://axa.ch/de/privatkunden.html" class="m-footer-small__link--active">
         DE
       </a>
       <a
         slot="language-item"
-        className="m-footer-small__link--active"
         href="https://axa.ch/fr/particuliers.html"
       >
         FR

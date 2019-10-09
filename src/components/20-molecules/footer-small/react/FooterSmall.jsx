@@ -25,14 +25,14 @@ const DemoFooterSmall = () => {
         onDisclaimerClick={handleAXAFooterDisclaimerChange}
         dynamic
       >
-        <a slot="language-item" href="https://axa.ch/de/privatkunden.html">
-          DE
-        </a>
         <a
           slot="language-item"
           className="m-footer-small__link--active"
-          href="https://axa.ch/fr/particuliers.html"
+          href="https://axa.ch/de/privatkunden.html"
         >
+          DE
+        </a>
+        <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
           FR
         </a>
         <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">

@@ -17,10 +17,10 @@ storiesOf('Molecules/Footer Small/Demos', module)
     const wrapper = document.createElement('div');
     const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
-    activeLanguage.innerText = `Clicked language index: ${selectedLanguageKey}`;
+    activeLanguage.innerText = `Language - Index Clicked: ${selectedLanguageKey}`;
     const clickedDisclaimer = document.createElement('p');
     clickedDisclaimer.id = 'clicked-disclaimer';
-    clickedDisclaimer.innerText = `Clicked disclaimer index: -`;
+    clickedDisclaimer.innerText = `Disclaimer - Index Clicked: -`;
 
     const footerSmall = document.createElement('axa-footer-small');
     footerSmall.dynamic = true;
@@ -28,6 +28,7 @@ storiesOf('Molecules/Footer Small/Demos', module)
     const deLanguageLink = document.createElement('a');
     deLanguageLink.slot = 'language-item';
     deLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+    deLanguageLink.classList.add('m-footer-small__link--active');
     deLanguageLink.textContent = 'DE';
 
     const frLanguageLink = document.createElement('a');
@@ -74,14 +75,14 @@ storiesOf('Molecules/Footer Small/Demos', module)
 
     footerSmall.addEventListener('axa-language-click', languageEvent => {
       const languageResult = document.getElementById('active-language');
-      languageResult.innerText = `Clicked language index: ${
+      languageResult.innerText = `Language - Index Clicked: ${
         languageEvent.detail
       }`;
     });
 
     footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
       const clickedDisclaimers = document.getElementById('clicked-disclaimer');
-      clickedDisclaimers.innerText = `Clicked disclaimer index: ${
+      clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${
         disclaimerEvent.detail
       }`;
     });
