@@ -7,6 +7,7 @@ import Readme from './README.md';
 
 
 const variantOptions = {
+  none: '',
   'size-1': 'size-1',
   'size-2': 'size-2',
   'size-3': 'size-3',
@@ -23,7 +24,7 @@ storiesOf('Atoms/Text', module)
   .add(
     'Text',
     () => {
-      const variant = select('variant', variantOptions);
+      const variant = select('variant', variantOptions, '');
       const addSpanTag = boolean('Add <span> tag', false)
       const wrapper = document.createElement('div');
       const template = addSpanTag ? // setting variables in the axaText tag does not work, therefore text is hardcoded twice
