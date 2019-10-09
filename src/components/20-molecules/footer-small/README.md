@@ -49,9 +49,8 @@ return (
     <AXAFooterSmallReact
       languageItems={languages}
       disclaimerItems={disclaimer}
-      onLanguageChange={handleAXAFooterLanguageChange}
-      onDisclaimerChange={handleAXAFooterDisclaimerChange}
-      activeLanguage="de"
+      onLanguageClick={handleAXAFooterLanguageChange}
+      onDisclaimerClick={handleAXAFooterDisclaimerChange}
       copyrightText="© 2019 AXA Insurance Ltd."
       dynamic
     />
@@ -169,11 +168,11 @@ This approach will not redirect the user automatically, if he/she clicks on a li
       footer.setAttribute('languageitems', languages);
       footer.setAttribute('disclaimeritems', disclaimer);
 
-      footer.addEventListener('axa-language-change', e =>
+      footer.addEventListener('axa-language-click', e =>
         console.log(e.detail)
       );
 
-      footer.addEventListener('axa-disclaimer-change', e =>
+      footer.addEventListener('axa-disclaimer-click', e =>
         console.log(e.detail)
       );
     </script>

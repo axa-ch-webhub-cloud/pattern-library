@@ -3,9 +3,8 @@ import AXAFooterSmall from './index';
 
 export default createElement => ({
   className = '',
-  onLanguageChange = {},
-  onDisclaimerChange = {},
-  activeLanguage = '',
+  onLanguageClick = {},
+  onDisclaimerClick = {},
   dynamic = false,
   children,
 }) =>
@@ -14,9 +13,8 @@ export default createElement => ({
     {
       className,
       dynamic,
-      activeLanguage,
-      onLanguageChange,
-      onDisclaimerChange,
+      onLanguageClick,
+      onDisclaimerClick,
     },
     children
   );

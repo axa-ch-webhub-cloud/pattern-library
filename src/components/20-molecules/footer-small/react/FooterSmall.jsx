@@ -4,18 +4,6 @@ import createAXAFooterSmallReact from '../index.react';
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
 const DemoFooterSmall = () => {
-  const languageItems = [
-    { text: 'DE', key: 'de' },
-    { text: 'FR', key: 'fr' },
-    { text: 'IT', key: 'it' },
-    { text: 'EN', key: 'en' },
-  ];
-
-  const disclaimerItems = [
-    { text: 'Terms of use', key: 'tos' },
-    { text: 'Data protection', key: 'privacy' },
-  ];
-
   const initialLanguage = 'EN';
   const [activeLanguage, setActiveLanguage] = useState(initialLanguage);
 
@@ -42,8 +30,8 @@ const DemoFooterSmall = () => {
         asdM
       </a>
       <AXAFooterSmallReact
-        onLanguageChange={handleAXAFooterLanguageChange}
-        onDisclaimerChange={handleAXAFooterDisclaimerChange}
+        onLanguageClick={handleAXAFooterLanguageChange}
+        onDisclaimerClick={handleAXAFooterDisclaimerChange}
         dynamic
       >
         <a slot="disclaimer-item" href="https://google.ch">
@@ -52,33 +40,20 @@ const DemoFooterSmall = () => {
         <a slot="disclaimer-item" href="https://digitec.ch">
           Benjamin
         </a>
-        <a slot="disclaimer-item">Unbekannt</a>
-        <a
-          slot="language-item"
-          className="m-footer-small__link--bold"
-          href="https://google.ch"
-        >
+        <a slot="language-item" href="https://google.ch">
           DE
         </a>
         <a
           slot="language-item"
-          className="m-footer-small__link--bold m-footer-small__link--active"
+          className="m-footer-small__link--active"
           href="https://digitec.ch"
         >
           FR
         </a>
-        <a
-          slot="language-item"
-          className="m-footer-small__link--bold m-footer-small__link--active"
-          href="https://digitec.ch"
-        >
+        <a slot="language-item" href="https://digitec.ch">
           IT
         </a>
-        <a
-          slot="language-item"
-          className="m-footer-small__link--bold m-footer-small__link--active"
-          href="https://digitec.ch"
-        >
+        <a slot="language-item" href="https://digitec.ch">
           EN
         </a>
         <span slot="copyright">© 2019 AXA Insurance Ltd.</span>

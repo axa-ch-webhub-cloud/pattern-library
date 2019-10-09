@@ -12,45 +12,40 @@ storiesOf('Molecules/Footer Small', module)
     },
   })
 
-  .add('Footer Small', () => {
-    const languages = JSON.stringify([
-      { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-      {
-        key: 'fr',
-        text: 'FR',
-        link: 'https://axa.ch/fr/particuliers.html',
-      },
-      {
-        key: 'it',
-        text: 'IT',
-        link: 'https://axa.ch/it/clienti-privati.html',
-      },
-      {
-        key: 'en',
-        text: 'EN',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-    ]);
-
-    const disclaimer = JSON.stringify([
-      {
-        key: 'tos',
-        text: 'Terms of use',
-        link: 'https://axa.ch/en/information/terms-of-use.html',
-      },
-      {
-        key: 'privacy',
-        text: 'Data protection',
-        link: 'https://axa.ch/en/information/data-protection.html',
-      },
-    ]);
-
-    return `<axa-footer-small>
-        <a slot="disclaimer-item" href="https://google.ch">Johannes</a>
-        <a slot="disclaimer-item" href="https://digitec.ch">Benjamin</a>
-        <a slot="disclaimer-item">Unbekannt</a>
-        <a slot="language-item" class="m-footer-small__link--bold" href="https://google.ch">EN</a>
-        <a slot="language-item" class="m-footer-small__link--bold m-footer-small__link--active" href="https://digitec.ch">DE</a>
-        <span slot="copyright">© 2019 AXA Insurance Ltd.<span>
-    </axa-footer-small>`;
-  });
+  .add(
+    'Footer Small',
+    () => `<axa-footer-small dy>
+      <a slot="disclaimer-item" href="https://google.ch">
+        Johannes
+      </a>
+      <a slot="disclaimer-item" href="https://digitec.ch">
+        Benjamin
+      </a>
+      <a
+        slot="language-item"
+        class="m-footer-small__link--active"
+        href="https://google.ch"
+      >
+        DE
+      </a>
+      <a
+        slot="language-item"
+        href="https://digitec.ch"
+      >
+        FR
+      </a>
+      <a
+        slot="language-item"
+        href="https://digitec.ch"
+      >
+        IT
+      </a>
+      <a
+        slot="language-item"
+        href="https://digitec.ch"
+      >
+        EN
+      </a>
+      <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
+    </axa-footer-small>`
+  );

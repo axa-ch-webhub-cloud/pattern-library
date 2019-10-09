@@ -22,7 +22,6 @@ class AXAFooterSmall extends InlineStyles {
     return {
       languageItems: { type: Array },
       disclaimerItems: { type: Array },
-      activeLanguage: { type: String },
       dynamic: { type: Boolean },
     };
   }
@@ -31,10 +30,9 @@ class AXAFooterSmall extends InlineStyles {
     super();
     this.languageItems = [];
     this.disclaimerItems = [];
-    this.activeLanguage = '';
     this.dynamic = false;
-    this.onLanguageChange = () => {};
-    this.onDisclaimerChange = () => {};
+    this.onLanguageClick = () => {};
+    this.onDisclaimerClick = () => {};
   }
 
   // Parent class InlineStyles needs a static method to retrive styles
@@ -43,10 +41,10 @@ class AXAFooterSmall extends InlineStyles {
     return childStyles;
   }
 
-  handleLanguageClick = (ev, languageIndex) => {
+  handleLanguageClick = (ev, languageIndex, lo) => {
     if (this.dynamic) {
       ev.preventDefault();
-      this.onLanguageChange(languageIndex);
+      this.onLanguageClick(languageIndex);
       if (this.activeLanguage !== languageIndex) {
         this.shadowRoot
           .querySelectorAll(
@@ -61,7 +59,7 @@ class AXAFooterSmall extends InlineStyles {
           });
 
         this.dispatchEvent(
-          new CustomEvent('axa-language-change', {
+          new CustomEvent('axa-language-click', {
             detail: languageIndex,
             bubbles: true,
             cancelable: true,
@@ -71,26 +69,13 @@ class AXAFooterSmall extends InlineStyles {
     }
   };
 
-  handleDisclaimerClick = (ev, disclaimerKey) => {
+  handleDisclaimerClick = (ev, disclaimerIndex) => {
     if (this.dynamic) {
-      // console.log('dynamic link', ev.target);
-      // ev.preventDefault();
-      // if (this.activeLanguage !== languageIndex) {
-      //   this.shadowRoot
-      //     .querySelectorAll(
-      //       '.m-footer-small__container > .m-footer-small__list a'
-      //     )
-      //     .forEach((languageItem, index) => {
-      //       if (languageIndex === index) {
-      //         languageItem.classList.add('m-footer-small__link--active');
-      //       } else {
-      //         languageItem.classList.remove('m-footer-small__link--active');
-      //       }
-      //     });
-      this.onDisclaimerChange(disclaimerKey);
+      ev.preventDefault();
+      this.onDisclaimerClick(disclaimerIndex);
       this.dispatchEvent(
-        new CustomEvent('axa-disclaimer-change', {
-          detail: disclaimerKey,
+        new CustomEvent('axa-disclaimer-click', {
+          detail: disclaimerIndex,
           bubbles: true,
           cancelable: true,
         })
@@ -101,6 +86,16 @@ class AXAFooterSmall extends InlineStyles {
   firstUpdated() {
     // call parent class method that add inline styles
     this.inlineStyles('resetHeadingCss');
+
+    this.querySelectorAll('[slot="language-item"]').forEach((item, index) => {
+      if (item.classList.contains('m-footer-small__link--active')) {
+        this.shadowRoot
+          .querySelectorAll(
+            '.m-footer-small__container > .m-footer-small__list a'
+          )
+          [index].classList.add('m-footer-small__link--active');
+      }
+    });
   }
 
   render() {
@@ -115,7 +110,9 @@ class AXAFooterSmall extends InlineStyles {
                   <li class="m-footer-small__list-item">
                     <a
                       href="${languageItem.href}"
-                      @click=${ev => this.handleLanguageClick(ev, index)}
+                      class="m-footer-small__link--bold"
+                      @click=${ev =>
+                        this.handleLanguageClick(ev, index, languageItem)}
                       >${languageItem.textContent}</a
                     >
                   </li>
@@ -127,9 +124,13 @@ class AXAFooterSmall extends InlineStyles {
               <ul class="m-footer-small__list">
                 ${repeat(
                   this.querySelectorAll('[slot="disclaimer-item"]'),
-                  disclaimerItem => html`
+                  (disclaimerItem, index) => html`
                     <li class="m-footer-small__list-item">
-                      ${disclaimerItem}
+                      <a
+                        href="${disclaimerItem.href}"
+                        @click=${ev => this.handleDisclaimerClick(ev, index)}
+                        >${disclaimerItem.textContent}</a
+                      >
                     </li>
                   `
                 )}

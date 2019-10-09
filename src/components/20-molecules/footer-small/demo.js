@@ -43,14 +43,14 @@ storiesOf('Molecules/Footer Small/Demos', module)
     wrapper.appendChild(clickedDisclaimer);
     wrapper.appendChild(footerSmall);
 
-    footerSmall.addEventListener('axa-language-change', languageEvent => {
+    footerSmall.addEventListener('axa-language-click', languageEvent => {
       const languageResult = document.getElementById('active-language');
       languageResult.innerText = `Currently selected language: ${
         languageEvent.detail
       }`;
     });
 
-    footerSmall.addEventListener('axa-disclaimer-change', disclaimerEvent => {
+    footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
       const clickedDisclaimers = document.getElementById('clicked-disclaimer');
       clickedDisclaimers.innerText = `Disclaimer changed to: ${
         disclaimerEvent.detail
