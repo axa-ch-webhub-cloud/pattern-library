@@ -2,6 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
+import { iconOptions } from '../../icon/story';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 
@@ -31,23 +32,6 @@ const variantOptions = {
   'hyperlink-red': 'hyperlink-red',
   'hyperlink-red-underline': 'hyperlink-red-underline',
   secondary: 'secondary',
-};
-
-const iconOptions = {
-  none: '',
-  'arrow-right': 'arrow-right',
-  collapse: 'collapse',
-  document: 'document',
-  download: 'download',
-  email: 'email',
-  expand: 'expand',
-  mobile: 'mobile',
-  phone: 'phone',
-  search: 'search',
-  upload: 'upload',
-  'cloud-upload': 'cloud-upload',
-  'axa-logo': 'axa-logo',
-  'axa-logo-open': 'axa-logo-open',
 };
 
 storiesOf('Atoms/Link/React', module)

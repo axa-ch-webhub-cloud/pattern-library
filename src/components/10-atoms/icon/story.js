@@ -2,6 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import { iconOptions } from '../icon/story';
 import AXAIcon from './index';
 import Readme from './README.md';
 
@@ -12,23 +13,6 @@ storyIcon.addParameters({
     sidebar: Readme,
   },
 });
-
-export const iconOptions = {
-  none: '',
-  'arrow-right': 'arrow-right',
-  collapse: 'collapse',
-  document: 'document',
-  download: 'download',
-  email: 'email',
-  expand: 'expand',
-  mobile: 'mobile',
-  phone: 'phone',
-  search: 'search',
-  upload: 'upload',
-  'cloud-upload': 'cloud-upload',
-  'axa-logo': 'axa-logo',
-  'axa-logo-open': 'axa-logo-open',
-};
 
 storyIcon.add('Icon', () => {
   const icon = select('icon', iconOptions, 'download');

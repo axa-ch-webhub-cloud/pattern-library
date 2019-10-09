@@ -2,25 +2,10 @@
 import { storiesOf } from '@storybook/html';
 import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import { iconOptions } from '../icon/story';
 import './index';
 import Readme from './README.md';
 
-const iconOptions = {
-  none: '',
-  'arrow-right': 'arrow-right',
-  collapse: 'collapse',
-  document: 'document',
-  download: 'download',
-  email: 'email',
-  expand: 'expand',
-  mobile: 'mobile',
-  phone: 'phone',
-  search: 'search',
-  upload: 'upload',
-  'cloud-upload': 'cloud-upload',
-  'axa-logo': 'axa-logo',
-  'axa-logo-open': 'axa-logo-open',
-};
 
 storiesOf('Atoms/Input File', module)
   .addDecorator(withKnobs)
