@@ -50,8 +50,8 @@ storiesOf('Atoms/Link', module)
         'This is a simple link'
       );
       const external = boolean('external', false)
-      const variant = select('variant', variantOptions)
-      const icon = select('icon', iconOptions);
+      const variant = select('variant', variantOptions, '')
+      const icon = select('icon', iconOptions, '');
       const backgrounds = select(
         'Background color',
         ['red', 'blue', 'white', 'black'],

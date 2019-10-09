@@ -7,7 +7,7 @@ import Readme from './README.md';
 
 
 const variantOptions = {
-  none: '',
+  default: '',
   'size-1': 'size-1',
   'size-2': 'size-2',
   'size-3': 'size-3',

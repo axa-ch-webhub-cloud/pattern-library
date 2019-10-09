@@ -7,6 +7,7 @@ import AXATitlePrimary from './AXATitlePrimaryReact';
 import Readme from '../README.md';
 
 const variantOptions = {
+  default: '',
   'size-1': 'size-1',
   'size-2': 'size-2',
   'size-3': 'size-3',
@@ -23,7 +24,7 @@ storiesOf('Atoms/Title Primary/React', module)
     },
   })
   .add('Title Primary', () => {
-    const variant = select('variant', variantOptions)
+    const variant = select('variant', variantOptions, '')
 
     const div = document.createElement('div');
     ReactDOM.render(
