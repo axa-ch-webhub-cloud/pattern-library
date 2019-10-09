@@ -29,7 +29,8 @@ story.addParameters({
   },
 });
 
-story.add('File upload - default', () => {
+story.add('File upload', () => {
+  const wrapperWidth = text('Width', '455px');
   const sizeSliderOptions = {
     range: true,
     min: 1,
@@ -83,7 +84,7 @@ story.add('File upload - default', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div style="width:455px;">
+    <div style="width:${wrapperWidth};">
       <axa-file-upload
         inputFileText="${inputFileText}"
         maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}"

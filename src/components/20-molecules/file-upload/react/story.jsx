@@ -31,6 +31,7 @@ storiesOf('Molecules/File Upload/React', module)
     },
   })
   .add('File Upload', () => {
+    const wrapperWidth = text('Width', '455px');
     const sizeSliderOptions = {
       range: true,
       min: 1,
@@ -84,7 +85,7 @@ storiesOf('Molecules/File Upload/React', module)
 
     const div = document.createElement('div');
     ReactDOM.render(
-      <div style={{ width: '455px' }}>
+      <div style={{ width: wrapperWidth }}>
         <AXAFileUploadReact
           inputFileText={inputFileText}
           maxSizeOfSingleFileKB={maxSizeOfSingleFileKB}
