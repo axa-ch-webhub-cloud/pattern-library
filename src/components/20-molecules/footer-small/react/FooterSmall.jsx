@@ -4,16 +4,16 @@ import createAXAFooterSmallReact from '../index.react';
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
 const DemoFooterSmall = () => {
-  const [activeLanguage, setActiveLanguage] = useState('-');
+  const [activeLanguage, setActiveLanguageIndex] = useState('-');
 
-  const [disclaimerChange, setDisclaimerChange] = useState('-');
+  const [disclaimerChange, setDisclaimerIndex] = useState('-');
 
-  const handleAXAFooterLanguageChange = language => {
-    setActiveLanguage(language);
+  const handleAXAFooterLanguageClicked = languageIndex => {
+    setActiveLanguageIndex(languageIndex);
   };
 
-  const handleAXAFooterDisclaimerChange = disclaimer => {
-    setDisclaimerChange(disclaimer);
+  const handleAXAFooterDisclaimerClicked = disclaimerIndex => {
+    setDisclaimerIndex(disclaimerIndex);
   };
 
   return (
@@ -21,8 +21,8 @@ const DemoFooterSmall = () => {
       <p>Language - Index Clicked: {activeLanguage}</p>
       <p>Disclaimer - Index Clicked: {disclaimerChange}</p>
       <AXAFooterSmallReact
-        onLanguageClick={handleAXAFooterLanguageChange}
-        onDisclaimerClick={handleAXAFooterDisclaimerChange}
+        onLanguageClick={handleAXAFooterLanguageClicked}
+        onDisclaimerClick={handleAXAFooterDisclaimerClicked}
         dynamic
       >
         <a
