@@ -45,27 +45,25 @@ class AXAFooterSmall extends InlineStyles {
     if (this.dynamic) {
       ev.preventDefault();
       this.onLanguageClick(languageIndex);
-      if (this.activeLanguage !== languageIndex) {
-        this.shadowRoot
-          .querySelectorAll(
-            '.m-footer-small__container > .m-footer-small__list a'
-          )
-          .forEach((languageItem, index) => {
-            if (languageIndex === index) {
-              languageItem.classList.add('m-footer-small__link--active');
-            } else {
-              languageItem.classList.remove('m-footer-small__link--active');
-            }
-          });
+      this.shadowRoot
+        .querySelectorAll(
+          '.m-footer-small__container > .m-footer-small__list a'
+        )
+        .forEach((languageItem, index) => {
+          if (languageIndex === index) {
+            languageItem.classList.add('m-footer-small__link--active');
+          } else {
+            languageItem.classList.remove('m-footer-small__link--active');
+          }
+        });
 
-        this.dispatchEvent(
-          new CustomEvent('axa-language-click', {
-            detail: languageIndex,
-            bubbles: true,
-            cancelable: true,
-          })
-        );
-      }
+      this.dispatchEvent(
+        new CustomEvent('axa-language-click', {
+          detail: languageIndex,
+          bubbles: true,
+          cancelable: true,
+        })
+      );
     }
   };
 
