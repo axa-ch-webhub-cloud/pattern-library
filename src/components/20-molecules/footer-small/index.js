@@ -41,7 +41,7 @@ class AXAFooterSmall extends InlineStyles {
     return childStyles;
   }
 
-  handleLanguageClick = (ev, languageIndex, lo) => {
+  handleLanguageClick = (ev, languageIndex) => {
     if (this.dynamic) {
       ev.preventDefault();
       this.onLanguageClick(languageIndex);
@@ -111,8 +111,7 @@ class AXAFooterSmall extends InlineStyles {
                     <a
                       href="${languageItem.href}"
                       class="m-footer-small__link--bold"
-                      @click=${ev =>
-                        this.handleLanguageClick(ev, index, languageItem)}
+                      @click=${ev => this.handleLanguageClick(ev, index)}
                       >${languageItem.textContent}</a
                     >
                   </li>
