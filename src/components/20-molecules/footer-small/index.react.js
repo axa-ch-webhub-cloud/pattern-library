@@ -2,22 +2,21 @@ import withReact from '../../../utils/with-react';
 import AXAFooterSmall from './index';
 
 export default createElement => ({
-  languageItems = [],
-  disclaimerItems = [],
-  copyrightText = '',
-  activeLanguage = '',
+  className = '',
   onLanguageChange = {},
   onDisclaimerChange = {},
+  activeLanguage = '',
   dynamic = false,
-  className = '',
+  children,
 }) =>
-  withReact(createElement)(AXAFooterSmall.tagName, {
-    languageItems,
-    disclaimerItems,
-    copyrightText,
-    activeLanguage,
-    onLanguageChange,
-    onDisclaimerChange,
-    dynamic,
-    className,
-  });
+  withReact(createElement)(
+    AXAFooterSmall.tagName,
+    {
+      className,
+      dynamic,
+      activeLanguage,
+      onLanguageChange,
+      onDisclaimerChange,
+    },
+    children
+  );

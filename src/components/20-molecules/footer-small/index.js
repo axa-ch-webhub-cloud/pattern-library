@@ -43,31 +43,59 @@ class AXAFooterSmall extends InlineStyles {
     return childStyles;
   }
 
-  handleLanguageClick = (ev, languageKey) => {
-    ev.preventDefault();
-    if (this.activeLanguage !== languageKey) {
-      this.activeLanguage = languageKey;
-      this.onLanguageChange(languageKey);
+  handleLanguageClick = (ev, languageIndex) => {
+    if (this.dynamic) {
+      ev.preventDefault();
+      this.onLanguageChange(languageIndex);
+      if (this.activeLanguage !== languageIndex) {
+        this.shadowRoot
+          .querySelectorAll(
+            '.m-footer-small__container > .m-footer-small__list a'
+          )
+          .forEach((languageItem, index) => {
+            if (languageIndex === index) {
+              languageItem.classList.add('m-footer-small__link--active');
+            } else {
+              languageItem.classList.remove('m-footer-small__link--active');
+            }
+          });
+
+        this.dispatchEvent(
+          new CustomEvent('axa-language-change', {
+            detail: languageIndex,
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      }
+    }
+  };
+
+  handleDisclaimerClick = (ev, disclaimerKey) => {
+    if (this.dynamic) {
+      // console.log('dynamic link', ev.target);
+      // ev.preventDefault();
+      // if (this.activeLanguage !== languageIndex) {
+      //   this.shadowRoot
+      //     .querySelectorAll(
+      //       '.m-footer-small__container > .m-footer-small__list a'
+      //     )
+      //     .forEach((languageItem, index) => {
+      //       if (languageIndex === index) {
+      //         languageItem.classList.add('m-footer-small__link--active');
+      //       } else {
+      //         languageItem.classList.remove('m-footer-small__link--active');
+      //       }
+      //     });
+      this.onDisclaimerChange(disclaimerKey);
       this.dispatchEvent(
-        new CustomEvent('axa-language-change', {
-          detail: languageKey,
+        new CustomEvent('axa-disclaimer-change', {
+          detail: disclaimerKey,
           bubbles: true,
           cancelable: true,
         })
       );
     }
-  };
-
-  handleDisclaimerClick = (ev, disclaimerKey) => {
-    ev.preventDefault();
-    this.onDisclaimerChange(disclaimerKey);
-    this.dispatchEvent(
-      new CustomEvent('axa-disclaimer-change', {
-        detail: disclaimerKey,
-        bubbles: true,
-        cancelable: true,
-      })
-    );
   };
 
   firstUpdated() {
@@ -83,9 +111,13 @@ class AXAFooterSmall extends InlineStyles {
             <ul class="m-footer-small__list">
               ${repeat(
                 this.querySelectorAll('[slot="language-item"]'),
-                languageItem => html`
+                (languageItem, index) => html`
                   <li class="m-footer-small__list-item">
-                    ${languageItem}
+                    <a
+                      href="${languageItem.href}"
+                      @click=${ev => this.handleLanguageClick(ev, index)}
+                      >${languageItem.textContent}</a
+                    >
                   </li>
                 `
               )}

@@ -7,13 +7,13 @@ export interface Item {
 }
 
 export interface AXAFooterSmallProps {
-  languageItems: Item[];
-  disclaimerItems: Item[];
-  copyrightText: string;
+  // languageItems: Item[];
+  // disclaimerItems: Item[];
+  // copyrightText: string;
   activeLanguage?: string;
   onLanguageChange: (language: string) => void;
+  onDisclaimerChange: (language: string) => void;
   className?: string;
-
   // set to true if want to use onLanguageChange/onDisclaimerChange callbacks
   dynamic?: boolean;
 }
