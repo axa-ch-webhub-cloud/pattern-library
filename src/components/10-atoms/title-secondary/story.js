@@ -1,9 +1,22 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
+const variantOptions = {
+  none: '',
+  'size-1': 'size-1',
+  'size-2': 'size-2',
+  'size-3': 'size-3',
+  'size-4': 'size-4',
+  'size-5': 'size-5',
+  'size-6': 'size-6',
+};
+
 storiesOf('Atoms/Title secondary', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -11,12 +24,15 @@ storiesOf('Atoms/Title secondary', module)
   })
   .add(
     'Title secondary',
-    () => `
-      <axa-title-secondary>Title secondary 1</axa-title-secondary>
-      <axa-title-secondary variant="size-2">Title secondary 2</axa-title-secondary>
-      <axa-title-secondary variant="size-3">Title secondary 3</axa-title-secondary>
-      <axa-title-secondary variant="size-4">Title secondary 4</axa-title-secondary>
-      <axa-title-secondary variant="size-5">Title secondary 5</axa-title-secondary>
-      <axa-title-secondary variant="size-6">Title secondary 6</axa-title-secondary>
-    `
+    () => {
+      const variant = select('variant', variantOptions, '')
+
+      const wrapper = document.createElement('div');
+      const template = html`
+        <axa-title-secondary variant="${variant}">Title secondary</axa-title-secondary>
+      `;
+
+      render(template, wrapper);
+      return wrapper;
+    }
   );
