@@ -1,9 +1,22 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
+const variantOptions = {
+  none: '',
+  'size-1': 'size-1',
+  'size-2': 'size-2',
+  'size-3': 'size-3',
+  'size-4': 'size-4',
+  'size-5': 'size-5',
+  'size-6': 'size-6',
+};
+
 storiesOf('Atoms/Title primary', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -11,12 +24,15 @@ storiesOf('Atoms/Title primary', module)
   })
   .add(
     'Title primary',
-    () => `
-      <axa-title-primary>Title primary 1</axa-title-primary>
-      <axa-title-primary variant="size-2">Title primary 2</axa-title-primary>
-      <axa-title-primary variant="size-3">Title primary 3</axa-title-primary>
-      <axa-title-primary variant="size-4">Title primary 4</axa-title-primary>
-      <axa-title-primary variant="size-5">Title primary 5</axa-title-primary>
-      <axa-title-primary variant="size-6">Title primary 6</axa-title-primary>
-    `
+    () => {
+      const variant = select('variant', variantOptions, '')
+
+      const wrapper = document.createElement('div');
+      const template = html`
+        <axa-title-primary variant="${variant}">Title primary</axa-title-primary>
+      `;
+
+      render(template, wrapper);
+      return wrapper;
+    }
   );
