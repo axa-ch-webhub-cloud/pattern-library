@@ -70,7 +70,7 @@ const DemoFooterSmall = () => {
         >
           Data protection
         </a>
-        <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
+        <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
       </AXAFooterSmallReact>
     </div>
   );
@@ -122,7 +122,7 @@ If you want a footer with static links, that will automatically route to whereve
       >
         Data protection
       </a>
-      <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
+      <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
     </axa-footer-small>
 
     <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
@@ -190,7 +190,7 @@ This approach will not redirect the user automatically, if he/she clicks on a li
 
       const copyRightText = document.createElement('span');
       copyRightText.slot = 'copyright';
-      copyRightText.textContent = '© 2019 AXA Insurance Ltd.';
+      copyRightText.textContent = '&copy; 2019 AXA Insurance Ltd.';
 
       footerSmall.appendChild(deLanguageLink);
       footerSmall.appendChild(frLanguageLink);

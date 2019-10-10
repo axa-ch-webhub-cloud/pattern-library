@@ -41,6 +41,6 @@ storiesOf('Molecules/Footer Small', module)
       >
         Data protection
       </a>
-      <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
+      <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
     </axa-footer-small>`
   );

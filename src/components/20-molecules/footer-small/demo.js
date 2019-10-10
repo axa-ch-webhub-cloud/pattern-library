@@ -59,7 +59,7 @@ storiesOf('Molecules/Footer Small/Demos', module)
 
     const copyRightText = document.createElement('span');
     copyRightText.slot = 'copyright';
-    copyRightText.textContent = '© 2019 AXA Insurance Ltd.';
+    copyRightText.textContent = '&copy; 2019 AXA Insurance Ltd.';
 
     footerSmall.appendChild(deLanguageLink);
     footerSmall.appendChild(frLanguageLink);

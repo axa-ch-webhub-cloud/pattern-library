@@ -53,7 +53,7 @@ const DemoFooterSmall = () => {
         >
           Data protection
         </a>
-        <span slot="copyright">© 2019 AXA Insurance Ltd.</span>
+        <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
       </AXAFooterSmallReact>
     </div>
   );
