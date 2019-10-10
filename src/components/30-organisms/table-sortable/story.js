@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/html';
+import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
@@ -51,52 +52,25 @@ const model = {
 };
 
 storiesOf('Organisms/Table Sortable', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   .add(
-    'Table Sortable - default',
-    () => `
-      <axa-table-sortable model='${JSON.stringify(model)}'>
-      </axa-table-sortable>
-      `
-  )
-  .add(
-    'Table Sortable - innerscroll',
-    () => `
-      <axa-table-sortable innerscroll="500" model='${JSON.stringify(model)}'>
-      </axa-table-sortable>
-      `
-  )
-  .add('Table Sortable - on row click', () => {
-    const wrapper = document.createElement('div');
-    window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
-      const renderArea = document.querySelector('#renderArea');
-      renderArea.innerHTML = `Pressed on row ${index} in ${type}.
+    'Table Sortable',
+    () => {
+      const wrapper = document.createElement('div');
 
-      Inner Text is: ${JSON.stringify(textArray)}`;
-    };
-    const template = html`
-      <axa-table-sortable
-        onclick="onCallbackClick(arguments[0])"
-        innerscroll="500"
-        model="${JSON.stringify(model)}"
-      >
-      </axa-table-sortable>
-      <div id="renderArea"></div>
-    `;
-    render(template, wrapper);
-    return wrapper;
-  })
-  .add(
-    'Table Sortable - maxheight',
-    () => `
-      <axa-table-sortable
-        maxheight="160"
-        innerscroll="500"
-        model='${JSON.stringify(model)}'>
-      </axa-table-sortable>
-      `
+      const innerscroll = text('innerscroll', '');
+      const maxheight = text('maxheight', '');
+
+      const template = html`
+        <axa-table-sortable innerscroll="${innerscroll}" maxheight="${maxheight}" model='${JSON.stringify(model)}'></axa-table-sortable>
+      `;
+
+      render(template, wrapper);
+      return wrapper;
+    }
   );
