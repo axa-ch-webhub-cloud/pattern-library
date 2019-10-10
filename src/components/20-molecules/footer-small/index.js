@@ -20,16 +20,12 @@ class AXAFooterSmall extends InlineStyles {
 
   static get properties() {
     return {
-      languageItems: { type: Array },
-      disclaimerItems: { type: Array },
       dynamic: { type: Boolean },
     };
   }
 
   constructor() {
     super();
-    this.languageItems = [];
-    this.disclaimerItems = [];
     this.dynamic = false;
     this.onLanguageClick = () => {};
     this.onDisclaimerClick = () => {};
