@@ -86,10 +86,32 @@ class AXAFooter extends InlineStyles {
     // ITEM -> add item to column 1
     // ITEM -> add item to column 1
 
-    const childrenArr = Array.prototype.slice.call(this.children);
+    const allChildrenWithSlotAttribute = [];
+    function findThatGreedyBastard(rawNode) {
+      // debugger;
+      if (typeof rawNode.hasAttribute === 'function') {
+        if (rawNode.hasAttribute('slot')) {
+          allChildrenWithSlotAttribute.push(rawNode);
+        }
+        if (rawNode.hasChildNodes()) {
+          const children = Array.prototype.slice.call(rawNode.childNodes);
+          children.forEach(ch => {
+            findThatGreedyBastard(ch);
+          });
+        }
+      }
+    }
 
-    const filter = criteria => child =>
-      child.getAttribute('slot').includes(criteria);
+    const rawChildren = Array.prototype.slice.call(this.children);
+    rawChildren.forEach(rawNode => findThatGreedyBastard(rawNode));
+    console.log('all', allChildrenWithSlotAttribute);
+
+    const childrenArr = allChildrenWithSlotAttribute;
+
+    const filter = criteria => child => {
+      // debugger;
+      return child.getAttribute('slot').includes(criteria);
+    };
 
     const noHeaderFilter = criteria => child => {
       const { nodeName } = child;
