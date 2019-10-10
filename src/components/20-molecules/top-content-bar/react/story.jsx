@@ -1,5 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+
+import { text, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
 import Readme from '../README.md';
@@ -7,44 +9,39 @@ import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 import wrap from '../../../../demo/react/utils/wrap-render-react';
 
+const variantOptions = {
+  none: '',
+  warning: 'warning',
+}
+
 storiesOf('Molecules/Top content bar/React', module)
   .addDecorator(withNoBorder)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   /* Default */
-  .add('Top content bar - default', () => {
-    return wrap(
-      <AXATopContentBar href="http://www.axa.ch" ctatext="Go to axa.ch">
-        Default
-      </AXATopContentBar>
-    );
-  })
+  .add('Top content bar', () => {
 
-  .add('Top content bar - variant: secondary', () => {
+    const ctatext = text('ctatext', '');
+    const variant = select('variant', variantOptions, '')
+    const href = text('href', '');
+    const textValue = text('Text', 'Undefined flighting object detected in your region. People are paniking. Stay calm');
+    const link = text('Add axa-link', '');
+
     return wrap(
       <AXATopContentBar
-        href="http://www.axa.ch"
-        ctatext="Go to axa.ch"
-        variant="warning"
-      >
-        warning
-      </AXATopContentBar>
-    );
-  })
-
-  .add('Top content bar - icon onClick', () => {
-    return wrap(
-      <AXATopContentBar
-        ctatext="Click me"
+        variant={variant}
+        href={href}
+        ctatext={ctatext}
         onClick={() => {
           // eslint-disable-next-line no-alert, no-undef
           alert('on AXATopContentBar click');
         }}
       >
-        Any text here
+        {textValue} {link ? <axa-link>{link}</axa-link> : ''}
       </AXATopContentBar>
     );
   });
