@@ -22,13 +22,13 @@ storiesOf('Molecules/Top content bar', module)
   .add(
     'Top content bar',
     () => {
+      const wrapper = document.createElement('div');
 
       const ctatext = text('ctatext', '');
       const variant = select('variant', variantOptions, '')
       const href = text('href', '');
       const textValue = text('Text', 'Undefined flighting object detected in your region. People are paniking. Stay calm');
       const link = text('Add axa-link', '');
-      const wrapper = document.createElement('div');
 
       const template = html`
         <axa-top-content-bar variant="${variant}" href="${href}" ctatext="${ctatext}">
