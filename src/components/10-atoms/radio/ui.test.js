@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Radio - basic functionality').page(
-  `${host}/iframe.html?id=atoms-radio--radio-default`
+  `${host}/iframe.html?id=atoms-radio-demos--radio-default`
 );
 
 test('should render radio button', async t => {
