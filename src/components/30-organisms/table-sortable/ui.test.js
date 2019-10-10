@@ -4,7 +4,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table Sortable - basic functionality')
   .page(
-    `${host}/iframe.html?id=organisms-table-sortable--table-sortable-default`
+    `${host}/iframe.html?id=organisms-table-sortable--table-sortable`
   )
   .beforeEach(async t => {
     await t.maximizeWindow();
@@ -164,7 +164,7 @@ test('should add a fix css class when sorted is clicked', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=organisms-table-sortable--table-sortable-innerscroll`
+  `${host}/iframe.html?id=organisms-table-sortable--table-sortable&knob-innerscroll=500`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -223,7 +223,7 @@ test('should sort also when innerscroll is set ', async t => {
 });
 
 fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=organisms-table-sortable--table-sortable-maxheight`
+  `${host}/iframe.html?id=organisms-table-sortable--table-sortable&knob-innerscroll=500&knob-maxheight=160`
 );
 
 test('should sort also when maxheight is set ', async t => {
@@ -287,7 +287,7 @@ test('should sort also when maxheight is set ', async t => {
 });
 
 fixture('Table Sortable - on row click').page(
-  `${host}/iframe.html?id=organisms-table-sortable--table-sortable-on-row-click`
+  `${host}/iframe.html?id=organisms-table-sortable-demos--table-sortable-on-row-click`
 );
 
 test('should react to click on row', async t => {
