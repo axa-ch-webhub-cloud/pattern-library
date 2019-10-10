@@ -133,10 +133,7 @@ class AXAFooterSmall extends InlineStyles {
                 )}
               </ul>
               <div class="js-footer-small__copyright">
-                <slot
-                  name="copyright"
-                  class="js-footer-small__copyright"
-                ></slot>
+                <slot name="copyright"></slot>
               </div>
             </div>
           </div>
