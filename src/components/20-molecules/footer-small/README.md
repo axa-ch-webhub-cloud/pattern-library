@@ -1,6 +1,6 @@
 # Footer - Small
 
-This is the small version of the footer. If you use multiple footers, this one should always appear at the very bottom.
+This is the small version of the footer. This footer belongs to the very bottom of the webpage.
 
 ## Usage
 
@@ -15,55 +15,73 @@ npm install @axa-ch/footer-small
 Create a React-ified small footer with the createElement function from your React version and then use it like this:
 
 ```js
-import { createElement } from 'react';
+import React, { createElement, useState } from 'react';
 import createAXAFooterSmallReact from '@axa-ch/footer-small/lib/index.react';
 
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
-export default AXAFooterSmallReact;
-```
+const DemoFooterSmall = () => {
+  const [activeLanguage, setActiveLanguageIndex] = useState('-');
 
-```js
-const languages = [
-  { key: 'de', text: 'DE' },
-  { key: 'fr', text: 'FR' },
-  { key: 'it', text: 'IT' },
-  { key: 'en', text: 'EN' },
-];
+  const [disclaimerChange, setDisclaimerIndex] = useState('-');
 
-const disclaimer = [
-  { key: 'tos', text: 'Terms of use' },
-  { key: 'privacy', text: 'Data protection' },
-];
+  const handleAXAFooterLanguageClicked = language => {
+    setActiveLanguageIndex(language);
+  };
 
-const handleAXAFooterLanguageChange = language => {
-  console.log(language); // EN, DE, ...
+  const handleAXAFooterDisclaimerClicked = disclaimer => {
+    setDisclaimerIndex(disclaimer);
+  };
+
+  return (
+    <div>
+      <p>Language - Index Clicked: {activeLanguage}</p>
+      <p>Disclaimer - Index Clicked: {disclaimerChange}</p>
+      <AXAFooterSmallReact
+        onLanguageClick={handleAXAFooterLanguageClicked}
+        onDisclaimerClick={handleAXAFooterDisclaimerClicked}
+        dynamic
+      >
+        <a
+          slot="language-item"
+          className="m-footer-small__link--active"
+          href="https://axa.ch/de/privatkunden.html"
+        >
+          DE
+        </a>
+        <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
+          FR
+        </a>
+        <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
+          IT
+        </a>
+        <a slot="language-item" href="https://axa.ch/en/private-customers.html">
+          EN
+        </a>
+        <a
+          slot="disclaimer-item"
+          href="https://axa.ch/en/information/terms-of-use.html"
+        >
+          Terms of use
+        </a>
+        <a
+          slot="disclaimer-item"
+          href="https://axa.ch/en/information/data-protection.html"
+        >
+          Data protection
+        </a>
+        <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
+      </AXAFooterSmallReact>
+    </div>
+  );
 };
-
-const handleAXAFooterDisclaimerChange = disclaimer => {
-  console.log(disclaimer); // Terms of use, Data protection
-};
-
-return (
-  <div>
-    <AXAFooterSmallReact
-      languageItems={languages}
-      disclaimerItems={disclaimer}
-      onLanguageChange={handleAXAFooterLanguageChange}
-      onDisclaimerChange={handleAXAFooterDisclaimerChange}
-      activeLanguage="de"
-      copyrightText="© 2019 AXA Insurance Ltd."
-      dynamic
-    />
-  </div>
-);
 ```
 
 ### Pure HTML pages
 
 #### Static approach
 
-If want a footer with static links, that will route to wherever the `href` attributes are pointing:
+If you want a footer with static links, that will automatically route to wherever the `href` attributes are pointing:
 
 ```html
 <!DOCTYPE html>
@@ -75,42 +93,38 @@ If want a footer with static links, that will route to wherever the `href` attri
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-footer-small
-      copyrighttext="© 2019 AXA Insurance Ltd."
-      activelanguage="de"
-    ></axa-footer-small>
+    <axa-footer-small>
+      <a
+        slot="language-item"
+        href="https://axa.ch/de/privatkunden.html"
+        class="m-footer-small__link--active"
+      >
+        DE
+      </a>
+      <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
+        FR
+      </a>
+      <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
+        IT
+      </a>
+      <a slot="language-item" href="https://axa.ch/en/private-customers.html">
+        EN
+      </a>
+      <a
+        slot="disclaimer-item"
+        href="https://axa.ch/en/information/terms-of-use.html"
+      >
+        Terms of use
+      </a>
+      <a
+        slot="disclaimer-item"
+        href="https://axa.ch/en/information/data-protection.html"
+      >
+        Data protection
+      </a>
+      <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
+    </axa-footer-small>
 
-    <script>
-      const languages = JSON.stringify([
-        { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-        { key: 'fr', text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
-        {
-          key: 'it',
-          text: 'IT',
-          link: 'https://axa.ch/it/clienti-privati.html',
-        },
-        {
-          key: 'en',
-          text: 'EN',
-          link: 'https://axa.ch/en/private-customers.html',
-        },
-      ]);
-
-      const disclaimer = JSON.stringify([
-        {
-          text: 'Terms of use',
-          link: 'https://axa.ch/en/information/terms-of-use.html',
-        },
-        {
-          text: 'Data protection',
-          link: 'https://axa.ch/en/information/data-protection.html',
-        },
-      ]);
-
-      const footer = document.querySelector('axa-footer-small');
-      footer.setAttribute('languageitems', languages);
-      footer.setAttribute('disclaimeritems', disclaimer);
-    </script>
     <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
   </body>
 </html>
@@ -130,57 +144,97 @@ This approach will not redirect the user automatically, if he/she clicks on a li
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-footer-small
-      copyrighttext="© 2019 AXA Insurance Ltd."
-      activelanguage="de"
-      dynamic
-    ></axa-footer-small>
-
     <script>
-      const languages = JSON.stringify([
-        { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-        { key: 'fr', text: 'FR', link: 'https://axa.ch/fr/particuliers.html' },
-        {
-          key: 'it',
-          text: 'IT',
-          link: 'https://axa.ch/it/clienti-privati.html',
-        },
-        {
-          key: 'en',
-          text: 'EN',
-          link: 'https://axa.ch/en/private-customers.html',
-        },
-      ]);
+      const wrapper = document.createElement('div');
+      const activeLanguage = document.createElement('p');
+      activeLanguage.id = 'active-language';
+      activeLanguage.innerText = `Language - Index Clicked: ${selectedLanguageKey}`;
+      const clickedDisclaimer = document.createElement('p');
+      clickedDisclaimer.id = 'clicked-disclaimer';
+      clickedDisclaimer.innerText = `Disclaimer - Index Clicked: -`;
 
-      const disclaimer = JSON.stringify([
-        {
-          key: 'tos',
-          text: 'Terms of use',
-          link: 'https://axa.ch/en/information/terms-of-use.html',
-        },
-        {
-          key: 'privacy',
-          text: 'Data protection',
-          link: 'https://axa.ch/en/information/data-protection.html',
-        },
-      ]);
+      const footerSmall = document.createElement('axa-footer-small');
+      footerSmall.dynamic = true;
 
-      const footer = document.querySelector('axa-footer-small');
-      footer.setAttribute('languageitems', languages);
-      footer.setAttribute('disclaimeritems', disclaimer);
+      const deLanguageLink = document.createElement('a');
+      deLanguageLink.slot = 'language-item';
+      deLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+      deLanguageLink.classList.add('m-footer-small__link--active');
+      deLanguageLink.textContent = 'DE';
 
-      footer.addEventListener('axa-language-change', e =>
-        console.log(e.detail)
-      );
+      const frLanguageLink = document.createElement('a');
+      frLanguageLink.slot = 'language-item';
+      frLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+      frLanguageLink.textContent = 'FR';
 
-      footer.addEventListener('axa-disclaimer-change', e =>
-        console.log(e.detail)
-      );
+      const itLanguageLink = document.createElement('a');
+      itLanguageLink.slot = 'language-item';
+      itLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+      itLanguageLink.textContent = 'IT';
+
+      const enLanguageLink = document.createElement('a');
+      enLanguageLink.slot = 'language-item';
+      enLanguageLink.href = 'https://axa.ch/de/privatkunden.html';
+      enLanguageLink.textContent = 'EN';
+
+      const termsOfUseLink = document.createElement('a');
+      termsOfUseLink.slot = 'disclaimer-item';
+      termsOfUseLink.href = 'https://axa.ch/en/information/terms-of-use.html';
+      termsOfUseLink.textContent = 'Terms of use';
+
+      const dataProtectionLink = document.createElement('a');
+      dataProtectionLink.slot = 'disclaimer-item';
+      dataProtectionLink.href =
+        'https://axa.ch/en/information/data-protection.html';
+      dataProtectionLink.textContent = 'Data protection';
+
+      const copyRightText = document.createElement('span');
+      copyRightText.slot = 'copyright';
+      copyRightText.textContent = '&copy; 2019 AXA Insurance Ltd.';
+
+      footerSmall.appendChild(deLanguageLink);
+      footerSmall.appendChild(frLanguageLink);
+      footerSmall.appendChild(itLanguageLink);
+      footerSmall.appendChild(enLanguageLink);
+      footerSmall.appendChild(termsOfUseLink);
+      footerSmall.appendChild(dataProtectionLink);
+      footerSmall.appendChild(copyRightText);
+
+      wrapper.appendChild(activeLanguage);
+      wrapper.appendChild(clickedDisclaimer);
+      wrapper.appendChild(footerSmall);
+
+      footerSmall.addEventListener('axa-language-click', languageEvent => {
+        const languageResult = document.getElementById('active-language');
+        languageResult.innerText = `Language - Index Clicked: ${
+          languageEvent.detail
+        }`;
+      });
+
+      footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
+        const clickedDisclaimers = document.getElementById(
+          'clicked-disclaimer'
+        );
+        clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${
+          disclaimerEvent.detail
+        }`;
+      });
+
+      document.querySelector('body').appendChild(wrapper);
     </script>
+
     <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
   </body>
 </html>
 ```
+
+## How-To
+
+**Highlight a language (mark it as `active`)?**
+
+Set the class `.m-footer-small__link--active` to the language item children, that you want to highlight. Example:
+
+`<a slot="language-item" href="https://axa.ch/de/privatkunden.html" class="m-footer-small__link--active">`
 
 ## Properties
 
@@ -188,34 +242,16 @@ This approach will not redirect the user automatically, if he/she clicks on a li
 
 Add this boolean attribute if you want to have control over what happens if a user clicks one of the language- or disclaimer-items.
 
-### languageitems & disclaimeritems
+### [React exclusive] onLanguageClick
 
-An array of items that represents the language- / disclaimer-section.
+Add a callback method that should run as soon as a language link gets clicked.
 
-`key`: The value that will be yielded, if the `dynamic` property is set and a user clicks on a link.
+### [React exclusive] onDisclaimerClick
 
-```js
-const languages = [
-  { key: string, text: string, link: string },
-  ...
-];
-```
-
-```js
-const disclaimers = [
-  { key: string, text: string, link: string },
-  ...
-];
-```
-
-### copyrighttext
-
-A string representing the text in the copyright section.
-
-### activelanguage
-
-A string representing the key of the language that should be highlighted in the footer. Equivalent to the value of a `text` property in an item of the `languageitems` attribute.
+Add a callback method that should run as soon as a disclaimer link gets clicked.
 
 ## Migration Notes
 
-From 1.x to 2.x. the necessary "key" property on the items was introduced. Not providing this key will break your component after upgrading.
+From 1.x to 2.x: [Do not bother doing this, you should go straight to the 2.x to 3.x migration part and use the latest version] The necessary "key" property on the items was introduced. Not providing this key will break your component after upgrading.
+
+From 2.x to 3.x: Childfragments replaced the JSON structure. This is a complete overhaul and you need to start from scratch. The biggest change apart from that will be, that `onLanguageClick` and `onDisclaimerClick` now fire the index of the element, instead of a name or a key.

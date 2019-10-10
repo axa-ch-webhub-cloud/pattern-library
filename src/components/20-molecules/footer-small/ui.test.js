@@ -49,10 +49,12 @@ test('should render disclaimer section', async t => {
 });
 
 test('should have a copyright section', async t => {
-  const copyright = Selector(() =>
-    document
-      .querySelector(`axa-footer-small`)
-      .shadowRoot.querySelector('div[class*="js-footer-small__copyright"]')
+  const copyright = Selector(
+    () =>
+      document
+        .querySelector(`axa-footer-small`)
+        .shadowRoot.querySelector('slot[name="copyright"]')
+        .assignedNodes()[0]
   );
   await t.expect(copyright.exists).ok();
   await t.expect(copyright.textContent).eql('© 2019 AXA Insurance Ltd.');
@@ -71,19 +73,23 @@ test('should have a link in the href attribute', async t => {
     .eql('https://axa.ch/de/privatkunden.html');
 });
 
-fixture('Footer Small - Dynamic links').page(
+fixture('Footer Small - Dynamic Links Demo').page(
   `${host}/iframe.html?id=molecules-footer-small-demos--footer-small-dynamic-links`
 );
 
-test("should have 'javascript:void(0)' the href attribute", async t => {
-  const german = Selector(() =>
-    document
-      .querySelector(`axa-footer-small`)
-      .shadowRoot.querySelector('.m-footer-small__list')
-  )
-    .find('a')
-    .withText('DE');
-  await t.expect(german.getAttribute('href')).eql(undefined);
+test('should update indices on click', async t => {
+  const germanLanguage = Selector(() =>
+    document.querySelector(`axa-footer-small`).shadowRoot.querySelector('a')
+  );
+
+  const lastClickedLanguageIndex = Selector('#active-language');
+  await t
+    .expect(lastClickedLanguageIndex.textContent)
+    .eql('Language - Index Clicked: -');
+  await t.click(germanLanguage);
+  await t
+    .expect(lastClickedLanguageIndex.textContent)
+    .eql('Language - Index Clicked: 0');
 });
 
 fixture('Footer Small - React smoke test').page(
@@ -91,10 +97,12 @@ fixture('Footer Small - React smoke test').page(
 );
 
 test('should render react axa footer small', async t => {
-  const copyright = Selector(() =>
-    document
-      .querySelector(`axa-footer-small`)
-      .shadowRoot.querySelector('div[class*="js-footer-small__copyright"]')
+  const copyright = Selector(
+    () =>
+      document
+        .querySelector(`axa-footer-small`)
+        .shadowRoot.querySelector('slot[name="copyright"]')
+        .assignedNodes()[0]
   );
   await t.expect(copyright.exists).ok();
   await t.expect(copyright.textContent).eql('© 2019 AXA Insurance Ltd.');

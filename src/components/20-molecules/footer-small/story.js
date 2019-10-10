@@ -11,39 +11,36 @@ storiesOf('Molecules/Footer Small', module)
       sidebar: Readme,
     },
   })
-
-  .add('Footer Small', () => {
-    const languages = JSON.stringify([
-      { key: 'de', text: 'DE', link: 'https://axa.ch/de/privatkunden.html' },
-      {
-        key: 'fr',
-        text: 'FR',
-        link: 'https://axa.ch/fr/particuliers.html',
-      },
-      {
-        key: 'it',
-        text: 'IT',
-        link: 'https://axa.ch/it/clienti-privati.html',
-      },
-      {
-        key: 'en',
-        text: 'EN',
-        link: 'https://axa.ch/en/private-customers.html',
-      },
-    ]);
-
-    const disclaimer = JSON.stringify([
-      {
-        key: 'tos',
-        text: 'Terms of use',
-        link: 'https://axa.ch/en/information/terms-of-use.html',
-      },
-      {
-        key: 'privacy',
-        text: 'Data protection',
-        link: 'https://axa.ch/en/information/data-protection.html',
-      },
-    ]);
-
-    return `<axa-footer-small activelanguage="de" languageitems='${languages}' disclaimeritems='${disclaimer}' copyrighttext="© 2019 AXA Insurance Ltd."></axa-footer-small>`;
-  });
+  .add(
+    'Footer Small',
+    () => `<axa-footer-small>
+      <a slot="language-item" href="https://axa.ch/de/privatkunden.html" class="m-footer-small__link--active">
+        DE
+      </a>
+      <a
+        slot="language-item"
+        href="https://axa.ch/fr/particuliers.html"
+      >
+        FR
+      </a>
+      <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
+        IT
+      </a>
+      <a slot="language-item" href="https://axa.ch/en/private-customers.html">
+        EN
+      </a>
+      <a
+        slot="disclaimer-item"
+        href="https://axa.ch/en/information/terms-of-use.html"
+      >
+        Terms of use
+      </a>
+      <a
+        slot="disclaimer-item"
+        href="https://axa.ch/en/information/data-protection.html"
+      >
+        Data protection
+      </a>
+      <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
+    </axa-footer-small>`
+  );

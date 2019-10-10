@@ -1,20 +1,10 @@
 import React from 'react';
 
-export interface Item {
-  text: string;
-  key: string;
-  link?: string;
-}
-
 export interface AXAFooterSmallProps {
-  languageItems: Item[];
-  disclaimerItems: Item[];
-  copyrightText: string;
-  activeLanguage?: string;
-  onLanguageChange: (language: string) => void;
+  onLanguageClick?: (language: string) => void;
+  onDisclaimerClick?: (language: string) => void;
   className?: string;
-
-  // set to true if want to use onLanguageChange/onDisclaimerChange callbacks
+  // set to true if want to use onLanguageClick/onDisclaimerClick callbacks
   dynamic?: boolean;
 }
 
