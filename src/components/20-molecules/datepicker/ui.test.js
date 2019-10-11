@@ -201,22 +201,20 @@ test('datepicker should behave correctly when controlled', async t => {
 });
 
 fixture('Datepicker React inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-with-inputfield-as-react-component`
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should fire onDateChange callback on valid user input', async t => {
   const datepicker = await Selector(() =>
-    document.querySelector(`#datepicker-react-inputfield`)
+    document.querySelector(`#datepicker-react`)
   );
   await t.setTestSpeed(0.5);
   await t.expect(datepicker.exists).ok();
 
   // typed-in text with valid date should trigger onDateChange...
-  await t.typeText(
-    `#datepicker-react-inputfield .js-datepicker__input`,
-    '28.2.2020',
-    { replace: true }
-  );
+  await t.typeText(`#datepicker-react .js-datepicker__input`, '28.2.2020', {
+    replace: true,
+  });
 
   await t
     .wait(50 /* allow for DOM to stabilize */)
@@ -225,14 +223,14 @@ test('should fire onDateChange callback on valid user input', async t => {
 });
 
 fixture('Datepicker React inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-with-inputfield-as-react-component`
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
 );
 
 test('should react to programmatic date property changes', async t => {
   // defaultValue is respected
   const getInputValue = ClientFunction(() => {
     const inputNode = document.querySelector(
-      `#datepicker-react-inputfield .js-datepicker__input`
+      `#datepicker-react .js-datepicker__input`
     );
     return inputNode.value;
   });
@@ -241,7 +239,7 @@ test('should react to programmatic date property changes', async t => {
 
   // setting 'date' property works and can be read back
   const setDate = ClientFunction(() => {
-    const domNode = document.querySelector(`#datepicker-react-inputfield`);
+    const domNode = document.querySelector(`#datepicker-react`);
     domNode.date = new Date('2019-04-27');
     return `${domNode.date}`;
   });
@@ -251,10 +249,10 @@ test('should react to programmatic date property changes', async t => {
   // now drop down the datepicker and verify it is open
   await t
     .wait(50 /* allow for setDate-derived re-rendering time */)
-    .click('#datepicker-react-inputfield .m-datepicker__input-button');
+    .click('#datepicker-react .m-datepicker__input-button');
 
   const datePickerIsOpen = ClientFunction(() => {
-    const domNode = document.querySelector(`#datepicker-react-inputfield`);
+    const domNode = document.querySelector(`#datepicker-react`);
     return domNode.open;
   });
 
@@ -265,9 +263,7 @@ test('should react to programmatic date property changes', async t => {
 
   // check month, year, day meet expectations
   const datepickerMonthDropdown = await Selector(() =>
-    document.querySelector(
-      `#datepicker-react-inputfield .js-datepicker__dropdown-month`
-    )
+    document.querySelector(`#datepicker-react .js-datepicker__dropdown-month`)
   );
 
   await t
@@ -275,9 +271,7 @@ test('should react to programmatic date property changes', async t => {
     .contains('{"selected":true,"name":"April","value":"3"}');
 
   const datepickerYearDropdown = await Selector(() =>
-    document.querySelector(
-      `#datepicker-react-inputfield .js-datepicker__dropdown-year`
-    )
+    document.querySelector(`#datepicker-react .js-datepicker__dropdown-year`)
   );
 
   await t
@@ -286,7 +280,7 @@ test('should react to programmatic date property changes', async t => {
 
   const getSelectedDay = ClientFunction(
     () =>
-      document.querySelector(`#datepicker-react-inputfield
+      document.querySelector(`#datepicker-react
  .js-datepicker__calendar .m-datepicker__calendar-selected-day`).innerText
   );
 
@@ -294,25 +288,21 @@ test('should react to programmatic date property changes', async t => {
 });
 
 fixture('Datepicker React empty inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-with-empty-inputfield-as-react-component`
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should allow month change from default date', async t => {
   const datepicker = await Selector(() =>
-    document.querySelector(`#datepicker-empty-react-inputfield`)
+    document.querySelector(`#datepicker-react`)
   );
   await t.setTestSpeed(0.5);
   await t.expect(datepicker.exists).ok();
 
   // open it
-  await t.click(
-    '#datepicker-empty-react-inputfield .m-datepicker__input-button'
-  );
+  await t.click('#datepicker-react .m-datepicker__input-button');
 
   const datePickerIsOpen = ClientFunction(() => {
-    const domNode = document.querySelector(
-      `#datepicker-empty-react-inputfield`
-    );
+    const domNode = document.querySelector(`#datepicker-react`);
     return domNode.open;
   });
 
@@ -324,20 +314,14 @@ test('should allow month change from default date', async t => {
   // verify datepicker displays current date:
 
   // open month dropdown
-  await t.click(
-    '#datepicker-empty-react-inputfield .js-datepicker__dropdown-month'
-  );
+  await t.click('#datepicker-react .js-datepicker__dropdown-month');
 
   // commit current date
-  await t
-    .wait(50)
-    .click(`#datepicker-empty-react-inputfield .js-datepicker__button-ok`);
+  await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
 
   const getInputValue = ClientFunction(
     () =>
-      document.querySelector(
-        `#datepicker-empty-react-inputfield .js-datepicker__input`
-      ).value
+      document.querySelector(`#datepicker-react .js-datepicker__input`).value
   );
 
   const d = new Date();
@@ -354,9 +338,7 @@ test('should allow month change from default date', async t => {
   // select previous (not January) or next (January) month and commit:
 
   // open it
-  await t
-    .wait(50)
-    .click('#datepicker-empty-react-inputfield .m-datepicker__input-button');
+  await t.wait(50).click('#datepicker-react .m-datepicker__input-button');
 
   await t
     .wait(50 /* allow for DOM to stabilize */)
@@ -364,9 +346,7 @@ test('should allow month change from default date', async t => {
     .ok();
 
   // open month dropdown
-  await t.click(
-    '#datepicker-empty-react-inputfield .js-datepicker__dropdown-month'
-  );
+  await t.click('#datepicker-react .js-datepicker__dropdown-month');
 
   const JANUARY = 0;
   const newMonth = currentMonth + (currentMonth === JANUARY ? 1 : -1);
@@ -374,14 +354,10 @@ test('should allow month change from default date', async t => {
   // click on new month
   await t
     .wait(50)
-    .click(
-      `#datepicker-empty-react-inputfield .js-dropdown__button[data-index="${newMonth}"]`
-    );
+    .click(`#datepicker-react .js-dropdown__button[data-index="${newMonth}"]`);
 
   // commit new date
-  await t
-    .wait(50)
-    .click(`#datepicker-empty-react-inputfield .js-datepicker__button-ok`);
+  await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
 
   // verify committed date meets expectation
   const newDateString = `.${newMonth + 1}.${d.getFullYear()}`;
