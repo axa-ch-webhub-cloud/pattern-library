@@ -1,5 +1,4 @@
 /* global document */
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { storiesOf } from '@storybook/html';
 import './index';
@@ -13,7 +12,6 @@ storiesOf('Organisms/Footer', module)
       sidebar: Readme,
     },
   })
-
   .add(
     'Footer',
     () =>

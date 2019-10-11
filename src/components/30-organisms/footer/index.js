@@ -13,12 +13,6 @@ import InlineStyles from '../../../utils/inline-styles';
 
 const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-const _listElementHasNoContent = label => {
-  // Second part of statement is an IE11 workaround, because a slotted
-  // empty node is not empty on IE11 (with the ShadyCss polyfill).
-  return !label || label.nodeType === 3;
-};
-
 const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
@@ -68,41 +62,63 @@ class AXAFooter extends InlineStyles {
     this.inlineStyles('resetHeadingCss');
   }
 
-  prepareSlotsWithIndexes() {
-    // set slotted numbers automatically for all titles and all items for each column
-    // every title followed with items will be a column (DOM sequence defines order)
-    // There is no wrapper for the columns but a counter that controls which
-    // column to use
-    // EXAMPLE IN PSEUDO DOM:
-    //
-    // TITLE* -> start column 0
-    // ITEM -> add item to column 0
-    // ITEM -> add item to column 0
-    // ITEM -> add item to column 0
-    // ITEM -> add item to column 0
-    //
-    // TITLE* -> start column 1
-    // ITEM -> add item to column 1
-    // ITEM -> add item to column 1
-    // ITEM -> add item to column 1
+  _revealChildrenWithSlotAttribute(rawNode, slotElements) {
+    if (typeof rawNode.hasAttribute === 'function') {
+      if (rawNode.hasAttribute('slot')) {
+        slotElements.push(rawNode);
+      }
+      if (rawNode.hasChildNodes()) {
+        const children = Array.prototype.slice.call(rawNode.childNodes);
+        children.forEach(ch => {
+          this._revealChildrenWithSlotAttribute(ch, slotElements);
+        });
+      }
+    }
+  }
 
-    const childrenArr = Array.prototype.slice.call(this.children);
+  /**
+   * Takes all the child elements and extracts all the ones that come with a
+   * slot-attribute. Those elements will then be changed to be distinguishable
+   * from each other. Each block of links will need a title, so that the block will be displayed.
+   *
+   * Each title marks the beginning of a new column:
+   *
+   * TITLE -> start column 0
+   * ITEM -> add item to column 0
+   * ITEM -> add item to column 0
+   * ITEM -> add item to column 0
+   * ITEM -> add item to column 0
+   *
+   * TITLE* -> start column 1
+   * ITEM -> add item to column 1
+   * ITEM -> add item to column 1
+   * ITEM -> add item to column 1
+   */
+  _prepareSlotsWithIndexes() {
+    const rawChildren = Array.prototype.slice.call(this.children);
+
+    const allChildrenWithSlotAttribute = [];
+    rawChildren.forEach(rawNode =>
+      this._revealChildrenWithSlotAttribute(
+        rawNode,
+        allChildrenWithSlotAttribute
+      )
+    );
+    this.innerHTML = '';
+    allChildrenWithSlotAttribute.forEach(c => this.appendChild(c));
 
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
 
-    const noHeaderFilter = criteria => child => {
-      const { nodeName } = child;
-      return (
-        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
-      );
-    };
+    const noHeaderFilter = criteria => child =>
+      filter(criteria)(child) &&
+      !HEADINGS.includes(child.nodeName.toLowerCase());
 
-    const onlyColumns = childrenArr.filter(
+    const onlyColumns = allChildrenWithSlotAttribute.filter(
       // only accepts those slots that are columns
       filter('column-')
     );
-    const onlySocials = childrenArr.filter(
+    const onlySocials = allChildrenWithSlotAttribute.filter(
       // only accepts those slots that are social columns
       noHeaderFilter('social-')
     );
@@ -171,7 +187,7 @@ class AXAFooter extends InlineStyles {
     });
 
     if (this.slotsNotPrepared) {
-      this.prepareSlotsWithIndexes();
+      this._prepareSlotsWithIndexes();
       this.slotsNotPrepared = false;
     }
 
@@ -242,19 +258,6 @@ class AXAFooter extends InlineStyles {
         </axa-container>
       </footer>
     `;
-  }
-
-  updated() {
-    this._removeEmptyListElements();
-  }
-
-  _removeEmptyListElements() {
-    this.shadowRoot.querySelectorAll('.js-footer_list-item').forEach(el => {
-      const label = el.querySelector('slot').assignedNodes()[0];
-      if (_listElementHasNoContent(label)) {
-        el.style.display = 'none';
-      }
-    });
   }
 
   _handleAccordionClick = (index, ev) => {
