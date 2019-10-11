@@ -116,8 +116,8 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get getCounterText() {
-    const minusOne = this.charsLeft;
-    const userCharsLeft = minusOne < 0 ? 0 : minusOne;
+    const { charsLeft } = this;
+    const userCharsLeft = charsLeft < 0 ? 0 : charsLeft;
 
     if (this.counter && this.isPlaceholderInCounter) {
       return this.counter.replace(/##.*##/, userCharsLeft - 1);
