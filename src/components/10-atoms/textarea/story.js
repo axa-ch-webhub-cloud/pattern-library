@@ -48,3 +48,42 @@ storyTextarea.add('Textarea', () => {
   render(template, wrapper);
   return wrapper;
 });
+
+
+
+storyTextarea.add('Textarea maxLength added later', () => {
+  const label = text('label*', '');
+  const name = text('name*', '');
+  const refId = text('refId', '');
+  const placeholder = text('placeholder', '');
+  const error = text('error', '');
+  const checkMark = boolean('checkmark', false);
+  const disabled = boolean('disabled', false);
+  const required = boolean('required', false);
+  const invalid = boolean('invalid', false);
+
+  const wrapper = document.createElement('div');
+  const template = html`
+    <axa-textarea
+      refid="${refId}"
+      name="${name}"
+      label="${label}"
+      placeholder="${placeholder}"
+      error="${error}"
+      ?checkmark="${checkMark}"
+      ?disabled="${disabled}"
+      ?required="${required}"
+      ?invalid="${invalid}"
+    ></axa-textarea>
+  `;
+
+  setTimeout(() => {
+
+    document.querySelector('axa-textarea').setAttribute('counter', 'Still ##counter## left');
+    document.querySelector('axa-textarea').setAttribute('maxLength', 100);
+    document.querySelector('axa-textarea').setAttribute('countermax', 'dini mueter');
+  }, 2000);
+
+  render(template, wrapper);
+  return wrapper;
+});
