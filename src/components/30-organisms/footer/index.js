@@ -109,17 +109,12 @@ class AXAFooter extends InlineStyles {
 
     const childrenArr = allChildrenWithSlotAttribute;
 
-    const filter = criteria => child => {
-      // debugger;
-      return child.getAttribute('slot').includes(criteria);
-    };
+    const filter = criteria => child =>
+      child.getAttribute('slot').includes(criteria);
 
-    const noHeaderFilter = criteria => child => {
-      const { nodeName } = child;
-      return (
-        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
-      );
-    };
+    const noHeaderFilter = criteria => child =>
+      filter(criteria)(child) &&
+      !HEADINGS.includes(child.nodeName.toLowerCase());
 
     const onlyColumns = childrenArr.filter(
       // only accepts those slots that are columns
