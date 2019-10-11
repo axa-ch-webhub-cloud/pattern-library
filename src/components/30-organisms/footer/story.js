@@ -12,7 +12,6 @@ storiesOf('Organisms/Footer', module)
       sidebar: Readme,
     },
   })
-
   .add(
     'Footer',
     () =>
