@@ -81,7 +81,7 @@ storyTextarea.add('Textarea maxLength added later', () => {
 
     document.querySelector('axa-textarea').setAttribute('counter', 'Still ##counter## left');
     document.querySelector('axa-textarea').setAttribute('maxLength', 100);
-    document.querySelector('axa-textarea').setAttribute('countermax', 'dini mueter');
+    document.querySelector('axa-textarea').setAttribute('countermax', 'Max maxLength reached');
   }, 2000);
 
   render(template, wrapper);
