@@ -43,7 +43,6 @@ storiesOf('Molecules/Datepicker/React', module)
     const invaliddatetext = text('invaliddatetext', 'Invalid date');
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
-    const date = new Date('2020-01-25');
     const div = document.createElement('div');
 
     ReactDOM.render(
