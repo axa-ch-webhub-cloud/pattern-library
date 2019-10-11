@@ -1,21 +1,35 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import React, { Fragment } from 'react';
+import { select, withKnobs } from '@storybook/addon-knobs';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import AXATitlePrimary from './AXATitlePrimaryReact';
+import Readme from '../README.md';
 
-storiesOf('Atoms/Title Primary/React', module).add('Title Primary', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <Fragment>
-      <AXATitlePrimary>Title Primary</AXATitlePrimary>
-      <AXATitlePrimary variant="size-2">Title Primary 2</AXATitlePrimary>
-      <AXATitlePrimary variant="size-3">Title Primary 3</AXATitlePrimary>
-      <AXATitlePrimary variant="size-4">Title Primary 4</AXATitlePrimary>
-      <AXATitlePrimary variant="size-5">Title Primary 5</AXATitlePrimary>
-      <AXATitlePrimary variant="size-6">Title Primary 6</AXATitlePrimary>
-    </Fragment>,
-    div
-  );
-  return div;
-});
+const variantOptions = {
+  default: '',
+  'size-1': 'size-1',
+  'size-2': 'size-2',
+  'size-3': 'size-3',
+  'size-4': 'size-4',
+  'size-5': 'size-5',
+  'size-6': 'size-6',
+};
+
+storiesOf('Atoms/Title Primary/React', module)
+  .addDecorator(withKnobs)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+  .add('Title Primary', () => {
+    const variant = select('variant', variantOptions, '')
+
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <AXATitlePrimary variant={variant}>Title Primary</AXATitlePrimary>
+      , div
+    );
+    return div;
+  });

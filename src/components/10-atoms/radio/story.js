@@ -1,75 +1,12 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 
 import Readme from './README.md';
 
-storiesOf('Atoms/Radio', module)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  .add('Radio - default', () => {
-    const root = document.createElement('div');
-    const error = 'Bitte wählen Sie eine Option aus.';
-
-    const handleClick = () => {
-      setTimeout(() => {
-        const atLeastOneChecked = [
-          ...document.querySelectorAll('axa-radio[name="contract"]'),
-        ]
-          .map(radio => radio.checked)
-          .reduce((acc, curr) => acc | curr, 0);
-        document.querySelector('axa-fieldset').error = atLeastOneChecked
-          ? ''
-          : error;
-      }, 0);
-    };
-
-    const template = html`
-      <axa-fieldset error="${error}" @click="${handleClick}" >
-      <axa-radio name="contract" label="Ja,
-      Versicherungsvertrag abschliessen." value="1"></axa-radio>
-      <axa-radio name="contract" label="Ich brauche noch mehr Informationen" value="2"></axa-radio>
-      <axa-radio name="contract" label="Nein, ich möchte keinen Versicherungsvertrag" value="3"></axa-radio>
-      <axa-radio name="contract" label="Nein, ich bin bereits versichert" disabled></<axa-radio>
-      </axa-fieldset>`;
-    render(template, root);
-    return root;
-  })
-  .add(
-    'Radio - button, autowidth',
-    () => `
-  <axa-fieldset horizontal>
-    <axa-radio button name="insurance" label="No, I'm already insured"></axa-radio>
-    <axa-radio button name="insurance" label="No, no need" ></axa-radio>
-    <axa-radio button name="insurance" label="Yes, take out insurance" checked></axa-radio>
-    <axa-radio button name="insurance" label="Yes, call me" disabled></axa-radio>
-  </axa-fieldset>`
-  )
-  .add(
-    'Radio - button, nogap',
-    () => `
-  <axa-fieldset horizontal>
-    <axa-radio button nogap name="insurance" label="No, I'm already insured"></axa-radio>
-    <axa-radio button nogap name="insurance" label="Yes, take out insurance" checked></axa-radio>
-  </axa-fieldset>`
-  )
-  .add(
-    'Radio - button, noautowidth',
-    () => `
-  <axa-fieldset horizontal>
-    <axa-radio button name="insurance" noautowidth label="No, I'm already insured"></axa-radio>
-    <axa-radio button name="insurance" noautowidth label="No, no need" ></axa-radio>
-    <axa-radio button name="insurance" noautowidth label="Yes, take out insurance" checked></axa-radio>
-  </axa-fieldset>`
-  )
-  .add('Radio - button, icon', () => {
-    const root = document.createElement('div');
-
-    const icon = `<svg xmlns="http://www.w3.org/2000/svg" width="60.2" height="34.74">
+const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="60.2" height="34.74">
     <defs/>
     <g transform="translate(.1 .1)">
     <path d="M15 59.3a3.342 3.342 0 1 0 3.315 3.342A3.342 3.342 0 0 0 15 59.3zm0 5.378a2.036 2.036 0 1 1 2.01-2.036A2.036 2.036 0 0 1 15 64.678z" transform="translate(-5.345 -34.637)"/>
@@ -80,37 +17,33 @@ storiesOf('Atoms/Radio', module)
     </g>
   </svg>`;
 
-    const template = html`
-      <axa-fieldset horizontal>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 1"
-          .icon="${icon}"
-        ></axa-radio>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 2"
-          .icon="${icon}"
-        ></axa-radio>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 3"
-          checked
-          .icon="${icon}"
-        ></axa-radio>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 4"
-          disabled
-          .icon="${icon}"
-        ></axa-radio>
-      </axa-fieldset>
-    `;
+storiesOf('Atoms/Radio', module)
+  .addDecorator(withKnobs)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+  .add('Radio', () => {
+    const wrapper = document.createElement('div');
 
-    render(template, root);
-    return root;
+    const label = text('label*', 'Ja');
+    const checked = boolean('checked*', false);
+    const focus = boolean('focus*', false);
+    const disabled = boolean('disabled', false);
+    const button = boolean('button', false);
+    const icon = boolean('Icon', false);
+    const noGap = boolean('noGap', false);
+    const noAutoWidth = boolean('noAutoWidth', false);
+
+    const template = html`
+    <p>Knobs with a * only affect the first radio button</p>
+    <axa-fieldset horizontal>
+      <axa-radio name="contract" label="${label}" ?focus="${focus}" ?checked="${checked}" icon="${icon ? iconSVG : ''}" ?noGap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noAutoWidth="${noAutoWidth}" label="Ja" value="1"></axa-radio>
+      <axa-radio name="contract" icon="${icon ? iconSVG : ''}" ?noGap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noAutoWidth="${noAutoWidth}" label="Nein" value="2"></axa-radio>
+      <axa-radio name="contract" icon="${icon ? iconSVG : ''}" ?noGap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noAutoWidth="${noAutoWidth}" label="Vielleicht" value="3"></axa-radio>
+    <axa-fieldset horizontal>`;
+
+    render(template, wrapper);
+    return wrapper;
   });

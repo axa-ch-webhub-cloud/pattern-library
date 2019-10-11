@@ -49,6 +49,12 @@ test('should have correct font definitions for title size 1', async t => {
     .eql('72px');
 });
 
+fixture('Title primary - basic functionality')
+  .page(`${host}/iframe.html?id=atoms-title-primary--title-primary&knob-variant=size-2`)
+  .beforeEach(async t => {
+    await t.resizeWindow(380, 680);
+  });
+
 test('should have correct font definitions for title size 2', async t => {
   const $axaElemShadow = await Selector(() =>
     document
@@ -86,6 +92,12 @@ test('should have correct font definitions for title size 2', async t => {
     .eql('54px');
 });
 
+fixture('Title primary - basic functionality')
+  .page(`${host}/iframe.html?id=atoms-title-primary--title-primary&knob-variant=size-3`)
+  .beforeEach(async t => {
+    await t.resizeWindow(380, 680);
+  });
+
 test('should have correct font definitions for title size 3', async t => {
   const $axaElemShadow = await Selector(() =>
     document
@@ -121,6 +133,12 @@ test('should have correct font definitions for title size 3', async t => {
     .expect(await $axaElemShadow.getStyleProperty('line-height'))
     .eql('42px');
 });
+
+fixture('Title primary - basic functionality')
+  .page(`${host}/iframe.html?id=atoms-title-primary--title-primary&knob-variant=size-4`)
+  .beforeEach(async t => {
+    await t.resizeWindow(380, 680);
+  });
 
 test('should have correct font definitions for title size 4', async t => {
   const $axaElemShadow = await Selector(() =>
@@ -158,6 +176,12 @@ test('should have correct font definitions for title size 4', async t => {
     .eql('32px');
 });
 
+fixture('Title primary - basic functionality')
+  .page(`${host}/iframe.html?id=atoms-title-primary--title-primary&knob-variant=size-5`)
+  .beforeEach(async t => {
+    await t.resizeWindow(380, 680);
+  });
+
 test('should have correct font definitions for title size 5', async t => {
   const $axaElemShadow = await Selector(() =>
     document
@@ -193,6 +217,12 @@ test('should have correct font definitions for title size 5', async t => {
     .expect(await $axaElemShadow.getStyleProperty('line-height'))
     .eql('29px');
 });
+
+fixture('Title primary - basic functionality')
+  .page(`${host}/iframe.html?id=atoms-title-primary--title-primary&knob-variant=size-6`)
+  .beforeEach(async t => {
+    await t.resizeWindow(380, 680);
+  });
 
 test('should have correct font definitions for title size 6', async t => {
   const $axaElemShadow = await Selector(() =>

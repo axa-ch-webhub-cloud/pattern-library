@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
 import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
+import DemoDropdownReact from './DemoDropdownReact';
 import Readme from '../README.md';
 
 storiesOf('Molecules/Dropdown/React/Demos', module)
@@ -20,5 +21,10 @@ storiesOf('Molecules/Dropdown/React/Demos', module)
   .add('Many-options React-ified Dropdown', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoManyOptionsDropdownReact />, div);
+    return div;
+  })
+  .add('Dropdown as React Component', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoDropdownReact />, div);
     return div;
   });

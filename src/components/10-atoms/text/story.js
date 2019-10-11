@@ -1,101 +1,41 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { select, boolean, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
+
+const variantOptions = {
+  default: '',
+  'size-1': 'size-1',
+  'size-2': 'size-2',
+  'size-3': 'size-3',
+  bold: 'bold',
+};
+
 storiesOf('Atoms/Text', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   .add(
-    'Text - Default',
-    () => `<axa-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
-            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
-            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
-            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
-            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
-            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
-            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
-            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
-            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.
-          </axa-text>`
-  )
-  .add(
-    'Text - Size 2',
-    () => `<axa-text variant="size-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
-            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
-            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
-            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
-            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
-            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
-            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
-            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
-            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.
-          </axa-text>`
-  )
-  .add(
-    'Text - Size 2 with custom span tag',
-    () => `<axa-text variant="size-2">
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
-            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
-            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
-            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
-            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
-            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
-            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
-            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
-            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.</span>
-          </axa-text>`
-  )
-  .add(
-    'Text - Size 2 with custom p tag',
-    () => `<axa-text variant="size-2">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
-            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
-            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
-            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
-            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
-            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
-            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
-            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
-            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.</p>
-          </axa-text>`
-  )
-  .add(
-    'Text - Size 3',
-    () => `<axa-text variant="size-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
-            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
-            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
-            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
-            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
-            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
-            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
-            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
-            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.
-          </axa-text>`
-  )
-  .add(
-    'Text - Bold',
-    () => `<axa-text variant="bold">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet laoreet mauris sit amet congue.
-            Pellentesque lacinia imperdiet turpis, sit amet finibus est porta sit amet.
-            Vestibulum maximus enim suscipit, bibendum nisi et, sodales turpis.
-            Morbi eget eros sed tortor finibus pretium nec at lacus. Fusce egestas cursus nisl et sollicitudin.
-            Pellentesque id metus neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec ornare risus non egestas vulputate. Aliquam ultrices condimentum libero ut ultrices.
-            Vivamus mauris tellus, semper at consequat sit amet, semper nec metus. Mauris sed commodo dolor.
-            Pellentesque lorem neque, varius sit amet euismod eget, hendrerit quis justo.
-            Nam quis nunc sit amet tellus volutpat convallis quis nec tellus.
-            Mauris sed mi risus. Praesent ultrices neque ac leo vehicula facilisis. Morbi eu ullamcorper mauris.
-          </axa-text>`
-  );
+    'Text',
+    () => {
+      const variant = select('variant', variantOptions, '');
+      const addSpanTag = boolean('Add <span> tag', false)
+      const wrapper = document.createElement('div');
+      const template = addSpanTag ? // setting variables in the axaText tag does not work, therefore text is hardcoded twice
+        html`<axa-text variant="${variant}">
+        yIs your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.
+        </axa-text>`
+        :
+        html`<axa-text variant="${variant}">
+        <span>Is your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.</span>
+        </axa-text>`;
+
+      render(template, wrapper);
+      return wrapper;
+    });

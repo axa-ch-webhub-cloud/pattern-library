@@ -1,53 +1,36 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import React, { Fragment } from 'react';
+import { select, boolean, withKnobs } from '@storybook/addon-knobs';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import Readme from '../README.md';
 import AXAText from './AXATextReact';
 
-storiesOf('Atoms/Text/React', module).add('Text', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <Fragment>
-      <AXAText>
-        Text Default. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse laoreet laoreet mauris sit amet congue. Pellentesque lacinia
-        imperdiet turpis, sit amet finibus est porta sit amet. Vestibulum
-        maximus enim suscipit, bibendum nisi et, sodales turpis.
-      </AXAText>
-      <br />
-      <br />
-      <AXAText variant="size-2">
-        Text Size 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse laoreet laoreet mauris sit amet congue. Pellentesque lacinia
-        imperdiet turpis, sit amet finibus est porta sit amet. Vestibulum
-        maximus enim suscipit, bibendum nisi et, sodales turpis.
-      </AXAText>
-      <br />
-      <br />
-      <AXAText variant="size-3">
-        Text Size-3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse laoreet laoreet mauris sit amet congue. Pellentesque lacinia
-        imperdiet turpis, sit amet finibus est porta sit amet. Vestibulum
-        maximus enim suscipit, bibendum nisi et, sodales turpis.
-      </AXAText>
-      <br />
-      <br />
-      <AXAText variant="size-4">
-        Text Size-4. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse laoreet laoreet mauris sit amet congue. Pellentesque lacinia
-        imperdiet turpis, sit amet finibus est porta sit amet. Vestibulum
-        maximus enim suscipit, bibendum nisi et, sodales turpis.
-      </AXAText>
-      <br />
-      <br />
-      <AXAText variant="bold">
-        Text Bold. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse laoreet laoreet mauris sit amet congue. Pellentesque lacinia
-        imperdiet turpis, sit amet finibus est porta sit amet. Vestibulum
-        maximus enim suscipit, bibendum nisi et, sodales turpis.
-      </AXAText>
-    </Fragment>,
-    div
-  );
-  return div;
-});
+const variantOptions = {
+  default: '',
+  'size-1': 'size-1',
+  'size-2': 'size-2',
+  'size-3': 'size-3',
+  bold: 'bold',
+};
+
+storiesOf('Atoms/Text/React', module)
+  .addDecorator(withKnobs)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+  .add('Text', () => {
+    const div = document.createElement('div');
+    const variant = select('variant', variantOptions, '');
+    const addSpanTag = boolean('Add <span> tag', false)
+    const text = `Is your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.`
+    ReactDOM.render(
+      <AXAText variant={variant}>
+        {addSpanTag ? <span>{text}</span> : text}
+      </AXAText>,
+      div
+    );
+    return div;
+  });

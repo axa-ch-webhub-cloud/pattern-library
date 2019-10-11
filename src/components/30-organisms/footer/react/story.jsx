@@ -7,6 +7,7 @@ import withNoBorder from '../../../../../.storybook/addons/no-border';
 import Readme from '../README.md';
 
 const setNewlyClickedLink = link => {
+  console.log('clickediclick')
   document.getElementById(
     'clicked-link'
   ).innerText = `Last clicked link: ${link}`;
@@ -39,42 +40,42 @@ storiesOf('Organisms/Footer/React', module)
           </a>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="https://axa.ch/en/private-customers/claims/everything-about-claiming/file-claim.html"
             target="_blank"
           >
             Report a claim
           </a>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="https://axa.ch/en/information/broker-services.html"
             target="_blank"
           >
             Broker
           </a>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="https://axa.ch/en/about-axa/jobs-career/job-vacancies/job-vacancies.html"
             target="_blank"
           >
             Job vacancies
           </a>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="https://myaxa.axa.ch/myaxa"
             target="_blank"
           >
             MyAXA
           </a>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="https://axa.ch/en/about-axa/reviews.html"
             target="_blank"
           >
             Customer reviews
           </a>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="https://axa.ch/content/garagen/en/garage-portal.html"
             target="_blank"
           >
             Garage Portal
@@ -82,7 +83,7 @@ storiesOf('Organisms/Footer/React', module)
           <h2 slot="column-title">axa worldwide</h2>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
+            href="http://www.axa.com"
             target="_blank"
           >
             AXA worldwide

@@ -20,14 +20,14 @@ storiesOf('Organisms/Footer/Demos', module)
     <axa-footer clickevents>
       <h2 slot="column-title">axa & you</h2>
       <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Report a claim</a>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Broker</a>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Job vacancies</a>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">MyAXA</a>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Customer reviews</a>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Garage Portal</a>
+      <a slot="column-item" href="https://axa.ch/en/private-customers/claims/everything-about-claiming/file-claim.html" target="_blank">Report a claim</a>
+      <a slot="column-item" href="https://axa.ch/en/information/broker-services.html" target="_blank">Broker</a>
+      <a slot="column-item" href="https://axa.ch/en/about-axa/jobs-career/job-vacancies/job-vacancies.html" target="_blank">Job vacancies</a>
+      <a slot="column-item" href="https://myaxa.axa.ch/myaxa" target="_blank">MyAXA</a>
+      <a slot="column-item" href="https://axa.ch/en/about-axa/reviews.html" target="_blank">Customer reviews</a>
+      <a slot="column-item" href="https://axa.ch/content/garagen/en/garage-portal.html" target="_blank">Garage Portal</a>
       <h2 slot="column-title">axa worldwide</h2>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">AXA worldwide</a>
+      <a slot="column-item" href="http://www.axa.com" target="_blank">AXA worldwide</a>
       <h2 slot="social-title">stay in touch</h2>
       <a slot="social-item" href="https://www.facebook.com/axach/" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><path d="M8.865 9.043H6.213v3.473h2.652v10.42h4.452v-10.42h3.274l.31-3.473h-3.584V7.634c0-.832.164-1.152.982-1.152h2.57V2.096h-3.388c-3.274 0-4.616 1.377-4.616 4.002v2.945z" fill="#FFFFFF"/></svg>

@@ -3,25 +3,9 @@ import { storiesOf } from '@storybook/html';
 import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { iconOptions } from '../../icon/story';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
-
-const iconOptions = {
-  none: '',
-  'arrow-right': 'arrow-right',
-  collapse: 'collapse',
-  document: 'document',
-  download: 'download',
-  email: 'email',
-  expand: 'expand',
-  mobile: 'mobile',
-  phone: 'phone',
-  search: 'search',
-  upload: 'upload',
-  'cloud-upload': 'cloud-upload',
-  'axa-logo': 'axa-logo',
-  'axa-logo-open': 'axa-logo-open',
-};
 
 storiesOf('Atoms/Input File/React', module)
   .addDecorator(withKnobs)

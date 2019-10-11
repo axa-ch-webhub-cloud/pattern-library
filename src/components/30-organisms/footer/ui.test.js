@@ -26,7 +26,7 @@ test('should render footer with correct background color', async t => {
 test('should correctly render footer titles', async t => {
   const $footerTitle = FooterAccessor.getSlotNode('column-0-title');
 
-  await t.expect($footerTitle.textContent).contains('axa & you');
+  await t.expect($footerTitle.textContent).contains('axa and you');
   await t
     .expect($footerTitle.getStyleProperty('color'))
     .eql('rgb(255, 255, 255)');

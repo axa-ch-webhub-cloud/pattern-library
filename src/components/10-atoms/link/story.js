@@ -1,76 +1,74 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
+import { iconOptions } from '../icon/story';
 import './index';
 
 import Readme from './README.md';
 
+const variantOptions = {
+  none: '',
+  icon: 'icon',
+  red: 'red',
+  white: 'white',
+  'icon-red': 'icon-red',
+  'icon-white': 'icon-white',
+  arrowright: 'arrowright',
+  arrowleft: 'arrowleft',
+  'arrowright-animated': 'arrowright-animated',
+  'arrowleft-animated': 'arrowleft-animated',
+  'arrowright-red': 'arrowright-red',
+  'arrowleft-red': 'arrowleft-red',
+  'arrowright-white': 'arrowright-white',
+  'arrowleft-white': 'arrowleft-white',
+  'arrowright-animated-red': 'arrowright-animated-red',
+  'arrowleft-animated-red': 'arrowleft-animated-red',
+  'arrowright-animated-white': 'arrowright-animated-white',
+  'arrowleft-animated-white': 'arrowleft-animated-white',
+  'hyperlink-white': 'hyperlink-white',
+  'hyperlink-white-underline': 'hyperlink-white-underline',
+  'hyperlink-red': 'hyperlink-red',
+  'hyperlink-red-underline': 'hyperlink-red-underline',
+};
+
 storiesOf('Atoms/Link', module)
+  .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
   .add(
-    'Hyperlink',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html">This simple link just links</axa-link>`
-  )
-  .add(
-    'External Link',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" external>All links with the 'external' attribute will open in a new tab</axa-link>`
-  )
-  .add(
-    'Simple Link - Icon',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" variant="icon" icon="download">Download Link</axa-link>`
-  )
-  .add(
-    'Simple Link - Static Arrow Right',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright">Arrow Right Link</axa-link>`
-  )
-  .add(
-    'Simple Link - Static Arrow Left',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft">Arrow Left Link</axa-link>`
-  )
-  .add(
-    'Simple Link - Animated Arrow Left',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated">Motion Link Left</axa-link>`
-  )
-  .add(
-    'Simple Link - Animated Arrow Right',
-    () =>
-      `<axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated">Motion Link Right</axa-link>`
-  )
-  .add(
-    'Simple Link - Red Color',
-    () => `
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-red" icon="download" external>External Download Link</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-red" icon="download">Download Link</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-red">Arrow Right Link</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-red">Arrow Left Link</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated-red">Motion Link Left</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated-red">Motion Link Right</axa-link>
-    `
-  )
-  .add(
-    'Simple Link - White Color',
-    () => `<style>body {background-color: #3032c1;}</style>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-white" icon="download" external>External Download Link</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="icon-white" icon="download">Download Link</axa-link><br><br>
-      <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-white">Arrow Right Link</axa-link><br><br>
-      <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-white">Arrow Left Link</axa-link><br><br>
-      <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowleft-animated-white">Motion Link Left</axa-link><br><br>
-      <axa-link href="https://axa.ch/en/private-customers.html" variant="arrowright-animated-white">Motion Link Right</axa-link>
-      `
-  )
-  .add(
-    'Simple Link - White Hyperlink & Underline',
-    () => `<style>body {background-color: #3032c1;}</style>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="hyperlink-white">Hyperlink white</axa-link><br><br>
-    <axa-link href="https://axa.ch/en/private-customers.html" variant="hyperlink-white-underline">Hyperlink white underlined</axa-link><br><br>
-      `
+    'Hyperlink', () => {
+      const link = text(
+        'link',
+        'https://axa.ch/en/private-customers.html'
+      );
+      const linkText = text(
+        'Link text',
+        'This is a simple link'
+      );
+      const external = boolean('external', false)
+      const variant = select('variant', variantOptions, '')
+      const icon = select('icon', iconOptions, '');
+      const backgrounds = select(
+        'Background color',
+        ['red', 'blue', 'white', 'black'],
+        'white'
+      );
+
+      const wrapper = document.createElement('div');
+      const template = html`
+      <style>
+        body {
+          background-color: ${backgrounds};
+        }
+      </style>
+      <axa-link href="${link}" ?external="${external}" variant="${variant}" icon="${icon}">${linkText}</axa-link>
+    `;
+
+      render(template, wrapper);
+      return wrapper;
+    }
   );

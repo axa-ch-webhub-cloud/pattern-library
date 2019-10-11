@@ -8,8 +8,8 @@ import Readme from './README.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const storyAXACarousel = storiesOf('Atoms/Carousel', module);
-storyAXACarousel.addDecorator(withKnobs);
 storyAXACarousel.addDecorator(withNoBorder);
+storyAXACarousel.addDecorator(withKnobs);
 storyAXACarousel.addParameters({
   readme: {
     sidebar: Readme,

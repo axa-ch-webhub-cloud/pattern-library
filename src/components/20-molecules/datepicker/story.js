@@ -17,8 +17,6 @@ const localeOptions = {
   'fr-CH': 'fr-CH',
 };
 
-const defaultLocaleValue = 'de-CH';
-
 const story = storiesOf('Molecules/Datepicker', module);
 story.addDecorator(withKnobs);
 story.addParameters({
@@ -29,7 +27,7 @@ story.addParameters({
 
 story.add('Datepicker', () => {
   const inputfield = boolean('inputfield', false);
-  const locale = select('locale', localeOptions, defaultLocaleValue);
+  const locale = select('locale', localeOptions, 'de-CH');
   const year = number('year', 2020);
   const month = number('month', 4);
   const day = number('day', 22);
