@@ -45,7 +45,7 @@ test('should show error message and have the correct color', async t => {
 
 // Dropdown react controlled
 fixture('Dropdown React').page(
-  `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
+  `${host}/iframe.html?id=molecules-dropdown-react-demos--dropdown-as-react-component`
 );
 
 test('should render dropdown as reactified component', async t => {
@@ -89,7 +89,7 @@ test('should exhibit controlled-component behaviour', async t => {
 
 // Dropdown react controlled forced native-selector
 fixture('Dropdown React native').page(
-  `${host}/iframe.html?id=molecules-dropdown-react--dropdown-as-react-component`
+  `${host}/iframe.html?id=molecules-dropdown-react-demos--dropdown-as-react-component`
 );
 
 test('should exhibit controlled-component behaviour when native', async t => {
