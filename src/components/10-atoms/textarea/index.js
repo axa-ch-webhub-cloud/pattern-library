@@ -116,14 +116,15 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get getCounterText() {
-    const userCharsLeft = this.charsLeft - 1;
+    const { charsLeft } = this;
+    const userCharsLeft = charsLeft < 0 ? 0 : charsLeft;
 
     if (this.counter && this.isPlaceholderInCounter) {
-      return this.counter.replace(/##.*##/, userCharsLeft);
+      return this.counter.replace(/##.*##/, userCharsLeft - 1);
     }
 
     if (this.counter) {
-      return `${userCharsLeft} ${this.counter}`;
+      return `${userCharsLeft - 1} ${this.counter}`;
     }
 
     return userCharsLeft;
@@ -190,7 +191,7 @@ class AXATextarea extends NoShadowDOM {
     }
   };
 
-  firstUpdated() {
+  updated() {
     const { nativeDefaultValue, defaultValue, isReact, value } = this;
 
     this.nativeInput = this.querySelector('textarea');
@@ -205,10 +206,6 @@ class AXATextarea extends NoShadowDOM {
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
-  }
-
-  updated() {
-    this.nativeInput = this.querySelector('textarea');
   }
 
   render() {
