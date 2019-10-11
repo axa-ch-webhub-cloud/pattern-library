@@ -107,8 +107,6 @@ class AXAFooter extends InlineStyles {
     this.innerHTML = '';
     allChildrenWithSlotAttribute.forEach(c => this.appendChild(c));
 
-    const childrenArr = allChildrenWithSlotAttribute;
-
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
 
@@ -116,11 +114,11 @@ class AXAFooter extends InlineStyles {
       filter(criteria)(child) &&
       !HEADINGS.includes(child.nodeName.toLowerCase());
 
-    const onlyColumns = childrenArr.filter(
+    const onlyColumns = allChildrenWithSlotAttribute.filter(
       // only accepts those slots that are columns
       filter('column-')
     );
-    const onlySocials = childrenArr.filter(
+    const onlySocials = allChildrenWithSlotAttribute.filter(
       // only accepts those slots that are social columns
       noHeaderFilter('social-')
     );
