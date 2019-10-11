@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
-import { iconOptions } from '../../icon/story';
+import { iconList } from '../../../../utils/icon-list';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 
@@ -41,43 +41,38 @@ storiesOf('Atoms/Link/React', module)
       sidebar: Readme,
     },
   })
-  .add(
-    'Hyperlink', () => {
-      const link = text(
-        'link',
-        'https://axa.ch/en/private-customers.html'
-      );
-      const linkText = text(
-        'Link text',
-        'This is a simple link'
-      );
-      const external = boolean('external', false)
-      const variant = select('variant', variantOptions, '')
-      const icon = select('icon', iconOptions);
-      const backgrounds = select(
-        'Background color',
-        ['red', 'blue', 'white', 'black'],
-        'white'
-      );
-      const css = `
+  .add('Hyperlink', () => {
+    const link = text('link', 'https://axa.ch/en/private-customers.html');
+    const linkText = text('Link text', 'This is a simple link');
+    const external = boolean('external', false);
+    const variant = select('variant', variantOptions, '');
+    const icon = select('icon', iconList);
+    const backgrounds = select(
+      'Background color',
+      ['red', 'blue', 'white', 'black'],
+      'white'
+    );
+    const css = `
         body {
             background-color: ${backgrounds};
         }
-      `
+      `;
 
-      return wrap(
-        <div>
-          <style>{css}</style>
-          <AXALinkReact
-            href={link}
-            external={external}
-            variant={variant}
-            icon={icon}
-            onClick={() => {
-              // eslint-disable-next-line no-alert, no-undef
-              alert('on link click');
-            }}
-          >{linkText}
-          </AXALinkReact>
-        </div>);
-    });
+    return wrap(
+      <div>
+        <style>{css}</style>
+        <AXALinkReact
+          href={link}
+          external={external}
+          variant={variant}
+          icon={icon}
+          onClick={() => {
+            // eslint-disable-next-line no-alert, no-undef
+            alert('on link click');
+          }}
+        >
+          {linkText}
+        </AXALinkReact>
+      </div>
+    );
+  });

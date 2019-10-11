@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import { iconOptions } from '../icon/story';
+import { iconList } from '../../../utils/icon-list';
 import './index';
 
 import Readme from './README.md';
@@ -39,36 +39,34 @@ storiesOf('Atoms/Link', module)
       sidebar: Readme,
     },
   })
-  .add(
-    'Hyperlink', () => {
-      const link = text(
-        'link',
-        'https://axa.ch/en/private-customers.html'
-      );
-      const linkText = text(
-        'Link text',
-        'This is a simple link'
-      );
-      const external = boolean('external', false)
-      const variant = select('variant', variantOptions, '')
-      const icon = select('icon', iconOptions, '');
-      const backgrounds = select(
-        'Background color',
-        ['red', 'blue', 'white', 'black'],
-        'white'
-      );
+  .add('Hyperlink', () => {
+    const link = text('link', 'https://axa.ch/en/private-customers.html');
+    const linkText = text('Link text', 'This is a simple link');
+    const external = boolean('external', false);
+    const variant = select('variant', variantOptions, '');
+    const icon = select('icon', iconList, '');
+    const backgrounds = select(
+      'Background color',
+      ['red', 'blue', 'white', 'black'],
+      'white'
+    );
 
-      const wrapper = document.createElement('div');
-      const template = html`
+    const wrapper = document.createElement('div');
+    const template = html`
       <style>
         body {
           background-color: ${backgrounds};
         }
       </style>
-      <axa-link href="${link}" ?external="${external}" variant="${variant}" icon="${icon}">${linkText}</axa-link>
+      <axa-link
+        href="${link}"
+        ?external="${external}"
+        variant="${variant}"
+        icon="${icon}"
+        >${linkText}</axa-link
+      >
     `;
 
-      render(template, wrapper);
-      return wrapper;
-    }
-  );
+    render(template, wrapper);
+    return wrapper;
+  });

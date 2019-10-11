@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import { iconOptions } from '../icon/story';
+import { iconList } from '../../../utils/icon-list';
 import AXAIcon from './index';
 import Readme from './README.md';
 
@@ -15,7 +15,7 @@ storyIcon.addParameters({
 });
 
 storyIcon.add('Icon', () => {
-  const icon = select('icon', iconOptions, 'download');
+  const icon = select('icon', iconList, 'download');
 
   const wrapper = document.createElement('div');
   const template = html`

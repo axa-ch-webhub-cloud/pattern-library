@@ -9,7 +9,7 @@ import {
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import { iconOptions } from '../icon/story';
+import { iconList } from '../../../utils/icon-list';
 import Readme from './README.md';
 
 const variantOptions = {
@@ -53,7 +53,7 @@ storyButtonLink.add('Button Link', () => {
   const external = text('external', '');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
-  const icons = select('Icon', iconOptions, '');
+  const icons = select('Icon', iconList, '');
   const motionOff = boolean('motionoff', false);
   const disabled = boolean('disabled', false);
 

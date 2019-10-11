@@ -10,7 +10,7 @@ import {
   withKnobs,
 } from '@storybook/addon-knobs';
 import AXAButton from './AXAButton';
-import { iconOptions } from '../../icon/story';
+import { iconList } from '../../../../utils/icon-list';
 import Readme from './../README.md';
 
 const variantOptions = {
@@ -34,7 +34,7 @@ const sizeOptions = {
 const typesOptions = {
   button: 'button',
   submit: 'submit',
-  reset: 'reset'
+  reset: 'reset',
 };
 
 const invertedBgs = {
@@ -58,7 +58,7 @@ storyButton.add('Button', () => {
   const buttonText = text('text', 'Click me');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
-  const icons = select('icon', iconOptions, '');
+  const icons = select('icon', iconList, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
   const types = radios('types', typesOptions, 'button');
@@ -69,7 +69,7 @@ storyButton.add('Button', () => {
       <AXAButton
         type={types}
         variant={variants}
-        className='myCssClass'
+        className="myCssClass"
         size={sizes}
         icon={icons}
         disabled={disabled}

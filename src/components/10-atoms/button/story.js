@@ -9,7 +9,7 @@ import {
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import { iconOptions } from '../icon/story';
+import { iconList } from '../../../utils/icon-list';
 import Readme from './README.md';
 
 const storyButton = storiesOf('Atoms/Button', module);
@@ -41,7 +41,7 @@ export const sizeOptions = {
 export const typesOptions = {
   button: 'button',
   submit: 'submit',
-  reset: 'reset'
+  reset: 'reset',
 };
 
 export const invertedBgs = {
@@ -57,7 +57,7 @@ storyButton.add('Button', () => {
   const buttonText = text('text', 'Click me');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
-  const icons = select('icon', iconOptions, '');
+  const icons = select('icon', iconList, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
   const types = radios('types', typesOptions, 'button');
@@ -66,8 +66,8 @@ storyButton.add('Button', () => {
   const template = html`
     <div
       style="${variants.includes('inverted')
-    ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
-    : ''}"
+        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+        : ''}"
     >
       <axa-button
         type="${types}"
@@ -80,7 +80,6 @@ storyButton.add('Button', () => {
       </axa-button>
     </div>
   `;
-
   render(template, wrapper);
   return wrapper;
 });

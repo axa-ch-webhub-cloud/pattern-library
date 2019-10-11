@@ -1,25 +1,9 @@
 import { storiesOf } from '@storybook/html';
 import { text, number, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import { iconList } from '../../../utils/icon-list';
 import './index';
 import Readme from './README.md';
-
-const iconOptions = {
-  none: '',
-  'arrow-right': 'arrow-right',
-  collapse: 'collapse',
-  document: 'document',
-  download: 'download',
-  email: 'email',
-  expand: 'expand',
-  mobile: 'mobile',
-  phone: 'phone',
-  search: 'search',
-  upload: 'upload',
-  'cloud-upload': 'cloud-upload',
-  'axa-logo': 'axa-logo',
-  'axa-logo-open': 'axa-logo-open',
-};
 
 const story = storiesOf('Molecules/File Upload', module);
 story.addDecorator(withKnobs);
@@ -79,8 +63,11 @@ story.add('File upload', () => {
     'wrongFileTypeText',
     'Your file does not correspond with our allowed file-types'
   );
-  const icon = select('icon', iconOptions, 'cloud-upload');
-  const headerText = text('headerText', 'The following files are being transferred:');
+  const icon = select('icon', iconList, 'cloud-upload');
+  const headerText = text(
+    'headerText',
+    'The following files are being transferred:'
+  );
   const wrapper = document.createElement('div');
 
   const template = html`
