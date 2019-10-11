@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/text",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Allows you to control all the possible axa text styles by a component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/text#readme",
