@@ -80,6 +80,10 @@ it('should sum numbers', () => {
 
 ## Create a new component
 
+### Best Practices
+
+- Never calculate derived properties inside the `firstUpdated` method. This method is only executed once at the begging and after first rendering. If properties change dynamically after a certain time, those derived properties will not be re-calculated and can lead to wrong execution. Better place them in attribute changed or directly in the render method.
+
 ### How-to create a new component
 
 `npm run new` and follow the instructions in the CLI.
