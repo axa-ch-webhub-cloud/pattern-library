@@ -83,7 +83,7 @@ it('should sum numbers', () => {
 ### Best Practices
 
 - Never calculate derived properties (in UML symbolised like so: `/property`) inside the `firstUpdated` method. This method is only executed once at the begging and after first rendering. If properties change dynamically after a certain time, those derived properties will not be re-calculated and can lead to wrong execution. Better place them in attribute changed or directly in the render method.
-- Never use `chiled.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` NOT DO: `span { ... }`
+- Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` NOT DO: `span { ... }`
 
 ### How-to create a new component
 
