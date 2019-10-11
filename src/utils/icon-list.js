@@ -1,0 +1,16 @@
+export const iconList = {
+  none: '',
+  'arrow-right': 'arrow-right',
+  collapse: 'collapse',
+  document: 'document',
+  download: 'download',
+  email: 'email',
+  expand: 'expand',
+  mobile: 'mobile',
+  phone: 'phone',
+  search: 'search',
+  upload: 'upload',
+  'cloud-upload': 'cloud-upload',
+  'axa-logo': 'axa-logo',
+  'axa-logo-open': 'axa-logo-open',
+};
