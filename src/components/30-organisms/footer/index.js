@@ -13,12 +13,6 @@ import InlineStyles from '../../../utils/inline-styles';
 
 const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-const _listElementHasNoContent = label => {
-  // Second part of statement is an IE11 workaround, because a slotted
-  // empty node is not empty on IE11 (with the ShadyCss polyfill).
-  return !label || label.nodeType === 3;
-};
-
 const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
@@ -68,43 +62,50 @@ class AXAFooter extends InlineStyles {
     this.inlineStyles('resetHeadingCss');
   }
 
-  prepareSlotsWithIndexes() {
-    // set slotted numbers automatically for all titles and all items for each column
-    // every title followed with items will be a column (DOM sequence defines order)
-    // There is no wrapper for the columns but a counter that controls which
-    // column to use
-    // EXAMPLE IN PSEUDO DOM:
-    //
-    // TITLE* -> start column 0
-    // ITEM -> add item to column 0
-    // ITEM -> add item to column 0
-    // ITEM -> add item to column 0
-    // ITEM -> add item to column 0
-    //
-    // TITLE* -> start column 1
-    // ITEM -> add item to column 1
-    // ITEM -> add item to column 1
-    // ITEM -> add item to column 1
-
-    const allChildrenWithSlotAttribute = [];
-    function findThatGreedyBastard(rawNode) {
-      // debugger;
-      if (typeof rawNode.hasAttribute === 'function') {
-        if (rawNode.hasAttribute('slot')) {
-          allChildrenWithSlotAttribute.push(rawNode);
-        }
-        if (rawNode.hasChildNodes()) {
-          const children = Array.prototype.slice.call(rawNode.childNodes);
-          children.forEach(ch => {
-            findThatGreedyBastard(ch);
-          });
-        }
+  _revealChildrenWithSlotAttribute(rawNode, slotElements) {
+    if (typeof rawNode.hasAttribute === 'function') {
+      if (rawNode.hasAttribute('slot')) {
+        slotElements.push(rawNode);
+      }
+      if (rawNode.hasChildNodes()) {
+        const children = Array.prototype.slice.call(rawNode.childNodes);
+        children.forEach(ch => {
+          this._revealChildrenWithSlotAttribute(ch, slotElements);
+        });
       }
     }
+  }
 
+  /**
+   * Takes all the child elements and extracts all the ones that come with a
+   * slot-attribute. Those elements will then be changed to be distinguishable
+   * from each other. Each block of links will need a title, so that the block will be displayed.
+   *
+   * Each title marks the beginning of a new column:
+   *
+   * TITLE -> start column 0
+   * ITEM -> add item to column 0
+   * ITEM -> add item to column 0
+   * ITEM -> add item to column 0
+   * ITEM -> add item to column 0
+   *
+   * TITLE* -> start column 1
+   * ITEM -> add item to column 1
+   * ITEM -> add item to column 1
+   * ITEM -> add item to column 1
+   */
+  _prepareSlotsWithIndexes() {
     const rawChildren = Array.prototype.slice.call(this.children);
-    rawChildren.forEach(rawNode => findThatGreedyBastard(rawNode));
-    console.log('all', allChildrenWithSlotAttribute);
+
+    const allChildrenWithSlotAttribute = [];
+    rawChildren.forEach(rawNode =>
+      this._revealChildrenWithSlotAttribute(
+        rawNode,
+        allChildrenWithSlotAttribute
+      )
+    );
+    this.innerHTML = '';
+    allChildrenWithSlotAttribute.forEach(c => this.appendChild(c));
 
     const childrenArr = allChildrenWithSlotAttribute;
 
@@ -193,7 +194,7 @@ class AXAFooter extends InlineStyles {
     });
 
     if (this.slotsNotPrepared) {
-      this.prepareSlotsWithIndexes();
+      this._prepareSlotsWithIndexes();
       this.slotsNotPrepared = false;
     }
 
@@ -264,19 +265,6 @@ class AXAFooter extends InlineStyles {
         </axa-container>
       </footer>
     `;
-  }
-
-  updated() {
-    this._removeEmptyListElements();
-  }
-
-  _removeEmptyListElements() {
-    this.shadowRoot.querySelectorAll('.js-footer_list-item').forEach(el => {
-      const label = el.querySelector('slot').assignedNodes()[0];
-      if (_listElementHasNoContent(label)) {
-        el.style.display = 'none';
-      }
-    });
   }
 
   _handleAccordionClick = (index, ev) => {
