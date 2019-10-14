@@ -67,6 +67,7 @@ const createFiles = (store, a, m, o, done) => () => {
   templateJson.name = `@axa-ch/${fileName}`;
   templateJson.version = '0.0.0-beta.0';
   templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/develop/src/components/${folderMap[type]}/${fileName}#readme`;
+  templateJson.description = `The ${fileName} component for the AXA Pattern Library`;
 
   fs.writeFileSync(
     `${BASE_FOLDER}/package.json`,

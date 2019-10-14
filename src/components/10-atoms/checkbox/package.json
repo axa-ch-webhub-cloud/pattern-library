@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/checkbox",
   "version": "1.1.13",
-  "description": "The AXA Checkbox component",
+  "description": "The checkbox component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/checkbox#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
