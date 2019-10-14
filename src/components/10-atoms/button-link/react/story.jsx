@@ -10,7 +10,7 @@ import {
   withKnobs,
 } from '@storybook/addon-knobs';
 import AXAButtonLink from './AXAButtonLink';
-import { iconOptions } from '../../icon/story';
+import { iconList } from '../../icon/icon-list';
 import Readme from '../README.md';
 
 const variantOptions = {
@@ -54,7 +54,7 @@ storyButton.add('Button Link', () => {
   const external = text('external', '');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
-  const icons = select('Icon', iconOptions, '');
+  const icons = select('Icon', iconList, '');
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
 

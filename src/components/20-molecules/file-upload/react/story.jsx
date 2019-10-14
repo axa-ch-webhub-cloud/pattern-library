@@ -3,25 +3,9 @@ import { storiesOf } from '@storybook/html';
 import { text, number, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { iconList } from '../../../10-atoms/icon/icon-list';
 import AXAFileUploadReact from './AXAFileUploadReact';
 import Readme from '../README.md';
-
-const iconOptions = {
-  none: '',
-  'arrow-right': 'arrow-right',
-  collapse: 'collapse',
-  document: 'document',
-  download: 'download',
-  email: 'email',
-  expand: 'expand',
-  mobile: 'mobile',
-  phone: 'phone',
-  search: 'search',
-  upload: 'upload',
-  'cloud-upload': 'cloud-upload',
-  'axa-logo': 'axa-logo',
-  'axa-logo-open': 'axa-logo-open',
-};
 
 storiesOf('Molecules/File Upload/React', module)
   .addDecorator(withKnobs)
@@ -80,8 +64,11 @@ storiesOf('Molecules/File Upload/React', module)
       'wrongFileTypeText',
       'Your file does not correspond with our allowed file-types'
     );
-    const icon = select('icon', iconOptions, 'cloud-upload');
-    const headerText = text('headerText', 'The following files are being transferred:');
+    const icon = select('icon', iconList, 'cloud-upload');
+    const headerText = text(
+      'headerText',
+      'The following files are being transferred:'
+    );
 
     const div = document.createElement('div');
     ReactDOM.render(
@@ -100,10 +87,11 @@ storiesOf('Molecules/File Upload/React', module)
           infoText={infoText}
           wrongFileTypeStatusText={wrongFileTypeStatusText}
           icon={icon}
-        >{headerText}
+        >
+          {headerText}
         </AXAFileUploadReact>
-      </div>
-      , div
+      </div>,
+      div
     );
     return div;
   });

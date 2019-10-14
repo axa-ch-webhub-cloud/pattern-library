@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/html';
 import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { iconOptions } from '../../icon/story';
+import { iconList } from '../../icon/icon-list';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
 
@@ -20,7 +20,7 @@ storiesOf('Atoms/Input File/React', module)
       'accept',
       'image/jpg, image/jpeg, application/pdf, image/png'
     );
-    const icons = select('icon', iconOptions, 'cloud-upload');
+    const icons = select('icon', iconList, 'cloud-upload');
     const disabled = boolean('disabled', false);
     const multiple = boolean('multiple', false);
     const capture = boolean('capture', false);

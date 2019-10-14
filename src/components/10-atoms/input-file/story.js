@@ -2,10 +2,9 @@
 import { storiesOf } from '@storybook/html';
 import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import { iconOptions } from '../icon/story';
+import { iconList } from '../icon/icon-list';
 import './index';
 import Readme from './README.md';
-
 
 storiesOf('Atoms/Input File', module)
   .addDecorator(withKnobs)
@@ -20,7 +19,7 @@ storiesOf('Atoms/Input File', module)
       'accept',
       'image/jpg, image/jpeg, application/pdf, image/png'
     );
-    const icon = select('icon', iconOptions, 'cloud-upload');
+    const icon = select('icon', iconList, 'cloud-upload');
     const disabled = boolean('disabled', false);
     const multiple = boolean('multiple', false);
     const capture = boolean('capture', false);
