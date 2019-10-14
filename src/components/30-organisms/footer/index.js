@@ -95,7 +95,11 @@ class AXAFooter extends InlineStyles {
    * ITEM -> add item to column 1
    */
   _prepareSlotsWithIndexes() {
-    const childrenArr = Array.prototype.slice.call(this.children);
+    const childrenArr = Array.prototype.slice.call(
+      this.querySelectorAll('[slot]')
+    );
+
+    console.log('arr', childrenArr);
 
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
