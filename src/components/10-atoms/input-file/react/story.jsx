@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/html';
 import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { iconList } from '../../../../utils/icon-list';
+import { iconList } from '../../icon/icon-list';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
 

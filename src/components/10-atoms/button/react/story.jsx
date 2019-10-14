@@ -10,7 +10,7 @@ import {
   withKnobs,
 } from '@storybook/addon-knobs';
 import AXAButton from './AXAButton';
-import { iconList } from '../../../../utils/icon-list';
+import { iconList } from '../../icon/icon-list';
 import Readme from './../README.md';
 
 const variantOptions = {

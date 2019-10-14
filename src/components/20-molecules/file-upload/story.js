@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { text, number, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import { iconList } from '../../../utils/icon-list';
+import { iconList } from '../../10-atoms/icon/icon-list';
 import './index';
 import Readme from './README.md';
 

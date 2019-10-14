@@ -2,7 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import { iconList } from '../../../utils/icon-list';
+import { iconList } from '../icon/icon-list';
 import './index';
 
 import Readme from './README.md';

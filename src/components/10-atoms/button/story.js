@@ -9,7 +9,7 @@ import {
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import { iconList } from '../../../utils/icon-list';
+import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
 
 const storyButton = storiesOf('Atoms/Button', module);
@@ -66,8 +66,8 @@ storyButton.add('Button', () => {
   const template = html`
     <div
       style="${variants.includes('inverted')
-        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
-        : ''}"
+      ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+      : ''}"
     >
       <axa-button
         type="${types}"
