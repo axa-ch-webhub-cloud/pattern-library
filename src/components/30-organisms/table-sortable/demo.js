@@ -59,10 +59,12 @@ storiesOf('Organisms/Table Sortable/Demos', module)
   .add('Table Sortable - on row click', () => {
     const wrapper = document.createElement('div');
     window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
-      const renderArea = document.querySelector('#renderArea');
-      renderArea.innerHTML = `Pressed on row ${index} in ${type}.
+      if (index > -1) {
+        const renderArea = document.querySelector('#renderArea');
+        renderArea.innerHTML = `Pressed on row ${index} in ${type}.
 
-      Inner Text is: ${JSON.stringify(textArray)}`;
+        Inner Text is: ${JSON.stringify(textArray)}`;
+      }
     };
     const template = html`
       <axa-table-sortable
@@ -75,4 +77,4 @@ storiesOf('Organisms/Table Sortable/Demos', module)
     `;
     render(template, wrapper);
     return wrapper;
-  })
+  });
