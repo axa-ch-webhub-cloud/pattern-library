@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/container",
   "version": "1.0.16",
-  "description": "> TODO: description",
+  "description": "The AXA container component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/container#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",

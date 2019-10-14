@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/footer",
   "version": "2.0.11",
-  "description": "The big version of the footer.",
+  "description": "The AXA footer component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/footer#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",

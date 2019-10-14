@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/table-sortable",
   "version": "1.3.2",
-  "description": "Table with sorting functionalities, having a model as interface",
+  "description": "The AXA table-sortable component",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table-sortable#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
