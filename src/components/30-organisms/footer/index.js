@@ -76,6 +76,20 @@ class AXAFooter extends InlineStyles {
     }
   }
 
+  _setSlotNameFromNestedChildToDirectChildNodeOfComponent(nestedChild) {
+    let currentNode = nestedChild;
+    const domTree = [currentNode];
+    while (
+      AXAFooter.tagName.toUpperCase() !== currentNode.tagName.toUpperCase()
+    ) {
+      currentNode = currentNode.parentNode;
+      domTree.push(currentNode);
+    }
+    const slotElement = domTree[domTree.length - 2];
+    slotElement.setAttribute('slot', nestedChild.getAttribute('slot'));
+    return slotElement;
+  }
+
   /**
    * Takes all the child elements and extracts all the ones that come with a
    * slot-attribute. Those elements will then be changed to be distinguishable
@@ -99,19 +113,9 @@ class AXAFooter extends InlineStyles {
       this.querySelectorAll('[slot]')
     );
 
-    const childrenArr = slotElements.map(c => {
-      let currentLevel = c;
-      const domTree = [currentLevel];
-      while (
-        AXAFooter.tagName.toUpperCase() !== currentLevel.tagName.toUpperCase()
-      ) {
-        currentLevel = currentLevel.parentNode;
-        domTree.push(currentLevel);
-      }
-      const slotEl = domTree[domTree.length - 2];
-      slotEl.setAttribute('slot', c.getAttribute('slot'));
-      return slotEl;
-    });
+    const childrenArr = slotElements.map(c =>
+      this._setSlotNameFromNestedChildToDirectChildNodeOfComponent(c)
+    );
 
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
