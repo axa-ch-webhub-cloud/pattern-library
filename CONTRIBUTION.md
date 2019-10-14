@@ -82,7 +82,7 @@ it('should sum numbers', () => {
 
 ### Best Practices
 
-- Never calculate derived properties (in UML symbolised like so: `/property`) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties change dynamically after a certain time, those derived properties will thus not be recalculated and can lead to bugs. Either calculate such derived properties in the `attributeChanged` method or implement them directly inside the `render` method of a component.
+- Never calculate *derived properties* (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
 - Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`
 
 ### How-to create a new component
