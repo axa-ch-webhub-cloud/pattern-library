@@ -95,30 +95,23 @@ class AXAFooter extends InlineStyles {
    * ITEM -> add item to column 1
    */
   _prepareSlotsWithIndexes() {
-    const rawChildren = Array.prototype.slice.call(this.children);
-
-    const allChildrenWithSlotAttribute = [];
-    rawChildren.forEach(rawNode =>
-      this._revealChildrenWithSlotAttribute(
-        rawNode,
-        allChildrenWithSlotAttribute
-      )
-    );
-    this.innerHTML = '';
-    allChildrenWithSlotAttribute.forEach(c => this.appendChild(c));
+    const childrenArr = Array.prototype.slice.call(this.children);
 
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
 
-    const noHeaderFilter = criteria => child =>
-      filter(criteria)(child) &&
-      !HEADINGS.includes(child.nodeName.toLowerCase());
+    const noHeaderFilter = criteria => child => {
+      const { nodeName } = child;
+      return (
+        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
+      );
+    };
 
-    const onlyColumns = allChildrenWithSlotAttribute.filter(
+    const onlyColumns = childrenArr.filter(
       // only accepts those slots that are columns
       filter('column-')
     );
-    const onlySocials = allChildrenWithSlotAttribute.filter(
+    const onlySocials = childrenArr.filter(
       // only accepts those slots that are social columns
       noHeaderFilter('social-')
     );
