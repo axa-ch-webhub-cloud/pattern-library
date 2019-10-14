@@ -95,11 +95,23 @@ class AXAFooter extends InlineStyles {
    * ITEM -> add item to column 1
    */
   _prepareSlotsWithIndexes() {
-    const childrenArr = Array.prototype.slice.call(
+    const slotElements = Array.prototype.slice.call(
       this.querySelectorAll('[slot]')
     );
 
-    console.log('arr', childrenArr);
+    const childrenArr = slotElements.map(c => {
+      let currentLevel = c;
+      const domTree = [currentLevel];
+      while (
+        AXAFooter.tagName.toUpperCase() !== currentLevel.tagName.toUpperCase()
+      ) {
+        currentLevel = currentLevel.parentNode;
+        domTree.push(currentLevel);
+      }
+      const slotEl = domTree[domTree.length - 2];
+      slotEl.setAttribute('slot', c.getAttribute('slot'));
+      return slotEl;
+    });
 
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
