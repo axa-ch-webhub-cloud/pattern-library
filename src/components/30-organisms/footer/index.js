@@ -76,6 +76,15 @@ class AXAFooter extends InlineStyles {
     }
   }
 
+  /**
+   * A slot element needs to be a direct child of a webcomponent. Since AEM
+   * (and potentially other systems) wrap those children, they are no longer
+   * direct childs to the webcomponents. We workaround this problem by
+   * taking the slot-attribute to the direct children of the component.
+   *
+   * @param {*} nestedChild A direct child of the component, which has a slot
+   * element nested somewhere lower, which would belong to the top component.
+   */
   _setSlotNameFromNestedChildToDirectChildNodeOfComponent(nestedChild) {
     let currentNode = nestedChild;
     const domTree = [currentNode];
