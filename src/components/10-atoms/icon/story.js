@@ -15,7 +15,8 @@ storyIcon.addParameters({
 });
 
 storyIcon.add('Icon', () => {
-  const icon = select('icon', iconList, 'download');
+  const icon = select('Select icon:', iconList, 'download');
+  const noIcon = boolean('Do not set icon property', false);
   const loadFromUrl = boolean('Load icon from URL', false);
   const itemIconUrl = text('Load icon from this URL:', '/svg/logo-axa.svg');
   const showAll = boolean('Show list of available icons', false);
@@ -44,7 +45,13 @@ storyIcon.add('Icon', () => {
           ${createListWithAllIcons()}
         `
       : html`
-          <axa-icon icon="${loadFromUrl ? itemIconUrl : icon}"></axa-icon>
+          ${noIcon
+            ? html`
+                <axa-icon></axa-icon>
+              `
+            : html`
+                <axa-icon icon="${loadFromUrl ? itemIconUrl : icon}"></axa-icon>
+              `}
         `}
   `;
 
