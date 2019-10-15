@@ -1,5 +1,6 @@
 export const iconList = {
   none: '',
+  'arrow-left': 'arrow-left',
   'arrow-right': 'arrow-right',
   collapse: 'collapse',
   document: 'document',
