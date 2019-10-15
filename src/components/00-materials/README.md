@@ -94,4 +94,4 @@ this.render() {
 
 ## ChangeLog
 - 2.0.0
-    - removed Axa Logos from /images
+    - removed Axa Logos from /icons
