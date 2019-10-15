@@ -75,7 +75,7 @@ The icon resource path must have `.svg` extension.
 
 #### Icon as a SVG string
 
-You can load your own SVG and set its html string. The string must contain `<svg` tag. If you want to use your own size you have to set it to the SVG on your own.
+You can load your own SVG and set its html string. The string must contain `<svg` tag. When using a custom icon, make sure to define the icon `width` and `height` (in `px`) in its definition and use `fill="currentColor"` on `path`s that should inherit the color from its containing component.
 
 ### Size
 
