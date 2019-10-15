@@ -15,10 +15,7 @@ import {
   UploadSvg,
   CloudUploadSvg,
 } from '@axa-ch/materials/icons';
-import {
-  AxaLogoSvg,
-  AxaLogoOpenSvg,
-} from '@axa-ch/materials/images';
+import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import defineOnce from '../../../utils/define-once';
 import { xhrCall } from '../../../utils/requests';
@@ -78,15 +75,13 @@ class AXAIcon extends LitElement {
     } else if (/<svg/.test(icon)) {
       this.size = 'auto';
       this._loadedSvg = icon;
-    }
-    else
-    {
+    } else {
       this._loadedSvg = AXAIcon.iconsMapping[icon] || '';
     }
   }
 
   render() {
-    return svg([this._loadedSvg]);
+    return this._loadedSvg && svg([this._loadedSvg]);
   }
 }
 
