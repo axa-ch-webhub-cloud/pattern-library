@@ -96,5 +96,5 @@ test('should set className', async t => {
   const $axaButton = await Selector(BUTTON_TAG);
   await t.expect($axaButton.exists).ok();
 
-  await t.expect(await $axaButton.getAttribute('class')).eql('myCssClass');
+  await t.expect(await $axaButton.getAttribute('classname')).eql('myCssClass');
 });
