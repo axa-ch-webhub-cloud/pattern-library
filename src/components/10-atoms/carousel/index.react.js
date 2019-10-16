@@ -2,19 +2,27 @@ import withReact from '../../../utils/with-react';
 import AXACarousel from './index';
 
 export default createElement => ({
-  autorotatedisabled,
-  autorotatetime,
-  keysenabled,
-  className,
   children,
-}) =>
-  withReact(createElement)(
+  ...rest,
+}) => {
+
+  const events = {};
+
+  // Get all events as events
+  Object.keys(rest).forEach((name) => {
+    if (name.indexOf('on') === 0) {
+      events[name] = rest[name];
+    }
+  });
+
+  return withReact(createElement)(
     AXACarousel.tagName,
     {
-      autorotatedisabled,
-      autorotatetime,
-      keysenabled,
-      className,
+      attrs: {
+        ...rest,
+      },
+      ...events,
     },
     children
   );
+}
