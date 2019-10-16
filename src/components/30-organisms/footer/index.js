@@ -77,6 +77,29 @@ class AXAFooter extends InlineStyles {
   }
 
   /**
+   * A slot element needs to be a direct child of a webcomponent. Since AEM
+   * (and potentially other systems) wrap those children, they are no longer
+   * direct childs to the webcomponents. We workaround this problem by
+   * taking the slot-attribute to the direct children of the component.
+   *
+   * @param {*} nestedChild A direct child of the component, which has a slot
+   * element nested somewhere lower, which would belong to the top component.
+   */
+  _setSlotNameFromNestedChildToDirectChildNodeOfComponent(nestedChild) {
+    let currentNode = nestedChild;
+    const domTree = [currentNode];
+    while (
+      AXAFooter.tagName.toUpperCase() !== currentNode.tagName.toUpperCase()
+    ) {
+      currentNode = currentNode.parentNode;
+      domTree.push(currentNode);
+    }
+    const slotElement = domTree[domTree.length - 2];
+    slotElement.setAttribute('slot', nestedChild.getAttribute('slot'));
+    return slotElement;
+  }
+
+  /**
    * Takes all the child elements and extracts all the ones that come with a
    * slot-attribute. Those elements will then be changed to be distinguishable
    * from each other. Each block of links will need a title, so that the block will be displayed.
@@ -95,30 +118,29 @@ class AXAFooter extends InlineStyles {
    * ITEM -> add item to column 1
    */
   _prepareSlotsWithIndexes() {
-    const rawChildren = Array.prototype.slice.call(this.children);
-
-    const allChildrenWithSlotAttribute = [];
-    rawChildren.forEach(rawNode =>
-      this._revealChildrenWithSlotAttribute(
-        rawNode,
-        allChildrenWithSlotAttribute
-      )
+    const slotElements = Array.prototype.slice.call(
+      this.querySelectorAll('[slot]')
     );
-    this.innerHTML = '';
-    allChildrenWithSlotAttribute.forEach(c => this.appendChild(c));
+
+    const childrenArr = slotElements.map(c =>
+      this._setSlotNameFromNestedChildToDirectChildNodeOfComponent(c)
+    );
 
     const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
 
-    const noHeaderFilter = criteria => child =>
-      filter(criteria)(child) &&
-      !HEADINGS.includes(child.nodeName.toLowerCase());
+    const noHeaderFilter = criteria => child => {
+      const { nodeName } = child;
+      return (
+        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
+      );
+    };
 
-    const onlyColumns = allChildrenWithSlotAttribute.filter(
+    const onlyColumns = childrenArr.filter(
       // only accepts those slots that are columns
       filter('column-')
     );
-    const onlySocials = allChildrenWithSlotAttribute.filter(
+    const onlySocials = childrenArr.filter(
       // only accepts those slots that are social columns
       noHeaderFilter('social-')
     );
