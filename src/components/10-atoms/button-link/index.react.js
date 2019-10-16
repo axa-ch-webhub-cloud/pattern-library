@@ -4,29 +4,37 @@ import AXAButtonLink from './index';
 export default createElement => ({
   icon = '',
   variant = '',
-  href = '',
+  href = null,
   size = '',
-  external = false,
-  motionOff = false,
-  disabled = false,
-  onClick,
   className = '',
   slot = '',
   children,
-}) =>
-  withReact(createElement)(
+  ...rest,
+}) => {
+
+  const events = {};
+
+  // Get all events as events
+  Object.keys(rest).forEach((name) => {
+    if (name.indexOf('on') === 0) {
+      events[name] = rest[name];
+    }
+  });
+
+  return withReact(createElement)(
     AXAButtonLink.tagName,
     {
-      icon,
-      variant,
-      href,
-      size,
-      external,
-      motionOff,
-      disabled,
-      className,
-      slot,
-      onClick,
+      attrs: {
+        icon,
+        variant,
+        href,
+        size,
+        className,
+        slot,
+        ...rest,
+      },
+      ...events,
     },
     children
   );
+}
