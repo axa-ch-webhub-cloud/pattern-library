@@ -6,25 +6,35 @@ export default createElement => ({
   icon = '',
   size = '',
   variant = '',
-  motionOff = false,
-  disabled = false,
-  onClick,
-  children,
   className = '',
   slot = '',
-}) =>
-  withReact(createElement)(
+  children,
+  ...rest,
+}) => {
+
+  const events = {};
+
+  // Get all events as events
+  Object.keys(rest).forEach((name) => {
+    if (name.indexOf('on') === 0) {
+      events[name] = rest[name];
+    }
+  });
+
+  return withReact(createElement)(
     AXAButton.tagName,
     {
-      type,
-      icon,
-      size,
-      variant,
-      motionOff,
-      disabled,
-      onClick,
-      className,
-      slot,
+      attrs: {
+        type,
+        icon,
+        size,
+        variant,
+        className,
+        slot,
+        ...rest,
+      },
+      ...events,
     },
     children
   );
+}
