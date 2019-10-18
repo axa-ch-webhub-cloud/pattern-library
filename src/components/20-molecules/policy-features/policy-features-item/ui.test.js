@@ -140,7 +140,7 @@ test('should set width of the first policy-features-item with screen size sm-up'
 });
 
 fixture('Policy features item - svg loading').page(
-  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant=dark-indigo&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon - load svg icon from this url instead:=${host}/static/media/logo-axa.ce44e802.svg&knob-description=A 5 star car insurance with affordable premium services`
+  `${host}/iframe.html?id=molecules-policy-features--policy-features&knob-variant_axa-policy-features=&knob-title_axa-policy-features=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services&knob-Show%20title?_axa-policy-features-item=y&knob-title%20(of%20item)_axa-policy-features-item=Get%20Discount&knob-icon%20-%20load%20svg%20icon%20from%20this%20url%20instead:_axa-policy-features-item=/svg/logo-axa.svg&knob-description_axa-policy-features-item=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services`
 );
 
 test('should render svg icon of the first policy-features-item (if set with url)', async t => {
