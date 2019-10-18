@@ -9,7 +9,6 @@ addParameters({
     codeTheme: 'github',
   },
   options: {
-    sortStoriesByKind: true,
     theme: create({
       base: 'light',
       brandTitle: 'AXA Living Styleguide',
