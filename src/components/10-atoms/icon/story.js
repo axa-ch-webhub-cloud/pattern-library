@@ -27,7 +27,7 @@ storyIcon.add(
     const noIcon = boolean('Do not set icon on component', false);
 
     const loadIconType = radios(
-      'Load icon this way:',
+      'Load icon this way (Fill values below):',
       { 'Named property': 'prop', URL: 'url', 'SVG string': 'string' },
       'prop'
     );
