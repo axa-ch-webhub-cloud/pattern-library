@@ -55,6 +55,7 @@ Import the icon-defining script and use icons like so:
 
 | Attribute              |
 | ---------------------- |
+| `icon="arrow-left"`    |
 | `icon="arrow-right"`   |
 | `icon="collapse"`      |
 | `icon="document"`      |
@@ -86,6 +87,7 @@ The default behavior set the size of the svgs to 16x16 px, to use original size 
 | `size="auto"` |
 
 ## ChangeLog
+
 - 1.3.0
-    - add the possibility to set svg as a string
-    - add property `size` to react interface
+  - add the possibility to set svg as a string
+  - add property `size` to react interface
