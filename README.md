@@ -100,3 +100,46 @@ AXAButton.displayName = 'AXAButton';
 ```
 
 In the future, the Pattern Library will take care of this automatically.
+
+## Dealing with FOUC
+
+As described in [Contributing Guide](https://github.com/axa-ch/patterns-library/tree/develop/CONTRIBUTION.md), FOUC can be mitigated by using the css pseudo selector: `:not(:defined)`. Below you find an example on how we can show to the user that the Footer is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there wwon't be any effect on it. We can follow here the principle of graceful degradation as the only downside in **IE11** is that it just doesn't look as good but still everything else works normally, ergo no functionality is lost.
+
+```
+<style>
+  /* make FOUC not as bad */
+  axa-footer:not(:defined) {
+    background-color: #3b3fd8;
+    color: #3b3fd8;
+    display: block;
+  }
+
+  axa-footer:not(:defined) svg {
+    display: none;
+  }
+
+  axa-footer:not(:defined) a {
+    color: #FFF;
+    background: #FFF;
+    display: inline-block;
+    margin-left: 10px;
+    pointer-events: none;
+    margin-top: 10px;
+    opacity: 0.2;
+    transition:opacity 500ms ease-out;
+    animation: pulseloadingaxafooter 1s infinite;
+  }
+
+  @keyframes pulseloadingaxafooter {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+</style>
+```
