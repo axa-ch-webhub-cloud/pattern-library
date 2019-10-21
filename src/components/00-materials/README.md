@@ -93,5 +93,6 @@ this.render() {
 4. Manually review the SVGs produced in the last step: add or edit &lt;path&gt; attributes, setting `fill="currentColor"` and/or `strokes="currentColor"` as appropriate. Remove unnecessary attributes.
 
 ## ChangeLog
+
 - 2.0.0
-    - removed Axa Logos from /icons
+  - removed Axa logos from `/icons` (please use logos from `/images`)
