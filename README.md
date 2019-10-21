@@ -101,6 +101,10 @@ AXAButton.displayName = 'AXAButton';
 
 In the future, the Pattern Library will take care of this automatically.
 
+### Testing in create react app v3+
+
+If you want to have [Jest](https://jestjs.io/) tests in [Create React App](https://github.com/facebook/create-react-app/) here an example on how we did add them: [commit link to patterns library examples](https://github.com/axa-ch/patterns-library-examples/commit/870f94420239e9c99cd25a6050e078375d64a815)
+
 ## Dealing with FOUC
 
 As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/ARCHITECTURE.md), FOUC can be mitigated by using the css pseudo selector: `:not(:defined)`. Below you find an example on how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there wwon't be any effect on it. We can follow here the principle of graceful degradation as the only downside in **IE11** is that it just doesn't look as good but still everything else works normally, ergo no functionality is lost.
