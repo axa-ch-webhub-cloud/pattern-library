@@ -14,11 +14,11 @@ import {
   SearchSvg,
   UploadSvg,
   CloudUploadSvg,
-  AxaLogoSvg,
-  AxaLogoOpenSvg,
 } from '@axa-ch/materials/icons';
+import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import defineOnce from '../../../utils/define-once';
+import { xhrCall } from '../../../utils/requests';
 
 class AXAIcon extends LitElement {
   static get tagName() {
@@ -55,6 +55,7 @@ class AXAIcon extends LitElement {
     return {
       icon: { type: String },
       size: { type: String, reflect: true },
+      _loadedSvg: { type: String },
     };
   }
 
@@ -67,21 +68,20 @@ class AXAIcon extends LitElement {
     const { icon } = this;
 
     if (/\.svg/.test(icon)) {
-      const req = new XMLHttpRequest();
-      req.open('GET', icon);
-      req.onreadystatechange = () => {
-        if (req.readyState === 4 && req.status === 200) {
-          this.size = 'auto';
-          this.shadowRoot.innerHTML = req.response;
-        }
-      };
-
-      req.send();
+      xhrCall(icon).then(result => {
+        this.size = 'auto';
+        this._loadedSvg = result;
+      });
+    } else if (/<svg/.test(icon)) {
+      this.size = 'auto';
+      this._loadedSvg = icon;
+    } else {
+      this._loadedSvg = AXAIcon.iconsMapping[icon] || '';
     }
   }
 
   render() {
-    return svg([AXAIcon.iconsMapping[this.icon] || '']);
+    return this._loadedSvg && svg([this._loadedSvg]);
   }
 }
 

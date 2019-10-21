@@ -2,7 +2,8 @@ import React from 'react';
 import { Icon } from './index.d';
 
 export interface AXAIconProps {
-  icon?: Icon
+  icon?: Icon;
+  size?: String;
 }
 
 declare function createAXAIcon(

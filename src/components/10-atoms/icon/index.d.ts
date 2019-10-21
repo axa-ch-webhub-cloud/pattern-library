@@ -10,4 +10,7 @@ export type Icon =
   | 'phone'
   | 'plus'
   | 'search'
-  | 'upload';
+  | 'upload'
+  | 'cloud-upload'
+  | 'axa-logo'
+  | 'axa-logo-open';
