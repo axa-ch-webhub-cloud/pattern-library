@@ -29,7 +29,8 @@ axa-fieldset {
 
     @include breakpoint($mediaquery-xsm) {
 
-        > * {
+        > *,
+        > * > * {
           margin-right: 0 !important;
           width: 100% !important;
         }
