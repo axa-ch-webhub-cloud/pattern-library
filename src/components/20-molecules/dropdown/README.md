@@ -90,7 +90,11 @@ Note that a disabled dropdown will not participate in form submission.
 
 ### maxHeight
 
-When true, the Boolean attribute `maxHeight` limits the height of an active dropdown to a sensible default and allows scrolling through its options.
+When set to empty string (or used as boolean attribute), the String attribute `maxHeight` limits the height of an active dropdown to a sensible default and allows scrolling through its options.
+
+When a number is given, the maxheight of the options will be limited to that value.
+
+If you do not set this attribute, all the options will be displayed without any scrolling mechanism.
 
 This property is most useful in space-constrained scenarios or with many options, e.g. in a country selector.
 

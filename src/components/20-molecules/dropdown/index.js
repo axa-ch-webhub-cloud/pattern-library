@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
@@ -98,7 +99,7 @@ class AXADropdown extends NoShadowDOM {
   static get properties() {
     return {
       'data-test-id': { type: String, reflect: true },
-      maxHeight: { type: Boolean, reflect: true },
+      maxHeight: { type: String, reflect: true },
       label: { type: String },
       required: { type: Boolean },
       items: { type: Array, /* participate in typecheck'ing */ check: true },
@@ -237,8 +238,10 @@ class AXADropdown extends NoShadowDOM {
 
   findByValue(value, indexOnly) {
     const { items } = this;
-    const itemIndex = items.findIndex(({selected, value: selectedValue}) =>
-      value === null ? selected : (selectedValue === value || selectedValue === parseInt(value, 10))
+    const itemIndex = items.findIndex(({ selected, value: selectedValue }) =>
+      value === null
+        ? selected
+        : selectedValue === value || selectedValue === parseInt(value, 10)
     );
     return indexOnly ? itemIndex : [items[itemIndex], itemIndex];
   }
@@ -301,6 +304,7 @@ class AXADropdown extends NoShadowDOM {
       disabled,
       handleDropdownItemClick,
       handleDropdownClick,
+      maxHeight,
     } = this;
 
     const [selectedItem] = this.findByValue(null);
@@ -357,8 +361,13 @@ class AXADropdown extends NoShadowDOM {
             </span>
           </button>
 
-          <ul class="m-dropdown__content js-dropdown__content">
-            ${items.map(contentItemsMapper(handleDropdownItemClick))}
+          <ul
+            class="m-dropdown__content js-dropdown__content"
+            style="${maxHeight && !isNaN(maxHeight)
+              ? `max-height: ${maxHeight}px;`
+              : ''}"
+          >
+            ${items.map(handleDropdownItemClick)}
           </ul>
           <!-- ENHANCED END -->
         </div>
