@@ -1,12 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import {
-  text,
-  boolean,
-  number,
-  select,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { text, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
@@ -36,6 +30,7 @@ storiesOf('Molecules/Dropdown/React', module)
     const required = boolean('required', false);
     const checkMark = boolean('checkmark', false);
     const disabled = boolean('disabled', false);
+    const maxHeight = text('max-height', '');
 
     ReactDOM.render(
       <DemoUncontrolledDropdownReact
@@ -52,6 +47,7 @@ storiesOf('Molecules/Dropdown/React', module)
         required={required}
         checkMark={checkMark}
         disabled={disabled}
+        maxHeight={maxHeight}
       />,
       div
     );

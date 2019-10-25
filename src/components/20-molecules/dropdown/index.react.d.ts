@@ -29,6 +29,7 @@ export interface AXADropdownProps<T = number | string> {
   disabled?: boolean;
   dataTestId?: string;
   className?: string;
+  maxHeight?: string;
 }
 
 declare function createAXADropdown(
