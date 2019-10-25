@@ -235,12 +235,14 @@ class AXATableSortable extends LitElement {
                       aria-sort="${this.getSortingAria(config)}"
                     >
                       ${config.html}
-                      <span
-                        class="o-table-sortable__th__arrow o-table-sortable__th__arrowup"
-                      ></span>
-                      <span
-                        class="o-table-sortable__th__arrow o-table-sortable__th__arrowdown"
-                      ></span>
+                      <div class="o-table-sortable__th__arrow-wrapper">
+                        <div
+                          class="o-table-sortable__th__arrow o-table-sortable__th__arrowup"
+                        ></div>
+                        <div
+                          class="o-table-sortable__th__arrow o-table-sortable__th__arrowdown"
+                        ></div>
+                      </div>
                     </th>
                   `
                 )}
