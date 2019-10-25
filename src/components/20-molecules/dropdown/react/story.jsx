@@ -1,12 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import {
-  text,
-  boolean,
-  number,
-  select,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { text, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
