@@ -367,7 +367,7 @@ class AXADropdown extends NoShadowDOM {
               ? `max-height: ${maxHeight}px;`
               : ''}"
           >
-            ${items.map(handleDropdownItemClick)}
+            ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
           <!-- ENHANCED END -->
         </div>
