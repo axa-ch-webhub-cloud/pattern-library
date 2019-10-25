@@ -6,7 +6,6 @@
     }
 
     &__arrow {
-      display: none;
       position: relative;
       margin-left: 5px;
       border-left: 4px solid transparent;
@@ -18,10 +17,30 @@
       content: '';
       border-style: solid;
     }
+
+    &__arrowup {
+      display: inline;
+      border-bottom-width: 4px;
+      border-bottom-color: $color-prim-gray-silver;
+      border-top: none;
+      top: -8px;
+    }
+
+    &__arrowdown {
+      display: inline;
+      border-top-width: 4px;
+      border-top-color: $color-prim-gray-silver;
+      border-bottom: none;
+      top: -4px;
+    }
   }
 
   th:not([aria-sort='none']) {
     cursor: pointer;
+  }
+
+  th[aria-sort='none'] > div.o-table-sortable__th__arrow-wrapper {
+    display: none;
   }
 
   [tabindex] {
@@ -30,64 +49,40 @@
 
   th[aria-sort='ascending'] {
     color: $color-axa-blue;
-    .o-table-sortable__th__arrowup {
-      display: inline;
-      border-bottom-width: 4px;
-      border-bottom-color: $color-prim-gray-silver;
-      border-top: none;
-      top: -8px;
-    }
-    .o-table-sortable__th__arrowdown {
-      display: inline;
-      border-top-width: 4px;
-      border-top-color: $color-prim-gray-silver;
-      border-bottom: none;
-      top: -4px;
-    }
 
-    &:hover,
     &:active,
     &:focus {
       .o-table-sortable__th__arrow {
-        border-bottom-color: $color-axa-blue;
+        border-top-color: $color-axa-blue;
       }
     }
 
     &.o-table-sortable__th--selected {
       .o-table-sortable__th__arrow {
         border-bottom-color: $color-axa-blue;
+      }
+      .o-table-sortable__th__arrowdown {
+        border-top-color: transparent;
       }
     }
   }
 
   th[aria-sort='descending'] {
     color: $color-axa-blue;
-    .o-table-sortable__th__arrowup {
-      display: inline;
-      border-bottom-width: 4px;
-      border-bottom-color: $color-prim-gray-silver;
-      border-top: none;
-      top: -8px;
-    }
-    .o-table-sortable__th__arrowdown {
-      display: inline;
-      border-top-width: 4px;
-      border-top-color: $color-prim-gray-silver;
-      border-bottom: none;
-      top: -4px;
-    }
 
-    &:hover,
     &:active,
     &:focus {
       .o-table-sortable__th__arrow {
-        border-top-color: $color-axa-blue;
+        border-bottom-color: $color-axa-blue;
       }
     }
 
     &.o-table-sortable__th--selected {
       .o-table-sortable__th__arrow {
         border-top-color: $color-axa-blue;
+      }
+      .o-table-sortable__th__arrowup {
+        border-bottom-color: transparent;
       }
     }
   }
