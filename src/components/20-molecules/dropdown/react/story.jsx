@@ -36,6 +36,7 @@ storiesOf('Molecules/Dropdown/React', module)
     const required = boolean('required', false);
     const checkMark = boolean('checkmark', false);
     const disabled = boolean('disabled', false);
+    const maxHeight = text('max-height', '');
 
     ReactDOM.render(
       <DemoUncontrolledDropdownReact
@@ -52,6 +53,7 @@ storiesOf('Molecules/Dropdown/React', module)
         required={required}
         checkMark={checkMark}
         disabled={disabled}
+        maxHeight={maxHeight}
       />,
       div
     );
