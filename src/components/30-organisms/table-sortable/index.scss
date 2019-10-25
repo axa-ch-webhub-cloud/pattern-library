@@ -1,6 +1,6 @@
 .o-table-sortable {
-
   &__th__arrow {
+    display: none;
     position: relative;
     margin-left: 5px;
     border-left: 4px solid transparent;
@@ -13,7 +13,7 @@
     border-style: solid;
   }
 
-  th:not([aria-sort="none"]) {
+  th:not([aria-sort='none']) {
     cursor: pointer;
   }
 
@@ -21,9 +21,10 @@
     cursor: pointer;
   }
 
-  th[aria-sort="ascending"] {
+  th[aria-sort='ascending'] {
     color: $color-axa-blue;
     .o-table-sortable__th__arrowup {
+      display: inline;
       border-bottom-width: 4px;
       border-bottom-color: $color-prim-gray-silver;
       border-top: none;
@@ -48,12 +49,13 @@
     }
   }
 
-  th[aria-sort="descending"] {
+  th[aria-sort='descending'] {
     color: $color-axa-blue;
     .o-table-sortable__th__arrowup {
       display: none;
     }
     .o-table-sortable__th__arrowdown {
+      display: inline;
       border-top-width: 4px;
       border-top-color: $color-prim-gray-silver;
       border-bottom: none;
