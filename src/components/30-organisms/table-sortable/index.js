@@ -125,7 +125,10 @@ class AXATableSortable extends LitElement {
   }
 
   sortByIndex(index, ev) {
-    const { target } = ev;
+    let { target } = ev;
+    if (target.classList.contains('o-table-sortable__th__flexcontainer')) {
+      target = target.parentNode;
+    }
     const sortAs = target.getAttribute('aria-sort') === ASC ? DESC : ASC;
     const tmpModel = { ...this.model };
 
@@ -234,14 +237,16 @@ class AXATableSortable extends LitElement {
                       }}"
                       aria-sort="${this.getSortingAria(config)}"
                     >
-                      ${config.html}
-                      <div class="o-table-sortable__th__arrow-wrapper">
-                        <div
-                          class="o-table-sortable__th__arrow o-table-sortable__th__arrowup"
-                        ></div>
-                        <div
-                          class="o-table-sortable__th__arrow o-table-sortable__th__arrowdown"
-                        ></div>
+                      <div class="o-table-sortable__th__flexcontainer">
+                        <span>${config.html}</span>
+                        <div class="o-table-sortable__th__arrow-wrapper">
+                          <div
+                            class="o-table-sortable__th__arrow o-table-sortable__th__arrowup"
+                          ></div>
+                          <div
+                            class="o-table-sortable__th__arrow o-table-sortable__th__arrowdown"
+                          ></div>
+                        </div>
                       </div>
                     </th>
                   `
