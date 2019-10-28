@@ -84,6 +84,7 @@ axa-datepicker {
     position: relative;
     display: flex;
     width: 197px;
+    max-width: 226px;
     align-items: center;
   }
 
@@ -304,6 +305,7 @@ axa-datepicker {
 
   .m-datepicker__button {
     margin: 0;
+    white-space: nowrap;
   }
 
   .m-datepicker__input-icon {
