@@ -124,12 +124,8 @@ class AXATableSortable extends LitElement {
     return ASC;
   }
 
-  sortByIndex(index, ev) {
-    let { target } = ev;
-    if (target.classList.contains('o-table-sortable__th__flexcontainer')) {
-      target = target.parentNode;
-    }
-    const sortAs = target.getAttribute('aria-sort') === ASC ? DESC : ASC;
+  sortByIndex(index, actualSortAs) {
+    const sortAs = actualSortAs === ASC ? DESC : ASC;
     const tmpModel = { ...this.model };
 
     const { tbody, tfoot } = this.model;
@@ -230,9 +226,10 @@ class AXATableSortable extends LitElement {
                       class="${this.lastIndex === index
                         ? 'o-table-sortable__th--selected'
                         : ''}"
-                      @click="${ev => {
-                        if (this.getSortingAria(config) !== 'none') {
-                          this.sortByIndex(index, ev);
+                      @click="${() => {
+                        const sortingAria = this.getSortingAria(config);
+                        if (sortingAria !== 'none') {
+                          this.sortByIndex(index, sortingAria);
                         }
                       }}"
                       aria-sort="${this.getSortingAria(config)}"
