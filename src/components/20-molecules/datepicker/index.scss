@@ -121,6 +121,7 @@ axa-datepicker {
     border: 1px solid;
     border-color: $color-prim-gray-dusty;
     border-right: none;
+    border-radius: 0; // mobile Safari...
     padding: 0 10px 0 20px;
     min-width: 0;
     width: 100%;

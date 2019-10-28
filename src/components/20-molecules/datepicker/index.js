@@ -533,12 +533,21 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   handleViewportCheck(baseElem) {
-    if (shouldMove(baseElem)) {
-      if (!this.inverted) {
-        this.inverted = true;
-      }
-    } else {
-      this.inverted = false;
+    const calendar = this.querySelector('.js-datepicker__wrap');
+    if (!calendar) {
+      return;
+    }
+    const bodyRectangle = {
+      top: 0,
+      bottom: document.documentElement.scrollHeight,
+    };
+    const calendarRectangle = calendar.getBoundingClientRect();
+    const calendarBelowPage = calendarRectangle.bottom > bodyRectangle.bottom;
+    const calendarAbovePage = calendarRectangle.top < bodyRectangle.top;
+    const newInverted =
+      calendarBelowPage || (shouldMove(baseElem) && !calendarAbovePage);
+    if (newInverted !== this.inverted) {
+      this.inverted = newInverted;
     }
   }
 
