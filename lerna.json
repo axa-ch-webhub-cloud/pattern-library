@@ -1,7 +1,7 @@
 {
   "packages": [
     "src/components/10-atoms/fieldset",
-    "src/components/20-molecules/datepicker",
+    "src/components/20-molecules/datepicker"
   ],
   "version": "independent",
   "npmClient": "npm"
