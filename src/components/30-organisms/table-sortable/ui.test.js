@@ -240,6 +240,20 @@ test('should render only arrowup and with right color', async t => {
     .eql(colorTransparent);
 });
 
+test('should not render arrows', async t => {
+  const $columnFourHeaderRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('thead tr')[0];
+    return firstRow.querySelectorAll('th')[3];
+  });
+
+  const $arrowWrapper = await $columnFourHeaderRow.find(
+    '.o-table-sortable__th__arrow-wrapper'
+  );
+
+  await t.expect($arrowWrapper.getStyleProperty('display')).eql('none');
+});
+
 fixture('Table Sortable - innerscroll functionality').page(
   `${host}/iframe.html?id=organisms-table-sortable--table-sortable&knob-innerscroll=500`
 );
