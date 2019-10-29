@@ -92,6 +92,7 @@ class AXAFooterSmall extends InlineStyles {
               ${repeat(
                 this.querySelectorAll('[slot="language-item"]'),
                 (languageItem, index) => {
+                  // We forward the active class coming from the light DOM.
                   const classes = {
                     'm-footer-small__link--bold': true,
                     'm-footer-small__link--active': languageItem.classList.contains(
