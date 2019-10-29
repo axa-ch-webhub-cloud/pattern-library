@@ -3,9 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table Sortable - basic functionality')
-  .page(
-    `${host}/iframe.html?id=organisms-table-sortable--table-sortable`
-  )
+  .page(`${host}/iframe.html?id=organisms-table-sortable--table-sortable`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -161,6 +159,28 @@ test('should add a fix css class when sorted is clicked', async t => {
     .eql('o-table-sortable__th--selected');
 
   await t.expect($columnTwo.getAttribute('class')).eql('');
+});
+
+test('should render two arrows', async t => {
+  const $columnOneHeaderRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('thead tr')[0];
+    return firstRow.querySelectorAll('th')[0];
+  });
+
+  const $arrowUp = await $columnOneHeaderRow.find(
+    '.o-table-sortable__th__arrowup'
+  );
+  const $arrowDown = await $columnOneHeaderRow.find(
+    '.o-table-sortable__th__arrowdown'
+  );
+
+  await t
+    .expect($arrowUp.getStyleProperty('border-bottom-color'))
+    .notEql('transparent');
+  await t
+    .expect($arrowDown.getStyleProperty('border-top-color'))
+    .notEql('transparent');
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
