@@ -8,7 +8,11 @@ type Item = {
 };
 
 type AXADropdownChangeEvent = {
-  target: Item;
+  target: {
+    value: string;
+    index: number;
+    name: string;
+  };
 };
 
 export interface AXADropdownProps {
