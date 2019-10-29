@@ -1,6 +1,7 @@
 import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
+const colorTransparent = 'rgba(0, 0, 0, 0)';
 
 fixture('Table Sortable - basic functionality')
   .page(`${host}/iframe.html?id=organisms-table-sortable--table-sortable`)
@@ -177,10 +178,66 @@ test('should render two arrows', async t => {
 
   await t
     .expect($arrowUp.getStyleProperty('border-bottom-color'))
-    .notEql('transparent');
+    .notEql(colorTransparent);
   await t
     .expect($arrowDown.getStyleProperty('border-top-color'))
-    .notEql('transparent');
+    .notEql(colorTransparent);
+});
+
+test('should render only arrowdown and with right color', async t => {
+  const expectedColor = 'rgb(0, 0, 143)';
+  const $columnOneHeaderRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('thead tr')[0];
+    return firstRow.querySelectorAll('th')[0];
+  });
+
+  const $arrowUp = await $columnOneHeaderRow.find(
+    '.o-table-sortable__th__arrowup'
+  );
+  const $arrowDown = await $columnOneHeaderRow.find(
+    '.o-table-sortable__th__arrowdown'
+  );
+
+  await t
+    .click($columnOneHeaderRow)
+    .expect($columnOneHeaderRow.getAttribute('class'))
+    .eql('o-table-sortable__th--selected');
+
+  await t
+    .expect($arrowUp.getStyleProperty('border-bottom-color'))
+    .eql(colorTransparent);
+  await t
+    .expect($arrowDown.getStyleProperty('border-top-color'))
+    .eql(expectedColor);
+});
+
+test('should render only arrowup and with right color', async t => {
+  const expectedColor = 'rgb(0, 0, 143)';
+  const $columnThreeHeaderRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('thead tr')[0];
+    return firstRow.querySelectorAll('th')[2];
+  });
+
+  const $arrowUp = await $columnThreeHeaderRow.find(
+    '.o-table-sortable__th__arrowup'
+  );
+  const $arrowDown = await $columnThreeHeaderRow.find(
+    '.o-table-sortable__th__arrowdown'
+  );
+
+  await t
+    .click($columnThreeHeaderRow)
+    .expect($columnThreeHeaderRow.getAttribute('class'))
+    .eql('o-table-sortable__th--selected');
+
+  await t
+    .expect($arrowUp.getStyleProperty('border-bottom-color'))
+    .eql(expectedColor);
+  await t
+    .expect($arrowDown.getStyleProperty('border-top-color'))
+    .eql(colorTransparent);
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
