@@ -127,7 +127,6 @@ class AXATableSortable extends LitElement {
   sortByIndex(index, actualSortAs) {
     const sortAs = actualSortAs === ASC ? DESC : ASC;
     const tmpModel = { ...this.model };
-
     const { tbody, tfoot } = this.model;
 
     tmpModel.tbody = this.sort(tbody, index, sortAs);
@@ -140,7 +139,6 @@ class AXATableSortable extends LitElement {
     tmpModel.thead[index].sort = mapAsc[sortAs];
 
     this.lastIndex = index;
-
     this.model = tmpModel;
   }
 
