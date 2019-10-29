@@ -1,18 +1,18 @@
 import React from 'react';
 
-type Item<T> = {
+type Item = {
   name: string;
-  value?: T;
+  value?: string;
   selected?: boolean;
   disabled?: boolean;
 };
 
-type AXADropdownChangeEvent<T> = {
-  target: Item<T>;
+type AXADropdownChangeEvent = {
+  target: Item;
 };
 
-export interface AXADropdownProps<T = number | string> {
-  items: Array<Item<T>>;
+export interface AXADropdownProps {
+  items: Array<Item>;
   embedded?: boolean;
   refId?: string;
   label?: string;
@@ -20,11 +20,11 @@ export interface AXADropdownProps<T = number | string> {
   invalid?: boolean;
   error?: string;
   native?: boolean;
-  onChange?: (e: AXADropdownChangeEvent<T>) => void;
+  onChange?: (e: AXADropdownChangeEvent) => void;
   onFocus?: (e?: any) => void;
   onBlur?: (e?: any) => void;
   defaultTitle?: string;
-  value?: T;
+  value?: string;
   checkMark?: boolean;
   disabled?: boolean;
   dataTestId?: string;
