@@ -1,6 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
-/* eslint-disable import/no-extraneous-dependencies */
+import { classMap } from 'lit-html/directives/class-map';
 import '@axa-ch/container';
 import footerSmallCSS from './index.scss';
 import childStyles from './child.scss';
@@ -80,16 +81,6 @@ class AXAFooterSmall extends InlineStyles {
   firstUpdated() {
     // call parent class method that add inline styles
     this.inlineStyles('resetHeadingCss');
-
-    this.querySelectorAll('[slot="language-item"]').forEach((item, index) => {
-      if (item.classList.contains('m-footer-small__link--active')) {
-        this.shadowRoot
-          .querySelectorAll(
-            '.m-footer-small__container > .m-footer-small__list a'
-          )
-          [index].classList.add('m-footer-small__link--active');
-      }
-    });
   }
 
   render() {
@@ -100,16 +91,24 @@ class AXAFooterSmall extends InlineStyles {
             <ul class="m-footer-small__list">
               ${repeat(
                 this.querySelectorAll('[slot="language-item"]'),
-                (languageItem, index) => html`
-                  <li class="m-footer-small__list-item">
-                    <a
-                      href="${languageItem.href}"
-                      class="m-footer-small__link--bold"
-                      @click=${ev => this.handleLanguageClick(ev, index)}
-                      >${languageItem.textContent}</a
-                    >
-                  </li>
-                `
+                (languageItem, index) => {
+                  const classes = {
+                    'm-footer-small__link--bold': true,
+                    'm-footer-small__link--active': languageItem.classList.contains(
+                      'm-footer-small__link--active'
+                    ),
+                  };
+                  return html`
+                    <li class="m-footer-small__list-item">
+                      <a
+                        href="${languageItem.href}"
+                        class="${classMap(classes)}"
+                        @click=${ev => this.handleLanguageClick(ev, index)}
+                        >${languageItem.textContent}</a
+                      >
+                    </li>
+                  `;
+                }
               )}
             </ul>
 
