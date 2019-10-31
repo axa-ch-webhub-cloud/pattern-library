@@ -47,8 +47,6 @@
   }
 
   th[aria-sort='ascending'] {
-    //color: $color-prim-gray-dark;
-
     &:active,
     &:focus {
       .o-table-sortable__th__arrow {
@@ -61,15 +59,12 @@
         border-bottom-color: $color-axa-blue;
       }
       .o-table-sortable__th__arrowdown {
-        //border-top-color: transparent;
         display: none;
       }
     }
   }
 
   th[aria-sort='descending'] {
-    //color: $color-axa-blue;
-
     &:active,
     &:focus {
       .o-table-sortable__th__arrow {
@@ -82,7 +77,6 @@
         border-top-color: $color-axa-blue;
       }
       .o-table-sortable__th__arrowup {
-        //border-bottom-color: transparent;
         display: none;
       }
     }

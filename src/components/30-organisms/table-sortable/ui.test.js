@@ -1,8 +1,6 @@
-/*
 import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
-const colorTransparent = 'rgba(0, 0, 0, 0)';
 
 fixture('Table Sortable - basic functionality')
   .page(`${host}/iframe.html?id=organisms-table-sortable--table-sortable`)
@@ -18,6 +16,17 @@ test('should render sortable table', async t => {
   );
   const $elShadowEl = await $elShadow.find('.o-table-sortable');
   await t.expect($elShadowEl.exists).ok();
+});
+
+test('should render correct color of table header text', async t => {
+  const expectedColor = 'rgb(51, 51, 51)';
+  const $el = await Selector('axa-table-sortable');
+  await t.expect($el.exists).ok();
+  const $columnZero = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelector('span');
+  });
+  await t.expect($columnZero.getStyleProperty('color')).eql(expectedColor);
 });
 
 test('should have aria ascending when passing ASC in model', async t => {
@@ -177,12 +186,8 @@ test('should render two arrows', async t => {
     '.o-table-sortable__th__arrowdown'
   );
 
-  await t
-    .expect($arrowUp.getStyleProperty('border-bottom-color'))
-    .notEql(colorTransparent);
-  await t
-    .expect($arrowDown.getStyleProperty('border-top-color'))
-    .notEql(colorTransparent);
+  await t.expect($arrowUp.getStyleProperty('display')).notEql('none');
+  await t.expect($arrowDown.getStyleProperty('display')).notEql('none');
 });
 
 test('should render only arrowdown and with right color', async t => {
@@ -205,9 +210,7 @@ test('should render only arrowdown and with right color', async t => {
     .expect($columnOneHeaderRow.getAttribute('class'))
     .eql('o-table-sortable__th--selected');
 
-  await t
-    .expect($arrowUp.getStyleProperty('border-bottom-color'))
-    .eql(colorTransparent);
+  await t.expect($arrowUp.getStyleProperty('display')).eql('none');
   await t
     .expect($arrowDown.getStyleProperty('border-top-color'))
     .eql(expectedColor);
@@ -236,9 +239,7 @@ test('should render only arrowup and with right color', async t => {
   await t
     .expect($arrowUp.getStyleProperty('border-bottom-color'))
     .eql(expectedColor);
-  await t
-    .expect($arrowDown.getStyleProperty('border-top-color'))
-    .eql(colorTransparent);
+  await t.expect($arrowDown.getStyleProperty('display')).eql('none');
 });
 
 test('should not render arrows', async t => {
@@ -404,4 +405,3 @@ test('should react to click on row', async t => {
       'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","A"]'
     );
 });
-*/
