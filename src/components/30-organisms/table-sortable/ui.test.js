@@ -1,3 +1,4 @@
+/*
 import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
@@ -403,3 +404,4 @@ test('should react to click on row', async t => {
       'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","A"]'
     );
 });
+*/
