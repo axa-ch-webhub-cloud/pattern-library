@@ -243,6 +243,7 @@ axa-dropdown {
   &[open] {
     .m-dropdown__content {
       height: auto;
+      overflow-y: auto;
     }
 
     .m-dropdown__select-icon svg {
@@ -288,7 +289,6 @@ axa-dropdown {
       outline-color: $color-validation-error;
     }
   }
-
 
   .m-dropdown__check-wrapper {
     @include check-mark-animated-wrapper();
