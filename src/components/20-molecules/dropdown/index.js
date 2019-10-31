@@ -363,7 +363,7 @@ class AXADropdown extends NoShadowDOM {
 
           <ul
             class="m-dropdown__content js-dropdown__content"
-            style="${maxHeight ? `max-height:${maxHeight}px;` : ''}"
+            style="${maxHeight && !isNaN(maxHeight) ? `max-height:${maxHeight}px;` : ''}"
           >
             ${items.map(contentItemsMapper(handleDropdownItemClick))}
           </ul>
