@@ -103,7 +103,6 @@ axa-dropdown {
   /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
   .m-dropdown__select-icon.m-dropdown__select-icon {
     display: block;
-    background-color: $color-prim-white;
     position: absolute;
     top: 15px;
     right: 15px;
@@ -251,7 +250,7 @@ axa-dropdown {
     }
   }
 
-  &[maxheight=""] {
+  &[maxheight=''] {
     .m-dropdown__content {
       max-height: 347px;
       overflow-y: auto;
@@ -310,7 +309,7 @@ axa-dropdown {
   }
 
   .m-dropdown__select:disabled,
-  [aria-disabled="true"] {
+  [aria-disabled='true'] {
     color: $color-prim-gray-dusty;
     pointer-events: none;
   }
@@ -322,9 +321,11 @@ axa-dropdown {
       background-color: $color-prim-gray-alabaster;
     }
 
-    .m-dropdown__label,
-    svg {
-      color: $color-prim-gray-dusty;
+    /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
+    .m-dropdown__select-icon.m-dropdown__select-icon {
+      svg {
+        color: $color-prim-gray-dusty;
+      }
     }
   }
 }
