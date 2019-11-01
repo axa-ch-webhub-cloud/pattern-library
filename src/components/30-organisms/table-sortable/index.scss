@@ -1,13 +1,15 @@
 .o-table-sortable {
+  &__th {
+    &__flexcontainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
 
-  th:not([aria-sort="none"]) {
-    cursor: pointer;
-    &:after {
-      position: relative;
+    &__arrow {
       margin-left: 5px;
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
-      transform: scale(1.01);
       width: 0;
       height: 0;
       font-size: 0;
@@ -15,56 +17,67 @@
       content: '';
       border-style: solid;
     }
+
+    &__arrowup {
+      border-bottom-width: 4px;
+      border-bottom-color: $color-prim-gray-silver;
+      border-top: none;
+    }
+
+    &__arrowdown {
+      margin-top: 3px;
+      border-top-width: 4px;
+      border-top-color: $color-prim-gray-silver;
+      border-bottom: none;
+    }
+  }
+
+  th:not([aria-sort='none']) {
+    cursor: pointer;
+  }
+
+  th[aria-sort='none']
+    > div.o-table-sortable__th__flexcontainer
+    > div.o-table-sortable__th__arrow-wrapper {
+    display: none;
   }
 
   [tabindex] {
     cursor: pointer;
   }
 
-  th[aria-sort="ascending"] {
-    color: $color-axa-blue;
-    &:after {
-      border-bottom-width: 4px;
-      border-bottom-color: $color-prim-gray-silver;
-      border-top: none;
-      top: -8px;
-    }
-
-    &:hover,
+  th[aria-sort='ascending'] {
     &:active,
     &:focus {
-      &:after {
-        border-bottom-color: $color-axa-blue;
+      .o-table-sortable__th__arrow {
+        border-top-color: $color-axa-blue;
       }
     }
 
     &.o-table-sortable__th--selected {
-      &:after {
+      .o-table-sortable__th__arrow {
         border-bottom-color: $color-axa-blue;
+      }
+      .o-table-sortable__th__arrowdown {
+        display: none;
       }
     }
   }
 
-  th[aria-sort="descending"] {
-    color: $color-axa-blue;
-    &:after {
-      border-top-width: 4px;
-      border-top-color: $color-prim-gray-silver;
-      border-bottom: none;
-      top: -4px;
-    }
-
-    &:hover,
+  th[aria-sort='descending'] {
     &:active,
     &:focus {
-      &:after {
-        border-top-color: $color-axa-blue;
+      .o-table-sortable__th__arrow {
+        border-bottom-color: $color-axa-blue;
       }
     }
 
     &.o-table-sortable__th--selected {
-      &:after {
+      .o-table-sortable__th__arrow {
         border-top-color: $color-axa-blue;
+      }
+      .o-table-sortable__th__arrowup {
+        display: none;
       }
     }
   }

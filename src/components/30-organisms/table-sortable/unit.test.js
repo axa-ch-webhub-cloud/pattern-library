@@ -117,3 +117,19 @@ describe('validateModel()', () => {
     });
   });
 });
+
+describe('sortByIndex()', () => {
+  test('should switch sort attribute', () => {
+    const index = 0;
+    const actualSortAs = 'ascending';
+    AXATableSortable.prototype.model = {
+      tbody: {},
+      tfoot: {},
+      thead: [{}],
+    };
+    AXATableSortable.prototype.sort = () => [];
+
+    AXATableSortable.prototype.sortByIndex(index, actualSortAs);
+    expect(AXATableSortable.prototype.model.thead[0].sort).toBe('DESC');
+  });
+});

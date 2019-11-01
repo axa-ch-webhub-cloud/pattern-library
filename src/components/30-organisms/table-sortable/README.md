@@ -168,3 +168,9 @@ The event `click` is fired on &lt;table-sortable&gt; whenever a user presses on 
 Under react, just set a `onClick` callback and you receive directly all key-values of the above described `detail` object.
 
 Both events do _not_ bubble up through the DOM.
+
+## ChangeLog
+
+- 1.3.6
+  - Table header text is now standard gray, not blue
+  - Sorting arrows visibility in non-active mode changed
