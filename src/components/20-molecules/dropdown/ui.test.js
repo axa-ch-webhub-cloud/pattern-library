@@ -9,6 +9,40 @@ test('should render correctly', async t => {
   await t.expect(dropdown.exists).ok();
 });
 
+test('should render arrow icon color correctly', async t => {
+  const expectedColor = 'rgb(0, 0, 143)';
+  const dropdownArrowIcon = await Selector(() =>
+    document.querySelector(`axa-dropdown .m-dropdown__select-icon svg`)
+  );
+  await t
+    .expect(dropdownArrowIcon.getStyleProperty('color'))
+    .eql(expectedColor);
+});
+
+fixture('Dropdown disabled').page(
+  `${host}/iframe.html?id=molecules-dropdown--dropdown&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
+);
+
+test('should render arrow icon color correctly if disabled', async t => {
+  const expectedColor = 'rgb(153, 153, 153)';
+  const dropdownArrowIcon = await Selector(() =>
+    document.querySelector(`axa-dropdown .m-dropdown__select-icon svg`)
+  );
+  await t
+    .expect(dropdownArrowIcon.getStyleProperty('color'))
+    .eql(expectedColor);
+});
+
+test('should not set any background color on svg parent span', async t => {
+  const expectedColor = 'rgba(0, 0, 0, 0)';
+  const dropdownArrowIcon = await Selector(() =>
+    document.querySelector(`axa-dropdown .m-dropdown__select-icon`)
+  );
+  await t
+    .expect(dropdownArrowIcon.getStyleProperty('background-color'))
+    .eql(expectedColor);
+});
+
 fixture('Dropdown check mark').page(
   `${host}/iframe.html?id=molecules-dropdown--dropdown&knob-checkmark=true`
 );
