@@ -41,7 +41,7 @@ class AXAButton extends LitElement {
     this.icon = '';
     this.motionOff = false;
     this.disabled = false;
-    this.onClick = () => { };
+    this.onClick = () => {};
   }
 
   get isTypeSubmitOrReset() {
@@ -109,16 +109,16 @@ class AXAButton extends LitElement {
       >
         <span class="a-button__flex-wrapper">
           ${this.showIcon
-        ? html`
+            ? html`
                 <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
               `
-        : ''}
+            : ''}
           <slot></slot>
           ${this.showArrow
-        ? html`
+            ? html`
                 <axa-icon class="a-button__arrow" icon="arrow-right"></axa-icon>
               `
-        : ''}
+            : ''}
         </span>
       </button>
     `;
@@ -127,7 +127,9 @@ class AXAButton extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    if (this.isTypeSubmitOrReset) this.onClick = null;
+    if (this.isTypeSubmitOrReset) {
+      this.onClick = null;
+    }
   }
 }
 
