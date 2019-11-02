@@ -64,7 +64,9 @@ class AXAButton extends LitElement {
       fakeButton.type = this.type;
       fakeButton.style.display = 'none';
       this.appendChild(fakeButton);
-      this.onClick = () => fakeButton.click();
+
+      // this.onclick refers to the event and has nothing to do with function-valued attribute onClick
+      this.onclick = () => fakeButton.click();
     }
 
     style.appearance = 'none';
@@ -128,7 +130,7 @@ class AXAButton extends LitElement {
     super.disconnectedCallback();
 
     if (this.isTypeSubmitOrReset) {
-      this.onClick = null;
+      this.onclick = null;
     }
   }
 }
