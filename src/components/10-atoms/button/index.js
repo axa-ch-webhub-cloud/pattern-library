@@ -77,14 +77,9 @@ class AXAButton extends LitElement {
   }
 
   render() {
-    const {
-      type,
-      motionOff,
-      disabled,
-      variant = '',
-      icon = '',
-      size = '',
-    } = this;
+    const { motionOff, disabled, variant = '', icon = '', size = '' } = this;
+
+    let { type } = this;
 
     const classes = {
       'a-button': true,
@@ -101,6 +96,10 @@ class AXAButton extends LitElement {
         variant === 'inverted-green-viridian',
       'a-button--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
+
+    if (type === 'submit') {
+      type = 'button';
+    }
 
     return html`
       <button
