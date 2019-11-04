@@ -201,12 +201,27 @@ class AXADatepicker extends NoShadowDOM {
     });
   }
 
+  initProp(name, defaultValue) {
+    let value;
+    if (!this.isReact) {
+      value = this[name] || this.getAttribute(name);
+    }
+    if ((value !== undefined && value !== null) || defaultValue !== undefined) {
+      this[name] = value !== undefined ? value : defaultValue;
+    }
+  }
+
   constructor() {
     super();
     // internal model state
     this.state = {};
     this.refId = `datepicker-${createRefId()}`;
     // property initializations
+
+    // initProps: capture property or attribute assignment from *before* component construction
+    this.initProp('value');
+    this.initProp('placeholder', 'Please select a date');
+
     this.locale = 'de-CH';
     this.open = false;
     this.inverted = false;
@@ -218,7 +233,6 @@ class AXADatepicker extends NoShadowDOM {
     this.label = '';
     this.labelbuttoncancel = 'Schliessen';
     this.labelbuttonok = 'OK';
-    this.placeholder = 'Please select a date';
     this.monthtitle = 'Choose Month';
     this.yeartitle = 'Choose Year';
     this.invaliddatetext = 'Invalid date';
@@ -637,10 +651,16 @@ class AXADatepicker extends NoShadowDOM {
       onChange = EMPTY_FUNCTION,
       input,
       state,
+      name,
       onDateChange = EMPTY_FUNCTION,
     } = this;
     onChange(e);
     const validDate = this.validate(input.value, true);
+    fireCustomEvent(
+      'axa-input',
+      { value: input.value, date: validDate, name },
+      this
+    );
     if (validDate) {
       onDateChange(validDate);
     }

@@ -205,6 +205,9 @@ The custom events `axa-change` and `change` are fired on &lt;axa-datepicker&gt; 
 
 Both events do _not_ bubble up through the DOM.
 
+The custom event `axa-input` is fired on &lt;axa-datepicker&gt; itself whenever the free-form date-input field's `input` event fires.
+Its `event.detail` value is a `{value, date, name}` object, with `value` being the current input-field value, `date` being a corresponding `Date` instance if valid (`null` otherwise), and `name` as defined above.
+
 The intended usage is for native applications using the datepicker in conjunction with e.g. inline event listeners.
 
 This functionality is not available in controlled-component mode.
