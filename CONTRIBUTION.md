@@ -123,9 +123,9 @@ storiesOf('Molecules/Top content bar', module)
 - Clean the main and components dependencies:
   - `npx lerna clean`
   - `rm -rf node_modules`
+- Run `npm install`
 - Manually add your component to `lerna.json` and remove all not-to-be-released components from the same
 - commit and push your lerna.json changes to the release branch
-- Run `npm install`
 - Do not use: ~~Run `npm run release` or `npm run prerelease`~~
 - Ensure you are logged in to npm (`npm login`)
 - Ensure you have the necessary credentials to push to the Githup repo via commandline commands (the following lerna commands do this automatically)
