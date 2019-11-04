@@ -129,3 +129,7 @@ Both events do _not_ bubble up through the DOM.
 The attribute `valid` was renamed to `checkmark` (respectively to the camel-case `checkMark` property used e.g. under React).
 
 The behaviour of `error` changed, now being reduced to specifying the error text only, whereas `invalid` controls when the error will be displayed.
+
+## ChangeLog
+    - 3.2.2
+        - fix colors of selector icon in disabled state
