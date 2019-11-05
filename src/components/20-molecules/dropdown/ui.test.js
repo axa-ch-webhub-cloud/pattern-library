@@ -278,7 +278,7 @@ test('should submit correct value to form', async t => {
     () => document.querySelector('#dropdown-form').title
   );
 
-  await t.expect(await getFormTitle()).eql('FR,1 ');
+  await t.expect(await getFormTitle()).eql('FR,2 ');
 });
 
 test('should react to value property changes', async t => {
