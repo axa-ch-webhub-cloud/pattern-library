@@ -30,6 +30,7 @@ storyDropdown.add('Dropdown', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-dropdown
+      onchange="console.log('onchange triggerd: ', event.detail)"
       defaultTitle="${defaultTitle}"
       value="${value}"
       label="${label}"
