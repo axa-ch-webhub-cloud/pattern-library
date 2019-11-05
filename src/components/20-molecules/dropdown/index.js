@@ -55,7 +55,7 @@ const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
     >
   `;
 
-const contentItemsMapper = clickHandler => (
+const contentItemsMapper = (clickHandler, defaultTitle) => (
   { name, value, selected, disabled },
   index
 ) => {
@@ -72,7 +72,7 @@ const contentItemsMapper = clickHandler => (
             @click="${clickHandler}"
             tabindex="-1"
             class="m-dropdown__button js-dropdown__button"
-            data-index="${index}"
+            data-index="${index + (defaultTitle ? 1 : 0)}"
             data-value="${value}"
           >
             ${name}
@@ -363,9 +363,13 @@ class AXADropdown extends NoShadowDOM {
 
           <ul
             class="m-dropdown__content js-dropdown__content"
-            style="${maxHeight && !isNaN(maxHeight) ? `max-height:${maxHeight}px;` : ''}"
+            style="${maxHeight && !isNaN(maxHeight)
+              ? `max-height:${maxHeight}px;`
+              : ''}"
           >
-            ${items.map(contentItemsMapper(handleDropdownItemClick))}
+            ${items.map(
+              contentItemsMapper(handleDropdownItemClick, defaultTitle)
+            )}
           </ul>
           <!-- ENHANCED END -->
         </div>
