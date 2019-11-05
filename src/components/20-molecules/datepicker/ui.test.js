@@ -354,7 +354,9 @@ test('should allow month change from default date', async t => {
   // click on new month
   await t
     .wait(50)
-    .click(`#datepicker-react .js-dropdown__button[data-index="${newMonth}"]`);
+    .click(
+      `#datepicker-react .js-dropdown__button[data-index="${newMonth + 1}"]`
+    );
 
   // commit new date
   await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
