@@ -58,15 +58,23 @@ class AXAButton extends LitElement {
 
   firstUpdated() {
     const { style } = this;
+    const isNativeShadowDOM = /\{\s*\[native code\]\s*\}/.test(
+      // eslint-disable-next-line no-undef
+      ShadowRoot.toString.trim()
+    );
+
     // shadow dom submit btn workaround
-    if (this.isTypeSubmitOrReset) {
+    // only use fakeButton when shadowDom is natively supported
+    if (isNativeShadowDOM && this.isTypeSubmitOrReset) {
       const fakeButton = document.createElement('button');
       fakeButton.type = this.type;
       fakeButton.style.display = 'none';
       this.appendChild(fakeButton);
 
       // this.onclick refers to the event and has nothing to do with function-valued attribute onClick
-      this.onclick = () => fakeButton.click();
+      this.onclick = () => {
+        fakeButton.click();
+      };
     }
 
     style.appearance = 'none';
@@ -77,9 +85,14 @@ class AXAButton extends LitElement {
   }
 
   render() {
-    const { motionOff, disabled, variant = '', icon = '', size = '' } = this;
-
-    let { type } = this;
+    const {
+      type,
+      motionOff,
+      disabled,
+      variant = '',
+      icon = '',
+      size = '',
+    } = this;
 
     const classes = {
       'a-button': true,
@@ -96,10 +109,6 @@ class AXAButton extends LitElement {
         variant === 'inverted-green-viridian',
       'a-button--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
-
-    if (type === 'submit') {
-      type = 'button';
-    }
 
     return html`
       <button
