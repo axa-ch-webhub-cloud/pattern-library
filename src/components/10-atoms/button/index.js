@@ -60,7 +60,7 @@ class AXAButton extends LitElement {
     const { style } = this;
     const isNativeShadowDOM = /\{\s*\[native code\]\s*\}/.test(
       // eslint-disable-next-line no-undef
-      ShadowRoot.toString.trim()
+      ShadowRoot.toString().trim()
     );
 
     // shadow dom submit btn workaround
