@@ -58,10 +58,9 @@ class AXAButton extends LitElement {
 
   firstUpdated() {
     const { style } = this;
-    const isNativeShadowDOM = /\{\s*\[native code\]\s*\}/.test(
-      // eslint-disable-next-line no-undef
-      ShadowRoot.toString().trim()
-    );
+
+    // eslint-disable-next-line no-undef
+    const isNativeShadowDOM = `${ShadowRoot}.indexOf('native code') > -1`;
 
     // shadow dom submit btn workaround
     // only use fakeButton when shadowDom is natively supported
