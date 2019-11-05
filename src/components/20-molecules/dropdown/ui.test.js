@@ -2,7 +2,11 @@ import { Selector, ClientFunction } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Dropdown').page(`${host}/iframe.html?id=molecules-dropdown--dropdown`);
+fixture('Dropdown')
+  .page(`${host}/iframe.html?id=molecules-dropdown--dropdown`)
+  .afterEach(async t => {
+    await t.maximizeWindow();
+  });
 
 test('should render correctly', async t => {
   const dropdown = await Selector(() => document.querySelector(`axa-dropdown`));
@@ -17,6 +21,26 @@ test('should render arrow icon color correctly', async t => {
   await t
     .expect(dropdownArrowIcon.getStyleProperty('color'))
     .eql(expectedColor);
+});
+
+test('On Desktop the first element should have index 1 if defaulttitle is set', async t => {
+  const firstOption = await Selector(
+    () => document.querySelectorAll(`axa-dropdown .m-dropdown__button`)[0]
+  );
+
+  await t.expect(firstOption.getAttribute('data-index')).eql('1');
+}).before(async t => {
+  await t.maximizeWindow();
+});
+
+test('On mobiles the first element should have index 1 if defaulttitle is set', async t => {
+  const firstOption = await Selector(() =>
+    document.querySelector(`axa-dropdown .m-dropdown__option[value='Item 1']`)
+  );
+
+  await t.expect(firstOption.getAttribute('data-index')).eql('1');
+}).before(async t => {
+  await t.resizeWindow(767, 767);
 });
 
 fixture('Dropdown disabled').page(
@@ -278,7 +302,7 @@ test('should submit correct value to form', async t => {
     () => document.querySelector('#dropdown-form').title
   );
 
-  await t.expect(await getFormTitle()).eql('FR,1 ');
+  await t.expect(await getFormTitle()).eql('FR,2 ');
 });
 
 test('should react to value property changes', async t => {

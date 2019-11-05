@@ -104,7 +104,7 @@ This property is most useful in space-constrained scenarios or with many options
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
 the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,index,name}` structure, where `value` is
-the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
+the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`. If a defaulttitle is set, the first element has index 1, because the title receives index 0 internally.
 
 _Important_: This attribute can also be used natively. However, in this case the event parameter passed conforms to the **change** event described below.
 
@@ -131,5 +131,8 @@ The attribute `valid` was renamed to `checkmark` (respectively to the camel-case
 The behaviour of `error` changed, now being reduced to specifying the error text only, whereas `invalid` controls when the error will be displayed.
 
 ## ChangeLog
-    - 3.2.2
-        - fix colors of selector icon in disabled state
+
+- 3.2.2
+  - fix colors of selector icon in disabled state
+- 3.2.3
+  - If you have defaulttitle set and you are in enhanced mode the first element now have index 1 instead of 0. Because the first element of the native select is the defaulttitle and has index 0.

@@ -20,7 +20,7 @@ storyDropdown.add('Dropdown', () => {
   const name = text('name', '');
   const invalid = boolean('invalid', false);
   const error = text('error', 'Error Message');
-  const native = boolean('native', true);
+  const native = boolean('native', false);
   const required = boolean('required', false);
   const checkMark = boolean('checkmark', false);
   const disabled = boolean('disabled', false);
@@ -30,6 +30,7 @@ storyDropdown.add('Dropdown', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-dropdown
+      onchange="console.log('onchange triggered: ', event.detail)"
       defaultTitle="${defaultTitle}"
       value="${value}"
       label="${label}"

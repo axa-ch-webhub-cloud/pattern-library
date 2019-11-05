@@ -123,7 +123,7 @@ class DatePickerAccessor {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
-      .querySelector('button[data-index="1"]')
+      .querySelector('button[data-index="2"]')
   );
 
   selectMonthDropdownSelector = Selector(id =>
