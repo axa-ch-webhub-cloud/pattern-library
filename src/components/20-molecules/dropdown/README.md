@@ -134,5 +134,5 @@ The behaviour of `error` changed, now being reduced to specifying the error text
 
 - 3.2.2
   - fix colors of selector icon in disabled state
-- 4.0.0
-  - `breaking change`: If you have defaulttitle set and you are in enhanced mode the first element now have index 1 instead of 0. Because the first element of the native select is the defaulttitle and has index 0.
+- 3.2.3
+  - If you have defaulttitle set and you are in enhanced mode the first element now have index 1 instead of 0. Because the first element of the native select is the defaulttitle and has index 0.
