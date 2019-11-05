@@ -104,7 +104,7 @@ This property is most useful in space-constrained scenarios or with many options
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
 the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,index,name}` structure, where `value` is
-the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`. If a defaulttitle is set, the first element has index 1, because the title has internally index 0.
+the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`. If a defaulttitle is set, the first element has index 1, because the title receives index 0 internally.
 
 _Important_: This attribute can also be used natively. However, in this case the event parameter passed conforms to the **change** event described below.
 
