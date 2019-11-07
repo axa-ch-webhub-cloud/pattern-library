@@ -86,7 +86,7 @@ _Note: See the [specification](https://html.spec.whatwg.org/multipage/form-contr
 
 Numeric `maxLength`, when defined, restricts the number of characters a user can enter. The underlying native &lt;input&gt; enforces `maxLength` by blocking user input when the character limit is exceeded.
 
-The remaining characters are always displayed to the user, if `maxLength` is provided.
+The remaining characters are always displayed to the user, if `maxLength` and `counter` is provided.
 
 The UI's remaining-characters message (see `counter`) will however use `maxLength - 1` internally to be able to provide advance warning when 0 characters remain. Upon hitting the character limit proper the 'character limit reached!' error message (see `counterMax`) is displayed instead.
 
@@ -96,7 +96,7 @@ String-valued `counter` defines the UI's remaining-characters message in conjunc
 
 Valid `counter` values are:
 
-- the empty string, which will cause only the remaining character count to be displayed.
+- the empty string, which will cause that character count not to be displayed.
 - a nonempty string suffix, which will be appended to the remaining character count
 - a string template containing "##counter##", so that e.g. "still ##counter## characters left" will result in instantiated text like "still 9 characters left".
 
@@ -179,3 +179,8 @@ Its UI consequences are the same as a keyboard/mouse-initiated focus.
 The `blur()` method unfocusses the underlying native HTML &lt;input&gt;.
 
 Its UI consequences are the same as a keyboard/mouse-initiated blur.
+
+## ChangeLog
+
+- 2.4.7
+  - if no counter text is given the character count will not be displayed

@@ -91,4 +91,12 @@ storiesOf('Atoms/Input text/Demos', module)
               <axa-input-text label="Cool 2"></axa-input-text>
               <axa-input-text label="Cool 3" info="${info}"></axa-input-text>
             </div>`;
-  });
+  })
+  .add(
+    'no maxlength set', // to ui test this case we need a story because its not working with knobs
+    () => `<axa-input-text counter="chars left"></axa-input-text>`
+  )
+  .add(
+    'no counter set', // to ui test this case we need a story because its not working with knobs
+    () => `<axa-input-text maxlength="50"></axa-input-text>`
+  );

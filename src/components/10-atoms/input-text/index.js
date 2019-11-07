@@ -103,7 +103,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   get showCounter() {
     return (
-      this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled
+      this.maxLength > 0 && !this.invalid && this.areCharsLeft && this.counter && !this.disabled
     );
   }
 
