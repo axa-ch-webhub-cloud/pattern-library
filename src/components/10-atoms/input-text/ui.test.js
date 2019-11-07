@@ -122,3 +122,27 @@ test('should correctly show character count with counter within text', async t =
     .expect($counterInfo.getStyleProperty('color'))
     .eql('rgb(201, 20, 50)');
 });
+
+fixture('Input text - no maxlength').page(
+  `${host}/iframe.html?id=atoms-input-text-demos--no-maxlength-set`
+);
+
+test('should not show counter text if maxlength not set', async t => {
+  const $axaTag = await Selector(() =>
+    document.querySelector('axa-input-text')
+  );
+  const $counterInfo = await $axaTag.find('.a-input-text__counter-info');
+  await t.expect($counterInfo.exists).notOk();
+});
+
+fixture('Input text - no counter').page(
+  `${host}/iframe.html?id=atoms-input-text-demos--no-counter-set`
+);
+
+test('should not show counter text if counter (text) not set', async t => {
+  const $axaTag = await Selector(() =>
+    document.querySelector('axa-input-text')
+  );
+  const $counterInfo = await $axaTag.find('.a-input-text__counter-info');
+  await t.expect($counterInfo.exists).notOk();
+});
