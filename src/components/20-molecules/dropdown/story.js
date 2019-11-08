@@ -31,7 +31,7 @@ storyDropdown.add('Dropdown', () => {
   const template = html`
     <axa-dropdown
       onchange="console.log('onchange triggered: ', event.detail)"
-      defaultTitle="${defaultTitle}"
+      defaulttitle="${defaultTitle}"
       value="${value}"
       label="${label}"
       name="${name}"
@@ -75,7 +75,7 @@ storyDropdown.add('Dropdown items delayed and numeric values', () => {
       label="${label}"
       name="${name}"
       dataTestId="${dataTestId}"
-      defaultTitle="${defaultTitle}"
+      defaulttitle="${defaultTitle}"
       error="${error}"
       ?invalid="${invalid}"
       ?checkmark="${checkMark}"
