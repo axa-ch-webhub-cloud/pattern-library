@@ -10,6 +10,7 @@ import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import typecheck from '../../../utils/typecheck';
+import findIndex from '../../../utils/find-index';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -238,7 +239,7 @@ class AXADropdown extends NoShadowDOM {
 
   findByValue(value, indexOnly) {
     const { items } = this;
-    const itemIndex = items.findIndex(({ selected, value: selectedValue }) =>
+    const itemIndex = findIndex(items, ({ selected, value: selectedValue }) =>
       value === null
         ? selected
         : selectedValue === value || selectedValue === parseInt(value, 10)
