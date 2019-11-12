@@ -53,29 +53,40 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     return styles;
   }
 
+  initProp(name, defaultValue) {
+    let value;
+    if (!this.isReact) {
+      value = this[name] || this.getAttribute(name);
+    }
+    if ((value !== undefined && value !== null) || defaultValue !== undefined) {
+      this[name] = value !== undefined ? value : defaultValue;
+    }
+  }
+
   constructor() {
     super();
-    this.refId = `input-text-${createRefId()}`;
-    this.name = '';
-    this.label = '';
-    this.placeholder = '';
+    // initProps: capture property or attribute assignment from *before* component construction
+    this.initProp('refId', `input-text-${createRefId()}`);
+    this.initProp('name', '');
+    this.initProp('label', '');
+    this.initProp('placeholder', '');
     // only for React(frameworks) users
-    this.defaultValue = '';
+    this.initProp('defaultValue', '');
     // text, email, password
-    this.type = 'text';
-    this.error = '';
-    this.checkMark = false;
-    this.required = false;
-    this.invalid = false;
-    this.disabled = false;
+    this.initProp('type', 'text');
+    this.initProp('error', '');
+    this.initProp('checkMark', false);
+    this.initProp('required', false);
+    this.initProp('invalid', false);
+    this.initProp('disabled', false);
+    this.initProp('modelCounter', '');
+    this.initProp('counter', '');
+    this.initProp('counterMax', '');
+
     this.isReact = false;
-    this.modelCounter = '';
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
-
-    this.counter = '';
-    this.counterMax = '';
 
     // internal properties
     this.nativeInput = { value: '' };
@@ -103,7 +114,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   get showCounter() {
     return (
-      this.maxLength > 0 && !this.invalid && this.areCharsLeft && this.counter && !this.disabled
+      this.maxLength > 0 &&
+      !this.invalid &&
+      this.areCharsLeft &&
+      this.counter &&
+      !this.disabled
     );
   }
 
