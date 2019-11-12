@@ -1,6 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
@@ -29,10 +29,18 @@ storiesOf('Molecules/Cookie disclaimer', module)
       'Link address (not an attribute)',
       'https://axa.ch/de/informationen/datenschutz.html'
     );
+    const fixed = boolean(
+      'fixed position (Drag your browser smaller to see text behind it.',
+      false
+    );
 
     const wrapper = document.createElement('div');
     const template = html`
-      <axa-cookie-disclaimer buttonname="${buttonname}" title="${title}">
+      <axa-cookie-disclaimer
+        buttonname="${buttonname}"
+        title="${title}"
+        variant="${fixed ? 'fixed' : ''}"
+      >
         <p>${description}</p>
         <axa-link variant="arrowright-animated-white" href="${link}">
           ${dataProtection}
