@@ -32,7 +32,7 @@ const addLeadingZeroes = (rawNumber, numDigits) => {
   return `${leadingZeroesString}${number}`;
 };
 
-const parseLocalisedDateIfValid = (locale = 'en-UK', inputValue = '') => {
+const parseLocalisedDateIfValid = (locale = 'en', inputValue = '') => {
   const BLUEPRINT_YEAR = 2017;
   const BLUEPRINT_MONTH = 10; // 0-based index
   const BLUEPRINT_DAY = 23;
