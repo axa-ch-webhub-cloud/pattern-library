@@ -3,6 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import buttonCSS from './index.scss';
 
 const ARROW_RIGHT = 'arrow-right';
@@ -21,27 +22,23 @@ class AXAButton extends LitElement {
   static get properties() {
     return {
       // button, submit, reset
-      type: { type: String, reflect: true },
+      type: { type: String, reflect: true, defaultValue: 'button' },
       // secondary, red,  inverted, inverted-blue-ocean, inverted-red-tosca, inverted-purple-logan, inverted-green-viridian, inverted-blue-teal
-      variant: { type: String },
-      icon: { type: String },
-      size: { type: String },
-      motionOff: { type: Boolean },
-      disabled: { type: Boolean, reflect: true },
-      onClick: { type: Function },
+      variant: { type: String, defaultValue: '' },
+      icon: { type: String, defaultValue: '' },
+      size: { type: String, defaultValue: '' },
+      className: { type: String, defaultValue: '' },
+      slot: { type: String, defaultValue: '' },
+      motionOff: { type: Boolean, defaultValue: false },
+      disabled: { type: Boolean, reflect: true, defaultValue: false },
+      onClick: { type: Function, defaultValue: () => {} },
     };
   }
 
   constructor() {
     super();
-    this.type = 'button';
-    // small, large, medium is default
-    this.size = '';
-    this.variant = '';
-    this.icon = '';
-    this.motionOff = false;
-    this.disabled = false;
-    this.onClick = () => {};
+    debugger;
+    applyDefaults(this);
   }
 
   get isTypeSubmitOrReset() {
