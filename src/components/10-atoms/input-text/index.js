@@ -212,6 +212,42 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
+  setCaretPosition(ctrl, pos) {
+    setTimeout(() => {
+      ctrl.focus();
+      ctrl.setSelectionRange(pos, pos);
+    }, 1000);
+  }
+
+  evaluateAndSetCaretPosition(ctrl, oldValue, newValue) {
+    debugger;
+    if (newValue.length === 0) return;
+
+    let oldValIterator = oldValue.length - 1;
+    for (let i = newValue.length - 1; i > -1; i--) {
+      console.log(i);
+      if (newValue.charAt(i) === oldValue.charAt(oldValIterator)) {
+        if (i === 0) {
+          this.setCaretPosition(ctrl, 0);
+        }
+        oldValIterator -= 1;
+        continue;
+      }
+      if (
+        oldValue.charAt(oldValIterator) ===
+          oldValue.charAt(oldValIterator + 1) &&
+        oldValue.charAt(oldValIterator) !== ''
+      ) {
+        this.setCaretPosition(ctrl, ++this.oldSelectorStartPosition);
+        break;
+      } else {
+        this.setCaretPosition(ctrl, i + 1);
+        this.oldSelectorStartPosition = i;
+        break;
+      }
+    }
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
 
@@ -221,6 +257,31 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
+
+    const input = this.querySelector('input');
+
+    if (1 === 1) {
+      // TODO if safari
+      this.oldvalue = input.value;
+      this.oldSelectorStartPosition = 0;
+
+      input.addEventListener('keydown', e => {
+        this.oldSelectorStartPosition = e.target.selectionStart;
+      });
+
+      // input.addEventListener('mouseup', e => {
+      //   this.oldSelectorStartPosition = e.target.selectionStart;
+      // });
+
+      input.addEventListener('input', e => {
+        this.evaluateAndSetCaretPosition(input, this.oldvalue, e.target.value);
+        this.oldvalue = e.target.value;
+      });
+    }
+
+    // input.addEventListener('keyup', e => {
+    //   this.setCaretPosition(input, e.target.selectionStart);
+    // });
   }
 
   updated() {
