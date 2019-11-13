@@ -177,8 +177,7 @@ test('should exceed maximum number of files', async t => {
 
   await t.expect($inputFileInputElem.exists).ok();
 
-  await t.setFilesToUpload($inputFileInputElem, validFiles[0]);
-  await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
+  await t.setFilesToUpload($inputFileInputElem, [validFiles[0], validFiles[1]]);
 
   const $figureElems = await Selector(
     () => document.querySelector('axa-file-upload').shadowRoot
