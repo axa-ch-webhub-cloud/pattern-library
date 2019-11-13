@@ -59,7 +59,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       value = this[name] || this.getAttribute(name);
     }
     if ((value !== undefined && value !== null) || defaultValue !== undefined) {
-      this[name] = value !== undefined ? value : defaultValue;
+      this[name] = value || defaultValue;
     }
   }
 
