@@ -32,6 +32,7 @@ test('should upload file and switch view', async t => {
         .querySelector('axa-file-upload')
         .shadowRoot.querySelector('axa-input-file .a-input-file__input') // TODO change to .js-
   );
+
   await t.expect($inputFileInputElem.exists).ok();
 
   await t.setFilesToUpload($inputFileInputElem, validFiles);
@@ -169,7 +170,7 @@ test('should remove addMoreInputFile', async t => {
   await t.expect($addMoreInputFieldElem.exists).notOk();
 });
 
-test('should exceed maximum number of files', async t => {
+test.only('should exceed maximum number of files', async t => {
   const $inputFileInputElem = await Selector(
     () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
     { dependencies: { FILE_UPLOAD_TAG } }
@@ -177,11 +178,15 @@ test('should exceed maximum number of files', async t => {
 
   await t.expect($inputFileInputElem.exists).ok();
 
+  console.log(await $inputFileInputElem());
   await t.setFilesToUpload($inputFileInputElem, validFiles);
 
   const $figureElems = await Selector(
     () => document.querySelector('axa-file-upload').shadowRoot
   ).find('.js-file-upload__img-figure');
+
+  console.log('figure element');
+  console.log(await $figureElems());
 
   await t.expect(await $figureElems.count).eql(1);
 
