@@ -107,6 +107,25 @@ If you want to have [Jest](https://jestjs.io/) tests in [Create React App](https
 
 Refering to the commit diff: cleaner would be to have, instead of the `.babelrc` that adds the babel preset `"@babel/react"`, the preset directly inside `config/jest/jestPreprocess.js`
 
+### Testing with Selenium, Testcafe and other UI testing tools
+
+Most of the pattern-library component's are inside a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). To trigger interactions inside the WebComponent you need to access the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) via the [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). Basically in abstract is like this: **Ui Testtool -> driver -> native dom selector -> ShadowRoot -> querySelector**
+
+Here an example in Java with Selenium:
+
+```java
+public WebElement expandRootElement(WebElement element, WebDriver driver) {
+    WebElement ele = (WebElement) ((JavascriptExecutor) driver)
+            .executeScript("return arguments[0].shadowRoot",element);
+    return ele;
+}
+```
+Calling this method gives you the ShadowRoot in your Selenium environment. **Carefull** that when calling `findElement` on the return value of `expandRootElement` only following selectors will work:
+
+- By.id
+- By.className
+- By.cssSelektor
+
 ## Dealing with FOUC
 
 As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/ARCHITECTURE.md), FOUC can be mitigated by using the css pseudo selector: `:not(:defined)`. Below you find an example on how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there wwon't be any effect on it. We can follow here the principle of graceful degradation as the only downside in **IE11** is that it just doesn't look as good but still everything else works normally, ergo no functionality is lost.
