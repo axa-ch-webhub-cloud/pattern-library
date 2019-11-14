@@ -213,39 +213,90 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   setCaretPosition(ctrl, pos) {
+    console.log('length of the input is now: ', ctrl.value.length);
+    console.log('setting the cursor to     : ', pos);
     setTimeout(() => {
       ctrl.focus();
       ctrl.setSelectionRange(pos, pos);
-    }, 1000);
+    }, 100);
   }
 
-  evaluateAndSetCaretPosition(ctrl, oldValue, newValue) {
-    debugger;
+  // - 2x dasselbe pasten geht nicht
+  // - doppelte buchstaben gehen nicht
+  // evaluateAndSetCaretPosition(ctrl, oldValue, newValue) {
+  //   if (newValue.length === 0) return;
+
+  //   let oldValIterator = oldValue.length - 1;
+  //   for (let i = newValue.length - 1; i > -1; i--) {
+  //     if (newValue.charAt(i) === oldValue.charAt(oldValIterator)) {
+  //       if (i === 0) {
+  //         this.setCaretPosition(ctrl, 0);
+  //       }
+  //       oldValIterator -= 1;
+  //       continue;
+  //     }
+  //     if (
+  //       // Double letter?
+  //       oldValue.charAt(oldValIterator) ===
+  //         oldValue.charAt(oldValIterator + 1) &&
+  //       oldValue.charAt(oldValIterator) !== ''
+  //     ) {
+  //       this.setCaretPosition(ctrl, ++this.oldSelectorStartPosition);
+  //       break;
+  //     } else {
+  //       // set caret at the end
+  //       this.setCaretPosition(ctrl, i + 1);
+  //       this.oldSelectorStartPosition = i + 1;
+  //       break;
+  //     }
+  //   }
+  // }
+
+  hans(ctrl, newValue) {
+    console.log('newValue: ', newValue);
+    console.log('oldvalue: ', this.oldInputValue);
     if (newValue.length === 0) return;
 
-    let oldValIterator = oldValue.length - 1;
-    for (let i = newValue.length - 1; i > -1; i--) {
-      console.log(i);
-      if (newValue.charAt(i) === oldValue.charAt(oldValIterator)) {
-        if (i === 0) {
-          this.setCaretPosition(ctrl, 0);
-        }
-        oldValIterator -= 1;
-        continue;
-      }
-      if (
-        oldValue.charAt(oldValIterator) ===
-          oldValue.charAt(oldValIterator + 1) &&
-        oldValue.charAt(oldValIterator) !== ''
-      ) {
-        this.setCaretPosition(ctrl, ++this.oldSelectorStartPosition);
-        break;
-      } else {
-        this.setCaretPosition(ctrl, i + 1);
-        this.oldSelectorStartPosition = i;
-        break;
-      }
+    // A letter was added or more.
+    // - Does not work within the word
+    if (this.oldInputValue.length < newValue.length) {
+      const difference = newValue.length - this.oldInputValue.length;
+      const newPosition = this.oldSelectorStartPosition + difference;
+      this.setCaretPosition(ctrl, newPosition);
     }
+    // A letter or more were removed
+    else if (this.oldInputValue.length > newValue.length) {
+      console.log('removal');
+    }
+    //Equal length, a letter or word was replaced with same size word
+    else {
+      console.log('replace');
+    }
+
+    // let oldValIterator = oldValue.length - 1;
+    // for (let i = newValue.length - 1; i > -1; i--) {
+    //   if (newValue.charAt(i) === oldValue.charAt(oldValIterator)) {
+    //     if (i === 0) {
+    //       this.setCaretPosition(ctrl, 0);
+    //     }
+    //     oldValIterator -= 1;
+    //     continue;
+    //   }
+    //   if (
+    //     // Double letter?
+    //     oldValue.charAt(oldValIterator) ===
+    //       oldValue.charAt(oldValIterator + 1) &&
+    //     oldValue.charAt(oldValIterator) !== ''
+    //   ) {
+    //     this.setCaretPosition(ctrl, ++this.oldSelectorStartPosition);
+    //     break;
+    //   } else {
+    //     // set caret at the end
+    //     this.setCaretPosition(ctrl, i + 1);
+    //     this.oldSelectorStartPosition = i + 1;
+    //     break;
+    //   }
+    // }
   }
 
   firstUpdated() {
@@ -264,9 +315,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       // TODO if safari
       this.oldvalue = input.value;
       this.oldSelectorStartPosition = 0;
+      this.oldInputValue = '';
 
       input.addEventListener('keydown', e => {
         this.oldSelectorStartPosition = e.target.selectionStart;
+        this.oldInputValue = input.value;
+
+        console.log('old selector start: ', this.oldSelectorStartPosition);
+        console.log('old input value: ', this.oldInputValue);
       });
 
       // input.addEventListener('mouseup', e => {
@@ -274,7 +330,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       // });
 
       input.addEventListener('input', e => {
-        this.evaluateAndSetCaretPosition(input, this.oldvalue, e.target.value);
+        // this.evaluateAndSetCaretPosition(input, this.oldvalue, e.target.value);
+        this.hans(input, e.target.value);
         this.oldvalue = e.target.value;
       });
     }
