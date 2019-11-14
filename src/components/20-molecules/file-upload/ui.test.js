@@ -170,6 +170,7 @@ test('should remove addMoreInputFile', async t => {
   await t.expect($addMoreInputFieldElem.exists).notOk();
 });
 
+// eslint-disable-next-line jest/no-focused-tests
 test.only('should exceed maximum number of files', async t => {
   const $inputFileInputElem = await Selector(
     () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
@@ -178,6 +179,7 @@ test.only('should exceed maximum number of files', async t => {
 
   await t.expect($inputFileInputElem.exists).ok();
 
+  // eslint-disable-next-line no-console
   console.log(await $inputFileInputElem());
   await t.setFilesToUpload($inputFileInputElem, validFiles);
 
@@ -185,7 +187,9 @@ test.only('should exceed maximum number of files', async t => {
     () => document.querySelector('axa-file-upload').shadowRoot
   ).find('.js-file-upload__img-figure');
 
+  // eslint-disable-next-line no-console
   console.log('figure element');
+  // eslint-disable-next-line no-console
   console.log(await $figureElems());
 
   await t.expect(await $figureElems.count).eql(1);
