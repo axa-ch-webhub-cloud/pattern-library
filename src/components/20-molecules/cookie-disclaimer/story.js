@@ -30,7 +30,7 @@ storiesOf('Molecules/Cookie disclaimer', module)
       'https://axa.ch/de/informationen/datenschutz.html'
     );
     const fixed = boolean(
-      'fixed position (Drag your browser smaller to see text behind it.',
+      'fixed position (Drag your browser smaller to see text behind it)',
       false
     );
 
