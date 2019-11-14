@@ -258,7 +258,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     if (newValue.length === 0) return;
 
     // A letter was added or more.
-    // - Does not work within the word
     if (this.oldInputValue.length < newValue.length) {
       const difference = newValue.length - this.oldInputValue.length;
       const newPosition = this.oldSelectorStartPosition + difference;
@@ -266,7 +265,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
     // A letter or more were removed
     else if (this.oldInputValue.length > newValue.length) {
-      console.log('removal');
+      // this does not work work selecting multiple things and remove
+      if (this.oldInputValue.length - 1 === newValue.length) {
+        const difference = this.oldInputValue.length - newValue.length;
+        const newPosition = this.oldSelectorStartPosition - difference;
+        this.setCaretPosition(ctrl, newPosition);
+      } else {
+        this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
+      }
     }
     //Equal length, a letter or word was replaced with same size word
     else {
