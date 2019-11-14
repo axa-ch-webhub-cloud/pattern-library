@@ -109,7 +109,7 @@ Refering to the commit diff: cleaner would be to have, instead of the `.babelrc`
 
 ### Testing with Selenium, Testcafe and other UI testing tools
 
-Most of the pattern-library component's are inside a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). To trigger interactions inside the WebComponent you need to access the (DOM)[https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model] via the [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). Basically in abstract is like this: **Ui Testtool -> driver -> native dom selector -> ShadowRoot -> querySelector**
+Most of the pattern-library component's are inside a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). To trigger interactions inside the WebComponent you need to access the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) via the [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). Basically in abstract is like this: **Ui Testtool -> driver -> native dom selector -> ShadowRoot -> querySelector**
 
 Here an example in Java with Selenium:
 
