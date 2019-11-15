@@ -216,7 +216,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     setTimeout(() => {
       ctrl.focus();
       ctrl.setSelectionRange(pos, pos);
-    }, 50);
+    });
   }
 
   evaluateAndSetCaretPosition(ctrl, newValue) {
@@ -279,7 +279,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         this.oldInputValue = input.value;
       });
 
-      input.addEventListener('input', e => {
+      input.addEventListener('keyup', e => {
         this.evaluateAndSetCaretPosition(input, e.target.value);
       });
     }
