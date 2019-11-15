@@ -266,7 +266,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const input = this.querySelector('input');
 
-    if (1 === 1) {
+    // This additional logic should only apply to safari
+    if (window.safari) {
       // TODO if safari
       this.oldSelectorStartPosition = 0;
       this.oldSelectorEndPosition = 0;
