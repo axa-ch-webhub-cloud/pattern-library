@@ -220,8 +220,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   evaluateAndSetCaretPosition(ctrl, newValue) {
-    console.log('newValue: ', newValue);
-    console.log('oldvalue: ', this.oldInputValue);
+    console.log(this.oldSelectorEndPosition, this.oldSelectorStartPosition);
     if (newValue.length === 0) return;
 
     // A letter was added or more.
@@ -232,23 +231,28 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
     // A letter or more were removed
     else if (this.oldInputValue.length > newValue.length) {
-      // this does not work work selecting multiple things and remove
-      if (this.oldInputValue.length - 1 === newValue.length) {
-        // if (
-        //   this.lastKeyPressed === 'Backspace' ||
-        //   this.lastKeyPressed === 'Delete'
-        // ) {
-        //   const difference = this.oldInputValue.length - newValue.length;
-        //   const newPosition = this.oldSelectorStartPosition - difference;
-        //   this.setCaretPosition(ctrl, newPosition + 1);
-        // }
+      // One letter was removed
+      if (this.oldSelectorEndPosition === this.oldSelectorStartPosition) {
         const difference = this.oldInputValue.length - newValue.length;
         const newPosition = this.oldSelectorStartPosition - difference;
         this.setCaretPosition(ctrl, newPosition);
       }
       // Multiple letters were removed
       else {
-        this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
+        // They were removed and not replaced
+        if (
+          this.lastKeyPressed === 'Backspace' ||
+          this.lastKeyPressed === 'Delete'
+        ) {
+          this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
+        }
+        // They were removed and replaced by one letter
+        else {
+          debugger;
+          const difference = this.oldInputValue.length - newValue.length;
+          const newPosition = this.oldSelectorStartPosition - difference;
+          this.setCaretPosition(ctrl, newPosition + 1);
+        }
       }
     }
   }
@@ -274,6 +278,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       input.addEventListener('keydown', e => {
         this.oldSelectorStartPosition = e.target.selectionStart;
         this.oldSelectorEndPosition = e.target.selectionEnd;
+        this.lastKeyPressed = e.key;
         this.oldInputValue = input.value;
       });
 
