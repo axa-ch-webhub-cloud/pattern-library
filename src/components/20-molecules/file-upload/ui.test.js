@@ -185,7 +185,7 @@ test('should exceed maximum number of files', async t => {
     () => document.querySelector('axa-file-upload').shadowRoot
   ).find('.js-file-upload__img-figure');
 
-  t.wait(1);
+  await $figureElems();
   await t.expect(await $figureElems.count).eql(1);
 
   const $errorWrapper = await Selector(() =>
