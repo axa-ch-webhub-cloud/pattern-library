@@ -220,15 +220,16 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   evaluateAndSetCaretPosition(ctrl, newValue) {
+    // Text was cleared
     if (newValue.length === 0) return;
 
-    // A letter was added or more.
+    // One or more letters were added
     if (this.oldInputValue.length < newValue.length) {
       const difference = newValue.length - this.oldInputValue.length;
       const newPosition = this.oldSelectorStartPosition + difference;
       this.setCaretPosition(ctrl, newPosition);
     }
-    // A letter or more were removed
+    // One or more letters were removed
     else if (this.oldInputValue.length > newValue.length) {
       // One letter was removed
       if (this.oldSelectorEndPosition === this.oldSelectorStartPosition) {
@@ -238,7 +239,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       }
       // Multiple letters were removed
       else {
-        // They were removed and not replaced
+        // They were removed without a replacement
         if (
           this.lastKeyPressed === 'Backspace' ||
           this.lastKeyPressed === 'Delete'
