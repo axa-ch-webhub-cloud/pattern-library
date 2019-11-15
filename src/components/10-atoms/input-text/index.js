@@ -220,7 +220,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   evaluateAndSetCaretPosition(ctrl, newValue) {
-    console.log(this.oldSelectorEndPosition, this.oldSelectorStartPosition);
     if (newValue.length === 0) return;
 
     // A letter was added or more.
@@ -248,10 +247,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         }
         // They were removed and replaced by one letter
         else {
-          debugger;
-          const difference = this.oldInputValue.length - newValue.length;
-          const newPosition = this.oldSelectorStartPosition - difference;
-          this.setCaretPosition(ctrl, newPosition + 1);
+          this.setCaretPosition(ctrl, this.oldSelectorStartPosition + 1);
         }
       }
     }
