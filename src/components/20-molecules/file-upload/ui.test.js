@@ -101,6 +101,7 @@ test('should delete image', async t => {
       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
+  await $figureElemsBefore(); // Travis failed sometimes a line below. (Bug #1335)
   await t.expect(await $figureElemsBefore.count).eql(2); // one file + addMoreInputFile
 
   const $figureElem = await Selector(() =>
@@ -117,6 +118,7 @@ test('should delete image', async t => {
       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
+  await $figureElemsAfter(); // Travis failed sometimes a line below. (Bug #1335)
   await t.expect(await $figureElemsAfter.count).eql(0); // zero because start view has no figures
 });
 
@@ -140,7 +142,9 @@ test('should exceed maximum size of single file', async t => {
       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
+  await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
   await t.expect(await $figureElems.count).eql(2); // one file + addMoreInputFile
+
   const $fileName = await Selector(() =>
     document
       .querySelector('axa-file-upload')
