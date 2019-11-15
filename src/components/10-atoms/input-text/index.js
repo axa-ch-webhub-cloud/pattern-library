@@ -7,7 +7,6 @@ import { AXAPopupMixin } from '@axa-ch/popup';
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
-import evaluateAndSetCaretPosition from '../../05-utils/safari-input-cursor-fix';
 import styles from './index.scss';
 
 class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
@@ -213,6 +212,46 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
+  setCaretPosition(ctrl, pos) {
+    setTimeout(() => {
+      ctrl.focus();
+      ctrl.setSelectionRange(pos, pos);
+    });
+  }
+
+  evaluateAndSetCaretPosition(ctrl, newValue) {
+    // Text was cleared
+    if (newValue.length === 0) return;
+
+    // One or more letters were added
+    if (this.oldInputValue.length < newValue.length) {
+      const difference = newValue.length - this.oldInputValue.length;
+      const newPosition = this.oldSelectorStartPosition + difference;
+      this.setCaretPosition(ctrl, newPosition);
+    }
+    // One or more letters were removed
+    else if (this.oldInputValue.length > newValue.length) {
+      // One letter was removed
+      if (this.oldSelectorEndPosition === this.oldSelectorStartPosition) {
+        const difference = this.oldInputValue.length - newValue.length;
+        const newPosition = this.oldSelectorStartPosition - difference;
+        this.setCaretPosition(ctrl, newPosition);
+      }
+      // Multiple letters were removed
+      else if (
+        this.lastKeyPressed === 'Backspace' ||
+        this.lastKeyPressed === 'Delete'
+      ) {
+        // They were removed without a replacement
+        this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
+      }
+      // They were removed and replaced by one letter
+      else {
+        this.setCaretPosition(ctrl, this.oldSelectorStartPosition + 1);
+      }
+    }
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
 
@@ -225,10 +264,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const input = this.querySelector('input');
 
-    // If an input rerenders, safari will move the cursor to the end, which
-    // completely messes up the typing. Therefore we use a workaround only
-    // for safari.
+    // This additional logic should only apply to safari
     if (window.safari) {
+      // TODO if safari
       this.oldSelectorStartPosition = 0;
       this.oldSelectorEndPosition = 0;
       this.oldInputValue = '';
@@ -241,14 +279,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       });
 
       input.addEventListener('input', e => {
-        evaluateAndSetCaretPosition(
-          input,
-          this.oldInputValue,
-          e.target.value,
-          this.lastKeyPressed,
-          this.oldSelectorStartPosition,
-          this.oldSelectorEndPosition
-        );
+        this.evaluateAndSetCaretPosition(input, e.target.value);
       });
     }
   }
