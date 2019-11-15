@@ -238,18 +238,16 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         this.setCaretPosition(ctrl, newPosition);
       }
       // Multiple letters were removed
-      else {
+      else if (
+        this.lastKeyPressed === 'Backspace' ||
+        this.lastKeyPressed === 'Delete'
+      ) {
         // They were removed without a replacement
-        if (
-          this.lastKeyPressed === 'Backspace' ||
-          this.lastKeyPressed === 'Delete'
-        ) {
-          this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
-        }
-        // They were removed and replaced by one letter
-        else {
-          this.setCaretPosition(ctrl, this.oldSelectorStartPosition + 1);
-        }
+        this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
+      }
+      // They were removed and replaced by one letter
+      else {
+        this.setCaretPosition(ctrl, this.oldSelectorStartPosition + 1);
       }
     }
   }
