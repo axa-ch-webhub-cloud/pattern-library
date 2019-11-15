@@ -42,6 +42,7 @@ test('should upload file and switch view', async t => {
       .querySelector('axa-file-upload')
       .shadowRoot.querySelector('.js-file-upload__dropzone-file-overview')
   );
+  await $fileOverviewElem(); // Travis failed sometimes a line below. (Bug #1335)
   await t.expect($fileOverviewElem.exists).ok();
 });
 
@@ -185,7 +186,7 @@ test('should exceed maximum number of files', async t => {
     () => document.querySelector('axa-file-upload').shadowRoot
   ).find('.js-file-upload__img-figure');
 
-  await $figureElems();
+  await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
   await t.expect(await $figureElems.count).eql(1);
 
   const $errorWrapper = await Selector(() =>
