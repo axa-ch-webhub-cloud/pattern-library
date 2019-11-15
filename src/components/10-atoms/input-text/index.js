@@ -216,7 +216,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     setTimeout(() => {
       ctrl.focus();
       ctrl.setSelectionRange(pos, pos);
-    }, 1000);
+    }, 50);
   }
 
   evaluateAndSetCaretPosition(ctrl, newValue) {
