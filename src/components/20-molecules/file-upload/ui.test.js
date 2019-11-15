@@ -179,18 +179,11 @@ test('should exceed maximum number of files', async t => {
 
   await t.expect($inputFileInputElem.exists).ok();
 
-  // eslint-disable-next-line no-console
-  console.log(await $inputFileInputElem());
   await t.setFilesToUpload($inputFileInputElem, validFiles);
 
   const $figureElems = await Selector(
     () => document.querySelector('axa-file-upload').shadowRoot
   ).find('.js-file-upload__img-figure');
-
-  // eslint-disable-next-line no-console
-  console.log('figure element');
-  // eslint-disable-next-line no-console
-  console.log(await $figureElems());
 
   await t.expect(await $figureElems.count).eql(1);
 
