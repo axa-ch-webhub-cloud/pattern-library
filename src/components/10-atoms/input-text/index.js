@@ -213,12 +213,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   setCaretPosition(ctrl, pos) {
-    console.log('length of the input is now: ', ctrl.value.length);
-    console.log('setting the cursor to     : ', pos);
     setTimeout(() => {
       ctrl.focus();
       ctrl.setSelectionRange(pos, pos);
-    }, 100);
+    });
   }
 
   evaluateAndSetCaretPosition(ctrl, newValue) {
@@ -236,16 +234,22 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     else if (this.oldInputValue.length > newValue.length) {
       // this does not work work selecting multiple things and remove
       if (this.oldInputValue.length - 1 === newValue.length) {
+        // if (
+        //   this.lastKeyPressed === 'Backspace' ||
+        //   this.lastKeyPressed === 'Delete'
+        // ) {
+        //   const difference = this.oldInputValue.length - newValue.length;
+        //   const newPosition = this.oldSelectorStartPosition - difference;
+        //   this.setCaretPosition(ctrl, newPosition + 1);
+        // }
         const difference = this.oldInputValue.length - newValue.length;
         const newPosition = this.oldSelectorStartPosition - difference;
         this.setCaretPosition(ctrl, newPosition);
-      } else {
+      }
+      // Multiple letters were removed
+      else {
         this.setCaretPosition(ctrl, this.oldSelectorStartPosition);
       }
-    }
-    //Equal length, a letter or word was replaced with same size word
-    else {
-      console.log('replace');
     }
   }
 
