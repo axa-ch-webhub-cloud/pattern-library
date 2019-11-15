@@ -268,10 +268,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     if (1 === 1) {
       // TODO if safari
       this.oldSelectorStartPosition = 0;
+      this.oldSelectorEndPosition = 0;
       this.oldInputValue = '';
 
       input.addEventListener('keydown', e => {
         this.oldSelectorStartPosition = e.target.selectionStart;
+        this.oldSelectorEndPosition = e.target.selectionEnd;
         this.oldInputValue = input.value;
       });
 
