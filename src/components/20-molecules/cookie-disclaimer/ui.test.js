@@ -19,6 +19,16 @@ test('should render cookie-disclaimer', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
+test('should set opacity', async t => {
+  const $axaElem = await Selector(TAG);
+  await t.expect($axaElem.exists).ok();
+  const $axaElemShadow = await Selector(
+    () => document.querySelector('axa-cookie-disclaimer').shadowRoot
+  );
+  const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
+  await t.expect($axaElemShadowEl.getStyleProperty('opacity')).eql('0.95');
+});
+
 test('should store in localStorage the date of when accepted', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
