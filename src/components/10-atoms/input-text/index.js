@@ -264,9 +264,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const input = this.querySelector('input');
 
-    // This additional logic should only apply to safari
+    // If an input rerenders, safari will move the cursor to the end, which
+    // completely messes up the typing. Therefore we use a workaround only
+    // for safari.
     if (window.safari) {
-      // TODO if safari
       this.oldSelectorStartPosition = 0;
       this.oldSelectorEndPosition = 0;
       this.oldInputValue = '';
