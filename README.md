@@ -103,9 +103,28 @@ In the future, the Pattern Library will take care of this automatically.
 
 ### Testing in create react app v3+
 
-If you want to have [Jest](https://jestjs.io/) tests in [Create React App](https://github.com/facebook/create-react-app/) here an example on how we added them: [commit link to patterns library examples](https://github.com/axa-ch/patterns-library-examples/commit/870f94420239e9c99cd25a6050e078375d64a815).
+If you want to have [Jest](https://jestjs.io/) tests in [Create React App](https://github.com/facebook/create-react-app/) here an example on how we added them: [commit link to patterns library examples](https://github.com/axa-ch/patterns-library-examples/commit/870f94420239e9c99cd25a6050e078375d64a815). Keep in mind that this is just an example and some configs might not be needed for your case.
 
 Refering to the commit diff: cleaner would be to have, instead of the `.babelrc` that adds the babel preset `"@babel/react"`, the preset directly inside `config/jest/jestPreprocess.js`
+
+### Testing with Selenium, Testcafe and other UI testing tools
+
+Most of the pattern-library component's are inside a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). To trigger interactions inside the WebComponent you need to access the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) via the [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). Basically in abstract is like this: **Ui Testtool -> driver -> native dom selector -> ShadowRoot -> querySelector**
+
+Here an example in Java with Selenium:
+
+```java
+public WebElement expandRootElement(WebElement element, WebDriver driver) {
+    WebElement ele = (WebElement) ((JavascriptExecutor) driver)
+            .executeScript("return arguments[0].shadowRoot",element);
+    return ele;
+}
+```
+Calling this method gives you the ShadowRoot in your Selenium environment. **Carefull** that when calling `findElement` on the return value of `expandRootElement` only following selectors will work:
+
+- By.id
+- By.className
+- By.cssSelektor
 
 ## Dealing with FOUC
 

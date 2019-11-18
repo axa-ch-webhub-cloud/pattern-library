@@ -64,7 +64,7 @@ class AXAIcon extends LitElement {
     this.icon = '';
   }
 
-  firstUpdated() {
+  updated() {
     const { icon } = this;
 
     if (/\.svg/.test(icon)) {

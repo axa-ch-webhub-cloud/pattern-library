@@ -18,8 +18,12 @@ $mediaquery-lg: $breakpoint-large ($breakpoint-xlarge - 1px); // (min-width: 992
 $mediaquery-xlg-up: $breakpoint-xlarge; // (min-width: 1200px)
 
 @mixin max-width {
-  max-width: 540px;
+  max-width: 576px;
   margin: auto;
+
+  @include breakpoint($mediaquery-sm-up) {
+    max-width: 540px;
+  }
 
   @include breakpoint($mediaquery-md-up) {
     max-width: 720px;
