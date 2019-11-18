@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/top-content-bar",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "The top-content-bar component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/top-content-bar#readme",
@@ -25,8 +25,8 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "^2.0.14",
-    "@axa-ch/button-link": "^2.1.10",
+    "@axa-ch/button": "^2.0.15",
+    "@axa-ch/button-link": "^2.1.11",
     "@axa-ch/container": "^1.0.17",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
