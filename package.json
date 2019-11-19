@@ -74,6 +74,7 @@
     "node-sass": "^4.12.0",
     "outdent": "^0.7.0",
     "postcss": "^7.0.14",
+    "postcss-prefix-selector": "^1.7.2",
     "postcss-strip-font-face": "^1.0.0",
     "prettier": "1.17.0",
     "react": "^16.8.2",

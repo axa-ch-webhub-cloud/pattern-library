@@ -5,11 +5,16 @@ const replace = require('rollup-plugin-replace'); // use to setup project enviro
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
+const classPrefixer = require('postcss-prefix-selector');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const fs = require('fs');
 const path = require('path');
+const process = require('process');
 const { uglify } = require('rollup-plugin-uglify');
 const copy = require('rollup-plugin-copy');
+
+// eslint-disable-next-line import/no-dynamic-require
+const componentPackageJson = require(`${process.cwd()}/package.json`);
 
 const base = path.resolve(__dirname, 'src').replace(/\\/g, '/');
 const globalSassImports = require('./config/globals.js')
@@ -17,6 +22,8 @@ const globalSassImports = require('./config/globals.js')
     return `@import '${base}/${item}';`;
   })
   .join('\n');
+
+const prefix = `._nva${componentPackageJson.version.replace(/\./g,'-')}`;
 
 const commonPlugins = [
   replace({
@@ -35,6 +42,11 @@ const commonPlugins = [
       postcss({
         plugins: [autoprefixer()],
       })
+        .use(
+          classPrefixer({
+            prefix
+          })
+        )
         .process(css, { from: undefined })
         .then(result => result.css),
   }),
