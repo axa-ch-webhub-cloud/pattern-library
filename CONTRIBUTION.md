@@ -85,8 +85,8 @@ it('should sum numbers', () => {
 - Never calculate *derived properties* (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
 - Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`.
 - Use as many falsy types in your boolean checks as possible and be aware that `0` and `""` is also falsy.
-- The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle, even more important is to know exactly when to brake it. Sometimes super dry climates can lead to over-engineered sollutions that end up to be unmaintainable. There is no rule here, just be careful to not make too complex systems. Lots interface options or configuration possibilities could be an indication that the system gets too complex.
-- Do not write complex code. Sometimes the rule: "If everything fits on one line of code, my code is better" does not apply. Is never about being cool, rather being clear. For exmaple:
+- The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle but even more important is to know exactly when to brake it. Sometimes super dry climates can lead to over-engineered solutions that end up to be unmaintainable. There is no rule here, just be careful to not make too complex systems. Lots of options on interfaces or configuration possibilities could be an indication that the system gets too complex.
+- Do not write complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Here some DOS / DONTS:
 ```js
 // DO
   if(myArray.indexOf(4) > -1) { console.log("Here I'm") }
