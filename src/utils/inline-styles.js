@@ -7,6 +7,7 @@ import { LitElement } from 'lit-element';
 
 // map: customElementTagName |-> (ownerDocument |-> referenceCount)
 const crossTagReferenceCounts = {};
+let styleTagNode = null;
 
 // BASE CLASS
 export default class InlineStyles extends LitElement {
@@ -43,6 +44,7 @@ export default class InlineStyles extends LitElement {
       // eslint-disable-next-line no-undef
       const parent = root instanceof ShadowRoot ? root : document.head;
       parent.appendChild(style);
+      styleTagNode = style;
     }
   }
 
@@ -59,6 +61,9 @@ export default class InlineStyles extends LitElement {
     // remove or update reference-count metadata
     if (referenceCount < 1) {
       referenceCounts.delete(root); // give an early hint to GC
+      if (styleTagNode) {
+        styleTagNode.remove(); // remove style node as well
+      }
     } else {
       referenceCounts.set(root, referenceCount);
     }
