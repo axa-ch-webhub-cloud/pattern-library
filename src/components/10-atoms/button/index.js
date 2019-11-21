@@ -35,7 +35,7 @@ class AXAButton extends LitElement {
 
   constructor() {
     super();
-    applyDefaults(this)
+    applyDefaults(this);
   }
 
   get isTypeSubmitOrReset() {
