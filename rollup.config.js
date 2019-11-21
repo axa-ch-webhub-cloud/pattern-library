@@ -44,7 +44,11 @@ const commonPlugins = [
       })
         .use(
           classPrefixer({
-            prefix
+            prefix,
+            transform: (prefX, selector) => {
+              // Exclude tags, only apply to classes
+              return selector.split(' ').map(singleClass => singleClass.startsWith('.') ? `${prefX}${singleClass.replace('.', '_')}` : singleClass).join(' ');
+            }
           })
         )
         .process(css, { from: undefined })
