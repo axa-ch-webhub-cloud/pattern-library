@@ -127,8 +127,8 @@ class AXADatepicker extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String, defaultValue: 'Invalid date' },
       error: { type: String, reflect: true },
-      height: { type: String, reflect: true },
-      width: { type: String, reflect: true },
+      height: { type: String, reflect: true, defaultValue: '40px' },
+      width: { type: String, reflect: true, defaultValue: 'auto' },
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
@@ -304,39 +304,40 @@ class AXADatepicker extends NoShadowDOM {
                 : ''}
             </label>
           `}
-        ${this.inputfield &&
-          html`
-            <div class="m-datepicker__input-wrap" style="${formattedWidth}">
-              <input
-                id="${refId}"
-                @input="${this.handleInputChange}"
-                @blur="${this.handleBlur}"
-                @focus="${this.onFocus}"
-                @change="${e => e.stopPropagation()}"
-                class="m-datepicker__input js-datepicker__input"
-                type="text"
-                name="${this.name}"
-                placeholder="${this.placeholder}"
-                style="${formattedHeight}"
-                .value="${isControlled ? value : this.outputdate}"
-                ?disabled="${disabled}"
-              />
-              <button
-                type="button"
-                class="m-datepicker__input-button js-datepicker__input-button"
-                @click="${this.handleInputButtonClick}"
-              >
-                ${dateInputIcon}
-              </button>
-              ${checkMark
-                ? html`
-                    <span class="m-datepicker__check-wrapper">
-                      <span class="m-datepicker__check"></span>
-                    </span>
-                  `
-                : ''}
-            </div>
-          `}
+        ${!this.inputfield
+          ? ''
+          : html`
+              <div class="m-datepicker__input-wrap" style="${formattedWidth}">
+                <input
+                  id="${refId}"
+                  @input="${this.handleInputChange}"
+                  @blur="${this.handleBlur}"
+                  @focus="${this.onFocus}"
+                  @change="${e => e.stopPropagation()}"
+                  class="m-datepicker__input js-datepicker__input"
+                  type="text"
+                  name="${this.name}"
+                  placeholder="${this.placeholder}"
+                  style="${formattedHeight}"
+                  .value="${isControlled ? value : this.outputdate}"
+                  ?disabled="${disabled}"
+                />
+                <button
+                  type="button"
+                  class="m-datepicker__input-button js-datepicker__input-button"
+                  @click="${this.handleInputButtonClick}"
+                >
+                  ${dateInputIcon}
+                </button>
+                ${checkMark
+                  ? html`
+                      <span class="m-datepicker__check-wrapper">
+                        <span class="m-datepicker__check"></span>
+                      </span>
+                    `
+                  : ''}
+              </div>
+            `}
         ${(this.open && !disabled) || !this.inputfield
           ? html`
               <div class="m-datepicker__wrap js-datepicker__wrap">
