@@ -16,7 +16,7 @@ export interface AXADatepickerProps {
   onFocus?: (e?: any) => void;
   onBlur?: (e?: any) => void;
   locale?: string;
-  date? : Date;
+  date?: Date;
   year?: number;
   month?: number;
   day?: number;
@@ -26,7 +26,7 @@ export interface AXADatepickerProps {
    * This prop is required.
    * Example: ['2010-2015', 2019, 2020]
    */
-  allowedyears: Array<string|number>;
+  allowedyears: Array<string | number>;
   labelbuttonok?: string;
   labelbuttoncancel?: string;
   placeholder?: string;
@@ -38,6 +38,8 @@ export interface AXADatepickerProps {
   label?: string;
   required?: boolean;
   className?: string;
+  width?: number | string;
+  height?: number | string;
 }
 
 declare function createAXADatepicker(
