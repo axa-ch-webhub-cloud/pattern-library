@@ -34,7 +34,7 @@ const applyDefaults = ceInst => {
 
     let { defaultValue } = properties[property];
 
-    if (!converter) {
+    if (type) {
       const { name } = type;
 
       // make sure no default value was set before WC was defined. If so, use that one
