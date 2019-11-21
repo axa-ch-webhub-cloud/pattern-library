@@ -170,10 +170,10 @@ class AXACarousel extends InlineStyles {
   // AutoRotate:
 
   _startAutoRotate() {
-    // eslint-disable-next-line no-restricted-globals
     if (
       !this.autorotatedisabled &&
       !!this.autorotatetime === true &&
+      // eslint-disable-next-line no-restricted-globals
       !isNaN(this.autorotatetime)
     ) {
       this.autoRotateTimerID = setInterval(() => {
