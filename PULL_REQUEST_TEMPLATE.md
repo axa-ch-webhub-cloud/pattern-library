@@ -2,6 +2,7 @@ Fixes #(issue).
 
 # Done is when (DoD):
 - [ ] I have added UI/Unit tests for my changes
+- [ ] I added modified component properties to the typescript typings
 - [ ] Design has been reviewed with (here name of reviewer)
 - [ ] Old tests and eslint rule are not broken
 - [ ] My changes are well documented in the README and showcased in the stories 
