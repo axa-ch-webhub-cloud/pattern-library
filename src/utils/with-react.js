@@ -9,9 +9,8 @@ const isUndefined = value => value === undefined || value === null;
 const DEFAULT_VALUE_OF_TYPE = {
   string: '',
   boolean: false,
-  function: () => {}
+  function: () => {},
 };
-
 
 const applyDefaults = customElementInstance => {
   const {
@@ -20,14 +19,19 @@ const applyDefaults = customElementInstance => {
   // get all properties of the custom element and loop over each key
   Object.keys(properties).forEach(property => {
     // extract default value and property type found in the name of the Type
-    const { defaultValue, type: { name } } = properties[property];
+    const {
+      defaultValue,
+      type: { name },
+    } = properties[property];
 
     // if no defaultValue is set, try to calculate it ourself
     if (!isUndefined(defaultValue)) {
       customElementInstance[property] = defaultValue;
     } else {
       const typeDefaultValue = DEFAULT_VALUE_OF_TYPE[name.toLowerCase()];
-      customElementInstance[property] = isUndefined(typeDefaultValue) ? '' : typeDefaultValue;
+      customElementInstance[property] = isUndefined(typeDefaultValue)
+        ? ''
+        : typeDefaultValue;
     }
   });
 };
