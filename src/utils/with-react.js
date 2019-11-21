@@ -21,26 +21,40 @@ const applyDefaults = ceInst => {
   // get all properties of the custom element and loop over each key
   Object.keys(properties).forEach(property => {
     // extract default value and property type found in the name of the Type
-    const {
-      type: { name },
-    } = properties[property];
+    const { type, converter } = properties[property];
+
+    if (!type && !converter) {
+      throw new Error(`
+          A type must always be set in the properties of the Custom Element!
+
+          It seems that the property ${property} has no type. It should belong to
+          ${ceInst.nodeName}
+        `);
+    }
+
     let { defaultValue } = properties[property];
 
-    // make sure no default value was set before WC was defined. If so, use that one
-    let value = '';
-    if (!ceInst.isReact) {
-      value = ceInst[name] || ceInst.getAttribute(name);
-    }
-    if (!isUndefined(value)) {
-      defaultValue = value;
-    }
+    if (!converter) {
+      const { name } = type;
 
-    // if no defaultValue is set, try to calculate it ourself
-    if (!isUndefined(defaultValue)) {
-      ceInst[property] = defaultValue;
-    } else {
-      const typeDefaultValue = DEFAULT_VALUE_OF_TYPE[name.toLowerCase()];
-      ceInst[property] = isUndefined(typeDefaultValue) ? '' : typeDefaultValue;
+      // make sure no default value was set before WC was defined. If so, use that one
+      let value = '';
+      if (!ceInst.isReact) {
+        value = ceInst.getAttribute(name);
+      }
+      if (!isUndefined(value)) {
+        defaultValue = value;
+      }
+
+      // if no defaultValue is set, try to calculate it ourself
+      if (!isUndefined(defaultValue)) {
+        ceInst[property] = defaultValue;
+      } else {
+        const typeDefaultValue = DEFAULT_VALUE_OF_TYPE[name.toLowerCase()];
+        ceInst[property] = isUndefined(typeDefaultValue)
+          ? ''
+          : typeDefaultValue;
+      }
     }
   });
 };
