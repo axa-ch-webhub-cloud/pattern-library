@@ -41,6 +41,7 @@ test('should upload file and switch view', async t => {
       .querySelector('axa-file-upload')
       .shadowRoot.querySelector('.js-file-upload__dropzone-file-overview')
   );
+  await $fileOverviewElem(); // Travis failed sometimes a line below. (Bug #1335)
   await t.expect($fileOverviewElem.exists).ok();
 });
 
@@ -84,42 +85,42 @@ test('should convert .png file to .jpg', async t => {
     .ok();
 });
 
-// TODO: Travis fails at this test; Probably due performance issues (for local testing uncomment this section)
+test('should delete image', async t => {
+  const $inputFileInputElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('axa-input-file .a-input-file__input')
+  );
+  await t.expect($inputFileInputElem.exists).ok();
 
-// test('should delete image', async t => {
-//   const $inputFileInputElem = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
-//   );
-//   await t.expect($inputFileInputElem.exists).ok();
+  await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
 
-//   await t.setFilesToUpload($inputFileInputElem, validFiles[1]);
+  const $figureElemsBefore = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
+  );
 
-//   const $figureElemsBefore = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
-//   );
+  await $figureElemsBefore(); // Travis failed sometimes a line below. (Bug #1335)
+  await t.expect(await $figureElemsBefore.count).eql(2); // one file + addMoreInputFile
 
-//   await t.expect($figureElemsBefore.count).eql(2); // one file + addMoreInputFile
+  const $figureElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__img-figure')
+  );
 
-//   const $figureElem = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelector('.js-file-upload__img-figure')
-//   );
+  await t.click($figureElem);
 
-//   await t.click($figureElem);
+  const $figureElemsAfter = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
+  );
 
-//   const $figureElemsAfter = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
-//   );
-
-//   await t.expect($figureElemsAfter.count).eql(0); // zero because start view has no figures
-// });
+  await $figureElemsAfter(); // Travis failed sometimes a line below. (Bug #1335)
+  await t.expect(await $figureElemsAfter.count).eql(0); // zero because start view has no figures
+});
 
 fixture('File upload - maxSizeOfSingleFileKB prop').page(
   `${host}/iframe.html?id=molecules-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1&knob-maxSizeOfAllFilesKB=500&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
@@ -141,7 +142,9 @@ test('should exceed maximum size of single file', async t => {
       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
   );
 
-  await t.expect($figureElems.count).eql(2); // one file + addMoreInputFile
+  await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
+  await t.expect(await $figureElems.count).eql(2); // one file + addMoreInputFile
+
   const $fileName = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -171,34 +174,33 @@ test('should remove addMoreInputFile', async t => {
   await t.expect($addMoreInputFieldElem.exists).notOk();
 });
 
-// TODO: Travis fails at this point; Probably due performance issues (for local testing uncomment this section)
-// test('should exceed maximum number of files', async t => {
-//   const $inputFileInputElem = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelector('axa-input-file .a-input-file__input')
-//   );
-//   await t.expect($inputFileInputElem.exists).ok();
+test('should exceed maximum number of files', async t => {
+  const $inputFileInputElem = await Selector(
+    () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
+    { dependencies: { FILE_UPLOAD_TAG } }
+  ).find('axa-input-file .a-input-file__input');
 
-//   await t.setFilesToUpload($inputFileInputElem, validFiles);
+  await t.expect($inputFileInputElem.exists).ok();
 
-//   const $figureElems = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
-//   );
-//   await t.expect($figureElems.count).eql(1);
+  await t.setFilesToUpload($inputFileInputElem, validFiles);
 
-//   const $errorWrapper = await Selector(() =>
-//     document
-//       .querySelector('axa-file-upload')
-//       .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
-//   );
+  const $figureElems = await Selector(
+    () => document.querySelector('axa-file-upload').shadowRoot
+  ).find('.js-file-upload__img-figure');
 
-//   await t
-//     .expect($errorWrapper.innerText)
-//     .eql('You exceeded the maximum number of files');
-// });
+  await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
+  await t.expect(await $figureElems.count).eql(1);
+
+  const $errorWrapper = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
+  );
+
+  await t
+    .expect(await $errorWrapper.innerText)
+    .eql('You exceeded the maximum number of files');
+});
 
 fixture('File upload - maxSizeOfAllFilesKB prop').page(
   `${host}/iframe.html?id=molecules-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=100&knob-maxSizeOfAllFilesKB=1&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
