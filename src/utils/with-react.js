@@ -9,29 +9,38 @@ const isUndefined = value => value === undefined || value === null;
 const DEFAULT_VALUE_OF_TYPE = {
   string: '',
   boolean: false,
+  object: {},
+  number: 0,
   function: () => {},
 };
 
-const applyDefaults = customElementInstance => {
+const applyDefaults = ceInst => {
   const {
     constructor: { properties },
-  } = customElementInstance;
+  } = ceInst;
   // get all properties of the custom element and loop over each key
   Object.keys(properties).forEach(property => {
     // extract default value and property type found in the name of the Type
     const {
-      defaultValue,
       type: { name },
     } = properties[property];
+    let { defaultValue } = properties[property];
+
+    // make sure no default value was set before WC was defined. If so, use that one
+    let value = '';
+    if (!ceInst.isReact) {
+      value = ceInst[name] || ceInst.getAttribute(name);
+    }
+    if (!isUndefined(value)) {
+      defaultValue = value;
+    }
 
     // if no defaultValue is set, try to calculate it ourself
     if (!isUndefined(defaultValue)) {
-      customElementInstance[property] = defaultValue;
+      ceInst[property] = defaultValue;
     } else {
       const typeDefaultValue = DEFAULT_VALUE_OF_TYPE[name.toLowerCase()];
-      customElementInstance[property] = isUndefined(typeDefaultValue)
-        ? ''
-        : typeDefaultValue;
+      ceInst[property] = isUndefined(typeDefaultValue) ? '' : typeDefaultValue;
     }
   });
 };

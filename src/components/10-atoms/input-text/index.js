@@ -6,6 +6,7 @@ import { AXAPopupMixin } from '@axa-ch/popup';
 
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
@@ -16,14 +17,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   static get properties() {
     return {
-      refId: { type: String },
+      refId: { type: String, defaultValue: `input-text-${createRefId()}` },
       name: { type: String },
       label: { type: String },
       required: { type: Boolean },
       placeholder: { type: String },
       value: { type: String },
       defaultValue: { type: String },
-      type: { type: String },
+      type: { type: String, defaultValue: 'text' },
       error: { type: String },
       info: { type: String },
       invalid: { type: Boolean },
@@ -53,40 +54,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     return styles;
   }
 
-  initProp(name, defaultValue) {
-    let value;
-    if (!this.isReact) {
-      value = this[name] || this.getAttribute(name);
-    }
-    if ((value !== undefined && value !== null) || defaultValue !== undefined) {
-      this[name] = value || defaultValue;
-    }
-  }
-
   constructor() {
     super();
-    // initProps: capture property or attribute assignment from *before* component construction
-    this.initProp('refId', `input-text-${createRefId()}`);
-    this.initProp('name', '');
-    this.initProp('label', '');
-    this.initProp('placeholder', '');
-    // only for React(frameworks) users
-    this.initProp('defaultValue', '');
-    // text, email, password
-    this.initProp('type', 'text');
-    this.initProp('error', '');
-    this.initProp('checkMark', false);
-    this.initProp('required', false);
-    this.initProp('invalid', false);
-    this.initProp('disabled', false);
-    this.initProp('modelCounter', '');
-    this.initProp('counter', '');
-    this.initProp('counterMax', '');
-
-    this.isReact = false;
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
+    applyDefaults(this);
 
     // internal properties
     this.nativeInput = { value: '' };

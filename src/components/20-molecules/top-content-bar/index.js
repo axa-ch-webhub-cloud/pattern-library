@@ -6,6 +6,7 @@ import '@axa-ch/button';
 import '@axa-ch/button-link';
 
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 class AXATopContentBar extends LitElement {
@@ -27,6 +28,11 @@ class AXATopContentBar extends LitElement {
       variant: { type: String },
       onClick: { type: Function },
     };
+  }
+
+  constructor() {
+    super();
+    applyDefaults(this);
   }
 
   firstUpdated() {

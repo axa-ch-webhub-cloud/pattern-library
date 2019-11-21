@@ -3,6 +3,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
+import { applyDefaults } from '../../../utils/with-react';
 
 import styles from './index.scss';
 
@@ -25,7 +26,7 @@ class AXARadio extends NoShadowDOM {
 
   static get properties() {
     return {
-      refId: { type: String },
+      refId: { type: String, defaultValue: createRefId('axa-radio-') },
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
@@ -130,20 +131,7 @@ class AXARadio extends NoShadowDOM {
       native: false,
     };
     // initialize properties
-    this.refId = createRefId('axa-radio-');
-    this.value = '';
-    this.name = '';
-    this.label = '';
-    this.icon = '';
-    this.error = '';
-    this.disabled = false;
-    this.button = false;
-    this.noGap = false;
-    this.focus = false;
-    this.isReact = false;
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
+    applyDefaults(this);
   }
 
   getDefaultName() {

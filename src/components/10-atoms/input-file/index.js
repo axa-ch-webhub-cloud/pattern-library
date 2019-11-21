@@ -5,6 +5,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import '@axa-ch/icon';
 import defineOnce from '../../../utils/define-once';
 import createRefId from '../../../utils/create-ref-id';
+import { applyDefaults } from '../../../utils/with-react';
 import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
 
@@ -23,11 +24,14 @@ class AXAInputFile extends NoShadowDOM {
       // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
       icon: { type: String },
-      refId: { type: String },
+      refId: { type: String, defaultValue: `input-file-${createRefId()}` },
       large: { type: Boolean },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-      accept: { type: String },
+      accept: {
+        type: String,
+        defaultValue: 'image/jpg, image/jpeg, application/pdf, image/png',
+      },
       capture: { type: Boolean },
       multiple: { type: Boolean },
     };
@@ -35,16 +39,7 @@ class AXAInputFile extends NoShadowDOM {
 
   constructor() {
     super();
-    this.variant = '';
-    this.icon = '';
-    this.refId = `input-file-${createRefId()}`;
-    this.large = false;
-    this.motionOff = false;
-    this.disabled = false;
-    this.accept = 'image/jpg, image/jpeg, application/pdf, image/png';
-    this.capture = false;
-    this.multiple = false;
-    this.onChange = () => {};
+    applyDefaults(this);
   }
 
   render() {

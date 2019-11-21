@@ -11,6 +11,7 @@ import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import typecheck from '../../../utils/typecheck';
 import findIndex from '../../../utils/find-index';
+import { applyDefaults } from '../../../utils/with-react';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -101,6 +102,7 @@ class AXADropdown extends NoShadowDOM {
     return {
       'data-test-id': { type: String, reflect: true },
       maxHeight: { type: String, reflect: true },
+      refId: { type: String, defaultValue: `dropdown-${createRefId()}` },
       label: { type: String },
       required: { type: Boolean },
       items: { type: Array, /* participate in typecheck'ing */ check: true },
@@ -140,16 +142,7 @@ class AXADropdown extends NoShadowDOM {
 
   constructor() {
     super();
-    this.refId = `dropdown-${createRefId()}`;
-    this.label = '';
-    this.checkMark = false;
-    this.invalid = false;
-    this.disabled = false;
-    this.required = false;
-    // property defaults
-    this.onChange = EMPTY_FUNCTION;
-    this.onFocus = EMPTY_FUNCTION;
-    this.onBlur = EMPTY_FUNCTION;
+    applyDefaults(this);
     // internal properties
     this.state = { isControlled: false, firstTime: true };
     // bound event handlers (so scope and de-registration work as expected)

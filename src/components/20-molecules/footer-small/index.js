@@ -6,6 +6,7 @@ import '@axa-ch/container';
 import footerSmallCSS from './index.scss';
 import childStyles from './child.scss';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import InlineStyles from '../../../utils/inline-styles';
 
 class AXAFooterSmall extends InlineStyles {
@@ -27,7 +28,7 @@ class AXAFooterSmall extends InlineStyles {
 
   constructor() {
     super();
-    this.dynamic = false;
+    applyDefaults(this);
     this.onLanguageClick = () => {};
     this.onDisclaimerClick = () => {};
   }

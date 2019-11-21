@@ -1,7 +1,10 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
+
+import { applyDefaults } from '../../../utils/with-react';
 import defineOnce from '../../../utils/define-once';
 import buttonLinkCSS from './index.scss';
 
@@ -34,14 +37,7 @@ class AXAButtonLink extends LitElement {
 
   constructor() {
     super();
-    this.href = '';
-    this.size = '';
-    this.variant = '';
-    this.icon = '';
-    this.external = false;
-    this.motionOff = false;
-    this.disabled = false;
-    this.onClick = () => {};
+    applyDefaults(this);
   }
 
   get showIcon() {

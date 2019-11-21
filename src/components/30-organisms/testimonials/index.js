@@ -6,6 +6,7 @@ import '@axa-ch/carousel';
 import defineOnce from '../../../utils/define-once';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
+import { applyDefaults } from '../../../utils/with-react';
 import childStyles from './child.scss';
 
 class AXATestimonials extends InlineStyles {
@@ -28,7 +29,7 @@ class AXATestimonials extends InlineStyles {
       title: { type: String },
       subtitle: { type: String },
       autorotatedisabled: { type: Boolean },
-      autorotatetime: { type: Number },
+      autorotatetime: { type: Number, defaultValue: 5000 },
       showallinline: { type: Boolean, reflect: true },
       keysenabled: { type: Boolean },
     };
@@ -38,12 +39,7 @@ class AXATestimonials extends InlineStyles {
     super();
 
     // default values props
-    this.title = '';
-    this.subtitle = '';
-    this.autorotatedisabled = false;
-    this.autorotatetime = 5000;
-    this.showallinline = false;
-    this.keysenabled = false;
+    applyDefaults(this);
   }
 
   firstUpdated() {

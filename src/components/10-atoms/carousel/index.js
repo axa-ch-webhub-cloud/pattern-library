@@ -6,6 +6,7 @@ import styles from './index.scss';
 import Swipe from './swipe';
 import debounce from '../../../utils/debounce';
 import InlineStyles from '../../../utils/inline-styles';
+import { applyDefaults } from '../../../utils/with-react';
 import childStyles from './child.scss';
 
 const ELEMENT_NODE = 1;
@@ -30,7 +31,7 @@ class AXACarousel extends InlineStyles {
   static get properties() {
     return {
       autorotatedisabled: { type: Boolean },
-      autorotatetime: { type: Number },
+      autorotatetime: { type: Number, defaultValue: 5000 },
       keysenabled: { type: Boolean },
       _animationWrapperClass: { type: String },
       _carouselMinHeight: { type: Number },
@@ -40,11 +41,7 @@ class AXACarousel extends InlineStyles {
   constructor() {
     super();
     // Props
-    this.autorotatedisabled = false;
-    this.autorotatetime = 5000;
-    this.keysenabled = false;
-    this._animationWrapperClass = '';
-    this._carouselMinHeight = 0;
+    applyDefaults(this);
     // Internal
     this.autoRotateTimerID = null;
     this.slides = null;
@@ -174,7 +171,11 @@ class AXACarousel extends InlineStyles {
 
   _startAutoRotate() {
     // eslint-disable-next-line no-restricted-globals
-    if (!this.autorotatedisabled && !!this.autorotatetime === true && !isNaN(this.autorotatetime)) {
+    if (
+      !this.autorotatedisabled &&
+      !!this.autorotatetime === true &&
+      !isNaN(this.autorotatetime)
+    ) {
       this.autoRotateTimerID = setInterval(() => {
         this._nextSlide();
       }, this.autorotatetime);

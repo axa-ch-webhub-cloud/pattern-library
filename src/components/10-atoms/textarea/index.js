@@ -3,6 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
@@ -17,7 +18,7 @@ class AXATextarea extends NoShadowDOM {
 
   static get properties() {
     return {
-      refId: { type: String },
+      refId: { type: String, defaultValue: `textarea-${createRefId()}` },
       name: { type: String },
       label: { type: String },
       placeholder: { type: String },
@@ -51,23 +52,7 @@ class AXATextarea extends NoShadowDOM {
 
   constructor() {
     super();
-    this.refId = `textarea-${createRefId()}`;
-    this.name = '';
-    this.label = '';
-    this.placeholder = '';
-    // only for React(frameworks) users
-    this.defaultValue = '';
-    this.error = '';
-    this.validation = false;
-    this.required = false;
-    this.invalid = false;
-    this.disabled = false;
-    this.counter = '';
-    this.counterMax = '';
-
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
+    applyDefaults(this);
 
     // internal properties
     this.isReact = false;

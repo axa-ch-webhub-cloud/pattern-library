@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
@@ -55,16 +56,8 @@ class AXACheckbox extends NoShadowDOM {
     // initialize properties
     this.refId = `checkbox-${createRefId()}`;
     this.type = 'checkbox';
-    this.value = '';
-    this.name = '';
-    this.label = '';
-    this.required = false;
-    this.disabled = false;
-    this.error = '';
-    this.isReact = false;
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
+
+    applyDefaults(this);
   }
 
   // custom setter
