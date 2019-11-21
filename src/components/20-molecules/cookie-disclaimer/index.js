@@ -31,6 +31,8 @@ class AXACookieDisclaimer extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+
+    this.onClick = () => {};
   }
 
   firstUpdated() {
