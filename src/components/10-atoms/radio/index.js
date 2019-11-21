@@ -132,6 +132,10 @@ class AXARadio extends NoShadowDOM {
     };
     // initialize properties
     applyDefaults(this);
+
+    this.onFocus = () => {};
+    this.onBlur = () => {};
+    this.onChange = () => {};
   }
 
   getDefaultName() {

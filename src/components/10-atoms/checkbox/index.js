@@ -58,6 +58,9 @@ class AXACheckbox extends NoShadowDOM {
     this.type = 'checkbox';
 
     applyDefaults(this);
+    this.onFocus = () => {};
+    this.onBlur = () => {};
+    this.onChange = () => {};
   }
 
   // custom setter

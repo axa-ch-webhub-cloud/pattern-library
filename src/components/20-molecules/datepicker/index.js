@@ -220,6 +220,12 @@ class AXADatepicker extends NoShadowDOM {
     applyDefaults(this);
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
+
+    this.onChange = EMPTY_FUNCTION;
+    this.onDateChange = EMPTY_FUNCTION;
+    this.onBlur = EMPTY_FUNCTION;
+    this.onFocus = EMPTY_FUNCTION;
+
     this.debouncedHandleViewportCheck = debounce(
       () => this.handleViewportCheck(this.input),
       250

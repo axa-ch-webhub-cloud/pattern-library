@@ -54,6 +54,10 @@ class AXATextarea extends NoShadowDOM {
     super();
     applyDefaults(this);
 
+    this.onFocus = () => {};
+    this.onBlur = () => {};
+    this.onChange = () => {};
+
     // internal properties
     this.isReact = false;
     this.modelCounter = '';

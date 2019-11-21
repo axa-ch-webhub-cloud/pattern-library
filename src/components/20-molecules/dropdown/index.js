@@ -143,6 +143,9 @@ class AXADropdown extends NoShadowDOM {
   constructor() {
     super();
     applyDefaults(this);
+    this.onChange = EMPTY_FUNCTION;
+    this.onFocus = EMPTY_FUNCTION;
+    this.onBlur = EMPTY_FUNCTION;
     // internal properties
     this.state = { isControlled: false, firstTime: true };
     // bound event handlers (so scope and de-registration work as expected)

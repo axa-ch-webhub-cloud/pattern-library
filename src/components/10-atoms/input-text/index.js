@@ -58,6 +58,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     super();
     applyDefaults(this);
 
+    this.onFocus = () => {};
+    this.onBlur = () => {};
+    this.onChange = () => {};
+
     // internal properties
     this.nativeInput = { value: '' };
     this.modelValue = '';

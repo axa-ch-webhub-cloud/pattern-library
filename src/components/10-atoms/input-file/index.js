@@ -40,6 +40,7 @@ class AXAInputFile extends NoShadowDOM {
   constructor() {
     super();
     applyDefaults(this);
+    this.onChange = () => {};
   }
 
   render() {
