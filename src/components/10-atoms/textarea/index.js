@@ -82,6 +82,9 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get value() {
+    if (!this.nativeInput) {
+      return '';
+    }
     const {
       isControlled,
       modelValue,
