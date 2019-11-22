@@ -5,7 +5,6 @@ const replace = require('rollup-plugin-replace'); // use to setup project enviro
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
-const classPrefixer = require('postcss-prefix-selector');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const fs = require('fs');
 const path = require('path');
@@ -36,15 +35,6 @@ const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
 const standardComponentClassPrefix = typePrefix + componentName; // a-button-link
 const cssPrefix = `${prefix}_${typePrefix}${componentName}`; //.nva1-1-1_button-link
 console.log('##### componentname: ', standardComponentClassPrefix, 'newPrefix:', cssPrefix, '#####');
-
-// const cssPrefixer = {
-//   input: './dist/index.js',
-//   output: {
-//     file: './dist/index.js',
-//     format: 'iife',
-//   },
-//   plugins: [replace('')]
-// };
 // *** /CSS
 
 const commonPlugins = [
@@ -64,15 +54,6 @@ const commonPlugins = [
       postcss({
         plugins: [autoprefixer()],
       })
-        .use(
-          classPrefixer({
-            prefix,
-            transform: (prefX, selector) => {
-              // Exclude tags, only apply to classes
-              return selector.split(' ').map(singleClass => singleClass.startsWith('.') ? `${prefX}${singleClass.replace('.', '_')}` : singleClass).join(' ');
-            }
-          })
-        )
         .process(css, { from: undefined })
         .then(result => result.css),
   }),
@@ -191,27 +172,6 @@ const rollupConfig = [lib];
 if (fs.existsSync('./index.react.js')) {
   rollupConfig.push(libReact);
 }
-
-// const jsClassPrefixer = () => {
-//   return {
-//     name: 'js-class-prefixer',
-
-//     transform(code, id) {
-
-// console.log()
-//       return {code: code};
-//     }
-//   };
-// }
-
-// const cssPrefixes = {
-//   input: './lib/index.js',
-//   output: {
-//     file: './lib/index.js',
-//     format: 'es',
-//   },
-//   plugins: [jsClassPrefixer()]
-// };
 
 rollupConfig.push(dist);
 
