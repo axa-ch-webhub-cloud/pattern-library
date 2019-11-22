@@ -119,3 +119,8 @@ Its only parameter is the corresponding native event from the underlying `<input
 
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
 Its only parameter is the corresponding native event from the underlying `<input>` element.
+
+## ChangeLog
+
+- 1.1.15
+  - add `refId`
