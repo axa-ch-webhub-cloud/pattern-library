@@ -22,7 +22,7 @@ const globalSassImports = require('./config/globals.js')
   })
   .join('\n');
 
-// *** CSS-Reformatting
+// *** CSS/JS-Prefixing
 const types = new Map();
 types.set('10-atoms', 'a-')
 types.set('20-molecules', 'm-')
@@ -34,7 +34,6 @@ const typePrefix = types.get(cwdAsStringArray[cwdAsStringArray.length-2]);
 const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
 const standardComponentClassPrefix = typePrefix + componentName; // a-button-link
 const cssPrefix = `${prefix}_${typePrefix}${componentName}`; //.nva1-1-1_button-link
-console.log('##### componentname: ', standardComponentClassPrefix, 'newPrefix:', cssPrefix, '#####');
 // *** /CSS
 
 const commonPlugins = [
