@@ -22,7 +22,7 @@ class AXATextarea extends NoShadowDOM {
       name: { type: String },
       label: { type: String },
       placeholder: { type: String },
-      value: { type: String },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       defaultValue: { type: String },
       error: { type: String },
       invalid: { type: Boolean },

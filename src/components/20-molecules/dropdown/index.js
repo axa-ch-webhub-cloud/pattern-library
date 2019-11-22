@@ -107,7 +107,7 @@ class AXADropdown extends NoShadowDOM {
       required: { type: Boolean },
       items: { type: Array, /* participate in typecheck'ing */ check: true },
       open: { type: Boolean, reflect: true },
-      value: { type: String },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       defaultTitle: { type: String, reflect: true },
       native: { type: Boolean, reflect: true },
@@ -144,12 +144,12 @@ class AXADropdown extends NoShadowDOM {
 
   constructor() {
     super();
-    applyDefaults(this);
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
     this.onBlur = EMPTY_FUNCTION;
     // internal properties
     this.state = { isControlled: false, firstTime: true };
+    applyDefaults(this);
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);

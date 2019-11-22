@@ -22,7 +22,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       label: { type: String },
       required: { type: Boolean },
       placeholder: { type: String },
-      value: { type: String },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       defaultValue: { type: String },
       type: { type: String, defaultValue: 'text' },
       error: { type: String },

@@ -1,18 +1,23 @@
 import val from '@skatejs/val';
 
-// if a prop is not set, its type is null. safer take null and undefined as a falsy value
-// but accept empty string or 0 as truly value
-const isUndefined = value => value === undefined || value === null;
+// defined values are different from undefined (for properties) or null (for attributes)
+const isDefined = value => !(value === undefined || value === null);
 
-// we can set a default type for defaultType based on its type. For this purpose
-// we create a map
-const DEFAULT_VALUE_OF_TYPE = {
-  string: '',
-  boolean: false,
-  object: {},
-  array: [],
-  number: 0,
-  function: () => {},
+// generic defaults (will be applied in the absence of explicit 'defaultValue')
+const DEFAULT_VALUE_OF_TYPE = new Map([
+  [String, ''],
+  [Boolean, false],
+  [Object, {}],
+  [Array, []],
+  [Number, 0],
+  [Function, () => {}],
+]);
+
+const convert = (value, type) => {
+  if (type === Number) {
+    return parseFloat(value);
+  }
+  return type === Array || type === Object ? JSON.parse(value) : value;
 };
 
 const applyDefaults = ceInst => {
@@ -22,41 +27,46 @@ const applyDefaults = ceInst => {
   // get all properties of the custom element and loop over each key
   Object.keys(properties).forEach(property => {
     // extract default value and property type found in the name of the Type
-    const { type, converter } = properties[property];
+    const propertyValue = properties[property];
+    // component author explicitly specified a default value for this property?
+    // (This allows *all* values as defaults, *including* undefined. The latter is
+    // the proper default for 'value' properties in React's controlled-component mode.)
+    const hasDefaultValue = 'defaultValue' in propertyValue;
+    const { type, converter, defaultValue } = propertyValue;
 
-    if (!type && !converter) {
-      throw new Error(`
-          A type must always be set in the properties of the Custom Element!
-
-          It seems that the property ${property} has no type. It should belong to
-          ${ceInst.nodeName}
-        `);
+    if (!type) {
+      if (!converter) {
+        throw new Error(
+          `<${ceInst.nodeName}> property "${property}" is missing a type!`
+        );
+      }
+      return;
     }
 
-    let { defaultValue } = properties[property];
-
-    if (type) {
-      const { name } = type;
-
-      // make sure no default value was set before WC was defined. If so, use that one
-      let value = '';
-      if (!ceInst.isReact) {
-        value = ceInst.getAttribute(name);
+    // respect property values defined before CE is constructed
+    if (!ceInst.isReact) {
+      let value = ceInst[property];
+      if (isDefined(value)) {
+        return;
       }
-      if (!isUndefined(value)) {
-        defaultValue = value;
-      }
+      // Boolean attributes in HTML are true if present, false otherwise.
+      // For all other types, get their value as string...
+      value =
+        type === Boolean
+          ? ceInst.hasAttribute(property)
+          : ceInst.getAttribute(property);
 
-      // if no defaultValue is set, try to calculate it ourself
-      if (!isUndefined(defaultValue)) {
-        ceInst[property] = defaultValue;
-      } else {
-        const typeDefaultValue = DEFAULT_VALUE_OF_TYPE[name.toLowerCase()];
-        ceInst[property] = isUndefined(typeDefaultValue)
-          ? ''
-          : typeDefaultValue;
+      // .. and if defined
+      if (isDefined(value)) {
+        // convert it
+        ceInst[property] = convert(value, type);
+        return;
       }
     }
+    // otherwise, apply default
+    ceInst[property] = hasDefaultValue // component author wants full control of their default value?
+      ? defaultValue // yes, apply it
+      : DEFAULT_VALUE_OF_TYPE.get(type); // no, derive it from general per-type defaults
   });
 };
 

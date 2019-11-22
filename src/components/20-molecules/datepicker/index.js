@@ -97,7 +97,7 @@ class AXADatepicker extends NoShadowDOM {
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
-      value: { type: String },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       defaultValue: { type: String },
       name: { type: String, reflect: true },
       locale: { type: String, reflect: true, defaultValue: 'de-CH' },
