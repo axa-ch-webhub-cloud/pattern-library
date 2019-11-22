@@ -23,7 +23,29 @@ const globalSassImports = require('./config/globals.js')
   })
   .join('\n');
 
-const prefix = `._nva${componentPackageJson.version.replace(/\./g,'-')}`;
+// *** CSS-Reformatting
+const types = new Map();
+types.set('10-atoms', 'a-')
+types.set('20-molecules', 'm-')
+types.set('30-organisms', 'o-')
+
+const componentName = componentPackageJson.name.replace('@axa-ch/', '');
+const cwdAsStringArray = process.cwd().split('/');
+const typePrefix = types.get(cwdAsStringArray[cwdAsStringArray.length-2]);
+const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
+const standardComponentClassPrefix = typePrefix + componentName; // a-button-link
+const cssPrefix = `${prefix}_${typePrefix}${componentName}`; //.nva1-1-1_button-link
+console.log('##### componentname: ', standardComponentClassPrefix, 'newPrefix:', cssPrefix, '#####');
+
+// const cssPrefixer = {
+//   input: './dist/index.js',
+//   output: {
+//     file: './dist/index.js',
+//     format: 'iife',
+//   },
+//   plugins: [replace('')]
+// };
+// *** /CSS
 
 const commonPlugins = [
   replace({
@@ -95,10 +117,12 @@ const lib = {
         'index.d.ts',
       ],
       outputFolder: './lib'
-    })
+    }),
+    replace({[standardComponentClassPrefix]: cssPrefix})
   ],
 };
 
+// TODO Should be removed before merge, since unused.
 const dist = {
   input: 'index.js',
   context: 'window',
@@ -142,6 +166,7 @@ const dist = {
       ],
     }),
     uglify(),
+    replace({[standardComponentClassPrefix]: cssPrefix})
   ],
 };
 
@@ -160,11 +185,33 @@ const libReact = {
   })]
 };
 
-// Sometimes there is no react version to build. I.e icons
 const rollupConfig = [lib];
+
+// Sometimes there is no react version to build. I.e icons
 if (fs.existsSync('./index.react.js')) {
   rollupConfig.push(libReact);
 }
+
+// const jsClassPrefixer = () => {
+//   return {
+//     name: 'js-class-prefixer',
+
+//     transform(code, id) {
+
+// console.log()
+//       return {code: code};
+//     }
+//   };
+// }
+
+// const cssPrefixes = {
+//   input: './lib/index.js',
+//   output: {
+//     file: './lib/index.js',
+//     format: 'es',
+//   },
+//   plugins: [jsClassPrefixer()]
+// };
 
 rollupConfig.push(dist);
 
