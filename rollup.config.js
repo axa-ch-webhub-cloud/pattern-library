@@ -1,7 +1,8 @@
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
-const replace = require('rollup-plugin-replace'); // use to setup project enviroment variables
+// const replace = require('rollup-plugin-replace'); // use to setup project enviroment variables
+const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
@@ -30,10 +31,10 @@ types.set('30-organisms', 'o-')
 
 const componentName = componentPackageJson.name.replace('@axa-ch/', '');
 const cwdAsStringArray = process.cwd().split('/');
-const typePrefix = types.get(cwdAsStringArray[cwdAsStringArray.length-2]);
+const componentTypePrefix = types.get(cwdAsStringArray[cwdAsStringArray.length-2]); // atom (a-) / molecule (m-) / organism (o-)
 const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
-const standardComponentClassPrefix = typePrefix + componentName; // a-button-link
-const cssPrefix = `${prefix}_${typePrefix}${componentName}`; //.nva1-1-1_button-link
+const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
+const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; //.nva1-1-1_button-link
 // *** /CSS
 
 const commonPlugins = [
