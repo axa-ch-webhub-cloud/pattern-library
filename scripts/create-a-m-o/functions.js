@@ -296,7 +296,7 @@ const createFiles = (store, a, m, o, done) => () => {
         // Define properties and types
         return {
           onClick: { type: Function },
-          foo: { type: String, defualtValue: 'bar' },
+          foo: { type: String, defaultValue: 'bar' },
         };
       }
 
