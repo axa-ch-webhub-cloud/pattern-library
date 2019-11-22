@@ -1,7 +1,6 @@
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
-// const replace = require('rollup-plugin-replace'); // use to setup project enviroment variables
 const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
@@ -23,7 +22,7 @@ const globalSassImports = require('./config/globals.js')
   })
   .join('\n');
 
-// *** CSS/JS-Prefixing
+// *** CSS & JS-Prefixing
 const types = new Map();
 types.set('10-atoms', 'a-')
 types.set('20-molecules', 'm-')
