@@ -1,7 +1,9 @@
 import withReact from '../../../utils/with-react';
 import AXACheckbox from './index';
+import createRefId from '../../../utils/create-ref-id';
 
 export default createElement => ({
+  refId = `checkbox-${createRefId()}`,
   value = '',
   name = '',
   label,
@@ -19,6 +21,7 @@ export default createElement => ({
   withReact(createElement)(
     AXACheckbox.tagName,
     {
+      refId,
       value,
       name,
       label,

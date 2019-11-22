@@ -4,6 +4,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import createRefId from '../../../utils/create-ref-id';
 
 const storyCheckbox = storiesOf('Atoms/Checkbox', module);
 storyCheckbox.addDecorator(withKnobs);
@@ -14,6 +15,7 @@ storyCheckbox.addParameters({
 });
 
 storyCheckbox.add('Checkbox', () => {
+  const refId = text('refId', `checkbox-${createRefId()}`);
   const label = text('label', 'this is a label');
   const name = text('name', 'my-checkbox');
   const checked = boolean('checked', true);
@@ -24,6 +26,7 @@ storyCheckbox.add('Checkbox', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-checkbox
+      refId="${refId}"
       class="hover"
       name="${name}"
       label="${label}"
@@ -32,8 +35,8 @@ storyCheckbox.add('Checkbox', () => {
       ?required="${required}"
       onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
       error="${errortext
-      ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
-      : ''}"
+        ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
+        : ''}"
     >
     </axa-checkbox>
   `;

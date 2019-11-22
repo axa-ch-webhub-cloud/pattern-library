@@ -77,6 +77,10 @@ The string-valued `label` provides the label text as HTML.
 
 _Note: The component consumer is responsible for sanitizing the label HTML!_
 
+### refId
+
+The string-valued `refId` sets the reference ID for label and input. If no `refId` is set, a random ID will be created.
+
 ### required
 
 The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
@@ -115,3 +119,8 @@ Its only parameter is the corresponding native event from the underlying `<input
 
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
 Its only parameter is the corresponding native event from the underlying `<input>` element.
+
+## ChangeLog
+
+- 1.1.15
+  - add `refId`
