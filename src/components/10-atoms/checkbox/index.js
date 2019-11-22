@@ -13,10 +13,11 @@ class AXACheckbox extends NoShadowDOM {
 
   static get properties() {
     return {
-      refId: { type: String },
+      refId: { type: String, defaultValue: `checkbox-${createRefId()}` },
       value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       label: { type: String },
+      type: { type: String, defaultValue: 'checkbox' },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -54,8 +55,6 @@ class AXACheckbox extends NoShadowDOM {
       native: false,
     };
     // initialize properties
-    this.refId = `checkbox-${createRefId()}`;
-    this.type = 'checkbox';
 
     applyDefaults(this);
     this.onFocus = () => {};
