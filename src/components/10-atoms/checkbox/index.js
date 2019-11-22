@@ -3,6 +3,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
+import createRefId from '../../../utils/create-ref-id';
 
 class AXACheckbox extends NoShadowDOM {
   static get tagName() {
@@ -11,6 +12,7 @@ class AXACheckbox extends NoShadowDOM {
 
   static get properties() {
     return {
+      refId: { type: String },
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
@@ -51,6 +53,7 @@ class AXACheckbox extends NoShadowDOM {
       native: false,
     };
     // initialize properties
+    this.refId = `checkbox-${createRefId()}`;
     this.type = 'checkbox';
     this.value = '';
     this.name = '';
@@ -107,6 +110,7 @@ class AXACheckbox extends NoShadowDOM {
   render() {
     // extract props and state
     const {
+      refId,
       value,
       name,
       label = '',
@@ -127,8 +131,9 @@ class AXACheckbox extends NoShadowDOM {
       clearTimeout(timer);
     }
     return html`
-      <label class="a-checkbox__wrapper">
+      <label for="${refId}" class="a-checkbox__wrapper">
         <input
+          id="${refId}"
           class="a-checkbox__input"
           type="checkbox"
           name="${name}"
@@ -144,7 +149,14 @@ class AXACheckbox extends NoShadowDOM {
         <span class="a-checkbox__icon"></span>
         ${label &&
           html`
-            <span class="a-checkbox__content">${unsafeHTML(label)} ${required ? html`*` : ''}</span>
+            <span class="a-checkbox__content"
+              >${unsafeHTML(label)}
+              ${required
+                ? html`
+                    *
+                  `
+                : ''}</span
+            >
           `}
         ${error
           ? html`
