@@ -26,7 +26,7 @@ const applyDefaults = ceInst => {
   } = ceInst;
   // get all properties of the custom element and loop over each key
   Object.keys(properties).forEach(property => {
-    // extract default value and property type found in the name of the Type
+    // extract default value and property type
     const propertyValue = properties[property];
     // component author explicitly specified a default value for this property?
     // (This allows *all* values as defaults, *including* undefined. The latter is
