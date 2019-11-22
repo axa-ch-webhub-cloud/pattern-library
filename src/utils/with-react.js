@@ -10,6 +10,7 @@ const DEFAULT_VALUE_OF_TYPE = {
   string: '',
   boolean: false,
   object: {},
+  array: [],
   number: 0,
   function: () => {},
 };
