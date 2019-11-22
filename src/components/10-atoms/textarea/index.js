@@ -82,6 +82,8 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get value() {
+    // When applyDefaults() is called inside the constructor, nativeInput
+    // does not exist yet.
     if (!this.nativeInput) {
       return '';
     }
