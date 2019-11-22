@@ -149,9 +149,9 @@ const createFiles = (store, a, m, o, done) => () => {
     ### onClick
 
     The function-valued attribute \`onClick\` can be used as a callback prop for React and other frameworks.
-    
+
     ### Migration Notes
-    
+
     You don't have to pay attention to anything for upgrading to newer version.
 
     `,
@@ -210,15 +210,15 @@ const createFiles = (store, a, m, o, done) => () => {
         sidebar: Readme,
       },
     });
-    
+
     story${className}.add('${compTitle}', () => {
       const children = text('Text', 'Some Children');
-      
+
       const wrapper = document.createElement('div');
       const template = html\`
         <axa-${fileName}>\${children}<axa-${fileName}>
       \`;
-      
+
       render(template, wrapper);
       return wrapper;
     });
@@ -278,6 +278,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     /* eslint-disable import/no-extraneous-dependencies */
     import defineOnce from '../../../utils/define-once';
+    import { applyDefaults } from '../../../utils/with-react';
     import styles from './index.scss';
 
     class ${className} extends LitElement {
@@ -295,11 +296,15 @@ const createFiles = (store, a, m, o, done) => () => {
         // Define properties and types
         return {
           onClick: { type: Function },
+          foo: { type: String, defualtValue: 'bar' },
         };
       }
 
       constructor() {
         super();
+        // this functions applies default values per type and verifies if
+        // the HTML attribute has been set before defining the custom element
+        applyDefaults(this);
         this.onClick = () => {};
       }
 
