@@ -26,10 +26,9 @@ storyCheckbox.add('Checkbox', () => {
   const wrapper = document.createElement('div');
   const template = html`
     <span>
-      <label for="checkbox">Label</label>
+      <label for="checkbox">Das Beste Label</label>
       <axa-checkbox
         refId="checkbox"
-        id="checkbox"
         class="hover"
         name="${name}"
         ?disabled="${disabled}"
