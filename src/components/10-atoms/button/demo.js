@@ -27,7 +27,6 @@ storiesOf('Atoms/Button/Demos', module)
   })
   .add('Feature - Button in a form', () => {
     const handleSubmit = ev => {
-      console.log('handleSubmit');
       ev.preventDefault();
     };
 
