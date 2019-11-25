@@ -10,6 +10,10 @@ import buttonCSS from './index.scss';
 
 const ARROW_RIGHT = 'arrow-right';
 
+// equivalent to event.isTrusted. Unfortunatly IE11 dies not support it
+const eventIsTrusted = e =>
+  !(!e.screenX && !e.screenY && !e.clientX && !e.clientY);
+
 class AXAButton extends LitElement {
   static get tagName() {
     return 'axa-button';
@@ -66,9 +70,14 @@ class AXAButton extends LitElement {
       fakeButton.style.display = 'none';
       this.appendChild(fakeButton);
 
-      // this.onclick refers to the event and has nothing to do with function-valued attribute onClick
-      this.onclick = () => {
-        fakeButton.click();
+      // this click method is triggered due to bubbeling from the button inside
+      // shadowRoot. Do not be confused with onClick
+      this.onclick = e => {
+        // block pr
+        if (eventIsTrusted(e)) {
+          e.stopPropagation();
+          fakeButton.click();
+        }
       };
     }
 
