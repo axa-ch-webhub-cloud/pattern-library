@@ -171,7 +171,6 @@ class AXACheckbox extends NoShadowDOM {
               ${inputElement}
               <span class="a-checkbox__icon"></span>
               <span class="a-checkbox__content">
-                ${unsafeHTML()}
                 ${required
                   ? html`
                       *
@@ -190,13 +189,16 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
+    if (!this.label) {
+      const labelElement = document.querySelector('label');
+      const temp = labelElement.innerHTML;
+      const requiredText = this.required ? '*' : '';
+      labelElement.style.display = 'none';
 
-    const labelElement = document.querySelector('label');
-    const temp = labelElement.innerHTML;
-    labelElement.style.display = 'none';
-    // this.label = temp;
-    document.querySelector('.a-checkbox__content').innerHTML = temp;
-    console.log('temp', temp);
+      document.querySelector(
+        '.a-checkbox__content'
+      ).innerHTML = `${temp} ${requiredText}`;
+    }
   }
 
   // this lifecycle method will regularly be called after render() -
