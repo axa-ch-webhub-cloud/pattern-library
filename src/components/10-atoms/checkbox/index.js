@@ -170,13 +170,7 @@ class AXACheckbox extends NoShadowDOM {
             <span class="a-checkbox__wrapper">
               ${inputElement}
               <span class="a-checkbox__icon"></span>
-              <span class="a-checkbox__content">
-                ${required
-                  ? html`
-                      *
-                    `
-                  : ''}
-              </span>
+              <span class="a-checkbox__content"></span>
               ${errorElement}
             </span>
           `}
@@ -190,14 +184,17 @@ class AXACheckbox extends NoShadowDOM {
       this.state.native = true;
     }
     if (!this.label) {
-      const labelElement = document.querySelector('label');
-      const temp = labelElement.innerHTML;
-      const requiredText = this.required ? '*' : '';
-      labelElement.style.display = 'none';
+      const labelElement = document.querySelector(AXACheckbox.tagName)
+        .previousElementSibling;
+      if (labelElement) {
+        const temp = labelElement.innerHTML;
+        const requiredText = this.required ? '*' : '';
+        labelElement.style.display = 'none';
 
-      document.querySelector(
-        '.a-checkbox__content'
-      ).innerHTML = `${temp} ${requiredText}`;
+        document.querySelector(
+          '.a-checkbox__content'
+        ).innerHTML = `${temp} ${requiredText}`;
+      }
     }
   }
 
