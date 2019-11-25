@@ -3,6 +3,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 class AXAText extends NoShadowDOM {
@@ -24,7 +25,7 @@ class AXAText extends NoShadowDOM {
 
   constructor() {
     super();
-    this.variant = '';
+    applyDefaults(this);
   }
 
   render() {
@@ -54,7 +55,7 @@ class AXAText extends NoShadowDOM {
       p.className = classes.join(' ');
       this.innerHTML = '';
       this.appendChild(p);
-    // if firstElementChild is there, apply classes on the first element
+      // if firstElementChild is there, apply classes on the first element
     } else if (firstElementChild) {
       classes.forEach(_class => firstElementChild.classList.add(_class));
     }

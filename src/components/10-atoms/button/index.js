@@ -1,7 +1,10 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/icon';
+
+import { applyDefaults } from '../../../utils/with-react';
 import defineOnce from '../../../utils/define-once';
 import buttonCSS from './index.scss';
 
@@ -21,7 +24,7 @@ class AXAButton extends LitElement {
   static get properties() {
     return {
       // button, submit, reset
-      type: { type: String, reflect: true },
+      type: { type: String, reflect: true, defaultValue: 'button' },
       // secondary, red,  inverted, inverted-blue-ocean, inverted-red-tosca, inverted-purple-logan, inverted-green-viridian, inverted-blue-teal
       variant: { type: String },
       icon: { type: String },
@@ -34,14 +37,7 @@ class AXAButton extends LitElement {
 
   constructor() {
     super();
-    this.type = 'button';
-    // small, large, medium is default
-    this.size = '';
-    this.variant = '';
-    this.icon = '';
-    this.motionOff = false;
-    this.disabled = false;
-    this.onClick = () => {};
+    applyDefaults(this);
   }
 
   get isTypeSubmitOrReset() {

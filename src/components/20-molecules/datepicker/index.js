@@ -12,6 +12,7 @@ import {
 
 import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import debounce from '../../../utils/debounce';
 import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
@@ -96,10 +97,10 @@ class AXADatepicker extends NoShadowDOM {
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
-      value: { type: String },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       defaultValue: { type: String },
       name: { type: String, reflect: true },
-      locale: { type: String, reflect: true },
+      locale: { type: String, reflect: true, defaultValue: 'de-CH' },
       date: {
         type: Object,
         converter: {
@@ -111,22 +112,23 @@ class AXADatepicker extends NoShadowDOM {
       year: { type: Number, reflect: true },
       month: { type: Number, reflect: true },
       day: { type: Number, reflect: true },
+      refId: { type: String, defaultValue: `datepicker-${createRefId()}` },
       inverted: { type: Boolean, reflect: true },
       inputfield: { type: Boolean, reflect: true },
       allowedyears: { type: Array, reflect: true },
       monthitems: { type: Array },
       yearitems: { type: Array },
       cells: { type: Array },
-      labelbuttoncancel: { type: String },
-      labelbuttonok: { type: String },
-      placeholder: { type: String },
-      monthtitle: { type: String },
-      yeartitle: { type: String },
+      labelbuttoncancel: { type: String, defaultValue: 'Close' },
+      labelbuttonok: { type: String, defaultValue: 'OK' },
+      placeholder: { type: String, defaultValue: 'Please select a date' },
+      monthtitle: { type: String, defaultValue: 'Choose month' },
+      yeartitle: { type: String, defaultValue: 'Choose year' },
       invalid: { type: Boolean, reflect: true },
-      invaliddatetext: { type: String },
+      invaliddatetext: { type: String, defaultValue: 'Invalid date' },
       error: { type: String, reflect: true },
-      height: { type: String, reflect: true },
-      width: { type: String, reflect: true },
+      height: { type: String, reflect: true, defaultValue: '40px' },
+      width: { type: String, reflect: true, defaultValue: 'auto' },
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
@@ -215,34 +217,15 @@ class AXADatepicker extends NoShadowDOM {
     super();
     // internal model state
     this.state = {};
-    this.refId = `datepicker-${createRefId()}`;
-    // property initializations
+    applyDefaults(this);
+    this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
+    this.handleBodyClick = this.handleBodyClick.bind(this);
 
-    // initProps: capture property or attribute assignment from *before* component construction
-    this.initProp('value');
-    this.initProp('placeholder', 'Please select a date');
-
-    this.locale = 'de-CH';
-    this.open = false;
-    this.inverted = false;
-    this.invalid = false;
-    this.disabled = false;
-    this.required = false;
-    this.autofocus = false;
-    this.name = '';
-    this.label = '';
-    this.labelbuttoncancel = 'Schliessen';
-    this.labelbuttonok = 'OK';
-    this.monthtitle = 'Choose Month';
-    this.yeartitle = 'Choose Year';
-    this.invaliddatetext = 'Invalid date';
-    this.outputdate = '';
     this.onChange = EMPTY_FUNCTION;
     this.onDateChange = EMPTY_FUNCTION;
     this.onBlur = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
-    this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
-    this.handleBodyClick = this.handleBodyClick.bind(this);
+
     this.debouncedHandleViewportCheck = debounce(
       () => this.handleViewportCheck(this.input),
       250
@@ -321,39 +304,40 @@ class AXADatepicker extends NoShadowDOM {
                 : ''}
             </label>
           `}
-        ${this.inputfield &&
-          html`
-            <div class="m-datepicker__input-wrap" style="${formattedWidth}">
-              <input
-                id="${refId}"
-                @input="${this.handleInputChange}"
-                @blur="${this.handleBlur}"
-                @focus="${this.onFocus}"
-                @change="${e => e.stopPropagation()}"
-                class="m-datepicker__input js-datepicker__input"
-                type="text"
-                name="${this.name}"
-                placeholder="${this.placeholder}"
-                style="${formattedHeight}"
-                .value="${isControlled ? value : this.outputdate}"
-                ?disabled="${disabled}"
-              />
-              <button
-                type="button"
-                class="m-datepicker__input-button js-datepicker__input-button"
-                @click="${this.handleInputButtonClick}"
-              >
-                ${dateInputIcon}
-              </button>
-              ${checkMark
-                ? html`
-                    <span class="m-datepicker__check-wrapper">
-                      <span class="m-datepicker__check"></span>
-                    </span>
-                  `
-                : ''}
-            </div>
-          `}
+        ${!this.inputfield
+          ? ''
+          : html`
+              <div class="m-datepicker__input-wrap" style="${formattedWidth}">
+                <input
+                  id="${refId}"
+                  @input="${this.handleInputChange}"
+                  @blur="${this.handleBlur}"
+                  @focus="${this.onFocus}"
+                  @change="${e => e.stopPropagation()}"
+                  class="m-datepicker__input js-datepicker__input"
+                  type="text"
+                  name="${this.name}"
+                  placeholder="${this.placeholder}"
+                  style="${formattedHeight}"
+                  .value="${isControlled ? value : this.outputdate}"
+                  ?disabled="${disabled}"
+                />
+                <button
+                  type="button"
+                  class="m-datepicker__input-button js-datepicker__input-button"
+                  @click="${this.handleInputButtonClick}"
+                >
+                  ${dateInputIcon}
+                </button>
+                ${checkMark
+                  ? html`
+                      <span class="m-datepicker__check-wrapper">
+                        <span class="m-datepicker__check"></span>
+                      </span>
+                    `
+                  : ''}
+              </div>
+            `}
         ${(this.open && !disabled) || !this.inputfield
           ? html`
               <div class="m-datepicker__wrap js-datepicker__wrap">

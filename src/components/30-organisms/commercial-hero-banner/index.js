@@ -3,6 +3,7 @@ import { html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
 import InlineStyles from '../../../utils/inline-styles';
@@ -20,15 +21,14 @@ class AXACommercialHeroBanner extends InlineStyles {
 
   static get properties() {
     return {
-      variant: { type: String },
+      variant: { type: String, defaultValue: 'light' },
       imageSource: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.variant = 'light';
-    this.imageSource = '';
+    applyDefaults(this);
   }
 
   // Parent class InlineStyles needs a static method to retrive styles

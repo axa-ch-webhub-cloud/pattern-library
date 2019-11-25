@@ -3,6 +3,8 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 import { InfoFlatSvg, CancelSvg } from '@axa-ch/materials/icons';
 import popupButtonCSS from './index.scss';
 
+import { applyDefaults } from '../../../../utils/with-react';
+
 class AXAPopupButton extends LitElement {
   static get tagName() {
     return 'axa-popup-button';
@@ -23,8 +25,7 @@ class AXAPopupButton extends LitElement {
 
   constructor() {
     super();
-    this.open = false;
-    this.onClick = () => {};
+    applyDefaults(this);
   }
 
   render() {

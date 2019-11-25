@@ -3,6 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import './policy-features-item/index';
 
@@ -28,8 +29,7 @@ class AXAPolicyFeatures extends LitElement {
 
   constructor() {
     super();
-    this.title = '';
-    this.variant = '';
+    applyDefaults(this);
   }
 
   render() {

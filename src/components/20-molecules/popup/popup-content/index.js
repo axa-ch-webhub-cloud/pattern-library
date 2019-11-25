@@ -2,6 +2,8 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import popupContentCSS from './index.scss';
 
+import { applyDefaults } from '../../../../utils/with-react';
+
 class AXAPopupContent extends LitElement {
   static get tagName() {
     return 'axa-popup-content';
@@ -21,7 +23,7 @@ class AXAPopupContent extends LitElement {
 
   constructor() {
     super();
-    this.open = false;
+    applyDefaults(this);
   }
 
   render() {
@@ -29,12 +31,12 @@ class AXAPopupContent extends LitElement {
 
     const wrapperClasses = {
       'a-popup__wrapper': true,
-      'a-popup__wrapper--open': open
+      'a-popup__wrapper--open': open,
     };
 
     const contentClasses = {
       'a-popup__content': true,
-      'a-popup__content--open': open
+      'a-popup__content--open': open,
     };
 
     return html`

@@ -5,6 +5,7 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 
 class AXALink extends LitElement {
   static tagName = 'axa-link';
@@ -24,10 +25,7 @@ class AXALink extends LitElement {
 
   constructor() {
     super();
-    this.href = '';
-    this.variant = '';
-    this.icon = '';
-    this.external = false;
+    applyDefaults(this);
   }
 
   render() {

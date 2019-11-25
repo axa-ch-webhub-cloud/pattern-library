@@ -6,6 +6,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
 
@@ -51,7 +52,7 @@ class AXAFooter extends InlineStyles {
 
   constructor() {
     super();
-    this.clickevents = false;
+    applyDefaults(this);
     this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
     this.slotsNotPrepared = true;

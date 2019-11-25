@@ -4,6 +4,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import '@axa-ch/table';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
+import { applyDefaults } from '../../../utils/with-react';
 import tableCss from './index.scss';
 
 const ASC = 'ascending';
@@ -28,9 +29,7 @@ class AXATableSortable extends LitElement {
       tbody: [[]],
       tfoot: [[]],
     };
-    this.model = { ...this.defaultModel };
-    this.innerscroll = 0;
-    this.maxheight = 0;
+    applyDefaults(this);
     this.firstRender = true;
     this.onClick = () => {};
     this.numCollator = new Intl.Collator(undefined, {
@@ -55,7 +54,7 @@ class AXATableSortable extends LitElement {
 
   static get properties() {
     return {
-      model: { type: Object },
+      model: { type: Object, defaultValue: { ...this.defaultModel } },
       innerscroll: { type: Number },
       maxheight: { type: Number },
     };

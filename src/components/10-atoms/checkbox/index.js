@@ -2,6 +2,7 @@ import { html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
@@ -12,10 +13,11 @@ class AXACheckbox extends NoShadowDOM {
 
   static get properties() {
     return {
-      refId: { type: String },
-      value: { type: String },
+      refId: { type: String, defaultValue: `checkbox-${createRefId()}` },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       label: { type: String },
+      type: { type: String, defaultValue: 'checkbox' },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -53,15 +55,8 @@ class AXACheckbox extends NoShadowDOM {
       native: false,
     };
     // initialize properties
-    this.refId = `checkbox-${createRefId()}`;
-    this.type = 'checkbox';
-    this.value = '';
-    this.name = '';
-    this.label = '';
-    this.required = false;
-    this.disabled = false;
-    this.error = '';
-    this.isReact = false;
+
+    applyDefaults(this);
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};

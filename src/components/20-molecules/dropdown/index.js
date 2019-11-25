@@ -11,6 +11,7 @@ import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import typecheck from '../../../utils/typecheck';
 import findIndex from '../../../utils/find-index';
+import { applyDefaults } from '../../../utils/with-react';
 
 // module constants
 const ARROW_ICON = svg([ExpandSvg]);
@@ -101,11 +102,12 @@ class AXADropdown extends NoShadowDOM {
     return {
       'data-test-id': { type: String, reflect: true },
       maxHeight: { type: String, reflect: true },
+      refId: { type: String, defaultValue: `dropdown-${createRefId()}` },
       label: { type: String },
       required: { type: Boolean },
       items: { type: Array, /* participate in typecheck'ing */ check: true },
       open: { type: Boolean, reflect: true },
-      value: { type: String },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       defaultTitle: { type: String, reflect: true },
       native: { type: Boolean, reflect: true },
@@ -118,20 +120,22 @@ class AXADropdown extends NoShadowDOM {
   }
 
   set value(newValue) {
-    const {
-      state: { isControlled, value, firstTime },
-      state,
-    } = this;
-    // first value coming in indicates controlledness?
-    if (!isControlled && newValue !== undefined && firstTime) {
-      // yes, remember in model state
-      state.isControlled = true;
+    if (this.state) {
+      const {
+        state: { isControlled, value, firstTime },
+        state,
+      } = this;
+      // first value coming in indicates controlledness?
+      if (!isControlled && newValue !== undefined && firstTime) {
+        // yes, remember in model state
+        state.isControlled = true;
+      }
+      // update state
+      state.value = newValue;
+      state.firstTime = false;
+      // manual re-render, necessary for custom setters
+      this.requestUpdate('value', value);
     }
-    // update state
-    state.value = newValue;
-    state.firstTime = false;
-    // manual re-render, necessary for custom setters
-    this.requestUpdate('value', value);
   }
 
   get value() {
@@ -140,18 +144,12 @@ class AXADropdown extends NoShadowDOM {
 
   constructor() {
     super();
-    this.refId = `dropdown-${createRefId()}`;
-    this.label = '';
-    this.checkMark = false;
-    this.invalid = false;
-    this.disabled = false;
-    this.required = false;
-    // property defaults
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
     this.onBlur = EMPTY_FUNCTION;
     // internal properties
     this.state = { isControlled: false, firstTime: true };
+    applyDefaults(this);
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
