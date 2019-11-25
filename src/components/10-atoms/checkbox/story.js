@@ -25,20 +25,23 @@ storyCheckbox.add('Checkbox', () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-checkbox
-      refId="${refId}"
-      class="hover"
-      name="${name}"
-      label="${label}"
-      ?disabled="${disabled}"
-      ?checked="${checked}"
-      ?required="${required}"
-      onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-      error="${errortext
-        ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
-        : ''}"
-    >
-    </axa-checkbox>
+    <span>
+      <label for="checkbox">Label</label>
+      <axa-checkbox
+        refId="checkbox"
+        id="checkbox"
+        class="hover"
+        name="${name}"
+        ?disabled="${disabled}"
+        ?checked="${checked}"
+        ?required="${required}"
+        onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+        error="${errortext
+          ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
+          : ''}"
+      >
+      </axa-checkbox>
+    </span>
   `;
 
   render(template, wrapper);

@@ -125,40 +125,62 @@ class AXACheckbox extends NoShadowDOM {
       // changed prop value somewhere (likely 'checked')
       clearTimeout(timer);
     }
+
+    const inputElement = html`
+      <input
+        id="${refId}"
+        class="a-checkbox__input"
+        type="checkbox"
+        name="${name}"
+        value="${value}"
+        aria-required="${required}"
+        ?checked="${checked}"
+        ?disabled="${disabled}"
+        ?error="${!!error}"
+        @focus="${this.onFocus}"
+        @blur="${this.onBlur}"
+        @change=${this.handleChange}
+      />
+    `;
+
+    const errorElement = error
+      ? html`
+          <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+        `
+      : html``;
+
     return html`
-      <label for="${refId}" class="a-checkbox__wrapper">
-        <input
-          id="${refId}"
-          class="a-checkbox__input"
-          type="checkbox"
-          name="${name}"
-          value="${value}"
-          aria-required="${required}"
-          ?checked="${checked}"
-          ?disabled="${disabled}"
-          ?error="${!!error}"
-          @focus="${this.onFocus}"
-          @blur="${this.onBlur}"
-          @change=${this.handleChange}
-        />
-        <span class="a-checkbox__icon"></span>
-        ${label &&
-          html`
-            <span class="a-checkbox__content"
-              >${unsafeHTML(label)}
-              ${required
-                ? html`
-                    *
-                  `
-                : ''}</span
-            >
+      ${label
+        ? html`
+            <label for="${refId}" class="a-checkbox__wrapper">
+              ${inputElement}
+              <span class="a-checkbox__icon"></span>
+              <span class="a-checkbox__content">
+                ${unsafeHTML(label)}
+                ${required
+                  ? html`
+                      *
+                    `
+                  : ''}
+              </span>
+              ${errorElement}
+            </label>
+          `
+        : html`
+            <span class="a-checkbox__wrapper">
+              ${inputElement}
+              <span class="a-checkbox__icon"></span>
+              <span class="a-checkbox__content">
+                ${unsafeHTML()}
+                ${required
+                  ? html`
+                      *
+                    `
+                  : ''}
+              </span>
+              ${errorElement}
+            </span>
           `}
-        ${error
-          ? html`
-              <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-            `
-          : html``}
-      </label>
     `;
   }
 
@@ -168,6 +190,13 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
+
+    const labelElement = document.querySelector('label');
+    const temp = labelElement.innerHTML;
+    labelElement.style.display = 'none';
+    // this.label = temp;
+    document.querySelector('.a-checkbox__content').innerHTML = temp;
+    console.log('temp', temp);
   }
 
   // this lifecycle method will regularly be called after render() -
