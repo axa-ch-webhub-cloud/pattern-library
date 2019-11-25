@@ -1,10 +1,11 @@
-const resolve = require('rollup-plugin-node-resolve');
+const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
+const classPrefixer = require('postcss-prefix-selector');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const fs = require('fs');
 const path = require('path');
@@ -22,6 +23,8 @@ const globalSassImports = require('./config/globals.js')
   })
   .join('\n');
 
+const rollupConfig = [];
+
 // *** CSS & JS-Prefixing
 const types = new Map();
 types.set('10-atoms', 'a-');
@@ -30,37 +33,90 @@ types.set('30-organisms', 'o-');
 
 const componentName = componentPackageJson.name.replace('@axa-ch/', '');
 const cwdAsStringArray = process.cwd().split('/');
-const componentTypePrefix = types.get(cwdAsStringArray[cwdAsStringArray.length-2]); // atom (a-) / molecule (m-) / organism (o-)
+const componentTypePrefix = types.get(
+  cwdAsStringArray[cwdAsStringArray.length - 2]
+); // atom (a-) / molecule (m-) / organism (o-)
 const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
 const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
 const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
 // *** /CSS
 
+const content = fs.readFileSync('./index.js', 'utf8');
+const afterReplace = content
+  .split(standardComponentClassPrefix)
+  .join(cssPrefix);
+fs.writeFileSync('./index-prefixed.js', afterReplace);
+
+// const run = async () => {
+//   return await new Promise((resolve, reject) => {
+//     fs.readFile('./index.js', (err, data) => {
+//       console.log('hi');
+//       if (err) reject(err);
+//       resolve(data);
+//     })
+//   });
+// }
+// const fileContent = run();
+// console.log(fileContent);
+
+// const prefixConfig = {
+//   input: 'index.js',
+//   external: [
+//     'lit-element',
+//     'lit-html/directives/class-map',
+//     'lit-html/directives/repeat',
+//     '@skatejs/val',
+//   ],
+//   output: {
+//     file: './lib/index-temp.js',
+//     // format: 'es',
+//   },
+//   plugins: [replace({
+//     [standardComponentClassPrefix]: cssPrefix
+//   })]
+// };
+
+// rollupConfig.push(prefixConfig);
+
 const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    [standardComponentClassPrefix]: cssPrefix
   }),
   sass({
     insert: true,
     include: '**/*.scss',
     options: {
-      includePaths: [
-        'node_modules',
-      ],
+      includePaths: ['node_modules'],
       data: globalSassImports,
     },
     processor: css =>
       postcss({
         plugins: [autoprefixer()],
       })
+        .use(
+          classPrefixer({
+            prefix,
+            transform: (prefX, selector) => {
+              // Exclude tags, only apply to classes
+              return selector
+                .split(' ')
+                .map(singleClass =>
+                  singleClass.startsWith('.')
+                    ? `.${prefX}${singleClass.replace('.', '_')}`
+                    : singleClass
+                )
+                .join(' ');
+            },
+          })
+        )
+
         .process(css, { from: undefined })
         .then(result => result.css),
   }),
 ];
 
 const lib = {
-  input: 'index.js',
+  input: 'index-prefixed.js',
   external: [
     'lit-element',
     'lit-html/directives/class-map',
@@ -89,23 +145,19 @@ const lib = {
       exclude: ['node_modules/**'],
       runtimeHelpers: false,
     }),
-    resolve({
+    nodeResolve({
       mainFields: ['module', 'main'],
       only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
     }),
     copy({
-      targets: [
-        'index.d.ts',
-      ],
-      outputFolder: './lib'
-    })
-    
+      targets: ['index.d.ts'],
+      outputFolder: './lib',
+    }),
   ],
 };
 
-// TODO Should be removed before merge, since unused.
 const dist = {
-  input: 'index.js',
+  input: 'index-prefixed.js',
   context: 'window',
   output: {
     file: './dist/index.js', // no react dist on purpose
@@ -115,7 +167,7 @@ const dist = {
   },
   plugins: [
     ...commonPlugins,
-    resolve({
+    nodeResolve({
       mainFields: ['module', 'main', 'browser'],
     }),
     commonjs({
@@ -146,26 +198,27 @@ const dist = {
         '../../../../node_modules/@babel/**',
       ],
     }),
-    uglify()
+    uglify(),
   ],
 };
 
 const libReact = {
   ...lib,
-  input: 'index.react.js',
+  input: 'index-prefixed.js',
   output: {
     file: './lib/index.react.js',
     format: 'es',
   },
-  plugins: [...lib.plugins, copy({
-    targets: [
-      'index.react.d.ts',
-    ],
-    outputFolder: './lib'
-  })]
+  plugins: [
+    ...lib.plugins,
+    copy({
+      targets: ['index.react.d.ts'],
+      outputFolder: './lib',
+    }),
+  ],
 };
 
-const rollupConfig = [lib];
+rollupConfig.push(lib);
 
 // Sometimes there is no react version to build. I.e icons
 if (fs.existsSync('./index.react.js')) {
@@ -173,21 +226,5 @@ if (fs.existsSync('./index.react.js')) {
 }
 
 rollupConfig.push(dist);
-
-// const prefixConfig = {
-//   input: 'index.react.js',
-//   output: {
-//     file: './lib/index.react.js',
-//     format: 'es',
-//   },
-//   plugins: [...lib.plugins, copy({
-//     targets: [
-//       'index.react.d.ts',
-//     ],
-//     outputFolder: './lib'
-//   })]
-// };
-
-// rollupConfig.push(prefixConfig);
 
 export default rollupConfig;
