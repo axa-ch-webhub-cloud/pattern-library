@@ -6,6 +6,8 @@ import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
+const REQUIRED_SYMBOL = '*';
+
 class AXACheckbox extends NoShadowDOM {
   static get tagName() {
     return 'axa-checkbox';
@@ -156,12 +158,7 @@ class AXACheckbox extends NoShadowDOM {
               ${inputElement}
               <span class="a-checkbox__icon"></span>
               <span class="a-checkbox__content">
-                ${unsafeHTML(label)}
-                ${required
-                  ? html`
-                      *
-                    `
-                  : ''}
+                ${unsafeHTML(label)} ${required ? REQUIRED_SYMBOL : ''}
               </span>
               ${errorElement}
             </label>
@@ -183,17 +180,18 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
+
     if (!this.label) {
       const labelElement = document.querySelector(AXACheckbox.tagName)
         .previousElementSibling;
       if (labelElement) {
-        const temp = labelElement.innerHTML;
-        const requiredText = this.required ? '*' : '';
+        const labelText = labelElement.innerHTML;
+        const requiredSymbol = this.required ? REQUIRED_SYMBOL : '';
         labelElement.style.display = 'none';
 
         document.querySelector(
           '.a-checkbox__content'
-        ).innerHTML = `${temp} ${requiredText}`;
+        ).innerHTML = `${labelText} ${requiredSymbol}`;
       }
     }
   }
