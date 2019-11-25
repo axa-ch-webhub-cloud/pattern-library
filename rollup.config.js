@@ -24,21 +24,22 @@ const globalSassImports = require('./config/globals.js')
 
 // *** CSS & JS-Prefixing
 const types = new Map();
-types.set('10-atoms', 'a-')
-types.set('20-molecules', 'm-')
-types.set('30-organisms', 'o-')
+types.set('10-atoms', 'a-');
+types.set('20-molecules', 'm-');
+types.set('30-organisms', 'o-');
 
 const componentName = componentPackageJson.name.replace('@axa-ch/', '');
 const cwdAsStringArray = process.cwd().split('/');
 const componentTypePrefix = types.get(cwdAsStringArray[cwdAsStringArray.length-2]); // atom (a-) / molecule (m-) / organism (o-)
 const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
 const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
-const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; //.nva1-1-1_button-link
+const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
 // *** /CSS
 
 const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    [standardComponentClassPrefix]: cssPrefix
   }),
   sass({
     insert: true,
@@ -97,8 +98,8 @@ const lib = {
         'index.d.ts',
       ],
       outputFolder: './lib'
-    }),
-    replace({[standardComponentClassPrefix]: cssPrefix})
+    })
+    
   ],
 };
 
@@ -145,8 +146,7 @@ const dist = {
         '../../../../node_modules/@babel/**',
       ],
     }),
-    uglify(),
-    replace({[standardComponentClassPrefix]: cssPrefix})
+    uglify()
   ],
 };
 
@@ -173,5 +173,21 @@ if (fs.existsSync('./index.react.js')) {
 }
 
 rollupConfig.push(dist);
+
+// const prefixConfig = {
+//   input: 'index.react.js',
+//   output: {
+//     file: './lib/index.react.js',
+//     format: 'es',
+//   },
+//   plugins: [...lib.plugins, copy({
+//     targets: [
+//       'index.react.d.ts',
+//     ],
+//     outputFolder: './lib'
+//   })]
+// };
+
+// rollupConfig.push(prefixConfig);
 
 export default rollupConfig;
