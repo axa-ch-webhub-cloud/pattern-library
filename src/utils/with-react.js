@@ -1,5 +1,6 @@
 import val from '@skatejs/val';
 
+const { Event } = window;
 // defined values are different from undefined (for properties) or null (for attributes)
 const isDefined = value => !(value === undefined || value === null);
 
@@ -73,4 +74,71 @@ const applyDefaults = ceInst => {
 
 export { applyDefaults };
 
-export default createElement => val(createElement);
+const distributeProperties = ({ children, ...properties }, componentClass) => {
+  // initialize
+  const attrs = {};
+  const events = {};
+  const props = {};
+  let map;
+  // iterate over all properties
+  Object.keys(properties).forEach(name => {
+    const isEvent = name.indexOf('on') === 0;
+    // apply defaults to appropriately marked properties:
+    // default should kick in (mimic ES6-style default logic to be compatible with old React wrappers)?
+    if (properties[name] === undefined) {
+      // yes, apply it
+      const propertyValue = componentClass.properties[name] || {
+        type: isEvent && Function,
+      };
+      const { defaultValue, type = String } = propertyValue;
+      properties[name] =
+        'defaultValue' in propertyValue // component author wants full control of their default value?
+          ? defaultValue // yes, apply it
+          : DEFAULT_VALUE_OF_TYPE.get(type); // no, derive it from general per-type defaults
+    }
+
+    let value = properties[name];
+    // classify property by type to select correct map object
+    // (note that unregistered properties are classified as props via undefined, e.g. for className)
+    const specialCases = isEvent ? Event : name === 'className' && name;
+    const type = specialCases || (componentClass.properties[name] || {}).type;
+
+    switch (type) {
+      case Event:
+        map = events;
+        break;
+      case 'className':
+      case Array:
+      case Object:
+      case Function:
+        map = props;
+        break;
+      case Boolean:
+        map = attrs;
+        value = value ? '' : null; // ''/null: canonicalize Boolean values s.t. val(...) sets or removes the attribute
+        break;
+      default:
+        map = attrs;
+    }
+
+    // map property name to value
+    map[name] = value;
+  });
+  return { attrs, events, props, children };
+};
+
+export default (createElement, componentClass) => properties => {
+  const { attrs, events, props, children } = distributeProperties(
+    properties,
+    componentClass
+  );
+  const { tagName } = componentClass;
+  const ReactComponent = val(createElement)(
+    tagName,
+    { isReact: true, attrs, ...props, ...events },
+    children
+  );
+
+  // TODO: add .displayName!
+  return ReactComponent;
+};

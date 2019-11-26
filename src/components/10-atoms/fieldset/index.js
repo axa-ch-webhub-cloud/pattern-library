@@ -18,6 +18,7 @@ class AXAFieldset extends NoShadowDOM {
     return {
       horizontal: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
+      slot: { type: String },
     };
   }
 
