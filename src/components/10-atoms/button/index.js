@@ -10,7 +10,7 @@ import buttonCSS from './index.scss';
 
 const ARROW_RIGHT = 'arrow-right';
 
-// equivalent to event.isTrusted. Unfortunatly IE11 dies not support it
+// equivalent to event.isTrusted. Unfortunatly IE11 does not support it
 const eventIsTrusted = e =>
   !(!e.screenX && !e.screenY && !e.clientX && !e.clientY);
 
