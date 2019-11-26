@@ -123,5 +123,5 @@ Its only parameter is the corresponding native event from the underlying `<input
 ## ChangeLog
 
 - 1.1.15
-  - add `refId`
+  - add `refId` [#1528](https://github.com/axa-ch/patterns-library/pull/1528)
   - prevent doubled labels when `label` attribute is set [#1535](https://github.com/axa-ch/patterns-library/pull/1535)
