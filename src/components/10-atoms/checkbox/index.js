@@ -169,12 +169,9 @@ class AXACheckbox extends NoShadowDOM {
             </label>
           `
         : html`
-            <span class="a-checkbox__wrapper">
-              ${inputElement}
-              <span class="a-checkbox__icon"></span>
-              <span class="a-checkbox__content"></span>
-              ${errorElement}
-            </span>
+            ${inputElement}
+            <span class="a-checkbox__icon"></span>
+            ${errorElement}
           `}
     `;
   }
@@ -184,20 +181,6 @@ class AXACheckbox extends NoShadowDOM {
     if (isReact && defaultChecked) {
       this.querySelector('input').checked = true;
       this.state.native = true;
-    }
-
-    if (!this.label) {
-      const labelElement = document.querySelector(AXACheckbox.tagName)
-        .previousElementSibling;
-      if (labelElement) {
-        const labelText = labelElement.innerHTML;
-        const requiredSymbol = this.required ? REQUIRED_SYMBOL : '';
-        labelElement.style.display = 'none';
-
-        document.querySelector(
-          '.a-checkbox__content'
-        ).innerHTML = `${labelText} ${requiredSymbol}`;
-      }
     }
   }
 
