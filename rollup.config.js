@@ -43,8 +43,8 @@ const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1
 
 const content = fs.readFileSync('./index.js', 'utf8');
 const afterReplace = content
-  .split(standardComponentClassPrefix)
-  .join(cssPrefix);
+  .split(`"${standardComponentClassPrefix}`)
+  .join(`"${cssPrefix}`).split(`'${standardComponentClassPrefix}`).join(`'${cssPrefix}`).split(` ${standardComponentClassPrefix}`).join(` ${cssPrefix}`);
 fs.writeFileSync('./index-prefixed.js', afterReplace);
 
 // const run = async () => {
