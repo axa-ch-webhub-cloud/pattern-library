@@ -14,14 +14,14 @@ storiesOf('Atoms/Checkbox/Demos', module)
   .add('Feature - Use your own label as a parant', () => {
     const template = html`
       <div>
-        <label style="position:relative;display:inline-block;"
-          >Label as a parent
-          <axa-checkbox
+        <label style="display:flex;"
+          >Label as a parent<axa-checkbox
             class="hover"
             name="checkbox"
             ?checked="false"
             ?required="true"
             onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+            style="margin-left: 10px;"
           ></axa-checkbox>
         </label>
       </div>
@@ -33,8 +33,8 @@ storiesOf('Atoms/Checkbox/Demos', module)
   })
   .add('Feature - Use your own label as a sibling', () => {
     const template = html`
-      <div>
-        <label for="checkbox-${createRefId}">Label as a </label>
+      <div style="display:flex;">
+        <label for="checkbox-${createRefId}">Label as a sibling</label>
         <axa-checkbox
           refId="checkbox-${createRefId}"
           class="hover"
@@ -42,6 +42,7 @@ storiesOf('Atoms/Checkbox/Demos', module)
           ?checked="false"
           ?required="true"
           onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+          style="margin-left: 10px;"
         >
         </axa-checkbox>
       </div>
