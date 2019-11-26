@@ -12,7 +12,7 @@ const ARROW_RIGHT = 'arrow-right';
 
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
-const eventIsTrusted = e =>
+const eventIsNotTrusted = e =>
   !(!e.screenX && !e.screenY && !e.clientX && !e.clientY);
 
 class AXAButton extends LitElement {
@@ -79,7 +79,7 @@ class AXAButton extends LitElement {
         // form behaviour works (submit, reset, etc). The reason why it works with fake button is
         // that fake button is NOT inside a shadow dom. The event instead
         // bubbles out of shadow dom, hence the stop propagation trick
-        if (eventIsTrusted(e)) {
+        if (eventIsNotTrusted(e)) {
           e.stopPropagation();
           fakeButton.click();
         }
