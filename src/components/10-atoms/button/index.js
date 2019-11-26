@@ -10,7 +10,8 @@ import buttonCSS from './index.scss';
 
 const ARROW_RIGHT = 'arrow-right';
 
-// equivalent to event.isTrusted. Unfortunatly IE11 does not support it
+// @TODO: REMOVE ONCE IE11 is deprecated!!!!
+// equivalent to event.isTrusted. Unfortunately, IE11 does not support it
 const eventIsTrusted = e =>
   !(!e.screenX && !e.screenY && !e.clientX && !e.clientY);
 
@@ -73,7 +74,7 @@ class AXAButton extends LitElement {
       // this click method is triggered due to bubbeling from the button inside
       // shadowRoot. Do not be confused with onClick
       this.onclick = e => {
-        // block propagation if event is not syntetic
+        // block propagation if event is not synthetic
         if (eventIsTrusted(e)) {
           e.stopPropagation();
           fakeButton.click();
