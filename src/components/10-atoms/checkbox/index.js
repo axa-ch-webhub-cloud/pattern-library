@@ -184,11 +184,14 @@ class AXACheckbox extends NoShadowDOM {
     }
 
     const iconElement = this.querySelector('.a-checkbox__icon');
+    const labelElement = document.querySelector(`label[for="${this.refId}"`);
+    const isSibling = labelElement
+      ? !!(labelElement.previousSibling || labelElement.nextSibling)
+      : false;
 
-    if (iconElement && !this.label) {
-      // Todo und sibling
+    if (!this.label && iconElement && isSibling) {
       iconElement.addEventListener('click', () => {
-        document.querySelector(`#${this.refId}`).click();
+        this.querySelector(`#${this.refId}`).click();
       });
     }
   }
