@@ -177,6 +177,15 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
+
+    const iconElement = this.querySelector('.a-checkbox__icon');
+
+    if (iconElement && !this.label) {
+      // Todo und sibling
+      iconElement.addEventListener('click', () => {
+        document.querySelector(`#${this.refId}`).click();
+      });
+    }
   }
 
   // this lifecycle method will regularly be called after render() -
