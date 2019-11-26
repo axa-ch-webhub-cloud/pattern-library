@@ -26,8 +26,14 @@ storiesOf('Atoms/Button/Demos', module)
     return btn;
   })
   .add('Feature - Button in a form', () => {
+    let count = 0;
     const handleSubmit = ev => {
       ev.preventDefault();
+      count += 1;
+
+      // this code is for test purposes. Its ok to write it as is only a demo
+      // It also make sure the structure of the DOM is correct with the fake button
+      ev.target.parentNode.dataset.count = count;
     };
 
     const template = html`
@@ -40,7 +46,9 @@ storiesOf('Atoms/Button/Demos', module)
           for you for example you can validate me
         </p>
         <form @click="${handleSubmit}">
-          <axa-button type="submit">Click me I prevent submit</axa-button>
+          <axa-button class="js-submit-prevent" type="submit"
+            >Click me I prevent submit</axa-button
+          >
         </form>
         <form>
           <p>

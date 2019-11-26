@@ -98,3 +98,17 @@ test('should set className', async t => {
 
   await t.expect(await $axaButton.getAttribute('class')).eql('myCssClass');
 });
+
+fixture('Button - Works in a form').page(
+  `${host}/iframe.html?id=atoms-button-demos--feature-button-in-a-form`
+);
+
+test('should submit only once', async t => {
+  const $submitButton = await Selector('.js-submit-prevent');
+  await t.click($submitButton());
+  await t.wait(100);
+  const count = ClientFunction(
+    () => document.querySelector('.js-submit-prevent').dataset.count
+  );
+  await t.expect(await count()).eql('1');
+});

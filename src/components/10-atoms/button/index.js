@@ -73,7 +73,7 @@ class AXAButton extends LitElement {
       // this click method is triggered due to bubbeling from the button inside
       // shadowRoot. Do not be confused with onClick
       this.onclick = e => {
-        // block propagation if event is syntetic
+        // block propagation if event is not syntetic
         if (eventIsTrusted(e)) {
           e.stopPropagation();
           fakeButton.click();
