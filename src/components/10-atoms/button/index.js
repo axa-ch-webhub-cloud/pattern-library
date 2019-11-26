@@ -74,7 +74,11 @@ class AXAButton extends LitElement {
       // this click method is triggered due to bubbeling from the button inside
       // shadowRoot. Do not be confused with onClick
       this.onclick = e => {
-        // block propagation if event is not synthetic
+        // block propagation if event is not synthetic. We need only that
+        // the event coming from fake button is fired so that default
+        // form behaviour works (submit, reset, etc). The reason why it works with fake button is
+        // that fake button is NOT inside a shadow dom. The event instead
+        // bubbles out of shadow dom, hence the stop propagation trick
         if (eventIsTrusted(e)) {
           e.stopPropagation();
           fakeButton.click();
