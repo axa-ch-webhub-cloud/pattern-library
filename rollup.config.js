@@ -1,3 +1,5 @@
+import myExample from './rollup-plugin-my-example';
+
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
@@ -12,7 +14,6 @@ const path = require('path');
 const process = require('process');
 const { uglify } = require('rollup-plugin-uglify');
 const copy = require('rollup-plugin-copy');
-
 // eslint-disable-next-line import/no-dynamic-require
 const componentPackageJson = require(`${process.cwd()}/package.json`);
 
@@ -25,7 +26,7 @@ const globalSassImports = require('./config/globals.js')
 
 const rollupConfig = [];
 
-// *** CSS & JS-Prefixing
+// // *** CSS & JS-Prefixing
 const types = new Map();
 types.set('10-atoms', 'a-');
 types.set('20-molecules', 'm-');
@@ -37,45 +38,25 @@ const componentTypePrefix = types.get(
   cwdAsStringArray[cwdAsStringArray.length - 2]
 ); // atom (a-) / molecule (m-) / organism (o-)
 const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
-const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
-const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
-// *** /CSS
+// const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
+// const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
+// // *** /CSS
 
-const content = fs.readFileSync('./index.js', 'utf8');
-const afterReplace = content
-  .split(`"${standardComponentClassPrefix}`)
-  .join(`"${cssPrefix}`)
-  .split(`'${standardComponentClassPrefix}`)
-  .join(`'${cssPrefix}`)
-  .split(` ${standardComponentClassPrefix}`)
-  .join(` ${cssPrefix}`);
-fs.writeFileSync('./index-prefixed.js', afterReplace);
-
-// const glob = require('glob');
-
-// const indexJsFiles = glob.sync('**/index.js', {
-//   ignore: ['node_modules/**/*', 'dist/**/*', 'lib/**/*'],
-// });
-
-// console.log('hans', indexJsFiles);
-
-// indexJsFiles.forEach(file => {
-//   fs.copyFileSync(`./${file}`, `./${file.split('.').join('-bak.')}`);
-//   const content = fs.readFileSync(`./${file}`, 'utf8');
-//   const afterReplace = content
-//     .split(`"${standardComponentClassPrefix}`)
-//     .join(`"${cssPrefix}`)
-//     .split(`'${standardComponentClassPrefix}`)
-//     .join(`'${cssPrefix}`)
-//     .split(` ${standardComponentClassPrefix}`)
-//     .join(` ${cssPrefix}`);
-//   fs.writeFileSync(`./${file}`, afterReplace);
-// });
+// const content = fs.readFileSync('./index.js', 'utf8');
+// const afterReplace = content
+//   .split(`"${standardComponentClassPrefix}`)
+//   .join(`"${cssPrefix}`)
+//   .split(`'${standardComponentClassPrefix}`)
+//   .join(`'${cssPrefix}`)
+//   .split(` ${standardComponentClassPrefix}`)
+//   .join(` ${cssPrefix}`);
+// fs.writeFileSync('./index-prefixed.js', afterReplace);
 
 const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
+  myExample(),
   sass({
     insert: true,
     include: '**/*.scss',
@@ -110,7 +91,7 @@ const commonPlugins = [
 ];
 
 const lib = {
-  input: 'index-prefixed.js',
+  input: 'index.js',
   external: [
     'lit-element',
     'lit-html/directives/class-map',
@@ -151,7 +132,7 @@ const lib = {
 };
 
 const dist = {
-  input: 'index-prefixed.js',
+  input: 'index.js',
   context: 'window',
   output: {
     file: './dist/index.js', // no react dist on purpose
@@ -198,7 +179,7 @@ const dist = {
 
 const libReact = {
   ...lib,
-  input: 'index-prefixed.js',
+  input: 'index.js',
   output: {
     file: './lib/index.react.js',
     format: 'es',
