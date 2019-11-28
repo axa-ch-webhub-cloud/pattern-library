@@ -51,36 +51,26 @@ const afterReplace = content
   .join(` ${cssPrefix}`);
 fs.writeFileSync('./index-prefixed.js', afterReplace);
 
-// const run = async () => {
-//   return await new Promise((resolve, reject) => {
-//     fs.readFile('./index.js', (err, data) => {
-//       console.log('hi');
-//       if (err) reject(err);
-//       resolve(data);
-//     })
-//   });
-// }
-// const fileContent = run();
-// console.log(fileContent);
+// const glob = require('glob');
 
-// const prefixConfig = {
-//   input: 'index.js',
-//   external: [
-//     'lit-element',
-//     'lit-html/directives/class-map',
-//     'lit-html/directives/repeat',
-//     '@skatejs/val',
-//   ],
-//   output: {
-//     file: './lib/index-temp.js',
-//     // format: 'es',
-//   },
-//   plugins: [replace({
-//     [standardComponentClassPrefix]: cssPrefix
-//   })]
-// };
+// const indexJsFiles = glob.sync('**/index.js', {
+//   ignore: ['node_modules/**/*', 'dist/**/*', 'lib/**/*'],
+// });
 
-// rollupConfig.push(prefixConfig);
+// console.log('hans', indexJsFiles);
+
+// indexJsFiles.forEach(file => {
+//   fs.copyFileSync(`./${file}`, `./${file.split('.').join('-bak.')}`);
+//   const content = fs.readFileSync(`./${file}`, 'utf8');
+//   const afterReplace = content
+//     .split(`"${standardComponentClassPrefix}`)
+//     .join(`"${cssPrefix}`)
+//     .split(`'${standardComponentClassPrefix}`)
+//     .join(`'${cssPrefix}`)
+//     .split(` ${standardComponentClassPrefix}`)
+//     .join(` ${cssPrefix}`);
+//   fs.writeFileSync(`./${file}`, afterReplace);
+// });
 
 const commonPlugins = [
   replace({
@@ -105,7 +95,7 @@ const commonPlugins = [
               return selector
                 .split(' ')
                 .map(singleClass =>
-                  singleClass.startsWith('.')
+                  singleClass.startsWith('.') && singleClass.endsWith(' ')
                     ? `.${prefX}${singleClass.replace('.', '_')}`
                     : singleClass
                 )
