@@ -160,28 +160,44 @@ class AXARadio extends NoShadowDOM {
     // controlledness is a React-only notion
     this.state.isControlled = isControlled && isReact;
 
+    const input = html`
+      <input
+        id="${refId}"
+        class="a-radio__input"
+        type="radio"
+        name="${name}"
+        ?checked="${checked}"
+        value="${value}"
+        ?disabled="${disabled}"
+        @change="${this.handleChange}"
+        @focus="${this.handleFocus}"
+        @blur="${this.handleBlur}"
+      />
+    `;
+
     return html`
-      <label class="a-radio__wrapper js-radio__wrapper">
-        <input
-          id="${refId}"
-          class="a-radio__input"
-          type="radio"
-          name="${name}"
-          ?checked="${checked}"
-          value="${value}"
-          ?disabled="${disabled}"
-          @change="${this.handleChange}"
-          @focus="${this.handleFocus}"
-          @blur="${this.handleBlur}"
-        />
-        ${button
-          ? html``
-          : html`
-              <span class="a-radio__icon"></span>
-            `}
-        ${icon ? svg([icon]) : html``}
-        <div class="a-radio__content">${label}</div>
-      </label>
+      ${label
+        ? html`
+            <label for="${refId}" class="a-radio__wrapper js-radio__wrapper">
+              ${input}
+              ${button
+                ? html``
+                : html`
+                    <span class="a-radio__icon"></span>
+                  `}
+              ${icon ? svg([icon]) : html``}
+              <div class="a-radio__content">${label}</div>
+            </label>
+          `
+        : html`
+            ${input}
+            ${button
+              ? html``
+              : html`
+                  <span class="a-radio__icon"></span>
+                `}
+            ${icon ? svg([icon]) : html``}
+          `}
     `;
   }
 
