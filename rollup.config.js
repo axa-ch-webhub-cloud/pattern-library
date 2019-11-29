@@ -73,18 +73,21 @@ const commonPlugins = [
             prefix,
             transform: (prefX, selector) => {
               // Exclude tags, only apply to classes
-              return selector
-                .split(' ')
-                .map(singleClass =>
-                  singleClass.startsWith('.') && singleClass.endsWith(' ')
-                    ? `.${prefX}${singleClass.replace('.', '_')}`
-                    : singleClass
-                )
-                .join(' ');
+              return (
+                selector
+                  // A selector can hold multiple classes, therefore the split
+                  .split(' ')
+                  .map(singleClass =>
+                    // Make sure to only replace classes an not selectors
+                    singleClass.startsWith('.') && singleClass.endsWith(' ')
+                      ? `.${prefX}${singleClass.replace('.', '_')}`
+                      : singleClass
+                  )
+                  .join(' ')
+              );
             },
           })
         )
-
         .process(css, { from: undefined })
         .then(result => result.css),
   }),
