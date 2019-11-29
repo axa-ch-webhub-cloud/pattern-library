@@ -113,7 +113,7 @@ fixture('Checkbox - Label as a parent').page(
   `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-parant`
 );
 
-test.only('should be clickable + change state and render parent label', async t => {
+test('should be clickable + change state and render parent label', async t => {
   const $axaCheckbox = await Selector(TAG);
   const label = $axaCheckbox.parent();
 
@@ -123,4 +123,20 @@ test.only('should be clickable + change state and render parent label', async t 
 
   // has parent label
   await t.expect(label).ok();
+});
+
+fixture('Checkbox - Label as a sibling').page(
+  `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-sibling`
+);
+
+test('should be clickable + change state and render sibling label', async t => {
+  const $axaCheckbox = await Selector(TAG);
+  const sibling = $axaCheckbox.prevSibling();
+  const input = await Selector('.a-checkbox__input');
+
+  await t.click($axaCheckbox);
+  await t.expect($axaCheckbox.checked).ok();
+
+  await t.expect(sibling.hasAttribute('for')).ok();
+  await t.expect(input.hasAttribute('id')).ok();
 });
