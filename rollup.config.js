@@ -77,12 +77,13 @@ const commonPlugins = [
                 selector
                   // A selector can hold multiple classes, therefore the split
                   .split(' ')
-                  .map(singleClass =>
+                  .map(singleClass => {
+                    console.log('Single Class:', `|${singleClass}|`);
                     // Make sure to only replace classes an not selectors
-                    singleClass.startsWith('.') && singleClass.endsWith(' ')
+                    return singleClass.startsWith('.')
                       ? `.${prefX}${singleClass.replace('.', '_')}`
-                      : singleClass
-                  )
+                      : singleClass;
+                  })
                   .join(' ')
               );
             },
