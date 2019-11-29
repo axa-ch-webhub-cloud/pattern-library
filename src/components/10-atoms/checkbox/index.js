@@ -180,9 +180,9 @@ class AXACheckbox extends NoShadowDOM {
 
     const iconElement = this.querySelector('.js-checkbox__icon');
     const labelElement = document.querySelector(`label[for="${this.refId}"`);
-    const isSibling = labelElement
-      ? !!(labelElement.previousSibling || labelElement.nextSibling)
-      : false;
+    const isSibling =
+      labelElement &&
+      !!(labelElement.previousSibling || labelElement.nextSibling);
 
     if (!this.label && iconElement && isSibling) {
       iconElement.addEventListener('click', () => {
