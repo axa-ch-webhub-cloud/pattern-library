@@ -156,7 +156,7 @@ class AXACheckbox extends NoShadowDOM {
         ? html`
             <label for="${refId}" class="a-checkbox__wrapper">
               ${inputElement}
-              <span class="a-checkbox__icon"></span>
+              <span class="a-checkbox__icon js-checkbox__icon"></span>
               <span class="a-checkbox__content">
                 ${unsafeHTML(label)} ${required ? REQUIRED_SYMBOL : ''}
               </span>
@@ -165,7 +165,7 @@ class AXACheckbox extends NoShadowDOM {
           `
         : html`
             ${inputElement}
-            <span class="a-checkbox__icon"></span>
+            <span class="a-checkbox__icon js-checkbox__icon"></span>
             ${errorElement}
           `}
     `;
@@ -178,7 +178,7 @@ class AXACheckbox extends NoShadowDOM {
       this.state.native = true;
     }
 
-    const iconElement = this.querySelector('.a-checkbox__icon');
+    const iconElement = this.querySelector('.js-checkbox__icon');
     const labelElement = document.querySelector(`label[for="${this.refId}"`);
     const isSibling = labelElement
       ? !!(labelElement.previousSibling || labelElement.nextSibling)
