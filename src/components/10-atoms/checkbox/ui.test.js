@@ -108,3 +108,19 @@ test('should set checkbox element to disabled + not change state', async t => {
   await t.click($axaCheckbox);
   await t.expect($axaCheckbox.checked).notOk();
 });
+
+fixture('Checkbox - Label as a parent').page(
+  `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-parant`
+);
+
+test.only('should be clickable + change state and render parent label', async t => {
+  const $axaCheckbox = await Selector(TAG);
+  const label = $axaCheckbox.parent();
+
+  await t.click($axaCheckbox);
+  await t.expect($axaCheckbox.checked).ok();
+  await t.expect($axaCheckbox.count).eql(2);
+
+  // has parent label
+  await t.expect(label).ok();
+});
