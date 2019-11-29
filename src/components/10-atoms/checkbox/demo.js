@@ -10,7 +10,7 @@ storiesOf('Atoms/Checkbox/Demos', module)
       sidebar: Readme,
     },
   })
-  .add('Feature - Use your own label as a parant', () => {
+  .add('Feature - Use your own label as a parent', () => {
     const template = html`
       <div>
         <label style="display:flex;"
