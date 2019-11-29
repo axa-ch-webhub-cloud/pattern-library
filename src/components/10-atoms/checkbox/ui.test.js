@@ -129,7 +129,7 @@ fixture('Checkbox - Label as a sibling').page(
   `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-sibling`
 );
 
-test.only('should be clickable + change state and render sibling label', async t => {
+test('should be clickable + change state and render sibling label', async t => {
   const $axaCheckbox = await Selector(TAG);
   const sibling = $axaCheckbox.prevSibling();
   const input = await Selector('.a-checkbox__input');
