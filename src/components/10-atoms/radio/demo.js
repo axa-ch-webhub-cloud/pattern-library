@@ -81,36 +81,51 @@ storiesOf('Atoms/Radio/Demos', module)
 </svg>`;
 
     const template = html`
-    <axa-fieldset horizontal>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 1"
-        .icon="${icon}"
-    ></axa-radio>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 2"
-        .icon="${icon}"
-    ></axa-radio>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 3"
-        checked
-        .icon="${icon}"
-    ></axa-radio>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 4"
-        disabled
-        .icon="${icon}"
-    ></axa-radio>
-    </axa-fieldset>
-`;
+      <axa-fieldset horizontal>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 1"
+          .icon="${icon}"
+        ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 2"
+          .icon="${icon}"
+        ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 3"
+          checked
+          .icon="${icon}"
+        ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 4"
+          disabled
+          .icon="${icon}"
+        ></axa-radio>
+      </axa-fieldset>
+    `;
 
     render(template, root);
     return root;
-  });
+  })
+  .add(
+    'Radio - button, parent label',
+    () => `
+<axa-fieldset horizontal>
+  <label>No, I'm already insured
+    <axa-radio button name="insurance" value="1"></axa-radio>
+  </label>
+  <label>No, no need
+    <axa-radio button name="insurance" value="2"></axa-radio>
+  </label>
+  <label>Yes, take out insurance
+    <axa-radio button name="insurance" value="3" checked></axa-radio>
+  </label>
+</axa-fieldset>`
+  );
