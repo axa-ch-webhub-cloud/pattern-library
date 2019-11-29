@@ -26,7 +26,7 @@ class AXARadio extends NoShadowDOM {
 
   static get properties() {
     return {
-      refId: { type: String, defaultValue: createRefId('axa-radio-') },
+      refId: { type: String, defaultValue: `axa-radio-${createRefId()}` },
       value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       label: { type: String },
