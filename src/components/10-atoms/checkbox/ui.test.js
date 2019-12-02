@@ -110,7 +110,7 @@ test('should set checkbox element to disabled + not change state', async t => {
 });
 
 fixture('Checkbox - Label as a parent').page(
-  `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-parant`
+  `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-parent`
 );
 
 test('should be clickable + change state and render parent label', async t => {
