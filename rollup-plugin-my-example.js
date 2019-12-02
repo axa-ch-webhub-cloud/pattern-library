@@ -28,10 +28,10 @@ export default function myExample() {
   return {
     name: 'my-example', // this name will show up in warnings and errors
     buildStart: () => {
-      console.log('the build is starting!!!!!');
+      // console.log('the build is starting!!!!!');
 
       indexJsFiles.forEach(file => {
-        console.log('Creating: ', `./${file.split('.').join('-bak.')}`);
+        // console.log('Creating: ', `./${file.split('.').join('-bak.')}`);
         fs.copyFileSync(`./${file}`, `./${file.split('.').join('-bak.')}`);
         const content = fs.readFileSync(`./${file}`, 'utf8');
         const afterReplace = content
@@ -45,10 +45,10 @@ export default function myExample() {
       });
     },
     buildEnd: () => {
-      console.log('the build is ending!!!!!');
+      // console.log('the build is ending!!!!!');
 
       indexJsFiles.forEach(file => {
-        console.log('Moving everything back to: ', `./${file}`);
+        // console.log('Moving everything back to: ', `./${file}`);
         fs.copyFileSync(`./${file.split('.').join('-bak.')}`, `./${file}`);
       });
     },

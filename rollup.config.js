@@ -38,7 +38,7 @@ const componentTypePrefix = types.get(
   cwdAsStringArray[cwdAsStringArray.length - 2]
 ); // atom (a-) / molecule (m-) / organism (o-)
 const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
-// const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
+const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
 // const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
 // // *** /CSS
 
@@ -78,10 +78,15 @@ const commonPlugins = [
                   // A selector can hold multiple classes, therefore the split
                   .split(' ')
                   .map(singleClass => {
-                    console.log('Single Class:', `|${singleClass}|`);
+                    // console.log('Single Class:', `|${singleClass}|`);
                     // Make sure to only replace classes an not selectors
-                    return singleClass.startsWith('.')
-                      ? `.${prefX}${singleClass.replace('.', '_')}`
+                    return singleClass.includes('.')
+                      ? singleClass
+                          .split('.')
+                          // .filter(cssClass =>
+                          //   cssClass.startsWith(standardComponentClassPrefix)
+                          // )
+                          .join(`.${prefX}_`)
                       : singleClass;
                   })
                   .join(' ')
