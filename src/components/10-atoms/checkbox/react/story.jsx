@@ -30,7 +30,7 @@ storiesOf('Atoms/Checkbox/React', module)
         checked={checked}
         disabled={disabled}
         required={required}
-        onChange={console.log("checkbox", name, " changed to: ", checked)}
+        onChange={e => console.log('checkbox', name, ' changed to: ', checked)}
         error={
           errortext
             ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'

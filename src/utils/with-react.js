@@ -1,6 +1,5 @@
 import val from '@skatejs/val';
 
-const { Event } = window;
 // defined values are different from undefined (for properties) or null (for attributes)
 const isDefined = value => !(value === undefined || value === null);
 
@@ -83,36 +82,31 @@ export { applyDefaults };
 const distributeProperties = ({ children, ...properties }, componentClass) => {
   // initialize
   const attrs = {};
-  const events = {};
   const props = {};
   let map;
   // iterate over all properties
   Object.keys(properties).forEach(name => {
-    const isEvent = name.indexOf('on') === 0;
-    // apply defaults to appropriately marked properties:
-    // default should kick in (mimic ES6-style default logic to be compatible with old React wrappers)?
+    let value = properties[name];
+    // classify property by type to select correct map object
+    // (note that unregistered properties are classified as attr(ibute)s via their undefined .type)
+    const event = name.indexOf('on') === 0 && Function; // Function if onXXX event name, false otherwise
+    const className = name === 'className' && name;
+    const defaultType = { type: event };
+    const declaredType = (componentClass.properties[name] || defaultType).type;
+
+    // property needs default?
     if (properties[name] === undefined) {
       // yes, apply it
-      const propertyValue = componentClass.properties[name] || {
-        type: isEvent && Function,
-      };
-      const { defaultValue, type = String } = propertyValue;
+      const { defaultValue, type = String } = declaredType;
       properties[name] =
-        'defaultValue' in propertyValue // component author wants full control of their default value?
+        'defaultValue' in declaredType // component author wants full control of their default value?
           ? defaultValue // yes, apply it
           : DEFAULT_VALUE_OF_TYPE.get(type); // no, derive it from general per-type defaults
     }
 
-    let value = properties[name];
-    // classify property by type to select correct map object
-    // (note that unregistered properties are classified as props via undefined, e.g. for className)
-    const specialCases = isEvent ? Event : name === 'className' && name;
-    const type = specialCases || (componentClass.properties[name] || {}).type;
+    const type = event || className || declaredType;
 
     switch (type) {
-      case Event:
-        map = events;
-        break;
       case 'className':
       case Array:
       case Object:
@@ -130,7 +124,7 @@ const distributeProperties = ({ children, ...properties }, componentClass) => {
     // map property name to value
     map[name] = value;
   });
-  return { attrs, events, props, children };
+  return { attrs, props, children };
 };
 
 export default (createElement, componentClass) => {
@@ -138,14 +132,14 @@ export default (createElement, componentClass) => {
   const displayName = pascalCase(tagName);
 
   const reactStatelessComponent = properties => {
-    const { attrs, events, props, children } = distributeProperties(
+    const { attrs, props, children } = distributeProperties(
       properties,
       componentClass
     );
 
     return val(createElement)(
       tagName,
-      { isReact: true, attrs, ...props, ...events },
+      { isReact: true, attrs, ...props },
       children
     );
   };
