@@ -117,15 +117,27 @@ storiesOf('Atoms/Radio/Demos', module)
   .add(
     'Radio - button, parent label',
     () => `
-<axa-fieldset horizontal>
-  <label>No, I'm already insured
-    <axa-radio button name="insurance" value="1"></axa-radio>
-  </label>
-  <label>No, no need
-    <axa-radio button name="insurance" value="2"></axa-radio>
-  </label>
-  <label>Yes, take out insurance
-    <axa-radio button name="insurance" value="3" checked></axa-radio>
-  </label>
-</axa-fieldset>`
+    <axa-fieldset horizontal>
+      <label>No, I'm already insured
+        <axa-radio button name="insurance" value="1"></axa-radio>
+      </label>
+      <label>No, no need
+        <axa-radio button name="insurance" value="2"></axa-radio>
+      </label>
+      <label>Yes, take out insurance
+        <axa-radio button name="insurance" value="3" checked></axa-radio>
+      </label>
+    </axa-fieldset>`
+  )
+  .add(
+    'Radio - button, sibling label',
+    () => `
+    <axa-fieldset horizontal>
+      <label for="axa-radio-22">No, I'm already insured</label>
+      <axa-radio refid="axa-radio-22" button name="insurance" value="1"></axa-radio>
+      <label for="axa-radio-23">No, no need</label>
+      <axa-radio refid="axa-radio-23" button name="insurance" value="2"></axa-radio>
+      <label for="axa-radio-24">Yes, take out insurance</label>
+      <axa-radio refid="axa-radio-24" button name="insurance" value="3" checked></axa-radio>
+    </axa-fieldset>`
   );
