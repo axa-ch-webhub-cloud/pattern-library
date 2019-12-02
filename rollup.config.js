@@ -83,9 +83,12 @@ const commonPlugins = [
                     return singleClass.includes('.')
                       ? singleClass
                           .split('.')
-                          // .filter(cssClass =>
-                          //   cssClass.startsWith(standardComponentClassPrefix)
-                          // )
+                          // FIXME Non-BEM selectors won't be returned
+                          .filter(
+                            cssClass =>
+                              cssClass === '' ||
+                              cssClass.startsWith(standardComponentClassPrefix)
+                          )
                           .join(`.${prefX}_`)
                       : singleClass;
                   })
