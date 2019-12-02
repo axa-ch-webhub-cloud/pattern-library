@@ -93,17 +93,6 @@ const distributeProperties = ({ children, ...properties }, componentClass) => {
     const className = name === 'className' && name;
     const defaultType = { type: event };
     const declaredType = (componentClass.properties[name] || defaultType).type;
-
-    // property needs default?
-    if (properties[name] === undefined) {
-      // yes, apply it
-      const { defaultValue, type = String } = declaredType;
-      properties[name] =
-        'defaultValue' in declaredType // component author wants full control of their default value?
-          ? defaultValue // yes, apply it
-          : DEFAULT_VALUE_OF_TYPE.get(type); // no, derive it from general per-type defaults
-    }
-
     const type = event || className || declaredType;
 
     switch (type) {
