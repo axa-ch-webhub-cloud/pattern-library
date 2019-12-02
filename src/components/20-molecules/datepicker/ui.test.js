@@ -374,7 +374,7 @@ fixture('Datepicker React empty inputfield').page(
   `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
 );
 
-test('should pass through className and arbitrary data- attributes', async t => {
+test('should pass through className and arbitrary data- attributes + have automatic React displayName', async t => {
   const datepicker = await Selector(() =>
     document.querySelector(`#datepicker-react`)
   );
@@ -382,6 +382,9 @@ test('should pass through className and arbitrary data- attributes', async t => 
   await t.expect(datepicker.exists).ok();
   await t.expect(datepicker.getAttribute('class')).eql('my-special-class');
   await t.expect(datepicker.getAttribute('data-selenium-id')).eql('0815');
+  await t
+    .expect(datepicker.getAttribute('data-display-name'))
+    .eql('AxaDatepicker');
 });
 
 fixture('Datepicker Form').page(

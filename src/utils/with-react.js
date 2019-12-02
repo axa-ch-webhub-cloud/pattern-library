@@ -4,6 +4,12 @@ const { Event } = window;
 // defined values are different from undefined (for properties) or null (for attributes)
 const isDefined = value => !(value === undefined || value === null);
 
+const pascalCase = hyphenatedName =>
+  hyphenatedName
+    .split('-')
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+
 // generic defaults (will be applied in the absence of explicit 'defaultValue')
 const DEFAULT_VALUE_OF_TYPE = new Map([
   [String, ''],
@@ -127,18 +133,24 @@ const distributeProperties = ({ children, ...properties }, componentClass) => {
   return { attrs, events, props, children };
 };
 
-export default (createElement, componentClass) => properties => {
-  const { attrs, events, props, children } = distributeProperties(
-    properties,
-    componentClass
-  );
+export default (createElement, componentClass) => {
   const { tagName } = componentClass;
-  const ReactComponent = val(createElement)(
-    tagName,
-    { isReact: true, attrs, ...props, ...events },
-    children
-  );
+  const displayName = pascalCase(tagName);
 
-  // TODO: add .displayName!
-  return ReactComponent;
+  const reactStatelessComponent = properties => {
+    const { attrs, events, props, children } = distributeProperties(
+      properties,
+      componentClass
+    );
+
+    return val(createElement)(
+      tagName,
+      { isReact: true, attrs, ...props, ...events },
+      children
+    );
+  };
+
+  reactStatelessComponent.displayName = displayName;
+
+  return reactStatelessComponent;
 };
