@@ -73,27 +73,16 @@ const commonPlugins = [
             prefix,
             transform: (prefX, selector) => {
               // Exclude tags, only apply to classes
-              return (
-                selector
-                  // A selector can hold multiple classes, therefore the split
-                  .split(' ')
-                  .map(singleClass => {
-                    // Make sure to only replace classes an not selectors
-                    const classesToPrefix = singleClass
-                      .split('.')
-                      .filter(
-                        cssClass =>
-                          cssClass === '' ||
-                          cssClass.startsWith(standardComponentClassPrefix)
-                      );
-                    return classesToPrefix.length > 1
-                      ? classesToPrefix.join(`.${prefX}_`)
-                      : classesToPrefix.length === 1
-                      ? classesToPrefix[0].split('.').join(' .${prefX}_')
-                      : singleClass;
-                  })
-                  .join(' ')
-              );
+              return selector
+                .split('.')
+                .filter(singleClass => singleClass !== '')
+                .map(singleClass => {
+                  if (singleClass.startsWith(standardComponentClassPrefix)) {
+                    return `.${prefX}_${singleClass}`;
+                  }
+                  return `.${singleClass}`;
+                })
+                .join('');
             },
           })
         )
