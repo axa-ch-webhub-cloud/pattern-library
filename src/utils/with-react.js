@@ -89,11 +89,20 @@ const distributeProperties = ({ children, ...properties }, componentClass) => {
     let value = properties[name];
     // classify property by type to select correct map object
     // (note that unregistered properties are classified as attr(ibute)s via their undefined .type)
-    const event = name.indexOf('on') === 0 && Function; // Function if onXXX event name, false otherwise
-    const className = name === 'className' && name;
-    const defaultType = { type: event };
-    const declaredType = (componentClass.properties[name] || defaultType).type;
-    const type = event || className || declaredType;
+    let type;
+    const declaredProperty = componentClass.properties[name] || {};
+    const { type: declaredType } = declaredProperty;
+    const looksLikeAnEventHandler =
+      name.indexOf('on') === 0 && // starts with on...
+      name.charAt(2) === name.charAt(2).toUpperCase(); // continues with uppercase-letter, i.e. camelCase
+
+    if (looksLikeAnEventHandler) {
+      type = Function;
+    } else if (name === 'className') {
+      type = 'className';
+    } else {
+      type = declaredType;
+    }
 
     switch (type) {
       case 'className':
@@ -133,6 +142,7 @@ export default (createElement, componentClass) => {
     );
   };
 
+  // displayName is important for React testing (e.g. enzyme) and Chrome DevTools plugins
   reactStatelessComponent.displayName = displayName;
 
   return reactStatelessComponent;
