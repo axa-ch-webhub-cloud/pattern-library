@@ -1,4 +1,4 @@
-import jsPrefixer from './rollup-plugin-javascript-prefixer';
+import jsPrefixer, { componentInfo } from './rollup-plugin-javascript-prefixer';
 
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
@@ -14,8 +14,6 @@ const path = require('path');
 const process = require('process');
 const { uglify } = require('rollup-plugin-uglify');
 const copy = require('rollup-plugin-copy');
-// eslint-disable-next-line import/no-dynamic-require
-const componentPackageJson = require(`${process.cwd()}/package.json`);
 
 const base = path.resolve(__dirname, 'src').replace(/\\/g, '/');
 const globalSassImports = require('./config/globals.js')
@@ -25,22 +23,6 @@ const globalSassImports = require('./config/globals.js')
   .join('\n');
 
 const rollupConfig = [];
-
-// // *** CSS & JS-Prefixing
-const types = new Map();
-types.set('10-atoms', 'a-');
-types.set('20-molecules', 'm-');
-types.set('30-organisms', 'o-');
-
-const componentName = componentPackageJson.name.replace('@axa-ch/', '');
-const cwdAsStringArray = process.cwd().split('/');
-const componentTypePrefix = types.get(
-  cwdAsStringArray[cwdAsStringArray.length - 2]
-); // atom (a-) / molecule (m-) / organism (o-)
-const prefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
-const standardComponentClassPrefix = componentTypePrefix + componentName; // a-button-link
-// const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
-// // *** /CSS
 
 const commonPlugins = [
   replace({
@@ -60,14 +42,18 @@ const commonPlugins = [
       })
         .use(
           classPrefixer({
-            prefix,
+            prefix: componentInfo.prefix,
             transform: (prefX, selector) => {
               // Exclude tags, only apply to classes
               return selector
                 .split('.')
                 .filter(singleClass => singleClass !== '')
                 .map(singleClass => {
-                  if (singleClass.startsWith(standardComponentClassPrefix)) {
+                  if (
+                    singleClass.startsWith(
+                      componentInfo.standardComponentClassPrefix
+                    )
+                  ) {
                     return `.${prefX}_${singleClass}`;
                   }
                   // Tagnames, but could also be a classname without
