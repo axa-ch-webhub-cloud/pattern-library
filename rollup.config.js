@@ -78,18 +78,18 @@ const commonPlugins = [
                   // A selector can hold multiple classes, therefore the split
                   .split(' ')
                   .map(singleClass => {
-                    // console.log('Single Class:', `|${singleClass}|`);
                     // Make sure to only replace classes an not selectors
-                    return singleClass.includes('.')
-                      ? singleClass
-                          .split('.')
-                          // FIXME Non-BEM selectors won't be returned
-                          .filter(
-                            cssClass =>
-                              cssClass === '' ||
-                              cssClass.startsWith(standardComponentClassPrefix)
-                          )
-                          .join(`.${prefX}_`)
+                    const classesToPrefix = singleClass
+                      .split('.')
+                      .filter(
+                        cssClass =>
+                          cssClass === '' ||
+                          cssClass.startsWith(standardComponentClassPrefix)
+                      );
+                    return classesToPrefix.length > 1
+                      ? classesToPrefix.join(`.${prefX}_`)
+                      : classesToPrefix.length === 1
+                      ? classesToPrefix[0].split('.').join(' .${prefX}_')
                       : singleClass;
                   })
                   .join(' ')
