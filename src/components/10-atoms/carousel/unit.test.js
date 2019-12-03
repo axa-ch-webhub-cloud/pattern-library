@@ -1,6 +1,6 @@
 let AXACarousel; // we have to require this module to use resetModules()
-const ANIMATION_LEFT_CLASS = 'animation-left'; // should be equal to index.js
-const ANIMATION_RIGHT_CLASS = 'animation-right';
+const ANIMATION_LEFT_CLASS = 'a-carousel--animation-left'; // should be equal to index.js
+const ANIMATION_RIGHT_CLASS = 'a-carousel--animation-right';
 
 describe('AXACarousel', () => {
   beforeEach(() => {

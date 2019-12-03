@@ -10,8 +10,8 @@ import { applyDefaults } from '../../../utils/with-react';
 import childStyles from './child.scss';
 
 const ELEMENT_NODE = 1;
-const ANIMATION_LEFT_CLASS = 'animation-left';
-const ANIMATION_RIGHT_CLASS = 'animation-right';
+const ANIMATION_LEFT_CLASS = 'a-carousel--animation-left';
+const ANIMATION_RIGHT_CLASS = 'a-carousel--animation-right';
 
 class AXACarousel extends InlineStyles {
   static get tagName() {
