@@ -14,19 +14,22 @@ storiesOf('Atoms/Checkbox/Demos', module)
     const template = html`
       <div>
         <axa-checkbox
-            class="hover"
-            name="checkbox"
-            ?checked="false"
-            ?required="true"
-            onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-          >click<a href="https://www.google.ch">here</a></axa-checkbox>
-          <axa-checkbox
           class="hover"
           name="checkbox"
           ?checked="false"
           ?required="true"
           onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-        >or click<a href="https://www.google.ch">here</a> if you prefere</axa-checkbox>
+          >click <a href="https://www.google.ch">here</a></axa-checkbox
+        >
+        <axa-checkbox
+          class="hover"
+          name="checkbox"
+          ?checked="false"
+          ?required="true"
+          onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+          >or click <a href="https://www.google.ch">here</a> if you
+          prefere</axa-checkbox
+        >
       </div>
     `;
 

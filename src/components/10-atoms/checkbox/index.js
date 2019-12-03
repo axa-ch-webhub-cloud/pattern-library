@@ -56,12 +56,15 @@ class AXACheckbox extends NoShadowDOM {
       checked: false,
       native: false,
     };
-    // initialize properties
 
+    // initialize properties
     applyDefaults(this);
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
+
+    this.domChildren = this.innerHTML;
+    console.log('children', this.domChildren);
   }
 
   // custom setter
@@ -152,8 +155,19 @@ class AXACheckbox extends NoShadowDOM {
       : html``;
 
     return html`
-      ${label
+      ${this.domChildren
         ? html`
+            <label for="${refId}" class="a-checkbox__wrapper">
+              ${inputElement}
+              <span class="a-checkbox__icon js-checkbox__icon"></span>
+              <span class="a-checkbox__content">
+                ${unsafeHTML(this.domChildren)}
+                ${required ? REQUIRED_SYMBOL : ''}
+              </span>
+              ${errorElement}
+            </label>
+          `
+        : html`
             <label for="${refId}" class="a-checkbox__wrapper">
               ${inputElement}
               <span class="a-checkbox__icon js-checkbox__icon"></span>
@@ -162,11 +176,6 @@ class AXACheckbox extends NoShadowDOM {
               </span>
               ${errorElement}
             </label>
-          `
-        : html`
-            ${inputElement}
-            <span class="a-checkbox__icon js-checkbox__icon"></span>
-            ${errorElement}
           `}
     `;
   }
@@ -176,18 +185,6 @@ class AXACheckbox extends NoShadowDOM {
     if (isReact && defaultChecked) {
       this.querySelector('input').checked = true;
       this.state.native = true;
-    }
-
-    const iconElement = this.querySelector('.js-checkbox__icon');
-    const labelElement = document.querySelector(`label[for="${this.refId}"`);
-    const isSibling =
-      labelElement &&
-      !!(labelElement.previousSibling || labelElement.nextSibling);
-
-    if (!this.label && iconElement && isSibling) {
-      iconElement.addEventListener('click', () => {
-        this.querySelector(`#${this.refId}`).click();
-      });
     }
   }
 
