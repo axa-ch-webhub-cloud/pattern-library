@@ -1,4 +1,4 @@
-import myExample from './rollup-plugin-my-example';
+import jsPrefixer from './rollup-plugin-javascript-prefixer';
 
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
@@ -42,21 +42,11 @@ const standardComponentClassPrefix = componentTypePrefix + componentName; // a-b
 // const cssPrefix = `${prefix}_${componentTypePrefix}${componentName}`; // .nva1-1-1_button-link
 // // *** /CSS
 
-// const content = fs.readFileSync('./index.js', 'utf8');
-// const afterReplace = content
-//   .split(`"${standardComponentClassPrefix}`)
-//   .join(`"${cssPrefix}`)
-//   .split(`'${standardComponentClassPrefix}`)
-//   .join(`'${cssPrefix}`)
-//   .split(` ${standardComponentClassPrefix}`)
-//   .join(` ${cssPrefix}`);
-// fs.writeFileSync('./index-prefixed.js', afterReplace);
-
 const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
-  myExample(),
+  jsPrefixer(),
   sass({
     insert: true,
     include: '**/*.scss',

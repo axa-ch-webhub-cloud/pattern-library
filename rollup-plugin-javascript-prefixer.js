@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const glob = require('glob');
 const fs = require('fs');
 
@@ -24,14 +25,12 @@ const indexJsFiles = glob.sync('**/index.js', {
   ignore: ['node_modules/**/*', 'dist/**/*', 'lib/**/*'],
 });
 
-export default function myExample() {
+export default function jsPrefixer() {
   return {
-    name: 'my-example', // this name will show up in warnings and errors
+    name: 'js-prefixer',
     buildStart: () => {
-      // console.log('the build is starting!!!!!');
-
       indexJsFiles.forEach(file => {
-        // console.log('Creating: ', `./${file.split('.').join('-bak.')}`);
+        // Copy file from index.js to index-bak.js
         fs.copyFileSync(`./${file}`, `./${file.split('.').join('-bak.')}`);
         const content = fs.readFileSync(`./${file}`, 'utf8');
         const afterReplace = content
@@ -45,10 +44,7 @@ export default function myExample() {
       });
     },
     buildEnd: () => {
-      // console.log('the build is ending!!!!!');
-
       indexJsFiles.forEach(file => {
-        // console.log('Moving everything back to: ', `./${file}`);
         fs.copyFileSync(`./${file.split('.').join('-bak.')}`, `./${file}`);
       });
     },
