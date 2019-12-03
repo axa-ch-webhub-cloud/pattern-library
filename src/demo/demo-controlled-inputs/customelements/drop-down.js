@@ -29,6 +29,10 @@ const handleChange = self => event => {
 
 // CE
 class DropDown extends LitElement {
+  static get tagName() {
+    return 'drop-down';
+  }
+
   static get properties() {
     return {
       value: {
@@ -173,10 +177,5 @@ class DropDown extends LitElement {
 }
 
 // EXPORTS
-const localName = defineOnce('drop-down', DropDown);
-export default createElement => ({ items, value, name, onChange, children }) =>
-  withReact(createElement)(
-    localName,
-    { items, value, name, onChange, isReact: 1 },
-    children
-  );
+defineOnce('drop-down', DropDown);
+export default createElement => withReact(createElement, DropDown);

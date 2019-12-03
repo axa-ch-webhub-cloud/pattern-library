@@ -8,6 +8,10 @@ const styled = new WeakMap();
 
 // CE
 class MyTable extends LitElement {
+  static get tagName() {
+    return 'my-table';
+  }
+
   createRenderRoot() {
     /**
      * Render template in light DOM. Note that shadow DOM features like
@@ -86,6 +90,5 @@ MyTable.styles = css`
 `;
 
 // EXPORTS
-const localName = defineOnce('my-table', MyTable);
-export default createElement => ({ ref, children }) =>
-  withReact(createElement)(localName, { ref }, children);
+defineOnce('my-table', MyTable);
+export default createElement => withReact(createElement, MyTable);

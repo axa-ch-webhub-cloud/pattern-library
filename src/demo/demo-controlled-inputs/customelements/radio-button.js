@@ -30,6 +30,10 @@ const handleChange = self => event => {
 
 // CE CLASS
 class LabelledRadioButton extends LitElement {
+  static get tagName() {
+    return 'radio-button';
+  }
+
   static get properties() {
     return {
       label: { type: String },
@@ -142,18 +146,5 @@ class LabelledRadioButton extends LitElement {
 }
 
 // EXPORTS
-const localName = defineOnce('radio-button', LabelledRadioButton, styles);
-export default createElement => ({
-  label,
-  checked,
-  disabled,
-  name,
-  value,
-  onChange,
-  children,
-}) =>
-  withReact(createElement)(
-    localName,
-    { label, checked, disabled, name, value, onChange, isReact: 1 },
-    children
-  );
+defineOnce('radio-button', LabelledRadioButton, styles);
+export default createElement => withReact(createElement, LabelledRadioButton);
