@@ -19,7 +19,8 @@ storiesOf('Atoms/Checkbox/Demos', module)
           ?checked="false"
           ?required="true"
           onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-          >click <a href="https://www.google.ch">here</a></axa-checkbox
+          >click
+          <a href="https://www.google.ch" target="_blank">here</a></axa-checkbox
         >
         <axa-checkbox
           class="hover"
@@ -27,8 +28,8 @@ storiesOf('Atoms/Checkbox/Demos', module)
           ?checked="false"
           ?required="true"
           onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-          >or click <a href="https://www.google.ch">here</a> if you
-          prefere</axa-checkbox
+          >or click <a href="https://www.google.ch" target="_blank">here</a> if
+          you prefere</axa-checkbox
         >
       </div>
     `;

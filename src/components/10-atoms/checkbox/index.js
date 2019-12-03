@@ -120,6 +120,7 @@ class AXACheckbox extends NoShadowDOM {
       required,
       isReact,
       state: { isControlled, timer },
+      domChildren,
     } = this;
     // now that we have the 'isReact' prop, determine if this
     // component is a 'controlled input' in the *React* sense
@@ -155,14 +156,13 @@ class AXACheckbox extends NoShadowDOM {
       : html``;
 
     return html`
-      ${this.domChildren
+      ${domChildren
         ? html`
             <label for="${refId}" class="a-checkbox__wrapper">
               ${inputElement}
               <span class="a-checkbox__icon js-checkbox__icon"></span>
               <span class="a-checkbox__content">
-                ${unsafeHTML(this.domChildren)}
-                ${required ? REQUIRED_SYMBOL : ''}
+                ${unsafeHTML(domChildren)} ${required ? REQUIRED_SYMBOL : ''}
               </span>
               ${errorElement}
             </label>
