@@ -181,6 +181,11 @@ test('should exhibit controlled-component behaviour when native', async t => {
     return valueSpan.innerText;
   });
 
+  const getControlledVisuals = ClientFunction(() => {
+    const innerSelect = document.querySelector('axa-dropdown select');
+    return innerSelect.selectedIndex;
+  });
+
   await t.click(dropdownReact);
   await t.click(thirdOption);
   await t
@@ -204,6 +209,9 @@ test('should exhibit controlled-component behaviour when native', async t => {
     )
     .expect(await getControlledValue())
     .eql('Item 3');
+
+  /* verify whether visuals/UX agree with controlled value */
+  await t.expect(await getControlledVisuals()).eql(3);
 });
 
 // Dropdown react uncontrolled

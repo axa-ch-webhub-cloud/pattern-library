@@ -120,26 +120,28 @@ class AXADropdown extends NoShadowDOM {
   }
 
   set value(newValue) {
-    if (this.state) {
-      const {
-        state: { isControlled, value, firstTime },
-        state,
-      } = this;
-      // first value coming in indicates controlledness?
-      if (!isControlled && newValue !== undefined && firstTime) {
-        // yes, remember in model state
-        state.isControlled = true;
-      }
-      // update state
-      state.value = newValue;
-      state.firstTime = false;
-      // manual re-render, necessary for custom setters
-      this.requestUpdate('value', value);
+    if (!this.state) {
+      return;
     }
+    const {
+      state: { isControlled, value, firstTime },
+      state,
+    } = this;
+    // first value coming in indicates controlledness?
+    if (!isControlled && newValue !== undefined && firstTime) {
+      // yes, remember in model state
+      state.isControlled = true;
+    }
+    // update state
+    state.value = newValue;
+    state.firstTime = false;
+    // manual re-render, necessary for custom setters
+    this.requestUpdate('value', value);
   }
 
   get value() {
-    return this.state.value;
+    const { state } = this;
+    return state ? state.value : undefined;
   }
 
   constructor() {
@@ -147,9 +149,9 @@ class AXADropdown extends NoShadowDOM {
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
     this.onBlur = EMPTY_FUNCTION;
+    applyDefaults(this);
     // internal properties
     this.state = { isControlled: false, firstTime: true };
-    applyDefaults(this);
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
