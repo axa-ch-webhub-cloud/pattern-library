@@ -80,7 +80,11 @@ const commonPlugins = [
                   if (singleClass.startsWith(standardComponentClassPrefix)) {
                     return `.${prefX}_${singleClass}`;
                   }
-                  return `.${singleClass}`;
+                  // Tagnames, but could also be a classname without
+                  // BEM-prefix, which would not be prefixed anymore.
+                  // This means, we are not allowed to use classnames that do
+                  // not start with 'a-button'.
+                  return singleClass;
                 })
                 .join('');
             },
