@@ -95,6 +95,6 @@ class TextAreaInput extends LitElement {
 // EXPORTS
 defineOnce('text-area', TextAreaInput);
 export default createElement =>
-  forwardRef(({ value, name, onChange, children }, ref) =>
-    withReact(createElement, TextAreaInput)
+  forwardRef((props, ref) =>
+    withReact(createElement, TextAreaInput, props, ref)
   );
