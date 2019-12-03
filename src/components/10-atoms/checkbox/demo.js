@@ -10,65 +10,23 @@ storiesOf('Atoms/Checkbox/Demos', module)
       sidebar: Readme,
     },
   })
-  .add('Feature - Use your own label as a parent', () => {
+  .add('Feature - Use your own label as a child of the component', () => {
     const template = html`
       <div>
-        <label style="display:flex;"
-          >Label as a parent 1<axa-checkbox
+        <axa-checkbox
             class="hover"
             name="checkbox"
             ?checked="false"
             ?required="true"
             onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-            style="margin-left: 10px;"
-          ></axa-checkbox>
-        </label>
-        <label style="display:flex;"
-          >Label as a parent 2<axa-checkbox
-            class="hover"
-            name="checkbox"
-            ?checked="false"
-            ?required="true"
-            onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-            style="margin-left: 10px;"
-          ></axa-checkbox>
-        </label>
-      </div>
-    `;
-
-    const wrapper = document.createElement('div');
-    render(template, wrapper);
-    return wrapper;
-  })
-  .add('Feature - Use your own label as a sibling', () => {
-    const template = html`
-      <div>
-        <span style="display:flex;">
-          <label for="checkbox-sibling-1">Label as a sibling 1</label>
+          >click<a href="https://www.google.ch">here</a></axa-checkbox>
           <axa-checkbox
-            refId="checkbox-sibling-1"
-            class="hover"
-            name="checkbox-sibling-1"
-            ?checked="false"
-            ?required="true"
-            onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-            style="margin-left: 10px;"
-          >
-          </axa-checkbox>
-        </span>
-        <span style="display:flex;">
-          <label for="checkbox-sibling-2">Label as a sibling 2</label>
-          <axa-checkbox
-            refId="checkbox-sibling-2"
-            class="hover"
-            name="checkbox-sibling-2"
-            ?checked="false"
-            ?required="true"
-            onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
-            style="margin-left: 10px;"
-          >
-          </axa-checkbox>
-        </span>
+          class="hover"
+          name="checkbox"
+          ?checked="false"
+          ?required="true"
+          onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
+        >or click<a href="https://www.google.ch">here</a> if you prefere</axa-checkbox>
       </div>
     `;
 
