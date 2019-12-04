@@ -149,9 +149,13 @@ class AXADropdown extends NoShadowDOM {
     this.onChange = EMPTY_FUNCTION;
     this.onFocus = EMPTY_FUNCTION;
     this.onBlur = EMPTY_FUNCTION;
-    applyDefaults(this);
+
     // internal properties
     this.state = { isControlled: false, firstTime: true };
+    // Very important that applyDefaults is AFTER state declatration
+    // because applyDefaults changes value and needs firstTime: true flag
+    // to define controldness
+    applyDefaults(this);
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
@@ -269,7 +273,9 @@ class AXADropdown extends NoShadowDOM {
     typecheck(this, { items: [] });
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
+    console.log(this.state.isControlled);
     this.state.isControlled = this.state.isControlled && this.isReact;
+
     const {
       state: { isControlled },
     } = this;
