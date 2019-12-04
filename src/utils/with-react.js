@@ -68,7 +68,7 @@ const applyDefaults = ceInst => {
     // otherwise, apply default
 
     // make sure the set value() function is never triggered when defaultValue
-    // is undefined otherwise the isControlled flag and firstTime flag are messed up inspect in
+    // is undefined otherwise the isControlled flag and firstTime flag are messed up in
     // some components containing controldness
     if(defaultValue !== undefined) {
 
