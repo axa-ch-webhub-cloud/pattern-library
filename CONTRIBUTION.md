@@ -109,7 +109,7 @@ it('should sum numbers', () => {
   
 // ----------
 // DO
-  if (parseInt(selectedIndex, 10) === parseInt(index, 10) || selectedIndex === index) {
+  if (selectedIndex === index || parseInt(selectedIndex, 10) === parseInt(index, 10)) {
     return;
   }
 // DON'T
