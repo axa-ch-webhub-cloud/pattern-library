@@ -273,7 +273,6 @@ class AXADropdown extends NoShadowDOM {
     typecheck(this, { items: [] });
     // controlledness is only meaningful if the isReact property has been set
     // via the React wrapper
-    console.log(this.state.isControlled);
     this.state.isControlled = this.state.isControlled && this.isReact;
 
     const {
