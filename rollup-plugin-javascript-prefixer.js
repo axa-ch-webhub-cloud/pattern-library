@@ -63,6 +63,7 @@ export default function jsPrefixer() {
     buildEnd: () => {
       jsFilesToPrefix.forEach(file => {
         fs.copyFileSync(`${file}.bak`, file);
+        fs.unlinkSync(`${file}.bak`);
       });
     },
   };
