@@ -3,9 +3,20 @@
 const glob = require('glob');
 const fs = require('fs');
 
-const indexJsFiles = glob.sync('**/index.js', {
-  ignore: ['node_modules/**/*', 'dist/**/*', 'lib/**/*'],
-});
+const jsFilesToPrefix = glob
+  .sync('**/*.js', {
+    ignore: [
+      'node_modules/**/*',
+      'dist/**/*',
+      'lib/**/*',
+      'index.react.js',
+      '**demo.js',
+      '**.bak',
+      '**test**',
+      '**story**',
+    ],
+  })
+  .map(f => `./${f}`);
 
 const componentPackageJson = require(`${process.cwd()}/package.json`);
 
@@ -27,27 +38,31 @@ export const componentInfo = {
   cssPrefix: `${newPrefix}_${componentTypePrefix}${componentName}`, // .nva1-1-1_a-button-link prefixedComponentName
 };
 
+const parseFile = file => {
+  fs.copyFileSync(file, `${file}.bak`);
+  const content = fs.readFileSync(file, 'utf8');
+  const afterReplace = content
+    .split(`"${componentInfo.standardComponentClassPrefix}`)
+    .join(`"${componentInfo.cssPrefix}`)
+    .split(`'${componentInfo.standardComponentClassPrefix}`)
+    .join(`'${componentInfo.cssPrefix}`)
+    .split(` ${componentInfo.standardComponentClassPrefix}`)
+    .join(` ${componentInfo.cssPrefix}`);
+  fs.writeFileSync(file, afterReplace);
+};
+
 export default function jsPrefixer() {
   return {
     name: 'js-prefixer',
     buildStart: () => {
-      indexJsFiles.forEach(file => {
-        // Copy file from index.js to index-bak.js
-        fs.copyFileSync(`./${file}`, `./${file.split('.').join('-bak.')}`);
-        const content = fs.readFileSync(`./${file}`, 'utf8');
-        const afterReplace = content
-          .split(`"${componentInfo.standardComponentClassPrefix}`)
-          .join(`"${componentInfo.cssPrefix}`)
-          .split(`'${componentInfo.standardComponentClassPrefix}`)
-          .join(`'${componentInfo.cssPrefix}`)
-          .split(` ${componentInfo.standardComponentClassPrefix}`)
-          .join(` ${componentInfo.cssPrefix}`);
-        fs.writeFileSync(`./${file}`, afterReplace);
+      console.log(jsFilesToPrefix);
+      jsFilesToPrefix.forEach(f => {
+        parseFile(f);
       });
     },
     buildEnd: () => {
-      indexJsFiles.forEach(file => {
-        fs.copyFileSync(`./${file.split('.').join('-bak.')}`, `./${file}`);
+      jsFilesToPrefix.forEach(file => {
+        fs.copyFileSync(`${file}.bak`, file);
       });
     },
   };
