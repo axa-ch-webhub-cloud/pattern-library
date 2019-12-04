@@ -109,9 +109,7 @@ it('should sum numbers', () => {
   
 // ----------
 // DO
-  // eslint-disable-next-line eqeqeq
   if (parseInt(selectedIndex, 10) === parseInt(index, 10) || selectedIndex === index) {
-    // ==: indices may be number or string
     return;
   }
 // DON'T
