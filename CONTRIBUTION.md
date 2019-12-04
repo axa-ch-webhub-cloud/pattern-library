@@ -118,6 +118,13 @@ it('should sum numbers', () => {
     // ==: indices may be number or string
     return;
   }
+  
+// ----------
+// DO
+  this.selectedIndex = index || 0;
+  this.selectedIndex = Math.floor(index) || 0;
+// DON'T
+  this.selectedIndex = index | 0;
 ```
 
 ### How-to create a new component
