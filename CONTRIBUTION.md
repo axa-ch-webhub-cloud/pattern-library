@@ -121,10 +121,10 @@ it('should sum numbers', () => {
   
 // ----------
 // DO
-  this.selectedIndex = index || 0;
-  this.selectedIndex = Math.floor(index) || 0;
+  const selectedIndex = index || 0;
+  const selectedIndex = Math.floor(index) || 0;
 // DON'T
-  this.selectedIndex = index | 0;
+  const selectedIndex = index | 0;
 ```
 
 ### How-to create a new component
