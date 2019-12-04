@@ -73,9 +73,7 @@ The string-valued `value` of the checkbox for purposes of form submission.
 
 ### label
 
-The string-valued `label` provides the label text as HTML.
-
-_Note: The component consumer is responsible for sanitizing the label HTML!_
+The string-valued `label` provides the label text. When no label is set and the component hasn't any children no HMTL label will be rendered due to semantics.
 
 ### refId
 
@@ -123,5 +121,6 @@ Its only parameter is the corresponding native event from the underlying `<input
 ## ChangeLog
 
 - 1.1.15
-  - add `refId` [#1528](https://github.com/axa-ch/patterns-library/pull/1528)
-  - prevent doubled labels when `label` attribute isn't set [#1535](https://github.com/axa-ch/patterns-library/pull/1535)
+  - Add `refId` [#1528](https://github.com/axa-ch/patterns-library/pull/1528)
+  - Prevent doubled labels when `label` attribute isn't set [#1535](https://github.com/axa-ch/patterns-library/pull/1535)
+  - Allow setting a label through children of the component
