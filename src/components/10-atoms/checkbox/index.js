@@ -154,17 +154,25 @@ class AXACheckbox extends NoShadowDOM {
         `
       : html``;
 
-    return html`
-      ${label || domChildren ? html`` : html``}
-      <label for="${refId}" class="a-checkbox__wrapper">
-        ${inputElement}
-        <span class="a-checkbox__icon js-checkbox__icon"></span>
-        <span class="a-checkbox__content">
-          ${unsafeHTML(domChildren || label)} ${required ? REQUIRED_SYMBOL : ''}
-        </span>
-        ${errorElement}
-      </label>
-    `;
+    return label || domChildren
+      ? html`
+          <label for="${refId}" class="a-checkbox__wrapper">
+            ${inputElement}
+            <span class="a-checkbox__icon js-checkbox__icon"></span>
+            <span class="a-checkbox__content">
+              ${unsafeHTML(domChildren || label)}
+              ${required ? REQUIRED_SYMBOL : ''}
+            </span>
+            ${errorElement}
+          </label>
+        `
+      : html`
+          ${inputElement}
+          <span class="a-checkbox__icon js-checkbox__icon"></span>
+          </span>
+          ${errorElement}
+      
+      `;
   }
 
   firstUpdated() {
