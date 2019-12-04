@@ -109,7 +109,7 @@ test('should set checkbox element to disabled + not change state', async t => {
   await t.expect($axaCheckbox.checked).notOk();
 });
 
-test.only('shoul set refId on label and input', async t => {
+test('shoul set refId on label and input', async t => {
   const $axaCheckbox = await Selector(TAG);
   const label = await Selector('.a-checkbox__wrapper');
   const input = await Selector('.a-checkbox__input');
