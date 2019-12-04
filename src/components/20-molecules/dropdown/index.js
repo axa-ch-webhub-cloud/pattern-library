@@ -222,7 +222,7 @@ class AXADropdown extends NoShadowDOM {
       return;
     }
 
-    this.selectedIndex = index | 0;
+    this.selectedIndex = parseInt(index, 10) || 0;
     const [{ name }] = this.findByValue(value);
     // allow idiomatic event.target.value in onChange callback!
     const syntheticEvent = { target: { value, index, name } };
