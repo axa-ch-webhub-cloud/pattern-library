@@ -120,9 +120,6 @@ class AXADropdown extends NoShadowDOM {
   }
 
   set value(newValue) {
-    if (!this.state) {
-      return;
-    }
     const {
       state: { isControlled, value, firstTime },
       state,
@@ -140,8 +137,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   get value() {
-    const { state } = this;
-    return state ? state.value : undefined;
+    return this.state.value;
   }
 
   constructor() {

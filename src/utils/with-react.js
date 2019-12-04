@@ -69,18 +69,19 @@ const applyDefaults = ceInst => {
 
     // make sure the set value() function is never triggered when defaultValue
     // is undefined otherwise the isControlled flag and firstTime flag are messed up in
-    // some components containing controldness
-    if(defaultValue !== undefined) {
-
-      // component author explicitly specified a default value for this property?
-      // (This allows *all* values as defaults, *including* undefined. The latter is
-      // the proper default for 'value' properties in React's controlled-component mode.)
-      // no, derive it from general per-type defaults
-      ceInst[property] =
-        'defaultValue' in propertyValue // component author wants full control of their default value?
-          ? defaultValue // yes, apply it
-          : DEFAULT_VALUE_OF_TYPE.get(type);
+    // some components containing controldness. Writing undefined again on value counts as change
+    if(defaultValue === undefined && 'defaultValue' in propertyValue) {
+      return;
     }
+
+    // component author explicitly specified a default value for this property?
+    // (This allows *all* values as defaults, *including* undefined. The latter is
+    // the proper default for 'value' properties in React's controlled-component mode.)
+    // no, derive it from general per-type defaults
+    ceInst[property] =
+      'defaultValue' in propertyValue // component author wants full control of their default value?
+        ? defaultValue // yes, apply it
+        : DEFAULT_VALUE_OF_TYPE.get(type);
   });
 };
 
