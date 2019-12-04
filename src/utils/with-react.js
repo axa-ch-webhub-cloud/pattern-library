@@ -79,7 +79,7 @@ const applyDefaults = ceInst => {
 
 export { applyDefaults };
 
-const distributeProperties = ({ children, ...properties }, componentClass) => {
+const distributeProperties = (properties, componentClass) => {
   // initialize
   const attrs = {};
   const props = {};
@@ -122,15 +122,15 @@ const distributeProperties = ({ children, ...properties }, componentClass) => {
     // map property name to value
     map[name] = value;
   });
-  return { attrs, props, children };
+  return { attrs, props };
 };
 
 export default (createElement, componentClass) => {
   const { tagName } = componentClass;
   const displayName = pascalCase(tagName);
 
-  const reactStatelessComponent = properties => {
-    const { attrs, props, children } = distributeProperties(
+  const reactStatelessComponent = ({children, ...properties}) => {
+    const { attrs, props } = distributeProperties(
       properties,
       componentClass
     );
