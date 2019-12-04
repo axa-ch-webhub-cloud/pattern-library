@@ -106,6 +106,20 @@ it('should sum numbers', () => {
   if(parseInt(myText, 10) === 1) { console.log("Text is number 1") }
 // DON'T
   if(+myText === 1) { console.log("Text is number 1") }
+  
+// ----------
+// DO
+  // eslint-disable-next-line eqeqeq
+  if (parseInt(selectedIndex, 10) === parseInt(index, 10) || selectedIndex === index) {
+    // ==: indices may be number or string
+    return;
+  }
+// DON'T
+  // eslint-disable-next-line eqeqeq
+  if (selectedIndex == index) {
+    // ==: indices may be number or string
+    return;
+  }
 ```
 
 ### How-to create a new component
