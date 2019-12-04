@@ -64,7 +64,6 @@ class AXACheckbox extends NoShadowDOM {
     this.onChange = () => {};
 
     this.domChildren = this.innerHTML;
-    console.log('children', this.domChildren);
   }
 
   // custom setter
@@ -156,27 +155,15 @@ class AXACheckbox extends NoShadowDOM {
       : html``;
 
     return html`
-      ${domChildren
-        ? html`
-            <label for="${refId}" class="a-checkbox__wrapper">
-              ${inputElement}
-              <span class="a-checkbox__icon js-checkbox__icon"></span>
-              <span class="a-checkbox__content">
-                ${unsafeHTML(domChildren)} ${required ? REQUIRED_SYMBOL : ''}
-              </span>
-              ${errorElement}
-            </label>
-          `
-        : html`
-            <label for="${refId}" class="a-checkbox__wrapper">
-              ${inputElement}
-              <span class="a-checkbox__icon js-checkbox__icon"></span>
-              <span class="a-checkbox__content">
-                ${unsafeHTML(label)} ${required ? REQUIRED_SYMBOL : ''}
-              </span>
-              ${errorElement}
-            </label>
-          `}
+      ${label || domChildren ? html`` : html``}
+      <label for="${refId}" class="a-checkbox__wrapper">
+        ${inputElement}
+        <span class="a-checkbox__icon js-checkbox__icon"></span>
+        <span class="a-checkbox__content">
+          ${unsafeHTML(domChildren || label)} ${required ? REQUIRED_SYMBOL : ''}
+        </span>
+        ${errorElement}
+      </label>
     `;
   }
 
