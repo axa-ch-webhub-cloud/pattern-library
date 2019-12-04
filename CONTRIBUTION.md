@@ -123,6 +123,7 @@ it('should sum numbers', () => {
 // DO
   const selectedIndex = index || 0;
   const selectedIndex = Math.floor(index) || 0;
+  const selectedIndex = Math.floor(parseInt(index, 10)) || 0;
 // DON'T
   const selectedIndex = index | 0;
 ```
