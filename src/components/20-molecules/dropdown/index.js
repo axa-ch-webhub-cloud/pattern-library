@@ -218,9 +218,7 @@ class AXADropdown extends NoShadowDOM {
     this.openDropdown(false);
 
     // no change compared to previous selection?
-    // eslint-disable-next-line eqeqeq
-    if (selectedIndex == index) {
-      // ==: indices may be number or string
+    if (selectedIndex === index || parseInt(selectedIndex, 10) === parseInt(index, 10)) {
       return;
     }
 
