@@ -45,24 +45,25 @@ const commonPlugins = [
             prefix: componentInfo.prefix,
             transform: (prefX, selector) => {
               // Exclude tags, only apply to classes
-              return selector
-                .split('.')
-                .filter(singleClass => singleClass !== '')
-                .map(singleClass => {
-                  if (
-                    singleClass.startsWith(
-                      componentInfo.standardComponentClassPrefix
-                    )
-                  ) {
-                    return `.${prefX}_${singleClass}`;
-                  }
-                  // Tagnames, but could also be a classname without
-                  // BEM-prefix, which would not be prefixed anymore.
-                  // This means, we are not allowed to use classnames that do
-                  // not start with 'a-button'.
-                  return singleClass;
-                })
-                .join('');
+              const splitSelectors = selector.split('.');
+              const secondArray = [];
+              for (let i = 0; i < splitSelectors.length; ++i) {
+                if (
+                  splitSelectors[i].startsWith(
+                    componentInfo.standardComponentClassPrefix
+                  )
+                ) {
+                  secondArray.push(`.${prefX}_${splitSelectors[i]}`);
+                  // If index is null, that means there was no empty string
+                  // before, which means it was not a tag but a class and needs
+                  // to be labeled as such.
+                } else if (i !== 0) {
+                  secondArray.push(`.${splitSelectors[i]}`);
+                } else {
+                  secondArray.push(splitSelectors[i]);
+                }
+              }
+              return secondArray.join('');
             },
           })
         )
