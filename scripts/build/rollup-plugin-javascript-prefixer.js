@@ -51,19 +51,26 @@ const parseFile = file => {
   fs.writeFileSync(file, afterReplace);
 };
 
+let counter = 0;
+
 export default function jsPrefixer() {
   return {
     name: 'js-prefixer',
     buildStart: () => {
-      jsFilesToPrefix.forEach(f => {
-        parseFile(f);
-      });
+      if (counter === 0) {
+        jsFilesToPrefix.forEach(f => {
+          parseFile(f);
+        });
+      }
     },
     buildEnd: () => {
-      jsFilesToPrefix.forEach(file => {
-        fs.copyFileSync(`${file}.bak`, file);
-        fs.unlinkSync(`${file}.bak`);
-      });
+      if (counter === 2) {
+        jsFilesToPrefix.forEach(file => {
+          fs.copyFileSync(`${file}.bak`, file);
+          fs.unlinkSync(`${file}.bak`);
+        });
+      }
+      ++counter;
     },
   };
 }
