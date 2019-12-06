@@ -25,13 +25,16 @@ const globalSassImports = require('./config/globals.js')
   })
   .join('\n');
 
+const shouldRunBuildForReact = fs.existsSync('./index.react.js');
+const amountOfSteps = shouldRunBuildForReact ? 3 : 2;
+
 const rollupConfig = [];
 
 const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
-  jsPrefixer(),
+  jsPrefixer(amountOfSteps),
   sass({
     insert: true,
     include: '**/*.scss',
@@ -159,12 +162,7 @@ const libReact = {
 };
 
 rollupConfig.push(lib);
-
-// Sometimes there is no react version to build. I.e icons
-if (fs.existsSync('./index.react.js')) {
-  rollupConfig.push(libReact);
-}
-
 rollupConfig.push(dist);
+if (shouldRunBuildForReact) rollupConfig.push(libReact);
 
 export default rollupConfig;
