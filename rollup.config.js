@@ -1,5 +1,7 @@
-import jsPrefixer, { componentInfo } from './rollup-plugin-javascript-prefixer';
-import sassPrefixer from './sass-prefixer';
+import jsPrefixer, {
+  componentInfo,
+} from './scripts/build/rollup-plugin-javascript-prefixer';
+import sassPrefixer from './scripts/build/sass-prefixer';
 
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
