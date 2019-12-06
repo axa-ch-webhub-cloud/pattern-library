@@ -2,7 +2,7 @@ lib
 dist
 .tmp-lib
 .tmp-dist
-index-bak.js
+index.js.bak
 
 # Storybook
 storybook-static
