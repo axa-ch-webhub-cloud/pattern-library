@@ -63,7 +63,13 @@ class AXACheckbox extends NoShadowDOM {
     this.onBlur = () => {};
     this.onChange = () => {};
 
-    this.domChildren = this.innerHTML;
+    // console.log('inner', this.innerHTML);
+    const childWrapper = document.createElement('span');
+    childWrapper.className = 'a-checkbox__children-inline';
+    childWrapper.innerHTML = this.innerHTML;
+
+    this.domChildren = childWrapper;
+    // console.log(document.querySelector('axa-checkbox'));
   }
 
   // custom setter
@@ -160,7 +166,7 @@ class AXACheckbox extends NoShadowDOM {
             ${inputElement}
             <span class="a-checkbox__icon js-checkbox__icon"></span>
             <span class="a-checkbox__content">
-              ${unsafeHTML(domChildren || label)}
+              ${domChildren || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
             </span>
             ${errorElement}
@@ -181,6 +187,8 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
+    // console.log('checkbox', document.querySelector('axa-checkbox'));
+    // console.log('updated inner', this.innerHTML);
   }
 
   // this lifecycle method will regularly be called after render() -
