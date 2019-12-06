@@ -64,11 +64,15 @@ class AXACheckbox extends NoShadowDOM {
     this.onChange = () => {};
 
     // console.log('inner', this.innerHTML);
-    const childWrapper = document.createElement('span');
-    childWrapper.className = 'a-checkbox__children-inline';
-    childWrapper.innerHTML = this.innerHTML;
+    // initialize domChildren when children are avaiabled and wrap them
+    if (this.innerHTML) {
+      const childWrapper = document.createElement('span');
+      childWrapper.className = 'a-checkbox__children-inline';
+      childWrapper.innerHTML = this.innerHTML;
 
-    this.domChildren = childWrapper;
+      this.domChildren = childWrapper;
+    }
+
     // console.log(document.querySelector('axa-checkbox'));
   }
 
