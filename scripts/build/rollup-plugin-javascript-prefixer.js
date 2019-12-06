@@ -55,7 +55,6 @@ export default function jsPrefixer() {
   return {
     name: 'js-prefixer',
     buildStart: () => {
-      console.log(jsFilesToPrefix);
       jsFilesToPrefix.forEach(f => {
         parseFile(f);
       });
