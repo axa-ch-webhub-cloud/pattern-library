@@ -1,4 +1,6 @@
 import { html } from 'lit-element';
+/* eslint-disable import/no-extraneous-dependencies */
+import '@axa-ch/text';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -66,7 +68,8 @@ class AXACheckbox extends NoShadowDOM {
     // console.log('inner', this.innerHTML);
     // initialize domChildren when children are avaiabled and wrap them
     if (this.innerHTML) {
-      const childWrapper = document.createElement('span');
+      const childWrapper = document.createElement('axa-text');
+      childWrapper.variant = 'variant-3';
       childWrapper.className = 'a-checkbox__children-inline';
       childWrapper.innerHTML = this.innerHTML;
 
