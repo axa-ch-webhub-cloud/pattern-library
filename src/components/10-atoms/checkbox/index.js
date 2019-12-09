@@ -74,7 +74,7 @@ class AXACheckbox extends NoShadowDOM {
 
   wrapChildren() {
     const childWrapper = document.createElement('axa-text');
-    childWrapper.variant = 'variant-3';
+    childWrapper.variant = 'size-3';
     childWrapper.className = 'a-checkbox__children-inline';
     childWrapper.innerHTML = this.innerHTML;
 
