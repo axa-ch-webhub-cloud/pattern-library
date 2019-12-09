@@ -148,9 +148,9 @@ class AXADropdown extends NoShadowDOM {
 
     // internal properties
     this.state = { isControlled: false, firstTime: true };
-    // Very important that applyDefaults is AFTER state declatration
-    // because applyDefaults changes value and needs firstTime: true flag
-    // to define controldness
+    // Very important that applyDefaults is *after* state initialization
+    // because applyDefaults changes 'value' and needs firstTime: true flag
+    // to define controlledness
     applyDefaults(this);
     // bound event handlers (so scope and de-registration work as expected)
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
@@ -218,18 +218,26 @@ class AXADropdown extends NoShadowDOM {
     this.openDropdown(false);
 
     // no change compared to previous selection?
-    if (selectedIndex === index || parseInt(selectedIndex, 10) === parseInt(index, 10)) {
+    const integerIndex = parseInt(index, 10) || 0; // || 0: parseInt may return NaN
+    if (
+      selectedIndex === integerIndex &&
+      /* in controlled mode, additionally clicked value and model value must agree
+         (this may e.g. be violated in 1st click after 'unfreezing' a frozen model) */
+      (!isControlled || value === this.value)
+    ) {
       return;
     }
 
-    this.selectedIndex = parseInt(index, 10) || 0;
+    this.selectedIndex = integerIndex;
     const [{ name }] = this.findByValue(value);
     // allow idiomatic event.target.value in onChange callback!
-    const syntheticEvent = { target: { value, index, name } };
+    const syntheticEvent = { target: { value, index: integerIndex, name } };
     onChange(syntheticEvent);
     if (!isControlled) {
+      // declare the following value update to be uncontrolled
+      this.state.firstTime = false;
       this.value = value; // triggers re-render
-      const details = { value, index, name };
+      const details = { value, index: integerIndex, name };
       fireCustomEvent('axa-change', value, this, { bubbles: false });
       fireCustomEvent('change', details, this, { bubbles: false });
     }
