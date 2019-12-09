@@ -66,6 +66,7 @@ class AXACheckbox extends NoShadowDOM {
     this.onChange = () => {};
 
     // initialize labelTextElement when children are avaiabled and wrap them
+    this.hasChildren = false;
     if (this.innerHTML) {
       this.wrapChildren();
     }
@@ -78,6 +79,8 @@ class AXACheckbox extends NoShadowDOM {
     childWrapper.innerHTML = this.innerHTML;
 
     this.labelTextElement = childWrapper;
+
+    this.hasChildren = true;
   }
   // custom setter
   set checked(value) {
@@ -132,6 +135,7 @@ class AXACheckbox extends NoShadowDOM {
       required,
       isReact,
       state: { isControlled, timer },
+      hasChildren,
       labelTextElement,
     } = this;
     // now that we have the 'isReact' prop, determine if this
@@ -166,7 +170,8 @@ class AXACheckbox extends NoShadowDOM {
           <span class="a-checkbox__error">${unsafeHTML(error)}</span>
         `
       : html``;
-    return label || labelTextElement
+
+    return hasChildren || label
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
@@ -197,8 +202,7 @@ class AXACheckbox extends NoShadowDOM {
   // react has no innerHTML on render
   shouldUpdate() {
     const { isReact } = this;
-    // ! if content has something in it
-    if (isReact && this.innerHTML && !this.labelTextElement && !this.label) {
+    if (isReact && this.innerHTML && !this.labelTextElement) {
       this.wrapChildren();
     }
     return true;
