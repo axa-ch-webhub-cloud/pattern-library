@@ -61,8 +61,8 @@ export default class InlineStyles extends LitElement {
     // remove or update reference-count metadata
     if (referenceCount < 1) {
       referenceCounts.delete(root); // give an early hint to GC
-      if (styleTagNode) {
-        styleTagNode.remove(); // remove style node as well
+      if (styleTagNode && styleTagNode.parentNode) {
+        styleTagNode.parentNode.removeChild(styleTagNode); // remove style node as well
       }
     } else {
       referenceCounts.set(root, referenceCount);
