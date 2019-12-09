@@ -17,7 +17,7 @@ storiesOf('Atoms/Checkbox/React/Demo', module)
     ReactDOM.render(<DemoCheckboxCallbackProps />, div);
     return div;
   })
-  .add('Checkbox - label as chilf of the component', () => {
+  .add('Checkbox - label as child of the component', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoCheckboxLabelAsChildren />, div);
     return div;

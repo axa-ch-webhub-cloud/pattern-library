@@ -198,7 +198,7 @@ class AXACheckbox extends NoShadowDOM {
   shouldUpdate() {
     const { isReact } = this;
     // ! if content has something in it
-    if (isReact && this.innerHTML && !this.labelTextElement) {
+    if (isReact && this.innerHTML && !this.labelTextElement && !this.label) {
       this.wrapChildren();
     }
     return true;
