@@ -71,7 +71,9 @@ export default function jsPrefixer(iterations) {
   return {
     name: 'js-prefixer',
     buildStart: () => {
-      if (!counter) counter = iterations;
+      if (!counter) {
+        counter = iterations;
+      }
       if (counter === iterations) {
         jsFilesToPrefix.forEach(f => {
           _prefixJS(f);

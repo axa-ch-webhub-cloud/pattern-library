@@ -186,7 +186,7 @@ storiesOf('Molecules/Top content bar', module)
 
 ## Versioning
 
-For us to being able to have multiple versions of components on a webpage, we version the CSS classes. In production, all classes will have a prefix. This prefix makes sure that CSS is targeting only components of the same version and prevent CSS from leaking into other components.
+For us to be able to have multiple versions of components on a webpage, we version the CSS classes. In production, all classes will have a prefix. This prefix makes sure that CSS is targeting only components of the same version and prevent CSS from leaking into other components.
 
 Prefix structure: `nva${COMPONENT_VERSION_BEFORE_PUBLISH}`
 
