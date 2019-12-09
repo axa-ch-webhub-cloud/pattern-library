@@ -70,7 +70,7 @@ const applyDefaults = ceInst => {
     // make sure the set value() function is never triggered when defaultValue
     // is undefined otherwise the isControlled flag and firstTime flag are messed up in
     // some components containing controldness. Writing undefined again on value counts as change
-    if(defaultValue === undefined && 'defaultValue' in propertyValue) {
+    if (defaultValue === undefined && 'defaultValue' in propertyValue) {
       return;
     }
 
@@ -137,11 +137,8 @@ export default (createElement, componentClass) => {
   const { tagName } = componentClass;
   const displayName = pascalCase(tagName);
 
-  const reactStatelessComponent = ({children, ...properties}) => {
-    const { attrs, props } = distributeProperties(
-      properties,
-      componentClass
-    );
+  const reactStatelessComponent = ({ children, ...properties }) => {
+    const { attrs, props } = distributeProperties(properties, componentClass);
 
     return val(createElement)(
       tagName,
