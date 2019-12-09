@@ -65,20 +65,20 @@ class AXACheckbox extends NoShadowDOM {
     this.onBlur = () => {};
     this.onChange = () => {};
 
-    // console.log('inner', this.innerHTML);
-    // initialize domChildren when children are avaiabled and wrap them
+    // initialize labelTextElement when children are avaiabled and wrap them
     if (this.innerHTML) {
-      const childWrapper = document.createElement('axa-text');
-      childWrapper.variant = 'variant-3';
-      childWrapper.className = 'a-checkbox__children-inline';
-      childWrapper.innerHTML = this.innerHTML;
-
-      this.domChildren = childWrapper;
+      this.wrapChildren();
     }
-
-    // console.log(document.querySelector('axa-checkbox'));
   }
 
+  wrapChildren() {
+    const childWrapper = document.createElement('axa-text');
+    childWrapper.variant = 'variant-3';
+    childWrapper.className = 'a-checkbox__children-inline';
+    childWrapper.innerHTML = this.innerHTML;
+
+    this.labelTextElement = childWrapper;
+  }
   // custom setter
   set checked(value) {
     const {
@@ -132,7 +132,7 @@ class AXACheckbox extends NoShadowDOM {
       required,
       isReact,
       state: { isControlled, timer },
-      domChildren,
+      labelTextElement,
     } = this;
     // now that we have the 'isReact' prop, determine if this
     // component is a 'controlled input' in the *React* sense
@@ -166,14 +166,13 @@ class AXACheckbox extends NoShadowDOM {
           <span class="a-checkbox__error">${unsafeHTML(error)}</span>
         `
       : html``;
-
-    return label || domChildren
+    return label || labelTextElement
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
             <span class="a-checkbox__icon js-checkbox__icon"></span>
             <span class="a-checkbox__content">
-              ${domChildren || unsafeHTML(label)}
+              ${labelTextElement || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
             </span>
             ${errorElement}
@@ -184,7 +183,6 @@ class AXACheckbox extends NoShadowDOM {
           <span class="a-checkbox__icon js-checkbox__icon"></span>
           </span>
           ${errorElement}
-      
       `;
   }
 
@@ -194,8 +192,16 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
-    // console.log('checkbox', document.querySelector('axa-checkbox'));
-    // console.log('updated inner', this.innerHTML);
+  }
+
+  // react has no innerHTML on render
+  shouldUpdate() {
+    const { isReact } = this;
+    // ! if content has something in it
+    if (isReact && this.innerHTML && !this.labelTextElement) {
+      this.wrapChildren();
+    }
+    return true;
   }
 
   // this lifecycle method will regularly be called after render() -
