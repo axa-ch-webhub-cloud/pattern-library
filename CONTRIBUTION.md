@@ -87,6 +87,7 @@ it('should sum numbers', () => {
 - Do not use console logs in the DEMOs because we cannot expect our user to have DEV Tools open
 - Never and in any circumstances use bitwise operators
 - Never and in any circumstances use `==` over `===`
+- Do not use if statements without curly braces `{}`
 - Enumerate as many falsy values in your Boolean checks as possible and be aware that `0` and `""` are also falsy.
 - The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle. But even more important is to know exactly when to break it. Sometimes a super DRY climate can lead to over-engineered solutions that end up being unmaintainable :grinning:. There is no rule here, just be careful to not implement a system that is too complex. Lots of options in interfaces or configuration possibilities could be one indicator that the system gets too complex.
 - Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Here are some example DO'S and DONT'S:
@@ -128,6 +129,14 @@ it('should sum numbers', () => {
   const selectedIndex = Math.floor(parseInt(index, 10)) || 0;
 // DON'T
   const selectedIndex = index | 0;
+
+// ----------
+// DO
+  if (!counter) counter = iterations;
+// DON'T
+  if (!counter) {
+    counter = iterations;
+  }
 ```
 
 ### How-to create a new component
