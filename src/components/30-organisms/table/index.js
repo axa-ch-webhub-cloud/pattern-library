@@ -1,13 +1,13 @@
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import tableCSS from './index.scss';
 
 class AXATable extends NoShadowDOM {
   constructor() {
     super();
     // property defaults
-    this.innerscroll = 0;
-    this.maxheight = -1;
+    applyDefaults(this);
   }
 
   static get tagName() {
@@ -23,10 +23,12 @@ class AXATable extends NoShadowDOM {
       innerscroll: {
         type: Number,
         reflect: true /* for attribute-selector styling */,
+        defaultValue: 0,
       },
       maxheight: {
         type: Number,
         reflect: true /* for attribute-selector styling */,
+        defaultValue: -1,
       },
     };
   }

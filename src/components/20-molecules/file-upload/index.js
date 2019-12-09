@@ -14,6 +14,7 @@ import {
 import { FileUploadGroupSvg } from './icons';
 
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import compressImage from './utils/imageCompressor';
 
@@ -43,40 +44,42 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
-      inputFileText: { type: String },
-      maxSizeOfSingleFileKB: { type: Number },
-      maxSizeOfAllFilesKB: { type: Number },
-      maxNumberOfFiles: { type: Number },
+      inputFileText: { type: String, defaultValue: 'Upload file' },
+      maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
+      maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
+      maxNumberOfFiles: { type: Number, defaultValue: 10 },
       showFileOverview: { type: Boolean },
-      icon: { type: String },
-      deleteStatusText: { type: String },
-      addStatusText: { type: String },
-      fileTooBigStatusText: { type: String },
-      filesTooBigStatusText: { type: String },
-      tooManyFilesStatusText: { type: String },
-      orText: { type: String },
-      infoText: { type: String },
-      wrongFileTypeStatusText: { type: String },
+      icon: { type: String, defaultValue: 'cloud-upload' },
+      deleteStatusText: { type: String, defaultValue: 'Delete' },
+      addStatusText: { type: String, defaultValue: 'Add more' },
+      fileTooBigStatusText: {
+        type: String,
+        defaultValue: 'File size exceeds maximum size',
+      },
+      filesTooBigStatusText: {
+        type: String,
+        defaultValue: 'File sizes exceed maximum size',
+      },
+      tooManyFilesStatusText: {
+        type: String,
+        defaultValue: 'You exceeded the maximum number of files',
+      },
+      orText: { type: String, defaultValue: 'or' },
+      infoText: {
+        type: String,
+        defaultValue: 'Drag and drop to upload your file',
+      },
+      wrongFileTypeStatusText: {
+        type: String,
+        defaultValue:
+          'Your file does not correspond with our allowed file-types',
+      },
     };
   }
 
   constructor() {
     super();
-    this.inputFileText = 'Upload file';
-    this.maxSizeOfSingleFileKB = 100;
-    this.maxSizeOfAllFilesKB = 500;
-    this.maxNumberOfFiles = 10;
-    this.showFileOverview = false;
-    this.icon = 'cloud-upload';
-    this.deleteStatusText = 'Delete';
-    this.addStatusText = 'Add more';
-    this.fileTooBigStatusText = `File size exceeds maximum size`;
-    this.filesTooBigStatusText = `File sizes exceed maximum size`;
-    this.tooManyFilesStatusText = `You exceeded the maximum number of files`;
-    this.orText = 'or';
-    this.infoText = 'Drag and drop to upload your file';
-    this.wrongFileTypeStatusText =
-      'Your file does not correspond with our allowed file-types';
+    applyDefaults(this);
 
     this.files = [];
     this.faultyFiles = [];

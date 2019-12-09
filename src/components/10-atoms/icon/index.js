@@ -18,6 +18,7 @@ import {
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import { xhrCall } from '../../../utils/requests';
 
 class AXAIcon extends LitElement {
@@ -61,10 +62,10 @@ class AXAIcon extends LitElement {
 
   constructor() {
     super();
-    this.icon = '';
+    applyDefaults(this);
   }
 
-  firstUpdated() {
+  updated() {
     const { icon } = this;
 
     if (/\.svg/.test(icon)) {

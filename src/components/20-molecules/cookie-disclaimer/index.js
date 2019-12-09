@@ -3,6 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 const _global = window || global;
@@ -29,6 +30,8 @@ class AXACookieDisclaimer extends LitElement {
 
   constructor() {
     super();
+    applyDefaults(this);
+
     this.onClick = () => {};
   }
 

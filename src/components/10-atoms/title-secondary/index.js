@@ -3,6 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 class AXATitleSecondary extends LitElement {
@@ -25,7 +26,7 @@ class AXATitleSecondary extends LitElement {
 
   constructor() {
     super();
-    this.variant = '';
+    applyDefaults(this);
   }
 
   render() {

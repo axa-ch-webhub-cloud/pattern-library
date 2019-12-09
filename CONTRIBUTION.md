@@ -83,7 +83,52 @@ it('should sum numbers', () => {
 ### Best Practices
 
 - Never calculate *derived properties* (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
-- Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`
+- Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`.
+- Do not use console logs in the DEMOs because we cannot expect our user to have DEV Tools open
+- Never and in any circumstances use bitwise operators
+- Never and in any circumstances use `==` over `===`
+- Enumerate as many falsy values in your Boolean checks as possible and be aware that `0` and `""` are also falsy.
+- The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle. But even more important is to know exactly when to break it. Sometimes a super DRY climate can lead to over-engineered solutions that end up being unmaintainable :grinning:. There is no rule here, just be careful to not implement a system that is too complex. Lots of options in interfaces or configuration possibilities could be one indicator that the system gets too complex.
+- Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Here are some example DO'S and DONT'S:
+```js
+// DO
+  if(myArray.indexOf(4) > -1) { console.log("Here I'm") }
+// DON'T
+  if(~myArray.indexOf(4)) { ... }
+  
+// ----------
+// DO
+  const tempObject = isEvent ? events : attrs;
+  tempObject[name] = props[name];
+// DON'T
+  (isEvent ? events : attrs)[name] = props[name];
+  
+// ----------
+// DO
+  if(parseInt(myText, 10) === 1) { console.log("Text is number 1") }
+// DON'T
+  if(+myText === 1) { console.log("Text is number 1") }
+  
+// ----------
+// DO
+  if (selectedIndex === index || parseInt(selectedIndex, 10) === parseInt(index, 10)) {
+    return;
+  }
+// DON'T
+  // eslint-disable-next-line eqeqeq
+  if (selectedIndex == index) {
+    // ==: indices may be number or string
+    return;
+  }
+  
+// ----------
+// DO
+  const selectedIndex = index || 0;
+  const selectedIndex = Math.floor(index) || 0;
+  const selectedIndex = Math.floor(parseInt(index, 10)) || 0;
+// DON'T
+  const selectedIndex = index | 0;
+```
 
 ### How-to create a new component
 
@@ -118,19 +163,20 @@ storiesOf('Molecules/Top content bar', module)
 
 ## How-to release a component
 
-- Ensure you have an npm account under the `@axa-ch` organisation
+**Do not use the release scripts: ~~`npm run release`~~ or ~~`npm run prerelease`~~**
+
+- Ensure you have an npm account under the `@axa-ch` organisation.
+- Run `npm whoami` and in case of you not being logged in: `npm login`
 - Create a new _release branch_ that follows this pattern: `release/<component-name>`
 - Clean the main and components dependencies:
   - `npx lerna clean`
   - `rm -rf node_modules`
-- Run `npm install`
-- Manually add your component to `lerna.json` and remove all not-to-be-released components from the same
-- commit and push your lerna.json changes to the release branch
-- Do not use: ~~Run `npm run release` or `npm run prerelease`~~
-- Ensure you are logged in to npm (`npm login`)
-- Ensure you have the necessary credentials to push to the Githup repo via commandline commands (the following lerna commands do this automatically)
+- Run `npm install`.
+- Manually add your component to `lerna.json` and remove all not-to-be-released components from the same file.
+- Commit and push your lerna.json changes to the release branch.
+- Ensure you have the necessary credentials to push to the Githup repo via commandline commands (the following lerna commands do this automatically).
 - Run `npm run test && npx lerna version && npx lerna publish from-package`
 - Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
-- Lerna will update the component `package.json` with new version numbers and auto-commit/push those
-- Manually undo the removal of all not-to-be-released components in lerna.json, commit and push again to the release branch
-- merge the release branch to the `develop` branch in order to preserve the new version numbers
+- Lerna will update the component `package.json` with new version numbers and auto-commit/push those.
+- Manually undo the removal of all not-to-be-released components in lerna.json, run `npm install` and commit the generated package-lock files to the release branch.
+- Merge the release branch to the `develop` branch in order to preserve the new version numbers.

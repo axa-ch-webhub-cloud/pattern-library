@@ -2,6 +2,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 class AXAFieldset extends NoShadowDOM {
@@ -22,8 +23,7 @@ class AXAFieldset extends NoShadowDOM {
 
   constructor() {
     super();
-    this.horizontal = false;
-    this.error = '';
+    applyDefaults(this);
   }
 }
 

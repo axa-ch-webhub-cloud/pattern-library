@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface AXACheckboxProps {
+  refId?: string;
   value?: string;
   name?: string;
   label?: string;

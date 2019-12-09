@@ -2,7 +2,9 @@ import { html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+import createRefId from '../../../utils/create-ref-id';
 
 class AXACheckbox extends NoShadowDOM {
   static get tagName() {
@@ -11,9 +13,11 @@ class AXACheckbox extends NoShadowDOM {
 
   static get properties() {
     return {
-      value: { type: String },
+      refId: { type: String, defaultValue: `checkbox-${createRefId()}` },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       label: { type: String },
+      type: { type: String, defaultValue: 'checkbox' },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -51,14 +55,8 @@ class AXACheckbox extends NoShadowDOM {
       native: false,
     };
     // initialize properties
-    this.type = 'checkbox';
-    this.value = '';
-    this.name = '';
-    this.label = '';
-    this.required = false;
-    this.disabled = false;
-    this.error = '';
-    this.isReact = false;
+
+    applyDefaults(this);
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};
@@ -107,6 +105,7 @@ class AXACheckbox extends NoShadowDOM {
   render() {
     // extract props and state
     const {
+      refId,
       value,
       name,
       label = '',
@@ -127,8 +126,9 @@ class AXACheckbox extends NoShadowDOM {
       clearTimeout(timer);
     }
     return html`
-      <label class="a-checkbox__wrapper">
+      <label for="${refId}" class="a-checkbox__wrapper">
         <input
+          id="${refId}"
           class="a-checkbox__input"
           type="checkbox"
           name="${name}"
@@ -144,7 +144,14 @@ class AXACheckbox extends NoShadowDOM {
         <span class="a-checkbox__icon"></span>
         ${label &&
           html`
-            <span class="a-checkbox__content">${unsafeHTML(label)} ${required ? html`*` : ''}</span>
+            <span class="a-checkbox__content"
+              >${unsafeHTML(label)}
+              ${required
+                ? html`
+                    *
+                  `
+                : ''}</span
+            >
           `}
         ${error
           ? html`

@@ -3,6 +3,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
+import { applyDefaults } from '../../../utils/with-react';
 
 import styles from './index.scss';
 
@@ -25,8 +26,8 @@ class AXARadio extends NoShadowDOM {
 
   static get properties() {
     return {
-      refId: { type: String },
-      value: { type: String },
+      refId: { type: String, defaultValue: `axa-radio-${createRefId()}` },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       name: { type: String, reflect: true },
       label: { type: String },
       checked: {
@@ -130,17 +131,8 @@ class AXARadio extends NoShadowDOM {
       native: false,
     };
     // initialize properties
-    this.refId = createRefId('axa-radio-');
-    this.value = '';
-    this.name = '';
-    this.label = '';
-    this.icon = '';
-    this.error = '';
-    this.disabled = false;
-    this.button = false;
-    this.noGap = false;
-    this.focus = false;
-    this.isReact = false;
+    applyDefaults(this);
+
     this.onFocus = () => {};
     this.onBlur = () => {};
     this.onChange = () => {};

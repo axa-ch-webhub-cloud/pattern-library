@@ -7,7 +7,7 @@ describe('Icon', () => {
     const mySvgString = '<svg></svg>';
     AXAIcon.prototype.icon = mySvgString;
 
-    AXAIcon.prototype.firstUpdated();
+    AXAIcon.prototype.updated();
 
     expect(AXAIcon.prototype._loadedSvg).toBe(mySvgString);
     expect(AXAIcon.prototype.size).toBe('auto');
@@ -15,14 +15,14 @@ describe('Icon', () => {
   test('firstUpdated() should map icon correctly', () => {
     AXAIcon.prototype.icon = 'download';
 
-    AXAIcon.prototype.firstUpdated();
+    AXAIcon.prototype.updated();
 
     expect(AXAIcon.prototype._loadedSvg).toBe(DownloadSvg);
   });
   test('firstUpdated() should set _loadedSvg to empty string', () => {
     AXAIcon.prototype.icon = 'thisIsNotValid';
 
-    AXAIcon.prototype.firstUpdated();
+    AXAIcon.prototype.updated();
 
     expect(AXAIcon.prototype._loadedSvg).toBe('');
   });
