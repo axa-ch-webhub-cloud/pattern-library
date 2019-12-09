@@ -27,10 +27,10 @@ const _getComponentInfo = () => {
   elementMapping.set('30-organisms', 'o-');
 
   const cwdAsStringArray = process.cwd().split('/');
+  const componentDirectoryName = cwdAsStringArray[cwdAsStringArray.length - 2]
   const customElementName = componentPackageJson.name.replace('@axa-ch/', '');
-  const customElementTypePrefix = elementMapping.get(
-    cwdAsStringArray[cwdAsStringArray.length - 2]
-  ); // atom (a-) / molecule (m-) / organism (o-)
+  // atom (a-) / molecule (m-) / organism (o-)
+  const customElementTypePrefix = elementMapping.get(componentDirectoryName); 
   const newPrefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
   return {
     prefix: newPrefix, // 'nva1-2-3'
