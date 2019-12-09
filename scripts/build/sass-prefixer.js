@@ -1,8 +1,8 @@
 /**
  * This is a helper function that prefixes css classes in javascript.
  *
- * @param {string} selector: Selector being passed, e.g. '.m-datepicker .m-datepicker__check:after'
- * @param {object} componentInfo: Object containing componentName and prefixes
+ * @param {string} selector Selector being passed, e.g. '.m-datepicker .m-datepicker__check:after'
+ * @param {object} componentInfo Object containing componentName and prefixes
  */
 export default function prefixSass(selector, componentInfo) {
   const splitSelectors = selector.split('.');
