@@ -3,6 +3,8 @@
 const glob = require('glob');
 const fs = require('fs');
 
+const componentPackageJson = require(`${process.cwd()}/package.json`);
+
 const jsFilesToPrefix = glob
   .sync('**/*.js', {
     ignore: [
@@ -18,27 +20,34 @@ const jsFilesToPrefix = glob
   })
   .map(f => `./${f}`);
 
-const componentPackageJson = require(`${process.cwd()}/package.json`);
+const _getComponentInfo = () => {
+  const elementMapping = new Map();
+  elementMapping.set('10-atoms', 'a-');
+  elementMapping.set('20-molecules', 'm-');
+  elementMapping.set('30-organisms', 'o-');
 
-const types = new Map();
-types.set('10-atoms', 'a-');
-types.set('20-molecules', 'm-');
-types.set('30-organisms', 'o-');
-
-const componentName = componentPackageJson.name.replace('@axa-ch/', '');
-const cwdAsStringArray = process.cwd().split('/');
-const componentTypePrefix = types.get(
-  cwdAsStringArray[cwdAsStringArray.length - 2]
-); // atom (a-) / molecule (m-) / organism (o-)
-const newPrefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
-
-export const componentInfo = {
-  prefix: newPrefix, // newPrefix
-  standardComponentClassPrefix: componentTypePrefix + componentName, // a-button-link componentName
-  cssPrefix: `${newPrefix}_${componentTypePrefix}${componentName}`, // .nva1-1-1_a-button-link prefixedComponentName
+  const cwdAsStringArray = process.cwd().split('/');
+  const customElementName = componentPackageJson.name.replace('@axa-ch/', '');
+  const customElementTypePrefix = elementMapping.get(
+    cwdAsStringArray[cwdAsStringArray.length - 2]
+  ); // atom (a-) / molecule (m-) / organism (o-)
+  const newPrefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
+  return {
+    prefix: newPrefix, // 'nva1-2-3'
+    standardComponentClassPrefix: customElementTypePrefix + customElementName, // a-button-link
+    cssPrefix: `${newPrefix}_${customElementTypePrefix}${customElementName}`, // .nva1-2-3_a-button-link
+  };
 };
 
-const parseFile = file => {
+export const componentInfo = _getComponentInfo();
+
+/**
+ * Look for all classes and replace all that start with the BEM prefix and add
+ * the versioned prefix.
+ *
+ * @param {string} file: Filename, e.g. './index.js'
+ */
+const _prefixJS = file => {
   fs.copyFileSync(file, `${file}.bak`);
   const content = fs.readFileSync(file, 'utf8');
   const afterReplace = content
@@ -51,16 +60,21 @@ const parseFile = file => {
   fs.writeFileSync(file, afterReplace);
 };
 
-let counter;
-
-export default function jsPrefixer(amountOfConfigs) {
+/**
+ * Every config will make the prefixer run again. We only want to parse the
+ * file once, since the result would anyway stay the same.
+ *
+ * @param {number} iterations: Number of iterations
+ */
+export default function jsPrefixer(iterations) {
+  let counter;
   return {
     name: 'js-prefixer',
     buildStart: () => {
-      if (!counter) counter = amountOfConfigs;
-      if (counter === amountOfConfigs) {
+      if (!counter) counter = iterations;
+      if (counter === iterations) {
         jsFilesToPrefix.forEach(f => {
-          parseFile(f);
+          _prefixJS(f);
         });
       }
     },
@@ -71,7 +85,7 @@ export default function jsPrefixer(amountOfConfigs) {
           fs.unlinkSync(`${file}.bak`);
         });
       }
-      --counter;
+      counter -= 1;
     },
   };
 }
