@@ -18,14 +18,13 @@ Open your code editor of choice and edit your desired component/package in
 
 ## Rules and Lintings
 
-- We export only Web Components. No separate distribution of SASS mixins, JS, HTML and SCSS files.
 - We use [prettier](https://prettier.io/).
 
 ### Style Rules
 
 - We follow DRY, KISS, YAGNI principles when we write SCSS. This includes variables, mixins, etc.
 - We remove the linting of ordering and grouping of CSS properties. Only includes have to be at the beginning.
-- We won't have settings for vertical rhythm or global spacing.
+- We will not have settings for vertical rhythm or global spacing.
 
 ### JS Rules
 
@@ -82,7 +81,7 @@ it('should sum numbers', () => {
 
 ### Best Practices
 
-- Never calculate *derived properties* (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
+- Never calculate _derived properties_ (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
 - Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`.
 - Do not use console logs in the DEMOs because we cannot expect our user to have DEV Tools open
 - Never and in any circumstances use bitwise operators
@@ -93,25 +92,26 @@ it('should sum numbers', () => {
 - Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Click [here (pod-havarie)](https://github.com/axa-ch/pod-havarie#other-refactorings-from-wtf-code-to-normal-code) to see an example where the DEV wanted to be cool in not using a for loop and made ugly, harldy readable hacks.
 
 Here are some example DO'S and DONT'S:
+
 ```js
 // DO
   if(myArray.indexOf(4) > -1) { console.log("Here I'm") }
 // DON'T
   if(~myArray.indexOf(4)) { ... }
-  
+
 // ----------
 // DO
   const tempObject = isEvent ? events : attrs;
   tempObject[name] = props[name];
 // DON'T
   (isEvent ? events : attrs)[name] = props[name];
-  
+
 // ----------
 // DO
   if(parseInt(myText, 10) === 1) { console.log("Text is number 1") }
 // DON'T
   if(+myText === 1) { console.log("Text is number 1") }
-  
+
 // ----------
 // DO
   if (selectedIndex === index || parseInt(selectedIndex, 10) === parseInt(index, 10)) {
@@ -123,7 +123,7 @@ Here are some example DO'S and DONT'S:
     // ==: indices may be number or string
     return;
   }
-  
+
 // ----------
 // DO
   const selectedIndex = index || 0;
@@ -183,3 +183,18 @@ storiesOf('Molecules/Top content bar', module)
 - Lerna will update the component `package.json` with new version numbers and auto-commit/push those.
 - Manually undo the removal of all not-to-be-released components in lerna.json, run `npm install` and commit the generated package-lock files to the release branch.
 - Merge the release branch to the `develop` branch in order to preserve the new version numbers.
+
+## Versioning
+
+For us to being able to have multiple versions of components on a webpage, we version the CSS classes. In production, all classes will have a prefix. This prefix makes sure that CSS is targeting only components of the same version and prevent CSS from leaking into other components.
+
+Prefix structure: `nva${COMPONENT_VERSION_BEFORE_PUBLISH}`
+
+**What does that mean?**
+`nva` stands for "next version after...". At the time of building, the package.json consists still the version of the previous release. Only upon releasing, our monorepository framework `lerna` will increase the number and publish it. This means, that whenever you see `nva1-2-3_button-link` you have to keep in mind that the version in productions is the version that was released after the number that this prefix is indicating.
+
+**How does the workflow look like with this?**
+The developer works on a component as usual. This whole process will not bother during development. As soon as the components gets built, the artifact will contain the prefixes.
+
+**Is there a way to verify that it works before a publish?**
+Yes. After the components is built, `npm link` can be run from the components root folder (no the project root folder). After that, anywhere on the computer, this artifact can be used by running `npm link @axa-ch/COMPONENT_NAME`. This will create a symlink directly from your artifact to the destination.
