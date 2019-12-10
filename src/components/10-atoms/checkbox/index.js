@@ -166,11 +166,11 @@ class AXACheckbox extends NoShadowDOM {
       />
     `;
 
-    const errorElement =
-      error &&
-      html`
-        <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-      `;
+    const errorElement = error
+      ? html`
+          <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+        `
+      : html``;
 
     return hasChildren || label
       ? html`
