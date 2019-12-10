@@ -21,6 +21,10 @@ const handleChange = self => event => {
 
 // CE CLASS
 class LabelledCheckbox extends LitElement {
+  static get tagName() {
+    return 'check-box';
+  }
+
   static get properties() {
     return {
       label: { type: String },
@@ -138,18 +142,5 @@ class LabelledCheckbox extends LitElement {
 }
 
 // EXPORTS
-const localName = defineOnce('check-box', LabelledCheckbox, styles);
-export default createElement => ({
-  label,
-  checked,
-  disabled,
-  name,
-  value,
-  onChange,
-  children,
-}) =>
-  withReact(createElement)(
-    localName,
-    { label, checked, disabled, name, value, onChange, isReact: 1 },
-    children
-  );
+defineOnce('check-box', LabelledCheckbox, styles);
+export default createElement => withReact(createElement, LabelledCheckbox);

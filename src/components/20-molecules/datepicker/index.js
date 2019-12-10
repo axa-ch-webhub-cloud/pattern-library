@@ -107,11 +107,12 @@ class AXADatepicker extends NoShadowDOM {
           fromAttribute: value => (value ? new Date(value) : null),
           toAttribute: value => (value ? value.toISOString() : null),
         },
+        defaultValue: new Date(),
       },
       outputdate: { type: String, reflect: true },
-      year: { type: Number, reflect: true },
-      month: { type: Number, reflect: true },
-      day: { type: Number, reflect: true },
+      year: { type: Number, reflect: true, defaultValue: undefined },
+      month: { type: Number, reflect: true, defaultValue: undefined },
+      day: { type: Number, reflect: true, defaultValue: undefined },
       refId: { type: String, defaultValue: `datepicker-${createRefId()}` },
       inverted: { type: Boolean, reflect: true },
       inputfield: { type: Boolean, reflect: true },
@@ -203,16 +204,6 @@ class AXADatepicker extends NoShadowDOM {
     });
   }
 
-  initProp(name, defaultValue) {
-    let value;
-    if (!this.isReact) {
-      value = this[name] || this.getAttribute(name);
-    }
-    if ((value !== undefined && value !== null) || defaultValue !== undefined) {
-      this[name] = value !== undefined ? value : defaultValue;
-    }
-  }
-
   constructor() {
     super();
     // internal model state
@@ -230,8 +221,6 @@ class AXADatepicker extends NoShadowDOM {
       () => this.handleViewportCheck(this.input),
       250
     );
-
-    this.initDate(new Date());
   }
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
@@ -433,6 +422,8 @@ class AXADatepicker extends NoShadowDOM {
       state: { isControlled },
       isReact,
       defaultValue,
+      day,
+      month,
       year,
       autofocus,
       startDate,
@@ -454,7 +445,12 @@ class AXADatepicker extends NoShadowDOM {
     }
 
     if (!isControlled) {
-      this.initDate(null, year || startDate.getFullYear());
+      this.initDate(
+        null,
+        year || startDate.getFullYear(),
+        month || startDate.getMonth(),
+        day || startDate.getDate()
+      );
     }
   }
 
@@ -516,7 +512,6 @@ class AXADatepicker extends NoShadowDOM {
       // day -1 = one day before last day of prev. month, ...
       startDate.setDate(day);
     }
-
     this._date = startDate;
     const { _date } = this;
     _date.setHours(0);

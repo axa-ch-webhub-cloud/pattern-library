@@ -66,6 +66,9 @@ storiesOf('Molecules/Datepicker/React', module)
         labelbuttonok={labelbuttonok}
         id="datepicker-react"
         data-test-id="datepicker-react"
+        data-selenium-id="0815"
+        data-display-name={AXADatepickerReact.displayName}
+        className="my-special-class"
         onDateChange={newDate => {
           document.querySelector(
             'axa-datepicker[data-test-id="datepicker-react"]'

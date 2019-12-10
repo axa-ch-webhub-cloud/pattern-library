@@ -1,42 +1,4 @@
 import withReact from '../../../utils/with-react';
 import AXADropdown from './index';
 
-export default createElement => ({
-  'data-test-id': dataTestId,
-  label,
-  required,
-  items,
-  value,
-  name,
-  defaultTitle,
-  native,
-  checkMark,
-  invalid,
-  error,
-  disabled,
-  maxHeight,
-  className = '',
-  onChange = () => {},
-  onFocus = () => {},
-  onBlur = () => {},
-}) =>
-  withReact(createElement)(AXADropdown.tagName, {
-    'data-test-id': dataTestId,
-    label,
-    required,
-    items,
-    value,
-    name,
-    defaultTitle,
-    native,
-    checkMark,
-    invalid,
-    error,
-    disabled,
-    maxHeight,
-    className,
-    onChange,
-    onFocus,
-    onBlur,
-    isReact: true,
-  });
+export default createElement => withReact(createElement, AXADropdown);

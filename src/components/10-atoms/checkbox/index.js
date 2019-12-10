@@ -14,7 +14,7 @@ class AXACheckbox extends NoShadowDOM {
   static get properties() {
     return {
       refId: { type: String, defaultValue: `checkbox-${createRefId()}` },
-      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
+      value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
       type: { type: String, defaultValue: 'checkbox' },
@@ -22,6 +22,7 @@ class AXACheckbox extends NoShadowDOM {
       checked: {
         type: Boolean,
         reflect: true,
+        defaultValue: undefined, // proper default for controlled-mode under React
       },
       defaultChecked: {
         type: Boolean,
@@ -95,7 +96,7 @@ class AXACheckbox extends NoShadowDOM {
     // *schedule* a UI update from model state in the near future
     // (if no changed prop value is seen, triggering re-rendering,
     // that scheduled update actually happens!)
-    this.state.timer = setTimeout(() => this.updated(), 0);
+    this.state.timer = setTimeout(() => this.updated('via-handleChange'), 0);
     // set *uncontrolled* model state from native checkbox behaviour
     this.state.native = event.target.checked;
     // invoke event callback
@@ -172,7 +173,10 @@ class AXACheckbox extends NoShadowDOM {
 
   // this lifecycle method will regularly be called after render() -
   // but also *indirectly* via the handleChange event handler!
-  updated() {
+  updated(why) {
+    if (why === 'via-handleChange') {
+      this.state.firstUpdate = false;
+    }
     const {
       state: { isControlled, checked, native },
     } = this;

@@ -370,6 +370,23 @@ test('should allow month change from default date', async t => {
     .contains(newDateString);
 });
 
+fixture('Datepicker React empty inputfield').page(
+  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
+);
+
+test('should pass through className and arbitrary data- attributes + have automatic React displayName', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector(`#datepicker-react`)
+  );
+  await t.setTestSpeed(0.5);
+  await t.expect(datepicker.exists).ok();
+  await t.expect(datepicker.getAttribute('class')).eql('my-special-class');
+  await t.expect(datepicker.getAttribute('data-selenium-id')).eql('0815');
+  await t
+    .expect(datepicker.getAttribute('data-display-name'))
+    .eql('AxaDatepicker');
+});
+
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
 );

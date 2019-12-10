@@ -20,7 +20,6 @@ const DemoUncontrolledDropdown = props => {
       title="Please Select"
       items={items}
       label={props.label}
-      value={props.value}
       defaultTitle={props.defaultTitle}
       name={props.name}
       invalid={props.invalid}

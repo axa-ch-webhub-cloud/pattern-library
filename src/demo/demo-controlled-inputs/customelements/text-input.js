@@ -22,6 +22,10 @@ const validateIfNeeded = self => event => {
 
 // CE
 class TextInput extends LitElement {
+  static get tagName() {
+    return 'text-input';
+  }
+
   static get properties() {
     return {
       value: { type: String },
@@ -103,17 +107,5 @@ class TextInput extends LitElement {
 }
 
 // EXPORTS
-const localName = defineOnce('text-input', TextInput);
-export default createElement => ({
-  value,
-  name,
-  validate,
-  validator,
-  onChange,
-  children,
-}) =>
-  withReact(createElement)(
-    localName,
-    { value, name, validate, validator, onChange, isReact: 1 },
-    children
-  );
+defineOnce('text-input', TextInput);
+export default createElement => withReact(createElement, TextInput);
