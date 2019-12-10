@@ -67,6 +67,7 @@ class AXACheckbox extends NoShadowDOM {
 
     // initialize labelTextElement when children are avaiabled and wrap them
     this.hasChildren = false;
+    this.iteration = 1;
     if (this.innerHTML) {
       this.wrapChildren();
     }
@@ -201,10 +202,27 @@ class AXACheckbox extends NoShadowDOM {
 
   // react has no innerHTML on render
   shouldUpdate() {
-    const { isReact } = this;
-    if (isReact && this.innerHTML && !this.labelTextElement) {
+    const {
+      isReact,
+      hasChildren,
+      label,
+      labelTextElement,
+      innerHTML,
+      iteration,
+    } = this;
+
+    // if react & innerHTML is set or if is react and has a label and innerHTML
+    if (
+      isReact &&
+      innerHTML !== '' &&
+      !hasChildren &&
+      !labelTextElement &&
+      (!label || (label && iteration === 1))
+    ) {
       this.wrapChildren();
     }
+
+    this.iteration += 1;
     return true;
   }
 
