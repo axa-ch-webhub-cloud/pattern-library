@@ -51,25 +51,25 @@ const applyDefaults = ceInst => {
     }
 
     // respect property values defined before CE is constructed
-    if (!ceInst.isReact) {
-      let value = ceInst[property];
-      if (isDefined(value)) {
-        return;
-      }
-      // Boolean attributes in HTML are true if present, false otherwise.
-      // For all other types, get their value as string...
-      value =
-        type === Boolean
-          ? ceInst.hasAttribute(property)
-          : ceInst.getAttribute(property);
 
-      // .. and if defined
-      if (isDefined(value)) {
-        // convert it
-        ceInst[property] = convert(value, type);
-        return;
-      }
+    let value = ceInst[property];
+    if (isDefined(value)) {
+      return;
     }
+    // Boolean attributes in HTML are true if present, false otherwise.
+    // For all other types, get their value as string...
+    value =
+      type === Boolean
+        ? ceInst.hasAttribute(property)
+        : ceInst.getAttribute(property);
+
+    // .. and if defined
+    if (isDefined(value)) {
+      // convert it
+      ceInst[property] = convert(value, type);
+      return;
+    }
+
     // otherwise, apply default
 
     // make sure the set value() function is never triggered when defaultValue
