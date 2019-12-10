@@ -1,7 +1,7 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable import/no-extraneous-dependencies */
 const glob = require('glob');
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const componentPackageJson = require(`${process.cwd()}/package.json`);
 
@@ -47,9 +47,9 @@ export const componentInfo = _getComponentInfo();
  *
  * @param {string} file Filename, e.g. './index.js'
  */
-const _prefixJS = file => {
-  fs.copyFileSync(file, `${file}.bak`);
-  const content = fs.readFileSync(file, 'utf8');
+const _prefixJS = async file => {
+  await fs.copyFile(file, `${file}.bak`);
+  const content = await fs.readFile(file, 'utf8');
   const afterReplace = content
     .split(`"${componentInfo.standardComponentClassPrefix}`)
     .join(`"${componentInfo.cssPrefix}`)
@@ -57,7 +57,7 @@ const _prefixJS = file => {
     .join(`'${componentInfo.cssPrefix}`)
     .split(` ${componentInfo.standardComponentClassPrefix}`)
     .join(` ${componentInfo.cssPrefix}`);
-  fs.writeFileSync(file, afterReplace);
+  await fs.writeFile(file, afterReplace);
 };
 
 /**
@@ -70,22 +70,26 @@ export default function jsPrefixer(iterations) {
   let counter;
   return {
     name: 'js-prefixer',
-    buildStart: () => {
+    buildStart: async () => {
       if (!counter) {
         counter = iterations;
       }
       if (counter === iterations) {
+        const filesToParseQueue = [];
         JS_FILES_TO_PREFIX.forEach(f => {
-          _prefixJS(f);
+          filesToParseQueue.push(_prefixJS(f));
         });
+        await Promise.all(filesToParseQueue);
       }
     },
     buildEnd: () => {
       if (counter === 1) {
+        const fileCopyQueue = [];
         JS_FILES_TO_PREFIX.forEach(file => {
-          fs.copyFileSync(`${file}.bak`, file);
-          fs.unlinkSync(`${file}.bak`);
+          fileCopyQueue.push(fs.copyFile(`${file}.bak`, file)) ;
         });
+        Promise.all(fileCopyQueue).then(JS_FILES_TO_PREFIX.forEach(file =>
+          fs.unlink(`${file}.bak`)));
       }
       counter -= 1;
     },
