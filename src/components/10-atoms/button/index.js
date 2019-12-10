@@ -10,10 +10,12 @@ import buttonCSS from './index.scss';
 
 const ARROW_RIGHT = 'arrow-right';
 
+// eslint-disable-next-line no-undef
+const isNativeShadowDOM = ShadowRoot.toString().indexOf('native code') > -1;
+
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
-const eventIsNotTrusted = e =>
-  !(!e.screenX && !e.screenY && !e.clientX && !e.clientY);
+const eventIsTrusted = e => e.screenX || e.screenY || e.clientX || e.clientY;
 
 class AXAButton extends LitElement {
   static get tagName() {
@@ -36,7 +38,6 @@ class AXAButton extends LitElement {
       size: { type: String },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-      onClick: { type: Function },
     };
   }
 
@@ -60,9 +61,6 @@ class AXAButton extends LitElement {
   firstUpdated() {
     const { style } = this;
 
-    // eslint-disable-next-line no-undef
-    const isNativeShadowDOM = ShadowRoot.toString().indexOf('native code') > -1;
-
     // shadow dom submit btn workaround
     // only use fakeButton when shadowDom is natively supported
     if (isNativeShadowDOM && this.isTypeSubmitOrReset) {
@@ -71,19 +69,7 @@ class AXAButton extends LitElement {
       fakeButton.style.display = 'none';
       this.appendChild(fakeButton);
 
-      // this click method is triggered due to bubbeling from the button inside
-      // shadowRoot. Do not be confused with onClick
-      this.onclick = e => {
-        // block propagation if event is not synthetic. We need only that
-        // the event coming from fake button is fired so that default
-        // form behaviour works (submit, reset, etc). The reason why it works with fake button is
-        // that fake button is NOT inside a shadow dom. The event instead
-        // bubbles out of shadow dom, hence the stop propagation trick
-        if (eventIsNotTrusted(e)) {
-          e.stopPropagation();
-          fakeButton.click();
-        }
-      };
+      this.fakeButton = fakeButton;
     }
 
     style.appearance = 'none';
@@ -91,7 +77,25 @@ class AXAButton extends LitElement {
     style.webkitAppearance = 'none';
     style.msAppearance = 'none';
     style.oAppearance = 'none';
+
+    // If someone fires a click on the button and its type is submit then trigger fake button
+    // press
+    this.onclick = e => {
+      this.handleClick(e);
+    };
   }
+
+  handleClick = e => {
+    // block propagation if event is not synthetic. We need only that
+    // the event coming from fake button is fired so that default
+    // form behaviour works (submit, reset, etc). The reason why it works with fake button is
+    // that fake button is NOT inside a ShadowDOM. The event instead
+    // bubbles out of ShadowDOM, hence the stop propagation trick
+    if (eventIsTrusted(e) && isNativeShadowDOM && this.isTypeSubmitOrReset) {
+      e.stopPropagation();
+      this.fakeButton.click();
+    }
+  };
 
   render() {
     const {
@@ -124,7 +128,7 @@ class AXAButton extends LitElement {
         type="${type}"
         class="${classMap(classes)}"
         ?disabled="${disabled}"
-        @click="${this.onClick}"
+        @click="${this.handleClick}"
       >
         <span class="a-button__flex-wrapper">
           ${this.showIcon
@@ -141,14 +145,6 @@ class AXAButton extends LitElement {
         </span>
       </button>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    if (this.isTypeSubmitOrReset) {
-      this.onclick = null;
-    }
   }
 }
 

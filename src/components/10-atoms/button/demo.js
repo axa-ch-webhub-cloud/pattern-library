@@ -28,12 +28,15 @@ storiesOf('Atoms/Button/Demos', module)
   .add('Feature - Button in a form', () => {
     let count = 0;
     const handleSubmit = ev => {
+      const { target } = ev;
       ev.preventDefault();
       count += 1;
+      console.log('handleSubmit');
 
+      const el = target.nodeName === 'AXA-BUTTON' ? target : target.parentNode;
       // this code is for test purposes. Its ok to write it as is only a demo
       // It also make sure the structure of the DOM is correct with the fake button
-      ev.target.parentNode.dataset.count = count;
+      el.dataset.count = count;
     };
 
     const template = html`
