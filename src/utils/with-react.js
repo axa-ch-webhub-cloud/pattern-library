@@ -10,14 +10,19 @@ const pascalCase = hyphenatedName =>
     .join('');
 
 // generic defaults (will be applied in the absence of explicit 'defaultValue')
-const DEFAULT_VALUE_OF_TYPE = new Map([
+// (IE11 does not support new Map([iterable]), so we have to initialize the map
+// with .set calls for each key)
+const DEFAULT_VALUE_OF_TYPE = new Map();
+[
   [String, ''],
   [Boolean, false],
   [Object, {}],
   [Array, []],
   [Number, 0],
   [Function, () => {}],
-]);
+].forEach(([key, value]) => {
+  DEFAULT_VALUE_OF_TYPE.set(key, value);
+});
 
 const convert = (value, type) => {
   if (type === Number) {
