@@ -89,8 +89,8 @@ class AXAButton extends LitElement {
     // block propagation if event is not synthetic. We need only that
     // the event coming from fake button is fired so that default
     // form behaviour works (submit, reset, etc). The reason why it works with fake button is
-    // that fake button is NOT inside a shadow dom. The event instead
-    // bubbles out of shadow dom, hence the stop propagation trick
+    // that fake button is NOT inside a ShadowDOM. The event instead
+    // bubbles out of ShadowDOM, hence the stop propagation trick
     if (eventIsTrusted(e) && isNativeShadowDOM && this.isTypeSubmitOrReset) {
       e.stopPropagation();
       this.fakeButton.click();
