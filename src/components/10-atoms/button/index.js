@@ -15,8 +15,7 @@ const isNativeShadowDOM = ShadowRoot.toString().indexOf('native code') > -1;
 
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
-const eventIsTrusted = e =>
-  !(!e.screenX && !e.screenY && !e.clientX && !e.clientY);
+const eventIsTrusted = e => e.screenX || e.screenY || e.clientX || e.clientY;
 
 class AXAButton extends LitElement {
   static get tagName() {
