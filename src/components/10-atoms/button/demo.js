@@ -49,7 +49,7 @@ storiesOf('Atoms/Button/Demos', module)
           for you for example you can validate me
         </p>
         <form @click="${handleSubmit}">
-          <axa-button data-dini="mueter" class="js-submit-prevent" type="submit"
+          <axa-button class="js-submit-prevent" type="submit"
             >Click me I prevent submit</axa-button
           >
         </form>
