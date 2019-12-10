@@ -200,7 +200,7 @@ class AXACheckbox extends NoShadowDOM {
     }
   }
 
-  // react has no innerHTML on render
+  // react has no innerHTML in constructor
   shouldUpdate() {
     const {
       isReact,
