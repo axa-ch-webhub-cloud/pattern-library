@@ -223,6 +223,8 @@ class AXACheckbox extends NoShadowDOM {
     }
 
     this.iteration += 1;
+
+    return true;
   }
 
   // this lifecycle method will regularly be called after render() -
