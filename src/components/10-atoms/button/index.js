@@ -39,7 +39,6 @@ class AXAButton extends LitElement {
       size: { type: String },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
-      onClick: { type: Function },
     };
   }
 
@@ -91,8 +90,6 @@ class AXAButton extends LitElement {
       e.stopPropagation();
       this.fakeButton.click();
     }
-
-    this.onClick(e);
   };
 
   render() {
@@ -143,14 +140,6 @@ class AXAButton extends LitElement {
         </span>
       </button>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    if (this.isTypeSubmitOrReset) {
-      this.onclick = null;
-    }
   }
 }
 
