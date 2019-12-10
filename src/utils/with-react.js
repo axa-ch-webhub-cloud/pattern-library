@@ -129,7 +129,7 @@ const distributeProperties = (properties, componentClass) => {
         value = value ? '' : null; // ''/null: canonicalize Boolean values s.t. val(...) sets or removes the attribute
         break;
       default:
-        map = attrs;
+        map = declaredType ? props : attrs;
     }
 
     // map property name to value
