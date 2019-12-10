@@ -166,11 +166,11 @@ class AXACheckbox extends NoShadowDOM {
       />
     `;
 
-    const errorElement = error
-      ? html`
-          <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-        `
-      : html``;
+    const errorElement =
+      error &&
+      html`
+        <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+      `;
 
     return hasChildren || label
       ? html`
@@ -223,7 +223,6 @@ class AXACheckbox extends NoShadowDOM {
     }
 
     this.iteration += 1;
-    return true;
   }
 
   // this lifecycle method will regularly be called after render() -

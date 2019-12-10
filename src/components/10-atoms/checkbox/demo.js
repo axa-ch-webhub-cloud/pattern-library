@@ -18,7 +18,6 @@ storiesOf('Atoms/Checkbox/Demos', module)
           name="checkbox"
           checked="false"
           required="true"
-          onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
           ><p>click <a href="https://www.google.ch" target="_blank">here</a></p>
         </axa-checkbox>
         <axa-checkbox
@@ -26,7 +25,6 @@ storiesOf('Atoms/Checkbox/Demos', module)
           name="checkbox"
           checked="false"
           required="true"
-          onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
           ><p>
             or click <a href="https://www.google.ch" target="_blank">here</a> if
             you prefere
