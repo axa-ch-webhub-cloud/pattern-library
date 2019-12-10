@@ -78,7 +78,7 @@ class AXAButton extends LitElement {
     style.msAppearance = 'none';
     style.oAppearance = 'none';
 
-    // If someone fires a click on the button and is submit then trigger fake button
+    // If someone fires a click on the button and its type is submit then trigger fake button
     // press
     this.onclick = e => {
       this.handleClick(e);
