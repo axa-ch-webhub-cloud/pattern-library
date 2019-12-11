@@ -94,8 +94,3 @@ The attribute `buttonname` specifies the text on the accept button
 ### onClick
 
 The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
-
-## ChangeLog
-
-- 1.0.3
-  - The background of the component is now a little bit transparent to see elements behind it

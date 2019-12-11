@@ -348,12 +348,3 @@ Here is a little documentation of typical slot-filling patterns:
 | `<a slot="social-item" href="" target="_blank"></a>` | Every child social link                |
 
 We currently require the social media SVG icons to also be explicitly defined as children of the child social links, because there is no way to predefine them internally.
-
-### Migrating from version 1.x.y to 2.x.y
-
-The breaking changes happened only in the `children`, and are listed here:
-
-- `<h2 slot="column-0-title-desktop">axa worldwide</h2>` -> desktop version of title has been removed.
-- `<a slot="column-0-item-X">` -> column and item index have been removed. Instead of column index, replace `-0-` with `-` resulting in `<a slot="column-item">`
-- `<h2 slot="column-title>` -> title column index has been replaced with `-`
-- `<a slot="social-item-2">` -> item index has been removed, resulting in `<a slot="social-item">`

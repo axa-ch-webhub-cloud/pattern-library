@@ -179,8 +179,3 @@ Its UI consequences are the same as a keyboard/mouse-initiated focus.
 The `blur()` method unfocusses the underlying native HTML &lt;input&gt;.
 
 Its UI consequences are the same as a keyboard/mouse-initiated blur.
-
-## ChangeLog
-
-- 2.4.7
-  - if no counter text is given the character count will not be displayed

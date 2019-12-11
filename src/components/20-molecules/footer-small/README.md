@@ -249,9 +249,3 @@ Add a callback method that should run as soon as a language link gets clicked.
 ### [React exclusive] onDisclaimerClick
 
 Add a callback method that should run as soon as a disclaimer link gets clicked.
-
-## Migration Notes
-
-From 1.x to 2.x: [Do not bother doing this, you should go straight to the 2.x to 3.x migration part and use the latest version] The necessary "key" property on the items was introduced. Not providing this key will break your component after upgrading.
-
-From 2.x to 3.x: Childfragments replaced the JSON structure. This is a complete overhaul and you need to start from scratch. The biggest change apart from that will be, that `onLanguageClick` and `onDisclaimerClick` now fire the index of the element, instead of a name or a key.

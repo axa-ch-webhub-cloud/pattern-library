@@ -248,7 +248,3 @@ Here is a complete example of how you can make use of it, including the position
 | ------------- | ------------------------------------------------------------------ |
 | `variant`     | 'dark' or 'light', sets the theme (gradient), light is the default |
 | `imagesource` | The source of the cover image (link or base64 string)              |
-
-### Migration Notes
-
-You don't have to pay attention to anything for upgrading to newer version.

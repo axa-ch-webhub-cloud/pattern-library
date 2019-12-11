@@ -69,7 +69,3 @@ The attribute `bar` specifies...
 ### onClick
 
 The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
-
-### Migration Notes
-
-You don't have to pay attention to anything for upgrading to newer version.
