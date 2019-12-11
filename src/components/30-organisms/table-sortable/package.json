@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/table-sortable",
-  "version": "1.3.8",
+  "version": "2.0.0",
   "description": "The table-sortable component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/table-sortable#readme",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@axa-ch/materials": "^2.0.2",
-    "@axa-ch/table": "^1.2.15",
+    "@axa-ch/table": "^2.0.0",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
