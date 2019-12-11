@@ -123,16 +123,3 @@ If not in controlled-component mode, two custom events `axa-change` and `change`
 `change`'s event `detail` is an object `{value,index,name}`,where `value` is the currently selected value, `index` is its 0-based index and `name` is the visible text corresponding to `value`.
 
 Both events do _not_ bubble up through the DOM.
-
-### Migrating from version 2 to 3
-
-The attribute `valid` was renamed to `checkmark` (respectively to the camel-case `checkMark` property used e.g. under React).
-
-The behaviour of `error` changed, now being reduced to specifying the error text only, whereas `invalid` controls when the error will be displayed.
-
-## ChangeLog
-
-- 3.2.2
-  - fix colors of selector icon in disabled state
-- 3.2.3
-  - If you have defaulttitle set and you are in enhanced mode the first element now have index 1 instead of 0. Because the first element of the native select is the defaulttitle and has index 0.

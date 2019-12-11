@@ -66,7 +66,7 @@ Import the carousel-defining script and use a carousel like this:
 
 ### autorotatedisabled
 
-This boolean attribute specifies if the slides will not automatically rotate.
+This Boolean attribute specifies if the slides will not automatically rotate.
 
 ### autorotatetime
 
@@ -78,8 +78,4 @@ This boolean attribute specifies if the keyboard navigation (left/right keys) sh
 
 ## Child Elements
 
-Do not set more than ~100 child elements. Because of height calculation the performance will be slow down.
-
-## Migration Notes
-
-You don't have to pay attention to anything for upgrading to newer version.
+Do not set more than ~100 child elements. Otherwise, because of height-calculation costs performance will suffer.

@@ -117,10 +117,3 @@ Its only parameter is the corresponding native event from the underlying `<input
 
 The function-valued property `onBlur` can be used as a callback prop for React and other frameworks.
 Its only parameter is the corresponding native event from the underlying `<input>` element.
-
-## ChangeLog
-
-- 1.1.15
-  - Add `refId` [#1528](https://github.com/axa-ch/patterns-library/pull/1528)
-  - Prevent doubled labels when `label` attribute isn't set [#1535](https://github.com/axa-ch/patterns-library/pull/1535)
-  - Allow setting a label through children of the component

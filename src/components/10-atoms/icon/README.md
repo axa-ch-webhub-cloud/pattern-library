@@ -85,9 +85,3 @@ The default behavior set the size of the svgs to 16x16 px, to use original size 
 | Attribute     |
 | ------------- |
 | `size="auto"` |
-
-## ChangeLog
-
-- 1.3.0
-  - add the possibility to set svg as a string
-  - add property `size` to react interface

@@ -106,11 +106,3 @@ The function-valued attribute `onClick` can be used as a callback prop for React
 ### className
 
 With this string attribute you can set a CSS class to the component.
-
-### Migration version 1 to 2
-
-The large property is obsolete, use size property like `size="large"`
-
-### Migration version 2 to 3
-
-All attributes now accept a default value BEFORE custom element is defined. Also all attributes are set with default values. This can have breaking changes where the consumer expects that attributes are not evaluated before custom element is defined.

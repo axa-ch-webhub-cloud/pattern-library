@@ -106,7 +106,3 @@ The Text of the element where you set this class will be uppercase. It has a mar
 ### class="o-testimonials__vertical-margin" (React: className="o-testimonials__vertical-margin")
 
 Set this class to your top level child elements. It sets a margin to your elements if you use `showallinline`.
-
-## Migration Notes
-
-You don't have to pay attention to anything for upgrading to newer version.
