@@ -33,12 +33,10 @@ storyCheckbox.add('Checkbox', () => {
       ?disabled="${disabled}"
       ?checked="${checked}"
       ?required="${required}"
-      onchange='console.log("checkbox", this.name, " changed to: ", this.checked)'
       error="${errortext
         ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
         : ''}"
-    >
-    </axa-checkbox>
+    ></axa-checkbox>
   `;
 
   render(template, wrapper);

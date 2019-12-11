@@ -108,3 +108,37 @@ test('should set checkbox element to disabled + not change state', async t => {
   await t.click($axaCheckbox);
   await t.expect($axaCheckbox.checked).notOk();
 });
+
+test('should set refId on label and input', async t => {
+  const $axaCheckbox = await Selector(TAG);
+  const label = await Selector('.a-checkbox__wrapper');
+  const input = await Selector('.a-checkbox__input');
+
+  await t.click($axaCheckbox);
+  await t.expect($axaCheckbox.checked).ok();
+
+  await t.expect(label.hasAttribute('for')).ok();
+  await t.expect(input.hasAttribute('id')).ok();
+
+  await t
+    .expect(
+      (await input.getAttribute('id')) === (await label.getAttribute('for'))
+    )
+    .ok();
+});
+
+fixture('Checkbox - Label as a child of the component').page(
+  `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-child-of-the-component`
+);
+
+test('should be clickable + change state and render parent label', async t => {
+  const $axaCheckbox = await Selector(TAG);
+  const label = $axaCheckbox.child();
+
+  await t.click($axaCheckbox);
+  await t.expect($axaCheckbox.checked).ok();
+  await t.expect($axaCheckbox.count).eql(2);
+
+  // has parent label
+  await t.expect(label).ok();
+});

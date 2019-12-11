@@ -31,9 +31,9 @@ const DemoCheckboxCallbackProps = () => {
       <div
         style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}
       >
-        <span>checked: { String(checked) }</span>
-        <span>focus: { String(focus) }</span>
-        <span>blur: { String(blur) }</span>
+        <span>checked: {String(checked)}</span>
+        <span>focus: {String(focus)}</span>
+        <span>blur: {String(blur)}</span>
       </div>
     </fieldset>
   );
