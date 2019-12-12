@@ -19,7 +19,6 @@ class AXALink extends LitElement {
       variant: { type: String },
       icon: { type: String },
       external: { type: Boolean },
-      onClick: { type: Function },
     };
   }
 
