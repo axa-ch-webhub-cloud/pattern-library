@@ -2,6 +2,8 @@
 
 # Title primary
 
+[Changelog](./CHANGELOG.md)
+
 Shows you an AXA conform title. A predefined size can be changed by setting a variant.
 
 ## Usage

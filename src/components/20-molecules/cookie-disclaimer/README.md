@@ -1,5 +1,7 @@
 # Cookie disclaimer
 
+[Changelog](./CHANGELOG.md)
+
 Shows a message that explains the conditions of the Data Protection Act. By
 clicking on the button, the component stores the date and time as an identifier in the local storage, tracking when the user has clicked. If an identifier is stored, the cookie disclaimer wont show anymore till the user deletes its cache.
 

@@ -1,5 +1,7 @@
 # AXA Checkbox
 
+[Changelog](./CHANGELOG.md)
+
 Checkboxes provide a UI element for toggling between two visual states, checked and unchecked.
 They can be labelled with text to explain the semantics of the checked state to users. Checkboxes
 can be used in HTML forms as well as [React controlled components](https://reactjs.org/docs/forms.html#controlled-components).

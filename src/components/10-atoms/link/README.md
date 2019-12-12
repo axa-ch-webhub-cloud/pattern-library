@@ -1,5 +1,7 @@
 # Link
 
+[Changelog](./CHANGELOG.md)
+
 The link component meant for hyper and simple links. Links can be styled via several properties to change their look-and-feel.
 
 All links support the colors "red" and "white" if declared within the `variant` attribute. See the explanation below.

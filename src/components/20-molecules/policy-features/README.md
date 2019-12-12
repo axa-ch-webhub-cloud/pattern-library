@@ -1,5 +1,7 @@
 # Policy features
 
+[Changelog](./CHANGELOG.md)
+
 With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it.
 
 ## Usage
@@ -19,10 +21,14 @@ Create a React-ified policy feature with the createElement function from your Re
 ```js
 // File: PolicyFeaturesReact.js
 import { createElement } from 'react';
-import createAXAPolicyFeaturesReact, {createAXAPolicyFeaturesItemReact} from '@axa-ch/policy-features/lib/index.react';
+import createAXAPolicyFeaturesReact, {
+  createAXAPolicyFeaturesItemReact,
+} from '@axa-ch/policy-features/lib/index.react';
 
 const AXAPolicyFeaturesReact = createAXAPolicyFeaturesReact(createElement);
-const AXAPolicyFeaturesItemReact = createAXAPolicyFeaturesItemReact(createElement);
+const AXAPolicyFeaturesItemReact = createAXAPolicyFeaturesItemReact(
+  createElement
+);
 
 export { AXAPolicyFeaturesReact, AXAPolicyFeaturesItemReact };
 ```
@@ -138,4 +144,4 @@ The size of the svg will be set to:
 
 ### description
 
-A text that describes your feature. 
+A text that describes your feature.

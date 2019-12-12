@@ -1,5 +1,7 @@
 # Footer
 
+[Changelog](./CHANGELOG.md)
+
 The big version of the footer. It is SEO friendly, can take custom links and also allows displaying social-media buttons to the user.
 
 ## Usage
