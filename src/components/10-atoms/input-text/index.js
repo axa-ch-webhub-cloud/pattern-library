@@ -251,21 +251,43 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         `}
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
-          <input
-            id="${refId}"
-            type="${type}"
-            class="${classMap(inputClasses)}"
-            autocomplete="off"
-            name="${name}"
-            value="${value}"
-            placeholder="${placeholder}"
-            aria-required="${required}"
-            maxlength="${maxLength}"
-            ?disabled="${disabled}"
-            @input="${this.handleInput}"
-            @focus="${this.handleFocus}"
-            @blur="${this.handleBlur}"
-          />
+        ${
+          window.safari
+            ? html`
+                <input
+                  id="${refId}"
+                  type="${type}"
+                  class="${classMap(inputClasses)}"
+                  autocomplete="off"
+                  name="${name}"
+                  value="${value}"
+                  placeholder="${placeholder}"
+                  aria-required="${required}"
+                  maxlength="${maxLength}"
+                  ?disabled="${disabled}"
+                  @input="${this.handleInput}"
+                  @focus="${this.handleFocus}"
+                  @blur="${this.handleBlur}"
+                />
+              `
+            : html`
+                <input
+                  id="${refId}"
+                  type="${type}"
+                  class="${classMap(inputClasses)}"
+                  autocomplete="off"
+                  name="${name}"
+                  .value="${value}"
+                  placeholder="${placeholder}"
+                  aria-required="${required}"
+                  maxlength="${maxLength}"
+                  ?disabled="${disabled}"
+                  @input="${this.handleInput}"
+                  @focus="${this.handleFocus}"
+                  @blur="${this.handleBlur}"
+                />
+              `
+        }
           ${
             this.showCheckMark
               ? html`
