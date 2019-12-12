@@ -89,7 +89,7 @@ class AXAButton extends LitElement {
     };
   }
 
-  handleClick = (e, ignoreOnClick = false) => {
+  handleClick = (e, eventIsManuallyFunctionTriggered = false) => {
     // block propagation if event is not synthetic. We need only that
     // the event coming from fake button is fired so that default
     // form behaviour works (submit, reset, etc). The reason why it works with fake button is
@@ -106,7 +106,7 @@ class AXAButton extends LitElement {
 
     // if click event is fired manually via javascript, the this.onclick = e => { function
     // will be called and therefore make sure to not trigger it again.
-    if (!ignoreOnClick && typeof onclick === 'function') {
+    if (!eventIsManuallyFunctionTriggered && typeof onclick === 'function') {
       onclick(e);
     }
   };
