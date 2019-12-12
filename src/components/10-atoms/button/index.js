@@ -70,12 +70,6 @@ class AXAButton extends LitElement {
       this.appendChild(fakeButton);
 
       this.fakeButton = fakeButton;
-    } else if (this.isTypeSubmitOrReset) {
-      // If someone fires a click on the button and its type is submit then trigger fake button
-      // press
-      this.onclick = e => {
-        this.handleClick(e);
-      };
     }
 
     style.appearance = 'none';
@@ -83,9 +77,15 @@ class AXAButton extends LitElement {
     style.webkitAppearance = 'none';
     style.msAppearance = 'none';
     style.oAppearance = 'none';
+
+    // If someone fires a click on the button and its type is submit then trigger fake button
+    // press
+    this.onclick = e => {
+      this.handleClick(e, true);
+    };
   }
 
-  handleClick = e => {
+  handleClick = (e, ignoreOnClick = false) => {
     // block propagation if event is not synthetic. We need only that
     // the event coming from fake button is fired so that default
     // form behaviour works (submit, reset, etc). The reason why it works with fake button is
@@ -94,10 +94,9 @@ class AXAButton extends LitElement {
     if (eventIsTrusted(e) && isNativeShadowDOM && this.isTypeSubmitOrReset) {
       e.stopPropagation();
       this.fakeButton.click();
-    } else if (
-      !this.isTypeSubmitOrReset &&
-      typeof this.onClick === 'function'
-    ) {
+    }
+
+    if (!ignoreOnClick && typeof this.onClick === 'function') {
       this.onClick(e);
     }
   };
