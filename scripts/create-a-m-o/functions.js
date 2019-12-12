@@ -76,9 +76,17 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
+    `${BASE_FOLDER}/CHANGELOG.md`,
+    `# Changelog`,
+    'utf8',
+  );
+
+  fs.writeFileSync(
     `${BASE_FOLDER}/README.md`,
     outdent`
     # ${compTitle}
+
+    [Changelog](./CHANGELOG.md)
 
     TODO Description
 
