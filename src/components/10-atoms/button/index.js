@@ -79,12 +79,17 @@ class AXAButton extends LitElement {
     style.oAppearance = 'none';
 
     if (typeof this.onclick === 'function') {
+      // cache original event so that we can fire it when internal button is pressed
+      // We are going to override original event so that someone can manually trigger
+      // onclick via function call
       this.originalOnclick = this.onclick;
     }
 
     // If someone fires a click on the button and its type is submit then trigger fake button
     // press
     this.onclick = e => {
+      // call handle click and pass flag to be sure that handle click does not call
+      // us back.
       this.handleClick(e, true);
     };
   }
