@@ -78,14 +78,23 @@ class AXAButton extends LitElement {
     style.msAppearance = 'none';
     style.oAppearance = 'none';
 
+    if (typeof this.onclick === 'function') {
+      // cache original event so that we can fire it when internal button is pressed
+      // We are going to override original event so that someone can manually trigger
+      // onclick via function call
+      this.originalOnclick = this.onclick;
+    }
+
     // If someone fires a click on the button and its type is submit then trigger fake button
     // press
     this.onclick = e => {
-      this.handleClick(e);
+      // call handle click and pass flag to be sure that handle click does not call
+      // us back.
+      this.handleClick(e, true);
     };
   }
 
-  handleClick = e => {
+  handleClick = (e, eventIsManuallyFunctionTriggered = false) => {
     // block propagation if event is not synthetic. We need only that
     // the event coming from fake button is fired so that default
     // form behaviour works (submit, reset, etc). The reason why it works with fake button is
@@ -94,6 +103,16 @@ class AXAButton extends LitElement {
     if (eventIsTrusted(e) && isNativeShadowDOM && this.isTypeSubmitOrReset) {
       e.stopPropagation();
       this.fakeButton.click();
+    }
+
+    // If we are under react, onClick will be camel Case onClick. If so, use it
+    // otherwise if a consumer defined a onclick="fn", call that instead
+    const onclick = this.onClick || this.originalOnclick;
+
+    // if click event is fired manually via javascript, the this.onclick = e => { function
+    // will be called and therefore make sure to not trigger it again.
+    if (!eventIsManuallyFunctionTriggered && typeof onclick === 'function') {
+      onclick(e);
     }
   };
 
