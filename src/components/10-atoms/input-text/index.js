@@ -252,8 +252,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
         ${
-          // Safari has a jumping cursor bug, which is fixed with this approach.
-          // Downside: After a user manipulated an input field, it cannot be visibly changed again by javascript.
+          // On Safari, the caret (cursor) jumps to the end of the value, which
+          // is fixed with this approach.
+          // Downside: After a user manipulated the value manually, it cannot
+          // be updated anymore by javascript (safari only).
           window.safari
             ? html`
                 <input
