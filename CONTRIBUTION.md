@@ -89,7 +89,7 @@ it('should sum numbers', () => {
 - Never and in any circumstances use `==` over `===`
 - Enumerate as many falsy values in your Boolean checks as possible and be aware that `0` and `""` are also falsy.
 - The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle. But even more important is to know exactly when to break it. Sometimes a super DRY climate can lead to over-engineered solutions that end up being unmaintainable :grinning:. There is no rule here, just be careful to not implement a system that is too complex. Lots of options in interfaces or configuration possibilities could be one indicator that the system gets too complex.
-- If you have side effects outside of your component (e.g. global event listeners, added DOM nodes ) you have to undo those side effects in disconnectedCallback
+- If you have side effects outside of your component (e.g. global event listeners, added DOM nodes) you have to undo those side effects in disconnectedCallback
 - Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Here are some example DO'S and DONT'S:
 ```js
 // DO
