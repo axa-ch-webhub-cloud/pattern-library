@@ -1,8 +1,8 @@
 import React from 'react';
 
 export interface AXAFooterSmallProps {
-  onLanguageClick?: (language: string) => void;
-  onDisclaimerClick?: (language: string) => void;
+  onLanguageClick?: (languageIndex: number) => void;
+  onDisclaimerClick?: (disclaimerIndex: number) => void;
   className?: string;
   // set to true if want to use onLanguageClick/onDisclaimerClick callbacks
   dynamic?: boolean;
