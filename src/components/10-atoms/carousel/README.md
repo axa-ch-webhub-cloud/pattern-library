@@ -1,5 +1,7 @@
 # Carousel
 
+[Changelog](./CHANGELOG.md)
+
 Every child is rendered as a slide. Only one child is visible at one time.
 
 ## Usage

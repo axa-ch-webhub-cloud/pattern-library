@@ -1,6 +1,6 @@
 # Popup
 
-TODO Description
+[Changelog](./CHANGELOG.md)
 
 ## Usage
 
@@ -30,8 +30,7 @@ export default AXAPopupReact;
 ```
 
 ```js
-<AXAPopupReact onClick={handler}>
-</AXAPopupReact>
+<AXAPopupReact onClick={handler} />
 ```
 
 ### Pure HTML pages
@@ -58,9 +57,9 @@ Import the popup-defining script and use a popup like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute       | Details         |
+| --------------- | --------------- |
+| `variant="foo"` | Desc of Variant |
 
 ### Bar
 

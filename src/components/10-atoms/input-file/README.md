@@ -1,5 +1,7 @@
 # Input file
 
+[Changelog](./CHANGELOG.md)
+
 Input-File provides a clickable element, which can be used in forms to upload files. The upload function can be restricted with several attributes. They may display text, icons, or both. Input-File can be styled via properties like the [axa-button](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button/README.md) or [axa-button-link](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button-link/README.md).
 
 ## Usage

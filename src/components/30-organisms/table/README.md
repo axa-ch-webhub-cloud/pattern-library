@@ -1,5 +1,7 @@
 # AXA Table
 
+[Changelog](./CHANGELOG.md)
+
 Install it with your CLI:
 `npm install @axa-ch/table`
 

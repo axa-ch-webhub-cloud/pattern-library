@@ -1,5 +1,7 @@
 # File upload
 
+[Changelog](./CHANGELOG.md)
+
 A component used for uploading files in forms.
 
 ## Requirements

@@ -1,5 +1,7 @@
 # Radio
 
+[Changelog](./CHANGELOG.md)
+
 Radio buttons provide a UI element for selecting one out of several visible choices.
 One may label them with text to explain the semantics of the selected choice to users.
 

@@ -1,5 +1,7 @@
 # AXA Datepicker
 
+[Changelog](./CHANGELOG.md)
+
 ## Usage
 
 ```bash
