@@ -78,6 +78,10 @@ class AXAButton extends LitElement {
     style.msAppearance = 'none';
     style.oAppearance = 'none';
 
+    if (typeof this.onclick === 'function') {
+      this.originalOnclick = this.onclick;
+    }
+
     // If someone fires a click on the button and its type is submit then trigger fake button
     // press
     this.onclick = e => {
@@ -96,8 +100,10 @@ class AXAButton extends LitElement {
       this.fakeButton.click();
     }
 
-    if (!ignoreOnClick && typeof this.onClick === 'function') {
-      this.onClick(e);
+    const onclick = this.onClick || this.originalOnclick;
+
+    if (!ignoreOnClick && typeof onclick === 'function') {
+      onclick(e);
     }
   };
 
