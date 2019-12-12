@@ -22,7 +22,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       label: { type: String },
       required: { type: Boolean },
       placeholder: { type: String },
-      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
+      value: { type: String, reflect: true, defaultValue: undefined }, // proper default for controlled-mode under React
       defaultValue: { type: String },
       type: { type: String, defaultValue: 'text' },
       error: { type: String },
@@ -252,6 +252,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
         ${
+          // Safari has a jumping cursor bug, which is fixed with this approach.
+          // Downside: After a user manipulated an input field, it cannot be visibly changed again by javascript.
           window.safari
             ? html`
                 <input
