@@ -100,8 +100,12 @@ class AXAButton extends LitElement {
       this.fakeButton.click();
     }
 
+    // If we are under react, onClick will be camel Case onClick. If so, use it
+    // otherwise if a consumer defined a onclick="fn", call that instead
     const onclick = this.onClick || this.originalOnclick;
 
+    // if click event is fired manually via javascript, the this.onclick = e => { function
+    // will be called and therefore make sure to not trigger it again.
     if (!ignoreOnClick && typeof onclick === 'function') {
       onclick(e);
     }
