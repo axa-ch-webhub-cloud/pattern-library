@@ -3,20 +3,21 @@ import jsPrefixer, {
 } from './scripts/build/rollup-plugin-javascript-prefixer';
 import sassPrefixer from './scripts/build/sass-prefixer';
 
+const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
+
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const sass = require('rollup-plugin-sass');
+const copy = require('rollup-plugin-copy');
 const autoprefixer = require('autoprefixer');
+const { uglify } = require('rollup-plugin-uglify');
 const postcss = require('postcss');
 const classPrefixer = require('postcss-prefix-selector');
-const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
-const { uglify } = require('rollup-plugin-uglify');
-const copy = require('rollup-plugin-copy');
 
 const base = path.resolve(__dirname, 'src').replace(/\\/g, '/');
 const globalSassImports = require('./config/globals.js')
@@ -25,16 +26,11 @@ const globalSassImports = require('./config/globals.js')
   })
   .join('\n');
 
-const shouldRunBuildForReact = fs.existsSync('./index.react.js');
-const amountOfSteps = shouldRunBuildForReact ? 3 : 2;
-
-const rollupConfig = [];
-
 const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
-  jsPrefixer(amountOfSteps),
+  jsPrefixer(),
   sass({
     insert: true,
     include: '**/*.scss',
@@ -147,7 +143,7 @@ const dist = {
 
 const libReact = {
   ...lib,
-  input: 'index.js',
+  input: 'index.react.js',
   output: {
     file: './lib/index.react.js',
     format: 'es',
@@ -161,8 +157,11 @@ const libReact = {
   ],
 };
 
+const rollupConfig = [];
 rollupConfig.push(lib);
 rollupConfig.push(dist);
-if (shouldRunBuildForReact) rollupConfig.push(libReact);
+if (fs.existsSync('./index.react.js')) {
+  rollupConfig.push(libReact);
+}
 
 export default rollupConfig;

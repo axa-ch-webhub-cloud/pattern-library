@@ -1,24 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-/* eslint-disable import/no-extraneous-dependencies */
-const glob = require('glob');
-const fs = require('fs').promises;
-
 const componentPackageJson = require(`${process.cwd()}/package.json`);
-
-const JS_FILES_TO_PREFIX = glob
-  .sync('**/*.js', {
-    ignore: [
-      'node_modules/**/*',
-      'dist/**/*',
-      'lib/**/*',
-      'index.react.js',
-      '**demo.js',
-      '**.bak',
-      '**test**',
-      '**story**',
-    ],
-  })
-  .map(f => `./${f}`);
 
 const _getComponentInfo = () => {
   const elementMapping = new Map();
@@ -30,7 +11,7 @@ const _getComponentInfo = () => {
   const componentDirectoryName = cwdAsStringArray[cwdAsStringArray.length - 2];
   const customElementName = componentPackageJson.name.replace('@axa-ch/', '');
   // atom (a-) / molecule (m-) / organism (o-)
-  const customElementTypePrefix = elementMapping.get( componentDirectoryName ); 
+  const customElementTypePrefix = elementMapping.get(componentDirectoryName);
   const newPrefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
   return {
     prefix: newPrefix, // 'nva1-2-3'
@@ -41,57 +22,20 @@ const _getComponentInfo = () => {
 
 export const componentInfo = _getComponentInfo();
 
-/**
- * Look for all classes and replace all that start with the BEM prefix and add
- * the versioned prefix.
- *
- * @param {string} file Filename, e.g. './index.js'
- */
-const _prefixJS = async file => {
-  await fs.copyFile(file, `${file}.bak`);
-  const content = await fs.readFile(file, 'utf8');
-  const afterReplace = content
-    .split(`"${componentInfo.standardComponentClassPrefix}`)
-    .join(`"${componentInfo.cssPrefix}`)
-    .split(`'${componentInfo.standardComponentClassPrefix}`)
-    .join(`'${componentInfo.cssPrefix}`)
-    .split(` ${componentInfo.standardComponentClassPrefix}`)
-    .join(` ${componentInfo.cssPrefix}`);
-  await fs.writeFile(file, afterReplace);
-};
-
-/**
- * Every config will make the prefixer run again. We only want to parse the
- * file once, since the result would anyway stay the same.
- *
- * @param {number} iterations Number of iterations
- */
-export default function jsPrefixer(iterations) {
-  let counter;
+export default function jsPrefixer() {
   return {
     name: 'js-prefixer',
-    buildStart: async () => {
-      if (!counter) {
-        counter = iterations;
-      }
-      if (counter === iterations) {
-        const filesToParseQueue = [];
-        JS_FILES_TO_PREFIX.forEach(f => {
-          filesToParseQueue.push(_prefixJS(f));
-        });
-        await Promise.all(filesToParseQueue);
-      }
-    },
-    buildEnd: () => {
-      if (counter === 1) {
-        const fileCopyQueue = [];
-        JS_FILES_TO_PREFIX.forEach(file => {
-          fileCopyQueue.push(fs.copyFile(`${file}.bak`, file)) ;
-        });
-        Promise.all(fileCopyQueue).then(JS_FILES_TO_PREFIX.forEach(file =>
-          fs.unlink(`${file}.bak`)));
-      }
-      counter -= 1;
+    transform: code => {
+      // Look for all classes and replace all that start with the BEM prefix and add
+      // the versioned prefix.
+      const afterReplace = code
+        .split(`"${componentInfo.standardComponentClassPrefix}`)
+        .join(`"${componentInfo.cssPrefix}`)
+        .split(`'${componentInfo.standardComponentClassPrefix}`)
+        .join(`'${componentInfo.cssPrefix}`)
+        .split(` ${componentInfo.standardComponentClassPrefix}`)
+        .join(` ${componentInfo.cssPrefix}`);
+      return { code: afterReplace };
     },
   };
 }
