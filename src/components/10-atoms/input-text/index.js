@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
@@ -192,6 +193,18 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
+  _isSafari() {
+    console.log(
+      'navigator vendor: ',
+      navigator.vendor.contains('Apple Computer')
+    );
+    return (
+      navigator &&
+      navigator.vendor &&
+      navigator.vendor.contains('Apple Computer')
+    );
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
 
@@ -259,7 +272,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           // is fixed with this approach.
           // Downside: After a user manipulated the value manually, it cannot
           // be updated anymore by javascript (safari only).
-          (window || global).safari
+          _isSafari()
             ? html`
                 <input
                   id="${refId}"
