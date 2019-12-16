@@ -251,6 +251,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         `}
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
+        <p>
+          Window.safari: ${(window || global).safari}
+        </p>
         ${
           // On Safari, the caret (cursor) jumps to the end of the value, which
           // is fixed with this approach.
