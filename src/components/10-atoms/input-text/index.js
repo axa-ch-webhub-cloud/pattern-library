@@ -194,16 +194,16 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   _isSafari() {
-    if (navigator && navigator.vendor && navigator.vendor.contains) {
+    if (navigator && navigator.vendor && navigator.vendor.includes) {
       console.log(
         'navigator vendor: ',
-        navigator.vendor.contains('Apple Computer')
+        navigator.vendor.includes('Apple Computer')
       );
     }
     return (
       navigator &&
       navigator.vendor &&
-      navigator.vendor.contains('Apple Computer')
+      navigator.vendor.includes('Apple Computer')
     );
   }
 
