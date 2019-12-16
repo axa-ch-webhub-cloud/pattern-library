@@ -272,7 +272,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           // is fixed with this approach.
           // Downside: After a user manipulated the value manually, it cannot
           // be updated anymore by javascript (safari only).
-          _isSafari()
+          this._isSafari()
             ? html`
                 <input
                   id="${refId}"
