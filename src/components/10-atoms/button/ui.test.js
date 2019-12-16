@@ -30,7 +30,19 @@ test('should style button default css (test axa blue bg color)', async t => {
     .eql('rgb(0, 0, 143)');
 });
 
-test('should clickable (set different text after click)', async t => {
+test('should be clickable (set different text after click)', async t => {
+  const setDisabled = ClientFunction(() => {
+    document.querySelector('axa-button').disabled = true;
+  });
+
+  const $axaButton = await Selector(BUTTON_TAG);
+
+  await setDisabled();
+  await t.click($axaButton);
+  await t.expect($axaButton.innerText).notContains('1');
+});
+
+test("shouldn't be clickable", async t => {
   const $axaButton = await Selector(BUTTON_TAG);
   await t.click($axaButton);
   await t.expect($axaButton.innerText).contains('1');
