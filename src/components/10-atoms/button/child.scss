@@ -1,13 +1,15 @@
 axa-button {
   position: relative;
-  background: red;
-  &[type] {
+  pointer-events: none;
+  &[disabled] {
     &::after {
       position: absolute;
-      content: " ";
+      left: 0;
+      content: "";
       width: 100%;
       height: 30px;
-      background-color: red;     
+      background-color: red;   
+      opacity: 0.5;  
     }
   }
 }
