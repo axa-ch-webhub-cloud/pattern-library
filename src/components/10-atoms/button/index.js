@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
@@ -67,6 +67,8 @@ class AXAButton extends InlineStyles {
   }
 
   firstUpdated() {
+    this.inlineStyles('resetHeadingCss');
+
     const { style } = this;
 
     // shadow dom submit btn workaround
