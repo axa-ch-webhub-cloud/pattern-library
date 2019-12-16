@@ -194,10 +194,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   _isSafari() {
-    console.log(
-      'navigator vendor: ',
-      navigator.vendor.contains('Apple Computer')
-    );
+    if (navigator && navigator.vendor && navigator.vendor.contains) {
+      console.log(
+        'navigator vendor: ',
+        navigator.vendor.contains('Apple Computer')
+      );
+    }
     return (
       navigator &&
       navigator.vendor &&
@@ -265,7 +267,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
         <p>
-          Window.safari: ${(window || global).safari}
+          Window.safari: ${this._isSafari()}
         </p>
         ${
           // On Safari, the caret (cursor) jumps to the end of the value, which
