@@ -7,6 +7,8 @@ import '@axa-ch/icon';
 import { applyDefaults } from '../../../utils/with-react';
 import defineOnce from '../../../utils/define-once';
 import buttonCSS from './index.scss';
+import childStyles from './child.scss';
+import InlineStyles from '../../../utils/inline-styles';
 
 const ARROW_RIGHT = 'arrow-right';
 
@@ -17,7 +19,7 @@ const isNativeShadowDOM = ShadowRoot.toString().indexOf('native code') > -1;
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
 const eventIsTrusted = e => e.screenX || e.screenY || e.clientX || e.clientY;
 
-class AXAButton extends LitElement {
+class AXAButton extends InlineStyles {
   static get tagName() {
     return 'axa-button';
   }
@@ -26,6 +28,12 @@ class AXAButton extends LitElement {
     return css`
       ${unsafeCSS(buttonCSS)}
     `;
+  }
+
+  // Parent class InlineStyles needs a static method to retrive styles
+  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  static get resetHeadingCss() {
+    return childStyles;
   }
 
   static get properties() {
