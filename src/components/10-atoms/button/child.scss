@@ -1,7 +1,7 @@
 axa-button {
   position: relative;
-  pointer-events: none;
   &[disabled] {
+    pointer-events: none;
     &::after {
       position: absolute;
       left: 0;
