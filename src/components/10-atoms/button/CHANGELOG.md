@@ -14,7 +14,7 @@ construction time are now taken into account. Conversely, all undefined
 component attributes are initialized with type-appropriate default
 values at this time. This may amount to a breaking change if the
 component consumer had previously assumed undefined or uninitialized
-behaviour.
+behaviour. Additionally, `onClick` is not anymore a property that can be changed once the component is initialised.
 
 ### Migration version 1 to 2
 
