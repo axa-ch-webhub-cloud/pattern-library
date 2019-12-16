@@ -4,14 +4,16 @@
  * @param {string} selector Selector being passed, e.g. '.m-datepicker .m-datepicker__check:after'
  * @param {object} componentInfo Object containing componentName and prefixes
  */
-export default function sassPrefixer(selector, componentInfo) {
+export default function sassPrefixer(
+  selector,
+  prefix,
+  standardComponentClassPrefix
+) {
   const splitSelectors = selector.split('.');
   const prefixedSelectors = [];
   for (let i = 0; i < splitSelectors.length; ++i) {
-    if (
-      splitSelectors[i].startsWith(componentInfo.standardComponentClassPrefix)
-    ) {
-      prefixedSelectors.push(`.${componentInfo.prefix}_${splitSelectors[i]}`);
+    if (splitSelectors[i].startsWith(standardComponentClassPrefix)) {
+      prefixedSelectors.push(`.${prefix}_${splitSelectors[i]}`);
     }
     // ".a-button".split('.') == ["", "a-button"]
     // "a-button" was initially a class because there is an empty string in the

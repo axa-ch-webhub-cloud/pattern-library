@@ -46,7 +46,11 @@ const commonPlugins = [
           classPrefixer({
             prefix: componentInfo.prefix,
             transform: (prefix, selector) =>
-              sassPrefixer(selector, componentInfo),
+              sassPrefixer(
+                selector,
+                componentInfo.prefix,
+                componentInfo.standardComponentClassPrefix
+              ),
           })
         )
         .process(css, { from: undefined })
