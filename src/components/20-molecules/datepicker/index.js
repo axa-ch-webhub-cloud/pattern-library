@@ -21,7 +21,8 @@ import Store from './utils/Store';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
-const EMPTY_FUNCTION = () => {};
+const EMPTY_FUNCTION = () => {
+};
 
 // module globals
 let openDatepickerInstance;
@@ -50,7 +51,7 @@ const applyEffect = self =>
       datepickerWrapper.classList[hasEffect ? 'remove' : 'add'](effect);
       setTimeout(
         () => resolve(),
-        250 /* effect duration - keep in sync with CSS */
+        250, /* effect duration - keep in sync with CSS */
       );
     }, 0 /* execute after render() */);
   });
@@ -128,7 +129,7 @@ class AXADatepicker extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String, defaultValue: 'Invalid date' },
       error: { type: String, reflect: true },
-      height: { type: String, reflect: true, defaultValue: '40px' },
+      height: { type: String, reflect: true, defaultValue: '40' },
       width: { type: String, reflect: true, defaultValue: 'auto' },
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
@@ -186,7 +187,7 @@ class AXADatepicker extends NoShadowDOM {
         selected: index === _month,
         name: item.toString(),
         value: index.toString(),
-      })
+      }),
     );
 
     this.yearitems = this.allowedyears.map(item => ({
@@ -219,14 +220,14 @@ class AXADatepicker extends NoShadowDOM {
 
     this.debouncedHandleViewportCheck = debounce(
       () => this.handleViewportCheck(this.input),
-      250
+      250,
     );
   }
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
   performUpdate() {
     new Promise(resolve => window.requestAnimationFrame(() => resolve())).then(
-      () => super.performUpdate()
+      () => super.performUpdate(),
     );
   }
 
@@ -242,7 +243,7 @@ class AXADatepicker extends NoShadowDOM {
     if (changedProperties.has('allowedyears')) {
       this.allowedyears = parseAndFormatAllowedYears(
         this.allowedyears,
-        this.year
+        this.year,
       );
     }
     return true;
@@ -266,7 +267,20 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = 'auto', height = '40px', error, invalid } = this;
+    const { width = 'auto', height = '40', error, invalid } = this;
+
+    // % on html width attribute not allowed
+    if (width.indexOf('%') > -1) { // TODO: setStyle
+      this.style.width = width;
+    } else {
+      this.style.width = null;
+    }
+    if (height.indexOf('%') > -1) {
+      this.style.height = height;
+    } else {
+      this.style.height = null;
+    }
+
 
     const formattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
@@ -283,19 +297,19 @@ class AXADatepicker extends NoShadowDOM {
         style="${formattedWidth}"
       >
         ${label &&
-          html`
+    html`
             <label for="${refId}" class="m-datepicker__label">
               ${label}
               ${required
-                ? html`
+      ? html`
                     *
                   `
-                : ''}
+      : ''}
             </label>
           `}
         ${!this.inputfield
-          ? ''
-          : html`
+      ? ''
+      : html`
               <div class="m-datepicker__input-wrap" style="${formattedWidth}">
                 <input
                   id="${refId}"
@@ -319,16 +333,16 @@ class AXADatepicker extends NoShadowDOM {
                   ${dateInputIcon}
                 </button>
                 ${checkMark
-                  ? html`
+        ? html`
                       <span class="m-datepicker__check-wrapper">
                         <span class="m-datepicker__check"></span>
                       </span>
                     `
-                  : ''}
+        : ''}
               </div>
             `}
         ${(this.open && !disabled) || !this.inputfield
-          ? html`
+      ? html`
               <div class="m-datepicker__wrap js-datepicker__wrap">
                 <div class="m-datepicker__article">
                   <div class="m-datepicker__dropdown-wrap">
@@ -355,21 +369,21 @@ class AXADatepicker extends NoShadowDOM {
 
                   <div class="m-datepicker__weekdays">
                     ${this.weekdays &&
-                      this.weekdays.map(
-                        day =>
-                          html`
+      this.weekdays.map(
+        day =>
+          html`
                             <span class="m-datepicker__weekdays-day"
                               >${day}</span
                             >
-                          `
-                      )}
+                          `,
+      )}
                   </div>
 
                   <div class="m-datepicker__calendar js-datepicker__calendar">
                     ${this.cells &&
-                      this.cells.map(
-                        (cell, index) =>
-                          html`
+      this.cells.map(
+        (cell, index) =>
+          html`
                             <button
                               @click="${this.handleDatepickerCalendarCellClick}"
                               type="button"
@@ -381,8 +395,8 @@ class AXADatepicker extends NoShadowDOM {
                             >
                               ${cell.text}
                             </button>
-                          `
-                      )}
+                          `,
+      )}
                   </div>
                   <div class="m-datepicker__buttons">
                     <axa-button
@@ -401,12 +415,12 @@ class AXADatepicker extends NoShadowDOM {
                 </div>
               </div>
             `
-          : ''}
+      : ''}
         ${needToShowError
-          ? html`
+      ? html`
               <span class="m-datepicker__error">${this.invaliddatetext}</span>
             `
-          : html``}
+      : html``}
       </article>
     `;
   }
@@ -449,7 +463,7 @@ class AXADatepicker extends NoShadowDOM {
         null,
         year || startDate.getFullYear(),
         month || startDate.getMonth(),
-        day || startDate.getDate()
+        day || startDate.getDate(),
       );
     }
   }
@@ -638,7 +652,7 @@ class AXADatepicker extends NoShadowDOM {
     fireCustomEvent(
       'axa-input',
       { value: input.value, date: validDate, name },
-      this
+      this,
     );
     if (validDate) {
       onDateChange(validDate);
