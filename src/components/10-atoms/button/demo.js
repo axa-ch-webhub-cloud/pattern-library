@@ -31,7 +31,6 @@ storiesOf('Atoms/Button/Demos', module)
       const { target } = ev;
       ev.preventDefault();
       count += 1;
-      console.log('handleSubmit');
 
       const el = target.nodeName === 'AXA-BUTTON' ? target : target.parentNode;
       // this code is for test purposes. Its ok to write it as is only a demo
