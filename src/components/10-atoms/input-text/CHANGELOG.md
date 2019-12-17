@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 3.0.3
+
+- Safari had an issue with the cursor on all platforms, which is hereby fixed.
+
 ### Migration to version 3
 
 The implementation of the wrapper to make a component React-ready has
