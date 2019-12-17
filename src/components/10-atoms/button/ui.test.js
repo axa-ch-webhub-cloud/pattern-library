@@ -34,7 +34,6 @@ test("shouldn't be clickable (set different text after click)", async t => {
   const setDisabled = ClientFunction(() => {
     document.querySelector('axa-button').disabled = true;
   });
-
   const $axaButton = await Selector(BUTTON_TAG);
   await setDisabled();
   await t.click($axaButton);
