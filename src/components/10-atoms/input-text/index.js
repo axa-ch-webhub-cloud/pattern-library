@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';

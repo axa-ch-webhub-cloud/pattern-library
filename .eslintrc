@@ -139,6 +139,7 @@
     "MutationObserver": true,
     "customElements": true,
     "document": true,
+    "navigator": true,
     "window": true,
     "ENV": true,
     "PROD": true,
