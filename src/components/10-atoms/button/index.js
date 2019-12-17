@@ -32,7 +32,7 @@ class AXAButton extends InlineStyles {
 
   // Parent class InlineStyles needs a static method to retrive styles
   // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
-  static get resetHeadingCss() {
+  static get blockMouseEventsCss() {
     return childStyles;
   }
 
@@ -67,7 +67,7 @@ class AXAButton extends InlineStyles {
   }
 
   firstUpdated() {
-    this.inlineStyles('resetHeadingCss');
+    this.inlineStyles('blockMouseEventsCss');
 
     const { style } = this;
 
