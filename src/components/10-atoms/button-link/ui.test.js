@@ -52,3 +52,17 @@ test('should render icon', async t => {
   const $axaIcon = await $axaButtonShadow.find('axa-icon');
   await t.expect($axaIcon.exists).ok();
 });
+
+fixture('Button Link - clickable').page(
+  `${host}/iframe.html?id=atoms-button-link-demos--feature-button-link-clickable`
+);
+
+test("shouldn't be clickable", async t => {
+  const setDisabled = ClientFunction(() => {
+    document.querySelector('axa-button-link').disabled = true;
+  });
+  await setDisabled();
+  const $axaButtonLink = await Selector('axa-button-link');
+  await t.click($axaButtonLink);
+  await t.expect($axaButtonLink.innerText).contains('0');
+});

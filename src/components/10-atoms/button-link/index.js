@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
@@ -7,10 +7,12 @@ import '@axa-ch/icon';
 import { applyDefaults } from '../../../utils/with-react';
 import defineOnce from '../../../utils/define-once';
 import buttonLinkCSS from './index.scss';
+import childStyles from './child.scss';
+import InlineStyles from '../../../utils/inline-styles';
 
 const ARROW_RIGHT = 'arrow-right';
 
-class AXAButtonLink extends LitElement {
+class AXAButtonLink extends InlineStyles {
   static get tagName() {
     return 'axa-button-link';
   }
@@ -19,6 +21,12 @@ class AXAButtonLink extends LitElement {
     return css`
       ${unsafeCSS(buttonLinkCSS)}
     `;
+  }
+
+  // Parent class InlineStyles needs a static method to retrive styles
+  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  static get blockMouseEventsCss() {
+    return childStyles;
   }
 
   static get properties() {
@@ -103,6 +111,9 @@ class AXAButtonLink extends LitElement {
         </span>
       </a>
     `;
+  }
+  firstUpdated() {
+    this.inlineStyles('blockMouseEventsCss');
   }
 }
 
