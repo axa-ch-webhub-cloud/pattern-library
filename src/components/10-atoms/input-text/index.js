@@ -192,6 +192,15 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   };
 
+  _isSafari() {
+    return (
+      navigator &&
+      navigator.vendor &&
+      navigator.vendor.includes &&
+      navigator.vendor.includes('Apple Computer')
+    );
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
 
@@ -251,21 +260,47 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         `}
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
-          <input
-            id="${refId}"
-            type="${type}"
-            class="${classMap(inputClasses)}"
-            autocomplete="off"
-            name="${name}"
-            .value="${value}"
-            placeholder="${placeholder}"
-            aria-required="${required}"
-            maxlength="${maxLength}"
-            ?disabled="${disabled}"
-            @input="${this.handleInput}"
-            @focus="${this.handleFocus}"
-            @blur="${this.handleBlur}"
-          />
+        ${
+          // On Safari, the caret (cursor) jumps to the end of the value, which
+          // is fixed with this approach.
+          // Downside: After a user manipulated the value manually, it cannot
+          // be updated anymore by javascript (safari only).
+          this._isSafari()
+            ? html`
+                <input
+                  id="${refId}"
+                  type="${type}"
+                  class="${classMap(inputClasses)}"
+                  autocomplete="off"
+                  name="${name}"
+                  value="${value}"
+                  placeholder="${placeholder}"
+                  aria-required="${required}"
+                  maxlength="${maxLength}"
+                  ?disabled="${disabled}"
+                  @input="${this.handleInput}"
+                  @focus="${this.handleFocus}"
+                  @blur="${this.handleBlur}"
+                />
+              `
+            : html`
+                <input
+                  id="${refId}"
+                  type="${type}"
+                  class="${classMap(inputClasses)}"
+                  autocomplete="off"
+                  name="${name}"
+                  .value="${value}"
+                  placeholder="${placeholder}"
+                  aria-required="${required}"
+                  maxlength="${maxLength}"
+                  ?disabled="${disabled}"
+                  @input="${this.handleInput}"
+                  @focus="${this.handleFocus}"
+                  @blur="${this.handleBlur}"
+                />
+              `
+        }
           ${
             this.showCheckMark
               ? html`
