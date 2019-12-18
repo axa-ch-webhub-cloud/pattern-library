@@ -2,6 +2,7 @@ src
 package-lock.json
 .tmp-lib
 .tmp-dist
+CHANGELOG.md
 
 # Logs
 logs
