@@ -86,7 +86,7 @@ fixture('Radio - no label').page(
   `${host}/iframe.html?id=atoms-radio-demos--radio-no-label`
 );
 
-test.only("shouldn't render a label", async t => {
+test("shouldn't render a label", async t => {
   const radio1 = await Selector('axa-radio#radio1');
   const radio2 = await Selector('axa-radio#radio2');
 
