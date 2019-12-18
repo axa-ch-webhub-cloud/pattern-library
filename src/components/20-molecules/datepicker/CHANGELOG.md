@@ -1,13 +1,16 @@
-# Changelog
+## [Unreleased]
+* Change behavior of width:
+    * Percentage values are set to components css, not set to childs because that make no sense.
+    * Numeric values change the components width, no longer takes the whole width it gets from parent.
 
-### Migration to version 4
+## 4.0.1 (Migration to version 4)
 
-The implementation of the wrapper to make a component React-ready has
+* The implementation of the wrapper to make a component React-ready has
 fundamentally changed. In particular, unknown Boolean- or
 string-valued properties are now accepted and converted to HTML
 attributes. E.g. `data-seleniumid="my-id"` is now supported.
 
-All defined attributes attached to a component *before* component
+* All defined attributes attached to a component *before* component
 construction time are now taken into account. Conversely, all undefined
 component attributes are initialized with type-appropriate default
 values at this time. This may amount to a breaking change if the
