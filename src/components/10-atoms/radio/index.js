@@ -163,9 +163,9 @@ class AXARadio extends NoShadowDOM {
       <input
         id="${refId}"
         class="a-radio__input"
-        value="${value}"
         type="radio"
         name="${name}"
+        value="${value}"
         ?checked="${checked}"
         ?disabled="${disabled}"
         @change="${this.handleChange}"
