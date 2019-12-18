@@ -113,4 +113,12 @@ storiesOf('Components|Atoms/Radio/Demos', module)
 
     render(template, root);
     return root;
-  });
+  })
+  .add(
+    'Radio - no label',
+    () => `
+<axa-fieldset horizontal>
+<axa-radio name="insurance"></axa-radio>
+<axa-radio name="insurance"></axa-radio>
+</axa-fieldset>`
+  );
