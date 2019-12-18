@@ -118,7 +118,7 @@ storiesOf('Components|Atoms/Radio/Demos', module)
     'Radio - no label',
     () => `
       <axa-fieldset>
-      <p>This axa-radio have no labels. Therefore no label will be rendered</p>
+      <p>This axa-radio's have no labels. Therefore no label will be rendered</p>
       <axa-radio name="insurance"></axa-radio>
       <axa-radio name="insurance"></axa-radio>
       <axa-radio name="insurance"></axa-radio>
