@@ -329,6 +329,7 @@ class AXADatepicker extends NoShadowDOM {
                 <button
                   type="button"
                   class="m-datepicker__input-button js-datepicker__input-button"
+                  style="${formattedHeight}"
                   @click="${this.handleInputButtonClick}"
                 >
                   ${dateInputIcon}
