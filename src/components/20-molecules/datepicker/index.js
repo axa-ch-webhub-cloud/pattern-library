@@ -266,26 +266,28 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = 'auto', height = '40', error, invalid } = this;
-
-    // % on html width attribute not allowed
-    if (width.indexOf('%') > -1) {
-      // TODO: setStyle
-      this.style.width = width;
-    } else {
-      this.style.width = null;
-    }
-    if (height.indexOf('%') > -1) {
-      this.style.height = height;
-    } else {
-      this.style.height = null;
-    }
+    const { width = 'auto', height = '40', error, invalid, style } = this;
 
     const formattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
 
-    const formattedWidth = `width:${formattedStyle(width)}`;
-    const formattedHeight = `height:${formattedStyle(height)}`;
+    let formattedWidth = `width:${formattedStyle(width)}`;
+    let formattedHeight = `height:${formattedStyle(height)}`;
+
+    // % on html width or height attribute not allowed, so set it as css attribute
+    if (width.indexOf('%') > -1) {
+      style.width = width;
+      formattedWidth = ''; // do not set width to childs in this case
+    } else {
+      style.width = null;
+    }
+
+    if (height.indexOf('%') > -1) {
+      style.height = height;
+      formattedHeight = ''; // do not set height to childs in this case
+    } else {
+      style.height = null;
+    }
 
     const needToShowError = error || invalid;
 
