@@ -444,3 +444,15 @@ test('should fire the right events', async t => {
     .expect((await Selector('.event-log')).value)
     .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
 });
+
+fixture('Datepicker as inputfield with 200px width').page(
+  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose%20Month&knob-yeartitle=Choose%20Year&knob-invaliddatetext=Invalid%20date&knob-placeholder=Please%20select%20a%20date&knob-width=227&knob-height=40&knob-width%20(note%20max-length)=200`
+);
+
+test('should have 200px width', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+
+  await t.expect(datepicker.clientWidth).eql(200);
+});

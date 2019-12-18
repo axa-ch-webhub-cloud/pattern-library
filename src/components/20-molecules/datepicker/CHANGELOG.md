@@ -1,6 +1,7 @@
 ## [Unreleased]
 * Change behavior of width:
-    * Percentage values are set to components css, not set to childs because that make no sense.
+    * Percentage values are set to components css 
+    * Percentage values not set to childs because that make no sense
     * Numeric values change the components width, no longer takes the whole width it gets from parent.
 
 ## 4.0.1 (Migration to version 4)
