@@ -41,6 +41,8 @@ story.add('Datepicker', () => {
   const yeartitle = text('yeartitle', 'Choose Year');
   const invaliddatetext = text('invaliddatetext', 'Invalid date');
   const placeholder = text('placeholder', 'Please select a date');
+  const width = text('width (note max-length)', 'auto');
+  const height = text('height', '40');
 
   const wrapper = document.createElement('div');
 
@@ -62,8 +64,12 @@ story.add('Datepicker', () => {
       yeartitle="${yeartitle}"
       labelbuttoncancel="${labelbuttoncancel}"
       labelbuttonok="${labelbuttonok}"
+      width="${width}"
+      height="${height}"
       data-test-id="datepicker"
     ></axa-datepicker>
+    <span>This is a simple text next to datepicker element. You can check
+      datapickers width with me.</span>
   `;
 
   render(template, wrapper);

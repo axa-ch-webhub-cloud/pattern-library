@@ -143,9 +143,16 @@ The intended use case is to easily convey external validation failure, e.g. when
 
 String-valued `width` allow to override the intrinsic dimensions of the datepicker.
 
+#### Note the maximum width of visible elements:
+
+- 226px as a input field
+- 260px if you use it inline
+
+#### Allowed values:
+
 `auto`: Default. Sets the fully width of parent element.
 `90%`: Sets percentage value of width of parent element.
-`300`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
+`200`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
 
 ### height
 
