@@ -111,8 +111,7 @@ axa-checkbox {
       }
     }
 
-    &:hover,
-    &.hover {
+    &:hover {
       &:not([disabled]) {
 
         &:not([error]) {
@@ -128,6 +127,7 @@ axa-checkbox {
         }
       }
     }
+
     .a-checkbox__children-inline {
       * {
         display: inline;
