@@ -12,9 +12,13 @@ const DemoCheckboxLabelAsChildren = () => {
     <AXACheckbox checked={checked} onChange={handleCheckboxChange}>
       <p>
         click{' '}
-        <a href="https://www.google.ch" target="_blank">
+        <a
+          href="https://www.google.ch"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           here
-        </a>
+        </a>{' '}
         if you dare
       </p>
     </AXACheckbox>
