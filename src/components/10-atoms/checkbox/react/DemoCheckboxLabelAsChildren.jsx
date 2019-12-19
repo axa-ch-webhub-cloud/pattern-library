@@ -10,7 +10,13 @@ const DemoCheckboxLabelAsChildren = () => {
 
   return (
     <AXACheckbox checked={checked} onChange={handleCheckboxChange}>
-      <p>or click here if you prefere</p>
+      <p>
+        click{' '}
+        <a href="https://www.google.ch" target="_blank">
+          here
+        </a>
+        if you dare
+      </p>
     </AXACheckbox>
   );
 };
