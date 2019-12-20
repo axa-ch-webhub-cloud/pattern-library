@@ -92,14 +92,9 @@ axa-checkbox {
 
     &[error] {
       color: $color-validation-error;
-
+  
       &:not([checked]) .a-checkbox__icon {
           border-color: $color-validation-error;
-      }
-
-      &:not(:hover) .a-checkbox__input:checked + .a-checkbox__icon::after {
-        border-color: $color-validation-error;
-        background-color: $color-validation-error;
       }
     }
 
