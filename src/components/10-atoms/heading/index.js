@@ -32,54 +32,53 @@ class AXAHeading extends LitElement {
     applyDefaults(this);
   }
 
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
-  }
-
   render() {
     // eslint-disable-next-line prefer-destructuring
     const variant = this.variant;
-    const isSize2 = variant.includes('size-2');
-    const isSize3 = variant.includes('size-3');
-    const isSize4 = variant.includes('size-4');
-    const isSize5 = variant.includes('size-5');
-    const isSize6 = variant.includes('size-6');
 
     const classes = classMap({
-      'a-heading--size-2': isSize2,
-      'a-heading--size-3': isSize3,
-      'a-heading--size-4': isSize4,
-      'a-heading--size-5': isSize5,
-      'a-heading--size-6': isSize6,
+      'a-heading--secondary': this.variant === 'secondary',
     });
 
-    // switch (this.rank) {
-    //   case 1:
-    //     return html`
-    //       <h${this.rank} class="a-heading ${classes}">
-    //         <slot></slot>
-    //       </h${this.rank}>
-    //     `;
-    //     break;
-    //   case 2:
-    //     break;
-    //   case 3:
-    //     break;
-    //   case 4:
-    //     break;
-    //   case 5:
-    //     break;
-    //   case 6:
-    //   default:
-    //     break;
-    // }
-
-    return html`
-      <h${this.rank} class="a-heading a-heading--h${this.rank}">
-        <slot></slot>
-      </h${this.rank}>
-    `;
+    switch (this.rank) {
+      case 1:
+        return html`
+          <h1 class="a-heading ${classes}">
+            <slot></slot>
+          </h1>
+        `;
+      case 2:
+        return html`
+          <h2 class="a-heading ${classes}">
+            <slot></slot>
+          </h2>
+        `;
+      case 3:
+        return html`
+          <h3 class="a-heading ${classes}">
+            <slot></slot>
+          </h3>
+        `;
+      case 4:
+        return html`
+          <h4 class="a-heading ${classes}">
+            <slot></slot>
+          </h4>
+        `;
+      case 5:
+        return html`
+          <h5 class="a-heading ${classes}">
+            <slot></slot>
+          </h5>
+        `;
+      case 6:
+      default:
+        return html`
+          <h6 class="a-heading ${classes}">
+            <slot></slot>
+          </h6>
+        `;
+    }
   }
 
   disconnectedCallback() {
