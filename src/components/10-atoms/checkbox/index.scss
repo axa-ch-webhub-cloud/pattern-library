@@ -27,14 +27,6 @@ axa-checkbox {
     }
     
     .a-checkbox__input {
-      &:focus + .a-checkbox__icon {
-        border-color: $color-axa-blue;
-
-        &::after {
-          border-color: $color-axa-blue;
-        }
-      }
-
       &:checked + .a-checkbox__icon::after {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
