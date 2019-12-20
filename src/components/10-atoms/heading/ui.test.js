@@ -21,16 +21,17 @@ async function _getHeadingElement(t) {
   return $axaElemShadowEl;
 }
 
-test('should render h1 primary correctly', async t => {
+test('should render h1 primary correctly on desktop', async t => {
   const $axaElemShadowEl = await _getHeadingElement(t);
 
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  // font-family: "Source Sans Pro", Arial, sans-serif;
-  //   font-weight: 400;
-  //   font-style: normal;
-  //   font-size: 24px;
-  //   line-height: 29px;
-  //   letter-spacing: -0.01em;
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('62px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('72px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.62px');
 });
