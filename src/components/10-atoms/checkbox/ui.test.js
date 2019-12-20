@@ -87,7 +87,7 @@ test('should style checked error checkbox-icon inner box correctly', async t => 
   await t
     .wait(50)
     .expect(await getIconBackgroundColor())
-    .eql('rgb(201, 20, 50)');
+    .eql('rgb(0, 0, 143)'); // has to be blue when seleted, due to styleguide specification
 });
 
 test('should be clickable + change state', async t => {
