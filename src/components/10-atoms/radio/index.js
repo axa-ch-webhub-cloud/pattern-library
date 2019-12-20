@@ -183,7 +183,7 @@ class AXARadio extends NoShadowDOM {
     return html`
       ${label
         ? html`
-            <label class="a-radio__wrapper js-radio__wrapper">
+            <label class="a-radio__wrapper">
               ${inputElement}
               <div class="a-radio__content">${label}</div>
             </label>
@@ -196,7 +196,6 @@ class AXARadio extends NoShadowDOM {
 
   firstUpdated() {
     this.input = this.querySelector('input');
-    this.wrapper = this.querySelector('.js-radio__wrapper');
     const { name, button, noAutoWidth } = this;
     const ourButton = this.querySelector('.a-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
