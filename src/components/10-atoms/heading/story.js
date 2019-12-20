@@ -19,7 +19,12 @@ storyAXAHeading.add('Heading', () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-heading rank="5">hallo</axa-heading>
+    <axa-heading rank="1">H1 Heading</axa-heading>
+    <axa-heading rank="2">H2 Heading</axa-heading>
+    <axa-heading rank="3">H3 Heading</axa-heading>
+    <axa-heading rank="4">H4 Heading</axa-heading>
+    <axa-heading rank="5">H5 Heading</axa-heading>
+    <axa-heading rank="6">H6 Heading</axa-heading>
   `;
 
   render(template, wrapper);

@@ -33,9 +33,6 @@ class AXAHeading extends LitElement {
   }
 
   render() {
-    // eslint-disable-next-line prefer-destructuring
-    const variant = this.variant;
-
     const classes = classMap({
       'a-heading--secondary': this.variant === 'secondary',
     });

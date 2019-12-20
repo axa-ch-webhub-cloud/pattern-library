@@ -1,3 +1,80 @@
 .a-heading {
   display: block;
 }
+
+h1.a-heading {
+  // font-family: Source Sans Pro;
+  // font-style: normal;
+  // font-weight: bold;
+  // font-size: 24px;
+  // line-height: 28px;
+  @include typo-title(large-1);
+
+  @include breakpoint($mediaquery-md) {
+    @include typo-title(huge-1);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo-title(huge-3);
+  }
+}
+
+h2.a-heading {
+  @include typo-title(large-1);
+
+  @include breakpoint($mediaquery-md) {
+    @include typo-title(huge);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo-title(huge-2);
+  }
+}
+
+h3.a-heading {
+  @include typo-title(large);
+
+  @include breakpoint($mediaquery-md) {
+    @include typo-title(large-3);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo-title(huge-1);
+  }
+}
+
+h4.a-heading {
+  @include typo-title(large);
+
+  @include breakpoint($mediaquery-md) {
+    @include typo-title(large-2);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo-title(large-3);
+  }
+}
+
+h5.a-heading {
+  @include typo-title(medium-1);
+
+  @include breakpoint($mediaquery-md) {
+    @include typo-title(large);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo-title(large-1);
+  }
+}
+
+h6.a-heading {
+  @include typo-title(medium);
+
+  @include breakpoint($mediaquery-md) {
+    @include typo-title(medium-1);
+  }
+
+  @include breakpoint($mediaquery-lg-up) {
+    @include typo-title(large);
+  }
+}
