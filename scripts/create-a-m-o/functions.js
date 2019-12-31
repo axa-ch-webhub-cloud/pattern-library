@@ -211,20 +211,20 @@ const createFiles = (store, a, m, o, done) => () => {
     import './index';
     import Readme from './README.md';
 
-    const story${className} = storiesOf('${titleMap[type]}/${compTitle}', module);
-    story${className}.addDecorator(withKnobs);
-    story${className}.addParameters({
+    const story = storiesOf('${titleMap[type]}/${compTitle}', module);
+    story.addDecorator(withKnobs);
+    story.addParameters({
       readme: {
         sidebar: Readme,
       },
     });
 
-    story${className}.add('${compTitle}', () => {
-      const children = text('Text', 'Some Children');
+    story.add('${compTitle}', () => {
+      const textknob = text('This is a knob', 'Value of text knob');
 
       const wrapper = document.createElement('div');
       const template = html\`
-        <axa-${fileName}>\${children}<axa-${fileName}>
+        <axa-${fileName}>\${textknob}</axa-${fileName}>
       \`;
 
       render(template, wrapper);
