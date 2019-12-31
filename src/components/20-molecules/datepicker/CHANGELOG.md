@@ -6,6 +6,7 @@
     * Percentage values not set to childs because that make no sense
     * Numeric values change the components width, no longer takes the whole width it gets from parent.
 * Fixed behavior of height
+* Changed appearance from `inline-block` to `inline` to have possibility to arrange other elements next to datepicker
 
 ## 4.0.1 (Migration to version 4)
 
