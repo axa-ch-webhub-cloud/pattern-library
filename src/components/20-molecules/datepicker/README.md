@@ -141,26 +141,22 @@ The intended use case is to easily convey external validation failure, e.g. when
 
 ### width
 
-String-valued `width` allow to override the intrinsic dimensions of the datepicker.
+String-valued `width` allow to override the intrinsic dimensions of the datepicker. Default is `100%`.
+Note maximum of `260px` if you use it inline and minimum of `197px` if you use it as a inputfield.
 
-#### Note the maximum width of visible elements:
+Allowed values:
 
-- 226px as a input field
-- 260px if you use it inline
-
-#### Allowed values:
-
-`auto`: Default. Sets the fully width of parent element.
-`90%`: Sets percentage value of width of parent element.
-`200`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
+* `90%`: Sets percentage value of width of parent element.
+* `200`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
 
 ### height
 
-String-valued `height` allow to override the intrinsic dimensions of the datepicker.
+String-valued `height` allow to override the intrinsic dimensions of the datepicker. Default is `40`.
 
-`auto`: Sets the fully height of parent element.
-`90%`: Sets percentage value of height of parent element.
-`300`: Default 40. Sets px value of height of parent element. Note that missing `px` is added to numeric values automatically.
+Allowed values:
+
+* `90%`: Sets percentage value of height of parent element.
+* `300`: Sets px value of height of parent element. Note that missing `px` is added to numeric values automatically.
 
 ### label
 

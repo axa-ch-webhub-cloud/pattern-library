@@ -1,8 +1,11 @@
-## [Unreleased]
+
+## 5.0.0
 * Change behavior of width:
+    * **Breaking change:** Removed `auto` - new default is `100%`
     * Percentage values are set to components css 
     * Percentage values not set to childs because that make no sense
     * Numeric values change the components width, no longer takes the whole width it gets from parent.
+* Fixed behavior of height
 
 ## 4.0.1 (Migration to version 4)
 
