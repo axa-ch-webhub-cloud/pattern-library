@@ -11,12 +11,13 @@ import { html, render } from 'lit-html';
 import './index';
 import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const storyButton = storiesOf('Atoms/Button', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {
-    sidebar: Readme,
+    sidebar: [Readme, Changelog]
   },
 });
 
