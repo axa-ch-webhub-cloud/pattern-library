@@ -182,20 +182,7 @@ const createFiles = (store, a, m, o, done) => () => {
     import withReact from '../../../utils/with-react';
     import ${className} from './index';
 
-    export default createElement => ({
-      /* props here, same as in the constructor of index.js */
-      className = '',
-      children,
-    }) =>
-      withReact(createElement)(
-        ${className}.tagName,
-        {
-          /* props here, same as in the constructor of index.js */
-          className,
-        },
-        children
-      );
-
+    export default createElement => withReact(createElement, ${className});
     `,
     'utf8',
   );
