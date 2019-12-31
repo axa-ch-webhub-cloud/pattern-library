@@ -129,7 +129,7 @@ class AXADatepicker extends NoShadowDOM {
       invaliddatetext: { type: String, defaultValue: 'Invalid date' },
       error: { type: String, reflect: true },
       height: { type: String, reflect: true, defaultValue: '40' },
-      width: { type: String, reflect: true, defaultValue: 'auto' },
+      width: { type: String, reflect: true, defaultValue: '100%' },
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
@@ -266,7 +266,7 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = 'auto', height = '40', error, invalid, style } = this;
+    const { width = '100%', height = '40', error, invalid, style } = this;
 
     const formattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
