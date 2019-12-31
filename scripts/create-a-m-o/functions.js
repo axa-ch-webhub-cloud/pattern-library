@@ -77,7 +77,13 @@ const createFiles = (store, a, m, o, done) => () => {
 
   fs.writeFileSync(
     `${BASE_FOLDER}/CHANGELOG.md`,
-    `# Changelog`,
+    outdent`
+    ## [Unreleased]
+    * short description of bugfix/feature that is not released yet
+    
+    ## 0.0.1
+    * first release of component
+    `,
     'utf8',
   );
 
@@ -157,10 +163,6 @@ const createFiles = (store, a, m, o, done) => () => {
     ### onClick
 
     The function-valued attribute \`onClick\` can be used as a callback prop for React and other frameworks.
-
-    ### Migration Notes
-
-    You don't have to pay attention to anything for upgrading to newer version.
 
     `,
     'utf8',
@@ -258,9 +260,30 @@ const createFiles = (store, a, m, o, done) => () => {
     test('should render ${fileName}', async t => {
       const $axaElem = await Selector(TAG);
       await t.expect($axaElem.exists).ok();
-      const $axaElemShadow = await Selector(() => document.querySelector('axa-${fileName}').shadowRoot);
+      const $axaElemShadow = await Selector(
+        () => document.querySelector(TAG).shadowRoot,
+        { dependencies: { TAG } }
+      );
       const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
       await t.expect($axaElemShadowEl.exists).ok();
+    });
+    `,
+    'utf8',
+  );
+
+  fs.writeFileSync(
+    `${BASE_FOLDER}/unit.test.js`,
+    outdent`
+    import ${className} from './index';
+    
+    describe('${compTitle}', () => {
+      test('firstUpdated() should not call another method', () => {
+        ${className}.prototype.methodThatShouldNotBeCalled = jest.fn();
+    
+        ${className}.prototype.firstUpdated();
+    
+        expect(${className}.prototype.methodThatShouldNotBeCalled).not.toHaveBeenCalled();
+      });
     });
     `,
     'utf8',
