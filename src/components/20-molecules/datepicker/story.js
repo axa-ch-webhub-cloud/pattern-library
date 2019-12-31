@@ -41,35 +41,39 @@ story.add('Datepicker', () => {
   const yeartitle = text('yeartitle', 'Choose Year');
   const invaliddatetext = text('invaliddatetext', 'Invalid date');
   const placeholder = text('placeholder', 'Please select a date');
-  const width = text('width (note max-length)', 'auto');
+  const width = text('width', '400');
   const height = text('height', '40');
 
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-datepicker
-      locale="${locale}"
-      ?inputfield="${inputfield}"
-      ?autofocus="${autofocus}"
-      ?checkMark="${checkMark}"
-      ?disabled="${disabled}"
-      allowedyears='["1971-2000", 2012, 2014, "2018-2022"]'
-      year="${year}"
-      month="${month}"
-      day="${day}"
-      placeholder="${placeholder}"
-      invaliddatetext="${invaliddatetext}"
-      label="${label}"
-      monthtitle="${monthtitle}"
-      yeartitle="${yeartitle}"
-      labelbuttoncancel="${labelbuttoncancel}"
-      labelbuttonok="${labelbuttonok}"
-      width="${width}"
-      height="${height}"
-      data-test-id="datepicker"
-    ></axa-datepicker>
-    <span>This is a simple text next to datepicker element. You can check
-      datapickers width with me.</span>
+    <div style="background-color: lightgray">
+      <axa-datepicker
+        locale="${locale}"
+        ?inputfield="${inputfield}"
+        ?autofocus="${autofocus}"
+        ?checkMark="${checkMark}"
+        ?disabled="${disabled}"
+        allowedyears='["1971-2000", 2012, 2014, "2018-2022"]'
+        year="${year}"
+        month="${month}"
+        day="${day}"
+        placeholder="${placeholder}"
+        invaliddatetext="${invaliddatetext}"
+        label="${label}"
+        monthtitle="${monthtitle}"
+        yeartitle="${yeartitle}"
+        labelbuttoncancel="${labelbuttoncancel}"
+        labelbuttonok="${labelbuttonok}"
+        width="${width}"
+        height="${height}"
+        data-test-id="datepicker"
+      ></axa-datepicker>
+      <span
+        >This is a simple text next to datepicker element. You can check
+        datapickers width with me.</span
+      >
+    </div>
   `;
 
   render(template, wrapper);
