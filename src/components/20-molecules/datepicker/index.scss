@@ -37,10 +37,6 @@ axa-datepicker {
     }
   }
 
-  &[width="auto"] {
-    display: flex;
-  }
-
   &[label] {
     vertical-align: bottom;
 
@@ -79,7 +75,7 @@ axa-datepicker {
 
 .m-datepicker {
   position: relative;
-  display: inline-block;
+  display: inline;
 
   &,
   &__calendar-cell {
@@ -89,8 +85,7 @@ axa-datepicker {
   &__input-wrap {
     position: relative;
     display: flex;
-    width: 197px;
-    max-width: 226px;
+    min-width: 197px;
     align-items: center;
   }
 
