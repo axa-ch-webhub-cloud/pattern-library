@@ -2,17 +2,16 @@
 import { storiesOf } from '@storybook/html';
 import { html, render, svg } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
-import Readme from '../../components/00-materials/README.md';
-import Changelog from '../../components/00-materials/CHANGELOG.md';
+import Readme from './README.md';
 
 const reqSvgsIcons = require.context(
-  './../../components/00-materials/icons',
+  './icons',
   true,
   /\.svg.js$/
 );
 const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context(
-  './../../components/00-materials/images',
+  './images',
   true,
   /\.svg.js$/
 );
@@ -31,15 +30,14 @@ const images = filepathsImages.map(path => {
   };
 });
 
-storiesOf('Demos', module)
+storiesOf('Materials', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
   })
-  .add('Icons and Images overview', () => {
+  .add('Icons and Images', () => {
     const backgrounds = select(
       'background color',
       ['red', 'blue', 'white', 'black'],
