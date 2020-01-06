@@ -60,3 +60,49 @@ storyInputText.add('Input Text', () => {
   render(template, wrapper);
   return wrapper;
 });
+
+
+storyInputText.add('Input Text - Simulate autocomplete', () => {
+  const label = text('label*', '');
+  const placeholder = text('placeholder', '');
+  const value = text('value', '');
+  const error = text('error', '');
+  const info = text('info', '');
+  const checkMark = boolean('checkmark', false);
+  const disabled = boolean('disabled', false);
+  const required = boolean('required', false);
+  const invalid = boolean('invalid', false);
+  const types = radios('type', typeOptions, 'text');
+  const counter = text('counter', 'Still ##counter## characters left');
+  const counterMax = text('counterMax', 'Over character limit!');
+
+  const wrapper = document.createElement('div');
+  const template = html`
+    <axa-input-text
+      refid="fix-id-86452623"
+      name="ix-name-86452623"
+      label="${label}"
+      placeholder="${placeholder}"
+      counter="${counter}"
+      countermax="${counterMax}"
+      value="${value}"
+      type="${types}"
+      error="${error}"
+      info="${info}"
+      maxlength="5"
+      ?checkmark="${checkMark}"
+      ?disabled="${disabled}"
+      ?required="${required}"
+      ?invalid="${invalid}"
+    ></axa-input-text>
+  `;
+
+  render(template, wrapper);
+
+  // simulate autocomplete
+  setTimeout(() => {
+    document.querySelector('#fix-id-86452623').value = '123456789';
+  }, 1000)
+
+  return wrapper;
+});

@@ -146,3 +146,18 @@ test('should not show counter text if counter (text) not set', async t => {
   const $counterInfo = await $axaTag.find('.a-input-text__counter-info');
   await t.expect($counterInfo.exists).notOk();
 });
+
+fixture('Input text - maxLength works with autocomplete').page(
+  `${host}/iframe.html?id=atoms-input-text--input-text-simulate-autocomplete`
+);
+
+test('should show error message and cut it when autocomplete sets value over maxLength', async t => {
+  // in the story, the autocomplete function is only simulated after 1500ms, therefore wait here
+  await t.wait( 2000 );
+  const inputValue = await ClientFunction(() =>
+    document.querySelector('#fix-id-86452623').value
+  );
+
+  // story adds 123456789 but here it should be cut to the limit
+  await t.expect(await inputValue()).eql('12345');
+});
