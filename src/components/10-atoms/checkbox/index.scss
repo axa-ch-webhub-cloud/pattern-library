@@ -52,8 +52,7 @@ axa-checkbox {
         border: $checkbox-border-width solid;
         border-color: $color-prim-gray-dusty;
         box-sizing: border-box;
-
-        &::after {
+        &:not(.a-checkbox__icon-tick)::after {
           content: '';
           display: block;
           position: absolute;
