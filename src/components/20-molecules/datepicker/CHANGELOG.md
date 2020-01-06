@@ -2,9 +2,9 @@
 ## 5.0.0
 * Change behavior of width:
     * **Breaking change:** Removed `auto` - new default is `100%`
-    * Percentage values are set to components css 
-    * Percentage values not set to childs because that make no sense
-    * Numeric values change the components width, no longer takes the whole width it gets from parent.
+    * Percentage values are set to component's inner CSS
+    * Percentage values not set to inner HTML because that makes no sense anymore
+    * Numeric values change the component's width, no longer inherits from parent.
 * Fixed behavior of height
 * Changed appearance from `inline-block` to `inline` to have possibility to arrange other elements next to datepicker
 
