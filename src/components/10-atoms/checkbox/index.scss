@@ -44,15 +44,17 @@ axa-checkbox {
     }
 
     .a-checkbox__icon {
-        display: block;
-        position: relative;
-        transition: all 0.2s ease;
-        width: $checkbox-dimension;
-        height: $checkbox-dimension;
-        border: $checkbox-border-width solid;
-        border-color: $color-prim-gray-dusty;
-        box-sizing: border-box;
-        &:not(.a-checkbox__icon-tick)::after {
+      display: block;
+      position: relative;
+      transition: all 0.2s ease;
+      width: $checkbox-dimension;
+      height: $checkbox-dimension;
+      border: $checkbox-border-width solid;
+      border-color: $color-prim-gray-dusty;
+      box-sizing: border-box;
+
+      &:not(.a-checkbox__icon--tick) {
+        &::after {
           content: '';
           display: block;
           position: absolute;
@@ -64,6 +66,11 @@ axa-checkbox {
           border-color: transparent;
           box-sizing: border-box;
         }
+      }
+    }
+
+    .a-checkbox__icon-tick {
+      display: none;
     }
 
     .a-checkbox__content {
@@ -107,6 +114,9 @@ axa-checkbox {
             border-color: $color-axa-blue;
           }
         }
+      }
+      .a-checkbox__icon-tick {
+        display: block;
       }
     }
 

@@ -4,6 +4,7 @@ import '@axa-ch/text';
 import { TickSvg } from '@axa-ch/materials/images';
 
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { classMap } from 'lit-html/directives/class-map';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
@@ -149,6 +150,13 @@ class AXACheckbox extends NoShadowDOM {
       hasChildren,
       labelTextElement,
     } = this;
+
+    const classes = {
+      'a-checkbox__icon': true,
+      'js-checkbox__icon': true,
+      'a-checkbox__icon--tick': variant === 'tick',
+    };
+
     // now that we have the 'isReact' prop, determine if this
     // component is a 'controlled input' in the *React* sense
     const _isControlled = isControlled && isReact;
@@ -186,17 +194,13 @@ class AXACheckbox extends NoShadowDOM {
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
-            ${variant === 'tick'
-              ? html`
-                  <span
-                    class="a-checkbox__icon js-checkbox__icon a-checkbox__icon-tick"
-                    >${TICK_ICON}</span
-                  >
-                `
-              : html`
-                  <span class="a-checkbox__icon js-checkbox__icon"></span>
-                `}
-
+            <span class="${classMap(classes)}"
+              >${variant === 'tick'
+                ? html`
+                    <span class="a-checkbox__icon-tick">${TICK_ICON}</span>
+                  `
+                : ``}
+            </span>
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
