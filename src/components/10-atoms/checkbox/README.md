@@ -77,6 +77,13 @@ The string-valued `value` of the checkbox for purposes of form submission.
 
 The string-valued `label` provides the label text. When no label is set and the component hasn't any children no HMTL label will be rendered due to semantics.
 
+### variant
+
+| Attribute | Details |
+| --------------------- | --------------------------------------------- |
+| `variant="square"`    | Provides a filled square in the icon (default)|
+| `variant="tick"`      | Provides a tick in the icon                   |
+
 ### refId
 
 The string-valued `refId` sets the reference ID for label and input. If no `refId` is set, a random ID will be created.
