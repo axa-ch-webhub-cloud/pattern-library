@@ -1,6 +1,8 @@
-import { html } from 'lit-element';
+import { html, svg } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/text';
+import { TickSvg } from '@axa-ch/materials/images';
+
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -8,6 +10,10 @@ import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
+// // icon isolated from others, because it's a component specific icon
+// import { FileUploadGroupSvg } from './icons';
+
+const TICK_ICON = svg([TickSvg]);
 const REQUIRED_SYMBOL = '*';
 
 class AXACheckbox extends NoShadowDOM {
@@ -133,6 +139,7 @@ class AXACheckbox extends NoShadowDOM {
       name,
       label = '',
       type,
+      variant,
       checked,
       disabled,
       error = '',
@@ -179,7 +186,17 @@ class AXACheckbox extends NoShadowDOM {
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
-            <span class="a-checkbox__icon js-checkbox__icon"></span>
+            ${variant === 'tick'
+              ? html`
+                  <span
+                    class="a-checkbox__icon js-checkbox__icon a-checkbox__icon-tick"
+                    >${TICK_ICON}</span
+                  >
+                `
+              : html`
+                  <span class="a-checkbox__icon js-checkbox__icon"></span>
+                `}
+
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
