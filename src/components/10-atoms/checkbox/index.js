@@ -131,6 +131,7 @@ class AXACheckbox extends NoShadowDOM {
       value,
       name,
       label = '',
+      type,
       checked,
       disabled,
       error = '',
@@ -154,7 +155,7 @@ class AXACheckbox extends NoShadowDOM {
       <input
         id="${refId}"
         class="a-checkbox__input"
-        type="checkbox"
+        type="${type}"
         name="${name}"
         value="${value}"
         aria-required="${required}"
