@@ -148,7 +148,7 @@ test('should not show counter text if counter (text) not set', async t => {
 });
 
 fixture('Input text - maxLength works with autocomplete').page(
-  `${host}/iframe.html?id=atoms-input-text--input-text-simulate-autocomplete`
+  `${host}/iframe.html?id=atoms-input-text-react--input-text-simulate-autocomplete`
 );
 
 test('should show error message and cut it when autocomplete sets value over maxLength', async t => {
