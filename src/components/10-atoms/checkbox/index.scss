@@ -32,6 +32,17 @@ axa-checkbox {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
       }
+      
+      &:checked + .a-checkbox__icon--tick{
+        .a-checkbox__icon-tick {
+          display: block;
+          color: white;
+          fill: currentColor;
+        }
+        border-color: $color-axa-blue;
+        background-color: $color-axa-blue;
+      }
+
 
       &:disabled + .a-checkbox__icon {
         cursor: default;
