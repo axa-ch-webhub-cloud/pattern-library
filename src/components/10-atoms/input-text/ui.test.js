@@ -159,5 +159,5 @@ test('should show error message and cut it when autocomplete sets value over max
   );
 
   // story adds 123456789 but here it should be cut to the limit
-  await t.expect(await inputValue()).eql('12345');
+  await t.expect(await inputValue()).eql('1234');
 });
