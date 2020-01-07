@@ -193,7 +193,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     // means that a automatic prefelling function did fill it. Re-evaluate the component
     // if a user types the chars, the charsLeft always decrease incrementally. With
     // autocomplete instead is decreased all at once, therefore truncate it
-    if (this.charsLeft < 0) {
+    if (this.charsLeft < 0 && this.maxLength) {
       const { nativeInput } = this;
       const value = nativeInput.value.substring(0, this.maxLength - 1);
 
