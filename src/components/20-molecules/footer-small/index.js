@@ -8,6 +8,7 @@ import childStyles from './child.scss';
 import defineOnce from '../../../utils/define-once';
 import { applyDefaults } from '../../../utils/with-react';
 import InlineStyles from '../../../utils/inline-styles';
+import fireCustomEvent from '../../../utils/custom-event';
 
 class AXAFooterSmall extends InlineStyles {
   static get tagName() {
@@ -33,8 +34,8 @@ class AXAFooterSmall extends InlineStyles {
     this.onDisclaimerClick = () => {};
   }
 
-  // Parent class InlineStyles needs a static method to retrive styles
-  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  // Parent class InlineStyles needs a static method to retrieve styles.
+  // The name of such a method is passed when calling: this.inlineStyles('resetHeadingCss');
   static get resetHeadingCss() {
     return childStyles;
   }
@@ -43,25 +44,7 @@ class AXAFooterSmall extends InlineStyles {
     if (this.dynamic) {
       ev.preventDefault();
       this.onLanguageClick(languageIndex);
-      this.shadowRoot
-        .querySelectorAll(
-          '.m-footer-small__container > .m-footer-small__list a'
-        )
-        .forEach((languageItem, index) => {
-          if (languageIndex === index) {
-            languageItem.classList.add('m-footer-small__link--active');
-          } else {
-            languageItem.classList.remove('m-footer-small__link--active');
-          }
-        });
-
-      this.dispatchEvent(
-        new CustomEvent('axa-language-click', {
-          detail: languageIndex,
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      fireCustomEvent('axa-language-click', languageIndex, this);
     }
   };
 
@@ -69,19 +52,26 @@ class AXAFooterSmall extends InlineStyles {
     if (this.dynamic) {
       ev.preventDefault();
       this.onDisclaimerClick(disclaimerIndex);
-      this.dispatchEvent(
-        new CustomEvent('axa-disclaimer-click', {
-          detail: disclaimerIndex,
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      fireCustomEvent('axa-disclaimer-click', disclaimerIndex, this);
     }
   };
 
   firstUpdated() {
-    // call parent class method that add inline styles
+    // call parent class method that adds inline styles
     this.inlineStyles('resetHeadingCss');
+    // install observer to watch for changes in the component's children,
+    // rerendering if any such change occurs
+    this._observer = new MutationObserver(() => this.requestUpdate());
+    this._observer.observe(this, {
+      attributes: true,
+      childList: true,
+      subTree: true,
+    });
+  }
+
+  disconnectedCallback() {
+    // remove installed observer
+    this._observer.disconnect();
   }
 
   render() {
@@ -93,12 +83,14 @@ class AXAFooterSmall extends InlineStyles {
               ${repeat(
                 this.querySelectorAll('[slot="language-item"]'),
                 (languageItem, index) => {
-                  // We forward the active class coming from the light DOM.
+                  // copy the active class from the light-DOM child
+                  const isActive = languageItem.classList.contains(
+                    'm-footer-small__link--active'
+                  );
                   const classes = {
                     'm-footer-small__link--bold': true,
-                    'm-footer-small__link--active': languageItem.classList.contains(
-                      'm-footer-small__link--active'
-                    ),
+                    [`js-footer-small__link-${index}`]: true,
+                    'm-footer-small__link--active': isActive,
                   };
                   return html`
                     <li class="m-footer-small__list-item">
