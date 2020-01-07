@@ -151,7 +151,7 @@ fixture('Input text - maxLength works with autocomplete').page(
   `${host}/iframe.html?id=atoms-input-text-react--input-text-simulate-autocomplete`
 );
 
-test('should show error message and cut it when autocomplete sets value over maxLength', async t => {
+test('Cut text when autocomplete sets value over maxLength', async t => {
   // in the story, the autocomplete function is only simulated after 1500ms, therefore wait here
   await t.wait( 2000 );
   const inputValue = await ClientFunction(() =>
