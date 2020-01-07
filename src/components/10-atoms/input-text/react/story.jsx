@@ -69,6 +69,8 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
   const counterMax = text('counterMax', 'Over character limit!');
 
   const wrapper = document.createElement('div');
+  // there are two input fields because with only one is not possible to
+  // activate the Safari's autocomplete feature.
   ReactDOM.render(
     <form>
       <AXAInputText
