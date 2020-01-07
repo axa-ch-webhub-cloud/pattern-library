@@ -186,23 +186,22 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       this.nativeInput.value = this.modelValue;
     }
 
-    if (this.maxLength) {
-      this.modelCounter = this.getCounterText;
-    }
-
     // means that a automatic prefelling function did fill it. Re-evaluate the component
     // if a user types the chars, the charsLeft always decrease incrementally. With
     // autocomplete instead is decreased all at once, therefore truncate it
     if (this.charsLeft < 0 && this.maxLength) {
       const { nativeInput } = this;
-      const value = nativeInput.value.substring(0, this.maxLength - 1);
+      const valueCutToMaxLength = nativeInput.value.substring(0, this.maxLength - 1);
 
       // set value of native input element
-      nativeInput.value = value;
+      nativeInput.value = valueCutToMaxLength;
       // set model value
-      this.modelValue = value;
-      // requestr update with the new value
-      this.requestUpdate('value', value);
+      this.modelValue = valueCutToMaxLength;
+      // request update with the new value
+      this.requestUpdate('value', valueCutToMaxLength);
+    }
+
+    if (this.maxLength) {
       this.modelCounter = this.getCounterText;
     }
   };
