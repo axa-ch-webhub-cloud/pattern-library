@@ -108,7 +108,7 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
     else {
       input.fireEvent('input');
     }
-  }, 1000)
+  }, 1)
 
   return wrapper;
 });

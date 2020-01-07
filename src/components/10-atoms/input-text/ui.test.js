@@ -151,13 +151,13 @@ fixture('Input text - maxLength works with autocomplete').page(
   `${host}/iframe.html?id=atoms-input-text-react--input-text-simulate-autocomplete`
 );
 
-test('Cut text when autocomplete sets value over maxLength', async t => {
-  // in the story, the autocomplete function is only simulated after 1500ms, therefore wait here
+test('should cut text when autocomplete sets value over maxLength', async t => {
+  // in the story, the autocomplete function is only simulated after a timeout, therefore wait here
   await t.wait( 2000 );
   const inputValue = await ClientFunction(() =>
     document.querySelector('#fix-id-86452623').value
   );
-
+  await t.wait( 1000 );
   // story adds 123456789 but here it should be cut to the limit
   await t.expect(await inputValue()).eql('1234');
 });
