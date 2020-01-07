@@ -72,36 +72,51 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
   const disabled = boolean('disabled', false);
   const required = boolean('required', false);
   const invalid = boolean('invalid', false);
-  const types = radios('type', typeOptions, 'text');
   const counter = text('counter', 'Still ##counter## characters left');
   const counterMax = text('counterMax', 'Over character limit!');
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-input-text
-      refid="fix-id-86452623"
-      name="ix-name-86452623"
-      label="${label}"
-      placeholder="${placeholder}"
-      counter="${counter}"
-      countermax="${counterMax}"
-      value="${value}"
-      type="${types}"
-      error="${error}"
-      info="${info}"
-      maxlength="5"
-      ?checkmark="${checkMark}"
-      ?disabled="${disabled}"
-      ?required="${required}"
-      ?invalid="${invalid}"
-    ></axa-input-text>
+    <form>
+      <axa-input-text
+        refid="fix-id-fake"
+        name="Name"
+      ></axa-input-text>
+      <axa-input-text
+        refid="fix-id-86452623"
+        name="Adresse"
+        label="${label}"
+        placeholder="${placeholder}"
+        counter="${counter}"
+        countermax="${counterMax}"
+        value="${value}"
+        type="text"
+        error="${error}"
+        info="${info}"
+        maxlength="5"
+        ?checkmark="${checkMark}"
+        ?disabled="${disabled}"
+        ?required="${required}"
+        ?invalid="${invalid}"
+      ></axa-input-text>
+
+    </form>
   `;
 
   render(template, wrapper);
 
   // simulate autocomplete
   setTimeout(() => {
-    document.querySelector('#fix-id-86452623').value = '123456789';
+    const input = document.querySelector('#fix-id-86452623')
+    input.value = '123456789';
+    if ('createEvent' in document) {
+      const evt = document.createEvent('HTMLEvents');
+      evt.initEvent('input', false, true);
+      input.dispatchEvent(evt);
+    }
+    else {
+      input.fireEvent('input');
+    }
   }, 1000)
 
   return wrapper;
