@@ -85,8 +85,10 @@ axa-datepicker {
   &__input-wrap {
     position: relative;
     display: flex;
-    min-width: 197px;
     align-items: center;
+    min-width: 197px;
+    min-height: 40px;
+    height: 100%;
   }
 
   &__input-button {
@@ -100,9 +102,9 @@ axa-datepicker {
     border-left: none;
     line-height: 0;
     margin-left: 0; /* suppress Safari 2px margin */
-    min-width: 40px;
-    height: 40px;
     box-sizing: border-box;
+    height: 100%;
+    min-height: 40px;
 
     &:focus {
       outline: 2px solid $color-axa-blue;
@@ -127,6 +129,8 @@ axa-datepicker {
     padding: 0 10px 0 20px;
     min-width: 0;
     width: 100%;
+    height: 100%;
+    min-height: 40px;
     box-sizing: border-box;
 
     &::placeholder,
@@ -154,7 +158,7 @@ axa-datepicker {
 
   &__wrap {
     background: $color-prim-white;
-    max-width: 260px;
+    min-width: 260px;
     margin-top: 1px;
     padding: 20px 30px;
     background: $color-prim-white;
