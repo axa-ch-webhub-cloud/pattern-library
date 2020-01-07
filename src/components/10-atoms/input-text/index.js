@@ -203,6 +203,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       this.modelValue = value;
       // requestr update with the new value
       this.requestUpdate('value', value);
+      this.modelCounter = this.getCounterText;
     }
   };
 
