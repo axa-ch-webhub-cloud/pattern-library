@@ -2,7 +2,7 @@
 
 [Changelog](./CHANGELOG.md)
 
-TODO Description
+The title component provides a way to conveniently use headings and titles, that are in line with the style guide. Keep in mind that you need to import the fonts separately.
 
 ## Usage
 
@@ -15,7 +15,7 @@ npm install @axa-ch/heading
 ```js
 import '@axa-ch/heading';
 ...
-<axa-heading></axa-heading>
+<axa-heading rank="1">H1 Heading</axa-heading>
 ```
 
 ### React
@@ -32,7 +32,7 @@ export default AXAHeadingReact;
 ```
 
 ```js
-<AXAHeadingReact onClick={handler} />
+<AXAHeadingReact rank="1">H1 Heading</AXAHeadingReact>
 ```
 
 ### Pure HTML pages
@@ -49,7 +49,7 @@ Import the heading-defining script and use a heading like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-heading></axa-heading>
+    <axa-heading rank="1">H1 Heading</axa-heading>
     <script src="node_modules/@axa-ch/heading/dist/index.js"></script>
   </body>
 </html>
@@ -59,18 +59,7 @@ Import the heading-defining script and use a heading like this:
 
 ### Variant
 
-| Attribute       | Details         |
-| --------------- | --------------- |
-| `variant="foo"` | Desc of Variant |
-
-### Bar
-
-The attribute `bar` specifies...
-
-### onClick
-
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
-
-### Migration Notes
-
-You don't have to pay attention to anything for upgrading to newer version.
+| Attribute             | Details                                                                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `variant="secondary"` | Secondary variant will use publico as font. Default: "primary"                                                                 |
+| `rank="1"`            | Rank holds a number from one to six, which represents the underlying html heading tag. `rank="1"` will lead to a `h1` element. |
