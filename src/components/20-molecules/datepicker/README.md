@@ -139,13 +139,25 @@ Boolean `invalid`, when set to true, forces showing the error message set with `
 
 The intended use case is to easily convey external validation failure, e.g. when an application decides the entered date is outside a permissible date range.
 
-### width, height
+### width
 
-String-valued `width, height` allow to override the intrinsic dimensions of the datepicker (default: `auto`).
+String-valued `width` allows to override the intrinsic dimensions of the datepicker. Default is `100%`.
+Note minimum of `260px` if you use it inline and `197px` if you use it as a inputfield.
 
-For example, setting `width=100%` makes the datepicker assume its parent's width, whereas `height=45` sets the height of the input field to 45px.
+Example values:
 
-Note that missing `px` is added to numeric values automatically.
+- `90%`: Sets percentage value of width of parent element.
+- `400`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
+
+### height
+
+String-valued `height` allows to override the intrinsic dimensions of the datepicker. Default is `40`.
+Note minimum of `40px` if you use it as a inputfield. Note that you can't change height if you use it inline.
+
+Example values:
+
+- `90%`: Sets percentage value of height of parent element. Don't forget to set parent's height in this case.
+- `300`: Sets px value of height of parent element. Note that missing `px` is added to numeric values automatically.
 
 ### label
 

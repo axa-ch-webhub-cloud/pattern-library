@@ -128,8 +128,8 @@ class AXADatepicker extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String, defaultValue: 'Invalid date' },
       error: { type: String, reflect: true },
-      height: { type: String, reflect: true, defaultValue: '40px' },
-      width: { type: String, reflect: true, defaultValue: 'auto' },
+      height: { type: String, reflect: true, defaultValue: '40' },
+      width: { type: String, reflect: true, defaultValue: '100%' },
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
@@ -266,22 +266,19 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = 'auto', height = '40px', error, invalid } = this;
+    const { width = '100%', height = '40', error, invalid, style } = this;
 
-    const formattedStyle = parameter =>
-      `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
+    const setFormattedStyle = (parameter, dimension) => {
+      style[dimension] = `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
+    };
 
-    const formattedWidth = `width:${formattedStyle(width)}`;
-    const formattedHeight = `height:${formattedStyle(height)}`;
+    setFormattedStyle(width, 'width');
+    setFormattedStyle(height, 'height');
 
     const needToShowError = error || invalid;
 
     return html`
-      <article
-        class="m-datepicker"
-        @click="${this.handleDatepickerClick}"
-        style="${formattedWidth}"
-      >
+      <article class="m-datepicker" @click="${this.handleDatepickerClick}">
         ${label &&
           html`
             <label for="${refId}" class="m-datepicker__label">
@@ -296,7 +293,7 @@ class AXADatepicker extends NoShadowDOM {
         ${!this.inputfield
           ? ''
           : html`
-              <div class="m-datepicker__input-wrap" style="${formattedWidth}">
+              <div class="m-datepicker__input-wrap">
                 <input
                   id="${refId}"
                   @input="${this.handleInputChange}"
@@ -307,7 +304,6 @@ class AXADatepicker extends NoShadowDOM {
                   type="text"
                   name="${this.name}"
                   placeholder="${this.placeholder}"
-                  style="${formattedHeight}"
                   .value="${isControlled ? value : this.outputdate}"
                   ?disabled="${disabled}"
                 />
