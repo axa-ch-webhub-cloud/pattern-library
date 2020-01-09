@@ -77,12 +77,6 @@ class AXAHeading extends LitElement {
         `;
     }
   }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
-  }
 }
 
 defineOnce(AXAHeading.tagName, AXAHeading);
