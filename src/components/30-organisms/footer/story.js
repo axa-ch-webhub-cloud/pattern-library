@@ -14,9 +14,9 @@ storiesOf('Organisms/Footer', module)
 
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add(
     'Footer',

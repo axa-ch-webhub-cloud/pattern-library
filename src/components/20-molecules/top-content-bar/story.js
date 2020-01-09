@@ -17,9 +17,9 @@ storiesOf('Molecules/Top content bar', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add(
     'Top content bar',

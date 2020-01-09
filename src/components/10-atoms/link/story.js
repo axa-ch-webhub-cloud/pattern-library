@@ -37,9 +37,9 @@ storiesOf('Atoms/Link', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add('Hyperlink', () => {
     const link = text('link', 'https://axa.ch/en/private-customers.html');

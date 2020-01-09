@@ -11,9 +11,9 @@ storiesOf('Atoms/Input File', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add('Input File', () => {
     const inputText = text('text', 'Upload');

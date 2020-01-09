@@ -12,9 +12,9 @@ storiesOf('Molecules/Cookie disclaimer', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add('Cookie disclaimer', () => {
     const buttonname = text('buttonname', 'Accept');

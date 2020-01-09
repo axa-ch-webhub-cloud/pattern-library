@@ -18,9 +18,9 @@ storiesOf('Atoms/Text', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add('Text', () => {
     const variant = select('variant', variantOptions, '');

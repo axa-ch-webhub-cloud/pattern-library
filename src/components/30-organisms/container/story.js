@@ -10,9 +10,9 @@ storiesOf('Organisms/Container', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add(
     'Container - default',

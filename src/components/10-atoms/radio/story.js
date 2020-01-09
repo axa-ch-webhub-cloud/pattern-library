@@ -22,9 +22,9 @@ storiesOf('Atoms/Radio', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add('Radio', () => {
     const wrapper = document.createElement('div');

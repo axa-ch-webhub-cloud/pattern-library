@@ -10,9 +10,9 @@ storiesOf('Atoms/Fieldset', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-    sidebar: Readme,
-  },
-  changelog: Changelog
+      sidebar: Readme,
+    },
+    changelog: Changelog
   })
   .add(
     'Fieldset', () => {
