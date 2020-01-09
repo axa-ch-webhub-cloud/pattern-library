@@ -92,8 +92,6 @@ const createFiles = (store, a, m, o, done) => () => {
     outdent`
     # ${compTitle}
 
-    [Changelog](./CHANGELOG.md)
-
     TODO Description
 
     ## Usage
@@ -199,6 +197,7 @@ const createFiles = (store, a, m, o, done) => () => {
     import { html, render } from 'lit-html';
     import './index';
     import Readme from './README.md';
+    import Changelog from './CHANGELOG.md';
 
     const story = storiesOf('${titleMap[type]}/${compTitle}', module);
     story.addDecorator(withKnobs);
@@ -206,6 +205,7 @@ const createFiles = (store, a, m, o, done) => () => {
       readme: {
         sidebar: Readme,
       },
+      changelog: Changelog
     });
 
     story.add('${compTitle}', () => {
