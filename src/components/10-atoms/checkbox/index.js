@@ -1,10 +1,10 @@
 import { html, svg } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/text';
-import { TickSvg } from '@axa-ch/materials/images';
 
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
+import { TickHardEdgesSvg } from './icon';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
@@ -14,7 +14,7 @@ import createRefId from '../../../utils/create-ref-id';
 // // icon isolated from others, because it's a component specific icon
 // import { FileUploadGroupSvg } from './icons';
 
-const TICK_ICON = svg([TickSvg]);
+const TICK_ICON = svg([TickHardEdgesSvg]);
 const REQUIRED_SYMBOL = '*';
 
 class AXACheckbox extends NoShadowDOM {
