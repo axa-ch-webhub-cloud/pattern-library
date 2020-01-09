@@ -20,8 +20,8 @@ const MyPanel = () => {
     return 'No ChangeLog found.';
   };
 
-  return <div
-    dangerouslySetInnerHTML={{ __html: replaceUnneeded(value) }}></div>;
+  return <div style={{ margin: '8px' }}
+              dangerouslySetInnerHTML={{ __html: replaceUnneeded(value) }}></div>;
 };
 
 addonAPI.register(ADDON_ID, api => {
