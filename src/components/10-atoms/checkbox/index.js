@@ -1,7 +1,6 @@
 import { html, svg } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/text';
-
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
 import defineOnce from '../../../utils/define-once';
@@ -193,8 +192,8 @@ class AXACheckbox extends NoShadowDOM {
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
-            <span class="${classMap(classes)}"
-              >${variant === 'tick'
+            <span class="${classMap(classes)}">
+              ${variant === 'tick'
                 ? html`
                     <span class="a-checkbox__icon-tick">${TICK_ICON}</span>
                   `

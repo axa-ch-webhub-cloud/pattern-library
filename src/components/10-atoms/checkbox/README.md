@@ -79,7 +79,7 @@ The string-valued `label` provides the label text. When no label is set and the 
 
 ### variant
 
-| Attribute | Details |
+| Attribute             | Details                                       |
 | --------------------- | --------------------------------------------- |
 | `variant="square"`    | Provides a filled square in the icon (default)|
 | `variant="tick"`      | Provides a tick in the icon                   |
