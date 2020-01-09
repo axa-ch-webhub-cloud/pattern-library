@@ -1,5 +1,9 @@
 # Changelog
 
+### 2.1.0
+
+A new attribute `variant`was added. This makes it possible to switch between a checkbox with a square or a tick.
+
 ### 2.0.2
 
 Adjust error state to styleguide requirements [#1572](https://github.com/axa-ch/patterns-library/issues/1572)
