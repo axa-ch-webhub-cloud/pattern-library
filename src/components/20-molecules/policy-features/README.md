@@ -1,7 +1,5 @@
 # Policy features
 
-[Changelog](./CHANGELOG.md)
-
 With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it.
 
 ## Usage
