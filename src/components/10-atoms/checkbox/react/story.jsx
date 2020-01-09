@@ -20,6 +20,7 @@ storiesOf('Atoms/Checkbox/React', module)
     const disabled = boolean('disabled', false);
     const errortext = boolean('error', false);
     const required = boolean('required', false);
+    const variant = text('varinant', 'square');
 
     const div = document.createElement('div');
 
@@ -29,6 +30,7 @@ storiesOf('Atoms/Checkbox/React', module)
         label={label}
         checked={checked}
         disabled={disabled}
+        variant={variant}
         required={required}
         onChange={e => console.log('checkbox', name, ' changed to: ', checked)}
         error={

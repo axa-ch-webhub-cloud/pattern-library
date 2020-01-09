@@ -4,15 +4,14 @@ import '@axa-ch/text';
 
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
-import { TickHardEdgesSvg } from './icon';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
-// // icon isolated from others, because it's a component specific icon
-// import { FileUploadGroupSvg } from './icons';
+// icon isolated from others, because it's a component specific icon
+import { TickHardEdgesSvg } from './icon';
 
 const TICK_ICON = svg([TickHardEdgesSvg]);
 const REQUIRED_SYMBOL = '*';
