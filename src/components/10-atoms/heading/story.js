@@ -1,7 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
@@ -15,8 +15,6 @@ storyAXAHeading.addParameters({
 });
 
 storyAXAHeading.add('Heading', () => {
-  const children = text('Text', 'Some Children');
-
   const wrapper = document.createElement('div');
   const template = html`
     <axa-heading rank="1">H1 Primary Heading</axa-heading>

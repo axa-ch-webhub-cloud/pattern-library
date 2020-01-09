@@ -2,9 +2,9 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Heading - Desktop').page(
-  `${host}/iframe.html?id=atoms-heading--heading`
-);
+fixture
+  .only('Heading - Desktop')
+  .page(`${host}/iframe.html?id=atoms-heading--heading`);
 
 const TAG = 'axa-heading';
 const CLASS = '.a-heading';
@@ -20,7 +20,7 @@ async function _getHeadingElement(t, rank, variant) {
             variant ? `[variant="${variant}"]` : ''
           }`
         )
-        .shadowRoot.querySelector('.a-heading'),
+        .shadowRoot.querySelector(CLASS),
     { dependencies: { rank, variant } }
   );
   const $nativeHeadingElement = $axaElemShadow;
