@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Heading - Desktop')
+fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=atoms-heading--heading`)
   .afterEach(async t => {
     await t.maximizeWindow();
@@ -10,9 +10,9 @@ fixture('Heading - Desktop')
 
 const TAG = 'axa-heading';
 
-const mobileBreakpoint = '767px';
-const tabletBreakpoint = '991px';
-const desktopBreakpoint = '992px';
+const mobileBreakpoint = 767;
+const tabletBreakpoint = 991;
+const desktopBreakpoint = 992;
 
 async function _getHeadingElement(t, rank, variant) {
   const $headingElement = await Selector(TAG);
@@ -439,4 +439,208 @@ test('should render h6 secondary correctly on tablet', async t => {
     .eql('-0.18px');
 }).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
+});
+
+test('should render h1 primary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('24px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('29px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.24px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h2 primary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('24px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('29px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.24px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h3 primary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('20px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('26px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.2px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h4 primary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('20px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('26px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.2px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h5 primary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('18px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('20px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.18px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h6 primary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Source Sans Pro", Arial, sans-serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('16px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('18px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.16px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h1 secondary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('24px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('29px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.24px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h2 secondary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('24px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('29px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.24px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h3 secondary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('20px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('26px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.2px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h4 secondary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('20px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('26px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.2px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h5 secondary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('18px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('20px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.18px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
+});
+
+test('should render h6 secondary correctly on mobile', async t => {
+  const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
+
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('font-family'))
+    .eql('"Publico Headline", Georgia, serif');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-weight')).eql('400');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
+  await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('16px');
+  await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('18px');
+  await t
+    .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
+    .eql('-0.16px');
+}).before(async t => {
+  await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
