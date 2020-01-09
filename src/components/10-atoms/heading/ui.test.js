@@ -10,6 +10,10 @@ fixture('Heading - Desktop')
 
 const TAG = 'axa-heading';
 
+const mobileBreakpoint = '767px';
+const tabletBreakpoint = '991px';
+const desktopBreakpoint = '992px';
+
 async function _getHeadingElement(t, rank, variant) {
   const $headingElement = await Selector(TAG);
   await t.expect($headingElement.exists).ok();
@@ -43,7 +47,7 @@ test('should render h1 primary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.62px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h2 primary correctly on desktop', async t => {
@@ -60,7 +64,7 @@ test('should render h2 primary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.48px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h3 primary correctly on desktop', async t => {
@@ -77,7 +81,7 @@ test('should render h3 primary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h4 primary correctly on desktop', async t => {
@@ -94,7 +98,7 @@ test('should render h4 primary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h5 primary correctly on desktop', async t => {
@@ -111,7 +115,7 @@ test('should render h5 primary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.24px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h6 primary correctly on desktop', async t => {
@@ -128,7 +132,7 @@ test('should render h6 primary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h1 secondary correctly on desktop', async t => {
@@ -145,7 +149,7 @@ test('should render h1 secondary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.62px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h2 secondary correctly on desktop', async t => {
@@ -162,7 +166,7 @@ test('should render h2 secondary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.48px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h3 secondary correctly on desktop', async t => {
@@ -179,7 +183,7 @@ test('should render h3 secondary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h4 secondary correctly on desktop', async t => {
@@ -196,7 +200,7 @@ test('should render h4 secondary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h5 secondary correctly on desktop', async t => {
@@ -213,7 +217,7 @@ test('should render h5 secondary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.24px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h6 secondary correctly on desktop', async t => {
@@ -230,7 +234,7 @@ test('should render h6 secondary correctly on desktop', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
 }).before(async t => {
-  await t.resizeWindow(992, 992);
+  await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
 test('should render h1 primary correctly on tablet', async t => {
@@ -247,7 +251,7 @@ test('should render h1 primary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h2 primary correctly on tablet', async t => {
@@ -264,7 +268,7 @@ test('should render h2 primary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.3px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h3 primary correctly on tablet', async t => {
@@ -281,7 +285,7 @@ test('should render h3 primary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h4 primary correctly on tablet', async t => {
@@ -298,7 +302,7 @@ test('should render h4 primary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.25px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h5 primary correctly on tablet', async t => {
@@ -315,7 +319,7 @@ test('should render h5 primary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h6 primary correctly on tablet', async t => {
@@ -332,7 +336,7 @@ test('should render h6 primary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.18px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h1 secondary correctly on tablet', async t => {
@@ -349,7 +353,7 @@ test('should render h1 secondary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h2 secondary correctly on tablet', async t => {
@@ -366,7 +370,7 @@ test('should render h2 secondary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.3px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h3 secondary correctly on tablet', async t => {
@@ -383,7 +387,7 @@ test('should render h3 secondary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h4 secondary correctly on tablet', async t => {
@@ -400,7 +404,7 @@ test('should render h4 secondary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.25px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h5 secondary correctly on tablet', async t => {
@@ -417,7 +421,7 @@ test('should render h5 secondary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
 test('should render h6 secondary correctly on tablet', async t => {
@@ -434,5 +438,5 @@ test('should render h6 secondary correctly on tablet', async t => {
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.18px');
 }).before(async t => {
-  await t.resizeWindow(991, 991);
+  await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
