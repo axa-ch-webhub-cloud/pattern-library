@@ -12,7 +12,7 @@ import createRefId from '../../../utils/create-ref-id';
 // icon isolated from others, because it's a component specific icon
 import { TickHardEdgesSvg } from './icon';
 
-const TICK_ICON = svg([TickHardEdgesSvg]);
+const CHECKMARK_ICON = svg([TickHardEdgesSvg]);
 const REQUIRED_SYMBOL = '*';
 
 class AXACheckbox extends NoShadowDOM {
@@ -152,7 +152,7 @@ class AXACheckbox extends NoShadowDOM {
     const classes = {
       'a-checkbox__icon': true,
       'js-checkbox__icon': true,
-      'a-checkbox__icon--tick': variant === 'tick',
+      'a-checkbox__icon--checkmark': variant === 'checkmark',
     };
 
     // now that we have the 'isReact' prop, determine if this
@@ -193,9 +193,11 @@ class AXACheckbox extends NoShadowDOM {
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
             <span class="${classMap(classes)}">
-              ${variant === 'tick'
+              ${variant === 'checkmark'
                 ? html`
-                    <span class="a-checkbox__icon-tick">${TICK_ICON}</span>
+                    <span class="a-checkbox__icon-checkmark">
+                      ${CHECKMARK_ICON}</span
+                    >
                   `
                 : ``}
             </span>

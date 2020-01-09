@@ -33,8 +33,8 @@ axa-checkbox {
         background-color: $color-axa-blue;
       }
 
-      &:checked + .a-checkbox__icon--tick{
-        .a-checkbox__icon-tick {
+      &:checked + .a-checkbox__icon--checkmark{
+        .a-checkbox__icon-checkmark {
           height: 18px;
           display: block;
           color: $color-prim-white;;
@@ -66,7 +66,7 @@ axa-checkbox {
       border-color: $color-prim-gray-dusty;
       box-sizing: border-box;
 
-      &:not(.a-checkbox__icon--tick) {
+      &:not(.a-checkbox__icon--checkmark) {
         &::after {
           content: '';
           display: block;
@@ -82,7 +82,7 @@ axa-checkbox {
       }
     }
 
-    .a-checkbox__icon-tick {
+    .a-checkbox__icon-checkmark {
       display: none;
     }
 
