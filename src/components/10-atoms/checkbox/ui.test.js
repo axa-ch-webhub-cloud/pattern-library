@@ -142,3 +142,20 @@ test('should be clickable + change state and render parent label', async t => {
   // has parent label
   await t.expect(label).ok();
 });
+
+fixture('Checkbox - Variant tick').page(
+  `${host}/iframe.html?id=atoms-checkbox--checkbox&knob-refId=checkbox-rrp2nppsqui&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=tick&knob-checked=true`
+);
+
+test('should show checkbox variant tick', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window
+      .getComputedStyle(checkbox.querySelector('.a-checkbox__icon--tick'))
+      .getPropertyValue('background-color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgb(0, 0, 143)');
+});
