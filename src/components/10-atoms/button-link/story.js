@@ -11,6 +11,7 @@ import { html, render } from 'lit-html';
 import './index';
 import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const variantOptions = {
   default: '',
@@ -45,6 +46,7 @@ storyButtonLink.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 storyButtonLink.add('Button Link', () => {

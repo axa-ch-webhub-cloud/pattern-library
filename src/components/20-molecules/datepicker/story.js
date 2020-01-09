@@ -9,6 +9,7 @@ import {
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const localeOptions = {
   'de-CH': 'de-CH',
@@ -23,6 +24,7 @@ story.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 story.add('Datepicker', () => {

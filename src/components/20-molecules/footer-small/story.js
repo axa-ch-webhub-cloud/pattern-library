@@ -5,14 +5,16 @@ import { html, render } from 'lit-html';
 import './index';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Molecules/Footer Small', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-      sidebar: Readme,
-    },
+    sidebar: Readme,
+  },
+  changelog: Changelog
   })
   .add('Footer Small', () => {
     const language1 = text('First language', `DE`);

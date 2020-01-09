@@ -4,6 +4,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 storiesOf('Molecules/Cookie disclaimer', module)
@@ -11,8 +12,9 @@ storiesOf('Molecules/Cookie disclaimer', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-      sidebar: Readme,
-    },
+    sidebar: Readme,
+  },
+  changelog: Changelog
   })
   .add('Cookie disclaimer', () => {
     const buttonname = text('buttonname', 'Accept');

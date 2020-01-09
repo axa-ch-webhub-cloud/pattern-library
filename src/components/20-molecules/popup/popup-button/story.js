@@ -10,7 +10,7 @@ storyPopupButton.addDecorator(withKnobs);
 storyPopupButton.addParameters({
   readme: {
     sidebar: Readme,
-  },
+  }
 });
 
 storyPopupButton.add('Popup Button', () => {

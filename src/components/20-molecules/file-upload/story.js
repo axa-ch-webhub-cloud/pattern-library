@@ -4,6 +4,7 @@ import { html, render } from 'lit-html';
 import { iconList } from '../../10-atoms/icon/icon-list';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const story = storiesOf('Molecules/File Upload', module);
 story.addDecorator(withKnobs);
@@ -11,6 +12,7 @@ story.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 story.add('File upload', () => {

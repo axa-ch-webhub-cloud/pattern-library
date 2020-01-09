@@ -6,7 +6,7 @@ const story = storiesOf('Welcome', module);
 story.addParameters({
   readme: {
     sidebar: Readme,
-  },
+  }
 });
 
 story.add('to Patterns Library', () => {

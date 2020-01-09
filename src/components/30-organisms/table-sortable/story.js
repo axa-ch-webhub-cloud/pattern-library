@@ -3,6 +3,7 @@ import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const model = {
   thead: [
@@ -55,8 +56,9 @@ storiesOf('Organisms/Table Sortable', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
-      sidebar: Readme,
-    },
+    sidebar: Readme,
+  },
+  changelog: Changelog
   })
   .add(
     'Table Sortable',
