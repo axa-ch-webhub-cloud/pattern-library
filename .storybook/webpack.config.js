@@ -42,7 +42,18 @@ module.exports = ({ config }) => {
       test: /\.jsx/,
       exclude: /node_modules\/(?!lit\-element|lit\-html|@axa\-ch)/,
       loader: 'babel-loader',
-      options: {...babelOptions, presets: [...babelOptions.presets, '@babel/preset-react']},
+      options: {...babelOptions, presets: [...babelOptions.presets]},
+    },
+    {
+      test: /\CHANGELOG.md$/,
+      use: [
+        {
+          loader: "html-loader"
+        },
+        {
+          loader: "markdown-loader"
+        }
+      ]
     }
   );
 
