@@ -35,6 +35,7 @@ axa-checkbox {
 
       &:checked + .a-checkbox__icon--tick{
         .a-checkbox__icon-tick {
+          height: 18px;
           display: block;
           color: white;
           fill: currentColor;
