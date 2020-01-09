@@ -142,7 +142,7 @@ The intended use case is to easily convey external validation failure, e.g. when
 ### width
 
 String-valued `width` allows to override the intrinsic dimensions of the datepicker. Default is `100%`.
-Note minimum of `260px` if you use it inline and `197px` if you use it as a inputfield.
+Note that there is a minimum of `260px` if you use it inline and `197px` if you use it as a inputfield.
 
 Example values:
 
@@ -152,7 +152,7 @@ Example values:
 ### height
 
 String-valued `height` allows to override the intrinsic dimensions of the datepicker. Default is `40`.
-Note minimum of `40px` if you use it as a inputfield. Note that you can't change height if you use it inline.
+Note that there is a minimum of `40px` if you use it as a inputfield. Note that you can't change height if you use it inline.
 
 Example values:
 
