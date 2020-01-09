@@ -2,7 +2,7 @@
 
 ### 2.1.0
 
-A new attribute `variant` was added. This makes it possible to switch between a checkbox with a square or a tick.
+A new attribute `variant` was added. This makes it possible to switch between a checkbox with a checkmark or an inner square as select-indicator.
 
 ### 2.0.2
 
