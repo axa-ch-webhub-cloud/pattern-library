@@ -54,6 +54,13 @@ axa-checkbox {
           border-color: transparent;
         }
       }
+
+      &:disabled + .a-checkbox__icon--checkmark {
+        background-color: white;
+        .a-checkbox__icon-checkmark {
+          color: $color-prim-gray-silver;
+        }
+      }
     }
 
     .a-checkbox__icon {
