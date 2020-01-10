@@ -147,13 +147,16 @@ fixture('Checkbox - Variant checkmark').page(
   `${host}/iframe.html?id=atoms-checkbox--checkbox&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
 );
 
-test('should show checkbox variant checkmark', async t => {
+test.only('should show checkbox variant checkmark', async t => {
   const getIconBackgroundColor = ClientFunction(() => {
     const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector(
+      '.a-checkbox__icon--checkmark'
+    );
     checkbox.checked = true;
     checkbox.disabled = false;
     return window
-      .getComputedStyle(checkbox.querySelector('.a-checkbox__icon--checkmark'))
+      .getComputedStyle(checkmarkWrapper)
       .getPropertyValue('background-color');
   });
   const measuredColor = await getIconBackgroundColor();
