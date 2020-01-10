@@ -1,7 +1,5 @@
 # Testimonials
 
-[Changelog](./CHANGELOG.md)
-
 Shows several information in a carousel or inline and sets title and subtitle over it.
 
 ## Usage

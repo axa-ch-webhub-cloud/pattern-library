@@ -5,6 +5,7 @@ import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Atoms/Input File', module)
   .addDecorator(withKnobs)
@@ -12,6 +13,7 @@ storiesOf('Atoms/Input File', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Input File', () => {
     const inputText = text('text', 'Upload');

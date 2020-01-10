@@ -1,5 +1,3 @@
-# Changelog
-
 ### Migration to version 2
 
 The implementation of the wrapper to make a component React-ready has

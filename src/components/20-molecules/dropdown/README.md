@@ -1,7 +1,5 @@
 # AXA Dropdown
 
-[Changelog](./CHANGELOG.md)
-
 ## Usage
 
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).

@@ -10,7 +10,7 @@ storyPopupContent.addDecorator(withKnobs);
 storyPopupContent.addParameters({
   readme: {
     sidebar: Readme,
-  },
+  }
 });
 
 const children = html`<h4 style="margin-top: 0">Zeitspanne bis zur Pensionierung</h4>

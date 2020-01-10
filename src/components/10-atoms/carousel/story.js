@@ -5,6 +5,7 @@ import { boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const storyAXACarousel = storiesOf('Atoms/Carousel', module);
@@ -14,6 +15,7 @@ storyAXACarousel.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 storyAXACarousel.add('Carousel', () => {

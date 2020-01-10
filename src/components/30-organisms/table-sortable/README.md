@@ -1,7 +1,5 @@
 # AXA Table Sortable
 
-[Changelog](./CHANGELOG.md)
-
 _WARNING: For mobile use, currently the innerscroll property must be set. This restriction will be lifted in the future._
 
 ## Usage

@@ -1,7 +1,5 @@
 # Top content bar
 
-[Changelog](./CHANGELOG.md)
-
 Used as top of the page Warning or info box that can show text and have a call to action button
 
 ## Usage

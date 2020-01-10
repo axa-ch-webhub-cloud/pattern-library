@@ -1,7 +1,5 @@
 # AXA Materials
 
-[Changelog](./CHANGELOG.md)
-
 ### Usage
 
 ## Install Icons

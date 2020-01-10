@@ -4,6 +4,7 @@ import { boolean, text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const storyInputText = storiesOf('Atoms/Input Text', module);
 storyInputText.addDecorator(withKnobs);
@@ -11,6 +12,7 @@ storyInputText.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 const typeOptions = {

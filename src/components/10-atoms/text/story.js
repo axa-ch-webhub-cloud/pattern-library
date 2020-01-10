@@ -4,6 +4,7 @@ import { select, boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const variantOptions = {
   default: '',
@@ -19,6 +20,7 @@ storiesOf('Atoms/Text', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Text', () => {
     const variant = select('variant', variantOptions, '');

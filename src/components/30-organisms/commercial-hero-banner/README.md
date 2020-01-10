@@ -1,7 +1,5 @@
 # Commercial Hero Banner
 
-[Changelog](./CHANGELOG.md)
-
 The commercial hero banner is a component to set something into the focus of the user.
 
 ## Usage
