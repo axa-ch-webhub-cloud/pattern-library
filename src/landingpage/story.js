@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Readme from '../../README.md';
+import '../components/10-atoms/text';
 
 const story = storiesOf('Welcome', module);
 story.addParameters({
@@ -9,14 +10,14 @@ story.addParameters({
   },
 });
 
-story.add('to Patterns Library', () => {
+story.add('to Pattern Library', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <h1>Welcome to Patterns Library</h1>
-    <p>
+    <axa-text>Welcome to Pattern Library</axa-text>
+    <axa-text variant="size-3">
       You can find all our Webcomponents here. Check out our Readme above.
-    </p>
+    </axa-text>
   `;
 
   render(template, wrapper);

@@ -20,10 +20,12 @@ addParameters({
 
 addDecorator(addReadme);
 
+const landingpage = require.context('../src/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const components = require.context('../src/components', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const demos = require.context('../src/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
 configure(() => {
+  landingpage.keys().forEach(landingpage);
   components.keys().forEach(components);
   demos.keys().forEach(demos);
 }, module);
