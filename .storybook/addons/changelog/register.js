@@ -17,7 +17,7 @@ const MyPanel = () => {
         .replace(/\\n";/g, '<br>')
         .replace(/\\n/g, '<br>');
     }
-    return 'No ChangeLog found.';
+    return 'No Changelog found.';
   };
 
   return <div style={{ margin: '8px' }}
@@ -30,7 +30,7 @@ addonAPI.register(ADDON_ID, api => {
       <MyPanel/>
     </AddonPanel>
   );
-  const title = 'ChangeLog';
+  const title = 'Changelog';
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
