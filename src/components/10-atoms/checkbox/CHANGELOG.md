@@ -1,5 +1,3 @@
-# Changelog
-
 ### 2.0.2
 
 Adjust error state to styleguide requirements [#1572](https://github.com/axa-ch/patterns-library/issues/1572)

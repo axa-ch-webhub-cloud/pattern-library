@@ -4,6 +4,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const storyTextarea = storiesOf('Atoms/Textarea', module);
 storyTextarea.addDecorator(withKnobs);
@@ -11,6 +12,7 @@ storyTextarea.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 storyTextarea.add('Textarea', () => {

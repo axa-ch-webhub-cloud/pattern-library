@@ -11,6 +11,7 @@ import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import AXAIcon from './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const storyIcon = storiesOf('Atoms/Icon', module);
 storyIcon.addDecorator(withKnobs);
@@ -18,6 +19,7 @@ storyIcon.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 storyIcon.add(

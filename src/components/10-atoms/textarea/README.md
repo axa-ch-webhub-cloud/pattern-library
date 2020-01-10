@@ -1,7 +1,5 @@
 # Textarea
 
-[Changelog](./CHANGELOG.md)
-
 The &lt;axa-textarea&gt; component is a wrapper for the HTML &lt;textarea&gt; element with custom styling and additional functionality, e.g. a character counter.
 
 ## Usage

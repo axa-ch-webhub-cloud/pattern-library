@@ -1,7 +1,5 @@
 # Fieldset
 
-[Changelog](./CHANGELOG.md)
-
 The &lt;axa-fieldset&gt; component is used to group several controls within a web form. Compared to its native HTML counterpart, its function is mainly restricted to styling: the element ensures that the grouped controls
 obey correct spacing as per the style guide.
 

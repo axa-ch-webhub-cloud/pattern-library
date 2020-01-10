@@ -1,7 +1,5 @@
 # Footer - Small
 
-[Changelog](./CHANGELOG.md)
-
 This is the small version of the footer. This footer belongs to the very bottom of the webpage.
 
 ## Usage

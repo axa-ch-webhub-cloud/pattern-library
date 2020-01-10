@@ -1,5 +1,3 @@
-# Changelog
-
 ### Version 3.0.4
 
 - Fix: When using the autocomplete for form elements in Safari on macOs and iOS, the maxlength check had no effect.

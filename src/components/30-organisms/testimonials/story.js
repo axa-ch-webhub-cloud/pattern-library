@@ -4,6 +4,7 @@ import { boolean, text, withKnobs, number } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const story = storiesOf('Organisms/Testimonials', module);
@@ -13,6 +14,7 @@ story.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog
 });
 
 story.add('Testimonials', () => {

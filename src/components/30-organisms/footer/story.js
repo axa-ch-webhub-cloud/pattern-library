@@ -6,6 +6,7 @@ import { html, render } from 'lit-html';
 import './index';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Organisms/Footer', module)
   .addDecorator(withNoBorder)
@@ -15,6 +16,7 @@ storiesOf('Organisms/Footer', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add(
     'Footer',

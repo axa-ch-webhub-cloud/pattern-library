@@ -1,7 +1,5 @@
 # AXA Button Link
 
-[Changelog](./CHANGELOG.md)
-
 Button links provide link functionality, but in the style of a button. They may display text, icons, or both. Button links can be styled via several properties to change their look-and-feel.
 If you need a semantically correct button, use [axa-button](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button/README.md) instead.
 

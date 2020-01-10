@@ -1,7 +1,5 @@
 # AXA Icon
 
-[Changelog](./CHANGELOG.md)
-
 &lt;axa-icon&gt; renders an icon, given an icon name, a resource path or a string to a suitable SVG image.
 
 ## Usage

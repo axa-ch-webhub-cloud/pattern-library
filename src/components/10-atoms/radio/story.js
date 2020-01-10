@@ -5,6 +5,7 @@ import { html, render } from 'lit-html';
 import './index';
 
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="60.2" height="34.74">
     <defs/>
@@ -23,6 +24,7 @@ storiesOf('Atoms/Radio', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Radio', () => {
     const wrapper = document.createElement('div');
