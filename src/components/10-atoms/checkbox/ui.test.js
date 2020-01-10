@@ -144,7 +144,7 @@ test('should be clickable + change state and render parent label', async t => {
 });
 
 fixture('Checkbox - Variant checkmark').page(
-  `${host}/iframe.html?id=atoms-checkbox--checkbox&knob-refId=checkbox-rrp2nppsqui&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=tick&knob-checked=true`
+  `${host}/iframe.html?id=atoms-checkbox--checkbox&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
 );
 
 test('should show checkbox variant checkmark', async t => {
