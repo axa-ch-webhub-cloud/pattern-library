@@ -180,11 +180,25 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   handleInput = ev => {
     this.onChange(ev);
-
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {
       // yes, set UI from model state
       this.nativeInput.value = this.modelValue;
+    }
+
+    // means that a automatic prefelling function did fill it. Re-evaluate the component
+    // if a user types the chars, the charsLeft always decrease incrementally. With
+    // autocomplete instead is decreased all at once, therefore truncate it
+    if (this.charsLeft < 0 && this.maxLength) {
+      const { nativeInput } = this;
+      const valueCutToMaxLength = nativeInput.value.substring(0, this.maxLength - 1);
+
+      // set value of native input element
+      nativeInput.value = valueCutToMaxLength;
+      // set model value
+      this.modelValue = valueCutToMaxLength;
+      // request update with the new value
+      this.requestUpdate('value', valueCutToMaxLength);
     }
 
     if (this.maxLength) {

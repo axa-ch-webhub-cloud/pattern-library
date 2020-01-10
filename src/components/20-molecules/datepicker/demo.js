@@ -24,7 +24,7 @@ storiesOf('Molecules/Datepicker/Demos', module)
 
     const template = html`
       <form id="datepicker-form" @submit="${handleSubmit}">
-        <fieldset>
+        <fieldset width="589">
           <legend>Date</legend>
           <axa-datepicker
             data-test-id="datepicker-forms"
