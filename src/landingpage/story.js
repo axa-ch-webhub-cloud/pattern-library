@@ -14,9 +14,9 @@ story.add('to Pattern Library', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-text>Welcome to Pattern Library</axa-text>
+    <axa-text>Welcome to the Pattern Library!</axa-text>
     <axa-text variant="size-3">
-      You can find all our Webcomponents here. Check out our Readme above.
+      You can find all our Webcomponents here. Check out our Readme below.
     </axa-text>
   `;
 
