@@ -1,6 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
@@ -20,6 +20,7 @@ storyCheckbox.add('Checkbox', () => {
   const refId = text('refId', `checkbox-${createRefId()}`);
   const label = text('label', 'this is a label');
   const name = text('name', 'my-checkbox');
+  const variant = select('variant', ['square', 'checkmark']);
   const checked = boolean('checked', true);
   const disabled = boolean('disabled', false);
   const errortext = boolean('error', false);
@@ -31,6 +32,7 @@ storyCheckbox.add('Checkbox', () => {
       refId="${refId}"
       class="hover"
       name="${name}"
+      variant="${variant}"
       label="${label}"
       ?disabled="${disabled}"
       ?checked="${checked}"

@@ -1,0 +1,1 @@
+export default '<svg width="14px" height="10px" viewBox="0 0 14 10" xmlns="http://www.w3.org/2000/svg"><path d="M4.57382 7.88591L1.41384 4.77629L0.333984 5.82774L4.57382 10L13.6673 1.05145L12.5988 0L4.57382 7.88591Z" fill="currentColor" /></svg>';

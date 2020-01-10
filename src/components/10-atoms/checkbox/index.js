@@ -1,13 +1,18 @@
-import { html } from 'lit-element';
+import { html, svg } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import '@axa-ch/text';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { classMap } from 'lit-html/directives/class-map';
 import defineOnce from '../../../utils/define-once';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
+// icon isolated from others, because it's a component specific icon
+import CheckmarkHardEdgesSvg from './icon';
+
+const CHECKMARK_ICON = svg([CheckmarkHardEdgesSvg]);
 const REQUIRED_SYMBOL = '*';
 
 class AXACheckbox extends NoShadowDOM {
@@ -21,7 +26,7 @@ class AXACheckbox extends NoShadowDOM {
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
-      type: { type: String, defaultValue: 'checkbox' },
+      variant: { type: String, defaultValue: 'square' },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -131,6 +136,7 @@ class AXACheckbox extends NoShadowDOM {
       value,
       name,
       label = '',
+      variant,
       checked,
       disabled,
       error = '',
@@ -140,6 +146,13 @@ class AXACheckbox extends NoShadowDOM {
       hasChildren,
       labelTextElement,
     } = this;
+
+    const classes = {
+      'a-checkbox__icon': true,
+      'js-checkbox__icon': true,
+      'a-checkbox__icon--checkmark': variant === 'checkmark',
+    };
+
     // now that we have the 'isReact' prop, determine if this
     // component is a 'controlled input' in the *React* sense
     const _isControlled = isControlled && isReact;
@@ -177,7 +190,15 @@ class AXACheckbox extends NoShadowDOM {
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElement}
-            <span class="a-checkbox__icon js-checkbox__icon"></span>
+            <span class="${classMap(classes)}">
+              ${variant === 'checkmark'
+                ? html`
+                    <span class="a-checkbox__icon-checkmark">
+                      ${CHECKMARK_ICON}</span
+                    >
+                  `
+                : ``}
+            </span>
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
