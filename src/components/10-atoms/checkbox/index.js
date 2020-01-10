@@ -27,7 +27,6 @@ class AXACheckbox extends NoShadowDOM {
       name: { type: String, reflect: true },
       label: { type: String },
       variant: { type: String, defaultValue: 'square' },
-      type: { type: String, defaultValue: 'checkbox' },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -137,7 +136,6 @@ class AXACheckbox extends NoShadowDOM {
       value,
       name,
       label = '',
-      type,
       variant,
       checked,
       disabled,
@@ -169,7 +167,7 @@ class AXACheckbox extends NoShadowDOM {
       <input
         id="${refId}"
         class="a-checkbox__input"
-        type="${type}"
+        type="checkbox"
         name="${name}"
         value="${value}"
         aria-required="${required}"
