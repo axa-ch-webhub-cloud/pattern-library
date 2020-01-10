@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
@@ -33,49 +33,18 @@ class AXAHeading extends LitElement {
   }
 
   render() {
-    const classes = classMap({
-      'a-heading--secondary': this.variant === 'secondary',
-    });
+    const secondaryVariant =
+      this.variant === 'secondary' ? 'a-heading--secondary' : '';
 
-    switch (this.rank) {
-      case 1:
-        return html`
-          <h1 class="a-heading ${classes}">
-            <slot></slot>
-          </h1>
-        `;
-      case 2:
-        return html`
-          <h2 class="a-heading ${classes}">
-            <slot></slot>
-          </h2>
-        `;
-      case 3:
-        return html`
-          <h3 class="a-heading ${classes}">
-            <slot></slot>
-          </h3>
-        `;
-      case 4:
-        return html`
-          <h4 class="a-heading ${classes}">
-            <slot></slot>
-          </h4>
-        `;
-      case 5:
-        return html`
-          <h5 class="a-heading ${classes}">
-            <slot></slot>
-          </h5>
-        `;
-      case 6:
-      default:
-        return html`
-          <h6 class="a-heading ${classes}">
-            <slot></slot>
-          </h6>
-        `;
-    }
+    const template = `
+      <h${this.rank} class="a-heading ${secondaryVariant}">
+        <slot></slot>
+      </h${this.rank}>
+    `;
+
+    return html`
+      ${unsafeHTML(template)}
+    `;
   }
 }
 
