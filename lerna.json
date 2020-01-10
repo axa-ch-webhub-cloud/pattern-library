@@ -7,6 +7,7 @@
     "src/components/10-atoms/carousel",
     "src/components/10-atoms/checkbox",
     "src/components/10-atoms/fieldset",
+    "src/components/10-atoms/heading",
     "src/components/10-atoms/radio",
     "src/components/10-atoms/icon",
     "src/components/10-atoms/input-file",
