@@ -51,7 +51,11 @@ module.exports = ({ config }) => {
           loader: "html-loader"
         },
         {
-          loader: "markdown-loader"
+          loader: "markdown-loader",
+          options: {
+            gfm: true,
+            breaks: false // TODO: make it work
+          }
         }
       ]
     }
