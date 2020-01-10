@@ -1,7 +1,5 @@
 # Heading
 
-[Changelog](./CHANGELOG.md)
-
 The title component provides a way to conveniently use headings and titles, that are in line with the style guide. Keep in mind that you need to import the fonts separately.
 
 ## Usage
