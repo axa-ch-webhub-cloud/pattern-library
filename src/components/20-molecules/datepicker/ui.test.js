@@ -410,6 +410,13 @@ test('should submit datepicker correctly in form', async t => {
     .eql('date = 29.2.2020 (of 1 submittable elements)');
 });
 
+test('should have default width', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  await t.expect(datepicker.getAttribute('width')).eql('100%');
+});
+
 fixture('Datepicker with onchange handler').page(
   `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
 );
@@ -443,4 +450,49 @@ test('should fire the right events', async t => {
     .wait(50)
     .expect((await Selector('.event-log')).value)
     .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
+});
+
+fixture('Datepicker as inputfield with fixed width and height').page(
+  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+);
+
+test('should have 200px width', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  await t.expect(datepicker.clientWidth).eql(200);
+});
+
+test('button should have correct height', async t => {
+  const expectedHeightWithBorderAndPadding = 78;
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  ).find('.js-datepicker__input-button');
+  await t
+    .expect(datepicker.clientHeight)
+    .eql(expectedHeightWithBorderAndPadding);
+});
+
+fixture('Datepicker as inputfield with 196px width and 10px height').page(
+  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
+);
+test('should have a minimum width', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  const datepickerInputWrap = await datepicker.find(
+    '.m-datepicker__input-wrap'
+  );
+  await t.expect(datepicker.clientWidth).eql(196); // component has no min-width
+  await t.expect(datepickerInputWrap.clientWidth).eql(197); // input wrapper has min-width
+});
+test('should have a minimum height', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  const datepickerInputWrap = await datepicker.find(
+    '.m-datepicker__input-wrap'
+  );
+  await t.expect(datepicker.clientHeight).eql(10); // component has no min-height
+  await t.expect(datepickerInputWrap.clientHeight).eql(40); // input wrapper has min-height
 });

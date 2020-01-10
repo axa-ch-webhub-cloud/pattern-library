@@ -77,7 +77,13 @@ const createFiles = (store, a, m, o, done) => () => {
 
   fs.writeFileSync(
     `${BASE_FOLDER}/CHANGELOG.md`,
-    `# Changelog`,
+    outdent`
+    ## [Unreleased]
+    * short description of bugfix/feature that is not released yet
+    
+    ## 0.0.1
+    * first release of component
+    `,
     'utf8',
   );
 
@@ -158,10 +164,6 @@ const createFiles = (store, a, m, o, done) => () => {
 
     The function-valued attribute \`onClick\` can be used as a callback prop for React and other frameworks.
 
-    ### Migration Notes
-
-    You don't have to pay attention to anything for upgrading to newer version.
-
     `,
     'utf8',
   );
@@ -182,20 +184,7 @@ const createFiles = (store, a, m, o, done) => () => {
     import withReact from '../../../utils/with-react';
     import ${className} from './index';
 
-    export default createElement => ({
-      /* props here, same as in the constructor of index.js */
-      className = '',
-      children,
-    }) =>
-      withReact(createElement)(
-        ${className}.tagName,
-        {
-          /* props here, same as in the constructor of index.js */
-          className,
-        },
-        children
-      );
-
+    export default createElement => withReact(createElement, ${className});
     `,
     'utf8',
   );
@@ -211,20 +200,20 @@ const createFiles = (store, a, m, o, done) => () => {
     import './index';
     import Readme from './README.md';
 
-    const story${className} = storiesOf('${titleMap[type]}/${compTitle}', module);
-    story${className}.addDecorator(withKnobs);
-    story${className}.addParameters({
+    const story = storiesOf('${titleMap[type]}/${compTitle}', module);
+    story.addDecorator(withKnobs);
+    story.addParameters({
       readme: {
         sidebar: Readme,
       },
     });
 
-    story${className}.add('${compTitle}', () => {
-      const children = text('Text', 'Some Children');
+    story.add('${compTitle}', () => {
+      const textknob = text('This is a knob', 'Value of text knob');
 
       const wrapper = document.createElement('div');
       const template = html\`
-        <axa-${fileName}>\${children}<axa-${fileName}>
+        <axa-${fileName}>\${textknob}</axa-${fileName}>
       \`;
 
       render(template, wrapper);
@@ -271,9 +260,30 @@ const createFiles = (store, a, m, o, done) => () => {
     test('should render ${fileName}', async t => {
       const $axaElem = await Selector(TAG);
       await t.expect($axaElem.exists).ok();
-      const $axaElemShadow = await Selector(() => document.querySelector('axa-${fileName}').shadowRoot);
+      const $axaElemShadow = await Selector(
+        () => document.querySelector(TAG).shadowRoot,
+        { dependencies: { TAG } }
+      );
       const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
       await t.expect($axaElemShadowEl.exists).ok();
+    });
+    `,
+    'utf8',
+  );
+
+  fs.writeFileSync(
+    `${BASE_FOLDER}/unit.test.js`,
+    outdent`
+    import ${className} from './index';
+    
+    describe('${compTitle}', () => {
+      test('firstUpdated() should not call another method', () => {
+        ${className}.prototype.methodThatShouldNotBeCalled = jest.fn();
+    
+        ${className}.prototype.firstUpdated();
+    
+        expect(${className}.prototype.methodThatShouldNotBeCalled).not.toHaveBeenCalled();
+      });
     });
     `,
     'utf8',
