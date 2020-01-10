@@ -10,9 +10,9 @@ import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 
 // icon isolated from others, because it's a component specific icon
-import { TickHardEdgesSvg } from './icon';
+import CheckmarkHardEdgesSvg from './icon';
 
-const CHECKMARK_ICON = svg([TickHardEdgesSvg]);
+const CHECKMARK_ICON = svg([CheckmarkHardEdgesSvg]);
 const REQUIRED_SYMBOL = '*';
 
 class AXACheckbox extends NoShadowDOM {
