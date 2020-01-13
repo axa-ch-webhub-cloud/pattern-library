@@ -147,11 +147,11 @@ class AXACheckbox extends NoShadowDOM {
       labelTextElement,
     } = this;
 
-    const classes = {
+    const classes = classMap({
       'a-checkbox__icon': true,
       'js-checkbox__icon': true,
       'a-checkbox__icon--checkmark': variant === 'checkmark',
-    };
+    });
 
     // now that we have the 'isReact' prop, determine if this
     // component is a 'controlled input' in the *React* sense
@@ -180,6 +180,16 @@ class AXACheckbox extends NoShadowDOM {
       />
     `;
 
+    const iconElement = html`
+      <span class="${classes}">
+        ${variant === 'checkmark'
+          ? html`
+              <span class="a-checkbox__icon-checkmark"> ${CHECKMARK_ICON}</span>
+            `
+          : ``}
+      </span>
+    `;
+
     const errorElement = error
       ? html`
           <span class="a-checkbox__error">${unsafeHTML(error)}</span>
@@ -189,16 +199,7 @@ class AXACheckbox extends NoShadowDOM {
     return hasChildren || label
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
-            ${inputElement}
-            <span class="${classMap(classes)}">
-              ${variant === 'checkmark'
-                ? html`
-                    <span class="a-checkbox__icon-checkmark">
-                      ${CHECKMARK_ICON}</span
-                    >
-                  `
-                : ``}
-            </span>
+            ${inputElement} ${iconElement}
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
@@ -207,11 +208,8 @@ class AXACheckbox extends NoShadowDOM {
           </label>
         `
       : html`
-          ${inputElement}
-          <span class="a-checkbox__icon js-checkbox__icon"></span>
-          </span>
-          ${errorElement}
-      `;
+          ${inputElement} ${iconElement} ${errorElement}
+        `;
   }
 
   firstUpdated() {
