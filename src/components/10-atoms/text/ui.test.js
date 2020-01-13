@@ -23,7 +23,7 @@ test('should render text', async t => {
 
 test('should have correct font definitions for text size 1', async t => {
   const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text').querySelector('.a-text')
+    document.querySelector('axa-text .a-text')
   );
 
   await t
@@ -53,9 +53,7 @@ fixture('Text - Size 2')
 
 test('should have correct font definitions for text size 2', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-2"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-2"] .a-text')
   );
 
   await t
@@ -85,9 +83,7 @@ fixture('Text - Size 3')
 
 test('should have correct font definitions for text size 3', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-3"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-3"] .a-text')
   );
 
   await t
@@ -119,9 +115,7 @@ fixture('Text - Size 2 with custom tag')
 
 test('should have correct font definitions for text size 2 with custom span tag', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-2"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-2"] .a-text')
   );
 
   await t
@@ -149,9 +143,9 @@ fixture('Text - Bold')
     await t.resizeWindow(380, 680);
   });
 
-test('should have correct font weight for text bold', async t => {
+test.only('should have correct font weight for text bold', async t => {
   const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text[variant="bold"]').querySelector('.a-text')
+    document.querySelector('axa-text[variant="bold"] .a-text')
   );
 
   await t
@@ -167,9 +161,7 @@ fixture('Text - Variant')
 
 test('should be mutually exclusive', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-1 bold"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-1 bold"] .a-text')
   );
 
   await t
