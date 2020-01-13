@@ -1,3 +1,9 @@
+/**
+ * The javascript prefixer is a rollup plugin, that processes the javascript
+ * files and enriches the css-class references within those files with
+ * versioned prefixes.
+ */
+
 const path = require('path');
 /* eslint-disable import/no-dynamic-require */
 const componentPackageJson = require(`${process.cwd()}${path.sep}package.json`);
