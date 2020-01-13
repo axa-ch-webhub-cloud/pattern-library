@@ -163,7 +163,7 @@ class AXACheckbox extends NoShadowDOM {
       clearTimeout(timer);
     }
 
-    const inputElement = html`
+    const inputElements = html`
       <input
         id="${refId}"
         class="a-checkbox__input"
@@ -178,13 +178,10 @@ class AXACheckbox extends NoShadowDOM {
         @blur="${this.onBlur}"
         @change=${this.handleChange}
       />
-    `;
-
-    const iconElement = html`
       <span class="${classes}">
         ${variant === 'checkmark'
           ? html`
-              <span class="a-checkbox__icon-checkmark"> ${CHECKMARK_ICON}</span>
+              <span class="a-checkbox__icon-checkmark">${CHECKMARK_ICON}</span>
             `
           : ``}
       </span>
@@ -199,7 +196,7 @@ class AXACheckbox extends NoShadowDOM {
     return hasChildren || label
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
-            ${inputElement} ${iconElement}
+            ${inputElements}
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
@@ -208,7 +205,7 @@ class AXACheckbox extends NoShadowDOM {
           </label>
         `
       : html`
-          ${inputElement} ${iconElement} ${errorElement}
+          ${inputElements} ${errorElement}
         `;
   }
 
