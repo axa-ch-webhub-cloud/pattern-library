@@ -143,7 +143,7 @@ fixture('Text - Bold')
     await t.resizeWindow(380, 680);
   });
 
-test.only('should have correct font weight for text bold', async t => {
+test('should have correct font weight for text bold', async t => {
   const $axaElemShadow = await Selector(() =>
     document.querySelector('axa-text[variant="bold"] .a-text')
   );
