@@ -1,7 +1,7 @@
 ## 2.1.1
 
-Fix bug when no label is set and `variant="checkmark"` [#1600](https://github.com/axa-ch/patterns-library/issues/1600).
-Fix some minor issues [#1595](https://github.com/axa-ch/patterns-library/issues/1595) and [#1599](https://github.com/axa-ch/patterns-library/issues/1599).
+Fixes bug when no label is set and `variant="checkmark"` [#1600](https://github.com/axa-ch/patterns-library/issues/1600).
+In addition fixes minor issue [#1595](https://github.com/axa-ch/patterns-library/issues/1595) and [#1599](https://github.com/axa-ch/patterns-library/issues/1599).
 
 ## 2.1.0
 
