@@ -15,11 +15,12 @@ elementMapping.set('20-molecules', 'm-');
 elementMapping.set('30-organisms', 'o-');
 
 const cwdAsStringArray = process.cwd().split(path.sep);
-const parentDirIndex = cwdAsStringArray.length - 2;
-const componentDirectoryName = cwdAsStringArray[parentDirIndex];
+
+const parentDirIndex = cwdAsStringArray.length - 2; // 2: penultimate directory level index
+const customElementCategory = cwdAsStringArray[parentDirIndex]; // E.g.: "/patterns-library/src/components/10-atoms/button" -> "10-atoms"
 const customElementName = componentPackageJson.name.replace('@axa-ch/', '');
 // atom (a-) / molecule (m-) / organism (o-)
-const customElementTypePrefix = elementMapping.get(componentDirectoryName);
+const customElementTypePrefix = elementMapping.get(customElementCategory);
 const newPrefix = `nva${componentPackageJson.version.replace(/\./g, '-')}`;
 
 export const componentInfo = {

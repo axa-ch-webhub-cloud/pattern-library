@@ -90,7 +90,7 @@ const lib = {
     }),
     nodeResolve({
       mainFields: ['module', 'main'],
-      only: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
+      only: [/^\.{0,2}\/|\.scss$/i], // treat all node_modules as external, except .scss files
     }),
     copy({
       targets: ['index.d.ts'],

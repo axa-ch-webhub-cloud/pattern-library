@@ -184,17 +184,17 @@ storiesOf('Molecules/Top content bar', module)
 - Manually undo the removal of all not-to-be-released components in lerna.json, run `npm install` and commit the generated package-lock files to the release branch.
 - Merge the release branch to the `develop` branch in order to preserve the new version numbers.
 
-## Versioning
+## CSS Class Versioning
 
-For us to be able to have multiple versions of components on a webpage, we version the CSS classes. In production, all classes will have a prefix. This prefix makes sure that CSS is targeting only components of the same version and prevent CSS from leaking into other components.
+For us to be able to have multiple versions of components on a webpage, we version the CSS classes. In production, all classes will have a prefix. This prefix makes sure that CSS is targeting only components of the same version and prevents CSS from leaking into other components.
 
 Prefix structure: `nva${COMPONENT_VERSION_BEFORE_PUBLISH}`
 
 **What does that mean?**
-`nva` stands for "next version after...". At the time of building, the package.json consists still the version of the previous release. Only upon releasing, our monorepository framework `lerna` will increase the number and publish it. This means, that whenever you see `nva1-2-3_button-link` you have to keep in mind that the version in productions is the version that was released after the number that this prefix is indicating.
+`nva` stands for "next version after...". At build time, package.json still contains the version number of the previous release. Only upon releasing, our monorepository framework `lerna` will increase the number and publish it. This means, that whenever you see `nva1-2-3_button-link` you have to keep in mind that the version in production is the version that was released _after_ the number that this prefix is indicating.
 
-**How does the workflow look like with this?**
-The developer works on a component as usual. This whole process will not bother during development. As soon as the components gets built, the artifact will contain the prefixes.
+**How does the workflow change?**
+The developer works on a component as usual. This whole process will not bother during development. As soon as the components get built, build artifacts will contain the css-prefixes.
 
 **Is there a way to verify that it works before a publish?**
 Yes. After the components is built, `npm link` can be run from the components root folder (no the project root folder). After that, anywhere on the computer, this artifact can be used by running `npm link @axa-ch/COMPONENT_NAME`. This will create a symlink directly from your artifact to the destination.
