@@ -36,7 +36,7 @@ axa-checkbox {
       &:checked + .a-checkbox__icon--checkmark{
         text-align: center;
         .a-checkbox__icon-checkmark {
-          display: inline-block;
+          display: inline;
           color: $color-prim-white;
           fill: currentColor;
           vertical-align: middle;
