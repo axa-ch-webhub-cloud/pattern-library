@@ -31,18 +31,18 @@ class AXAText extends NoShadowDOM {
   render() {
     // eslint-disable-next-line prefer-destructuring
     const variant = this.variant;
-    const isSize2 = variant.includes('size-2');
-    const isSize3 = variant.includes('size-3');
-    const isBold = variant.includes('bold');
+    const isSize2 = variant.indexOf('size-2');
+    const isSize3 = variant.indexOf('size-3');
+    const isBold = variant.indexOf('bold');
 
     const classes = ['a-text'];
-    if (isSize2) {
+    if (isSize2 === 0) {
       classes.push('a-text--size-2');
     }
-    if (isSize3) {
+    if (isSize3 === 0) {
       classes.push('a-text--size-3');
     }
-    if (isBold) {
+    if (isBold === 0) {
       classes.push('a-text--bold');
     }
 

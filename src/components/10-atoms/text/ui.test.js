@@ -14,8 +14,8 @@ const CLASS = '.a-text';
 test('should render text', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-text')
+  const $axaElemShadow = await Selector(() =>
+    document.querySelector('axa-text')
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
@@ -23,7 +23,7 @@ test('should render text', async t => {
 
 test('should have correct font definitions for text size 1', async t => {
   const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text').querySelector('.a-text')
+    document.querySelector('axa-text .a-text')
   );
 
   await t
@@ -53,9 +53,7 @@ fixture('Text - Size 2')
 
 test('should have correct font definitions for text size 2', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-2"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-2"] .a-text')
   );
 
   await t
@@ -85,9 +83,7 @@ fixture('Text - Size 3')
 
 test('should have correct font definitions for text size 3', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-3"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-3"] .a-text')
   );
 
   await t
@@ -110,16 +106,16 @@ test('should have correct font definitions for text size 3', async t => {
 });
 
 fixture('Text - Size 2 with custom tag')
-  .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`)
+  .page(
+    `${host}/iframe.html?id=atoms-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`
+  )
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
 
 test('should have correct font definitions for text size 2 with custom span tag', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="size-2"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="size-2"] .a-text')
   );
 
   await t
@@ -141,7 +137,6 @@ test('should have correct font definitions for text size 2 with custom span tag'
     .eql('27px');
 });
 
-
 fixture('Text - Bold')
   .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=bold`)
   .beforeEach(async t => {
@@ -150,12 +145,35 @@ fixture('Text - Bold')
 
 test('should have correct font weight for text bold', async t => {
   const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-text[variant="bold"]')
-      .querySelector('.a-text')
+    document.querySelector('axa-text[variant="bold"] .a-text')
   );
 
   await t
     .expect(await $axaElemShadow.getStyleProperty('font-weight'))
     .eql('700');
+});
+
+fixture('Text - Variant')
+  .page(`${host}/iframe.html?id=atoms-text--text&knob-variant=size-1%20bold`)
+  .beforeEach(async t => {
+    await t.resizeWindow(800, 600);
+  });
+
+test('should be mutually exclusive', async t => {
+  const $axaElemShadow = await Selector(() =>
+    document.querySelector('axa-text[variant="size-1 bold"] .a-text')
+  );
+
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('font-size'))
+    .eql('20px');
+
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .eql('30px');
+
+  // 'size-1' attributes should be set, but not the 'bold' ones.
+  await t
+    .expect(await $axaElemShadow.getStyleProperty('font-weight'))
+    .notEql('700');
 });
