@@ -1,7 +1,9 @@
 /**
  * The javascript prefixer is a rollup plugin, that processes the javascript
  * files and enriches the css-class references within those files with
- * versioned prefixes.
+ * versioned prefixes. For this to work properly, the ./sass-prefixer.js file
+ * has to be executed as well, which does the same for all scss files during
+ * the build step.
  */
 
 const path = require('path');
