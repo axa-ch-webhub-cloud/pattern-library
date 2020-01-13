@@ -1,10 +1,14 @@
+## 2.1.1
+
+Fixes bug when no label is set and `variant="checkmark"` [#1598](https://github.com/axa-ch/patterns-library/issues/1598).
+
 ## 2.1.0
 
 A new attribute `variant` was added. This makes it possible to switch between a checkbox with a checkmark or an inner square as select-indicator.
 
 ## 2.0.2
 
-Adjust error state to styleguide requirements [#1572](https://github.com/axa-ch/patterns-library/issues/1572)
+Adjust error state to styleguide requirements [#1572](https://github.com/axa-ch/patterns-library/issues/1572).
 
 ## Migration to version 2
 
