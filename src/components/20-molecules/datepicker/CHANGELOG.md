@@ -1,3 +1,7 @@
+## 5.0.1
+- We do not set height to component anymore because that causes a bad behavior if you has set a label text
+- Set a width to popup wrapper because of IE
+
 ## 5.0.0
 
 - Change behavior of attribute `width`:
