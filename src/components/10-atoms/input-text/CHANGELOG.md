@@ -1,6 +1,6 @@
 ## Version 3.0.7
 
-- Set empty string as default value for placeholder. In React we rendered "undefined" instead of empty string.
+- Set empty string as default value for placeholder. In React we rendered "undefined" instead of empty string. Issue #1602.
 
 ## Version 3.0.4
 
