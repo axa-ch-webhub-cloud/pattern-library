@@ -267,15 +267,13 @@ class AXADatepicker extends NoShadowDOM {
     this.setMonthAndYearItems(month, year);
 
     const { width = '100%', height = '40', error, invalid, style } = this;
-
-    const setFormattedStyle = (parameter, dimension) => {
-      style[dimension] = `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
-    };
-
-    setFormattedStyle(width, 'width');
-    setFormattedStyle(height, 'height');
-
     const needToShowError = error || invalid;
+
+    const getFormattedStyle = parameter =>
+      `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
+
+    style.width = getFormattedStyle(width); // set width to component's css
+    const formattedHeight = getFormattedStyle(height); // set height to input-wrap element because of optional label
 
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
@@ -293,7 +291,10 @@ class AXADatepicker extends NoShadowDOM {
         ${!this.inputfield
           ? ''
           : html`
-              <div class="m-datepicker__input-wrap">
+              <div
+                class="m-datepicker__input-wrap"
+                style="height: ${formattedHeight}"
+              >
                 <input
                   id="${refId}"
                   @input="${this.handleInputChange}"
