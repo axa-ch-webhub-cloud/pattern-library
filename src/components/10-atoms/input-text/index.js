@@ -191,7 +191,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     // autocomplete instead is decreased all at once, therefore truncate it
     if (this.charsLeft < 0 && this.maxLength) {
       const { nativeInput } = this;
-      const valueCutToMaxLength = nativeInput.value.substring(0, this.maxLength - 1);
+      const valueCutToMaxLength = nativeInput.value.substring(
+        0,
+        this.maxLength - 1
+      );
 
       // set value of native input element
       nativeInput.value = valueCutToMaxLength;
@@ -239,7 +242,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       error = '',
       info = '',
       type = '',
-      placeholder,
+      placeholder = '',
       disabled,
       isReact,
       maxLength,
