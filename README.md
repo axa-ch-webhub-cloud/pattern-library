@@ -61,11 +61,6 @@ We release self-contained plug-and-play web components based on the [custom elem
 
 - None            
 
-## Unreleased Components
-
-- [AXA Title Primary](./src/components/10-atoms/title-primary) [![npm version](https://img.shields.io/npm/v/@axa-ch/title-primary.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/title-primary)
-- [AXA Title Secondary](./src/components/10-atoms/title-secondary) [![npm version](https://img.shields.io/npm/v/@axa-ch/title-secondary.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/title-secondary)
-
 ## Design Guidelines
 
 [Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
