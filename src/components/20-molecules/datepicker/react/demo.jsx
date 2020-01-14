@@ -8,12 +8,14 @@ import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation
 import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDateChange';
 import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Molecules/Datepicker/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Controlled-component React-ified Datepicker with inputfield', () => {
     const div = document.createElement('div');

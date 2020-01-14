@@ -11,6 +11,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AXADatepickerReact from './AXADatepickerReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const localeOptions = {
   'de-CH': 'de-CH',
@@ -25,6 +26,7 @@ storiesOf('Components|Molecules/Datepicker/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Datepicker as React Component', () => {
     const inputfield = boolean('inputfield', false);

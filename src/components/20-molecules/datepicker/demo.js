@@ -3,12 +3,14 @@ import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Readme from './README.md';
 import './index';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Components|Molecules/Datepicker/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Feature - Datepicker in a form', () => {
     const handleSubmit = event => {
