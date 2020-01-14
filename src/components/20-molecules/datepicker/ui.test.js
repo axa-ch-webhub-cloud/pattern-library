@@ -473,6 +473,32 @@ test('button should have correct height', async t => {
     .eql(expectedHeightWithBorderAndPadding);
 });
 
+test('input wrap should have correct height without a label', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  const datepickerInputWrap = await datepicker.find(
+    '.m-datepicker__input-wrap'
+  );
+  await t.expect(datepicker.clientHeight).eql(80);
+  await t.expect(datepickerInputWrap.clientHeight).eql(80);
+});
+
+fixture('Datepicker as inputfield with label').page(
+  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+);
+
+test('component and input wrap should have correct height', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  const datepickerInputWrap = await datepicker.find(
+    '.m-datepicker__input-wrap'
+  );
+  await t.expect(datepicker.clientHeight).notEql(80); // >80 because of the label
+  await t.expect(datepickerInputWrap.clientHeight).eql(80);
+});
+
 fixture('Datepicker as inputfield with 196px width and 10px height').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
@@ -493,6 +519,6 @@ test('should have a minimum height', async t => {
   const datepickerInputWrap = await datepicker.find(
     '.m-datepicker__input-wrap'
   );
-  await t.expect(datepicker.clientHeight).eql(10); // component has no min-height
-  await t.expect(datepickerInputWrap.clientHeight).eql(40); // input wrapper has min-height
+  await t.expect(datepicker.clientHeight).eql(40);
+  await t.expect(datepickerInputWrap.clientHeight).eql(40);
 });
