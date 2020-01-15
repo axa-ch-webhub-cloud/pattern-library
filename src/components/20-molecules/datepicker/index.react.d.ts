@@ -32,6 +32,7 @@ export interface AXADatepickerProps {
   placeholder?: string;
   monthtitle?: string;
   yeartitle?: string;
+  invalid?: boolean;
   invaliddatetext?: string;
   disabled?: boolean;
   checkMark?: boolean;
