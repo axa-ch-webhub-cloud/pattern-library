@@ -35,12 +35,14 @@ axa-checkbox {
 
       &:checked + .a-checkbox__icon--checkmark{
         .a-checkbox__icon-checkmark {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          
           height: 18px;
-          display: block;
+
           color: $color-prim-white;
           fill: currentColor;
-          text-align: center;
-          padding-top: 1px;
         }
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
