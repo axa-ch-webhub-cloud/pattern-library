@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from '../../../components/00-materials/README.md';
+import '../../10-atoms/text'
 
 /*
  * Just copy & paste 00-colors.scss to const colors above
@@ -84,22 +85,69 @@ storiesOf('Materials', module)
     },
   })
   .add('Colors', () => {
-    const backgrounds = select(
-      'background color',
-      ['darkgoldenrod', 'white', 'black'],
-      'darkgoldenrod'
-    );
+    const getColorGroups = scssString => {
+      const groups = scssString.split('///');
+      const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
+
+      return groupsWithColorIds.map(group => {
+        return {
+          name: group.split('\n')[0],
+          value: group,
+        };
+      });
+    };
+
+    const getColors = colorGroup => {
+      const lines = colorGroup.split('\n');
+
+      const linesWithColorIds = lines.filter(line => /#\w+/.test(line));
+
+      return linesWithColorIds.map(line => {
+        return {
+          name: line.split(': ')[0],
+          code: line.match(/#\w+/),
+        };
+      });
+
+    };
 
     const template = html`
-      ${colors.split('\n').map(line => {
+      ${getColorGroups(colors).map(group => {
         return html`
-          <style>
-            body {
-              background-color: ${backgrounds};
-            }
-          </style>
-          <div style="color: ${line.match(/#\w+/)}">
-            ${line.replace(/!default;/, '')}
+          <div id="colorGroup">
+            <axa-text>${group.name}</axa-text>
+            <div
+              style="
+              display: flex;
+              flex-wrap: wrap;
+            "
+            >
+              ${getColors(group.value).map(color => {
+                // foreach color
+                return html`
+                  <div
+                    style="border-radius: 5px;
+                border: 1px solid lightgray;
+                padding: 5px;
+                margin: 10px;
+                "
+                  >
+                    <div
+                      style="
+                    background-color: ${color.code};
+                    width:170px;
+                    height: 50px;
+                    border-radius: 5px;
+                    border: 1px solid lightgray;
+                    
+                  "
+                    ></div>
+                    <axa-text>${color.name}</axa-text> <br />
+                    <axa-text>${color.code}</axa-text> <br />
+                  </div>
+                `;
+              })}
+            </div>
           </div>
         `;
       })}
