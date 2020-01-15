@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import { html, render, svg } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const reqSvgsIcons = require.context(
   './icons',
@@ -36,6 +37,7 @@ storiesOf('Materials', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog
   })
   .add('Icons and Images', () => {
     const backgrounds = select(
