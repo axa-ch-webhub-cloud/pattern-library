@@ -82,8 +82,13 @@ class AXACheckbox extends NoShadowDOM {
   wrapChildren() {
     const childWrapper = document.createElement('axa-text');
     childWrapper.variant = 'size-3';
-    childWrapper.className = 'a-checkbox__children-inline';
-    childWrapper.innerHTML = this.innerHTML;
+    childWrapper.className = 'a-checkbox__children-inline js-checkbox__children-inline';
+
+    // Clone live DOM Node so that we dont have to use mutation obersver which causes a
+    // deadlock because we dont have shadow dom here and it would infintily update - render - update
+    // We will set content of live dome AFTER render is done in order that dom nodes are aligned.
+    // Only needed if we have childs.
+    [ ...this.children ].forEach((el) => childWrapper.appendChild(el));
 
     this.labelTextElement = childWrapper;
 
@@ -215,18 +220,6 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
-
-    if (this.hasChildren || this.label) {
-      // install observer to watch for changes in the component's children,
-      // rerendering if any such change occurs
-      this._observer = new MutationObserver(() => this.requestUpdate());
-      this._observer.observe(this.querySelector('.js-checkbox__wrapper'), {
-        attributes: true,
-        childList: true,
-        subTree: true,
-      });
-    }
-
   }
 
   // workaround because react has no innerHTML in constructor
