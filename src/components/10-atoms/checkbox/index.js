@@ -215,6 +215,15 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
+
+    // install observer to watch for changes in the component's children,
+    // rerendering if any such change occurs
+    this._observer = new MutationObserver(() => this.requestUpdate());
+    this._observer.observe(this, {
+      attributes: true,
+      childList: true,
+      subTree: true,
+    });
   }
 
   // workaround because react has no innerHTML in constructor
@@ -265,6 +274,11 @@ class AXACheckbox extends NoShadowDOM {
     } else {
       this.removeAttribute('checked');
     }
+  }
+
+  disconnectedCallback() {
+    // remove installed observer
+    this._observer.disconnect();
   }
 }
 
