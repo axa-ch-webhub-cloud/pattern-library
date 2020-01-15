@@ -45,7 +45,7 @@ class AXAFooterSmall extends InlineStyles {
   handleLanguageClick = (ev, languageIndex) => {
     if (this.dynamic) {
       ev.preventDefault();
-      Array.from(this.querySelectorAll('[slot="language-item"]')).forEach(
+      [...this.querySelectorAll('[slot="language-item"]')].forEach(
         (link, i) => {
           if (i === languageIndex) {
             link.classList.add(ACTIVE_LINK_CLASS);
@@ -56,6 +56,7 @@ class AXAFooterSmall extends InlineStyles {
       );
       this.onLanguageClick(languageIndex);
       fireCustomEvent('axa-language-click', languageIndex, this);
+      this.requestUpdate();
     }
   };
 
