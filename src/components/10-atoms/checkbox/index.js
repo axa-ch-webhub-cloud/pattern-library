@@ -82,7 +82,7 @@ class AXACheckbox extends NoShadowDOM {
   wrapChildren() {
     const childWrapper = document.createElement('axa-text');
     childWrapper.variant = 'size-3';
-    childWrapper.className = 'a-checkbox__children-inline js-checkbox__children-inline';
+    childWrapper.className = 'a-checkbox__children-inline';
 
     // Clone live DOM Node so that we dont have to use mutation obersver which causes a
     // deadlock because we dont have shadow dom here and it would infintily update - render - update
@@ -200,7 +200,7 @@ class AXACheckbox extends NoShadowDOM {
 
     return hasChildren || label
       ? html`
-          <label for="${refId}" class="a-checkbox__wrapper js-checkbox__wrapper">
+          <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElements}
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
@@ -269,13 +269,6 @@ class AXACheckbox extends NoShadowDOM {
       this.setAttribute('checked', '');
     } else {
       this.removeAttribute('checked');
-    }
-  }
-
-  disconnectedCallback() {
-    // remove installed observer
-    if (this._observer) {
-      this._observer.disconnect();
     }
   }
 }
