@@ -4,6 +4,7 @@ import { html, render } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from '../../../components/00-materials/README.md';
 import '../../10-atoms/text'
+import '../../10-atoms/heading'
 
 /*
  * Just copy & paste 00-colors.scss to const colors above
@@ -115,7 +116,7 @@ storiesOf('Materials', module)
       ${getColorGroups(colors).map(group => {
         return html`
           <div id="colorGroup">
-            <axa-text>${group.name}</axa-text>
+            <axa-heading rank="5">${group.name}</axa-heading>
             <div
               style="
               display: flex;
@@ -142,8 +143,8 @@ storiesOf('Materials', module)
                     
                   "
                     ></div>
-                    <axa-text>${color.name}</axa-text> <br />
-                    <axa-text>${color.code}</axa-text> <br />
+                    <div>${color.name /* TODO: change to axa-text if bug is fixed */}</div>
+                    <span>${color.code /* TODO: change to axa-text if bug is fixed */}</span>
                   </div>
                 `;
               })}
