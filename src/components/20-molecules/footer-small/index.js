@@ -10,6 +10,8 @@ import { applyDefaults } from '../../../utils/with-react';
 import InlineStyles from '../../../utils/inline-styles';
 import fireCustomEvent from '../../../utils/custom-event';
 
+const ACTIVE_LINK_CLASS = 'm-footer-small__link--active';
+
 class AXAFooterSmall extends InlineStyles {
   static get tagName() {
     return 'axa-footer-small';
@@ -43,6 +45,15 @@ class AXAFooterSmall extends InlineStyles {
   handleLanguageClick = (ev, languageIndex) => {
     if (this.dynamic) {
       ev.preventDefault();
+      Array.from(this.querySelectorAll('[slot="language-item"]')).forEach(
+        (link, i) => {
+          if (i === languageIndex) {
+            link.classList.add(ACTIVE_LINK_CLASS);
+          } else {
+            link.classList.remove(ACTIVE_LINK_CLASS);
+          }
+        }
+      );
       this.onLanguageClick(languageIndex);
       fireCustomEvent('axa-language-click', languageIndex, this);
     }
@@ -85,12 +96,12 @@ class AXAFooterSmall extends InlineStyles {
                 (languageItem, index) => {
                   // copy the active class from the light-DOM child
                   const isActive = languageItem.classList.contains(
-                    'm-footer-small__link--active'
+                    ACTIVE_LINK_CLASS
                   );
                   const classes = {
                     'm-footer-small__link--bold': true,
                     [`js-footer-small__link-${index}`]: true,
-                    'm-footer-small__link--active': isActive,
+                    [ACTIVE_LINK_CLASS]: isActive,
                   };
                   return html`
                     <li class="m-footer-small__list-item">
