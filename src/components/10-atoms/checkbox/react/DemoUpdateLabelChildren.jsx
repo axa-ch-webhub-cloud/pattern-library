@@ -11,9 +11,9 @@ export default function App() {
   return (
     <div className="App">
       <h1>Test label prop</h1>
-      <AXACheckbox id="111" label={label} />
+      <AXACheckbox className="first" label={label} />
       <h1>Test label as child</h1>
-      <AXACheckbox id="222">
+      <AXACheckbox className="second">
         <p>{label}</p>
       </AXACheckbox>
     </div>
