@@ -150,7 +150,6 @@ class AXADatepicker extends NoShadowDOM {
     }
     // update state
     state.value = newValue;
-    this.validate(newValue);
     // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);
   }
@@ -231,6 +230,12 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   shouldUpdate(changedProperties) {
+    if (changedProperties.has('allowedyears')) {
+      this.allowedyears = parseAndFormatAllowedYears(
+        this.allowedyears,
+        this.year
+      );
+    }
     if (changedProperties.has('value')) {
       const {
         isReact,
@@ -238,12 +243,7 @@ class AXADatepicker extends NoShadowDOM {
       } = this;
       // controlledness is a React-only concept
       this.state.isControlled = isReact && isControlled;
-    }
-    if (changedProperties.has('allowedyears')) {
-      this.allowedyears = parseAndFormatAllowedYears(
-        this.allowedyears,
-        this.year
-      );
+      this.validate(this.value);
     }
     return true;
   }
