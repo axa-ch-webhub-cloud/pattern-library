@@ -195,7 +195,7 @@ class AXACheckbox extends NoShadowDOM {
 
     return hasChildren || label
       ? html`
-          <label for="${refId}" class="a-checkbox__wrapper">
+          <label for="${refId}" class="a-checkbox__wrapper js-checkbox__wrapper">
             ${inputElements}
             <span class="a-checkbox__content">
               ${labelTextElement || unsafeHTML(label)}
@@ -216,14 +216,17 @@ class AXACheckbox extends NoShadowDOM {
       this.state.native = true;
     }
 
-    // install observer to watch for changes in the component's children,
-    // rerendering if any such change occurs
-    this._observer = new MutationObserver(() => this.requestUpdate());
-    this._observer.observe(this, {
-      attributes: true,
-      childList: true,
-      subTree: true,
-    });
+    if (this.hasChildren || this.label) {
+      // install observer to watch for changes in the component's children,
+      // rerendering if any such change occurs
+      this._observer = new MutationObserver(() => this.requestUpdate());
+      this._observer.observe(this.querySelector('.js-checkbox__wrapper'), {
+        attributes: true,
+        childList: true,
+        subTree: true,
+      });
+    }
+
   }
 
   // workaround because react has no innerHTML in constructor
@@ -278,7 +281,9 @@ class AXACheckbox extends NoShadowDOM {
 
   disconnectedCallback() {
     // remove installed observer
-    this._observer.disconnect();
+    if (this._observer) {
+      this._observer.disconnect();
+    }
   }
 }
 

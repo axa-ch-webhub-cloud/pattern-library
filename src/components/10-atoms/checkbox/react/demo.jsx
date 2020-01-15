@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Readme from '../README.md';
 import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
 import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren';
-import DemoUpdateLabelChildren from './DemoCheckboxLabelAsChildren';
+import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
 
 storiesOf('Atoms/Checkbox/React/Demo', module)
   .addParameters({
@@ -23,7 +23,7 @@ storiesOf('Atoms/Checkbox/React/Demo', module)
     ReactDOM.render(<DemoCheckboxLabelAsChildren />, div);
     return div;
   })
-  .add('Checkbox - label as child of the component', () => {
+  .add('Checkbox - updates also as child', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoUpdateLabelChildren />, div);
     return div;
