@@ -199,6 +199,25 @@ test('datepicker should behave correctly when controlled', async t => {
 
   await t.expect(await getInputValue()).eql('4.6.2019');
 
+  const getError = ClientFunction(
+    () =>
+      document.querySelector(
+        `axa-datepicker[data-test-id="datepicker-controlled-react"]`
+      ).error
+  );
+
+  // no error on initial render
+  await t.expect(await getError()).eql(null);
+
+  // deliberately wrong user input...
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-controlled-react"] .js-datepicker__input`,
+    '28.wrong2.2019',
+    { replace: true }
+  );
+  // ... triggers expected error
+  await t.expect(await getError()).eql('Invalid date');
+
   await t.typeText(
     `axa-datepicker[data-test-id="datepicker-controlled-react"] .js-datepicker__input`,
     '28.2.2019',

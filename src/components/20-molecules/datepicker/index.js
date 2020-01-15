@@ -154,7 +154,6 @@ class AXADatepicker extends NoShadowDOM {
     }
     // update state
     state.value = newValue;
-    this.validate(newValue);
     // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);
   }
@@ -239,6 +238,9 @@ class AXADatepicker extends NoShadowDOM {
         this.allowedyears,
         this.year
       );
+    }
+    if (changedProperties.has('value')) {
+      this.validate(this.value);
     }
     return true;
   }
