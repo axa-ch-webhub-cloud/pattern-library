@@ -1,7 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import Readme from '../../../components/00-materials/README.md';
 import '../../10-atoms/text'
 import '../../10-atoms/heading'
