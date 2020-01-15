@@ -1,10 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import { withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import Readme from '../../../components/00-materials/README.md';
-import '../../10-atoms/text'
-import '../../10-atoms/heading'
+import Changelog from '../../../components/00-materials/CHANGELOG.md';
+import '../../10-atoms/text';
+import '../../10-atoms/heading';
 
 /*
  * Just copy & paste 00-colors.scss to const colors above
@@ -84,8 +85,11 @@ storiesOf('Materials', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Colors', () => {
+    const darkmode = boolean('darkmode', false);
+
     const getColorGroups = scssString => {
       const groups = scssString.split('///');
       const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
@@ -109,42 +113,56 @@ storiesOf('Materials', module)
           code: line.match(/#\w+/),
         };
       });
-
     };
 
     const template = html`
+      <style>
+        div.colorgroupwrapper {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        div.colorwrapper {
+          border-radius: 5px;
+          border: 1px solid lightgray;
+          padding: 5px;
+          margin: 10px;
+        }
+        div.colorvisualisation {
+          width: 170px;
+          height: 50px;
+          border-radius: 5px;
+          border: 1px solid lightgray;
+        }
+      </style>
+
+      ${darkmode
+        ? html`
+            <style>
+              body {
+                background-color: black;
+                color: white;
+              }
+            </style>
+          `
+        : ''}
       ${getColorGroups(colors).map(group => {
         return html`
           <div id="colorGroup">
             <axa-heading rank="5">${group.name}</axa-heading>
-            <div
-              style="
-              display: flex;
-              flex-wrap: wrap;
-            "
-            >
+            <div class="colorgroupwrapper">
               ${getColors(group.value).map(color => {
-                // foreach color
                 return html`
-                  <div
-                    style="border-radius: 5px;
-                border: 1px solid lightgray;
-                padding: 5px;
-                margin: 10px;
-                "
-                  >
+                  <div class="colorwrapper">
                     <div
-                      style="
-                    background-color: ${color.code};
-                    width:170px;
-                    height: 50px;
-                    border-radius: 5px;
-                    border: 1px solid lightgray;
-                    
-                  "
+                      class="colorvisualisation"
+                      style="background-color: ${color.code};"
                     ></div>
-                    <div>${color.name /* TODO: change to axa-text if bug is fixed */}</div>
-                    <span>${color.code /* TODO: change to axa-text if bug is fixed */}</span>
+                    <div>
+                      ${color.name /* TODO: change to axa-text if bug is fixed */}
+                    </div>
+                    <span
+                      >${color.code /* TODO: change to axa-text if bug is fixed */}</span
+                    >
                   </div>
                 `;
               })}
