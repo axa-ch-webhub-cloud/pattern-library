@@ -83,7 +83,11 @@ class AXACheckbox extends NoShadowDOM {
     const childWrapper = document.createElement('axa-text');
     childWrapper.variant = 'size-3';
     childWrapper.className = 'a-checkbox__children-inline';
-    childWrapper.innerHTML = this.innerHTML;
+
+    // Clone live DOM node, so that we do not have to use mutation observer. Because we do not use shadow DOM
+    // here, it would infinitely update - render - update.
+    // Only needed if there are children.
+    [ ...this.children ].forEach((el) => childWrapper.appendChild(el));
 
     this.labelTextElement = childWrapper;
 
