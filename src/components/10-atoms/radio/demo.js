@@ -113,13 +113,4 @@ storiesOf('Components|Atoms/Radio/Demos', module)
 
     render(template, root);
     return root;
-  })
-  .add(
-    'Radio - no label',
-    () => `
-      <axa-fieldset>
-        <p>This axa-radio's have no labels. Therefore no label will be rendered</p>
-        <axa-radio id="radio1" name="insurance"></axa-radio>
-        <axa-radio id="radio2" name="insurance" label=""></axa-radio>
-      </axa-fieldset>`
-  );
+  });

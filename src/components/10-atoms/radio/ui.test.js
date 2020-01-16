@@ -81,22 +81,3 @@ test('should show controlled-component behaviour in default mode', async t => {
 
   await t.expect(radio1.getAttribute('checked')).eql('');
 });
-
-fixture('Radio - no label').page(
-  `${host}/iframe.html?id=atoms-radio-demos--radio-no-label`
-);
-
-test("shouldn't render a label", async t => {
-  const radio1 = await Selector('axa-radio#radio1');
-  const radio2 = await Selector('axa-radio#radio2');
-
-  await t.expect(radio1.getAttribute('label')).eql(undefined);
-  await t.expect(radio2.getAttribute('label')).eql('');
-
-  await t
-    .expect(await Selector('#radio1  > .js-radio__wrapper').exists)
-    .notOk();
-  await t
-    .expect(await Selector('#radio2  > .js-radio__wrapper').exists)
-    .notOk();
-});
