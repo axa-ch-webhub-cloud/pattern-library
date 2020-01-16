@@ -167,12 +167,12 @@ fixture('Checkbox - DOM update works also on children').page(
   `${host}/iframe.html?id=atoms-checkbox-react-demo--checkbox-updates-also-as-child`
 );
 
-test.only('should update checkbox when its children changes', async t => {
+test('should update checkbox when its children changes', async t => {
   const label = await Selector(
     () => document.querySelector('.second')
   ).find('.a-text--size-3').addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
   });
   // wait for timeout defined in demo DemoUpdateLabelChildren
-  await t.wait( 3200 ).expect(label.innerHTML).contains('BBBBBB');
+  await t.wait( 3200 ).expect(label.innerHTML).contains('after');
 });

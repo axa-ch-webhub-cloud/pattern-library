@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import AXACheckbox from './AXACheckboxReact';
 
 export default function App() {
-  const [label, setLabel] = useState("AAAAAA");
+  const [label, setLabel] = useState("initial");
 
   useEffect(() => {
-    setTimeout(() => setLabel("BBBBBB"), 3000);
+    setTimeout(() => setLabel("after"), 3000);
   }, []);
 
   return (

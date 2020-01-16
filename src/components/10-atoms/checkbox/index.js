@@ -84,10 +84,9 @@ class AXACheckbox extends NoShadowDOM {
     childWrapper.variant = 'size-3';
     childWrapper.className = 'a-checkbox__children-inline';
 
-    // Clone live DOM Node so that we dont have to use mutation obersver which causes a
-    // deadlock because we dont have shadow dom here and it would infintily update - render - update
-    // We will set content of live dome AFTER render is done in order that dom nodes are aligned.
-    // Only needed if we have childs.
+    // Clone live DOM node, so that we do not have to use mutation observer. Because we do not use shadow DOM
+    // here, it would infinitely update - render - update.
+    // Only needed if there are children.
     [ ...this.children ].forEach((el) => childWrapper.appendChild(el));
 
     this.labelTextElement = childWrapper;
