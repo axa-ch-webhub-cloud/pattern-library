@@ -189,7 +189,9 @@ class AXARadio extends NoShadowDOM {
             </label>
           `
         : html`
-            ${inputElement}
+            <div class="a-radio__wrapper">
+              ${inputElement}
+            </div>
           `}
     `;
   }
