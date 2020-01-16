@@ -96,7 +96,7 @@ fixture('Footer Small - React smoke test').page(
   `${host}/iframe.html?id=molecules-footer-small-react--footer-with-callbacks-on-language`
 );
 
-test('should render react axa footer small', async t => {
+test('should render Reactified axa-footer-small', async t => {
   const copyright = Selector(
     () =>
       document
@@ -106,4 +106,40 @@ test('should render react axa footer small', async t => {
   );
   await t.expect(copyright.exists).ok();
   await t.expect(copyright.textContent).eql('© 2019 AXA Insurance Ltd.');
+});
+
+fixture('Footer Small - React dynamic children test').page(
+  `${host}/iframe.html?id=molecules-footer-small-react--footer-with-dynamic-change-of-children-upon-language-change`
+);
+
+test('should update Reactified axa-footer-small when children change dynamically', async t => {
+  const disclaimers = await Selector(() =>
+    document
+      .querySelector(`axa-footer-small`)
+      .shadowRoot.querySelector(
+        '.m-footer-small__disclaimer .m-footer-small__list'
+      )
+  ).innerText;
+
+  await t.expect(disclaimers).contains('Nutzungshinweise  Datenschutz');
+
+  const italian = Selector(() =>
+    document
+      .querySelector(`axa-footer-small`)
+      .shadowRoot.querySelector('.js-footer-small__link-3')
+  );
+
+  await t.click(italian);
+
+  const italianDisclaimers = await Selector(() =>
+    document
+      .querySelector(`axa-footer-small`)
+      .shadowRoot.querySelector(
+        '.m-footer-small__disclaimer .m-footer-small__list'
+      )
+  ).innerText;
+
+  await t
+    .expect(italianDisclaimers)
+    .contains("Avvertenze per l'utilizzazione  Protezione dei dati");
 });

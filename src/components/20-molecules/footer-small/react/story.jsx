@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import DemoFooterSmall from './FooterSmall';
 import Readme from '../README.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
+import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 
 storiesOf('Molecules/Footer Small/React', module)
   .addDecorator(withNoBorder)
@@ -35,5 +36,11 @@ storiesOf('Molecules/Footer Small/React', module)
       />,
       div
     );
+    return div;
+  })
+  .add('Footer with dynamic change of children upon language change', () => {
+    const div = document.createElement('div');
+    div.id = 'footer-small-dynamic-children';
+    ReactDOM.render(<DemoFooterSmallDynamicChildren />, div);
     return div;
   });
