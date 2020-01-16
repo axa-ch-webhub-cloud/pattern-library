@@ -168,11 +168,25 @@ fixture('Checkbox - DOM update works also on children').page(
 );
 
 test('should update checkbox when its children change', async t => {
-  const label = await Selector(
-    () => document.querySelector('.second')
-  ).find('.a-text--size-3').addCustomDOMProperties({
-    innerHTML: el => el.innerHTML,
-  });
-  // wait for timeout defined in demo DemoUpdateLabelChildren
-  await t.expect(label.innerHTML).contains('after');
+  const checkboxPropLabel = await Selector(() =>
+    document.querySelector('.first')
+  ).find('.a-checkbox__content');
+
+  const checkboxChildLabel = await Selector(() =>
+    document.querySelector('.second')
+  )
+    .find('.a-text--size-3')
+    .addCustomDOMProperties({
+      innerHTML: el => el.innerHTML,
+    });
+
+  const buttonToRerenderCheckboxChildren = await Selector(
+    '.js-checkbox__demo-button-rerender-children'
+  );
+
+  await t.expect(checkboxChildLabel.innerHTML).contains('Rerenders: 0');
+  await t.expect(checkboxPropLabel.textContent).contains('Rerenders: 0');
+  await t.click(buttonToRerenderCheckboxChildren);
+  await t.expect(checkboxChildLabel.innerHTML).contains('Rerenders: 1');
+  await t.expect(checkboxPropLabel.textContent).contains('Rerenders: 1');
 });
