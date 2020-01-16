@@ -6,8 +6,10 @@
 # External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
 
 # Check that the needed evnironment variables are present
+
 echo "vars: $SOURCE_BRANCH_NAME ||||||| $PR_SOURCE_BRANCH_NAME"
-if [[ -z "$SOURCE_BRANCH_NAME" && (-z "$PR_SOURCE_BRANCH_NAME" || $PR_SOURCE_BRANCH_NAME == *"$"*) ]]; then
+
+if [[ -z "$SOURCE_BRANCH_NAME" && (( -z "$PR_SOURCE_BRANCH_NAME" || $PR_SOURCE_BRANCH_NAME == *"$"* )) ]]; then
   echo "Env variable 'SOURCE_BRANCH_NAME' was not provided. "
   exit 1
 elif [[ -z "$string" ]]; then
