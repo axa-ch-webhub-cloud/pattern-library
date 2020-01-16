@@ -6,7 +6,6 @@
 # External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
 
 # Check that the needed evnironment variables are present
-
 echo "vars: $SOURCE_BRANCH_NAME ||||||| $PR_SOURCE_BRANCH_NAME"
 
 if [[ -z "$SOURCE_BRANCH_NAME" && (( -z "$PR_SOURCE_BRANCH_NAME" || $PR_SOURCE_BRANCH_NAME == *"$"* )) ]]; then
@@ -72,10 +71,8 @@ done)
 
 # Outdated branches are removed at this point, and the current branch is up to
 # date. Ready to publish!
-echo "about to commit...."
-exit 1
-git config --global user.email "raphael.lueckl@axa.ch"
-git config --global user.name "Donald Duck"
+
+[[ $1 != "--my-credentials" ]] && git config --global user.email "raphael.lueckl@axa.ch" && git config --global user.name "Donald Duck"
 git add .
 git commit -m "Deploy Branch: $BRANCH_NAME"
 git push -f
