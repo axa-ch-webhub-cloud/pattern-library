@@ -13,7 +13,6 @@
   fundamentally changed. In particular, unknown Boolean- or
   string-valued properties are now accepted and converted to HTML
   attributes. E.g. `data-seleniumid="my-id"` is now supported.
-
 - All defined attributes attached to a component _before_ component
   construction time are now taken into account. Conversely, all undefined
   component attributes are initialized with type-appropriate default
