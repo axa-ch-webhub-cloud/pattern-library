@@ -1,4 +1,8 @@
-## Migration to version 4
+### 4.0.3
+
+- Fixes dynamic updates of footer-small child elements. [#1549](https://github.com/axa-ch/patterns-library/issues/1549)
+
+### Migration to version 4
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
