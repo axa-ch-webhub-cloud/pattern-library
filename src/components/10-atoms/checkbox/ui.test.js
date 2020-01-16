@@ -174,5 +174,5 @@ test('should update checkbox when its children change', async t => {
     innerHTML: el => el.innerHTML,
   });
   // wait for timeout defined in demo DemoUpdateLabelChildren
-  await t.wait( 3200 ).expect(label.innerHTML).contains('after');
+  await t.expect(label.innerHTML).contains('after');
 });

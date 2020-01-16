@@ -5,7 +5,7 @@ export default function App() {
   const [label, setLabel] = useState("initial");
 
   useEffect(() => {
-    setTimeout(() => setLabel("after"), 3000);
+    setLabel("after");
   }, []);
 
   return (
