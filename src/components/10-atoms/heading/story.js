@@ -6,7 +6,7 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-const storyAXAHeading = storiesOf('Atoms/Heading', module);
+const storyAXAHeading = storiesOf('Components|Atoms/Heading', module);
 storyAXAHeading.addDecorator(withKnobs);
 storyAXAHeading.addParameters({
   readme: {

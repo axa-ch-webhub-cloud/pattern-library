@@ -7,7 +7,7 @@ import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
 import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren';
 import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
 
-storiesOf('Atoms/Checkbox/React/Demo', module)
+storiesOf('Components|Atoms/Checkbox/React/Demo', module)
   .addParameters({
     readme: {
       sidebar: Readme,

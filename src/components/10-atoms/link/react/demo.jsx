@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Readme from '../README.md';
 import DemoLink from './DemoLink';
 
-storiesOf('Atoms/Link/React/Demos', module)
+storiesOf('Components|Atoms/Link/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

@@ -4,7 +4,7 @@ import { DatePickerAccessor } from './test.accessor';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Datepicker').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
 );
 
 test('should select February the 13th and then the 14th', async t => {
@@ -77,7 +77,7 @@ test('should have a 29th of February in 2020 - should correctly handle leap year
 });
 
 fixture('Datepicker - With Locale').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-locale=en-GB`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-locale=en-GB`
 );
 
 test('should display month in english', async t => {
@@ -89,7 +89,7 @@ test('should display month in english', async t => {
 });
 
 fixture('Datepicker - Collapsible Version').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
 );
 
 test('should write date into input field for input calendars', async t => {
@@ -121,7 +121,7 @@ test('should change enhanced dropdown title (only on large screens) on month cha
 
 // React smoke test
 fixture('Datepicker React').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component`
+  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component`
 );
 test('should render datepicker as reactified component', async t => {
   const datepickerReact = await Selector(() =>
@@ -151,7 +151,7 @@ test('should correctly expand year ranges assigned via property', async t => {
 
 // React controlled-component test
 fixture('Datepicker React controlled').page(
-  `${host}/iframe.html?id=molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
+  `${host}/iframe.html?id=components-molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
 );
 test('datepicker should behave correctly when controlled', async t => {
   const datepickerReact = await Selector(() =>
@@ -201,7 +201,7 @@ test('datepicker should behave correctly when controlled', async t => {
 });
 
 fixture('Datepicker React inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
+  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should fire onDateChange callback on valid user input', async t => {
@@ -223,7 +223,7 @@ test('should fire onDateChange callback on valid user input', async t => {
 });
 
 fixture('Datepicker React inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
+  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
 );
 
 test('should react to programmatic date property changes', async t => {
@@ -288,7 +288,7 @@ test('should react to programmatic date property changes', async t => {
 });
 
 fixture('Datepicker React empty inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
+  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should allow month change from default date', async t => {
@@ -371,7 +371,7 @@ test('should allow month change from default date', async t => {
 });
 
 fixture('Datepicker React empty inputfield').page(
-  `${host}/iframe.html?id=molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
+  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should pass through className and arbitrary data- attributes + have automatic React displayName', async t => {
@@ -388,7 +388,7 @@ test('should pass through className and arbitrary data- attributes + have automa
 });
 
 fixture('Datepicker Form').page(
-  `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-in-a-form`
+  `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-in-a-form`
 );
 test('should submit datepicker correctly in form', async t => {
   const datepickerForm = await Selector(() =>
@@ -418,7 +418,7 @@ test('should have default width', async t => {
 });
 
 fixture('Datepicker with onchange handler').page(
-  `${host}/iframe.html?id=molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
+  `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
 );
 test('should fire the right events', async t => {
   const datepickerForm = await Selector(() =>
@@ -453,7 +453,7 @@ test('should fire the right events', async t => {
 });
 
 fixture('Datepicker as inputfield with fixed width and height').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('should have 200px width', async t => {
@@ -474,7 +474,7 @@ test('button should have correct height', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width and 10px height').page(
-  `${host}/iframe.html?id=molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
 test('should have a minimum width', async t => {
   const datepicker = await Selector(() =>

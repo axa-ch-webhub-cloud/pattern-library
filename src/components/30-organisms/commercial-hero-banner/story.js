@@ -10,7 +10,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
-  'Organisms/Commercial Hero Banner',
+  'Components|Organisms/Commercial Hero Banner',
   module
 );
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
@@ -19,7 +19,7 @@ storyAXACommercialHeroBanner.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {

@@ -6,13 +6,13 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const story = storiesOf('Molecules/File Upload', module);
+const story = storiesOf('Components|Molecules/File Upload', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 story.add('File upload', () => {

@@ -7,7 +7,7 @@ import { iconList } from '../../icon/icon-list';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Input File/React', module)
+storiesOf('Components|Atoms/Input File/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

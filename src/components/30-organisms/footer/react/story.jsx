@@ -7,13 +7,13 @@ import withNoBorder from '../../../../../.storybook/addons/no-border';
 import Readme from '../README.md';
 
 const setNewlyClickedLink = link => {
-  console.log('clickediclick')
+  console.log('clickediclick');
   document.getElementById(
     'clicked-link'
   ).innerText = `Last clicked link: ${link}`;
 };
 
-storiesOf('Organisms/Footer/React', module)
+storiesOf('Components|Organisms/Footer/React', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {
@@ -81,11 +81,7 @@ storiesOf('Organisms/Footer/React', module)
             Garage Portal
           </a>
           <h2 slot="column-title">axa worldwide</h2>
-          <a
-            slot="column-item"
-            href="http://www.axa.com"
-            target="_blank"
-          >
+          <a slot="column-item" href="http://www.axa.com" target="_blank">
             AXA worldwide
           </a>
           <h2 slot="social-title">stay in touch</h2>

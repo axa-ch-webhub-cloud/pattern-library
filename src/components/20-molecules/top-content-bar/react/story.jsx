@@ -12,9 +12,9 @@ import wrap from '../../../../demo/react/utils/wrap-render-react';
 const variantOptions = {
   none: '',
   warning: 'warning',
-}
+};
 
-storiesOf('Molecules/Top content bar/React', module)
+storiesOf('Components|Molecules/Top content bar/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -24,11 +24,13 @@ storiesOf('Molecules/Top content bar/React', module)
   })
   /* Default */
   .add('Top content bar', () => {
-
     const ctatext = text('ctatext', '');
-    const variant = select('variant', variantOptions, '')
+    const variant = select('variant', variantOptions, '');
     const href = text('href', '');
-    const textValue = text('Text', 'Undefined flighting object detected in your region. People are paniking. Stay calm');
+    const textValue = text(
+      'Text',
+      'Undefined flighting object detected in your region. People are paniking. Stay calm'
+    );
     const link = text('Add axa-link', '');
 
     return wrap(

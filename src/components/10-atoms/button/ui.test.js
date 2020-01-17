@@ -7,7 +7,7 @@ const ICON_TAG = 'axa-icon';
 const BUTTON_CLASS = '.a-button';
 
 fixture('Button - basic functionality').page(
-  `${host}/iframe.html?id=atoms-button-demos--feature-button-clickable`
+  `${host}/iframe.html?id=components-atoms-button-demos--feature-button-clickable`
 );
 
 test('should render button', async t => {
@@ -47,7 +47,7 @@ test('should be clickable (set different text after click)', async t => {
 });
 
 fixture('Button - set properties').page(
-  `${host}/iframe.html?id=atoms-button--button`
+  `${host}/iframe.html?id=components-atoms-button--button`
 );
 
 test('should set button element disabled', async t => {
@@ -77,7 +77,7 @@ test('should set button element type', async t => {
 });
 
 fixture('Button - render icon').page(
-  `${host}/iframe.html?id=atoms-button-demos--feature-button-icon-visible`
+  `${host}/iframe.html?id=components-atoms-button-demos--feature-button-icon-visible`
 );
 
 test('should render icon', async t => {
@@ -89,7 +89,7 @@ test('should render icon', async t => {
 });
 
 fixture('Button - react smoke test').page(
-  `${host}/iframe.html?id=atoms-button-react--button`
+  `${host}/iframe.html?id=components-atoms-button-react--button`
 );
 
 test('should render react button', async t => {
@@ -110,7 +110,7 @@ test('should set className', async t => {
 });
 
 fixture('Button - Works in a form').page(
-  `${host}/iframe.html?id=atoms-button-demos--feature-button-in-a-form`
+  `${host}/iframe.html?id=components-atoms-button-demos--feature-button-in-a-form`
 );
 
 test('should submit only once', async t => {

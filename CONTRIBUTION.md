@@ -151,7 +151,7 @@ import './index';
 
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
-storiesOf('Molecules/Top content bar', module)
+storiesOf('Components|Molecules/Top content bar', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {

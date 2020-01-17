@@ -52,27 +52,28 @@ const model = {
   ],
 };
 
-storiesOf('Organisms/Table Sortable', module)
+storiesOf('Components|Organisms/Table Sortable', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
-  .add(
-    'Table Sortable',
-    () => {
-      const wrapper = document.createElement('div');
+  .add('Table Sortable', () => {
+    const wrapper = document.createElement('div');
 
-      const innerscroll = text('innerscroll', '');
-      const maxheight = text('maxheight', '');
+    const innerscroll = text('innerscroll', '');
+    const maxheight = text('maxheight', '');
 
-      const template = html`
-        <axa-table-sortable innerscroll="${innerscroll}" maxheight="${maxheight}" model='${JSON.stringify(model)}'></axa-table-sortable>
-      `;
+    const template = html`
+      <axa-table-sortable
+        innerscroll="${innerscroll}"
+        maxheight="${maxheight}"
+        model="${JSON.stringify(model)}"
+      ></axa-table-sortable>
+    `;
 
-      render(template, wrapper);
-      return wrapper;
-    }
-  );
+    render(template, wrapper);
+    return wrapper;
+  });

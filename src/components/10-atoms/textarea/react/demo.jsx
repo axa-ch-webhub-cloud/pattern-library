@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import DemoContUncontTextarea from './DemoContUncontTextarea';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Textarea/React/Demos', module)
+storiesOf('Components|Atoms/Textarea/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -14,9 +14,6 @@ storiesOf('Atoms/Textarea/React/Demos', module)
   /* Default */
   .add('Feature - Textarea controlled/uncontrolled', () => {
     const div = document.createElement('div');
-    ReactDOM.render(
-      <DemoContUncontTextarea />,
-      div
-    );
+    ReactDOM.render(<DemoContUncontTextarea />, div);
     return div;
   });

@@ -33,13 +33,13 @@ const variantOptions = {
   'hyperlink-red-underline': 'hyperlink-red-underline',
 };
 
-storiesOf('Atoms/Link', module)
+storiesOf('Components|Atoms/Link', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Hyperlink', () => {
     const link = text('link', 'https://axa.ch/en/private-customers.html');

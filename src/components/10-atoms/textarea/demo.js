@@ -5,8 +5,7 @@ import { html, render } from 'lit-html';
 import Readme from './README.md';
 import './index';
 
-
-storiesOf('Atoms/Textarea/Demos', module)
+storiesOf('Components|Atoms/Textarea/Demos', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -68,10 +67,13 @@ storiesOf('Atoms/Textarea/Demos', module)
     `;
 
     setTimeout(() => {
-
-      document.querySelector('axa-textarea').setAttribute('counter', 'Still ##counter## left');
+      document
+        .querySelector('axa-textarea')
+        .setAttribute('counter', 'Still ##counter## left');
       document.querySelector('axa-textarea').setAttribute('maxLength', 100);
-      document.querySelector('axa-textarea').setAttribute('countermax', 'Max maxLength reached');
+      document
+        .querySelector('axa-textarea')
+        .setAttribute('countermax', 'Max maxLength reached');
     }, 2000);
 
     render(template, wrapper);

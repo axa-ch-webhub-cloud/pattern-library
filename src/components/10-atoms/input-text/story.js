@@ -6,13 +6,13 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyInputText = storiesOf('Atoms/Input Text', module);
+const storyInputText = storiesOf('Components|Atoms/Input Text', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 const typeOptions = {

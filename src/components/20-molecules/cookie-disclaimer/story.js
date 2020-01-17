@@ -7,14 +7,14 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-storiesOf('Molecules/Cookie disclaimer', module)
+storiesOf('Components|Molecules/Cookie disclaimer', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Cookie disclaimer', () => {
     const buttonname = text('buttonname', 'Accept');

@@ -7,13 +7,13 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Atoms/Input File', module)
+storiesOf('Components|Atoms/Input File', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Input File', () => {
     const inputText = text('text', 'Upload');

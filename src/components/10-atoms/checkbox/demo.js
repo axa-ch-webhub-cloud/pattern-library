@@ -4,7 +4,7 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Atoms/Checkbox/Demos', module)
+storiesOf('Components|Atoms/Checkbox/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

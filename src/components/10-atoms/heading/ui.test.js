@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=atoms-heading--heading`)
+  .page(`${host}/iframe.html?id=components-atoms-heading--heading`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });

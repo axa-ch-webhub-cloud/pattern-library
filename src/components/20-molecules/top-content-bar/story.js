@@ -10,35 +10,44 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 const variantOptions = {
   none: '',
   warning: 'warning',
-}
+};
 
-storiesOf('Molecules/Top content bar', module)
+storiesOf('Components|Molecules/Top content bar', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
-  .add(
-    'Top content bar',
-    () => {
-      const wrapper = document.createElement('div');
+  .add('Top content bar', () => {
+    const wrapper = document.createElement('div');
 
-      const ctatext = text('ctatext', '');
-      const variant = select('variant', variantOptions, '')
-      const href = text('href', '');
-      const textValue = text('Text', 'Undefined flighting object detected in your region. People are paniking. Stay calm');
-      const link = text('Add axa-link', '');
+    const ctatext = text('ctatext', '');
+    const variant = select('variant', variantOptions, '');
+    const href = text('href', '');
+    const textValue = text(
+      'Text',
+      'Undefined flighting object detected in your region. People are paniking. Stay calm'
+    );
+    const link = text('Add axa-link', '');
 
-      const template = html`
-        <axa-top-content-bar variant="${variant}" href="${href}" ctatext="${ctatext}">
-          ${textValue} ${link ? html`<axa-link>${link}</axa-link>` : ''}
-        </axa-top-content-bar>
-      `;
+    const template = html`
+      <axa-top-content-bar
+        variant="${variant}"
+        href="${href}"
+        ctatext="${ctatext}"
+      >
+        ${textValue}
+        ${link
+          ? html`
+              <axa-link>${link}</axa-link>
+            `
+          : ''}
+      </axa-top-content-bar>
+    `;
 
-      render(template, wrapper);
-      return wrapper;
-    }
-  );
+    render(template, wrapper);
+    return wrapper;
+  });

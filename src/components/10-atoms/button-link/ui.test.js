@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Button Link - basic functionality').page(
-  `${host}/iframe.html?id=atoms-button-link--button-link`
+  `${host}/iframe.html?id=components-atoms-button-link--button-link`
 );
 
 test('should render button-link', async t => {
@@ -27,7 +27,7 @@ test('should style button-link default css (test axa blue bg color)', async t =>
 });
 
 fixture('Button Link - set properties').page(
-  `${host}/iframe.html?id=atoms-button-link--button-link`
+  `${host}/iframe.html?id=components-atoms-button-link--button-link`
 );
 
 test('should set button element disabled', async t => {
@@ -40,7 +40,7 @@ test('should set button element disabled', async t => {
 });
 
 fixture('Button Link - icon').page(
-  `${host}/iframe.html?id=atoms-button-link-demos--feature-button-link-icon-visible`
+  `${host}/iframe.html?id=components-atoms-button-link-demos--feature-button-link-icon-visible`
 );
 
 test('should render icon', async t => {
@@ -54,7 +54,7 @@ test('should render icon', async t => {
 });
 
 fixture('Button Link - clickable').page(
-  `${host}/iframe.html?id=atoms-button-link-demos--feature-button-link-clickable`
+  `${host}/iframe.html?id=components-atoms-button-link-demos--feature-button-link-clickable`
 );
 
 test("shouldn't be clickable", async t => {

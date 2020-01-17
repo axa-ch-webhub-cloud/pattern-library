@@ -7,7 +7,7 @@ import Readme from '../README.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 
-storiesOf('Molecules/Footer Small/React', module)
+storiesOf('Components|Molecules/Footer Small/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
