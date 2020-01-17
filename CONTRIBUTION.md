@@ -183,3 +183,16 @@ storiesOf('Components|Molecules/Top content bar', module)
 - Lerna will update the component `package.json` with new version numbers and auto-commit/push those.
 - Manually undo the removal of all not-to-be-released components in lerna.json, run `npm install` and commit the generated package-lock files to the release branch.
 - Merge the release branch to the `develop` branch in order to preserve the new version numbers.
+
+## Branch Deployment
+
+Whenever a push of a branch happens, that is represented by a pull request, the branch will automatically be deployed to github pages and is publicly accessible. There is also a mechanism to issue such a deployment manually, at any point during development.
+
+As soon as the branch is deployed, there will appear a slack notification in the `#plib-deployments` channel in Slack (workspace: axa-ch).
+
+To issue a manual feature branch deployment, use this command from the root folder of the pattern library: 
+
+`npm run GITHUB_TOKEN="<your_github_personal_access_token>" SLACK_TOKEN="<slack_token>" npm run deploy-branch`
+
+Obtain a slack token here: https://api.slack.com/custom-integrations/legacy-tokens
+Generate a personal access token for github here: https://github.com/settings/tokens
