@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import Readme from '../README.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 
-const story = storiesOf('Organisms/Testimonials/React', module);
+const story = storiesOf('Components|Organisms/Testimonials/React', module);
 story.addDecorator(withKnobs);
 story.addDecorator(withNoBorder);
 story.addParameters({
@@ -65,7 +65,9 @@ story.add('Testimonials', () => {
         </span>
         <span className="o-testimonials__author">Andrew Müller, Advocate</span>
       </div>
-      <span className="o-testimonials__vertical-margin">This is a small text without an author.</span>
+      <span className="o-testimonials__vertical-margin">
+        This is a small text without an author.
+      </span>
     </AXATestimonialsReact>,
     wrapper
   );

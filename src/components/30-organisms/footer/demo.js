@@ -5,7 +5,7 @@ import './index';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 
-storiesOf('Organisms/Footer/Demos', module)
+storiesOf('Components|Organisms/Footer/Demos', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {

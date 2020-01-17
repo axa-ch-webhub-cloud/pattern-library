@@ -6,26 +6,23 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Organisms/Container', module)
+storiesOf('Components|Organisms/Container', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
-  .add(
-    'Container - default',
-    () => {
-      const wrapper = document.createElement('div');
+  .add('Container - default', () => {
+    const wrapper = document.createElement('div');
 
-      const childsText = text('text', 'Some children');
+    const childsText = text('text', 'Some children');
 
-      const template = html`
-        <axa-container>${childsText}</axa-container>
-      `;
+    const template = html`
+      <axa-container>${childsText}</axa-container>
+    `;
 
-      render(template, wrapper);
-      return wrapper;
-    }
-  );
+    render(template, wrapper);
+    return wrapper;
+  });
