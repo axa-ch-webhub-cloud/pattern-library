@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Input text - basic functionality').page(
-  `${host}/iframe.html?id=atoms-input-text--input-text`
+  `${host}/iframe.html?id=components-atoms-input-text--input-text`
 );
 
 const TAG = 'axa-input-text';
@@ -48,7 +48,7 @@ test('should show error message and have the right color', async t => {
 });
 
 fixture('Input text - Form').page(
-  `${host}/iframe.html?id=atoms-input-text-demos--feature-input-text-works-in-a-form`
+  `${host}/iframe.html?id=components-atoms-input-text-demos--feature-input-text-works-in-a-form`
 );
 
 test('should render label', async t => {
@@ -88,7 +88,7 @@ test('should submit inputs correctly in form', async t => {
 });
 
 fixture('Input text - Max Length').page(
-  `${host}/iframe.html?id=atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
+  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
 );
 
 test('should correctly show character count with counter within text', async t => {
@@ -124,7 +124,7 @@ test('should correctly show character count with counter within text', async t =
 });
 
 fixture('Input text - no maxlength').page(
-  `${host}/iframe.html?id=atoms-input-text-demos--no-maxlength-set`
+  `${host}/iframe.html?id=components-atoms-input-text-demos--no-maxlength-set`
 );
 
 test('should not show counter text if maxlength not set', async t => {
@@ -136,7 +136,7 @@ test('should not show counter text if maxlength not set', async t => {
 });
 
 fixture('Input text - no counter').page(
-  `${host}/iframe.html?id=atoms-input-text-demos--no-counter-set`
+  `${host}/iframe.html?id=components-atoms-input-text-demos--no-counter-set`
 );
 
 test('should not show counter text if counter (text) not set', async t => {
@@ -148,16 +148,16 @@ test('should not show counter text if counter (text) not set', async t => {
 });
 
 fixture('Input text - maxLength works with autocomplete').page(
-  `${host}/iframe.html?id=atoms-input-text-react--input-text-simulate-autocomplete`
+  `${host}/iframe.html?id=components-atoms-input-text-react--input-text-simulate-autocomplete`
 );
 
 test('should cut text when autocomplete sets value over maxLength', async t => {
   // in the story, the autocomplete function is only simulated after a timeout, therefore wait here
-  await t.wait( 2000 );
-  const inputValue = await ClientFunction(() =>
-    document.querySelector('#fix-id-86452623').value
+  await t.wait(2000);
+  const inputValue = await ClientFunction(
+    () => document.querySelector('#fix-id-86452623').value
   );
-  await t.wait( 1000 );
+  await t.wait(1000);
   // story adds 123456789 but here it should be cut to the limit
   await t.expect(await inputValue()).eql('1234');
 });

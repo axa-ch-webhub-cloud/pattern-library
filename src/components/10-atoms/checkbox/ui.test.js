@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Checkbox - basic functionality').page(
-  `${host}/iframe.html?id=atoms-checkbox--checkbox`
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox`
 );
 
 const TAG = 'axa-checkbox';
@@ -128,7 +128,7 @@ test('should set refId on label and input', async t => {
 });
 
 fixture('Checkbox - Label as a child of the component').page(
-  `${host}/iframe.html?id=atoms-checkbox-demos--feature-use-your-own-label-as-a-child-of-the-component`
+  `${host}/iframe.html?id=components-atoms-checkbox-demos--feature-use-your-own-label-as-a-child-of-the-component`
 );
 
 test('should be clickable + change state and render parent label', async t => {
@@ -144,7 +144,7 @@ test('should be clickable + change state and render parent label', async t => {
 });
 
 fixture('Checkbox - Variant checkmark').page(
-  `${host}/iframe.html?id=atoms-checkbox--checkbox&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
 );
 
 test('should show checkbox variant checkmark', async t => {
@@ -164,7 +164,7 @@ test('should show checkbox variant checkmark', async t => {
 });
 
 fixture('Checkbox - DOM update works also on children').page(
-  `${host}/iframe.html?id=atoms-checkbox-react-demo--checkbox-updates-also-as-child`
+  `${host}/iframe.html?id=components-atoms-checkbox-react-demo--checkbox-updates-also-as-child`
 );
 
 test('should update checkbox when its children change', async t => {
