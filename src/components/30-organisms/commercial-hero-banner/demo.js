@@ -9,7 +9,7 @@ import './index';
 import Readme from './README.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
-  'Organisms/Commercial Hero Banner/Demos',
+  'Components|Organisms/Commercial Hero Banner/Demos',
   module
 );
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
