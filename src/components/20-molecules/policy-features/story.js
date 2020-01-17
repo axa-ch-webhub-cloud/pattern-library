@@ -9,14 +9,14 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const story = storiesOf('Molecules/Policy features', module);
+const story = storiesOf('Components|Molecules/Policy features', module);
 story.addDecorator(withNoBorder);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 story.add('Policy features', () => {

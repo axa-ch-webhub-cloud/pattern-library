@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Molecules/Dropdown/Demos', module)
+storiesOf('Components|Molecules/Dropdown/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

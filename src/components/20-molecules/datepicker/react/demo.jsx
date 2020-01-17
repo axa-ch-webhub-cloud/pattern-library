@@ -9,7 +9,7 @@ import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDa
 import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
 import Readme from '../README.md';
 
-storiesOf('Molecules/Datepicker/React/Demos', module)
+storiesOf('Components|Molecules/Datepicker/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

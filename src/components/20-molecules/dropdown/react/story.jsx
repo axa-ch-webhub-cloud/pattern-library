@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
 import Readme from '../README.md';
 
-storiesOf('Molecules/Dropdown/React', module)
+storiesOf('Components|Molecules/Dropdown/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

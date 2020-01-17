@@ -6,13 +6,13 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyDropdown = storiesOf('Molecules/Dropdown', module);
+const storyDropdown = storiesOf('Components|Molecules/Dropdown', module);
 storyDropdown.addDecorator(withKnobs);
 storyDropdown.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 storyDropdown.add('Dropdown', () => {

@@ -4,7 +4,7 @@ import { html, render } from 'lit-html';
 import Readme from './README.md';
 import './index';
 
-storiesOf('Molecules/File Upload/Demos', module)
+storiesOf('Components|Molecules/File Upload/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

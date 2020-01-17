@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/html';
 import '../index';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 
-storiesOf('Molecules/Cookie disclaimer/demo', module)
+storiesOf('Components|Molecules/Cookie disclaimer/demo', module)
   .addDecorator(story => withNoBorder(story))
   .addDecorator(withNoBorder)
   .add(

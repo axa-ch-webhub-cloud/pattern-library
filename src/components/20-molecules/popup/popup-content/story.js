@@ -5,16 +5,21 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-const storyPopupContent = storiesOf('Molecules/Popup', module);
+const storyPopupContent = storiesOf('Components|Molecules/Popup', module);
 storyPopupContent.addDecorator(withKnobs);
 storyPopupContent.addParameters({
   readme: {
     sidebar: Readme,
-  }
+  },
 });
 
-const children = html`<h4 style="margin-top: 0">Zeitspanne bis zur Pensionierung</h4>
-    <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
+const children = html`
+  <h4 style="margin-top: 0">Zeitspanne bis zur Pensionierung</h4>
+  <p>
+    Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne
+    bis zum Zeitpunkt Ihrer Pensionierung entscheidend.
+  </p>
+`;
 
 storyPopupContent.add('Popup Content', () => {
   const open = boolean('open', false);

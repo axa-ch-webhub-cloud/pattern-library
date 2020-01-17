@@ -9,7 +9,7 @@ import withNoBorder from '../../../../../.storybook/addons/no-border';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 
-storiesOf('Molecules/Cookie disclaimer/React', module)
+storiesOf('Components|Molecules/Cookie disclaimer/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -45,10 +45,7 @@ storiesOf('Molecules/Cookie disclaimer/React', module)
       >
         <p>
           {description}
-          <AXALinkReact
-            variant="arrowright-animated-white"
-            href={link}
-          >
+          <AXALinkReact variant="arrowright-animated-white" href={link}>
             {dataProtection}
           </AXALinkReact>
         </p>

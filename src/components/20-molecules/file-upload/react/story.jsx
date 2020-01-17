@@ -7,7 +7,7 @@ import { iconList } from '../../../10-atoms/icon/icon-list';
 import AXAFileUploadReact from './AXAFileUploadReact';
 import Readme from '../README.md';
 
-storiesOf('Molecules/File Upload/React', module)
+storiesOf('Components|Molecules/File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

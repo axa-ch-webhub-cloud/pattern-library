@@ -18,13 +18,13 @@ const localeOptions = {
   'fr-CH': 'fr-CH',
 };
 
-const story = storiesOf('Molecules/Datepicker', module);
+const story = storiesOf('Components|Molecules/Datepicker', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 story.add('Datepicker', () => {
