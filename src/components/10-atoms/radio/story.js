@@ -51,7 +51,6 @@ storiesOf('Components|Atoms/Radio', module)
           ?button="${button}"
           ?disabled="${disabled}"
           ?noAutoWidth="${noAutoWidth}"
-          label="Ja"
           value="1"
         ></axa-radio>
         <axa-radio
@@ -61,7 +60,7 @@ storiesOf('Components|Atoms/Radio', module)
           ?button="${button}"
           ?disabled="${disabled}"
           ?noAutoWidth="${noAutoWidth}"
-          label="Nein"
+          label="No"
           value="2"
         ></axa-radio>
         <axa-radio
@@ -71,7 +70,7 @@ storiesOf('Components|Atoms/Radio', module)
           ?button="${button}"
           ?disabled="${disabled}"
           ?noAutoWidth="${noAutoWidth}"
-          label="Vielleicht"
+          label="Maybe"
           value="3"
         ></axa-radio>
         <axa-fieldset horizontal></axa-fieldset
