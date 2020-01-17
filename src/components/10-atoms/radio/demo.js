@@ -5,7 +5,7 @@ import './index';
 
 import Readme from './README.md';
 
-storiesOf('Atoms/Radio/Demos', module)
+storiesOf('Components|Atoms/Radio/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -81,35 +81,35 @@ storiesOf('Atoms/Radio/Demos', module)
 </svg>`;
 
     const template = html`
-    <axa-fieldset horizontal>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 1"
-        .icon="${icon}"
-    ></axa-radio>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 2"
-        .icon="${icon}"
-    ></axa-radio>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 3"
-        checked
-        .icon="${icon}"
-    ></axa-radio>
-    <axa-radio
-        button
-        name="insurance"
-        label="Option 4"
-        disabled
-        .icon="${icon}"
-    ></axa-radio>
-    </axa-fieldset>
-`;
+      <axa-fieldset horizontal>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 1"
+          .icon="${icon}"
+        ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 2"
+          .icon="${icon}"
+        ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 3"
+          checked
+          .icon="${icon}"
+        ></axa-radio>
+        <axa-radio
+          button
+          name="insurance"
+          label="Option 4"
+          disabled
+          .icon="${icon}"
+        ></axa-radio>
+      </axa-fieldset>
+    `;
 
     render(template, root);
     return root;

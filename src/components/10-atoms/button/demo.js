@@ -4,7 +4,7 @@ import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Atoms/Button/Demos', module)
+storiesOf('Components|Atoms/Button/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

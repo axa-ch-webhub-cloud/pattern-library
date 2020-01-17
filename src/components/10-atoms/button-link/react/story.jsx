@@ -40,7 +40,7 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButton = storiesOf('Atoms/Button Link/React', module);
+const storyButton = storiesOf('Components|Atoms/Button Link/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {

@@ -14,13 +14,13 @@ const variantOptions = {
   bold: 'bold',
 };
 
-storiesOf('Atoms/Text', module)
+storiesOf('Components|Atoms/Text', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Text', () => {
     const variant = select('variant', variantOptions, '');

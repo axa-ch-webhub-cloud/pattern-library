@@ -40,13 +40,13 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButtonLink = storiesOf('Atoms/Button Link', module);
+const storyButtonLink = storiesOf('Components|Atoms/Button Link', module);
 storyButtonLink.addDecorator(withKnobs);
 storyButtonLink.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 storyButtonLink.add('Button Link', () => {
@@ -63,8 +63,8 @@ storyButtonLink.add('Button Link', () => {
   const template = html`
     <div
       style="${variants.includes('inverted')
-      ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
-      : ''}"
+        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+        : ''}"
     >
       <axa-button-link
         variant="${variants}"

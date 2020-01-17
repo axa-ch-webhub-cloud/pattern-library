@@ -14,7 +14,7 @@ const variantOptions = {
   bold: 'bold',
 };
 
-storiesOf('Atoms/Text/React', module)
+storiesOf('Components|Atoms/Text/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -24,8 +24,8 @@ storiesOf('Atoms/Text/React', module)
   .add('Text', () => {
     const div = document.createElement('div');
     const variant = select('variant', variantOptions, '');
-    const addSpanTag = boolean('Add <span> tag', false)
-    const text = `Is your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.`
+    const addSpanTag = boolean('Add <span> tag', false);
+    const text = `Is your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.`;
     ReactDOM.render(
       <AXAText variant={variant}>
         {addSpanTag ? <span>{text}</span> : text}

@@ -13,13 +13,13 @@ import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyButton = storiesOf('Atoms/Button', module);
+const storyButton = storiesOf('Components|Atoms/Button', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {
     sidebar: Readme,
   },
-  changelog: Changelog
+  changelog: Changelog,
 });
 
 export const variantOptions = {
@@ -68,8 +68,8 @@ storyButton.add('Button', () => {
   const template = html`
     <div
       style="${variants.includes('inverted')
-      ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
-      : ''}"
+        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+        : ''}"
     >
       <axa-button
         type="${types}"

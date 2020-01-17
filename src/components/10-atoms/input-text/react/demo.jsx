@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import DemoInputText from './DemoInputText';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Input Text/React/Demos', module)
+storiesOf('Components|Atoms/Input Text/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

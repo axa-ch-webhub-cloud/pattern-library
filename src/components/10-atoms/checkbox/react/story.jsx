@@ -6,7 +6,7 @@ import { boolean, text, select, withKnobs } from '@storybook/addon-knobs';
 import AXACheckboxReact from './AXACheckboxReact';
 import Readme from '../README.md';
 
-storiesOf('Atoms/Checkbox/React', module)
+storiesOf('Components|Atoms/Checkbox/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,

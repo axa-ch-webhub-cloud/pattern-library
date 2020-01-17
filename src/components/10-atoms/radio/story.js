@@ -18,13 +18,13 @@ const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="60.2" height="34
     </g>
   </svg>`;
 
-storiesOf('Atoms/Radio', module)
+storiesOf('Components|Atoms/Radio', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Radio', () => {
     const wrapper = document.createElement('div');
@@ -39,12 +39,44 @@ storiesOf('Atoms/Radio', module)
     const noAutoWidth = boolean('noAutoWidth', false);
 
     const template = html`
-    <p>Knobs with a * only affect the first radio button</p>
-    <axa-fieldset horizontal>
-      <axa-radio name="contract" label="${label}" ?focus="${focus}" ?checked="${checked}" icon="${icon ? iconSVG : ''}" ?noGap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noAutoWidth="${noAutoWidth}" label="Ja" value="1"></axa-radio>
-      <axa-radio name="contract" icon="${icon ? iconSVG : ''}" ?noGap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noAutoWidth="${noAutoWidth}" label="Nein" value="2"></axa-radio>
-      <axa-radio name="contract" icon="${icon ? iconSVG : ''}" ?noGap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noAutoWidth="${noAutoWidth}" label="Vielleicht" value="3"></axa-radio>
-    <axa-fieldset horizontal>`;
+      <p>Knobs with a * only affect the first radio button</p>
+      <axa-fieldset horizontal>
+        <axa-radio
+          name="contract"
+          label="${label}"
+          ?focus="${focus}"
+          ?checked="${checked}"
+          icon="${icon ? iconSVG : ''}"
+          ?noGap="${noGap}"
+          ?button="${button}"
+          ?disabled="${disabled}"
+          ?noAutoWidth="${noAutoWidth}"
+          label="Ja"
+          value="1"
+        ></axa-radio>
+        <axa-radio
+          name="contract"
+          icon="${icon ? iconSVG : ''}"
+          ?noGap="${noGap}"
+          ?button="${button}"
+          ?disabled="${disabled}"
+          ?noAutoWidth="${noAutoWidth}"
+          label="Nein"
+          value="2"
+        ></axa-radio>
+        <axa-radio
+          name="contract"
+          icon="${icon ? iconSVG : ''}"
+          ?noGap="${noGap}"
+          ?button="${button}"
+          ?disabled="${disabled}"
+          ?noAutoWidth="${noAutoWidth}"
+          label="Vielleicht"
+          value="3"
+        ></axa-radio>
+        <axa-fieldset horizontal></axa-fieldset
+      ></axa-fieldset>
+    `;
 
     render(template, wrapper);
     return wrapper;

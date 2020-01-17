@@ -3,12 +3,13 @@ import { storiesOf } from '@storybook/html';
 import Readme from './README.md';
 import './index';
 
-storiesOf('Atoms/Input File/Demos', module)
+storiesOf('Components|Atoms/Input File/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
-  }).add('Feature - InputFile clickable', () => {
+  })
+  .add('Feature - InputFile clickable', () => {
     const inputFile = document.createElement('axa-input-file');
     inputFile.setAttribute('multiple', 'multiple');
     let counter = 0;

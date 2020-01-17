@@ -6,7 +6,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import AXATextarea from './AXATextarea';
 import Readme from '../README.md';
 
-const storyTextarea = storiesOf('Atoms/Textarea/React', module);
+const storyTextarea = storiesOf('Components|Atoms/Textarea/React', module);
 storyTextarea.addDecorator(withKnobs);
 storyTextarea.addParameters({
   readme: {

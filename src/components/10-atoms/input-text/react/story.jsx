@@ -12,7 +12,7 @@ const typeOptions = {
   password: 'password',
 };
 
-const storyInputText = storiesOf('Atoms/Input Text/React', module);
+const storyInputText = storiesOf('Components|Atoms/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme: {
@@ -73,10 +73,7 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
   // activate the Safari's autocomplete feature.
   ReactDOM.render(
     <form>
-      <AXAInputText
-        refid="fix-id-fake"
-        name="Name"
-      />
+      <AXAInputText refid="fix-id-fake" name="Name" />
       <AXAInputText
         refid="fix-id-86452623"
         name="Adresse"
@@ -93,24 +90,22 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
         error={error}
         info={info}
       />
-    </form>
-    ,
+    </form>,
     wrapper
   );
 
   // simulate autocomplete
   setTimeout(() => {
-    const input = document.querySelector('#fix-id-86452623')
+    const input = document.querySelector('#fix-id-86452623');
     input.value = '123456789';
     if ('createEvent' in document) {
       const evt = document.createEvent('HTMLEvents');
       evt.initEvent('input', false, true);
       input.dispatchEvent(evt);
-    }
-    else {
+    } else {
       input.fireEvent('input');
     }
-  }, 1)
+  }, 1);
 
   return wrapper;
 });
