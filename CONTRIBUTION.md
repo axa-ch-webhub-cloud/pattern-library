@@ -186,15 +186,16 @@ storiesOf('Components|Molecules/Top content bar', module)
 
 ## Branch Deployment
 
-Whenever a push of a branch happens, that is represented by a pull request, the branch will automatically be deployed to github pages and is publicly accessible. There is also a mechanism to issue such a deployment manually, at any point during development.
-
+Whenever a push to a branch happens, which is represented by a pull request, the branch will automatically be deployed to github pages and is publicly accessible.
 As soon as the branch is deployed, there will appear a slack notification in the `#plib-deployments` channel in Slack (workspace: axa-ch).
 
-To issue a manual feature branch deployment, use this command from the root folder of the pattern library: 
+There is also a mechanism to issue such a deployment manually, at any commit, during development (without opening a pull request and without the rest of the CIs overhead).
 
-`npm run GITHUB_TOKEN="<your_github_personal_access_token>" SLACK_TOKEN="<slack_token>" npm run deploy-branch`
+To issue a manual branch deployment, use this command from the root folder of the pattern library: 
+
+`GITHUB_TOKEN="<github_personal_access_token>" SLACK_TOKEN="<slack_token>" npm run deploy-branch`
 
 Obtain a slack token here: https://api.slack.com/custom-integrations/legacy-tokens
-Generate a personal access token for github here: https://github.com/settings/tokens
+Generate a personal access token for your github account here: https://github.com/settings/tokens
 
 You can also add those tokens to your global environment variables, so that you do not have to provide them all the time with this command.
