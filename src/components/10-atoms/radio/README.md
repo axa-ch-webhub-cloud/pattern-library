@@ -140,8 +140,3 @@ The function-valued `onFocus, onBlur` can be used as a callback prop for React a
 Its only parameter in each case is the native `focus, blur` event object from the underlying &lt;input type="radio"&gt;.
 
 The respective callbacks are invoked whenever the underlying &lt;input type="radio"&gt; receives or loses focus.
-
-## ChangeLog
-
-- 1.1.11
-  - prevent doubled labels when `label` attribute isn't set

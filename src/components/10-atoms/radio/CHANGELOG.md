@@ -1,3 +1,7 @@
+## 2.0.2
+
+- prevent doubled labels when `label` attribute isn't set
+
 ## Migration to version 2
 
 - The implementation of the wrapper to make a component React-ready has
