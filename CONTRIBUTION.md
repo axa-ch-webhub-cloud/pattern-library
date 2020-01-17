@@ -196,3 +196,5 @@ To issue a manual feature branch deployment, use this command from the root fold
 
 Obtain a slack token here: https://api.slack.com/custom-integrations/legacy-tokens
 Generate a personal access token for github here: https://github.com/settings/tokens
+
+You can also add those tokens to your global environment variables, so that you do not have to provide them all the time with this command.
