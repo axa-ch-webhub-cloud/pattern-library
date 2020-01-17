@@ -68,7 +68,6 @@ axa-radio {
     width: 18px;
     height: 18px;
     display: inline-flex;
-    margin-right: 20px;
     justify-content: center;
     align-items: center;
     background: #fff;
@@ -87,6 +86,10 @@ axa-radio {
       border-radius: 50%;
       box-sizing: border-box;
     }
+  }
+  // when label is empty, the icon doesn't need any margin
+  label > .a-radio__icon {
+    margin-right: 20px;
   }
 
   .a-radio__content {
