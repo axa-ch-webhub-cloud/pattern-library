@@ -42,8 +42,11 @@ storiesOf('Components|Atoms/Link', module)
     changelog: Changelog,
   })
   .add('Hyperlink', () => {
-    const link = text('link', 'https://axa.ch/en/private-customers.html');
-    const linkText = text('Link text', 'This is a simple link');
+    const link = text(
+      'link',
+      'https://www.axa.ch/en/information/data-protection.html'
+    );
+    const linkText = text('Link text', 'Data protection statement');
     const external = boolean('external', false);
     const variant = select('variant', variantOptions, '');
     const icon = select('icon', iconList, '');
