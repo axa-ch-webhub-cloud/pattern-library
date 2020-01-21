@@ -3,7 +3,7 @@ Fixes #(issue)
 # Done is when (DoD):
 - [ ] My changes ship with tests, if needed.
 - [ ] I added modified component properties to the typescript typings, if needed.
-- [ ] Design changes have been reviewed with a designer.
+- [ ] Design changes have been reviewed with a designer, if needed.
 - [ ] My changes are accordingly to our [Best Practices](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#best-practices)
 - [ ] My changes are well documented and showcased in the stories.
 - [ ] My changes are shortly added to CHANGELOG.md with the issue number.
