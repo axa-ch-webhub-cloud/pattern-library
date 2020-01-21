@@ -18,10 +18,11 @@ storiesOf('Components|Molecules/Cookie disclaimer', module)
   })
   .add('Cookie disclaimer', () => {
     const buttonname = text('buttonname', 'Accept');
-    const title = text('text', 'This website uses cookies');
+    const title = text('text', 'Terms and conditions of data protection');
     const description = text(
       'Description (not an attribute)',
-      'Any Description for the cookie disclaimer'
+      'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of',
+      'AXA and advertising partners. More details:'
     );
     const dataProtection = text(
       'Link text (not an attribute)',

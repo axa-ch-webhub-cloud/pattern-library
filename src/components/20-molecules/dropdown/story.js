@@ -18,10 +18,10 @@ storyDropdown.addParameters({
 storyDropdown.add('Dropdown', () => {
   const label = text('label', '');
   const value = text('value', '');
-  const defaultTitle = text('defaulttitle', 'Please Select');
+  const defaultTitle = text('defaulttitle', 'Select amount');
   const name = text('name', '');
   const invalid = boolean('invalid', false);
-  const error = text('error', 'Error Message');
+  const error = text('error', 'This selection is required.');
   const native = boolean('native', false);
   const required = boolean('required', false);
   const checkMark = boolean('checkmark', false);
@@ -46,9 +46,9 @@ storyDropdown.add('Dropdown', () => {
       ?required="${required}"
       ?native="${native}"
       items='[
-        {"name": "Item 1", "value": "Item 1" },
-        {"name": "Item 2", "value": "Item 2" },
-        {"name": "Item 3", "value": "Item 3" }
+        {"name": "< CHF 1,000", "value": "<1000" },
+        {"name": "From CHF 1,000 to 10,0000", "value": "1000-10000" },
+        {"name": "> CHF 10,000", "value": ">10000" }
      ]'
     ></axa-dropdown>
   `;

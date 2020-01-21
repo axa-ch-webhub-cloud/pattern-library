@@ -55,7 +55,7 @@ storyButton.addParameters({
 });
 
 storyButton.add('Button', () => {
-  const buttonText = text('text', 'Click me');
+  const buttonText = text('text', 'Calculate Premium');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
   const icons = select('icon', iconList, '');

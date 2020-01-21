@@ -12,25 +12,18 @@ storiesOf('Components|Atoms/Checkbox/Demos', module)
   })
   .add('Feature - Use your own label as a child of the component', () => {
     const template = html`
-      <div>
-        <axa-checkbox
-          class="hover"
-          name="checkbox"
-          checked="false"
-          required="true"
-          ><p>click <a href="https://www.google.ch" target="_blank">here</a></p>
-        </axa-checkbox>
-        <axa-checkbox
-          class="hover"
-          name="checkbox"
-          checked="false"
-          required="true"
-          ><p>
-            or click <a href="https://www.google.ch" target="_blank">here</a> if
-            you prefere
-          </p>
-        </axa-checkbox>
-      </div>
+      <axa-checkbox
+        class="hover"
+        name="checkbox"
+        checked="false"
+        required="true"
+        ><p>
+          I agree to
+          <a href="https://www.google.ch" target="_blank"
+            >conditions of data protection.</a
+          >
+        </p>
+      </axa-checkbox>
     `;
 
     const wrapper = document.createElement('div');

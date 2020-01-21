@@ -16,7 +16,7 @@ storyTextarea.addParameters({
 });
 
 storyTextarea.add('Textarea', () => {
-  const label = text('label*', '');
+  const label = text('label*', 'Please describe the course of events');
   const name = text('name*', '');
   const refId = text('refId', '');
   const placeholder = text('placeholder', '');

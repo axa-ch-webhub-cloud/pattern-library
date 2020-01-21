@@ -16,7 +16,7 @@ storiesOf('Components|Atoms/Input File', module)
     changelog: Changelog,
   })
   .add('Input File', () => {
-    const inputText = text('text', 'Upload');
+    const inputText = text('text', 'Select a File');
     const accept = text(
       'accept',
       'image/jpg, image/jpeg, application/pdf, image/png'
