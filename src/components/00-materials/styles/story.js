@@ -8,7 +8,7 @@ import '../../10-atoms/text';
 import '../../10-atoms/heading';
 
 /*
- * Just copy & paste 00-colors.scss to const colors above
+ * Just copy & paste 00-colors.scss to const colors below
  * */
 
 const colors = `
