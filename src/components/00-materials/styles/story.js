@@ -118,8 +118,7 @@ storiesOf('Materials', module)
     const template = html`
       <style>
         body {
-          font-family: 'Segoe UI Light', 'Segoe UI', 'Helvetica Neue Light',
-            'Helvetica Neue', Helvetica, Verdana, sans-serif;
+          font-family: Source Sans Pro, Arial, sans-serif;
         }
 
         div.colorgroupwrapper {
@@ -127,6 +126,9 @@ storiesOf('Materials', module)
           flex-wrap: wrap;
         }
         div.colorwrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           border-radius: 5px;
           border: 1px solid lightgray;
           padding: 5px;
@@ -138,6 +140,7 @@ storiesOf('Materials', module)
           height: 50px;
           border-radius: 5px;
           border: 1px solid lightgray;
+          margin-bottom: 10px;
         }
       </style>
 
