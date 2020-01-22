@@ -117,6 +117,11 @@ storiesOf('Materials', module)
 
     const template = html`
       <style>
+        body {
+          font-family: 'Segoe UI Light', 'Segoe UI', 'Helvetica Neue Light',
+            'Helvetica Neue', Helvetica, Verdana, sans-serif;
+        }
+
         div.colorgroupwrapper {
           display: flex;
           flex-wrap: wrap;
@@ -126,9 +131,10 @@ storiesOf('Materials', module)
           border: 1px solid lightgray;
           padding: 5px;
           margin: 10px;
+          width: 250px;
         }
         div.colorvisualisation {
-          width: 170px;
+          width: 250px;
           height: 50px;
           border-radius: 5px;
           border: 1px solid lightgray;
@@ -148,7 +154,7 @@ storiesOf('Materials', module)
       ${getColorGroups(colors).map(group => {
         return html`
           <div id="colorGroup">
-            <axa-heading rank="5">${group.name}</axa-heading>
+            <axa-heading rank="5">${group.name.toUpperCase()}</axa-heading>
             <div class="colorgroupwrapper">
               ${getColors(group.value).map(color => {
                 return html`
