@@ -11,6 +11,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AXADatepickerReact from './AXADatepickerReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const localeOptions = {
   'de-CH': 'de-CH',
@@ -25,6 +26,7 @@ storiesOf('Components|Molecules/Datepicker/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Datepicker as React Component', () => {
     const inputfield = boolean('inputfield', false);
@@ -43,6 +45,8 @@ storiesOf('Components|Molecules/Datepicker/React', module)
     const invaliddatetext = text('invaliddatetext', 'Invalid date');
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
+    const width = text('width', '400');
+    const height = text('height', '40');
     const div = document.createElement('div');
 
     ReactDOM.render(
@@ -74,6 +78,8 @@ storiesOf('Components|Molecules/Datepicker/React', module)
             'axa-datepicker[data-test-id="datepicker-react"]'
           ).title = newDate;
         }}
+        width={width}
+        height={height}
       />,
       div
     );

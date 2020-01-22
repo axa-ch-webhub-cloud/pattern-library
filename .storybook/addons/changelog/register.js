@@ -14,8 +14,8 @@ const MyPanel = () => {
     if (value) {
       return value
         .replace('module.exports = "', '')
-        .replace(/\\n";/g, '<br>')
-        .replace(/\\n/g, '<br>');
+        .replace(/\\n";/g, '')
+        .replace(/\\n/g, '');
     }
     return 'No Changelog found.';
   };

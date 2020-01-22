@@ -1,3 +1,7 @@
+## 5.0.2
+- We do not set parameter `height` to component's css anymore because that causes a bad behavior if you has set a label text
+- Changed implementation internals for `width` due to IE bug (Issue #1601)
+
 ## 5.0.0
 
 - Change behavior of attribute `width`:
