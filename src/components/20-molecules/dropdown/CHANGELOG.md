@@ -1,4 +1,4 @@
-## 5.0.3
+## 5.0.4
 
 - No breaking change. Release just to have same version number as `@axa-ch/datepicker`.
 
