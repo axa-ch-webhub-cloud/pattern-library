@@ -1,5 +1,6 @@
 lib
 dist
+.tmp.package.json
 .tmp-lib
 .tmp-dist
 *.js.bak
