@@ -1,3 +1,7 @@
+## 5.0.3
+
+- No breaking change. Release just to have same version number as `@axa-ch/datepicker`.
+
 ## Migration to version 4
 
 - The implementation of the wrapper to make a component React-ready has
