@@ -70,7 +70,6 @@ done)
 # Outdated branches are removed at this point, and the current branch is up to
 # date. Ready to publish!
 
-[[ $1 != "--my-credentials" ]] && git config --global user.email "raphael.lueckl@axa.ch" && git config --global user.name "Donald Duck"
 git add .
 git commit -m "Deploy Branch: $BRANCH_NAME"
 git push -f
