@@ -11,9 +11,6 @@
     "postpublish": "../../../../scripts/build/postbuild.js",
     "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
   },
-  "directories": {
-    "lib": "lib"
-  },
   "files": [
     "lib",
     "dist"
