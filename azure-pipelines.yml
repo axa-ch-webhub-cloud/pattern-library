@@ -28,7 +28,7 @@ steps:
   displayName: 'Build static storybook'
 
 - script: |
-    git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && npm run deploy-branch
+    git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && bash ./scripts/branch-deployment.sh
   displayName: 'Gh-Pages - Push Featurebranch'
   env:
     GITHUB_TOKEN: $(GITHUB_TOKEN)
