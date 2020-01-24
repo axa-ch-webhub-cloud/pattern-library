@@ -14,6 +14,9 @@ elif [[ -z "$GITHUB_TOKEN" ]]; then
   exit 1
 fi
 
+echo "Using Github Email: $GITHUB_EMAIL"
+echo "Using Github User:  $GITHUB_USER"
+
 # If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could not be resolved, which means,
 # that the build does not originate form a pull request. In that case, we go after the branch name.
 # This is an issue with azure, that the source_branch contains whatever reference, but the actual
