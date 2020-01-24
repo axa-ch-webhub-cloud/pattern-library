@@ -111,8 +111,7 @@ const dist = {
   plugins: [
     ...commonPlugins,
     nodeResolve({
-      mainFields: ['module', 'main', 'browser'],
-      only: [/^\.{0,2}\/|\.scss$/i], // treat all node_modules as external, except .scss files
+      mainFields: ['module', 'main', 'browser']
     }),
     commonjs({
       namedExports: {
