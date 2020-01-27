@@ -1,16 +1,12 @@
-Fixes #(issue).
+Fixes #(issue)
 
 # Done is when (DoD):
-- [ ] I have added UI/Unit tests for my changes
-- [ ] Old tests and eslint rule are not broken
-- [ ] I added modified component properties to the typescript typings
-- [ ] Design has been reviewed with (here name of reviewer)
-- [ ] My changes are accordingly to our [Best Practices](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#best-practices)
-- [ ] My changes are well documented in the README and showcased in the stories 
-- [ ] My changes are shortly added to CHANGELOG.md with the issue number
-- [ ] Tested with IE
-
-# Checklist:
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas (focus on **WHY**)
+- [ ] Modifications within components are reflected by tests.
+- [ ] A self-review of the code has been performed.
+- [ ] The modified component properties have been added to the typescript typings.
+- [ ] Potential design changes have been reviewed by a designer.
+- [ ] The modifications are well documented (README.md, etc.) and showcased in the stories.
+- [ ] The modifications are documented in the code, particularly in hard-to-understand areas (focus on **WHY**).
+- [ ] The modifications are shortly added to CHANGELOG.md with the issue number.
+- [ ] The modifications still work in IE.
+- [ ] The modifications are according to our [Best Practices](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#best-practices)
