@@ -17,7 +17,7 @@ storiesOf('Components|Molecules/Dropdown/React', module)
     const div = document.createElement('div');
 
     const item1 = text('First Item', '< CHF 1,000');
-    const item2 = text('Second Item', 'From CHF 1,000 to 10,0000');
+    const item2 = text('Second Item', 'From CHF 1,000 to 10,000');
     const item3 = text('Third Item', '> CHF 10,000');
 
     const label = text('label', '');
@@ -34,9 +34,9 @@ storiesOf('Components|Molecules/Dropdown/React', module)
 
     ReactDOM.render(
       <DemoUncontrolledDropdownReact
-        item1="< CHF 1,000"
-        item2="From CHF 1,000 to 10,0000"
-        item3="> CHF 10,000"
+        item1={item1}
+        item2={item2}
+        item3={item3}
         label={label}
         value={value}
         defaultTitle={defaultTitle}
