@@ -14,7 +14,7 @@ storiesOf('Components|Atoms/Checkbox/React', module)
   })
   .addDecorator(withKnobs)
   .add('Checkbox - uncontrolled', () => {
-    const label = text('label', 'this is a label');
+    const label = text('label', 'I agree to conditions of data protection.');
     const name = text('name', 'my-checkbox');
     const variant = select('variant', ['square', 'checkmark']);
     const checked = boolean('checked', true);
@@ -33,11 +33,7 @@ storiesOf('Components|Atoms/Checkbox/React', module)
         variant={variant}
         required={required}
         onChange={e => console.log('checkbox', name, ' changed to: ', checked)}
-        error={
-          errortext
-            ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
-            : ''
-        }
+        error={errortext ? 'Please accept our terms and conditions.' : ''}
       />,
       div
     );

@@ -18,7 +18,7 @@ storyCheckbox.addParameters({
 
 storyCheckbox.add('Checkbox', () => {
   const refId = text('refId', `checkbox-${createRefId()}`);
-  const label = text('label', 'this is a label');
+  const label = text('label', 'I agree to conditions of data protection.');
   const name = text('name', 'my-checkbox');
   const variant = select('variant', ['square', 'checkmark']);
   const checked = boolean('checked', true);
@@ -37,9 +37,7 @@ storyCheckbox.add('Checkbox', () => {
       ?disabled="${disabled}"
       ?checked="${checked}"
       ?required="${required}"
-      error="${errortext
-        ? 'Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen.'
-        : ''}"
+      error="${errortext ? 'Please accept our terms and conditions.' : ''}"
     ></axa-checkbox>
   `;
 
