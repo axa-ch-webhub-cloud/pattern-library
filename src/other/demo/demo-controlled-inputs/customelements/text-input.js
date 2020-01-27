@@ -1,7 +1,7 @@
 // IMPORTS
 import { LitElement, html } from 'lit-element';
-import withReact from '../../../utils/with-react';
-import defineOnce from '../../../utils/define-once';
+import withReact from '../../../../utils/with-react';
+import defineOnce from '../../../../utils/define-once';
 
 const validateIfNeeded = self => event => {
   const {

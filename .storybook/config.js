@@ -20,11 +20,11 @@ addParameters({
 
 addDecorator(addReadme);
 
-const landingpage = require.context('../src/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const landingpage = require.context('../src/other/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 // N.B. don't-look-into-node-modules behaviour uses negative lookbehind (?<!) as part of its regular expression
 // (https://v8.dev/blog/regexp-lookbehind-assertions), which is supported for node 9 and greater
 const components = require.context('../src/components', true, /(?<!node_modules.*)(story|demo)\.(js|jsx)$/);
-const demos = require.context('../src/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const demos = require.context('../src/other/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
 configure(() => {
   landingpage.keys().forEach(landingpage);
