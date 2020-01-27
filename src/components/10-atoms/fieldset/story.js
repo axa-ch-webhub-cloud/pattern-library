@@ -22,21 +22,15 @@ storiesOf('Components|Atoms/Fieldset', module)
     const template = html`
       <axa-fieldset ?horizontal="${horizontal}" error="${error}">
         <axa-checkbox
-          label="Ja, ich möchte online einen
-        Versicherungsvertrag abschliessen.
-        Die Allgemeinen Vertragsbedingungen (AVB),
-        die Beraterinformation, sowie die Hinweise zum Datenschutz habe ich zur
-        Kenntnis genommen und bin damit einverstanden."
-          error="Bitte akzeptieren Sie die allgemeinen Versicherungsbedingungen."
+          label="I agree to conditions of data protection."
+          error="Please accept our terms and conditions."
         ></axa-checkbox>
+        <axa-checkbox label="I accept the conditions"></axa-checkbox>
         <axa-checkbox
-          label="Ich habe die in der Offerte beantworteten Antragsfragen geprüft und bestätige deren Richtigkeit."
+          label="I want to sign up for the newsletter"
           checked
+          disabled
         ></axa-checkbox>
-        <axa-checkbox label="kurzes Label"></axa-checkbox
-        ><axa-checkbox label="kurzes Label, danach 2 x disabled"></axa-checkbox>
-        <axa-checkbox checked disabled></axa-checkbox
-        ><axa-checkbox disabled></axa-checkbox>
       </axa-fieldset>
     `;
 
