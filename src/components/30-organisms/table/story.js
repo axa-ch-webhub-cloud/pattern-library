@@ -24,51 +24,51 @@ storiesOf('Components|Organisms/Table', module)
         <table class="any-for-test">
           <thead>
             <tr>
-              <th>Titel 1</th>
-              <th>Titel 2</th>
-              <th>Titel 3</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>City</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Body 1</td>
-              <td class="o-table--light">Longer Body 2</td>
-              <td>Super Long Body 3</td>
+              <td>Hans</td>
+              <td class="o-table--light">33</td>
+              <td>Berlin</td>
             </tr>
             <tr>
-              <td>Body A1 AA</td>
-              <td class="o-table--light">Longer Body A2</td>
-              <td>Super Long Body A3</td>
+              <td>Lukas</td>
+              <td class="o-table--light">17</td>
+              <td>Zürich</td>
             </tr>
             <tr>
-              <td>Body B1</td>
-              <td class="o-table--light">Longer Body B2</td>
-              <td>Super Long Body B3</td>
+              <td>Anna</td>
+              <td class="o-table--light">21</td>
+              <td>Luzern</td>
             </tr>
             <tr>
-              <td>Body B3</td>
-              <td class="o-table--light">Longer Body B3</td>
-              <td>Super Long Body B31</td>
+              <td>Roman</td>
+              <td class="o-table--light">64</td>
+              <td>Winterthur</td>
             </tr>
             <tr>
-              <td>Body B4</td>
-              <td class="o-table--light">Longer Body B4</td>
-              <td>Super Long Body B311</td>
+              <td>Petra</td>
+              <td class="o-table--light">44</td>
+              <td>Bülach</td>
             </tr>
             <tr>
-              <td>Body B5</td>
-              <td class="o-table--light">Longer Body B5</td>
-              <td>Super Long Body B3111</td>
+              <td>Werner</td>
+              <td class="o-table--light">91</td>
+              <td>St. Gallen</td>
             </tr>
             <tr>
-              <td>Body B6</td>
-              <td class="o-table--light">Longer Body B6</td>
-              <td>Super Long Body B3111</td>
+              <td>Vreni</td>
+              <td class="o-table--light">15</td>
+              <td>Kloten</td>
             </tr>
             <tr>
-              <td>Body B7</td>
-              <td class="o-table--light">Longer Body B7</td>
-              <td>Super Long Body B3 1111</td>
+              <td>Ursula</td>
+              <td class="o-table--light">31</td>
+              <td>Lugano</td>
             </tr>
           </tbody>
         </table>
