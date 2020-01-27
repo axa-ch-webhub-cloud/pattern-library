@@ -4,21 +4,21 @@ import Readme from '../../../README.md';
 import '../../components/10-atoms/text/lib';
 import '../../components/10-atoms/heading/lib';
 
-const story = storiesOf('Welcome', module);
+import commercialHeroBanner from './commercial-hero-banner';
+import footer from './footer';
+
+const story = storiesOf('Pages|AXA', module);
 story.addParameters({
   readme: {
     sidebar: Readme,
   },
 });
 
-story.add('to Pattern Library', () => {
+story.add('Main Page', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-heading rank="3">Welcome to the Pattern Library!</axa-heading>
-    <axa-text variant="size-3">
-      You can find all our Webcomponents here. Check out our Readme below.
-    </axa-text>
+    ${commercialHeroBanner}${footer}
   `;
 
   render(template, wrapper);

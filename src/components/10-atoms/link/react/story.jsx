@@ -6,7 +6,7 @@ import { iconList } from '../../icon/icon-list';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 
-import wrap from '../../../../demo/react/utils/wrap-render-react';
+import wrap from '../../../../other/demo/react/utils/wrap-render-react';
 
 const variantOptions = {
   none: '',

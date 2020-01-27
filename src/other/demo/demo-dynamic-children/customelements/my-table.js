@@ -1,7 +1,7 @@
 // IMPORTS
 import { LitElement, css } from 'lit-element';
-import withReact from '../../../utils/with-react';
-import defineOnce from '../../../utils/define-once';
+import withReact from '../../../../utils/with-react';
+import defineOnce from '../../../../utils/define-once';
 
 // GLOBALS
 const styled = new WeakMap();
