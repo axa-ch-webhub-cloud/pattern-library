@@ -137,7 +137,7 @@ test('should be clickable + change state and render parent label', async t => {
 
   await t.click($axaCheckbox);
   await t.expect($axaCheckbox.checked).ok();
-  await t.expect($axaCheckbox.count).eql(2);
+  await t.expect($axaCheckbox.count).eql(1);
 
   // has parent label
   await t.expect(label).ok();
