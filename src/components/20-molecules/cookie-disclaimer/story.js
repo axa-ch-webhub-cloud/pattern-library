@@ -21,8 +21,8 @@ storiesOf('Components|Molecules/Cookie disclaimer', module)
     const title = text('text', 'Terms and conditions of data protection');
     const description = text(
       'Description (not an attribute)',
-      'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of',
-      'AXA and advertising partners. More details:'
+      // eslint-disable-next-line max-len
+      'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:'
     );
     const dataProtection = text(
       'Link text (not an attribute)',

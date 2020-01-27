@@ -22,7 +22,7 @@ const children = html`
 `;
 
 storyPopupContent.add('Popup Content', () => {
-  const open = boolean('open', false);
+  const open = boolean('open', true);
 
   const wrapper = document.createElement('div');
   const template = html`
