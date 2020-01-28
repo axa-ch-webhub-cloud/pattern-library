@@ -15,7 +15,7 @@ import {
 const WEEK_STARTS_ON = 1; // Monday, hardcoded on purpose! Cf. https://stackoverflow.com/questions/53382465 for adaptive solutions
 
 export const getStartOfWeek = date => {
-  return startOfWeek(new Date(date), { weekStartsOn: WEEK_STARTS_ON });
+  return startOfWeek(date, { weekStartsOn: WEEK_STARTS_ON });
 };
 
 const getWeekdays = (date, locale) => {
@@ -115,7 +115,7 @@ const parseLocalisedDateIfValid = (locale = 'en', inputValue = '') => {
     splitValue[dayIndex],
   ];
 
-  // note: we can use Date.parse despite caveats about browser-specific implementation correctionerences by
+  // note: we can use Date.parse despite caveats about browser-specific implementation differences by
   // explicitly constructing an unambiguous date string here,
   // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
 
