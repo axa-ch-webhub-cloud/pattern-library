@@ -6,6 +6,7 @@ import '../../components/10-atoms/heading/lib';
 
 import commercialHeroBanner from './commercial-hero-banner';
 import footer from './footer';
+import policyFeatures from './policy-features';
 
 const story = storiesOf('Pages|AXA', module);
 story.addParameters({
@@ -18,7 +19,7 @@ story.add('Main Page', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    ${commercialHeroBanner}${footer}
+    ${commercialHeroBanner} ${policyFeatures}${footer}
   `;
 
   render(template, wrapper);
