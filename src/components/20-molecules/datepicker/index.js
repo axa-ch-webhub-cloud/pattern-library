@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { DateInputSvg } from '@axa-ch/materials/icons';
 import { html, svg } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import '@axa-ch/dropdown';
 import '@axa-ch/button';
 import styles from './index.scss';
 import {
   getWeekdays,
+  getMonthMatrix,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
 } from './utils/date';
@@ -16,8 +18,6 @@ import { applyDefaults } from '../../../utils/with-react';
 import debounce from '../../../utils/debounce';
 import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
-
-import Store from './utils/Store';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
@@ -135,6 +135,10 @@ class AXADatepicker extends NoShadowDOM {
       label: { type: String, reflect: true },
       checkMark: { type: Boolean, reflect: true },
       autofocus: { type: Boolean, reflect: true },
+      onChange: { type: Function },
+      onDateChange: { type: Function },
+      onFocus: { type: Function },
+      onBlur: { type: Function },
     };
   }
 
@@ -212,11 +216,6 @@ class AXADatepicker extends NoShadowDOM {
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
 
-    this.onChange = EMPTY_FUNCTION;
-    this.onDateChange = EMPTY_FUNCTION;
-    this.onBlur = EMPTY_FUNCTION;
-    this.onFocus = EMPTY_FUNCTION;
-
     this.debouncedHandleViewportCheck = debounce(
       () => this.handleViewportCheck(this.input),
       250
@@ -274,6 +273,17 @@ class AXADatepicker extends NoShadowDOM {
 
     style.width = getFormattedStyle(width); // set width to component's css
     const formattedHeight = getFormattedStyle(height); // set height to input-wrap element because of optional label
+
+    const cellClasses = ({ sameMonth, today, selected, inactive }) =>
+      classMap({
+        'm-datepicker__calendar-cell': true,
+        'js-datepicker__calender-body__cell': true,
+        'm-datepicker__calendar-not-current-month': !sameMonth,
+        'm-datepicker__calendar-current-month': sameMonth,
+        'm-datepicker__calendar-today': today,
+        'm-datepicker__calendar-selected-day': selected,
+        'm-datepicker__calendar-day--inactive': inactive,
+      });
 
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
@@ -351,15 +361,17 @@ class AXADatepicker extends NoShadowDOM {
                   </div>
 
                   <div class="m-datepicker__weekdays">
-                    ${this.weekdays &&
-                      this.weekdays.map(
-                        day =>
-                          html`
-                            <span class="m-datepicker__weekdays-day"
-                              >${day}</span
-                            >
-                          `
-                      )}
+                    <div class="m-datepicker__weekdays-inner">
+                      ${this.weekdays &&
+                        this.weekdays.map(
+                          day =>
+                            html`
+                              <span class="m-datepicker__weekdays-day"
+                                >${day}</span
+                              >
+                            `
+                        )}
+                    </div>
                   </div>
 
                   <div class="m-datepicker__calendar js-datepicker__calendar">
@@ -374,7 +386,7 @@ class AXADatepicker extends NoShadowDOM {
                               data-index="${index}"
                               data-value="${cell.value}"
                               data-day="${cell.text}"
-                              class="m-datepicker__calendar-cell ${cell.className}"
+                              class="${cellClasses(cell)}"
                             >
                               ${cell.text}
                             </button>
@@ -511,15 +523,11 @@ class AXADatepicker extends NoShadowDOM {
     }
     this._date = startDate;
     const { _date } = this;
-    _date.setHours(0);
-    _date.setMinutes(0);
-    _date.setSeconds(0);
+    _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-
-    this.store = new Store(locale, _date, this.allowedyears);
-    this.cells = this.store.getCells();
-    this.weekdays = getWeekdays(_date, this.locale);
+    this.cells = getMonthMatrix(_date, allowedyears);
+    this.weekdays = getWeekdays(_date, locale);
   }
 
   handleViewportCheck(baseElem) {
@@ -602,7 +610,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      this.initDate(this._date, null, month | 0, null);
+      this.initDate(this._date, null, parseInt(month, 10), null);
     }
   }
 
@@ -610,7 +618,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const year = e.detail;
     if (year) {
-      this.initDate(this._date, year | 0, null, null);
+      this.initDate(this._date, parseInt(year, 10), null, null);
     }
   }
 
