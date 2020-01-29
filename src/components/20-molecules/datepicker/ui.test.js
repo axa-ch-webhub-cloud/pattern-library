@@ -387,6 +387,31 @@ test('should pass through className and arbitrary data- attributes + have automa
     .eql('AxaDatepicker');
 });
 
+test('should display error message if invalid is set, unless invaliddatetext is empty', async t => {
+  const setDatepicker = ClientFunction((property, value) => {
+    const domNode = document.querySelector(`#datepicker-react`);
+    if (value !== undefined) {
+      domNode[property] = value;
+    }
+    return domNode[property];
+  });
+
+  const findNode = Selector(selector => {
+    return document.querySelector(`#datepicker-react ${selector}`);
+  });
+
+  await t.setTestSpeed(0.5);
+  await t.expect(await setDatepicker('invaliddatetext', 'my error')).ok();
+  await t.expect(await setDatepicker('invalid', true)).ok();
+  await t.expect(await findNode('.m-datepicker__error')).ok();
+  await t
+    .expect(await findNode('.m-datepicker__error').innerText)
+    .eql('my error');
+
+  await t.expect(await setDatepicker('invaliddatetext', '')).notOk();
+  await t.expect(await findNode('.m-datepicker__error')).notOk();
+});
+
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-in-a-form`
 );

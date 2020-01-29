@@ -265,8 +265,15 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = '100%', height = '40', error, invalid, style } = this;
-    const needToShowError = error || invalid;
+    const {
+      width = '100%',
+      height = '40',
+      error,
+      invalid,
+      invaliddatetext,
+      style,
+    } = this;
+    const needToShowError = (error || invalid) && invaliddatetext;
 
     const getFormattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
