@@ -12,7 +12,7 @@ const style = html`
     }
 
     .pages-axa-main-page__navbar .pages-axa-main-page__navbar-row {
-      border: 1px #333 solid;
+      // border: 1px #333 solid;
 
       display: flex;
       flex-direction: row;
@@ -35,13 +35,23 @@ const style = html`
       padding: 5px 15px 5px 15px;
     }
 
-    .pages-axa-main-page__navbar-top-right {
+    .pages-axa-main-page__navbar-navigation-items li:first-child {
+      padding-left: 0px;
+    }
+
+    .pages-axa-main-page__navbar-right {
       display: flex;
       flex-direction: row;
     }
 
     axa-dropdown {
       width: 90px;
+    }
+
+    .pages-axa-main-page__navbar-navigation-search-icon::before {
+      content: '|';
+      font-size: 25px;
+      padding-right: 10px;
     }
   </style>
 `;
@@ -56,7 +66,7 @@ export default html`
         <li>Corporate Customers</li>
         <li>About AXA</li>
       </ul>
-      <div class="pages-axa-main-page__navbar-top-right">
+      <div class="pages-axa-main-page__navbar-right">
         <axa-dropdown
           items='[
             {"name": "DE", "value": "DE" },
@@ -64,6 +74,7 @@ export default html`
             {"name": "IT", "value": "IT" },
             {"name": "EN", "value": "EN" }
           ]'
+          value="EN"
         ></axa-dropdown>
         <axa-button>Login</axa-button>
       </div>
@@ -73,14 +84,20 @@ export default html`
       <div class="pages-axa-main-page__logo">
         ${logo}
       </div>
-      <ul>
-        <li>Offers</li>
-        <li>Claims</li>
-        <li>Customer Portal</li>
-        <li>Contact & Services</li>
-        <li>Blog</li>
-      </ul>
-      <axa-icon icon="search"></axa-icon>
+      <div class="pages-axa-main-page__navbar-right">
+        <ul class="pages-axa-main-page__navbar-navigation-items">
+          <li>Offers</li>
+          <li>Claims</li>
+          <li>Customer Portal</li>
+          <li>Contact & Services</li>
+          <li>Blog</li>
+        </ul>
+        <axa-icon
+          icon="search"
+          class="pages-axa-main-page__navbar-navigation-search-icon"
+          size="auto"
+        ></axa-icon>
+      </div>
     </div>
   </nav>
 `;
