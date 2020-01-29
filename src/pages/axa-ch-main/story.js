@@ -9,6 +9,7 @@ import commercialHeroBanner from './commercial-hero-banner';
 import footer from './footer';
 import policyFeatures from './policy-features';
 import navbar from './navbar';
+import footerSmall from './footer-small';
 
 const story = storiesOf('Pages|AXA', module);
 story.addParameters({
@@ -58,7 +59,7 @@ story.add('Main Page', () => {
       <axa-container>${navbar}</axa-container>
       ${commercialHeroBanner}
       <axa-container>${policyFeatures}</axa-container>
-      ${footer}
+      ${footer} ${footerSmall}
     </div>
   `;
 
