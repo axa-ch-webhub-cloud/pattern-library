@@ -1,6 +1,10 @@
+## 2.1.0
+
+- Export all typescript types instead of only a subset. #1616
+
 ## 2.0.3
 
-- prevent doubled labels when `label` attribute isn't set
+- Prevent doubled labels when `label` attribute isn't set.
 
 ## Migration to version 2
 

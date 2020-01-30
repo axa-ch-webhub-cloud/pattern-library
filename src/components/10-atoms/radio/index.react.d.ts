@@ -1,14 +1,14 @@
 import React from 'react';
 
-type Item = {
-name: string;
-value?: string;
-checked?: boolean;
-disabled?: boolean;
+export type Item = {
+  name: string;
+  value?: string;
+  checked?: boolean;
+  disabled?: boolean;
 };
 
-type AXARadioChangeEvent = {
-target: Item;
+export type AXARadioChangeEvent = {
+  target: Item;
 };
 
 export interface AXARadioProps {
