@@ -42,7 +42,7 @@ function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
 }
 
 story.add('Main Page', () => {
-  const markWebcomponents = boolean('Highlight Webcomponents', false);
+  const markWebcomponents = boolean('Highlight AXA Webcomponents', false);
   const wrapper = document.createElement('div');
 
   // Execution is guaranteed to happen after the render, by putting it at the
