@@ -62,9 +62,9 @@ export default html`
   <nav class="pages-axa-main-page__navbar">
     <div class="pages-axa-main-page__navbar-row">
       <ul class="pages-axa-main-page__navbar-navigation-items">
-        <li>Private Customers</li>
-        <li>Corporate Customers</li>
-        <li>About AXA</li>
+        <li><axa-link href="#">Private Customers</axa-link></li>
+        <li><axa-link href="#">Corporate Customers</axa-link></li>
+        <li><axa-link href="#">About AXA</axa-link></li>
       </ul>
       <div class="pages-axa-main-page__navbar-right">
         <axa-dropdown
@@ -86,11 +86,11 @@ export default html`
       </div>
       <div class="pages-axa-main-page__navbar-right">
         <ul class="pages-axa-main-page__navbar-navigation-items">
-          <li>Offers</li>
-          <li>Claims</li>
-          <li>Customer Portal</li>
-          <li>Contact & Services</li>
-          <li>Blog</li>
+          <li><axa-link href="#">Offers</axa-link></li>
+          <li><axa-link href="#">Claims</axa-link></li>
+          <li><axa-link href="#">Customer Portal</axa-link></li>
+          <li><axa-link href="#">Contact & Services</axa-link></li>
+          <li><axa-link href="#">Blog</axa-link></li>
         </ul>
         <axa-icon
           icon="search"
