@@ -7,6 +7,13 @@ const logo = svg([axaLogo]);
 
 const style = html`
   <style>
+    .pages-axa-main-page__navbar {
+      display: flex;
+      flex-direction: column;
+
+      padding: 10px;
+    }
+
     .pages-axa-main-page__navbar .pages-axa-main-page__logo svg {
       width: 53px;
     }
@@ -18,11 +25,6 @@ const style = html`
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .pages-axa-main-page__navbar {
-      display: flex;
-      flex-direction: column;
     }
 
     .pages-axa-main-page__navbar-navigation-items {
