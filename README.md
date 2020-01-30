@@ -1,6 +1,6 @@
 # Pattern Library
 
-[![Build Status](https://travis-ci.org/axa-ch/patterns-library.svg?branch=develop)](https://travis-ci.org/axa-ch/patterns-library)
+[![Build Status](https://ach-azureforge-iss.visualstudio.com/Patterns-Library/_apis/build/status/CI_patterns-library?branchName=develop)](https://ach-azureforge-iss.visualstudio.com/Patterns-Library/_build/latest?definitionId=115&branchName=develop)
 ![Deployment Status](https://ach-azureforge-iss.vsrm.visualstudio.com/_apis/public/Release/badge/4ad0f0a6-2ec1-465f-99a1-4c3726de6d35/1/3)
 
 ## [>> Pattern Library Demo](https://patterns.axa.ch)
