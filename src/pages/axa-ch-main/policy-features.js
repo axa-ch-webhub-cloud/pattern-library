@@ -11,45 +11,37 @@ import keysIcon from '@axa-ch/materials/images/keys.svg';
 import contractIcon from '@axa-ch/materials/images/contract.svg';
 
 export default html`
-  <axa-policy-features title="Unsere Angebote für Sie" variant="white">
+  <axa-policy-features title="Our offers for you" variant="white">
     <axa-policy-features-item
-      title="Autoversicherung"
-      description="A 5 star car insurance with affordable premium services"
+      title="Car insurance"
       icon=${carIcon}
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="Hausratversicherung"
-      description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text."
+      title="Household contents insurance"
       icon="${chairIcon}"
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="Privathaftpflicht"
-      description="This SVG is loaded externally."
+      title="Personal liability insurance: covered for damage to third parties"
       icon="${glassIcon}"
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="Rechtsschutzversicherung"
-      description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+      title="Legal protection insurance"
       icon="${legalIcon}"
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="3. Säule – Private Vorsorge"
-      description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+      title="Pillar 3 – private pension provision"
       icon="${handIcon}"
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="Reiseversicherung"
-      description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+      title="Travel insurance"
       icon="${globalIcon}"
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="Mietkaution"
-      description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+      title="Rental guarantee"
       icon="${keysIcon}"
     ></axa-policy-features-item>
     <axa-policy-features-item
-      title="Alle Versicherungen"
-      description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+      title="All insurance"
       icon="${contractIcon}"
     ></axa-policy-features-item>
   </axa-policy-features>
