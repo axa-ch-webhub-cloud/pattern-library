@@ -12,7 +12,7 @@ const style = html`
       flex-direction: column;
 
       padding: 10px;
-      border-bottom: 1px rgb(229, 229, 229) solid;
+      border-bottom: 2px rgb(229, 229, 229) solid;
     }
 
     .pages-axa-main-page__navbar .pages-axa-main-page__logo svg {
