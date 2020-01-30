@@ -20,39 +20,39 @@ story.addParameters({
   },
 });
 
-function getFirstChildOfAllAxaCustomElements() {
+function getFirstChildOfEachAxaCustomElement() {
   return Array.prototype.slice
     .call(document.querySelectorAll('*'))
-    .filter(function(el) {
-      return el.tagName.toUpperCase().startsWith('AXA-');
-    })
-    .map(el => {
-      if (el.shadowRoot) {
-        return el.shadowRoot.querySelector('*');
-      }
-      return el.querySelector('*');
+    .filter(el => el.tagName.toUpperCase().startsWith('AXA-'))
+    .map(el =>
+      el.shadowRoot ? el.shadowRoot.querySelector('*') : el.querySelector('*')
+    );
+}
+
+function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
+  if (shouldDrawBorder) {
+    elements.forEach(el => {
+      el.style.border = '5px red solid';
     });
+  } else {
+    elements.forEach(el => {
+      el.style.border = 'none';
+    });
+  }
 }
 
 story.add('Main Page', () => {
   const markWebcomponents = boolean('Highlight Webcomponents', false);
   const wrapper = document.createElement('div');
 
-  // Execution is guaranteed to happen after the render.
+  // Execution is guaranteed to happen after the render, by putting it at the
+  // end of the event loop.
   setTimeout(() => {
-    // const a = document.querySelectorAll('*');
-
-    const allChildrenOfWebcomponents = getFirstChildOfAllAxaCustomElements();
-    if (markWebcomponents) {
-      allChildrenOfWebcomponents.forEach(el => {
-        el.style.border = '5px red solid';
-      });
-    } else {
-      allChildrenOfWebcomponents.forEach(el => {
-        el.style.border = 'none';
-      });
-    }
-    console.log(allChildrenOfWebcomponents);
+    const allChildrenOfWebcomponents = getFirstChildOfEachAxaCustomElement();
+    drawOrRemoveBorderAroundElements(
+      markWebcomponents,
+      allChildrenOfWebcomponents
+    );
   });
 
   const resetBrowserDefaultStyles = html`
@@ -82,10 +82,6 @@ story.add('Main Page', () => {
     <style>
       .pages-axa-main-page {
         font-family: Source Sans Pro, Arial, sans-serif;
-      }
-
-      .pages-axa-main-page--marked-webcomponents [] {
-        background: black;
       }
     </style>
   `;
