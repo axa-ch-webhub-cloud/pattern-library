@@ -13,7 +13,7 @@ import InlineStyles from '../../../utils/inline-styles';
 const ARROW_RIGHT = 'arrow-right';
 
 // eslint-disable-next-line no-undef
-const isNativeShadowDOM = ShadowRoot.toString().indexOf('native code') > -1;
+const isNativeShadowDOM = (window || global).ShadowRoot ? ShadowRoot.toString().indexOf('native code') > -1 : false;
 
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
