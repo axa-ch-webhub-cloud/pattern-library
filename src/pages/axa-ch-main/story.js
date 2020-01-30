@@ -56,10 +56,8 @@ story.add('Main Page', () => {
     ${resetBrowserDefaultStyles} ${style}
 
     <div class="pages-axa-main-page">
-      <axa-container>${navbar}</axa-container>
-      ${commercialHeroBanner}
-      <axa-container>${policyFeatures}</axa-container>
-      ${footer} ${footerSmall}
+      ${navbar} ${commercialHeroBanner} ${policyFeatures} ${footer}
+      ${footerSmall}
     </div>
   `;
 
