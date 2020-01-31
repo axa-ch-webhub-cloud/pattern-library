@@ -5,29 +5,27 @@ import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const reqSvgsIcons = require.context(
-  './icons',
-  true,
-  /\.svg.js$/
-);
+const reqSvgsIcons = require.context('./icons', true, /\.svg.js$/);
 const filepathsIcons = reqSvgsIcons.keys();
-const reqSvgsImages = require.context(
-  './images',
-  true,
-  /\.svg.js$/
-);
+const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
+
+const _extractIconNameFromPath = path =>
+  path
+    .substring(2)
+    .split('.svg.js')
+    .join('');
 
 const icons = filepathsIcons.map(path => {
   return {
     svgstring: reqSvgsIcons(path).default,
-    path,
+    path: _extractIconNameFromPath(path),
   };
 });
 const images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
-    path,
+    path: _extractIconNameFromPath(path),
   };
 });
 
@@ -37,7 +35,7 @@ storiesOf('Materials', module)
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Icons and Images', () => {
     const backgrounds = select(
@@ -51,33 +49,18 @@ storiesOf('Materials', module)
     window.onCallbackInput = ev => {
       const { value } = ev.target;
 
-      let filteredIcons = icons;
-      let filteredImages = images;
-
-      const lengthOfPrefix = 2;
-
       const renderAreaIcons = document.querySelector('.icons');
       const renderAreaImages = document.querySelector('.images');
       const iconHeader = document.querySelector('.icon-header');
       const imageHeader = document.querySelector('.image-header');
 
-      filteredIcons = filteredIcons.filter(icon => {
-        const { length } = icon.path.split('.svg.js')[0];
-        const iconName = icon.path.substr(
-          lengthOfPrefix,
-          length - lengthOfPrefix
-        );
-        const foundSearchTerm = iconName.search(value.trim()) > -1;
+      const filteredIcons = icons.filter(icon => {
+        const foundSearchTerm = icon.path.includes(value.trim());
         return foundSearchTerm ? icon : '';
       });
 
-      filteredImages = filteredImages.filter(image => {
-        const { length } = image.path.split('.svg.js')[0];
-        const iconName = image.path.substr(
-          lengthOfPrefix,
-          length - lengthOfPrefix
-        );
-        const foundSearchTerm = iconName.search(value.trim()) > -1;
+      const filteredImages = images.filter(image => {
+        const foundSearchTerm = image.path.includes(value.trim());
         return foundSearchTerm ? image : '';
       });
 
