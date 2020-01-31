@@ -130,10 +130,6 @@ storiesOf('Materials', module)
           align-items: center;
           margin-bottom: 4px;
         }
-        .item-name {
-          width: 180px;
-          padding-left: 10px;
-        }
       </style>
       <h2>
         Note: The green borders reveal the dimensions of the SVGs.
