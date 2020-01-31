@@ -1,17 +1,17 @@
-const resolve = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
+const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
-const replace = require('rollup-plugin-replace'); // use to setup project enviroment variables
+const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
-const postcss = require('postcss');
-const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
-const fs = require('fs');
-const path = require('path');
 const { uglify } = require('rollup-plugin-uglify');
+const postcss = require('postcss');
+const fs = require('fs');
+const { resolve: pathResolve } = require('path');
+const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const copy = require('rollup-plugin-copy');
 
-const base = path.resolve(__dirname, 'src').replace(/\\/g, '/');
+const base = pathResolve(__dirname, 'src').replace(/\\/g, '/');
+
 const globalSassImports = require('./config/globals.js')
   .map(item => {
     return `@import '${base}/${item}';`;
@@ -96,12 +96,6 @@ const dist = {
     ...commonPlugins,
     resolve({
       mainFields: ['module', 'main', 'browser'],
-    }),
-    commonjs({
-      namedExports: {
-        '@skatejs/val': ['val'],
-      },
-      include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
     }),
     babel({
       babelrc: false,
