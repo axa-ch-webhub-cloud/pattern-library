@@ -32,9 +32,9 @@ const images = filepathsImages.map(path => {
   };
 });
 
-const mapToIconItem = (i, folder) => {
-  return `<div class="image-container">${i.svgstring}
-      <span class="item-name">${i.path}${FILE_ENDING}</span>
+const mapToIconItem = icon => {
+  return `<div class="image-container">${icon.svgstring}
+      <span class="item-name">${icon.path}${FILE_ENDING}</span>
     </div>`;
 };
 
@@ -74,7 +74,7 @@ storiesOf('Materials', module)
       });
 
       renderAreaIcons.innerHTML = filteredIcons
-        .map(i => mapToIconItem(i, 'icons'))
+        .map(i => mapToIconItem(i))
         .join('');
 
       iconHeader.innerHTML =
@@ -83,7 +83,7 @@ storiesOf('Materials', module)
           : `${filteredIcons.length} Icons:`;
 
       renderAreaImages.innerHTML = filteredImages
-        .map(i => mapToIconItem(i, 'images'))
+        .map(i => mapToIconItem(i))
         .join('');
 
       imageHeader.innerHTML =
@@ -149,12 +149,12 @@ storiesOf('Materials', module)
 
       <h3 class="icon-header">${icons.length} Icons:</h3>
       <div class="icons">
-        ${svg(icons.map(i => mapToIconItem(i, 'icons')))}
+        ${svg(icons.map(i => mapToIconItem(i)))}
       </div>
 
       <h3 class="image-header">${images.length} Images:</h3>
       <div class="images">
-        ${svg(images.map(i => mapToIconItem(i, 'images')))}
+        ${svg(images.map(i => mapToIconItem(i)))}
       </div>
     `;
 
