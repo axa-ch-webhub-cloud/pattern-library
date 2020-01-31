@@ -1,7 +1,7 @@
 import React, { createElement } from 'react';
 
-import createAXATable from '../../components/30-organisms/table/index.react';
-import createAXASortableTable from '../../components/30-organisms/table-sortable/index.react';
+import createAXATable from '../../../components/30-organisms/table/index.react';
+import createAXASortableTable from '../../../components/30-organisms/table-sortable/index.react';
 
 const AXATableReact = createAXATable(createElement);
 const AXATableSort = createAXASortableTable(createElement);

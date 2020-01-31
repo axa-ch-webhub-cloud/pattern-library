@@ -1,8 +1,8 @@
 // IMPORTS
 import { LitElement, html } from 'lit-element';
 import { forwardRef } from 'react';
-import withReact from '../../../utils/with-react';
-import defineOnce from '../../../utils/define-once';
+import withReact from '../../../../utils/with-react';
+import defineOnce from '../../../../utils/define-once';
 
 const handleInput = self => event => {
   // invoke event callback
