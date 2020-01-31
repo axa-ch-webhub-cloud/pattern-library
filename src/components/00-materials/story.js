@@ -5,6 +5,8 @@ import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
+const FILE_ENDING = '.svg.js';
+
 const reqSvgsIcons = require.context('./icons', true, /\.svg.js$/);
 const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
@@ -13,7 +15,7 @@ const filepathsImages = reqSvgsImages.keys();
 const _extractIconNameFromPath = path =>
   path
     .substring(2)
-    .split('.svg.js')
+    .split(FILE_ENDING)
     .join('');
 
 const icons = filepathsIcons.map(path => {
@@ -22,12 +24,19 @@ const icons = filepathsIcons.map(path => {
     path: _extractIconNameFromPath(path),
   };
 });
+
 const images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
     path: _extractIconNameFromPath(path),
   };
 });
+
+const mapToIconItem = (i, folder) => {
+  return `<div class="image-container">${i.svgstring}
+      <span class="item-name">${i.path}${FILE_ENDING}</span>
+    </div>`;
+};
 
 storiesOf('Materials', module)
   .addDecorator(withKnobs)
@@ -65,12 +74,7 @@ storiesOf('Materials', module)
       });
 
       renderAreaIcons.innerHTML = filteredIcons
-        .map(
-          i =>
-            `<div class="image-container">${
-              i.svgstring
-            }<span style="padding-left: 10px;">${i.path}</span></div>`
-        )
+        .map(i => mapToIconItem(i, 'icons'))
         .join('');
 
       iconHeader.innerHTML =
@@ -79,12 +83,7 @@ storiesOf('Materials', module)
           : `${filteredIcons.length} Icons:`;
 
       renderAreaImages.innerHTML = filteredImages
-        .map(
-          i =>
-            `<div class="image-container">${
-              i.svgstring
-            }<span style="padding-left: 10px;">${i.path}</span></div>`
-        )
+        .map(i => mapToIconItem(i, 'images'))
         .join('');
 
       imageHeader.innerHTML =
@@ -131,6 +130,10 @@ storiesOf('Materials', module)
           align-items: center;
           margin-bottom: 4px;
         }
+        .item-name {
+          width: 180px;
+          padding-left: 10px;
+        }
       </style>
       <h2>
         Note: The green borders reveal the dimensions of the SVGs.
@@ -146,26 +149,12 @@ storiesOf('Materials', module)
 
       <h3 class="icon-header">${icons.length} Icons:</h3>
       <div class="icons">
-        ${svg(
-          icons.map(
-            i =>
-              `<div class="image-container">${
-                i.svgstring
-              }<span style="padding-left: 10px;">${i.path}</span></div>`
-          )
-        )}
+        ${svg(icons.map(i => mapToIconItem(i, 'icons')))}
       </div>
 
       <h3 class="image-header">${images.length} Images:</h3>
       <div class="images">
-        ${svg(
-          images.map(
-            i =>
-              `<div class="image-container">${
-                i.svgstring
-              }<span style="padding-left: 10px;">${i.path}</span></div>`
-          )
-        )}
+        ${svg(images.map(i => mapToIconItem(i, 'images')))}
       </div>
     `;
 
