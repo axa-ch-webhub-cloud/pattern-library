@@ -126,6 +126,11 @@ storiesOf('Materials', module)
           outline-offset: -2px;
           color: #000;
         }
+        .image-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 4px;
+        }
       </style>
       <h2>
         Note: The green borders reveal the dimensions of the SVGs.
@@ -144,9 +149,9 @@ storiesOf('Materials', module)
         ${svg(
           icons.map(
             i =>
-              `<div>${i.svgstring}<span style="padding-left: 10px;">${
-                i.path
-              }</span></div>`
+              `<div class="image-container">${
+                i.svgstring
+              }<span style="padding-left: 10px;">${i.path}</span></div>`
           )
         )}
       </div>
@@ -156,9 +161,9 @@ storiesOf('Materials', module)
         ${svg(
           images.map(
             i =>
-              `<div>${i.svgstring}<span style="padding-left: 10px;">${
-                i.path
-              }</span></div>`
+              `<div class="image-container">${
+                i.svgstring
+              }<span style="padding-left: 10px;">${i.path}</span></div>`
           )
         )}
       </div>
