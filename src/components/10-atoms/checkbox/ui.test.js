@@ -96,19 +96,6 @@ test('should be clickable + change state', async t => {
   await t.expect($axaCheckbox.checked).ok();
 });
 
-test('should set checkbox element to disabled + not change state', async t => {
-  const $axaCheckbox = await Selector(TAG);
-  const setDisabled = ClientFunction(() => {
-    const checkbox = document.querySelector('axa-checkbox');
-    checkbox.checked = false;
-    checkbox.disabled = true;
-  });
-  await setDisabled();
-  await t.expect(await $axaCheckbox.hasAttribute('disabled')).ok();
-  await t.click($axaCheckbox);
-  await t.expect($axaCheckbox.checked).notOk();
-});
-
 test('should set refId on label and input', async t => {
   const $axaCheckbox = await Selector(TAG);
   const label = await Selector('.a-checkbox__wrapper');
@@ -125,6 +112,18 @@ test('should set refId on label and input', async t => {
       (await input.getAttribute('id')) === (await label.getAttribute('for'))
     )
     .ok();
+});
+
+fixture('Checkbox - Disabled and checked').page(
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=true&knob-disabled=true`
+);
+
+test('should set checkbox element to disabled + not change state', async t => {
+  const $axaCheckbox = await Selector(TAG);
+
+  await t.expect(await $axaCheckbox.hasAttribute('disabled')).ok();
+  await t.click($axaCheckbox);
+  await t.expect($axaCheckbox.checked).notOk();
 });
 
 fixture('Checkbox - Label as a child of the component').page(
