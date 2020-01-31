@@ -50,7 +50,7 @@ storyButtonLink.addParameters({
 });
 
 storyButtonLink.add('Button Link', () => {
-  const buttonText = text('text', 'Click me');
+  const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
   const external = text('external', '');
   const variants = radios('variant', variantOptions, '');

@@ -11,7 +11,7 @@ storiesOf('Components|Atoms/Button Link/Demos', module)
   })
   .add(
     'Feature - Button Link icon visible',
-    () => '<axa-button-link icon="arrow-right">Icon</axa-button-link>'
+    () => '<axa-button-link icon="arrow-right">Next step</axa-button-link>'
   )
   .add('Feature - Button Link clickable', () => {
     const btn = document.createElement('axa-button-link');

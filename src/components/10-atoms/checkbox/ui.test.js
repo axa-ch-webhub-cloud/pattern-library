@@ -96,26 +96,9 @@ test('should be clickable + change state', async t => {
   await t.expect($axaCheckbox.checked).ok();
 });
 
-test('should set checkbox element to disabled + not change state', async t => {
-  const $axaCheckbox = await Selector(TAG);
-  const setDisabled = ClientFunction(() => {
-    const checkbox = document.querySelector('axa-checkbox');
-    checkbox.checked = false;
-    checkbox.disabled = true;
-  });
-  await setDisabled();
-  await t.expect(await $axaCheckbox.hasAttribute('disabled')).ok();
-  await t.click($axaCheckbox);
-  await t.expect($axaCheckbox.checked).notOk();
-});
-
 test('should set refId on label and input', async t => {
-  const $axaCheckbox = await Selector(TAG);
   const label = await Selector('.a-checkbox__wrapper');
   const input = await Selector('.a-checkbox__input');
-
-  await t.click($axaCheckbox);
-  await t.expect($axaCheckbox.checked).ok();
 
   await t.expect(label.hasAttribute('for')).ok();
   await t.expect(input.hasAttribute('id')).ok();
@@ -125,6 +108,18 @@ test('should set refId on label and input', async t => {
       (await input.getAttribute('id')) === (await label.getAttribute('for'))
     )
     .ok();
+});
+
+fixture('Checkbox - Disabled and checked').page(
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=false&knob-disabled=true`
+);
+
+test('should set checkbox element to disabled + not change state', async t => {
+  const $axaCheckbox = await Selector(TAG);
+
+  await t.expect(await $axaCheckbox.hasAttribute('disabled')).ok();
+  await t.click($axaCheckbox);
+  await t.expect($axaCheckbox.checked).notOk();
 });
 
 fixture('Checkbox - Label as a child of the component').page(
@@ -137,7 +132,7 @@ test('should be clickable + change state and render parent label', async t => {
 
   await t.click($axaCheckbox);
   await t.expect($axaCheckbox.checked).ok();
-  await t.expect($axaCheckbox.count).eql(2);
+  await t.expect($axaCheckbox.count).eql(1);
 
   // has parent label
   await t.expect(label).ok();

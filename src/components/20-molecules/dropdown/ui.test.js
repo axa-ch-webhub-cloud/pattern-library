@@ -232,7 +232,7 @@ test('should allow setting non-initial item via items property', async t => {
     );
     return visibleItem.innerText;
   });
-  await t.expect(await getVisibleItem()).eql('Item B');
+  await t.expect(await getVisibleItem()).eql('From CHF 1,000 to 10,000');
 });
 
 // Dropdown react focussable

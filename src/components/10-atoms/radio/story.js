@@ -29,7 +29,7 @@ storiesOf('Components|Atoms/Radio', module)
   .add('Radio', () => {
     const wrapper = document.createElement('div');
 
-    const label = text('label*', 'Ja');
+    const label = text('label*', '18-45');
     const checked = boolean('checked*', false);
     const focus = boolean('focus*', false);
     const disabled = boolean('disabled', false);
@@ -60,7 +60,7 @@ storiesOf('Components|Atoms/Radio', module)
           ?button="${button}"
           ?disabled="${disabled}"
           ?noAutoWidth="${noAutoWidth}"
-          label="No"
+          label="46-54"
           value="2"
         ></axa-radio>
         <axa-radio
@@ -70,7 +70,7 @@ storiesOf('Components|Atoms/Radio', module)
           ?button="${button}"
           ?disabled="${disabled}"
           ?noAutoWidth="${noAutoWidth}"
-          label="Maybe"
+          label="55+"
           value="3"
         ></axa-radio>
         <axa-fieldset horizontal></axa-fieldset

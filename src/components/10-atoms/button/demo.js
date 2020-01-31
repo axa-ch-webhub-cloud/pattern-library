@@ -12,7 +12,7 @@ storiesOf('Components|Atoms/Button/Demos', module)
   })
   .add(
     'Feature - Button icon visible',
-    () => '<axa-button icon="arrow-right">Icon</axa-button>'
+    () => '<axa-button icon="arrow-right">Next step</axa-button>'
   )
   .add('Feature - Button clickable', () => {
     const btn = document.createElement('axa-button');

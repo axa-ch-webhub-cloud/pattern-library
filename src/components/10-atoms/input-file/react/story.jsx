@@ -14,8 +14,8 @@ storiesOf('Components|Atoms/Input File/React', module)
       sidebar: Readme,
     },
   })
-  .add('InputFile', () => {
-    const inputText = text('text', 'Upload');
+  .add('Input File', () => {
+    const inputText = text('text', 'Select a File');
     const accept = text(
       'accept',
       'image/jpg, image/jpeg, application/pdf, image/png'

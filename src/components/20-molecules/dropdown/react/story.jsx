@@ -16,9 +16,9 @@ storiesOf('Components|Molecules/Dropdown/React', module)
   .add('Dropdown as uncontrolled React Component', () => {
     const div = document.createElement('div');
 
-    const item1 = text('First Item', 'Item A');
-    const item2 = text('Second Item', 'Item B');
-    const item3 = text('Third Item', 'Item C');
+    const item1 = text('First Item', '< CHF 1,000');
+    const item2 = text('Second Item', 'From CHF 1,000 to 10,000');
+    const item3 = text('Third Item', '> CHF 10,000');
 
     const label = text('label', '');
     const value = text('value', '');

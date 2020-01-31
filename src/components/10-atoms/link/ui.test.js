@@ -17,14 +17,14 @@ test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
   await t
     .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
+    .eql('https://www.axa.ch/en/information/data-protection.html');
 
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
   ).find('a');
   await t
     .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
+    .eql('https://www.axa.ch/en/information/data-protection.html');
 
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
@@ -42,7 +42,7 @@ test('should display correctly', async t => {
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql(linkText);
+  await t.expect(linkTextElement.textContent).eql('Data protection statement');
 });
 
 fixture('Link - External').page(
