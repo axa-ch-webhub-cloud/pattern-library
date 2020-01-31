@@ -97,12 +97,8 @@ test('should be clickable + change state', async t => {
 });
 
 test('should set refId on label and input', async t => {
-  const $axaCheckbox = await Selector(TAG);
   const label = await Selector('.a-checkbox__wrapper');
   const input = await Selector('.a-checkbox__input');
-
-  await t.click($axaCheckbox);
-  await t.expect($axaCheckbox.checked).ok();
 
   await t.expect(label.hasAttribute('for')).ok();
   await t.expect(input.hasAttribute('id')).ok();
