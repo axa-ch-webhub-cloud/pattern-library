@@ -2,6 +2,7 @@ lib
 dist
 .tmp-lib
 .tmp-dist
+.tmp.package.json
 
 # Storybook
 storybook-static
