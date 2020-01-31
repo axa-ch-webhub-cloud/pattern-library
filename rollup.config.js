@@ -5,6 +5,7 @@ const sass = require('rollup-plugin-sass');
 const autoprefixer = require('autoprefixer');
 const { uglify } = require('rollup-plugin-uglify');
 const postcss = require('postcss');
+const commonjs = require('@rollup/plugin-commonjs');
 const fs = require('fs');
 const { resolve: pathResolve } = require('path');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
@@ -96,6 +97,12 @@ const dist = {
     ...commonPlugins,
     resolve({
       mainFields: ['module', 'main', 'browser'],
+    }),
+    commonjs({
+      namedExports: {
+        '@skatejs/val': ['val'],
+      },
+      include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
     }),
     babel({
       babelrc: false,
