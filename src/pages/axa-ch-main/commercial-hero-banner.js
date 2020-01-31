@@ -6,15 +6,16 @@ export default html`
     imagesource="https://brandcenter.axa.ch/m/4df4627fddd0534a/WIDE_1920_560-AXA_DE_DANNY_web.jpg"
   >
     <h2 slot="category">
-      Jetzt Haushalt und Privathaftpflicht versichern und profitieren
+      Take out household contents and personal liability insurance now and
+      benefit
     </h2>
-    <h1 slot="title">Bis zu CHF 200.– Rabatt</h1>
+    <h1 slot="title">Discount of up to CHF 200</h1>
     <axa-button-link
       href="https://axa.ch"
       slot="button"
       variant="red"
       size="large"
-      >Jetzt prämie berechnen</axa-button-link
+      >Calculate the premium now</axa-button-link
     >
   </axa-commercial-hero-banner>
 `;
