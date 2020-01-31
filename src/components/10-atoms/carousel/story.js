@@ -57,7 +57,7 @@ storyAXACarousel.add('Carousel', () => {
           its customers lead as carefree a life as possible. It protects them
           and their families, their property, and their assets against risks.
         </span>
-        <span>Praise and critism? Tell us what you think.</span>
+        <span>Praise and criticism? Tell us what you think.</span>
       </axa-carousel>
     </div>
   `;
