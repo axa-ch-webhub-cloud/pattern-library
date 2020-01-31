@@ -67,9 +67,9 @@ storiesOf('Materials', module)
       renderAreaIcons.innerHTML = filteredIcons
         .map(
           i =>
-            `<div>${i.svgstring}<span style="padding-left: 10px;">${
-              i.path
-            }</span></div>`
+            `<div class="image-container">${
+              i.svgstring
+            }<span style="padding-left: 10px;">${i.path}</span></div>`
         )
         .join('');
 
@@ -81,9 +81,9 @@ storiesOf('Materials', module)
       renderAreaImages.innerHTML = filteredImages
         .map(
           i =>
-            `<div>${i.svgstring}<span style="padding-left: 10px;">${
-              i.path
-            }</span></div>`
+            `<div class="image-container">${
+              i.svgstring
+            }<span style="padding-left: 10px;">${i.path}</span></div>`
         )
         .join('');
 
