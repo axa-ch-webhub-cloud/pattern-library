@@ -115,7 +115,7 @@ test('should set refId on label and input', async t => {
 });
 
 fixture('Checkbox - Disabled and checked').page(
-  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=true&knob-disabled=true`
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=false&knob-disabled=true`
 );
 
 test('should set checkbox element to disabled + not change state', async t => {
