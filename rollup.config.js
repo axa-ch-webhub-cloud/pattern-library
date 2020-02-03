@@ -7,11 +7,13 @@ const { uglify } = require('rollup-plugin-uglify');
 const postcss = require('postcss');
 const commonjs = require('@rollup/plugin-commonjs');
 const fs = require('fs');
-const { resolve: pathResolve } = require('path');
+const { resolve: pathResolve, extname } = require('path');
 const customBabelRc = require('./.storybook/.babelrc'); // get the babelrc file
 const copy = require('rollup-plugin-copy');
 
 const base = pathResolve(__dirname, 'src').replace(/\\/g, '/');
+
+const memory = {};
 
 const globalSassImports = require('./config/globals.js')
   .map(item => {
@@ -84,6 +86,36 @@ const lib = {
   ],
 };
 
+const preDist = {
+  input: 'package.json',
+  plugins: [
+    {
+      name: 'pre-dist',
+      transform(json, id) {
+        if (extname(id) !== '.json') {
+          return null;
+        }
+        const jsonData = fs.readFileSync(id, 'UTF-8');
+        let parsedJson = '{}';
+        try {
+          parsedJson = JSON.parse(jsonData);
+          // save a backup in memory
+          memory.preDistJsonData = jsonData;
+
+          // prepare each component for the dist build. make sure to use the just created lib file instead of src due to 
+          // rollup's node-sass nor being to be applied throught the whole node-resolve algorythm, having as effect that 
+          // scss inside js works only in the first level of the node-resolve algorythm
+          parsedJson.main = 'lib/index.js';
+        } catch (e) {
+          throw new Error(`Something went wrong while parsing the package.json of the component. Error: ${e}`);
+        }
+        fs.writeFileSync(id, JSON.stringify(parsedJson, null, 2));
+        return '';
+      }
+    }
+  ]
+};
+
 const dist = {
   input: 'index.js',
   context: 'window',
@@ -130,6 +162,25 @@ const dist = {
   ],
 };
 
+const postDist = {
+  input: 'package.json',
+  plugins: [
+    {
+      name: 'post-dist',
+      transform(json, id) {
+        if (extname(id) !== '.json') {
+          return null;
+        }
+        if (!memory.preDistJsonData) {
+          throw new Error('Package json cannot be reverted. Something must have gone wrong in the preDist build. Please revert package.json');
+        }
+        fs.writeFileSync(id, memory.preDistJsonData, 'UTF-8');
+        return '';
+      }
+    }
+  ]
+};
+
 const libReact = {
   ...lib,
   input: 'index.react.js',
@@ -147,10 +198,15 @@ const libReact = {
 
 // Sometimes there is no react version to build. I.e icons
 const rollupConfig = [lib];
+
 if (fs.existsSync('./index.react.js')) {
   rollupConfig.push(libReact);
 }
-
+// Prepare src for dist
+rollupConfig.push(preDist);
+// Bundle and build dist
 rollupConfig.push(dist);
+// Cleanup after
+rollupConfig.push(postDist);
 
 export default rollupConfig;
