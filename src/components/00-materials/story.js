@@ -5,31 +5,38 @@ import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const reqSvgsIcons = require.context(
-  './icons',
-  true,
-  /\.svg.js$/
-);
+const FILE_ENDING = '.svg.js';
+
+const reqSvgsIcons = require.context('./icons', true, /\.svg.js$/);
 const filepathsIcons = reqSvgsIcons.keys();
-const reqSvgsImages = require.context(
-  './images',
-  true,
-  /\.svg.js$/
-);
+const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
+
+const _extractIconNameFromPath = path =>
+  path
+    .substring(2)
+    .split(FILE_ENDING)
+    .join('');
 
 const icons = filepathsIcons.map(path => {
   return {
     svgstring: reqSvgsIcons(path).default,
-    path,
+    path: _extractIconNameFromPath(path),
   };
 });
+
 const images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
-    path,
+    path: _extractIconNameFromPath(path),
   };
 });
+
+const mapToIconItem = icon => {
+  return `<div class="image-container">${icon.svgstring}
+      <span class="item-name">${icon.path}${FILE_ENDING}</span>
+    </div>`;
+};
 
 storiesOf('Materials', module)
   .addDecorator(withKnobs)
@@ -37,7 +44,7 @@ storiesOf('Materials', module)
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Icons and Images', () => {
     const backgrounds = select(
@@ -51,43 +58,23 @@ storiesOf('Materials', module)
     window.onCallbackInput = ev => {
       const { value } = ev.target;
 
-      let filteredIcons = icons;
-      let filteredImages = images;
-
-      const lengthOfPrefix = 2;
-
       const renderAreaIcons = document.querySelector('.icons');
       const renderAreaImages = document.querySelector('.images');
       const iconHeader = document.querySelector('.icon-header');
       const imageHeader = document.querySelector('.image-header');
 
-      filteredIcons = filteredIcons.filter(icon => {
-        const { length } = icon.path.split('.svg.js')[0];
-        const iconName = icon.path.substr(
-          lengthOfPrefix,
-          length - lengthOfPrefix
-        );
-        const foundSearchTerm = iconName.search(value.trim()) > -1;
+      const filteredIcons = icons.filter(icon => {
+        const foundSearchTerm = icon.path.includes(value.trim());
         return foundSearchTerm ? icon : '';
       });
 
-      filteredImages = filteredImages.filter(image => {
-        const { length } = image.path.split('.svg.js')[0];
-        const iconName = image.path.substr(
-          lengthOfPrefix,
-          length - lengthOfPrefix
-        );
-        const foundSearchTerm = iconName.search(value.trim()) > -1;
+      const filteredImages = images.filter(image => {
+        const foundSearchTerm = image.path.includes(value.trim());
         return foundSearchTerm ? image : '';
       });
 
       renderAreaIcons.innerHTML = filteredIcons
-        .map(
-          i =>
-            `<div>${i.svgstring}<span style="padding-left: 10px;">${
-              i.path
-            }</span></div>`
-        )
+        .map(i => mapToIconItem(i))
         .join('');
 
       iconHeader.innerHTML =
@@ -96,12 +83,7 @@ storiesOf('Materials', module)
           : `${filteredIcons.length} Icons:`;
 
       renderAreaImages.innerHTML = filteredImages
-        .map(
-          i =>
-            `<div>${i.svgstring}<span style="padding-left: 10px;">${
-              i.path
-            }</span></div>`
-        )
+        .map(i => mapToIconItem(i))
         .join('');
 
       imageHeader.innerHTML =
@@ -143,6 +125,11 @@ storiesOf('Materials', module)
           outline-offset: -2px;
           color: #000;
         }
+        .image-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 4px;
+        }
       </style>
       <h2>
         Note: The green borders reveal the dimensions of the SVGs.
@@ -158,26 +145,12 @@ storiesOf('Materials', module)
 
       <h3 class="icon-header">${icons.length} Icons:</h3>
       <div class="icons">
-        ${svg(
-          icons.map(
-            i =>
-              `<div>${i.svgstring}<span style="padding-left: 10px;">${
-                i.path
-              }</span></div>`
-          )
-        )}
+        ${svg(icons.map(i => mapToIconItem(i)))}
       </div>
 
       <h3 class="image-header">${images.length} Images:</h3>
       <div class="images">
-        ${svg(
-          images.map(
-            i =>
-              `<div>${i.svgstring}<span style="padding-left: 10px;">${
-                i.path
-              }</span></div>`
-          )
-        )}
+        ${svg(images.map(i => mapToIconItem(i)))}
       </div>
     `;
 
