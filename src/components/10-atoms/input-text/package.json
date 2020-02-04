@@ -9,7 +9,9 @@
     "lib": "lib"
   },
   "scripts": {
+    "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
+    "postpublish": "../../../../scripts/build/postpublish.js",
     "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
   },
   "files": [
