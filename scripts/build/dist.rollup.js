@@ -6,7 +6,7 @@ const commonjs = require('@rollup/plugin-commonjs');
 const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 
-const glob = require("glob")
+// const glob = require("glob")
 
 const { commonPlugins } = require('./common.rollup.js');
 const customBabelRc = require('../../.storybook/.babelrc'); // get the babelrc file
@@ -18,10 +18,11 @@ const preDist = {
   plugins: [
     {
       name: 'pre-dist',
-      transform(json, id) {
+      transform(code, id) {
         if (extname(id) !== '.json') {
           return null;
         }
+        // TODO: use code instead of reading the file pointlessly again
         const jsonData = fs.readFileSync(id, 'UTF-8');
         let parsedJson = '{}';
         try {
@@ -29,13 +30,14 @@ const preDist = {
           // save a backup in memory
           memory.preDistJsonData = jsonData;
 
-          // prepare each component for the dist build. make sure to use the just created lib file instead of src due to 
-          // rollup's node-sass nor being to be applied throught the whole node-resolve algorythm, having as effect that 
+          // prepare each component for the dist build. make sure to use the just created lib file instead of src due to
+          // rollup's node-sass not being able to be applied throught the whole node-resolve algorythm, having as effect that
           // scss inside js works only in the first level of the node-resolve algorythm
           parsedJson.main = 'lib/index.js';
         } catch (e) {
           throw new Error(`Something went wrong while parsing the package.json of the component. Error: ${e}`);
         }
+        // TODO explain why i cannot return "code"
         fs.writeFileSync(id, JSON.stringify(parsedJson, null, 2));
         return '';
       }
@@ -94,7 +96,7 @@ const postDist = {
   plugins: [
     {
       name: 'post-dist',
-      transform(json, id) {
+      transform(code, id) {
         if (extname(id) !== '.json') {
           return null;
         }
@@ -112,7 +114,7 @@ const postDist = {
 
 
 // const cleanup = (e) => {
-//   if (memory.preDistJsonData) { 
+//   if (memory.preDistJsonData) {
 //     const files = glob.sync('**/src/component/**.package.json');
 //     console.log(files);
 //   }
