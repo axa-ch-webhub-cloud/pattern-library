@@ -333,6 +333,7 @@ class AXADatepicker extends NoShadowDOM {
                       @axa-change="${this.handleChangeDropdownMonth}"
                       class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
                       maxheight
+                      value
                       items="${JSON.stringify(this.monthitems)}"
                       defaulttitle="${this.monthtitle}"
                       data-usecase="datepicker"

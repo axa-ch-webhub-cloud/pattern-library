@@ -125,6 +125,7 @@ class AXADropdown extends NoShadowDOM {
       state,
     } = this;
     // first value coming in indicates controlledness?
+    // TODO: answer: no it doesn't (see issue #1648)
     if (!isControlled && newValue !== undefined && firstTime) {
       // yes, remember in model state
       state.isControlled = true;
