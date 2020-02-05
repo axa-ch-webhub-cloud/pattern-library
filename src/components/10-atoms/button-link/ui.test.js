@@ -8,6 +8,7 @@ fixture('Button Link - basic functionality').page(
 
 test('should render button-link', async t => {
   const $axaButton = await Selector('axa-button-link');
+  await t.wait(200);
   await t.expect($axaButton.exists).ok();
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button-link').shadowRoot
