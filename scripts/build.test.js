@@ -1,4 +1,17 @@
+const glob = require('glob');
+const chalk = require('chalk');
+const outdent = require('outdent');
+const fs = require('fs');
+const { sep } = require('path');
 const { dependencies } = require('../package.json');
+
+const ALLOWED_CATEGORIES = [
+  '00-materials',
+  '05-utils',
+  '10-atoms',
+  '20-molecules',
+  '30-organisms',
+]
 
 const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
@@ -22,5 +35,35 @@ if (found) {
     `
   )
 }
+
+// get all components and test if there is any package json with main field or not allowed categories
+const files = glob.sync(`**${sep}src${sep}components${sep}*(${ALLOWED_CATEGORIES.join('|')})${sep}*${sep}index.js`);
+
+files.forEach((file) => {
+  const pkgPath = file.replace('index.js', 'package.json');
+  if (fs.existsSync(pkgPath)) {
+    const pkgData = fs.readFileSync(pkgPath, 'UTF-8');
+    let pkg
+    try {
+      pkg = JSON.parse(pkgData);
+    } catch (e) {
+      throw new Error(`Package json in path ${pkgPath} has a problem. Err: ${e}`);
+    }
+    if (pkg && pkg.main) {
+      throw new Error(
+        chalk.red(outdent`
+
+          The package.json ${pkgPath} has a "main":"${pkg.main}"
+          key/value pair which is not allowed to exist in the source code.
+          
+          Maybe your last build or publish broke unexpectedly.
+          How to fix this: Remove all main fields in the package.jsons of all components and try again.
+          For your information: Main field will be added during build or publish and after it finishes is going to be removed.
+
+          `)
+      );
+    }
+  }
+});
 
 process.exit(0);

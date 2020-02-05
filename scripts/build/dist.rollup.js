@@ -20,8 +20,7 @@ const preDist = {
         if (extname(id) !== '.json') {
           return null;
         }
-        // TODO: use code instead of reading the file pointlessly again
-        const jsonData = fs.readFileSync(id, 'UTF-8');
+        const jsonData = code;
         let parsedJson = '{}';
         try {
           parsedJson = JSON.parse(jsonData);
@@ -35,7 +34,7 @@ const preDist = {
         } catch (e) {
           throw new Error(`Something went wrong while parsing the package.json of the component. Error: ${e}`);
         }
-        // TODO explain why i cannot return "code"
+        // Rollup cant handle internally .json files therefore do not return code
         fs.writeFileSync(id, JSON.stringify(parsedJson, null, 2));
         return '';
       }
