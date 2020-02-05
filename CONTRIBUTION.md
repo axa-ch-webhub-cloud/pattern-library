@@ -98,20 +98,20 @@ Here are some example DO'S and DONT'S:
   if(myArray.indexOf(4) > -1) { console.log("Here I'm") }
 // DON'T
   if(~myArray.indexOf(4)) { ... }
-  
+
 // ----------
 // DO
   const tempObject = isEvent ? events : attrs;
   tempObject[name] = props[name];
 // DON'T
   (isEvent ? events : attrs)[name] = props[name];
-  
+
 // ----------
 // DO
   if(parseInt(myText, 10) === 1) { console.log("Text is number 1") }
 // DON'T
   if(+myText === 1) { console.log("Text is number 1") }
-  
+
 // ----------
 // DO
   if (selectedIndex === index || parseInt(selectedIndex, 10) === parseInt(index, 10)) {
@@ -123,7 +123,7 @@ Here are some example DO'S and DONT'S:
     // ==: indices may be number or string
     return;
   }
-  
+
 // ----------
 // DO
   const selectedIndex = index || 0;
@@ -166,23 +166,10 @@ storiesOf('Components|Molecules/Top content bar', module)
 
 ## How-to release a component
 
-**Do not use the release scripts: ~~`npm run release`~~ or ~~`npm run prerelease`~~**
-
 - Ensure you have an npm account under the `@axa-ch` organisation.
 - Run `npm whoami` and in case of you not being logged in: `npm login`
-- Create a new _release branch_ that follows this pattern: `release/<component-name>`
-- Clean the main and components dependencies:
-  - `npx lerna clean`
-  - `rm -rf node_modules`
-- Run `npm install`.
-- Manually add your component to `lerna.json` and remove all not-to-be-released components from the same file.
-- Commit and push your lerna.json changes to the release branch.
-- Ensure you have the necessary credentials to push to the Githup repo via commandline commands (the following lerna commands do this automatically).
-- Run `npm run test && npx lerna version && npx lerna publish from-package`
-- Lerna is going to ask you how to update the changed packages. Follow the instructions and keep in mind the semver rules: https://semver.org/
-- Lerna will update the component `package.json` with new version numbers and auto-commit/push those.
-- Manually undo the removal of all not-to-be-released components in lerna.json, run `npm install` and commit the generated package-lock files to the release branch.
-- Merge the release branch to the `develop` branch in order to preserve the new version numbers.
+- Ensure you have admin rights on github
+- Switch to branch `develop` and run `npm run release`. Follow the guidelines in the CLI
 
 ## Branch Deployment
 
@@ -191,7 +178,7 @@ As soon as the branch is deployed, there will appear a slack notification in the
 
 There is also a mechanism to issue such a deployment manually, at any commit, during development (without opening a pull request and without the rest of the CIs overhead).
 
-To issue a manual branch deployment, use this command from the root folder of the pattern library: 
+To issue a manual branch deployment, use this command from the root folder of the pattern library:
 
 `GITHUB_TOKEN="<github_personal_access_token>" SLACK_TOKEN="<slack_token>" npm run deploy-branch`
 
