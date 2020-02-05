@@ -92,11 +92,12 @@ test('should style checked error checkbox-icon inner box correctly', async t => 
 
 // Removed due to its inconsistent behaviour
 // TODO: make it running consistent
-// test('should be clickable + change state', async t => {
-//   const $axaCheckbox = await Selector(TAG);
-//   await t.click($axaCheckbox);
-//   await t.expect($axaCheckbox.checked).ok();
-// });
+test('should be clickable + change state', async t => {
+  const $axaCheckbox = await Selector(TAG);
+  await t.click($axaCheckbox);
+  await t.wait(200);
+  await t.expect($axaCheckbox.checked).ok();
+});
 
 test('should set refId on label and input', async t => {
   const label = await Selector('.a-checkbox__wrapper');
@@ -133,6 +134,7 @@ test('should be clickable + change state and render parent label', async t => {
   const label = $axaCheckbox.child();
 
   await t.click($axaCheckbox);
+  await t.wait(200);
   await t.expect($axaCheckbox.checked).ok();
   await t.expect($axaCheckbox.count).eql(1);
 
