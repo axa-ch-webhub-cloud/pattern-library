@@ -5,7 +5,6 @@
   "author": "Pattern Warriors",
   "homepage": "__",
   "license": "Copyright 2019 AXA Versicherungen AG",
-  "main": "lib/index.js",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
