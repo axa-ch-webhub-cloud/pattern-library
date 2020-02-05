@@ -6,8 +6,6 @@ const commonjs = require('@rollup/plugin-commonjs');
 const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 
-// const glob = require("glob")
-
 const { commonPlugins } = require('./common.rollup.js');
 const customBabelRc = require('../../.storybook/.babelrc'); // get the babelrc file
 
@@ -111,23 +109,5 @@ const postDist = {
     }
   ]
 };
-
-
-// const cleanup = (e) => {
-//   if (memory.preDistJsonData) {
-//     const files = glob.sync('**/src/component/**.package.json');
-//     console.log(files);
-//   }
-//   console.log(e);
-// }
-
-//   // do app specific cleaning before exiting
-// process.on('exit', cleanup);
-
-// // catch ctrl+c event and exit normally
-// process.on('SIGINT', cleanup);
-
-// //catch uncaught exceptions, trace, then exit normally
-// process.on('uncaughtException', fcleanup);
 
 module.exports = { preDist, dist, postDist };
