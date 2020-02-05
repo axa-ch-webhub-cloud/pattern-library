@@ -90,8 +90,6 @@ test('should style checked error checkbox-icon inner box correctly', async t => 
     .eql('rgb(0, 0, 143)'); // has to be blue when seleted, due to styleguide specification
 });
 
-// Removed due to its inconsistent behaviour
-// TODO: make it running consistent
 test('should be clickable + change state', async t => {
   const $axaCheckbox = await Selector(TAG);
   await t.click($axaCheckbox);
