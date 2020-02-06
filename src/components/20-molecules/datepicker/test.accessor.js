@@ -13,6 +13,15 @@ class DatePickerAccessor {
     const monthFebruary = await Selector(this.selectFebruarySelector(this.id));
     await this.t.click(monthFebruary);
   }
+  async chooseFebruaryNative() {
+    await this.t.setTestSpeed(0.5);
+    const dropDown = await Selector(this.selectMonthDropdownSelector(this.id));
+    await this.t.click(dropDown);
+    const monthFebruary = await Selector(
+      this.selectFebruarySelectorNative(this.id)
+    );
+    await this.t.click(monthFebruary);
+  }
 
   async openCalendar() {
     await this.t.setTestSpeed(0.5);
@@ -124,6 +133,12 @@ class DatePickerAccessor {
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
       .querySelector('button[data-index="2"]')
+  );
+  selectFebruarySelectorNative = Selector(id =>
+    document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('option[data-index="2"]')
   );
 
   selectMonthDropdownSelector = Selector(id =>

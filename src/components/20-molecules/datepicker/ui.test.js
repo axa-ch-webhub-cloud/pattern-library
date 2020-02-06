@@ -3,9 +3,11 @@ import { DatePickerAccessor } from './test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Datepicker').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
-);
+fixture('Datepicker')
+  .page(`${host}/iframe.html?id=components-molecules-datepicker--datepicker`)
+  .afterEach(async t => {
+    await t.maximizeWindow();
+  });
 
 test('should select February the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
@@ -74,6 +76,15 @@ test('should have a 29th of February in 2020 - should correctly handle leap year
   await datePickerAccessor.assertYear(2020);
   await datePickerAccessor.assertMonth('Februar');
   await datePickerAccessor.assertDay(29);
+});
+
+test('should handle month change with native dropdown element', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+
+  await datePickerAccessor.chooseFebruaryNative();
+  await datePickerAccessor.assertMonth('Februar');
+}).before(async t => {
+  await t.resizeWindow(200, 200);
 });
 
 fixture('Datepicker - With Locale').page(
