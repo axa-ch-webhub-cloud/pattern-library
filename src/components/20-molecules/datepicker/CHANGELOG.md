@@ -1,3 +1,6 @@
+## 5.0.5
+- The `month` dropdown in native mode didn't fire onChange event (Issue #1648)
+
 ## 5.0.2
 - We do not set parameter `height` to component's css anymore because that causes a bad behavior if you has set a label text
 - Changed implementation internals for `width` due to IE bug (Issue #1601)
