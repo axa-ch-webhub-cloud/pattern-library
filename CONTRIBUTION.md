@@ -167,7 +167,7 @@ storiesOf('Components|Molecules/Top content bar', module)
 ## How-to release a component
 
 - Ensure you have an npm account under the `@axa-ch` organisation.
-- Run `npm whoami` and in case of you not being logged in: `npm login`
+- (Optional) Run `npm whoami` and in case of you not being logged in: `npm login`
 - Ensure you have admin rights on github
 - Switch to branch `develop` and run `npm run release`. Follow the guidelines in the CLI
 
