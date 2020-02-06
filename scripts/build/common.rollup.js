@@ -1,0 +1,36 @@
+const postcss = require('postcss');
+const autoprefixer = require('autoprefixer');
+const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
+const sass = require('rollup-plugin-sass');
+
+const { resolve: pathResolve } = require('path');
+
+const base = pathResolve(__dirname, '../../src').replace(/\\/g, '/');
+
+const globalSassImports = require('../../config/globals.js')
+  .map(item => {
+    return `@import '${base}/${item}';`;
+  })
+  .join('\n');
+
+module.exports.commonPlugins = [
+  replace({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  }),
+  sass({
+    insert: true,
+    include: '**/*.scss',
+    options: {
+      includePaths: [
+        'node_modules',
+      ],
+      data: globalSassImports,
+    },
+    processor: css =>
+      postcss({
+        plugins: [autoprefixer()],
+      })
+        .process(css, { from: undefined })
+        .then(result => result.css),
+  }),
+];
