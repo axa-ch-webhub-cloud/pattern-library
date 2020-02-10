@@ -8,12 +8,18 @@ export $(egrep -v '^#' .env | xargs) > /dev/null 2>&1
 npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci --quiet > /dev/null 2>&1 &
 npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
 
-if [ -z "$1" ]
-then
-    npx testcafe -c ${NUM_CPUS} "chrome:headless" -c 4 ./**/ui.test.js
-else
-    npx testcafe -F "${1}" -c ${NUM_CPUS} "chrome:headless" -c 4 ./**/ui.test.js
-fi
+
+
+
+#export TEST_HOST_STORYBOOK_URL=http://localhost:6006
+export BROWSERSTACK_USERNAME=danielb17
+export BROWSERSTACK_ACCESS_KEY=z9ereHMoK6twktEx84wa
+
+npx testcafe 'browserstack:chrome:Windows' ./**/datepicker/ui.test.js"
+
+
+
+
 
 test_status=$?
 
