@@ -6,12 +6,24 @@ class DatePickerAccessor {
     this.t = testcafe;
   }
 
-  async chooseFebruary() {
+  async chooseAnyMonth(numericMonth, native) {
     await this.t.setTestSpeed(0.5);
     const dropDown = await Selector(this.selectMonthDropdownSelector(this.id));
     await this.t.click(dropDown);
-    const monthFebruary = await Selector(this.selectFebruarySelector(this.id));
-    await this.t.click(monthFebruary);
+    const selectedMonth = await Selector(
+      this.selectAnyMonthSelector(this.id, numericMonth, native)
+    );
+    await this.t.click(selectedMonth);
+  }
+
+  async chooseAnyYear(numericYear, native) {
+    await this.t.setTestSpeed(0.5);
+    const dropDown = await Selector(this.yearDropdownSelector(this.id));
+    await this.t.click(dropDown);
+    const selectedYear = await Selector(
+      this.selectAnyYearSelector(this.id, numericYear, native)
+    );
+    await this.t.click(selectedYear);
   }
 
   async openCalendar() {
@@ -119,11 +131,22 @@ class DatePickerAccessor {
       .querySelector('button[class*="m-datepicker__input-button"]')
   );
 
-  selectFebruarySelector = Selector(id =>
+  selectAnyMonthSelector = Selector((id, numericMonth, native) =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
-      .querySelector('button[data-index="2"]')
+      .querySelector(
+        `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
+      )
+  );
+
+  selectAnyYearSelector = Selector((id, numericYear, native) =>
+    document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
+      .querySelector(
+        `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
+      )
   );
 
   selectMonthDropdownSelector = Selector(id =>

@@ -43,6 +43,8 @@ export default AXADatepickerReact;
 
 The string-valued `locale` defines region-specific date rendering preferences such as separators etc. (default: `de-CH`).
 
+_Note: Week start is hardwired to Monday, only its translation is influenced by `locale`._
+
 ### year
 
 The number-valued `year` defines the start year of the datepicker (default: current year).
@@ -133,7 +135,7 @@ Likewise, `date` is **not** automatically reflected to the date input field. Rat
 
 ### invalid
 
-Boolean `invalid`, when set to true, forces showing the error message set with `invaliddatetext` even when user input is valid.
+Boolean `invalid`, when set to true, forces showing the error message set with `invaliddatetext` even when user input is valid &mdash; _except_ when `invaliddatetext` is itself empty (technically, falsy).
 
 The intended use case is to easily convey external validation failure, e.g. when an application decides the entered date is outside a permissible date range.
 
