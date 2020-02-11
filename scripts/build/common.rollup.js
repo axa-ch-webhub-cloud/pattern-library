@@ -28,7 +28,7 @@ module.exports.commonPlugins = [
     },
     processor: css =>
       postcss({
-        plugins: [autoprefixer()],
+        plugins: [autoprefixer({ grid: 'autoplace' })],
       })
         .process(css, { from: undefined })
         .then(result => result.css),
