@@ -1,6 +1,7 @@
 const path = require('path');
 const base = path.resolve(process.cwd(), 'src');
 const babelOptions = require('./.babelrc'); // get the babelrc file
+const autoprefixer = require('autoprefixer');
 
 require('dotenv-extended').load();
 
@@ -22,6 +23,12 @@ module.exports = ({ config }) => {
       loaders: [
         'to-string-loader',
         'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [autoprefixer({ grid: 'autoplace' })]
+          },
+        },
         {
           loader: 'sass-loader',
           options: {
