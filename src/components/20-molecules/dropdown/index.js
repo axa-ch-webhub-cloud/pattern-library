@@ -17,7 +17,6 @@ import { applyDefaults } from '../../../utils/with-react';
 const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
-const EMPTY_FUNCTION = () => {};
 
 // module globals
 let openDropdownInstance;
@@ -115,6 +114,9 @@ class AXADropdown extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
       disabled: { type: Boolean, reflect: true },
+      onChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
       isReact: { type: Boolean },
     };
   }
@@ -146,10 +148,6 @@ class AXADropdown extends NoShadowDOM {
 
   constructor() {
     super();
-    this.onChange = EMPTY_FUNCTION;
-    this.onFocus = EMPTY_FUNCTION;
-    this.onBlur = EMPTY_FUNCTION;
-
     // internal properties
     this.state = { isControlled: false, firstTime: true };
     // Very important that applyDefaults is *after* state initialization

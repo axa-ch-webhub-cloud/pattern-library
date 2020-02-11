@@ -135,10 +135,10 @@ class AXADatepicker extends NoShadowDOM {
       label: { type: String, reflect: true },
       checkMark: { type: Boolean, reflect: true },
       autofocus: { type: Boolean, reflect: true },
-      onChange: { type: Function },
-      onDateChange: { type: Function },
-      onFocus: { type: Function },
-      onBlur: { type: Function },
+      onChange: { type: Function, attribute: false },
+      onDateChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
     };
   }
 
