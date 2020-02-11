@@ -171,10 +171,6 @@ axa-datepicker {
     display: flex;
     justify-content: space-between;
     margin-bottom: 18px;
-
-    axa-dropdown .m-dropdown__select {
-      min-width: auto !important;
-    }
   }
 
   &__dropdown-year {
