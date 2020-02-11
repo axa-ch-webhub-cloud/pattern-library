@@ -287,7 +287,7 @@ test('should react to programmatic date property changes', async t => {
   // setting 'date' property works and can be read back
   const setDate = ClientFunction(() => {
     const domNode = document.querySelector(`#datepicker-react`);
-    domNode.date = new Date('2019-04-27');
+    domNode.date = new Date('April 27, 2019 13:00:00 GMT+0200');
     return `${domNode.date}`;
   });
 
