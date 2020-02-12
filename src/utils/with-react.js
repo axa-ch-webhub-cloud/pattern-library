@@ -84,7 +84,7 @@ const applyDefaults = ceInst => {
 
     // make sure the set value() function is never triggered when defaultValue
     // is undefined otherwise the isControlled flag and firstTime flag are messed up in
-    // some components containing controldness. Writing undefined again on value counts as change
+    // some components containing controlledness. Writing undefined again on value counts as change
     if (defaultValue === undefined && 'defaultValue' in propertyValue) {
       return;
     }
@@ -142,8 +142,10 @@ const distributeProperties = (properties, componentClass) => {
         map = declaredType ? props : attrs;
     }
 
-    // map property name to value
-    map[name] = value;
+    // map property name to value *unless* value is undefined
+    if (value !== undefined) {
+      map[name] = value;
+    }
   });
   return { attrs, props };
 };

@@ -23,6 +23,7 @@ const DemoDatepickerOnDateChange = () => {
 
   const defaultValue = localizedDateString(new Date(startDateString));
 
+  // N.B. onBlur={undefined} is there to demonstrate undefined property values don't throw exceptions (cf. issue #1613)
   return (
     <div>
       Selected date: {selectedDateString}
@@ -34,6 +35,7 @@ const DemoDatepickerOnDateChange = () => {
         locale={locale}
         defaultValue={defaultValue}
         onDateChange={newDate => setSelectedDateString(formatDate(newDate))}
+        onBlur={undefined}
         placeholder="Wählen Sie ein Datum"
         labelbuttoncancel="Abbrechen"
         labelbuttonok="OK"
