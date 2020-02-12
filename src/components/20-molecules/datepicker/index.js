@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { DateInputSvg } from '@axa-ch/materials/icons';
 import { html, svg } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import '@axa-ch/dropdown';
 import '@axa-ch/button';
 import styles from './index.scss';
 import {
   getWeekdays,
+  getMonthMatrix,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
 } from './utils/date';
@@ -16,8 +18,6 @@ import { applyDefaults } from '../../../utils/with-react';
 import debounce from '../../../utils/debounce';
 import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
-
-import Store from './utils/Store';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
@@ -135,6 +135,10 @@ class AXADatepicker extends NoShadowDOM {
       label: { type: String, reflect: true },
       checkMark: { type: Boolean, reflect: true },
       autofocus: { type: Boolean, reflect: true },
+      onChange: { type: Function, attribute: false },
+      onDateChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
     };
   }
 
@@ -150,19 +154,22 @@ class AXADatepicker extends NoShadowDOM {
     }
     // update state
     state.value = newValue;
-    this.validate(newValue);
     // manual re-render, necessary for custom setters
     this.requestUpdate('value', value);
+  }
+
+  get isControlled() {
+    return this.state.isControlled && this.isReact;
   }
 
   get value() {
     const {
       inputfield,
       input,
-      state: { isControlled, value },
+      state: { value },
     } = this;
     const inputFieldValue = inputfield && input ? input.value : '';
-    return isControlled ? value : inputFieldValue;
+    return this.isControlled ? value : inputFieldValue;
   }
 
   set date(value) {
@@ -212,11 +219,6 @@ class AXADatepicker extends NoShadowDOM {
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
 
-    this.onChange = EMPTY_FUNCTION;
-    this.onDateChange = EMPTY_FUNCTION;
-    this.onBlur = EMPTY_FUNCTION;
-    this.onFocus = EMPTY_FUNCTION;
-
     this.debouncedHandleViewportCheck = debounce(
       () => this.handleViewportCheck(this.input),
       250
@@ -231,19 +233,14 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   shouldUpdate(changedProperties) {
-    if (changedProperties.has('value')) {
-      const {
-        isReact,
-        state: { isControlled },
-      } = this;
-      // controlledness is a React-only concept
-      this.state.isControlled = isReact && isControlled;
-    }
     if (changedProperties.has('allowedyears')) {
       this.allowedyears = parseAndFormatAllowedYears(
         this.allowedyears,
         this.year
       );
+    }
+    if (changedProperties.has('value')) {
+      this.validate(this.value);
     }
     return true;
   }
@@ -251,7 +248,7 @@ class AXADatepicker extends NoShadowDOM {
   render() {
     const {
       _date,
-      state: { isControlled, value },
+      state: { value },
       refId = '',
       label,
       required,
@@ -266,14 +263,32 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const { width = '100%', height = '40', error, invalid, style } = this;
-    const needToShowError = error || invalid;
+    const {
+      width = '100%',
+      height = '40',
+      error,
+      invalid,
+      invaliddatetext,
+      style,
+    } = this;
+    const needToShowError = (error || invalid) && invaliddatetext;
 
     const getFormattedStyle = parameter =>
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
 
     style.width = getFormattedStyle(width); // set width to component's css
     const formattedHeight = getFormattedStyle(height); // set height to input-wrap element because of optional label
+
+    const cellClasses = ({ sameMonth, today, selected, inactive }) =>
+      classMap({
+        'm-datepicker__calendar-cell': true,
+        'js-datepicker__calender-body__cell': true,
+        'm-datepicker__calendar-not-current-month': !sameMonth,
+        'm-datepicker__calendar-current-month': sameMonth,
+        'm-datepicker__calendar-today': today,
+        'm-datepicker__calendar-selected-day': selected,
+        'm-datepicker__calendar-day--inactive': inactive,
+      });
 
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
@@ -305,7 +320,7 @@ class AXADatepicker extends NoShadowDOM {
                   type="text"
                   name="${this.name}"
                   placeholder="${this.placeholder}"
-                  .value="${isControlled ? value : this.outputdate}"
+                  .value="${this.isControlled ? value : this.outputdate}"
                   ?disabled="${disabled}"
                 />
                 <button
@@ -335,7 +350,7 @@ class AXADatepicker extends NoShadowDOM {
                       maxheight
                       items="${JSON.stringify(this.monthitems)}"
                       defaulttitle="${this.monthtitle}"
-                      data-usecase="datepicker"
+                      usecase="datepicker"
                     >
                     </axa-dropdown>
 
@@ -345,21 +360,23 @@ class AXADatepicker extends NoShadowDOM {
                       maxheight
                       items="${JSON.stringify(this.yearitems)}"
                       defaulttitle="${this.yeartitle}"
-                      data-usecase="datepicker"
+                      usecase="datepicker"
                     >
                     </axa-dropdown>
                   </div>
 
                   <div class="m-datepicker__weekdays">
-                    ${this.weekdays &&
-                      this.weekdays.map(
-                        day =>
-                          html`
-                            <span class="m-datepicker__weekdays-day"
-                              >${day}</span
-                            >
-                          `
-                      )}
+                    <div class="m-datepicker__weekdays-inner">
+                      ${this.weekdays &&
+                        this.weekdays.map(
+                          day =>
+                            html`
+                              <span class="m-datepicker__weekdays-day"
+                                >${day}</span
+                              >
+                            `
+                        )}
+                    </div>
                   </div>
 
                   <div class="m-datepicker__calendar js-datepicker__calendar">
@@ -374,7 +391,7 @@ class AXADatepicker extends NoShadowDOM {
                               data-index="${index}"
                               data-value="${cell.value}"
                               data-day="${cell.text}"
-                              class="m-datepicker__calendar-cell ${cell.className}"
+                              class="${cellClasses(cell)}"
                             >
                               ${cell.text}
                             </button>
@@ -416,7 +433,6 @@ class AXADatepicker extends NoShadowDOM {
 
     const {
       input,
-      state: { isControlled },
       isReact,
       defaultValue,
       day,
@@ -441,7 +457,7 @@ class AXADatepicker extends NoShadowDOM {
       }
     }
 
-    if (!isControlled) {
+    if (!this.isControlled) {
       this.initDate(
         null,
         year || startDate.getFullYear(),
@@ -511,15 +527,11 @@ class AXADatepicker extends NoShadowDOM {
     }
     this._date = startDate;
     const { _date } = this;
-    _date.setHours(0);
-    _date.setMinutes(0);
-    _date.setSeconds(0);
+    _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-
-    this.store = new Store(locale, _date, this.allowedyears);
-    this.cells = this.store.getCells();
-    this.weekdays = getWeekdays(_date, this.locale);
+    this.cells = getMonthMatrix(_date, allowedyears);
+    this.weekdays = getWeekdays(_date, locale);
   }
 
   handleViewportCheck(baseElem) {
@@ -602,7 +614,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      this.initDate(this._date, null, month | 0, null);
+      this.initDate(this._date, null, parseInt(month, 10), null);
     }
   }
 
@@ -610,7 +622,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const year = e.detail;
     if (year) {
-      this.initDate(this._date, year | 0, null, null);
+      this.initDate(this._date, parseInt(year, 10), null, null);
     }
   }
 
@@ -640,7 +652,7 @@ class AXADatepicker extends NoShadowDOM {
     if (validDate) {
       onDateChange(validDate);
     }
-    if (state.isControlled) {
+    if (this.isControlled) {
       const { value: stateValue } = state;
       input.value = stateValue;
     } else if (validDate) {
@@ -661,7 +673,7 @@ class AXADatepicker extends NoShadowDOM {
       input,
       onChange,
       onDateChange,
-      state: { isControlled, value: stateValue },
+      state: { value: stateValue },
     } = this;
     const value = this.formatDate(_date);
     this.outputdate = value;
@@ -670,7 +682,7 @@ class AXADatepicker extends NoShadowDOM {
     this.fireEvents(_date);
     if (inputfield) {
       this.toggleDatepicker();
-      input.value = isControlled ? stateValue : value;
+      input.value = this.isControlled ? stateValue : value;
     }
     // since the calendar UI only allows legal dates to be picked,
     // any preexisting error should be cleared

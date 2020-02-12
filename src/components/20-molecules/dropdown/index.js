@@ -17,7 +17,6 @@ import { applyDefaults } from '../../../utils/with-react';
 const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
-const EMPTY_FUNCTION = () => {};
 
 // module globals
 let openDropdownInstance;
@@ -115,6 +114,10 @@ class AXADropdown extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
       disabled: { type: Boolean, reflect: true },
+      onChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
+      useCase:  { type: String, reflect: true, noAccessor: true },
       isReact: { type: Boolean },
     };
   }
@@ -140,12 +143,12 @@ class AXADropdown extends NoShadowDOM {
     return this.state.value;
   }
 
+  get isControlled() {
+    return this.state.isControlled && this.isReact;
+  }
+
   constructor() {
     super();
-    this.onChange = EMPTY_FUNCTION;
-    this.onFocus = EMPTY_FUNCTION;
-    this.onBlur = EMPTY_FUNCTION;
-
     // internal properties
     this.state = { isControlled: false, firstTime: true };
     // Very important that applyDefaults is *after* state initialization
@@ -209,11 +212,7 @@ class AXADropdown extends NoShadowDOM {
         : target;
 
     const { value, index } = realTarget.dataset;
-    const {
-      state: { isControlled },
-      onChange,
-      selectedIndex,
-    } = this;
+    const { onChange, selectedIndex } = this;
 
     this.openDropdown(false);
 
@@ -223,7 +222,7 @@ class AXADropdown extends NoShadowDOM {
       selectedIndex === integerIndex &&
       /* in controlled mode, additionally clicked value and model value must agree
          (this may e.g. be violated in 1st click after 'unfreezing' a frozen model) */
-      (!isControlled || value === this.value)
+      (!this.isControlled || value === this.value)
     ) {
       return;
     }
@@ -233,7 +232,7 @@ class AXADropdown extends NoShadowDOM {
     // allow idiomatic event.target.value in onChange callback!
     const syntheticEvent = { target: { value, index: integerIndex, name } };
     onChange(syntheticEvent);
-    if (!isControlled) {
+    if (!this.isControlled) {
       // declare the following value update to be uncontrolled
       this.state.firstTime = false;
       this.value = value; // triggers re-render
@@ -275,16 +274,9 @@ class AXADropdown extends NoShadowDOM {
      put side-effects there that influence render */
   shouldUpdate(changedProperties) {
     typecheck(this, { items: [] });
-    // controlledness is only meaningful if the isReact property has been set
-    // via the React wrapper
-    this.state.isControlled = this.state.isControlled && this.isReact;
-
-    const {
-      state: { isControlled },
-    } = this;
     // implicit change of value via newly selected item?
     if (
-      !isControlled &&
+      !this.isControlled &&
       changedProperties.has('items') &&
       changedProperties.size === 1
     ) {

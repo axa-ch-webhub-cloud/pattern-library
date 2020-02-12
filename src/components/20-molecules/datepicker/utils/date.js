@@ -1,22 +1,61 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import {
+  addDays,
+  startOfWeek,
+  eachWeekOfInterval,
+  eachDayOfInterval,
+  startOfMonth,
+  endOfMonth,
+  isSameMonth,
+  isSameDay,
+  startOfISOWeek,
+  endOfISOWeek,
+} from 'date-fns';
+
+const WEEK_STARTS_ON = 1; // Monday, hardcoded on purpose! Cf. https://stackoverflow.com/questions/53382465 for adaptive solutions
+
 export const getStartOfWeek = date => {
-  const dayOfWeek = date.getDay();
-  const daysSinceBeginningOfMonth =
-    date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-  const newDate = new Date(date);
-  newDate.setDate(daysSinceBeginningOfMonth);
-  return newDate;
+  return startOfWeek(date, { weekStartsOn: WEEK_STARTS_ON });
 };
 
 const getWeekdays = (date, locale) => {
-  const out = [];
-  const start = getStartOfWeek(date);
-  for (let i = 0; i < 7; i++) {
-    let abrMonth = start.toLocaleString(locale, { weekday: 'short' });
-    abrMonth = abrMonth.replace(/[^ -~]/g, '');
-    out.push(abrMonth.slice(0, 2));
-    start.setDate(start.getDate() + 1);
+  const weekdays = [];
+  let start = getStartOfWeek(date);
+  for (let i = 0, weekday; i < 7; i += 1, start = addDays(start, 1)) {
+    weekday = start.toLocaleString(locale, { weekday: 'short' });
+    weekday = weekday.replace(/[^ -~]/g, '');
+    weekdays.push(weekday.slice(0, 2));
   }
-  return out;
+  return weekdays;
+};
+
+const dayToCell = (day, date, today, allowedYears) => ({
+  value: day.toISOString(),
+  text: day.getDate(),
+  sameMonth: isSameMonth(date, day),
+  today: isSameDay(today, day),
+  selected: isSameDay(date, day),
+  inactive: allowedYears.indexOf(date.getFullYear()) < 0,
+});
+
+const getMonthMatrix = (date, allowedYears = []) => {
+  // set up
+  const cells = [];
+  const today = new Date();
+  // build week ranges
+  const weekRanges = eachWeekOfInterval(
+    { start: startOfMonth(date), end: endOfMonth(date) },
+    { weekStartsOn: WEEK_STARTS_ON }
+  );
+  // enumerate days within week ranges
+  weekRanges.forEach(weekDay =>
+    eachDayOfInterval({
+      start: startOfISOWeek(weekDay),
+      end: endOfISOWeek(weekDay),
+    }).forEach(day => cells.push(dayToCell(day, date, today, allowedYears)))
+  );
+
+  return cells;
 };
 
 const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
@@ -25,7 +64,7 @@ const clearStringFromIEGeneratedCharacters = string =>
   string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
 
 const addLeadingZeroes = (rawNumber, numDigits) => {
-  const number = Math.abs(rawNumber | 0); // coerce number to integer >= 0
+  const number = Math.abs(parseInt(rawNumber, 10)); // coerce number to integer >= 0
   const rawNumDigits = number.toString().length;
   const numMissingZeroes = Math.max(0, numDigits - rawNumDigits);
   const leadingZeroesString = (10 ** numMissingZeroes).toString().slice(1); // slice(1): cut off leading '1'
@@ -84,7 +123,6 @@ const parseLocalisedDateIfValid = (locale = 'en', inputValue = '') => {
   // years < 1970 lead to negative integers which are considered
   // invalid below! Rethink validity once such old dates need to be
   // considered.
-
   const dateAsUnixEpochInteger = Date.parse(
     `${addLeadingZeroes(year, 4)}-${addLeadingZeroes(
       month,
@@ -113,4 +151,9 @@ const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   return finalArray;
 };
 
-export { getWeekdays, getAllLocaleMonthsArray, parseLocalisedDateIfValid };
+export {
+  getWeekdays,
+  getMonthMatrix,
+  getAllLocaleMonthsArray,
+  parseLocalisedDateIfValid,
+};

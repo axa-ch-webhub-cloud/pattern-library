@@ -24,9 +24,19 @@ const DEFAULT_VALUE_OF_TYPE = new Map();
   DEFAULT_VALUE_OF_TYPE.set(key, value);
 });
 
+const emptyFunction = () => {};
+
+// convert *attribute* value
 const convert = (value, type) => {
   if (type === Number) {
     return parseFloat(value);
+  }
+  if (type === Function) {
+    // corner case: inline event handlers like onchange="alert(event)" cannot be reliably converted from string,
+    // so just return an empty function s.t.  event-handler invocations in component code don't throw exceptions
+    // (components are responsible for firing synthetic events on their root element instead to trigger expected
+    // inline event handlers)
+    return emptyFunction;
   }
   return type === Array || type === Object ? JSON.parse(value) : value;
 };

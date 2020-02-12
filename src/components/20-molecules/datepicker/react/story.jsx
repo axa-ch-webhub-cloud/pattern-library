@@ -43,6 +43,7 @@ storiesOf('Components|Molecules/Datepicker/React', module)
     const monthtitle = text('monthtitle', 'Choose Month');
     const yeartitle = text('yeartitle', 'Choose Year');
     const invaliddatetext = text('invaliddatetext', 'Invalid date');
+    const invalid = boolean('invalid', false);
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
     const width = text('width', '400');
@@ -63,6 +64,7 @@ storiesOf('Components|Molecules/Datepicker/React', module)
         placeholder={placeholder}
         defaultValue={defaultValue}
         invaliddatetext={invaliddatetext}
+        invalid={invalid}
         label={label}
         monthtitle={monthtitle}
         yeartitle={yeartitle}

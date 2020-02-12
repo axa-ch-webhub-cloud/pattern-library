@@ -39,6 +39,13 @@ $dropdown-height: 40px;
 axa-dropdown {
   display: block;
 
+  &[usecase="datepicker"] {
+    .m-dropdown__select {
+      min-width: auto;
+      padding-right: 32px;
+    }
+  }
+
   .m-dropdown__label {
     @include typo(primary, medium);
     display: block;
