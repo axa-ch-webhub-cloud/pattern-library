@@ -10,11 +10,6 @@ npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
 
 
 
-
-#export TEST_HOST_STORYBOOK_URL=http://localhost:6006
-export BROWSERSTACK_USERNAME=danielb17
-export BROWSERSTACK_ACCESS_KEY=z9ereHMoK6twktEx84wa
-
 npx testcafe 'browserstack:chrome:Windows' ./**/datepicker/ui.test.js
 
 
