@@ -1,3 +1,8 @@
+## 6.0.0
+
+- Controlled mode can no longer be triggered in non-React scenarios.
+- Match version number of `@axa-ch/datepicker`.
+
 ## 5.0.4
 
 - No breaking change. Release just to have same version number as `@axa-ch/datepicker`.

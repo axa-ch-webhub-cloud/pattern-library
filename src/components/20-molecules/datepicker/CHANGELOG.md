@@ -1,4 +1,12 @@
+## 6.0.0
+
+- Controlled mode can no longer be triggered in non-React scenarios.
+- Week reliably starts on Monday.
+- Empty `invaliddatetext` supresses error UI
+- Increased trustworthiness of both days-of-month calculation and visual calendar matrix
+
 ## 5.0.2
+
 - We do not set parameter `height` to component's css anymore because that causes a bad behavior if you has set a label text
 - Changed implementation internals for `width` due to IE bug (Issue #1601)
 
