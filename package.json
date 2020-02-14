@@ -49,6 +49,7 @@
     "@storybook/addons": "^5.2.1",
     "@storybook/html": "^5.2.1",
     "@storybook/theming": "^5.2.1",
+    "@whitespace/storybook-addon-html": "^1.2.1",
     "autoprefixer": "^9.7.3",
     "babel-eslint": "^8.2.1",
     "babel-jest": "^24.5.0",
