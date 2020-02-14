@@ -1,7 +1,7 @@
 import 'storybook-readme/register';
 import './addons/changelog/register';
-import './addons/storybook-addon-html/register';
 import '@storybook/addon-knobs/register';
+import './addons/storybook-addon-html/register'; // import of this addon should be at last because of the order of tabs
 import { STORIES_CONFIGURED, STORY_MISSING } from '@storybook/core-events';
 import addonAPI from '@storybook/addons';
 
