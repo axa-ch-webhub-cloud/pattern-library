@@ -1,5 +1,6 @@
 import 'storybook-readme/register';
 import './addons/changelog/register.js';
+import './addons/codepreview/register.js';
 import '@storybook/addon-knobs/register';
 import { STORIES_CONFIGURED, STORY_MISSING } from '@storybook/core-events';
 import addonAPI from '@storybook/addons';
