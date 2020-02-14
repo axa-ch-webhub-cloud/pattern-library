@@ -12,6 +12,8 @@ const HTMLPanel = () => {
   const [state, setState] = useAddonState(EVENT_CODE_RECEIVED, '');
   useChannel({
     [EVENT_CODE_RECEIVED]: ({ html, options }) => {
+      html = html.replace(/<!---->/g, '');
+
       const { prettier = {} } = options;
       const prettierConfig = {
         ...prettier,
@@ -29,7 +31,7 @@ const HTMLPanel = () => {
         language={'html'}
         copyable={true}
         padded={true}
-        style={style}
+        style={String.prototype.trimRight ? style : undefined }
       >
         {state}
       </SyntaxHighlighter>

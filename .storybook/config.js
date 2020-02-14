@@ -3,7 +3,7 @@ import { addParameters, configure, addDecorator } from '@storybook/html';
 import { create } from '@storybook/theming';
 import { addReadme } from 'storybook-readme/html';
 import logo from '../src/static/svg/logo-axa.svg';
-import { withHTML } from './addons/codepreview/decorators/react';
+import { withHTML } from './addons/codepreview/decorators/html';
 
 addParameters({
   readme: {
