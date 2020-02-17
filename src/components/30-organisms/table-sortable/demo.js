@@ -12,14 +12,18 @@ const model = {
     {
       html: 'Date',
       sort: 'DESC',
-      customSort: (a, b) => {
-        function convertDate(d) {
-          const p = d.split('/');
-          return +(p[2] + p[1] + p[0]);
-        }
-        return (
-          convertDate(a.cells[0].innerHTML) - convertDate(b.cells[0].innerHTML)
-        );
+      customSort: {
+        date: (a, b) => {
+          function convertDate(d) {
+            const parts = d.split('.');
+            return +(parts[2] + parts[1] + parts[0]);
+          }
+          return (
+            convertDate(a.cells[0].innerHTML) -
+            convertDate(b.cells[0].innerHTML)
+            // a.cells[0].innerHTML = date from cell
+          );
+        },
       },
     },
     { html: 'Department' },
