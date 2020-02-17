@@ -13,15 +13,13 @@ const model = {
       html: 'Date',
       sort: 'DESC',
       customSort: {
-        function(a, b) {
+        colId: (a, b) => {
           function convertDate(d) {
             const parts = d.split('.');
+            alert('parts', parts);
             return +(parts[2] + parts[1] + parts[0]);
           }
-          return (
-            convertDate(a.cells[0].innerHTML) -
-            convertDate(b.cells[0].innerHTML)
-          );
+          return convertDate(a.cells[3]) - convertDate(b.cells[3]);
         },
       },
     },
