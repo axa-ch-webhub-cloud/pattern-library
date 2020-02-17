@@ -12,8 +12,11 @@ import InlineStyles from '../../../utils/inline-styles';
 
 const ARROW_RIGHT = 'arrow-right';
 
-// eslint-disable-next-line no-undef
-const isNativeShadowDOM = (window || global).ShadowRoot ? ShadowRoot.toString().indexOf('native code') > -1 : false;
+/* eslint-disable no-undef */
+const isNativeShadowDOM = (window || global).ShadowRoot
+  ? ShadowRoot.toString().indexOf('native code') > -1
+  : false;
+/* eslint-enable no-undef */
 
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
@@ -46,6 +49,7 @@ class AXAButton extends InlineStyles {
       size: { type: String },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
+      onClick: { type: Function, attribute: false },
     };
   }
 

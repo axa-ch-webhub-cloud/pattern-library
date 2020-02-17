@@ -46,6 +46,9 @@ class AXACheckbox extends NoShadowDOM {
           },
         },
       },
+      onChange: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
       isReact: { type: Boolean },
     };
   }
@@ -67,9 +70,6 @@ class AXACheckbox extends NoShadowDOM {
 
     // initialize properties
     applyDefaults(this);
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
 
     // initialize labelTextElement when children are avaiabled and wrap them
     this.hasChildren = false;
@@ -87,7 +87,7 @@ class AXACheckbox extends NoShadowDOM {
     // Clone live DOM node, so that we do not have to use mutation observer. Because we do not use shadow DOM
     // here, it would infinitely update - render - update.
     // Only needed if there are children.
-    [ ...this.children ].forEach((el) => childWrapper.appendChild(el));
+    [...this.children].forEach(el => childWrapper.appendChild(el));
 
     this.labelTextElement = childWrapper;
 

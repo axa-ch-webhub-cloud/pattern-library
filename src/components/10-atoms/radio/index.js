@@ -51,6 +51,9 @@ class AXARadio extends NoShadowDOM {
         type: Boolean,
         reflect: true,
       },
+      onChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
       isReact: { type: Boolean },
     };
   }
@@ -132,10 +135,6 @@ class AXARadio extends NoShadowDOM {
     };
     // initialize properties
     applyDefaults(this);
-
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
   }
 
   getDefaultName() {

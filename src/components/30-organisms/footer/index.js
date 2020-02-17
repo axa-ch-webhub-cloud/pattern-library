@@ -47,13 +47,13 @@ class AXAFooter extends InlineStyles {
     return {
       // 'clickevents' prevents the throwing of native click events and sends a custom axa-footer-click event.
       clickevents: { type: Boolean },
+      onItemClick: { type: Function, attribute: false },
     };
   }
 
   constructor() {
     super();
     applyDefaults(this);
-    this.onItemClick = () => {};
     this._accordionActiveIndex = -1;
     this.slotsNotPrepared = true;
   }

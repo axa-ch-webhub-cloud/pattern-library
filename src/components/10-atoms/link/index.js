@@ -13,6 +13,8 @@ class AXALink extends LitElement {
     ${unsafeCSS(linkCSS)}
   `;
 
+  // N.B. onClick deliberately not declared here, since
+  // its use inside render() is guarded appropriately
   static get properties() {
     return {
       href: { type: String },

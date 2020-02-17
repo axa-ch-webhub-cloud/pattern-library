@@ -165,6 +165,6 @@ The event `click` is fired on &lt;table-sortable&gt; whenever a user presses on 
 
 `click`'s event `detail` is an object `{type,index,domElement,textArray}`, where `type` is the row type (tbody or tfoot), `index` is its 0-based index, `domElement` is the native DOM element reference (be careful in its use under React) and `textArray` is an array containing the text of every cell in that row.
 
-Under react, just set a `onClick` callback and you receive directly all key-values of the above described `detail` object.
+Under React, just set a function-valued `onClick` callback in order to directly receive the aforementioned `detail` object.
 
 Both events do _not_ bubble up through the DOM.
