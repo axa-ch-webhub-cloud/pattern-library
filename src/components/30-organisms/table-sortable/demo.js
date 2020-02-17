@@ -9,43 +9,62 @@ const model = {
     { html: 'Age', sort: 'ASC' },
     { html: 'Name', sort: 'ASC' },
     { html: 'City', sort: 'DESC' },
+    {
+      html: 'Date',
+      sort: 'DESC',
+      customSort: (a, b) => {
+        function convertDate(d) {
+          const p = d.split('/');
+          return +(p[2] + p[1] + p[0]);
+        }
+        return (
+          convertDate(a.cells[0].innerHTML) - convertDate(b.cells[0].innerHTML)
+        );
+      },
+    },
     { html: 'Department' },
   ],
   tbody: [
     [
       { html: '<span>55</span>' },
       { html: '<span>Peter</span>' },
-      { html: '<span>Winterthur</span>' },
+      { html: '<span>8405 Winterthur</span>' },
+      { html: '<span>02.04.2019</span>' },
       { html: 'A' },
     ],
     [
       { html: '<span>22</span>' },
       { html: '<span>Chris</span>' },
-      { html: '<span>Zürich</span>' },
+      { html: '<span>8000 Zürich</span>' },
+      { html: '<span>04.04.2019</span>' },
       { html: 'B' },
     ],
     [
       { html: '<span>46</span>' },
       { html: '<span>Hubert</span>' },
-      { html: '<span>Kreuzlingen</span>' },
+      { html: '<span>8503 Kreuzlingen</span>' },
+      { html: '<span>05.05.2017</span>' },
       { html: 'C' },
     ],
     [
       { html: '<span>51</span>' },
       { html: '<span>Petra</span>' },
-      { html: '<span>Kreuzlingen</span>' },
+      { html: '<span>8504 Kreuzlingen</span>' },
+      { html: '<span>08.10.2018</span>' },
       { html: 'D' },
     ],
     [
       { html: '<span>18</span>' },
       { html: '<span>Maria</span>' },
-      { html: '<span>Frauenfeld</span>' },
+      { html: '<span>8701 Frauenfeld</span>' },
+      { html: '<span>29.04.2018</span>' },
       { html: 'E' },
     ],
     [
       { html: '<span>29</span>' },
       { html: '<span>David</span>' },
-      { html: '<span>Frauenfeld</span>' },
+      { html: '<span>8700 Frauenfeld</span>' },
+      { html: '<span>02.05.2020</span>' },
       { html: 'F' },
     ],
   ],
