@@ -19,7 +19,7 @@ class AXAPopupButton extends LitElement {
   static get properties() {
     return {
       open: { type: Boolean },
-      onClick: { type: Function },
+      onClick: { type: Function, attribute: false },
     };
   }
 

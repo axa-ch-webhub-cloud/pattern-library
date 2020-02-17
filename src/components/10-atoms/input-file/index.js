@@ -34,13 +34,13 @@ class AXAInputFile extends NoShadowDOM {
       },
       capture: { type: Boolean },
       multiple: { type: Boolean },
+      onChange: { type: Function, attribute: false },
     };
   }
 
   constructor() {
     super();
     applyDefaults(this);
-    this.onChange = () => {};
   }
 
   render() {

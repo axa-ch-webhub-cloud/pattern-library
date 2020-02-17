@@ -31,7 +31,6 @@ class AXATableSortable extends LitElement {
     };
     applyDefaults(this);
     this.firstRender = true;
-    this.onClick = () => {};
     this.numCollator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base',
@@ -57,6 +56,7 @@ class AXATableSortable extends LitElement {
       model: { type: Object, defaultValue: { ...this.defaultModel } },
       innerscroll: { type: Number },
       maxheight: { type: Number },
+      onClick: { type: Function, attribute: false },
     };
   }
 

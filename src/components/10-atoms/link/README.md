@@ -133,4 +133,4 @@ If the variant is `icon`, using the attribute `icon`'s string value as icon name
 
 ### onClick
 
-On a React-ified component this can be used as a callback function. It will prevent default
+On a React-ified component this function-valued attribute can be used as a callback function. Using it will prevent default link navigation.

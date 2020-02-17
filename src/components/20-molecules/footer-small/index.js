@@ -26,14 +26,14 @@ class AXAFooterSmall extends InlineStyles {
   static get properties() {
     return {
       dynamic: { type: Boolean },
+      onLanguageClick: { type: Function, attribute: false },
+      onDisclaimerClick: { type: Function, attribute: false },
     };
   }
 
   constructor() {
     super();
     applyDefaults(this);
-    this.onLanguageClick = () => {};
-    this.onDisclaimerClick = () => {};
   }
 
   // Parent class InlineStyles needs a static method to retrieve styles.

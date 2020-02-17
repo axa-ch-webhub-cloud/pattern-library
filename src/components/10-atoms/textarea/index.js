@@ -47,16 +47,15 @@ class AXATextarea extends NoShadowDOM {
       },
       isReact: { type: Boolean },
       modelCounter: { type: String },
+      onChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
     };
   }
 
   constructor() {
     super();
     applyDefaults(this);
-
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
 
     // internal properties
     this.isReact = false;
