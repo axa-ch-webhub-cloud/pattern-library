@@ -128,6 +128,10 @@ class AXATableSortable extends LitElement {
     const tmpModel = { ...this.model };
     const { tbody, tfoot } = this.model;
 
+    if (tmpModel.thead[index].customSort) {
+      console.log('hoi');
+    }
+
     tmpModel.tbody = this.sort(tbody, index, sortAs);
     if (tfoot && tfoot[0]) {
       tmpModel.tfoot = this.sort(tfoot, index, sortAs);
