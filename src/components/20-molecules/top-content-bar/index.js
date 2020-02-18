@@ -26,7 +26,7 @@ class AXATopContentBar extends LitElement {
       ctatext: { type: String },
       href: { type: String },
       variant: { type: String },
-      onClick: { type: Function },
+      onClick: { type: Function, attribute: false },
     };
   }
 

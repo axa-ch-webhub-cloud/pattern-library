@@ -47,6 +47,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             ? Number(value)
             : undefined,
       },
+      onChange: { type: Function, attribute: false },
+      onFocus: { type: Function, attribute: false },
+      onBlur: { type: Function, attribute: false },
     };
   }
 
@@ -57,10 +60,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   constructor() {
     super();
     applyDefaults(this);
-
-    this.onFocus = () => {};
-    this.onBlur = () => {};
-    this.onChange = () => {};
 
     // internal properties
     this.nativeInput = { value: '' };

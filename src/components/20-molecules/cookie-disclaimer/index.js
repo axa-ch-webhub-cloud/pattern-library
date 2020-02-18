@@ -21,7 +21,7 @@ class AXACookieDisclaimer extends LitElement {
 
   static get properties() {
     return {
-      onClick: { type: Function },
+      onClick: { type: Function, attribute: false },
       buttonname: { type: String },
       title: { type: String },
       variant: { type: String },
@@ -31,8 +31,6 @@ class AXACookieDisclaimer extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
-
-    this.onClick = () => {};
   }
 
   firstUpdated() {
