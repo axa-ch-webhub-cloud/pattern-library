@@ -4,6 +4,9 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
+// const ASC = 'ascending';
+const ASC = 'ASC';
+
 const model = {
   thead: [
     { html: 'Age', sort: 'ASC' },
@@ -14,11 +17,13 @@ const model = {
       sort: 'DESC',
       custom: {
         foo: (a, b) => {
+          const sortAs = model.thead[3].sort;
+          const result = convertDate(a[3].html) - convertDate(b[3].html);
           function convertDate(d) {
             const parts = d.split('.');
             return +(parts[2] + parts[1] + parts[0]);
           }
-          return convertDate(a[3].html) - convertDate(b[3].html);
+          return sortAs === ASC ? result : ~result + 1;
         },
       },
     },
