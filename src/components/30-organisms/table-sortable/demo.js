@@ -12,14 +12,13 @@ const model = {
     {
       html: 'Date',
       sort: 'DESC',
-      customSort: {
-        colId: (a, b) => {
+      custom: {
+        foo: (a, b) => {
           function convertDate(d) {
             const parts = d.split('.');
-            alert('parts', parts);
             return +(parts[2] + parts[1] + parts[0]);
           }
-          return convertDate(a.cells[3]) - convertDate(b.cells[3]);
+          return convertDate(a[3].html) - convertDate(b[3].html);
         },
       },
     },
@@ -30,42 +29,42 @@ const model = {
       { html: '<span>55</span>' },
       { html: '<span>Peter</span>' },
       { html: '<span>8405 Winterthur</span>' },
-      { html: '<span>02.04.2019</span>' },
+      { html: '02.04.2019' },
       { html: 'A' },
     ],
     [
       { html: '<span>22</span>' },
       { html: '<span>Chris</span>' },
       { html: '<span>8000 Zürich</span>' },
-      { html: '<span>04.04.2019</span>' },
+      { html: '04.04.2019' },
       { html: 'B' },
     ],
     [
       { html: '<span>46</span>' },
       { html: '<span>Hubert</span>' },
       { html: '<span>8503 Kreuzlingen</span>' },
-      { html: '<span>05.05.2017</span>' },
+      { html: '05.05.2017' },
       { html: 'C' },
     ],
     [
       { html: '<span>51</span>' },
       { html: '<span>Petra</span>' },
       { html: '<span>8504 Kreuzlingen</span>' },
-      { html: '<span>08.10.2018</span>' },
+      { html: '08.10.2018' },
       { html: 'D' },
     ],
     [
       { html: '<span>18</span>' },
       { html: '<span>Maria</span>' },
       { html: '<span>8701 Frauenfeld</span>' },
-      { html: '<span>29.04.2018</span>' },
+      { html: '29.04.2018' },
       { html: 'E' },
     ],
     [
       { html: '<span>29</span>' },
       { html: '<span>David</span>' },
       { html: '<span>8700 Frauenfeld</span>' },
-      { html: '<span>02.05.2020</span>' },
+      { html: '02.05.2020' },
       { html: 'F' },
     ],
   ],
