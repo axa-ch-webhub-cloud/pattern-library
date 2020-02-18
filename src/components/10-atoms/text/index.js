@@ -38,9 +38,12 @@ class AXAText extends NoShadowDOM {
       'a-text--bold': variant.indexOf('bold') > -1,
     };
 
-    Object.keys(classes).forEach(
-      _class => classes[_class] && this.classList.add(_class)
-    );
+    Object.keys(classes).forEach(_class => {
+      this.classList.remove(_class);
+      if (classes[_class]) {
+        this.classList.add(_class);
+      }
+    });
   }
 }
 
