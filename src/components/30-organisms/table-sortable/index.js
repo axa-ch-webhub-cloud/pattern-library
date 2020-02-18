@@ -127,16 +127,34 @@ class AXATableSortable extends LitElement {
     const sortAs = actualSortAs === ASC ? DESC : ASC; // TODO why? in my opinion aria is set to early
     const tmpModel = { ...this.model };
     const { tbody, tfoot } = this.model;
+    const hasCustomSortingAlgo = !!tmpModel.thead[index].custom;
 
-    if (tmpModel.thead[index].customSort) {
-      console.log('hoi', tbody);
-      tmpModel.tbody = tbody.sort(tmpModel.thead[index].customSort.colId);
+    if (hasCustomSortingAlgo) {
+      tmpModel.tbody = tbody.sort((a, b) => {
+        function convertDate(d) {
+          const parts = d.split('.');
+          return +(parts[2] + parts[1] + parts[0]);
+        }
+        const result = convertDate(a[3].html) - convertDate(b[3].html);
+        return sortAs === ASC ? result : ~result + 1;
+      });
     } else {
       tmpModel.tbody = this.sort(tbody, index, sortAs);
     }
-    // TODO for footer
     if (tfoot && tfoot[0]) {
-      tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+      // TODO replace with actual custom function
+      if (hasCustomSortingAlgo) {
+        tmpModel.tbody = tbody.sort((a, b) => {
+          function convertDate(d) {
+            const parts = d.split('.');
+            return +(parts[2] + parts[1] + parts[0]);
+          }
+          const result = convertDate(a[3].html) - convertDate(b[3].html);
+          return sortAs === ASC ? result : ~result + 1;
+        });
+      } else {
+        tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+      }
     } else {
       tmpModel.tfoot = [[]];
     }
