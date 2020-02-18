@@ -129,32 +129,10 @@ class AXATableSortable extends LitElement {
     const { tbody, tfoot } = this.model;
     const hasCustomSortingAlgo = !!tmpModel.thead[index].custom;
 
-    if (hasCustomSortingAlgo) {
-      tmpModel.tbody = tbody.sort((a, b) => {
-        function convertDate(d) {
-          const parts = d.split('.');
-          return +(parts[2] + parts[1] + parts[0]);
-        }
-        const result = convertDate(a[3].html) - convertDate(b[3].html);
-        return sortAs === ASC ? result : ~result + 1;
-      });
-    } else {
-      tmpModel.tbody = this.sort(tbody, index, sortAs);
-    }
+    tmpModel.tbody = this.sort(tbody, index, sortAs, hasCustomSortingAlgo);
+
     if (tfoot && tfoot[0]) {
-      // TODO replace with actual custom function
-      if (hasCustomSortingAlgo) {
-        tmpModel.tbody = tbody.sort((a, b) => {
-          function convertDate(d) {
-            const parts = d.split('.');
-            return +(parts[2] + parts[1] + parts[0]);
-          }
-          const result = convertDate(a[3].html) - convertDate(b[3].html);
-          return sortAs === ASC ? result : ~result + 1;
-        });
-      } else {
-        tmpModel.tfoot = this.sort(tfoot, index, sortAs);
-      }
+      tmpModel.tfoot = this.sort(tfoot, index, sortAs, hasCustomSortingAlgo);
     } else {
       tmpModel.tfoot = [[]];
     }
@@ -171,7 +149,7 @@ class AXATableSortable extends LitElement {
   // time complexity of .sort is O(n^2), and space complexity is O(1).
   // For longer arrays time complexity is Θ(n log(n)) (average case),
   // and space complexity is O(log(n))
-  sort(arr, index, sortAs) {
+  sort(arr, index, sortAs, hasCustomSortingAlgo) {
     return arr.sort((rowLx, rowRx) => {
       const {
         [index]: { html: cellRx },
@@ -182,14 +160,42 @@ class AXATableSortable extends LitElement {
       const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
       const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
       let result;
-      // eslint-disable-next-line no-restricted-globals
-      if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
-        result = this.numCollator.compare(cleanCellLx, cleanCellRx);
+
+      if (hasCustomSortingAlgo) {
+        // TODO call function in thead from object
+        result = blabla(cleanCellLx, cleanCellRx);
       } else {
-        result = this.strCollator.compare(cleanCellLx, cleanCellRx);
+        // eslint-disable-next-line no-restricted-globals
+        if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
+          result = this.numCollator.compare(cleanCellLx, cleanCellRx);
+          console.log(result);
+        } else {
+          result = this.strCollator.compare(cleanCellLx, cleanCellRx);
+          console.log(result);
+        }
       }
+
       return sortAs === ASC ? result : ~result + 1;
     });
+    // TODO remove this function
+    function blabla(a, b) {
+      const dateA = convertDate(a);
+      const dateB = convertDate(b);
+
+      if (dateA < dateB) {
+        return -1;
+      }
+      if (dateA > dateB) {
+        return 1;
+      }
+
+      return 0;
+
+      function convertDate(d) {
+        const parts = d.split('.');
+        return +(parts[2] + parts[1] + parts[0]);
+      }
+    }
   }
 
   shouldUpdate(...args) {
