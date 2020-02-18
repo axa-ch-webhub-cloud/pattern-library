@@ -29,36 +29,18 @@ class AXAText extends NoShadowDOM {
   }
 
   render() {
-    // eslint-disable-next-line prefer-destructuring
-    const variant = this.variant;
-    const isSize2 = variant.indexOf('size-2');
-    const isSize3 = variant.indexOf('size-3');
-    const isBold = variant.indexOf('bold');
+    const { variant } = this;
 
-    const classes = ['a-text'];
-    if (isSize2 === 0) {
-      classes.push('a-text--size-2');
-    }
-    if (isSize3 === 0) {
-      classes.push('a-text--size-3');
-    }
-    if (isBold === 0) {
-      classes.push('a-text--bold');
-    }
+    const classes = {
+      'a-text': true,
+      'a-text--size-2': variant.indexOf('size-2') > -1,
+      'a-text--size-3': variant.indexOf('size-3') > -1,
+      'a-text--bold': variant.indexOf('bold') > -1,
+    };
 
-    const { firstChild, firstElementChild } = this;
-
-    // nodeType === 3 is Text
-    if (firstChild && firstChild.nodeType === 3 && firstElementChild === null) {
-      const p = document.createElement('p');
-      p.innerHTML = firstChild.textContent;
-      p.className = classes.join(' ');
-      this.innerHTML = '';
-      this.appendChild(p);
-      // if firstElementChild is there, apply classes on the first element
-    } else if (firstElementChild) {
-      classes.forEach(_class => firstElementChild.classList.add(_class));
-    }
+    Object.keys(classes).forEach(
+      _class => classes[_class] && this.classList.add(_class)
+    );
   }
 }
 
