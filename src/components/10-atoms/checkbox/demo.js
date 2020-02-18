@@ -15,10 +15,10 @@ storiesOf('Components|Atoms/Checkbox/Demos', module)
       <axa-checkbox
         class="hover"
         name="checkbox"
-        checked="false"
+        .checked="${false}"
         required="true"
         ><p>
-          I agree to
+          <span class="non-link-label-text">I agree to</span>
           <a href="https://www.google.ch" target="_blank"
             >conditions of data protection.</a
           >

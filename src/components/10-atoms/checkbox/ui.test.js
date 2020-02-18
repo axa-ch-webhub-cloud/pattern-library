@@ -126,15 +126,17 @@ fixture('Checkbox - Label as a child of the component').page(
   `${host}/iframe.html?id=components-atoms-checkbox-demos--feature-use-your-own-label-as-a-child-of-the-component`
 );
 
-test('should be clickable + change state and render parent label', async t => {
+test('should be clickable + change state and render child label', async t => {
   const $axaCheckbox = await Selector(TAG);
+  const $axaCheckboxNonLinkLabelText = await Selector(
+    `${TAG} .non-link-label-text`
+  );
   const label = $axaCheckbox.child();
-
-  await t.click($axaCheckbox);
+  await t.click($axaCheckboxNonLinkLabelText);
   await t.expect($axaCheckbox.checked).ok();
   await t.expect($axaCheckbox.count).eql(1);
 
-  // has parent label
+  // has child label
   await t.expect(label).ok();
 });
 
