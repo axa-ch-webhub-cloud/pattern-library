@@ -164,15 +164,11 @@ class AXATableSortable extends LitElement {
       if (hasCustomSortingAlgo) {
         // TODO call function in thead from object
         result = blabla(cleanCellLx, cleanCellRx);
-      } else {
         // eslint-disable-next-line no-restricted-globals
-        if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
-          result = this.numCollator.compare(cleanCellLx, cleanCellRx);
-          console.log(result);
-        } else {
-          result = this.strCollator.compare(cleanCellLx, cleanCellRx);
-          console.log(result);
-        }
+      } else if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
+        result = this.numCollator.compare(cleanCellLx, cleanCellRx);
+      } else {
+        result = this.strCollator.compare(cleanCellLx, cleanCellRx);
       }
 
       return sortAs === ASC ? result : ~result + 1;
