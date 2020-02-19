@@ -39,6 +39,15 @@ class AXATableSortable extends LitElement {
       sensitivity: 'variant',
     });
     this.lastIndex = -1;
+
+    this.dateColumsCustomSort = this.dateSortColumnIndex.split(',').map(i => {
+      const parsed = parseInt(i, 10);
+      // eslint-disable-next-line no-restricted-globals
+      if (isNaN(parsed)) {
+        return 0;
+      }
+      return parsed;
+    });
   }
 
   static get tagName() {
