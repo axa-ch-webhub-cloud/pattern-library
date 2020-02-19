@@ -17,14 +17,22 @@ const model = {
       sort: 'DESC',
       custom: {
         foo: (a, b) => {
-          // TODO adapt function from index
-          const sortAs = model.thead[3].sort;
-          const result = convertDate(a[3].html) - convertDate(b[3].html);
+          const dateA = convertDate(a);
+          const dateB = convertDate(b);
+
+          if (dateA < dateB) {
+            return -1;
+          }
+          if (dateA > dateB) {
+            return 1;
+          }
+
+          return 0;
+
           function convertDate(d) {
             const parts = d.split('.');
             return +(parts[2] + parts[1] + parts[0]);
           }
-          return sortAs === ASC ? result : ~result + 1;
         },
       },
     },
