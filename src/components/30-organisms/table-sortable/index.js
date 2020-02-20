@@ -21,8 +21,6 @@ const mapAsc = {
   [DESC]: 'DESC',
 };
 
-const fixLocale = 'de-CH';
-
 class AXATableSortable extends LitElement {
   constructor() {
     super();
@@ -42,14 +40,16 @@ class AXATableSortable extends LitElement {
     });
     this.lastIndex = -1;
 
-    this.dateColumsCustomSort = this.dateSortColumnIndex.split(',').map(i => {
-      const parsed = parseInt(i, 10);
-      // eslint-disable-next-line no-restricted-globals
-      if (isNaN(parsed)) {
-        return 0;
-      }
-      return parsed;
-    });
+    this.dateColumsCustomSort = this.dateSortColumnIndex
+      .split(',')
+      .map(cellIndex => {
+        const parsed = parseInt(cellIndex, 10);
+        // eslint-disable-next-line no-restricted-globals
+        if (isNaN(parsed)) {
+          return undefined;
+        }
+        return parsed;
+      });
   }
 
   static get tagName() {
@@ -171,10 +171,15 @@ class AXATableSortable extends LitElement {
       const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
       const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
       let result;
-      if (this.dateSortColumnIndex && index === this.dateColumsCustomSort) {
-        // todo map
-        // use fixLocale variable
-        // sort nach datum
+
+      if (
+        this.dateSortColumnIndex &&
+        this.dateColumsCustomSort.includes(index)
+      ) {
+        // TODO sort out invalid dates
+        const cleanDateLx = this.convertDateToDefaultFormat(cleanCellLx);
+        const cleanDateRx = this.convertDateToDefaultFormat(cleanCellRx);
+        result = sortDate(cleanDateLx, cleanDateRx);
         // eslint-disable-next-line no-restricted-globals
       } else if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
         result = this.numCollator.compare(cleanCellLx, cleanCellRx);
@@ -185,24 +190,20 @@ class AXATableSortable extends LitElement {
       return sortAs === ASC ? result : ~result + 1;
     });
     // TODO remove this function
-    function blabla(a, b) {
-      const dateA = convertDate(a);
-      const dateB = convertDate(b);
-
-      if (dateA < dateB) {
+    function sortDate(a, b) {
+      if (a < b) {
         return -1;
       }
-      if (dateA > dateB) {
+      if (a > b) {
         return 1;
       }
-
       return 0;
-
-      function convertDate(d) {
-        const parts = d.split('.');
-        return +(parts[2] + parts[1] + parts[0]);
-      }
     }
+  }
+
+  convertDateToDefaultFormat(d) {
+    const parts = d.split(/[./-]/);
+    return +(parts[2] + parts[1] + parts[0]);
   }
 
   shouldUpdate(...args) {
