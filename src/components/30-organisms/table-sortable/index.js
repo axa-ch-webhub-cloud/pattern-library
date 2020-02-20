@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { LitElement, css, unsafeCSS, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -44,7 +45,6 @@ class AXATableSortable extends LitElement {
       .split(',')
       .map(cellIndex => {
         const parsed = parseInt(cellIndex, 10);
-        // eslint-disable-next-line no-restricted-globals
         if (isNaN(parsed)) {
           return undefined;
         }
@@ -194,7 +194,7 @@ class AXATableSortable extends LitElement {
 
       return sortAs === ASC ? result : ~result + 1;
     });
-    // TODO remove this function
+
     function sortDate(a, b) {
       if (a < b) {
         return -1;
