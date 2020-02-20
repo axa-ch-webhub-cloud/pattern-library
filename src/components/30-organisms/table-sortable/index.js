@@ -183,10 +183,14 @@ class AXATableSortable extends LitElement {
         const cleanDateRx = new Date(
           this.convertDateToDefaultFormat(cleanCellRx)
         );
-        console.log(cleanDateLx);
-        result = sortDate(cleanDateLx, cleanDateRx);
-        // eslint-disable-next-line no-restricted-globals
-      } else if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
+
+        if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
+          result = sortDate(cleanDateLx, cleanDateRx);
+          return sortAs === ASC ? result : ~result + 1;
+        }
+      }
+
+      if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
         result = this.numCollator.compare(cleanCellLx, cleanCellRx);
       } else {
         result = this.strCollator.compare(cleanCellLx, cleanCellRx);
@@ -208,8 +212,7 @@ class AXATableSortable extends LitElement {
 
   convertDateToDefaultFormat(d) {
     const parts = d.split(/[./-]/);
-    console.log(parts);
-    return new Date(`${parts[1]}-${parts[0]}-${parts[2]}`); // format: mm-dd-yyyy
+    return new Date(`${parts[1]}-${parts[0]}-${parts[2]}`); // format: MM-DD-YYYY
   }
 
   shouldUpdate(...args) {
