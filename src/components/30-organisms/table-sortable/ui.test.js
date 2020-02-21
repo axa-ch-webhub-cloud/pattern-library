@@ -404,6 +404,6 @@ test('should react to click on row', async t => {
   await t
     .expect(text.replace(/\s+/g, ' '))
     .eql(
-      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","A"]'
+      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
     );
 });

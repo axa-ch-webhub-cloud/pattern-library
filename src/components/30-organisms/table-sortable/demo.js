@@ -18,8 +18,8 @@ const model = {
       { html: '<span>55</span>' },
       { html: '<span>Peter</span>' },
       { html: '<span>Winterthur</span>' },
-      { html: '<span>35/04/2019</span>' },
-      { html: '<span>10/01/2020</span>' },
+      { html: '<span>22.04.2019</span>' },
+      { html: '<span>10.01.2020</span>' },
       { html: 'A' },
     ],
     [
