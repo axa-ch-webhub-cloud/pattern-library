@@ -87,7 +87,7 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-copy": "^2.0.1",
     "rollup-plugin-sass": "^1.1.0",
-    "rollup-plugin-uglify": "^6.0.2",
+    "rollup-plugin-uglify": "^6.0.4",
     "sass-loader": "^7.1.0",
     "storybook-readme": "5.0.6",
     "svgo": "^1.2.0",
