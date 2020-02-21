@@ -10,7 +10,7 @@
 
 - Safari had an issue with the cursor on all platforms, which is hereby fixed.
 
-## Migration to version 3
+## 3.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
@@ -23,6 +23,6 @@
   component consumer had previously assumed undefined or uninitialized
   behaviour.
 
-## Version 2.4.7
+## 2.4.7
 
 - If no counter text is given the character count will not be displayed.
