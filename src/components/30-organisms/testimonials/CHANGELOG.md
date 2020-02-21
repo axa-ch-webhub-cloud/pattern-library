@@ -1,4 +1,4 @@
-## Migration to version 2
+## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
