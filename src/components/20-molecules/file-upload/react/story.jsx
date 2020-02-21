@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { iconList } from '../../../10-atoms/icon/icon-list';
 import AXAFileUploadReact from './AXAFileUploadReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Molecules/File Upload/React', module)
   .addDecorator(withKnobs)
@@ -13,6 +14,7 @@ storiesOf('Components|Molecules/File Upload/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('File Upload', () => {
     const wrapperWidth = text('Width', '455px');

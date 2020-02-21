@@ -2,6 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Components|Molecules/File Upload/Demos', module)
@@ -9,6 +10,7 @@ storiesOf('Components|Molecules/File Upload/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Feature - file-upload in a form', () => {
     const handleSubmit = e => {
