@@ -75,7 +75,7 @@
     "mkdirp": "^0.5.1",
     "mutationobserver-shim": "^0.3.3",
     "mv": "^2.1.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "outdent": "^0.7.0",
     "postcss": "^7.0.26",
     "postcss-strip-font-face": "^1.0.0",
