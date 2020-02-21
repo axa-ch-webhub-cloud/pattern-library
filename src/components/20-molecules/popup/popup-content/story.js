@@ -4,6 +4,7 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from '../CHANGELOG.md';
 
 const storyPopupContent = storiesOf('Components|Molecules/Popup', module);
 storyPopupContent.addDecorator(withKnobs);
@@ -11,6 +12,7 @@ storyPopupContent.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog,
 });
 
 const children = html`
