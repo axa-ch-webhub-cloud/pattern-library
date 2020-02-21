@@ -21,6 +21,8 @@ const mapAsc = {
   [DESC]: 'DESC',
 };
 
+const fixLocale = 'de-CH';
+
 class AXATableSortable extends LitElement {
   constructor() {
     super();
@@ -137,12 +139,11 @@ class AXATableSortable extends LitElement {
     const sortAs = actualSortAs === ASC ? DESC : ASC; // TODO why? in my opinion aria is set to early
     const tmpModel = { ...this.model };
     const { tbody, tfoot } = this.model;
-    const hasCustomSortingAlgo = !!tmpModel.thead[index].custom;
 
-    tmpModel.tbody = this.sort(tbody, index, sortAs, hasCustomSortingAlgo);
+    tmpModel.tbody = this.sort(tbody, index, sortAs);
 
     if (tfoot && tfoot[0]) {
-      tmpModel.tfoot = this.sort(tfoot, index, sortAs, hasCustomSortingAlgo);
+      tmpModel.tfoot = this.sort(tfoot, index, sortAs);
     } else {
       tmpModel.tfoot = [[]];
     }
@@ -159,7 +160,7 @@ class AXATableSortable extends LitElement {
   // time complexity of .sort is O(n^2), and space complexity is O(1).
   // For longer arrays time complexity is Θ(n log(n)) (average case),
   // and space complexity is O(log(n))
-  sort(arr, index, sortAs, hasCustomSortingAlgo) {
+  sort(arr, index, sortAs) {
     return arr.sort((rowLx, rowRx) => {
       const {
         [index]: { html: cellRx },
@@ -170,10 +171,10 @@ class AXATableSortable extends LitElement {
       const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
       const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
       let result;
-
-      if (hasCustomSortingAlgo) {
-        // TODO call function in thead from object
-        result = blabla(cleanCellLx, cleanCellRx);
+      if (this.dateSortColumnIndex && index === this.dateColumsCustomSort) {
+        // todo map
+        // use fixLocale variable
+        // sort nach datum
         // eslint-disable-next-line no-restricted-globals
       } else if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
         result = this.numCollator.compare(cleanCellLx, cleanCellRx);
