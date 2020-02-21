@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 import DemoLink from './DemoLink';
 
 storiesOf('Components|Atoms/Link/React/Demos', module)
@@ -10,6 +11,7 @@ storiesOf('Components|Atoms/Link/React/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Feature - Link with variable icons', () => {
     const div = document.createElement('div');
