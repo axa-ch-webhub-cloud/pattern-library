@@ -1,6 +1,7 @@
 ## 3.0.0
 
-- New attribute `dateSortColumnIndex` is now supported. Use it to set date columns to sort them properly.
+- New attribute `dateSortColumnIndex` is now supported. Use it to sort date columns properly.
+  Issue [#1629](https://github.com/axa-ch/patterns-library/issues/1629).
 
 ## 2.0.0
 
