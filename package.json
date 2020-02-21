@@ -91,8 +91,8 @@
     "sass-loader": "^7.1.0",
     "storybook-readme": "5.0.6",
     "svgo": "^1.2.0",
-    "testcafe": "1.4.0",
-    "testcafe-browser-provider-browserstack": "1.9.0",
+    "testcafe": "1.8.2",
+    "testcafe-browser-provider-browserstack": "1.12.0",
     "to-string-loader": "^1.1.5"
   },
   "repository": {
