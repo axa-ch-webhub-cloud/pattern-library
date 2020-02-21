@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const setNewlyClickedLink = link => {
   console.log('clickediclick');
@@ -19,6 +20,7 @@ storiesOf('Components|Organisms/Footer/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
 
   .add('Feature - Footer Callbacks', () => {

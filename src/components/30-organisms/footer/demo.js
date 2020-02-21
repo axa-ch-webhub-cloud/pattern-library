@@ -4,6 +4,7 @@ import './index';
 
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Components|Organisms/Footer/Demos', module)
   .addDecorator(withNoBorder)
@@ -11,6 +12,7 @@ storiesOf('Components|Organisms/Footer/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
 
   .add('Feature - Footer Callbacks', () => {
