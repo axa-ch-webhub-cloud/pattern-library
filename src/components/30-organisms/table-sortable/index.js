@@ -136,7 +136,7 @@ class AXATableSortable extends LitElement {
   }
 
   sortByIndex(index, actualSortAs) {
-    const sortAs = actualSortAs === ASC ? DESC : ASC; // TODO why? in my opinion aria is set to early
+    const sortAs = actualSortAs === ASC ? DESC : ASC;
     const tmpModel = { ...this.model };
     const { tbody, tfoot } = this.model;
 
@@ -181,7 +181,7 @@ class AXATableSortable extends LitElement {
 
         if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
           result = sortDate(cleanDateLx, cleanDateRx);
-          return sortAs === ASC ? result : ~result + 1;
+          return sortAs === ASC ? result : result * -1;
         }
       }
 
@@ -191,7 +191,7 @@ class AXATableSortable extends LitElement {
         result = this.strCollator.compare(cleanCellLx, cleanCellRx);
       }
 
-      return sortAs === ASC ? result : ~result + 1;
+      return sortAs === ASC ? result : result * -1;
     });
 
     function sortDate(a, b) {
