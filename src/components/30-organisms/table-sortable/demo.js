@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const model = {
   thead: [
@@ -55,6 +56,7 @@ storiesOf('Components|Organisms/Table Sortable/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Table Sortable - on row click', () => {
     const wrapper = document.createElement('div');

@@ -4,6 +4,7 @@ import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import createTableSortableReact from '../index.react';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const TableSortable = createTableSortableReact(createElement);
 
@@ -59,6 +60,7 @@ storiesOf('Components|Organisms/Table Sortable/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('On click works also in react', () => {
     const div = document.createElement('div');
