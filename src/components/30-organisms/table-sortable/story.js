@@ -9,7 +9,7 @@ const model = {
   thead: [
     { html: 'Age', sort: 'ASC' },
     { html: 'Name', sort: 'ASC' },
-    { html: 'City', sort: 'ASC' },
+    { html: 'City', sort: 'DESC' },
     { html: 'Date of entry', sort: 'DESC' },
     { html: 'Date of exit', sort: 'DESC' },
     { html: 'Department' },

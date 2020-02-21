@@ -56,7 +56,7 @@ test('should have aria none when passing nothing in model', async t => {
   await t.expect($el.exists).ok();
   const $columnFour = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelectorAll('th')[3];
+    return sRoot.querySelectorAll('th')[5];
   });
   await t.expect($columnFour.getAttribute('aria-sort')).eql('none');
 });
@@ -248,7 +248,7 @@ test('should not render arrows', async t => {
   const $columnFourHeaderRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
     const firstRow = sRoot.querySelectorAll('thead tr')[0];
-    return firstRow.querySelectorAll('th')[3];
+    return firstRow.querySelectorAll('th')[5];
   });
 
   const $arrowWrapper = await $columnFourHeaderRow.find(
@@ -259,7 +259,7 @@ test('should not render arrows', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=500`
+  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=650`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -318,7 +318,7 @@ test('should sort also when innerscroll is set ', async t => {
 });
 
 fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=500&knob-maxheight=160`
+  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
 );
 
 test('should sort also when maxheight is set ', async t => {
