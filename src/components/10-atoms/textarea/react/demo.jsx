@@ -4,12 +4,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoContUncontTextarea from './DemoContUncontTextarea';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Atoms/Textarea/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   /* Default */
   .add('Feature - Textarea controlled/uncontrolled', () => {

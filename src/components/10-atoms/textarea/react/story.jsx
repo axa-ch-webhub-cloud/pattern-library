@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/html';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import AXATextarea from './AXATextarea';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const storyTextarea = storiesOf('Components|Atoms/Textarea/React', module);
 storyTextarea.addDecorator(withKnobs);
@@ -12,6 +13,7 @@ storyTextarea.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog,
 });
 
 storyTextarea.add('Textarea', () => {
