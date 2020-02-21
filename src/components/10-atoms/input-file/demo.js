@@ -1,6 +1,7 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Components|Atoms/Input File/Demos', module)
@@ -8,6 +9,7 @@ storiesOf('Components|Atoms/Input File/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Feature - InputFile clickable', () => {
     const inputFile = document.createElement('axa-input-file');
