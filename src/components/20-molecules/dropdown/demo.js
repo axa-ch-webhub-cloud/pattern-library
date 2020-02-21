@@ -1,12 +1,14 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Components|Molecules/Dropdown/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add(
     'Dropdown inside form',

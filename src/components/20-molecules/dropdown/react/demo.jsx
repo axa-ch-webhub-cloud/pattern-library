@@ -6,12 +6,14 @@ import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
 import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 import DemoDropdownReact from './DemoDropdownReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Molecules/Dropdown/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Focussable React-ified Dropdown', () => {
     const div = document.createElement('div');
