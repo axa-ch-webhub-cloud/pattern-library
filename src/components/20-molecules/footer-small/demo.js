@@ -2,6 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const selectedLanguageKey = '-';
@@ -12,6 +13,7 @@ storiesOf('Components|Molecules/Footer Small/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Footer Small - Dynamic Links', () => {
     const wrapper = document.createElement('div');
