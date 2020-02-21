@@ -1,4 +1,4 @@
-## Migration to version 2
+## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
@@ -11,6 +11,6 @@
   component consumer had previously assumed undefined or uninitialized
   behaviour.
 
-## Version 1.0.3
+## 1.0.3
 
 - The background of the component is now a little bit transparent to see elements behind it.
