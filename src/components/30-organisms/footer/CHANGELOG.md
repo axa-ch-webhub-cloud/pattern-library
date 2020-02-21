@@ -1,4 +1,4 @@
-## Migration to version 3
+## 3.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
@@ -12,7 +12,7 @@
   component consumer had previously assumed undefined or uninitialized
   behaviour.
 
-## Migration from version 1.x.y to 2.x.y
+## 2.0.0
 
 - The breaking changes happened only in the `children`, and are listed here:
 
