@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
 import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren';
 import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
@@ -12,6 +13,7 @@ storiesOf('Components|Atoms/Checkbox/React/Demo', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Checkbox - default with label', () => {
     const div = document.createElement('div');
