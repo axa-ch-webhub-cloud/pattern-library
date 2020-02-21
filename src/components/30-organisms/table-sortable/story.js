@@ -85,7 +85,7 @@ storiesOf('Components|Organisms/Table Sortable', module)
       <axa-table-sortable
         innerscroll="${innerscroll}"
         maxheight="${maxheight}"
-        dateSortColumnIndex="3,4"="${dateSortColumnIndex}"
+        dateSortColumnIndex="${dateSortColumnIndex}"
         model="${JSON.stringify(model)}"
       ></axa-table-sortable>
     `;
