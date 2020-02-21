@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/html';
 import { boolean, text, radios, withKnobs } from '@storybook/addon-knobs';
 import AXAInputText from './AXAInputText';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const typeOptions = {
   text: 'text',
@@ -18,6 +19,7 @@ storyInputText.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog,
 });
 
 storyInputText.add('Input Text', () => {
