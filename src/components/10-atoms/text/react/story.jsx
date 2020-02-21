@@ -4,6 +4,7 @@ import { select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 import AXAText from './AXATextReact';
 
 const variantOptions = {
@@ -20,6 +21,7 @@ storiesOf('Components|Atoms/Text/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Text', () => {
     const div = document.createElement('div');
