@@ -153,6 +153,52 @@ test('should sort numbers', async t => {
     .eql('<!----><span>55</span><!---->');
 });
 
+test('should sort dates', async t => {
+  const $el = await Selector('axa-table-sortable');
+  await t.expect($el.exists).ok();
+  const $columnOne = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelectorAll('th')[3];
+  });
+
+  const $columnFourFirstRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+    return firstRow.querySelectorAll('td')[3];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const $columnFourLastRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
+    return firstRow.querySelectorAll('td')[3];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t
+    .expect(await $columnFourFirstRow.innerHTML)
+    .eql('<!----><span>01.01.2020</span><!---->');
+  await t
+    .expect(await $columnFourLastRow.innerHTML)
+    .eql('<!----><span>29.04.2018</span><!---->');
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('descending');
+  await t
+    .expect(await $columnFourFirstRow.innerHTML)
+    .eql('<!----><span>29.04.2018</span><!---->');
+  await t
+    .expect(await $columnFourLastRow.innerHTML)
+    .eql('<!----><span>01.01.2020</span><!---->');
+});
+
 test('should add a fix css class when sorted is clicked', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
