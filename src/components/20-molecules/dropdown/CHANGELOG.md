@@ -7,7 +7,7 @@
 
 - No breaking change. Release just to have same version number as `@axa-ch/datepicker`.
 
-## Migration to version 4
+## 4.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
@@ -20,15 +20,15 @@
   component consumer had previously assumed undefined or uninitialized
   behaviour.
 
-## Migrating from version 2 to 3
+## Version 3.2.3
 
-- The attribute `valid` was renamed to `checkmark` (respectively to the camel-case `checkMark` property used e.g. under React).
-- The behaviour of `error` changed, now being reduced to specifying the error text only, whereas `invalid` controls when the error will be displayed.
+- With `defaulttitle` set and in enhanced mode, the first dropdown item now has index 1 instead of 0 (Reason: the first item of the native select is the defaulttitle and has index 0).
 
 ## Version 3.2.2
 
 - fix colors of selector icon in disabled state
 
-## Version 3.2.3
+## 3.0.0
 
-- With `defaulttitle` set and in enhanced mode, the first dropdown item now has index 1 instead of 0 (Reason: the first item of the native select is the defaulttitle and has index 0).
+- The attribute `valid` was renamed to `checkmark` (respectively to the camel-case `checkMark` property used e.g. under React).
+- The behaviour of `error` changed, now being reduced to specifying the error text only, whereas `invalid` controls when the error will be displayed.
