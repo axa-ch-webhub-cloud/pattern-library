@@ -19,31 +19,13 @@ class AXAText extends NoShadowDOM {
 
   static get properties() {
     return {
-      variant: { type: String },
+      variant: { type: String, reflect: true },
     };
   }
 
   constructor() {
     super();
     applyDefaults(this);
-  }
-
-  render() {
-    const { variant } = this;
-
-    const classes = {
-      'a-text': true,
-      'a-text--size-2': variant.indexOf('size-2') > -1,
-      'a-text--size-3': variant.indexOf('size-3') > -1,
-      'a-text--bold': variant.indexOf('bold') > -1,
-    };
-
-    Object.keys(classes).forEach(_class => {
-      this.classList.remove(_class);
-      if (classes[_class]) {
-        this.classList.add(_class);
-      }
-    });
   }
 }
 
