@@ -86,7 +86,7 @@ storiesOf('Components|Organisms/Table Sortable/Demos', module)
       <axa-table-sortable
         onclick="onCallbackClick(arguments[0])"
         innerscroll="500"
-        dateSortColumnIndex="3,4"
+        datesortcolumnindex="3,4"
         model="${JSON.stringify(model)}"
       >
       </axa-table-sortable>
