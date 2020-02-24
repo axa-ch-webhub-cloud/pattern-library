@@ -112,10 +112,10 @@ export default App;
 
 ## Properties
 
-| Attribute           | Details                                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `innerscroll="500"` | Sets a min width in pixel to the table and if the viewport width is less than _innerscroll_ pixels, adds a horizontal scrollbar. This property obligatorily requires thead and tbody. |
-| `maxheight="500"`   | (`innerscroll` must be set) Sets a min height in pixel for the table body. Adds a vertical scrollbar, if the list height surpasses the _maxheight_. This property obligatorily requires thead and tbody.   |
+| Attribute           | Details                                                                                                                                                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `innerscroll="500"` | Sets a min width in pixel to the table and if the viewport width is smaller than _innerscroll_, adds a horizontal scrollbar. This property obligatorily requires thead and tbody.                    |
+| `maxheight="500"`   | (`innerscroll` must be set) Sets a min height in pixel for the table body. Adds a vertical scrollbar, if the list height surpasses _maxheight_. This property obligatorily requires thead and tbody. |
 
 ## Variants
 
