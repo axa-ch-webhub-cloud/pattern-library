@@ -79,15 +79,18 @@ storiesOf('Components|Organisms/Table Sortable', module)
 
     const innerscroll = text('innerscroll', '');
     const maxheight = text('maxheight', '');
-    const dateSortColumnIndex = text('dateSortColumnIndex', '3,4');
 
     const template = html`
       <axa-table-sortable
         innerscroll="${innerscroll}"
         maxheight="${maxheight}"
-        datesortcolumnindex="${dateSortColumnIndex}"
+        datesortcolumnindex="3,4"
         model="${JSON.stringify(model)}"
       ></axa-table-sortable>
+      <p>
+        Note: The datesortcolumnindex="3,4" is set. It can't be controlled by
+        the knobs.
+      </p>
     `;
 
     render(template, wrapper);
