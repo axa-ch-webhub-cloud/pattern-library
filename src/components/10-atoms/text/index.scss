@@ -1,4 +1,4 @@
-axa-text, axa-text > * {
+axa-text > * {
   @include typo(primary, medium-1);
 
   @include breakpoint($mediaquery-md-up) {
@@ -8,7 +8,7 @@ axa-text, axa-text > * {
   margin: 0;
 }
 
-axa-text[variant="size-2"], axa-text[variant="size-2"] > * {
+axa-text[variant="size-2"] > * {
   @include typo(primary, medium);
 
   @include breakpoint($mediaquery-md-up) {
@@ -16,7 +16,7 @@ axa-text[variant="size-2"], axa-text[variant="size-2"] > * {
   }
 }
 
-axa-text[variant="size-3"], axa-text[variant="size-3"] > * {
+axa-text[variant="size-3"] > * {
   @include typo(primary, small-1);
 
   @include breakpoint($mediaquery-md-up) {
@@ -24,6 +24,6 @@ axa-text[variant="size-3"], axa-text[variant="size-3"] > * {
   }
 }
 
-axa-text[variant="bold"], axa-text[variant="bold"] > *{
+axa-text[variant="bold"] > *{
   @include _font(primary, bold);
 }

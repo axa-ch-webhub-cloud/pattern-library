@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -20,9 +20,7 @@ test('should have correct font definitions for text size 1', async t => {
     document.querySelector('axa-text > *')
   );
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -30,9 +28,7 @@ test('should have correct font definitions for text size 1', async t => {
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('20px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('20px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -52,9 +48,7 @@ test('should have correct font definitions for text size 2', async t => {
     document.querySelector('axa-text[variant="size-2"] > *')
   );
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -62,9 +56,7 @@ test('should have correct font definitions for text size 2', async t => {
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -84,9 +76,7 @@ test('should have correct font definitions for text size 3', async t => {
     document.querySelector('axa-text[variant="size-3"] > *')
   );
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('14px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('14px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -94,9 +84,7 @@ test('should have correct font definitions for text size 3', async t => {
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -116,9 +104,7 @@ test('should have correct font definitions for text size 2 with custom span tag'
     document.querySelector('axa-text[variant="size-2"] > *')
   );
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -126,9 +112,7 @@ test('should have correct font definitions for text size 2 with custom span tag'
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -161,12 +145,10 @@ fixture('Text - Variant')
 
 test('should be mutually exclusive', async t => {
   const $axaElemChild = await Selector(() =>
-    document.querySelector('axa-text[variant="size-1 bold"] > *')
+    document.querySelector('axa-text[variant] > *')
   );
 
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-size'))
-    .eql('20px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('20px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
@@ -176,4 +158,29 @@ test('should be mutually exclusive', async t => {
   await t
     .expect(await $axaElemChild.getStyleProperty('font-weight'))
     .notEql('700');
+});
+
+test('should update pure text dynamically and wrap in <p>', async t => {
+  const $axaElem = await Selector(() =>
+    document.querySelector('axa-text[variant]')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const setText = ClientFunction(text => {
+    const node = document.querySelector('axa-text');
+    node.textContent = text;
+    return text;
+  });
+
+  const oldText = $axaElem.textContent;
+  const newText = 'Hello, world.';
+
+  await setText(newText);
+  await t.expect(await $axaElem.innerText).contains(newText);
+  await t.expect(await $axaElem.innerHTML).contains('<p>');
+
+  await setText(oldText);
+  await t.expect(await $axaElem.innerText).contains(oldText);
+  await t.expect(await $axaElem.innerHTML).contains('<p>');
 });
