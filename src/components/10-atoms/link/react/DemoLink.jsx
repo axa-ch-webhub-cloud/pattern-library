@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AXALink from './AXALinkReact';
 
 const t = (scope, text) => {
-  const language = navigator.language.slice(0, 2);
+  const language = 'de'; // for test determinism; replace with navigator.language.slice(0, 2) in real use...
   const TRANSLATIONS = {
     todo: {
       'Less Filter': { de: 'Weniger Filter' },
