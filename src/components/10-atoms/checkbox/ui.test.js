@@ -172,7 +172,7 @@ test('should update checkbox when its children change', async t => {
   const checkboxChildLabel = await Selector(() =>
     document.querySelector('.second')
   )
-    .find('.a-text--size-3')
+    .find('axa-text[variant="size-3"] > *')
     .addCustomDOMProperties({
       innerHTML: el => el.innerHTML,
     });
