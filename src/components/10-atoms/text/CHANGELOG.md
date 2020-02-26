@@ -1,13 +1,13 @@
-## Version 3.0.3
+## 3.0.3
 
 - bugfix to satisfy user expectation of dynamic child updates being reflected, plus general improvements of
   implementation.
 
-## Version 3.0.0
+## 3.0.0
 
 - The variants are now mutually exclusive, which means that you cannot combine multiple of them. E.g. `<axa-text variant="size-1 bold"></...>`
 
-## Migration to version 2
+## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or

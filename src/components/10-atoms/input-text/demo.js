@@ -2,6 +2,7 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Components|Atoms/Input text/Demos', module)
@@ -9,6 +10,7 @@ storiesOf('Components|Atoms/Input text/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Feature - Input Text works in a form', () => {
     const handleSubmit = ev => {

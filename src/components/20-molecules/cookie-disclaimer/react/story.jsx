@@ -8,6 +8,7 @@ import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Molecules/Cookie disclaimer/React', module)
   .addDecorator(withNoBorder)
@@ -16,6 +17,7 @@ storiesOf('Components|Molecules/Cookie disclaimer/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Cookie disclaimer - default', () => {
     const buttonname = text('buttonname', 'Accept');

@@ -4,12 +4,14 @@ import { html, render } from 'lit-html';
 import './index';
 
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Components|Atoms/Radio/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Radio - default', () => {
     const root = document.createElement('div');

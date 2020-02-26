@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 import DemoButtonClick from './DemoButtonLinkClick';
 
 storiesOf('Components|Atoms/Button Link/React/Demos', module)
@@ -10,6 +11,7 @@ storiesOf('Components|Atoms/Button Link/React/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Feature - Button Link clickable', () => {
     const div = document.createElement('div');

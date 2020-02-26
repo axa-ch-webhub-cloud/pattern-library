@@ -1,4 +1,4 @@
-## Migration to version 2
+## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
@@ -12,7 +12,7 @@
   component consumer had previously assumed undefined or uninitialized
   behaviour.
 
-## Version 1.3.6
+## 1.3.6
 
 - Table header text is now standard gray, not blue
 - Sorting arrows visibility in non-active mode changed

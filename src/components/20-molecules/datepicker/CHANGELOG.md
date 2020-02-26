@@ -19,7 +19,7 @@
   - Now it's possible to set a height (only px values makes sense, not percentage). That feature was broken before.
 - Changed appearance from `inline-block` to `inline` to have possibility to arrange other elements next to datepicker
 
-## 4.0.1 (Migration to version 4)
+## 4.0.1
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or

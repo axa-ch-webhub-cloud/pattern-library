@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoFooterSmall from './FooterSmall';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 
@@ -14,6 +15,7 @@ storiesOf('Components|Molecules/Footer Small/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Footer with callbacks on language', () => {
     const language1 = text('First language', `DE`);

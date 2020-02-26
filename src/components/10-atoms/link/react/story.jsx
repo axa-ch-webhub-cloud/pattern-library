@@ -5,6 +5,7 @@ import React from 'react';
 import { iconList } from '../../icon/icon-list';
 import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
 
@@ -40,6 +41,7 @@ storiesOf('Components|Atoms/Link/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Hyperlink', () => {
     const link = text(

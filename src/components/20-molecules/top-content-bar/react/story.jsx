@@ -5,6 +5,7 @@ import { text, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
@@ -21,6 +22,7 @@ storiesOf('Components|Molecules/Top content bar/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   /* Default */
   .add('Top content bar', () => {

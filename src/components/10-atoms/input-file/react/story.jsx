@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Atoms/Input File/React', module)
   .addDecorator(withKnobs)
@@ -13,6 +14,7 @@ storiesOf('Components|Atoms/Input File/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Input File', () => {
     const inputText = text('text', 'Select a File');

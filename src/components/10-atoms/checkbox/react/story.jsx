@@ -5,12 +5,14 @@ import { storiesOf } from '@storybook/html';
 import { boolean, text, select, withKnobs } from '@storybook/addon-knobs';
 import AXACheckboxReact from './AXACheckboxReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Atoms/Checkbox/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .addDecorator(withKnobs)
   .add('Checkbox - uncontrolled', () => {

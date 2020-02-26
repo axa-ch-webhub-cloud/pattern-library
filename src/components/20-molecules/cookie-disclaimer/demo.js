@@ -1,11 +1,19 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import '../index';
-import withNoBorder from '../../../../../.storybook/addons/no-border';
+import './index';
+import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
 storiesOf('Components|Molecules/Cookie disclaimer/demo', module)
   .addDecorator(story => withNoBorder(story))
   .addDecorator(withNoBorder)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+    changelog: Changelog,
+  })
   .add(
     'Cookie disclaimer - Dynamic (Story is invisible after click on ok button)',
     () => {

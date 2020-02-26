@@ -3,12 +3,14 @@ import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 storiesOf('Components|Atoms/Checkbox/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Feature - Use your own label as a child of the component', () => {
     const template = html`

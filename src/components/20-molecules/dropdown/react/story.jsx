@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 storiesOf('Components|Molecules/Dropdown/React', module)
   .addDecorator(withKnobs)
@@ -12,6 +13,7 @@ storiesOf('Components|Molecules/Dropdown/React', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add('Dropdown as uncontrolled React Component', () => {
     const div = document.createElement('div');

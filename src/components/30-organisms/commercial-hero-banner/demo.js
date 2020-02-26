@@ -7,6 +7,7 @@ import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
   'Components|Organisms/Commercial Hero Banner/Demos',
@@ -18,6 +19,7 @@ storyAXACommercialHeroBanner.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog,
 });
 
 storyAXACommercialHeroBanner.add('With Badges', () => {

@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/html';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import Readme from './README.md';
+import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Components|Atoms/Textarea/Demos', module)
@@ -11,6 +12,7 @@ storiesOf('Components|Atoms/Textarea/Demos', module)
     readme: {
       sidebar: Readme,
     },
+    changelog: Changelog,
   })
   .add(
     'Feature - Textarea with character counter',

@@ -12,6 +12,7 @@ import {
 import AXAButtonLink from './AXAButtonLink';
 import { iconList } from '../../icon/icon-list';
 import Readme from '../README.md';
+import Changelog from '../CHANGELOG.md';
 
 const variantOptions = {
   default: '',
@@ -46,6 +47,7 @@ storyButton.addParameters({
   readme: {
     sidebar: Readme,
   },
+  changelog: Changelog,
 });
 
 storyButton.add('Button Link', () => {

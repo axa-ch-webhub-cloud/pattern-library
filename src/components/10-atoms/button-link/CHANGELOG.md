@@ -2,7 +2,7 @@
 
 - When attribute `disabled` is set and a consumer has a click-listener, the click event is NOT triggered.
 
-## Migration to version 3
+## 3.0.0
 
 - The implementation of the wrapper to make a component React-ready has
   fundamentally changed. In particular, unknown Boolean- or
@@ -15,6 +15,6 @@
   component consumer had previously assumed undefined or uninitialized
   behaviour.
 
-## Migration to version 2
+## 2.0.0
 
 - The `large` property is obsolete, use `size` property instead, like `size="large".
