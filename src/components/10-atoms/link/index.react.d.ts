@@ -17,6 +17,15 @@ type ArrowVariant =
   | 'arrowleft-animated-white'
   | 'arrowright-animated-white';
 
+type Variant =
+  ArrowVariant
+  | 'red'
+  | 'white'
+  | 'hyperlink-white'
+  | 'hyperlink-white-underline'
+  | 'hyperlink-red'
+  | 'hyperlink-red-underline';
+
 type SharedProps = {
   href?: string;
   external?: boolean;
@@ -26,10 +35,10 @@ type SharedProps = {
 };
 
 /**
- * If icon is present, then require variant: IconVariant; otherwise optional variant: ArrowVariant
+ * If icon is present, then require variant: IconVariant; otherwise optional variant: Variant
  */
 type AXALinkProps = SharedProps &
-  ({ variant?: ArrowVariant } | { variant: IconVariant; icon: Icon });
+  ({ variant?: Variant } | { variant: IconVariant; icon: Icon });
 
 declare function createAXALink(
   createElement: typeof React.createElement
