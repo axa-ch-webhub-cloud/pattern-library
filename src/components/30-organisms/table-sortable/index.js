@@ -176,13 +176,8 @@ class AXATableSortable extends LitElement {
         this.dateSortColumnIndex &&
         this.dateColumsCustomSort.includes(index)
       ) {
-        // TODO sort out invalid dates
-        const cleanDateLx = new Date(
-          this.convertDateToDefaultFormat(cleanCellLx)
-        );
-        const cleanDateRx = new Date(
-          this.convertDateToDefaultFormat(cleanCellRx)
-        );
+        const cleanDateLx = new Date(this.convertDateToUSFormat(cleanCellLx));
+        const cleanDateRx = new Date(this.convertDateToUSFormat(cleanCellRx));
 
         if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
           result = sortDate(cleanDateLx, cleanDateRx);
@@ -210,7 +205,7 @@ class AXATableSortable extends LitElement {
     }
   }
 
-  convertDateToDefaultFormat(d) {
+  convertDateToUSFormat(d) {
     const parts = d.split(/[./-]/);
     return new Date(`${parts[1]}-${parts[0]}-${parts[2]}`); // format: MM-DD-YYYY
   }
