@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Readme from '../../../README.md';
-import '../../components/10-atoms/text/lib';
-import '../../components/10-atoms/heading/lib';
+import '../../components/10-atoms/text';
+import '../../components/10-atoms/heading';
 
 const story = storiesOf('Welcome', module);
 story.addParameters({

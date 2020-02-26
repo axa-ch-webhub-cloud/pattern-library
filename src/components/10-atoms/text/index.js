@@ -6,6 +6,10 @@ import defineOnce from '../../../utils/define-once';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
+const TEXT_NODE_TYPE = 3;
+
+// N.B. This custom element is 'open' (no ShadowDOM) so that screen readers can discover
+// p(aragraph) tags inside
 class AXAText extends NoShadowDOM {
   static get tagName() {
     return 'axa-text';
@@ -19,7 +23,7 @@ class AXAText extends NoShadowDOM {
 
   static get properties() {
     return {
-      variant: { type: String },
+      variant: { type: String, reflect: true },
     };
   }
 
@@ -28,37 +32,50 @@ class AXAText extends NoShadowDOM {
     applyDefaults(this);
   }
 
+  watch(mode) {
+    switch (mode) {
+      case 'stop':
+        if (this._observer) {
+          this._observer.disconnect();
+        }
+        break;
+      case 'start':
+        if (!this._observer) {
+          this._observer = new MutationObserver(() => this.render());
+        }
+        this._observer.observe(this, {
+          childList: true,
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
   render() {
-    // eslint-disable-next-line prefer-destructuring
-    const variant = this.variant;
-    const isSize2 = variant.indexOf('size-2');
-    const isSize3 = variant.indexOf('size-3');
-    const isBold = variant.indexOf('bold');
-
-    const classes = ['a-text'];
-    if (isSize2 === 0) {
-      classes.push('a-text--size-2');
-    }
-    if (isSize3 === 0) {
-      classes.push('a-text--size-3');
-    }
-    if (isBold === 0) {
-      classes.push('a-text--bold');
-    }
-
-    const { firstChild, firstElementChild } = this;
-
-    // nodeType === 3 is Text
-    if (firstChild && firstChild.nodeType === 3 && firstElementChild === null) {
-      const p = document.createElement('p');
-      p.innerHTML = firstChild.textContent;
-      p.className = classes.join(' ');
+    // do we have 'pure', non-empty text, e.g. <axa-text>Hello, World</axa-text>?
+    const nonWhitespaceTextNodes = [...this.childNodes].filter(
+      node => node.nodeType === TEXT_NODE_TYPE && node.textContent.trim()
+    );
+    if (nonWhitespaceTextNodes.length) {
+      // yes, wrap it in 1 <p> node to keep screenreaders happy (they offer
+      // paragraph-to-paragraph-jumping keyboard shortcuts that work by detecting <p>s):
+      const paragraph = document.createElement('p');
+      paragraph.textContent = this.textContent;
+      // pause child-update watcher
+      this.watch('stop');
+      // delete the children, now that their content has been harvested
       this.innerHTML = '';
-      this.appendChild(p);
-      // if firstElementChild is there, apply classes on the first element
-    } else if (firstElementChild) {
-      classes.forEach(_class => firstElementChild.classList.add(_class));
+      // add the <p> node
+      this.appendChild(paragraph);
+      // restart child-update watcher
+      this.watch('start');
     }
+  }
+
+  disconnectedCallback() {
+    // remove installed observer
+    this.watch('stop');
   }
 }
 

@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -9,39 +9,29 @@ fixture('Text - basic functionality')
   });
 
 const TAG = 'axa-text';
-const CLASS = '.a-text';
 
 test('should render text', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text')
-  );
-  const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
-  await t.expect($axaElemShadowEl.exists).ok();
 });
 
 test('should have correct font definitions for text size 1', async t => {
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text .a-text')
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text > *')
   );
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('27px');
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('20px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('20px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('30px');
 });
 
@@ -54,26 +44,22 @@ fixture('Text - Size 2')
   });
 
 test('should have correct font definitions for text size 2', async t => {
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text[variant="size-2"] .a-text')
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text[variant="size-2"] > *')
   );
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('24px');
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('27px');
 });
 
@@ -86,26 +72,22 @@ fixture('Text - Size 3')
   });
 
 test('should have correct font definitions for text size 3', async t => {
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text[variant="size-3"] .a-text')
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text[variant="size-3"] > *')
   );
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('14px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('14px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('17px');
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('24px');
 });
 
@@ -118,26 +100,22 @@ fixture('Text - Size 2 with custom tag')
   });
 
 test('should have correct font definitions for text size 2 with custom span tag', async t => {
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text[variant="size-2"] .a-text')
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text[variant="size-2"] > *')
   );
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('24px');
 
   await t.resizeWindow(800, 600);
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('27px');
 });
 
@@ -148,12 +126,12 @@ fixture('Text - Bold')
   });
 
 test('should have correct font weight for text bold', async t => {
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text[variant="bold"] .a-text')
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text[variant="bold"] > *')
   );
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('font-weight'))
+    .expect(await $axaElemChild.getStyleProperty('font-weight'))
     .eql('700');
 });
 
@@ -166,20 +144,43 @@ fixture('Text - Variant')
   });
 
 test('should be mutually exclusive', async t => {
-  const $axaElemShadow = await Selector(() =>
-    document.querySelector('axa-text[variant="size-1 bold"] .a-text')
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text[variant] > *')
   );
 
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('font-size'))
-    .eql('20px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('20px');
 
   await t
-    .expect(await $axaElemShadow.getStyleProperty('line-height'))
+    .expect(await $axaElemChild.getStyleProperty('line-height'))
     .eql('30px');
 
   // 'size-1' attributes should be set, but not the 'bold' ones.
   await t
-    .expect(await $axaElemShadow.getStyleProperty('font-weight'))
+    .expect(await $axaElemChild.getStyleProperty('font-weight'))
     .notEql('700');
+});
+
+test('should update pure text dynamically and wrap in <p>', async t => {
+  const $axaElem = await Selector(() =>
+    document.querySelector('axa-text[variant]')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const setText = ClientFunction(text => {
+    const node = document.querySelector('axa-text');
+    node.textContent = text;
+    return text;
+  });
+
+  const oldText = $axaElem.textContent;
+  const newText = 'Hello, world.';
+
+  await setText(newText);
+  await t.expect(await $axaElem.innerText).contains(newText);
+  await t.expect(await $axaElem.innerHTML).contains('<p>');
+
+  await setText(oldText);
+  await t.expect(await $axaElem.innerText).contains(oldText);
+  await t.expect(await $axaElem.innerHTML).contains('<p>');
 });
