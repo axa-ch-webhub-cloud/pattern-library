@@ -170,6 +170,9 @@ class AXATableSortable extends LitElement {
       } = rowLx;
       const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
       const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
+      const convertComparatorToSortingType = compNumber => {
+        return sortAs === ASC ? compNumber : -compNumber;
+      };
       let result;
 
       if (
@@ -181,7 +184,8 @@ class AXATableSortable extends LitElement {
 
         if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
           result = this.dateComparator(cleanDateLx, cleanDateRx);
-          return sortAs === ASC ? result : -result;
+
+          return convertComparatorToSortingType(result);
         }
       }
 
@@ -191,7 +195,7 @@ class AXATableSortable extends LitElement {
         result = this.strCollator.compare(cleanCellLx, cleanCellRx);
       }
 
-      return sortAs === ASC ? result : -result;
+      return convertComparatorToSortingType(result);
     });
   }
 
