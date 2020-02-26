@@ -180,7 +180,7 @@ class AXATableSortable extends LitElement {
         const cleanDateRx = new Date(this.convertDateToUSFormat(cleanCellRx));
 
         if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
-          result = sortDate(cleanDateLx, cleanDateRx);
+          result = this.dateComperator(cleanDateLx, cleanDateRx);
           return sortAs === ASC ? result : result * -1;
         }
       }
@@ -193,16 +193,17 @@ class AXATableSortable extends LitElement {
 
       return sortAs === ASC ? result : result * -1;
     });
+  }
 
-    function sortDate(a, b) {
-      if (a < b) {
-        return -1;
-      }
-      if (a > b) {
-        return 1;
-      }
-      return 0;
+  // using an extern comperator, because number and string Collators override default comperator of sort()
+  dateComperator(a, b) {
+    if (a < b) {
+      return -1;
     }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
   }
 
   convertDateToUSFormat(d) {
