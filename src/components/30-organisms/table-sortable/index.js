@@ -45,10 +45,7 @@ class AXATableSortable extends LitElement {
       .split(',')
       .map(cellIndex => {
         const parsed = parseInt(cellIndex, 10);
-        if (isNaN(parsed)) {
-          return undefined;
-        }
-        return parsed;
+        return isNaN(parsed) ? undefined : parsed;
       });
   }
 
