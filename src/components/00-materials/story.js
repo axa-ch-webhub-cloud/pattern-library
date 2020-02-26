@@ -99,7 +99,7 @@ storiesOf('Materials', module)
           color: ${colors};
         }
         svg {
-          border: 5px solid green;
+          border: 3px solid green;
         }
         .images > div > svg {
           width: 40px;
@@ -130,6 +130,9 @@ storiesOf('Materials', module)
           align-items: center;
           margin-bottom: 4px;
         }
+        .image-container > svg {
+          margin-right: 5px;
+        }
       </style>
       <h2>
         Note: The green borders reveal the dimensions of the SVGs.
@@ -138,7 +141,7 @@ storiesOf('Materials', module)
         <input
           class="input-field"
           type="text"
-          placeholder="Find icon/image"
+          placeholder="Find icon / image"
           oninput="onCallbackInput(arguments[0])"
         />
       </div>
