@@ -181,22 +181,14 @@ test('should sort dates', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t
-    .expect(await $columnFourFirstRow.innerHTML)
-    .eql('<!----><span>02.05.2013</span><!---->');
-  await t
-    .expect(await $columnFourLastRow.innerHTML)
-    .eql('<!----><span>01.01.2020</span><!---->');
+  await t.expect(await $columnFourFirstRow.textContent).eql('02.05.2013');
+  await t.expect(await $columnFourLastRow.textContent).eql('01.01.2020');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnFourFirstRow.innerHTML)
-    .eql('<!----><span>01.01.2020</span><!---->');
-  await t
-    .expect(await $columnFourLastRow.innerHTML)
-    .eql('<!----><span>02.05.2013</span><!---->');
+  await t.expect(await $columnFourFirstRow.textContent).eql('01.01.2020');
+  await t.expect(await $columnFourLastRow.textContent).eql('02.05.2013');
 });
 
 test('should add a fix css class when sorted is clicked', async t => {
