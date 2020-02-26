@@ -41,7 +41,7 @@ class AXATableSortable extends LitElement {
     });
     this.lastIndex = -1;
 
-    this.dateColumsCustomSort = this.dateSortColumnIndex
+    this.dateColumnsCustomSort = this.dateSortColumnIndex
       .split(',')
       .map(cellIndex => {
         const parsed = parseInt(cellIndex, 10);
@@ -174,14 +174,14 @@ class AXATableSortable extends LitElement {
 
       if (
         this.dateSortColumnIndex &&
-        this.dateColumsCustomSort.includes(index)
+        this.dateColumnsCustomSort.includes(index)
       ) {
         const cleanDateLx = new Date(this.convertDateToUSFormat(cleanCellLx));
         const cleanDateRx = new Date(this.convertDateToUSFormat(cleanCellRx));
 
         if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
           result = this.dateComparator(cleanDateLx, cleanDateRx);
-          return sortAs === ASC ? result : result * -1;
+          return sortAs === ASC ? result : -result;
         }
       }
 
@@ -191,7 +191,7 @@ class AXATableSortable extends LitElement {
         result = this.strCollator.compare(cleanCellLx, cleanCellRx);
       }
 
-      return sortAs === ASC ? result : result * -1;
+      return sortAs === ASC ? result : -result;
     });
   }
 
