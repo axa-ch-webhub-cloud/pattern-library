@@ -334,3 +334,39 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${primWhite}`);
 });
+
+fixture('Link - Reactified, dynamic icons').page(
+  `${host}/iframe.html?id=components-atoms-link-react-demos--feature-link-with-variable-icons`
+);
+
+test('should correctly update icon and text', async t => {
+  const axaLink = await Selector(() => document.querySelector('axa-link'));
+  const axaLinkEmbedded = await Selector(() =>
+    document.querySelector('axa-link').shadowRoot.querySelector('a')
+  );
+
+  const downIconSignature = 'M3.64 6L12 14.017 20.36 6 23 8.383 12 19 1 8.383z';
+  const upIconSignature =
+    'M3.64 19L12 10.983 20.36 19 23 16.617 12 6 1 16.617z';
+
+  const iconSVGPathElement = Selector(() =>
+    document
+      .querySelector('axa-link')
+      .shadowRoot.querySelector('axa-icon')
+      .shadowRoot.querySelector('path')
+  );
+
+  await t
+    .expect(await iconSVGPathElement.getAttribute('d'))
+    .eql(downIconSignature);
+
+  await t.expect(await axaLink.textContent).eql('Mehr Filter');
+
+  await t.click(axaLinkEmbedded);
+
+  await t
+    .expect(await iconSVGPathElement.getAttribute('d'))
+    .eql(upIconSignature);
+
+  await t.expect(await axaLink.textContent).eql('Weniger Filter');
+});
