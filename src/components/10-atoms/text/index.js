@@ -1,4 +1,3 @@
-/* global Text */
 import { css, unsafeCSS } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
 
@@ -6,6 +5,8 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import defineOnce from '../../../utils/define-once';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+
+const TEXT_NODE_TYPE = 3;
 
 // N.B. This custom element is 'open' (no ShadowDOM) so that screen readers can discover
 // p(aragraph) tags inside
@@ -54,7 +55,7 @@ class AXAText extends NoShadowDOM {
   render() {
     // do we have 'pure', non-empty text, e.g. <axa-text>Hello, World</axa-text>?
     const nonWhitespaceTextNodes = [...this.childNodes].filter(
-      node => node instanceof Text && node.textContent.trim()
+      node => node.nodeType === TEXT_NODE_TYPE && node.textContent.trim()
     );
     if (nonWhitespaceTextNodes.length) {
       // yes, wrap it in 1 <p> node to keep screenreaders happy (they offer
