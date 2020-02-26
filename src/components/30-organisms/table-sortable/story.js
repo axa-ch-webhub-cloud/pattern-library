@@ -87,10 +87,11 @@ storiesOf('Components|Organisms/Table Sortable', module)
         datesortcolumnindex="3,4"
         model="${JSON.stringify(model)}"
       ></axa-table-sortable>
-      <p>
+      <br />
+      <axa-text variant="size-3">
         Note: The datesortcolumnindex="3,4" is set. It can't be controlled by
         the knobs.
-      </p>
+      </axa-text>
     `;
 
     render(template, wrapper);
