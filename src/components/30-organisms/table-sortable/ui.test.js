@@ -321,12 +321,8 @@ test('should sort also when innerscroll is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+  await t.expect(await $columnOneFirstRow.textContent).eql('55');
+  await t.expect(await $columnOneLastRow.textContent).eql('18');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
@@ -385,12 +381,8 @@ test('should sort also when maxheight is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+  await t.expect(await $columnOneFirstRow.textContent).eql('55');
+  await t.expect(await $columnOneLastRow.textContent).eql('18');
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
