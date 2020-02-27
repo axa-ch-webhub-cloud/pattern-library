@@ -89,22 +89,14 @@ test('should sort strings', async t => {
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>Petra</span><!---->');
-  await t
-    .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>Chris</span><!---->');
+  await t.expect(await $columnTwoFirstRow.textContent).eql('Petra');
+  await t.expect(await $columnTwoLastRow.textContent).eql('Chris');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
-  await t
-    .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>Chris</span><!---->');
-  await t
-    .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>Petra</span><!---->');
+  await t.expect(await $columnTwoFirstRow.textContent).eql('Chris');
+  await t.expect(await $columnTwoLastRow.textContent).eql('Petra');
 });
 
 test('should sort numbers', async t => {
@@ -135,22 +127,14 @@ test('should sort numbers', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+  await t.expect(await $columnOneFirstRow.textContent).eql('55');
+  await t.expect(await $columnOneLastRow.textContent).eql('18');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
+  await t.expect(await $columnOneFirstRow.textContent).eql('18');
+  await t.expect(await $columnOneLastRow.textContent).eql('55');
 });
 
 test('should sort dates', async t => {
