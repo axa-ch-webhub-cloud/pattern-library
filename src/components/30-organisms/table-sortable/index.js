@@ -196,12 +196,12 @@ class AXATableSortable extends LitElement {
     });
   }
 
-  // sing an extern comparator, because number and string Collators override default comparator of sort()u
-  dateComparator(a, b) {
-    if (a < b) {
+  // using an extern comparator, because number and string Collators override default comparator of sort()
+  dateComparator(dateLx, dateRx) {
+    if (dateLx < dateRx) {
       return -1;
     }
-    if (a > b) {
+    if (dateLx > dateRx) {
       return 1;
     }
     return 0;
