@@ -176,14 +176,11 @@ class AXATableSortable extends LitElement {
         this.dateSortColumnIndex &&
         this.dateColumnsCustomSort.includes(index)
       ) {
-        const cleanDateLx = new Date(this.convertDateToUSFormat(cleanCellLx));
-        const cleanDateRx = new Date(this.convertDateToUSFormat(cleanCellRx));
+        const cleanDateLx = this.convertDateToUnixEpochInteger(cleanCellLx);
+        const cleanDateRx = this.convertDateToUnixEpochInteger(cleanCellRx);
 
-        if (!isNaN(cleanDateLx.getTime()) && !isNaN(cleanDateRx.getTime())) {
-          result = this.dateComparator(cleanDateLx, cleanDateRx);
-
-          return convertComparatorToSortingType(result);
-        }
+        result = this.numCollator.compare(cleanDateLx, cleanDateRx);
+        return convertComparatorToSortingType(result);
       }
 
       if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
@@ -196,20 +193,23 @@ class AXATableSortable extends LitElement {
     });
   }
 
-  // using an extern comparator, because number and string Collators override default comparator of sort()
-  dateComparator(dateLx, dateRx) {
-    if (dateLx < dateRx) {
-      return -1;
-    }
-    if (dateLx > dateRx) {
-      return 1;
-    }
-    return 0;
-  }
-
-  convertDateToUSFormat(d) {
+  convertDateToUnixEpochInteger(d) {
     const parts = d.split(/[./-]/);
-    return new Date(`${parts[1]}-${parts[0]}-${parts[2]}`); // format: MM-DD-YYYY
+
+    const addLeadingZeroes = (rawNumber, numDigits) => {
+      const number = Math.abs(parseInt(rawNumber, 10)); // coerce number to integer >= 0
+      const rawNumDigits = number.toString().length;
+      const numMissingZeroes = Math.max(0, numDigits - rawNumDigits);
+      const leadingZeroesString = (10 ** numMissingZeroes).toString().slice(1); // slice(1): cut off leading '1'
+      return `${leadingZeroesString}${number}`;
+    };
+
+    return Date.parse(
+      `${addLeadingZeroes(parts[2], 4)}-${addLeadingZeroes(
+        parts[1],
+        2
+      )}-${addLeadingZeroes(parts[0], 2)}T00:00:00`
+    );
   }
 
   shouldUpdate(...args) {
