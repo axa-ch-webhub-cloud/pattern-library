@@ -6,7 +6,6 @@ import defineOnce from '../../../utils/define-once';
 import fireCustomEvent from '../../../utils/custom-event';
 import { applyDefaults } from '../../../utils/with-react';
 import tableCss from './index.scss';
-import { string } from 'prop-types';
 
 const ASC = 'ascending';
 const DESC = 'descending';
@@ -128,16 +127,13 @@ class AXATableSortable extends LitElement {
   sortByIndex(index, actualSortAs) {
     const sortAs = actualSortAs === ASC ? DESC : ASC; // TODO why? in my opinion aria is set to early
     const tmpModel = { ...this.model };
-    const { tbody, tfoot, thead } = this.model;
+    const { tbody, tfoot } = this.model;
+    const hasCustomSortingAlgo = !!tmpModel.thead[index].custom;
 
-    if (typeof this.customSort === 'function') {
-      this.customSort();
-    }
-
-    tmpModel.tbody = this.sort(tbody, index, sortAs);
+    tmpModel.tbody = this.sort(tbody, index, sortAs, hasCustomSortingAlgo);
 
     if (tfoot && tfoot[0]) {
-      tmpModel.tfoot = this.sort(tfoot, index, sortAs);
+      tmpModel.tfoot = this.sort(tfoot, index, sortAs, hasCustomSortingAlgo);
     } else {
       tmpModel.tfoot = [[]];
     }
@@ -154,7 +150,7 @@ class AXATableSortable extends LitElement {
   // time complexity of .sort is O(n^2), and space complexity is O(1).
   // For longer arrays time complexity is Θ(n log(n)) (average case),
   // and space complexity is O(log(n))
-  sort(arr, index, sortAs) {
+  sort(arr, index, sortAs, hasCustomSortingAlgo) {
     return arr.sort((rowLx, rowRx) => {
       const {
         [index]: { html: cellRx },
@@ -166,9 +162,8 @@ class AXATableSortable extends LitElement {
       const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
       let result;
 
-      if (this.dateSortColumnIndex) {
+      if (hasCustomSortingAlgo) {
         // TODO call function in thead from object
-        // result = customSortingAlgo(cleanCellLx, cleanCellRx);
         result = blabla(cleanCellLx, cleanCellRx);
         // eslint-disable-next-line no-restricted-globals
       } else if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
