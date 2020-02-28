@@ -4,38 +4,12 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-// const ASC = 'ascending';
-const ASC = 'ASC';
-
 const model = {
   thead: [
     { html: 'Age', sort: 'ASC' },
     { html: 'Name', sort: 'ASC' },
     { html: 'City', sort: 'DESC' },
-    {
-      html: 'Date',
-      sort: 'DESC',
-      custom: {
-        foo: (a, b) => {
-          const dateA = convertDate(a);
-          const dateB = convertDate(b);
-
-          if (dateA < dateB) {
-            return -1;
-          }
-          if (dateA > dateB) {
-            return 1;
-          }
-
-          return 0;
-
-          function convertDate(d) {
-            const parts = d.split('.');
-            return +(parts[2] + parts[1] + parts[0]);
-          }
-        },
-      },
-    },
+    { html: 'Date', sort: 'DESC' },
     { html: 'Department' },
   ],
   tbody: [
@@ -105,6 +79,7 @@ storiesOf('Components|Organisms/Table Sortable/Demos', module)
       <axa-table-sortable
         onclick="onCallbackClick(arguments[0])"
         innerscroll="500"
+        dateSortColumnIndex="3"
         model="${JSON.stringify(model)}"
       >
       </axa-table-sortable>
