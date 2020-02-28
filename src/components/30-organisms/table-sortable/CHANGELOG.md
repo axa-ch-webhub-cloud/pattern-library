@@ -1,3 +1,7 @@
+## 3.0.0
+
+- New attribute `dateSortColumnIndex` is now supported. Use it to set date columns to sort them properly.
+
 ## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has
