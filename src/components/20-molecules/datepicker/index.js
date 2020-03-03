@@ -204,11 +204,7 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   formatDate(date) {
-    return date.toLocaleString(this.locale, {
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-    });
+    return parseLocalisedDateIfValid(this.locale, date);
   }
 
   constructor() {
