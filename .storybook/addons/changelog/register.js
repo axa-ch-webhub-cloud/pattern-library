@@ -34,7 +34,8 @@ addonAPI.register(ADDON_ID, api => {
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
-    title,
-    render,
+    title: title,
+    render: render,
+    paramKey: 'changelog'
   });
 });
