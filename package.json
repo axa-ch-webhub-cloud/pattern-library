@@ -79,7 +79,7 @@
     "outdent": "^0.7.0",
     "postcss": "^7.0.26",
     "postcss-strip-font-face": "^1.0.0",
-    "prettier": "1.17.0",
+    "prettier": "1.19.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "rimraf": "^2.6.3",
