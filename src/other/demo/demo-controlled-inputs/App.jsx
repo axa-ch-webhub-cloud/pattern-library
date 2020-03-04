@@ -229,9 +229,7 @@ class App extends Component {
               >
                 {OPTIONS.map(makeReactOption(this))}
               </select>
-              <div>{`Current dropdown choice: ${
-                this.state.dropdownValue
-              }`}</div>
+              <div>{`Current dropdown choice: ${this.state.dropdownValue}`}</div>
             </article>
             <article className="lit-element">
               <h2>React controlled lit-element dropdown</h2>
@@ -241,9 +239,7 @@ class App extends Component {
                 value={this.state.dropdownValue}
                 onChange={handleDropdownChange(this)}
               />
-              <div>{`Current lit-element dropdown choice: ${
-                this.state.dropdownValue
-              }`}</div>
+              <div>{`Current lit-element dropdown choice: ${this.state.dropdownValue}`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled checkbox</h2>
@@ -262,9 +258,7 @@ class App extends Component {
                 name="lit-checkbox"
                 onChange={handleCheckboxChange(this)}
               />
-              <div>{`Current lit-element checkbox state: ${
-                this.state.checkboxValue
-              }`}</div>
+              <div>{`Current lit-element checkbox state: ${this.state.checkboxValue}`}</div>
             </article>
             <article className="pure-react">
               <h2>pure-React controlled textarea input</h2>

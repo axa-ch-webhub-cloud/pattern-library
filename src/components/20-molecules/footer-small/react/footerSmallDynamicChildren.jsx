@@ -12,7 +12,10 @@ const languageOptions = [
 ];
 
 const LEGALS = [
-  [{ name: 'Nutzungshinweise', url: '#' }, { name: 'Datenschutz', url: '#' }],
+  [
+    { name: 'Nutzungshinweise', url: '#' },
+    { name: 'Datenschutz', url: '#' },
+  ],
   [
     { name: 'Conditions of use', url: '#' },
     { name: 'Data protection', url: '#' },

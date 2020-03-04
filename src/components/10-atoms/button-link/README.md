@@ -31,7 +31,7 @@ export default AXAButtonLinkReact;
 ```
 
 ```js
-<AXAButtonLinkReact href='#axa' motionOff onClick={handler}>
+<AXAButtonLinkReact href="#axa" motionOff onClick={handler}>
   I am a Button Link
 </AxaButtonReact>
 ```

@@ -31,8 +31,13 @@ export default AXADatepickerReact;
 ```
 
 ```js
-<AXADatepickerReact locale="de-CH" year={2020} month={1} day={1} onDateChange={date => console.log(`date changed ${date}`)}>
-</AxaDatepickerReact>
+<AXADatepickerReact
+  locale="de-CH"
+  year={2020}
+  month={1}
+  day={1}
+  onDateChange={date => console.log(`date changed ${date}`)}
+></AxaDatepickerReact>
 ```
 
 [Controlled-Component](https://reactjs.org/docs/forms.html#the-select-tag) behaviour is supported when the `inputfield` property is set.

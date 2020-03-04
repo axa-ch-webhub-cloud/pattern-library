@@ -227,9 +227,9 @@ class AXADatepicker extends NoShadowDOM {
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
   performUpdate() {
-    new Promise(resolve => window.requestAnimationFrame(() => resolve())).then(
-      () => super.performUpdate()
-    );
+    new Promise(resolve =>
+      window.requestAnimationFrame(() => resolve())
+    ).then(() => super.performUpdate());
   }
 
   shouldUpdate(changedProperties) {
