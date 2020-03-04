@@ -13,8 +13,13 @@ import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
+// eslint-disable-next-line import/first
+import { withPreview, previewTemplate, DEFAULT_VANILLA_CODESANDBOX } from "storybook-addon-preview";
+
+
 const storyButton = storiesOf('Components|Atoms/Button', module);
 storyButton.addDecorator(withKnobs);
+storyButton.addDecorator(withPreview);
 storyButton.addParameters({
   readme: {
     sidebar: Readme,
@@ -84,4 +89,18 @@ storyButton.add('Button', () => {
   `;
   render(template, wrapper);
   return wrapper;
+}, {
+  preview: [
+    {
+      tab: "Vanilla",
+      template: previewTemplate`
+const inst = new Instance({
+    opt1: ${"text"},
+    num1:,
+});
+            `,
+      language: "js",
+      copy: true,
+    },
+  ]
 });

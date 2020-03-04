@@ -3,6 +3,7 @@ import './addons/changelog/register.js';
 import '@storybook/addon-knobs/register';
 import { STORIES_CONFIGURED, STORY_MISSING } from '@storybook/core-events';
 import addonAPI from '@storybook/addons';
+import "storybook-addon-preview/register";
 
 addonAPI.register('axa-ch/defaultpage', storybookAPI => {
   storybookAPI.on(STORIES_CONFIGURED, (kind, story) => {
