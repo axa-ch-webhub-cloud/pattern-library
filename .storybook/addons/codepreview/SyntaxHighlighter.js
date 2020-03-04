@@ -22,10 +22,10 @@ const Wrapper = styled.div(
 );
 
 const Pre = styled.pre(({ theme, padded }) => ({
-  display: 'flex !important',
+  display: 'flex',
   justifyContent: 'flex-start',
   margin: 0,
-  padding: padded ? `${theme.layoutMargin}px !important` : 0,
+  padding: padded ? `${theme.layoutMargin}px` : 0,
   tabSize: '2',
 }));
 
@@ -35,14 +35,14 @@ const Code = styled.code`
   opacity: 1;
   counter-reset: line;
 
-  .code-line {
+  .storybook-addon-codepreview-code-line {
     counter-increment: line;
     position: relative;
     display: block;
     margin-left: 1.5rem;
   }
 
-  .code-line:before {
+  .storybook-addon-codepreview-code-line:before {
     content: counter(line);
     position: absolute;
     margin-left: -1.5rem;
@@ -104,7 +104,7 @@ export default class SyntaxHighlighter extends Component {
           CodeTag={Code}
           showLineNumbers={false}
           wrapLines={true}
-          lineProps={{ className: 'code-line' }}
+          lineProps={{ className: 'storybook-addon-codepreview-code-line' }}
           {...rest}
         >
           {children.trim()}
