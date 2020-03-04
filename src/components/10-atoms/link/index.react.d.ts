@@ -4,7 +4,7 @@ import { Icon } from '@axa-ch/icon/lib/index.d';
 type IconVariant = 'icon' | 'icon-red' | 'icon-white';
 
 type ArrowVariant =
-  'arrowright'
+  | 'arrowright'
   | 'arrowleft'
   | 'arrowleft-animated'
   | 'arrowright-animated'
@@ -18,7 +18,7 @@ type ArrowVariant =
   | 'arrowright-animated-white';
 
 type Variant =
-  ArrowVariant
+  | ArrowVariant
   | 'red'
   | 'white'
   | 'hyperlink-white'

@@ -15,7 +15,7 @@ storiesOf('Components|Molecules/Datepicker/React/Demos', module)
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Controlled-component React-ified Datepicker with inputfield', () => {
     const div = document.createElement('div');

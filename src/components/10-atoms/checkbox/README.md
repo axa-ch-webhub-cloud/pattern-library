@@ -73,15 +73,15 @@ The string-valued `value` of the checkbox for purposes of form submission.
 
 ### label
 
-The string-valued `label` provides the label text. Markup isn't allowed! When no label is set and the component hasn't any children no HMTL label will be rendered due to semantics. 
+The string-valued `label` provides the label text. Markup isn't allowed! When no label is set and the component hasn't any children no HMTL label will be rendered due to semantics.
 A label can also be passed as a children. Pay attention that `<label>` can't be used, beacause the patterns-library provides a label itself.
 
 ### variant
 
-| Attribute             | Details                                       |
-| --------------------- | --------------------------------------------- |
-| `variant="square"`    | Provides a filled square in the icon (default)|
-| `variant="checkmark"` | Provides a checkmark in the icon              |
+| Attribute             | Details                                        |
+| --------------------- | ---------------------------------------------- |
+| `variant="square"`    | Provides a filled square in the icon (default) |
+| `variant="checkmark"` | Provides a checkmark in the icon               |
 
 ### refId
 

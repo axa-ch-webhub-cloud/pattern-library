@@ -3,8 +3,8 @@ import React from 'react';
 type AXADatepickerChangeEvent = {
   target: {
     value: string;
-  }
-}
+  };
+};
 
 export interface AXADatepickerProps {
   dataTestId?: string;
