@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { LitElement, css, unsafeCSS, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -39,6 +40,13 @@ class AXATableSortable extends LitElement {
       sensitivity: 'variant',
     });
     this.lastIndex = -1;
+
+    this.dateColumnsCustomSort = this.dateSortColumnIndex
+      .split(',')
+      .map(cellIndex => {
+        const parsed = parseInt(cellIndex, 10);
+        return isNaN(parsed) ? undefined : parsed;
+      });
   }
 
   static get tagName() {
@@ -56,6 +64,7 @@ class AXATableSortable extends LitElement {
       model: { type: Object, defaultValue: { ...this.defaultModel } },
       innerscroll: { type: Number },
       maxheight: { type: Number },
+      dateSortColumnIndex: { type: String },
       onClick: { type: Function, attribute: false },
     };
   }
@@ -129,6 +138,7 @@ class AXATableSortable extends LitElement {
     const { tbody, tfoot } = this.model;
 
     tmpModel.tbody = this.sort(tbody, index, sortAs);
+
     if (tfoot && tfoot[0]) {
       tmpModel.tfoot = this.sort(tfoot, index, sortAs);
     } else {
@@ -157,15 +167,49 @@ class AXATableSortable extends LitElement {
       } = rowLx;
       const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
       const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
+      const convertComparatorToSortingType = compNumber => {
+        return sortAs === ASC ? compNumber : -compNumber;
+      };
       let result;
-      // eslint-disable-next-line no-restricted-globals
+
+      if (
+        this.dateSortColumnIndex &&
+        this.dateColumnsCustomSort.includes(index)
+      ) {
+        const cleanDateLx = this.convertDateToUnixEpochInteger(cleanCellLx);
+        const cleanDateRx = this.convertDateToUnixEpochInteger(cleanCellRx);
+
+        result = this.numCollator.compare(cleanDateLx, cleanDateRx);
+        return convertComparatorToSortingType(result);
+      }
+
       if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
         result = this.numCollator.compare(cleanCellLx, cleanCellRx);
       } else {
         result = this.strCollator.compare(cleanCellLx, cleanCellRx);
       }
-      return sortAs === ASC ? result : ~result + 1;
+
+      return convertComparatorToSortingType(result);
     });
+  }
+
+  convertDateToUnixEpochInteger(d) {
+    const parts = d.split(/[./-]/);
+
+    const addLeadingZeroes = (rawNumber, numDigits) => {
+      const number = Math.abs(parseInt(rawNumber, 10)); // coerce number to integer >= 0
+      const rawNumDigits = number.toString().length;
+      const numMissingZeroes = Math.max(0, numDigits - rawNumDigits);
+      const leadingZeroesString = (10 ** numMissingZeroes).toString().slice(1); // slice(1): cut off leading '1'
+      return `${leadingZeroesString}${number}`;
+    };
+
+    return Date.parse(
+      `${addLeadingZeroes(parts[2], 4)}-${addLeadingZeroes(
+        parts[1],
+        2
+      )}-${addLeadingZeroes(parts[0], 2)}T00:00:00`
+    );
   }
 
   shouldUpdate(...args) {

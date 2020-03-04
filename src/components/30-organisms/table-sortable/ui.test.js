@@ -56,7 +56,7 @@ test('should have aria none when passing nothing in model', async t => {
   await t.expect($el.exists).ok();
   const $columnFour = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelectorAll('th')[3];
+    return sRoot.querySelectorAll('th')[5];
   });
   await t.expect($columnFour.getAttribute('aria-sort')).eql('none');
 });
@@ -89,22 +89,35 @@ test('should sort strings', async t => {
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('descending');
+  await t.expect(await $columnTwoFirstRow.textContent).eql('Petra');
+  await t.expect(await $columnTwoLastRow.textContent).eql('Chris');
+  await t
+    .click($columnTwo)
+    .expect($columnTwo.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t.expect(await $columnTwoFirstRow.textContent).eql('Chris');
+  await t.expect(await $columnTwoLastRow.textContent).eql('Petra');
+
+  await t
+    .click($columnTwo)
+    .expect($columnTwo.getAttribute('aria-sort'))
+    .eql('descending');
   await t
     .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>Petra</span><!---->');
+    .contains('<span>Petra</span>');
   await t
     .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>Chris</span><!---->');
+    .contains('<span>Chris</span>');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
   await t
     .expect(await $columnTwoFirstRow.innerHTML)
-    .eql('<!----><span>Chris</span><!---->');
+    .contains('<span>Chris</span>');
   await t
     .expect(await $columnTwoLastRow.innerHTML)
-    .eql('<!----><span>Petra</span><!---->');
+    .contains('<span>Petra</span>');
 });
 
 test('should sort numbers', async t => {
@@ -135,22 +148,90 @@ test('should sort numbers', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
+  await t.expect(await $columnOneFirstRow.textContent).eql('55');
+  await t.expect(await $columnOneLastRow.textContent).eql('18');
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t.expect(await $columnOneFirstRow.textContent).eql('18');
+  await t.expect(await $columnOneLastRow.textContent).eql('55');
+
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('descending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+    .contains('<span>55</span>');
+  await t.expect(await $columnOneLastRow.innerHTML).contains('<span>18</span>');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
   await t
     .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+    .contains('<span>18</span>');
+  await t.expect(await $columnOneLastRow.innerHTML).contains('<span>55</span>');
+});
+
+test('should sort dates', async t => {
+  const $el = await Selector('axa-table-sortable');
+  await t.expect($el.exists).ok();
+  const $columnOne = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelectorAll('th')[3];
+  });
+
+  const $columnFourFirstRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+    return firstRow.querySelectorAll('td')[3];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const $columnFourLastRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
+    return firstRow.querySelectorAll('td')[3];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
   await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t.expect(await $columnFourFirstRow.textContent).eql('02.05.2013');
+  await t.expect(await $columnFourLastRow.textContent).eql('01.01.2020');
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('descending');
+  await t.expect(await $columnFourFirstRow.textContent).eql('01.01.2020');
+  await t.expect(await $columnFourLastRow.textContent).eql('02.05.2013');
+
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t
+    .expect(await $columnFourFirstRow.innerHTML)
+    .contains('<span>02.05.2013</span>');
+  await t
+    .expect(await $columnFourLastRow.innerHTML)
+    .contains('<span>01.01.2020</span>');
+  await t
+    .click($columnOne)
+    .expect($columnOne.getAttribute('aria-sort'))
+    .eql('descending');
+  await t
+    .expect(await $columnFourFirstRow.innerHTML)
+    .contains('<span>01.01.2020</span>');
+  await t
+    .expect(await $columnFourLastRow.innerHTML)
+    .contains('<span>02.05.2013</span>');
 });
 
 test('should add a fix css class when sorted is clicked', async t => {
@@ -248,7 +329,7 @@ test('should not render arrows', async t => {
   const $columnFourHeaderRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
     const firstRow = sRoot.querySelectorAll('thead tr')[0];
-    return firstRow.querySelectorAll('th')[3];
+    return firstRow.querySelectorAll('th')[5];
   });
 
   const $arrowWrapper = await $columnFourHeaderRow.find(
@@ -259,7 +340,7 @@ test('should not render arrows', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=500`
+  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=650`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -299,12 +380,8 @@ test('should sort also when innerscroll is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+  await t.expect(await $columnOneFirstRow.textContent).eql('55');
+  await t.expect(await $columnOneLastRow.textContent).eql('18');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
@@ -318,7 +395,7 @@ test('should sort also when innerscroll is set ', async t => {
 });
 
 fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=500&knob-maxheight=160`
+  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
 );
 
 test('should sort also when maxheight is set ', async t => {
@@ -363,12 +440,8 @@ test('should sort also when maxheight is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .eql('<!----><span>55</span><!---->');
-  await t
-    .expect(await $columnOneLastRow.innerHTML)
-    .eql('<!----><span>18</span><!---->');
+  await t.expect(await $columnOneFirstRow.textContent).eql('55');
+  await t.expect(await $columnOneLastRow.textContent).eql('18');
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
@@ -404,6 +477,6 @@ test('should react to click on row', async t => {
   await t
     .expect(text.replace(/\s+/g, ' '))
     .eql(
-      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","A"]'
+      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
     );
 });

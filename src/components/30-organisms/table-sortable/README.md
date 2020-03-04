@@ -112,11 +112,12 @@ export default App;
 
 ## Properties
 
-| Attribute           | Details                                                                                                                                                                                              |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `innerscroll="500"` | Sets a min width in pixel to the table and if the viewport width is smaller than _innerscroll_, adds a horizontal scrollbar. This property obligatorily requires thead and tbody.                    |
-| `maxheight="500"`   | (`innerscroll` must be set) Sets a min height in pixel for the table body. Adds a vertical scrollbar, if the list height surpasses _maxheight_. This property obligatorily requires thead and tbody. |
-| `model="{}"`        | Sets the model from which the component should render. See the example below.                                                                                                                        |
+| Attribute                   | Details                                                                                                                                                                                                                                                                                                                              |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `innerscroll="500"`         | Sets a min width in pixel to the table and if the viewport width is smaller than _innerscroll_, adds a horizontal scrollbar. This property obligatorily requires thead and tbody.                                                                                                                                                    |
+| `maxheight="500"`           | (`innerscroll` must be set) Sets a min height in pixel for the table body. Adds a vertical scrollbar, if the list height surpasses _maxheight_. This property obligatorily requires thead and tbody.                                                                                                                                 |
+| `model="{}"`                | Sets the model from which the component should render. See the example below.                                                                                                                                                                                                                                                        |
+| `datesortcolumnindex="3,4"` | Sets the index of columns, which should be sorted as a date. Dates in the model _must_ be in the format `dd-mm-yyyy`, `dd/mm/yyyy` or `dd.mm.yyyy`. Leading zeros are optional, but pay attention that a 2 digit year will be treated as following: `1.1.20` -> `01.01.0020`. Multiple indices may be specified, separated by comma. |
 
 Model example:
 
