@@ -45,6 +45,7 @@ storiesOf('Materials', module)
       sidebar: Readme,
     },
     changelog: Changelog,
+    codepreview: { disabled: true },
   })
   .add('Icons and Images', () => {
     const backgrounds = select(

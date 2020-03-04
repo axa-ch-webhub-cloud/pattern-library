@@ -9,6 +9,9 @@ story.addParameters({
   readme: {
     sidebar: Readme,
   },
+  knobs: { disabled: true },
+  changelog: { disabled: true },
+  codepreview: { disabled: true },
 });
 
 story.add('to Pattern Library', () => {
