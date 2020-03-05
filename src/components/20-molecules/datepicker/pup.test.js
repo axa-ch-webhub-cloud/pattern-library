@@ -44,7 +44,7 @@ const assertMonth = async () => {
 };
 
 describe('Datepicker', () => {
-  test.only('should select February the 13th and then the 14th ', async () => {
+  test('should select February the 13th and then the 14th ', async () => {
     await page.goto(
       'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
       { waitUntil: 'networkidle0' }
@@ -52,68 +52,111 @@ describe('Datepicker', () => {
     await chooseMonth();
     await assertMonth();
 
-    await page.click(
-      'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
-    );
-    const classlist = await page.evaluate(
-      () =>
-        document.querySelector(
-          'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
-        ).className
-    );
-    console.log(classlist);
-
-    await new Promise(resolve => {
-      setTimeout(() => {
-        const a = page.evaluate(() => [
-          ...document.querySelector(
-            'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
-          ).classList,
-        ]);
-        a.then(b => {
-          console.log(b);
-          resolve();
-        });
-      }, 1000);
-    });
-
-    const isSelectedDay = await page.evaluate(() =>
-      [
-        ...document.querySelector(
-          'button[class*="m-datepicker__calendar-current-month"][data-day="22"]'
-        ).classList,
-      ].includes('m-datepicker__calendar-selected-day')
-    );
-    console.log(isSelectedDay);
-
-    expect(isSelectedDay).toBe(true);
-    await page.click(
-      'button[class*="m-datepicker__calendar-current-month"][data-day="14"]'
-    );
-    const isOldDayStillSelected = await page.evaluate(() =>
+    await page.evaluate(() => {
       document
         .querySelector(
           'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
         )
-        .classList.contains('m-datepicker__calendar-selected-day')
+        .click();
+    });
+    // await new Promise(resolve => {
+    //   setTimeout(async () => {
+    //     await page.click(
+    //       'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+    //     );
+    //     await page.click(
+    //       'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+    //     );
+    //     await page.click(
+    //       'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+    //     );
+    //     await page.click(
+    //       'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+    //     );
+    //     resolve();
+    //   }, 5000);
+    // });
+
+    // await new Promise(resolve => {
+    //   setTimeout(async () => {
+    //     await page.evaluate(() => {
+    //       // debugger;
+    //       const a = [
+    //         ...document.querySelector(
+    //           'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+    //         ).classList,
+    //       ];
+    //       console.log('hans', a);
+    //       return a;
+    //     });
+    //     resolve();
+    //   }, 5000);
+    // });
+    console.log('i run after bee');
+
+    const isSelectedDay = await page.evaluate(() => {
+      return document.querySelector(
+        'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+      ).classList;
+    });
+
+    console.log(isSelectedDay);
+    console.log(
+      'is this the value?',
+      Object.values(isSelectedDay).includes(
+        'm-datepicker__calendar-selected-day'
+      )
     );
-    expect(isOldDayStillSelected).toBe(false);
-    const isNewDaySelected = await page.evaluate(() =>
+
+    expect(
+      Object.values(isSelectedDay).includes(
+        'm-datepicker__calendar-selected-day'
+      )
+    ).toBe(true);
+
+    const isNowDeselectedDay = await page.evaluate(() =>
+      Object.values(
+        document.querySelector(
+          'button[class*="m-datepicker__calendar-current-month"][data-day="22"]'
+        ).classList
+      ).includes('m-datepicker__calendar-selected-day')
+    );
+    console.log('desel', isNowDeselectedDay);
+
+    expect(isNowDeselectedDay).toBe(false);
+
+    await page.evaluate(() => {
       document
         .querySelector(
           'button[class*="m-datepicker__calendar-current-month"][data-day="14"]'
         )
-        .classList.contains('m-datepicker__calendar-selected-day')
+        .click();
+    });
+    const isOldDayStillSelected = await page.evaluate(() =>
+      Object.values(
+        document.querySelector(
+          'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
+        ).classList
+      ).includes('m-datepicker__calendar-selected-day')
+    );
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await page.evaluate(() =>
+      Object.values(
+        document.querySelector(
+          'button[class*="m-datepicker__calendar-current-month"][data-day="14"]'
+        ).classList
+      ).includes('m-datepicker__calendar-selected-day')
     );
     expect(isNewDaySelected).toBe(true);
 
-    const yearValue = await page.evaluate(
-      () =>
-        document.querySelector(
-          '.js-datepicker__dropdown-year .js-dropdown__title'
-        ).textContent
-    );
-    expect(yearValue).toBe('2020');
+    // const yearValue = await page.evaluate(
+    //   () =>
+    //     document.querySelector(
+    //       '.js-datepicker__dropdown-year .js-dropdown__title'
+    //     ).textContent
+    // );
+    // expect(yearValue).toBe('2020');
   });
 
   test('find some tag inside shadow root of hero banner', async () => {
