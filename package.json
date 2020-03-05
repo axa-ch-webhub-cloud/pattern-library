@@ -25,7 +25,7 @@
     "test-ui-headless": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js",
     "deploy-branch": "npm run build-storybook && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
-    "test:e2e:browserstack": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 BROWSERSTACK_USERNAME=danielb17 BROWSERSTACK_ACCESS_KEY= testcafe 'browserstack:ie@11:Windows 10,browserstack:chrome@64.0:OS X High Sierra' ./**/ui.test.js"
+    "test:e2e:browserstack": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 BROWSERSTACK_USERNAME=danielb17 BROWSERSTACK_ACCESS_KEY= testcafe 'browserstack:ie@11:Windows 10,browserstack:chrome@64.0:OS X High Sierra' ./**/ui.test.js",
     "link-components": "sh scripts/npm-link-components.sh"
   },
   "dependencies": {
