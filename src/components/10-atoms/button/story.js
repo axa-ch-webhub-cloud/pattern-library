@@ -92,8 +92,19 @@ storyButton.add('Button', () => {
 }, {
   preview: [
     {
-      tab: "Vanilla",
+      tab: "with previewTemplate",
       template: previewTemplate`
+const inst = new Instance({
+    opt1: ${"text"},
+    num1:,
+});
+            `,
+      language: "js",
+      copy: true,
+    },
+    {
+      tab: "without",
+      template: `
 const inst = new Instance({
     opt1: ${"text"},
     num1:,
