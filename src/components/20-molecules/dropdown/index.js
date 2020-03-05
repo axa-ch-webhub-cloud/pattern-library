@@ -117,7 +117,7 @@ class AXADropdown extends NoShadowDOM {
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
-      useCase:  { type: String, reflect: true, noAccessor: true },
+      useCase: { type: String, reflect: true, noAccessor: true },
       isReact: { type: Boolean },
     };
   }

@@ -12,9 +12,7 @@ const DemoButtonForm = () => {
         <p>
           I&apos;m type submit Button in a form, on click I send you to nirvana
         </p>
-        <AXAButton type="submit">
-          Click me, I send you to Nirvana
-        </AXAButton>
+        <AXAButton type="submit">Click me, I send you to Nirvana</AXAButton>
       </form>
 
       <form onSubmit={handleSubmit}>

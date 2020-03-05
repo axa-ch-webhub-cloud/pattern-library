@@ -10,7 +10,7 @@ storiesOf('Components|Molecules/Datepicker/Demos', module)
     readme: {
       sidebar: Readme,
     },
-    changelog: Changelog
+    changelog: Changelog,
   })
   .add('Feature - Datepicker in a form', () => {
     const handleSubmit = event => {

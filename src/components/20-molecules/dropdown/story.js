@@ -88,16 +88,14 @@ storyDropdown.add('Dropdown items delayed and numeric values', () => {
   `;
 
   setTimeout(() => {
-    document
-      .querySelector('axa-dropdown')
-      .setAttribute(
-        'items',
-        JSON.stringify([
-          { name: 'Item 1', value: '', selected: true },
-          { name: 'Item 2', value: 1 },
-          { name: 'Item 3', value: 2 },
-        ])
-      );
+    document.querySelector('axa-dropdown').setAttribute(
+      'items',
+      JSON.stringify([
+        { name: 'Item 1', value: '', selected: true },
+        { name: 'Item 2', value: 1 },
+        { name: 'Item 3', value: 2 },
+      ])
+    );
   }, 2000);
 
   render(template, wrapper);

@@ -206,18 +206,14 @@ This approach will not redirect the user automatically, if he/she clicks on a li
 
       footerSmall.addEventListener('axa-language-click', languageEvent => {
         const languageResult = document.getElementById('active-language');
-        languageResult.innerText = `Language - Index Clicked: ${
-          languageEvent.detail
-        }`;
+        languageResult.innerText = `Language - Index Clicked: ${languageEvent.detail}`;
       });
 
       footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
         const clickedDisclaimers = document.getElementById(
           'clicked-disclaimer'
         );
-        clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${
-          disclaimerEvent.detail
-        }`;
+        clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${disclaimerEvent.detail}`;
       });
 
       document.querySelector('body').appendChild(wrapper);

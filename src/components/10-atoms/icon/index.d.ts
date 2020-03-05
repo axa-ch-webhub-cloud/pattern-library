@@ -20,5 +20,4 @@ export type Icon =
   | 'cloud-upload'
   | 'axa-logo'
   | 'axa-logo-open'
-  | String
-  ;
+  | String;
