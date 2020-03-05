@@ -43,6 +43,26 @@ const assertMonth = async () => {
   expect(monthValue).toBe('Oktober');
 };
 
+const clickCalendarDayOfCurrentMonth = async day => {
+  await page.evaluate(day => {
+    document
+      .querySelector(
+        `button[class*="m-datepicker__calendar-current-month"][data-day="${day}"]`
+      )
+      .click();
+  }, day);
+};
+
+const isDaySelected = async day => {
+  return await page.evaluate(day => {
+    return Object.values(
+      document.querySelector(
+        `button[class*="m-datepicker__calendar-current-month"][data-day="${day}"]`
+      ).classList
+    ).includes('m-datepicker__calendar-selected-day');
+  }, day);
+};
+
 describe('Datepicker', () => {
   test('should select February the 13th and then the 14th ', async () => {
     await page.goto(
@@ -51,14 +71,7 @@ describe('Datepicker', () => {
     );
     await chooseMonth();
     await assertMonth();
-
-    await page.evaluate(() => {
-      document
-        .querySelector(
-          'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
-        )
-        .click();
-    });
+    await clickCalendarDayOfCurrentMonth(13);
 
     // This timeout is necessary and prone to fail.
     await new Promise((resolve, reject) => {
@@ -67,35 +80,16 @@ describe('Datepicker', () => {
       }, 1000);
     });
 
-    const isSelectedDay = await page.evaluate(() => {
-      return document.querySelector(
-        'button[class*="m-datepicker__calendar-current-month"][data-day="13"]'
-      ).classList;
-    });
+    const isSelectedDay = await isDaySelected(13);
 
-    expect(
-      Object.values(isSelectedDay).includes(
-        'm-datepicker__calendar-selected-day'
-      )
-    ).toBe(true);
+    expect(isSelectedDay).toBe(true);
 
-    const isNowDeselectedDay = await page.evaluate(() =>
-      Object.values(
-        document.querySelector(
-          'button[class*="m-datepicker__calendar-current-month"][data-day="22"]'
-        ).classList
-      ).includes('m-datepicker__calendar-selected-day')
-    );
+    const isNowDeselectedDay = await isDaySelected(22);
 
     expect(isNowDeselectedDay).toBe(false);
 
-    await page.evaluate(() => {
-      document
-        .querySelector(
-          'button[class*="m-datepicker__calendar-current-month"][data-day="14"]'
-        )
-        .click();
-    });
+    await clickCalendarDayOfCurrentMonth(14);
+
     const isOldDayStillSelected = await page.evaluate(() =>
       Object.values(
         document.querySelector(
@@ -105,13 +99,7 @@ describe('Datepicker', () => {
     );
     expect(isOldDayStillSelected).toBe(false);
 
-    const isNewDaySelected = await page.evaluate(() =>
-      Object.values(
-        document.querySelector(
-          'button[class*="m-datepicker__calendar-current-month"][data-day="14"]'
-        ).classList
-      ).includes('m-datepicker__calendar-selected-day')
-    );
+    const isNewDaySelected = await isDaySelected(14);
     expect(isNewDaySelected).toBe(true);
 
     const yearValue = await page.evaluate(
