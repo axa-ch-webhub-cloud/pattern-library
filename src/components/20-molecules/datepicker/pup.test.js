@@ -8,7 +8,7 @@ let page;
 jest.setTimeout(300000);
 
 const config = {
-  headless: false,
+  // headless: false,
   executablePath:
     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   // devtools: true,
@@ -146,7 +146,7 @@ describe('Datepicker', () => {
     expect(dropdownItems).toEqual(JSON.stringify(expected));
   });
 
-  test('should select the first of march from within the February view', async () => {
+  test('should select the 31th of january from within the February view', async () => {
     await page.goto(
       'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
       { waitUntil: 'networkidle0' }
@@ -162,7 +162,7 @@ describe('Datepicker', () => {
     const year = await getSelectedYear();
     expect(year).toEqual('2020');
 
-    // Wait until dropdown updated
+    // Wait until dropdown updated to proper month
     await page.waitFor(
       () =>
         document.querySelector(
@@ -175,6 +175,88 @@ describe('Datepicker', () => {
 
     const is31thSelected = await isDaySelected(31);
     expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await page.goto(
+      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
+      { waitUntil: 'networkidle0' }
+    );
+    await chooseMonthByIndex(2);
+
+    await page.waitFor(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await page.waitFor(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await page.goto(
+      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
+      { waitUntil: 'networkidle0' }
+    );
+    // await chooseMonthByIndex(2);
+
+    // await page.waitFor(
+    //   `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    // );
+
+    // await clickCalendarDayOutsideMonth(1);
+
+    // const year = await getSelectedYear();
+    // expect(year).toEqual('2020');
+
+    // // Wait until dropdown updated to proper month
+    // await page.waitFor(
+    //   () =>
+    //     document.querySelector(
+    //       '.js-datepicker__dropdown-month .js-dropdown__title'
+    //     ).textContent === 'März'
+    // );
+
+    // const currentMonth = await getSelectedMonth();
+    // expect(currentMonth).toEqual('März');
+
+    // const isFirstSelected = await isDaySelected(1);
+    // expect(isFirstSelected).toEqual(true);
+
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await page.waitFor(() =>
+      Object.values(
+        document.querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        ).classList
+      ).includes('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
   });
 
   afterAll(async () => {
