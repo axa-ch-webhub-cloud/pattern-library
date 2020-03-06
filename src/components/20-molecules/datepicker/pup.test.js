@@ -104,7 +104,7 @@ describe('Datepicker', () => {
     const isNewDaySelected = await isDaySelected(14);
     expect(isNewDaySelected).toBe(true);
 
-    const yearValue = getSelectedYear;
+    const yearValue = await getSelectedYear();
     expect(yearValue).toBe('2020');
   });
 
