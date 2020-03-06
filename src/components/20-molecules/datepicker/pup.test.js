@@ -11,7 +11,8 @@ const config = {
   headless: false,
   executablePath:
     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  devtools: true,
+  // devtools: true,
+  // slowMo: 1000,
 };
 
 beforeAll(async () => {
@@ -40,6 +41,17 @@ const clickCalendarDayOfCurrentMonth = async day => {
     document
       .querySelector(
         `button[class*="m-datepicker__calendar-current-month"][data-day="${day}"]`
+      )
+      .click();
+  }, day);
+};
+
+const clickCalendarDayOutsideMonth = async day => {
+  await page.evaluate(day => {
+    debugger;
+    document
+      .querySelector(
+        `button[class*="m-datepicker__calendar-not-current-month"][data-day="${day}"]`
       )
       .click();
   }, day);
@@ -106,6 +118,63 @@ describe('Datepicker', () => {
 
     const yearValue = await getSelectedYear();
     expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await page.goto(
+      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
+      { waitUntil: 'networkidle0' }
+    );
+    const dropdownItems = await page.evaluate(() => {
+      return document
+        .querySelector('.js-datepicker__dropdown-year')
+        .getAttribute('items');
+    });
+
+    const range = (start, end) =>
+      new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test.only('should select the first of march from within the February view', async () => {
+    await page.goto(
+      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
+      { waitUntil: 'networkidle0' }
+    );
+    await chooseMonthByIndex(2);
+
+    await page.waitFor(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated
+    await page.waitFor(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
   });
 
   afterAll(async () => {
