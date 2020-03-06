@@ -146,7 +146,7 @@ describe('Datepicker', () => {
     expect(dropdownItems).toEqual(JSON.stringify(expected));
   });
 
-  test.only('should select the first of march from within the February view', async () => {
+  test('should select the first of march from within the February view', async () => {
     await page.goto(
       'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker',
       { waitUntil: 'networkidle0' }
