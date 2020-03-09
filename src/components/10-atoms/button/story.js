@@ -14,8 +14,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 // eslint-disable-next-line import/first
-import { withPreview, previewTemplate } from "storybook-addon-preview";
-
+import { withPreview, previewTemplate } from 'storybook-addon-preview';
 
 const storyButton = storiesOf('Components|Atoms/Button', module);
 storyButton.addDecorator(withKnobs);
@@ -60,58 +59,51 @@ export const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-storyButton.add('Button', () => {
-  const buttonText = text('text', 'Calculate Premium');
-  const variants = radios('variant', variantOptions, '');
-  const sizes = radios('size', sizeOptions, '');
-  const icons = select('icon', iconList, '');
-  const motionOff = boolean('motionOff', false);
-  const disabled = boolean('disabled', false);
-  const types = radios('types', typesOptions, 'button');
+storyButton.add(
+  'Button',
+  () => {
+    const buttonText = text('text', 'Calculate Premium');
+    const variants = radios('variant', variantOptions, '');
+    const sizes = radios('size', sizeOptions, '');
+    const icons = select('icon', iconList, '');
+    const motionOff = boolean('motionOff', false);
+    const disabled = boolean('disabled', false);
+    const types = radios('types', typesOptions, 'button');
 
-  const wrapper = document.createElement('div');
-  const template = html`
-    <div
-      style="${variants.includes('inverted')
-        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
-        : ''}"
-    >
-      <axa-button
-        type="${types}"
-        variant="${variants}"
-        size="${sizes}"
-        icon="${icons}"
-        ?disabled="${disabled}"
-        ?motionoff="${motionOff}"
-        >${buttonText}
-      </axa-button>
-    </div>
-  `;
-  render(template, wrapper);
-  return wrapper;
-}, {
-  preview: [
-    {
-      tab: "with previewTemplate",
-      template: previewTemplate`
-const inst = new Instance({
-    opt1: ${"text"},
-    num1:,
-});
-            `,
-      language: "js",
-      copy: true,
-    },
-    {
-      tab: "without",
-      template: `
-const inst = new Instance({
-    opt1: ${"text"},
-    num1:,
-});
-            `,
-      language: "js",
-      copy: true,
-    },
-  ]
-});
+    const wrapper = document.createElement('div');
+    const template = html`
+      <div
+        style="${variants.includes('inverted')
+          ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
+          : ''}"
+      >
+        <axa-button
+          type="${types}"
+          variant="${variants}"
+          size="${sizes}"
+          icon="${icons}"
+          ?disabled="${disabled}"
+          ?motionoff="${motionOff}"
+          >${buttonText}
+        </axa-button>
+      </div>
+    `;
+    render(template, wrapper);
+    return wrapper;
+  },
+  {
+    preview: [
+      {
+        tab: 'HTML',
+        template: previewTemplate`
+<axa-button
+    variant=${'variant'}>
+${'text'}
+</axa-button>
+         `,
+        language: 'js',
+        copy: true,
+      },
+    ],
+  }
+);
