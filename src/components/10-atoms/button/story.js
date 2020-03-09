@@ -14,7 +14,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 // eslint-disable-next-line import/first
-import { withPreview, previewTemplate, DEFAULT_VANILLA_CODESANDBOX } from "storybook-addon-preview";
+import { withPreview, previewTemplate } from "storybook-addon-preview";
 
 
 const storyButton = storiesOf('Components|Atoms/Button', module);
