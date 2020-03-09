@@ -94,12 +94,32 @@ storyButton.add(
   {
     preview: [
       {
-        tab: 'HTML',
+        tab: 'Vanilla',
         template: previewTemplate`
+import '@axa-ch/button';
+
 <axa-button
     variant=${'variant'}>
 ${'text'}
 </axa-button>
+         `,
+        language: 'js',
+        copy: true,
+      },
+      {
+        tab: 'React',
+        template: previewTemplate`
+import { createElement } from 'react';
+import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+
+const AXAButtonReact = createAXAButtonReact(createElement);
+
+export default AXAButtonReact;
+
+<AXAButtonReact 
+    variant=${'variant'}>
+        ${'text'}
+</AxaButtonReact>
          `,
         language: 'js',
         copy: true,
