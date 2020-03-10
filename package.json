@@ -89,7 +89,7 @@
     "rollup-plugin-sass": "^1.1.0",
     "rollup-plugin-uglify": "^6.0.4",
     "sass-loader": "^7.1.0",
-    "storybook-addon-preview": "^1.1.0-beta8",
+    "storybook-addon-preview": "1.1.0-beta11",
     "storybook-readme": "5.0.6",
     "svgo": "^1.2.0",
     "testcafe": "1.8.2",

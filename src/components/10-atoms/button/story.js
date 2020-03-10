@@ -14,7 +14,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 // eslint-disable-next-line import/first
-import { withPreview, previewTemplate } from 'storybook-addon-preview';
+import { withPreview, previewTemplate, raw } from 'storybook-addon-preview';
 
 const storyButton = storiesOf('Components|Atoms/Button', module);
 storyButton.addDecorator(withKnobs);
@@ -118,7 +118,7 @@ export default AXAButtonReact;
 
 <AXAButtonReact 
     variant=${'variant'}>
-        ${'text'}
+        ${raw('text')}
 </AxaButtonReact>
          `,
         language: 'js',
