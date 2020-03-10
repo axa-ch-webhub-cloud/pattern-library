@@ -1,5 +1,5 @@
 /* eslint-disable */
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 
 // module globals
 let browser;

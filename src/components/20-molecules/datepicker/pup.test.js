@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 // imports
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core'); // let's not download a special Chromium if we use our local Chrome install anyways...
 
 // module globals
 let browser;
@@ -12,6 +12,7 @@ jest.setTimeout(300000);
 
 const config = {
   // headless: false,
+  defaultViewport: null, // <= set this to have viewport emulation off
   executablePath:
     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   // devtools: true,
@@ -39,12 +40,26 @@ const evaluate = (fun, params) => page.evaluate(fun, params);
 
 const gotoURL = url => page.goto(url);
 
+const setViewport = (width, height) => page.setViewport({ width, height });
+
+const selectFrom = async (selector, value) =>
+  (await waitForSelector(selector)) && page.select(selector, value);
+
 // helper test predicates
-const chooseMonthByIndex = async monthIndex => {
-  await clickOn('.js-datepicker__dropdown-month .js-dropdown__toggle');
-  return clickOn(
-    `.js-datepicker__dropdown-month .js-dropdown__content .js-dropdown__button[data-index="${monthIndex}"]`
+const chooseMonthByIndex = async (monthIndex, native) => {
+  await clickOn(
+    `.js-datepicker__dropdown-month .js-dropdown__${
+      native ? 'select' : 'toggle'
+    }`
   );
+  return native
+    ? selectFrom(
+        `.js-datepicker__dropdown-month .js-dropdown__select`,
+        `${monthIndex - 1}`
+      )
+    : clickOn(
+        `.js-datepicker__dropdown-month .js-dropdown__content button[data-index="${monthIndex}"]`
+      );
 };
 
 const getSelectedMonth = () =>
@@ -269,6 +284,19 @@ describe('Datepicker', () => {
 
     const is29thSelected = await isDaySelected(29);
     expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
   });
 
   afterAll(async () => {
