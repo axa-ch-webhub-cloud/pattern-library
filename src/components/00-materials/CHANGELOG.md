@@ -2,6 +2,11 @@
 
 - new icons `key`, `person`, `message` and `person` added.
 
+## 4.0.0
+
+- The implementation of the wrapper to make a component React-ready hasfundamentally changed. In particular, unknown Boolean- orstring-valued properties are now accepted and converted to HTMLattributes. E.g. data-seleniumid="my-id" is now supported.
+- All defined attributes attached to a component before componentconstruction time are now taken into account. Conversely, all undefinedcomponent attributes are initialized with type-appropriate defaultvalues at this time. This may amount to a breaking change if thecomponent consumer had previously assumed undefined or uninitializedbehaviour.
+
 ## 3.0.0
 
 - no breaking changes here. Release is needed for the other components.
