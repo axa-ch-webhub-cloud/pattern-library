@@ -1,7 +1,7 @@
 ## 5.0.0
 
 - New icons `key`, `person`, `message` and `power` added.
-- The icons `add`, `attach-file`, `check-circle`, `clear` and `delete-forever` have changed. They now support setting its color with `currentColor`. Fixes issue #1681.
+- BREAKING CHANGE: The icons `add`, `attach-file`, `check-circle`, `clear` and `delete-forever` have changed. They now support setting its color with `currentColor`. Fixes issue #1681.
 
 ## 4.0.0
 
