@@ -31,12 +31,7 @@ this.render() {
 }
 ```
 
-## Icon set
-
-## Add Icon
-
-- Move the raw SVG file into `raw-icons`
-- The `npm run build` script will optimize and clean the SVG and export it as a JS-importable string for further usage.
+### Icon/Image set
 
 ### SVGs
 
