@@ -27,18 +27,27 @@ describe('Button Link - basic functionality', () => {
       'https://patterns.axa.ch/iframe.html?id=components-atoms-button-link--button-link'
     );
 
-    let error = false;
+    let rendered = true;
+    try {
+      await page.waitForSelector('axa-button-link', { visible: true });
+    } catch (e) {
+      rendered = false;
+    }
 
-    // TODO: select shadowDom selector .a-button-link
-    await page.waitForSelector('axa-button-link', { timeout: 500 })
-      .catch ((error) => {
-        console.log(error)
-        error = true;
-      });
+    expect(rendered).toBe(true);
 
-    expect(error).toBe(false);
+    let shadowDomAsExpected = true;
+    try {
+      await page.waitForFunction(() =>
+        document
+          .querySelector('axa-button-link')
+          .shadowRoot.querySelector('.a-button-link')
+      );
+    } catch (e) {
+      shadowDomAsExpected = false;
+    }
+    expect(shadowDomAsExpected).toBe(true);
   });
-
 
   afterAll(async () => {
     await browser.close();

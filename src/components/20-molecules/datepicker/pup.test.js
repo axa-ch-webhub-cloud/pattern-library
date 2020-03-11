@@ -28,13 +28,16 @@ beforeAll(async () => {
 const range = (start, end) =>
   new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
 
-const waitForSelector = selector => page.waitFor(selector, { visible: true });
+const waitForSelector = selector =>
+  page.waitForSelector(selector, { visible: true });
 
-const clickOn = async selector =>
-  (await waitForSelector(selector)) && page.click(selector);
+const clickOn = async selector => {
+  await waitForSelector(selector);
+  return page.click(selector);
+};
 
-const waitForFun = async fun =>
-  (await page.waitForFunction(fun, { polling: 'raf' })).jsonValue();
+const waitForFun = async (fun, args) =>
+  (await page.waitForFunction(fun, { polling: 'raf' }, args)).jsonValue();
 
 const evaluate = (fun, params) => page.evaluate(fun, params);
 
@@ -42,24 +45,51 @@ const gotoURL = url => page.goto(url);
 
 const setViewport = (width, height) => page.setViewport({ width, height });
 
-const selectFrom = async (selector, value) =>
-  (await waitForSelector(selector)) && page.select(selector, value);
+const selectFrom = async (selector, value) => {
+  await waitForSelector(selector);
+  return page.select(selector, value);
+};
+
+const waitOneAnimationFrame = () => page.waitFor(1000 / 60);
 
 // helper test predicates
 const chooseMonthByIndex = async (monthIndex, native) => {
+  await clickOn(`.js-datepicker__dropdown-month`);
+  if (native) {
+    await selectFrom(
+      `.js-datepicker__dropdown-month .js-dropdown__select`,
+      `${monthIndex - 1}`
+    );
+  } else {
+    await clickOn(
+      `.js-datepicker__dropdown-month .js-dropdown__content button[data-index="${monthIndex}"]`
+    );
+  }
+  return waitOneAnimationFrame();
+};
+
+const chooseYear = async (year, native) => {
   await clickOn(
-    `.js-datepicker__dropdown-month .js-dropdown__${
+    `.js-datepicker__dropdown-year .js-dropdown__${
       native ? 'select' : 'toggle'
     }`
   );
-  return native
-    ? selectFrom(
-        `.js-datepicker__dropdown-month .js-dropdown__select`,
-        `${monthIndex - 1}`
-      )
-    : clickOn(
-        `.js-datepicker__dropdown-month .js-dropdown__content button[data-index="${monthIndex}"]`
-      );
+  if (native) {
+    await selectFrom(
+      `.js-datepicker__dropdown-year .js-dropdown__select`,
+      `${year}`
+    );
+  } else {
+    await clickOn(
+      `.js-datepicker__dropdown-year .js-dropdown__content button[data-value="${year}"]`
+    );
+  }
+  return waitOneAnimationFrame();
+};
+
+const openCalendar = async () => {
+  await clickOn('.js-datepicker__input-button');
+  return page.waitFor(250); // allow for datepicker-open animation to finish
 };
 
 const getSelectedMonth = () =>
@@ -71,23 +101,13 @@ const getSelectedMonth = () =>
   );
 
 const clickCalendarDayOfCurrentMonth = day =>
-  evaluate(_day => {
-    document
-      .querySelector(
-        `button[class*="m-datepicker__calendar-current-month"][data-day="${_day}"]`
-      )
-      .click();
-  }, day);
+  clickOn(
+    `button[class*="m-datepicker__calendar-current-month"][data-day="${day}"]`
+  );
 
 const clickCalendarDayOutsideMonth = day =>
-  evaluate(
-    _day =>
-      document
-        .querySelector(
-          `button[class*="m-datepicker__calendar-not-current-month"][data-day="${_day}"]`
-        )
-        .click(),
-    day
+  clickOn(
+    `button[class*="m-datepicker__calendar-not-current-month"][data-day="${day}"]`
   );
 
 const isDaySelected = day =>
@@ -112,12 +132,14 @@ const assertDayIsDeselected = day =>
   );
 
 const getSelectedYear = () =>
-  evaluate(
-    () =>
-      document.querySelector(
-        '.js-datepicker__dropdown-year .js-dropdown__title'
-      ).textContent
-  );
+  waitForFun(() => {
+    const dropdownTitle = document.querySelector(
+      '.js-datepicker__dropdown-year .js-dropdown__title'
+    );
+    return dropdownTitle && dropdownTitle.textContent;
+  });
+
+const submitChosenDay = () => clickOn('.js-datepicker__button-ok');
 
 describe('Datepicker', () => {
   test('should select February the 13th and then the 14th ', async () => {
@@ -125,10 +147,12 @@ describe('Datepicker', () => {
       'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
     );
 
+    await chooseYear(2020);
     await chooseMonthByIndex(10);
     const monthValue = await getSelectedMonth(10);
     expect(monthValue).toBe('Oktober');
 
+    await clickCalendarDayOfCurrentMonth(22);
     await clickCalendarDayOfCurrentMonth(13);
 
     await assertDayIsSelected(13);
@@ -179,6 +203,7 @@ describe('Datepicker', () => {
       'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
     );
 
+    await chooseYear(2020);
     await chooseMonthByIndex(2);
 
     await waitForSelector(
@@ -240,31 +265,8 @@ describe('Datepicker', () => {
     await gotoURL(
       'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
     );
-    // await chooseMonthByIndex(2);
 
-    // await page.waitFor(
-    //   `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
-    // );
-
-    // await clickCalendarDayOutsideMonth(1);
-
-    // const year = await getSelectedYear();
-    // expect(year).toEqual('2020');
-
-    // // Wait until dropdown updated to proper month
-    // await page.waitFor(
-    //   () =>
-    //     document.querySelector(
-    //       '.js-datepicker__dropdown-month .js-dropdown__title'
-    //     ).textContent === 'März'
-    // );
-
-    // const currentMonth = await getSelectedMonth();
-    // expect(currentMonth).toEqual('März');
-
-    // const isFirstSelected = await isDaySelected(1);
-    // expect(isFirstSelected).toEqual(true);
-
+    await chooseYear(2020);
     await chooseMonthByIndex(2);
     await clickCalendarDayOfCurrentMonth(29);
 
@@ -293,10 +295,34 @@ describe('Datepicker', () => {
 
     await setViewport(200, 200);
 
+    await chooseMonthByIndex(12, 'native');
     await chooseMonthByIndex(2, 'native');
 
     const selectedMonth = await getSelectedMonth();
     expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019'
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await submitChosenDay();
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
   });
 
   afterAll(async () => {
