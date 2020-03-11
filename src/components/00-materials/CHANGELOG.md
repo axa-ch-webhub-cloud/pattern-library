@@ -1,6 +1,6 @@
 ## 4.1.0
 
-- new icons `key`, `person`, `message` and `person` added.
+- new icons `key`, `person`, `message` and `power` added.
 
 ## 4.0.0
 
