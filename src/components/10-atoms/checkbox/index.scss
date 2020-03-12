@@ -159,6 +159,10 @@ axa-checkbox {
           &::after {
             border-color: $color-axa-blue;
           }
+
+          &--inverted, &::after {
+            border-color: white;
+          }
         }
       }
     }
