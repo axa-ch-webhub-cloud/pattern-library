@@ -78,6 +78,10 @@ axa-checkbox {
           color: $color-prim-gray-silver;
         }
       }
+
+      &:disabled + .a-checkbox__icon--inverted {
+        background-color: transparent;
+      }
     }
 
     .a-checkbox__icon {
