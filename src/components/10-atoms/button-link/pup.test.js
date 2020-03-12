@@ -6,7 +6,7 @@ let browser;
 let page;
 
 // set up
-jest.setTimeout(300000);
+jest.setTimeout(1000);
 
 const config = {
   // headless: false,
@@ -27,26 +27,29 @@ describe('Button Link - basic functionality', () => {
       'https://patterns.axa.ch/iframe.html?id=components-atoms-button-link--button-link'
     );
 
-    let rendered = true;
-    try {
-      await page.waitForSelector('axa-button-link', { visible: true });
-    } catch (e) {
-      rendered = false;
-    }
+    const buttonLinkShadowRoot = await page.waitForFunction(() =>
+      document
+        .querySelector('axa-button-link')
+        .shadowRoot.querySelector('.a-button-link')
+    );
 
-    expect(rendered).toBe(true);
+    expect(buttonLinkShadowRoot).toBeTruthy();
+  });
 
-    let shadowDomAsExpected = true;
-    try {
-      await page.waitForFunction(() =>
+  test('should render button-link', async () => {
+    await page.goto(
+      'https://patterns.axa.ch/iframe.html?id=components-atoms-button-link--button-link'
+    );
+
+    const buttonLinkBackgroundColor = await page.evaluate(() =>
+      getComputedStyle(
         document
           .querySelector('axa-button-link')
           .shadowRoot.querySelector('.a-button-link')
-      );
-    } catch (e) {
-      shadowDomAsExpected = false;
-    }
-    expect(shadowDomAsExpected).toBe(true);
+      ).getPropertyValue('background-color')
+    );
+
+    expect(buttonLinkBackgroundColor).toBe('rgb(0, 0, 143)');
   });
 
   afterAll(async () => {
