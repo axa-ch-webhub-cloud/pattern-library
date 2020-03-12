@@ -28,6 +28,7 @@ class AXACheckbox extends NoShadowDOM {
       label: { type: String },
       styled: { type: Boolean, reflect: true },
       variant: { type: String, defaultValue: 'square' },
+      colorvariant: { type: String },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -68,6 +69,7 @@ class AXACheckbox extends NoShadowDOM {
       checked: false,
       native: false,
     };
+
     // initialize properties
     applyDefaults(this);
   }
@@ -130,6 +132,7 @@ class AXACheckbox extends NoShadowDOM {
       name,
       label = '',
       variant,
+      colorvariant,
       checked,
       disabled,
       error = '',
@@ -143,6 +146,12 @@ class AXACheckbox extends NoShadowDOM {
       'a-checkbox__icon': true,
       'js-checkbox__icon': true,
       'a-checkbox__icon--checkmark': variant === 'checkmark',
+      'a-checkbox__icon--inverted': colorvariant === 'inverted',
+    });
+
+    const checkboxContentClasses = classMap({
+      'a-checkbox__content': true,
+      'a-checkbox__content--inverted': colorvariant === 'inverted',
     });
 
     // now that we have the 'isReact' prop, determine if this
@@ -163,6 +172,7 @@ class AXACheckbox extends NoShadowDOM {
         name="${name}"
         value="${value}"
         aria-required="${required}"
+        colorvariant="${colorvariant}"
         ?checked="${checked}"
         ?disabled="${disabled}"
         ?error="${!!error}"
@@ -199,7 +209,7 @@ class AXACheckbox extends NoShadowDOM {
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElements}
-            <span class="a-checkbox__content">
+            <span class="${checkboxContentClasses}">
               ${_labelFromChildren || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
             </span>
