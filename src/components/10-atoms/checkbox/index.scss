@@ -161,7 +161,7 @@ axa-checkbox {
           }
 
           &--inverted, &--inverted::after {
-            border-color: white;
+            border-color: $color-prim-white;
           }
         }
       }
