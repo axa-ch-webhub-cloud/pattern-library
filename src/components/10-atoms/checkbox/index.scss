@@ -179,7 +179,10 @@ axa-checkbox {
     }
 
     .a-checkbox__icon-checkmark {
-      @include show-checkmark(white); //hier inverted unterscheidung!?
+      @include show-checkmark($color-axa-blue);
+    }
+    .a-checkbox__icon--inverted .a-checkbox__icon-checkmark {
+      @include show-checkmark($color-prim-white);
     }
   }
 
