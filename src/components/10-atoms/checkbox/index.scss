@@ -59,7 +59,7 @@ axa-checkbox {
     }
 
     &:checked + .a-checkbox__icon--inverted {
-      border-color: white;
+      border-color: $color-prim-white;
       background-color: transparent;
     }
 
@@ -73,7 +73,7 @@ axa-checkbox {
     }
 
     &:disabled + .a-checkbox__icon--checkmark {
-      background-color: white;
+      background-color: $color-prim-white;
 
       .a-checkbox__icon-checkmark {
         color: $color-prim-gray-silver;
