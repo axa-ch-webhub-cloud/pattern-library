@@ -59,7 +59,11 @@ axa-checkbox {
 
     &:checked + .a-checkbox__icon--inverted {
       border-color: $color-prim-white;
-      background-color: transparent;
+      background-color: $color-prim-white;
+
+      .a-checkbox__icon-checkmark {
+        @include show-checkmark($color-axa-blue);
+      }
     }
 
     &:disabled + .a-checkbox__icon {
