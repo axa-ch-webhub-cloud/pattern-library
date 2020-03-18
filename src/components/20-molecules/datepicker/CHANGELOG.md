@@ -1,3 +1,7 @@
+## 6.0.4
+
+- Fixed the border-top shadow of input element on iOS devices (#1694)
+
 ## 6.0.0
 
 - Controlled mode can no longer be triggered in non-React scenarios.
