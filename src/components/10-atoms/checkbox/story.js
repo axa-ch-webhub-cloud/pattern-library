@@ -34,7 +34,7 @@ storyCheckbox.add(
     const template = html`
       <div
       style="${colorvariant === 'inverted'
-        ? `background-color: #00008f; padding: 10px;`
+        ? `background-color: green; padding: 10px;`
         : ''}"
     >
       <axa-checkbox
