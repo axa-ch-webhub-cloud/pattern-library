@@ -120,6 +120,11 @@ axa-datepicker {
   }
 
   &__input {
+    /* remove default styles because of iOS */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
     @include typo(primary, default);
     line-height: normal;
     border: 1px solid;
