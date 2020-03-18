@@ -121,6 +121,7 @@ axa-datepicker {
 
   &__input {
     @include typo(primary, default);
+    appearance: none;
     line-height: normal;
     border: 1px solid;
     border-color: $color-prim-gray-dusty;
