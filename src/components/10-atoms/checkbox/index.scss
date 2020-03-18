@@ -43,8 +43,8 @@ axa-checkbox {
       }
 
       &--inverted::after {
-        border-color: $color-prim-white;
-        background-color: $color-prim-white;
+        border-color: $color-prim-white; //TODO: inherit
+        background-color: $color-prim-white; //TODO: inherit
       }
     }
 
@@ -62,7 +62,7 @@ axa-checkbox {
       background-color: $color-prim-white;
 
       .a-checkbox__icon-checkmark {
-        @include show-checkmark($color-axa-blue);
+        @include show-checkmark($color-axa-blue); //TODO: inherit
       }
     }
 
@@ -176,8 +176,12 @@ axa-checkbox {
           border-color: $color-axa-blue;
         }
 
-        &--inverted, &--inverted::after {
+        &--inverted {
           border-color: $color-prim-white;
+
+          &::after {
+            border-color: $color-prim-white;
+          }
         }
       }
     }
