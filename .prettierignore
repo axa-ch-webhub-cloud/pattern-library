@@ -5,6 +5,14 @@
 # We decided in the team to not format scss files
 *.scss
 
+src/static
+*.svg
+*.jpg
+*.pdf
+*.png
+*.rtf
+.gitignore
+
 # Ignore auto generated files
 node_modules
 package-lock.json
