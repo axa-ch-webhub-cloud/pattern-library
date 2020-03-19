@@ -180,7 +180,7 @@ axa-checkbox {
           border-color: $color-prim-white;
 
           &::after {
-            border-color: $color-axa-blue; // TODO: inherit
+            border-color: $color-prim-white; // TODO: inherit
           }
         }
       }
