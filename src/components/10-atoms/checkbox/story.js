@@ -18,23 +18,26 @@ storyCheckbox.addParameters({
 
 storyCheckbox.add(
   'Checkbox',
-  () => {
-    const refId = text('refId', `checkbox-${createRefId()}`);
-    const label = text('label', 'I agree to conditions of data protection.');
-    const name = text('name', 'my-checkbox');
-    const variant = select('variant', ['square', 'checkmark']);
-    const colorvariant = select('colorvariant', ['', 'inverted']);
-    const checked = boolean('checked', true);
-    const disabled = boolean('disabled', false);
-    const errortext = boolean('error', false);
-    const required = boolean('required', false);
-    const styled = boolean('styled', false);
+  () => {const refId = text('refId', `checkbox-${createRefId()}`);
+  const label = text('label', 'I agree to conditions of data protection.');
+  const name = text('name', 'my-checkbox');
+  const variant = select('variant', [
+    'square',
+    'checkmark',
+    'inverted-square',
+    'inverted-checkmark',
+  ]);
+  const checked = boolean('checked', true);
+  const disabled = boolean('disabled', false);
+  const errortext = boolean('error', false);
+  const required = boolean('required', false);const styled = boolean('styled', false);
+  const styled = boolean('styled', false);
 
-    const wrapper = document.createElement('div');
-    const template = html`
-      <div
-      style="${colorvariant === 'inverted'
-        ? `background-color: green; padding: 10px;`
+  const wrapper = document.createElement('div');
+  const template = html`
+    <div
+      style="${variant && variant.indexOf('inverted') > -1
+        ? `background-color: #027180; padding: 10px;`
         : ''}"
     >
       <axa-checkbox
@@ -42,7 +45,6 @@ storyCheckbox.add(
         class="hover"
         name="${name}"
         variant="${variant}"
-        colorvariant="${colorvariant}"
         label="${label}"
         ?disabled="${disabled}"
         ?checked="${checked}"

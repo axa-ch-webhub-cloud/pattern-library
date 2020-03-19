@@ -28,7 +28,6 @@ class AXACheckbox extends NoShadowDOM {
       label: { type: String },
       styled: { type: Boolean, reflect: true },
       variant: { type: String, defaultValue: 'square' },
-      colorvariant: { type: String },
       required: { type: Boolean },
       checked: {
         type: Boolean,
@@ -132,7 +131,6 @@ class AXACheckbox extends NoShadowDOM {
       name,
       label = '',
       variant,
-      colorvariant,
       checked,
       disabled,
       error = '',
@@ -145,13 +143,13 @@ class AXACheckbox extends NoShadowDOM {
     const classes = classMap({
       'a-checkbox__icon': true,
       'js-checkbox__icon': true,
-      'a-checkbox__icon--checkmark': variant === 'checkmark',
-      'a-checkbox__icon--inverted': colorvariant === 'inverted',
+      'a-checkbox__icon--checkmark': variant.indexOf('checkmark') > -1,
+      'a-checkbox__icon--inverted': variant.indexOf('inverted') > -1,
     });
 
     const checkboxContentClasses = classMap({
       'a-checkbox__content': true,
-      'a-checkbox__content--inverted': colorvariant === 'inverted',
+      'a-checkbox__content--inverted': variant.indexOf('inverted') > -1,
     });
 
     // now that we have the 'isReact' prop, determine if this
@@ -172,7 +170,6 @@ class AXACheckbox extends NoShadowDOM {
         name="${name}"
         value="${value}"
         aria-required="${required}"
-        colorvariant="${colorvariant}"
         ?checked="${checked}"
         ?disabled="${disabled}"
         ?error="${!!error}"
@@ -181,7 +178,7 @@ class AXACheckbox extends NoShadowDOM {
         @change=${this.handleChange}
       />
       <span class="${classes}">
-        ${variant === 'checkmark'
+        ${variant.indexOf('checkmark') > -1
           ? html`
               <span class="a-checkbox__icon-checkmark">${CHECKMARK_ICON}</span>
             `
