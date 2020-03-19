@@ -55,8 +55,6 @@ Import the heading-defining script and use a heading like this:
 
 ## Properties
 
-### Variant
-
 | Attribute             | Details                                                                                                                        |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `variant="secondary"` | Secondary variant will use publico as font. Default: "primary"                                                                 |
