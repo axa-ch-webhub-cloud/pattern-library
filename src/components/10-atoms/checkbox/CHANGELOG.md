@@ -5,6 +5,10 @@
   - **RECOMMENDATION:** Do not use component children. Use `label` attribute instead. You can now put HTML in there.
   - New boolean attribute `styled` was added. Set it to the component to style the `label` like `axa-text`
 
+## 2.2.X
+
+- 2 new variants added. Now you can invert the color to have a better contrast on dark backgrounds. (#1685)
+
 ## 2.1.2
 
 - Fixes minor issue [#1595](https://github.com/axa-ch/patterns-library/issues/1595).
