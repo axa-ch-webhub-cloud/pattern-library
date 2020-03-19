@@ -59,10 +59,14 @@ this.render() {
 | InfoFlatSvg      |
 | InfoSvg          |
 | InstagramSvg     |
+| KeySvg           |
 | LinkedinSvg      |
 | MobileSvg        |
+| MessageSvg       |
+| PersonSvg        |
 | PhoneSvg         |
 | PlusSvg          |
+| PowerSvg         |
 | SearchSvg        |
 | TwitterSvg       |
 | UploadSvg        |
