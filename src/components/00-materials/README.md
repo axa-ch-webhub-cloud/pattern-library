@@ -1,5 +1,6 @@
 # AXA Materials
 
+Materials provides common used icons and images in the SVG format. In addition materials exports styles like colors, helpers, typography and laysout.
 
 ## Usage
 
@@ -8,7 +9,6 @@
 ```bash
 npm install @axa-ch/materials
 ```
-### Icons
 
 ```js
 import { svg } from 'lit-html';
@@ -22,12 +22,26 @@ import {
 ### React
 
 ```js
-this.render() {
+import {
+  ArrowRightSvg
+} from '@axa-ch/materials/icons';
+...
+<ArrowRightSvg />
+```
+You need to use `SVGR` that takes external SVG files and transforms them into React components with Webpack.
 
+```bash
+npm install @svgr/webpack --save-dev
+```
+
+```js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack'],
 }
 ```
 
-### Icon/Image set
+## Icon/Image set
 
 ### SVGs
 
@@ -77,7 +91,7 @@ this.render() {
 
 ## Contribution
 
-### Process
+### Process of adding a new icon/image
 
 1. Involve a designer by sending him the new SVG in question, unless the designer already has the file. He will review it and possibly change some things, for example by adjusting inner padding etc. in order to guarantee overall quality.
 2. Remove unnecessary code inside the SVG:
