@@ -7,7 +7,7 @@
 
 ## 2.2.X
 
-- 2 new variants added. Now you can invert the color to have a better contrast on dark backgrounds. (#1685)
+- A new variant was added. Now you can use `inverted-checkbox` to have a better contrast on dark backgrounds. (#1685)
 
 ## 2.1.2
 

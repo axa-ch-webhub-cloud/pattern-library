@@ -24,7 +24,7 @@ storyCheckbox.add(
   const variant = select('variant', [
     'square',
     'checkmark',
-    'inverted-square',
+    // 'inverted-square', // not official supported yet
     'inverted-checkmark',
   ]);
   const checked = boolean('checked', true);
