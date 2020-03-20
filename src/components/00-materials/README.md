@@ -1,29 +1,25 @@
 # AXA Materials
 
-### Usage
-
-## Install Icons
-
-`npm install @axa-ch/materials`
 
 ## Usage
 
-```
-import {
-  ArrowRightSvg,
-  CollapseSvg,
-} from '@axa-ch/materials/icons';
-```
+**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
 
-Native
+```bash
+npm install @axa-ch/materials
+```
+### Icons
 
 ```js
-this.render() {
-
-}
+import { svg } from 'lit-html';
+import {
+  ArrowRightSvg
+} from '@axa-ch/materials/icons';
+...
+<span>${svg(ArrowRightSvg)}</span>
 ```
 
-React
+### React
 
 ```js
 this.render() {
@@ -81,7 +77,7 @@ this.render() {
 
 ## Contribution
 
-### Process:
+### Process
 
 1. Involve a designer by sending him the new SVG in question, unless the designer already has the file. He will review it and possibly change some things, for example by adjusting inner padding etc. in order to guarantee overall quality.
 2. Remove unnecessary code inside the SVG:
@@ -90,3 +86,4 @@ this.render() {
 3. - a. use the internal [svgo](https://github.com/svg/svgo)-invoking scripts `npm run build-icons` or `npm run build-images` from materials itself to clean up and optimize the SVGs, then copy the optimized files back from the `.tmp` folder to `icons-raw` or `images-raw`
    - b. alternatively use the [online SVG optimizer](https://jakearchibald.github.io/svgomg/] for the same purpose
 4. Manually review the SVGs produced in the last step: add or edit &lt;path&gt; attributes, setting `fill="currentColor"` and/or `strokes="currentColor"` as appropriate. Remove unnecessary attributes.
+5. Run `npm run build`to generate a js file for each svg file found. The generated files can be found in the `icons`and `images` folder.
