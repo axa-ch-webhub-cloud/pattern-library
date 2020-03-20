@@ -1,6 +1,6 @@
 # AXA Materials
 
-Materials provides common used icons and images in the SVG format. In addition materials exports styles like colors, helpers, typography and laysout.
+Materials provides common used icons and images in the SVG format. In addition materials exports styles like colors, helpers, typography and layouts.
 
 ## Usage
 
