@@ -8,6 +8,7 @@
 ## 2.2.X
 
 - A new variant was added. Now you can use `inverted-checkbox` to have a better contrast on background `blue-teal`. (#1685)
+- BREAKING CHANGE: We do not show error messages anymore if element is disabled.
 
 ## 2.1.2
 
