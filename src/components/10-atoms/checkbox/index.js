@@ -186,7 +186,7 @@ class AXACheckbox extends NoShadowDOM {
       </span>
     `;
 
-    const errorElement = error
+    const errorElement = error && !disabled
       ? html`
           <span class="a-checkbox__error">${unsafeHTML(error)}</span>
         `

@@ -142,6 +142,10 @@ axa-checkbox {
   &[disabled] {
     .a-checkbox__content {
       color: $color-prim-gray-dusty;
+
+      &--inverted {
+        color: $color-prim-gray-silver;
+      }
     }
 
     .a-checkbox__input:checked + .a-checkbox__icon::after {
