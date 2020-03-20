@@ -25,7 +25,7 @@ storyCheckbox.add(
     'square',
     'checkmark',
     // 'inverted-square', // not official supported yet
-    'inverted-checkmark',
+    'inverted-checkmark-blue-teal',
   ]);
   const checked = boolean('checked', true);
   const disabled = boolean('disabled', false);
