@@ -3,6 +3,7 @@ $checkbox-border-width: 1px;
 $checkbox-icon-dimension: 8px;
 $checkbox-label-left-margin: 11px;
 $checkbox-error-top-margin: 10px;
+$color-disabled-inverted: #4d9ba6; // this color is just for the background-color "blue-teal"
 
 axa-checkbox {
   @mixin show-checkmark($color: currentColor) {
@@ -85,6 +86,11 @@ axa-checkbox {
 
     &:disabled + .a-checkbox__icon--inverted {
       background-color: transparent;
+      border-color: $color-disabled-inverted;
+
+      .a-checkbox__icon-checkmark {
+        color: $color-disabled-inverted;
+      }
     }
   }
 
@@ -144,7 +150,7 @@ axa-checkbox {
       color: $color-prim-gray-dusty;
 
       &--inverted {
-        color: #4d9ba6; // this color is just for the background-color "blue-teal"
+        color: $color-disabled-inverted;
       }
     }
 

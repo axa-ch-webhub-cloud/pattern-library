@@ -87,11 +87,11 @@ The Boolean attribute `styled`, when used in conjunction with HTML-valued `label
 
 ### variant
 
-| Attribute                                | Details                                                                                                     |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `variant="square"`                       | Provides a filled square in the icon (default)                                                              |
-| `variant="checkmark"`                    | Provides a checkmark in the icon                                                                            |
-| `variant="inverted-checkmark-blue-teal"` | Provides a checkmark in the icon with inverted color. Just use it if you have background-color "blue-teal". |
+| Attribute                      | Details                                                                                                     |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `variant="square"`             | Provides a filled square in the icon (default)                                                              |
+| `variant="checkmark"`          | Provides a checkmark in the icon                                                                            |
+| `variant="inverted-checkmark"` | Provides a checkmark in the icon with inverted color. Just use it if you have background-color "blue-teal". |
 
 ### refId
 
