@@ -67,32 +67,10 @@ class AXACheckbox extends NoShadowDOM {
       checked: false,
       native: false,
     };
-
     // initialize properties
     applyDefaults(this);
-
-    // initialize labelTextElement when children are avaiabled and wrap them
-    this.hasChildren = false;
-    this.iteration = 1;
-    if (this.innerHTML) {
-      this.wrapChildren();
-    }
   }
 
-  wrapChildren() {
-    const childWrapper = document.createElement('axa-text');
-    childWrapper.variant = 'size-3';
-    childWrapper.className = 'a-checkbox__children-inline';
-
-    // Clone live DOM node, so that we do not have to use mutation observer. Because we do not use shadow DOM
-    // here, it would infinitely update - render - update.
-    // Only needed if there are children.
-    [...this.children].forEach(el => childWrapper.appendChild(el));
-
-    this.labelTextElement = childWrapper;
-
-    this.hasChildren = true;
-  }
   // custom setter
   set checked(value) {
     const {
@@ -147,8 +125,7 @@ class AXACheckbox extends NoShadowDOM {
       required,
       isReact,
       state: { isControlled, timer },
-      hasChildren,
-      labelTextElement,
+      _childRoot = this.firstElementChild,
     } = this;
 
     const classes = classMap({
@@ -197,12 +174,22 @@ class AXACheckbox extends NoShadowDOM {
         `
       : html``;
 
-    return hasChildren || label
+    if (_childRoot) {
+      // 1. harvest child content as live DOM (lit-html has documented support for text-content binding type 'DOM node')
+      // N.B. Using live DOM node here is crucial for React's DOM updating mechanism, e.g. for a <p>{updatedHere}<p> child root.
+      // 2. wrap it in <axa-text>
+      // prettier-ignore
+      this._labelFromChildren = html`<axa-text variant="size-3" class="a-checkbox__children-inline">${_childRoot}</axa-text>`;
+    }
+
+    const { _labelFromChildren } = this;
+
+    return _labelFromChildren || label
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElements}
             <span class="a-checkbox__content">
-              ${labelTextElement || unsafeHTML(label)}
+              ${_labelFromChildren || unsafeHTML(label)}
               ${required ? REQUIRED_SYMBOL : ''}
             </span>
             ${errorElement}
@@ -219,33 +206,8 @@ class AXACheckbox extends NoShadowDOM {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
-  }
-
-  // workaround because react has no innerHTML in constructor
-  shouldUpdate() {
-    const {
-      isReact,
-      hasChildren,
-      label,
-      labelTextElement,
-      innerHTML,
-      iteration,
-    } = this;
-
-    // if react & innerHTML is set or if is react and has a label and innerHTML
-    if (
-      isReact &&
-      innerHTML !== '' &&
-      !hasChildren &&
-      !labelTextElement &&
-      (!label || (label && iteration === 1))
-    ) {
-      this.wrapChildren();
-    }
-
-    this.iteration += 1;
-
-    return true;
+    // first render has overwritten the child root - so prevent future child-root harvesting now
+    this._childRoot = null;
   }
 
   // this lifecycle method will regularly be called after render() -

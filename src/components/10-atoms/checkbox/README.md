@@ -73,8 +73,9 @@ The string-valued `value` of the checkbox for purposes of form submission.
 
 ### label
 
-The string-valued `label` provides the label text. Markup isn't allowed! When no label is set and the component hasn't any children no HMTL label will be rendered due to semantics.
-A label can also be passed as a children. It **must** be enclosed by a container. Pay attention that `<label>` is not allowed as a container, beacause the patterns-library provides a label itself.
+The string-valued `label` provides the label text. HTML markup is not permitted as value. When no label is set and the component has no children, no &lt;label&gt; will be rendered for reasons of semantic HTML.
+
+A label value can also be specified via the component's children. Note that such HTML child content must be single-rooted, and that `<label>` is not a permissible child root (to prevent improper nesting with the element-provided `<label>`).
 
 ### variant
 
@@ -89,7 +90,7 @@ The string-valued `refId` sets the reference ID for label and input. If no `refI
 
 ### required
 
-The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
+The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true, displays `*` after the label text.
 
 ### checked\*
 
