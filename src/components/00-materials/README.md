@@ -28,6 +28,7 @@ import {
 ...
 <ArrowRightSvg />
 ```
+
 You need to use `SVGR` that takes external SVG files and transforms them into React components with Webpack.
 
 ```bash
