@@ -20,17 +20,14 @@ storyCheckbox.add(
   'Checkbox',
   () => {
     const refId = text('refId', `checkbox-${createRefId()}`);
-    const label = text(
-      'label',
-      `<p>I agree to <a href='https://axa.ch/en/information/data-protection.html' target='_blank'>conditions of data protection.</a></p>`
-    );
+    const label = text('label', 'I agree to conditions of data protection.');
     const name = text('name', 'my-checkbox');
     const variant = select('variant', ['square', 'checkmark']);
     const checked = boolean('checked', true);
     const disabled = boolean('disabled', false);
     const errortext = boolean('error', false);
     const required = boolean('required', false);
-    const styled = boolean('styled', true);
+    const styled = boolean('styled', false);
 
     const wrapper = document.createElement('div');
     const template = html`
