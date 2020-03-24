@@ -31,4 +31,22 @@ storiesOf('Components|Atoms/Checkbox/Demos', module)
     const wrapper = document.createElement('div');
     render(template, wrapper);
     return wrapper;
+  })
+  .add('Feature - Use a styled HTML label', () => {
+    const template = html`
+      <axa-checkbox
+        class="hover"
+        name="checkbox"
+        .checked="${false}"
+        required="true"
+        variant="checkmark"
+        label="<p><span class='non-link-label-text'>This is an HTML label with a </span><a href='https://www.google.ch' target='_blank'>link.</a></p>"
+        styled
+      >
+      </axa-checkbox>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
   });

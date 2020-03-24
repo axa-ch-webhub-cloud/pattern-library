@@ -16,31 +16,41 @@ storyCheckbox.addParameters({
   changelog: Changelog,
 });
 
-storyCheckbox.add('Checkbox', () => {
-  const refId = text('refId', `checkbox-${createRefId()}`);
-  const label = text('label', 'I agree to conditions of data protection.');
-  const name = text('name', 'my-checkbox');
-  const variant = select('variant', ['square', 'checkmark']);
-  const checked = boolean('checked', true);
-  const disabled = boolean('disabled', false);
-  const errortext = boolean('error', false);
-  const required = boolean('required', false);
+storyCheckbox.add(
+  'Checkbox',
+  () => {
+    const refId = text('refId', `checkbox-${createRefId()}`);
+    const label = text('label', 'I agree to conditions of data protection.');
+    const name = text('name', 'my-checkbox');
+    const variant = select('variant', ['square', 'checkmark']);
+    const checked = boolean('checked', true);
+    const disabled = boolean('disabled', false);
+    const errortext = boolean('error', false);
+    const required = boolean('required', false);
+    const styled = boolean('styled', false);
 
-  const wrapper = document.createElement('div');
-  const template = html`
-    <axa-checkbox
-      refId="${refId}"
-      class="hover"
-      name="${name}"
-      variant="${variant}"
-      label="${label}"
-      ?disabled="${disabled}"
-      ?checked="${checked}"
-      ?required="${required}"
-      error="${errortext ? 'Please accept our terms and conditions.' : ''}"
-    ></axa-checkbox>
-  `;
+    const wrapper = document.createElement('div');
+    const template = html`
+      <axa-checkbox
+        refId="${refId}"
+        class="hover"
+        name="${name}"
+        variant="${variant}"
+        label="${label}"
+        ?disabled="${disabled}"
+        ?checked="${checked}"
+        ?required="${required}"
+        ?styled="${styled}"
+        error="${errortext ? 'Please accept our terms and conditions.' : ''}"
+      ></axa-checkbox>
+    `;
 
-  render(template, wrapper);
-  return wrapper;
-});
+    render(template, wrapper);
+    return wrapper;
+  },
+  {
+    knobs: {
+      escapeHTML: false,
+    },
+  }
+);

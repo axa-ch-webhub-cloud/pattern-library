@@ -127,6 +127,15 @@ axa-checkbox {
       }
     }
 
+    &[styled] .a-checkbox__content * {
+      display: inline;
+      @include typo(primary, small-1);
+
+      @include breakpoint($mediaquery-md-up) {
+         @include typo(primary, medium);
+      }
+    }
+
     &:hover {
       &:not([disabled]) {
         .a-checkbox__icon {

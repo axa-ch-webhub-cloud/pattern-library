@@ -73,8 +73,17 @@ The string-valued `value` of the checkbox for purposes of form submission.
 
 ### label
 
-The string-valued `label` provides the label text. Markup isn't allowed! When no label is set and the component hasn't any children no HMTL label will be rendered due to semantics.
-A label can also be passed as a children. It **must** be enclosed by a container. Pay attention that `<label>` is not allowed as a container, beacause the patterns-library provides a label itself.
+The string-valued `label` provides the label text. When no label is set and the component has no children, no &lt;label&gt; will be rendered for reasons of semantic HTML.
+
+HTML markup is permitted as value, subject to being single-rooted (see below). Such `label` values must respect the [specification](https://html.spec.whatwg.org/multipage/syntax.html#syntax-attributes).
+
+A label value can also be specified via the component's children. Note that such HTML child content must be single-rooted, and that `<label>` is not a permissible child root (to prevent improper nesting with the element-provided `<label>`). The component wraps its children in `<axa-text>` for styling.
+
+_Note: The use of component children for label specification is discouraged for technical reasons. We recommend `styled` HTML labels instead._
+
+### styled
+
+The Boolean attribute `styled`, when used in conjunction with HTML-valued `label`, ensures that the styling of such labels matches `<axa-text>` styling.
 
 ### variant
 
@@ -89,7 +98,7 @@ The string-valued `refId` sets the reference ID for label and input. If no `refI
 
 ### required
 
-The boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true displays `*` after the label text.
+The Boolean attribute `required` visualizes an element that must obligatorily be filled by the user. When true, displays `*` after the label text.
 
 ### checked\*
 
