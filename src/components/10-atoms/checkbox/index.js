@@ -26,6 +26,7 @@ class AXACheckbox extends NoShadowDOM {
       value: { type: String },
       name: { type: String, reflect: true },
       label: { type: String },
+      styled: { type: Boolean, reflect: true },
       variant: { type: String, defaultValue: 'square' },
       required: { type: Boolean },
       checked: {
