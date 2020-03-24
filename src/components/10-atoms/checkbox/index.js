@@ -111,6 +111,16 @@ class AXACheckbox extends NoShadowDOM {
     onChange(event);
   }
 
+  // throttle re-rendering to once per animation frame
+  // (helps e.g. with static websites using this component together with static children
+  // (like <axa-checkbox><span>my label</span></axa-checkbox>),
+  // where those children (here, <span>) may not be DOM-constructed yet when using lit-element's default microtask timing!)
+  performUpdate() {
+    new Promise(resolve =>
+      window.requestAnimationFrame(() => resolve())
+    ).then(() => super.performUpdate());
+  }
+
   render() {
     // extract props and state
     const {
