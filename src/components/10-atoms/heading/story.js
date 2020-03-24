@@ -12,6 +12,7 @@ storyAXAHeading.addParameters({
   readme: {
     sidebar: Readme,
   },
+  knobs: { disabled: true },
 });
 
 storyAXAHeading.add('Heading', () => {
