@@ -7,6 +7,7 @@ import Changelog from '../CHANGELOG.md';
 import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
 import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren';
 import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
+import DemoUpdateDomLabel from './DemoUpdateDomLabel';
 
 storiesOf('Components|Atoms/Checkbox/React/Demo', module)
   .addParameters({
@@ -28,5 +29,10 @@ storiesOf('Components|Atoms/Checkbox/React/Demo', module)
   .add('Checkbox - updates also as child', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoUpdateLabelChildren />, div);
+    return div;
+  })
+  .add('Checkbox - updates also as DOM label', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoUpdateDomLabel />, div);
     return div;
   });
