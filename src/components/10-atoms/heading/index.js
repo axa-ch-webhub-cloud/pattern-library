@@ -37,9 +37,14 @@ class AXAHeading extends LitElement {
       this.variant === 'secondary' ? 'a-heading--secondary' : '';
 
     const template = `
-      <h${this.rank} class="a-heading ${secondaryVariant}">
-        <slot></slot>
-      </h${this.rank}>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h${this.rank} class="a-heading ${secondaryVariant}">
+      <slot></slot>
+    </h${this.rank}>
     `;
 
     return html`

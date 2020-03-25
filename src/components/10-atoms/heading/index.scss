@@ -1,5 +1,6 @@
 .a-heading {
   // reset browser styles
+  margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
   margin-inline-start: 0;
@@ -7,6 +8,8 @@
 }
 
 h1.a-heading {
+  margin: 20px 0;
+
   @include typo-title(large-1);
 
   @include breakpoint($mediaquery-md) {
@@ -31,6 +34,8 @@ h1.a-heading {
 }
 
 h2.a-heading {
+  margin: 18px 0;
+
   @include typo-title(large-1);
 
   @include breakpoint($mediaquery-md) {
@@ -55,6 +60,8 @@ h2.a-heading {
 }
 
 h3.a-heading {
+  margin: 16px 0;
+
   @include typo-title(large);
 
   @include breakpoint($mediaquery-md) {
@@ -79,6 +86,8 @@ h3.a-heading {
 }
 
 h4.a-heading {
+  margin: 14px 0;
+
   @include typo-title(large);
 
   @include breakpoint($mediaquery-md) {
@@ -103,6 +112,8 @@ h4.a-heading {
 }
 
 h5.a-heading {
+  margin: 12px 0;
+
   @include typo-title(medium-1);
 
   @include breakpoint($mediaquery-md) {
@@ -127,6 +138,8 @@ h5.a-heading {
 }
 
 h6.a-heading {
+  margin: 10px 0;
+
   @include typo-title(medium);
 
   @include breakpoint($mediaquery-md) {
