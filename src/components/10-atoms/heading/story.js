@@ -18,8 +18,8 @@ storyAXAHeading.addParameters({
 storyAXAHeading.add('Heading', () => {
   const rank = select('Rank', ['1', '2', '3', '4', '5', '6'], '1');
   const secondary = boolean('Secondary (variant)', false);
-
   const wrapper = document.createElement('div');
+
   const template = secondary
     ? html`
         <axa-heading rank="${rank}" variant="secondary"
@@ -31,6 +31,7 @@ storyAXAHeading.add('Heading', () => {
         <axa-heading rank="${rank}">H1 Primary Heading</axa-heading>
         <axa-text>${loremIpsum}</axa-text>
       `;
+
   render(template, wrapper);
   return wrapper;
 });

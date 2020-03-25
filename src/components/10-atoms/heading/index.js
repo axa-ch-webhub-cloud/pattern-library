@@ -30,6 +30,15 @@ class AXAHeading extends LitElement {
     // this functions applies default values per type and verifies if
     // the HTML attribute has been set before defining the custom element
     applyDefaults(this);
+
+    this.topBottomMarginsByRank = {
+      1: '20px',
+      2: '18px',
+      3: '16px',
+      4: '14px',
+      5: '12px',
+      6: '10px',
+    };
   }
 
   render() {
@@ -40,6 +49,7 @@ class AXAHeading extends LitElement {
     <style>
       :host {
         display: block;
+        margin: ${this.topBottomMarginsByRank[this.rank]} 0;
       }
     </style>
     <h${this.rank} class="a-heading ${secondaryVariant}">
