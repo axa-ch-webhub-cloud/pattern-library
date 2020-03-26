@@ -45,13 +45,10 @@ class AXAHeading extends LitElement {
     const secondaryVariant =
       this.variant === 'secondary' ? 'a-heading--secondary' : '';
 
+    this.style.marginTop = TOP_BOTTOM_MARGINS_BY_RANK[this.rank];
+    this.style.marginBottom = TOP_BOTTOM_MARGINS_BY_RANK[this.rank];
+
     const template = `
-    <style>
-      :host {
-        display: block;
-        margin: ${TOP_BOTTOM_MARGINS_BY_RANK[this.rank]} 0;
-      }
-    </style>
     <h${this.rank} class="a-heading ${secondaryVariant}">
       <slot></slot>
     </h${this.rank}>
