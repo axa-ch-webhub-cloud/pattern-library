@@ -1,3 +1,4 @@
+// We set the display property to 'block', so that a user of this element can overwrite the margins.
 :host {
   display: block;
 }
