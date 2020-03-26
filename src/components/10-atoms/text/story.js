@@ -28,7 +28,7 @@ storiesOf('Components|Atoms/Text', module)
     const content = text(
       'text',
       `Is your car your pride and joy, or just a means of getting from A to
-    B ? Whichever applies to you, it'll certainly have the best
+    B ? Whichever applies to you, it will certainly have the best
     insurance with us. Calculate your premium online – You keep your
     advisor even when you purchase from us online.`
     );
