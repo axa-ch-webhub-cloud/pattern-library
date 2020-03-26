@@ -32,8 +32,11 @@ async function _getHeadingElement(t, rank, variant) {
 }
 
 test('should render h1 primary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('20px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('20px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -49,8 +52,11 @@ test('should render h1 primary correctly on desktop', async t => {
 });
 
 test('should render h1 primary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('20px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('20px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -66,8 +72,11 @@ test('should render h1 primary correctly on tablet', async t => {
 });
 
 test('should render h1 primary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('20px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('20px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -89,8 +98,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h2 primary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('18px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('18px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -106,8 +118,11 @@ test('should render h2 primary correctly on desktop', async t => {
 });
 
 test('should render h2 primary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('18px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('18px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -115,6 +130,7 @@ test('should render h2 primary correctly on tablet', async t => {
   await t.expect($axaElemShadowEl.getStyleProperty('font-style')).eql('normal');
   await t.expect($axaElemShadowEl.getStyleProperty('font-size')).eql('30px');
   await t.expect($axaElemShadowEl.getStyleProperty('line-height')).eql('34px');
+  await t;
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.3px');
@@ -123,8 +139,11 @@ test('should render h2 primary correctly on tablet', async t => {
 });
 
 test('should render h2 primary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('18px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('18px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -146,8 +165,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h3 primary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('16px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('16px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -163,8 +185,11 @@ test('should render h3 primary correctly on desktop', async t => {
 });
 
 test('should render h3 primary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('16px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('16px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -180,8 +205,11 @@ test('should render h3 primary correctly on tablet', async t => {
 });
 
 test('should render h3 primary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('16px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('16px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -203,8 +231,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h4 primary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('14px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('14px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -220,8 +251,11 @@ test('should render h4 primary correctly on desktop', async t => {
 });
 
 test('should render h4 primary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('14px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('14px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -237,8 +271,11 @@ test('should render h4 primary correctly on tablet', async t => {
 });
 
 test('should render h4 primary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('14px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('14px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -260,8 +297,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h5 primary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('12px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('12px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -277,8 +317,11 @@ test('should render h5 primary correctly on desktop', async t => {
 });
 
 test('should render h5 primary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('12px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('12px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -294,8 +337,11 @@ test('should render h5 primary correctly on tablet', async t => {
 });
 
 test('should render h5 primary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('12px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('12px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -317,8 +363,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h6 primary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('10px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('10px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -334,8 +383,11 @@ test('should render h6 primary correctly on desktop', async t => {
 });
 
 test('should render h6 primary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('10px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('10px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -351,8 +403,11 @@ test('should render h6 primary correctly on tablet', async t => {
 });
 
 test('should render h6 primary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('10px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('10px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
@@ -376,8 +431,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h1 secondary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('20px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('20px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -393,8 +451,11 @@ test('should render h1 secondary correctly on desktop', async t => {
 });
 
 test('should render h1 secondary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('20px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('20px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -410,8 +471,11 @@ test('should render h1 secondary correctly on tablet', async t => {
 });
 
 test('should render h1 secondary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('20px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('20px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -435,8 +499,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h2 secondary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('18px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('18px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -452,8 +519,11 @@ test('should render h2 secondary correctly on desktop', async t => {
 });
 
 test('should render h2 secondary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('18px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('18px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -469,8 +539,11 @@ test('should render h2 secondary correctly on tablet', async t => {
 });
 
 test('should render h2 secondary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('18px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('18px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -494,8 +567,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h3 secondary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('16px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('16px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -511,8 +587,11 @@ test('should render h3 secondary correctly on desktop', async t => {
 });
 
 test('should render h3 secondary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('16px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('16px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -528,8 +607,11 @@ test('should render h3 secondary correctly on tablet', async t => {
 });
 
 test('should render h3 secondary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('16px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('16px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -553,8 +635,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h4 secondary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('14px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('14px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -570,8 +655,11 @@ test('should render h4 secondary correctly on desktop', async t => {
 });
 
 test('should render h4 secondary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('14px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('14px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -587,8 +675,11 @@ test('should render h4 secondary correctly on tablet', async t => {
 });
 
 test('should render h4 secondary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('14px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('14px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -612,8 +703,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h5 secondary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('12px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('12px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -629,8 +723,11 @@ test('should render h5 secondary correctly on desktop', async t => {
 });
 
 test('should render h5 secondary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('12px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('12px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -646,8 +743,11 @@ test('should render h5 secondary correctly on tablet', async t => {
 });
 
 test('should render h5 secondary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('12px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('12px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -671,8 +771,11 @@ fixture('Heading - Correct CSS attributes')
   });
 
 test('should render h6 secondary correctly on desktop', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('10px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('10px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -688,8 +791,11 @@ test('should render h6 secondary correctly on desktop', async t => {
 });
 
 test('should render h6 secondary correctly on tablet', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('10px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('10px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
@@ -705,8 +811,11 @@ test('should render h6 secondary correctly on tablet', async t => {
 });
 
 test('should render h6 secondary correctly on mobile', async t => {
+  const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
 
+  await t.expect($headingElement.getStyleProperty('margin-top')).eql('10px');
+  await t.expect($headingElement.getStyleProperty('margin-bottom')).eql('10px');
   await t
     .expect($axaElemShadowEl.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
