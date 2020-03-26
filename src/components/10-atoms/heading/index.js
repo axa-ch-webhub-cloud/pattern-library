@@ -6,6 +6,15 @@ import defineOnce from '../../../utils/define-once';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
+const TOP_BOTTOM_MARGINS_BY_RANK = {
+  1: '20px',
+  2: '18px',
+  3: '16px',
+  4: '14px',
+  5: '12px',
+  6: '10px',
+};
+
 class AXAHeading extends LitElement {
   static get tagName() {
     return 'axa-heading';
@@ -36,10 +45,13 @@ class AXAHeading extends LitElement {
     const secondaryVariant =
       this.variant === 'secondary' ? 'a-heading--secondary' : '';
 
+    this.style.marginTop = TOP_BOTTOM_MARGINS_BY_RANK[this.rank];
+    this.style.marginBottom = TOP_BOTTOM_MARGINS_BY_RANK[this.rank];
+
     const template = `
-      <h${this.rank} class="a-heading ${secondaryVariant}">
-        <slot></slot>
-      </h${this.rank}>
+    <h${this.rank} class="a-heading ${secondaryVariant}">
+      <slot></slot>
+    </h${this.rank}>
     `;
 
     return html`

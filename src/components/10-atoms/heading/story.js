@@ -1,10 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-// if your need more boolean, select, radios
-import { withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
+
+const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
 
 const storyAXAHeading = storiesOf('Components|Atoms/Heading', module);
 storyAXAHeading.addDecorator(withKnobs);
@@ -12,26 +13,24 @@ storyAXAHeading.addParameters({
   readme: {
     sidebar: Readme,
   },
-  knobs: { disabled: true },
 });
 
 storyAXAHeading.add('Heading', () => {
+  const rank = select('Rank', ['1', '2', '3', '4', '5', '6'], '1');
+  const secondary = boolean('Secondary (variant)', false);
   const wrapper = document.createElement('div');
-  const template = html`
-    <axa-heading rank="1">H1 Primary Heading</axa-heading>
-    <axa-heading rank="2">H2 Primary Heading</axa-heading>
-    <axa-heading rank="3">H3 Primary Heading</axa-heading>
-    <axa-heading rank="4">H4 Primary Heading</axa-heading>
-    <axa-heading rank="5">H5 Primary Heading</axa-heading>
-    <axa-heading rank="6">H6 Primary Heading</axa-heading>
 
-    <axa-heading variant="secondary" rank="1">H1 Secondary Heading</axa-heading>
-    <axa-heading variant="secondary" rank="2">H2 Secondary Heading</axa-heading>
-    <axa-heading variant="secondary" rank="3">H3 Secondary Heading</axa-heading>
-    <axa-heading variant="secondary" rank="4">H4 Secondary Heading</axa-heading>
-    <axa-heading variant="secondary" rank="5">H5 Secondary Heading</axa-heading>
-    <axa-heading variant="secondary" rank="6">H6 Secondary Heading</axa-heading>
-  `;
+  const template = secondary
+    ? html`
+        <axa-heading rank="${rank}" variant="secondary"
+          >H1 Primary Heading</axa-heading
+        >
+        <axa-text>${loremIpsum}</axa-text>
+      `
+    : html`
+        <axa-heading rank="${rank}">H1 Primary Heading</axa-heading>
+        <axa-text>${loremIpsum}</axa-text>
+      `;
 
   render(template, wrapper);
   return wrapper;
