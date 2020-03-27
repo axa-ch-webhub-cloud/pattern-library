@@ -186,11 +186,12 @@ class AXACheckbox extends NoShadowDOM {
       </span>
     `;
 
-    const errorElement = error && !disabled
-      ? html`
-          <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-        `
-      : html``;
+    const errorElement =
+      error && !disabled
+        ? html`
+            <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+          `
+        : html``;
 
     if (_childRoot) {
       // 1. harvest child content as live DOM (lit-html has documented support for text-content binding type 'DOM node')

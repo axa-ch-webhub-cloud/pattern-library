@@ -1,14 +1,14 @@
+## unreleased
+
+- A new variant was added. Now you can use `inverted-checkbox` to have a better contrast on background `blue-teal`. (#1685)
+- BREAKING CHANGE: We do not show error messages anymore if element is disabled.
+
 ## 3.0.0
 
 - (This version do not have a technical breaking change.)
 - Fixes a problem that no label text is displayed (#1699)
   - **RECOMMENDATION:** Do not use component children. Use `label` attribute instead. You can now put HTML in there.
   - New boolean attribute `styled` was added. Set it to the component to style the `label` like `axa-text`
-
-## 2.2.X
-
-- A new variant was added. Now you can use `inverted-checkbox` to have a better contrast on background `blue-teal`. (#1685)
-- BREAKING CHANGE: We do not show error messages anymore if element is disabled.
 
 ## 2.1.2
 
