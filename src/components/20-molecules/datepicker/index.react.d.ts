@@ -27,8 +27,6 @@ export interface AXADatepickerProps {
    * Example: ['2010-2015', 2019, 2020]
    */
   allowedyears: Array<string | number>;
-  labelbuttonok?: string;
-  labelbuttoncancel?: string;
   placeholder?: string;
   monthtitle?: string;
   yeartitle?: string;

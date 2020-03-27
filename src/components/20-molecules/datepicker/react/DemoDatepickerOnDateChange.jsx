@@ -37,8 +37,6 @@ const DemoDatepickerOnDateChange = () => {
         onDateChange={newDate => setSelectedDateString(formatDate(newDate))}
         onBlur={undefined}
         placeholder="Wählen Sie ein Datum"
-        labelbuttoncancel="Abbrechen"
-        labelbuttonok="OK"
         allowedyears={[2019, 2020]}
       />
     </div>

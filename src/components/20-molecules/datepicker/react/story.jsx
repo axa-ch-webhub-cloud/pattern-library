@@ -38,8 +38,6 @@ storiesOf('Components|Molecules/Datepicker/React', module)
     const autofocus = boolean('autofocus', false);
     const checkMark = boolean('checkMark', false);
     const label = text('label', '');
-    const labelbuttoncancel = text('labelbuttoncancel', 'Cancel');
-    const labelbuttonok = text('labelbuttonok', 'Ok');
     const monthtitle = text('monthtitle', 'Choose Month');
     const yeartitle = text('yeartitle', 'Choose Year');
     const invaliddatetext = text('invaliddatetext', 'Invalid date');
@@ -68,8 +66,6 @@ storiesOf('Components|Molecules/Datepicker/React', module)
         label={label}
         monthtitle={monthtitle}
         yeartitle={yeartitle}
-        labelbuttoncancel={labelbuttoncancel}
-        labelbuttonok={labelbuttonok}
         id="datepicker-react"
         data-test-id="datepicker-react"
         data-selenium-id="0815"

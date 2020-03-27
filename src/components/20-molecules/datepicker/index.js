@@ -120,8 +120,6 @@ class AXADatepicker extends NoShadowDOM {
       monthitems: { type: Array },
       yearitems: { type: Array },
       cells: { type: Array },
-      labelbuttoncancel: { type: String, defaultValue: 'Close' },
-      labelbuttonok: { type: String, defaultValue: 'OK' },
       placeholder: { type: String, defaultValue: 'Please select a date' },
       monthtitle: { type: String, defaultValue: 'Choose month' },
       yeartitle: { type: String, defaultValue: 'Choose year' },
@@ -394,20 +392,6 @@ class AXADatepicker extends NoShadowDOM {
                           `
                       )}
                   </div>
-                  <div class="m-datepicker__buttons">
-                    <axa-button
-                      variant="secondary"
-                      class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
-                      @click="${this.handleButtonCancelClick}"
-                      >${this.labelbuttoncancel}</axa-button
-                    >
-                    <axa-button
-                      class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
-                      @click="${this.handleButtonOkClick}"
-                      .disabled="${!_date}"
-                      >${this.labelbuttonok}</axa-button
-                    >
-                  </div>
                 </div>
               </div>
             `
@@ -662,7 +646,26 @@ class AXADatepicker extends NoShadowDOM {
     onBlur(e);
   }
 
-  handleButtonOkClick() {
+  fireEvents(validDate) {
+    if (validDate) {
+      const { name } = this;
+      const value = this.formatDate(validDate);
+      const details = { value, date: validDate, name };
+      fireCustomEvent('axa-change', value, this, { bubbles: false });
+      fireCustomEvent('change', details, this, { bubbles: false });
+    }
+  }
+
+  handleDatepickerCalendarCellClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.target.blur(); // prevent the ugly focus ring after the click
+    const cellIndex = parseInt(e.target.dataset.index, 10);
+    const date = e.target.dataset.value;
+    this.index = cellIndex;
+    this.initDate(new Date(date));
+    this.setMonthAndYearItems();
+
     const {
       _date,
       inputfield,
@@ -683,31 +686,6 @@ class AXADatepicker extends NoShadowDOM {
     // since the calendar UI only allows legal dates to be picked,
     // any preexisting error should be cleared
     this.error = null;
-  }
-
-  fireEvents(validDate) {
-    if (validDate) {
-      const { name } = this;
-      const value = this.formatDate(validDate);
-      const details = { value, date: validDate, name };
-      fireCustomEvent('axa-change', value, this, { bubbles: false });
-      fireCustomEvent('change', details, this, { bubbles: false });
-    }
-  }
-
-  handleButtonCancelClick() {
-    this.toggleDatepicker();
-  }
-
-  handleDatepickerCalendarCellClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    e.target.blur(); // prevent the ugly focus ring after the click
-    const cellIndex = parseInt(e.target.dataset.index, 10);
-    const date = e.target.dataset.value;
-    this.index = cellIndex;
-    this.initDate(new Date(date));
-    this.setMonthAndYearItems();
   }
 }
 

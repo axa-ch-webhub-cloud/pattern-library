@@ -127,7 +127,7 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor.assertYear(2019);
   await datePickerAccessor.chooseAnyMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
-  await datePickerAccessor.submit();
+  // await datePickerAccessor.submit();
   // we need to do things on our own here since property access
   // is *not* supported by the TestCafe API (here for 'value')
   const getInputValue = ClientFunction(
@@ -525,7 +525,7 @@ test('should fire the right events', async t => {
 });
 
 fixture('Datepicker as inputfield with fixed width and height').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('should have 200px width', async t => {
@@ -557,7 +557,7 @@ test('input wrap should have correct height without a label', async t => {
 });
 
 fixture('Datepicker as inputfield with label').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('component and input wrap should have correct height', async t => {
@@ -572,7 +572,7 @@ test('component and input wrap should have correct height', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width and 10px height').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
 test('should have a minimum width', async t => {
   const datepicker = await Selector(() =>

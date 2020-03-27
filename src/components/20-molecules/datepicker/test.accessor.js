@@ -87,17 +87,18 @@ class DatePickerAccessor {
     await this.t.expect(dropdownButton.innerText).contains(title);
   }
 
-  async submit() {
-    await this.t.setTestSpeed(0.5);
-    const submitButton = await Selector(this.submitButtonSelector(this.id));
-    await this.t.click(submitButton);
-  }
+  // async submit() {
+  //   await this.t.setTestSpeed(0.5);
+  //   const submitButton = await Selector(this.submitButtonSelector(this.id));
+  //   await this.t.click(submitButton);
+  // }
 
-  submitButtonSelector = Selector(id =>
-    document
-      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-button[class*="js-datepicker__button-ok"]')
-  );
+  // todo raphaellueckl remove
+  // submitButtonSelector = Selector(id =>
+  //   document
+  //     .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+  //     .querySelector('axa-button[class*="js-datepicker__button-ok"]')
+  // );
 
   datepickerInputFieldSelector = Selector(id =>
     document

@@ -29,8 +29,6 @@ const DemoDatepickerReRenderOnEveryKeyStroke = () => {
         monthtitle="Month"
         yeartitle="Year"
         placeholder="Choose a date"
-        labelbuttoncancel="Cancel"
-        labelbuttonok="OK"
         label={config.label}
         checkMark={config.required && value && date}
         invalid={!(value && date)}
