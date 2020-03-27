@@ -140,16 +140,19 @@ class AXACheckbox extends NoShadowDOM {
       _childRoot = this.firstElementChild,
     } = this;
 
+    const isVariantInverted = variant.indexOf('inverted') > -1;
+    const isVariantCheckmark = variant.indexOf('checkmark') > -1;
+
     const classes = classMap({
       'a-checkbox__icon': true,
       'js-checkbox__icon': true,
-      'a-checkbox__icon--checkmark': variant.indexOf('checkmark') > -1,
-      'a-checkbox__icon--inverted': variant.indexOf('inverted') > -1,
+      'a-checkbox__icon--checkmark': isVariantCheckmark,
+      'a-checkbox__icon--inverted': isVariantInverted,
     });
 
     const checkboxContentClasses = classMap({
       'a-checkbox__content': true,
-      'a-checkbox__content--inverted': variant.indexOf('inverted') > -1,
+      'a-checkbox__content--inverted': isVariantInverted,
     });
 
     // now that we have the 'isReact' prop, determine if this
@@ -178,7 +181,7 @@ class AXACheckbox extends NoShadowDOM {
         @change=${this.handleChange}
       />
       <span class="${classes}">
-        ${variant.indexOf('checkmark') > -1
+        ${isVariantCheckmark
           ? html`
               <span class="a-checkbox__icon-checkmark">${CHECKMARK_ICON}</span>
             `
