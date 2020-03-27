@@ -281,8 +281,8 @@ class AXADatepicker extends NoShadowDOM {
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
         'm-datepicker__calendar-today': today,
-        'm-datepicker__calendar-selected-day': outputdate && selected,
-        'm-datepicker__calendar-selected-day--initial': !outputdate && selected,
+        'm-datepicker__calendar-selected-day': outputdate && selected, // outputdate: This property can only have a value, if a user manually chose a day
+        'm-datepicker__calendar-selected-day--initial': !outputdate && selected, // outputdate: This property can only have a value, if a user manually chose a day
         'm-datepicker__calendar-day--inactive': inactive,
       });
 
