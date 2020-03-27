@@ -1,7 +1,7 @@
 ## unreleased
 
+- **BREAKING CHANGE**: We do not show error messages anymore if element is disabled.
 - A new variant was added. Now you can use `inverted-checkmark` to have a better contrast on background `blue-teal`. (#1685)
-- BREAKING CHANGE: We do not show error messages anymore if element is disabled.
 
 ## 3.0.0
 

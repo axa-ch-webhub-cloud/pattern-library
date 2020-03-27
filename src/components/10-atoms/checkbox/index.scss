@@ -44,8 +44,8 @@ axa-checkbox {
       }
 
       &--inverted::after {
-        border-color: $color-axa-blue; // just needed for undocumented variant "inverted-square"
-        background-color: $color-axa-blue; // just needed for undocumented variant "inverted-square"
+        border-color: $color-axa-blue; // just needed for yet unsupportet variant "inverted-square"
+        background-color: $color-axa-blue; // just needed for yet unsupportet variant "inverted-square"
       }
     }
 
