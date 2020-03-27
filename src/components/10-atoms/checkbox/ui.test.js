@@ -1,12 +1,11 @@
 import { Selector, ClientFunction } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
+const TAG = 'axa-checkbox';
 
 fixture('Checkbox - basic functionality').page(
   `${host}/iframe.html?id=components-atoms-checkbox--checkbox`
 );
-
-const TAG = 'axa-checkbox';
 
 test('should render checkbox', async t => {
   const $axaElem = await Selector(TAG);
@@ -158,6 +157,98 @@ test('should show checkbox variant checkmark', async t => {
   });
   const measuredColor = await getIconBackgroundColor();
   await t.expect(measuredColor).eql('rgb(0, 0, 143)');
+});
+
+fixture('Checkbox - Variant inverted-checkmark').page(
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-00zf06b7egl3n&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=inverted-checkmark&knob-checked=true`
+);
+
+test('box should have correct background-color', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector(
+      '.a-checkbox__icon--checkmark'
+    );
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window
+      .getComputedStyle(checkmarkWrapper)
+      .getPropertyValue('background-color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgb(255, 255, 255)');
+});
+
+test('checkmark should have correct color', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector(
+      '.a-checkbox__icon-checkmark'
+    );
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window.getComputedStyle(checkmarkWrapper).getPropertyValue('color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgb(0, 0, 143)');
+});
+
+test('label text should have correct color', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector('.a-checkbox__content');
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window.getComputedStyle(checkmarkWrapper).getPropertyValue('color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgb(255, 255, 255)');
+});
+
+fixture('Checkbox - Variant inverted-checkmark: disabled').page(
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-tz6etn0cv7e&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=inverted-checkmark&knob-checked=true&knob-disabled=true`
+);
+
+test('if disabled: box should have correct background-color', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector(
+      '.a-checkbox__icon--checkmark'
+    );
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window
+      .getComputedStyle(checkmarkWrapper)
+      .getPropertyValue('background-color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgba(0, 0, 0, 0)'); // transparent color
+});
+
+test('if disabled: checkmark should have correct color', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector(
+      '.a-checkbox__icon-checkmark'
+    );
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window.getComputedStyle(checkmarkWrapper).getPropertyValue('color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgb(77, 155, 166)');
+});
+
+test('if disabled: label text should have correct color', async t => {
+  const getIconBackgroundColor = ClientFunction(() => {
+    const checkbox = document.querySelector('axa-checkbox');
+    const checkmarkWrapper = document.querySelector('.a-checkbox__content');
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    return window.getComputedStyle(checkmarkWrapper).getPropertyValue('color');
+  });
+  const measuredColor = await getIconBackgroundColor();
+  await t.expect(measuredColor).eql('rgb(77, 155, 166)');
 });
 
 fixture('Checkbox - DOM update works also on children').page(
