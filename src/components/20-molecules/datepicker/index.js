@@ -264,6 +264,7 @@ class AXADatepicker extends NoShadowDOM {
       invalid,
       invaliddatetext,
       style,
+      outputdate,
     } = this;
     const needToShowError = (error || invalid) && invaliddatetext;
 
@@ -280,7 +281,8 @@ class AXADatepicker extends NoShadowDOM {
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
         'm-datepicker__calendar-today': today,
-        'm-datepicker__calendar-selected-day': selected,
+        'm-datepicker__calendar-selected-day': outputdate && selected,
+        'm-datepicker__calendar-selected-day--initial': !outputdate && selected,
         'm-datepicker__calendar-day--inactive': inactive,
       });
 
@@ -510,7 +512,7 @@ class AXADatepicker extends NoShadowDOM {
     _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-    this.cells = getMonthMatrix(_date, allowedyears);
+    this.cells = getMonthMatrix(_date, this.outputdate, allowedyears);
     this.weekdays = getWeekdays(_date, locale);
   }
 
@@ -559,8 +561,8 @@ class AXADatepicker extends NoShadowDOM {
     this.error = null;
     if (isValid) {
       this._date = validDate;
-      this.initDate(validDate);
       this.outputdate = this.formatDate(validDate);
+      this.initDate(validDate);
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
       this._date = null;
@@ -660,11 +662,6 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     e.stopPropagation();
     e.target.blur(); // prevent the ugly focus ring after the click
-    const cellIndex = parseInt(e.target.dataset.index, 10);
-    const date = e.target.dataset.value;
-    this.index = cellIndex;
-    this.initDate(new Date(date));
-    this.setMonthAndYearItems();
 
     const {
       _date,
@@ -676,6 +673,13 @@ class AXADatepicker extends NoShadowDOM {
     } = this;
     const value = this.formatDate(_date);
     this.outputdate = value;
+
+    const cellIndex = parseInt(e.target.dataset.index, 10);
+    const date = e.target.dataset.value;
+    this.index = cellIndex;
+    this.initDate(new Date(date));
+    this.setMonthAndYearItems();
+
     onChange({ target: { value } });
     onDateChange(_date);
     this.fireEvents(_date);
