@@ -3,7 +3,7 @@ $checkbox-border-width: 1px;
 $checkbox-icon-dimension: 8px;
 $checkbox-label-left-margin: 11px;
 $checkbox-error-top-margin: 10px;
-$color-disabled-inverted: #4d9ba6; // this color is just for the background-color "blue-teal"
+$color-disabled-inverted: #4d9ba6; // The designer has given approval for this color only for component's background "blue-teal".
 
 axa-checkbox {
   @mixin show-checkmark($color: currentColor) {
@@ -44,8 +44,8 @@ axa-checkbox {
       }
 
       &--inverted::after {
-        border-color: $color-axa-blue; //TODO: better inherit from checkbox background
-        background-color: $color-axa-blue; //TODO: better inherit from checkbox background
+        border-color: $color-axa-blue; // just needed for undocumented variant "inverted-square"
+        background-color: $color-axa-blue; // just needed for undocumented variant "inverted-square"
       }
     }
 
@@ -63,7 +63,7 @@ axa-checkbox {
       background-color: $color-prim-white;
 
       .a-checkbox__icon-checkmark {
-        @include show-checkmark($color-axa-blue); //TODO: better inherit from checkbox background
+        @include show-checkmark($color-axa-blue);
       }
     }
 
@@ -190,7 +190,7 @@ axa-checkbox {
           border-color: $color-prim-white;
 
           &::after {
-            border-color: $color-prim-white; //TODO: better inherit from checkbox background
+            border-color: $color-prim-white; // just needed for undocumented variant "inverted-square"
           }
         }
       }
