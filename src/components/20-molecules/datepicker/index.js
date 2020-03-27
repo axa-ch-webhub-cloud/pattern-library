@@ -512,7 +512,7 @@ class AXADatepicker extends NoShadowDOM {
     _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-    this.cells = getMonthMatrix(_date, this.outputdate, allowedyears);
+    this.cells = getMonthMatrix(_date, allowedyears);
     this.weekdays = getWeekdays(_date, locale);
   }
 
