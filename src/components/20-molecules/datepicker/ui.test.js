@@ -1,5 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
+/* eslint-disable */
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -143,6 +144,7 @@ test('should change enhanced dropdown title (only on large screens) on month cha
 
   await datePickerAccessor.chooseAnyMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
+  await datePickerAccessor.openCalendar();
 
   await datePickerAccessor.assertDropdownTitle('Februar');
 });
@@ -274,6 +276,7 @@ fixture('Datepicker React inputfield').page(
 );
 
 test('should react to programmatic date property changes', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
   // defaultValue is respected
   const getInputValue = ClientFunction(() => {
     const inputNode = document.querySelector(
@@ -325,13 +328,12 @@ test('should react to programmatic date property changes', async t => {
     .expect(datepickerYearDropdown.getAttribute('items'))
     .contains('{"selected":true,"name":"2019","value":"2019"}');
 
-  const getSelectedDay = ClientFunction(
-    () =>
-      document.querySelector(`#datepicker-react
- .js-datepicker__calendar .m-datepicker__calendar-selected-day`).innerText
-  );
+  await datePickerAccessor.selectDayOfCurrentMonth('27');
 
-  await t.expect(await getSelectedDay()).eql('27');
+  await t
+    .wait(50)
+    .expect(await getInputValue())
+    .eql('27.4.2019');
 });
 
 fixture('Datepicker React empty inputfield').page(
@@ -339,32 +341,18 @@ fixture('Datepicker React empty inputfield').page(
 );
 
 test('should allow month change from default date', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
   const datepicker = await Selector(() =>
     document.querySelector(`#datepicker-react`)
   );
   await t.setTestSpeed(0.5);
   await t.expect(datepicker.exists).ok();
 
-  // open it
-  await t.click('#datepicker-react .m-datepicker__input-button');
+  await datePickerAccessor.openCalendar();
 
-  const datePickerIsOpen = ClientFunction(() => {
-    const domNode = document.querySelector(`#datepicker-react`);
-    return domNode.open;
-  });
+  await datePickerAccessor.assertIsOpen();
 
-  await t
-    .wait(50 /* allow for DOM to stabilize */)
-    .expect(await datePickerIsOpen())
-    .ok();
-
-  // verify datepicker displays current date:
-
-  // open month dropdown
-  await t.click('#datepicker-react .js-datepicker__dropdown-month');
-
-  // commit current date
-  await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
+  await datePickerAccessor.selectDayOfCurrentMonth(30);
 
   const getInputValue = ClientFunction(
     () =>
@@ -387,10 +375,7 @@ test('should allow month change from default date', async t => {
   // open it
   await t.wait(50).click('#datepicker-react .m-datepicker__input-button');
 
-  await t
-    .wait(50 /* allow for DOM to stabilize */)
-    .expect(await datePickerIsOpen())
-    .ok();
+  await datePickerAccessor.assertIsOpen();
 
   // open month dropdown
   await t.click('#datepicker-react .js-datepicker__dropdown-month');
@@ -406,11 +391,12 @@ test('should allow month change from default date', async t => {
     );
 
   // commit new date
-  await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
+  await datePickerAccessor.selectDayOfCurrentMonth(26);
 
-  // verify committed date meets expectation
+  // verify committed date meets expectation: correct month and year
   const newDateString = `.${newMonth + 1}.${d.getFullYear()}`;
 
+  // assert date input has the correct year and month
   await t
     .wait(50)
     .expect(await getInputValue())
@@ -493,6 +479,7 @@ fixture('Datepicker with onchange handler').page(
   `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
 );
 test('should fire the right events', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
   const datepickerForm = await Selector(() =>
     document.querySelector(`axa-datepicker[data-test-id="datepicker-onchange"]`)
   );
@@ -500,15 +487,27 @@ test('should fire the right events', async t => {
   await t.setTestSpeed(0.5);
 
   await t.expect(datepickerForm.exists).ok();
-
   await t.click('.js-datepicker__input-button');
 
-  await t.wait(100).click('.js-datepicker__button-ok');
+  // // await t.wait(100).click('.js-datepicker__button-ok');
 
+  // await t.debug();
+  // Choose the 16th of february
+  // await t
+  //   .wait(100)
+  //   .click('.m-datepicker__calendar-current-month[data-day="16"]');
+  // await t.click('.js-datepicker__input-button');
+  // await t.debug();
+  await t
+    .wait(100)
+    .click('.m-datepicker__calendar-current-month[data-day="16"]');
+  // await t.wait(100).click('[data-value="2020-02-17T00:00:00+01:00"]');
+  // datePickerAccessor.selectDayOfCurrentMonth('16');
+  // await t.debug();
   await t
     .wait(50)
     .expect((await Selector('.event-log')).value)
-    .eql(`{"name":"date","value":"29.2.2020"}\n\n`);
+    .eql(`{"name":"date","value":"16.2.2020"}\n\n`);
 
   await t
     .wait(50)
