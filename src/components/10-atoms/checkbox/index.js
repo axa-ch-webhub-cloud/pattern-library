@@ -1,6 +1,4 @@
 import { html, svg } from 'lit-element';
-/* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/text';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
 import defineOnce from '../../../utils/define-once';
