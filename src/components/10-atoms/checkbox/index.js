@@ -140,8 +140,8 @@ class AXACheckbox extends NoShadowDOM {
       _childRoot = this.firstElementChild,
     } = this;
 
-    const isVariantInverted = variant.indexOf('inverted') > -1;
-    const isVariantCheckmark = variant.indexOf('checkmark') > -1;
+    const isVariantInverted = variant.includes('inverted');
+    const isVariantCheckmark = variant.includes('checkmark');
 
     const classes = classMap({
       'a-checkbox__icon': true,

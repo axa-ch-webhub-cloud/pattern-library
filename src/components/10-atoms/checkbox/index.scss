@@ -205,11 +205,4 @@ axa-checkbox {
       @include show-checkmark($color-prim-white);
     }
   }
-
-  .a-checkbox__children-inline {
-    * {
-      display: inline;
-    }
-
-  }
 }
