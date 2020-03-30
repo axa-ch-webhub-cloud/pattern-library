@@ -121,6 +121,37 @@ fixture('Datepicker - Collapsible Version').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
 );
 
+test('should have a grey background for a marked day and a blue background for a user chosen day', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+
+  await datePickerAccessor.openCalendar();
+
+  const preselectedDay = await Selector(
+    '.m-datepicker__calendar-selected-day--initial'
+  );
+
+  // the initially marked day has a grey background
+  await t
+    .expect(await preselectedDay.getStyleProperty('background-color'))
+    .eql('rgb(204, 204, 204)');
+
+  await datePickerAccessor.selectDayOfCurrentMonth(10);
+
+  await datePickerAccessor.openCalendar();
+
+  const newlySelectedDay = await Selector(
+    '.m-datepicker__calendar-selected-day'
+  );
+
+  // the user selected a day and that day appears now with the background color blue
+  await t
+    .expect(await newlySelectedDay.getStyleProperty('background-color'))
+    .eql('rgb(0, 0, 143)');
+
+  // day with grey background does not exist anymore, because another day was selected
+  await t.expect(await preselectedDay.exists).notOk();
+});
+
 test('should write date into input field for input calendars', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
   await datePickerAccessor.openCalendar();
