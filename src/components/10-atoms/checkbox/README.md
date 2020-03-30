@@ -77,13 +77,13 @@ The string-valued `label` provides the label text. When no label is set and the 
 
 HTML markup is permitted as value, subject to being single-rooted (see below). Such `label` values must respect the [specification](https://html.spec.whatwg.org/multipage/syntax.html#syntax-attributes).
 
-A label value can also be specified via the component's children. Note that such HTML child content must be single-rooted, and that `<label>` is not a permissible child root (to prevent improper nesting with the element-provided `<label>`). The component wraps its children in `<axa-text>` for styling.
+A label value can also be specified via the component's children. Note that such HTML child content must be single-rooted, and that `<label>` is not a permissible child root (to prevent improper nesting with the element-provided `<label>`). The component wraps its children in `<p>` for accessibility.
 
 _Note: The use of component children for label specification is discouraged for technical reasons. We recommend `styled` HTML labels instead._
 
 ### styled
 
-The Boolean attribute `styled`, when used in conjunction with HTML-valued `label`, ensures that the styling of such labels matches `<axa-text>` styling.
+The Boolean attribute `styled`, when used in conjunction with HTML-valued `label`, ensures that the styling of such labels is appropriate.
 
 ### variant
 

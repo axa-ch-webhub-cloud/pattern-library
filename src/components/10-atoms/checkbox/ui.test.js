@@ -263,7 +263,7 @@ test('should update checkbox when its children change', async t => {
   const checkboxChildLabel = await Selector(() =>
     document.querySelector('.second')
   )
-    .find('axa-text[variant="size-3"] > *')
+    .find('p.a-checkbox__children-inline > *')
     .addCustomDOMProperties({
       innerHTML: el => el.innerHTML,
     });

@@ -168,7 +168,9 @@ axa-checkbox {
     }
   }
 
-    &[styled] .a-checkbox__content * {
+    &[styled] .a-checkbox__content *,
+    .a-checkbox__children-inline,
+    .a-checkbox__children-inline * {
       display: inline;
       @include typo(primary, small-1);
 

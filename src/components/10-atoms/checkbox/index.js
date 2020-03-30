@@ -199,20 +199,19 @@ class AXACheckbox extends NoShadowDOM {
     if (_childRoot) {
       // 1. harvest child content as live DOM (lit-html has documented support for text-content binding type 'DOM node')
       // N.B. Using live DOM node here is crucial for React's DOM updating mechanism, e.g. for a <p>{updatedHere}<p> child root.
-      // 2. wrap it in <axa-text>
+      // 2. wrap it in <p>(aragraph tag), but with identical styling to <axa-text variant="size-3">
       // prettier-ignore
-      this._labelFromChildren = html`<axa-text variant="size-3" class="a-checkbox__children-inline">${_childRoot}</axa-text>`;
+      this._label = html`<p class="a-checkbox__children-inline">${_childRoot}</p>`;
     }
 
-    const { _labelFromChildren } = this;
+    const renderLabel = this._label || (label ? unsafeHTML(label) : null);
 
-    return _labelFromChildren || label
+    return renderLabel
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElements}
             <span class="${checkboxContentClasses}">
-              ${_labelFromChildren || unsafeHTML(label)}
-              ${required ? REQUIRED_SYMBOL : ''}
+              ${renderLabel} ${required ? REQUIRED_SYMBOL : ''}
             </span>
             ${errorElement}
           </label>
