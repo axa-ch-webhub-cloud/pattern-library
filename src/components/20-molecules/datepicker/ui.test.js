@@ -159,7 +159,7 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor.assertYear(2019);
   await datePickerAccessor.chooseAnyMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
-  // await datePickerAccessor.submit();
+
   // we need to do things on our own here since property access
   // is *not* supported by the TestCafe API (here for 'value')
   const getInputValue = ClientFunction(
@@ -520,21 +520,9 @@ test('should fire the right events', async t => {
   await t.expect(datepickerForm.exists).ok();
   await t.click('.js-datepicker__input-button');
 
-  // // await t.wait(100).click('.js-datepicker__button-ok');
-
-  // await t.debug();
-  // Choose the 16th of february
-  // await t
-  //   .wait(100)
-  //   .click('.m-datepicker__calendar-current-month[data-day="16"]');
-  // await t.click('.js-datepicker__input-button');
-  // await t.debug();
   await t
     .wait(100)
     .click('.m-datepicker__calendar-current-month[data-day="16"]');
-  // await t.wait(100).click('[data-value="2020-02-17T00:00:00+01:00"]');
-  // datePickerAccessor.selectDayOfCurrentMonth('16');
-  // await t.debug();
   await t
     .wait(50)
     .expect((await Selector('.event-log')).value)
