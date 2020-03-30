@@ -168,9 +168,13 @@ const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   return finalArray;
 };
 
+const range = (start, end) =>
+  new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+
 export {
   getWeekdays,
   getMonthMatrix,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
+  range,
 };

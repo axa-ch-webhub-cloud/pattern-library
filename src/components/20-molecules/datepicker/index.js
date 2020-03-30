@@ -10,6 +10,7 @@ import {
   getMonthMatrix,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
+  range,
 } from './utils/date';
 
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -27,9 +28,6 @@ const EMPTY_FUNCTION = () => {};
 let openDatepickerInstance;
 
 // helper functions
-const range = (start, end) =>
-  new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
-
 const shouldMove = elem => {
   const element = elem.getBoundingClientRect();
   const moreSpaceOnTopThanBottom =
@@ -67,8 +65,14 @@ const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
     }
     // a year range like '2019-2024'?
     if (typeof years === 'string') {
-      const [fromYear, toYear] = years.split('-');
-      flattenedYears = range(fromYear | 0, toYear | 0); // | 0: convert to 32-bit integer
+      let [fromYear, toYear] = years.split('-');
+      fromYear = parseInt(fromYear, 10);
+      toYear = parseInt(toYear, 10);
+      // eslint-disable-next-line no-restricted-globals
+      if (isNaN(fromYear) || isNaN(toYear)) {
+        throw new Error('illegal year range');
+      }
+      flattenedYears = range(fromYear, toYear);
     } else {
       flattenedYears = [years];
     }
@@ -512,7 +516,7 @@ class AXADatepicker extends NoShadowDOM {
     _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-    this.cells = getMonthMatrix(_date, allowedyears);
+    this.cells = getMonthMatrix(_date, this.allowedyears);
     this.weekdays = getWeekdays(_date, locale);
   }
 

@@ -1,5 +1,7 @@
 import { Selector, ClientFunction } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
+import { range } from './utils/date';
+
 /* eslint-disable */
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
@@ -31,9 +33,6 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
   // Rendered array should be equal to the given ranges and custom dates we pass in in story.js allowedYears
   const dropdownItems = await dropdown().getAttribute('items');
 
-  const range = (start, end) =>
-    new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
-
   const expected = range(1971, 2000)
     .concat([2012, 2014])
     .concat(range(2018, 2022))
@@ -46,7 +45,7 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
   await t.expect(dropdownItems).eql(JSON.stringify(expected));
 });
 
-test('should select the first of march from within the February view', async t => {
+test('should select the first of March from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseAnyMonth(2);
@@ -109,7 +108,7 @@ fixture('Datepicker - With Locale').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-locale=en-GB`
 );
 
-test('should display month in english', async t => {
+test('should display month in English', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   await datePickerAccessor.chooseAnyMonth(2);
@@ -214,7 +213,7 @@ test('should correctly expand year ranges assigned via property', async t => {
 fixture('Datepicker React controlled').page(
   `${host}/iframe.html?id=components-molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
 );
-test('datepicker should behave correctly when controlled', async t => {
+test('should behave correctly when controlled', async t => {
   const datepickerReact = await Selector(() =>
     document.querySelector(
       `axa-datepicker[data-test-id="datepicker-controlled-react"]`
@@ -474,6 +473,50 @@ test('should display error message if invalid is set, unless invaliddatetext is 
 
   await t.expect(await setDatepicker('invaliddatetext', '')).notOk();
   await t.expect(await findNode('.m-datepicker__error')).notOk();
+});
+
+test('should allow year ranges', async t => {
+  const setDatepicker = ClientFunction((property, value) => {
+    const domNode = document.querySelector(`#datepicker-react`);
+    if (value !== undefined) {
+      domNode[property] = value;
+    }
+    return JSON.stringify(domNode[property]);
+  });
+
+  await t.setTestSpeed(0.5);
+  await t.expect(await setDatepicker('year', 2020)).ok();
+  await t.expect(await setDatepicker('allowedyears', /* empty */ [])).ok();
+  await t.expect(await setDatepicker('allowedyears')).eql('[2020]');
+  await t.expect(await setDatepicker('allowedyears', ['1920-2003'])).ok();
+  await t
+    .expect(await setDatepicker('allowedyears'))
+    .eql(JSON.stringify(range(2020 - 100, 2020 - 17).concat([2020]))); // 2020: README states year is always member of allowedyears
+
+  // now open calendar
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
+  await t.wait(50).click('#datepicker-react .m-datepicker__input-button');
+  await datePickerAccessor.assertIsOpen();
+  await t.wait(50);
+
+  // verify all calendar days are visible
+  // (to prevent regression against bug that would render all days inactive, i.e. visibility:hidden, upon allowedyears changes)
+  const allDaysVisible = ClientFunction(() => {
+    const days = Array.prototype.slice.call(
+      document.querySelectorAll(
+        '#datepicker-react .js-datepicker__calender-body__cell'
+      )
+    );
+
+    return (
+      days.length ===
+      days.filter(
+        cell => window.getComputedStyle(cell, null).visibility !== 'hidden'
+      ).length
+    );
+  });
+
+  await t.expect(await allDaysVisible()).eql(true);
 });
 
 fixture('Datepicker Form').page(

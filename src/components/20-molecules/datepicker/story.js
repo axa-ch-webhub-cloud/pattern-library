@@ -3,6 +3,7 @@ import {
   text,
   number,
   boolean,
+  object,
   select,
   withKnobs,
 } from '@storybook/addon-knobs';
@@ -33,6 +34,12 @@ story.add('Datepicker', () => {
   const year = number('year', 2020);
   const month = number('month', 4);
   const day = number('day', 22);
+  const allowedYears = object('allowedyears', [
+    '1971-2000',
+    2012,
+    2014,
+    '2018-2022',
+  ]);
   const disabled = boolean('disabled', false);
   const autofocus = boolean('autofocus', false);
   const checkMark = boolean('checkMark', false);
@@ -55,7 +62,7 @@ story.add('Datepicker', () => {
         ?autofocus="${autofocus}"
         ?checkMark="${checkMark}"
         ?disabled="${disabled}"
-        allowedyears='["1971-2000", 2012, 2014, "2018-2022"]'
+        allowedyears="${allowedYears}"
         year="${year}"
         month="${month}"
         day="${day}"
