@@ -663,6 +663,12 @@ class AXADatepicker extends NoShadowDOM {
     e.stopPropagation();
     e.target.blur(); // prevent the ugly focus ring after the click
 
+    const cellIndex = parseInt(e.target.dataset.index, 10);
+    const date = e.target.dataset.value;
+    this.index = cellIndex;
+    this.initDate(new Date(date));
+    this.setMonthAndYearItems();
+
     const {
       _date,
       inputfield,
@@ -673,13 +679,6 @@ class AXADatepicker extends NoShadowDOM {
     } = this;
     const value = this.formatDate(_date);
     this.outputdate = value;
-
-    const cellIndex = parseInt(e.target.dataset.index, 10);
-    const date = e.target.dataset.value;
-    this.index = cellIndex;
-    this.initDate(new Date(date));
-    this.setMonthAndYearItems();
-
     onChange({ target: { value } });
     onDateChange(_date);
     this.fireEvents(_date);
