@@ -518,13 +518,6 @@ class AXADatepicker extends NoShadowDOM {
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
     this.cells = getMonthMatrix(_date, this.allowedyears);
     this.weekdays = getWeekdays(_date, locale);
-
-    // update output date upon UI-induced month/year change
-    const isMonthOrYearChange =
-      (setmonth && setyear === null) || (setyear && setmonth === null);
-    if (isMonthOrYearChange) {
-      this.outputdate = this.formatDate(_date);
-    }
   }
 
   handleViewportCheck(baseElem) {
