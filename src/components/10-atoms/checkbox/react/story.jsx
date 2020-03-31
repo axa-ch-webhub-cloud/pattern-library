@@ -23,7 +23,7 @@ storiesOf('Components|Atoms/Checkbox/React', module)
       'checkmark',
       'checkmark-inverted',
     ]);
-    const checked = boolean('checked', true);
+
     const disabled = boolean('disabled', false);
     const errortext = boolean('error', false);
     const required = boolean('required', false);
@@ -40,7 +40,6 @@ storiesOf('Components|Atoms/Checkbox/React', module)
       <AXACheckboxReact
         name={name}
         label={label}
-        checked={checked}
         disabled={disabled}
         variant={variant}
         required={required}
