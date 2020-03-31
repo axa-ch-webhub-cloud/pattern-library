@@ -5,13 +5,14 @@ export interface AXACheckboxProps {
   value?: string;
   name?: string;
   label?: string;
-  variant?: 'square' | 'checkmark';
+  variant?: 'square' | 'checkmark' | 'checkmark-inverted';
   required?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
   error?: string;
   className?: string;
+  styled?: boolean;
   onChange?: (e: UIEvent) => void;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;

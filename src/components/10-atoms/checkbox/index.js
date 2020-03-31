@@ -1,6 +1,4 @@
 import { html, svg } from 'lit-element';
-/* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/text';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
 import defineOnce from '../../../utils/define-once';
@@ -68,6 +66,7 @@ class AXACheckbox extends NoShadowDOM {
       checked: false,
       native: false,
     };
+
     // initialize properties
     applyDefaults(this);
   }
@@ -139,10 +138,19 @@ class AXACheckbox extends NoShadowDOM {
       _childRoot = this.firstElementChild,
     } = this;
 
+    const isVariantInverted = variant.includes('inverted');
+    const isVariantCheckmark = variant.includes('checkmark');
+
     const classes = classMap({
       'a-checkbox__icon': true,
       'js-checkbox__icon': true,
-      'a-checkbox__icon--checkmark': variant === 'checkmark',
+      'a-checkbox__icon--checkmark': isVariantCheckmark,
+      'a-checkbox__icon--inverted': isVariantInverted,
+    });
+
+    const checkboxContentClasses = classMap({
+      'a-checkbox__content': true,
+      'a-checkbox__content--inverted': isVariantInverted,
     });
 
     // now that we have the 'isReact' prop, determine if this
@@ -171,7 +179,7 @@ class AXACheckbox extends NoShadowDOM {
         @change=${this.handleChange}
       />
       <span class="${classes}">
-        ${variant === 'checkmark'
+        ${isVariantCheckmark
           ? html`
               <span class="a-checkbox__icon-checkmark">${CHECKMARK_ICON}</span>
             `
@@ -179,29 +187,29 @@ class AXACheckbox extends NoShadowDOM {
       </span>
     `;
 
-    const errorElement = error
-      ? html`
-          <span class="a-checkbox__error">${unsafeHTML(error)}</span>
-        `
-      : html``;
+    const errorElement =
+      error && !disabled
+        ? html`
+            <span class="a-checkbox__error">${unsafeHTML(error)}</span>
+          `
+        : html``;
 
     if (_childRoot) {
       // 1. harvest child content as live DOM (lit-html has documented support for text-content binding type 'DOM node')
       // N.B. Using live DOM node here is crucial for React's DOM updating mechanism, e.g. for a <p>{updatedHere}<p> child root.
-      // 2. wrap it in <axa-text>
+      // 2. wrap it in <p>(aragraph tag), but with identical styling to <axa-text variant="size-3">
       // prettier-ignore
-      this._labelFromChildren = html`<axa-text variant="size-3" class="a-checkbox__children-inline">${_childRoot}</axa-text>`;
+      this._label = html`<p class="a-checkbox__children-inline">${_childRoot}</p>`;
     }
 
-    const { _labelFromChildren } = this;
+    const renderLabel = this._label || (label ? unsafeHTML(label) : null);
 
-    return _labelFromChildren || label
+    return renderLabel
       ? html`
           <label for="${refId}" class="a-checkbox__wrapper">
             ${inputElements}
-            <span class="a-checkbox__content">
-              ${_labelFromChildren || unsafeHTML(label)}
-              ${required ? REQUIRED_SYMBOL : ''}
+            <span class="${checkboxContentClasses}">
+              ${renderLabel} ${required ? REQUIRED_SYMBOL : ''}
             </span>
             ${errorElement}
           </label>
