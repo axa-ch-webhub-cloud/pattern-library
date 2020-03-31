@@ -1,7 +1,7 @@
 ## 4.0.0
 
 - **BREAKING CHANGE**: We do not show error messages anymore if element is disabled.
-- A new variant was added. Now you can use `inverted-checkmark` to have a better contrast on background `blue-teal`. (#1685)
+- A new variant was added. Now you can use `checkmark-inverted` to have a better contrast on background `blue-teal`. (#1685)
 - We hardened the usage of childs as a checkbox label (internal refactoring because of bug #1699)
 
 ## 3.0.0

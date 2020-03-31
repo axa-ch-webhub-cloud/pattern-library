@@ -5,7 +5,7 @@ export interface AXACheckboxProps {
   value?: string;
   name?: string;
   label?: string;
-  variant?: 'square' | 'checkmark' | 'inverted-checkmark';
+  variant?: 'square' | 'checkmark' | 'checkmark-inverted';
   required?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;

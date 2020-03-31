@@ -159,8 +159,8 @@ test('should show checkbox variant checkmark', async t => {
   await t.expect(measuredColor).eql('rgb(0, 0, 143)');
 });
 
-fixture('Checkbox - Variant inverted-checkmark').page(
-  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-00zf06b7egl3n&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=inverted-checkmark&knob-checked=true`
+fixture('Checkbox - Variant checkmark-inverted').page(
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-00zf06b7egl3n&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true`
 );
 
 test('box should have correct background-color', async t => {
@@ -205,8 +205,8 @@ test('label text should have correct color', async t => {
   await t.expect(measuredColor).eql('rgb(255, 255, 255)');
 });
 
-fixture('Checkbox - Variant inverted-checkmark: disabled').page(
-  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-tz6etn0cv7e&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=inverted-checkmark&knob-checked=true&knob-disabled=true`
+fixture('Checkbox - Variant checkmark-inverted: disabled').page(
+  `${host}/iframe.html?id=components-atoms-checkbox--checkbox&knob-refId=checkbox-tz6etn0cv7e&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true&knob-disabled=true`
 );
 
 test('if disabled: box should have correct background-color', async t => {

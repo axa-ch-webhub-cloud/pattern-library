@@ -21,7 +21,7 @@ storiesOf('Components|Atoms/Checkbox/React', module)
     const variant = select('variant', [
       'square',
       'checkmark',
-      'inverted-checkmark',
+      'checkmark-inverted',
     ]);
     const checked = boolean('checked', true);
     const disabled = boolean('disabled', false);
@@ -31,7 +31,7 @@ storiesOf('Components|Atoms/Checkbox/React', module)
 
     const div = document.createElement('div');
 
-    if (variant && variant.indexOf('inverted') > -1) {
+    if (variant && variant.includes('inverted')) {
       div.style.backgroundColor = '#027180';
       div.style.padding = '10px';
     }

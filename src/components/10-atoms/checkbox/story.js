@@ -26,7 +26,7 @@ storyCheckbox.add(
       'square',
       'checkmark',
       // 'inverted-square', // not officially supported yet
-      'inverted-checkmark',
+      'checkmark-inverted',
     ]);
     const checked = boolean('checked', true);
     const disabled = boolean('disabled', false);
@@ -37,7 +37,7 @@ storyCheckbox.add(
     const wrapper = document.createElement('div');
     const template = html`
       <div
-        style="${variant && variant.indexOf('inverted') > -1
+        style="${variant && variant.includes('inverted')
           ? `background-color: #027180; padding: 10px;`
           : ''}"
       >
