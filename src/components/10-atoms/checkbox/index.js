@@ -66,7 +66,12 @@ class AXACheckbox extends NoShadowDOM {
       checked: false,
       native: false,
     };
-
+    // detect absence of touch capabilities (to condition :hover styles)
+    if (!('ontouchstart' in document.documentElement)) {
+      // n.b.: normally we'd add a 'no-touch' class to the topmost (<html>) element in page,
+      // but as a mere component we should not reach beyond our borders...
+      this.classList.add('no-touch');
+    }
     // initialize properties
     applyDefaults(this);
   }
