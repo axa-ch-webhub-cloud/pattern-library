@@ -179,7 +179,7 @@ axa-checkbox {
       }
   }
 
-  &:hover.no-touch {
+  &:hover[data-axa-checkbox-no-touch] {
       &:not([disabled]) {
         .a-checkbox__icon {
           border-color: $color-axa-blue;

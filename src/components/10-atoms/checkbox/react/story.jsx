@@ -23,7 +23,7 @@ storiesOf('Components|Atoms/Checkbox/React', module)
       'checkmark',
       'checkmark-inverted',
     ]);
-
+    boolean('checked (no effect, uncontrolled mode!)', false);
     const disabled = boolean('disabled', false);
     const errortext = boolean('error', false);
     const required = boolean('required', false);
@@ -44,7 +44,9 @@ storiesOf('Components|Atoms/Checkbox/React', module)
         variant={variant}
         required={required}
         styled={styled}
-        onChange={e => console.log('checkbox', name, ' changed to: ', checked)}
+        onChange={e =>
+          console.log('checkbox', name, ' changed to: ', e.target.checked)
+        }
         error={errortext ? 'Please accept our terms and conditions.' : ''}
       />,
       div
