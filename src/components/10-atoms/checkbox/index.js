@@ -66,7 +66,10 @@ class AXACheckbox extends NoShadowDOM {
       checked: false,
       native: false,
     };
-
+    // detect absence of touch capabilities (to condition :hover styles)
+    if (!('ontouchstart' in document.documentElement)) {
+      this._noTouch = true;
+    }
     // initialize properties
     applyDefaults(this);
   }
@@ -220,13 +223,20 @@ class AXACheckbox extends NoShadowDOM {
   }
 
   firstUpdated() {
-    const { isReact, defaultChecked } = this;
+    const { isReact, defaultChecked, _noTouch } = this;
     if (isReact && defaultChecked) {
       this.querySelector('input').checked = true;
       this.state.native = true;
     }
     // first render has overwritten the child root - so prevent future child-root harvesting now
     this._childRoot = null;
+    // mark non-touch devices (as detected in constructor) via hard-to-accidentallt-overwrite
+    // data- attribute, so that CSS can react to it
+    // (can't use a class because React users like to overwrite 'className', can't set in constructor
+    // because React expects attribute-free elements at construction time)
+    if (_noTouch) {
+      this.dataset.axaCheckboxNoTouch = '';
+    }
   }
 
   // this lifecycle method will regularly be called after render() -

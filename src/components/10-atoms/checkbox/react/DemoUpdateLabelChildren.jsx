@@ -14,9 +14,7 @@ export default function App() {
     <div className="App">
       <button
         className="js-checkbox__demo-button-rerender-children"
-        onClick={() => {
-          updateLabel();
-        }}
+        onClick={updateLabel}
       >
         Rerender Children
       </button>
