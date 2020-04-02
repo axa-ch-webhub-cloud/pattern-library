@@ -1,3 +1,8 @@
+## 4.0.1
+
+- Fixes an optical bug on mobile devices if trying to uncheck with a tap (#1709)
+- Fixes that the label is not vertically centered to the checkbox (if label used as a child) (#1711)
+
 ## 4.0.0
 
 - **BREAKING CHANGE**: We do not show error messages anymore if element is disabled.
