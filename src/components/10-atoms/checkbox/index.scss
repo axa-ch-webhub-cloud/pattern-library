@@ -176,7 +176,9 @@ axa-checkbox {
 
       @include breakpoint($mediaquery-md-up) {
          @include typo(primary, medium);
+         line-height: 1;
       }
+      line-height: 1;
   }
 
   &:hover[data-axa-checkbox-no-touch] {
