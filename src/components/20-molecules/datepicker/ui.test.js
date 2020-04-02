@@ -126,7 +126,7 @@ test('should have a grey background for a marked day and a blue background for a
   await datePickerAccessor.openCalendar();
 
   const preselectedDay = await Selector(
-    '.m-datepicker__calendar-selected-day--marked'
+    '.m-datepicker__calendar-selected-day--preselected'
   );
 
   // the initially marked day has a grey background
