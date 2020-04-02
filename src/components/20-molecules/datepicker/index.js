@@ -286,7 +286,7 @@ class AXADatepicker extends NoShadowDOM {
         'm-datepicker__calendar-current-month': sameMonth,
         'm-datepicker__calendar-today': today,
         'm-datepicker__calendar-selected-day': outputdate && selected, // outputdate: This property can only have a value, if a user manually chose a day
-        'm-datepicker__calendar-selected-day--initial': !outputdate && selected, // outputdate: This property can only have a value, if a user manually chose a day
+        'm-datepicker__calendar-selected-day--marked': !outputdate && selected, // outputdate: This property can only have a value, if a user manually chose a day
         'm-datepicker__calendar-day--inactive': inactive,
       });
 
@@ -347,7 +347,7 @@ class AXADatepicker extends NoShadowDOM {
                     <axa-dropdown
                       @axa-change="${this.handleChangeDropdownMonth}"
                       class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-                      maxheight
+                      maxheight="270"
                       items="${JSON.stringify(this.monthitems)}"
                       defaulttitle="${this.monthtitle}"
                       usecase="datepicker"
@@ -357,7 +357,7 @@ class AXADatepicker extends NoShadowDOM {
                     <axa-dropdown
                       @axa-change="${this.handleChangeDropdownYear}"
                       class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-                      maxheight
+                      maxheight="270"
                       items="${JSON.stringify(this.yearitems)}"
                       defaulttitle="${this.yeartitle}"
                       usecase="datepicker"
@@ -468,15 +468,23 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   // Methods
-  initDate(date, setyear, setmonth, setday) {
+  initDate(
+    date,
+    setyear,
+    setmonth,
+    setday,
+    shouldUpdateYearAndMonthPreselection = true
+  ) {
     if (date) {
       // eslint-disable-next-line no-restricted-globals
       const isValidDateObject = date instanceof Date && !isNaN(+date);
       if (isValidDateObject) {
         this.startDate = date;
-        this.year = date.getFullYear();
-        this.month = date.getMonth();
         this.day = date.getDate();
+        if (shouldUpdateYearAndMonthPreselection) {
+          this.year = date.getFullYear();
+          this.month = date.getMonth();
+        }
       }
     }
     const {
@@ -516,7 +524,13 @@ class AXADatepicker extends NoShadowDOM {
     _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-    this.cells = getMonthMatrix(_date, this.allowedyears);
+
+    this.cells = getMonthMatrix(
+      _date,
+      this.year,
+      this.month,
+      this.allowedyears
+    );
     this.weekdays = getWeekdays(_date, locale);
   }
 
@@ -600,7 +614,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const month = e.detail;
     if (month) {
-      this.initDate(this._date, null, parseInt(month, 10), null);
+      this.initDate(this._date, null, parseInt(month, 10), null, false);
     }
   }
 
@@ -608,7 +622,7 @@ class AXADatepicker extends NoShadowDOM {
     e.preventDefault();
     const year = e.detail;
     if (year) {
-      this.initDate(this._date, parseInt(year, 10), null, null);
+      this.initDate(this._date, parseInt(year, 10), null, null, false);
     }
   }
 

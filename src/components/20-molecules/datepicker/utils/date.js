@@ -35,16 +35,31 @@ const getWeekdays = (date, locale) => {
   return weekdays;
 };
 
-const dayToCell = (day, date, today, allowedYears) => ({
+const dayToCell = (
+  day,
+  date,
+  today,
+  allowedYears,
+  currentYear,
+  currentMonth
+) => ({
   value: formatISO(day),
   text: day.getDate(),
   sameMonth: isSameMonth(date, day),
-  today: isSameDay(today, day),
-  selected: isSameDay(date, day),
+  today: !currentYear && !currentMonth && isSameDay(today, day),
+  selected:
+    date.getFullYear() === currentYear &&
+    date.getMonth() === currentMonth &&
+    isSameDay(date, day),
   inactive: allowedYears.indexOf(date.getFullYear()) < 0,
 });
 
-const getMonthMatrix = (date, allowedYears = []) => {
+const getMonthMatrix = (
+  date,
+  preselectedYear,
+  preselectedMonth,
+  allowedYears = []
+) => {
   // set up
   const cells = [];
   const today = new Date();
@@ -58,7 +73,18 @@ const getMonthMatrix = (date, allowedYears = []) => {
     eachDayOfInterval({
       start: startOfISOWeek(weekDay),
       end: endOfISOWeek(weekDay),
-    }).forEach(day => cells.push(dayToCell(day, date, today, allowedYears)))
+    }).forEach(day =>
+      cells.push(
+        dayToCell(
+          day,
+          date,
+          today,
+          allowedYears,
+          preselectedYear,
+          preselectedMonth
+        )
+      )
+    )
   );
 
   return cells;
