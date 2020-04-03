@@ -630,7 +630,7 @@ class AXADatepicker extends NoShadowDOM {
   handleInputButtonClick(e) {
     e.stopPropagation();
     if (this.inputfield) {
-      this.initDate(this._date);
+      this.initDate(this._date, null, null, null, false);
       this.toggleDatepicker();
     }
   }
