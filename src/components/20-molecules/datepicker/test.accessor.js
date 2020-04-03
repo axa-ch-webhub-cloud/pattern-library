@@ -6,7 +6,7 @@ class DatePickerAccessor {
     this.t = testcafe;
   }
 
-  async chooseAnyMonth(numericMonth, native) {
+  async chooseMonth(numericMonth, native) {
     await this.t.setTestSpeed(0.5);
     const dropDown = await Selector(this.selectMonthDropdownSelector(this.id));
     await this.t.click(dropDown);
@@ -16,7 +16,7 @@ class DatePickerAccessor {
     await this.t.click(selectedMonth);
   }
 
-  async chooseAnyYear(numericYear, native) {
+  async chooseYear(numericYear, native) {
     await this.t.setTestSpeed(0.5);
     const dropDown = await Selector(this.yearDropdownSelector(this.id));
     await this.t.click(dropDown);
@@ -119,23 +119,37 @@ class DatePickerAccessor {
       .querySelector('button[class*="m-datepicker__input-button"]')
   );
 
-  selectAnyMonthSelector = Selector((id, numericMonth, native) =>
+  selectAnyMonthSelector = Selector((id, numericMonth, native) => {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
       )
-  );
+      .scrollIntoView();
+    return document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector(
+        `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
+      );
+  });
 
-  selectAnyYearSelector = Selector((id, numericYear, native) =>
+  selectAnyYearSelector = Selector((id, numericYear, native) => {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
       )
-  );
+      .scrollIntoView();
+    return document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
+      .querySelector(
+        `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
+      );
+  });
 
   selectMonthDropdownSelector = Selector(id =>
     document

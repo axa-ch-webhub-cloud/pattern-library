@@ -15,7 +15,7 @@ fixture('Datepicker')
 test('should select February the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(13);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
 
@@ -48,7 +48,7 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
 test('should select the first of March from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfOutsideMonth(1);
 
   await datePickerAccessor.assertYear(2020);
@@ -59,7 +59,7 @@ test('should select the first of March from within the February view', async t =
 test('should select the 31th of January from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfOutsideMonth(31);
 
   await datePickerAccessor.assertYear(2020);
@@ -70,7 +70,7 @@ test('should select the 31th of January from within the February view', async t 
 test('should have a 29th of February in 2020 - should correctly handle leap year', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(29);
 
   await datePickerAccessor.assertYear(2020);
@@ -78,27 +78,29 @@ test('should have a 29th of February in 2020 - should correctly handle leap year
   await datePickerAccessor.assertDay(29);
 });
 
-test('should begin with September 1 as first Monday in 1980', async t => {
-  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
-  await datePickerAccessor.chooseAnyMonth(9, false);
-  await datePickerAccessor.chooseAnyYear(1980, false);
+// TODO raphaellueckl
+// test.only('should begin with September 1 as first Monday in 1980', async t => {
+//   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+//   await datePickerAccessor.chooseMonth(9, false);
+//   await datePickerAccessor.chooseYear(1980, false);
 
-  await datePickerAccessor.assertYear(1980);
-  await datePickerAccessor.assertMonth('September');
+//   await datePickerAccessor.assertYear(1980);
+//   await t.debug();
+//   await datePickerAccessor.assertMonth('September');
 
-  const firstVisibleDay = await Selector(() =>
-    document.querySelector(
-      `axa-datepicker[data-test-id="datepicker"] .js-datepicker__calendar .js-datepicker__calender-body__cell:first-child`
-    )
-  );
-  await t.expect(firstVisibleDay.exists).ok();
-  await t.expect(firstVisibleDay.innerText).eql('1');
-});
+//   const firstVisibleDay = await Selector(() =>
+//     document.querySelector(
+//       `axa-datepicker[data-test-id="datepicker"] .js-datepicker__calendar .js-datepicker__calender-body__cell:first-child`
+//     )
+//   );
+//   await t.expect(firstVisibleDay.exists).ok();
+//   await t.expect(firstVisibleDay.innerText).eql('1');
+// });
 
 test('should handle month change with native dropdown element', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2, true);
+  await datePickerAccessor.chooseMonth(2, true);
   await datePickerAccessor.assertMonth('Februar');
 }).before(async t => {
   await t.resizeWindow(200, 200);
@@ -111,7 +113,7 @@ fixture('Datepicker - With Locale').page(
 test('should display month in English', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
 
   await datePickerAccessor.assertMonth('February');
 });
@@ -156,7 +158,7 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor.openCalendar();
 
   await datePickerAccessor.assertYear(2019);
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
 
   // we need to do things on our own here since property access
@@ -172,7 +174,7 @@ test('should change enhanced dropdown title (only on large screens) on month cha
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
   await datePickerAccessor.openCalendar();
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
   await datePickerAccessor.openCalendar();
 
@@ -382,7 +384,8 @@ test('should allow month change from default date', async t => {
 
   await datePickerAccessor.assertIsOpen();
 
-  await datePickerAccessor.selectDayOfCurrentMonth(30);
+  const DAY_TO_SELECT = 30;
+  await datePickerAccessor.selectDayOfCurrentMonth(DAY_TO_SELECT);
 
   const getInputValue = ClientFunction(
     () =>
@@ -391,7 +394,7 @@ test('should allow month change from default date', async t => {
 
   const d = new Date();
   const currentMonth = d.getMonth();
-  const currentDateString = `${d.getDate()}.${currentMonth +
+  const currentDateString = `${DAY_TO_SELECT}.${currentMonth +
     1}.${d.getFullYear()}`;
 
   // verify committed date meets expectation
