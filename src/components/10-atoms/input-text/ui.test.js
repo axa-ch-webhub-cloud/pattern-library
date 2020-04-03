@@ -1,13 +1,12 @@
 import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
+const TAG = 'axa-input-text';
+const CLASS = '.a-input-text__input';
 
 fixture('Input text - basic functionality').page(
   `${host}/iframe.html?id=components-atoms-input-text--input-text`
 );
-
-const TAG = 'axa-input-text';
-const CLASS = '.a-input-text__input';
 
 test('should render input-text', async t => {
   const $axaElem = await Selector(TAG);
@@ -45,6 +44,15 @@ test('should show error message and have the right color', async t => {
   await t
     .expect(await $axaError.getStyleProperty('color'))
     .eql('rgb(201, 20, 50)');
+});
+
+test('input element should have correct html attributes', async t => {
+  const $axaInputElement = await Selector(() => document.querySelector(TAG), {
+    dependencies: { TAG },
+  }).find(CLASS);
+
+  await t.expect($axaInputElement.getAttribute('inputmode')).eql('');
+  await t.expect($axaInputElement.getAttribute('pattern')).eql('');
 });
 
 fixture('Input text - Form').page(
@@ -160,4 +168,17 @@ test('should cut text when autocomplete sets value over maxLength', async t => {
   await t.wait(1000);
   // story adds 123456789 but here it should be cut to the limit
   await t.expect(await inputValue()).eql('1234');
+});
+
+fixture('Input text - type="number"').page(
+  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=number&knob-maxlength=50&knob-counter=Still%20##counter##%20characters%20left&knob-counterMax=Over%20character%20limit!`
+);
+
+test('input element should have correct html attributes (type="number")', async t => {
+  const $axaInputElement = await Selector(() => document.querySelector(TAG), {
+    dependencies: { TAG },
+  }).find(CLASS);
+
+  await t.expect($axaInputElement.getAttribute('inputmode')).eql('numeric');
+  await t.expect($axaInputElement.getAttribute('pattern')).eql('[0-9]*');
 });

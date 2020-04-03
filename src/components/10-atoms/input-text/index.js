@@ -10,6 +10,11 @@ import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
+const HTML_ATTRIBUTE_PATTERN_TO_SHOW_NUMERIC_KEYBOARD_ON_TOUCHDEVICES =
+  '[0-9]*';
+const HTML_ATTRIBUTE_INPUTMODE_TO_SHOW_NUMERIC_KEYBOARD_ON_TOUCHDEVICES =
+  'numeric';
+
 class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   static get tagName() {
     return 'axa-input-text';
@@ -297,6 +302,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  pattern="${type === 'number'
+                    ? HTML_ATTRIBUTE_PATTERN_TO_SHOW_NUMERIC_KEYBOARD_ON_TOUCHDEVICES
+                    : ''}"
+                  inputmode="${type === 'number'
+                    ? HTML_ATTRIBUTE_INPUTMODE_TO_SHOW_NUMERIC_KEYBOARD_ON_TOUCHDEVICES
+                    : ''}"
                 />
               `
             : html`
@@ -314,6 +325,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  pattern="${type === 'number'
+                    ? HTML_ATTRIBUTE_PATTERN_TO_SHOW_NUMERIC_KEYBOARD_ON_TOUCHDEVICES
+                    : ''}"
+                  inputmode="${type === 'number'
+                    ? HTML_ATTRIBUTE_INPUTMODE_TO_SHOW_NUMERIC_KEYBOARD_ON_TOUCHDEVICES
+                    : ''}"
                 />
               `
         }

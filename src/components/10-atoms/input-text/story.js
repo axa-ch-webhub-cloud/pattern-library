@@ -19,6 +19,7 @@ const typeOptions = {
   text: 'text',
   email: 'email',
   password: 'password',
+  number: 'number',
 };
 
 storyInputText.add('Input Text', () => {
