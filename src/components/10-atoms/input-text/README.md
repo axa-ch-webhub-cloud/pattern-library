@@ -60,11 +60,12 @@ Import the input-text-defining script and use &lt;axa-input-text&gt; like this:
 
 The type of input element to display.
 
-| Attribute         | Details   |
-| ----------------- | --------- |
-| `type="text"`     | (default) |
-| `type="email"`    | Email     |
-| `type="password"` | Password  |
+| Attribute         | Details                                                              |
+| ----------------- | -------------------------------------------------------------------- |
+| `type="text"`     | (default)                                                            |
+| `type="email"`    | Email                                                                |
+| `type="password"` | Password                                                             |
+| `type="number"`   | To open up numeric keyboard on touch devices. No input restrictions. |
 
 ### label
 
