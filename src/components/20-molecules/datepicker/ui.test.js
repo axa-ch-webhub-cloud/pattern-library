@@ -78,24 +78,22 @@ test('should have a 29th of February in 2020 - should correctly handle leap year
   await datePickerAccessor.assertDay(29);
 });
 
-// TODO raphaellueckl
-// test.only('should begin with September 1 as first Monday in 1980', async t => {
-//   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
-//   await datePickerAccessor.chooseMonth(9, false);
-//   await datePickerAccessor.chooseYear(1980, false);
+test('should begin with September 1 as first Monday in 1980', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+  await datePickerAccessor.chooseMonth(9, false);
+  await datePickerAccessor.chooseYear(1980, false);
 
-//   await datePickerAccessor.assertYear(1980);
-//   await t.debug();
-//   await datePickerAccessor.assertMonth('September');
+  await datePickerAccessor.assertYear(1980);
+  await datePickerAccessor.assertMonth('September');
 
-//   const firstVisibleDay = await Selector(() =>
-//     document.querySelector(
-//       `axa-datepicker[data-test-id="datepicker"] .js-datepicker__calendar .js-datepicker__calender-body__cell:first-child`
-//     )
-//   );
-//   await t.expect(firstVisibleDay.exists).ok();
-//   await t.expect(firstVisibleDay.innerText).eql('1');
-// });
+  const firstVisibleDay = await Selector(() =>
+    document.querySelector(
+      `axa-datepicker[data-test-id="datepicker"] .js-datepicker__calendar .js-datepicker__calender-body__cell:first-child`
+    )
+  );
+  await t.expect(firstVisibleDay.exists).ok();
+  await t.expect(firstVisibleDay.innerText).eql('1');
+});
 
 test('should handle month change with native dropdown element', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
