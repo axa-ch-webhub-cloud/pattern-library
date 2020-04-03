@@ -1,16 +1,16 @@
-## Version 3.0.13
+## 3.0.13
 
 - You can use new type `number` to open up numeric keyboard on touch devices.
 
-## Version 3.0.7
+## 3.0.7
 
 - Set empty string as default value for placeholder. In React we rendered "undefined" instead of empty string. Issue #1602.
 
-## Version 3.0.4
+## 3.0.4
 
 - Fix: When using the autocomplete for form elements in Safari on macOs and iOS, the maxlength check had no effect.
 
-## Version 3.0.3
+## 3.0.3
 
 - Safari had an issue with the cursor on all platforms, which is hereby fixed.
 
