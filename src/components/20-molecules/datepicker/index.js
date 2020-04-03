@@ -497,8 +497,12 @@ class AXADatepicker extends NoShadowDOM {
       startDate,
     } = this;
 
-    const year = typeof setyear === 'number' ? setyear : _year;
-    const month = typeof setmonth === 'number' ? setmonth : _month;
+    const year =
+      // eslint-disable-next-line no-nested-ternary
+      typeof setyear === 'number' ? setyear : date ? date.getFullYear() : _year;
+    const month =
+      // eslint-disable-next-line no-nested-ternary
+      typeof setmonth === 'number' ? setmonth : date ? date.getMonth() : _month;
     let day = typeof setday === 'number' ? setday : _day;
 
     if (typeof year === 'number' && year >= 0) {
