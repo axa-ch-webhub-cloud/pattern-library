@@ -96,7 +96,7 @@ test('should begin with September 1 as first Monday in 1980', async t => {
 });
 
 // Preselected is: 22. Mai 2020
-test.only('should have working selection and preselection', async t => {
+test('should have working selection and preselection', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   let dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
@@ -717,6 +717,7 @@ test('component and input wrap should have correct height', async t => {
 fixture('Datepicker as inputfield with 196px width and 10px height').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
+
 test('should have a minimum width', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
