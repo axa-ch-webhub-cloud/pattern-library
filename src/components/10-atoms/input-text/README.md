@@ -60,12 +60,11 @@ Import the input-text-defining script and use &lt;axa-input-text&gt; like this:
 
 The type of input element to display.
 
-| Attribute         | Details                                                              |
-| ----------------- | -------------------------------------------------------------------- |
-| `type="text"`     | (default)                                                            |
-| `type="email"`    | Email                                                                |
-| `type="password"` | Password                                                             |
-| `type="number"`   | To open up numeric keyboard on touch devices. No input restrictions. |
+| Attribute         | Details   |
+| ----------------- | --------- |
+| `type="text"`     | (default) |
+| `type="email"`    | Email     |
+| `type="password"` | Password  |
 
 ### label
 
@@ -146,6 +145,14 @@ This is the text shown when `invalid` is true.
 The string-valued `info` provides the label text as HTML.
 
 _Note: The application is responsible for sanitizing HTML!_
+
+### pattern
+
+It is a string value. Useful to open up numeric keyboard on touch devices. See official HTML documentation for details.
+
+### inputmode
+
+It is a string value. Useful to open up numeric keyboard on touch devices. See official HTML documentation for details.
 
 ## Callbacks
 
