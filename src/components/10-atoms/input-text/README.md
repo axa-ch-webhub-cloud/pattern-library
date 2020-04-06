@@ -150,6 +150,8 @@ _Note: The application is responsible for sanitizing HTML!_
 
 It is a string value. Useful to open up numeric keyboard on touch devices. See official HTML documentation for details.
 
+Default: ".\*" This RegEx allows everything. An empty string causes errors on form validation.
+
 ### inputmode
 
 It is a string value. Useful to open up numeric keyboard on touch devices. See official HTML documentation for details.
