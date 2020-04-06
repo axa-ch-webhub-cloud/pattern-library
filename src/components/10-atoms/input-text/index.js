@@ -47,7 +47,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             ? Number(value)
             : undefined,
       },
-      inputmode: { type: String},
+      inputmode: { type: String },
       pattern: { type: String },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
