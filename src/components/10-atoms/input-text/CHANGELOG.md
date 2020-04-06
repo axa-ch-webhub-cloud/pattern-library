@@ -1,6 +1,6 @@
 ## 3.0.13
 
-- You can use new attribute `pattern` and `inputmode` for example to open up numeric keyboard on touch devices.
+- You can use new attribute `pattern` and `inputmode` for example to open up numeric keyboard on touch devices. (#1689)
 
 ## 3.0.7
 
