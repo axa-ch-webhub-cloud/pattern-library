@@ -17,12 +17,6 @@ story.addParameters({
 
 story.add('File upload', () => {
   const wrapperWidth = text('Width', '455px');
-  const sizeSliderOptions = {
-    range: true,
-    min: 1,
-    max: 500,
-    step: 10,
-  };
   const numberOfFilesSliderOptions = {
     range: true,
     min: 1,
@@ -30,16 +24,18 @@ story.add('File upload', () => {
     step: 1,
   };
   const inputFileText = text('inputFileText', 'Upload file');
-  const maxSizeOfSingleFileKB = number(
-    'maxSizeOfSingleFileKB',
-    100,
-    sizeSliderOptions
-  );
-  const maxSizeOfAllFilesKB = number(
-    'maxSizeOfAllFilesKB',
-    500,
-    sizeSliderOptions
-  );
+  const maxSizeOfSingleFileKB = number('maxSizeOfSingleFileKB', 100, {
+    range: true,
+    min: 1,
+    max: 5000,
+    step: 10,
+  });
+  const maxSizeOfAllFilesKB = number('maxSizeOfAllFilesKB', 500, {
+    range: true,
+    min: 1,
+    max: 30000,
+    step: 10,
+  });
   const maxNumberOfFiles = number(
     'maxNumberOfFiles',
     10,

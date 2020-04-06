@@ -85,7 +85,7 @@ class AXAFileUpload extends LitElement {
     this.faultyFiles = [];
     this.allFiles = [];
 
-    this.sizeOfAllFilesByte = 0;
+    this.sizeOfAllFilesInBytes = 0;
     this.allDroppedFiles = 0;
     this.isFileMaxReached = false;
 
@@ -143,7 +143,6 @@ class AXAFileUpload extends LitElement {
     let clonedFiles = [];
 
     this.allDroppedFiles = this.files.length + this.faultyFiles.length - 1;
-    this.globalErrorMessage = '';
 
     if (index >= this.files.length) {
       // wrong file
@@ -162,17 +161,18 @@ class AXAFileUpload extends LitElement {
 
     this.handleMaxNumberOfFiles();
 
-    this.sizeOfAllFilesByte -= this.allFiles[index].size;
+    this.sizeOfAllFilesInBytes -= this.allFiles[index].size;
 
     if (this.files.length + this.faultyFiles.length === 0) {
       this.showFileOverview = false;
-      this.sizeOfAllFilesByte = 0;
+      this.sizeOfAllFilesInBytes = 0;
       this.allDroppedFiles = 0;
       this.files = [];
       this.allFiles = [];
       this.faultyFiles = [];
       this.showAddMoreInputFile = false;
     }
+    this.validateOverallSize();
     this.requestUpdate();
   }
 
@@ -208,42 +208,48 @@ class AXAFileUpload extends LitElement {
     this.requestUpdate();
   }
 
+  validateOverallSize(fileSize = 0) {
+    const {
+      sizeOfAllFilesInBytes,
+      maxSizeOfAllFilesKB,
+      filesTooBigStatusText,
+    } = this;
+
+    const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
+    this.globalErrorMessage =
+      sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes
+        ? filesTooBigStatusText
+        : '';
+  }
+
   validateFiles(compressedImages, notImagesFiles) {
-    const maxSizeOfSingleFileByte = getBytesFromKilobyte(
-      this.maxSizeOfSingleFileKB
-    );
-    const maxSizeOfAllFilesByte = getBytesFromKilobyte(
-      this.maxSizeOfAllFilesKB
+    const { maxSizeOfSingleFileKB, maxNumberOfFiles } = this;
+    const maxSizeOfSingleFileInBytes = getBytesFromKilobyte(
+      maxSizeOfSingleFileKB
     );
 
     const faultyFiles = [];
-    let finalFiles = notImagesFiles;
+    const finalFiles = [];
+    const files = [...notImagesFiles].concat(compressedImages);
 
-    for (let i = 0; i < compressedImages.length; i++) {
-      if (
-        this.sizeOfAllFilesByte + compressedImages[i].size >
-        maxSizeOfAllFilesByte
-      ) {
-        this.globalErrorMessage = this.filesTooBigStatusText;
-      } else if (compressedImages[i].size > maxSizeOfSingleFileByte) {
-        faultyFiles.push(compressedImages[i]);
+    for (let i = 0, n = files.length, file, fileSize; i < n; i++) {
+      file = files[i];
+      fileSize = file.size;
+      if (fileSize > maxSizeOfSingleFileInBytes) {
+        faultyFiles.push(file);
       } else {
-        this.sizeOfAllFilesByte += compressedImages[i].size;
-        finalFiles = finalFiles.concat(compressedImages[i]);
+        finalFiles.push(file);
       }
+      this.sizeOfAllFilesInBytes += fileSize;
+      this.validateOverallSize(fileSize);
     }
 
     const numberOfFilesLeftOver = Math.max(
-      this.maxNumberOfFiles - this.files.length,
+      maxNumberOfFiles - this.files.length,
       0
     );
 
-    // finalFiles is not an Array, therefore we can not use slice
-    const filesLeftOver = Array.prototype.slice.call(
-      finalFiles,
-      0,
-      numberOfFilesLeftOver
-    );
+    const filesLeftOver = finalFiles.slice(0, numberOfFilesLeftOver);
 
     // concat the latest valid files from a file-upload to the existing ones
     this.files = this.files.concat(filesLeftOver);
@@ -320,29 +326,22 @@ class AXAFileUpload extends LitElement {
               >
             </div>
           </div>
-          ${isfaultyFile
-            ? html`
-                <figcaption
-                  class="m-file-upload__img-caption js-file-upload__img-caption m-file-upload__img-caption-error"
-                  title="${fileTooBigStatusText}"
-                  data-status="${deleteStatusText}"
-                >
-                  <span class="m-file-upload__filename js-file-upload__filename"
+          <figcaption
+            class="m-file-upload__img-caption js-file-upload__img-caption"
+            title="${file.name}"
+            data-status="${deleteStatusText}"
+          >
+            <span class="m-file-upload__filename js-file-upload__filename"
+              >${file.name}</span
+            >
+            ${isfaultyFile
+              ? html`
+                  <span class="m-file-upload__error js-file-upload__error"
                     >${fileTooBigStatusText}</span
                   >
-                </figcaption>
-              `
-            : html`
-                <figcaption
-                  class="m-file-upload__img-caption js-file-upload__img-caption"
-                  title="${file.name}"
-                  data-status="${deleteStatusText}"
-                >
-                  <span class="m-file-upload__filename js-file-upload__filename"
-                    >${file.name}</span
-                  >
-                </figcaption>
-              `}
+                `
+              : html``}
+          </figcaption>
         </figure>
       `;
     });

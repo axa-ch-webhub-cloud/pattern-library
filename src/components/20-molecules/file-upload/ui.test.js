@@ -13,6 +13,7 @@ const validFiles = [
   './ui-test-files/test.jpg',
   './ui-test-files/test.png',
   './ui-test-files/test.pdf',
+  './ui-test-files/testbig.pdf',
 ];
 
 test('should render file-upload', async t => {
@@ -148,7 +149,34 @@ test('should exceed maximum size of single file', async t => {
   const $fileName = await Selector(() =>
     document
       .querySelector('axa-file-upload')
-      .shadowRoot.querySelectorAll('.js-file-upload__filename')
+      .shadowRoot.querySelectorAll('.js-file-upload__error')
+  );
+  await t.expect($fileName.innerText).eql('File size exceeds maximum size');
+});
+
+test('should exceed maximum size of single PDF file', async t => {
+  const $inputFileInputElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('axa-input-file .a-input-file__input')
+  );
+  await t.expect($inputFileInputElem.exists).ok();
+
+  await t.setFilesToUpload($inputFileInputElem, validFiles[3]);
+
+  const $figureElems = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__img-figure')
+  );
+
+  await $figureElems();
+  await t.expect(await $figureElems.count).eql(2); // one file + addMoreInputFile
+
+  const $fileName = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__error')
   );
   await t.expect($fileName.innerText).eql('File size exceeds maximum size');
 });
@@ -189,7 +217,7 @@ test('should exceed maximum number of files', async t => {
   ).find('.js-file-upload__img-figure');
 
   await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
-  await t.expect(await $figureElems.count).eql(1);
+  await t.expect(await $figureElems.count).eql(2);
 
   const $errorWrapper = await Selector(() =>
     document
