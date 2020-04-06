@@ -87,6 +87,36 @@ class DatePickerAccessor {
     await this.t.expect(dropdownButton.innerText).contains(title);
   }
 
+  async getStateOfSpecificDayCellWithinCurrentMonth(day) {
+    await this.t.setTestSpeed(0.5);
+    const dayCell = await Selector(this.daySelector(day, true));
+
+    const background = await dayCell.getStyleProperty('background-color');
+    const color = await dayCell.getStyleProperty('color');
+
+    if (background === 'rgba(0, 0, 0, 0)' && color === 'rgb(51, 51, 51)') {
+      return 'STANDARD';
+    } else if (
+      background === 'rgb(204, 204, 204)' &&
+      color === 'rgb(51, 51, 51)'
+    ) {
+      return 'PRESELECTED';
+    } else if (
+      background === 'rgb(0, 0, 143)' &&
+      color === 'rgb(255, 255, 255)'
+    ) {
+      return 'SELECTED';
+    } else if (
+      background === 'rgb(255, 255, 255)' &&
+      color === 'rgb(51, 51, 51)'
+    ) {
+      return 'HOVER';
+    }
+    throw Error(
+      `These colors should not exist in this combination! [color=${color}] [background-color=${background}]`
+    );
+  }
+
   datepickerInputFieldSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
