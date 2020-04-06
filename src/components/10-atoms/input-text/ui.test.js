@@ -52,7 +52,7 @@ test('input element should have correct html attributes', async t => {
   }).find(CLASS);
 
   await t.expect($axaInputElement.getAttribute('inputmode')).eql('');
-  await t.expect($axaInputElement.getAttribute('pattern')).eql('');
+  await t.expect($axaInputElement.getAttribute('pattern')).eql('.*'); // const PATTERN_DEFAULT @ index.js
 });
 
 fixture('Input text - Form').page(
@@ -170,11 +170,10 @@ test('should cut text when autocomplete sets value over maxLength', async t => {
   await t.expect(await inputValue()).eql('1234');
 });
 
-fixture('Input text - type="number"').page(
-  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=number&knob-maxlength=50&knob-counter=Still%20##counter##%20characters%20left&knob-counterMax=Over%20character%20limit!`
+fixture('Input text - Set attributes "pattern" and "numeric"').page(
+  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=&knob-type=text&knob-pattern=[0-9]*&knob-inputmode=numeric&knob-refid=&knob-value=&knob-maxlength=50&knob-counter=Still%20##counter##%20characters%20left&knob-counterMax=Over%20character%20limit!`
 );
-
-test('input element should have correct html attributes (type="number")', async t => {
+test('input element should have correct html attributes "pattern" and "numeric"', async t => {
   const $axaInputElement = await Selector(() => document.querySelector(TAG), {
     dependencies: { TAG },
   }).find(CLASS);
