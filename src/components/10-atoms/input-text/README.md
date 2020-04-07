@@ -148,7 +148,7 @@ _Note: The application is responsible for sanitizing HTML!_
 
 ### pattern
 
-It is a string value. But just input a valid RegEx. Useful to open up numeric keyboard on touch devices. See official HTML documentation for details.
+It is a string value. But just input a valid RegEx. Useful to open up numeric keyboard on iOS touch devices. See official HTML documentation for details.
 
 Default: `.*`. This RegEx do not restrict any input. An empty string at this point causes errors on form validation, because it just allows to input a empty string.
 
