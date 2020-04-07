@@ -309,7 +309,7 @@ class AXADatepicker extends NoShadowDOM {
     style.width = getFormattedStyle(width); // set width to component's css
     const formattedHeight = getFormattedStyle(height); // set height to input-wrap element because of optional label
 
-    const cellClasses = ({ sameMonth, today, selected, inactive, value }) => {
+    const cellClasses = ({ sameMonth, today, inactive, value }) => {
       const userSelected = _userSelectedDate === value;
       const preselected = !userSelected && _preselectedDate === value;
       return classMap({
@@ -318,9 +318,8 @@ class AXADatepicker extends NoShadowDOM {
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
         'm-datepicker__calendar-today': today,
-        'm-datepicker__calendar-selected-day': selected && userSelected,
-        'm-datepicker__calendar-selected-day--preselected':
-          selected && preselected,
+        'm-datepicker__calendar-selected-day': userSelected,
+        'm-datepicker__calendar-selected-day--preselected': preselected,
         'm-datepicker__calendar-day--inactive': inactive,
       });
     };
