@@ -37,6 +37,8 @@ storyInputText.add('Input Text', () => {
   const maxLength = text('maxlength', '50');
   const counter = text('counter', 'Still ##counter## characters left');
   const counterMax = text('counterMax', 'Over character limit!');
+  const pattern = text('pattern', '');
+  const inputmode = text('inputmode', '');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -52,6 +54,8 @@ storyInputText.add('Input Text', () => {
       error="${error}"
       info="${info}"
       maxlength="${maxLength}"
+      pattern="${pattern}"
+      inputmode="${inputmode}"
       ?checkmark="${checkMark}"
       ?disabled="${disabled}"
       ?required="${required}"

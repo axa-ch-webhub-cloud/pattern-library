@@ -19,6 +19,8 @@ export interface AXAInputTextProps {
   counterMax?: string;
   isReact?: boolean;
   className?: string;
+  pattern?: string;
+  inputmode?: string;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
   onChange?: (e: { target: HTMLInputElement }) => void;

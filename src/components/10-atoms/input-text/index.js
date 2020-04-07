@@ -10,6 +10,8 @@ import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
 
+const PATTERN_DEFAULT = '.*';
+
 class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   static get tagName() {
     return 'axa-input-text';
@@ -46,6 +48,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           !isNaN(parseFloat(value)) && isFinite(value)
             ? Number(value)
             : undefined,
+      },
+      inputmode: { type: String },
+      pattern: {
+        // pattern="" or pattern="undefined" can cause problems on validating a form. Because of that set a RegEx that allows everything in that case.
+        converter: value => value || PATTERN_DEFAULT,
       },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
@@ -244,11 +251,13 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       placeholder = '',
       disabled,
       isReact,
-      maxLength,
+      maxLength = '',
       invalid,
       checkMark,
       isControlled,
       refId,
+      inputmode = '',
+      pattern = PATTERN_DEFAULT, // if we do not set a default value here the result on DOM is pattern="undefined", that causes problems on validating a form
       _open,
     } = this;
 
@@ -293,6 +302,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   placeholder="${placeholder}"
                   aria-required="${required}"
                   maxlength="${maxLength}"
+                  pattern="${pattern}"
+                  inputmode="${inputmode}"
                   ?disabled="${disabled}"
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
@@ -310,6 +321,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   placeholder="${placeholder}"
                   aria-required="${required}"
                   maxlength="${maxLength}"
+                  pattern="${pattern}"
+                  inputmode="${inputmode}"
                   ?disabled="${disabled}"
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"

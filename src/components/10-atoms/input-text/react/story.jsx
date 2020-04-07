@@ -35,6 +35,8 @@ storyInputText.add('Input Text', () => {
   const required = boolean('required', false);
   const invalid = boolean('invalid', false);
   const types = radios('type', typeOptions, 'text');
+  const pattern = text('pattern', '');
+  const inputmode = text('inputmode', '');
 
   const wrapper = document.createElement('div');
   ReactDOM.render(
@@ -51,6 +53,8 @@ storyInputText.add('Input Text', () => {
       type={types}
       error={error}
       info={info}
+      pattern={pattern}
+      inputmode={inputmode}
     />,
     wrapper
   );
