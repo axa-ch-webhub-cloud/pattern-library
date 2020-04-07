@@ -6,7 +6,7 @@ class DatePickerAccessor {
     this.t = testcafe;
   }
 
-  async chooseAnyMonth(numericMonth, native) {
+  async chooseMonth(numericMonth, native) {
     await this.t.setTestSpeed(0.5);
     const dropDown = await Selector(this.selectMonthDropdownSelector(this.id));
     await this.t.click(dropDown);
@@ -16,7 +16,7 @@ class DatePickerAccessor {
     await this.t.click(selectedMonth);
   }
 
-  async chooseAnyYear(numericYear, native) {
+  async chooseYear(numericYear, native) {
     await this.t.setTestSpeed(0.5);
     const dropDown = await Selector(this.yearDropdownSelector(this.id));
     await this.t.click(dropDown);
@@ -87,17 +87,35 @@ class DatePickerAccessor {
     await this.t.expect(dropdownButton.innerText).contains(title);
   }
 
-  async submit() {
+  async getStateOfSpecificDayCellWithinCurrentMonth(day) {
     await this.t.setTestSpeed(0.5);
-    const submitButton = await Selector(this.submitButtonSelector(this.id));
-    await this.t.click(submitButton);
-  }
+    const dayCell = await Selector(this.daySelector(day, true));
 
-  submitButtonSelector = Selector(id =>
-    document
-      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-button[class*="js-datepicker__button-ok"]')
-  );
+    const background = await dayCell.getStyleProperty('background-color');
+    const color = await dayCell.getStyleProperty('color');
+
+    if (background === 'rgba(0, 0, 0, 0)' && color === 'rgb(51, 51, 51)') {
+      return 'STANDARD';
+    } else if (
+      background === 'rgb(204, 204, 204)' &&
+      color === 'rgb(51, 51, 51)'
+    ) {
+      return 'PRESELECTED';
+    } else if (
+      background === 'rgb(0, 0, 143)' &&
+      color === 'rgb(255, 255, 255)'
+    ) {
+      return 'SELECTED';
+    } else if (
+      background === 'rgb(255, 255, 255)' &&
+      color === 'rgb(51, 51, 51)'
+    ) {
+      return 'HOVER';
+    }
+    throw Error(
+      `These colors should not exist in this combination! [color=${color}] [background-color=${background}]`
+    );
+  }
 
   datepickerInputFieldSelector = Selector(id =>
     document
@@ -131,23 +149,37 @@ class DatePickerAccessor {
       .querySelector('button[class*="m-datepicker__input-button"]')
   );
 
-  selectAnyMonthSelector = Selector((id, numericMonth, native) =>
+  selectAnyMonthSelector = Selector((id, numericMonth, native) => {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
       )
-  );
+      .scrollIntoView();
+    return document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector(
+        `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
+      );
+  });
 
-  selectAnyYearSelector = Selector((id, numericYear, native) =>
+  selectAnyYearSelector = Selector((id, numericYear, native) => {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
       .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
       )
-  );
+      .scrollIntoView();
+    return document
+      .querySelector(`axa-datepicker[data-test-id="${id}"]`)
+      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
+      .querySelector(
+        `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
+      );
+  });
 
   selectMonthDropdownSelector = Selector(id =>
     document

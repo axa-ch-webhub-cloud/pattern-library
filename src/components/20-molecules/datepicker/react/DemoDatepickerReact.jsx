@@ -36,8 +36,6 @@ const DemoDatepicker = () => {
         day={25}
         month={1}
         year={2020}
-        labelbuttoncancel="Cancel"
-        labelbuttonok="OK"
         allowedyears={[2019, 2020]}
       />
       <br />

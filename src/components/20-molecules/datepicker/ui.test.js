@@ -1,5 +1,8 @@
 import { Selector, ClientFunction } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
+import { range } from './utils/date';
+
+/* eslint-disable */
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -12,7 +15,7 @@ fixture('Datepicker')
 test('should select February the 13th and then the 14th', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(13);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
 
@@ -30,9 +33,6 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
   // Rendered array should be equal to the given ranges and custom dates we pass in in story.js allowedYears
   const dropdownItems = await dropdown().getAttribute('items');
 
-  const range = (start, end) =>
-    new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
-
   const expected = range(1971, 2000)
     .concat([2012, 2014])
     .concat(range(2018, 2022))
@@ -45,10 +45,10 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
   await t.expect(dropdownItems).eql(JSON.stringify(expected));
 });
 
-test('should select the first of march from within the February view', async t => {
+test('should select the first of March from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfOutsideMonth(1);
 
   await datePickerAccessor.assertYear(2020);
@@ -59,7 +59,7 @@ test('should select the first of march from within the February view', async t =
 test('should select the 31th of January from within the February view', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfOutsideMonth(31);
 
   await datePickerAccessor.assertYear(2020);
@@ -70,7 +70,7 @@ test('should select the 31th of January from within the February view', async t 
 test('should have a 29th of February in 2020 - should correctly handle leap year', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(29);
 
   await datePickerAccessor.assertYear(2020);
@@ -80,8 +80,8 @@ test('should have a 29th of February in 2020 - should correctly handle leap year
 
 test('should begin with September 1 as first Monday in 1980', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
-  await datePickerAccessor.chooseAnyMonth(9, false);
-  await datePickerAccessor.chooseAnyYear(1980, false);
+  await datePickerAccessor.chooseMonth(9, false);
+  await datePickerAccessor.chooseYear(1980, false);
 
   await datePickerAccessor.assertYear(1980);
   await datePickerAccessor.assertMonth('September');
@@ -95,10 +95,91 @@ test('should begin with September 1 as first Monday in 1980', async t => {
   await t.expect(firstVisibleDay.innerText).eql('1');
 });
 
+// Preselected is: 22. Mai 2020
+test('should have working selection and preselection', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+
+  let dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    22
+  );
+  await t.expect(dayCell22State).eql('PRESELECTED');
+
+  await datePickerAccessor.chooseMonth(1);
+
+  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    22
+  );
+  await t.expect(dayCell22State).eql('STANDARD');
+
+  await datePickerAccessor.chooseMonth(5);
+  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    22
+  );
+  await t.expect(dayCell22State).eql('PRESELECTED');
+
+  await datePickerAccessor.chooseYear(1971);
+
+  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    22
+  );
+  await t.expect(dayCell22State).eql('STANDARD');
+
+  await datePickerAccessor.chooseYear(2020);
+
+  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    22
+  );
+  await t.expect(dayCell22State).eql('PRESELECTED');
+
+  let dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    23
+  );
+  await t.expect(dayCell23State).eql('STANDARD');
+
+  await datePickerAccessor.selectDayOfCurrentMonth(23);
+
+  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    22
+  );
+  await t.expect(dayCell23State).eql('STANDARD');
+
+  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    23
+  );
+  await t.expect(dayCell23State).eql('HOVER');
+
+  await datePickerAccessor.chooseMonth(1);
+
+  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    23
+  );
+  await t.expect(dayCell23State).eql('STANDARD');
+
+  await datePickerAccessor.chooseMonth(5);
+  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    23
+  );
+  await t.expect(dayCell23State).eql('SELECTED');
+
+  await datePickerAccessor.chooseYear(1971);
+
+  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    23
+  );
+  await t.expect(dayCell23State).eql('STANDARD');
+
+  await datePickerAccessor.chooseYear(2020);
+
+  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    23
+  );
+  await t.expect(dayCell23State).eql('SELECTED');
+});
+
 test('should handle month change with native dropdown element', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2, true);
+  await datePickerAccessor.chooseMonth(2, true);
   await datePickerAccessor.assertMonth('Februar');
 }).before(async t => {
   await t.resizeWindow(200, 200);
@@ -108,10 +189,10 @@ fixture('Datepicker - With Locale').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-locale=en-GB`
 );
 
-test('should display month in english', async t => {
+test('should display month in English', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
 
   await datePickerAccessor.assertMonth('February');
 });
@@ -125,9 +206,9 @@ test('should write date into input field for input calendars', async t => {
   await datePickerAccessor.openCalendar();
 
   await datePickerAccessor.assertYear(2019);
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
-  await datePickerAccessor.submit();
+
   // we need to do things on our own here since property access
   // is *not* supported by the TestCafe API (here for 'value')
   const getInputValue = ClientFunction(
@@ -141,8 +222,9 @@ test('should change enhanced dropdown title (only on large screens) on month cha
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
   await datePickerAccessor.openCalendar();
 
-  await datePickerAccessor.chooseAnyMonth(2);
+  await datePickerAccessor.chooseMonth(2);
   await datePickerAccessor.selectDayOfCurrentMonth(14);
+  await datePickerAccessor.openCalendar();
 
   await datePickerAccessor.assertDropdownTitle('Februar');
 });
@@ -181,7 +263,7 @@ test('should correctly expand year ranges assigned via property', async t => {
 fixture('Datepicker React controlled').page(
   `${host}/iframe.html?id=components-molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
 );
-test('datepicker should behave correctly when controlled', async t => {
+test('should behave correctly when controlled', async t => {
   const datepickerReact = await Selector(() =>
     document.querySelector(
       `axa-datepicker[data-test-id="datepicker-controlled-react"]`
@@ -274,6 +356,7 @@ fixture('Datepicker React inputfield').page(
 );
 
 test('should react to programmatic date property changes', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
   // defaultValue is respected
   const getInputValue = ClientFunction(() => {
     const inputNode = document.querySelector(
@@ -325,13 +408,12 @@ test('should react to programmatic date property changes', async t => {
     .expect(datepickerYearDropdown.getAttribute('items'))
     .contains('{"selected":true,"name":"2019","value":"2019"}');
 
-  const getSelectedDay = ClientFunction(
-    () =>
-      document.querySelector(`#datepicker-react
- .js-datepicker__calendar .m-datepicker__calendar-selected-day`).innerText
-  );
+  await datePickerAccessor.selectDayOfCurrentMonth('27');
 
-  await t.expect(await getSelectedDay()).eql('27');
+  await t
+    .wait(50)
+    .expect(await getInputValue())
+    .eql('27.4.2019');
 });
 
 fixture('Datepicker React empty inputfield').page(
@@ -339,32 +421,19 @@ fixture('Datepicker React empty inputfield').page(
 );
 
 test('should allow month change from default date', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
   const datepicker = await Selector(() =>
     document.querySelector(`#datepicker-react`)
   );
   await t.setTestSpeed(0.5);
   await t.expect(datepicker.exists).ok();
 
-  // open it
-  await t.click('#datepicker-react .m-datepicker__input-button');
+  await datePickerAccessor.openCalendar();
 
-  const datePickerIsOpen = ClientFunction(() => {
-    const domNode = document.querySelector(`#datepicker-react`);
-    return domNode.open;
-  });
+  await datePickerAccessor.assertIsOpen();
 
-  await t
-    .wait(50 /* allow for DOM to stabilize */)
-    .expect(await datePickerIsOpen())
-    .ok();
-
-  // verify datepicker displays current date:
-
-  // open month dropdown
-  await t.click('#datepicker-react .js-datepicker__dropdown-month');
-
-  // commit current date
-  await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
+  const DAY_TO_SELECT = 30;
+  await datePickerAccessor.selectDayOfCurrentMonth(DAY_TO_SELECT);
 
   const getInputValue = ClientFunction(
     () =>
@@ -373,7 +442,7 @@ test('should allow month change from default date', async t => {
 
   const d = new Date();
   const currentMonth = d.getMonth();
-  const currentDateString = `${d.getDate()}.${currentMonth +
+  const currentDateString = `${DAY_TO_SELECT}.${currentMonth +
     1}.${d.getFullYear()}`;
 
   // verify committed date meets expectation
@@ -387,10 +456,7 @@ test('should allow month change from default date', async t => {
   // open it
   await t.wait(50).click('#datepicker-react .m-datepicker__input-button');
 
-  await t
-    .wait(50 /* allow for DOM to stabilize */)
-    .expect(await datePickerIsOpen())
-    .ok();
+  await datePickerAccessor.assertIsOpen();
 
   // open month dropdown
   await t.click('#datepicker-react .js-datepicker__dropdown-month');
@@ -406,11 +472,12 @@ test('should allow month change from default date', async t => {
     );
 
   // commit new date
-  await t.wait(50).click(`#datepicker-react .js-datepicker__button-ok`);
+  await datePickerAccessor.selectDayOfCurrentMonth(26);
 
-  // verify committed date meets expectation
+  // verify committed date meets expectation: correct month and year
   const newDateString = `.${newMonth + 1}.${d.getFullYear()}`;
 
+  // assert date input has the correct year and month
   await t
     .wait(50)
     .expect(await getInputValue())
@@ -459,6 +526,50 @@ test('should display error message if invalid is set, unless invaliddatetext is 
   await t.expect(await findNode('.m-datepicker__error')).notOk();
 });
 
+test('should allow year ranges', async t => {
+  const setDatepicker = ClientFunction((property, value) => {
+    const domNode = document.querySelector(`#datepicker-react`);
+    if (value !== undefined) {
+      domNode[property] = value;
+    }
+    return JSON.stringify(domNode[property]);
+  });
+
+  await t.setTestSpeed(0.5);
+  await t.expect(await setDatepicker('year', 2020)).ok();
+  await t.expect(await setDatepicker('allowedyears', /* empty */ [])).ok();
+  await t.expect(await setDatepicker('allowedyears')).eql('[2020]');
+  await t.expect(await setDatepicker('allowedyears', ['1920-2003'])).ok();
+  await t
+    .expect(await setDatepicker('allowedyears'))
+    .eql(JSON.stringify(range(2020 - 100, 2020 - 17).concat([2020]))); // 2020: README states year is always member of allowedyears
+
+  // now open calendar
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
+  await t.wait(50).click('#datepicker-react .m-datepicker__input-button');
+  await datePickerAccessor.assertIsOpen();
+  await t.wait(50);
+
+  // verify all calendar days are visible
+  // (to prevent regression against bug that would render all days inactive, i.e. visibility:hidden, upon allowedyears changes)
+  const allDaysVisible = ClientFunction(() => {
+    const days = Array.prototype.slice.call(
+      document.querySelectorAll(
+        '#datepicker-react .js-datepicker__calender-body__cell'
+      )
+    );
+
+    return (
+      days.length ===
+      days.filter(
+        cell => window.getComputedStyle(cell, null).visibility !== 'hidden'
+      ).length
+    );
+  });
+
+  await t.expect(await allDaysVisible()).eql(true);
+});
+
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-in-a-form`
 );
@@ -493,6 +604,7 @@ fixture('Datepicker with onchange handler').page(
   `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
 );
 test('should fire the right events', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
   const datepickerForm = await Selector(() =>
     document.querySelector(`axa-datepicker[data-test-id="datepicker-onchange"]`)
   );
@@ -500,15 +612,15 @@ test('should fire the right events', async t => {
   await t.setTestSpeed(0.5);
 
   await t.expect(datepickerForm.exists).ok();
-
   await t.click('.js-datepicker__input-button');
 
-  await t.wait(100).click('.js-datepicker__button-ok');
-
+  await t
+    .wait(100)
+    .click('.m-datepicker__calendar-current-month[data-day="16"]');
   await t
     .wait(50)
     .expect((await Selector('.event-log')).value)
-    .eql(`{"name":"date","value":"29.2.2020"}\n\n`);
+    .eql(`{"name":"date","value":"16.2.2020"}\n\n`);
 
   await t
     .wait(50)
@@ -525,7 +637,7 @@ test('should fire the right events', async t => {
 });
 
 fixture('Datepicker as inputfield with fixed width and height').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('should have 200px width', async t => {
@@ -557,7 +669,7 @@ test('input wrap should have correct height without a label', async t => {
 });
 
 fixture('Datepicker as inputfield with label').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('component and input wrap should have correct height', async t => {
@@ -572,8 +684,9 @@ test('component and input wrap should have correct height', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width and 10px height').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-labelbuttoncancel=Cancel&knob-labelbuttonok=Ok&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
+
 test('should have a minimum width', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')

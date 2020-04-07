@@ -2,6 +2,7 @@
 import { DateInputSvg } from '@axa-ch/materials/icons';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import { formatISO } from 'date-fns';
 import '@axa-ch/dropdown';
 import '@axa-ch/button';
 import styles from './index.scss';
@@ -10,6 +11,7 @@ import {
   getMonthMatrix,
   getAllLocaleMonthsArray,
   parseLocalisedDateIfValid,
+  range,
 } from './utils/date';
 
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -27,9 +29,6 @@ const EMPTY_FUNCTION = () => {};
 let openDatepickerInstance;
 
 // helper functions
-const range = (start, end) =>
-  new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
-
 const shouldMove = elem => {
   const element = elem.getBoundingClientRect();
   const moreSpaceOnTopThanBottom =
@@ -67,8 +66,14 @@ const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
     }
     // a year range like '2019-2024'?
     if (typeof years === 'string') {
-      const [fromYear, toYear] = years.split('-');
-      flattenedYears = range(fromYear | 0, toYear | 0); // | 0: convert to 32-bit integer
+      let [fromYear, toYear] = years.split('-');
+      fromYear = parseInt(fromYear, 10);
+      toYear = parseInt(toYear, 10);
+      // eslint-disable-next-line no-restricted-globals
+      if (isNaN(fromYear) || isNaN(toYear)) {
+        throw new Error('illegal year range');
+      }
+      flattenedYears = range(fromYear, toYear);
     } else {
       flattenedYears = [years];
     }
@@ -81,6 +86,35 @@ const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
   yearSet.forEach(member => result.push(member));
   // therefore sort numerically ascending
   return result.sort();
+};
+
+// gather all native Date-object setters in one place
+const overrideDate = (year, month, day, date) => {
+  let _day = day;
+
+  if (typeof year === 'number' && year >= 0) {
+    date.setFullYear(year);
+  }
+
+  if (typeof month === 'number' && month >= 0) {
+    date.setMonth(month);
+    // month not changed as desired since target day unavailable?
+    // (e.g. July 31 =/=> June 31)
+    if (date.getMonth() !== month) {
+      // then choose last day of previous month to correct that
+      _day = 0;
+    }
+  }
+
+  if (typeof _day === 'number') {
+    // day 1 = first day, day 0 = last day of prev. month
+    // day -1 = one day before last day of prev. month, ...
+    date.setDate(_day);
+  }
+
+  date.setHours(0, 0, 0, 0); // exactly midnight
+
+  return date;
 };
 
 // CE
@@ -120,8 +154,6 @@ class AXADatepicker extends NoShadowDOM {
       monthitems: { type: Array },
       yearitems: { type: Array },
       cells: { type: Array },
-      labelbuttoncancel: { type: String, defaultValue: 'Close' },
-      labelbuttonok: { type: String, defaultValue: 'OK' },
       placeholder: { type: String, defaultValue: 'Please select a date' },
       monthtitle: { type: String, defaultValue: 'Choose month' },
       yeartitle: { type: String, defaultValue: 'Choose year' },
@@ -244,7 +276,7 @@ class AXADatepicker extends NoShadowDOM {
   render() {
     const {
       _date,
-      state: { value },
+      state,
       refId = '',
       label,
       required,
@@ -266,6 +298,8 @@ class AXADatepicker extends NoShadowDOM {
       invalid,
       invaliddatetext,
       style,
+      _userSelectedDate,
+      _preselectedDate,
     } = this;
     const needToShowError = (error || invalid) && invaliddatetext;
 
@@ -275,16 +309,20 @@ class AXADatepicker extends NoShadowDOM {
     style.width = getFormattedStyle(width); // set width to component's css
     const formattedHeight = getFormattedStyle(height); // set height to input-wrap element because of optional label
 
-    const cellClasses = ({ sameMonth, today, selected, inactive }) =>
-      classMap({
+    const cellClasses = ({ sameMonth, today, inactive, value }) => {
+      const userSelected = _userSelectedDate === value;
+      const preselected = !userSelected && _preselectedDate === value;
+      return classMap({
         'm-datepicker__calendar-cell': true,
         'js-datepicker__calender-body__cell': true,
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
         'm-datepicker__calendar-today': today,
-        'm-datepicker__calendar-selected-day': selected,
+        'm-datepicker__calendar-selected-day': userSelected,
+        'm-datepicker__calendar-selected-day--preselected': preselected,
         'm-datepicker__calendar-day--inactive': inactive,
       });
+    };
 
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
@@ -316,7 +354,7 @@ class AXADatepicker extends NoShadowDOM {
                   type="text"
                   name="${this.name}"
                   placeholder="${this.placeholder}"
-                  .value="${this.isControlled ? value : this.outputdate}"
+                  .value="${this.isControlled ? state.value : this.outputdate}"
                   ?disabled="${disabled}"
                 />
                 <button
@@ -343,7 +381,7 @@ class AXADatepicker extends NoShadowDOM {
                     <axa-dropdown
                       @axa-change="${this.handleChangeDropdownMonth}"
                       class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-                      maxheight
+                      maxheight="270"
                       items="${JSON.stringify(this.monthitems)}"
                       defaulttitle="${this.monthtitle}"
                       usecase="datepicker"
@@ -353,7 +391,7 @@ class AXADatepicker extends NoShadowDOM {
                     <axa-dropdown
                       @axa-change="${this.handleChangeDropdownYear}"
                       class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-                      maxheight
+                      maxheight="270"
                       items="${JSON.stringify(this.yearitems)}"
                       defaulttitle="${this.yeartitle}"
                       usecase="datepicker"
@@ -393,20 +431,6 @@ class AXADatepicker extends NoShadowDOM {
                             </button>
                           `
                       )}
-                  </div>
-                  <div class="m-datepicker__buttons">
-                    <axa-button
-                      variant="secondary"
-                      class="m-datepicker__button m-datepicker__button-cancel js-datepicker__button-cancel"
-                      @click="${this.handleButtonCancelClick}"
-                      >${this.labelbuttoncancel}</axa-button
-                    >
-                    <axa-button
-                      class="m-datepicker__button m-datepicker__button-ok js-datepicker__button-ok"
-                      @click="${this.handleButtonOkClick}"
-                      .disabled="${!_date}"
-                      >${this.labelbuttonok}</axa-button
-                    >
                   </div>
                 </div>
               </div>
@@ -453,14 +477,13 @@ class AXADatepicker extends NoShadowDOM {
       }
     }
 
-    if (!this.isControlled) {
-      this.initDate(
-        null,
-        year || startDate.getFullYear(),
-        month || startDate.getMonth(),
-        day || startDate.getDate()
-      );
+    if (this.isControlled) {
+      return;
     }
+
+    this.startDate = overrideDate(year, month, day, startDate);
+
+    this.initDate();
   }
 
   updated(changedProperties) {
@@ -478,56 +501,38 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   // Methods
-  initDate(date, setyear, setmonth, setday) {
+
+  initDate(date, options = {}) {
     if (date) {
       // eslint-disable-next-line no-restricted-globals
       const isValidDateObject = date instanceof Date && !isNaN(+date);
       if (isValidDateObject) {
         this.startDate = date;
+        this.day = date.getDate();
         this.year = date.getFullYear();
         this.month = date.getMonth();
-        this.day = date.getDate();
       }
     }
-    const {
-      year: _year,
-      month: _month,
-      day: _day,
-      allowedyears,
-      locale,
-      startDate,
-    } = this;
+    const { year, month, day, allowedyears, locale, startDate } = this;
 
-    const year = typeof setyear === 'number' ? setyear : _year;
-    const month = typeof setmonth === 'number' ? setmonth : _month;
-    let day = typeof setday === 'number' ? setday : _day;
-
-    if (typeof year === 'number' && year >= 0) {
-      startDate.setFullYear(year);
-    }
-
-    if (typeof month === 'number' && month >= 0) {
-      startDate.setMonth(month);
-      // month not changed as desired due to because target day unavailable there?
-      // (e.g. July 31 =/=> June 31)
-      if (startDate.getMonth() !== month) {
-        // then choose last day of previous month to correct that
-        day = 0;
-      }
-    }
-
-    if (typeof day === 'number') {
-      // day 1 = first day, day 0 = last day of prev. month
-      // day -1 = one day before last day of prev. month, ...
-      startDate.setDate(day);
-    }
-    this._date = startDate;
+    this._date = overrideDate(year, month, day, startDate);
     const { _date } = this;
-    _date.setHours(0, 0, 0, 0); // exactly midnight
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-    this.cells = getMonthMatrix(_date, allowedyears);
+
+    this.cells = getMonthMatrix(_date, this.allowedyears);
     this.weekdays = getWeekdays(_date, locale);
+
+    const { output, tentative } = options;
+    if (output) {
+      this.outputdate = this.formatDate(_date);
+      this._userSelectedDate = formatISO(_date);
+    }
+    if (!tentative) {
+      this._preselectedDate = formatISO(_date);
+    }
+
+    return this.outputdate;
   }
 
   handleViewportCheck(baseElem) {
@@ -574,9 +579,7 @@ class AXADatepicker extends NoShadowDOM {
     }
     this.error = null;
     if (isValid) {
-      this._date = validDate;
-      this.initDate(validDate);
-      this.outputdate = this.formatDate(validDate);
+      this.initDate(validDate, { output: true }); // sets this._date
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
       this._date = null;
@@ -608,17 +611,21 @@ class AXADatepicker extends NoShadowDOM {
 
   handleChangeDropdownMonth(e) {
     e.preventDefault();
-    const month = e.detail;
-    if (month) {
-      this.initDate(this._date, null, parseInt(month, 10), null);
+    const month = parseInt(e.detail, 10);
+    if (typeof month === 'number') {
+      this.initDate(overrideDate(null, month, null, this._date), {
+        tentative: true,
+      });
     }
   }
 
   handleChangeDropdownYear(e) {
     e.preventDefault();
-    const year = e.detail;
-    if (year) {
-      this.initDate(this._date, parseInt(year, 10), null, null);
+    const year = parseInt(e.detail, 10);
+    if (typeof year === 'number') {
+      this.initDate(overrideDate(year, null, null, this._date), {
+        tentative: true,
+      });
     }
   }
 
@@ -662,29 +669,6 @@ class AXADatepicker extends NoShadowDOM {
     onBlur(e);
   }
 
-  handleButtonOkClick() {
-    const {
-      _date,
-      inputfield,
-      input,
-      onChange,
-      onDateChange,
-      state: { value: stateValue },
-    } = this;
-    const value = this.formatDate(_date);
-    this.outputdate = value;
-    onChange({ target: { value } });
-    onDateChange(_date);
-    this.fireEvents(_date);
-    if (inputfield) {
-      this.toggleDatepicker();
-      input.value = this.isControlled ? stateValue : value;
-    }
-    // since the calendar UI only allows legal dates to be picked,
-    // any preexisting error should be cleared
-    this.error = null;
-  }
-
   fireEvents(validDate) {
     if (validDate) {
       const { name } = this;
@@ -695,19 +679,35 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
-  handleButtonCancelClick() {
-    this.toggleDatepicker();
-  }
-
   handleDatepickerCalendarCellClick(e) {
     e.preventDefault();
     e.stopPropagation();
     e.target.blur(); // prevent the ugly focus ring after the click
+
     const cellIndex = parseInt(e.target.dataset.index, 10);
     const date = e.target.dataset.value;
     this.index = cellIndex;
-    this.initDate(new Date(date));
+    const value = this.initDate(new Date(date), { output: true });
     this.setMonthAndYearItems();
+
+    const {
+      _date,
+      inputfield,
+      input,
+      onChange,
+      onDateChange,
+      state: { value: stateValue },
+    } = this;
+    onChange({ target: { value } });
+    onDateChange(_date);
+    this.fireEvents(_date);
+    if (inputfield) {
+      this.toggleDatepicker();
+      input.value = this.isControlled ? stateValue : value;
+    }
+    // since the calendar UI only allows legal dates to be picked,
+    // any preexisting error should be cleared
+    this.error = null;
   }
 }
 

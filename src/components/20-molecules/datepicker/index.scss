@@ -215,7 +215,7 @@ axa-datepicker {
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    padding: 15px 0 15px 0;
+    padding: 15px 0 0 0;
   }
 
   &__calendar-cell {
@@ -298,6 +298,11 @@ axa-datepicker {
   &__calendar-selected-day {
     background-color: $color-axa-blue;
     color: $color-prim-white;
+    
+    &--preselected {
+      color: $color-prim-gray-dark;
+      background-color: $color-prim-gray-silver;
+    }
   }
 
   &__calendar-today {
@@ -317,11 +322,6 @@ axa-datepicker {
     line-height: 1.2;
     margin-top: 10px;
     min-height: 16px;
-  }
-
-  .m-datepicker__button {
-    margin: 0;
-    white-space: nowrap;
   }
 
   .m-datepicker__input-icon {

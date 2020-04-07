@@ -3,6 +3,7 @@ import {
   text,
   number,
   boolean,
+  object,
   select,
   withKnobs,
 } from '@storybook/addon-knobs';
@@ -33,12 +34,16 @@ story.add('Datepicker', () => {
   const year = number('year', 2020);
   const month = number('month', 4);
   const day = number('day', 22);
+  const allowedYears = object('allowedyears', [
+    '1971-2000',
+    2012,
+    2014,
+    '2018-2022',
+  ]);
   const disabled = boolean('disabled', false);
   const autofocus = boolean('autofocus', false);
   const checkMark = boolean('checkMark', false);
   const label = text('label', '');
-  const labelbuttoncancel = text('labelbuttoncancel', 'Cancel');
-  const labelbuttonok = text('labelbuttonok', 'Ok');
   const monthtitle = text('monthtitle', 'Choose Month');
   const yeartitle = text('yeartitle', 'Choose Year');
   const invaliddatetext = text('invaliddatetext', 'Invalid date');
@@ -57,7 +62,7 @@ story.add('Datepicker', () => {
         ?autofocus="${autofocus}"
         ?checkMark="${checkMark}"
         ?disabled="${disabled}"
-        allowedyears='["1971-2000", 2012, 2014, "2018-2022"]'
+        .allowedyears="${allowedYears}"
         year="${year}"
         month="${month}"
         day="${day}"
@@ -67,8 +72,6 @@ story.add('Datepicker', () => {
         label="${label}"
         monthtitle="${monthtitle}"
         yeartitle="${yeartitle}"
-        labelbuttoncancel="${labelbuttoncancel}"
-        labelbuttonok="${labelbuttonok}"
         width="${width}"
         height="${height}"
         data-test-id="datepicker"

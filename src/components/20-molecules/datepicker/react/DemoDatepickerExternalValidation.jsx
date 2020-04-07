@@ -31,8 +31,6 @@ const DemoDatepickerExternalValidation = () => {
           setOutsideDateRange(checkOutsideDateRange(newDate))
         }
         placeholder="Choose a date"
-        labelbuttoncancel="Cancel"
-        labelbuttonok="OK"
         invalid={outsideDateRange}
         invaliddatetext={
           outsideDateRange

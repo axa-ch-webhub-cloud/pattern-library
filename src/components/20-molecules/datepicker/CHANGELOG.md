@@ -1,3 +1,10 @@
+## 7.0.0
+
+- **Breaking change:** "Cancel" and "Accept" buttons have been removed. If you relied on them, this is a breaking change for you, otherwise not.
+- Bugfix: Under certain instances, it was possible, that the calendar sheet got empty (no days appearing to select). This was a rendering issue and is now fixed.
+- UX bugfix: When no day was selected, there was a preselection that was actually not a user-issued selection. When you switched the month or year, that same day would appear as selected within the newly selected month/year, which could lead to confusion.
+- UX improvement: A day can be preselected now. It will appear with a grey background (and if no pre-selection is set, the current day will be marked as preselected). This is only a UI-specific improvement and does not change externally accessible component state.
+
 ## 6.0.4
 
 - Fixed the border-top shadow of input element on iOS devices (#1694)

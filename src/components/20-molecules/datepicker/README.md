@@ -80,13 +80,9 @@ The array-valued `allowedyears` specifies the years that will be visible in the 
 Both individual years `[2019,202]`,
 year ranges `["1989-2010"]`, and a mix of the two `["1989-2010", 2012, 2014]` are supported.
 
-### labelbuttoncancel, labelbuttonok, placeholder, monthtitle, yeartitle, invaliddatetext
+### placeholder, monthtitle, yeartitle, invaliddatetext
 
 These string-valued properties are all used to internationalize various texts in &lt;axa-datepicker&gt;:
-
-- `labelbuttoncancel` is the text of the action button cancelling a date selection (default: `Schliessen`).
-
-- `labelbuttonok` is the text of the action button approving a date selection (default: `OK`).
 
 - `placeholder` is the placeholder text of the free-form date-input field (default: `Please select a date`).
 
