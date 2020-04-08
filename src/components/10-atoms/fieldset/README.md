@@ -74,6 +74,10 @@ The `horizontal` attribute is typically used to ensure correct layout for a grou
 
 `horizontal` mode is responsive: when crossing the `sm(all)` breakpoint (575px), this component forces conformant children to assume 100% width and rearranges them into a vertical layout with correct vertical spacing.
 
+### nostretchonmobile
+
+Boolean `nostretchonmobile` prevents the radio buttons to use the full length in a horizontal fieldset. Instead they are aligned side by side. It must be combined with `button`and `nogap` attributes from the axa-radio.
+
 ### error\*
 
 The string-valued `error` attribute, when nonempty, displays its value as an error message below the fieldset's children.
