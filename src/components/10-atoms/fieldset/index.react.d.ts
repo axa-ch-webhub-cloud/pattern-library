@@ -4,6 +4,7 @@ export interface AXAFieldsetProps {
   horizontal?: boolean;
   error?: string;
   slot?: string;
+  noStretchOnMobile?: boolean;
 }
 
 declare function createAXAFieldset(

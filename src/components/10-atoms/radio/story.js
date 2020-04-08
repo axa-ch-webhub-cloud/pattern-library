@@ -40,7 +40,7 @@ storiesOf('Components|Atoms/Radio', module)
 
     const template = html`
       <p>Knobs with a * only affect the first radio button</p>
-      <axa-fieldset horizontal>
+      <axa-fieldset horizontal nostretchonmobile>
         <axa-radio
           name="contract"
           label="${label}"

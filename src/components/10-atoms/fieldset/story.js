@@ -17,10 +17,11 @@ storiesOf('Components|Atoms/Fieldset', module)
   .add('Fieldset', () => {
     const error = text('error', '');
     const horizontal = boolean('horizontal', false);
+    const noStretchOnMobile = boolean('noStretchOnMobile', false);
 
     const wrapper = document.createElement('div');
     const template = html`
-      <axa-fieldset ?horizontal="${horizontal}" error="${error}">
+      <axa-fieldset ?horizontal="${horizontal}" error="${error}" ?nostretchonmobile="${noStretchOnMobile}">
         <axa-checkbox
           label="I agree to conditions of data protection."
           error="Please accept our terms and conditions."

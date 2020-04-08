@@ -37,6 +37,14 @@ axa-fieldset {
     }
   }
 
+  &[nostretchonmobile]{
+    @include breakpoint($mediaquery-xsm) {
+      axa-radio[button][nogap] {
+        width: auto !important;
+     }
+    }
+  }
+
   &[error]:not([error=""]) {
     padding-bottom: 28px;
 
