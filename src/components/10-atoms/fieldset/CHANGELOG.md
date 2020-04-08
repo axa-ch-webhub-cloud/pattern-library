@@ -1,6 +1,6 @@
 ## 2.1.0
 
-- New attribute `nostretchonmobile` added. It prevents the radio buttons to use the full length in a horizontal fieldset. Instead they are aligned side by side.
+- New attribute `disableresponsivestretch` added. It prevents the radio buttons to use the full length in a horizontal fieldset. Instead they are aligned side by side.
 
 ## 2.0.0
 
