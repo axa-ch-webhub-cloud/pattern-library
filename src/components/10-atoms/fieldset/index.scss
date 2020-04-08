@@ -39,7 +39,7 @@ axa-fieldset {
 
   &[disableresponsivestretch]{
     @include breakpoint($mediaquery-xsm) {
-      axa-radio[button][nogap] {
+      axa-radio {
         width: auto !important;
      }
     }
