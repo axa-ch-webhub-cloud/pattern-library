@@ -39,16 +39,6 @@ $dropdown-height: 40px;
 axa-dropdown {
   display: block;
 
-  &[usecase="datepicker"] {
-    .m-dropdown__select {
-      min-width: auto;
-      padding-right: 32px;
-    }
-    .m-dropdown__button {
-      padding-right: 32px;
-    }
-  }
-
   .m-dropdown__label {
     @include typo(primary, medium);
     display: block;
@@ -96,7 +86,6 @@ axa-dropdown {
   .m-dropdown__select {
     @include normalize-native-select-styles();
     @include typo(primary, small);
-    min-width: 100px;
     width: 100%;
     color: $dropdown-color;
     padding: 0 40px 0 20px;
@@ -180,7 +169,7 @@ axa-dropdown {
 
   .m-dropdown__option,
   .m-dropdown__button {
-    padding: 10px 40px 10px 10px;
+    padding: 10px;
     box-sizing: border-box;
     width: 100%;
     line-height: 20px;

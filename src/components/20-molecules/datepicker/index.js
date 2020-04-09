@@ -384,7 +384,6 @@ class AXADatepicker extends NoShadowDOM {
                       maxheight="270"
                       items="${JSON.stringify(this.monthitems)}"
                       defaulttitle="${this.monthtitle}"
-                      usecase="datepicker"
                     >
                     </axa-dropdown>
 
@@ -394,7 +393,6 @@ class AXADatepicker extends NoShadowDOM {
                       maxheight="270"
                       items="${JSON.stringify(this.yearitems)}"
                       defaulttitle="${this.yeartitle}"
-                      usecase="datepicker"
                     >
                     </axa-dropdown>
                   </div>
