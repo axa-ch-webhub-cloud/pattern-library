@@ -26,22 +26,16 @@ axa-fieldset {
     > * {
       margin-top: $fieldset-vertical-margin;
     }
-
-    @include breakpoint($mediaquery-xsm) {
-
-        > *,
-        > * > * {
-          margin-right: 0 !important;
-          width: 100% !important;
-        }
-    }
   }
 
   &[enableresponsivestretch]{
     @include breakpoint($mediaquery-xsm) {
-      axa-radio {
-        width: auto !important;
-     }
+      > *,
+      > * > * {
+        margin-right: 0 !important;
+        width: 100% !important;
+      }
+      
     }
   }
 
