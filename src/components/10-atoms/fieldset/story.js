@@ -17,19 +17,19 @@ storiesOf('Components|Atoms/Fieldset', module)
   .add('Fieldset', () => {
     const error = text('error', '');
     const horizontal = boolean('horizontal', false);
-    const disableresponsivestretch = boolean('disableResponsiveStretch', false);
+    const enableresponsivestretch = boolean('enableResponsiveStretch', false);
 
     const wrapper = document.createElement('div');
     const template = html`
       <axa-text variant="size-3">
         Resize your browser to a tablet or mobile width to see the effect of
-        "disableResponsiveStretch"</axa-text
+        "enableResponsiveStretch"</axa-text
       >
       <br />
       <axa-fieldset
         ?horizontal="${horizontal}"
         error="${error}"
-        ?disableresponsivestretch="${disableresponsivestretch}"
+        ?enableresponsivestretch="${enableresponsivestretch}"
       >
         <axa-checkbox
           label="I agree to conditions of data protection."

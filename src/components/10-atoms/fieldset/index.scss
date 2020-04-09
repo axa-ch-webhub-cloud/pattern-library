@@ -37,7 +37,7 @@ axa-fieldset {
     }
   }
 
-  &[disableresponsivestretch]{
+  &[enableresponsivestretch]{
     @include breakpoint($mediaquery-xsm) {
       axa-radio {
         width: auto !important;
