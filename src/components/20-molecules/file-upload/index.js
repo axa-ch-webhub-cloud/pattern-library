@@ -46,7 +46,7 @@ class AXAFileUpload extends LitElement {
     return {
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
-      maxSizeOfAllFilesInKB: { type: Number, defaultValue: 500 },
+      maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
       maxNumberOfFiles: { type: Number, defaultValue: 10 },
       showFileOverview: { type: Boolean },
       icon: { type: String, defaultValue: 'cloud-upload' },
@@ -90,7 +90,6 @@ class AXAFileUpload extends LitElement {
     this.isFileMaxReached = false;
 
     this.globalErrorMessage = '';
-    this.addMoreInputFile = '';
     this.showAddMoreInputFile = '';
   }
 
@@ -119,7 +118,7 @@ class AXAFileUpload extends LitElement {
   handleDropZoneDrop(e) {
     const { files } = e.dataTransfer;
     let removeGlobalMessage = true;
-    // prevent browser to display the file fullscreen
+    // prevent browser from displaying the file fullscreen
     e.preventDefault();
 
     const validFileTypesFiles = [...files].filter(
@@ -145,7 +144,7 @@ class AXAFileUpload extends LitElement {
     this.allDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
     if (index >= this.files.length) {
-      // wrong file
+      // faulty file
       clonedFiles = [...this.faultyFiles];
       clonedFiles.splice(index - this.files.length, 1);
       this.faultyFiles = clonedFiles;
@@ -211,13 +210,11 @@ class AXAFileUpload extends LitElement {
   validateOverallSize(fileSize = 0) {
     const {
       sizeOfAllFilesInBytes,
-      maxSizeOfAllFilesInKB,
+      maxSizeOfAllFilesKB,
       filesTooBigStatusText,
     } = this;
 
-    const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(
-      maxSizeOfAllFilesInKB
-    );
+    const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
     this.globalErrorMessage =
       sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes
         ? filesTooBigStatusText
@@ -284,21 +281,19 @@ class AXAFileUpload extends LitElement {
 
     return this.allFiles.map((file, index) => {
       let isfaultyFile = false;
+
       if (!file) {
         return '';
       }
+
       for (let i = 0; i < this.faultyFiles.length; i++) {
         if (this.faultyFiles[i] === file) {
           isfaultyFile = true;
           break;
         }
       }
-      this.faultyFiles.forEach(faultyFile => {
-        if (faultyFile === file) {
-          isfaultyFile = true;
-        }
-      });
-      const isFile = file.type.indexOf('application') > -1;
+
+      const isNonImageFile = file.type.indexOf('application') > -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
         <figure class="m-file-upload__img-figure js-file-upload__img-figure">
@@ -306,7 +301,7 @@ class AXAFileUpload extends LitElement {
             class="m-file-upload__icon-hover-area"
             @click=${() => this.handleFileDeletion(index)}
           >
-            ${isFile
+            ${isNonImageFile
               ? html`
                   <span class="m-file-upload__file-element">
                     ${ATTACH_FILE_ICON}</span
@@ -380,15 +375,10 @@ class AXAFileUpload extends LitElement {
       'm-file-upload__dropzone-file-overview': this.showFileOverview,
       'js-file-upload__dropzone-file-overview': this.showFileOverview,
     };
-    const errorMessageWrapperClasses = {
-      'm-file-upload__error-wrapper': true,
-      'js-file-upload__error-wrapper': true,
-    };
 
     // displaying files with errors (e.g. too big) after valid ones
     this.allFiles = this.files.concat(this.faultyFiles);
     const fileOverview = this.fileOverviewMapping(this.allFiles);
-    this.addMoreInputFile = this.generateAddMoreInputFile();
 
     return html`
       <article class="m-file-upload">
@@ -419,11 +409,13 @@ class AXAFileUpload extends LitElement {
               `
             : html`
                 ${fileOverview}
-                ${this.showAddMoreInputFile ? this.addMoreInputFile : ``}
+                ${this.showAddMoreInputFile
+                  ? this.generateAddMoreInputFile()
+                  : ``}
               `}
         </section>
 
-        <div class="${classMap(errorMessageWrapperClasses)}">
+        <div class="m-file-upload__error-wrapper js-file-upload__error-wrapper">
           ${this.globalErrorMessage}
         </div>
       </article>
