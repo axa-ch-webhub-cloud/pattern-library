@@ -25,27 +25,9 @@ storiesOf('Components|Atoms/Fieldset/Demos', module)
       <axa-text>How old are you?</axa-text>
       <br />
       <axa-fieldset horizontal enableresponsivestretch>
-        <axa-radio
-          button
-          nogap
-          name="contract"
-          label="18-45"
-          value="1"
-        ></axa-radio>
-        <axa-radio
-          button
-          nogap
-          name="contract"
-          label="46-54"
-          value="2"
-        ></axa-radio>
-        <axa-radio
-          button
-          nogap
-          name="contract"
-          label="55+"
-          value="3"
-        ></axa-radio>
+        <axa-radio button name="contract" label="18-45" value="1"></axa-radio>
+        <axa-radio button name="contract" label="46-54" value="2"></axa-radio>
+        <axa-radio button name="contract" label="55+" value="3"></axa-radio>
       </axa-fieldset>
     `;
     render(template, root);
