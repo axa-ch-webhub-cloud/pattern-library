@@ -99,11 +99,14 @@ class AXAFileUpload extends LitElement {
   }
 
   handleInputFileChange(e) {
-    this.addFiles(e.target.files);
+    const {
+      target: { files },
+    } = e;
+    this.filterAndAddFiles(files);
   }
 
   handleDropZoneDragover(e) {
-    // prevent default browser behavior to execute the link that comes with the event
+    // prevent default browser behavior of following the link that triggered the event
     e.preventDefault();
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
@@ -115,27 +118,32 @@ class AXAFileUpload extends LitElement {
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
   }
 
-  handleDropZoneDrop(e) {
-    const { files } = e.dataTransfer;
-    let removeGlobalMessage = true;
-    // prevent browser from displaying the file fullscreen
-    e.preventDefault();
-
+  filterAndAddFiles(files) {
+    // filter out files with wrong MIME type
     const validFileTypesFiles = [...files].filter(
       file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
 
-    this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
-
+    // we have at least one wrong-MIME-type file?
+    let removeGlobalMessage = true;
     if (validFileTypesFiles.length < files.length) {
-      this.globalErrorMessage = this.wrongFileTypeStatusText;
       removeGlobalMessage = false;
+      this.globalErrorMessage = this.wrongFileTypeStatusText;
       this.requestUpdate();
     }
 
+    // we didn't filter out all the incoming files?
     if (validFileTypesFiles.length > 0) {
       this.addFiles(validFileTypesFiles, removeGlobalMessage);
     }
+  }
+
+  handleDropZoneDrop(e) {
+    // prevent browser from displaying the file fullscreen
+    e.preventDefault();
+    this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
+    const { files } = e.dataTransfer;
+    this.filterAndAddFiles(files);
   }
 
   handleFileDeletion(index) {
