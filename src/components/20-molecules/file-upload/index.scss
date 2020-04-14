@@ -125,6 +125,7 @@ $file-upload-icon-size: 36px !default;
   &__img-caption {
     display: flex;
     flex-direction: column;
+    align-items: center;
     cursor: default;
   }
 

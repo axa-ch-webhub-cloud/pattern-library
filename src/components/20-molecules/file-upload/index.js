@@ -46,7 +46,7 @@ class AXAFileUpload extends LitElement {
     return {
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
-      maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
+      maxSizeOfAllFilesInKB: { type: Number, defaultValue: 500 },
       maxNumberOfFiles: { type: Number, defaultValue: 10 },
       showFileOverview: { type: Boolean },
       icon: { type: String, defaultValue: 'cloud-upload' },
@@ -122,8 +122,8 @@ class AXAFileUpload extends LitElement {
     // prevent browser to display the file fullscreen
     e.preventDefault();
 
-    const validFileTypesFiles = [...files].filter(file =>
-      file.type ? ACCEPTED_FILE_TYPES.indexOf(file.type) > -1 : false
+    const validFileTypesFiles = [...files].filter(
+      file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
@@ -211,11 +211,13 @@ class AXAFileUpload extends LitElement {
   validateOverallSize(fileSize = 0) {
     const {
       sizeOfAllFilesInBytes,
-      maxSizeOfAllFilesKB,
+      maxSizeOfAllFilesInKB,
       filesTooBigStatusText,
     } = this;
 
-    const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
+    const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(
+      maxSizeOfAllFilesInKB
+    );
     this.globalErrorMessage =
       sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes
         ? filesTooBigStatusText
@@ -232,9 +234,9 @@ class AXAFileUpload extends LitElement {
     const finalFiles = [];
     const files = [...notImagesFiles].concat(compressedImages);
 
-    for (let i = 0, n = files.length, file, fileSize; i < n; i++) {
-      file = files[i];
-      fileSize = file.size;
+    for (let i = 0, n = files.length; i < n; i++) {
+      const file = files[i];
+      const fileSize = file.size;
       if (fileSize > maxSizeOfSingleFileInBytes) {
         faultyFiles.push(file);
       } else {
