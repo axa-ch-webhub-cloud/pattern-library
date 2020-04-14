@@ -13,6 +13,7 @@ axa-fieldset {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    flex-direction: row;
     margin-top: -$fieldset-vertical-margin;
 
     > *:not([nogap]) {

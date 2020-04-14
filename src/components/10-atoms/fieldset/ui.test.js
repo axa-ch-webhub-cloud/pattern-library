@@ -33,3 +33,40 @@ test('should render an error message', async t => {
   const expected = JSON.stringify(['rgb(201, 20, 50)', `"${errorMessage}"`]);
   await t.expect(JSON.stringify(await getError())).eql(expected);
 });
+
+fixture('Fieldset - horizontal').page(
+  `${host}/iframe.html?id=components-atoms-fieldset--fieldset&knob-error=&knob-horizontal=true`
+);
+
+test('should render horizontally', async t => {
+  const getError = ClientFunction(() => {
+    const fieldset = document.querySelector('axa-fieldset');
+    const styles = window.getComputedStyle(fieldset);
+    return [
+      styles.getPropertyValue('display'),
+      styles.getPropertyValue('flex-wrap'),
+      styles.getPropertyValue('flex-direction'),
+    ];
+  });
+
+  const expected = JSON.stringify(['flex', 'wrap', 'row']);
+  await t.expect(JSON.stringify(await getError())).eql(expected);
+});
+
+fixture('Fieldset - enableResponsiveStretch').page(
+  `${host}/iframe.html?id=components-atoms-fieldset-demos--fieldset-enableresponsivestretch&knob-error=&knob-horizontal=true&knob-enableResponsiveStretch=true`
+);
+
+// test('should render responsive stretch', async t => {
+//   const getError = ClientFunction(() => {
+//     const fieldset = document.querySelector('axa-fieldset > *');
+//     const styles = fieldset.style;
+//     return [
+//       styles.getPropertyValue('width'),
+//       styles.getPropertyValue('margin-right'),
+//     ];
+//   });
+
+//   const expected = JSON.stringify(['100%', '0']);
+//   await t.expect(JSON.stringify(await getError())).eql(expected);
+// });
