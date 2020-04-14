@@ -1,6 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Readme from './README.md';
@@ -16,21 +16,16 @@ storiesOf('Components|Atoms/Fieldset', module)
   })
   .add('Fieldset', () => {
     const error = text('error', '');
-    const horizontal = boolean('horizontal', false);
-    const enableresponsivestretch = boolean('enableResponsiveStretch', false);
 
     const wrapper = document.createElement('div');
     const template = html`
       <axa-text variant="size-3">
         Resize your browser to a tablet or mobile width to see the effect of
-        "enableResponsiveStretch"</axa-text
+        'horizontal="stretch"'</axa-text
       >
       <br />
-      <axa-fieldset
-        ?horizontal="${horizontal}"
-        error="${error}"
-        ?enableresponsivestretch="${enableresponsivestretch}"
-      >
+
+      <axa-fieldset error="${error}">
         <axa-checkbox
           label="I agree to conditions of data protection."
           error="Please accept our terms and conditions."

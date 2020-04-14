@@ -29,7 +29,7 @@ axa-fieldset {
     }
   }
 
-  &[enableresponsivestretch]{
+  &[horizontal="stretch"]{
     @include breakpoint($mediaquery-xsm) {
       > *,
       > * > * {

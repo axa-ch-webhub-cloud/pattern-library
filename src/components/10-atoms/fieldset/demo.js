@@ -19,12 +19,12 @@ storiesOf('Components|Atoms/Fieldset/Demos', module)
     const template = html`
       <axa-text variant="size-3">
         Resize your browser to a tablet or mobile width to see the effect of
-        "enableResponsiveStretch"</axa-text
+        'horizontal="stretch"'</axa-text
       >
       <br />
       <axa-text>How old are you?</axa-text>
       <br />
-      <axa-fieldset horizontal enableresponsivestretch>
+      <axa-fieldset horizontal="stretch">
         <axa-radio button name="contract" label="18-45" value="1"></axa-radio>
         <axa-radio button name="contract" label="46-54" value="2"></axa-radio>
         <axa-radio button name="contract" label="55+" value="3"></axa-radio>

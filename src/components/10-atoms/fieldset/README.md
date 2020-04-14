@@ -68,15 +68,11 @@ Starred property names are reflected to attributes.
 
 ### horizontal\*
 
-Boolean `horizontal` changes the layout direction of the element's children to horizontal (default: false). It also imposes the correct horizontal gaps between children, except for children with a `nogap` attribute.
+String `horizontal` changes the layout direction of the element's children to horizontal (default: false). It also imposes the correct horizontal gaps between children, except for children with a `nogap` attribute.
 
 The `horizontal` attribute is typically used to ensure correct layout for a group of &lt;axa-radio&gt; buttons.
 
-`horizontal` mode is responsive: when crossing the `sm(all)` breakpoint (575px), this component forces conformant children to assume 100% width and rearranges them into a vertical layout with correct vertical spacing.
-
-### enableresponsivestretch
-
-Boolean `enableresponsivestretch` prevents the radio buttons to use the full length in a horizontal fieldset. Instead they are aligned side by side. It must be combined with `button`and `nogap` attributes from the axa-radio.
+`stretch` mode is responsive: when crossing the `sm(all)` breakpoint (575px), this component forces conformant children to assume 100% width and rearranges them into a vertical layout with correct vertical spacing.
 
 ### error\*
 

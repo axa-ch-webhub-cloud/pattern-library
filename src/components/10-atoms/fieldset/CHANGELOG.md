@@ -1,6 +1,6 @@
 ## 2.1.0
 
-- New attribute `enableresponsivestretch` added. It prevents the radio buttons to use the full length in a horizontal fieldset. Instead they are aligned side by side.
+- The attribute `horizontal` is now string-valued with the submode `stretch`.
 
 ## 2.0.0
 
