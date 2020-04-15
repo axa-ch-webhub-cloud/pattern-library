@@ -1,10 +1,9 @@
 import React from 'react';
 
 export interface AXAFieldsetProps {
-  horizontal?: string;
+  horizontal?: 'horizontal' | 'stretch';
   error?: string;
   slot?: string;
-  enableresponsivestretch?: boolean;
 }
 
 declare function createAXAFieldset(

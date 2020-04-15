@@ -17,9 +17,9 @@ storiesOf('Components|Atoms/Fieldset', module)
   .add('Fieldset', () => {
     const error = text('error', '');
     const options = {
-      None: null,
-      Stretch: 'stretch',
-      Horizontal: 'horizontal',
+      none: null,
+      stretch: 'stretch',
+      horizontal: 'horizontal',
     };
     const horizontal = select('horizontal', options);
 
