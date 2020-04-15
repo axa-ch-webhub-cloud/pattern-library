@@ -13,7 +13,7 @@ storiesOf('Components|Atoms/Fieldset/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Fieldset - enableresponsivestretch', () => {
+  .add('Fieldset - responsive stretch', () => {
     const root = document.createElement('div');
 
     const template = html`
