@@ -54,19 +54,21 @@ test('should render horizontally', async t => {
 });
 
 fixture('Fieldset - enableResponsiveStretch').page(
-  `${host}/iframe.html?id=components-atoms-fieldset-demos--fieldset-enableresponsivestretch&knob-error=&knob-horizontal=true&knob-enableResponsiveStretch=true`
+  `${host}/iframe.html?id=components-atoms-fieldset--fieldset&knob-error=&knob-horizontal=stretch`
 );
 
-// test('should render responsive stretch', async t => {
-//   const getError = ClientFunction(() => {
-//     const fieldset = document.querySelector('axa-fieldset > *');
-//     const styles = fieldset.style;
-//     return [
-//       styles.getPropertyValue('width'),
-//       styles.getPropertyValue('margin-right'),
-//     ];
-//   });
+test('should responsive stretch', async t => {
+  const getError = ClientFunction(() => {
+    const fieldset = document.querySelector('axa-fieldset > * > *');
+    const styles = window.getComputedStyle(fieldset);
+    return [
+      styles.getPropertyValue('width'),
+      styles.getPropertyValue('margin-right'),
+    ];
+  });
 
-//   const expected = JSON.stringify(['100%', '0']);
-//   await t.expect(JSON.stringify(await getError())).eql(expected);
-// });
+  const expected = JSON.stringify(['529px', '0px']); // 529px width of the radio correspond to 100% in a 575px window
+  await t.expect(JSON.stringify(await getError())).eql(expected);
+}).before(async t => {
+  await t.resizeWindow(575, 575);
+});
