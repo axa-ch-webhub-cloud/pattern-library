@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface AXAFieldsetProps {
-  horizontal?: boolean;
+  horizontal?: 'horizontal' | 'stretch';
   error?: string;
   slot?: string;
 }

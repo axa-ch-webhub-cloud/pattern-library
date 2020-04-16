@@ -1,3 +1,7 @@
+## 2.1.0
+
+- The attribute `horizontal` is now string-valued with the submode `stretch`.
+
 ## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has

@@ -39,8 +39,11 @@ storiesOf('Components|Atoms/Radio', module)
     const noAutoWidth = boolean('noAutoWidth', false);
 
     const template = html`
-      <p>Knobs with a * only affect the first radio button</p>
-      <axa-fieldset horizontal>
+      <axa-text variant="size-3"
+        >Knobs with a * only affect the first radio button</axa-text
+      >
+      <br />
+      <axa-fieldset>
         <axa-radio
           name="contract"
           label="${label}"

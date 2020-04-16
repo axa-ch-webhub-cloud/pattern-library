@@ -13,6 +13,7 @@ axa-fieldset {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    flex-direction: row;
     margin-top: -$fieldset-vertical-margin;
 
     > *:not([nogap]) {
@@ -26,14 +27,16 @@ axa-fieldset {
     > * {
       margin-top: $fieldset-vertical-margin;
     }
+  }
 
+  &[horizontal="stretch"]{
     @include breakpoint($mediaquery-xsm) {
-
-        > *,
-        > * > * {
-          margin-right: 0 !important;
-          width: 100% !important;
-        }
+      > *,
+      > * > * {
+        margin-right: 0;
+        width: 100%;
+      }
+      
     }
   }
 
