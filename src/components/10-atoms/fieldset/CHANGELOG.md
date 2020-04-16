@@ -1,6 +1,6 @@
 ## 2.1.0
 
-- The attribute `horizontal` is now string-valued with the submode `stretch`.
+- The attribute `horizontal` is now string-valued with the submode `stretch`. (##1690)
 
 ## 2.0.0
 

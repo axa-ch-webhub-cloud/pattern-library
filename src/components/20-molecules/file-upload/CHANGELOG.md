@@ -1,7 +1,7 @@
 ## 2.0.9
 
-- Apply design-change suggestions from designers to allow coexistence of filename and per-file error message. #1715
-- Minor bugfix.
+- Apply design-change suggestions from designers to allow coexistence of filename and per-file error message. (#1715)
+- Minor bugfixes.
 - Code is refactored and beautified.
 
 ## 2.0.0
