@@ -1,3 +1,7 @@
+## 7.0.1
+
+- Remove datepicker specific stylings from axa dropdown. (#1720)
+
 ## 7.0.0
 
 - **Breaking change:** "Cancel" and "Accept" buttons have been removed. If you relied on them, this is a breaking change for you, otherwise not.
