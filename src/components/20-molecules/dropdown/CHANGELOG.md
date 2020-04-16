@@ -1,3 +1,7 @@
+## 7.0.1
+
+- Remove datepicker specific stylings from axa dropdown. (#1720)
+
 ## 6.0.0
 
 - Controlled mode can no longer be triggered in non-React scenarios.
