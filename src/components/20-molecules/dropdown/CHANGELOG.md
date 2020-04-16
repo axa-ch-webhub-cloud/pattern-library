@@ -2,6 +2,10 @@
 
 - Remove datepicker specific stylings from axa dropdown. (#1720)
 
+## 7.0.0
+
+- Add padding to dropdown button. (#1708)
+
 ## 6.0.0
 
 - Controlled mode can no longer be triggered in non-React scenarios.
