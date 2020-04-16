@@ -1,3 +1,9 @@
+## 2.0.9
+
+- Apply design-change suggestions from designers to allow coexistence of filename and per-file error message. #1715
+- Minor bugfix.
+- Code is refactored and beautified.
+
 ## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has
