@@ -123,21 +123,30 @@ $file-upload-icon-size: 36px !default;
   }
 
   &__img-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+  }
+
+  &__filename, &__error {
+    display: inline-block;
     width: 120px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
-    cursor: default;
   }
 
-  &__img-caption-error {
+  &__error {
+    @include typo(primary, default);
     color: $color-sec-shy-tomato;
   }
 
-  // when hovering over hover-area, hide the filname
+  // when hovering over hover-area, hide the file name and error message (if any)
   &__icon-hover-area:hover ~ .m-file-upload__img-caption {
-    .m-file-upload__filename {
+    .m-file-upload__filename,
+    .m-file-upload__error {
       display: none;
     }
   }

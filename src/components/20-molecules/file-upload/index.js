@@ -85,12 +85,11 @@ class AXAFileUpload extends LitElement {
     this.faultyFiles = [];
     this.allFiles = [];
 
-    this.sizeOfAllFilesByte = 0;
+    this.sizeOfAllFilesInBytes = 0;
     this.allDroppedFiles = 0;
     this.isFileMaxReached = false;
 
     this.globalErrorMessage = '';
-    this.addMoreInputFile = '';
     this.showAddMoreInputFile = '';
   }
 
@@ -100,11 +99,14 @@ class AXAFileUpload extends LitElement {
   }
 
   handleInputFileChange(e) {
-    this.addFiles(e.target.files);
+    const {
+      target: { files },
+    } = e;
+    this.filterAndAddFiles(files);
   }
 
   handleDropZoneDragover(e) {
-    // prevent default browser behavior to execute the link that comes with the event
+    // prevent default browser behavior of following the link that triggered the event
     e.preventDefault();
     if (!this.isFileMaxReached) {
       e.dataTransfer.dropEffect = 'copy';
@@ -116,37 +118,41 @@ class AXAFileUpload extends LitElement {
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
   }
 
-  handleDropZoneDrop(e) {
-    const { files } = e.dataTransfer;
-    let removeGlobalMessage = true;
-    // prevent browser to display the file fullscreen
-    e.preventDefault();
-
-    const validFileTypesFiles = [...files].filter(file =>
-      file.type ? ACCEPTED_FILE_TYPES.indexOf(file.type) > -1 : false
+  filterAndAddFiles(files) {
+    // filter out files with wrong MIME type
+    const validFileTypesFiles = [...files].filter(
+      file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
 
-    this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
-
+    // we have at least one wrong-MIME-type file?
+    let removeGlobalMessage = true;
     if (validFileTypesFiles.length < files.length) {
-      this.globalErrorMessage = this.wrongFileTypeStatusText;
       removeGlobalMessage = false;
+      this.globalErrorMessage = this.wrongFileTypeStatusText;
       this.requestUpdate();
     }
 
+    // we didn't filter out all the incoming files?
     if (validFileTypesFiles.length > 0) {
       this.addFiles(validFileTypesFiles, removeGlobalMessage);
     }
+  }
+
+  handleDropZoneDrop(e) {
+    // prevent browser from displaying the file fullscreen
+    e.preventDefault();
+    this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
+    const { files } = e.dataTransfer;
+    this.filterAndAddFiles(files);
   }
 
   handleFileDeletion(index) {
     let clonedFiles = [];
 
     this.allDroppedFiles = this.files.length + this.faultyFiles.length - 1;
-    this.globalErrorMessage = '';
 
     if (index >= this.files.length) {
-      // wrong file
+      // faulty file
       clonedFiles = [...this.faultyFiles];
       clonedFiles.splice(index - this.files.length, 1);
       this.faultyFiles = clonedFiles;
@@ -162,17 +168,18 @@ class AXAFileUpload extends LitElement {
 
     this.handleMaxNumberOfFiles();
 
-    this.sizeOfAllFilesByte -= this.allFiles[index].size;
+    this.sizeOfAllFilesInBytes -= this.allFiles[index].size;
 
     if (this.files.length + this.faultyFiles.length === 0) {
       this.showFileOverview = false;
-      this.sizeOfAllFilesByte = 0;
+      this.sizeOfAllFilesInBytes = 0;
       this.allDroppedFiles = 0;
       this.files = [];
       this.allFiles = [];
       this.faultyFiles = [];
       this.showAddMoreInputFile = false;
     }
+    this.validateOverallSize();
     this.requestUpdate();
   }
 
@@ -208,42 +215,48 @@ class AXAFileUpload extends LitElement {
     this.requestUpdate();
   }
 
+  validateOverallSize(fileSize = 0) {
+    const {
+      sizeOfAllFilesInBytes,
+      maxSizeOfAllFilesKB,
+      filesTooBigStatusText,
+    } = this;
+
+    const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
+    this.globalErrorMessage =
+      sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes
+        ? filesTooBigStatusText
+        : '';
+  }
+
   validateFiles(compressedImages, notImagesFiles) {
-    const maxSizeOfSingleFileByte = getBytesFromKilobyte(
-      this.maxSizeOfSingleFileKB
-    );
-    const maxSizeOfAllFilesByte = getBytesFromKilobyte(
-      this.maxSizeOfAllFilesKB
+    const { maxSizeOfSingleFileKB, maxNumberOfFiles } = this;
+    const maxSizeOfSingleFileInBytes = getBytesFromKilobyte(
+      maxSizeOfSingleFileKB
     );
 
     const faultyFiles = [];
-    let finalFiles = notImagesFiles;
+    const finalFiles = [];
+    const files = [...notImagesFiles].concat(compressedImages);
 
-    for (let i = 0; i < compressedImages.length; i++) {
-      if (
-        this.sizeOfAllFilesByte + compressedImages[i].size >
-        maxSizeOfAllFilesByte
-      ) {
-        this.globalErrorMessage = this.filesTooBigStatusText;
-      } else if (compressedImages[i].size > maxSizeOfSingleFileByte) {
-        faultyFiles.push(compressedImages[i]);
+    for (let i = 0, n = files.length; i < n; i++) {
+      const file = files[i];
+      const fileSize = file.size;
+      if (fileSize > maxSizeOfSingleFileInBytes) {
+        faultyFiles.push(file);
       } else {
-        this.sizeOfAllFilesByte += compressedImages[i].size;
-        finalFiles = finalFiles.concat(compressedImages[i]);
+        finalFiles.push(file);
       }
+      this.sizeOfAllFilesInBytes += fileSize;
+      this.validateOverallSize(fileSize);
     }
 
     const numberOfFilesLeftOver = Math.max(
-      this.maxNumberOfFiles - this.files.length,
+      maxNumberOfFiles - this.files.length,
       0
     );
 
-    // finalFiles is not an Array, therefore we can not use slice
-    const filesLeftOver = Array.prototype.slice.call(
-      finalFiles,
-      0,
-      numberOfFilesLeftOver
-    );
+    const filesLeftOver = finalFiles.slice(0, numberOfFilesLeftOver);
 
     // concat the latest valid files from a file-upload to the existing ones
     this.files = this.files.concat(filesLeftOver);
@@ -276,21 +289,19 @@ class AXAFileUpload extends LitElement {
 
     return this.allFiles.map((file, index) => {
       let isfaultyFile = false;
+
       if (!file) {
         return '';
       }
+
       for (let i = 0; i < this.faultyFiles.length; i++) {
         if (this.faultyFiles[i] === file) {
           isfaultyFile = true;
           break;
         }
       }
-      this.faultyFiles.forEach(faultyFile => {
-        if (faultyFile === file) {
-          isfaultyFile = true;
-        }
-      });
-      const isFile = file.type.indexOf('application') > -1;
+
+      const isNonImageFile = file.type.indexOf('application') > -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
         <figure class="m-file-upload__img-figure js-file-upload__img-figure">
@@ -298,7 +309,7 @@ class AXAFileUpload extends LitElement {
             class="m-file-upload__icon-hover-area"
             @click=${() => this.handleFileDeletion(index)}
           >
-            ${isFile
+            ${isNonImageFile
               ? html`
                   <span class="m-file-upload__file-element">
                     ${ATTACH_FILE_ICON}</span
@@ -320,29 +331,22 @@ class AXAFileUpload extends LitElement {
               >
             </div>
           </div>
-          ${isfaultyFile
-            ? html`
-                <figcaption
-                  class="m-file-upload__img-caption js-file-upload__img-caption m-file-upload__img-caption-error"
-                  title="${fileTooBigStatusText}"
-                  data-status="${deleteStatusText}"
-                >
-                  <span class="m-file-upload__filename js-file-upload__filename"
+          <figcaption
+            class="m-file-upload__img-caption js-file-upload__img-caption"
+            title="${file.name}"
+            data-status="${deleteStatusText}"
+          >
+            <span class="m-file-upload__filename js-file-upload__filename"
+              >${file.name}</span
+            >
+            ${isfaultyFile
+              ? html`
+                  <span class="m-file-upload__error js-file-upload__error"
                     >${fileTooBigStatusText}</span
                   >
-                </figcaption>
-              `
-            : html`
-                <figcaption
-                  class="m-file-upload__img-caption js-file-upload__img-caption"
-                  title="${file.name}"
-                  data-status="${deleteStatusText}"
-                >
-                  <span class="m-file-upload__filename js-file-upload__filename"
-                    >${file.name}</span
-                  >
-                </figcaption>
-              `}
+                `
+              : html``}
+          </figcaption>
         </figure>
       `;
     });
@@ -379,15 +383,10 @@ class AXAFileUpload extends LitElement {
       'm-file-upload__dropzone-file-overview': this.showFileOverview,
       'js-file-upload__dropzone-file-overview': this.showFileOverview,
     };
-    const errorMessageWrapperClasses = {
-      'm-file-upload__error-wrapper': true,
-      'js-file-upload__error-wrapper': true,
-    };
 
     // displaying files with errors (e.g. too big) after valid ones
     this.allFiles = this.files.concat(this.faultyFiles);
     const fileOverview = this.fileOverviewMapping(this.allFiles);
-    this.addMoreInputFile = this.generateAddMoreInputFile();
 
     return html`
       <article class="m-file-upload">
@@ -418,11 +417,13 @@ class AXAFileUpload extends LitElement {
               `
             : html`
                 ${fileOverview}
-                ${this.showAddMoreInputFile ? this.addMoreInputFile : ``}
+                ${this.showAddMoreInputFile
+                  ? this.generateAddMoreInputFile()
+                  : ``}
               `}
         </section>
 
-        <div class="${classMap(errorMessageWrapperClasses)}">
+        <div class="m-file-upload__error-wrapper js-file-upload__error-wrapper">
           ${this.globalErrorMessage}
         </div>
       </article>
