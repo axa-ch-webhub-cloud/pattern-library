@@ -1,10 +1,11 @@
 $file-upload-dropzone-border-width: 2px !default;
 $file-upload-opacity: 0.25 !default;
-$file-upload-dropzone-border: $file-upload-dropzone-border-width dashed $color-prim-gray-dusty !default;
+$file-upload-dropzone-border: $file-upload-dropzone-border-width dashed
+  $color-prim-gray-dusty !default;
 $file-upload-icon-size: 36px !default;
 
 @mixin iconSize($property) {
-  svg{
+  svg {
     height: $property;
     width: $property;
   }
@@ -30,6 +31,10 @@ $file-upload-icon-size: 36px !default;
 
   &__dropzone_dragover {
     opacity: $file-upload-opacity;
+
+    * {
+      pointer-events: none;
+    }
   }
 
   &__dropzone-file-overview {
@@ -97,7 +102,7 @@ $file-upload-icon-size: 36px !default;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    @include iconSize($file-upload-icon-size)
+    @include iconSize($file-upload-icon-size);
   }
 
   &__icon-layer {
@@ -113,13 +118,13 @@ $file-upload-icon-size: 36px !default;
     display: none;
     color: $color-axa-blue;
     fill: currentColor;
-    @include iconSize($file-upload-icon-size)
+    @include iconSize($file-upload-icon-size);
   }
 
   &__icon-error {
     color: $color-sec-shy-tomato;
     fill: currentColor;
-    @include iconSize($file-upload-icon-size)
+    @include iconSize($file-upload-icon-size);
   }
 
   &__img-caption {
@@ -129,7 +134,8 @@ $file-upload-icon-size: 36px !default;
     cursor: default;
   }
 
-  &__filename, &__error {
+  &__filename,
+  &__error {
     display: inline-block;
     width: 120px;
     white-space: nowrap;
@@ -153,7 +159,7 @@ $file-upload-icon-size: 36px !default;
 
   // show delete-status instead of filename
   &__icon-hover-area:hover ~ .m-file-upload__img-caption[data-status]:after {
-      content: attr(data-status);
+    content: attr(data-status);
   }
 
   // color delete-status and ellipsis
@@ -175,7 +181,7 @@ $file-upload-icon-size: 36px !default;
       display: block;
       position: relative;
       fill: currentColor;
-      @include iconSize($file-upload-icon-size)
+      @include iconSize($file-upload-icon-size);
     }
     .m-file-upload__img-caption {
       width: 116px;

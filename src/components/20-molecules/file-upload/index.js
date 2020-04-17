@@ -108,7 +108,10 @@ class AXAFileUpload extends LitElement {
   handleDropZoneDragover(e) {
     // prevent default browser behavior of following the link that triggered the event
     e.preventDefault();
-    if (!this.isFileMaxReached) {
+    if (
+      !this.isFileMaxReached &&
+      !this.dropZone.classList.contains('m-file-upload__dropzone_dragover')
+    ) {
       e.dataTransfer.dropEffect = 'copy';
       this.dropZone.classList.add('m-file-upload__dropzone_dragover');
     }
