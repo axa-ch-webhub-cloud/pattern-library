@@ -1,3 +1,7 @@
+## 2.0.10
+
+- Fixed a visual flicker when dragging files and moving the mouse without dropping the files. (#1724)
+
 ## 2.0.9
 
 - Apply design-change suggestions from designers to allow coexistence of filename and per-file error message.
