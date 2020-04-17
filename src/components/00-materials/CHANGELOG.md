@@ -1,3 +1,7 @@
+## 6.0.0
+
+- BREAKING CHANGE: The icons `arrow-left` and `arrow-right` have been updated and appears a bit smaller. (#1725)
+
 ## 5.0.0
 
 - New icons `key`, `person`, `message` and `power` added.
