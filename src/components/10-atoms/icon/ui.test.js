@@ -26,8 +26,9 @@ const svgImageItem = Selector(
 fixture('Icon - set as named property').page(
   `${host}/iframe.html?id=components-atoms-icon--icon`
 );
-test('should render svg icon', async t => {
-  await t.expect(svgImageItem.exists).ok();
+test('should render svg icon with correct size', async t => {
+  await t.expect(svgImageItem.getStyleProperty('width')).eql('24px');
+  await t.expect(svgImageItem.getStyleProperty('height')).eql('24px');
 });
 
 fixture('Icon - no icon is set').page(
