@@ -345,9 +345,8 @@ test('should correctly update icon and text', async t => {
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
 
-  const downIconSignature = 'M3.64 6L12 14.017 20.36 6 23 8.383 12 19 1 8.383z';
-  const upIconSignature =
-    'M3.64 19L12 10.983 20.36 19 23 16.617 12 6 1 16.617z';
+  const downIconSignature = 'M15 9h4l-7 7-7-7h4V3h6v6zM5 20v-2h14v2H5z';
+  const upIconSignature = 'M15 10v6H9v-6H5l7-7 7 7h-4zm4 10v-2H5v2h14z';
 
   const iconSVGPathElement = Selector(() =>
     document
