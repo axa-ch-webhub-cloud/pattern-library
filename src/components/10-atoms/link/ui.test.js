@@ -9,9 +9,7 @@ const primRedFlamingo = 'rgb(240, 118, 98)';
 const primWhite = 'rgb(255, 255, 255)';
 const linkText = 'This is a simple link';
 
-fixture('Link').page(
-  `${host}/iframe.html?id=components-atoms-link--link`
-);
+fixture('Link').page(`${host}/iframe.html?id=components-atoms-link--link`);
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
