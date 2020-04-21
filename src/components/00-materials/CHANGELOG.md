@@ -1,6 +1,6 @@
 ## 6.0.0
 
-- BREAKING CHANGE: The icons `arrow-left`, `arrow-right`, `collapse`, `document`, `download`, `email`, `expand`, `mobile`, `phone`, `plus`, `search`, `upload`, `cloud-upload` have been updated and appears a bit smaller. (#1725)
+- BREAKING CHANGE: The icons `arrow-left`, `arrow-right`, `collapse`, `document`, `download`, `email`, `expand`, `mobile`, `phone`, `plus`, `search`, `upload`, `cloud-upload` have been updated and appear a bit smaller. (#1725)
 
 ## 5.0.0
 

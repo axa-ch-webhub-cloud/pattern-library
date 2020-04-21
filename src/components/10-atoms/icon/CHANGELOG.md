@@ -1,4 +1,4 @@
-## 2.1.0
+## 3.0.0
 
 - BREAKING CHANGE: Changed default behavior: SVGs have now 24x24 pixels. (#1725)
 - BREAKING CHANGE: Use newest major version of `materials` with changed icons.
