@@ -18,7 +18,7 @@ module.exports.commonPlugins = [
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
   sass({
-    insert: true,
+    insert: false, /* no automatic style insertion in <head>, style use under component control */
     include: '**/*.scss',
     options: {
       includePaths: [
