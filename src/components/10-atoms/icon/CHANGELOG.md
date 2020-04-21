@@ -1,3 +1,8 @@
+## 3.0.0
+
+- BREAKING CHANGE: Changed default behavior: SVGs have now 24x24 pixels. (#1725)
+- BREAKING CHANGE: Use newest major version of `materials` with changed icons.
+
 ## Migration to version 2
 
 - The implementation of the wrapper to make a component React-ready has

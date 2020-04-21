@@ -9,9 +9,7 @@ const primRedFlamingo = 'rgb(240, 118, 98)';
 const primWhite = 'rgb(255, 255, 255)';
 const linkText = 'This is a simple link';
 
-fixture('Link - Hyperlink').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink`
-);
+fixture('Link').page(`${host}/iframe.html?id=components-atoms-link--link`);
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
@@ -46,7 +44,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - External').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-external=true`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-external=true`
 );
 
 test('should display correctly', async t => {
@@ -83,7 +81,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Icon').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon&knob-icon=download`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon&knob-icon=download`
 );
 
 test('should display correctly', async t => {
@@ -122,7 +120,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Static Arrow Right').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright`
 );
 
 test('should display correctly', async t => {
@@ -161,7 +159,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Static Arrow Left').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft`
 );
 
 test('should display correctly', async t => {
@@ -200,7 +198,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Animated Arrow Right').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright-animated`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright-animated`
 );
 
 test('should display correctly', async t => {
@@ -240,7 +238,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Animated Arrow Left').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft-animated`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft-animated`
 );
 
 test('should display correctly', async t => {
@@ -280,7 +278,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Red Color').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-red`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-red`
 );
 
 test('should display correctly', async t => {
@@ -308,7 +306,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - White Color').page(
-  `${host}/iframe.html?id=components-atoms-link--hyperlink&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-white`
+  `${host}/iframe.html?id=components-atoms-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-white`
 );
 
 test('should display correctly', async t => {
@@ -345,9 +343,10 @@ test('should correctly update icon and text', async t => {
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
 
-  const downIconSignature = 'M3.64 6L12 14.017 20.36 6 23 8.383 12 19 1 8.383z';
+  const downIconSignature =
+    'M16.59 8.295L12 12.875l-4.59-4.58L6 9.705l6 6 6-6-1.41-1.41z'; // expand.svg
   const upIconSignature =
-    'M3.64 19L12 10.983 20.36 19 23 16.617 12 6 1 16.617z';
+    'M12 8.295l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41-6-6z'; // collapse.svg
 
   const iconSVGPathElement = Selector(() =>
     document

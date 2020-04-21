@@ -80,7 +80,7 @@ You can load your own SVG and set its html string. The string must contain `<svg
 
 ### Size
 
-The default behavior set the size of the svgs to 16x16 px, to use original size on the svg use `size="auto"`.
+The default behavior set the size of the svgs to 24x24 px, to use original size on the svg use `size="auto"`.
 
 | Attribute     |
 | ------------- |
