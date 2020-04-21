@@ -139,8 +139,6 @@ const getSelectedYear = () =>
     return dropdownTitle && dropdownTitle.textContent;
   });
 
-const submitChosenDay = () => clickOn('.js-datepicker__button-ok');
-
 describe('Datepicker', () => {
   test('should select February the 13th and then the 14th ', async () => {
     await gotoURL(
@@ -315,7 +313,6 @@ describe('Datepicker', () => {
     await chooseMonthByIndex(2);
 
     await clickCalendarDayOfCurrentMonth(14);
-    await submitChosenDay();
 
     const inputValueExpectation = await waitForFun(
       () =>

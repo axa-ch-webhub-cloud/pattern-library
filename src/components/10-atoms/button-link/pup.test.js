@@ -6,7 +6,7 @@ let browser;
 let page;
 
 // set up
-jest.setTimeout(1000);
+jest.setTimeout(30000);
 
 const config = {
   // headless: false,
