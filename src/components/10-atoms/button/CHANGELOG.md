@@ -1,4 +1,4 @@
-## 4.0.12
+## 4.1.0
 
 - You can now set css `width` and the `button` always look quite nice. (#1686)
 
