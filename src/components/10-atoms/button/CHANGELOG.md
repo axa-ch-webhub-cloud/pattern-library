@@ -1,3 +1,7 @@
+## 4.0.12
+
+- You can now set css `width` and the `button` always look quite nice. (#1686)
+
 ## 4.0.2
 
 - When attribute disabled is set and a consumer has a click-listener, the click event is NOT triggered.

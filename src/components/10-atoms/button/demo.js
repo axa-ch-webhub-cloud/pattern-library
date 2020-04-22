@@ -11,6 +11,7 @@ storiesOf('Components|Atoms/Button/Demos', module)
       sidebar: Readme,
     },
     changelog: Changelog,
+    knobs: { disabled: true },
   })
   .add(
     'Feature - Button icon visible',
@@ -68,4 +69,14 @@ storiesOf('Components|Atoms/Button/Demos', module)
     const wrapper = document.createElement('div');
     render(template, wrapper);
     return wrapper;
-  });
+  })
+  .add(
+    'Button css width',
+    () =>
+      '<axa-button style="width: 80%">Next step</axa-button><axa-text>You can simply set width by setting css width.</axa-text>'
+  )
+  .add(
+    'Buttons side by side',
+    () =>
+      '<axa-button style="width: 20%">First button</axa-button><axa-button style="width: 500px">Second button</axa-button>'
+  );

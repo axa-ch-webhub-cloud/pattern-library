@@ -46,6 +46,24 @@ test('should be clickable (set different text after click)', async t => {
   await t.expect($axaButton.innerText).contains('1');
 });
 
+test('should inherit width to internal button', async t => {
+  const expectedWidth = '125px';
+  const $axaButton = await Selector(BUTTON_TAG);
+  const $axaButtonShadow = await Selector(
+    () => document.querySelector('axa-button').shadowRoot
+  );
+  const $axaButtonShadowEl = await $axaButtonShadow.find(BUTTON_CLASS);
+  const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
+    const element = selector();
+    element.style.width = styleValue;
+  });
+
+  await setStyleWidthAttribute($axaButton, expectedWidth);
+  await t
+    .expect($axaButtonShadowEl.getStyleProperty('width'))
+    .eql(expectedWidth);
+});
+
 fixture('Button - set properties').page(
   `${host}/iframe.html?id=components-atoms-button--button`
 );
