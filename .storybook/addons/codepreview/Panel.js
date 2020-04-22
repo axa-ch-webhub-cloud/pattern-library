@@ -20,6 +20,7 @@ const HTMLPanel = () => {
         // Ensure we always pick the html parser
         parser: 'html',
         plugins: [prettierHtml],
+        htmlWhitespaceSensitivity: 'ignore'
       };
       const code = prettierFormat(html, prettierConfig);
       setState(code);
