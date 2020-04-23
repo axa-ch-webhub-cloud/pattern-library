@@ -1,3 +1,7 @@
+:host {
+  display: inline-block;
+}
+
 .a-button {
   @include typo(primary, small);
   position: relative;
@@ -5,7 +9,7 @@
   padding: 0 30px;
   margin: 0;
   min-height: 30px;
-  width: inherit;
+  width: 100%;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -90,7 +94,7 @@
     // fix iOS double tap for :hover
     // zero width is considered hidden
     width: 0.001px;
-    height: 550px;
+    height: 100vw;
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
