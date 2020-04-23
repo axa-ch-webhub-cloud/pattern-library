@@ -1,6 +1,6 @@
 ## 4.1.0
 
-- You can now set css `width` and the `button` always look quite nice. (#1686).
+- You are able to set the css `width` property and the `button` looks always nice. (#1686)
 
 ## 4.0.2
 
