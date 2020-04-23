@@ -51,9 +51,9 @@ storiesOf('Components|Atoms/Button/Demos', module)
           for you for example you can validate me
         </p>
         <form @click="${handleSubmit}">
-          <axa-button class="js-submit-prevent" type="submit"
-            >Click me I prevent submit</axa-button
-          >
+          <axa-button class="js-submit-prevent" type="submit">
+            Click me I prevent submit
+          </axa-button>
         </form>
         <form>
           <p>
@@ -73,12 +73,22 @@ storiesOf('Components|Atoms/Button/Demos', module)
   .add(
     'Button css width',
     () =>
-      '<axa-button style="width: 80%">This button has "width: 80%"</axa-button>' +
+      '<axa-button variant="red" style="width: 100%">This red button has "width: 100%"</axa-button>' +
       '<axa-text>You can simply set width by setting css width.</axa-text>'
   )
-  .add(
-    'Buttons side by side',
-    () =>
-      '<axa-button style="width: 20%">This button has "width: 20%"</axa-button>' +
-      '<axa-button style="width: 500px">This button has "width: 500px"</axa-button>'
-  );
+  .add('2 Buttons side by side', () => {
+    const template = html`
+      <div style="display: flex">
+        <axa-button variant="red" style="width: 20%">
+          This button has "width: 20%"
+        </axa-button>
+        <axa-button style="width: 500px">
+          This button has "width: 500px"
+        </axa-button>
+      </div>
+      <axa-text>Place two buttons side by side with flexbox.</axa-text>
+    `;
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
+  });
