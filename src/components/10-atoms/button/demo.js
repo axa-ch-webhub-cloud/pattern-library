@@ -73,10 +73,12 @@ storiesOf('Components|Atoms/Button/Demos', module)
   .add(
     'Button css width',
     () =>
-      '<axa-button style="width: 80%">Next step</axa-button><axa-text>You can simply set width by setting css width.</axa-text>'
+      '<axa-button style="width: 80%">This button has "width: 80%"</axa-button>' +
+      '<axa-text>You can simply set width by setting css width.</axa-text>'
   )
   .add(
     'Buttons side by side',
     () =>
-      '<axa-button style="width: 20%">First button</axa-button><axa-button style="width: 500px">Second button</axa-button>'
+      '<axa-button style="width: 20%">This button has "width: 20%"</axa-button>' +
+      '<axa-button style="width: 500px">This button has "width: 500px"</axa-button>'
   );
