@@ -41,9 +41,7 @@ describe('Radio', () => {
     (await page.waitForFunction(fun, { polling: 'raf' }, ...args)).jsonValue();
 
   test('should clean up style nodes properly', async () => {
-    await page.goto(
-      `${host}/iframe.html?id=components-atoms-radio--radio`
-    );
+    await page.goto(`${host}/iframe.html?id=components-atoms-radio--radio`);
 
     // helper fumctions
     const styleExists = (componentName, expected = true) =>
