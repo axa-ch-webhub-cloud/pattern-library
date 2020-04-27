@@ -2,6 +2,7 @@
 const puppeteer = require('puppeteer-core');
 
 // module globals
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:6006';
 let browser;
 let page;
 
@@ -24,7 +25,7 @@ beforeAll(async () => {
 describe('Button Link - basic functionality', () => {
   test('should render button-link', async () => {
     await page.goto(
-      'https://patterns.axa.ch/iframe.html?id=components-atoms-button-link--button-link'
+      `${host}/iframe.html?id=components-atoms-button-link--button-link`
     );
 
     const buttonLinkShadowRoot = await page.waitForFunction(() =>
@@ -38,7 +39,7 @@ describe('Button Link - basic functionality', () => {
 
   test('should render button-link', async () => {
     await page.goto(
-      'https://patterns.axa.ch/iframe.html?id=components-atoms-button-link--button-link'
+      `${host}/iframe.html?id=components-atoms-button-link--button-link`
     );
 
     const buttonLinkBackgroundColor = await page.evaluate(() =>

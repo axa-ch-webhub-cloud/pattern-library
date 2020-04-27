@@ -4,6 +4,7 @@
 const puppeteer = require('puppeteer-core'); // let's not download a special Chromium if we use our local Chrome install anyways...
 
 // module globals
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:6006';
 let browser;
 let page;
 
@@ -17,6 +18,7 @@ const config = {
     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   // devtools: true,
   // slowMo: 1000,
+  args: ['--disable-features=site-per-process'],
 };
 
 beforeAll(async () => {
@@ -24,23 +26,23 @@ beforeAll(async () => {
   page = await browser.newPage();
 });
 
-// generic helpers
+// tests
+describe('Radio', () => {
+  // generic helpers
 
-/* fun runs *in the browser*! It cannot see closure variables from node scopes!
+  /* fun runs *in the browser*! It cannot see closure variables from node scopes!
    Therefore provide such variables as args.
    Also, fun needs to return a truthy value to stop polling and avoid timeout.
    Therefore, define it such that it eventually returns true.
    To *debug* fun, sprinkle with debugger statement(s) at the right places and
    set headless: false, devtools: true in puppeteer config.
    */
-const waitForFun = async (fun, ...args) =>
-  (await page.waitForFunction(fun, { polling: 'raf' }, ...args)).jsonValue();
+  const waitForFun = async (fun, ...args) =>
+    (await page.waitForFunction(fun, { polling: 'raf' }, ...args)).jsonValue();
 
-// tests
-describe('Radio', () => {
   test('should clean up style nodes properly', async () => {
     await page.goto(
-      'http://localhost:6006/iframe.html?id=components-atoms-radio--radio'
+      `${host}/iframe.html?id=components-atoms-radio--radio`
     );
 
     // helper fumctions

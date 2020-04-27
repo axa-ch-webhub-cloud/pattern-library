@@ -4,6 +4,7 @@
 const puppeteer = require('puppeteer-core'); // let's not download a special Chromium if we use our local Chrome install anyways...
 
 // module globals
+const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:6006';
 let browser;
 let page;
 
@@ -142,7 +143,7 @@ const getSelectedYear = () =>
 describe('Datepicker', () => {
   test('should select February the 13th and then the 14th ', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
     );
 
     await chooseYear(2020);
@@ -176,7 +177,7 @@ describe('Datepicker', () => {
 
   test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
     );
 
     const dropdownItems = await waitForFun(() => {
@@ -198,7 +199,7 @@ describe('Datepicker', () => {
 
   test('should select the 31th of january from within the February view', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
     );
 
     await chooseYear(2020);
@@ -230,7 +231,7 @@ describe('Datepicker', () => {
 
   test('should select the first of march from within the February view', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
     );
 
     await chooseMonthByIndex(2);
@@ -261,7 +262,7 @@ describe('Datepicker', () => {
 
   test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
     );
 
     await chooseYear(2020);
@@ -288,7 +289,7 @@ describe('Datepicker', () => {
 
   test('should handle month change with native dropdown element', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
     );
 
     await setViewport(200, 200);
@@ -302,7 +303,7 @@ describe('Datepicker', () => {
 
   test('should write date into input field for input calendars', async () => {
     await gotoURL(
-      'https://patterns.axa.ch/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019'
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
     );
 
     await setViewport(800, 600);
