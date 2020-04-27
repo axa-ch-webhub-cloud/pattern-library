@@ -18,7 +18,7 @@ script:
   - npm run test
 
 env:
-  - TEST_HOST_STORYBOOK_PORT=9999
-  - TEST_HOST_STORYBOOK_URL=http://localhost:9999
   global:
     - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+    - TEST_HOST_STORYBOOK_PORT=9999
+    - TEST_HOST_STORYBOOK_URL=http://localhost:9999
