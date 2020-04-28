@@ -6,6 +6,7 @@ const DemoRadiobuttonsControlled = () => {
   const [button, setButton] = useState(true);
   const [frozen, setFrozen] = useState(false);
   const [error, setError] = useState('');
+  const [visible, setVisible] = useState(true);
   const [checked, setChecked] = useState([true, false]);
   const [focus, setFocus] = useState([false, false]);
   const [blur, setBlur] = useState([false, false]);
@@ -28,6 +29,8 @@ const DemoRadiobuttonsControlled = () => {
   const handleError = () => {
     setError(error ? '' : 'Invalid choice');
   };
+
+  const handleVisible = () => setVisible(!visible);
 
   return (
     <fieldset>
@@ -60,32 +63,45 @@ const DemoRadiobuttonsControlled = () => {
         />
         &nbsp;error&nbsp;
       </label>
+      <label htmlFor="visible">
+        <input
+          id="visible"
+          type="checkbox"
+          checked={!!visible}
+          onChange={handleVisible}
+        />
+        &nbsp;visible&nbsp;
+      </label>
       <hr
         style={{ borderWidth: '.5rem', borderColor: 'transparent', margin: 0 }}
       />
       <AXAFieldset horizontal={button} error={error}>
-        <AXARadioButton
-          id="radio1"
-          label="No, thanks"
-          name="insurance"
-          checked={checked[0]}
-          onFocus={handleRadioButtonFocus(0)}
-          onBlur={handleRadioButtonBlur(0)}
-          onChange={handleRadioButtonChange}
-          button={button}
-          noGap
-        />
-        <AXARadioButton
-          id="radio2"
-          label="Yes, I want insurance"
-          name="insurance"
-          checked={checked[1]}
-          onFocus={handleRadioButtonFocus(1)}
-          onBlur={handleRadioButtonBlur(1)}
-          onChange={handleRadioButtonChange}
-          button={button}
-          noGap
-        />
+        {visible && (
+          <AXARadioButton
+            id="radio1"
+            label="No, thanks"
+            name="insurance"
+            checked={checked[0]}
+            onFocus={handleRadioButtonFocus(0)}
+            onBlur={handleRadioButtonBlur(0)}
+            onChange={handleRadioButtonChange}
+            button={button}
+            noGap
+          />
+        )}
+        {visible && (
+          <AXARadioButton
+            id="radio2"
+            label="Yes, I want insurance"
+            name="insurance"
+            checked={checked[1]}
+            onFocus={handleRadioButtonFocus(1)}
+            onBlur={handleRadioButtonBlur(1)}
+            onChange={handleRadioButtonChange}
+            button={button}
+            noGap
+          />
+        )}
       </AXAFieldset>
       <div
         style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}
