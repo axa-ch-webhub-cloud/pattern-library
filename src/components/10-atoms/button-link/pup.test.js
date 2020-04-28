@@ -11,7 +11,7 @@ jest.setTimeout(30000);
 
 const config = {
   // headless: false,
-  //executablePath:
+  executablePath: '/usr/bin/google-chrome',
   //  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   // devtools: true,
   // slowMo: 1000,
