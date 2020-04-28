@@ -6,6 +6,7 @@ const DemoRadiobuttonsControlled = () => {
   const [button, setButton] = useState(true);
   const [frozen, setFrozen] = useState(false);
   const [error, setError] = useState('');
+  // allow *un*mounting (DOM removal) of axa-radios for testing purposes (default: mounted)
   const [visible, setVisible] = useState(true);
   const [checked, setChecked] = useState([true, false]);
   const [focus, setFocus] = useState([false, false]);

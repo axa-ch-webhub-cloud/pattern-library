@@ -184,7 +184,7 @@ class AXARadio extends NoShadowDOM {
         ? html`
             <label class="a-radio__wrapper">
               ${inputElement}
-              <div class="a-radio__content">${label}</div>
+              <div class="a-radio__content js-radio__content">${label}</div>
             </label>
           `
         : html`
@@ -198,7 +198,7 @@ class AXARadio extends NoShadowDOM {
   firstUpdated() {
     this.input = this.querySelector('input');
     const { name, button, noAutoWidth } = this;
-    const ourButton = this.querySelector('.a-radio__content');
+    const ourButton = this.querySelector('.js-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
     radioButtonGroup[name].add(ourButton);
 
@@ -206,7 +206,7 @@ class AXARadio extends NoShadowDOM {
       // give DOM some time to paint before measuring width
       window.requestAnimationFrame(() => {
         const { width: labelTextWidth } = this.querySelector(
-          '.a-radio__content'
+          '.js-radio__content'
         ).getBoundingClientRect();
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
@@ -257,7 +257,7 @@ class AXARadio extends NoShadowDOM {
     delete selectedRadioButton[name]; // help GC
     delete maxWidth[name]; // help GC
     // one button less in the set
-    const ourButton = this.querySelector('.a-radio__content');
+    const ourButton = this.querySelector('.js-radio__content');
     const successfullyDeleted = radioButtonSet.delete(ourButton);
     // it was the last in the set?
     if (successfullyDeleted && radioButtonSet.size === 0) {
