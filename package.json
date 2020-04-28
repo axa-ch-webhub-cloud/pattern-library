@@ -81,7 +81,7 @@
     "postcss": "^7.0.26",
     "postcss-strip-font-face": "^1.0.0",
     "prettier": "1.19.1",
-    "puppeteer-core": "^2.1.1",
+    "puppeteer": "^3.0.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-syntax-highlighter": "^12.2.1",

@@ -1,5 +1,5 @@
 /* eslint-disable */
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 
 // module globals
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:6006';

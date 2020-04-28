@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 // imports
-const puppeteer = require('puppeteer-core'); // let's not download a special Chromium if we use our local Chrome install anyways...
+const puppeteer = require('puppeteer');
 
 // module globals
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:6006';
