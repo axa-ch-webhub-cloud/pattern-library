@@ -244,11 +244,25 @@ class AXARadio extends NoShadowDOM {
   disconnectedCallback() {
     super.disconnectedCallback();
     const { name } = this;
+    // get the set of same-named radio buttons
+    const radioButtonSet = radioButtonGroup[name];
+    // sanity check: at this point we expect to have been rendered at least once,
+    // and never to be disconnected twice for the same instance
+    if (!radioButtonSet) {
+      // oops, one of our expectations is false: likely this asynchronous lifecycle
+      // callback somehow happened out-of-order. There's nothing we can do anymore...
+      return;
+    }
+    // clean up
     delete selectedRadioButton[name]; // help GC
     delete maxWidth[name]; // help GC
-    radioButtonGroup[name].delete(this.querySelector('.a-radio__content'));
-    if (radioButtonGroup[name].size === 0) {
-      delete radioButtonGroup[name]; // help GC
+    // one button less in the set
+    const ourButton = this.querySelector('.a-radio__content');
+    const successfullyDeleted = radioButtonSet.delete(ourButton);
+    // it was the last in the set?
+    if (successfullyDeleted && radioButtonSet.size === 0) {
+      // yes, help GC
+      delete radioButtonGroup[name];
     }
   }
 
