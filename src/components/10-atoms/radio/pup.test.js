@@ -14,8 +14,8 @@ jest.setTimeout(30 * 1000);
 const config = {
   // headless: false,
   defaultViewport: null, // <= set this to have viewport emulation off
-  executablePath:
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  //executablePath:
+  //  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   // devtools: true,
   // slowMo: 1000,
   args: ['--disable-features=site-per-process'],
