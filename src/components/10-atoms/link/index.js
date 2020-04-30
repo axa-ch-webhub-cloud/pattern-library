@@ -80,7 +80,7 @@ class AXALink extends LitElement {
           if (typeof this.onClick === 'function') {
             this.onClick();
           } else {
-            window.location.href = this.href;
+            window.open(this.href, this.external ? '_blank' : '_top');
           }
         }}"
         target="${this.external ? '_blank' : '_top'}"
