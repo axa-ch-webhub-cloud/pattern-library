@@ -83,7 +83,6 @@ class AXALink extends LitElement {
             window.open(this.href, this.external ? '_blank' : '_top');
           }
         }}"
-        target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
         ${this.variant.includes('arrowleft')
