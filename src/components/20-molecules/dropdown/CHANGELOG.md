@@ -1,6 +1,6 @@
 ## 7.0.3
 
-- Add ellipsis to cropped text of desktop-style-datepicker. (#1716)
+- Add ellipsis to cropped text of desktop-style-dropdown. (#1716)
 
 ## 7.0.1
 
