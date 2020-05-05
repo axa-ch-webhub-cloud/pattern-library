@@ -323,6 +323,2192 @@ describe('Datepicker', () => {
     expect(inputValueExpectation).toEqual(true);
   });
 
+  /* copy-paste the above 12 more times to reach 101 datepicker tests - for CI load-testing purposes */
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
+  test('should select February the 13th and then the 14th ', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(10);
+    const monthValue = await getSelectedMonth(10);
+    expect(monthValue).toBe('Oktober');
+
+    await clickCalendarDayOfCurrentMonth(22);
+    await clickCalendarDayOfCurrentMonth(13);
+
+    await assertDayIsSelected(13);
+
+    const is13thDaySelected = await isDaySelected(13);
+    expect(is13thDaySelected).toBe(true);
+
+    const is22thNowDeselected = await isDaySelected(22);
+    expect(is22thNowDeselected).toBe(false);
+
+    await clickCalendarDayOfCurrentMonth(14);
+    await assertDayIsDeselected(13);
+
+    const isOldDayStillSelected = await isDaySelected(13);
+    expect(isOldDayStillSelected).toBe(false);
+
+    const isNewDaySelected = await isDaySelected(14);
+    expect(isNewDaySelected).toBe(true);
+
+    const yearValue = await getSelectedYear();
+    expect(yearValue).toBe('2020');
+  });
+
+  test('should convert the mixed input values (numbers and ranges) from allowedyears prop correctly', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    const dropdownItems = await waitForFun(() => {
+      const dropdown = document.querySelector('.js-datepicker__dropdown-year');
+      return dropdown && dropdown.getAttribute('items');
+    });
+
+    const expected = range(1971, 2000)
+      .concat([2012, 2014])
+      .concat(range(2018, 2022))
+      .map(year => ({
+        selected: year === 2020,
+        name: `${year}`,
+        value: `${year}`,
+      }));
+
+    expect(dropdownItems).toEqual(JSON.stringify(expected));
+  });
+
+  test('should select the 31th of january from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="31"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(31);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'Januar'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('Januar');
+
+    const is31thSelected = await isDaySelected(31);
+    expect(is31thSelected).toEqual(true);
+  });
+
+  test('should select the first of march from within the February view', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseMonthByIndex(2);
+
+    await waitForSelector(
+      `button[data-day="1"][class*="m-datepicker__calendar-not-current-month"]`
+    );
+
+    await clickCalendarDayOutsideMonth(1);
+
+    const year = await getSelectedYear();
+    expect(year).toEqual('2020');
+
+    // Wait until dropdown updated to proper month
+    await waitForFun(
+      () =>
+        document.querySelector(
+          '.js-datepicker__dropdown-month .js-dropdown__title'
+        ).textContent === 'März'
+    );
+
+    const currentMonth = await getSelectedMonth();
+    expect(currentMonth).toEqual('März');
+
+    const isFirstSelected = await isDaySelected(1);
+    expect(isFirstSelected).toEqual(true);
+  });
+
+  test('should have a 29th of February in 2020 - should correctly handle leap year', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await chooseYear(2020);
+    await chooseMonthByIndex(2);
+    await clickCalendarDayOfCurrentMonth(29);
+
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2020');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+
+    await waitForFun(() =>
+      document
+        .querySelector(
+          `button[class*="m-datepicker__calendar-current-month"][data-day="29"]`
+        )
+        .classList.contains('m-datepicker__calendar-selected-day')
+    );
+
+    const is29thSelected = await isDaySelected(29);
+    expect(is29thSelected).toBe(true);
+  });
+
+  test('should handle month change with native dropdown element', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker`
+    );
+
+    await setViewport(200, 200);
+
+    await chooseMonthByIndex(12, 'native');
+    await chooseMonthByIndex(2, 'native');
+
+    const selectedMonth = await getSelectedMonth();
+    expect(selectedMonth).toEqual('Februar');
+  });
+
+  test('should write date into input field for input calendars', async () => {
+    await gotoURL(
+      `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+    );
+
+    await setViewport(800, 600);
+    await openCalendar();
+    const selectedYear = await getSelectedYear();
+    expect(selectedYear).toEqual('2019');
+
+    await chooseMonthByIndex(2);
+
+    await clickCalendarDayOfCurrentMonth(14);
+
+    const inputValueExpectation = await waitForFun(
+      () =>
+        document.querySelector(`axa-datepicker[data-test-id="datepicker"]`)
+          .value === '14.2.2019'
+    );
+    expect(inputValueExpectation).toEqual(true);
+  });
+
   afterAll(async () => {
     await browser.close();
   });
