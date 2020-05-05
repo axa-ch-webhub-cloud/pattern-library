@@ -39,7 +39,15 @@ export default class InlineStyles extends LitElement {
       // provision inline style sheet with *string* content
       // from the class property 'styles'
       const style = document.createElement('style');
-      style.textContent = this.constructor[staticProps];
+      let cssAsString = this.constructor[staticProps];
+      const versionedComponentName = this.nodeName.toLowerCase();
+      const genericComponentName = this.constructor.tagName;
+      if (versionedComponentName !== genericComponentName) {
+        cssAsString = cssAsString
+          .split(genericComponentName)
+          .join(versionedComponentName);
+      }
+      style.textContent = cssAsString;
       // append it at the right place, *outside* of this instance's children
       // eslint-disable-next-line no-undef
       const parent = root instanceof ShadowRoot ? root : document.head;
