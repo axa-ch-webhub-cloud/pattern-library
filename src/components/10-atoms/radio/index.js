@@ -184,7 +184,7 @@ class AXARadio extends NoShadowDOM {
         ? html`
             <label class="a-radio__wrapper">
               ${inputElement}
-              <div class="a-radio__content">${label}</div>
+              <div class="a-radio__content js-radio__content">${label}</div>
             </label>
           `
         : html`
@@ -198,7 +198,7 @@ class AXARadio extends NoShadowDOM {
   firstUpdated() {
     this.input = this.querySelector('input');
     const { name, button, noAutoWidth } = this;
-    const ourButton = this.querySelector('.a-radio__content');
+    const ourButton = this.querySelector('.js-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
     radioButtonGroup[name].add(ourButton);
 
@@ -206,7 +206,7 @@ class AXARadio extends NoShadowDOM {
       // give DOM some time to paint before measuring width
       window.requestAnimationFrame(() => {
         const { width: labelTextWidth } = this.querySelector(
-          '.a-radio__content'
+          '.js-radio__content'
         ).getBoundingClientRect();
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
@@ -244,11 +244,25 @@ class AXARadio extends NoShadowDOM {
   disconnectedCallback() {
     super.disconnectedCallback();
     const { name } = this;
+    // get the set of same-named radio buttons
+    const radioButtonSet = radioButtonGroup[name];
+    // sanity check: at this point we expect to have been rendered at least once,
+    // and never to be disconnected twice for the same instance
+    if (!radioButtonSet) {
+      // oops, one of our expectations is false: likely this asynchronous lifecycle
+      // callback somehow happened out-of-order. There's nothing we can do anymore...
+      return;
+    }
+    // clean up
     delete selectedRadioButton[name]; // help GC
     delete maxWidth[name]; // help GC
-    radioButtonGroup[name].delete(this.querySelector('.a-radio__content'));
-    if (radioButtonGroup[name].size === 0) {
-      delete radioButtonGroup[name]; // help GC
+    // one button less in the set
+    const ourButton = this.querySelector('.js-radio__content');
+    const successfullyDeleted = radioButtonSet.delete(ourButton);
+    // it was the last in the set?
+    if (successfullyDeleted && radioButtonSet.size === 0) {
+      // yes, help GC
+      delete radioButtonGroup[name];
     }
   }
 
