@@ -8,6 +8,8 @@ export $(egrep -v '^#' .env | xargs) > /dev/null 2>&1
 npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci --quiet > /dev/null 2>&1 &
 npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
 
+echo "Storybook ready @ $TEST_HOST_STORYBOOK_URL"
+
 npx jest --config=puppeteer-conf.js -t "${1}"
 
 test_status=$?

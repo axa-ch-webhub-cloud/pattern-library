@@ -5,6 +5,11 @@ const puppeteer = require('puppeteer');
 
 // module globals
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:6006';
+const os = process.platform;
+const executablePath = {
+  linux: '/usr/bin/google-chrome',
+  darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+}[os];
 let browser;
 let page;
 
@@ -14,8 +19,7 @@ jest.setTimeout(30 * 1000);
 const config = {
   // headless: false,
   defaultViewport: null, // <= set this to have viewport emulation off
-  executablePath: '/usr/bin/google-chrome',
-  //  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  executablePath,
   // devtools: true,
   // slowMo: 1000,
   args: ['--disable-features=site-per-process'],
@@ -43,7 +47,7 @@ describe('Radio', () => {
   test('should clean up style nodes properly', async () => {
     await page.goto(`${host}/iframe.html?id=components-atoms-radio--radio`);
 
-    // helper fumctions
+    // helper functions
     const styleExists = (componentName, expected = true) =>
       waitForFun(
         (selector, value) => !!document.querySelector(selector) === value,
