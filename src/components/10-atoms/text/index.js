@@ -74,6 +74,7 @@ class AXAText extends NoShadowDOM {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     // remove installed observer
     this.watch('stop');
   }
