@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import AXACheckbox from './AXACheckboxReact';
 
 const DemoCheckboxCallbackProps = () => {
+  const [frozen, setFrozen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [focus, setFocus] = useState(false);
   const [blur, setBlur] = useState(false);
 
+  const handleFreeze = e => {
+    setFrozen(!frozen);
+  };
+
   const handleCheckboxChange = () => {
-    setChecked(!checked);
+    if (!frozen) {
+      setChecked(!checked);
+    }
   };
 
   const handleCheckboxBlur = () => {
@@ -20,7 +27,10 @@ const DemoCheckboxCallbackProps = () => {
 
   return (
     <fieldset>
-      <legend>Checkbox Callback Props</legend>
+      <legend>
+        Checkbox Callback Props: frozen
+        <input type="checkbox" data-test-id="frozen" onChange={handleFreeze} />
+      </legend>
       <AXACheckbox
         label="I'm a checkbox that is controlled"
         checked={checked}
