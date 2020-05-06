@@ -1,3 +1,7 @@
+## 7.0.3
+
+- Add ellipsis to cropped text of desktop-style-dropdown. (#1716)
+
 ## 7.0.1
 
 - Remove datepicker specific stylings from axa dropdown. (#1720)

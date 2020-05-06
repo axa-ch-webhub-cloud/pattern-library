@@ -124,6 +124,12 @@ axa-dropdown {
     display: flex;
     align-items: center;
     width: 100%;
+
+    > span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .m-dropdown__toggle {
