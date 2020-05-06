@@ -166,19 +166,19 @@ axa-radio {
       height: auto;
 
       .a-radio__wrapper {
-          padding: 13px 35px 0 35px;
+          padding: 10px 41px 0 41px;
           flex-direction: column;
           justify-content: center;
 
         svg {
-          width: 60px;
-          height: 60px;
+          width: 48px;
+          height: 48px;
           fill: currentColor;
         }
 
         .a-radio__content {
-          padding-bottom: 15px;
-          padding-top: inherit;
+          padding-bottom: 10px;
+          padding-top: 10px;
         }
       }
     }
