@@ -37,10 +37,16 @@ storiesOf('Components|Molecules/File Upload/Demos', module)
     };
 
     const template = html`
-      <div style="width:455px;">
+      <div style="width:455px; display:flex; align-items:center">
         <axa-file-upload class="js-file-upload__file-upload"
           >These files are going to be uploaded</axa-file-upload
         >
+        <div
+          draggable="true"
+          style="margin:2rem;padding: 0 1rem;border:2px dotted blue;border-radius:5px; white-space:nowrap; cursor: move"
+        >
+          drag-test item
+        </div>
       </div>
       <form @click="${handleSubmit}" style="margin-top:40px;">
         <axa-button type="submit">Submit</axa-button>
