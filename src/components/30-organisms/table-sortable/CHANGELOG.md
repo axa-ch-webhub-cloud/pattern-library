@@ -1,4 +1,4 @@
-## 3.0.0
+## 2.1.0
 
 - New attribute `datesortcolumnindex` is now supported. Use it to sort date columns properly. Issue #1629.
 
