@@ -121,7 +121,7 @@ The Boolean `noAutoWidth` attribute, when true, suppresses the auto-width calcul
 
 ### icon
 
-The string-valued `icon` attribute receives a valid SVG icon with working dimensions 60&times;35 pixels.
+The string-valued `icon` attribute receives a valid SVG icon with working dimensions 48&times;48 pixels.
 
 ## Callbacks
 
