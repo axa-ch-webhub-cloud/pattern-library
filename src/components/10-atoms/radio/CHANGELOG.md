@@ -1,3 +1,7 @@
+## 2.1.7
+
+- Support material icons (dimension 48&times;48 pixels) #1738
+
 ## 2.1.0
 
 - Export all typescript types instead of only a subset. #1616
