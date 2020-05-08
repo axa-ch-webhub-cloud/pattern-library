@@ -9,7 +9,6 @@ axa-datepicker {
   }
 
   &[inputfield] {
-
     .m-datepicker__wrap {
       width: 100%;
       position: absolute;
@@ -30,9 +29,10 @@ axa-datepicker {
     }
   }
 
-  &[error]:not([error=""]),
+  &[error]:not([error='']),
   &[invalid] {
-    .m-datepicker__input, .m-datepicker__input-button {
+    .m-datepicker__input,
+    .m-datepicker__input-button {
       border-color: $color-validation-error;
       outline-color: $color-validation-error;
     }
@@ -67,7 +67,7 @@ axa-datepicker {
     }
   }
 
-  &[invaliddatetext=""] {
+  &[invaliddatetext=''] {
     .m-datepicker__error {
       display: none;
     }
@@ -87,7 +87,6 @@ axa-datepicker {
     position: relative;
     display: flex;
     align-items: center;
-    min-width: 197px;
     min-height: 40px;
   }
 
@@ -298,7 +297,7 @@ axa-datepicker {
   &__calendar-selected-day {
     background-color: $color-axa-blue;
     color: $color-prim-white;
-    
+
     &--preselected {
       color: $color-prim-gray-dark;
       background-color: $color-prim-gray-silver;
@@ -318,7 +317,7 @@ axa-datepicker {
   &__error {
     display: inline-block;
     color: $color-validation-error;
-    @include typo(primary,default);
+    @include typo(primary, default);
     line-height: 1.2;
     margin-top: 10px;
     min-height: 16px;
