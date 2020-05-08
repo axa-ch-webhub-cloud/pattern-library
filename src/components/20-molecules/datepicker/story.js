@@ -49,7 +49,7 @@ story.add('Datepicker', () => {
   const invaliddatetext = text('invaliddatetext', 'Invalid date');
   const invalid = boolean('invalid', false);
   const placeholder = text('placeholder', 'Please select a date');
-  const width = text('width', '400');
+  const width = text('width', '');
   const height = text('height', '40');
 
   const wrapper = document.createElement('div');
