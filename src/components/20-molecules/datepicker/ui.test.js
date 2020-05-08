@@ -667,6 +667,17 @@ test('button should have correct height', async t => {
     .eql(expectedHeightWithBorderAndPadding);
 });
 
+test('button should have flex-shrink set because of IE', async t => {
+  const datepickerButton = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  ).find('.js-datepicker__input-button');
+  const datepickerButtonMinWidth = await datepickerButton.getStyleProperty(
+    'flex-shrink'
+  );
+
+  await t.expect(datepickerButtonMinWidth).eql('0');
+});
+
 test('input wrap should have correct height without a label', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
