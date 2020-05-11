@@ -1,6 +1,6 @@
 ## 2.1.3
 
-- `datesortcolumnindex` now works with react. #1765
+- `datesortcolumnindex` now works with React. #1765
 
 ## 2.1.0
 
