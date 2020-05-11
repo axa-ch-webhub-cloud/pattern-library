@@ -92,10 +92,11 @@ const parseLocalisedDateIfValid = (
   const localeUnsupported = !Intl.DateTimeFormat.supportedLocalesOf(locale)
     .length;
   const localeMissing = !locale;
+  const localeIsSwissItalian = locale === 'it-CH';
 
   if (localeMissing || localeUnsupported) {
     locale = LOCALE_DEFAULT;
-  } else if (locale.includes('it')) {
+  } else if (localeIsSwissItalian) {
     locale = LOCALE_DE_CH; // change locale to de-CH because of wrong date formatting of browsers (#1740)
   }
 
