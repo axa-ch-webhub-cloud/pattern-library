@@ -40,12 +40,20 @@ export default class InlineStyles extends LitElement {
       // from the class property 'styles'
       const style = document.createElement('style');
       let cssAsString = this.constructor[staticProps];
-      const versionedComponentName = this.nodeName.toLowerCase();
-      const genericComponentName = this.constructor.tagName;
+      // version the CSS rule selectors, if component
+      // does not bear its generic name
+      const versionedComponentName = this.nodeName.toLowerCase(); // e.g. axa-datepicker-7-0-2
+      const genericComponentName = this.constructor.tagName; // e.g. axa-datepicker
       if (versionedComponentName !== genericComponentName) {
+        // in non-ShadowDOM components, the leftmost rule-selector item
+        // is the component name itself, serving as a poor-man's rule scoping construct.
+        // E.g. datepicker rules are assumed to look like this:
+        // axa-datepicker .class1 .... classN { ... }
         cssAsString = cssAsString
           .split(genericComponentName)
           .join(versionedComponentName);
+        // now, after the above string-to-string transformation they look like this:
+        // axa-datepicker-7-0-2 .class1 .... classN { ... }
       }
       style.textContent = cssAsString;
       // append it at the right place, *outside* of this instance's children

@@ -1,5 +1,5 @@
 import val from '@skatejs/val';
-import defineOnce from './define-once';
+import { defineVersioned } from './component-versioning';
 
 // defined values are different from undefined (for properties) or null (for attributes)
 const isDefined = value => !(value === undefined || value === null);
@@ -153,7 +153,9 @@ const distributeProperties = (properties, componentClass) => {
 
 export default (createElement, componentClass, version) => {
   const { tagName } = componentClass;
-  const finalTagName = `${tagName}${version ? '-' + version : ''}`;
+  const finalTagName = version
+    ? defineVersioned(componentClass, [], version)
+    : tagName;
   const displayName = pascalCase(finalTagName);
 
   const reactStatelessComponent = ({ children, ...properties }) => {
@@ -168,10 +170,6 @@ export default (createElement, componentClass, version) => {
 
   // displayName is important for React testing (e.g. enzyme) and Chrome DevTools plugins
   reactStatelessComponent.displayName = displayName;
-
-  if (version) {
-    defineOnce(finalTagName, class extends componentClass {});
-  }
 
   return reactStatelessComponent;
 };
