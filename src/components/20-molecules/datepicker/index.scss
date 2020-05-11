@@ -29,7 +29,7 @@ axa-datepicker {
     }
   }
 
-  &[error]:not([error='']),
+  &[error]:not([error=""]),
   &[invalid] {
     .m-datepicker__input,
     .m-datepicker__input-button {
@@ -67,7 +67,7 @@ axa-datepicker {
     }
   }
 
-  &[invaliddatetext=''] {
+  &[invaliddatetext=""] {
     .m-datepicker__error {
       display: none;
     }
