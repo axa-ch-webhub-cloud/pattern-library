@@ -176,7 +176,7 @@ class AXARadio extends NoShadowDOM {
         : html`
             <span class="a-radio__icon"></span>
           `}
-      ${icon ? svg([icon]) : html``}
+      ${icon && button ? svg([icon]) : html``}
     `;
 
     return html`
