@@ -89,8 +89,11 @@ const parseLocalisedDateIfValid = (
   inputValue = ''
 ) => {
   let locale = inputLocale;
+  const localeUnsupported = !Intl.DateTimeFormat.supportedLocalesOf(locale)
+    .length;
+  const localeMissing = !locale;
 
-  if (!locale || !Intl.DateTimeFormat.supportedLocalesOf(locale).length) {
+  if (localeMissing || localeUnsupported) {
     locale = LOCALE_DEFAULT;
   } else if (locale.includes('it')) {
     locale = LOCALE_DE_CH; // change locale to de-CH because of wrong date formatting of browsers (#1740)
