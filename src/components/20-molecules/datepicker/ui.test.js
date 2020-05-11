@@ -185,6 +185,20 @@ test('should handle month change with native dropdown element', async t => {
   await t.resizeWindow(200, 200);
 });
 
+test('should have a minimum width', async t => {
+  const minWidth = 260;
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
+  const datepickerWrapMinWidth = await datepickerWrap.getStyleProperty(
+    'min-width'
+  );
+
+  await t.expect(datepicker.clientWidth).eql(minWidth + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
+  await t.expect(datepickerWrapMinWidth).eql(`${minWidth}px`); // wrapper has a min-width
+});
+
 fixture('Datepicker - With Locale').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-locale=en-GB`
 );
@@ -351,7 +365,7 @@ test('should fire onDateChange callback on valid user input', async t => {
     .contains(' Feb 28 2020 ');
 });
 
-fixture('Datepicker React inputfield').page(
+fixture('Datepicker React inputfield defaultValue').page(
   `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
 );
 
@@ -483,10 +497,6 @@ test('should allow month change from default date', async t => {
     .expect(await getInputValue())
     .contains(newDateString);
 });
-
-fixture('Datepicker React empty inputfield').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
-);
 
 test('should pass through className and arbitrary data- attributes + have automatic React displayName', async t => {
   const datepicker = await Selector(() =>
@@ -657,6 +667,17 @@ test('button should have correct height', async t => {
     .eql(expectedHeightWithBorderAndPadding);
 });
 
+test('button should have flex-shrink set because of IE', async t => {
+  const datepickerButton = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  ).find('.js-datepicker__input-button');
+  const datepickerButtonMinWidth = await datepickerButton.getStyleProperty(
+    'flex-shrink'
+  );
+
+  await t.expect(datepickerButtonMinWidth).eql('0');
+});
+
 test('input wrap should have correct height without a label', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
@@ -687,7 +708,7 @@ fixture('Datepicker as inputfield with 196px width and 10px height').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
 
-test('should have a minimum width', async t => {
+test('should have no minimum width', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
@@ -695,8 +716,9 @@ test('should have a minimum width', async t => {
     '.m-datepicker__input-wrap'
   );
   await t.expect(datepicker.clientWidth).eql(196); // component has no min-width
-  await t.expect(datepickerInputWrap.clientWidth).eql(197); // input wrapper has min-width
+  await t.expect(datepickerInputWrap.clientWidth).eql(196); // input wrapper has no min-width
 });
+
 test('should have a minimum height', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')

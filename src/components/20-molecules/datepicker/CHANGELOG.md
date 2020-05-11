@@ -1,3 +1,7 @@
+## 7.0.4
+
+- Remove min-width from input element. (#1741)
+
 ## 7.0.1
 
 - Remove datepicker specific stylings from axa dropdown. (#1720)
