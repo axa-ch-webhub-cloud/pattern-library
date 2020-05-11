@@ -14,9 +14,12 @@ import Changelog from './CHANGELOG.md';
 
 const localeOptions = {
   'de-CH': 'de-CH',
+  'it-CH': 'it-CH',
+  'fr-CH': 'fr-CH',
+  'en-CH': 'en-CH',
   'en-GB': 'en-GB',
   'it-IT': 'it-IT',
-  'fr-CH': 'fr-CH',
+  'invalid/ unsupported': 'ff-XX',
 };
 
 const story = storiesOf('Components|Molecules/Datepicker', module);

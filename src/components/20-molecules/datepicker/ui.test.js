@@ -243,6 +243,27 @@ test('should change enhanced dropdown title (only on large screens) on month cha
   await datePickerAccessor.assertDropdownTitle('Februar');
 });
 
+fixture('Datepicker - Collapsible Version with it-CH locale').page(
+  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-CH`
+);
+
+test('should have correct format at input field', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+  await datePickerAccessor.openCalendar();
+
+  await datePickerAccessor.assertYear(2019);
+  await datePickerAccessor.chooseMonth(2);
+  await datePickerAccessor.selectDayOfCurrentMonth(14);
+
+  // we need to do things on our own here since property access
+  // is *not* supported by the TestCafe API (here for 'value')
+  const getInputValue = ClientFunction(
+    () =>
+      document.querySelector(`axa-datepicker[data-test-id="datepicker"]`).value
+  );
+  await t.expect(await getInputValue()).eql('14.2.2019');
+});
+
 // React smoke test
 fixture('Datepicker React').page(
   `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component`
