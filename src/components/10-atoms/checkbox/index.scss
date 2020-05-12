@@ -132,7 +132,7 @@ axa-checkbox {
     display: block;
     margin: -19px 0 0 30px;
     line-height: 1.37;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-prim-gray-dark;
 
     &--inverted {
       color: $color-prim-white;
@@ -161,10 +161,10 @@ axa-checkbox {
   }
 
   &[error] {
-    color: $color-validation-error;
+    color: $color-sec-red-shy-tomato;
 
     &:not([checked]) .a-checkbox__icon {
-      border-color: $color-validation-error;
+      border-color: $color-sec-red-shy-tomato;
     }
   }
 
