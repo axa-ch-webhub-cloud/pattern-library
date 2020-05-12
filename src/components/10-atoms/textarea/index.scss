@@ -23,7 +23,7 @@ axa-textarea {
     border: 1px solid $color-prim-gray-dusty;
     border-radius: 0;
     box-sizing: border-box;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-prim-gray-dark;
     height: 169px;
     padding: 10px 20px;
     width: 100%;
@@ -46,17 +46,17 @@ axa-textarea {
     }
 
     &--error {
-      border: $border-width $border-type $color-validation-error;
+      border: $border-width $border-type $color-sec-red-shy-tomato;
 
       &:hover,
       &:active,
       &:focus {
-        border: $border-width $border-type $color-validation-error;
+        border: $border-width $border-type $color-sec-red-shy-tomato;
 
       }
 
       &:focus, &.focus {
-        outline: $border-width $border-type $color-validation-error;
+        outline: $border-width $border-type $color-sec-red-shy-tomato;
         outline-offset: -2px;
       }
     }
@@ -76,7 +76,7 @@ axa-textarea {
     @include typo(primary, medium);
     font-weight: 600;
     display: block;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-prim-gray-dark;
     margin-bottom: 10px;
   }
 
@@ -90,7 +90,7 @@ axa-textarea {
   }
 
   .a-textarea__messages--error {
-    color: $color-validation-error;
+    color: $color-sec-red-shy-tomato;
   }
 
   .a-textarea__messages--hidden {
