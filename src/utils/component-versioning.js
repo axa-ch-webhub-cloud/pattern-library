@@ -2,11 +2,13 @@ import { html } from 'lit-element';
 import defineOnce from './define-once';
 
 // constants
+/* eslint-disable no-undef */
 const VERSIONINFO = __VERSION_INFO__; // will be instantiated by build / webpack
+/* eslint-enable no-undef */
 
 // helper functions
 const toKebabCase = dottedVersionString =>
-  `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9\-]/g, '');
+  `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
 
 const versionedTag = (tagName, version) => `${tagName}-${toKebabCase(version)}`;
 
@@ -15,7 +17,7 @@ const extractDependencies = componentClass => {
   // extract all dependencies by comparing with master-component tag name
   const dependencies = Object.keys(versions).filter(name => name !== tagName);
   // pair the list of dependency tag names with their versions
-  return [dependencies, dependencies.map(tagName => versions[tagName])];
+  return [dependencies, dependencies.map(_tagName => versions[_tagName])];
 };
 
 const oldTag = (tagName, closing = '') => `<${closing}${tagName}`;
@@ -40,9 +42,9 @@ const rewrite = (someStrings, aTagName, aVersion) =>
       .join(newTag(aTagName, aVersion, '/'))
   );
 
-/////
+// ///
 // API functions
-/////
+// ///
 
 // examples: defineVersioned(AXADatepicker, [AXADropdown, AXAButton]);
 //           defineVersioned(AXADatepicker);
