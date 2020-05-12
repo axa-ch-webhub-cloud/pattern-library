@@ -1,7 +1,7 @@
 @import '../../00-materials/styles/mixins/check-mark-animated';
 
 $dropdown-border-width: 1px;
-$dropdown-color: $color-prim-gray-mine-shaft !default;
+$dropdown-color: $color-prim-gray-dark !default;
 $dropdown-color--hover: $color-axa-blue !default;
 $dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
@@ -43,7 +43,7 @@ axa-dropdown {
     @include typo(primary, medium);
     display: block;
     font-weight: 600;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-prim-gray-dark;
     margin-bottom: 10px;
   }
 
@@ -285,12 +285,12 @@ axa-dropdown {
   &[invalid] {
     .m-dropdown__select,
     .m-dropdown__toggle {
-      border-color: $color-validation-error;
+      border-color: $color-sec-red-shy-tomato;
     }
 
     .m-dropdown__toggle:focus,
     .m-dropdown__select:focus {
-      outline-color: $color-validation-error;
+      outline-color: $color-sec-red-shy-tomato;
     }
   }
 
@@ -310,7 +310,7 @@ axa-dropdown {
     @include typo();
     display: block;
     margin-top: 10px;
-    color: $color-validation-error;
+    color: $color-sec-red-shy-tomato;
   }
 
   .m-dropdown__select:disabled,
