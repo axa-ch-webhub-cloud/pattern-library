@@ -33,8 +33,8 @@ axa-datepicker {
   &[invalid] {
     .m-datepicker__input,
     .m-datepicker__input-button {
-      border-color: $color-validation-error;
-      outline-color: $color-validation-error;
+      border-color: $color-sec-red-shy-tomato;
+      outline-color: $color-sec-red-shy-tomato;
     }
   }
 
@@ -45,7 +45,7 @@ axa-datepicker {
       @include typo(primary, medium);
       display: block;
       font-weight: 600;
-      color: $color-prim-gray-mine-shaft;
+      color: $color-prim-gray-dark;
       margin-bottom: 10px;
     }
   }
@@ -252,7 +252,7 @@ axa-datepicker {
 
   &__calendar-current-month {
     border: 0;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-prim-gray-dark;
   }
 
   &__calendar-current-month:hover {
@@ -317,7 +317,7 @@ axa-datepicker {
 
   &__error {
     display: inline-block;
-    color: $color-validation-error;
+    color: $color-sec-red-shy-tomato;
     @include typo(primary, default);
     line-height: 1.2;
     margin-top: 10px;
