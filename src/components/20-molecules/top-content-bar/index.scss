@@ -4,7 +4,7 @@
   &__container {
     @include typo(primary, small);
 
-    background-color: $color-sec-ocean-blue;
+    background-color: $color-sec-blue-ocean;
     color: $color-prim-white;
 
     min-height: 50px;
@@ -35,5 +35,5 @@
 
 
 .m-top-content-bar__container--warning {
-  background-color: $color-sec-shy-tomato;
+  background-color: $color-sec-red-shy-tomato;
 }
