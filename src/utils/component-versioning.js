@@ -1,12 +1,12 @@
-import defineOnce from './define-once';
 import { html } from 'lit-element';
+import defineOnce from './define-once';
 
 // constants
 const VERSIONINFO = __VERSION_INFO__; // will be instantiated by build / webpack
 
 // helper functions
 const toKebabCase = dottedVersionString =>
-  `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-z0-9\-]/g, '');
+  `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9\-]/g, '');
 
 const versionedTag = (tagName, version) => `${tagName}-${toKebabCase(version)}`;
 
@@ -58,14 +58,14 @@ const defineVersioned = (
     aComponentClass instanceof HTMLElement
       ? aComponentClass.constructor
       : aComponentClass;
-  // this is a single-component definition only?
+  // is this only a single-component definition?
   if (dependencies.length === 0) {
-    // yes, add version info
+    // yes, inject version info into component-defining class
     const { tagName } = componentClass;
     componentClass.versions = VERSIONINFO[tagName];
-    // define its unversioned-tag variant first
+    // define its *unversioned*-tag variant first
     defineOnce(tagName, componentClass);
-    // then queue itself as to-be-versioned pseudo-dependency
+    // then queue itself as a to-be-versioned pseudo-dependency
     dependencies.push(componentClass);
   }
   // get version info of component

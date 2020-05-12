@@ -13,9 +13,13 @@ const globalSassImports = require('../../config/globals.js')
   })
   .join('\n');
 
+const { gatherVersions } = require('./version_info.js');
+const stringifiedVersionInfo = gatherVersions('', pathResolve(__dirname, '../..'));
+
 module.exports.commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    '__VERSION_INFO__': stringifiedVersionInfo
   }),
   sass({
     insert: true,
