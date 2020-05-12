@@ -1,4 +1,4 @@
-import { parseLocalisedDateIfValid } from './date';
+import { parseLocalisedDateIfValid, getAllLocaleMonthsArray } from './date';
 
 describe('Datepicker utils', () => {
   describe('parseLocalisedDateIfValid', () => {
@@ -42,6 +42,17 @@ describe('Datepicker utils', () => {
 
     it('should return null if date is null', () => {
       expect(parseLocalisedDateIfValid('en', null)).toBe(null);
+    });
+  });
+
+  describe('getAllLocaleMonthsArray', () => {
+    it('should return array with 12 elements', () => {
+      expect(getAllLocaleMonthsArray().length).toBe(12);
+    });
+
+    it('should return array with strings which first character is uppercase', () => {
+      const arrayWithStrings = getAllLocaleMonthsArray('en-UK');
+      expect(arrayWithStrings[0]).toBe('January');
     });
   });
 });
