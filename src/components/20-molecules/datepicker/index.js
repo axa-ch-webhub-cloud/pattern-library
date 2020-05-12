@@ -18,7 +18,10 @@ import { applyDefaults } from '../../../utils/with-react';
 import debounce from '../../../utils/debounce';
 import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
-import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
@@ -120,13 +123,6 @@ const overrideDate = (year, month, day, date) => {
 class AXADatepicker extends NoShadowDOM {
   static get tagName() {
     return 'axa-datepicker';
-  }
-
-  static get versions() {
-    return {
-      'axa-datepicker': '7.0.2',
-      'axa-dropdown': '7.0.2',
-    };
   }
 
   static get styles() {
