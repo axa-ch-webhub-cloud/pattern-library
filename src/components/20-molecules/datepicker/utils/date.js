@@ -181,9 +181,7 @@ const getAllLocaleMonthsArray = (locale = 'en-UK') => {
     objDate.setMonth(i);
     let month = objDate.toLocaleString(locale, { month: 'long' });
     // Month identifier of some languages (f.a. italian) are not capitalized at IE. They have invisible characters at position 0. So we need a RegEx here.
-    month = month.replace(/[a-zA-Z]/, match => {
-      return match.toUpperCase();
-    });
+    month = month.replace(/[a-zA-Z]/, match => match.toUpperCase());
     finalArray.push(month);
   }
   return finalArray;
