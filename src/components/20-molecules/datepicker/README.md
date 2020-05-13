@@ -48,7 +48,9 @@ export default AXADatepickerReact;
 
 The string-valued `locale` defines region-specific date rendering preferences such as separators etc. (default: `de-CH`).
 
-_Note: Week start is hardwired to Monday, only its translation is influenced by `locale`._
+_Note 1: Week start is hardwired to Monday, only its translation is influenced by `locale`._
+
+_Note 2: The locale `it-CH` is mapped to date format `de-CH`. Example: `8.1.1982`_
 
 ### year
 
