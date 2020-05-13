@@ -1,3 +1,7 @@
+## 2.1.3
+
+- `datesortcolumnindex` now works with React. #1765
+
 ## 2.1.0
 
 - New attribute `datesortcolumnindex` is now supported. Use it to sort date columns properly. Issue #1629.
