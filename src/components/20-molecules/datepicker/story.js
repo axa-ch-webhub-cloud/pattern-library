@@ -19,7 +19,7 @@ const localeOptions = {
   'en-CH': 'en-CH',
   'en-GB': 'en-GB',
   'it-IT': 'it-IT',
-  'invalid/ unsupported': 'ff-XX',
+  'invalid/ unsupported': 'ff-XX', // To show the default language fallback scenario
 };
 
 const story = storiesOf('Components|Molecules/Datepicker', module);
