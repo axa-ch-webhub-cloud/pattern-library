@@ -45,7 +45,7 @@ axa-table > table {
     letter-spacing: 0.02em;
     padding: 2px 10px;
     border-left: 1px solid transparent;
-    color: $color-prim-gray-dark;
+    color: $color-dark-gray;
     text-align: left;
 
     &:first-child {
@@ -62,7 +62,7 @@ axa-table > table {
   }
 
   th {
-    color: $color-prim-gray-dark;
+    color: $color-dark-gray;
     font-weight: 700;
 
     display: none;
@@ -180,5 +180,5 @@ td.o-table--light {
 
 td.o-table--bold {
   font-weight: bold;
-  color: $color-prim-gray-dark;
+  color: $color-dark-gray;
 }

@@ -45,7 +45,7 @@ axa-datepicker {
       @include typo(primary, medium);
       display: block;
       font-weight: 600;
-      color: $color-prim-gray-dark;
+      color: $color-dark-gray;
       margin-bottom: 10px;
     }
   }
@@ -252,13 +252,13 @@ axa-datepicker {
 
   &__calendar-current-month {
     border: 0;
-    color: $color-prim-gray-dark;
+    color: $color-dark-gray;
   }
 
   &__calendar-current-month:hover {
     box-shadow: 0 0 0 3px $color-axa-blue inset;
     background-color: $color-prim-white;
-    color: $color-prim-gray-dark;
+    color: $color-dark-gray;
   }
 
   &__calendar-current-month:focus:hover {
@@ -300,7 +300,7 @@ axa-datepicker {
     color: $color-prim-white;
 
     &--preselected {
-      color: $color-prim-gray-dark;
+      color: $color-dark-gray;
       background-color: $color-prim-gray-silver;
     }
   }

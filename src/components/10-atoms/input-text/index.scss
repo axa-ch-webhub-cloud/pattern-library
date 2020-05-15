@@ -31,7 +31,7 @@ axa-input-text {
     border: $border-width $border-type $color-prim-gray-dusty;
     border-radius: 0;
     box-sizing: border-box;
-    color: $color-prim-gray-dark;
+    color: $color-dark-gray;
     height: 40px;
     padding: 0 20px;
     width: 100%;
@@ -86,7 +86,7 @@ axa-input-text {
     @include typo(primary, medium);
     display: block;
     font-weight: 600;
-    color: $color-prim-gray-dark;
+    color: $color-dark-gray;
     margin-bottom: 10px;
   }
 
