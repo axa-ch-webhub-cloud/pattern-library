@@ -13,7 +13,7 @@ $file-upload-icon-size: 36px !default;
 
 .m-file-upload {
   @include typo(primary, medium);
-  color: $color-prim-black;
+  color: $color-black;
 
   &__dropzone {
     background-color: $color-prim-white;
