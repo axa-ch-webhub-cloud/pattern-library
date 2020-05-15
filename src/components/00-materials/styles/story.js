@@ -108,7 +108,7 @@ storiesOf('Materials', module)
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
-          border: 1px solid lightgray;
+          border: 1px solid lightgrey;
           padding: 5px;
           margin: 10px;
           width: 250px;
@@ -117,7 +117,7 @@ storiesOf('Materials', module)
           width: 250px;
           height: 50px;
           border-radius: 5px;
-          border: 1px solid lightgray;
+          border: 1px solid lightgrey;
           margin-bottom: 10px;
         }
       </style>
