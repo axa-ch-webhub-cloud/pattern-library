@@ -108,8 +108,8 @@
 }
 
 .a-input-file--red {
-  background-color: $color-prim-red-burnt-sienna;
-  border-color: $color-prim-red-burnt-sienna;
+  background-color: $color-burnt-sienna;
+  border-color: $color-burnt-sienna;
   border-bottom-color: $color-prim-red-flamingo;
 
   &:hover,
@@ -126,7 +126,7 @@
 
     &:hover,
     &:focus {
-      background-color: $color-prim-red-burnt-sienna;
+      background-color: $color-burnt-sienna;
       color: $color-prim-white;
 
       &::after {
