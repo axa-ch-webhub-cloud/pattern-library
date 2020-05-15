@@ -29,7 +29,7 @@ $color-prim-gray-dusty: #999 !default;
 $color-prim-gray-silver: #ccc !default;
 $color-prim-gray-mercury: #e5e5e5 !default;
 $color-prim-gray-wild-sand: #f5f5f5 !default;
-$color-prim-gray-alabaster: #fafafa !default;
+$color-alabaster: #fafafa !default;
 $color-prim-white: #fff !default;
 
 /// Background and Illustration

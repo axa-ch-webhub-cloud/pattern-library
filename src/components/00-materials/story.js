@@ -114,7 +114,7 @@ storiesOf('Materials', module)
           font-size: 14px;
           outline: none;
           border-color: #e5e5e5; /* $color-prim-gray-mercury */
-          background-color: #fafafa; /* $color-prim-gray-alabaster */
+          background-color: #fafafa; /* $color-alabaster */
           color: #999; /* $color-prim-gray-dusty */
           fill: #999; /* $color-prim-gray-dusty */
         }

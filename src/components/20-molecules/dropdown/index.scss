@@ -323,7 +323,7 @@ axa-dropdown {
     .m-dropdown__select-wrapper,
     .m-dropdown__toggle {
       border-color: $color-prim-gray-mercury;
-      background-color: $color-prim-gray-alabaster;
+      background-color: $color-alabaster;
     }
 
     /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
