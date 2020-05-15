@@ -54,11 +54,11 @@ axa-radio {
 
     &:disabled + .a-radio__icon {
       cursor: default;
-      border-color: $color-prim-gray-silver;
+      border-color: $color-silver;
 
       &::after {
-        border-color: $color-prim-gray-silver;
-        background-color: $color-prim-gray-silver;
+        border-color: $color-silver;
+        background-color: $color-silver;
       }
     }
   }
@@ -148,7 +148,7 @@ axa-radio {
     .a-radio__wrapper {
       background-color: $color-alabaster;
       border-color: $colo-mercury;
-      color: $color-prim-gray-silver;
+      color: $color-silver;
       cursor: default;
 
       &:hover {

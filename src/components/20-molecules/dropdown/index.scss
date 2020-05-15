@@ -214,12 +214,12 @@ axa-dropdown {
 
   // ENHANCED LIST-ITEMS
   .m-dropdown__item {
-    border-left: $dropdown-border-width solid $color-prim-gray-silver;
-    border-right: $dropdown-border-width solid $color-prim-gray-silver;
+    border-left: $dropdown-border-width solid $color-silver;
+    border-right: $dropdown-border-width solid $color-silver;
     box-sizing: border-box;
 
     &:last-child {
-      border-bottom: $dropdown-bottom-border-width solid $color-prim-gray-silver;
+      border-bottom: $dropdown-bottom-border-width solid $color-silver;
       box-sizing: border-box;
     }
 

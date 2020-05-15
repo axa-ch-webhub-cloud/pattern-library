@@ -69,7 +69,7 @@ axa-checkbox {
 
     &:disabled + .a-checkbox__icon {
       cursor: default;
-      border-color: $color-prim-gray-silver;
+      border-color: $color-silver;
 
       &::after {
         border-color: transparent;
@@ -80,7 +80,7 @@ axa-checkbox {
       background-color: $color-prim-white;
 
       .a-checkbox__icon-checkmark {
-        color: $color-prim-gray-silver;
+        color: $color-silver;
       }
     }
 
@@ -155,8 +155,8 @@ axa-checkbox {
     }
 
     .a-checkbox__input:checked + .a-checkbox__icon::after {
-      border-color: $color-prim-gray-silver;
-      background-color: $color-prim-gray-silver;
+      border-color: $color-silver;
+      background-color: $color-silver;
     }
   }
 
