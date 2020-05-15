@@ -202,7 +202,7 @@
       transition: max-height 0.2s ease-out;
 
       overflow: hidden;
-      background-color: $color-prim-blue-azure;
+      background-color: $color-azure;
 
       &-list-item {
         @include typo(primary, xx-small, default);
