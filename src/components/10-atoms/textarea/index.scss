@@ -23,7 +23,7 @@ axa-textarea {
     border: 1px solid $color-prim-gray-dusty;
     border-radius: 0;
     box-sizing: border-box;
-    color: $color-dark-gray;
+    color: $color-dark-grey;
     height: 169px;
     padding: 10px 20px;
     width: 100%;
@@ -76,7 +76,7 @@ axa-textarea {
     @include typo(primary, medium);
     font-weight: 600;
     display: block;
-    color: $color-dark-gray;
+    color: $color-dark-grey;
     margin-bottom: 10px;
   }
 
