@@ -147,12 +147,12 @@ axa-radio {
   &[disabled] {
     .a-radio__wrapper {
       background-color: $color-alabaster;
-      border-color: $color-prim-gray-mercury;
+      border-color: $colo-mercury;
       color: $color-prim-gray-silver;
       cursor: default;
 
       &:hover {
-        border-color: $color-prim-gray-mercury;
+        border-color: $colo-mercury;
       }
     }
 

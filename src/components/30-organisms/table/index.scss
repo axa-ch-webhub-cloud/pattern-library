@@ -6,7 +6,7 @@
   display: table-cell;
   font-size: 16px;
   padding: 10px 15px;
-  border-top: 1px solid $color-prim-gray-mercury;
+  border-top: 1px solid $colo-mercury;
 }
 
 @mixin TH_MQ {
@@ -73,14 +73,14 @@ axa-table > table {
   }
 
   tr {
-    border-top: 1px solid $color-prim-gray-mercury;
+    border-top: 1px solid $colo-mercury;
     padding: 20px 0;
     display: block;
     box-sizing: border-box;
 
     &:nth-child(n+2) {
       &:last-child {
-        border-bottom: 1px solid $color-prim-gray-mercury;
+        border-bottom: 1px solid $colo-mercury;
       }
     }
 
