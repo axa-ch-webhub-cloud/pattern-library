@@ -33,7 +33,7 @@ $color-alabaster: #fafafa !default;
 $color-prim-white: #fff !default;
 
 /// Background and Illustration
-$color-prim-blue-deep-sapphire: #00005b !default; // PL only
+$color-deep-sapphire: #00005b !default; // PL only
 $color-prim-blue-azure: #3032c1 !default; // PL only
 $color-prim-blue-dark-indigo: #3b3fd8 !default; // PL only
 $color-sec-blue-ocean: #4976ba !default;
