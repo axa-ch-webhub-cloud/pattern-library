@@ -36,7 +36,7 @@ $color-prim-white: #fff !default;
 $color-deep-sapphire: #00005b !default; // PL only
 $color-azure: #3032c1 !default; // PL only
 $color-prim-blue-dark-indigo: #3b3fd8 !default; // PL only
-$color-sec-blue-ocean: #4976ba !default;
+$color-ocean-blue: #4976ba !default;
 $color-sec-blue-teal: #027180 !default;
 $color-sec-green-viridian: #668980 !default;
 $color-sec-blue-pacific: #00adc6 !default;
