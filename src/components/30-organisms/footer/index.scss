@@ -151,7 +151,7 @@
     border: none;
     outline: 0;
 
-    border-bottom: 1px solid $color-prim-blue-azure; // Color before was $color-prim-blue-st-tropaz. It got removed from materials. #1748
+    border-bottom: 1px solid $color-prim-blue-st-tropaz;
     text-transform: uppercase;
 
     svg {
