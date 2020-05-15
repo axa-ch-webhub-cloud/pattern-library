@@ -202,13 +202,13 @@ axa-dropdown {
     }
 
     &:hover {
-      background-color: $color-prim-gray-wild-sand;
+      background-color: $color-wild-sand;
     }
 
     &:focus {
       outline: solid 1px $color-axa-blue;
       outline-offset: -1px;
-      background-color: $color-prim-gray-wild-sand;
+      background-color: $color-wild-sand;
     }
   }
 
