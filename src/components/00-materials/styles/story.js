@@ -23,7 +23,7 @@ $color-axa-red: #ff1721 !default;
 $color-burnt-sienna: #f07662 !default;
 $color-black: #000 !default;
 $color-dark-gray: #333 !default;
-$color-prim-gray-medium: #5f5f5f !default;
+$color-medium-gray: #5f5f5f !default;
 $color-prim-gray: #7f7f7f !default;
 $color-prim-gray-dusty: #999 !default;
 $color-prim-gray-silver: #ccc !default;
