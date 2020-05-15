@@ -1,7 +1,7 @@
 $file-upload-dropzone-border-width: 2px !default;
 $file-upload-opacity: 0.25 !default;
 $file-upload-dropzone-border: $file-upload-dropzone-border-width dashed
-  $color-prim-gray-dusty !default;
+  $color-light-grey !default;
 $file-upload-icon-size: 36px !default;
 
 @mixin iconSize($property) {
@@ -174,7 +174,7 @@ $file-upload-icon-size: 36px !default;
     box-sizing: border-box;
     cursor: pointer;
     border: $file-upload-dropzone-border;
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
     .m-file-upload__icon-wrapper {
       height: 100%;
       width: 100%;

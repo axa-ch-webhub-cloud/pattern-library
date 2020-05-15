@@ -28,7 +28,7 @@ axa-input-text {
     @include typo();
     appearance: none;
     background: $color-prim-white;
-    border: $border-width $border-type $color-prim-gray-dusty;
+    border: $border-width $border-type $color-light-grey;
     border-radius: 0;
     box-sizing: border-box;
     color: $color-dark-grey;
@@ -37,7 +37,7 @@ axa-input-text {
     width: 100%;
 
     &::placeholder {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     &::-ms-clear {
@@ -72,7 +72,7 @@ axa-input-text {
     }
 
     &:disabled {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
       background-color: $color-alabaster;
       border-color: $colo-mercury;
     }
@@ -91,7 +91,7 @@ axa-input-text {
   }
 
   &[disabled] .a-input-text__label {
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
   }
 
   .a-input-text__check {

@@ -64,7 +64,7 @@ axa-dropdown {
   .m-dropdown__select-wrapper {
     display: flex;
     align-items: center;
-    border: $dropdown-border-width solid $color-prim-gray-dusty;
+    border: $dropdown-border-width solid $color-light-grey;
     width: 100%;
     background-color: $color-prim-white;
     height: $dropdown-height;
@@ -137,7 +137,7 @@ axa-dropdown {
     position: relative;
     background: $color-prim-white;
     color: $dropdown-color;
-    border: $dropdown-border-width solid $color-prim-gray-dusty;
+    border: $dropdown-border-width solid $color-light-grey;
     padding: 0 40px 0 20px;
     width: 100%;
     box-sizing: border-box;
@@ -315,7 +315,7 @@ axa-dropdown {
 
   .m-dropdown__select:disabled,
   [aria-disabled='true'] {
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
     pointer-events: none;
   }
 
@@ -329,7 +329,7 @@ axa-dropdown {
     /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
     .m-dropdown__select-icon.m-dropdown__select-icon {
       svg {
-        color: $color-prim-gray-dusty;
+        color: $color-light-grey;
       }
     }
   }

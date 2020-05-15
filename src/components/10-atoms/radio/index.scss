@@ -48,7 +48,7 @@ axa-radio {
     }
 
     &:checked + .a-radio__icon::after {
-      border-color: $color-prim-gray-dusty;
+      border-color: $color-light-grey;
       background-color: $color-axa-blue;
     }
 
@@ -71,7 +71,7 @@ axa-radio {
     justify-content: center;
     align-items: center;
     background: #fff;
-    border: 1px solid $color-prim-gray-dusty;
+    border: 1px solid $color-light-grey;
     cursor: pointer;
     flex-shrink: 0;
     border-radius: 50%;
@@ -106,7 +106,7 @@ axa-radio {
 
     .a-radio__wrapper {
       background-color: $color-wild-sand;
-      border: 1px solid $color-prim-gray-dusty;
+      border: 1px solid $color-light-grey;
       padding: 0 20px;
       cursor: pointer;
       width: inherit;

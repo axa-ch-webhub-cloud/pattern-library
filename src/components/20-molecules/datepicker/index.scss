@@ -52,7 +52,7 @@ axa-datepicker {
 
   &[disabled] {
     .m-datepicker__label {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     .m-datepicker__input,
@@ -62,8 +62,8 @@ axa-datepicker {
       outline: none;
       border-color: $colo-mercury !important;
       background-color: $color-alabaster;
-      color: $color-prim-gray-dusty;
-      fill: $color-prim-gray-dusty;
+      color: $color-light-grey;
+      fill: $color-light-grey;
     }
   }
 
@@ -98,7 +98,7 @@ axa-datepicker {
     background: $color-prim-white;
     cursor: pointer;
     border: 1px solid;
-    border-color: $color-prim-gray-dusty;
+    border-color: $color-light-grey;
     border-left: none;
     line-height: 0;
     margin-left: 0; /* suppress Safari 2px margin */
@@ -124,7 +124,7 @@ axa-datepicker {
     appearance: none;
     line-height: normal;
     border: 1px solid;
-    border-color: $color-prim-gray-dusty;
+    border-color: $color-light-grey;
     border-right: none;
     border-radius: 0; // mobile Safari...
     padding: 0 10px 0 20px;

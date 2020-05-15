@@ -115,8 +115,8 @@ storiesOf('Materials', module)
           outline: none;
           border-color: #e5e5e5; /* $colo-mercury */
           background-color: #fafafa; /* $color-alabaster */
-          color: #999; /* $color-prim-gray-dusty */
-          fill: #999; /* $color-prim-gray-dusty */
+          color: #999; /* $color-light-grey */
+          fill: #999; /* $color-light-grey */
         }
         .input-field:hover {
           border: 1px solid #00008f;

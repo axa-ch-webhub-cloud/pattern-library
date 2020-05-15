@@ -20,7 +20,7 @@ axa-textarea {
     @include typo();
     appearance: none;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-dusty;
+    border: 1px solid $color-light-grey;
     border-radius: 0;
     box-sizing: border-box;
     color: $color-dark-grey;
@@ -30,7 +30,7 @@ axa-textarea {
     overflow: auto;
 
     &::placeholder {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     &:hover,
@@ -62,7 +62,7 @@ axa-textarea {
     }
 
     &:disabled {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
       background-color: $color-alabaster;
       border-color: $colo-mercury;
     }
@@ -81,7 +81,7 @@ axa-textarea {
   }
 
   &[disabled] .a-textarea__label {
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
   }
 
   .a-textarea__messages {

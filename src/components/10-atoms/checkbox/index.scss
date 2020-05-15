@@ -101,7 +101,7 @@ axa-checkbox {
     width: $checkbox-dimension;
     height: $checkbox-dimension;
     border: $checkbox-border-width solid;
-    border-color: $color-prim-gray-dusty;
+    border-color: $color-light-grey;
     box-sizing: border-box;
 
     &-checkmark {
@@ -147,7 +147,7 @@ axa-checkbox {
 
   &[disabled] {
     .a-checkbox__content {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
 
       &--inverted {
         color: $color-disabled-inverted;
