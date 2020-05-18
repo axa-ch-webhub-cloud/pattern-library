@@ -27,7 +27,7 @@ $color-medium-grey: #5f5f5f !default;
 $color-grey: #7f7f7f !default;
 $color-light-grey: #999 !default;
 $color-silver: #ccc !default;
-$colo-mercury: #e5e5e5 !default;
+$color-mercury: #e5e5e5 !default;
 $color-wild-sand: #f5f5f5 !default;
 $color-alabaster: #fafafa !default;
 $color-prim-white: #fff !default;

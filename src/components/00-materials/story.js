@@ -113,7 +113,7 @@ storiesOf('Materials', module)
           border: 1px solid;
           font-size: 14px;
           outline: none;
-          border-color: #e5e5e5; /* $colo-mercury */
+          border-color: #e5e5e5; /* $color-mercury */
           background-color: #fafafa; /* $color-alabaster */
           color: #999; /* $color-light-grey */
           fill: #999; /* $color-light-grey */

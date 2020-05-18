@@ -60,7 +60,7 @@ axa-datepicker {
     .m-datepicker__input-button svg {
       pointer-events: none;
       outline: none;
-      border-color: $colo-mercury !important;
+      border-color: $color-mercury !important;
       background-color: $color-alabaster;
       color: $color-light-grey;
       fill: $color-light-grey;
@@ -246,7 +246,7 @@ axa-datepicker {
     color: $color-silver;
 
     &:hover {
-      background: rgba($colo-mercury, 0.5);
+      background: rgba($color-mercury, 0.5);
     }
   }
 
