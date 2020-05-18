@@ -49,7 +49,7 @@ $color-cotton-candy: #fad6de !default;
 $color-apache: #ddbe65 !default;
 $color-dune: #fcd385 !default;
 $color-acid: #f0ff93 !default;
-$color-sec-purple-logan: #9190ac !default;
+$color-logan: #9190ac !default;
 $color-sec-blue-igloo: #b5d0ee !default;
 
 /// Status-indicating Colors
