@@ -118,18 +118,18 @@
 .a-button--red {
   background-color: $color-burnt-sienna;
   border-color: $color-burnt-sienna;
-  border-bottom-color: $color-prim-red-flamingo;
+  border-bottom-color: $color-flamingo;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $color-prim-red-flamingo;
-    border-color: $color-prim-red-flamingo;
+    background-color: $color-flamingo;
+    border-color: $color-flamingo;
   }
 
   &.a-button--motion {
     &::after {
-      background-color: $color-prim-red-flamingo;
+      background-color: $color-flamingo;
     }
 
     &:hover,
@@ -138,7 +138,7 @@
       color: $color-prim-white;
 
       &::after {
-        background-color: $color-prim-red-flamingo;
+        background-color: $color-flamingo;
       }
     }
   }
