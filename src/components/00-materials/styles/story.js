@@ -53,7 +53,7 @@ $color-logan: #9190ac !default;
 $color-igloo: #b5d0ee !default;
 
 /// Status-indicating Colors
-$color-sec-green-malachite: #1cc54e !default;
+$color-malachite: #1cc54e !default;
 $color-sec-red-shy-tomato: #c91432 !default;
 `;
 
