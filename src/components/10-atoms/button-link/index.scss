@@ -1,3 +1,7 @@
+:host {
+  display: inline-block;
+}
+
 .a-button-link {
   @include typo(primary, small);
   position: relative;
@@ -5,6 +9,7 @@
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
+  width: 100%;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -16,7 +21,7 @@
   border-bottom-color: $color-prim-blue-deep-sapphire;
 
   @include breakpoint($mediaquery-sm-up) {
-    @include _text(default)
+    @include _text(default);
   }
 
   &:hover,
@@ -104,8 +109,8 @@
     // fix iOS double tap for :hover
     // zero width is considered hidden
     width: 0.001px;
-    height: 550px;
-    content: '';
+    height: 100vw;
+    content: "";
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: width $button__motion-duration $button__motion-easing 0s;
