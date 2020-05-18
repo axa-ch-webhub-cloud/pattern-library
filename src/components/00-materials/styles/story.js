@@ -46,7 +46,7 @@ $color-flamingo: #ec4d33 !default; // PL only
 $color-tosca: #914146 !default;
 $color-azalea: #e196aa !default;
 $color-cotton-candy: #fad6de !default;
-$color-sec-yellow-apache: #ddbe65 !default;
+$color-apache: #ddbe65 !default;
 $color-sec-orange-dune: #fcd385 !default;
 $color-sec-yellow-acid: #f0ff93 !default;
 $color-sec-purple-logan: #9190ac !default;
