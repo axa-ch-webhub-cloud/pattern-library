@@ -46,17 +46,17 @@ axa-textarea {
     }
 
     &--error {
-      border: $border-width $border-type $color-sec-red-shy-tomato;
+      border: $border-width $border-type $color-shy-tomato;
 
       &:hover,
       &:active,
       &:focus {
-        border: $border-width $border-type $color-sec-red-shy-tomato;
+        border: $border-width $border-type $color-shy-tomato;
 
       }
 
       &:focus, &.focus {
-        outline: $border-width $border-type $color-sec-red-shy-tomato;
+        outline: $border-width $border-type $color-shy-tomato;
         outline-offset: -2px;
       }
     }
@@ -90,7 +90,7 @@ axa-textarea {
   }
 
   .a-textarea__messages--error {
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
   }
 
   .a-textarea__messages--hidden {

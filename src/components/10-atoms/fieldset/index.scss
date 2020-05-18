@@ -46,11 +46,11 @@ axa-fieldset {
     axa-radio:not(:hover):not([disabled]):not([checked]) {
 
       &[button] .a-radio__wrapper {
-        border-color: $color-sec-red-shy-tomato;
+        border-color: $color-shy-tomato;
       }
 
       .a-radio__icon {
-        border-color: $color-sec-red-shy-tomato;
+        border-color: $color-shy-tomato;
       }
     }
 
@@ -61,7 +61,7 @@ axa-fieldset {
       bottom: 0;
       left: 0;
       margin: 0 !important;
-      color: $color-sec-red-shy-tomato;
+      color: $color-shy-tomato;
     }
   }
 }

@@ -33,8 +33,8 @@ axa-datepicker {
   &[invalid] {
     .m-datepicker__input,
     .m-datepicker__input-button {
-      border-color: $color-sec-red-shy-tomato;
-      outline-color: $color-sec-red-shy-tomato;
+      border-color: $color-shy-tomato;
+      outline-color: $color-shy-tomato;
     }
   }
 
@@ -317,7 +317,7 @@ axa-datepicker {
 
   &__error {
     display: inline-block;
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
     @include typo(primary, default);
     line-height: 1.2;
     margin-top: 10px;

@@ -57,16 +57,16 @@ axa-input-text {
     }
 
     &--error {
-      border: $border-width $border-type $color-sec-red-shy-tomato;
+      border: $border-width $border-type $color-shy-tomato;
 
       &:hover,
       &:active,
       &:focus {
-        border: $border-width $border-type $color-sec-red-shy-tomato;
+        border: $border-width $border-type $color-shy-tomato;
       }
 
       &:focus, &.focus {
-        outline: $border-width $border-type $color-sec-red-shy-tomato;
+        outline: $border-width $border-type $color-shy-tomato;
         outline-offset: -2px;
       }
     }
@@ -104,12 +104,12 @@ axa-input-text {
   .a-input-text__error {
     @include typo();
     display: block;
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
     margin-top: 10px;
   }
 
   .a-input-text__character-overflow-error {
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
   }
 
   .a-input-text__counter-info {

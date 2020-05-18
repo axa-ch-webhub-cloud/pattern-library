@@ -122,7 +122,7 @@ $file-upload-icon-size: 36px !default;
   }
 
   &__icon-error {
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
     fill: currentColor;
     @include iconSize($file-upload-icon-size);
   }
@@ -146,7 +146,7 @@ $file-upload-icon-size: 36px !default;
 
   &__error {
     @include typo(primary, default);
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
   }
 
   // when hovering over hover-area, hide the file name and error message (if any)
@@ -191,6 +191,6 @@ $file-upload-icon-size: 36px !default;
   }
 
   &__error-wrapper {
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
   }
 }

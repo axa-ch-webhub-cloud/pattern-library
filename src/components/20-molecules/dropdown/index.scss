@@ -285,12 +285,12 @@ axa-dropdown {
   &[invalid] {
     .m-dropdown__select,
     .m-dropdown__toggle {
-      border-color: $color-sec-red-shy-tomato;
+      border-color: $color-shy-tomato;
     }
 
     .m-dropdown__toggle:focus,
     .m-dropdown__select:focus {
-      outline-color: $color-sec-red-shy-tomato;
+      outline-color: $color-shy-tomato;
     }
   }
 
@@ -310,7 +310,7 @@ axa-dropdown {
     @include typo();
     display: block;
     margin-top: 10px;
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
   }
 
   .m-dropdown__select:disabled,

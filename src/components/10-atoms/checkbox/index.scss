@@ -161,10 +161,10 @@ axa-checkbox {
   }
 
   &[error] {
-    color: $color-sec-red-shy-tomato;
+    color: $color-shy-tomato;
 
     &:not([checked]) .a-checkbox__icon {
-      border-color: $color-sec-red-shy-tomato;
+      border-color: $color-shy-tomato;
     }
   }
 

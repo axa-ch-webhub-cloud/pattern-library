@@ -54,7 +54,7 @@ $color-igloo: #b5d0ee !default;
 
 /// Status-indicating Colors
 $color-malachite: #1cc54e !default;
-$color-sec-red-shy-tomato: #c91432 !default;
+$color-shy-tomato: #c91432 !default;
 `;
 
 storiesOf('Materials', module)
