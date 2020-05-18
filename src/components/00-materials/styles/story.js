@@ -38,7 +38,7 @@ $color-azure: #3032c1 !default; // PL only
 $color-dark-indigo: #3b3fd8 !default; // PL only
 $color-ocean-blue: #4976ba !default;
 $color-teal: #027180 !default;
-$color-sec-green-viridian: #668980 !default;
+$color-viridian-green: #668980 !default;
 $color-sec-blue-pacific: #00adc6 !default;
 $color-sec-green-greyjoy: #9fbeaf !default;
 $color-sec-green-aqua: #9fd9b4 !default;
