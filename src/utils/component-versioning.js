@@ -1,11 +1,6 @@
 import { html } from 'lit-element';
 import defineOnce from './define-once';
 
-// constants
-/* eslint-disable no-undef */
-const VERSIONINFO = __VERSION_INFO__; // will be instantiated by build / webpack
-/* eslint-enable no-undef */
-
 // helper functions
 const toKebabCase = dottedVersionString =>
   `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
@@ -46,38 +41,28 @@ const rewrite = (someStrings, aTagName, aVersion) =>
 // API functions
 // ///
 
-// examples: defineVersioned(AXADatepicker, [AXADropdown, AXAButton]);
-//           defineVersioned(AXADatepicker);
-//           defineVersioned(this, [AXADropdown]);
-//           defineVersioned(AXACheckbox, [], 'rsv');
-const defineVersioned = (
-  aComponentClass,
-  dependencies = [],
-  overrideVersion
-) => {
-  // for convenience, allow passing both instances and classes
-  const componentClass =
-    aComponentClass instanceof HTMLElement
-      ? aComponentClass.constructor
-      : aComponentClass;
-  // is this only a single-component definition?
-  if (dependencies.length === 0) {
-    // yes, inject version info into component-defining class
-    const { tagName } = componentClass;
-    componentClass.versions = VERSIONINFO[tagName];
-    // define its *unversioned*-tag variant first
-    defineOnce(tagName, componentClass);
-    // then queue itself as a to-be-versioned pseudo-dependency
-    dependencies.push(componentClass);
-  }
-  // get version info of component
-  const { versions } = componentClass;
+// examples: defineVersioned(AXADatepicker, AXADropdown, AXAButton], __VERSION_INFO__);
+//           defineVersioned([AXADatepicker],  __VERSION_INFO__);
+//           defineVersioned([this, AXADropdown],  __VERSION_INFO__);
+//           defineVersioned([AXACheckbox], 'rsv');
+const defineVersioned = (dependencies, versionInfo) => {
+  const customVersion = typeof versionInfo === 'string' && versionInfo;
+  // process all dependant components that it lists...
   let versionedTagName = '';
-  // process all dependant component that it lists...
-  dependencies.forEach(dependentComponentClass => {
+  dependencies.forEach(dependency => {
+    const componentClass =
+      dependency instanceof HTMLElement ? dependency.constructor : dependency;
+    // ordinary, non-POD versioning?
+    if (!customVersion) {
+      // yes, inject version info into component-defining class
+      const { tagName } = componentClass;
+      componentClass.versions = versionInfo[tagName];
+      // define its *unversioned*-tag variant first
+      defineOnce(tagName, componentClass);
+    }
     // extracting each dependant component's version,
-    const { tagName } = dependentComponentClass;
-    const version = overrideVersion || versions[tagName];
+    const { tagName, versions } = componentClass;
+    const version = customVersion || versions[tagName];
     // assembling a new, versioned name,
     versionedTagName = versionedTag(tagName, version);
     // and redundantly defining
@@ -89,10 +74,10 @@ const defineVersioned = (
     // which is needed to get around a bi-uniqueness constraint imposed by the
     // custom-elements registry, cf. https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define
     // under section Exceptions:NotSupportedError)
-    defineOnce(versionedTagName, class extends dependentComponentClass {});
+    defineOnce(versionedTagName, class extends componentClass {});
   });
 
-  return versionedTagName; // for convenience in single-component definitions
+  return versionedTagName; // for convenience in single-component custom-versioned definitions
 };
 
 const versionedHtml = componentInstance => (strings, ...args) => {

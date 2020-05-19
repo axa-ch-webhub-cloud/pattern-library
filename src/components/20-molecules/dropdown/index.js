@@ -414,6 +414,7 @@ class AXADropdown extends NoShadowDOM {
   }
 }
 
-defineVersioned(AXADropdown);
+/* eslint-disable no-undef */
+defineVersioned([AXADropdown], __VERSION_INFO__);
 
 export default AXADropdown;

@@ -154,7 +154,7 @@ const distributeProperties = (properties, componentClass) => {
 export default (createElement, componentClass, version) => {
   const { tagName } = componentClass;
   const finalTagName = version
-    ? defineVersioned(componentClass, [], version)
+    ? defineVersioned([componentClass], version)
     : tagName;
   const displayName = pascalCase(finalTagName);
 

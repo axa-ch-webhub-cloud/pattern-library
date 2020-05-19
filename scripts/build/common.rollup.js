@@ -14,7 +14,7 @@ const globalSassImports = require('../../config/globals.js')
   .join('\n');
 
 const { gatherVersions } = require('./version_info.js');
-const stringifiedVersionInfo = gatherVersions('', pathResolve(__dirname, '../..'));
+const stringifiedVersionInfo = gatherVersions();
 
 module.exports.commonPlugins = [
   replace({

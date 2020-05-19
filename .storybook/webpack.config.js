@@ -13,8 +13,8 @@ const globals = require(path.resolve(__dirname, '..', 'config', 'globals.js'))
   .replace(/\\/g, '/'); // use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash
 ;
 
-const { gatherVersions } = require(path.resolve(__dirname, '..', 'scripts', 'build', 'version_info.js'));
-const stringifiedVersionInfo = gatherVersions(path.resolve(__dirname, '..'));
+const { gatherAllVersions } = require(path.resolve(__dirname, '..', 'scripts', 'build', 'version_info.js'));
+const stringifiedVersionInfo = gatherAllVersions(path.resolve(__dirname, '..'));
 
 module.exports = ({ config }) => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {

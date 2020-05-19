@@ -1,53 +1,80 @@
 // GATHER VERSION INFO FROM COMPONENTS
 const path = require('path');
 const fs = require('fs');
-
-// synchronous directory-walker iterator
-function *walkSync(dir, filter = /.*/, acceptable = () => true) {
-  const files = fs.readdirSync(dir);
-
-  for (const file of files) {
-      const pathToFile = path.join(dir, file);
-      const isDirectory = fs.statSync(pathToFile).isDirectory();
-      if (isDirectory) {
-          yield *walkSync(pathToFile, filter, acceptable);
-      } else if (filter.test(pathToFile) && acceptable(dir, file, pathToFile)) {
-          yield pathToFile.split(path.sep);
-      }
-  }
-}
+const {cwd} = process;
 
 // helpers
-const requirePackageJSON = dir => fs.existsSync(path.join(dir, 'package.json'));
-
 const clean = name => name.replace(/^@axa\-ch\//, 'axa-');
 
 const justVersionInfo = info => info.replace(/[^A-Za-z0-9\.]/g, ''); // deliberate consequence: ignore caret
 
-const pick = object => {
+const pick = (object, ignore = {}) => {
   const result = {};
-  const components = Object.keys(object).filter( key => key.indexOf('@axa-ch/') === 0 );
+  const components = Object.keys(object).filter( key => key.indexOf('@axa-ch/') === 0 && !ignore[key]);
   components.forEach( name => {
     result[clean(name)] = justVersionInfo(object[name]);
   });
   return result;
 }
 
-const gatherVersions = (currentDirectory, startDirectory = '') => {
-    const versionInfo = {};
-    // find all importable components ...
-    for (const file of walkSync(`${startDirectory ? startDirectory + path.sep : ''}src${path.sep}components`, /(?<!node_modules.*)package\.json$/, requirePackageJSON)) {
-        // construct full path to component package.json
-        const filePath = [currentDirectory, ...file].join(path.sep);
-        // load package.json's content
-        const packageJSON = require(filePath);
-        // extract relevant key-value pairs
-        const {name, version, dependencies = {}} = packageJSON;
-        // harvest version info from them
-        versionInfo[clean(name)] = {[clean(name)]: version, ...pick(dependencies)};
+const ignoreNonComponents = (packages, ignores) => packages.filter( package => {
+    // ignore components classified under our Atomic-Design scheme as starting with 0
+    // (i.e. currently 00-materials, 05-utils)
+    const ignore = package.indexOf('src/components/0') > -1;
+    if (ignore) {
+        const [_, lastPathComponent] = package.match(/([a-z]+)$/);
+        if (!lastPathComponent) {
+            return true;
+        }
+        const dependencyStylePackage = `@axa-ch/${lastPathComponent}`;
+        ignores[dependencyStylePackage] = true;
     }
+    return !ignore;
+});
 
-    return JSON.stringify(versionInfo);
+const parseLernaJSON = aDirectory => {
+    // read lerna.json in directory passed to get all relevant components
+    const directoryPath = `${aDirectory}${path.sep}`;
+    const lernaFilePath = `${directoryPath}lerna.json`;
+    const lernaJSON = require(lernaFilePath);
+    const {packages} = lernaJSON;
+    // iterate over all component packages in lerna.json,
+    // and partition into components proper and to-be-ignored ones
+    const ignore = {};
+    const components = ignoreNonComponents(packages, ignore);
+    return {ignore, components, directoryPath};
+};
+
+// rollup version, is invoked in each component directory
+const gatherVersions = (aPath = cwd(), versionInfo = {}, ignore) => {
+    // determine to-be-ignored dependencies, if not passed-in already
+    if (ignore === undefined) {
+        ({ignore} = parseLernaJSON(path.resolve(aPath, '..', '..', '..', '..')));
+    }
+    // construct full path to component package.json
+    const filePath = `${aPath}${path.sep}package.json`;
+    // bail out if package.json missing
+    if (!fs.existsSync(filePath)) {
+        return '{}';
+    }
+    // load package.json's content
+    const packageJSON = require(filePath);
+    // extract relevant key-value pairs
+    const {name, version, dependencies = {}} = packageJSON;
+    // harvest version info from them
+    versionInfo[clean(name)] = {[clean(name)]: version, ...pick(dependencies, ignore)};
+    return JSON.stringify(versionInfo); // stringify: because a string-replacing plugin will use this
 }
 
+// webpack/storybook version, is invoked once at top level
+const gatherAllVersions = aDirectory => {
+    const {ignore, components, directoryPath} = parseLernaJSON(aDirectory);
+    // ... harvesting version info for each component
+    const versionInfo = {};
+    components.forEach(componentPath => gatherVersions(`${directoryPath}${componentPath}`, versionInfo, ignore))
+    // return version info in aggregate form
+    return JSON.stringify(versionInfo); // stringify: because a string-replacing plugin will use this
+};
+
 module.exports.gatherVersions = gatherVersions;
+module.exports.gatherAllVersions = gatherAllVersions;

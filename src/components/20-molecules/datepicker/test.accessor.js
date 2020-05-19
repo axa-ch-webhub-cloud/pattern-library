@@ -126,7 +126,7 @@ class DatePickerAccessor {
   datepickerDropdownButton = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('[class*="js-datepicker__dropdown-month"]')
       .querySelector('.js-dropdown__title')
   );
 
@@ -152,14 +152,14 @@ class DatePickerAccessor {
   selectAnyMonthSelector = Selector((id, numericMonth, native) => {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('[class*="js-datepicker__dropdown-month"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
       )
       .scrollIntoView();
     return document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('[class*="js-datepicker__dropdown-month"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-index="${numericMonth}"]`
       );
@@ -168,14 +168,14 @@ class DatePickerAccessor {
   selectAnyYearSelector = Selector((id, numericYear, native) => {
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
+      .querySelector('[class*="js-datepicker__dropdown-year"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
       )
       .scrollIntoView();
     return document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
+      .querySelector('[class*="js-datepicker__dropdown-year"]')
       .querySelector(
         `${native ? 'option' : 'button'}[data-value="${numericYear}"]`
       );
@@ -184,19 +184,19 @@ class DatePickerAccessor {
   selectMonthDropdownSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown')
+      .querySelector('.js-datepicker__dropdown-month')
   );
 
   yearDropdownSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-year"]')
+      .querySelector('.js-datepicker__dropdown-year')
   );
 
   monthDropdownSelector = Selector(id =>
     document
       .querySelector(`axa-datepicker[data-test-id="${id}"]`)
-      .querySelector('axa-dropdown[class*="js-datepicker__dropdown-month"]')
+      .querySelector('.js-datepicker__dropdown-month')
   );
 
   dayListSelector = Selector(id =>

@@ -255,7 +255,9 @@ class AXADatepicker extends NoShadowDOM {
     );
 
     // ensure we use the versioned variant of axa-dropdown internally
-    defineVersioned(this, [AXADropdown]);
+    /* eslint-disable no-undef */
+    defineVersioned([AXADropdown], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
@@ -719,6 +721,7 @@ class AXADatepicker extends NoShadowDOM {
   }
 }
 
-defineVersioned(AXADatepicker);
+/* eslint-disable no-undef */
+defineVersioned([AXADatepicker], __VERSION_INFO__);
 
 export default AXADatepicker;
