@@ -28,16 +28,16 @@ axa-input-text {
     @include typo();
     appearance: none;
     background: $color-prim-white;
-    border: $border-width $border-type $color-prim-gray-dusty;
+    border: $border-width $border-type $color-light-grey;
     border-radius: 0;
     box-sizing: border-box;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
     height: 40px;
     padding: 0 20px;
     width: 100%;
 
     &::placeholder {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     &::-ms-clear {
@@ -57,24 +57,24 @@ axa-input-text {
     }
 
     &--error {
-      border: $border-width $border-type $color-validation-error;
+      border: $border-width $border-type $color-shy-tomato;
 
       &:hover,
       &:active,
       &:focus {
-        border: $border-width $border-type $color-validation-error;
+        border: $border-width $border-type $color-shy-tomato;
       }
 
       &:focus, &.focus {
-        outline: $border-width $border-type $color-validation-error;
+        outline: $border-width $border-type $color-shy-tomato;
         outline-offset: -2px;
       }
     }
 
     &:disabled {
-      color: $color-prim-gray-dusty;
-      background-color: $color-prim-gray-alabaster;
-      border-color: $color-prim-gray-mercury;
+      color: $color-light-grey;
+      background-color: $color-alabaster;
+      border-color: $color-mercury;
     }
   }
 
@@ -86,12 +86,12 @@ axa-input-text {
     @include typo(primary, medium);
     display: block;
     font-weight: 600;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
     margin-bottom: 10px;
   }
 
   &[disabled] .a-input-text__label {
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
   }
 
   .a-input-text__check {
@@ -104,12 +104,12 @@ axa-input-text {
   .a-input-text__error {
     @include typo();
     display: block;
-    color: $color-validation-error;
+    color: $color-shy-tomato;
     margin-top: 10px;
   }
 
   .a-input-text__character-overflow-error {
-    color: $color-validation-error;
+    color: $color-shy-tomato;
   }
 
   .a-input-text__counter-info {

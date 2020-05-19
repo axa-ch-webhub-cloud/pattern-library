@@ -22,5 +22,5 @@
 
 ## 1.3.6
 
-- Table header text is now standard gray, not blue
+- Table header text is now standard grey, not blue
 - Sorting arrows visibility in non-active mode changed

@@ -58,7 +58,7 @@ story.add('Datepicker', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div style="background-color: lightgray">
+    <div style="background-color: lightgrey">
       <axa-datepicker
         locale="${locale}"
         ?inputfield="${inputfield}"

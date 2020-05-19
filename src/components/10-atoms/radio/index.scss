@@ -48,17 +48,17 @@ axa-radio {
     }
 
     &:checked + .a-radio__icon::after {
-      border-color: $color-prim-gray-dusty;
+      border-color: $color-light-grey;
       background-color: $color-axa-blue;
     }
 
     &:disabled + .a-radio__icon {
       cursor: default;
-      border-color: $color-prim-gray-silver;
+      border-color: $color-silver;
 
       &::after {
-        border-color: $color-prim-gray-silver;
-        background-color: $color-prim-gray-silver;
+        border-color: $color-silver;
+        background-color: $color-silver;
       }
     }
   }
@@ -71,7 +71,7 @@ axa-radio {
     justify-content: center;
     align-items: center;
     background: #fff;
-    border: 1px solid $color-prim-gray-dusty;
+    border: 1px solid $color-light-grey;
     cursor: pointer;
     flex-shrink: 0;
     border-radius: 50%;
@@ -96,7 +96,7 @@ axa-radio {
       display: block;
       margin: 0;
       line-height: 1.37;
-      color: $color-prim-gray-mine-shaft;
+      color: $color-dark-grey;
   }
 
   &[button] {
@@ -105,8 +105,8 @@ axa-radio {
     height: 40px;
 
     .a-radio__wrapper {
-      background-color: $color-prim-gray-wild-sand;
-      border: 1px solid $color-prim-gray-dusty;
+      background-color: $color-wild-sand;
+      border: 1px solid $color-light-grey;
       padding: 0 20px;
       cursor: pointer;
       width: inherit;
@@ -119,7 +119,7 @@ axa-radio {
 
     .a-radio__content {
         display: table;
-        background-color: $color-prim-gray-wild-sand;
+        background-color: $color-wild-sand;
         padding: 0;
         text-align: center;
         text-transform: uppercase;
@@ -146,13 +146,13 @@ axa-radio {
 
   &[disabled] {
     .a-radio__wrapper {
-      background-color: $color-prim-gray-alabaster;
-      border-color: $color-prim-gray-mercury;
-      color: $color-prim-gray-silver;
+      background-color: $color-alabaster;
+      border-color: $color-mercury;
+      color: $color-silver;
       cursor: default;
 
       &:hover {
-        border-color: $color-prim-gray-mercury;
+        border-color: $color-mercury;
       }
     }
 

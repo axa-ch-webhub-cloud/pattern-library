@@ -1,7 +1,7 @@
 @import '../../00-materials/styles/mixins/check-mark-animated';
 
 $dropdown-border-width: 1px;
-$dropdown-color: $color-prim-gray-mine-shaft !default;
+$dropdown-color: $color-dark-grey !default;
 $dropdown-color--hover: $color-axa-blue !default;
 $dropdown-bottom-border-width: 2px;
 $dropdown-height: 40px;
@@ -43,7 +43,7 @@ axa-dropdown {
     @include typo(primary, medium);
     display: block;
     font-weight: 600;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
     margin-bottom: 10px;
   }
 
@@ -64,7 +64,7 @@ axa-dropdown {
   .m-dropdown__select-wrapper {
     display: flex;
     align-items: center;
-    border: $dropdown-border-width solid $color-prim-gray-dusty;
+    border: $dropdown-border-width solid $color-light-grey;
     width: 100%;
     background-color: $color-prim-white;
     height: $dropdown-height;
@@ -137,7 +137,7 @@ axa-dropdown {
     position: relative;
     background: $color-prim-white;
     color: $dropdown-color;
-    border: $dropdown-border-width solid $color-prim-gray-dusty;
+    border: $dropdown-border-width solid $color-light-grey;
     padding: 0 40px 0 20px;
     width: 100%;
     box-sizing: border-box;
@@ -202,24 +202,24 @@ axa-dropdown {
     }
 
     &:hover {
-      background-color: $color-prim-gray-wild-sand;
+      background-color: $color-wild-sand;
     }
 
     &:focus {
       outline: solid 1px $color-axa-blue;
       outline-offset: -1px;
-      background-color: $color-prim-gray-wild-sand;
+      background-color: $color-wild-sand;
     }
   }
 
   // ENHANCED LIST-ITEMS
   .m-dropdown__item {
-    border-left: $dropdown-border-width solid $color-prim-gray-silver;
-    border-right: $dropdown-border-width solid $color-prim-gray-silver;
+    border-left: $dropdown-border-width solid $color-silver;
+    border-right: $dropdown-border-width solid $color-silver;
     box-sizing: border-box;
 
     &:last-child {
-      border-bottom: $dropdown-bottom-border-width solid $color-prim-gray-silver;
+      border-bottom: $dropdown-bottom-border-width solid $color-silver;
       box-sizing: border-box;
     }
 
@@ -285,12 +285,12 @@ axa-dropdown {
   &[invalid] {
     .m-dropdown__select,
     .m-dropdown__toggle {
-      border-color: $color-validation-error;
+      border-color: $color-shy-tomato;
     }
 
     .m-dropdown__toggle:focus,
     .m-dropdown__select:focus {
-      outline-color: $color-validation-error;
+      outline-color: $color-shy-tomato;
     }
   }
 
@@ -310,26 +310,26 @@ axa-dropdown {
     @include typo();
     display: block;
     margin-top: 10px;
-    color: $color-validation-error;
+    color: $color-shy-tomato;
   }
 
   .m-dropdown__select:disabled,
   [aria-disabled='true'] {
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
     pointer-events: none;
   }
 
   &[disabled] {
     .m-dropdown__select-wrapper,
     .m-dropdown__toggle {
-      border-color: $color-prim-gray-mercury;
-      background-color: $color-prim-gray-alabaster;
+      border-color: $color-mercury;
+      background-color: $color-alabaster;
     }
 
     /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
     .m-dropdown__select-icon.m-dropdown__select-icon {
       svg {
-        color: $color-prim-gray-dusty;
+        color: $color-light-grey;
       }
     }
   }
