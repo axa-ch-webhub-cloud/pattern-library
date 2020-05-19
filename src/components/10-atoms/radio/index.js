@@ -205,6 +205,13 @@ class AXARadio extends NoShadowDOM {
     if (button) {
       // give DOM some time to paint before measuring width
       window.requestAnimationFrame(() => {
+        // since up to 16ms could have passed since last animation frame,
+        // do basic sanity checking to ascertain this component instance
+        // is still alive and hasn't been removed (e.g. by React parent)
+        // (isConnected is polyfilled for IE in webcomponentjs polyfill)
+        if (!this || !this.isConnected || !radioButtonGroup[name]) {
+          return;
+        }
         const { width: labelTextWidth } = this.querySelector(
           '.js-radio__content'
         ).getBoundingClientRect();
