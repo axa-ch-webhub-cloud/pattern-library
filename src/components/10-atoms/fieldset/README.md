@@ -68,11 +68,12 @@ Starred property names are reflected to attributes.
 
 ### horizontal\*
 
-String `horizontal` changes the layout direction of the element's children to horizontal (default: false). It also imposes the correct horizontal gaps between children, except for children with a `nogap` attribute.
+The string-valued `horizontal` attribute changes the layout direction of the element's children to horizontal (default: "horizontal"). It also imposes the correct horizontal gaps between children, except for children with a `nogap` attribute.
 
-The `horizontal` attribute is typically used to ensure correct layout for a group of &lt;axa-radio&gt; buttons.
-
-`stretch` mode is responsive: when crossing the `sm(all)` breakpoint (575px), this component forces conformant children to assume 100% width and rearranges them into a vertical layout with correct vertical spacing.
+| Attribute                 | Details                                                                                                                                                                                                           |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `horizontal="horizontal"` | Ensure correct layout for a group of &lt;axa-radio&gt; buttons.                                                                                                                                                   |
+| `horizontal="stretch"`    | This mode is responsive: when crossing the `sm(all)` breakpoint (575px), this component forces conformant children to assume 100% width and rearranges them into a vertical layout with correct vertical spacing. |
 
 ### error\*
 
