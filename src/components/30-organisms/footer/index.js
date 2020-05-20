@@ -4,7 +4,7 @@ import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
-import '@axa-ch/container';
+import AXAContainer from '@axa-ch/container';
 import {
   defineVersioned,
   versionedHtml,
@@ -14,7 +14,6 @@ import styles from './index.scss';
 import childStyles from './child.scss';
 
 import InlineStyles from '../../../utils/inline-styles';
-import AXAContainer from '../container';
 
 const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 

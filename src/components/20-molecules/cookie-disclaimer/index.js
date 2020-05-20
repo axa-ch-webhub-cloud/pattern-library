@@ -1,5 +1,7 @@
 import { LitElement, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import AXAButton from '@axa-ch/button';
+import AXAContainer from '@axa-ch/container';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import {
@@ -8,8 +10,6 @@ import {
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
-import AXAButton from '../../10-atoms/button';
-import AXAContainer from '../../30-organisms/container';
 
 const _global = window || global;
 

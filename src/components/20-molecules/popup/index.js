@@ -17,3 +17,5 @@ const axaPopupContentVersion = {
 
 defineVersioned([AXAPopupButton], axaPopupButtonVersion);
 defineVersioned([AXAPopupContent], axaPopupContentVersion);
+
+export { AXAPopupButton, AXAPopupContent };

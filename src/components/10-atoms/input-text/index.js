@@ -2,9 +2,7 @@
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { AXAPopupMixin } from '@axa-ch/popup';
-import AXAPopupButton from '@axa-ch/popup/popup-button';
-import AXAPopupContent from '@axa-ch/popup/popup-content';
+import { AXAPopupMixin, AXAPopupButton, AXAPopupContent } from '@axa-ch/popup';
 
 import NoShadowDOM from '../../../utils/no-shadow';
 import {

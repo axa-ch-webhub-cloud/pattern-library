@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import AXAContainer from '../container';
+import AXAContainer from '@axa-ch/container';
 import {
   defineVersioned,
   versionedHtml,
