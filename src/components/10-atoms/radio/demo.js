@@ -1,5 +1,6 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+/* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg } from '@axa-ch/materials/images';
 import { html, render } from 'lit-html';
 import './index';
