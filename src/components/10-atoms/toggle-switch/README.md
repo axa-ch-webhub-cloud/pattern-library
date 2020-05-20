@@ -30,8 +30,7 @@ export default AXAToggleSwitchReact;
 ```
 
 ```js
-<AXAToggleSwitchReact onClick={handler}>
-</AXAToggleSwitchReact>
+<AXAToggleSwitchReact onClick={handler}></AXAToggleSwitchReact>
 ```
 
 ### Pure HTML pages
@@ -58,9 +57,9 @@ Import the toggle-switch-defining script and use a toggle-switch like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute       | Details         |
+| --------------- | --------------- |
+| `variant="foo"` | Desc of Variant |
 
 ### Bar
 
