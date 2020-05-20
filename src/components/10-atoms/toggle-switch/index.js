@@ -1,5 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
-
+import { css, html, LitElement, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import defineOnce from '../../../utils/define-once';
 import { applyDefaults } from '../../../utils/with-react';
@@ -53,5 +52,4 @@ class AXAToggleSwitch extends LitElement {
 }
 
 defineOnce(AXAToggleSwitch.tagName, AXAToggleSwitch);
-
 export default AXAToggleSwitch;
