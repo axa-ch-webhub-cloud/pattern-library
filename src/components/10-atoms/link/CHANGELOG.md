@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Fix external attribute of link. #1746
+
 ## 3.0.0
 
 - BREAKING CHANGE: Now the referenced icons have the dimension 24x24 pixels, which is set by the icons component. (#1725)

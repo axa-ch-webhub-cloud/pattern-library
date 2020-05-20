@@ -40,13 +40,6 @@ class AXATableSortable extends LitElement {
       sensitivity: 'variant',
     });
     this.lastIndex = -1;
-
-    this.dateColumnsCustomSort = this.dateSortColumnIndex
-      .split(',')
-      .map(cellIndex => {
-        const parsed = parseInt(cellIndex, 10);
-        return isNaN(parsed) ? undefined : parsed;
-      });
   }
 
   static get tagName() {
@@ -158,6 +151,15 @@ class AXATableSortable extends LitElement {
   // For longer arrays time complexity is Θ(n log(n)) (average case),
   // and space complexity is O(log(n))
   sort(arr, index, sortAs) {
+    // Declaration of dateColumnsCustomSort had to be moved from the constructor, because
+    // the value of this.dateSortColumnIndex wasn't available
+    const dateColumnsCustomSort = this.dateSortColumnIndex
+      .split(',')
+      .map(cellIndex => {
+        const parsed = parseInt(cellIndex, 10);
+        return isNaN(parsed) ? undefined : parsed;
+      });
+
     return arr.sort((rowLx, rowRx) => {
       const {
         [index]: { html: cellRx },
@@ -171,11 +173,7 @@ class AXATableSortable extends LitElement {
         return sortAs === ASC ? compNumber : -compNumber;
       };
       let result;
-
-      if (
-        this.dateSortColumnIndex &&
-        this.dateColumnsCustomSort.includes(index)
-      ) {
+      if (this.dateSortColumnIndex && dateColumnsCustomSort.includes(index)) {
         const cleanDateLx = this.convertDateToUnixEpochInteger(cleanCellLx);
         const cleanDateRx = this.convertDateToUnixEpochInteger(cleanCellRx);
 

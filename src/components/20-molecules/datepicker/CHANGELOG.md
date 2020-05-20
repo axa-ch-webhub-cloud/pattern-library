@@ -1,3 +1,12 @@
+## 7.0.5
+
+- Fix wrong date formatting for locale `it-CH` (#1740)
+- Now all month identifiers of all languages are capitalized at IE browser.
+
+## 7.0.4
+
+- Remove min-width from input element. (#1741)
+
 ## 7.0.1
 
 - Remove datepicker specific stylings from axa dropdown. (#1720)

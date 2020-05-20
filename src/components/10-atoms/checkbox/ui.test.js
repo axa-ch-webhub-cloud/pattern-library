@@ -86,14 +86,8 @@ test('should style checked error checkbox-icon inner box correctly', async t => 
   await t
     .wait(50)
     .expect(await getIconBackgroundColor())
-    .eql('rgb(0, 0, 143)'); // has to be blue when seleted, due to styleguide specification
+    .eql('rgb(0, 0, 143)'); // has to be blue when selected, due to styleguide specification
 });
-
-// test('should be clickable + change state', async t => {
-//   const $axaCheckbox = await Selector(TAG);
-//   await t.click($axaCheckbox);
-//   await t.expect($axaCheckbox.checked).ok();
-// });
 
 test('should set refId on label and input', async t => {
   const label = await Selector('.a-checkbox__wrapper');
@@ -277,4 +271,32 @@ test('should update checkbox when its children change', async t => {
   await t.click(buttonToRerenderCheckboxChildren);
   await t.expect(checkboxChildLabel.innerHTML).contains('Rerenders: 1');
   await t.expect(checkboxPropLabel.textContent).contains('Rerenders: 1');
+});
+
+fixture('Checkbox - controlled behaviour under React').page(
+  `${host}/iframe.html?id=components-atoms-checkbox-react-demo--checkbox-default-with-label`
+);
+
+test('should shows correct controlled behavior', async t => {
+  const frozenControl = await Selector('input[data-test-id="frozen"]');
+  const checkbox = await Selector('axa-checkbox');
+  const checkboxClickable = await Selector('axa-checkbox > label');
+  // clicking on checkbox changes checked state:
+  await t.expect(checkbox.exists).ok();
+  // from false before...
+  await t.expect(checkbox.checked).notOk();
+  // ... to true after click
+  await t.click(checkboxClickable);
+  await t.expect(checkbox.checked).ok();
+  // ... and back
+  await t.click(checkboxClickable);
+  await t.wait(50);
+  await t.expect(checkbox.checked).notOk();
+  // after freezing the last controlled state...
+  await t.click(frozenControl);
+  await t.wait(50);
+  // ... a click on the checkbox no longer changes state
+  await t.click(checkboxClickable);
+  await t.wait(50);
+  await t.expect(checkbox.checked).notOk();
 });

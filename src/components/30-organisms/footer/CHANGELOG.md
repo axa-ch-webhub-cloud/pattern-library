@@ -1,3 +1,7 @@
+## 3.0.8
+
+- Hardened `text-decoration` css property, because it was too easily unintentially overridden before by users.
+
 ## 3.0.0
 
 - The implementation of the wrapper to make a component React-ready has

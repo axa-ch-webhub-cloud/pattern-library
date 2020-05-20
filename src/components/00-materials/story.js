@@ -113,10 +113,10 @@ storiesOf('Materials', module)
           border: 1px solid;
           font-size: 14px;
           outline: none;
-          border-color: #e5e5e5; /* $color-prim-gray-mercury */
-          background-color: #fafafa; /* $color-prim-gray-alabaster */
-          color: #999; /* $color-prim-gray-dusty */
-          fill: #999; /* $color-prim-gray-dusty */
+          border-color: #e5e5e5; /* $color-mercury */
+          background-color: #fafafa; /* $color-alabaster */
+          color: #999; /* $color-light-grey */
+          fill: #999; /* $color-light-grey */
         }
         .input-field:hover {
           border: 1px solid #00008f;

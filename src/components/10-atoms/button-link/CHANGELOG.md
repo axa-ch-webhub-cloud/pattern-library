@@ -1,3 +1,7 @@
+## 3.1.0
+
+- It is now possible to set the css `width` property. (#1743)
+
 ## 3.0.2
 
 - When attribute `disabled` is set and a consumer has a click-listener, the click event is NOT triggered.
