@@ -1,9 +1,12 @@
 import { html, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/container';
-import '@axa-ch/carousel';
-import defineOnce from '../../../utils/define-once';
+import AXAContainer from '@axa-ch/container';
+import AXACarousel from '@axa-ch/carousel';
+import {
+  defineVersioned,
+  versionedHTML,
+} from '../../../utils/component-versioning';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
 import { applyDefaults } from '../../../utils/with-react';
@@ -40,12 +43,16 @@ class AXATestimonials extends InlineStyles {
 
     // default values props
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAContainer, AXACarousel], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
     this.inlineStyles('childStyles');
   }
 
+  /* eslint-disable indent */
   render() {
     const {
       title,
@@ -56,7 +63,7 @@ class AXATestimonials extends InlineStyles {
       keysenabled,
     } = this;
 
-    return html`
+    return versionedHTML(this)`
       <article class="o-testimonials">
         <axa-container>
           ${title &&
@@ -68,13 +75,14 @@ class AXATestimonials extends InlineStyles {
               <p class="o-testimonials__subtitle">${subtitle}</p>
             `}
           <div class="o-testimonials__content">
-            ${showallinline
-              ? html`
-                  <div class="o-testimonials__content__inline">
-                    <slot></slot>
-                  </div>
-                `
-              : html`
+            ${
+              showallinline
+                ? html`
+                    <div class="o-testimonials__content__inline">
+                      <slot></slot>
+                    </div>
+                  `
+                : versionedHTML(this)`
                   <div class="o-testimonials__content__carousel">
                     <axa-carousel
                       autorotatetime="${autorotatetime}"
@@ -84,7 +92,8 @@ class AXATestimonials extends InlineStyles {
                       <slot></slot>
                     </axa-carousel>
                   </div>
-                `}
+                `
+            }
           </div>
         </axa-container>
       </article>
@@ -96,6 +105,7 @@ class AXATestimonials extends InlineStyles {
   }
 }
 
-defineOnce(AXATestimonials.tagName, AXATestimonials);
+/* eslint-disable no-undef */
+defineVersioned([AXATestimonials], __VERSION_INFO__);
 
 export default AXATestimonials;

@@ -1,7 +1,7 @@
 import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -28,6 +28,7 @@ class AXAFieldset extends NoShadowDOM {
   }
 }
 
-defineOnce(AXAFieldset.tagName, AXAFieldset);
+/* eslint-disable no-undef */
+defineVersioned([AXAFieldset], __VERSION_INFO__);
 
 export default AXAFieldset;

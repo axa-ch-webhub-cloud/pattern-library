@@ -1,10 +1,13 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/icon';
+import AXAIcon from '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHTML,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 
 class AXALink extends LitElement {
@@ -27,6 +30,9 @@ class AXALink extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAIcon], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   render() {
@@ -86,7 +92,7 @@ class AXALink extends LitElement {
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
         ${this.variant.includes('arrowleft')
-          ? html`<axa-icon
+          ? versionedHTML(this)`<axa-icon
                     icon="arrow-right"
                     class="a-link__icon a-link__icon--left"
                   ></axa-icon>`
@@ -94,18 +100,19 @@ class AXALink extends LitElement {
         ${this.icon &&
         this.variant.includes('icon') &&
         !this.variant.includes('arrow')
-          ? html`<axa-icon
+          ? versionedHTML(this)`<axa-icon
                     icon="${this.icon}"
                     class="a-link__icon a-link__icon--left"
                   ></axa-icon>`
           : ''}
           <slot></slot>${this.variant.includes('arrowright')
-          ? html`<axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>`
+          ? versionedHTML(this)`<axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>`
           : ''}</a
       >`;
   }
 }
 
-defineOnce(AXALink.tagName, AXALink);
+/* eslint-disable no-undef */
+defineVersioned([AXALink], __VERSION_INFO__);
 
 export default AXALink;

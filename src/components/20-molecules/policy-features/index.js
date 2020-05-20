@@ -2,7 +2,7 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import './policy-features-item/index';
@@ -51,6 +51,7 @@ class AXAPolicyFeatures extends LitElement {
   }
 }
 
-defineOnce(AXAPolicyFeatures.tagName, AXAPolicyFeatures);
+/* eslint-disable no-undef */
+defineVersioned([AXAPolicyFeatures], __VERSION_INFO__);
 
 export default AXAPolicyFeatures;

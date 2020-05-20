@@ -1,6 +1,6 @@
 import { html, svg } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import { applyDefaults } from '../../../utils/with-react';
@@ -284,6 +284,7 @@ class AXARadio extends NoShadowDOM {
   }
 }
 
-defineOnce(AXARadio.tagName, AXARadio);
+/* eslint-disable no-undef */
+defineVersioned([AXARadio], __VERSION_INFO__);
 
 export default AXARadio;

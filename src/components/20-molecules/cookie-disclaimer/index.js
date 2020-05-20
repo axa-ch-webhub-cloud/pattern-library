@@ -1,10 +1,15 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHTML,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+import AXAButton from '../../10-atoms/button';
+import AXAContainer from '../../30-organisms/container';
 
 const _global = window || global;
 
@@ -31,6 +36,9 @@ class AXACookieDisclaimer extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAContainer, AXAButton], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
@@ -79,7 +87,7 @@ class AXACookieDisclaimer extends LitElement {
       'm-cookie-disclaimer': true,
       'm-cookie-disclaimer--fixed': variant === 'fixed',
     };
-    return html`
+    return versionedHTML(this)`
       <article class="${classMap(classes)}">
         <axa-container>
           <div class="m-cookie-disclaimer__container">
@@ -99,6 +107,7 @@ class AXACookieDisclaimer extends LitElement {
   }
 }
 
-defineOnce(AXACookieDisclaimer.tagName, AXACookieDisclaimer);
+/* eslint-disable no-undef */
+defineVersioned([AXACookieDisclaimer], __VERSION_INFO__);
 
 export default AXACookieDisclaimer;
