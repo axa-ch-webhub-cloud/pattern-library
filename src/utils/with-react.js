@@ -110,7 +110,7 @@ const distributeProperties = (properties, componentClass) => {
   let map;
   // iterate over all properties
   Object.keys(properties).forEach(name => {
-    let value = properties[name];
+    const value = properties[name];
     // classify property by type to select correct map object
     // (note that unregistered properties are classified as attr(ibute)s via their undefined .type)
     let type;
@@ -133,11 +133,8 @@ const distributeProperties = (properties, componentClass) => {
       case Array:
       case Object:
       case Function:
-        map = props;
-        break;
       case Boolean:
-        map = attrs;
-        value = value ? '' : null; // ''/null: canonicalize Boolean values s.t. val(...) sets or removes the attribute
+        map = props;
         break;
       default:
         map = declaredType ? props : attrs;

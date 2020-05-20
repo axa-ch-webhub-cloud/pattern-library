@@ -8,7 +8,7 @@
   &:active,
   &:hover {
     text-decoration: underline;
-    color: $color-prim-blue-deep-sapphire;
+    color: $color-deep-sapphire;
   }
 
   // Simple Link == Everything except the normal hyperlinks
@@ -36,11 +36,11 @@
   }
 
   &--red {
-    color: $color-prim-red-burnt-sienna;
+    color: $color-burnt-sienna;
 
     &:hover,
     &:active {
-      color: $color-prim-red-flamingo;
+      color: $color-flamingo;
     }
   }
 

@@ -2,7 +2,7 @@
   text-align: initial;
 
   color: $color-prim-white;
-  background-color: $color-prim-blue-dark-indigo;
+  background-color: $color-dark-indigo;
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
@@ -143,7 +143,7 @@
     display: flex;
     justify-content: space-between;
     color: $color-prim-white;
-    background-color: $color-prim-blue-dark-indigo;
+    background-color: $color-dark-indigo;
     padding: 20px 30px 20px 30px;
     width: 100%;
     text-align: left;
@@ -151,13 +151,13 @@
     border: none;
     outline: 0;
 
-    border-bottom: 1px solid $color-prim-blue-st-tropaz;
+    border-bottom: 1px solid $color-azure;
     text-transform: uppercase;
 
     svg {
       width: 10px;
       height: 10px;
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     &-caret {
@@ -202,13 +202,13 @@
       transition: max-height 0.2s ease-out;
 
       overflow: hidden;
-      background-color: $color-prim-blue-azure;
+      background-color: $color-azure;
 
       &-list-item {
         @include typo(primary, xx-small, default);
 
         padding: 0;
-        border-bottom: 1px solid $color-prim-blue-dark-indigo;
+        border-bottom: 1px solid $color-dark-indigo;
 
         color: $color-prim-white;
 
@@ -235,7 +235,7 @@
         width: 330px;
 
         // IE11 workaround (use 'unset'-property for those two elements)
-        background-color: $color-prim-blue-dark-indigo;
+        background-color: $color-dark-indigo;
         max-height: 1000px !important;
 
         &--short {

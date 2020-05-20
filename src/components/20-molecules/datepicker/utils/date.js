@@ -20,6 +20,9 @@ const BLUEPRINT_MONTH = 10; // 0-based index
 const BLUEPRINT_DAY = 23;
 const BLUEPRINT = new Date(BLUEPRINT_YEAR, BLUEPRINT_MONTH, BLUEPRINT_DAY); // safe even for buggy Safari...
 
+const LOCALE_DEFAULT = 'en-UK';
+const LOCALE_DE_CH = 'de-CH';
+
 export const getStartOfWeek = date => {
   return startOfWeek(date, { weekStartsOn: WEEK_STARTS_ON });
 };
@@ -66,8 +69,12 @@ const getMonthMatrix = (date, allowedYears = []) => {
 
 const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
 
-const clearStringFromIEGeneratedCharacters = string =>
-  string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
+const clearStringFromIEGeneratedCharacters = string => {
+  if (string) {
+    return string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
+  }
+  return '';
+};
 
 const addLeadingZeroes = (rawNumber, numDigits) => {
   const number = Math.abs(parseInt(rawNumber, 10)); // coerce number to integer >= 0
@@ -77,9 +84,20 @@ const addLeadingZeroes = (rawNumber, numDigits) => {
   return `${leadingZeroesString}${number}`;
 };
 
-const parseLocalisedDateIfValid = (locale = 'en', inputValue = '') => {
-  if (!Intl.DateTimeFormat.supportedLocalesOf(locale).length) {
-    throw new Error(`locale not supported: ${locale}`);
+const parseLocalisedDateIfValid = (
+  inputLocale = LOCALE_DEFAULT,
+  inputValue = ''
+) => {
+  let locale = inputLocale;
+  const localeUnsupported = () =>
+    !Intl.DateTimeFormat.supportedLocalesOf(locale).length;
+  const localeMissing = !locale;
+  const localeIsSwissItalian = locale === 'it-CH';
+
+  if (localeMissing || localeUnsupported()) {
+    locale = LOCALE_DEFAULT;
+  } else if (localeIsSwissItalian) {
+    locale = LOCALE_DE_CH; // change locale to de-CH because of wrong date formatting of browsers (#1740)
   }
 
   // find out which valid separator the current locale uses
@@ -162,7 +180,8 @@ const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   for (let i = 0; i < 12; i += 1) {
     objDate.setMonth(i);
     let month = objDate.toLocaleString(locale, { month: 'long' });
-    month = month[0].toUpperCase() + month.slice(1);
+    // Month identifier of some languages (f.a. italian) are not capitalized at IE. They have invisible characters at position 0. So we need a RegEx here.
+    month = month.replace(/[a-zA-Z]/, match => match.toUpperCase());
     finalArray.push(month);
   }
   return finalArray;

@@ -54,6 +54,7 @@ test('should show controlled-component behaviour in default mode', async t => {
   const radio2 = await Selector('axa-radio#radio2');
   const checked = await Selector('#checked');
   const button = await Selector('#button');
+  const visible = await Selector('#visible');
 
   await t.click(button);
 
@@ -80,4 +81,10 @@ test('should show controlled-component behaviour in default mode', async t => {
   await t.expect(radio2.getAttribute('checked')).notOk();
 
   await t.expect(radio1.getAttribute('checked')).eql('');
+
+  // rendering axa-radios invisible cleanly removes them from DOM without exceptions being thrown
+  await t.click(visible);
+
+  await t.expect(radio1.exists).notOk();
+  await t.expect(radio2.exists).notOk();
 });

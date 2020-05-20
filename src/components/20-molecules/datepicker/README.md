@@ -48,7 +48,9 @@ export default AXADatepickerReact;
 
 The string-valued `locale` defines region-specific date rendering preferences such as separators etc. (default: `de-CH`).
 
-_Note: Week start is hardwired to Monday, only its translation is influenced by `locale`._
+_Note 1: Week start is hardwired to Monday, only its translation is influenced by `locale`._
+
+_Note 2: The locale `it-CH` is mapped to date format `de-CH`. Example: `8.1.1982`_
 
 ### year
 
@@ -142,8 +144,7 @@ The intended use case is to easily convey external validation failure, e.g. when
 
 ### width
 
-String-valued `width` allows to override the intrinsic dimensions of the datepicker. Default is `100%`.
-Note that there is a minimum of `260px` if you use it inline and `197px` if you use it as a inputfield.
+String-valued `width` allows to override the intrinsic dimensions of the datepicker. Default is `100%`. Note that there is a minimum of `260px` if you use it inline.
 
 Example values:
 

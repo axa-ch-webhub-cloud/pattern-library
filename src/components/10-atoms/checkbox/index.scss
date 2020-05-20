@@ -69,7 +69,7 @@ axa-checkbox {
 
     &:disabled + .a-checkbox__icon {
       cursor: default;
-      border-color: $color-prim-gray-silver;
+      border-color: $color-silver;
 
       &::after {
         border-color: transparent;
@@ -80,7 +80,7 @@ axa-checkbox {
       background-color: $color-prim-white;
 
       .a-checkbox__icon-checkmark {
-        color: $color-prim-gray-silver;
+        color: $color-silver;
       }
     }
 
@@ -101,7 +101,7 @@ axa-checkbox {
     width: $checkbox-dimension;
     height: $checkbox-dimension;
     border: $checkbox-border-width solid;
-    border-color: $color-prim-gray-dusty;
+    border-color: $color-light-grey;
     box-sizing: border-box;
 
     &-checkmark {
@@ -132,7 +132,7 @@ axa-checkbox {
     display: block;
     margin: -19px 0 0 30px;
     line-height: 1.37;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
 
     &--inverted {
       color: $color-prim-white;
@@ -147,7 +147,7 @@ axa-checkbox {
 
   &[disabled] {
     .a-checkbox__content {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
 
       &--inverted {
         color: $color-disabled-inverted;
@@ -155,16 +155,16 @@ axa-checkbox {
     }
 
     .a-checkbox__input:checked + .a-checkbox__icon::after {
-      border-color: $color-prim-gray-silver;
-      background-color: $color-prim-gray-silver;
+      border-color: $color-silver;
+      background-color: $color-silver;
     }
   }
 
   &[error] {
-    color: $color-validation-error;
+    color: $color-shy-tomato;
 
     &:not([checked]) .a-checkbox__icon {
-      border-color: $color-validation-error;
+      border-color: $color-shy-tomato;
     }
   }
 

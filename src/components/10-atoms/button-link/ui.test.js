@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -24,6 +24,29 @@ test('should style button-link default css (test axa blue bg color)', async t =>
   await t
     .expect(await $axaButtonShadowEl.getStyleProperty('background-color'))
     .eql('rgb(0, 0, 143)');
+});
+
+test('should pass width to internal button', async t => {
+  const expectedWidth = '300px';
+  const $axaButtonLink = await Selector('axa-button-link');
+
+  const $axaButtonLinkShadow = await Selector(
+    () => document.querySelector('axa-button-link').shadowRoot
+  );
+
+  const $axaButtonShadowElement = await $axaButtonLinkShadow.find(
+    '.a-button-link'
+  );
+
+  const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
+    const element = selector();
+    element.style.width = styleValue;
+  });
+
+  await setStyleWidthAttribute($axaButtonLink, expectedWidth);
+  await t
+    .expect($axaButtonShadowElement.getStyleProperty('width'))
+    .eql(expectedWidth);
 });
 
 fixture('Button Link - set properties').page(
