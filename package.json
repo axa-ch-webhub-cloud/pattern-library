@@ -11,7 +11,7 @@
     "watch-components": "lerna run watch --parallel",
     "setup-npm-links": "node scripts/setup-npm-link.js",
     "postinstall": "lerna bootstrap --hoist && cross-env NODE_ENV=production npm run build-components",
-    "prepublish": "cross-env NODE_ENV=production npm run build-changed-components",
+    "prepublishOnly": "cross-env NODE_ENV=production npm run build-changed-components",
     "release": "npm whoami && npx lerna clean && rm -rf node_modules && npm install && npm run test && lerna version --exact && lerna publish from-package",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s src/static",
