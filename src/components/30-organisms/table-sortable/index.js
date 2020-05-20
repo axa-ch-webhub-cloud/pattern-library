@@ -5,7 +5,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import AXATable from '@axa-ch/table';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import { applyDefaults } from '../../../utils/with-react';
@@ -256,7 +256,7 @@ class AXATableSortable extends LitElement {
   render() {
     const { thead, tbody, tfoot } = this.model;
 
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <axa-table
         class="o-table-sortable"
         maxheight="${this.maxheight}"

@@ -4,7 +4,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import AXAContainer from '../container';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -64,7 +64,7 @@ class AXACommercialHeroBanner extends InlineStyles {
     // display the component. This seems to be connected to 'src' being
     // a prop, because hardcoded it works. Feel free to apply magic.
     /* eslint-disable indent */
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <header class="o-commercial-hero-banner">
         <div class="${classMap(containerClasses)}">
           <div

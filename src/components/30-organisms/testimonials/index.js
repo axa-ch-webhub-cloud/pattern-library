@@ -5,7 +5,7 @@ import AXAContainer from '@axa-ch/container';
 import AXACarousel from '@axa-ch/carousel';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
@@ -63,7 +63,7 @@ class AXATestimonials extends InlineStyles {
       keysenabled,
     } = this;
 
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <article class="o-testimonials">
         <axa-container>
           ${title &&
@@ -82,7 +82,7 @@ class AXATestimonials extends InlineStyles {
                       <slot></slot>
                     </div>
                   `
-                : versionedHTML(this)`
+                : versionedHtml(this)`
                   <div class="o-testimonials__content__carousel">
                     <axa-carousel
                       autorotatetime="${autorotatetime}"

@@ -4,7 +4,7 @@ import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -87,7 +87,7 @@ class AXACookieDisclaimer extends LitElement {
       'm-cookie-disclaimer': true,
       'm-cookie-disclaimer--fixed': variant === 'fixed',
     };
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <article class="${classMap(classes)}">
         <axa-container>
           <div class="m-cookie-disclaimer__container">

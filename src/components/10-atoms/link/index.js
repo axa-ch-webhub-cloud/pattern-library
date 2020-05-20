@@ -6,7 +6,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 
@@ -92,7 +92,7 @@ class AXALink extends LitElement {
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
         ${this.variant.includes('arrowleft')
-          ? versionedHTML(this)`<axa-icon
+          ? versionedHtml(this)`<axa-icon
                     icon="arrow-right"
                     class="a-link__icon a-link__icon--left"
                   ></axa-icon>`
@@ -100,13 +100,13 @@ class AXALink extends LitElement {
         ${this.icon &&
         this.variant.includes('icon') &&
         !this.variant.includes('arrow')
-          ? versionedHTML(this)`<axa-icon
+          ? versionedHtml(this)`<axa-icon
                     icon="${this.icon}"
                     class="a-link__icon a-link__icon--left"
                   ></axa-icon>`
           : ''}
           <slot></slot>${this.variant.includes('arrowright')
-          ? versionedHTML(this)`<axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>`
+          ? versionedHtml(this)`<axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>`
           : ''}</a
       >`;
   }

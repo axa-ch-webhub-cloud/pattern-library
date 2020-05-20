@@ -7,7 +7,7 @@ import { CaretSvg } from '@axa-ch/materials/icons';
 import '@axa-ch/container';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -223,7 +223,7 @@ class AXAFooter extends InlineStyles {
     }
 
     /* eslint-disable indent */
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <footer class="o-footer">
         <axa-container>
           <div class="o-footer__content">

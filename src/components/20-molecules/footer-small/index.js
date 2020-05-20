@@ -7,7 +7,7 @@ import footerSmallCSS from './index.scss';
 import childStyles from './child.scss';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import InlineStyles from '../../../utils/inline-styles';
@@ -94,7 +94,7 @@ class AXAFooterSmall extends InlineStyles {
 
   /* eslint-disable indent */
   render() {
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <article class="m-footer-small">
         <axa-container>
           <div class="m-footer-small__container">

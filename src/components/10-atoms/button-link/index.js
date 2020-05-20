@@ -7,7 +7,7 @@ import AXAIcon from '@axa-ch/icon';
 import { applyDefaults } from '../../../utils/with-react';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import buttonLinkCSS from './index.scss';
 import childStyles from './child.scss';
@@ -101,13 +101,13 @@ class AXAButtonLink extends InlineStyles {
       >
         <span class="a-button-link__flex-wrapper">
           ${this.showIcon
-            ? versionedHTML(this)`
+            ? versionedHtml(this)`
                 <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
               `
             : ''}
           <slot></slot>
           ${this.showArrow
-            ? versionedHTML(this)`
+            ? versionedHtml(this)`
                 <axa-icon
                   class="a-button-link__arrow"
                   icon="arrow-right"

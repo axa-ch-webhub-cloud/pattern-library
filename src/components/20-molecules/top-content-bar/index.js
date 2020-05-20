@@ -7,7 +7,7 @@ import AXAButtonLink from '@axa-ch/button-link';
 
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -53,7 +53,7 @@ class AXATopContentBar extends LitElement {
     const { ctatext, href } = this;
 
     if (href && ctatext) {
-      return versionedHTML(this)`
+      return versionedHtml(this)`
         <axa-button-link
           href="${href}"
           @click="${ev => {
@@ -68,7 +68,7 @@ class AXATopContentBar extends LitElement {
         </axa-button-link>
       `;
     } else if (ctatext) {
-      return versionedHTML(this)`
+      return versionedHtml(this)`
         <axa-button
           @click="${ev => {
             if (typeof this.onClick === 'function') {
@@ -94,7 +94,7 @@ class AXATopContentBar extends LitElement {
       'm-top-content-bar__container--warning': variant === 'warning',
     };
 
-    return versionedHTML(this)`
+    return versionedHtml(this)`
       <article class="m-top-content-bar">
         <div class="m-top-content-bar__container ${classMap(classes)}">
           <axa-container>

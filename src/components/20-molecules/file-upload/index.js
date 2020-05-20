@@ -15,7 +15,7 @@ import { FileUploadGroupSvg } from './icons';
 
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -408,7 +408,7 @@ class AXAFileUpload extends LitElement {
           class="${classMap(fileOverviewClasses)}"
         >
           ${!this.showFileOverview
-            ? versionedHTML(this)`
+            ? versionedHtml(this)`
                 <div>
                   ${FILE_UPLOAD_GROUP_ICON}
                 </div>

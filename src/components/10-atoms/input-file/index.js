@@ -5,7 +5,7 @@ import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import AXAIcon from '@axa-ch/icon';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import { applyDefaults } from '../../../utils/with-react';
@@ -74,7 +74,7 @@ class AXAInputFile extends NoShadowDOM {
       <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
         <span class="a-input-file__flex-wrapper">
           ${icon &&
-            versionedHTML(this)`
+            versionedHtml(this)`
               <axa-icon class="a-input-file__icon" icon="${icon}"></axa-icon>
             `}
           ${unsafeHTML(this.innerHTML)}

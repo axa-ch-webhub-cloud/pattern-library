@@ -9,7 +9,7 @@ import AXAPopupContent from '@axa-ch/popup/popup-content';
 import NoShadowDOM from '../../../utils/no-shadow';
 import {
   defineVersioned,
-  versionedHTML,
+  versionedHtml,
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
@@ -348,7 +348,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           }
         </div>
         ${info &&
-          versionedHTML(this)`
+          versionedHtml(this)`
             <axa-popup-button
               ?open="${_open}"
               class="a-input-text__info-button"
@@ -386,7 +386,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       </div>
       ${
         info
-          ? versionedHTML(this)`
+          ? versionedHtml(this)`
               <axa-popup-content
                 ?open="${_open}"
                 class="a-input-text__info-content"
