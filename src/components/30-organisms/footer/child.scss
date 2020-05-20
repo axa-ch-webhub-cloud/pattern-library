@@ -55,6 +55,7 @@ axa-footer {
 
     &:hover {
       color: rgba($color-prim-white, 0.65);
+      text-decoration: none; // Needed because this style is easily overwritten for a:hover declarations
     }
   }
 }
