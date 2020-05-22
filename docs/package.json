@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "name": "docs",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "deploy": "rm -rf public && gatsby build && gh-pages -d public"
+  },
+  "dependencies": {
+    "@loadable/component": "^5.12.0",
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
+    "@reach/router": "^1.1.1",
+    "@reactions/component": "^2.0.2",
+    "@segment/consent-manager": "^4.2.2",
+    "@segment/in-eu": "^0.3.0",
+    "@segment/in-regions": "^1.2.1",
+    "@segment/snippet": "^4.4.0",
+    "faker": "^4.1.0",
+    "fuzzaldrin-plus": "^0.6.0",
+    "gatsby": "^2.0.8",
+    "gatsby-plugin-canonical-urls": "^2.0.12",
+    "gatsby-plugin-favicon": "^3.1.4",
+    "gatsby-plugin-mdx": "^1.0.53",
+    "gatsby-plugin-postcss": "^2.3.1",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-source-filesystem": "^2.0.1",
+    "gatsby-transformer-react-docgen": "^5.2.1",
+    "lodash": "^4.17.11",
+    "postcss-browser-reporter": "^0.6.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-reporter": "^6.0.1",
+    "prism-react-renderer": "^1.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-github-button": "^0.1.11",
+    "react-helmet": "^6.0.0",
+    "react-live": "2.2.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.0",
+    "prettier": "^2.0.5"
+  },
+  "xo": false
+}

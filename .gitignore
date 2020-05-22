@@ -26,6 +26,9 @@ node_modules
 
 # Optional npm cache directory
 .npm
+.cache
 
 .DS_Store
 .coverage
+
+
