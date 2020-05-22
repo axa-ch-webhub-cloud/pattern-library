@@ -3,7 +3,7 @@
   "name": "docs",
   "version": "1.0.0",
   "scripts": {
-    "dev": "gatsby develop",
+    "start": "gatsby develop",
     "build": "gatsby build",
     "deploy": "rm -rf public && gatsby build && gh-pages -d public"
   },
@@ -43,6 +43,5 @@
   "devDependencies": {
     "gh-pages": "^2.0.0",
     "prettier": "^2.0.5"
-  },
-  "xo": false
+  }
 }

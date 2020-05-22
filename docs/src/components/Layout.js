@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import absolutePath from '../absolutePath'
 import '../css/index.css' // eslint-disable-line import/no-unassigned-import
@@ -31,10 +30,6 @@ const TemplateWrapper = ({ children }) => {
       {children}
     </React.Fragment>
   )
-}
-
-TemplateWrapper.propTypes = {
-  children: PropTypes.node
 }
 
 export default TemplateWrapper

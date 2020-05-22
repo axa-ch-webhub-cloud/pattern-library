@@ -45,14 +45,15 @@ export default class Root extends React.Component {
           <title>Evergreen</title>
         </Helmet>
         <div>
-          <TopBar />
+          {/* <TopBar /> */}
           <main>
-            <HomeHero />
-            <Features />
-            <Media title="Evergreen Related Media" items={mediaItems} />
+          <h1>Main</h1>
+            {/* <HomeHero /> */}
+            {/* <Features /> */}
+            {/* <Media title="Evergreen Related Media" items={mediaItems} /> */}
           </main>
         </div>
-        <PageFooter />
+        {/* <PageFooter /> */}
       </Layout>
     )
   }
