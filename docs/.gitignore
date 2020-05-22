@@ -1,0 +1,12 @@
+# Docs Gatsby website
+*.log
+node_modules
+.DS_Store
+/.out/
+public/
+.cache
+/npm-shrinkwrap.json
+/.idea/
+
+# Local Netlify folder
+.netlify

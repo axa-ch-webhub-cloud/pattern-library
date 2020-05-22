@@ -1,0 +1,9 @@
+.PageFooter-inner {
+  padding: var(--space-3);
+
+  text-align: right;
+
+  & p {
+    font-size: 14px;
+  }
+}

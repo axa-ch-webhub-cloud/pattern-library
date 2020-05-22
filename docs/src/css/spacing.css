@@ -1,0 +1,53 @@
+.mt-0 {
+  margin-top: 0;
+}
+
+.mb-1 {
+  margin-bottom: var(--space-1);
+}
+.mb-2 {
+  margin-bottom: var(--space-2);
+}
+.mb-3 {
+  margin-bottom: var(--space-3);
+}
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+.mb-5 {
+  margin-bottom: var(--space-5);
+}
+.mb-6 {
+  margin-bottom: var(--space-6);
+}
+.mb-7 {
+  margin-bottom: var(--space-7);
+}
+.mb-8 {
+  margin-bottom: var(--space-8);
+}
+
+.mw-1 {
+  max-width: var(--space-1);
+}
+.mw-2 {
+  max-width: var(--space-2);
+}
+.mw-3 {
+  max-width: var(--space-3);
+}
+.mw-4 {
+  max-width: var(--space-4);
+}
+.mw-5 {
+  max-width: var(--space-5);
+}
+.mw-6 {
+  max-width: var(--space-6);
+}
+.mw-7 {
+  max-width: var(--space-7);
+}
+.mw-8 {
+  max-width: var(--space-8);
+}
