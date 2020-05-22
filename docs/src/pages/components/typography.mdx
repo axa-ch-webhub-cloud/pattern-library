@@ -1,6 +1,5 @@
 import PropsTable from 'components/PropsTable'
 import TextStylePreview from 'components/TextStylePreview'
-import { ThemeConsumer, Pane, Heading, Text, Paragraph } from 'evergreen-ui'
 
 ## Text components
 
@@ -24,76 +23,6 @@ import { ThemeConsumer, Pane, Heading, Text, Paragraph } from 'evergreen-ui'
 Evergreen uses three font family stacks, `ui`, `display` and `mono`.
 Text components will set the font family accordingly to their use case.
 There is not need for you to override this on a component level.
-
-
-<ThemeConsumer>
-  {theme => (
-    <div>
-      <Pane marginTop={48}>
-        <h2 className="heading h2">Heading Styles</h2>
-      </Pane>
-      <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.headings).map(size => {
-          return (
-            <TextStylePreview
-              key={size}
-              size={size}
-              renderComponent={() => {
-                return <Heading size={size}>Heading {size}</Heading>
-              }}
-              fontFamilies={theme.typography.fontFamilies}
-              {...theme.typography.headings[size]}
-            />
-          )
-        })}
-      </Pane>
-      <Pane marginTop={48}>
-        <h2 className="heading h2">Text Styles</h2>
-      </Pane>
-      <Pane borderBottom paddingBottom={24}>
-        {Object.keys(theme.typography.text).map(size => {
-          return (
-            <TextStylePreview
-              key={size}
-              size={size}
-              renderComponent={() => {
-                return <Text size={size}>Text {size}</Text>
-              }}
-              fontFamilies={theme.typography.fontFamilies}
-              fontFamily="ui"
-              {...theme.typography.text[size]}
-            />
-          )
-        })}
-      </Pane>
-      <Pane marginTop={48}>
-        <h2 className="heading h2">Paragraph Styles</h2>
-      </Pane>
-      <Pane borderBottom paddingBottom={24}>
-        {[300, 400, 500].map(size => {
-          return (
-            <TextStylePreview
-              key={size}
-              size={size}
-              renderComponent={() => {
-                return (
-                  <Paragraph size={size}>
-                    Paragraph {size}. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua.
-                  </Paragraph>
-                )
-              }}
-              fontFamilies={theme.typography.fontFamilies}
-              fontFamily="ui"
-              {...theme.typography.text[size]}
-            />
-          )
-        })}
-      </Pane>
-    </div>
-  )}
-</ThemeConsumer>
 
 # Heading component
 

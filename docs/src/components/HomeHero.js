@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Button } from '../../../src'
+// import { button } from '../../../src'
 import spotIllustration from '../images/evergreen-spot-illustration.png'
 import GitHubIcon from './GitHubIcon'
 import LogoWordmark from './LogoWordmark'
@@ -27,7 +27,7 @@ export default class HomeHero extends React.PureComponent {
               .
             </p>
             <div>
-              <Button
+              <button
                 is={Link}
                 to="/components/"
                 appearance="primary"
@@ -35,8 +35,8 @@ export default class HomeHero extends React.PureComponent {
                 marginRight={20}
               >
                 Browse Components
-              </Button>
-              <Button
+              </button>
+              <button
                 is="a"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -54,7 +54,7 @@ export default class HomeHero extends React.PureComponent {
                 height={40}
               >
                 GitHub
-              </Button>
+              </button>
             </div>
           </div>
           <div className="Hero-right">

@@ -1,6 +1,6 @@
 import React from 'react'
 import { withPrefix } from 'gatsby'
-import { Button } from '../../../src'
+// import { Button } from '../../../src'
 import spotIllustration from '../images/sketch-hero.png'
 import sketchIcon from '../images/sketch-icon.png'
 
@@ -24,7 +24,7 @@ export default class DesignersHero extends React.PureComponent {
               resource for the Evergreen community.
             </p>
             <div>
-              <Button
+              <button
                 is="a"
                 onClick={this.trackDownload}
                 href={withPrefix('/Evergreen v4 Community.sketch')}
@@ -41,7 +41,7 @@ export default class DesignersHero extends React.PureComponent {
                 height={40}
               >
                 Download Sketch UI Kit
-              </Button>
+              </button>
             </div>
             <div style={{ marginTop: 24, marginBottom: -32 }}>
               <a

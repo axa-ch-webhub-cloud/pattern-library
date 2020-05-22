@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import { Location, navigate } from '@reach/router'
-import { ArrowLeftIcon, Button, IconButton, Tooltip } from 'evergreen-ui'
+// import { ArrowLeftIcon, Button, IconButton, Tooltip } from 'evergreen-ui'
 import IA from '../IA'
 import DocsMDXProvider from './DocsMDXProvider'
 import TopBar from './TopBar'
@@ -83,7 +83,7 @@ class Page extends React.Component {
                 <div className="bg-tint1">
                   <div className="MDXPage-headerContent Container Container--narrow">
                     <div className="MDXPage-headerContentLeft">
-                      <Tooltip content="Back to Overview">
+                      {/* <Tooltip content="Back to Overview">
                         <IconButton
                           autoFocus
                           onClick={() => {
@@ -96,19 +96,19 @@ class Page extends React.Component {
                           icon={<ArrowLeftIcon />}
                           height={40}
                         />
-                      </Tooltip>
+                      </Tooltip> */}
 
                       <h1>{metaInfo.name}</h1>
                     </div>
 
-                    <Button
+                    <button
                       is="a"
                       height={40}
                       href={metaInfo.github}
                       target="_blank"
                     >
                       View on GitHub
-                    </Button>
+                    </button>
                   </div>
                 </div>
               </header>
@@ -146,15 +146,15 @@ class Page extends React.Component {
               className="Container Container--narrow"
               style={{ marginBottom: 120 }}
             >
-              <Button
+              <button
                 is={Link}
                 to="/components"
                 display="inline-flex"
-                iconBefore={<ArrowLeftIcon />}
+                // iconBefore={<ArrowLeftIcon />}
                 height={40}
               >
                 Back to Overview
-              </Button>
+              </button>
             </div>
           </main>
         </div>

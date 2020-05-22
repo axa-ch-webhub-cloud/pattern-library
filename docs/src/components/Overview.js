@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { filter } from 'fuzzaldrin-plus'
-import { SearchInput } from '../../../src'
+// import { SearchInput } from '../../../src'
 import OverviewItem from './OverviewItem'
 
 export default class Overview extends React.PureComponent {
@@ -55,7 +55,7 @@ export default class Overview extends React.PureComponent {
 
     return (
       <section className="Overview Container">
-        <SearchInput
+        {/* <SearchInput
           autoFocus
           height={40}
           width="100%"
@@ -63,7 +63,7 @@ export default class Overview extends React.PureComponent {
           placeholder="Search components and foundation..."
           value={this.state.searchQuery}
           onChange={this.handleChange}
-        />
+        /> */}
         {ia.foundation.items.length > 0 && (
           <div className="clearfix">
             <header>

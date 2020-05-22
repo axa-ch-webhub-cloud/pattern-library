@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import uniqueId from 'lodash/uniqueId'
-import * as components from 'evergreen-ui'
+// import * as components from 'evergreen-ui'
 import Component from '@reactions/component'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import profiles from './examples/profiles.json'
@@ -99,7 +99,8 @@ export default class Playground extends React.Component {
     return (
       <LiveProvider
         theme={editorTheme}
-        scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
+        // scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
+        scope={{ ReactDOM, Component, profiles, ...scope }}
         code={codeText}
         noInline={noInline}
       >
@@ -131,7 +132,7 @@ export default class Playground extends React.Component {
             className="Playground-header"
             onClick={this.handleToggle}
           >
-            <components.CodeIcon marginRight={8} />{' '}
+            {/* <components.CodeIcon marginRight={8} />{' '} */}
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
           </div>
         </div>
