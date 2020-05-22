@@ -3,7 +3,11 @@ Component Versioning
 
 ## Problem Statement
 
-Have a look [here](https://github.com/axa-ch/midgard/blob/develop/DOCUMENTATION.md#pattern-library-versioning)
+We want to support versioning in a [Micro Frontend](https://micro-frontends.org/) architecture.
+
+Micro Frontends are an emerging new paradigm on how to decompose a web page or web app into major features, each of which is owned and developed by an independent team.
+
+Have a look [here](https://github.com/axa-ch/midgard/blob/develop/DOCUMENTATION.md#pattern-library-versioning) for more details.
 
 ## Constraints
 
