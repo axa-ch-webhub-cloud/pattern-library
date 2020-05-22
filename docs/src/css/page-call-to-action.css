@@ -1,0 +1,13 @@
+.PageCallToAction {
+  padding: var(--space-5);
+  background-color: var(--neutral-dark);
+  color: var(--white);
+}
+
+.PageCallToAction-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 960px;
+  padding-left: var(--space-8);
+}

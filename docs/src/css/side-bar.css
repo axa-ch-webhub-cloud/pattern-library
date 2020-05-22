@@ -1,0 +1,48 @@
+.Sidebar {
+  background-color: var(--white);
+
+  & a {
+    display: block;
+    font-size: 14px;
+    padding: var(--space-1) 0 var(--space-1) var(--space-3);
+    color: var(--black);
+    border-right: 3px solid transparent;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--blue-base);
+    }
+
+    &:active,
+    &.is-active {
+      font-weight: var(--font-semi-bold);
+      background-color: var(--neutral-100);
+      color: var(--blue-base);
+      border-right-color: var(--blue-base);
+    }
+
+    &:nth-last-child(2) {
+      margin-top: var(--space-6);
+    }
+  }
+}
+
+.Sidebar-title {
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-regular);
+  line-height: 28px;
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-4);
+  padding-left: var(--space-3);
+}
+
+.Sidebar-subtitle {
+  text-transform: uppercase;
+  font-weight: var(--font-bold);
+  margin-top: var(--space-3);
+  padding: var(--space-1) 0 var(--space-1) var(--space-3);
+  margin-bottom: var(--space-1);
+  color: var(--neutral-600);
+  font-size: var(--font-size-xs);
+}

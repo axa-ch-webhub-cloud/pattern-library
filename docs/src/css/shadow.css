@@ -1,0 +1,18 @@
+.shadow-none {
+  box-shadow: none;
+}
+.shadow {
+  box-shadow: var(--elevation-1);
+}
+.shadow-md {
+  box-shadow: var(--elevation-2);
+}
+.shadow-lg {
+  box-shadow: var(--elevation-3);
+}
+.shadow-xl {
+  box-shadow: var(--elevation-4);
+}
+.shadow-2xl {
+  box-shadow: var(--elevation-5);
+}

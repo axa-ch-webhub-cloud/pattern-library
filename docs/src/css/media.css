@@ -1,0 +1,15 @@
+.Media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: var(--space-3);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+.MediaItem-content {
+  flex: 1;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-2);
+  display: flex;
+  flex-direction: column;
+}

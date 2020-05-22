@@ -1,0 +1,104 @@
+:root {
+  --black: #333333;
+  --neutral-800: #333333;
+  --neutral-700: #474747;
+  --neutral-600: #999999;
+  --neutral-500: #c9c9c9;
+  --neutral-400: #d8d8d8;
+  --neutral-300: #e5e5e5;
+  --neutral-200: #eeeeee;
+  --neutral-100: #fafafa;
+  --white: #ffffff;
+
+  --neutral-lightest: var(--neutral-200);
+  --neutral-light: var(--neutral-300);
+  --neutral-base: var(--neutral-500);
+  --neutral-dark: var(--neutral-800);
+
+  --blue-lightest: #f7f9fd;
+  --blue-light: #4976ba;
+  --blue-base: #00008f;
+  --blue-dark: #000072;
+
+  --red-lightest: #fef6f6;
+  --red-light: #fae2e2;
+  --red-base: #f07662;
+  --red-dark: #c91432;
+
+  --yellow-lightest: #fef8e7;
+  --yellow-light: #fbe6a2;
+  --yellow-base: #f7d154;
+  --yellow-dark: #7e6514;
+
+  --green-lightest: #f1faf5;
+  --green-light: #d4eee2;
+  --green-base: #1cc54e;
+  --green-dark: #00783e;
+
+  --teal-lightest: #f1fbfc;
+  --teal-light: #d2eef3;
+  --teal-base: #14b5d0;
+  --teal-dark: #007489;
+
+  --pink-lightest: #fef4f7;
+  --pink-light: #f3a0bb;
+  --pink-base: #e63871;
+  --pink-dark: #a71545;
+}
+
+:root {
+  --color-border-default: var(--neutral-500);
+  --color-border-muted: var(--neutral-300);
+}
+
+.bg-black {
+  background-color: var(--black) !important;
+}
+.bg-neutral-800 {
+  background-color: var(--neutral-800);
+}
+.bg-neutral-700 {
+  background-color: var(--neutral-700);
+}
+.bg-neutral-600 {
+  background-color: var(--neutral-600);
+}
+.bg-neutral-500 {
+  background-color: var(--neutral-500);
+}
+.bg-neutral-400 {
+  background-color: var(--neutral-400);
+}
+.bg-neutral-300 {
+  background-color: var(--neutral-300);
+}
+.bg-neutral-200 {
+  background-color: var(--neutral-200);
+}
+.bg-neutral-100 {
+  background-color: var(--neutral-100);
+}
+.bg-white {
+  background-color: var(--white);
+}
+
+.bg-blue-light {
+  background-color: var(--blue-light);
+}
+.bg-blue-base {
+  background-color: var(--blue-base);
+}
+.bg-blue-dark {
+  background-color: var(--blue-dark);
+}
+
+.bg-red-base {
+  background-color: var(--red-base);
+}
+.bg-red-dark {
+  background-color: var(--red-dark);
+}
+
+.bg-green-base {
+  background-color: var(--green-base);
+}
