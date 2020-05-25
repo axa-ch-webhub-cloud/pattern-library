@@ -1,4 +1,5 @@
 $toggle-switch-height: 30px;
+$toggle-switch-animation: 0.4s ease;
 
 :host {
   display: inline-block;
@@ -39,6 +40,7 @@ $toggle-switch-height: 30px;
     border-radius: 18px;
     background-color: $color-light-grey;
     cursor: pointer;
+    transition: $toggle-switch-animation;
 
     &::before {
       content: "";
@@ -49,6 +51,7 @@ $toggle-switch-height: 30px;
       width: 26px;
       background: $color-prim-white;
       border-radius: 50%;
+      transition: $toggle-switch-animation;
     }
   }
 }
