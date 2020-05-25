@@ -109,7 +109,7 @@ class AXAButtonLink extends InlineStyles {
           ${this.showArrow
             ? versionedHtml(this)`
                 <axa-icon
-                  class="a-button-link__arrow"
+                  class="a-button-link__arrow js-button-link__arrow"
                   icon="arrow-right"
                 ></axa-icon>
               `

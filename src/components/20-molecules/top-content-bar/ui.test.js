@@ -46,7 +46,7 @@ test('should render axa-button top-content-bar', async t => {
   const $axaElemBtn = await Selector(() =>
     document
       .querySelector('axa-top-content-bar')
-      .shadowRoot.querySelector('axa-button')
+      .shadowRoot.querySelector('.js-button')
   );
   await t.expect($axaElemBtn.exists).ok();
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');
@@ -63,7 +63,7 @@ test('should render axa-button-link top-content-bar', async t => {
   const $axaElemBtn = await Selector(() =>
     document
       .querySelector('axa-top-content-bar')
-      .shadowRoot.querySelector('axa-button-link')
+      .shadowRoot.querySelector('.js-button-link')
   );
   await t.expect($axaElemBtn.exists).ok();
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');

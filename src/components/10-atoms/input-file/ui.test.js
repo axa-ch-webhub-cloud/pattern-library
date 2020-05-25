@@ -7,7 +7,7 @@ fixture('Input File - basic functionality').page(
 );
 
 const INPUT_FILE_TAG = 'axa-input-file';
-const ICON_TAG = 'axa-icon';
+const ICON_TAG = '.js-input-file__icon';
 const INPUT_FILE_CLASS = '.a-input-file';
 const INPUT_FILE_INPUT_CLASS = '.a-input-file__input';
 

@@ -87,6 +87,7 @@ class AXACookieDisclaimer extends LitElement {
       'm-cookie-disclaimer': true,
       'm-cookie-disclaimer--fixed': variant === 'fixed',
     };
+    /* eslint-disable indent */
     return versionedHtml(this)`
       <article class="${classMap(classes)}">
         <axa-container>
@@ -96,7 +97,9 @@ class AXACookieDisclaimer extends LitElement {
               <slot></slot>
             </div>
             <div class="m-cookie-disclaimer__container--rx">
-              <axa-button @click="${this.handleButtonClick}" variant="inverted">
+              <axa-button class="js-button" @click="${
+                this.handleButtonClick
+              }" variant="inverted">
                 ${buttonname}
               </axa-button>
             </div>

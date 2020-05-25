@@ -178,7 +178,7 @@ class AXAButton extends InlineStyles {
           <slot></slot>
           ${this.showArrow
             ? versionedHtml(this)`
-                <axa-icon class="a-button__arrow" icon="arrow-right"></axa-icon>
+                <axa-icon class="a-button__arrow js-button__arrow" icon="arrow-right"></axa-icon>
               `
             : ''}
         </span>

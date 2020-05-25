@@ -55,6 +55,7 @@ class AXATopContentBar extends LitElement {
     if (href && ctatext) {
       return versionedHtml(this)`
         <axa-button-link
+          class="js-button-link"
           href="${href}"
           @click="${ev => {
             if (typeof this.onClick === 'function') {
@@ -70,6 +71,7 @@ class AXATopContentBar extends LitElement {
     } else if (ctatext) {
       return versionedHtml(this)`
         <axa-button
+          class="js-button"
           @click="${ev => {
             if (typeof this.onClick === 'function') {
               ev.preventDefault();

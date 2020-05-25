@@ -35,7 +35,7 @@ test('should store in localStorage the date of when accepted', async t => {
   const $axaBtnShadow = await Selector(() =>
     document
       .querySelector('axa-cookie-disclaimer')
-      .shadowRoot.querySelector('axa-button')
+      .shadowRoot.querySelector('.js-button')
   );
   await t.click($axaBtnShadow);
   const timeStamp = await ClientFunction(() => {
@@ -56,7 +56,7 @@ test('should not render once accepted', async t => {
   const $axaBtnShadow = await Selector(() =>
     document
       .querySelector('axa-cookie-disclaimer')
-      .shadowRoot.querySelector('axa-button')
+      .shadowRoot.querySelector('.js-button')
   );
   await t.click($axaBtnShadow);
   await t.expect($axaElem.exists).notOk();

@@ -94,7 +94,7 @@ class AXALink extends LitElement {
         ${this.variant.includes('arrowleft')
           ? versionedHtml(this)`<axa-icon
                     icon="arrow-right"
-                    class="a-link__icon a-link__icon--left"
+                    class="a-link__icon a-link__icon--left js-icon"
                   ></axa-icon>`
           : ''}
         ${this.icon &&
@@ -106,7 +106,7 @@ class AXALink extends LitElement {
                   ></axa-icon>`
           : ''}
           <slot></slot>${this.variant.includes('arrowright')
-          ? versionedHtml(this)`<axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>`
+          ? versionedHtml(this)`<axa-icon icon="arrow-right" class="a-link__icon js-icon"></axa-icon>`
           : ''}</a
       >`;
   }

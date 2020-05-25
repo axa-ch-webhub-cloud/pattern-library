@@ -106,7 +106,7 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const arrowIcon = linkElement.find('axa-icon');
+  const arrowIcon = linkElement.find('.js-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('download');
   const linkTextElement = Selector(
@@ -145,7 +145,7 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const arrowIcon = linkElement.find('axa-icon');
+  const arrowIcon = linkElement.find('.js-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
   const linkTextElement = Selector(
@@ -184,7 +184,7 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const arrowIcon = linkElement.find('axa-icon');
+  const arrowIcon = linkElement.find('.js-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
   const linkTextElement = Selector(
@@ -224,7 +224,7 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const arrowIcon = linkElement.find('axa-icon');
+  const arrowIcon = linkElement.find('.js-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
   const linkTextElement = Selector(
@@ -264,7 +264,7 @@ test('should display correctly', async t => {
     .expect(link.getStyleProperty('text-decoration'))
     .eql(`none solid ${axaBlue}`);
 
-  const arrowIcon = linkElement.find('axa-icon');
+  const arrowIcon = linkElement.find('.js-icon');
   await t.expect(arrowIcon.hasClass('a-link__icon')).ok();
   await t.expect(arrowIcon.getAttribute('icon')).eql('arrow-right');
   const linkTextElement = Selector(
@@ -351,7 +351,7 @@ test('should correctly update icon and text', async t => {
   const iconSVGPathElement = Selector(() =>
     document
       .querySelector('axa-link')
-      .shadowRoot.querySelector('axa-icon')
+      .shadowRoot.querySelector('.js-icon')
       .shadowRoot.querySelector('path')
   );
 

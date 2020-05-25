@@ -72,7 +72,7 @@ test('should render icon', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button-link').shadowRoot
   );
-  const $axaIcon = await $axaButtonShadow.find('axa-icon');
+  const $axaIcon = await $axaButtonShadow.find('.js-button-link__arrow');
   await t.expect($axaIcon.exists).ok();
 });
 
