@@ -1,6 +1,6 @@
-# Toggle Switch
+# AXA Toggle Switch
 
-TODO Description
+Toggle Switches provide a UI element for toggling between two visual states, on and off.
 
 ## Usage
 
@@ -30,7 +30,7 @@ export default AXAToggleSwitchReact;
 ```
 
 ```js
-<AXAToggleSwitchReact onClick={handler}></AXAToggleSwitchReact>
+<AXAToggleSwitchReact onChange={handler}></AXAToggleSwitchReact>
 ```
 
 ### Pure HTML pages
@@ -55,16 +55,14 @@ Import the toggle-switch-defining script and use a toggle-switch like this:
 
 ## Properties
 
-### Variant
+### on
 
-| Attribute       | Details         |
-| --------------- | --------------- |
-| `variant="foo"` | Desc of Variant |
+The boolean `on` sets the on/off visual state.
 
-### Bar
+### disabled
 
-The attribute `bar` specifies...
+The boolean `disabled` disables the toggle switch natively.
 
-### onClick
+### onChange
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.
