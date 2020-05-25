@@ -1,5 +1,15 @@
+$toggle-switch-height: 30px;
+
+:host {
+  display: inline-block;
+  height: $toggle-switch-height;
+}
+
 .a-toggle-switch {
-  .a-toggle-switch__input {
+  display: inline-block;
+  height: $toggle-switch-height;
+
+  &__input {
     display: none;
 
     &:checked {
@@ -21,10 +31,10 @@
     }
   } 
 
-  .a-toggle-switch__slider {
+  &__slider {
     display: inline-block;
     position: relative;
-    height: 30px;
+    height: $toggle-switch-height;
     width: 50px;
     border-radius: 18px;
     background-color: $color-light-grey;
