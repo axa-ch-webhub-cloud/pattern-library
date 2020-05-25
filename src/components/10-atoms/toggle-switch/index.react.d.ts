@@ -1,11 +1,10 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
-
 export interface AXAToggleSwitchProps {
+  on?: boolean;
+  disabled?: boolean;
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
+  onChange?: (e: UIEvent) => void;
 }
 
 declare function createAXAToggleSwitch(
