@@ -184,3 +184,62 @@ test('should update pure text dynamically and wrap in <p>', async t => {
   await t.expect(await $axaElem.innerText).contains(oldText);
   await t.expect(await $axaElem.innerHTML).contains('<p>');
 });
+
+fixture('Text - React')
+  .page(
+    `${host}/iframe.html?id=components-atoms-text-react-demos--feature-text-with-dynamic-children-under-react`
+  )
+  .beforeEach(async t => {
+    await t.resizeWindow(800, 600);
+  });
+
+test('should update dynamically for pure and HTML texts', async t => {
+  const $axaElem = await Selector(() =>
+    document.querySelector('axa-text')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const pureCheckbox = await Selector('.js-pure-text');
+
+  // existing pure text is wrapped in <p> and as expected
+  await t.expect(await $axaElem.innerHTML).contains('<p>');
+  await t
+    .expect(await $axaElem.innerText)
+    .eql('This is example pure text no. 1');
+
+  // change to HTML
+  await t.click(pureCheckbox);
+
+  await t.wait(50);
+
+  // existing HTML text is not wrapped and as expected
+  await t.expect(await $axaElem.innerHTML).contains('<span>');
+  await t.expect(await $axaElem.innerHTML).notContains('<p>');
+  await t
+    .expect(await $axaElem.innerText)
+    .eql('This is example HTML text no. 1');
+
+  // update text
+  await t.click('.js-update');
+
+  await t.wait(50);
+
+  // new HTML text as expected
+  await t.expect(await $axaElem.innerHTML).contains('<span>');
+  await t.expect(await $axaElem.innerHTML).notContains('<p>');
+  await t
+    .expect(await $axaElem.innerText)
+    .eql('This is example HTML text no. 2');
+
+  // change back to pure text
+  await t.click('.js-pure-text');
+
+  await t.wait(50);
+
+  // new pure text as expected
+  await t.expect(await $axaElem.innerHTML).contains('<p>');
+  await t
+    .expect(await $axaElem.innerText)
+    .eql('This is example pure text no. 2');
+});
