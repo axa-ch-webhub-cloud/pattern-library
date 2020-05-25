@@ -1,5 +1,5 @@
 /* global document */
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Changelog from './CHANGELOG.md';
@@ -17,15 +17,12 @@ story.addParameters({
 });
 
 story.add('Toggle Switch', () => {
-  const checked = boolean('checked', false);
+  const on = boolean('on', false);
   const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-toggle-switch
-      ?checked=${checked}
-      ?disabled=${disabled}
-    ></axa-toggle-switch>
+    <axa-toggle-switch ?on=${on} ?disabled=${disabled}></axa-toggle-switch>
   `;
 
   render(template, wrapper);
