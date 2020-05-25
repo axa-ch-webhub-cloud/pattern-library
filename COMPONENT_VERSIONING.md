@@ -3,18 +3,11 @@ Component Versioning
 
 ## Problem Statement
 
-[Micro Frontends](https://micro-frontends.org/) are an emerging new paradigm on how to decompose a web page or web app into major features, each of which is owned and developed by an independent team.
+We want to support versioning in a [Micro Frontend](https://micro-frontends.org/) architecture.
 
-In the AXA Switzerland context these are known as PODs. PODs are _not_ sandboxed via `iframe`s for various good reasons, so care must be taken to avoid POD-to-POD conflicts on the same web page. PODs may use higher-level frameworks, in particular [React](https://reactjs.org/). Technically, PODs are [npm](http://npmjs.org/) packages.
+Micro Frontends are an emerging new paradigm on how to decompose a web page or web app into major features, each of which is owned and developed by an independent team.
 
-Simultaneously, PODs are encouraged to use [AXA pattern-library](https://github.com/axa-ch/patterns-library) (**PL**) components for their UI aspects, to reap the many benefits of company-wide design systems in a practical and battle-tested implementation. PL components are built ontop of Google's [lit-element](https://lit-element.polymer-project.org/), hence ultimately use browser-native [Custom Elements](https://developers.google.com/web/fundamentals/web-components/customelements) (**CE**). They are distributed as separate [npm](http://npmjs.org/) packages.
-
-Herein lies the problem: PODs are developed by independent teams, hence might employ different versions of PL components. One team might use the `<axa-datepicker>` component at version 4.0.1 in their POD, another might use `<axa-datepicker>` at version 7.0.2.
-There can be good reasons to not always go with the latest version, such as company-mandated code freezes or fixed release and testing schedules, or even avoiding a particular bug or preferring a feature that was removed in the latest version.
-
-Once PODs come together on the same web page, however, only the first-loaded version of a same-named component will be usable, because the CE specification mandates that CE names must be [unique](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define#Exceptions) per page. At face value, this threatens the independence of teams, because they would now have to coordinate choosing a common version of a component, while having different per-team priorities and constraints.
-
-Therefore we are seeking a solution that allows PL components of differing versions to coexist on a page, with their functionality - defined by JavaScript - and their styling - defined by CSS - isolated from one another.
+Have a look [here](https://github.com/axa-ch/midgard/blob/develop/DOCUMENTATION.md#pattern-library-versioning) for more details.
 
 ## Constraints
 
@@ -29,7 +22,7 @@ The solution to the versioning dilemma should respect a few constraints:
 
 ## Solution
 
-Our solution automatically injects `package.json` version information into component code at build time. With PL components now being **version-aware _at runtime_**, we can **rewrite custom element names** under the hood to include version information. For those components that cannot use ShadowDOM, in particular form elements, we also **prefix CSS rule selectors** with versioned component tag names. The **unversioned component name**  always represents the first-loaded component on the page, and may be used when there is no possibility of conflict. Otherwise, each POD can _either_ use an **npm-versioned component** such as `<axa-datepicker-7-0-2>` _or_ employ a **user-defined versioning** scheme, e.g. using the reserved POD name as unique versioning suffix on a given web page! This leads to components such as `<axa-datepicker-rsv>`, designating the datepicker used in a POD named `rsv` (whose actual npm version is then defined in the POD's own package.json dependencies).
+Our solution automatically injects `package.json` version information into component code at build time. With PL components now being **version-aware _at runtime_**, we can **rewrite custom element names** under the hood to include version information. For those components that cannot use ShadowDOM, in particular form elements, we also **prefix CSS rule selectors** with versioned component tag names. The **unversioned component name**  always represents the first-loaded component on the page, and may be used when there is no possibility of conflict. Otherwise, each SPA can _either_ use an **npm-versioned component** such as `<axa-datepicker-7-0-2>` _or_ employ a **user-defined versioning** scheme, e.g. using the reserved SPA name as unique versioning suffix on a given web page! This leads to components such as `<axa-datepicker-rsv>`, designating the datepicker used in a SPA named `rsv` (whose actual npm version is then defined in the SPA's own package.json dependencies).
 
 This solution satisfies all of our constraints:
 
@@ -43,7 +36,7 @@ This solution satisfies all of our constraints:
 Getting Practical
 -----------------
 
-POD authors developing under React are familiar with the **old way of including components**:
+SPA authors developing under React are familiar with the **old way of including components**:
 ```js
 import { createElement } from 'react';
 
@@ -60,10 +53,10 @@ import { createElement } from 'react';
 
 import createAXAButtonReact from '@axa-ch/button/lib/index.react';
 
-const podNameAsVersionSuffix = 'YOUR UNIQUE POD SHORT-NAME HERE'; // e.g. 'rsv'
+const podNameAsVersionSuffix = 'YOUR UNIQUE SPA SHORT-NAME HERE'; // e.g. 'rsv'
 
 export const AXAButton = createAXAButtonReact(createElement, podNameAsVersionSuffix);
 
-// *again* use <AXAButton ... /> in your JSX later, without fear of POD-to-POD conflicts
+// *again* use <AXAButton ... /> in your JSX later, without fear of SPA-to-SPA conflicts
 // between different <axa-button> versions.
 ```
