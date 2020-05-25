@@ -1,6 +1,5 @@
 /* global document */
-// if your need more boolean, select, radios
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Changelog from './CHANGELOG.md';
@@ -18,11 +17,17 @@ story.addParameters({
 });
 
 story.add('Toggle Switch', () => {
-  const textknob = text('This is a knob', 'Value of text knob');
+  const label = text('label', 'Your text here...');
+  const checked = boolean('checked', false);
+  const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-toggle-switch>${textknob}</axa-toggle-switch>
+    <axa-toggle-switch
+      label=${label}
+      ?checked=${checked}
+      ?disabled=${disabled}
+    ></axa-toggle-switch>
   `;
 
   render(template, wrapper);
