@@ -17,14 +17,12 @@ story.addParameters({
 });
 
 story.add('Toggle Switch', () => {
-  const label = text('label', 'Your text here...');
   const checked = boolean('checked', false);
   const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');
 
   const template = html`
     <axa-toggle-switch
-      label=${label}
       ?checked=${checked}
       ?disabled=${disabled}
     ></axa-toggle-switch>
