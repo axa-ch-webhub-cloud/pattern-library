@@ -1,6 +1,6 @@
 # AXA Toggle Switch
 
-Toggle Switches provide a UI element for toggling between two visual states, on and off.
+&lt;axa-toggle-switch&gt; provides a UI element for toggling between two visual states, on and off.
 
 ## Usage
 
