@@ -1,14 +1,13 @@
-$toggle-switch-height: 30px;
 $toggle-switch-animation: 0.4s ease;
-
-:host {
-  display: inline-block;
-  height: $toggle-switch-height;
-}
+$toggle-switch-height: 30px;
+$toggle-switch-width: 50px;
+$toggle-switch-spacing: 2px;
 
 .a-toggle-switch {
-  display: inline-block;
+  display: block;
+  position: relative;
   height: $toggle-switch-height;
+  width: $toggle-switch-width;
 
   &__input {
     display: none;
@@ -19,38 +18,42 @@ $toggle-switch-animation: 0.4s ease;
       }
 
       & + .a-toggle-switch__slider::before {
-        transform: translateX(20px);
+        $distance: $toggle-switch-width - $toggle-switch-height;
+        transform: translateX($distance);
       }
 
       &:disabled + .a-toggle-switch__slider {
-        background-color: #9FD9B4;
+        background-color: $color-aqua-green;
       }
     }
 
     &:disabled + .a-toggle-switch__slider {
-      background-color: #F5F5F5;
+      background-color: $color-wild-sand;
     }
   } 
 
   &__slider {
-    display: inline-block;
-    position: relative;
-    height: $toggle-switch-height;
-    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     border-radius: 18px;
     background-color: $color-light-grey;
-    cursor: pointer;
     transition: $toggle-switch-animation;
+    cursor: pointer;
 
     &::before {
+      $size: $toggle-switch-height - 2 * $toggle-switch-spacing;
+
       content: "";
       position: absolute;
-      top: 2px;
-      left: 2px;
-      height: 26px;
-      width: 26px;
-      background: $color-prim-white;
+      top: $toggle-switch-spacing;
+      left: $toggle-switch-spacing;
+      height: $size;
+      width: $size;
       border-radius: 50%;
+      background: $color-prim-white;
       transition: $toggle-switch-animation;
     }
   }
