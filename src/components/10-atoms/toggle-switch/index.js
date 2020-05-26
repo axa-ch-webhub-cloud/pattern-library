@@ -16,7 +16,7 @@ class AXAToggleSwitch extends LitElement {
 
   static get properties() {
     return {
-      active: { type: Boolean },
+      active: { type: Boolean, reflect: true },
       disabled: { type: Boolean },
       onChange: { type: Function },
     };
@@ -28,7 +28,7 @@ class AXAToggleSwitch extends LitElement {
   }
 
   render() {
-    const { active, disabled, onChange } = this;
+    const { active, disabled, handleChange } = this;
 
     const inputElement = html`
       <input
@@ -36,7 +36,7 @@ class AXAToggleSwitch extends LitElement {
         type="checkbox"
         ?checked="${active}"
         ?disabled="${disabled}"
-        @change=${onChange}
+        @change=${handleChange}
       />
     `;
 
@@ -46,6 +46,13 @@ class AXAToggleSwitch extends LitElement {
         <span class="a-toggle-switch__slider"></span>
       </label>
     `;
+  }
+
+  handleChange(event) {
+    this.active = event.target.checked;
+
+    // this.dispatchEvent(event);
+    this.onChange(event);
   }
 }
 
