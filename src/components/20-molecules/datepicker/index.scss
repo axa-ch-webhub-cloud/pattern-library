@@ -175,7 +175,7 @@ axa-datepicker {
   }
 
   &__dropdown-year {
-    width: 90px;
+    width: 95px; // width: 90px is too less for iPhone on axa.ch-AEM
     text-transform: uppercase;
   }
 
