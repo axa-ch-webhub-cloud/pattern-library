@@ -17,12 +17,12 @@ story.addParameters({
 });
 
 story.add('Toggle Switch', () => {
-  const on = boolean('on', false);
+  const active = boolean('active', false);
   const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-toggle-switch ?on=${on} ?disabled=${disabled}></axa-toggle-switch>
+    <axa-toggle-switch ?active=${active} ?disabled=${disabled}></axa-toggle-switch>
   `;
 
   render(template, wrapper);

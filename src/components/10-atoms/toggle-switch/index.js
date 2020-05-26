@@ -16,7 +16,7 @@ class AXAToggleSwitch extends LitElement {
 
   static get properties() {
     return {
-      on: { type: Boolean },
+      active: { type: Boolean },
       disabled: { type: Boolean },
       onChange: { type: Function },
     };
@@ -28,13 +28,13 @@ class AXAToggleSwitch extends LitElement {
   }
 
   render() {
-    const { on, disabled, onChange } = this;
+    const { active, disabled, onChange } = this;
 
     const inputElement = html`
       <input
         class="a-toggle-switch__input"
         type="checkbox"
-        ?checked="${on}"
+        ?checked="${active}"
         ?disabled="${disabled}"
         @change=${onChange}
       />
