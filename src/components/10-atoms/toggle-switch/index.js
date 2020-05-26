@@ -43,7 +43,7 @@ class AXAToggleSwitch extends LitElement {
     return html`
       <label class="a-toggle-switch">
         ${inputElement}
-        <span class="a-toggle-switch__slider"></span>
+        <div class="a-toggle-switch__slider"></div>
       </label>
     `;
   }
