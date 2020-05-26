@@ -12,6 +12,7 @@ storiesOf('Components|Atoms/Text/React/Demos', module)
       sidebar: Readme,
     },
     changelog: Changelog,
+    knobs: { disabled: true },
   })
   /* Default */
   .add('Feature - Text with dynamic children under React', () => {
