@@ -55,13 +55,13 @@ Import the toggle-switch-defining script and use a toggle-switch like this:
 
 ## Properties
 
-### on
+### active
 
-The boolean `on` sets the on/off visual state.
+The Boolean attribute `active` sets the on/off visual state.
 
 ### disabled
 
-The boolean `disabled` disables the toggle switch natively.
+The Boolean attribute `disabled` disables the toggle switch natively.
 
 ### onChange
 
