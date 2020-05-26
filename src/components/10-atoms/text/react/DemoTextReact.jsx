@@ -16,7 +16,7 @@ const DemoTextReact = () => {
   return (
     <div>
       <label className="js-pure-text">
-        <span style={{ 'font-family': 'sans-serif', 'font-size': '12px' }}>
+        <span style={{ fontFamily: 'sans-serif', fontSize: '12px' }}>
           pure, non-HTML text
         </span>
         <input type="checkbox" onChange={handleChange} checked={text} />
@@ -24,7 +24,7 @@ const DemoTextReact = () => {
       <button
         className="js-update"
         onClick={handleCounter}
-        style={{ 'font-family': 'sans-serif', 'margin-left': '4rem' }}
+        style={{ fontFamily: 'sans-serif', marginLeft: '4rem' }}
       >
         update text
       </button>
