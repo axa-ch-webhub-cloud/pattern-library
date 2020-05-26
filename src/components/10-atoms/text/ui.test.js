@@ -200,46 +200,30 @@ test('should update dynamically for pure and HTML texts', async t => {
     innerHTML: el => el.innerHTML,
   });
 
-  const pureCheckbox = await Selector('.js-pure-text');
+  const testText = async (isPure, expectation, clickSelector) => {
+    // existing text is wrapped properly and as expected
+    await t
+      .expect(await $axaElem.innerHTML)
+      .contains(isPure ? '<p>' : '<span>');
+    await t
+      .expect(await $axaElem.innerHTML)
+      .notContains(isPure ? '<span>' : '<p>');
+    await t.expect(await $axaElem.innerText).eql(expectation);
 
-  // existing pure text is wrapped in <p> and as expected
-  await t.expect(await $axaElem.innerHTML).contains('<p>');
-  await t
-    .expect(await $axaElem.innerText)
-    .eql('This is example pure text no. 1');
+    if (clickSelector) {
+      // change test parameter
+      await t.click(clickSelector);
 
-  // change to HTML
-  await t.click(pureCheckbox);
+      await t.wait(50);
+    }
+  };
 
-  await t.wait(50);
-
-  // existing HTML text is not wrapped and as expected
-  await t.expect(await $axaElem.innerHTML).contains('<span>');
-  await t.expect(await $axaElem.innerHTML).notContains('<p>');
-  await t
-    .expect(await $axaElem.innerText)
-    .eql('This is example HTML text no. 1');
-
-  // update text
-  await t.click('.js-update');
-
-  await t.wait(50);
-
-  // new HTML text as expected
-  await t.expect(await $axaElem.innerHTML).contains('<span>');
-  await t.expect(await $axaElem.innerHTML).notContains('<p>');
-  await t
-    .expect(await $axaElem.innerText)
-    .eql('This is example HTML text no. 2');
-
-  // change back to pure text
-  await t.click('.js-pure-text');
-
-  await t.wait(50);
-
-  // new pure text as expected
-  await t.expect(await $axaElem.innerHTML).contains('<p>');
-  await t
-    .expect(await $axaElem.innerText)
-    .eql('This is example pure text no. 2');
+  // existing pure text is wrapped in <p> and as expected; then switch to HTML
+  await testText(true, 'This is example pure text no. 1', '.js-pure-text');
+  // existing HTML text is not wrapped and as expected; then update text
+  await testText(false, 'This is example HTML text no. 1', '.js-update');
+  // new HTML text is not wrapped and as expected; then switch back to pure text
+  await testText(false, 'This is example HTML text no. 2', '.js-pure-text');
+  // new pure text is wrapped in <p> and as expected
+  await testText(true, 'This is example pure text no. 2');
 });
