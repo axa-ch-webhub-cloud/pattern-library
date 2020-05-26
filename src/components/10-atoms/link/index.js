@@ -102,7 +102,7 @@ class AXALink extends LitElement {
         !this.variant.includes('arrow')
           ? versionedHtml(this)`<axa-icon
                     icon="${this.icon}"
-                    class="a-link__icon a-link__icon--left"
+                    class="a-link__icon a-link__icon--left js-icon"
                   ></axa-icon>`
           : ''}
           <slot></slot>${this.variant.includes('arrowright')

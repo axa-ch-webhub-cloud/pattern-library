@@ -55,7 +55,21 @@ const defineVersioned = (dependencies, versionInfo) => {
     // ordinary, non-POD versioning?
     if (!customVersion) {
       // yes, inject version info into component-defining class
-      const { tagName } = componentClass;
+      const {
+        tagName,
+        versions: preExistingVersionsClassProperty,
+      } = componentClass;
+      // first time versioning/registration of this component, but its class
+      // contains a PL-reserved 'versions' property?
+      if (
+        !window.customElements.get(tagName) &&
+        preExistingVersionsClassProperty
+      ) {
+        // yes, this class is wrongly implemented - premature exit
+        throw Error(
+          `'versions' is a reserved class property, but was found in ${tagName}'s class`
+        );
+      }
       componentClass.versions = versionInfo[tagName];
       // define its *unversioned*-tag variant first
       defineOnce(tagName, componentClass);

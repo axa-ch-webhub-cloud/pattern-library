@@ -8,21 +8,21 @@ process.stdin.setEncoding('utf8');
 
 console.log(
   chalk.cyan(outdent`
-    Hello Dear developer, thank you for contributing with us. 😊
+    Hello, dear developer, thank you for contributing to us. 😊
 
-    I will help you to create a new web component 😎.
+    I will help you create a new web component 😎.
 
-    You can choose between ATOM📗, MOLECULE📘 or ORGANISM📙.
+    In terms of granularity, you can choose between ATOM📗, MOLECULE📘 or ORGANISM📙.
 
     As a general guideline, an ATOM📗 is a small component.
-    An ATOM📗 does not have dependencies to other components.
+    An ATOM📗 does not depend on other components.
 
-    A MOLECULE📘 is most likely your default choice unless it's a much bigger component and not a simple atom.
+    A MOLECULE📘 is most likely your default choice, unless it's a much bigger component and not a simple atom.
 
     An ORGANISM📙 is a much bigger component, containing multiple molecules.
-    i.e (header, footer, navigation, image gallery)
+    Example organisms would be a header, footer, navigation, or an image gallery.
 
-    Now, please tell me what do you wan to create:
+    Now, please tell me what kind of component to create for you:
 
     Type
     - a: for ATOM📗
@@ -51,7 +51,7 @@ const reset = () => {
 
   console.log(
     chalk.yellow(outdent`
-    Reset, your choices. Select again a AMO Type
+    Reset your choices. Select again an a-m-o type
   `)
   );
 };
@@ -81,8 +81,8 @@ const STEPS = {
       console.log(
         chalk.yellow(outdent`
 
-        I am creating the new component NOW.
-        Press ${chalk.bold('y')} for yes and ${chalk.bold('n')} for exit
+        I am creating the new component *now*.
+        Press ${chalk.bold('y')} for yes, or ${chalk.bold('n')} to exit
 
       `)
       );
@@ -123,7 +123,7 @@ rl.on('line', line => {
     console.log(
       chalk.red(outdent`
 
-      I dunno this command, please try again!
+      I don't understand this command, please try again!
 
     `)
     );

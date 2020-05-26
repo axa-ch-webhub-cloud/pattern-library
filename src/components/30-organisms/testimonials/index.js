@@ -85,6 +85,7 @@ class AXATestimonials extends InlineStyles {
                 : versionedHtml(this)`
                   <div class="o-testimonials__content__carousel">
                     <axa-carousel
+                      class="js-carousel"
                       autorotatetime="${autorotatetime}"
                       ?autorotatedisabled="${autorotatedisabled}"
                       ?keysenabled="${keysenabled}"

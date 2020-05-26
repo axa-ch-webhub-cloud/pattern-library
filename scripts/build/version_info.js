@@ -17,12 +17,12 @@ const pick = (object, ignore = {}) => {
   return result;
 }
 
-const ignoreNonComponents = (packages, ignores) => packages.filter( package => {
+const ignoreNonComponents = (packages, ignores) => packages.filter( aPackage => {
     // ignore components classified under our Atomic-Design scheme as starting with 0
     // (i.e. currently 00-materials, 05-utils)
-    const ignore = package.indexOf('src/components/0') > -1;
+    const ignore = aPackage.indexOf('src/components/0') > -1;
     if (ignore) {
-        const [_, lastPathComponent] = package.match(/([a-z]+)$/);
+        const [_, lastPathComponent] = aPackage.match(/([a-z]+)$/);
         if (!lastPathComponent) {
             return true;
         }
@@ -46,23 +46,25 @@ const parseLernaJSON = aDirectory => {
 };
 
 // rollup version, is invoked in each component directory
-const gatherVersions = (aPath = cwd(), versionInfo = {}, ignore) => {
+const gatherVersions = (aPath = cwd(), versionInfo = {}, passedInIgnore) => {
     // determine to-be-ignored dependencies, if not passed-in already
-    if (ignore === undefined) {
-        ({ignore} = parseLernaJSON(path.resolve(aPath, '..', '..', '..', '..')));
+    let toIgnore = passedInIgnore;
+    if (passedInIgnore === undefined) {
+        const {ignore} = parseLernaJSON(path.resolve(aPath, '..', '..', '..', '..'));
+        toIgnore = ignore;
     }
     // construct full path to component package.json
     const filePath = `${aPath}${path.sep}package.json`;
     // bail out if package.json missing
     if (!fs.existsSync(filePath)) {
-        return '{}';
+        return JSON.stringify({});
     }
     // load package.json's content
     const packageJSON = require(filePath);
     // extract relevant key-value pairs
     const {name, version, dependencies = {}} = packageJSON;
     // harvest version info from them
-    versionInfo[clean(name)] = {[clean(name)]: version, ...pick(dependencies, ignore)};
+    versionInfo[clean(name)] = {[clean(name)]: version, ...pick(dependencies, toIgnore)};
     return JSON.stringify(versionInfo); // stringify: because a string-replacing plugin will use this
 }
 

@@ -258,7 +258,7 @@ class AXATableSortable extends LitElement {
 
     return versionedHtml(this)`
       <axa-table
-        class="o-table-sortable"
+        class="o-table-sortable js-table"
         maxheight="${this.maxheight}"
         innerscroll="${this.innerscroll}"
       >

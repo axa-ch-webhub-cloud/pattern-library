@@ -31,7 +31,7 @@ test('should upload file and switch view', async t => {
     () =>
       document
         .querySelector('axa-file-upload')
-        .shadowRoot.querySelector('axa-input-file .a-input-file__input') // TODO change to .js-
+        .shadowRoot.querySelector('.js-file-upload__input .a-input-file__input') // TODO change to .js-
   );
   await t.expect($inputFileInputElem.exists).ok();
 

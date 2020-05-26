@@ -349,7 +349,7 @@ test('should sort also when innerscroll is set ', async t => {
 
   const $el = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelector('axa-table');
+    return sRoot.querySelector('.js-table');
   });
 
   const $elChild = $el.find('table');
@@ -404,12 +404,12 @@ test('should sort also when maxheight is set ', async t => {
 
   const $el = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelector('axa-table');
+    return sRoot.querySelector('.js-table');
   });
 
   const $elTableBody = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelector('axa-table tbody');
+    return sRoot.querySelector('.js-table tbody');
   });
 
   const $elChild = $el.find('table');
@@ -463,7 +463,7 @@ test('should react to click on row', async t => {
 
   const $elTableTr = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelector('axa-table tbody tr');
+    return sRoot.querySelector('.js-table tbody tr');
   });
 
   const $elTableRenderArea = await Selector(() => {

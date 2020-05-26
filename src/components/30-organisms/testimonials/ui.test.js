@@ -45,7 +45,7 @@ test('should set subtitle text', async t => {
 });
 
 test('should find axa-carousel tag if attribute showallinline is not set', async t => {
-  const $carouselElement = await $elementTestimonialShadow.find('axa-carousel');
+  const $carouselElement = await $elementTestimonialShadow.find('.js-carousel');
   await t.expect($carouselElement.exists).ok();
 });
 

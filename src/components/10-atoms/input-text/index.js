@@ -78,7 +78,15 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.isPlaceholderInCounter = false;
 
     /* eslint-disable no-undef */
-    defineVersioned([AXAPopupButton, AXAPopupContent], __VERSION_INFO__);
+    const enrichedVersionInfo = __VERSION_INFO__;
+    const commonPopupVersion = enrichedVersionInfo['axa-popup']['axa-popup'];
+    enrichedVersionInfo[AXAPopupButton.tagName] = {
+      [AXAPopupButton.tagName]: commonPopupVersion,
+    };
+    enrichedVersionInfo[AXAPopupContent.tagName] = {
+      [AXAPopupContent.tagName]: commonPopupVersion,
+    };
+    defineVersioned([AXAPopupButton, AXAPopupContent], enrichedVersionInfo);
     /* eslint-enable no-undef */
   }
 
