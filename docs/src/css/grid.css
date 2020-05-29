@@ -1,0 +1,29 @@
+*,
+*::after,
+&::before {
+  border-box: box-sizing;
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.flex {
+  display: flex;
+
+  &.align-center {
+    align-items: center;
+  }
+
+  & .col {
+    flex: 1;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--space-5);
+}

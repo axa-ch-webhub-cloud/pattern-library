@@ -1,0 +1,76 @@
+/* scratch css */
+.bg-tint1 {
+  background: var(--N1);
+}
+
+.bg-neutral-2 {
+  background: var(--N2);
+}
+.bg-neutral-800 {
+  background: var(--neutral-800);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
+
+.bg-green {
+  background-color: var(--green-base);
+}
+
+.bg-blue {
+  background-color: var(--blue-base);
+}
+
+.clearfix {
+  &::after,
+  &::before {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+.border-bottom-default {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.border-bottom-muted {
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.focus-ring-link {
+  position: relative;
+
+  &:focus-visible::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -4px;
+    left: -6px;
+    right: -6px;
+    bottom: -4px;
+    box-shadow: 0 0 0 2px var(--B6A);
+    border-radius: 3px;
+  }
+}
+
+.focus-ring-link-white {
+  position: relative;
+
+  &:focus-visible {
+    border-bottom: none;
+  }
+
+  &:focus-visible::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -4px;
+    left: -6px;
+    right: -6px;
+    bottom: -4px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+  }
+}

@@ -26,6 +26,21 @@ node_modules
 
 # Optional npm cache directory
 .npm
+.cache
 
 .DS_Store
 .coverage
+
+
+# Docs Gatsby website
+*.log
+node_modules
+.DS_Store
+/.out/
+/docs/public
+.cache
+/npm-shrinkwrap.json
+/.idea/
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,18 @@
+.Callout {
+  background-color: var(--white);
+  padding: var(--space-3) var(--space-5);
+  box-shadow: var(--elevation-3);
+}
+
+.Callout-image {
+  max-width: var(--space-7);
+  margin-right: var(--space-2);
+
+  & img {
+    max-width: 100%;
+  }
+}
+
+.Callout-link {
+  max-width: 150px;
+}
