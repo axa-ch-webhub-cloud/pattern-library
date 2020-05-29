@@ -41,6 +41,8 @@ git push origin develop
 
 🔥 Don't break the SSR rendering (Find documention on how [Debugging HTML Builds](https://www.gatsbyjs.org/docs/debugging-html-builds/))
 
+![](static/ssr-windows-not-defined.png)
+
 - [ ] Go and search on https://patterns.axa.ch
 - [ ] Install from `@axa-ch/whatever` with `npm install @axa-ch/whatever`
 - [ ] Create the React-ified version on `src/patterns/reactified/Whatever.tsx`
