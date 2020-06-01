@@ -22,7 +22,7 @@ function MediaItem(props: MediaItemProps): ReactElement {
       <div className="MediaItem-content">
         <h3 className="heading">{props.title}</h3>
         <p className="MediaItem-published">{props.topic}</p>
-        <a className="kicker" href="#">Discover</a>
+        <p className="kicker">Discover</p>
       </div>
     </Link>
   );

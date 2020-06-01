@@ -19,6 +19,10 @@ export default class GetStartedSidebar extends PureComponent {
             label: 'Getting started',
           },
           {
+            to: '/structure',
+            label: 'Structure approach',
+          },
+          {
             to: '/contact',
             label: 'Help & Contact',
           },

@@ -11,7 +11,7 @@ export default function PageCallToAction() {
           <p className="text-3xl heading">Any question? Any help?</p>
         </div>
         <Link to="/contact">
-          <ButtonLink variant="inverted">Get in touch</ButtonLink>
+          <ButtonLink variant="inverted">Get answers</ButtonLink>
         </Link>
       </div>
     </section>
