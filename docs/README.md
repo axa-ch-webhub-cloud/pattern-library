@@ -52,7 +52,7 @@ git push origin develop
 
 | Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Logo                                   | Solid/Open                  | Constant       | 🌀              |
+| Logo                                   | Default / Sizes / with-img  | Constant       | 🌀              |
 | Icons                                  | Illustrative                | Constant       | 🌀              |
 |                                        | Functional                  | Constant       | 🌀              |
 | Spacing                                |                             | Constant       | 🔴              |
@@ -64,6 +64,7 @@ git push origin develop
 | Image                                  |                             | Atom           | 🔴              |
 | Typography                             | Heading                     | Atom           | ✅              |
 | Typography                             | Text                        | Atom           | ✅              |
+| Typography                             | Quote                       | Atom           | 🔴              |
 | Links                                  | Hyperlinks / Simple links   | Atom           | ✅              |
 | Form container                         |                             | Atom           | 🔴              |
 | Input                                  | Text / Password             | Atom           | ✅              |
@@ -99,7 +100,7 @@ git push origin develop
 | Commercial Hero Banner                 |                             | Organism       | ✅              |
 | Navigation Menu                        |                             | Organism       | 🔴              |
 | Short Page                             |                             | Organism       | 🔴              |
-| Form Page                              |                             | Organism       | 🔴              |
+| Form Page                              | Login                       | Organism       | 🔴              |
 
 ✅ Yes
 🔴 No

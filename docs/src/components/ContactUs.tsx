@@ -26,9 +26,9 @@ export default function ContactUs({
         </p>
       </div>
       <div className="grid">
-        {contactItems.map((item) => {
+        {contactItems.map((item, index) => {
           return (
-            <div>
+            <div key={`contact-{$index}`}>
               <img className="mw-5" src={item.icon} alt={item.title} />
               <p className="text-xl">
                 <strong>{item.title}</strong>

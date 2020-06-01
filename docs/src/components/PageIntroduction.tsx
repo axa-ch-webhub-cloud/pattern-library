@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
 }
 
 export default function PageIntroduction(props: Props): ReactElement {
