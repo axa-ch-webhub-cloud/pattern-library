@@ -22,7 +22,10 @@ story.add('Toggle Switch', () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-toggle-switch ?active=${active} ?disabled=${disabled}></axa-toggle-switch>
+    <axa-toggle-switch
+      ?active=${active}
+      ?disabled=${disabled}
+    ></axa-toggle-switch>
   `;
 
   render(template, wrapper);
