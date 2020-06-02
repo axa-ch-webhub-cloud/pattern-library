@@ -1,7 +1,7 @@
 import React from 'react';
 import Callout from './Callout';
 
-import slackIcon from 'images/icons/slack.png';
+import moleculeIcon from 'images/icons/molecule.svg';
 
 export default function Community() {
   return (
@@ -12,7 +12,7 @@ export default function Community() {
         core AXA principles and to carry forward this message.
       </p>
       <Callout
-        imageUrl={slackIcon}
+        imageUrl={moleculeIcon}
         title=" Understanding the AXA Design System"
         description="Atoms? Molecules? Organisms? Master the structure approach of AXA Design System."
         linkToTitle="Know more"

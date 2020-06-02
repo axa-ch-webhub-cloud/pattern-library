@@ -12,8 +12,9 @@
 }
 
 .Container-nextToSidebar {
-  padding-left: var(--space-6);
+  padding-top: var(--space-6);
   padding-right: var(--space-6);
-  padding-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  padding-left: var(--space-6);
   width: 840px;
 }

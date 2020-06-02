@@ -28,12 +28,12 @@ export default function ContactUs({
       <div className="grid">
         {contactItems.map((item, index) => {
           return (
-            <div key={`contact-{$index}`}>
+            <div key={`contact-${index}`}>
               <img className="mw-5" src={item.icon} alt={item.title} />
               <p className="text-xl">
                 <strong>{item.title}</strong>
               </p>
-              <p className="text-neutral-400">
+              <p className="text-neutral-600">
                 {item.description} <br />
                 <NativeLink className="text-dark" href={item.linkUrl}>
                   {item.linkText}

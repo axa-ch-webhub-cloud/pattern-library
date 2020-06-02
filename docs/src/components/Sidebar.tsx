@@ -36,16 +36,51 @@ export default class Sidebar extends PureComponent {
               >
                 {group.title && <p className="Sidebar-title">{group.title}</p>}
                 <nav className="Sidebar-nav">
-                  {group.links.map(({ label, to, exact }) => (
-                    <Link
-                      key={to}
-                      activeClassName="is-active"
-                      to={to}
-                      exact={exact}
-                    >
-                      {label}
-                    </Link>
-                  ))}
+                  {group.links.map(({ label, to, constants, atoms }) => {
+                    return (
+                      <>
+                        {label && (
+                          <Link key={to} to={to} activeClassName="is-active">
+                            {label}
+                          </Link>
+                        )}
+
+                        {constants && (
+                          <>
+                            <p className="Sidebar-subtitle">Constants</p>
+                            {constants.map((constant) => {
+                              return (
+                                <Link
+                                  key={constant.to}
+                                  to={constant.to}
+                                  activeClassName="is-active"
+                                >
+                                  {constant.label}
+                                </Link>
+                              );
+                            })}
+                          </>
+                        )}
+
+                        {atoms && (
+                          <>
+                            <p className="Sidebar-subtitle">Atom</p>
+                            {atoms.map((atom) => {
+                              return (
+                                <Link
+                                  key={atom.to}
+                                  to={atom.to}
+                                  activeClassName="is-active"
+                                >
+                                  {atom.label}
+                                </Link>
+                              );
+                            })}
+                          </>
+                        )}
+                      </>
+                    );
+                  })}
                 </nav>
               </div>
             );

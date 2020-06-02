@@ -71,3 +71,15 @@
   line-height: 18px;
   text-align: center;
 }
+
+.Overview-shadow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: var(--space-5);
+  grid-row-gap: var(--space-5);
+
+  & .ShadowBox {
+    background-color: var(--white);
+    padding: var(--space-6);
+  }
+}

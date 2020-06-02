@@ -23,6 +23,38 @@ export default class GetStartedSidebar extends PureComponent {
             label: 'Structure approach',
           },
           {
+            constants: [
+              {
+                to: '/components/typography',
+                label: 'Typography',
+              },
+              {
+                to: '/elevation',
+                label: 'Elevation',
+              },
+              {
+                to: '/components/colors',
+                label: 'Colors',
+              },
+            ],
+          },
+          {
+            atoms: [
+              {
+                to: '/components/button',
+                label: 'Button',
+              },
+              {
+                to: '/components/checkbox',
+                label: 'Checkbox',
+              },
+              {
+                to: '/components/radio',
+                label: 'Radio',
+              },
+            ],
+          },
+          {
             to: '/contact',
             label: 'Help & Contact',
           },

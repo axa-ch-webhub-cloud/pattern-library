@@ -49,3 +49,10 @@
     width: 100%;
   }
 }
+
+.Hero-image {
+  margin-top: var(--space-5);
+  max-width: 680px;
+  max-height: 310px;
+  width: 100%;
+}

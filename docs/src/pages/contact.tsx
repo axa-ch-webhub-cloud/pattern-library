@@ -13,6 +13,7 @@ import slackIcon from '../images/icons/slack-dark.png';
 import githubIcon from '../images/icons/github-dark.png';
 import feedbackIcon from '../images/icons/thumb.svg';
 import SEO from '../components/SEO';
+import Container from '../components/Container';
 
 const contactItems = [
   {
@@ -51,35 +52,25 @@ export default function contactPage() {
     <Layout>
       <SEO title="Help and Contact" />
 
-      <section className="MainLayout-contentRight">
-        <div className="Container-nextToSidebar">
-          <div className="Content">
-            <PageIntroduction
-              title="Help & Contact"
-              description="The AXA core team provides support for users in adopting the
+      <Container>
+        <PageIntroduction
+          title="Help & Contact"
+          description="The AXA core team provides support for users in adopting the
                     AXA Design System. Reach out to us with the details of your
                     project and we will do our bet to provide you with a
                     tailored advice on how to reach your project objectives."
-            />
+        />
 
-            <Support />
-          </div>
-        </div>
-      </section>
-      <section className="MainLayout-contentRight bg-neutral-800">
-        <div className="Container-nextToSidebar">
-          <div className="Content">
-            <Community />
-          </div>
-        </div>
-      </section>
-      <section className="MainLayout-contentRight">
-        <div className="Container-nextToSidebar">
-          <div className="Content">
-            <ContactUs contactItems={contactItems} />
-          </div>
-        </div>
-      </section>
+        <Support />
+      </Container>
+
+      <Container background="bg-neutral-200">
+        <Community />
+      </Container>
+
+      <Container>
+        <ContactUs contactItems={contactItems} />
+      </Container>
     </Layout>
   );
 }

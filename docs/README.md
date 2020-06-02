@@ -18,10 +18,10 @@ npm install
 npm start
 ```
 
-You can now view docs in the browser http://localhost:8000/
+You can now view docs in the browser [http://localhost:8000/](http://localhost:8000/)
 ⠀
-View GraphiQL, to explore your site's data and schema http://localhost:8000/___graphql
-⠀
+View GraphiQL, to explore your site's data and schema [`http://localhost:8000/___graphql`](http://localhost:8000/___graphql)
+
 ## Deploy
 
 Note that the development build is not optimized.
@@ -52,20 +52,20 @@ git push origin develop
 
 | Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Logo                                   | Default / Sizes / with-img  | Constant       | 🌀              |
-| Icons                                  | Illustrative                | Constant       | 🌀              |
-|                                        | Functional                  | Constant       | 🌀              |
+| Icons                                  | icons-raw                   | Constant       | ✅              |
+|                                        | images-raw                  | Constant       | ✅              |
+|                                        | Logo                        | Constant       | ✅              |
 | Spacing                                |                             | Constant       | 🔴              |
 | Grids                                  |                             | Constant       | 🔴              |
 | Colors                                 |                             | Constant       | ✅              |
+| Typography                             | Heading                     | Constant       | ✅              |
+|                                        | Text                        | Constant       | ✅              |
+|                                        | Quote                       | Constant       | 🔴              |
+|                                        | Hyperlinks / Simple links   | Constant       | ✅              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Buttons                                | Primary/Secondary           | Atom           | ✅              |
+| Buttons                                | Primary / Secondary         | Atom           | ✅              |
 |                                        | Ghost                       | Atom           | 🌀              |
 | Image                                  |                             | Atom           | 🔴              |
-| Typography                             | Heading                     | Atom           | ✅              |
-| Typography                             | Text                        | Atom           | ✅              |
-| Typography                             | Quote                       | Atom           | 🔴              |
-| Links                                  | Hyperlinks / Simple links   | Atom           | ✅              |
 | Form container                         |                             | Atom           | 🔴              |
 | Input                                  | Text / Password             | Atom           | ✅              |
 | Input                                  | Date                        | Atom           | 🔴              |
@@ -74,10 +74,6 @@ git push origin develop
 | Radio                                  |                             | Atom           | ✅              |
 | Social Media                           |                             | Atom           | 🔴              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Text Image                             | TextImage/Left_LargeImage   | Molecule       | 🔴              |
-|                                        | TextImage/Right_LargeImage  | Molecule       | 🔴              |
-|                                        | TextImage/Slider            | Molecule       | 🔴              |
-|                                        | TextImage/ColoredBackground | Molecule       | 🔴              |
 | Header                                 | Main Navigation             | Molecule       | 🌀              |
 |                                        | Meta Navigation             | Molecule       | 🌀              |
 |                                        | Sub-navigation              | Molecule       | 🌀              |

@@ -24,6 +24,17 @@
  */
 
 :root {
+  --black: #111111;
+  --neutral-800: #333333;
+  --neutral-700: #474747;
+  --neutral-600: #999999;
+  --neutral-500: #c9c9c9;
+  --neutral-400: #d8d8d8;
+  --neutral-300: #e5e5e5;
+  --neutral-200: #eeeeee;
+  --neutral-100: #fafafa;
+  --white: #ffffff;
+
   --N1: #f9f9fb;
   --N2: #f5f6f7;
   --N3: #edf0f2;
@@ -35,14 +46,14 @@
   --N9: #425a70;
   --N10: #234361;
 
-  --N1A: rgba(67, 90, 111, 0.04);
-  --N2A: rgba(67, 90, 111, 0.06);
-  --N3A: rgba(67, 90, 111, 0.09);
-  --N4A: rgba(67, 90, 111, 0.14);
-  --N5A: rgba(67, 90, 111, 0.3);
-  --N6A: rgba(67, 90, 111, 0.47);
-  --N7A: rgba(67, 90, 111, 0.7);
-  --N8A: rgba(67, 90, 111, 0.81);
+  --N1A: rgba(0, 0, 0, 0.04);
+  --N2A: rgba(0, 0, 0, 0.06);
+  --N3A: rgba(0, 0, 0, 0.09);
+  --N4A: rgba(0, 0, 0, 0.14);
+  --N5A: rgba(0, 0, 0, 0.3);
+  --N6A: rgba(0, 0, 0, 0.47);
+  --N7A: rgba(0, 0, 0, 0.7);
+  --N8A: rgba(0, 0, 0, 0.81);
 
   --B1: #f7f9fd;
   --B2: #f1f7fc;
@@ -69,10 +80,10 @@
  * Palette.
  */
 :root {
-  --neutral-lightest: var(--N1);
-  --neutral-light: var(--N4);
-  --neutral-base: var(--N9);
-  --neutral-dark: #333333;
+  --neutral-lightest: var(--neutral-200);
+  --neutral-light: var(--neutral-300);
+  --neutral-base: var(--neutral-500);
+  --neutral-dark: var(--neutral-800);
 
   --blue-lightest: var(--B1);
   --blue-light: var(--B4);
@@ -103,37 +114,24 @@
   --pink-light: #f3a0bb;
   --pink-base: #e63871;
   --pink-dark: #a71545;
-
-  --black: #111111;
-  --neutral-200: #333333;
-  --neutral-300: #474747;
-  --neutral-400: #999999;
-  --neutral-500: #c9c9c9;
-  --neutral-600: #d8d8d8;
-  --neutral-700: #e5e5e5;
-  --neutral-800: #eeeeee;
-  --neutral-900: #fafafa;
-  --white: #ffffff;
 }
 
 :root {
-  --color-border-default: var(--N4);
-  --color-border-muted: var(--N3);
+  --color-border-default: var(--neutral-500);
+  --color-border-muted: var(--neutral-300);
 }
 
 :root {
-  --color-border-shadow: var(--N6A);
-  --color-blurry-shadow: var(--N5A);
+  --color-border-shadow: rgba(0, 0, 0, 0.35);
+  --color-blurry-shadow: rgba(0, 0, 0, 0.25);
 
-  --elevation-0: 0 0 1px var(--color-border-shadow);
-  --elevation-1: 0 0 1px var(--color-border-shadow),
-    0 2px 4px -2px var(--color-blurry-shadow);
+  --elevation-1: 0 0 1px var(--color-border-shadow);
   --elevation-2: 0 0 1px var(--color-border-shadow),
-    0 5px 8px -4px var(--color-blurry-shadow);
+    0 0 4px var(--color-blurry-shadow);
   --elevation-3: 0 0 1px var(--color-border-shadow),
-    0 8px 10px -4px var(--color-blurry-shadow);
+    0 0 8px var(--color-blurry-shadow);
   --elevation-4: 0 0 1px var(--color-border-shadow),
-    0 16px 24px -8px var(--color-blurry-shadow);
+    0 0 12px var(--color-blurry-shadow);
   --elevation-5: 0 0 1px var(--color-border-shadow),
-    0 2px 4px -2px var(--color-blurry-shadow);
+    0 0 16px var(--color-blurry-shadow);
 }

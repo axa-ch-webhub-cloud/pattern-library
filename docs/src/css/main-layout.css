@@ -17,7 +17,7 @@ body {
 .MainLayout-content {
   flex: 1;
   overflow-y: auto;
-  background-color: var(--neutral-900);
+  background-color: var(--neutral-100);
 }
 
 .MainLayout-contentRight {
@@ -28,6 +28,7 @@ body {
 }
 
 .MainLayout-sidebar {
+  border-right: 1px solid var(--color-border-muted);
   width: 240px;
   overflow-y: auto;
 

@@ -11,6 +11,8 @@ export default function SEO({ title, description }: Props): ReactElement {
     <Helmet>
       <title>{title} • AXA Design System</title>
       <meta name="description" content={description} />
+      <meta property="og:title" content={`${title} • AXA Design System`} />
+      <meta property="twitter:title" content={`${title} • AXA Design System`} />
     </Helmet>
   );
 }

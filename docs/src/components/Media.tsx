@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { NativeLink } from './NativeLinks';
 
 interface MediaProps {
   title: string;
@@ -36,7 +37,7 @@ const MediaIcon = (props) => {
 
 function MediaItem(props: MediaItemProps): ReactElement {
   return (
-    <a href={props.link} className="MediaItem">
+    <NativeLink href={props.link} className="MediaItem">
       <figure>
         <img src={props.image} alt={props.title} className="MediaItem-image" />
       </figure>
@@ -44,13 +45,13 @@ function MediaItem(props: MediaItemProps): ReactElement {
         <h3 className="MediaItem-title">{props.title}</h3>
         <p className="MediaItem-published">{props.published}</p>
       </div>
-    </a>
+    </NativeLink>
   );
 }
 
 export default function Media(props: MediaProps): ReactElement {
   return (
-    <section className="Media bg-neutral-2 clearfix">
+    <section className="Media bg-neutral-200 clearfix">
       <div className="Media-inner Container">
         <header style={{ textAlign: 'center', marginTop: 64 }}>
           <MediaIcon />
