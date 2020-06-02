@@ -1,6 +1,6 @@
 # AXA Toggle Switch
 
-&lt;axa-toggle-switch&gt; provides a UI element for toggling between two states, on and off.
+&lt;axa-toggle-switch&gt; provides a UI element for toggling between two states, active and inactive.
 
 ## Usage
 
@@ -57,7 +57,7 @@ Import the toggle-switch-defining script and use a toggle-switch like this:
 
 ### active
 
-The Boolean attribute `active` sets the on/off state.
+The Boolean attribute `active` sets the active/inactive state.
 
 ### disabled
 
