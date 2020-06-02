@@ -24,10 +24,12 @@ console.log(
 
     Now, please tell me what kind of component to create for you:
 
-    Type
+    Type one of
     - a: for ATOM📗
     - m: for MOLECULE📘
     - o: for ORGANISM📙
+    and submit with Enter:
+
   `)
 );
 
@@ -82,7 +84,8 @@ const STEPS = {
         chalk.yellow(outdent`
 
         I am creating the new component *now*.
-        Press ${chalk.bold('y')} for yes, or ${chalk.bold('n')} to exit
+        Press ${chalk.bold('y')} for yes, or ${chalk.bold('n')} to exit,
+        followed by Enter:
 
       `)
       );
@@ -93,13 +96,16 @@ const STEPS = {
     n: reset,
   },
   2: {
-    y: createFiles(STORE, A, M, O, () => {
+    y: createFiles(STORE, A, M, O, folder => {
       currentStep++; // eslint-disable-line no-plusplus
 
       console.log(
         chalk.yellow(outdent`
 
-        I am done! Happy coding 🍻🍻
+        I am done! Happy coding 🍻🍻!
+        Your new component lives here: ${folder}.
+        Make sure to terminate any running 'npm start'
+        and re-start to see your new component in the browser.
 
       `)
       );

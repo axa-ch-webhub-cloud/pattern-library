@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const outdent = require('outdent');
 const fs = require('fs');
+const { cwd } = process;
 const templateJson = require('./templates/template-package.json');
 
 const getAMOType = (type) => {
@@ -8,7 +9,8 @@ const getAMOType = (type) => {
 
     Ok good, you choose to create a new component of type ${chalk.bold(type)}.
 
-    Now, tell me how your new component should be called
+    Now, tell me how your new component should be called (minus the axa- prefix),
+    and submit with Enter:
 
   `));
 };
@@ -27,10 +29,12 @@ const prepareName = done => (userInput) => {
   const className = `AXA${camelCase(fileName)}`;
 
   console.log(chalk.cyan(outdent`
-    Ok good, we will setup all the files for your new component
+
+    Ok good, now we will set up all the files for your new component.
 
     Class name: ${chalk.bold(className)}
     Folder name: ${chalk.bold(fileName)}
+
   `));
 
   done({
@@ -373,7 +377,23 @@ const createFiles = (store, a, m, o, done) => () => {
     'utf8',
   );
 
-  done();
+  // update lerna.json
+  const lernaPath = `${cwd()}/lerna.json`;
+  const lerna = require(lernaPath);
+  const { packages = [] } = lerna;
+  const newComponentPackageName = BASE_FOLDER.replace(/^\.\//, '');
+  if (packages.indexOf(newComponentPackageName) < 0) {
+    packages.push(newComponentPackageName);
+    packages.sort();
+
+    fs.writeFileSync(
+      lernaPath,
+      JSON.stringify(lerna, null, 2),
+      'utf8',
+    );
+  }
+
+  done(BASE_FOLDER);
 };
 
 
