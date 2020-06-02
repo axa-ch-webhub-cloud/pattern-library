@@ -1,7 +1,8 @@
-$toggle-switch-animation: 0.4s ease;
+$toggle-switch-transition: 0.4s ease;
 $toggle-switch-height: 30px;
 $toggle-switch-width: 50px;
 $toggle-switch-spacing: 2px;
+$toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
 
 .a-toggle-switch {
   display: block;
@@ -18,8 +19,7 @@ $toggle-switch-spacing: 2px;
       }
 
       & + .a-toggle-switch__slider::before {
-        $distance: $toggle-switch-width - $toggle-switch-height;
-        transform: translateX($distance);
+        transform: translateX($toggle-switch-width - $toggle-switch-height);
       }
 
       &:disabled + .a-toggle-switch__slider {
@@ -40,21 +40,19 @@ $toggle-switch-spacing: 2px;
     left: 0;
     border-radius: 18px;
     background-color: $color-light-grey;
-    transition: $toggle-switch-animation;
+    transition: $toggle-switch-transition;
     cursor: pointer;
 
     &::before {
-      $size: $toggle-switch-height - 2 * $toggle-switch-spacing;
-
       content: "";
       position: absolute;
       top: $toggle-switch-spacing;
       left: $toggle-switch-spacing;
-      height: $size;
-      width: $size;
+      height: $toggle-switch-circle-size;
+      width: $toggle-switch-circle-size;
       border-radius: 50%;
       background: $color-prim-white;
-      transition: $toggle-switch-animation;
+      transition: $toggle-switch-transition;
     }
   }
 }
