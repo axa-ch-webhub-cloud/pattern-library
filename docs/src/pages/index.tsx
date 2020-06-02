@@ -15,9 +15,9 @@ import SEO from '../components/SEO';
 const mediaItems = [
   {
     title: 'Brand Identity',
-    topic: 'Foundations',
+    topic: 'Constants',
     image: brandSystem,
-    link: '/brand',
+    link: '/components/icons',
   },
   {
     title: 'Atoms',

@@ -15,7 +15,7 @@ import { NativeLink } from './NativeLinks';
 export default function TopBar() {
   return (
     <div className="TopBar">
-      <Link to="/" className="focus-ring-link">
+      <Link to="/">
         <LogoBranding width={36}></LogoBranding>
       </Link>
 
@@ -24,19 +24,26 @@ export default function TopBar() {
           Get Started
         </Link>
         <Link
-          className="TopBar-link"
-          activeClassName="is-active"
-          to="/components"
-        >
-          Components
-        </Link>
-        <Link
           className="TopBar-link TopBar-link--icon"
           activeClassName="is-active"
           to="/for-designers"
         >
           <span>For Designers</span>
         </Link>
+
+        <NativeLink
+          className="TopBar-link TopBar-link--icon"
+          href="https://design.axa.com/"
+        >
+          <span>Axa Digital Guidelines</span>
+        </NativeLink>
+
+        <NativeLink
+          className="TopBar-link TopBar-link--icon"
+          href="https://brandhub.axa.com/"
+        >
+          <span>AXA Brand Hub</span>
+        </NativeLink>
       </nav>
       <div className="TopBar-navRight">
         <GitHubButton
@@ -44,17 +51,15 @@ export default function TopBar() {
           namespace="axa-ch"
           repo="patterns-library"
         />
-        <a
+        <NativeLink
           className="TopBar-link TopBar-link--icon"
           href={social.slackUrl}
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <span className="icon-holder">
             <SlackIcon />
           </span>
           <span className="hide-on-mobile">Slack</span>
-        </a>
+        </NativeLink>
 
         <NativeLink
           className="TopBar-link TopBar-link--icon"

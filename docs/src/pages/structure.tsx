@@ -9,6 +9,7 @@ import atomIcon from '../images/icons/atom.svg';
 import moleculeIcon from '../images/icons/molecule.svg';
 import organismIcon from '../images/icons/organism.svg';
 import VerticalItems from '../components/VerticalItems';
+import Container from '../components/Container';
 
 const categoryItems = [
   {
@@ -41,75 +42,70 @@ export default function StructurePage() {
   return (
     <Layout withCallToAction>
       <SEO title="What is atomic design ?" />
-      <section className="MainLayout-contentRight">
-        <div className="Container-nextToSidebar">
-          <div className="Content">
-            <PageIntroduction title="Structure approach" />
-            <h2 className="h2">What is atomic design ?</h2>
-            <p>
-              Atomic Design by Brad Frost is the one of methodology that can
-              accelerate the process of creating modular designs. He introduced
-              the concept of atomic design about 5 years ago.
-            </p>
 
-            <blockquote>
-              <p>
-                “As the craft of web design continues to evolve, We’re
-                recognizing the need to develop thoughtful design systems,
-                rather than creating simple collections of web pages. Atomic
-                design is a methodology for creating design systems.”
-              </p>
-              <cite>— Brad Frost</cite>
-            </blockquote>
+      <Container>
+        <PageIntroduction title="Structure approach" />
+        <h2 className="h2">What is atomic design ?</h2>
+        <p>
+          Atomic Design by Brad Frost is the one of methodology that can
+          accelerate the process of creating modular designs. He introduced the
+          concept of atomic design about 5 years ago.
+        </p>
 
-            <p>
-              In my word, Build systems mean that not design or develop the
-              front-end full pages. It’s like small element like as buttons. And
-              all small components combine to a large unit like a label, box,
-              table, forms. The final full pages are then just a combination of
-              these units.it is the idea of the building system.
-            </p>
+        <blockquote>
+          <p>
+            “As the craft of web design continues to evolve, We’re recognizing
+            the need to develop thoughtful design systems, rather than creating
+            simple collections of web pages. Atomic design is a methodology for
+            creating design systems.”
+          </p>
+          <cite>— Brad Frost</cite>
+        </blockquote>
 
-            <Callout
-              imageUrl={moleculeIcon}
-              title="Atomic Design by Brad Frost "
-              description="A methodology for creating design systems. Go deeper and discover Brad Frost Approach"
-              linkToTitle="Know more"
-              linkToUrl="https://bradfrost.com/blog/post/atomic-web-design/"
-            ></Callout>
+        <p>
+          In my word, Build systems mean that not design or develop the
+          front-end full pages. It’s like small element like as buttons. And all
+          small components combine to a large unit like a label, box, table,
+          forms. The final full pages are then just a combination of these
+          units.it is the idea of the building system.
+        </p>
 
-            <h2 className="h2" style={{ marginTop: 128 }}>
-              How to categorize an element ?
-            </h2>
-            <p>
-              Atomic Design, is an approch that allows you to decompose your UI
-              elements in order to standardelize and organize them. An important
-              question that we need to ask ourselves is “to what category does a
-              given component belong to?”.
-            </p>
-          </div>
+        <Callout
+          imageUrl={moleculeIcon}
+          title="Atomic Design by Brad Frost "
+          description="A methodology for creating design systems. Go deeper and discover Brad Frost Approach"
+          linkToTitle="Know more"
+          linkToUrl="https://bradfrost.com/blog/post/atomic-web-design/"
+        ></Callout>
 
-          <VerticalItems items={categoryItems} />
+        <h2 className="h2" style={{ marginTop: 128 }}>
+          How to categorize an element ?
+        </h2>
+        <p>
+          Atomic Design, is an approch that allows you to decompose your UI
+          elements in order to standardelize and organize them. An important
+          question that we need to ask ourselves is “to what category does a
+          given component belong to?”.
+        </p>
 
-          <div className="Content">
-            <p className="paragraph">
-              Each design system can have its own categorization depending on
-              the context and purpose. The objectif of the Axa design system is
-              to be of use to all Axa entities, how have differents needs and
-              constraints. The way we’ve thought the categorization of the
-              elements is to allow for as much possibilities as possible.
-            </p>
+        <VerticalItems items={categoryItems} />
 
-            <Callout
-              imageUrl={organismIcon}
-              title="Create and catgorize new elements"
-              description="If you need to create new elements and you ask yourself how to categorize them, try out this tool"
-              linkToTitle="Categorize"
-              linkToUrl="https://dan503.github.io/Atomic-Categorizer/"
-            ></Callout>
-          </div>
-        </div>
-      </section>
+        <p className="paragraph">
+          Each design system can have its own categorization depending on the
+          context and purpose. The objectif of the Axa design system is to be of
+          use to all Axa entities, how have differents needs and constraints.
+          The way we’ve thought the categorization of the elements is to allow
+          for as much possibilities as possible.
+        </p>
+
+        <Callout
+          imageUrl={organismIcon}
+          title="Create and catgorize new elements"
+          description="If you need to create new elements and you ask yourself how to categorize them, try out this tool"
+          linkToTitle="Categorize"
+          linkToUrl="https://dan503.github.io/Atomic-Categorizer/"
+        ></Callout>
+      </Container>
     </Layout>
   );
 }

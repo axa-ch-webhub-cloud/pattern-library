@@ -1,52 +1,52 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import uniqueId from 'lodash/uniqueId'
-// import * as components from 'evergreen-ui'
-import Component from '@reactions/component'
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import profiles from './examples/profiles.json'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import uniqueId from 'lodash/uniqueId';
+import * as components from '../patterns';
+import Component from '@reactions/component';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import profiles from './examples/profiles.json';
 
 const editorTheme = {
   plain: {
-    fontSize: '14px'
+    fontSize: '14px',
   },
-  styles: []
-}
+  styles: [],
+};
 
 export default class Playground extends React.Component {
   static propTypes = {
     codeText: PropTypes.string.isRequired,
     scope: PropTypes.object,
     isOpenByDefault: PropTypes.bool,
-    noInline: PropTypes.bool
-  }
+    noInline: PropTypes.bool,
+  };
 
   static defaultProps = {
-    noInline: false
-  }
+    noInline: false,
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       uniqueId: uniqueId(),
       isCodeCollapsed: !props.isOpenByDefault,
       hasError: false,
-      codeText: props.codeText
-    }
+      codeText: props.codeText,
+    };
   }
 
   componentDidCatch() {
     // Display fallback UI
-    this.setState({ hasError: true })
+    this.setState({ hasError: true });
   }
 
   handleToggle = () => {
     this.setState(({ isCodeCollapsed }) => ({
-      isCodeCollapsed: !isCodeCollapsed
-    }))
-  }
+      isCodeCollapsed: !isCodeCollapsed,
+    }));
+  };
 
   renderError = () => {
     return (
@@ -56,20 +56,20 @@ export default class Playground extends React.Component {
           <br /> Please reload the page and try again.
         </p>
       </div>
-    )
-  }
+    );
+  };
 
-  handleChange = codeText => {
+  handleChange = (codeText) => {
     this.setState({
-      codeText
-    })
-  }
+      codeText,
+    });
+  };
 
   renderComponentNotice = () => {
     return (
       <div className="Playground-notice">
-        The `Component` component is not part of Evergreen. It is only used in
-        examples to create state.{' '}
+        The `Component` component is not part of AXA Design System. It is only
+        used in examples to create state.{' '}
         <a
           href="https://github.com/reactions/component"
           target="_blank"
@@ -79,8 +79,8 @@ export default class Playground extends React.Component {
         </a>
         .
       </div>
-    )
-  }
+    );
+  };
 
   renderProfilesNotice = () => {
     return (
@@ -88,19 +88,18 @@ export default class Playground extends React.Component {
         The `profiles` variable is not part of Evergreen. It’s example data
         existing out of an array of user profiles.
       </div>
-    )
-  }
+    );
+  };
 
   render() {
-    const { scope, noInline } = this.props
-    const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state
+    const { scope, noInline } = this.props;
+    const { codeText, hasError, isCodeCollapsed, uniqueId } = this.state;
 
-    if (hasError) return this.renderError()
+    if (hasError) return this.renderError();
     return (
       <LiveProvider
         theme={editorTheme}
-        // scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
-        scope={{ ReactDOM, Component, profiles, ...scope }}
+        scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
         code={codeText}
         noInline={noInline}
       >
@@ -132,11 +131,10 @@ export default class Playground extends React.Component {
             className="Playground-header"
             onClick={this.handleToggle}
           >
-            {/* <components.CodeIcon marginRight={8} />{' '} */}
             {isCodeCollapsed ? 'Show code' : 'Hide code'}
           </div>
         </div>
       </LiveProvider>
-    )
+    );
   }
 }

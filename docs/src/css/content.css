@@ -34,7 +34,6 @@
   font-weight: 500;
   line-height: 40px;
   letter-spacing: -0.2px;
-  margin-top: 54px;
   margin-bottom: 4px;
 }
 
@@ -99,7 +98,7 @@
   font-size: 1.25rem;
 
   & cite {
-    color: var(--neutral-400);
+    color: var(--neutral-600);
   }
 }
 
@@ -116,12 +115,16 @@
   margin-bottom: 16px;
 }
 
+.Content-image {
+  width: 100%;
+}
+
 .Content-vertical {
   & .Content-vertical-item {
-    color: var(--neutral-200);
+    color: var(--neutral-700);
     padding-top: var(--space-4);
     padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--color-border-default);
+    border-bottom: 1px solid var(--color-border-muted);
 
     &:last-child {
       border-bottom-color: transparent;

@@ -30,7 +30,7 @@ function MediaItem(props: MediaItemProps): ReactElement {
 
 export default function MediaAtomic(props: MediaProps): ReactElement {
   return (
-    <section className="Media bg-neutral-2 clearfix">
+    <section className="Media bg-neutral-200 clearfix">
       <div className="Media-inner Container">
         <header style={{ textAlign: 'center', marginTop: 64 }}>
           <h2 className="h2 text-4xl" style={{ marginTop: 32 }}>

@@ -1,20 +1,41 @@
-## Evergreen exports multiple button components
+import { Button } from '../../patterns/index';
 
-- **Button**: most commonly used, can have a icon on the left or right side.
-- **IconButton**: a button that holds a single icon.
-- **BackButton**: a preset of the `Button` component.
-- **TextDropdownButton**: a bare-bones button that is used primarily in table headers.
+## Usage
 
-`Button`, `IconButton` and `BackButton` all share a very similar API and look.
-`TextDropdownButton` is a bit different.
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
-# Button
+- Dialogs
+- Modal windows
+- Forms
+- Cards
+- Toolbars
+
+## Button
 
 The `Button` component is the most common button component.
 It contains a label and optional icons before or after the label.
 
 ```jsx
-<Button appearance="primary">Hi Evergreen!</Button>
+<Button>Hello</Button>
 ```
 
 ## All button variations
+
+```jsx
+<React.Fragment>
+  <Button variant="secondary" marginRight={16}>
+    secondary
+  </Button>
+  <Button variant="red" marginRight={16}>
+    red
+  </Button>
+  <div style={{ backgroundColor: '#1e3952' }}>
+    <Button variant="inverted">inverted</Button>
+    <Button variant="inverted-blue-ocean">inverted-blue-ocean</Button>
+    <Button variant="inverted-red-tosca">inverted-red-tosca</Button>
+    <Button variant="inverted-purple-logan">inverted-purple-logan</Button>
+    <Button variant="inverted-green-viridian">inverted-green-viridian</Button>
+    <Button variant="inverted-blue-teal">inverted-blue-teal</Button>
+  </div>
+</React.Fragment>
+```

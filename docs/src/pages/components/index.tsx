@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import IA from '../../IA';
-import Overview from '../../components/Overview';
 import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
 import PageIntroduction from '../../components/PageIntroduction';
@@ -25,7 +24,6 @@ const ComponentsPage = ({ data }) => {
             {allComponents.map((item) => {
               return <p>{item.displayName}</p>;
             })}
-            {/* <Overview ia={IA} /> */}
           </div>
         </div>
       </section>

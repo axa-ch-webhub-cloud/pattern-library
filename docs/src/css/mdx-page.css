@@ -5,13 +5,8 @@
 .MDXPage-headerContent {
   display: flex;
   align-items: center;
-  padding-top: 32px;
-  padding-bottom: 32px;
-
-  & h1 {
-    font-size: 35px;
-    font-weight: 500;
-  }
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
 }
 
 .MDXPage-headerContentLeft {

@@ -1,0 +1,92 @@
+import React, { ReactElement } from 'react';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
+import Container from '../components/Container';
+import PageIntroduction from '../components/PageIntroduction';
+
+interface Props {}
+
+import heroImage from '../images/elevation/hero.png';
+import principleImage from '../images/elevation/principle-elevation.png';
+import gridImage from '../images/elevation/grid.png';
+import exampleImage from '../images/elevation/example.png';
+import exampleGridImage from '../images/elevation/example-grid.png';
+
+const shadowScales = [
+  {
+    index: 'Elevation 5',
+    title: 'Dialog and Picker',
+    className: 'shadow-2xl',
+  },
+  {
+    index: 'Elevation 4',
+    title: 'Navigation and Header',
+    className: 'shadow-xl',
+  },
+  {
+    index: 'Elevation 3',
+    title: 'SubNavigation and Floating button',
+    className: 'shadow-lg',
+  },
+  {
+    index: 'Elevation 2',
+    title: 'Selector list, bottom bars',
+    className: 'shadow-md',
+  },
+  {
+    index: 'Elevation 1',
+    title: 'Cards',
+    className: 'shadow',
+  },
+];
+
+export default function ElevationPage({}: Props): ReactElement {
+  return (
+    <Layout>
+      <SEO title="Elevation" />
+
+      <Container>
+        <PageIntroduction
+          title="Elevation"
+          description="The elevation system treats the relative distance between two elements, which helps the user understand and feel their hierarchy and dynamic."
+          imageUrl={heroImage}
+        />
+
+        <h2 className="h2">Principle</h2>
+        <p>
+          This is a scale that use the Z axe (in a 3D environnement). <br />
+          Create a scale of elevation is use to create a hierarchy between
+          elements.
+        </p>
+
+        <img className="Content-image" src={principleImage} alt="Principle" />
+        <p className="text-neutral-600">This is the ground</p>
+
+        <h2 className="h2">Elevation guidelines</h2>
+        <p className="text-2xl font-weight-bold">Shadow Scales</p>
+
+        <div className="Overview-shadow">
+          {shadowScales.map((item) => {
+            return (
+              <div className={`ShadowBox ${item.className}`}>
+                <p className="">{item.index}</p>
+                <p className="">{item.title}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="text-2xl font-weight-bold">Shadow Grid</p>
+        <img className="Content-image" src={gridImage} alt="Principle" />
+
+        <h2 className="h2">Example</h2>
+        <p>
+          Here is an example of the elevation principle applied to a header and
+          a navigation design element.
+        </p>
+        <img className="Content-image" src={exampleImage} alt="Principle" />
+        <img className="Content-image" src={exampleGridImage} alt="Principle" />
+      </Container>
+    </Layout>
+  );
+}

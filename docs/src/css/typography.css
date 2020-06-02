@@ -160,6 +160,12 @@ samp {
 .text-neutral-400 {
   color: var(--neutral-400);
 }
+.text-neutral-600 {
+  color: var(--neutral-600);
+}
+.text-neutral-700 {
+  color: var(--neutral-700);
+}
 
 .text-dark {
   color: var(--black) !important;

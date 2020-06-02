@@ -33,7 +33,7 @@ export default function Callout({
         <p className="text-xl">
           <strong>{title}</strong>
         </p>
-        <p className="text-neutral-400">{description}</p>
+        <p className="text-neutral-600">{description}</p>
       </div>
       <div className="col Callout-link">
         {isInternalLink ? (

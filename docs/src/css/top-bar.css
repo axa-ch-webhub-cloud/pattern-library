@@ -9,7 +9,7 @@
   top: 0;
   z-index: 9;
   background: var(--white);
-  box-shadow: var(--elevation-2);
+  box-shadow: var(--elevation-4);
 }
 
 .TopBar-nav {
@@ -36,7 +36,7 @@
 }
 
 .TopBar-link {
-  color: var(--neutral-base);
+  color: var(--neutral-600);
   text-transform: uppercase;
   line-height: 16px;
   font-size: 14px;
@@ -54,13 +54,11 @@
   }
 
   &:hover {
-    /* background-color: var(--N2A); */
     color: var(--blue-base);
   }
 
   &:active,
   &.is-active {
-    /* background-color: var(--B3A); */
     color: var(--blue-base);
     border-bottom-color: var(--red-base);
   }
