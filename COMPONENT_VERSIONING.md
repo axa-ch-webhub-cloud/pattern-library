@@ -3,9 +3,11 @@ Component Versioning
 
 ## Problem Statement
 
-We want to support versioning in a [Micro Frontend](https://micro-frontends.org/) architecture.
+We want to support component versioning in a [Micro Frontend](https://micro-frontends.org/) architecture.
 
 Micro Frontends are an emerging new paradigm on how to decompose a web page or web app into major features, each of which is owned and developed by an independent team.
+
+Think of a micro frontend as an application written in SPA style that suddenly finds itself having to coexist with other SPAs on the same webpage. Furthermore, imagine each of these SPAs being developed by an independent team of software developers, who each chose different versions of UI components for their SPA. How can all these UI components in their different versions coexist on the same webpage without giving up team independence? That's the versioning dilemma in a nutshell.
 
 Have a look [here](https://github.com/axa-ch/midgard/blob/develop/DOCUMENTATION.md#pattern-library-versioning) for more details.
 
@@ -15,8 +17,8 @@ The solution to the versioning dilemma should respect a few constraints:
 
 1. Cross-browser support
 1. Works for component with and without [ShadowDOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
-1. Ability to choose between latest and particular npm version
-1. Ability to choose user-defined version name
+1. Ability to choose either the latest or a particular fixed npm version for a component
+1. Ability to choose a user-defined version name
 1. Minimal code updates when switching versions, both in component code and applications
 1. Be friendly to testing
 
@@ -27,11 +29,11 @@ Our solution automatically injects `package.json` version information into compo
 This solution satisfies all of our constraints:
 
 1. It enjoys cross-browser support because it doesn't use any new mechanisms, and the old, unversioned components are cross-browser ready (if necessary, using polyfills shipped with them).
-1. For components with ShadowDOM, CSS is scoped to the component automatically (using ShadyCSS via lit-element for Internet Explorer). For components without it, our components had a component-tag-name prefix in every CSS rule already (just like what ShadyCSS does), and by versioning that prefix scoping is preserved.
+1. For components with ShadowDOM, CSS is scoped to the component automatically (using ShadyCSS via lit-element for Internet Explorer). For components without it, our components have a component-tag-name prefix in every CSS rule already (just like how ShadyCSS does it), and, by versioning this prefix, scoping is preserved.
 1. To use the latest version of a component, an application developer just issues the appropriate directive in her package.json dependencies (e.g. `latest` or `^minimumVersion`) and uses the generic component tag name. To use a specific version, she likewise fixes the exact version (e.g. `7.0.2`) and uses the versioned component tag name.
 1. To employ user-defined versioning, an application developer employs a PL-provided helper function that accepts a version string.
-1. Our solution stores npm versioning information only in component package.jsons as the single source of truth. Making this information available at runtime is automatic and requires no code changes. For application authors, code change is as minimal as possible under the user-defined versioning scheme: choose a application-specific unique version string once, call the PL-provided helper function for every component with that unique version!
-1. Under the user-defined versioning scheme, all PL component names are invariant under npm version changes, so after tests are rewritten once to reference user-defined names like `axa-datepicker-rsv` they do **not** need to be updated everytime a npm version changed.
+1. Our solution stores npm versioning information only in component package.jsons as the single source of truth. Making this information available at runtime is automatic and requires no code changes. For application authors, code change is as minimal as possible under the user-defined versioning scheme: choose an application-specific unique version string once, and call the PL-provided helper function once for every component with that unique version!
+1. Under the user-defined versioning scheme, all PL component names are invariant under npm version changes. Therefore, after tests are rewritten once to reference user-defined names like `axa-datepicker-rsv` they do **not** need to be updated again every time a npm version changes.
 
 Getting Practical
 -----------------
@@ -58,5 +60,5 @@ const podNameAsVersionSuffix = 'YOUR UNIQUE SPA SHORT-NAME HERE'; // e.g. 'rsv'
 export const AXAButton = createAXAButtonReact(createElement, podNameAsVersionSuffix);
 
 // *again* use <AXAButton ... /> in your JSX later, without fear of SPA-to-SPA conflicts
-// between different <axa-button> versions.
+// due to different <axa-button> versions.
 ```
