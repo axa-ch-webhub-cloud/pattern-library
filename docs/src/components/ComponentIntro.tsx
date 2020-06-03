@@ -19,7 +19,7 @@ export default function ComponentIntro({
             <h1 className="h1 heading text-5xl">{name}</h1>
           </div>
 
-          <ButtonLink variant="secondary" href={githubUrl}>
+          <ButtonLink variant="secondary" href={githubUrl} external={true}>
             <GitHubIcon
               width="16"
               height="16"
@@ -27,7 +27,7 @@ export default function ComponentIntro({
                 marginRight: 10,
               }}
             />
-            View on GitHub
+            View source
           </ButtonLink>
         </div>
       </header>

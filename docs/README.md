@@ -102,3 +102,44 @@ git push origin develop
 🔴 No
 🌀 Almost
 ? No idea what is it
+
+## Source of Truth : Tree IA
+
+```
+00-materials/
+  ├── icons
+  └── images
+
+10-atoms/
+  ├── button
+  ├── button-link
+  ├── carousel
+  ├── checkbox
+  ├── fieldset
+  ├── heading
+  ├── icon
+  ├── input-file
+  ├── input-text
+  ├── link
+  ├── radio
+  ├── text
+  └── textarea
+
+20-molecules/
+  ├── cookie-disclaimer
+  ├── datepicker
+  ├── dropdown
+  ├── file-upload
+  ├── footer-small
+  ├── policy-features
+  ├── popup
+  └── top-content-bar
+
+30-organisms/
+  ├── commercial-hero-banner
+  ├── container
+  ├── footer
+  ├── table
+  ├── table-sortable
+  └── testimonials
+```

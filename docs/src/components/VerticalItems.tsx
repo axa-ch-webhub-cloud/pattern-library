@@ -19,7 +19,7 @@ export default function VerticalItems({
     <div className="Content-vertical">
       {items.map((item) => {
         return (
-          <div className="Content-vertical-item flex">
+          <div className="Content-vertical-item flex align-center">
             <img
               className="Content-vertical-image"
               src={item.imageUrl}

@@ -59,7 +59,7 @@ export default function startPage() {
         <VerticalItems items={doingItems} />
       </Container>
 
-      <Container background="bg-neutral-800">
+      <Container background="bg-neutral-200">
         <Explore />
       </Container>
 

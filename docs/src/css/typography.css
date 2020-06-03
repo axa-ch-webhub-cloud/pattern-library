@@ -52,6 +52,10 @@
       format('woff');
 }
 
+.font-mono {
+  font-family: var(--font-mono);
+}
+
 .text-left {
   text-align: left;
 }

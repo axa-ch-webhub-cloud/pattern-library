@@ -80,6 +80,6 @@
 
   & .ShadowBox {
     background-color: var(--white);
-    padding: var(--space-6);
+    padding: var(--space-2) var(--space-6);
   }
 }

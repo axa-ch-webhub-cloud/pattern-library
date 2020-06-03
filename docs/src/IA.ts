@@ -1,5 +1,5 @@
 import brandSystem from './images/introduction/constant.svg';
-import atomsSystem from './images/introduction/atoms.svg';
+import atomIcon from './images/icons/atom.svg';
 import moleculesSystem from './images/introduction/molecules.svg';
 import organismSystems from './images/introduction/organisms.svg';
 
@@ -66,14 +66,14 @@ export default {
             github: githubDocumentationLink('10-atoms/button'),
             name: 'Button',
             tags: ['icon button', 'button', 'action'],
-            image: atomsSystem,
+            image: atomIcon,
           },
           {
             id: 'tab',
             github: githubDocumentationLink('tabs'),
             name: 'Tab',
             tags: ['tab', 'tab list', 'tab navigation', 'navigation'],
-            image: atomsSystem,
+            image: atomIcon,
           },
           {
             id: 'badge-and-pill',
@@ -81,29 +81,24 @@ export default {
             name: 'Badge & Pill',
             tags: ['badge', 'pills', 'tag'],
             related: ['tag-input'],
-            image: atomsSystem,
+            image: atomIcon,
           },
           {
             id: 'avatar',
             github: githubDocumentationLink('avatar'),
             name: 'Avatar',
-            image: atomsSystem,
+            image: atomIcon,
           },
         ],
       },
 
       {
-        title: 'Text Inputs & File Uploading',
+        title: 'Forms, Text Inputs & File Uploading',
         items: [
           {
             id: 'text-input',
             github: githubDocumentationLink('text-input'),
             name: 'Text Input',
-          },
-          {
-            id: 'search-input',
-            github: githubDocumentationLink('search-input'),
-            name: 'Search Input',
           },
           {
             id: 'tag-input',
@@ -164,18 +159,15 @@ export default {
         items: [
           {
             id: 'checkbox',
-            github: githubDocumentationLink('checkbox'),
+            github: githubDocumentationLink('10-atoms/checkbox'),
             name: 'Checkbox',
+            image: atomIcon,
           },
           {
             id: 'radio',
-            github: githubDocumentationLink('radio'),
+            github: githubDocumentationLink('10-atoms/radio'),
             name: 'Radio',
-          },
-          {
-            id: 'switch',
-            github: githubDocumentationLink('switch'),
-            name: 'Switch',
+            image: atomIcon,
           },
         ],
       },
