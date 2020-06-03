@@ -35,6 +35,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-robots-txt',
     'gatsby-transformer-react-docgen',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-postcss',

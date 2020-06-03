@@ -1,5 +1,6 @@
 .PageFooter-inner {
   padding: var(--space-3);
+  background-color: var(--neutral-100);
 
   text-align: right;
 

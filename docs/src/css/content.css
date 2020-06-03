@@ -11,7 +11,6 @@
 }
 
 .Content,
-.Content li,
 .paragraph,
 .li {
   font-size: 16px;
@@ -24,7 +23,6 @@
   margin-bottom: var(--space-1);
 }
 
-.Content li,
 .li {
   margin-top: 0.2em;
   margin-bottom: 0.2em;
@@ -107,7 +105,6 @@
   font-weight: 600;
 }
 
-.Content ul,
 .ul {
   list-style-type: disc;
   margin-left: 1.1em;

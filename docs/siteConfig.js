@@ -16,4 +16,8 @@ module.exports = {
     email: 'dleuliette@gmail.com',
     formUrl: 'https://davidl.fr/onboarding',
   },
+  fontDownloadUrl: {
+    heading: 'https://commercialtype.com/catalog/publico',
+    content: 'https://fonts.google.com/specimen/Source+Sans+Pro',
+  },
 };

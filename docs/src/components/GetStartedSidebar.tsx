@@ -25,7 +25,7 @@ export default class GetStartedSidebar extends PureComponent {
           {
             constants: [
               {
-                to: '/components/typography',
+                to: '/typography',
                 label: 'Typography',
               },
               {
@@ -43,14 +43,6 @@ export default class GetStartedSidebar extends PureComponent {
               {
                 to: '/components/button',
                 label: 'Button',
-              },
-              {
-                to: '/components/checkbox',
-                label: 'Checkbox',
-              },
-              {
-                to: '/components/radio',
-                label: 'Radio',
               },
             ],
           },
