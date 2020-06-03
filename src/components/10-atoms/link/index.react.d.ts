@@ -41,7 +41,8 @@ type AXALinkProps = SharedProps &
   ({ variant?: Variant } | { variant: IconVariant; icon: Icon });
 
 declare function createAXALink(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXALinkProps>;
 
 export default createAXALink;
