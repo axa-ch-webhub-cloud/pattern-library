@@ -1,12 +1,8 @@
-.MDXPage-header {
-  border-bottom: var(--color-border-default);
-}
-
 .MDXPage-headerContent {
   display: flex;
   align-items: center;
-  padding-top: var(--space-4);
-  padding-bottom: var(--space-4);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 
 .MDXPage-headerContentLeft {

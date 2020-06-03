@@ -22,14 +22,27 @@ It contains a label and optional icons before or after the label.
 ## All button variations
 
 ```jsx
-<React.Fragment>
-  <Button variant="secondary" marginRight={16}>
-    secondary
-  </Button>
-  <Button variant="red" marginRight={16}>
-    red
-  </Button>
-  <div style={{ backgroundColor: '#1e3952' }}>
+<div>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+    }}
+  >
+    <Button variant="secondary" marginRight={16}>
+      secondary
+    </Button>
+    <Button variant="red" marginRight={16}>
+      red
+    </Button>
+  </div>
+  <div
+    style={{
+      backgroundColor: '#1e3952',
+      display: 'flex',
+      flexDirection: 'column',
+    }}
+  >
     <Button variant="inverted">inverted</Button>
     <Button variant="inverted-blue-ocean">inverted-blue-ocean</Button>
     <Button variant="inverted-red-tosca">inverted-red-tosca</Button>
@@ -37,5 +50,5 @@ It contains a label and optional icons before or after the label.
     <Button variant="inverted-green-viridian">inverted-green-viridian</Button>
     <Button variant="inverted-blue-teal">inverted-blue-teal</Button>
   </div>
-</React.Fragment>
+</div>
 ```

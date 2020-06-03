@@ -17,26 +17,31 @@ const shadowScales = [
     index: 'Elevation 5',
     title: 'Dialog and Picker',
     className: 'shadow-2xl',
+    code: '0 0 16px rgba(0, 0, 0, 0.25)',
   },
   {
     index: 'Elevation 4',
     title: 'Navigation and Header',
     className: 'shadow-xl',
+    code: '0 0 12px rgba(0, 0, 0, 0.25)',
   },
   {
     index: 'Elevation 3',
     title: 'SubNavigation and Floating button',
     className: 'shadow-lg',
+    code: '0 0 8px rgba(0, 0, 0, 0.25)',
   },
   {
     index: 'Elevation 2',
     title: 'Selector list, bottom bars',
     className: 'shadow-md',
+    code: '0 0 4px rgba(0, 0, 0, 0.25)',
   },
   {
     index: 'Elevation 1',
     title: 'Cards',
     className: 'shadow',
+    code: '0 0 2px rgba(0, 0, 0, 0.25)',
   },
 ];
 
@@ -69,8 +74,9 @@ export default function ElevationPage({}: Props): ReactElement {
           {shadowScales.map((item) => {
             return (
               <div className={`ShadowBox ${item.className}`}>
-                <p className="">{item.index}</p>
-                <p className="">{item.title}</p>
+                <p className="kicker text-neutral-600">{item.index}</p>
+                <p className="font-weight-bold text-xl">{item.title}</p>
+                <pre className="font-mono text-xs mt-8">{item.code}</pre>
               </div>
             );
           })}
