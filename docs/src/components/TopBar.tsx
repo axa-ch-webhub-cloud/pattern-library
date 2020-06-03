@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import GitHubButton from 'react-github-button';
-import GitHubIcon from './GitHubIcon';
-import SlackIcon from './SlackIcon';
 import LogoBranding from './LogoBranding';
-
-import { githubCodebaseUrl, social } from '../../siteConfig';
 
 // eslint-disable-next-line import/no-unassigned-import
 import 'react-github-button/assets/style.css';

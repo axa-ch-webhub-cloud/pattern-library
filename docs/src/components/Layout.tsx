@@ -55,11 +55,13 @@ export default class Layout extends React.Component<Props> {
         <div className="MainLayout">
           {withTopBar && <TopBar />}
           <main className="MainLayout-main">
-            <div className="MainLayout-content">{children}</div>
+            <div className="MainLayout-content">
+              {children}
+              {withCallToAction && <PageCallToAction />}
+              {withFooter && <PageFooter />}
+            </div>
             {withSideBar && <GetStartedSidebar />}
           </main>
-          {withCallToAction && <PageCallToAction />}
-          {withFooter && <PageFooter />}
         </div>
       </>
     );

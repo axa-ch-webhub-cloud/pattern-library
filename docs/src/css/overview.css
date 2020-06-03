@@ -56,14 +56,6 @@
   }
 }
 
-.OverviewItem-image {
-  display: block;
-  border: none;
-  width: 100%;
-  background-color: white;
-  height: auto;
-}
-
 .OverviewItem-label {
   display: block;
   margin-top: 16px;
@@ -82,4 +74,10 @@
     background-color: var(--white);
     padding: var(--space-2) var(--space-6);
   }
+}
+
+.OverviewItem-image {
+  max-width: var(--space-8);
+  max-height: var(--space-8);
+  margin: var(--space-4) auto var(--space-8);
 }
