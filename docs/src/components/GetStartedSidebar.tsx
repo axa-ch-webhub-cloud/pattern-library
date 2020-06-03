@@ -25,16 +25,20 @@ export default class GetStartedSidebar extends PureComponent {
           {
             constants: [
               {
-                to: '/typography',
-                label: 'Typography',
+                to: '/components/colors',
+                label: 'Colors',
               },
               {
                 to: '/elevation',
                 label: 'Elevation',
               },
               {
-                to: '/components/colors',
-                label: 'Colors',
+                to: '/grid',
+                label: 'Grid',
+              },
+              {
+                to: '/typography',
+                label: 'Typography',
               },
             ],
           },

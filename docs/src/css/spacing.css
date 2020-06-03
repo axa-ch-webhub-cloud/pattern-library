@@ -75,3 +75,7 @@
 .mw-8 {
   max-width: var(--space-8);
 }
+
+.p-3 {
+  padding: var(--space-3);
+}
