@@ -3,13 +3,13 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import PageIntroduction from '../components/PageIntroduction';
 import Callout from '../components/Callout';
+import VerticalItems from '../components/VerticalItems';
+import Container from '../components/Container';
 
 import constantIcon from '../images/icons/constant.svg';
 import atomIcon from '../images/icons/atom.svg';
 import moleculeIcon from '../images/icons/molecule.svg';
 import organismIcon from '../images/icons/organism.svg';
-import VerticalItems from '../components/VerticalItems';
-import Container from '../components/Container';
 
 const categoryItems = [
   {
