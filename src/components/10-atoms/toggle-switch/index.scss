@@ -11,6 +11,7 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
   width: $toggle-switch-width;
 
   &__input {
+    // The default checkbox should be invisible to the user but not to screen readers.
     opacity: 0;
 
     &:checked {
