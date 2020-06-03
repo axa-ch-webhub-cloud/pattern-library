@@ -19,18 +19,8 @@ export default function TopBar() {
         <LogoBranding width={36}></LogoBranding>
       </Link>
 
-      <nav className="TopBar-nav">
-        <Link to="/start" className="TopBar-link" activeClassName="is-active">
-          Get Started
-        </Link>
-        <Link
-          className="TopBar-link TopBar-link--icon"
-          activeClassName="is-active"
-          to="/for-designers"
-        >
-          <span>For Designers</span>
-        </Link>
-
+      <nav className="TopBar-nav"></nav>
+      <div className="TopBar-navRight">
         <NativeLink
           className="TopBar-link TopBar-link--icon"
           href="https://design.axa.com/"
@@ -43,32 +33,6 @@ export default function TopBar() {
           href="https://brandhub.axa.com/"
         >
           <span>AXA Brand Hub</span>
-        </NativeLink>
-      </nav>
-      <div className="TopBar-navRight">
-        <GitHubButton
-          type="stargazers"
-          namespace="axa-ch"
-          repo="patterns-library"
-        />
-        <NativeLink
-          className="TopBar-link TopBar-link--icon"
-          href={social.slackUrl}
-        >
-          <span className="icon-holder">
-            <SlackIcon />
-          </span>
-          <span className="hide-on-mobile">Slack</span>
-        </NativeLink>
-
-        <NativeLink
-          className="TopBar-link TopBar-link--icon"
-          href={githubCodebaseUrl}
-        >
-          <span className="icon-holder">
-            <GitHubIcon />
-          </span>
-          <span className="hide-on-mobile">GitHub</span>
         </NativeLink>
       </div>
     </div>

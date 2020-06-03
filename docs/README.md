@@ -50,6 +50,8 @@ git push origin develop
 - [ ] `import { Whatever } from '../patterns/';`
 - [ ] You are ready to use it with `<Whatever />`
 
+Constant / brand / materials
+
 | Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
 | Icons                                  | icons-raw                   | Constant       | ✅              |
