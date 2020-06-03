@@ -10,7 +10,8 @@ interface AXATestimonialsProps {
 }
 
 declare function createAXATestimonials(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXATestimonialsProps>;
 
 export = createAXATestimonials;
