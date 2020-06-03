@@ -11,7 +11,7 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
   width: $toggle-switch-width;
 
   &__input {
-    display: none;
+    opacity: 0;
 
     &:checked {
       & + .a-toggle-switch__slider {
