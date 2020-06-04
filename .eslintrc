@@ -61,6 +61,7 @@
   },
   "globals": {
     "HTMLElement": true,
+    "HTMLSelectElement": true,
     "XMLHttpRequest": true,
     "history": true,
     "CustomEvent": true,
