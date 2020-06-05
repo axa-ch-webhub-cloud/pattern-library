@@ -46,7 +46,7 @@ export default function TypographyPage({}: Props): ReactElement {
         <div className="Overview-shadow">
           <div className="ShadowBox shadow-lg">
             <p className="kicker text-neutral-600">Publico headline</p>
-            <p className="font-weight-bold text-xl">Bold</p>
+            <p className="font-bold text-xl">Bold</p>
             <img
               src={aaImage}
               className="OverviewItem-image"
@@ -65,7 +65,7 @@ export default function TypographyPage({}: Props): ReactElement {
         <div className="Overview-shadow">
           <div className="ShadowBox shadow-lg">
             <p className="kicker text-neutral-600">Source sans Pro</p>
-            <p className="font-weight-bold text-xl">Bold</p>
+            <p className="font-bold text-xl">Bold</p>
             <img
               src={bbImage}
               className="OverviewItem-image"
@@ -74,7 +74,7 @@ export default function TypographyPage({}: Props): ReactElement {
           </div>
           <div className="ShadowBox shadow-lg">
             <p className="kicker text-neutral-600">Source sans Pro</p>
-            <p className="font-weight-bold text-xl">Semibold</p>
+            <p className="font-bold text-xl">Semibold</p>
             <img
               src={ccImage}
               className="OverviewItem-image"
@@ -83,7 +83,7 @@ export default function TypographyPage({}: Props): ReactElement {
           </div>
           <div className="ShadowBox shadow-lg">
             <p className="kicker text-neutral-600">Source sans Pro</p>
-            <p className="font-weight-bold text-xl">Regular</p>
+            <p className="font-bold text-xl">Regular</p>
             <img
               src={ddImage}
               className="OverviewItem-image"

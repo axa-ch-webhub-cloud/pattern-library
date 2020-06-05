@@ -14,7 +14,7 @@ export default function Community() {
         the AXA tools within your team! Join more than 600 AXA designers,
         developers, product and business owners on hot topics around digital.
       </p>
-      <p className="text-2xl font-weight-bold">Direct on Slack</p>
+      <p className="text-2xl font-bold">Direct on Slack</p>
       <Callout
         imageUrl={slackIcon}
         title="Be part of the slack community"
@@ -22,7 +22,7 @@ export default function Community() {
         linkToTitle="Join"
         linkToUrl={social.slackUrl}
       />
-      <p className="text-2xl font-weight-bold">Newsletter</p>
+      <p className="text-2xl font-bold">Newsletter</p>
       <Callout
         imageUrl={emailIcon}
         title="AXA Design System newsletter"

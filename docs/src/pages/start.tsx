@@ -128,7 +128,7 @@ export default function startPage() {
           System UI kit contains all resources you need to get started on your
           AXA digital projects, and save precious time and effort.{' '}
         </p>
-        <p className="text-2xl font-weight-bold">Direct on Slack</p>
+        <p className="text-2xl font-bold">Direct on Slack</p>
         <Callout
           imageUrl={sketchIcon}
           title="AXA Design System UI Kit"

@@ -19,10 +19,12 @@ export default function Features() {
     >
       <div className="text-center">
         <div className="Features-alert">AXA Design System</div>
-        <h1 className="heading text-5xl">
+        <h1 className="heading text-6xl">
           Design and develop faster <br />a beautiful product
         </h1>
-        <p>A tool to help you build experiences that people will love</p>
+        <p className="text-lg">
+          A tool to help you build experiences that people will love
+        </p>
       </div>
       <div className="Container Features-grid">
         <Feature title="Cohesive design language">

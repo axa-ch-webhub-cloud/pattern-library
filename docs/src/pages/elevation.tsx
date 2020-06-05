@@ -68,21 +68,21 @@ export default function ElevationPage({}: Props): ReactElement {
         <p className="text-neutral-600">This is the ground</p>
 
         <h2 className="h2">Elevation guidelines</h2>
-        <p className="text-2xl font-weight-bold">Shadow Scales</p>
+        <p className="text-2xl font-bold">Shadow Scales</p>
 
         <div className="Overview-shadow">
           {shadowScales.map((item) => {
             return (
               <div className={`ShadowBox ${item.className}`}>
                 <p className="kicker text-neutral-600">{item.index}</p>
-                <p className="font-weight-bold text-xl">{item.title}</p>
+                <p className="font-bold text-xl">{item.title}</p>
                 <pre className="font-mono text-xs mt-8">{item.code}</pre>
               </div>
             );
           })}
         </div>
 
-        <p className="text-2xl font-weight-bold">Shadow Grid</p>
+        <p className="text-2xl font-bold">Shadow Grid</p>
         <img className="Content-image" src={gridImage} alt="Principle" />
 
         <h2 className="h2">Example</h2>

@@ -69,8 +69,14 @@
 .text-uppercase {
   text-transform: uppercase;
 }
-.font-weight-bold {
-  font-weight: 600;
+.font-bold {
+  font-weight: var(--font-bold);
+}
+.font-semi-bold {
+  font-weight: var(--font-semi-bold);
+}
+.font-regular {
+  font-weight: var(--font-regular);
 }
 
 .text-xs {
@@ -140,7 +146,7 @@ h6 {
   font-weight: 600;
   font-family: var(--font-ui);
   margin-bottom: var(--space-1);
-  font-size: 0.875rem;
+  font-size: var(--font-size-xs);
 }
 
 tt,
@@ -164,6 +170,9 @@ samp {
   }
 }
 
+.text-blue-base {
+  color: var(--blue-base);
+}
 .text-neutral-400 {
   color: var(--neutral-400);
 }
