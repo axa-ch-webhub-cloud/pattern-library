@@ -89,8 +89,8 @@
 .blockquote {
   margin-top: var(--space-5);
   margin-bottom: var(--space-5);
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-lg);
 
   & cite {
     color: var(--neutral-600);

@@ -62,7 +62,7 @@ export default function StructurePage() {
           <cite>— Brad Frost</cite>
         </blockquote>
 
-        <p className="paragraph">
+        <p className="paragraph mb-6">
           In my word, Build systems mean that not design or develop the
           front-end full pages. It’s like small element like as buttons. And all
           small components combine to a large unit like a label, box, table,
