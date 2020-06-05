@@ -7,8 +7,8 @@ export default function PageCallToAction() {
     <section className="PageCallToAction">
       <div className="Container PageCallToAction-inner">
         <div>
-          <p className="text-uppercase text-sm">Helps & Contact</p>
-          <p className="text-3xl heading">Any question?</p>
+          <p className="text-uppercase text-xs">Help & Contact</p>
+          <p className="text-2xl heading">Any question?</p>
         </div>
         <Link to="/contact">
           <ButtonLink variant="inverted">Get in touch</ButtonLink>

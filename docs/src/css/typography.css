@@ -74,34 +74,37 @@
 }
 
 .text-xs {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
 }
 .text-sm {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
 }
 .text-base {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
 }
 .text-lg {
-  font-size: 1.125rem;
+  font-size: var(--font-size-lg);
 }
 .text-xl {
-  font-size: 1.25rem;
+  font-size: var(--font-size-xl);
 }
 .text-2xl {
-  font-size: 1.5rem;
+  font-size: var(--font-size-2xl);
 }
 .text-3xl {
-  font-size: 1.875rem;
+  font-size: var(--font-size-3xl);
 }
 .text-4xl {
-  font-size: 2.25rem;
+  font-size: var(--font-size-4xl);
 }
 .text-5xl {
-  font-size: 3rem;
+  font-size: var(--font-size-5xl);
 }
 .text-6xl {
-  font-size: 4rem;
+  font-size: var(--font-size-6xl);
+}
+.text-7xl {
+  font-size: var(--font-size-7xl);
 }
 
 .h1,
