@@ -99,7 +99,7 @@
 
 .Content strong,
 .strong {
-  font-weight: 600;
+  font-weight: var(--font-bold);
 }
 
 .ul {
@@ -111,6 +111,7 @@
 
 .Content-image {
   width: 100%;
+  margin-top: var(--space-6);
 }
 
 .Content-vertical {
