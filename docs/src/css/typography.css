@@ -121,7 +121,7 @@
 .h6,
 .heading {
   font-family: var(--font-headings);
-  font-weight: 600;
+  font-weight: var(--font-bold);
 }
 
 html,
@@ -129,16 +129,6 @@ body {
   -webkit-text-size-adjust: 100%;
   color: var(--black);
   font-family: var(--font-ui);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--black);
-  font-family: var(--font-headings);
 }
 
 .kicker {

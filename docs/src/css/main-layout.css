@@ -24,7 +24,8 @@ body {
   flex: 1;
   overflow-y: auto;
   display: flex;
-  justify-content: center;
+  padding-left: var(--space-8);
+  /* justify-content: center; */
 }
 
 .MainLayout-sidebar {

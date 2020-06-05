@@ -27,7 +27,7 @@ export default function VerticalItems({
             />
 
             <div className="col">
-              <p className="kicker">{item.kicker}</p>
+              <p className="kicker mb-0">{item.kicker}</p>
               {item.text && <p className="text-xl">{item.text}</p>}
             </div>
           </div>
