@@ -9,7 +9,7 @@ export default function Community() {
   return (
     <>
       <h2 className="h2">AXA Community</h2>
-      <p>
+      <p className="paragraph">
         Share your work, ask questions, give feedback, access knowledge, promote
         the AXA tools within your team! Join more than 600 AXA designers,
         developers, product and business owners on hot topics around digital.

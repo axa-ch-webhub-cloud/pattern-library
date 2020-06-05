@@ -7,11 +7,11 @@ export default function Support() {
   return (
     <>
       <h2 className="h2">Support</h2>
-      <p>
+      <p className="paragraph">
         Part of our mission is to guide you, AXA production teams, with the
         adoption of the tool during your digital journey.
       </p>
-      <div className="flex align-center mb-3">
+      <div className="flex align-center mb-5">
         <div className="col">
           <img
             src={oneOoneImage}
@@ -21,7 +21,7 @@ export default function Support() {
         </div>
         <div className="col">
           <div className="kicker">Day-to-day questions</div>
-          <p>
+          <p className="paragraph">
             <strong>You need a clarification</strong> on any of the design/code
             elements? Something is not clear in the guidelines or processes?
             Don’t hesitate to reach out to us - we are happy to help.
@@ -38,7 +38,7 @@ export default function Support() {
         </div>
         <div className="col">
           <div className="kicker">Design advice and assessments</div>
-          <p>
+          <p className="paragraph">
             You have a digital project and{' '}
             <strong>you want to make sure the design is compliant</strong> to
             the AXA Brand standards? You need help and advice in adopting the
