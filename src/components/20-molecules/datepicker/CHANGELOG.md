@@ -1,3 +1,7 @@
+## 7.0.8
+
+- No changes.
+
 ## 7.0.7
 
 - The year drop down enlarged by 5px. (AEM-5445)
