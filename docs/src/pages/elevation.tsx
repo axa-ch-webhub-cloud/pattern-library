@@ -79,7 +79,7 @@ export default function ElevationPage({}: Props): ReactElement {
             return (
               <div className={`ShadowBox ${item.className}`}>
                 <p className="kicker mb-0 text-neutral-600">{item.index}</p>
-                <p className="font-bold text-xl">{item.title}</p>
+                <p className="font-bold text-lg">{item.title}</p>
                 <p className="mt-8">
                   <strong>box-shadow:</strong>
                 </p>
