@@ -1,3 +1,7 @@
+## 7.0.1
+
+- New icons `star_outlined`, `email_outlined` and `download_outlined` added.
+
 ## 7.0.0
 
 - BREAKING CHANGE: The Depricated colors `color-validation-error`, `color-validation-valid`, `color-prim-gray-mine-shaft`, `color-prim-gray-scorpion`, `color-sec-blue-logan`, `color-sec-ocean-blue`, `color-sec-green-acid`, `color-sec-orange-apache` and `color-sec-shy-tomato` were removed. The rest of the colors were renamed #1748
