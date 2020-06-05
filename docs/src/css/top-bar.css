@@ -36,7 +36,7 @@
 }
 
 .TopBar-link {
-  color: var(--neutral-600);
+  color: var(--blue-base);
   text-transform: uppercase;
   line-height: 16px;
   font-size: 14px;

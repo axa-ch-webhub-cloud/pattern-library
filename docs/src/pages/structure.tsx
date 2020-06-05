@@ -46,7 +46,7 @@ export default function StructurePage() {
       <Container>
         <PageIntroduction title="Structure approach" />
         <h2 className="h2">What is atomic design ?</h2>
-        <p>
+        <p className="paragraph">
           Atomic Design by Brad Frost is the one of methodology that can
           accelerate the process of creating modular designs. He introduced the
           concept of atomic design about 5 years ago.
@@ -62,7 +62,7 @@ export default function StructurePage() {
           <cite>— Brad Frost</cite>
         </blockquote>
 
-        <p>
+        <p className="paragraph mb-6">
           In my word, Build systems mean that not design or develop the
           front-end full pages. It’s like small element like as buttons. And all
           small components combine to a large unit like a label, box, table,
@@ -81,7 +81,7 @@ export default function StructurePage() {
         <h2 className="h2" style={{ marginTop: 128 }}>
           How to categorize an element ?
         </h2>
-        <p>
+        <p className="paragraph">
           Atomic Design, is an approch that allows you to decompose your UI
           elements in order to standardelize and organize them. An important
           question that we need to ask ourselves is “to what category does a

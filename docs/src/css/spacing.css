@@ -26,6 +26,9 @@
   margin-top: var(--space-8);
 }
 
+.mb-0 {
+  margin-bottom: 0;
+}
 .mb-1 {
   margin-bottom: var(--space-1);
 }

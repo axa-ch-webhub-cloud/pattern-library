@@ -47,7 +47,7 @@ const shadowScales = [
 
 export default function ElevationPage({}: Props): ReactElement {
   return (
-    <Layout>
+    <Layout withInfoBar>
       <SEO title="Elevation" />
 
       <Container>
@@ -58,35 +58,42 @@ export default function ElevationPage({}: Props): ReactElement {
         />
 
         <h2 className="h2">Principle</h2>
-        <p>
+        <p className="paragraph mb-5">
           This is a scale that use the Z axe (in a 3D environnement). <br />
           Create a scale of elevation is use to create a hierarchy between
           elements.
         </p>
 
-        <img className="Content-image" src={principleImage} alt="Principle" />
-        <p className="text-neutral-600">This is the ground</p>
+        <img
+          className="Content-image mb-1"
+          src={principleImage}
+          alt="Principle"
+        />
+        <p className="text-neutral-600 mb-6">This is the ground</p>
 
         <h2 className="h2">Elevation guidelines</h2>
-        <p className="text-2xl font-weight-bold">Shadow Scales</p>
+        <p className="text-2xl font-bold mb-3">Shadow Scales</p>
 
         <div className="Overview-shadow">
           {shadowScales.map((item) => {
             return (
               <div className={`ShadowBox ${item.className}`}>
-                <p className="kicker text-neutral-600">{item.index}</p>
-                <p className="font-weight-bold text-xl">{item.title}</p>
-                <pre className="font-mono text-xs mt-8">{item.code}</pre>
+                <p className="kicker mb-0 text-neutral-600">{item.index}</p>
+                <p className="font-bold text-lg">{item.title}</p>
+                <p className="mt-8">
+                  <strong>box-shadow:</strong>
+                </p>
+                <pre className="font-mono text-xs">{item.code}</pre>
               </div>
             );
           })}
         </div>
 
-        <p className="text-2xl font-weight-bold">Shadow Grid</p>
+        <p className="text-2xl font-bold">Shadow Grid</p>
         <img className="Content-image" src={gridImage} alt="Principle" />
 
         <h2 className="h2">Example</h2>
-        <p>
+        <p className="paragraph">
           Here is an example of the elevation principle applied to a header and
           a navigation design element.
         </p>

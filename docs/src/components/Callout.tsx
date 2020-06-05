@@ -24,25 +24,25 @@ export default function Callout({
   isInternalLink,
 }: CalloutProps): ReactElement {
   return (
-    <div className="flex Callout align-center mb-5">
+    <div className="flex Callout align-center mt-2 mb-5">
       <div className="col Callout-image">
         {imageUrl && <img src={imageUrl} alt={title} />}
         {imageSvg && imageSvg}
       </div>
-      <div className="col" style={{ paddingRight: 16 }}>
-        <p className="text-xl">
+      <div className="col" style={{ paddingRight: 28 }}>
+        <p className="text-base">
           <strong>{title}</strong>
         </p>
-        <p className="text-neutral-600">{description}</p>
+        <p className="text-sm text-neutral-600">{description}</p>
       </div>
       <div className="col Callout-link">
         {isInternalLink ? (
           <Link to={linkToUrl}>
-            <ButtonLink>{linkToTitle}</ButtonLink>
+            <ButtonLink size="large">{linkToTitle}</ButtonLink>
           </Link>
         ) : (
           <NativeLink href={linkToUrl}>
-            <Button>{linkToTitle}</Button>
+            <Button size="large">{linkToTitle}</Button>
           </NativeLink>
         )}
       </div>

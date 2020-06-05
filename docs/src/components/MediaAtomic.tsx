@@ -20,25 +20,28 @@ function MediaItem(props: MediaItemProps): ReactElement {
         <img src={props.image} alt={props.title} className="" />
       </figure>
       <div className="MediaItem-content">
-        <h3 className="heading">{props.title}</h3>
-        <p className="MediaItem-published">{props.topic}</p>
-        <p className="kicker">Discover</p>
+        <h3 className="heading mb-1">{props.title}</h3>
+        <p className="kicker text-neutral-600">{props.topic}</p>
+        <p className="text-xs text-blue-base mt-2 font-bold">Discover</p>
       </div>
     </Link>
   );
 }
 
-export default function MediaAtomic(props: MediaProps): ReactElement {
+export default function MediaAtomic({
+  title,
+  items,
+}: MediaProps): ReactElement {
   return (
     <section className="Media bg-neutral-200 clearfix">
       <div className="Media-inner Container">
         <header style={{ textAlign: 'center', marginTop: 64 }}>
-          <h2 className="h2 text-4xl" style={{ marginTop: 32 }}>
-            {props.title}
+          <h2 className="h2 text-5xl mb-6" style={{ marginTop: 32 }}>
+            {title}
           </h2>
         </header>
         <div className="Media-grid md-4">
-          {props.items.map((item) => (
+          {items.map((item) => (
             <MediaItem key={item.title} {...item} />
           ))}
         </div>

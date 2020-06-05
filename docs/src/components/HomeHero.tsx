@@ -12,11 +12,16 @@ export default function HomeHero() {
     <section className="Hero">
       <div className="Hero-inner">
         <div className="Hero-left">
-          <div className="kicker">HAVE A PERFECT START</div>
-          <h1 className="heading">New to the AXA Design System?</h1>
-          <p>
-            Check out our introduction guide on our guidelines, components and
-            key concepts.
+          <div className="kicker">Have a perfect start</div>
+          <h1 className="heading">
+            New to the AXA
+            <br />
+            Design System?
+          </h1>
+          <p className="text-neutral-600">
+            Check out our introduction guide on our guidelines,
+            <br />
+            components and key concepts.
           </p>
           <div style={{ display: 'flex' }}>
             <Link is={Link} to="/components/" style={{ marginRight: 32 }}>

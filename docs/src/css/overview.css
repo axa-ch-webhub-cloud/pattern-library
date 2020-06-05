@@ -66,18 +66,20 @@
 
 .Overview-shadow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 242px 242px;
   grid-column-gap: var(--space-5);
   grid-row-gap: var(--space-5);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-6);
 
   & .ShadowBox {
     background-color: var(--white);
-    padding: var(--space-2) var(--space-6);
+    padding: var(--space-2);
   }
 }
 
 .OverviewItem-image {
   max-width: var(--space-8);
   max-height: var(--space-8);
-  margin: var(--space-4) auto var(--space-8);
+  margin: var(--space-6);
 }

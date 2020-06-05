@@ -35,7 +35,7 @@
   background-color: var(--teal-dark);
   padding: var(--space-2);
   color: var(--white-500);
-  font-weight: 700;
+  font-weight: var(--font-semi-bold);
   text-transform: uppercase;
   max-width: 180px;
   margin: 0 auto var(--space-2) auto;

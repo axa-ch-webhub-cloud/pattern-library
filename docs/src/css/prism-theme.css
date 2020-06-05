@@ -5,6 +5,8 @@
  */
 
 .prism-code {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
   color: white;
   tab-size: 2;
   font-family: var(--font-mono);

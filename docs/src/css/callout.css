@@ -6,7 +6,7 @@
 
 .Callout-image {
   max-width: var(--space-7);
-  margin-right: var(--space-2);
+  margin-right: var(--space-3);
 
   & img {
     max-width: 100%;
@@ -14,5 +14,5 @@
 }
 
 .Callout-link {
-  max-width: 150px;
+  max-width: 170px;
 }

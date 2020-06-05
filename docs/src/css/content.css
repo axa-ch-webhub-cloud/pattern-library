@@ -17,10 +17,12 @@
   line-height: 1.7;
 }
 
-.Content p,
+/* .Content p, */
 .paragraph {
   margin-top: var(--space-1);
   margin-bottom: var(--space-1);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-2xl);
 }
 
 .li {
@@ -29,29 +31,24 @@
 }
 
 .h1 {
-  font-weight: 500;
-  line-height: 40px;
-  letter-spacing: -0.2px;
+  font-size: var(--font-size-6xl);
+  line-height: var(--line-height-6xl);
   margin-bottom: 4px;
 }
 
 .h2 {
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 28px;
-  letter-spacing: -0.2px;
+  font-size: var(--font-size-5xl);
+  line-height: var(--line-height-5xl);
   margin-bottom: 16px;
   margin-top: 42px;
 }
 
 .Content h3,
 .h3 {
-  font-size: 21px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.05px;
-  margin-bottom: 16px;
-  margin-top: 32px;
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-4xl);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .Content h4,
@@ -92,8 +89,8 @@
 .blockquote {
   margin-top: var(--space-5);
   margin-bottom: var(--space-5);
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-lg);
 
   & cite {
     color: var(--neutral-600);
@@ -102,7 +99,7 @@
 
 .Content strong,
 .strong {
-  font-weight: 600;
+  font-weight: var(--font-bold);
 }
 
 .ul {
@@ -114,6 +111,7 @@
 
 .Content-image {
   width: 100%;
+  margin-top: var(--space-6);
 }
 
 .Content-vertical {

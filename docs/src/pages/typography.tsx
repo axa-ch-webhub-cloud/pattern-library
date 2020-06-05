@@ -21,7 +21,7 @@ interface Props {}
 
 export default function TypographyPage({}: Props): ReactElement {
   return (
-    <Layout withCallToAction>
+    <Layout withCallToAction withInfoBar>
       <SEO title="Typography" />
 
       <Container>
@@ -32,21 +32,21 @@ export default function TypographyPage({}: Props): ReactElement {
         />
 
         <h2 className="h2">Font families</h2>
-        <p>
+        <p className="paragraph">
           Below you will find all you need to know about Source Sans Pro &
           Publico Headline typeface.
         </p>
 
-        <h3>Publico Headline</h3>
-        <p>
+        <h3 className="h3">Publico Headline</h3>
+        <p className="paragraph">
           Publico Headline is the first official serif typeface at AXA. Coupled
           with Source Sans Pro it enhances the design by adding rythm, creating
           a clear hierarchy and providing a strong visual identity.
         </p>
         <div className="Overview-shadow">
           <div className="ShadowBox shadow-lg">
-            <p className="kicker text-neutral-600">Publico headline</p>
-            <p className="font-weight-bold text-xl">Bold</p>
+            <p className="kicker mb-0 text-neutral-600">Publico headline</p>
+            <p className="font-bold text-lg">Bold</p>
             <img
               src={aaImage}
               className="OverviewItem-image"
@@ -55,8 +55,8 @@ export default function TypographyPage({}: Props): ReactElement {
           </div>
         </div>
 
-        <h3>Source Sans Pro</h3>
-        <p>
+        <h3 className="h3">Source Sans Pro</h3>
+        <p className="paragraph">
           Source Sans Pro is a sans serif typeface that has been chosen to
           transition from ITC Franklin Gothic and Metric as it works pretty well
           in all user interfaces, covers a large spectrum of signs and has no
@@ -64,8 +64,8 @@ export default function TypographyPage({}: Props): ReactElement {
         </p>
         <div className="Overview-shadow">
           <div className="ShadowBox shadow-lg">
-            <p className="kicker text-neutral-600">Source sans Pro</p>
-            <p className="font-weight-bold text-xl">Bold</p>
+            <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
+            <p className="font-bold text-lg">Bold</p>
             <img
               src={bbImage}
               className="OverviewItem-image"
@@ -73,8 +73,8 @@ export default function TypographyPage({}: Props): ReactElement {
             />
           </div>
           <div className="ShadowBox shadow-lg">
-            <p className="kicker text-neutral-600">Source sans Pro</p>
-            <p className="font-weight-bold text-xl">Semibold</p>
+            <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
+            <p className="font-bold text-lg">Semibold</p>
             <img
               src={ccImage}
               className="OverviewItem-image"
@@ -82,8 +82,8 @@ export default function TypographyPage({}: Props): ReactElement {
             />
           </div>
           <div className="ShadowBox shadow-lg">
-            <p className="kicker text-neutral-600">Source sans Pro</p>
-            <p className="font-weight-bold text-xl">Regular</p>
+            <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
+            <p className="font-bold text-lg">Regular</p>
             <img
               src={ddImage}
               className="OverviewItem-image"
@@ -95,8 +95,8 @@ export default function TypographyPage({}: Props): ReactElement {
 
       <Container background="bg-neutral-200">
         <h2 className="h2">Get the typefaces</h2>
-        <h3>Publico headline</h3>
-        <p>
+        <h3 className="h3">Publico headline</h3>
+        <p className="paragraph">
           Publico Headline is a typeface, which is not available for free.
           Currently at AXA, each entity needs to purchase it directly on the
           Commercial Typeface Foundry website. Please note that you only need to
@@ -111,7 +111,7 @@ export default function TypographyPage({}: Props): ReactElement {
           linkToUrl={fontDownloadUrl.heading}
         ></Callout>
 
-        <h3>Source Sans Pro</h3>
+        <h3 className="h3">Source Sans Pro</h3>
         <Callout
           imageUrl={aaImage}
           title="Get Source Sans Pro typeface"
@@ -123,7 +123,7 @@ export default function TypographyPage({}: Props): ReactElement {
 
       <Container>
         <h2 className="h2">Usage rules</h2>
-        <p>
+        <p className="paragraph">
           Please use the guidelines below in order to help you quickly identify
           the correct CSS to be applied to your headings.
         </p>
@@ -144,7 +144,7 @@ export default function TypographyPage({}: Props): ReactElement {
 
       <Container background="bg-neutral-200">
         <h2 className="h2">AXA Digital Guidelines</h2>
-        <p>
+        <p className="paragraph">
           The AXA Digital Guidelines are a set of rules and advice on how to use
           the full range of design assets in your digital project.
         </p>

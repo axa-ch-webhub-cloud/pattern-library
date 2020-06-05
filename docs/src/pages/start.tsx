@@ -66,26 +66,27 @@ export default function startPage() {
       <Container>
         <p className="kicker">A perfect start for</p>
         <h2 className="h2 mt-0">Developer</h2>
-        <p>
+        <p className="paragraph">
           The library provides front-end developers & engineers a collection of
           reusable Web components to build websites and user interfaces, aligned
           with the AXA Brand guidelines. Adopting the AXA components library
           enables you to use consistent markup, styles, and behavior in
           prototype and production work.
         </p>
-        <h2>Install and use components</h2>
-        <p>
+
+        <h3 className="h3">Install and use components</h3>
+        <p className="paragraph">
           AXA Design System is made up of multiple web components and tools
           which you can import one by one. All you need to do is install the{' '}
-          <code>@axa-ch/</code> corresponding package. Here is an example with a
-          button:
+          <code>@axa-ch/</code> corresponding package.
         </p>
 
+        <p className="paragraph">Here is an example with a button:</p>
         <SyntaxHighlighter>
           {`$ npm install @axa-ch/button`.trim()}
         </SyntaxHighlighter>
 
-        <p>
+        <p className="paragraph">
           A working version, assuming you are using something like{' '}
           <NativeLink href="https://github.com/facebookincubator/create-react-app">
             Create React App
@@ -123,12 +124,12 @@ export default function startPage() {
 
         <p className="kicker">A perfect start for</p>
         <h2 className="h2 mt-0">Designer</h2>
-        <p>
+        <p className="paragraph">
           Rapidly build beautiful and accessible experiences. The AXA Design
           System UI kit contains all resources you need to get started on your
           AXA digital projects, and save precious time and effort.{' '}
         </p>
-        <p className="text-2xl font-weight-bold">Direct on Slack</p>
+        <p className="text-2xl font-bold">Direct on Slack</p>
         <Callout
           imageUrl={sketchIcon}
           title="AXA Design System UI Kit"

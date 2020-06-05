@@ -1,7 +1,7 @@
 import brandSystem from './images/introduction/constant.svg';
 import atomIcon from './images/icons/atom.svg';
-import moleculesSystem from './images/introduction/molecules.svg';
-import organismSystems from './images/introduction/organisms.svg';
+import moleculeIcon from './images/icons/molecule.svg';
+import organismIcon from './images/icons/organism.svg';
 
 import { githubDocumentationUrl } from '../siteConfig';
 

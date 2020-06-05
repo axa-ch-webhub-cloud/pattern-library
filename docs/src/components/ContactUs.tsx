@@ -29,11 +29,11 @@ export default function ContactUs({
         {contactItems.map((item, index) => {
           return (
             <div key={`contact-${index}`}>
-              <img className="mw-5" src={item.icon} alt={item.title} />
+              <img className="mw-5 mb-3" src={item.icon} alt={item.title} />
               <p className="text-xl">
                 <strong>{item.title}</strong>
               </p>
-              <p className="text-neutral-600">
+              <p className="text-neutral-600 paragraph mt-0">
                 {item.description} <br />
                 <NativeLink className="text-dark" href={item.linkUrl}>
                   {item.linkText}
