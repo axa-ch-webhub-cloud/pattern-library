@@ -21,7 +21,7 @@ interface Props {}
 
 export default function TypographyPage({}: Props): ReactElement {
   return (
-    <Layout withCallToAction>
+    <Layout withCallToAction withInfoBar>
       <SEO title="Typography" />
 
       <Container>

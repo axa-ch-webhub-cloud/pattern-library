@@ -16,7 +16,7 @@ interface Props {}
 
 export default function GridPage({}: Props): ReactElement {
   return (
-    <Layout>
+    <Layout withCallToAction withInfoBar>
       <Container>
         <PageIntroduction
           title="Grid"

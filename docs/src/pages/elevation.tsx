@@ -47,7 +47,7 @@ const shadowScales = [
 
 export default function ElevationPage({}: Props): ReactElement {
   return (
-    <Layout>
+    <Layout withInfoBar>
       <SEO title="Elevation" />
 
       <Container>
