@@ -9,7 +9,7 @@
     border-right: 3px solid transparent;
 
     &:hover {
-      background-color: var(--neutral-lightest);
+      color: var(--blue-base);
     }
 
     &:focus-visible {
@@ -18,7 +18,8 @@
 
     &:active,
     &.is-active {
-      background-color: var(--B3A);
+      font-weight: var(--font-semi-bold);
+      background-color: var(--neutral-100);
       color: var(--blue-base);
       border-right-color: var(--blue-base);
     }
@@ -30,9 +31,9 @@
 }
 
 .Sidebar-title {
-  margin-bottom: 8px;
-  font-size: 24px;
-  font-weight: 500;
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-semi-bold);
   line-height: 28px;
   margin-bottom: var(--space-4);
   margin-top: var(--space-4);
@@ -41,10 +42,10 @@
 
 .Sidebar-subtitle {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: var(--font-bold);
   margin-top: var(--space-3);
   padding: var(--space-1) 0 var(--space-1) var(--space-3);
   margin-bottom: var(--space-1);
   color: var(--neutral-600);
-  font-size: 0.875rem;
+  font-size: var(--font-size-xs);
 }

@@ -33,6 +33,10 @@
   --line-height-6xl: 3.75rem; /* 60px */
   --line-height-7xl: 4.438rem; /* 71px */
 
+  --font-bold: 700;
+  --font-semi-bold: 600;
+  --font-regular: 400;
+
   --space-1: 0.5rem; /* 8px */
   --space-2: 1rem; /* 16px */
   --space-3: 1.5rem; /* 24px */
@@ -87,7 +91,7 @@
   --B6: #8fbce6;
   --B7: #579ad9;
   --B8: #3d8bd4;
-  --B9: #1070ca;
+  --B9: #00008f;
   --B10: #084b8a;
 
   --B1A: rgba(16, 112, 202, 0.04);
