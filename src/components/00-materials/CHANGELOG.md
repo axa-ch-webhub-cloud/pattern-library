@@ -1,4 +1,4 @@
-## 7.0.1
+## 7.1.0
 
 - New icons `star_outlined`, `email_outlined` and `download_outlined` added.
 
