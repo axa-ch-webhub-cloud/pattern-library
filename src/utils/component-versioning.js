@@ -41,43 +41,40 @@ const rewrite = (someStrings, aTagName, aVersion) =>
 // API functions
 // ///
 
-// examples: defineVersioned(AXADatepicker, AXADropdown, AXAButton], __VERSION_INFO__);
-//           defineVersioned([AXADatepicker],  __VERSION_INFO__);
-//           defineVersioned([this, AXADropdown],  __VERSION_INFO__);
+// examples: defineVersioned([AXADatepicker, AXADropdown, AXAButton], __ VERSION_INFO__);
+//           defineVersioned([AXADatepicker],  __ VERSION_INFO__);
+//           defineVersioned([AXADropdown],  __ VERSION_INFO__);
 //           defineVersioned([AXACheckbox], 'rsv');
 const defineVersioned = (dependencies, versionInfo) => {
+  // set up
   const customVersion = typeof versionInfo === 'string' && versionInfo;
-  // process all dependant components that it lists...
   let versionedTagName = '';
+  // process all dependant components that it lists...
   dependencies.forEach(dependency => {
     const componentClass =
       dependency instanceof HTMLElement ? dependency.constructor : dependency;
+    // extract each dependant component's version
+    const { tagName } = componentClass;
+    const externalVersion = versionInfo[tagName];
     // ordinary, non-POD versioning?
-    if (!customVersion) {
-      // yes, inject version info into component-defining class
-      const {
-        tagName,
-        versions: preExistingVersionsClassProperty,
-      } = componentClass;
-      // first time versioning/registration of this component, but its class
+    if (!customVersion && externalVersion) {
+      // yes, first time versioning/registration of this component, but its class
       // contains a PL-reserved 'versions' property?
-      if (
-        !window.customElements.get(tagName) &&
-        preExistingVersionsClassProperty
-      ) {
+      if (!window.customElements.get(tagName) && componentClass.versions) {
         // yes, this class is wrongly implemented - premature exit
         throw Error(
           `'versions' is a reserved class property, but was found in ${tagName}'s class`
         );
       }
-      componentClass.versions = versionInfo[tagName];
+      // inject version info into component-defining class
+      componentClass.versions = externalVersion;
       // define its *unversioned*-tag variant first
       defineOnce(tagName, componentClass);
     }
-    // extracting each dependant component's version,
-    const { tagName, versions } = componentClass;
-    const version = customVersion || versions[tagName];
+    // extract each dependant component's version,
+    const { versions } = componentClass;
     // assembling a new, versioned name,
+    const version = customVersion || versions[tagName];
     versionedTagName = versionedTag(tagName, version);
     // and redundantly defining
     //     versionedTagName |-> dependentComponentClass'
