@@ -1,6 +1,8 @@
-## 7.1.0
+## 8.0.0
 
-- New icons `star_outlined`, `email_outlined` and `download_outlined` added.
+- BREAKING CHANGE: `phone` is now `phone_outlined`; `info-flat`, `check-circle` `date-input`, `add`, `clear` and `plus` were deleted
+- Outlined versions `stars_outlined`, `email_outlined`, `key_outlined`, `message_outlined`, `person_outlined`, `info_outlined`, `delete-forever_outlined`, `document_outlined`, `cancel_outlined`,`cloud-upload_outlined`, `check-circle_outlined`, `date-input_outlined` and `download_outlined` added.
+- New icon `stars`, `phone`, `info`, `date-input`, `clear`, `add` and `check-circle` added.
 
 ## 7.0.0
 
