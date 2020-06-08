@@ -2,6 +2,7 @@ import '@axa-ch/patterns-library-polyfill';
 import { addParameters, configure, addDecorator } from '@storybook/html';
 import { create } from '@storybook/theming';
 import { addReadme } from 'storybook-readme/html';
+import { withA11y } from '@storybook/addon-a11y';
 import logo from '../src/static/svg/logo-axa.svg';
 import { withHTML } from './addons/codepreview/decorators/html';
 
@@ -21,6 +22,7 @@ addParameters({
 
 addDecorator(addReadme);
 addDecorator(withHTML);
+addDecorator(withA11y);
 
 const landingpage = require.context('../src/other/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 // N.B. don't-look-into-node-modules behaviour uses negative lookbehind (?<!) as part of its regular expression
