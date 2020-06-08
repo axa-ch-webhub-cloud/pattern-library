@@ -1,3 +1,7 @@
+## 8.0.0
+
+- Upgrade to versioned component.
+
 ## 7.0.3
 
 - Add ellipsis to cropped text of desktop-style-dropdown. (#1716)

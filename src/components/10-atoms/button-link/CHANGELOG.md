@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.1.0
 
 - It is now possible to set the css `width` property. (#1743)

@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.0
 
 - BREAKING CHANGE: Changed default behavior: SVGs have now 24x24 pixels. (#1725)

@@ -1,3 +1,7 @@
+## 8.0.0
+
+- Upgrade to versioned component.
+
 ## 7.0.5
 
 - Fix wrong date formatting for locale `it-CH` (#1740)

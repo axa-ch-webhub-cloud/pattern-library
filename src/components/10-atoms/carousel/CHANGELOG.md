@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Upgrade to versioned component.
+
 ## Migration to version 2
 
 - The implementation of the wrapper to make a component React-ready has

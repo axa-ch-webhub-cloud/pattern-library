@@ -1,3 +1,7 @@
+## 5.0.0
+
+- Upgrade to versioned component.
+
 ## 4.0.3
 
 - Fixes dynamic updates of footer-small child elements. [#1549](https://github.com/axa-ch/patterns-library/issues/1549)

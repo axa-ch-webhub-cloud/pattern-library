@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Upgrade to versioned component.
+
 ## 2.1.3
 
 - `datesortcolumnindex` now works with React. #1765

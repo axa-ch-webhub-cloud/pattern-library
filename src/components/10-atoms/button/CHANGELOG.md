@@ -1,3 +1,7 @@
+## 5.0.0
+
+- Upgrade to versioned component.
+
 ## 4.1.0
 
 - You are able to set the css `width` property and the `button` looks always nice. (#1686)

@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.3
 
 - bugfix to satisfy user expectation of dynamic child updates being reflected, plus general improvements of

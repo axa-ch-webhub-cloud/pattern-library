@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Upgrade to versioned component.
+
 ## 2.1.9
 
 - fix exceptions under unexpected DOM removal. #1780
