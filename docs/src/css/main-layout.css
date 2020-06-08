@@ -38,12 +38,12 @@ body {
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: var(--neutral-5A);
+    background: var(--neutral-800);
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: var(--neutral-20A);
+    background: var(--neutral-600);
   }
 
   &::-webkit-scrollbar-thumb:window-inactive {

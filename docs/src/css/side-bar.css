@@ -8,12 +8,9 @@
     color: var(--black);
     border-right: 3px solid transparent;
 
-    &:hover {
-      color: var(--blue-base);
-    }
-
+    &:hover,
     &:focus-visible {
-      box-shadow: inset 0 0 0 2px var(--B6A);
+      color: var(--blue-base);
     }
 
     &:active,

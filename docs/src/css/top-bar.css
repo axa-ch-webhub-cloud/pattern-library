@@ -58,13 +58,10 @@
   }
 
   &:active,
+  &:focus-visible,
   &.is-active {
     color: var(--blue-base);
     border-bottom-color: var(--red-base);
-  }
-
-  &:focus-visible {
-    box-shadow: inset 0 0 0 2px var(--B6A);
   }
 
   & .icon-holder {

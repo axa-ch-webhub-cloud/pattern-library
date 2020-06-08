@@ -1,5 +1,5 @@
 .Playground {
-  background-color: var(--N1);
+  background-color: #f9f9fb;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -10,13 +10,13 @@
 }
 
 .Playground[data-isCodeCollapsed='false'] {
-  background-color: var(--N10);
+  background-color: var(--neutral-700);
   color: white;
 }
 
 .Playground[data-isCodeCollapsed='true'] {
   & .Playground-header:hover {
-    background-color: var(--B4);
+    background-color: var(--blue-light);
   }
 }
 
@@ -38,17 +38,17 @@
 
 .Playground-preview {
   background-color: #fff;
-  color: var(--N8);
+  color: var(--neutral-600);
   margin: 4px;
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 0 0 1px var(--N4A);
+  box-shadow: var(--elevation-2);
 }
 
 .Playground-error {
   border-radius: 5px;
   background-color: var(--neutral-800);
-  color: white;
+  color: var(--red-dark);
   padding: 80px;
   text-align: center;
 

@@ -25,11 +25,10 @@ export default function TypographyPage({}: Props): ReactElement {
       <SEO title="Typography" />
 
       <Container>
-        <PageIntroduction
-          title="Typography"
-          description="Source Sans Pro and Publico Headline are the two typefaces to be used on all AXA digital assets."
-          imageUrl={heroImage}
-        />
+        <PageIntroduction title="Typography" imageUrl={heroImage}>
+          Source Sans Pro and Publico Headline are the two typefaces to be used
+          on all AXA digital assets.
+        </PageIntroduction>
 
         <h2 className="h2">Font families</h2>
         <p className="paragraph">
@@ -43,7 +42,7 @@ export default function TypographyPage({}: Props): ReactElement {
           with Source Sans Pro it enhances the design by adding rythm, creating
           a clear hierarchy and providing a strong visual identity.
         </p>
-        <div className="Overview-shadow">
+        <div className="OverviewGrid">
           <div className="ShadowBox shadow-lg">
             <p className="kicker mb-0 text-neutral-600">Publico headline</p>
             <p className="font-bold text-lg">Bold</p>
@@ -62,7 +61,7 @@ export default function TypographyPage({}: Props): ReactElement {
           in all user interfaces, covers a large spectrum of signs and has no
           cost.
         </p>
-        <div className="Overview-shadow">
+        <div className="OverviewGrid">
           <div className="ShadowBox shadow-lg">
             <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
             <p className="font-bold text-lg">Bold</p>

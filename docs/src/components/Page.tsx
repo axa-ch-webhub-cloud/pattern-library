@@ -12,12 +12,12 @@ import SEO from './SEO';
 import ComponentIntro from './ComponentIntro';
 
 const flatItems = [
-  ...IA.constant.items.map((item) => {
+  ...IA.branding.items.map((item) => {
     return {
       ...item,
       related: [
         ...(item.related || []),
-        ...IA.constant.items.map((x) => x.id).filter((id) => id !== item.id),
+        ...IA.branding.items.map((x) => x.id).filter((id) => id !== item.id),
       ],
     };
   }),
@@ -59,7 +59,6 @@ class Page extends React.Component {
 
   render() {
     const metaInfo = this.getMetaInfo();
-    console.log('Page -> render -> metaInfo', metaInfo);
     if (!metaInfo) return null;
     const relatedItems = this.getRelatedItems(metaInfo);
     return (

@@ -41,15 +41,13 @@ export default function startPage() {
       <SEO title="Introduction" />
 
       <Container>
-        <PageIntroduction
-          title="Getting started"
-          description="The AXA Design System is a toolbox of resources to create
-              beautiful user interfaces, consistent with the AXA Brand
-              guidelines, principles, and best practices. Instead of
-              focusing on pixels, developers can focus on application
-              logic, while designers can focus on the user experience,
-              interactions, and flows."
-        />
+        <PageIntroduction title="Getting started">
+          The AXA Design System is a toolbox of resources to create beautiful
+          user interfaces, consistent with the AXA Brand guidelines, principles,
+          and best practices. Instead of focusing on pixels, developers can
+          focus on application logic, while designers can focus on the user
+          experience, interactions, and flows.
+        </PageIntroduction>
         <h2 className="h2">The AXA Way of Doing Things</h2>
         <p className="paragraph">
           When we write, talk and design, we need to think about embodying our

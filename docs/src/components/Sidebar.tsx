@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import _ from 'lodash';
 
 export default class Sidebar extends PureComponent {
   static propTypes = {
@@ -36,7 +37,7 @@ export default class Sidebar extends PureComponent {
               >
                 {group.title && <p className="Sidebar-title">{group.title}</p>}
                 <nav className="Sidebar-nav">
-                  {group.links.map(({ label, to, constants, atoms }) => {
+                  {group.links.map(({ label, to, branding, atoms }) => {
                     return (
                       <>
                         {label && (
@@ -45,17 +46,19 @@ export default class Sidebar extends PureComponent {
                           </Link>
                         )}
 
-                        {constants && (
+                        {branding && (
                           <>
-                            <p className="Sidebar-subtitle">Constants</p>
-                            {constants.map((constant) => {
+                            <p className="Sidebar-subtitle">
+                              Brand identity elements
+                            </p>
+                            {branding.map((brand) => {
                               return (
                                 <Link
-                                  key={constant.to}
-                                  to={constant.to}
+                                  key={`brand-${_.uniqueId()}`}
+                                  to={brand.to}
                                   activeClassName="is-active"
                                 >
-                                  {constant.label}
+                                  {brand.label}
                                 </Link>
                               );
                             })}
@@ -68,7 +71,7 @@ export default class Sidebar extends PureComponent {
                             {atoms.map((atom) => {
                               return (
                                 <Link
-                                  key={atom.to}
+                                  key={`atom-${_.uniqueId()}`}
                                   to={atom.to}
                                   activeClassName="is-active"
                                 >

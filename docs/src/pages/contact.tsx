@@ -53,13 +53,12 @@ export default function contactPage() {
       <SEO title="Help and Contact" />
 
       <Container>
-        <PageIntroduction
-          title="Help & Contact"
-          description="The AXA core team provides support for users in adopting the
-                    AXA Design System. Reach out to us with the details of your
-                    project and we will do our bet to provide you with a
-                    tailored advice on how to reach your project objectives."
-        />
+        <PageIntroduction title="Help & Contact">
+          The AXA core team provides support for users in adopting the AXA
+          Design System. Reach out to us with the details of your project and we
+          will do our bet to provide you with a tailored advice on how to reach
+          your project objectives.
+        </PageIntroduction>
 
         <Support />
       </Container>
