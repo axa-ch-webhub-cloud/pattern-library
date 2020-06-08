@@ -23,9 +23,9 @@ export default class GetStartedSidebar extends PureComponent {
             label: 'Structure approach',
           },
           {
-            constants: [
+            branding: [
               {
-                to: '/components/colors',
+                to: '/colors',
                 label: 'Colors',
               },
               {

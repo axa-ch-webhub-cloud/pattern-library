@@ -34,7 +34,7 @@
 .Features-alert {
   background-color: var(--teal-dark);
   padding: var(--space-2);
-  color: var(--white-500);
+  color: var(--white);
   font-weight: var(--font-semi-bold);
   text-transform: uppercase;
   max-width: 180px;

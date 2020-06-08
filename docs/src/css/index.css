@@ -5,9 +5,6 @@
 
 @import './grid.css';
 
-/* Quick and dirty CSS */
-@import './scratch.css';
-
 /* components */
 @import './top-bar.css';
 @import './side-bar.css';
@@ -17,13 +14,12 @@
 @import './container.css';
 @import './hero.css';
 @import './main-layout.css';
-@import './prop-type-table.css';
 @import './overview.css';
 @import './mdx-page.css';
 @import './features.css';
 @import './page-footer.css';
 @import './media.css';
-
+@import './shadow.css';
 @import './typography.css';
 @import './page-call-to-action.css';
 @import './spacing.css';

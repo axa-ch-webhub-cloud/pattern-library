@@ -51,11 +51,11 @@ export default function ElevationPage({}: Props): ReactElement {
       <SEO title="Elevation" />
 
       <Container>
-        <PageIntroduction
-          title="Elevation"
-          description="The elevation system treats the relative distance between two elements, which helps the user understand and feel their hierarchy and dynamic."
-          imageUrl={heroImage}
-        />
+        <PageIntroduction title="Elevation" imageUrl={heroImage}>
+          The elevation system treats the relative distance between two
+          elements, which helps the user understand and feel their hierarchy and
+          dynamic.
+        </PageIntroduction>
 
         <h2 className="h2">Principle</h2>
         <p className="paragraph mb-5">
@@ -74,7 +74,7 @@ export default function ElevationPage({}: Props): ReactElement {
         <h2 className="h2">Elevation guidelines</h2>
         <p className="text-2xl font-bold mb-3">Shadow Scales</p>
 
-        <div className="Overview-shadow">
+        <div className="OverviewGrid">
           {shadowScales.map((item) => {
             return (
               <div className={`ShadowBox ${item.className}`}>

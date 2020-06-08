@@ -37,22 +37,22 @@
   &:hover {
     margin: -4px;
     padding: 4px;
-    background-color: var(--blue-10A);
-    color: var(--blue-500);
+    background-color: var(--blue-light);
+    color: var(--blue-base);
   }
 
   &:focus-visible {
     margin: -4px;
     padding: 4px;
-    box-shadow: 0 0 0 2px var(--blue-200A);
+    box-shadow: 0 0 0 2px var(--blue-light);
   }
 
   &:active {
     margin: -4px;
     padding: 4px;
-    background-color: var(--blue-500);
+    background-color: var(--blue-base);
     color: white;
-    box-shadow: 0 0 0 2px var(--blue-500);
+    box-shadow: 0 0 0 2px var(--blue-base);
   }
 }
 
@@ -64,7 +64,7 @@
   text-align: center;
 }
 
-.Overview-shadow {
+.OverviewGrid {
   display: grid;
   grid-template-columns: 242px 242px;
   grid-column-gap: var(--space-5);

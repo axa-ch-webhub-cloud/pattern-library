@@ -4,10 +4,13 @@
   border-box: box-sizing;
 }
 
-.clearfix:after {
-  content: '';
-  display: table;
-  clear: both;
+.clearfix {
+  &::after,
+  &::before {
+    content: '';
+    clear: both;
+    display: table;
+  }
 }
 
 .flex {

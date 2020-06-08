@@ -79,6 +79,18 @@
   max-width: var(--space-8);
 }
 
+.p-2 {
+  padding: var(--space-2);
+}
 .p-3 {
   padding: var(--space-3);
+}
+.p-4 {
+  padding: var(--space-4);
+}
+.p-5 {
+  padding: var(--space-5);
+}
+.p-6 {
+  padding: var(--space-6);
 }

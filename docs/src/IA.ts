@@ -18,14 +18,28 @@ const githubDocumentationLink = (str) => {
  */
 
 export default {
-  constant: {
-    title: 'Constant',
+  branding: {
+    title: 'Branding',
     items: [
       {
-        id: 'layout-primitives',
-        github: githubDocumentationLink('layers'),
+        id: 'colors',
+        github: githubDocumentationLink('#'),
+        name: 'Colors',
+        tags: ['color'],
+        image: brandSystem,
+      },
+      {
+        id: 'elevation',
+        github: githubDocumentationLink('#'),
+        name: 'Elevation',
+        tags: ['shadow', 'box', 'card'],
+        image: brandSystem,
+      },
+      {
+        id: 'grid',
+        github: githubDocumentationLink('#'),
         name: 'Layout Primitives',
-        tags: ['pane', 'card', 'box', 'layout'],
+        tags: ['grid', 'card', 'box', 'layout'],
         image: brandSystem,
       },
       {
@@ -45,13 +59,6 @@ export default {
         ],
         image: brandSystem,
       },
-      {
-        id: 'colors',
-        github: githubDocumentationLink('theme/src/default-theme'),
-        name: 'Colors',
-        tags: ['color'],
-        image: brandSystem,
-      },
     ],
   },
 
@@ -59,7 +66,7 @@ export default {
     title: 'Components',
     items: [
       {
-        title: 'Buttons & Atomic Elements',
+        title: 'Atomic Elements',
         items: [
           {
             id: 'button',
@@ -91,14 +98,14 @@ export default {
           },
         ],
       },
-
       {
-        title: 'Forms, Text Inputs & File Uploading',
+        title: 'Molecule Elements',
         items: [
           {
             id: 'text-input',
             github: githubDocumentationLink('text-input'),
             name: 'Text Input',
+            image: moleculeIcon,
           },
           {
             id: 'tag-input',
@@ -106,6 +113,7 @@ export default {
             name: 'Tag Input',
             tags: ['badge', 'pills', 'tag'],
             related: ['badge-and-pill'],
+            image: moleculeIcon,
           },
           {
             id: 'textarea',
@@ -116,150 +124,6 @@ export default {
             id: 'autocomplete',
             github: githubDocumentationLink('autocomplete'),
             name: 'Autocomplete',
-          },
-          {
-            id: 'filepicker',
-            github: githubDocumentationLink('file-picker'),
-            name: 'Filepicker',
-            placeholder: 'Placeholder',
-          },
-        ],
-      },
-      {
-        title: 'Selects & Dropdown Menus',
-        items: [
-          {
-            id: 'combobox',
-            github: githubDocumentationLink('combobox'),
-            name: 'Combobox',
-            tags: ['dropdown', 'menu'],
-          },
-          {
-            id: 'select-menu',
-            github: githubDocumentationLink('select-menu'),
-            name: 'Select Menu',
-            tags: ['dropdown', 'menu'],
-          },
-          {
-            id: 'popover',
-            github: githubDocumentationLink('popover'),
-            name: 'Popover',
-            tags: ['dropdown'],
-          },
-          {
-            id: 'menu',
-            github: githubDocumentationLink('menu'),
-            name: 'Menu',
-            tags: ['dropdown'],
-          },
-        ],
-      },
-      {
-        title: 'Toggles',
-        items: [
-          {
-            id: 'checkbox',
-            github: githubDocumentationLink('10-atoms/checkbox'),
-            name: 'Checkbox',
-            image: atomIcon,
-          },
-          {
-            id: 'radio',
-            github: githubDocumentationLink('10-atoms/radio'),
-            name: 'Radio',
-            image: atomIcon,
-          },
-        ],
-      },
-      {
-        title: 'Feedback Indicators',
-        items: [
-          {
-            id: 'toaster',
-            github: githubDocumentationLink('toaster'),
-            name: 'Toaster',
-            tags: ['notifications', 'messages'],
-          },
-          {
-            id: 'alert',
-            github: githubDocumentationLink('alert'),
-            name: 'Alert',
-            tags: ['banners', 'notification', 'messages', 'inline alert'],
-          },
-          {
-            id: 'spinner',
-            github: githubDocumentationLink('spinner'),
-            name: 'Spinner',
-            tags: ['loading', 'indicator'],
-          },
-        ],
-      },
-      {
-        title: 'Overlays',
-        items: [
-          {
-            id: 'dialog',
-            github: githubDocumentationLink('dialog'),
-            name: 'Dialog',
-            tags: ['modal'],
-          },
-          {
-            id: 'side-sheet',
-            github: githubDocumentationLink('side-sheet'),
-            name: 'Side Sheet',
-            tags: ['drawer', 'sheet'],
-          },
-          {
-            id: 'tooltip',
-            github: githubDocumentationLink('tooltip'),
-            name: 'Tooltip',
-          },
-          {
-            id: 'corner-dialog',
-            github: githubDocumentationLink('corner-dialog'),
-            name: 'Corner Dialog',
-            tags: ['notification', 'message'],
-          },
-        ],
-      },
-      {
-        title: 'Lists & Tables',
-        items: [
-          {
-            id: 'table',
-            github: githubDocumentationLink('table'),
-            name: 'Table',
-            tags: [
-              'list',
-              'row',
-              'cell',
-              'TH',
-              'TR',
-              'THEAD',
-              'TBODY',
-              'table body',
-            ],
-          },
-        ],
-      },
-      {
-        title: 'Utilities & Helpers',
-        items: [
-          {
-            id: 'portal',
-            github: githubDocumentationLink('portal'),
-            name: 'Portal',
-          },
-          {
-            id: 'positioner',
-            github: githubDocumentationLink('positioner'),
-            name: 'Positioner',
-          },
-          {
-            id: 'form-field',
-            github: githubDocumentationLink('form-field'),
-            name: 'Form Field',
-            tags: ['validation message', 'label'],
           },
         ],
       },

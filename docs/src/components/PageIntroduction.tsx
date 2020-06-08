@@ -1,20 +1,20 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 interface Props {
   title: string;
-  description?: string;
+  children?: ReactNode;
   imageUrl?: string;
 }
 
 export default function PageIntroduction({
   title,
-  description,
+  children,
   imageUrl,
 }: Props): ReactElement {
   return (
     <div style={{ marginBottom: 96 }}>
       <h1 className="h1 heading text-6xl">{title}</h1>
-      {description && <p className="text-xl mt-3">{description}</p>}
+      {children && <p className="text-xl mt-3">{children}</p>}
       {imageUrl && <img className="Hero-image" src={imageUrl} alt={title} />}
     </div>
   );

@@ -14,7 +14,7 @@
   }
 
   & a.Link {
-    color: var(--blue-500);
+    color: var(--blue-base);
     border-bottom: 2px solid color(var(--blue-base) alpha(5%));
 
     &:hover {

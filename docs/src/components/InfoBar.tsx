@@ -12,7 +12,6 @@ import organismIcon from '../images/icons/organism.svg';
 
 export default function InfoBar({ currentPath }: Props): ReactElement {
   const location = useLocation();
-  console.log('defaultfunctionInfoBar -> location', location.pathname);
 
   return (
     <div className="InfoBar">

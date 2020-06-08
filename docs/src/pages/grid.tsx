@@ -18,12 +18,11 @@ export default function GridPage({}: Props): ReactElement {
   return (
     <Layout withCallToAction withInfoBar>
       <Container>
-        <PageIntroduction
-          title="Grid"
-          description="One of the easiest ways to achieve an organised design is to apply a grid system.
-                  In the AXA Design System, we have chosen to follow two grid principles - Bootstrap standards and a 8px grid."
-          imageUrl={heroImage}
-        />
+        <PageIntroduction title="Grid" imageUrl={heroImage}>
+          One of the easiest ways to achieve an organised design is to apply a
+          grid system. In the AXA Design System, we have chosen to follow two
+          grid principles - Bootstrap standards and a 8px grid.
+        </PageIntroduction>
 
         <h2 className="h2">How do we use Grid and Spacing ?</h2>
         <p>
