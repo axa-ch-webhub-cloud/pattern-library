@@ -66,7 +66,11 @@ class Page extends React.Component {
         <SEO title={metaInfo.name} />
 
         <main>
-          <ComponentIntro name={metaInfo.name} githubUrl={metaInfo.github} />
+          <ComponentIntro
+            name={metaInfo.name}
+            githubUrl={metaInfo.github}
+            guidelineUrl={metaInfo.guideline}
+          />
 
           <article className="MDXPage">
             <div

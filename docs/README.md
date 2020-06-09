@@ -53,6 +53,8 @@ git push origin develop
 - [ ] Add a link to the sidebar `src/components/GetStartedSidebar.tsx`
 - [ ] Add metadata `src/IA.ts`
 
+## Component status
+
 | Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
 | 🔥 **Icons**                           | icons-raw                   | Constant       | ✅              |

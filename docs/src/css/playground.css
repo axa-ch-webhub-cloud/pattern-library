@@ -16,7 +16,7 @@
 
 .Playground[data-isCodeCollapsed='true'] {
   & .Playground-header:hover {
-    background-color: var(--blue-light);
+    background-color: var(--blue-lightest);
   }
 }
 
