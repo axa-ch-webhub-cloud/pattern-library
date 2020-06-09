@@ -85,11 +85,7 @@ export default function startPage() {
         </SyntaxHighlighter>
 
         <p className="paragraph">
-          A working version, assuming you are using something like{' '}
-          <NativeLink href="https://github.com/facebookincubator/create-react-app">
-            Create React App
-          </NativeLink>
-          , might look like this:
+          Import the button-defining script and use a button like this:
         </p>
 
         <SyntaxHighlighter>
@@ -111,7 +107,7 @@ export default function startPage() {
 `}
         </SyntaxHighlighter>
 
-        <p style={{ marginBottom: 96 }}>
+        <p className="pargraph mb-3">
           <strong>⚠️ Important:</strong> If this component needs to run in
           Internet Explorer 11,{' '}
           <NativeLink href="https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill">
@@ -120,7 +116,33 @@ export default function startPage() {
           .
         </p>
 
-        <p className="kicker">A perfect start for</p>
+        <p className="pargraph">
+          <strong>Using React ?</strong> not a big deal, we covered this
+          scenario. You need to{' '}
+          <NativeLink href="https://github.com/team-haigo/patterns-library/tree/develop/src/components/10-atoms/button#react">
+            create a React-ified button with the createElement
+          </NativeLink>{' '}
+          function from your React.
+        </p>
+        <SyntaxHighlighter>
+          {`
+import { createElement } from 'react';
+import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+
+const AXAButtonReact = createAXAButtonReact(createElement);
+
+export default AXAButtonReact;
+          `}
+        </SyntaxHighlighter>
+        <SyntaxHighlighter>
+          {`
+<AXAButtonReact motionOff onClick={handler}>
+  I am a Button
+</AxaButtonReact>
+          `}
+        </SyntaxHighlighter>
+
+        <p className="kicker mt-8">A perfect start for</p>
         <h2 className="h2 mt-0">Designer</h2>
         <p className="paragraph">
           Rapidly build beautiful and accessible experiences. The AXA Design

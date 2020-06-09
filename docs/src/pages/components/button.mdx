@@ -19,6 +19,16 @@ It contains a label and optional icons before or after the label.
 <Button>Hello</Button>
 ```
 
+## Size
+
+```jsx
+<div>
+  <Button size="">Hello</Button>
+  <Button size="small">Hello</Button>
+  <Button size="large">Hello</Button>
+</div>
+```
+
 ## All button variations
 
 ```jsx
@@ -29,26 +39,18 @@ It contains a label and optional icons before or after the label.
       flexDirection: 'column',
     }}
   >
-    <Button variant="secondary" marginRight={16}>
-      secondary
-    </Button>
-    <Button variant="red" marginRight={16}>
-      red
-    </Button>
+    <Button variant="primary">primary</Button>
+    <Button variant="secondary">secondary</Button>
+    <Button variant="red">red</Button>
   </div>
   <div
     style={{
-      backgroundColor: '#1e3952',
+      backgroundColor: '#333333',
       display: 'flex',
       flexDirection: 'column',
     }}
   >
     <Button variant="inverted">inverted</Button>
-    <Button variant="inverted-blue-ocean">inverted-blue-ocean</Button>
-    <Button variant="inverted-red-tosca">inverted-red-tosca</Button>
-    <Button variant="inverted-purple-logan">inverted-purple-logan</Button>
-    <Button variant="inverted-green-viridian">inverted-green-viridian</Button>
-    <Button variant="inverted-blue-teal">inverted-blue-teal</Button>
   </div>
 </div>
 ```

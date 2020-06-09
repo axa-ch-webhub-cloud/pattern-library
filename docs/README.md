@@ -50,11 +50,12 @@ git push origin develop
 - [ ] `import { Whatever } from '../patterns/';`
 - [ ] You are ready to use it with `<Whatever />`
 
-Constant / brand / materials
+- [ ] Add a link to the sidebar `src/components/GetStartedSidebar.tsx`
+- [ ] Add metadata `src/IA.ts`
 
 | Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Icons                                  | icons-raw                   | Constant       | ✅              |
+| 🔥 **Icons**                           | icons-raw                   | Constant       | ✅              |
 |                                        | images-raw                  | Constant       | ✅              |
 |                                        | Logo                        | Constant       | ✅              |
 | Spacing                                |                             | Constant       | 🔴              |
@@ -69,17 +70,17 @@ Constant / brand / materials
 |                                        | Ghost                       | Atom           | 🌀              |
 | Image                                  |                             | Atom           | 🔴              |
 | Form container                         |                             | Atom           | 🔴              |
-| Input                                  | Text / Password             | Atom           | ✅              |
-| Input                                  | Date                        | Atom           | 🔴              |
+| 🔥 **Input**                           | Text / Password             | Atom           | ✅              |
+| 🔥 **Input**                           | Date                        | Atom           | 🔴              |
 | Input                                  | Range (slider)              | Atom           | 🔴              |
 | Checkbox                               |                             | Atom           | ✅              |
 | Radio                                  |                             | Atom           | ✅              |
-| Social Media                           |                             | Atom           | 🔴              |
+| > Social Media                         |                             | Atom           | 🔴              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Header                                 | Main Navigation             | Molecule       | 🌀              |
+| 🔥 **Header**                          | Main Navigation             | Molecule       | 🌀              |
 |                                        | Meta Navigation             | Molecule       | 🌀              |
 |                                        | Sub-navigation              | Molecule       | 🌀              |
-| Footer                                 |                             | Molecule       | ✅              |
+| 🔥 **Footer**                          |                             | Molecule       | ✅              |
 | MultipleEntries                        | Background White/Blue       | Molecule       | 🔴              |
 |                                        | 3 / 4 columns               | Molecule       | 🔴              |
 | Data-visualisation/KeyFigures          |                             | Molecule       | ?               |
@@ -89,21 +90,21 @@ Constant / brand / materials
 | Dropdown (Select)                      |                             | Molecule       | ✅              |
 |                                        | Multiple choice buttons     | Molecule       | ?               |
 | Contextual help                        |                             | Molecule       | 🔴              |
-| Tabs                                   |                             | Molecule       | 🔴              |
+| > Tabs                                 |                             | Molecule       | 🔴              |
 | subMenu                                |                             | Molecule       | 🔴              |
 | Cookie Disclaimer                      |                             | Molecule       | ✅              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
 | Table                                  |                             | Organism       | ✅              |
 | Table Sortable                         |                             | Organism       | ✅              |
-| Commercial Hero Banner                 |                             | Organism       | ✅              |
-| Navigation Menu                        |                             | Organism       | 🔴              |
-| Short Page                             |                             | Organism       | 🔴              |
-| Form Page                              | Login                       | Organism       | 🔴              |
+| 🔥 **Commercial Hero Banner**          |                             | Organism       | ✅              |
+| > Navigation Menu                      |                             | Organism       | 🔴              |
+| > Short Page                           |                             | Organism       | 🔴              |
+| > Form Page                            | Login                       | Organism       | 🔴              |
 
-✅ Yes
-🔴 No
-🌀 Almost
-? No idea what is it
+- ✅ Yes
+- 🔴 No
+- 🌀 Almost
+- ? No idea what is it
 
 ## Source of Truth : Tree IA
 

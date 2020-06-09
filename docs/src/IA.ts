@@ -116,14 +116,10 @@ export default {
             image: moleculeIcon,
           },
           {
-            id: 'textarea',
-            github: githubDocumentationLink('textarea'),
-            name: 'Textarea',
-          },
-          {
-            id: 'autocomplete',
-            github: githubDocumentationLink('autocomplete'),
-            name: 'Autocomplete',
+            id: 'footer',
+            github: githubDocumentationLink('30-organisms/footer'),
+            name: 'Footer',
+            image: moleculeIcon,
           },
         ],
       },
