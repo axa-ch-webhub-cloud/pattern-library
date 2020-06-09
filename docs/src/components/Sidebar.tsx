@@ -37,53 +37,72 @@ export default class Sidebar extends PureComponent {
               >
                 {group.title && <p className="Sidebar-title">{group.title}</p>}
                 <nav className="Sidebar-nav">
-                  {group.links.map(({ label, to, branding, atoms }) => {
-                    return (
-                      <>
-                        {label && (
-                          <Link key={to} to={to} activeClassName="is-active">
-                            {label}
-                          </Link>
-                        )}
+                  {group.links.map(
+                    ({ label, to, branding, atoms, molecules }) => {
+                      return (
+                        <>
+                          {label && (
+                            <Link key={to} to={to} activeClassName="is-active">
+                              {label}
+                            </Link>
+                          )}
 
-                        {branding && (
-                          <>
-                            <p className="Sidebar-subtitle">
-                              Brand identity elements
-                            </p>
-                            {branding.map((brand) => {
-                              return (
-                                <Link
-                                  key={`brand-${_.uniqueId()}`}
-                                  to={brand.to}
-                                  activeClassName="is-active"
-                                >
-                                  {brand.label}
-                                </Link>
-                              );
-                            })}
-                          </>
-                        )}
+                          {branding && (
+                            <>
+                              <p className="Sidebar-subtitle">
+                                Brand identity elements
+                              </p>
+                              {branding.map((brand) => {
+                                return (
+                                  <Link
+                                    key={`brand-${_.uniqueId()}`}
+                                    to={brand.to}
+                                    activeClassName="is-active"
+                                  >
+                                    {brand.label}
+                                  </Link>
+                                );
+                              })}
+                            </>
+                          )}
 
-                        {atoms && (
-                          <>
-                            <p className="Sidebar-subtitle">Atom</p>
-                            {atoms.map((atom) => {
-                              return (
-                                <Link
-                                  key={`atom-${_.uniqueId()}`}
-                                  to={atom.to}
-                                  activeClassName="is-active"
-                                >
-                                  {atom.label}
-                                </Link>
-                              );
-                            })}
-                          </>
-                        )}
-                      </>
-                    );
-                  })}
+                          {atoms && (
+                            <>
+                              <p className="Sidebar-subtitle">Atom</p>
+                              {atoms.map((atom) => {
+                                return (
+                                  <Link
+                                    key={`atom-${_.uniqueId()}`}
+                                    to={atom.to}
+                                    activeClassName="is-active"
+                                  >
+                                    {atom.label}
+                                  </Link>
+                                );
+                              })}
+                            </>
+                          )}
+
+                          {molecules && (
+                            <>
+                              <p className="Sidebar-subtitle">Molecules</p>
+                              {molecules.map((molecule) => {
+                                return (
+                                  <Link
+                                    key={`molecule-${_.uniqueId()}`}
+                                    to={molecule.to}
+                                    activeClassName="is-active"
+                                  >
+                                    {molecule.label}
+                                  </Link>
+                                );
+                              })}
+                            </>
+                          )}
+                        </>
+                      );
+                    }
+                  )}
                 </nav>
               </div>
             );

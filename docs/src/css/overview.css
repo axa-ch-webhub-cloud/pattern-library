@@ -27,10 +27,10 @@
 }
 
 .Overview-groupItems {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  /* display: grid; */
+  /* grid-template-columns: 1fr; */
+  /* grid-column-gap: 16px; */
+  /* grid-row-gap: 16px; */
 }
 
 .OverviewItem {
@@ -54,14 +54,6 @@
     color: white;
     box-shadow: 0 0 0 2px var(--blue-base);
   }
-}
-
-.OverviewItem-label {
-  display: block;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  line-height: 18px;
-  text-align: center;
 }
 
 .OverviewGrid {

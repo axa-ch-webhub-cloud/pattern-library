@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
-import PropTypes from 'prop-types'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Highlight, { defaultProps } from 'prism-react-renderer';
 
 export default class SyntaxHighlighter extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.string
-  }
+    children: PropTypes.string,
+  };
 
   componentDidCatch() {}
 
@@ -30,6 +30,6 @@ export default class SyntaxHighlighter extends React.PureComponent {
           </pre>
         )}
       </Highlight>
-    )
+    );
   }
 }

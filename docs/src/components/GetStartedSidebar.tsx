@@ -49,6 +49,12 @@ export default class GetStartedSidebar extends PureComponent {
                 label: 'Button',
               },
             ],
+            molecules: [
+              {
+                to: '/components/footer',
+                label: 'Footer',
+              },
+            ],
           },
           {
             to: '/contact',

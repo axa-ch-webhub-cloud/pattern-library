@@ -102,28 +102,10 @@ export default {
         title: 'Molecule Elements',
         items: [
           {
-            id: 'text-input',
-            github: githubDocumentationLink('text-input'),
-            name: 'Text Input',
+            id: 'footer',
+            github: githubDocumentationLink('30-organisms/footer'),
+            name: 'Footer',
             image: moleculeIcon,
-          },
-          {
-            id: 'tag-input',
-            github: githubDocumentationLink('tag-input'),
-            name: 'Tag Input',
-            tags: ['badge', 'pills', 'tag'],
-            related: ['badge-and-pill'],
-            image: moleculeIcon,
-          },
-          {
-            id: 'textarea',
-            github: githubDocumentationLink('textarea'),
-            name: 'Textarea',
-          },
-          {
-            id: 'autocomplete',
-            github: githubDocumentationLink('autocomplete'),
-            name: 'Autocomplete',
           },
         ],
       },

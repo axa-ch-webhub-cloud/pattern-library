@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import _ from 'lodash';
 import { Location, navigate } from '@reach/router';
 
 import IA from '../IA';
@@ -66,7 +66,11 @@ class Page extends React.Component {
         <SEO title={metaInfo.name} />
 
         <main>
-          <ComponentIntro name={metaInfo.name} githubUrl={metaInfo.github} />
+          <ComponentIntro
+            name={metaInfo.name}
+            githubUrl={metaInfo.github}
+            guidelineUrl={metaInfo.guideline}
+          />
 
           <article className="MDXPage">
             <div
@@ -82,12 +86,12 @@ class Page extends React.Component {
               className="Overview-group Container Container--narrow"
               style={{ marginBottom: 120 }}
             >
-              <h3 className="Overview-groupTitle">Composition</h3>
+              <h2 className="h2">Composition</h2>
               <div className="Overview-groupItems">
                 {relatedItems.map((item) => {
                   return (
                     <OverviewItem
-                      key={item.name}
+                      key={`overview-${_.uniqueId()}`}
                       id={item.id}
                       image={item.image}
                     >

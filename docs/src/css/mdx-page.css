@@ -3,6 +3,8 @@
   align-items: center;
   padding-top: var(--space-6);
   padding-bottom: var(--space-6);
+
+  width: 1280px;
 }
 
 .MDXPage-headerContentLeft {
@@ -14,6 +16,14 @@
 .MDXPage {
   & .Playground {
     margin-bottom: 48px;
+  }
+
+  & .Container {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
   }
 }
 
