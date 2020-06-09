@@ -54,6 +54,62 @@
   margin-bottom: var(--space-8);
 }
 
+.ml-0 {
+  margin-left: 0;
+}
+.ml-1 {
+  margin-left: var(--space-1);
+}
+.ml-2 {
+  margin-left: var(--space-2);
+}
+.ml-3 {
+  margin-left: var(--space-3);
+}
+.ml-4 {
+  margin-left: var(--space-4);
+}
+.ml-5 {
+  margin-left: var(--space-5);
+}
+.ml-6 {
+  margin-left: var(--space-6);
+}
+.ml-7 {
+  margin-left: var(--space-7);
+}
+.ml-8 {
+  margin-left: var(--space-8);
+}
+
+.mr-0 {
+  margin-right: 0;
+}
+.mr-1 {
+  margin-right: var(--space-1);
+}
+.mr-2 {
+  margin-right: var(--space-2);
+}
+.mr-3 {
+  margin-right: var(--space-3);
+}
+.mr-4 {
+  margin-right: var(--space-4);
+}
+.mr-5 {
+  margin-right: var(--space-5);
+}
+.mr-6 {
+  margin-right: var(--space-6);
+}
+.mr-7 {
+  margin-right: var(--space-7);
+}
+.mr-8 {
+  margin-right: var(--space-8);
+}
+
 .mw-1 {
   max-width: var(--space-1);
 }

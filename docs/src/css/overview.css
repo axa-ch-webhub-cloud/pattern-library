@@ -26,34 +26,17 @@
   font-weight: 500;
 }
 
-.Overview-groupItems {
-  /* display: grid; */
-  /* grid-template-columns: 1fr; */
-  /* grid-column-gap: 16px; */
-  /* grid-row-gap: 16px; */
+.OverviewItem {
+  border-bottom: 1px solid var(--color-border-muted);
 }
 
-.OverviewItem {
-  &:hover {
-    margin: -4px;
-    padding: 4px;
-    background-color: var(--blue-light);
-    color: var(--blue-base);
-  }
-
-  &:focus-visible {
-    margin: -4px;
-    padding: 4px;
-    box-shadow: 0 0 0 2px var(--blue-light);
-  }
-
-  &:active {
-    margin: -4px;
-    padding: 4px;
-    background-color: var(--blue-base);
-    color: white;
-    box-shadow: 0 0 0 2px var(--blue-base);
-  }
+.OverviewKicker {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--blue-base);
 }
 
 .OverviewGrid {

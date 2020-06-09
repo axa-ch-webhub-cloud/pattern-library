@@ -7,9 +7,10 @@ import IA from '../IA';
 import DocsMDXProvider from './DocsMDXProvider';
 
 import Layout from './Layout';
-import OverviewItem from './OverviewItem';
+
 import SEO from './SEO';
 import ComponentIntro from './ComponentIntro';
+import ComponentRelated from './ComponentRelated';
 
 const flatItems = [
   ...IA.branding.items.map((item) => {
@@ -78,30 +79,12 @@ class Page extends React.Component {
               style={{ marginBottom: 120 }}
             >
               <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
+
+              {relatedItems.length > 0 && (
+                <ComponentRelated relatedItems={relatedItems} />
+              )}
             </div>
           </article>
-
-          {relatedItems.length > 0 && (
-            <div
-              className="Overview-group Container Container--narrow"
-              style={{ marginBottom: 120 }}
-            >
-              <h2 className="h2">Composition</h2>
-              <div className="Overview-groupItems">
-                {relatedItems.map((item) => {
-                  return (
-                    <OverviewItem
-                      key={`overview-${_.uniqueId()}`}
-                      id={item.id}
-                      image={item.image}
-                    >
-                      {item.name}
-                    </OverviewItem>
-                  );
-                })}
-              </div>
-            </div>
-          )}
         </main>
       </>
     );
