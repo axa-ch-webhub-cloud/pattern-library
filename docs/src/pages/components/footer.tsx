@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Footer } from '../../patterns/index';
 import Page from '../../components/Page';
 import SyntaxHighlighter from '../../components/SyntaxHighlighter';
+import { Footer } from '../../patterns/index';
 
 interface Props {}
 
-export default function footer({}: Props): ReactElement {
+export default function FooterPage({}: Props): ReactElement {
   return (
     <Page>
       <p className="paragraph">

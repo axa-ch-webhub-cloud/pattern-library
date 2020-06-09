@@ -13,6 +13,7 @@ export default function ComponentIntro({
   githubUrl,
   guidelineUrl,
 }: Props): ReactElement {
+  console.log('guidelineUrl', guidelineUrl);
   return (
     <div>
       <header className="MDXPage-header">
@@ -33,7 +34,12 @@ export default function ComponentIntro({
           </ButtonLink>
 
           {guidelineUrl && (
-            <ButtonLink variant="secondary" href={githubUrl} external={true}>
+            <ButtonLink
+              className="ml-3"
+              variant="secondary"
+              href={guidelineUrl}
+              external={true}
+            >
               View guidelines
             </ButtonLink>
           )}

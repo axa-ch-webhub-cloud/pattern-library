@@ -4,6 +4,7 @@ module.exports = {
   description: 'Design and coding best practices for AXA branding',
   url: 'https://design.axa.com', // Domain of your site without prefix!
   prefix: '/',
+  designGuidelineUrl: 'https://design.axa.com/web-guidelines/',
   githubCodebaseUrl: 'https://github.com/team-haigo/patterns-library/',
   githubDocumentationUrl:
     'https://github.com/team-haigo/patterns-library/tree/develop/src/components/',

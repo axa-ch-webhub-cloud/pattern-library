@@ -3,10 +3,13 @@ import atomIcon from './images/icons/atom.svg';
 import moleculeIcon from './images/icons/molecule.svg';
 import organismIcon from './images/icons/organism.svg';
 
-import { githubDocumentationUrl } from '../siteConfig';
+import { githubDocumentationUrl, designGuidelineUrl } from '../siteConfig';
 
-const githubDocumentationLink = (str) => {
-  return `${githubDocumentationUrl}${str}`;
+const githubDocumentationLink = (folder: string) => {
+  return `${githubDocumentationUrl}${folder}`;
+};
+const designLink = (path: string) => {
+  return `${designGuidelineUrl}${path}`;
 };
 
 /**
@@ -99,13 +102,45 @@ export default {
         ],
       },
       {
-        title: 'Molecule Elements',
+        title: 'Molecule Footer',
         items: [
           {
             id: 'footer',
             github: githubDocumentationLink('30-organisms/footer'),
+            guideline: designLink('footer'),
             name: 'Footer',
             image: moleculeIcon,
+          },
+        ],
+      },
+      {
+        title: 'Molecule Hero',
+        items: [
+          {
+            id: 'hero',
+            kind: 'molecules',
+            github: githubDocumentationLink(
+              '30-organisms/commercial-hero-banner'
+            ),
+            guideline: designLink('hero-covers'),
+            name: 'Hero',
+            image: moleculeIcon,
+          },
+          {
+            id: 'button',
+            kind: 'atoms',
+            github: githubDocumentationLink('10-atoms/button'),
+            name: 'Button',
+            tags: ['icon button', 'button', 'action'],
+            image: atomIcon,
+          },
+          {
+            id: 'button-link',
+            kind: 'atoms',
+            github: githubDocumentationLink('10-atoms/button-link'),
+            name: 'Button Link',
+            tags: ['icon button', 'button', 'link', 'href'],
+            image: atomIcon,
           },
         ],
       },

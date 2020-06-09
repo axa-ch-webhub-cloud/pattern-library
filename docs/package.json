@@ -10,6 +10,7 @@
   "dependencies": {
     "@axa-ch/button": "^4.1.2",
     "@axa-ch/button-link": "^3.1.0",
+    "@axa-ch/commercial-hero-banner": "^2.0.13",
     "@axa-ch/footer": "^3.0.8",
     "@axa-ch/heading": "^2.0.2",
     "@loadable/component": "^5.12.0",
