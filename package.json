@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library",
-  "version": "1.0.0-beta.0",
+  "version": "2.0.0",
   "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
