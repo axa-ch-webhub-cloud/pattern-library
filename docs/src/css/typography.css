@@ -70,7 +70,7 @@
   text-transform: uppercase;
 }
 .font-bold {
-  font-weight: var(--font-bold);
+  font-weight: var(--font-bold) !important;
 }
 .font-semi-bold {
   font-weight: var(--font-semi-bold);

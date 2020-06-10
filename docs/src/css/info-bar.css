@@ -25,7 +25,7 @@
 }
 
 .InfoBar-image {
-  max-width: var(--space-6);
-  max-height: var(--space-6);
+  max-width: var(--space-4);
+  max-height: var(--space-4);
   margin-right: var(--space-1);
 }

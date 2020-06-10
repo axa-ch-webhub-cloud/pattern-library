@@ -33,7 +33,7 @@ export default function InfoBar({ currentPath }: Props): ReactElement {
             alt="Brand"
             style={{ marginRight: 24 }}
           />
-          <div className="kicker mb-0">Brand identity elements</div>
+          <div className="kicker font-bold mb-0">Brand identity elements</div>
         </div>
         <div
           className={`col InfoBar-item ${
@@ -41,7 +41,7 @@ export default function InfoBar({ currentPath }: Props): ReactElement {
           }`}
         >
           <img src={atomIcon} className="InfoBar-image" alt="Atoms" />
-          <div className="kicker mb-0">Atoms</div>
+          <div className="kicker font-bold mb-0">Atoms</div>
         </div>
         <div
           className={`col InfoBar-item ${
@@ -49,7 +49,7 @@ export default function InfoBar({ currentPath }: Props): ReactElement {
           }`}
         >
           <img src={moleculeIcon} className="InfoBar-image" alt="Molecules" />
-          <div className="kicker mb-0">Molecules</div>
+          <div className="kicker font-bold mb-0">Molecules</div>
         </div>
         <div
           className={`col InfoBar-item ${
@@ -57,7 +57,7 @@ export default function InfoBar({ currentPath }: Props): ReactElement {
           }`}
         >
           <img src={organismIcon} className="InfoBar-image" alt="Organism" />
-          <div className="kicker mb-0">Organism</div>
+          <div className="kicker font-bold mb-0">Organism</div>
         </div>
       </div>
     </div>
