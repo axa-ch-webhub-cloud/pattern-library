@@ -60,6 +60,7 @@ export default {
           {
             id: 'button',
             github: githubDocumentationLink('10-atoms/button'),
+            guideline: designLink('buttons-and-links'),
             name: 'Button',
             image: atomIcon,
           },

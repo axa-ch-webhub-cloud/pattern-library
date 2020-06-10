@@ -52,7 +52,7 @@
 }
 
 .bg-black {
-  background-color: var(--black);
+  background-color: var(--black) !important;
 }
 .bg-neutral-800 {
   background-color: var(--neutral-800);

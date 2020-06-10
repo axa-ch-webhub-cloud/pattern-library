@@ -1,6 +1,11 @@
+.Preview {
+  background-color: var(--white);
+  padding: var(--space-5);
+}
+
 .Playground {
-  background-color: #f9f9fb;
-  border-radius: 5px;
+  background-color: var(--white);
+  padding: var(--space-5);
   overflow: hidden;
 }
 
