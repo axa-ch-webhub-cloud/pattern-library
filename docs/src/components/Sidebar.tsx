@@ -38,7 +38,7 @@ export default class Sidebar extends PureComponent {
                 {group.title && <p className="Sidebar-title">{group.title}</p>}
                 <nav className="Sidebar-nav">
                   {group.links.map(
-                    ({ label, to, branding, atoms, molecules }) => {
+                    ({ label, to, branding, atoms, molecules, organisms }) => {
                       return (
                         <>
                           {label && (
@@ -94,6 +94,23 @@ export default class Sidebar extends PureComponent {
                                     activeClassName="is-active"
                                   >
                                     {molecule.label}
+                                  </Link>
+                                );
+                              })}
+                            </>
+                          )}
+
+                          {organisms && (
+                            <>
+                              <p className="Sidebar-subtitle">Organism</p>
+                              {organisms.map((organism) => {
+                                return (
+                                  <Link
+                                    key={`organism-${_.uniqueId()}`}
+                                    to={organism.to}
+                                    activeClassName="is-active"
+                                  >
+                                    {organism.label}
                                   </Link>
                                 );
                               })}

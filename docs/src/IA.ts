@@ -72,7 +72,44 @@ export default {
           {
             id: 'button-link',
             github: githubDocumentationLink('10-atoms/button-link'),
+            guideline: designLink('buttons-and-links'),
             name: 'Button Link',
+            image: atomIcon,
+          },
+        ],
+      },
+      {
+        title: 'Atom Checkbox',
+        items: [
+          {
+            id: 'checkbox',
+            github: githubDocumentationLink('10-atoms/checkbox'),
+            guideline: designLink('forms'),
+            name: 'Checkbox',
+            image: atomIcon,
+          },
+        ],
+      },
+      {
+        title: 'Atom Input',
+        items: [
+          {
+            id: 'input',
+            github: githubDocumentationLink('10-atoms/input-text'),
+            guideline: designLink('forms'),
+            name: 'Input',
+            image: atomIcon,
+          },
+        ],
+      },
+      {
+        title: 'Atom Textarea',
+        items: [
+          {
+            id: 'textarea',
+            github: githubDocumentationLink('10-atoms/textarea'),
+            guideline: designLink('forms'),
+            name: 'Textarea',
             image: atomIcon,
           },
         ],
@@ -94,7 +131,6 @@ export default {
         items: [
           {
             id: 'hero',
-            kind: 'molecules',
             github: githubDocumentationLink(
               '30-organisms/commercial-hero-banner'
             ),
@@ -102,6 +138,18 @@ export default {
             name: 'Hero',
             related: ['button-link'],
             image: moleculeIcon,
+          },
+        ],
+      },
+      {
+        title: 'Organism Login',
+        items: [
+          {
+            id: 'login',
+            guideline: designLink('login'),
+            name: 'Login',
+            related: ['button', 'button-link', 'checkbox', 'input'],
+            image: organismIcon,
           },
         ],
       },

@@ -44,11 +44,11 @@ git push origin develop
 ![](static/ssr-windows-not-defined.png)
 
 - [ ] Go and search on https://patterns.axa.ch
-- [ ] Install from `@axa-ch/whatever` with `npm install @axa-ch/whatever`
-- [ ] Create the React-ified version on `src/patterns/reactified/Whatever.tsx`
+- [ ] Install from `@axa-ch/sample` with `npm install @axa-ch/sample`
+- [ ] Create the React-ified version with `touch src/patterns/reactified/Sample.tsx`
 - [ ] export it with `@loadable/component` from `src/patterns/reactified/index.tsx`
-- [ ] `import { Whatever } from '../patterns/';`
-- [ ] You are ready to use it with `<Whatever />`
+- [ ] `import { Sample } from '../patterns/';`
+- [ ] You are ready to use it with `<Sample />`
 
 - [ ] `cp src/pages/components/sample.tsx src/pages/components/new.tsx`
 - [ ] Add a link to the sidebar `src/components/GetStartedSidebar.tsx`
@@ -61,7 +61,6 @@ git push origin develop
 | 🔥 **Icons**                           | icons-raw                   | Constant       | ✅              |
 |                                        | images-raw                  | Constant       | ✅              |
 |                                        | Logo                        | Constant       | ✅              |
-| Spacing                                |                             | Constant       | 🔴              |
 | Grids                                  |                             | Constant       | 🔴              |
 | Colors                                 |                             | Constant       | ✅              |
 | Typography                             | Heading                     | Constant       | ✅              |
@@ -69,14 +68,10 @@ git push origin develop
 |                                        | Quote                       | Constant       | 🔴              |
 |                                        | Hyperlinks / Simple links   | Constant       | ✅              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Buttons                                | Primary / Secondary         | Atom           | ✅              |
-|                                        | Ghost                       | Atom           | 🌀              |
 | Image                                  |                             | Atom           | 🔴              |
 | Form container                         |                             | Atom           | 🔴              |
-| 🔥 **Input**                           | Text / Password             | Atom           | ✅              |
-| 🔥 **Input**                           | Date                        | Atom           | 🔴              |
+| Input                                  | Date                        | Atom           | 🔴              |
 | Input                                  | Range (slider)              | Atom           | 🔴              |
-| Checkbox                               |                             | Atom           | ✅              |
 | Radio                                  |                             | Atom           | ✅              |
 | > Social Media                         |                             | Atom           | 🔴              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
@@ -99,7 +94,7 @@ git push origin develop
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
 | Table                                  |                             | Organism       | ✅              |
 | Table Sortable                         |                             | Organism       | ✅              |
-| 🔥 **Commercial Hero Banner**          |                             | Organism       | ✅              |
+| Commercial Hero Banner                 |                             | Organism       | ✅              |
 | > Navigation Menu                      |                             | Organism       | 🔴              |
 | > Short Page                           |                             | Organism       | 🔴              |
 | > Form Page                            | Login                       | Organism       | 🔴              |
