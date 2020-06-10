@@ -50,7 +50,7 @@ git push origin develop
 - [ ] `import { Whatever } from '../patterns/';`
 - [ ] You are ready to use it with `<Whatever />`
 
-- [ ] cp src/pages/components/sample.tsx src/pages/components/new.tsx
+- [ ] `cp src/pages/components/sample.tsx src/pages/components/new.tsx`
 - [ ] Add a link to the sidebar `src/components/GetStartedSidebar.tsx`
 - [ ] Add metadata `src/IA.ts`
 
