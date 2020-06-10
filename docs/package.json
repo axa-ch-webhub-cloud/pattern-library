@@ -10,9 +10,12 @@
   "dependencies": {
     "@axa-ch/button": "^4.1.2",
     "@axa-ch/button-link": "^3.1.0",
+    "@axa-ch/checkbox": "^4.0.3",
     "@axa-ch/commercial-hero-banner": "^2.0.13",
     "@axa-ch/footer": "^3.0.8",
     "@axa-ch/heading": "^2.0.2",
+    "@axa-ch/input-text": "^3.0.15",
+    "@axa-ch/textarea": "^2.0.8",
     "@loadable/component": "^5.12.0",
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",

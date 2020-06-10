@@ -13,7 +13,6 @@ export default function ComponentIntro({
   githubUrl,
   guidelineUrl,
 }: Props): ReactElement {
-  console.log('guidelineUrl', guidelineUrl);
   return (
     <div>
       <header className="MDXPage-header">
@@ -22,16 +21,18 @@ export default function ComponentIntro({
             <h1 className="h1 heading text-5xl">{name}</h1>
           </div>
 
-          <ButtonLink variant="secondary" href={githubUrl} external={true}>
-            <GitHubIcon
-              width="16"
-              height="16"
-              style={{
-                marginRight: 10,
-              }}
-            />
-            View source
-          </ButtonLink>
+          {githubUrl && (
+            <ButtonLink variant="secondary" href={githubUrl} external={true}>
+              <GitHubIcon
+                width="16"
+                height="16"
+                style={{
+                  marginRight: 10,
+                }}
+              />
+              View source
+            </ButtonLink>
+          )}
 
           {guidelineUrl && (
             <ButtonLink

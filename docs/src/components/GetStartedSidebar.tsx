@@ -3,9 +3,6 @@ import Sidebar from './Sidebar';
 
 export default class GetStartedSidebar extends PureComponent {
   static defaultProps = {
-    /**
-     * Manually manage components for now
-     */
     groups: [
       {
         title: 'AXA Design System',
@@ -52,6 +49,18 @@ export default class GetStartedSidebar extends PureComponent {
                 to: '/components/button-link',
                 label: 'Button Link',
               },
+              {
+                to: '/components/checkbox',
+                label: 'Checkbox',
+              },
+              {
+                to: '/components/input',
+                label: 'Input',
+              },
+              {
+                to: '/components/textarea',
+                label: 'Textarea',
+              },
             ],
           },
           {
@@ -63,6 +72,14 @@ export default class GetStartedSidebar extends PureComponent {
               {
                 to: '/components/footer',
                 label: 'Footer',
+              },
+            ],
+          },
+          {
+            organisms: [
+              {
+                to: '/components/login',
+                label: 'Login',
               },
             ],
           },
