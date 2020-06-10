@@ -29,20 +29,24 @@ export default function Callout({
         {imageUrl && <img src={imageUrl} alt={title} />}
         {imageSvg && imageSvg}
       </div>
-      <div className="col" style={{ paddingRight: 28 }}>
+      <div className="col" style={{ paddingRight: 28, flex: 2 }}>
         <p className="text-base">
           <strong>{title}</strong>
         </p>
         <p className="text-sm text-neutral-600">{description}</p>
       </div>
-      <div className="col Callout-link">
+      <div className="col">
         {isInternalLink ? (
           <Link to={linkToUrl}>
-            <ButtonLink size="large">{linkToTitle}</ButtonLink>
+            <ButtonLink size="large" className="w-100">
+              {linkToTitle}
+            </ButtonLink>
           </Link>
         ) : (
           <NativeLink href={linkToUrl}>
-            <Button size="large">{linkToTitle}</Button>
+            <Button size="large" className="w-100">
+              {linkToTitle}
+            </Button>
           </NativeLink>
         )}
       </div>
