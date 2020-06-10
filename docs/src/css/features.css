@@ -32,6 +32,7 @@
 }
 
 .Features-alert {
+  font-size: var(--font-size-sm);
   background-color: var(--teal-dark);
   padding: var(--space-2);
   color: var(--white);

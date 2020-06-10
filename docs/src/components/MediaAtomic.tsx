@@ -22,7 +22,9 @@ function MediaItem(props: MediaItemProps): ReactElement {
       <div className="MediaItem-content">
         <h3 className="heading mb-1">{props.title}</h3>
         <p className="kicker text-neutral-600">{props.topic}</p>
-        <p className="text-xs text-blue-base mt-2 font-bold">Discover</p>
+        <p className="text-xs text-blue-base mt-2 font-bold text-uppercase">
+          Discover
+        </p>
       </div>
     </Link>
   );
