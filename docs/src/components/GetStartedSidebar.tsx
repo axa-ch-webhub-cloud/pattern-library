@@ -48,6 +48,10 @@ export default class GetStartedSidebar extends PureComponent {
                 to: '/components/button',
                 label: 'Button',
               },
+              {
+                to: '/components/button-link',
+                label: 'Button Link',
+              },
             ],
           },
           {
