@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Page from '../../components/Page';
-import { Hero, ButtonLink } from '../../patterns';
 import SyntaxHighlighter from '../../components/SyntaxHighlighter';
+import { Hero, ButtonLink } from '../../patterns';
 
 interface Props {}
 
