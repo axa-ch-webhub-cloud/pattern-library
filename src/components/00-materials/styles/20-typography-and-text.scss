@@ -107,7 +107,7 @@ $secondary-fonts-styles: (
   }
 
   font-family: $font-family;
-  font-weight: nth(map-get($primary-fonts-styles, default), 1);
+  font-weight: nth(map-get($primary-fonts-styles, bold), 1);
   font-style: nth(map-get($primary-fonts-styles, default), 2);
   font-size: nth(map-get($title-sizes, $size), 1) + px;
   line-height: nth(map-get($title-sizes, $size), 2) + px;
