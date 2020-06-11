@@ -4,6 +4,7 @@
 
 body {
   min-width: 1024px;
+  background-color: var(--neutral-100);
 }
 
 .MainLayout {
@@ -21,7 +22,6 @@ body {
 .MainLayout-content {
   flex: 1;
   overflow-y: auto;
-  background-color: var(--neutral-100);
 }
 
 .MainLayout-contentRight {
