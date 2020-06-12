@@ -474,6 +474,7 @@ class AXADatepicker extends NoShadowDOM {
       day,
       month,
       year,
+      allowedyears,
       autofocus,
       startDate,
     } = this;
@@ -495,6 +496,12 @@ class AXADatepicker extends NoShadowDOM {
 
     if (this.isControlled) {
       return;
+    }
+
+    // if year is not member of allowedyears just take the first entry of allowedyears as the new year
+    if (allowedyears && !allowedyears.includes(year)) {
+      const [newStartYear] = allowedyears;
+      this.year = newStartYear;
     }
 
     this.startDate = overrideDate(year, month, day, startDate);
