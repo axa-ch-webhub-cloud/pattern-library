@@ -133,10 +133,18 @@ export default function TypographyPage({}: Props): ReactElement {
           </TabList>
 
           <TabPanel>
-            <img src={fontsizeImage} alt="" />
+            <img
+              src={fontsizeImage}
+              className="Content-image"
+              alt="AXA Font size"
+            />
           </TabPanel>
           <TabPanel>
-            <img src={lineheightImage} alt="" />
+            <img
+              src={lineheightImage}
+              className="Content-image"
+              alt="AXA Line height"
+            />
           </TabPanel>
         </Tabs>
       </Container>
