@@ -34,6 +34,10 @@ export default class GetStartedSidebar extends PureComponent {
                 label: 'Grid',
               },
               {
+                to: '/images',
+                label: 'Images',
+              },
+              {
                 to: '/typography',
                 label: 'Typography',
               },

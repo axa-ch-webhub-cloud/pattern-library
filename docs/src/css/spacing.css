@@ -138,6 +138,10 @@
   width: 100%;
 }
 
+.w-8 {
+  width: var(--space-8);
+}
+
 .p-2 {
   padding: var(--space-2);
 }

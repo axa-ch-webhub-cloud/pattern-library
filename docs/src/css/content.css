@@ -104,6 +104,19 @@
   margin-top: var(--space-6);
 }
 
+.Content-svg {
+  & svg {
+    margin: 2rem;
+    transform: scale(3);
+  }
+}
+.Content-svg-illustrations {
+  & svg {
+    width: var(--space-8);
+    height: var(--space-8);
+  }
+}
+
 .Content-vertical {
   & .Content-vertical-item {
     color: var(--neutral-700);
