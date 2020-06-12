@@ -100,6 +100,24 @@ import '@axa-ch/button';
   I am disabled
 </axa-button>
   `}</SyntaxHighlighter>
+
+      <h2 className="h2">Icons</h2>
+      <div className="Preview flex align-center">
+        <Button className="mr-3" variant="secondary" icon="arrow-left">
+          Previous
+        </Button>
+        <Button className="mr-3" variant="secondary" icon="arrow-right">
+          Next
+        </Button>
+      </div>
+      <SyntaxHighlighter>{`
+<axa-button variant="secondary" icon="arrow-left">
+  Normal size
+</axa-button>
+<axa-button variant="secondary" icon="arrow-right">
+  I am disabled
+</axa-button>
+  `}</SyntaxHighlighter>
     </Page>
   );
 }
