@@ -199,6 +199,39 @@ test('should have a minimum width', async t => {
   await t.expect(datepickerWrapMinWidth).eql(`${minWidth}px`); // wrapper has a min-width
 });
 
+test('should just add years of a given range', async t => {
+  const datepickerYearDropdown = await Selector(() =>
+    document.querySelector(
+      `axa-datepicker .js-datepicker__dropdown-year`
+    )
+  );
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.allowedyears = ["1999-2000"];
+  });
+
+  await setProperties();
+
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+  const itemsArray = JSON.parse(itemsString);
+
+  await t
+    .expect(itemsArray.length)
+    .eql(2);
+
+  await t
+    .expect(itemsString)
+    .contains('"value":"1999"');
+
+  await t
+    .expect(itemsString)
+    .contains('"value":"2000"');
+
+  await t
+    .expect(itemsString)
+    .notContains('"value":"2020"');
+});
+
 fixture('Datepicker - With Locale').page(
   `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-locale=en-GB`
 );
