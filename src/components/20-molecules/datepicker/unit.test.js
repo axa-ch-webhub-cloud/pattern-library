@@ -1,4 +1,5 @@
 import { getWeekdays } from './utils/date';
+import { parseAndFormatAllowedYears } from './index';
 
 describe('Datepicker unit tests', () => {
   it('should return correct month names with English abreviations', () => {
@@ -12,4 +13,29 @@ describe('Datepicker unit tests', () => {
       'Su',
     ]);
   });
+
+  describe('parseAndFormatAllowedYears()', () => {
+    it('should return empty array', () => {
+      expect(parseAndFormatAllowedYears()).toEqual([]);
+    });
+    it('should return array with 1 allowed year', () => {
+      expect(parseAndFormatAllowedYears([1999])).toEqual([1999]);
+    });
+    it('should return array with allowed years if value is a string', () => {
+      expect(parseAndFormatAllowedYears(['1999-2000'])).toEqual([1999, 2000]);
+    });
+    it('should return array with allowed years if value is a string (without setting setYear)', () => {
+      expect(parseAndFormatAllowedYears(['1999-2000'], 2020)).toEqual([1999, 2000]);
+    });
+    it('should return array with allowed years without setting setYear', () => {
+      expect(parseAndFormatAllowedYears([1999], 2000)).toEqual([1999]);
+    });
+    it('should return array with just the value of setYear', () => {
+      expect(parseAndFormatAllowedYears(undefined, 2000)).toEqual([2000]);
+    });
+    it('should return array with just the value of setYear if allowed years are emtpy', () => {
+      expect(parseAndFormatAllowedYears([], 2000)).toEqual([2000]);
+    });
+  });
+
 });
