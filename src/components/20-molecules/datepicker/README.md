@@ -54,7 +54,7 @@ _Note 2: The locale `it-CH` is mapped to date format `de-CH`. Example: `8.1.1982
 
 ### year
 
-The number-valued `year` defines the start year of the datepicker (default: current year).
+The number-valued `year` defines the start year of the datepicker (default: current year). If `year` do not match any entries at `allowedyears`, `year` will be the first entry of `allowedyears` to avoid an emtpy datepicker at startup.
 
 ### month
 
@@ -77,9 +77,9 @@ Input-field content is validated.
 
 ### allowedyears
 
-The array-valued `allowedyears` specifies the years that will be visible in the date-picker dropdown. The `year` property value is an automatic member of `allowedyears`.
+The array-valued `allowedyears` specifies the years that will be visible in the date-picker dropdown. The `year` property value is set as `allowedyears` if you do not specify any `allowedyears` to avoid an empty datepicker.
 
-Both individual years `[2019,202]`,
+Both individual years `[2019,2020]`,
 year ranges `["1989-2010"]`, and a mix of the two `["1989-2010", 2012, 2014]` are supported.
 
 ### placeholder, monthtitle, yeartitle, invaliddatetext
