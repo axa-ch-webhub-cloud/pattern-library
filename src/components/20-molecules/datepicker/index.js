@@ -56,9 +56,15 @@ const applyEffect = self =>
     }, 0 /* execute after render() */);
   });
 
-const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
+export const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
   const yearSet = new Set();
-  const inputYears = [...allowedyears, setYear];
+  const inputYears = [...allowedyears];
+
+  // use setYear just as a default option if no allowedyears are given
+  if (!allowedyears || allowedyears.length === 0) {
+    inputYears.push(setYear);
+  }
+
   for (let i = 0, n = inputYears.length, years, flattenedYears; i < n; i++) {
     years = inputYears[i];
     // skip over non-year-like entities
