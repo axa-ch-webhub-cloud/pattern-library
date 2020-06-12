@@ -30,7 +30,7 @@
 .Sidebar-title {
   margin-bottom: var(--space-1);
   font-size: var(--font-size-lg);
-  font-weight: var(--font-semi-bold);
+  font-weight: var(--font-regular);
   line-height: 28px;
   margin-bottom: var(--space-4);
   margin-top: var(--space-4);
