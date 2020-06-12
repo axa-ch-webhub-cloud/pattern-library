@@ -18,7 +18,8 @@ module.exports = {
         siteUrl: siteConfig.url,
       },
     },
-    `gatsby-plugin-favicon`,
+    'gatsby-plugin-svgr',
+    'gatsby-plugin-favicon',
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

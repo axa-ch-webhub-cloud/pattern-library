@@ -93,7 +93,7 @@ export default function TypographyPage({}: Props): ReactElement {
       </Container>
 
       <Container background="bg-neutral-200">
-        <h2 className="h2">Get the typefaces</h2>
+        <h2 className="h2 mt-0">Get the typefaces</h2>
         <h3 className="h3">Publico headline</h3>
         <p className="paragraph">
           Publico Headline is a typeface, which is not available for free.
@@ -133,16 +133,24 @@ export default function TypographyPage({}: Props): ReactElement {
           </TabList>
 
           <TabPanel>
-            <img src={fontsizeImage} alt="" />
+            <img
+              src={fontsizeImage}
+              className="Content-image"
+              alt="AXA Font size"
+            />
           </TabPanel>
           <TabPanel>
-            <img src={lineheightImage} alt="" />
+            <img
+              src={lineheightImage}
+              className="Content-image"
+              alt="AXA Line height"
+            />
           </TabPanel>
         </Tabs>
       </Container>
 
       <Container background="bg-neutral-200">
-        <h2 className="h2">AXA Digital Guidelines</h2>
+        <h2 className="h2 mt-0">AXA Digital Guidelines</h2>
         <p className="paragraph">
           The AXA Digital Guidelines are a set of rules and advice on how to use
           the full range of design assets in your digital project.

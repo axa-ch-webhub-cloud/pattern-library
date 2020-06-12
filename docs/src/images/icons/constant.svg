@@ -1,5 +1,1 @@
-<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M92.227 2.86481V126.246M50.0905 2.86481V126.246V2.86481ZM64.1364 2.86481V126.246V2.86481ZM78.1817 2.86481V126.246V2.86481Z" stroke="#333333" stroke-width="0.864823" stroke-linecap="round"/>
-<path d="M43.0682 2.86481V126.246M29.0223 2.86481V126.246V2.86481ZM36.0453 2.86481V126.246V2.86481ZM57.1135 2.86481V126.246V2.86481ZM71.1588 2.86481V126.246V2.86481ZM85.2047 2.86481V126.246V2.86481ZM99.25 2.86481V126.246V2.86481Z" stroke="#333333" stroke-width="0.864823" stroke-linecap="round"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M22.1787 2H106.355V126.534H22.1787V2Z" stroke="#333333" stroke-width="0.576549"/>
-</svg>
+<svg fill="none" height="128" viewBox="0 0 128 128" width="128" xmlns="http://www.w3.org/2000/svg"><g stroke="#333"><path d="m92.227 2.86481v123.38119m-42.1365-123.38119v123.38119zm14.0459 0v123.38119zm14.0453 0v123.38119z" stroke-linecap="round" stroke-width=".864823"/><path d="m43.0682 2.86481v123.38119m-14.0459-123.38119v123.38119zm7.023 0v123.38119zm21.0682 0v123.38119zm14.0453 0v123.38119zm14.0459 0v123.38119zm14.0453 0v123.38119z" stroke-linecap="round" stroke-width=".864823"/><path clip-rule="evenodd" d="m22.1787 2h84.1763v124.534h-84.1763z" fill-rule="evenodd" stroke-width=".576549"/></g></svg>
