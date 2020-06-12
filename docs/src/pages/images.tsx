@@ -7,8 +7,8 @@ import { NativeLink } from '../components/NativeLinks';
 import IconsPreview from '../components/IconsPreview';
 import SyntaxHighlighter from '../components/SyntaxHighlighter';
 
-import { ReactComponent as AxaLogoSvg } from '../../../src/components/00-materials/images-raw/axa-logo.svg';
-import { ReactComponent as AxaLogoOpenSvg } from '../../../src/components/00-materials/images-raw/axa-logo-open.svg';
+import { ReactComponent as AxaLogoSvg } from '../images/tmp-folder-to-make-the-build-happy-we-should-drop-this/images-raw/axa-logo.svg';
+import { ReactComponent as AxaLogoOpenSvg } from '../images/tmp-folder-to-make-the-build-happy-we-should-drop-this/images-raw/axa-logo-open.svg';
 import ImagesPreview from '../components/ImagesPreview';
 
 interface Props {}
