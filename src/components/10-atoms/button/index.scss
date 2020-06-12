@@ -3,7 +3,7 @@
 }
 
 .a-button {
-  @include typo(primary, small);
+  @include text(t1);
   position: relative;
   box-sizing: border-box;
   padding: 0 30px;
