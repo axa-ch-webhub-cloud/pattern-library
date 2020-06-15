@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0
 
-- first release of component
+- First release of component.
