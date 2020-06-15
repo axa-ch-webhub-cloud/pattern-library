@@ -258,7 +258,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.modelCounter = this.getCounterText;
 
     // Firefox ignores the html autofocus attribute.
-    if (this._isFirefox() && this.autofocus) {
+    if (this._isFirefox() && !document.hasFocus() && this.autofocus) {
       this.querySelector('input').focus();
     }
   }
