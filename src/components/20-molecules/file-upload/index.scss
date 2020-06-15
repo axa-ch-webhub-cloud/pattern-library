@@ -12,7 +12,7 @@ $file-upload-icon-size: 36px !default;
 }
 
 .m-file-upload {
-  @include typo(primary, medium);
+  @include text(t3);
   color: $color-black;
 
   &__dropzone {
@@ -145,7 +145,7 @@ $file-upload-icon-size: 36px !default;
   }
 
   &__error {
-    @include typo(primary, default);
+    @include text(t4);
     color: $color-shy-tomato;
   }
 
