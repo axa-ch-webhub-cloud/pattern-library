@@ -1,4 +1,4 @@
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
 import tableCSS from './index.scss';
@@ -57,6 +57,7 @@ class AXATable extends NoShadowDOM {
   }
 }
 
-defineOnce(AXATable.tagName, AXATable);
+/* eslint-disable no-undef */
+defineVersioned([AXATable], __VERSION_INFO__);
 
 export default AXATable;

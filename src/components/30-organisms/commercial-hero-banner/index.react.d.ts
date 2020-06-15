@@ -9,7 +9,8 @@ export interface AXACommercialHeroBannerProps {
 }
 
 declare function createAXACommercialHeroBanner(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXACommercialHeroBannerProps>;
 
 export default createAXACommercialHeroBanner;

@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Upgrade to versioned component.
+
 ## 2.0.10
 
 - Fixed a visual flicker when dragging files and moving the mouse without dropping the files. (#1724)

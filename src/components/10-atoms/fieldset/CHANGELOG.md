@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.0
 
 - The attribute `horizontal` is now string-valued with the submode `stretch`. (#1690)

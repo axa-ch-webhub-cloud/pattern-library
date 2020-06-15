@@ -2,10 +2,13 @@
 import { html, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
-import '@axa-ch/container';
+import AXAContainer from '@axa-ch/container';
 import footerSmallCSS from './index.scss';
 import childStyles from './child.scss';
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import InlineStyles from '../../../utils/inline-styles';
 import fireCustomEvent from '../../../utils/custom-event';
@@ -34,6 +37,9 @@ class AXAFooterSmall extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAContainer], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   // Parent class InlineStyles needs a static method to retrieve styles.
@@ -86,8 +92,9 @@ class AXAFooterSmall extends InlineStyles {
     this._observer.disconnect();
   }
 
+  /* eslint-disable indent */
   render() {
-    return html`
+    return versionedHtml(this)`
       <article class="m-footer-small">
         <axa-container>
           <div class="m-footer-small__container">
@@ -144,6 +151,7 @@ class AXAFooterSmall extends InlineStyles {
   }
 }
 
-defineOnce(AXAFooterSmall.tagName, AXAFooterSmall);
+/* eslint-disable no-undef */
+defineVersioned([AXAFooterSmall], __VERSION_INFO__);
 
 export default AXAFooterSmall;

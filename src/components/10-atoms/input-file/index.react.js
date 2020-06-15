@@ -1,4 +1,5 @@
 import withReact from '../../../utils/with-react';
 import AXAInputFile from './index';
 
-export default createElement => withReact(createElement, AXAInputFile);
+export default (createElement, version) =>
+  withReact(createElement, AXAInputFile, version);

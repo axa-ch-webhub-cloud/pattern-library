@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.4
 
 - bugfix avoiding deletion of child elements in some cases. #1790

@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.13
 
 - You can use new attribute `pattern` and `inputmode` for example to open up numeric keyboard on touch devices. (#1689)

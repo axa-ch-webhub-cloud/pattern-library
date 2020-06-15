@@ -23,7 +23,8 @@ export interface AXATextareaProps {
 }
 
 declare function createAXATextarea(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXATextareaProps>;
 
 export default createAXATextarea;

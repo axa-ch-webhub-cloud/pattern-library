@@ -39,7 +39,7 @@ describe('AXACarousel', () => {
     });
   });
 
-  describe('allgemeine private methods', () => {
+  describe('common private methods', () => {
     test('_getSlides() should get the elements and filter them (with ShadowRoot)', () => {
       const mockedFilter = jest.fn(() => {
         return [];

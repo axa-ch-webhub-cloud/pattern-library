@@ -1,11 +1,14 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/container';
-import '@axa-ch/button';
-import '@axa-ch/button-link';
+import AXAContainer from '@axa-ch/container';
+import AXAButton from '@axa-ch/button';
+import AXAButtonLink from '@axa-ch/button-link';
 
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -33,6 +36,9 @@ class AXATopContentBar extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAButton, AXAButtonLink, AXAContainer], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
@@ -42,12 +48,14 @@ class AXATopContentBar extends LitElement {
     });
   }
 
+  /* eslint-disable indent */
   getButtonHtml() {
     const { ctatext, href } = this;
 
     if (href && ctatext) {
-      return html`
+      return versionedHtml(this)`
         <axa-button-link
+          class="js-button-link"
           href="${href}"
           @click="${ev => {
             if (typeof this.onClick === 'function') {
@@ -61,8 +69,9 @@ class AXATopContentBar extends LitElement {
         </axa-button-link>
       `;
     } else if (ctatext) {
-      return html`
+      return versionedHtml(this)`
         <axa-button
+          class="js-button"
           @click="${ev => {
             if (typeof this.onClick === 'function') {
               ev.preventDefault();
@@ -87,7 +96,7 @@ class AXATopContentBar extends LitElement {
       'm-top-content-bar__container--warning': variant === 'warning',
     };
 
-    return html`
+    return versionedHtml(this)`
       <article class="m-top-content-bar">
         <div class="m-top-content-bar__container ${classMap(classes)}">
           <axa-container>
@@ -100,6 +109,7 @@ class AXATopContentBar extends LitElement {
   }
 }
 
-defineOnce(AXATopContentBar.tagName, AXATopContentBar);
+/* eslint-disable no-undef */
+defineVersioned([AXATopContentBar], __VERSION_INFO__);
 
 export default AXATopContentBar;

@@ -1,3 +1,7 @@
+## 8.0.0
+
+- Upgrade to versioned component.
+
 ## 7.0.5
 
 - No changes.

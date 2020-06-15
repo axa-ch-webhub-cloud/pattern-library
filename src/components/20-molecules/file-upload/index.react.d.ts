@@ -18,7 +18,8 @@ interface AXAFileUploadProps {
 }
 
 declare function createAXAFileUpload(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXAFileUploadProps>;
 
 export = createAXAFileUpload;

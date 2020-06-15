@@ -1,6 +1,6 @@
-## [Unreleased]
+## 3.0.0
 
--
+- Upgrade to versioned component.
 
 ## 2.0.1
 

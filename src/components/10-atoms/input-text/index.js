@@ -2,10 +2,13 @@
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { AXAPopupMixin } from '@axa-ch/popup';
+import { AXAPopupMixin, AXAPopupButton, AXAPopupContent } from '@axa-ch/popup';
 
 import NoShadowDOM from '../../../utils/no-shadow';
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
@@ -73,6 +76,18 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.modelValue = '';
     this.isControlled = false;
     this.isPlaceholderInCounter = false;
+
+    /* eslint-disable no-undef */
+    const enrichedVersionInfo = __VERSION_INFO__;
+    const commonPopupVersion = enrichedVersionInfo['axa-popup']['axa-popup'];
+    enrichedVersionInfo[AXAPopupButton.tagName] = {
+      [AXAPopupButton.tagName]: commonPopupVersion,
+    };
+    enrichedVersionInfo[AXAPopupContent.tagName] = {
+      [AXAPopupContent.tagName]: commonPopupVersion,
+    };
+    defineVersioned([AXAPopupButton, AXAPopupContent], enrichedVersionInfo);
+    /* eslint-enable no-undef */
   }
 
   get charsLeft() {
@@ -339,7 +354,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           }
         </div>
         ${info &&
-          html`
+          versionedHtml(this)`
             <axa-popup-button
               ?open="${_open}"
               class="a-input-text__info-button"
@@ -377,7 +392,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       </div>
       ${
         info
-          ? html`
+          ? versionedHtml(this)`
               <axa-popup-content
                 ?open="${_open}"
                 class="a-input-text__info-content"
@@ -391,6 +406,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 }
 
-defineOnce(AXAInputText.tagName, AXAInputText);
+/* eslint-disable no-undef */
+defineVersioned([AXAInputText], __VERSION_INFO__);
 
 export default AXAInputText;

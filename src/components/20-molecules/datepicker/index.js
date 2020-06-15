@@ -3,8 +3,7 @@ import { DateInputSvg } from '@axa-ch/materials/icons';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { formatISO } from 'date-fns';
-import '@axa-ch/dropdown';
-import '@axa-ch/button';
+import AXADropdown from '@axa-ch/dropdown';
 import styles from './index.scss';
 import {
   getWeekdays,
@@ -15,11 +14,14 @@ import {
 } from './utils/date';
 
 import NoShadowDOM from '../../../utils/no-shadow';
-import defineOnce from '../../../utils/define-once';
 import { applyDefaults } from '../../../utils/with-react';
 import debounce from '../../../utils/debounce';
 import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
@@ -251,6 +253,11 @@ class AXADatepicker extends NoShadowDOM {
       () => this.handleViewportCheck(this.input),
       250
     );
+
+    // ensure we use the versioned variant of axa-dropdown internally
+    /* eslint-disable no-undef */
+    defineVersioned([AXADropdown], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
@@ -324,6 +331,27 @@ class AXADatepicker extends NoShadowDOM {
       });
     };
 
+    const monthDropdown = versionedHtml(this)`
+        <axa-dropdown
+          @axa-change="${this.handleChangeDropdownMonth}"
+          class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
+          maxheight="270"
+          items="${JSON.stringify(this.monthitems)}"
+          defaulttitle="${this.monthtitle}"
+        >
+        </axa-dropdown>
+      `;
+
+    const yearDropdown = versionedHtml(this)`
+    <axa-dropdown
+      @axa-change="${this.handleChangeDropdownYear}"
+      class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
+      maxheight="270"
+      items="${JSON.stringify(this.yearitems)}"
+      defaulttitle="${this.yeartitle}"
+    >
+    </axa-dropdown>`;
+
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
         ${label &&
@@ -378,23 +406,7 @@ class AXADatepicker extends NoShadowDOM {
               <div class="m-datepicker__wrap js-datepicker__wrap">
                 <div class="m-datepicker__article">
                   <div class="m-datepicker__dropdown-wrap">
-                    <axa-dropdown
-                      @axa-change="${this.handleChangeDropdownMonth}"
-                      class="m-datepicker__dropdown m-datepicker__dropdown-month js-datepicker__dropdown-month"
-                      maxheight="270"
-                      items="${JSON.stringify(this.monthitems)}"
-                      defaulttitle="${this.monthtitle}"
-                    >
-                    </axa-dropdown>
-
-                    <axa-dropdown
-                      @axa-change="${this.handleChangeDropdownYear}"
-                      class="m-datepicker__dropdown m-datepicker__dropdown-year js-datepicker__dropdown-year"
-                      maxheight="270"
-                      items="${JSON.stringify(this.yearitems)}"
-                      defaulttitle="${this.yeartitle}"
-                    >
-                    </axa-dropdown>
+                    ${monthDropdown} ${yearDropdown}
                   </div>
 
                   <div class="m-datepicker__weekdays">
@@ -709,5 +721,7 @@ class AXADatepicker extends NoShadowDOM {
   }
 }
 
-defineOnce(AXADatepicker.tagName, AXADatepicker);
+/* eslint-disable no-undef */
+defineVersioned([AXADatepicker], __VERSION_INFO__);
+
 export default AXADatepicker;

@@ -6,7 +6,7 @@ import { ExpandSvg } from '@axa-ch/materials/icons';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import typecheck from '../../../utils/typecheck';
@@ -414,5 +414,7 @@ class AXADropdown extends NoShadowDOM {
   }
 }
 
-defineOnce(AXADropdown.tagName, AXADropdown);
+/* eslint-disable no-undef */
+defineVersioned([AXADropdown], __VERSION_INFO__);
+
 export default AXADropdown;

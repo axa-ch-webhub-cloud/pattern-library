@@ -23,6 +23,10 @@ Use the following channels for different kinds of requests/reports:
 
 We release self-contained plug-and-play web components based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), derived from the [lit-element](https://github.com/Polymer/lit-element) base class (maintained by Google).
 
+## Component versioning
+
+Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md).
+
 ## Released Polyfills
 
 - [Pattern Library Polyfill (IE11)](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill)

@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 const BUTTON_TAG = 'axa-button';
-const ICON_TAG = 'axa-icon';
+const ARROW_ICON_TAG = '.js-button__arrow';
 const BUTTON_CLASS = '.a-button';
 
 fixture('Button - basic functionality').page(
@@ -102,7 +102,7 @@ test('should render icon', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button').shadowRoot
   );
-  const $axaIcon = await $axaButtonShadow.find(ICON_TAG);
+  const $axaIcon = await $axaButtonShadow.find(ARROW_ICON_TAG);
   await t.expect($axaIcon.exists).ok();
 });
 

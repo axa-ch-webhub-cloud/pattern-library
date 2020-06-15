@@ -1,4 +1,5 @@
 import val from '@skatejs/val';
+import { defineVersioned } from './component-versioning';
 
 // defined values are different from undefined (for properties) or null (for attributes)
 const isDefined = value => !(value === undefined || value === null);
@@ -147,15 +148,18 @@ const distributeProperties = (properties, componentClass) => {
   return { attrs, props };
 };
 
-export default (createElement, componentClass) => {
+export default (createElement, componentClass, version) => {
   const { tagName } = componentClass;
-  const displayName = pascalCase(tagName);
+  const finalTagName = version
+    ? defineVersioned([componentClass], version)
+    : tagName;
+  const displayName = pascalCase(finalTagName);
 
   const reactStatelessComponent = ({ children, ...properties }) => {
     const { attrs, props } = distributeProperties(properties, componentClass);
 
     return val(createElement)(
-      tagName,
+      finalTagName,
       { isReact: true, attrs, ...props },
       children
     );

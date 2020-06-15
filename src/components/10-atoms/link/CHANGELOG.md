@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.1
 
 - Fix external attribute of link. #1746

@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
 ## 3.0.8
 
 - Hardened `text-decoration` css property, because it was too easily unintentially overridden before by users.

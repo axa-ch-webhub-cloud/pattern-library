@@ -7,7 +7,8 @@ export interface AXAIconProps {
 }
 
 declare function createAXAIcon(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXAIconProps>;
 
 export default createAXAIcon;

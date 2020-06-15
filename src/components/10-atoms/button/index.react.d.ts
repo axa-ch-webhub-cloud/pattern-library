@@ -26,7 +26,8 @@ export interface AXAButtonProps {
 }
 
 declare function createAXAButton(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXAButtonProps>;
 
 export default createAXAButton;

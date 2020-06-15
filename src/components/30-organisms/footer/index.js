@@ -4,8 +4,11 @@ import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import { CaretSvg } from '@axa-ch/materials/icons';
-import '@axa-ch/container';
-import defineOnce from '../../../utils/define-once';
+import AXAContainer from '@axa-ch/container';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
@@ -56,6 +59,10 @@ class AXAFooter extends InlineStyles {
     applyDefaults(this);
     this._accordionActiveIndex = -1;
     this.slotsNotPrepared = true;
+
+    /* eslint-disable no-undef */
+    defineVersioned([AXAContainer], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
@@ -214,7 +221,8 @@ class AXAFooter extends InlineStyles {
       this.slotsNotPrepared = false;
     }
 
-    return html`
+    /* eslint-disable indent */
+    return versionedHtml(this)`
       <footer class="o-footer">
         <axa-container>
           <div class="o-footer__content">
@@ -332,6 +340,7 @@ class AXAFooter extends InlineStyles {
   };
 }
 
-defineOnce(AXAFooter.tagName, AXAFooter);
+/* eslint-disable no-undef */
+defineVersioned([AXAFooter], __VERSION_INFO__);
 
 export default AXAFooter;

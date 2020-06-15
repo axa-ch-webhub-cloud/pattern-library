@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import styles from './index.scss';
 
 class AXAContainer extends LitElement {
@@ -24,6 +24,7 @@ class AXAContainer extends LitElement {
   }
 }
 
-defineOnce(AXAContainer.tagName, AXAContainer);
+/* eslint-disable no-undef */
+defineVersioned([AXAContainer], __VERSION_INFO__);
 
 export default AXAContainer;

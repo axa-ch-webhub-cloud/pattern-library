@@ -1,4 +1,5 @@
 import withReact from '../../../utils/with-react';
 import AXATopContentBar from './index';
 
-export default createElement => withReact(createElement, AXATopContentBar);
+export default (createElement, version) =>
+  withReact(createElement, AXATopContentBar, version);

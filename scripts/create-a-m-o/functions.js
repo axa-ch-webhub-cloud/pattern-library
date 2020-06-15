@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const outdent = require('outdent');
 const fs = require('fs');
+const { cwd } = process;
 const templateJson = require('./templates/template-package.json');
 
 const getAMOType = (type) => {
@@ -8,7 +9,8 @@ const getAMOType = (type) => {
 
     Ok good, you choose to create a new component of type ${chalk.bold(type)}.
 
-    Now, tell me how your new component should be called
+    Now, tell me how your new component should be called (minus the axa- prefix),
+    and submit with Enter:
 
   `));
 };
@@ -27,10 +29,12 @@ const prepareName = done => (userInput) => {
   const className = `AXA${camelCase(fileName)}`;
 
   console.log(chalk.cyan(outdent`
-    Ok good, we will setup all the files for your new component
+
+    Ok good, now we will set up all the files for your new component.
 
     Class name: ${chalk.bold(className)}
     Folder name: ${chalk.bold(fileName)}
+
   `));
 
   done({
@@ -182,7 +186,8 @@ const createFiles = (store, a, m, o, done) => () => {
     import withReact from '../../../utils/with-react';
     import ${className} from './index';
 
-    export default createElement => withReact(createElement, ${className});
+    export default (createElement, version) =>
+      withReact(createElement, ${className}, version);
     `,
     'utf8',
   );
@@ -237,7 +242,8 @@ const createFiles = (store, a, m, o, done) => () => {
     }
 
     declare function create${className}(
-      createElement: typeof React.createElement
+      createElement: typeof React.createElement,
+      version: string
     ): React.ComponentType<${className}Props>;
 
     export default create${className};
@@ -295,7 +301,16 @@ const createFiles = (store, a, m, o, done) => () => {
     import { LitElement, html, css, unsafeCSS } from 'lit-element';
 
     /* eslint-disable import/no-extraneous-dependencies */
-    import defineOnce from '../../../utils/define-once';
+
+    //    If you need other axa-XXX components inside your new component,
+    //    import them here like this:
+    //
+    //    import myDependentComponent1 from '@axa-ch/XXX;
+
+    import {
+      defineVersioned,
+      /* versionedHtml, */
+    } from '../../../utils/component-versioning';
     import { applyDefaults } from '../../../utils/with-react';
     import styles from './index.scss';
 
@@ -324,6 +339,11 @@ const createFiles = (store, a, m, o, done) => () => {
         // the HTML attribute has been set before defining the custom element
         applyDefaults(this);
         this.onClick = () => {};
+        // if you depend on *other* axa-XXX components and imported them above,
+        // then you declare them as versioned here like this:
+        /* eslint-disable no-undef */
+        // defineVersioned([myDependentComponent1, myDependentComponent2, ...], __VERSION_INFO__);
+        /* eslint-enable no-undef */
       }
 
       firstUpdated() {
@@ -331,6 +351,10 @@ const createFiles = (store, a, m, o, done) => () => {
         // This will be rendered when the component is connected to the DOM
       }
 
+      // if you use dependent components inside your html-tagged string templates below,
+      // first uncomment versionedHTML above.
+      // Then, wrap them using a new tag versionedHTML(this), like so:
+      // versionedHTML(this)\`<axa-XXX foo="bar"></axa-XXX>\`
       render() {
         return html\`
           <article class="${type}-${fileName}">
@@ -346,14 +370,31 @@ const createFiles = (store, a, m, o, done) => () => {
       }
     }
 
-    defineOnce(${className}.tagName, ${className});
+    /* eslint-disable no-undef */
+    defineVersioned([${className}], __VERSION_INFO__);
 
     export default ${className};
     `,
     'utf8',
   );
 
-  done();
+  // update lerna.json
+  const lernaPath = `${cwd()}/lerna.json`;
+  const lerna = require(lernaPath);
+  const { packages = [] } = lerna;
+  const newComponentPackageName = BASE_FOLDER.replace(/^\.\//, '');
+  if (packages.indexOf(newComponentPackageName) < 0) {
+    packages.push(newComponentPackageName);
+    packages.sort();
+
+    fs.writeFileSync(
+      lernaPath,
+      JSON.stringify(lerna, null, 2),
+      'utf8',
+    );
+  }
+
+  done(BASE_FOLDER);
 };
 
 

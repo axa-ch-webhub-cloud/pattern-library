@@ -2,7 +2,7 @@ import { css, unsafeCSS } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -88,6 +88,7 @@ class AXAText extends NoShadowDOM {
   }
 }
 
-defineOnce(AXAText.tagName, AXAText);
+/* eslint-disable no-undef */
+defineVersioned([AXAText], __VERSION_INFO__);
 
 export default AXAText;

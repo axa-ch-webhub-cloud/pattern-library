@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Upgrade to versioned component.
+
 ## 2.0.0
 
 - The default browser margins were reset to 0. [#1693](https://github.com/axa-ch/patterns-library/issues/1693)
