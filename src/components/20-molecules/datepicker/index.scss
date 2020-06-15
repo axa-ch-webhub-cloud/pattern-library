@@ -46,7 +46,7 @@ axa-datepicker {
     vertical-align: bottom;
 
     .m-datepicker__label {
-      @include typo(primary, medium);
+      @include text(t3);
       display: block;
       font-weight: 600;
       color: $color-dark-grey;
@@ -84,7 +84,7 @@ axa-datepicker {
 
   &,
   &__calendar-cell {
-    @include typo(primary, medium);
+    @include text(t3);
   }
 
   &__input-wrap {
@@ -124,7 +124,7 @@ axa-datepicker {
   }
 
   &__input {
-    @include typo(primary, default);
+    @include text(t4);
     appearance: none;
     line-height: normal;
     border: 1px solid;
@@ -140,7 +140,7 @@ axa-datepicker {
 
     &::placeholder,
     &:-ms-input-placeholder {
-      @include typo(primary, default);
+      @include text(t4);
     }
 
     &::-ms-clear {
@@ -205,7 +205,7 @@ axa-datepicker {
 
   &__weekdays-day {
     display: block;
-    @include typo(primary, medium);
+    @include text(t3);
     width: 35px;
     padding: 0;
     margin: 0 auto;
@@ -322,7 +322,7 @@ axa-datepicker {
   &__error {
     display: inline-block;
     color: $color-shy-tomato;
-    @include typo(primary, default);
+    @include text(t4);
     line-height: 1.2;
     margin-top: 10px;
     min-height: 16px;
