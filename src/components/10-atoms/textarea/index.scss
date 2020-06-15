@@ -17,7 +17,7 @@ axa-textarea {
   }
 
   .a-textarea__textarea {
-    @include typo();
+    @include text(t4);
     appearance: none;
     background: $color-prim-white;
     border: 1px solid $color-light-grey;
@@ -73,7 +73,7 @@ axa-textarea {
   }
 
   .a-textarea__label {
-    @include typo(primary, medium);
+    @include text(t3);
     font-weight: 600;
     display: block;
     color: $color-dark-grey;
@@ -85,7 +85,7 @@ axa-textarea {
   }
 
   .a-textarea__messages {
-    @include typo();
+    @include text(t4);
     margin-top: 10px;
   }
 
