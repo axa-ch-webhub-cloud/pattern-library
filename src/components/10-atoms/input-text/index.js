@@ -239,6 +239,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     );
   }
 
+  _isFirefox() {
+    return (
+      navigator &&
+      navigator.userAgent &&
+      navigator.userAgent.includes('Firefox')
+    );
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
 
@@ -248,6 +256,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
+
+    // Firefox ignores the html autofocus attribute.
+    if (this._isFirefox() && this.autofocus) {
+      this.querySelector('input').focus();
+    }
   }
 
   updated() {
