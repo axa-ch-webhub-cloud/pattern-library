@@ -2,8 +2,11 @@ import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/icon';
-import defineOnce from '../../../utils/define-once';
+import AXAIcon from '@axa-ch/icon';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import { applyDefaults } from '../../../utils/with-react';
 import NoShadowDOM from '../../../utils/no-shadow';
@@ -41,6 +44,9 @@ class AXAInputFile extends NoShadowDOM {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAIcon], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   render() {
@@ -68,8 +74,8 @@ class AXAInputFile extends NoShadowDOM {
       <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
         <span class="a-input-file__flex-wrapper">
           ${icon &&
-            html`
-              <axa-icon class="a-input-file__icon" icon="${icon}"></axa-icon>
+            versionedHtml(this)`
+              <axa-icon class="a-input-file__icon js-input-file__icon" icon="${icon}"></axa-icon>
             `}
           ${unsafeHTML(this.innerHTML)}
         </span>
@@ -87,6 +93,7 @@ class AXAInputFile extends NoShadowDOM {
   }
 }
 
-defineOnce(AXAInputFile.tagName, AXAInputFile);
+/* eslint-disable no-undef */
+defineVersioned([AXAInputFile], __VERSION_INFO__);
 
 export default AXAInputFile;

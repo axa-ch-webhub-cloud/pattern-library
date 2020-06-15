@@ -14,9 +14,12 @@ import Changelog from './CHANGELOG.md';
 
 const localeOptions = {
   'de-CH': 'de-CH',
+  'it-CH': 'it-CH',
+  'fr-CH': 'fr-CH',
+  'en-CH': 'en-CH',
   'en-GB': 'en-GB',
   'it-IT': 'it-IT',
-  'fr-CH': 'fr-CH',
+  'invalid/ unsupported': 'ff-XX', // To show the default language fallback scenario
 };
 
 const story = storiesOf('Components|Molecules/Datepicker', module);
@@ -49,13 +52,13 @@ story.add('Datepicker', () => {
   const invaliddatetext = text('invaliddatetext', 'Invalid date');
   const invalid = boolean('invalid', false);
   const placeholder = text('placeholder', 'Please select a date');
-  const width = text('width', '400');
+  const width = text('width', '');
   const height = text('height', '40');
 
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div style="background-color: lightgray">
+    <div style="background-color: lightgrey">
       <axa-datepicker
         locale="${locale}"
         ?inputfield="${inputfield}"

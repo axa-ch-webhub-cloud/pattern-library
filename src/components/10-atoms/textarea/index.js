@@ -2,7 +2,7 @@ import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import NoShadowDOM from '../../../utils/no-shadow';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
 import styles from './index.scss';
@@ -292,6 +292,7 @@ class AXATextarea extends NoShadowDOM {
   }
 }
 
-defineOnce(AXATextarea.tagName, AXATextarea);
+/* eslint-disable no-undef */
+defineVersioned([AXATextarea], __VERSION_INFO__);
 
 export default AXATextarea;

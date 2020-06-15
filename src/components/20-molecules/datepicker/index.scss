@@ -9,7 +9,6 @@ axa-datepicker {
   }
 
   &[inputfield] {
-
     .m-datepicker__wrap {
       width: 100%;
       position: absolute;
@@ -32,9 +31,10 @@ axa-datepicker {
 
   &[error]:not([error=""]),
   &[invalid] {
-    .m-datepicker__input, .m-datepicker__input-button {
-      border-color: $color-validation-error;
-      outline-color: $color-validation-error;
+    .m-datepicker__input,
+    .m-datepicker__input-button {
+      border-color: $color-shy-tomato;
+      outline-color: $color-shy-tomato;
     }
   }
 
@@ -45,14 +45,14 @@ axa-datepicker {
       @include typo(primary, medium);
       display: block;
       font-weight: 600;
-      color: $color-prim-gray-mine-shaft;
+      color: $color-dark-grey;
       margin-bottom: 10px;
     }
   }
 
   &[disabled] {
     .m-datepicker__label {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     .m-datepicker__input,
@@ -60,10 +60,10 @@ axa-datepicker {
     .m-datepicker__input-button svg {
       pointer-events: none;
       outline: none;
-      border-color: $color-prim-gray-mercury !important;
-      background-color: $color-prim-gray-alabaster;
-      color: $color-prim-gray-dusty;
-      fill: $color-prim-gray-dusty;
+      border-color: $color-mercury !important;
+      background-color: $color-alabaster;
+      color: $color-light-grey;
+      fill: $color-light-grey;
     }
   }
 
@@ -87,18 +87,18 @@ axa-datepicker {
     position: relative;
     display: flex;
     align-items: center;
-    min-width: 197px;
     min-height: 40px;
   }
 
   &__input-button {
     display: flex;
+    flex-shrink: 0; // because of IE
     align-items: center;
     justify-content: center;
     background: $color-prim-white;
     cursor: pointer;
     border: 1px solid;
-    border-color: $color-prim-gray-dusty;
+    border-color: $color-light-grey;
     border-left: none;
     line-height: 0;
     margin-left: 0; /* suppress Safari 2px margin */
@@ -124,7 +124,7 @@ axa-datepicker {
     appearance: none;
     line-height: normal;
     border: 1px solid;
-    border-color: $color-prim-gray-dusty;
+    border-color: $color-light-grey;
     border-right: none;
     border-radius: 0; // mobile Safari...
     padding: 0 10px 0 20px;
@@ -163,8 +163,8 @@ axa-datepicker {
     margin-top: 1px;
     padding: 20px 30px;
     background: $color-prim-white;
-    border: solid 1px $color-prim-gray-silver;
-    box-shadow: 0 5px 7px 0 $color-prim-gray-silver;
+    border: solid 1px $color-silver;
+    box-shadow: 0 5px 7px 0 $color-silver;
     overflow: hidden;
   }
 
@@ -175,7 +175,7 @@ axa-datepicker {
   }
 
   &__dropdown-year {
-    width: 90px;
+    width: 95px; // width: 90px is too less for iPhone on axa.ch-AEM
     text-transform: uppercase;
   }
 
@@ -243,22 +243,22 @@ axa-datepicker {
 
   &__calendar-not-current-month {
     border: 0;
-    color: $color-prim-gray-silver;
+    color: $color-silver;
 
     &:hover {
-      background: rgba($color-prim-gray-mercury, 0.5);
+      background: rgba($color-mercury, 0.5);
     }
   }
 
   &__calendar-current-month {
     border: 0;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
   }
 
   &__calendar-current-month:hover {
     box-shadow: 0 0 0 3px $color-axa-blue inset;
     background-color: $color-prim-white;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
   }
 
   &__calendar-current-month:focus:hover {
@@ -298,10 +298,10 @@ axa-datepicker {
   &__calendar-selected-day {
     background-color: $color-axa-blue;
     color: $color-prim-white;
-    
+
     &--preselected {
-      color: $color-prim-gray-dark;
-      background-color: $color-prim-gray-silver;
+      color: $color-dark-grey;
+      background-color: $color-silver;
     }
   }
 
@@ -317,8 +317,8 @@ axa-datepicker {
 
   &__error {
     display: inline-block;
-    color: $color-validation-error;
-    @include typo(primary,default);
+    color: $color-shy-tomato;
+    @include typo(primary, default);
     line-height: 1.2;
     margin-top: 10px;
     min-height: 16px;

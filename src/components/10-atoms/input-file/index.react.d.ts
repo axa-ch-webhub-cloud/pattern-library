@@ -20,7 +20,8 @@ export interface AXAInputFileProps {
 }
 
 declare function createAXAInputFile(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXAInputFileProps>;
 
 export default createAXAInputFile;

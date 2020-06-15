@@ -17,7 +17,7 @@ import {
 } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import { xhrCall } from '../../../utils/requests';
 
@@ -86,6 +86,7 @@ class AXAIcon extends LitElement {
   }
 }
 
-defineOnce(AXAIcon.tagName, AXAIcon);
+/* eslint-disable no-undef */
+defineVersioned([AXAIcon], __VERSION_INFO__);
 
 export default AXAIcon;

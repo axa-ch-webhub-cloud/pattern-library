@@ -7,7 +7,8 @@ export interface AXAFieldsetProps {
 }
 
 declare function createAXAFieldset(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXAFieldsetProps>;
 
 export default createAXAFieldset;

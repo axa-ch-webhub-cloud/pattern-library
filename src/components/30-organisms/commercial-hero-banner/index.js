@@ -1,8 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, css, unsafeCSS } from 'lit-element';
+import { css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import '@axa-ch/container';
-import defineOnce from '../../../utils/define-once';
+import AXAContainer from '@axa-ch/container';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
@@ -29,6 +32,10 @@ class AXACommercialHeroBanner extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
+
+    /* eslint-disable no-undef */
+    defineVersioned([AXAContainer], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   // Parent class InlineStyles needs a static method to retrive styles
@@ -56,13 +63,15 @@ class AXACommercialHeroBanner extends InlineStyles {
     // property instead, otherwise, in the testcafe chrome, it would not
     // display the component. This seems to be connected to 'src' being
     // a prop, because hardcoded it works. Feel free to apply magic.
-    return html`
+    /* eslint-disable indent */
+    return versionedHtml(this)`
       <header class="o-commercial-hero-banner">
         <div class="${classMap(containerClasses)}">
           <div
             class="o-commercial-hero-banner__picture-container"
-            style="background: url('${this
-              .imageSource}') no-repeat center center;background-size: cover;"
+            style="background: url('${
+              this.imageSource
+            }') no-repeat center center;background-size: cover;"
           ></div>
           <axa-container>
             <div class="${classMap(contentClasses)}">
@@ -84,6 +93,7 @@ class AXACommercialHeroBanner extends InlineStyles {
   }
 }
 
-defineOnce(AXACommercialHeroBanner.tagName, AXACommercialHeroBanner);
+/* eslint-disable no-undef */
+defineVersioned([AXACommercialHeroBanner], __VERSION_INFO__);
 
 export default AXACommercialHeroBanner;

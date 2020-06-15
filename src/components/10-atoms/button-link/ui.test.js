@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -26,6 +26,29 @@ test('should style button-link default css (test axa blue bg color)', async t =>
     .eql('rgb(0, 0, 143)');
 });
 
+test('should pass width to internal button', async t => {
+  const expectedWidth = '300px';
+  const $axaButtonLink = await Selector('axa-button-link');
+
+  const $axaButtonLinkShadow = await Selector(
+    () => document.querySelector('axa-button-link').shadowRoot
+  );
+
+  const $axaButtonShadowElement = await $axaButtonLinkShadow.find(
+    '.a-button-link'
+  );
+
+  const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
+    const element = selector();
+    element.style.width = styleValue;
+  });
+
+  await setStyleWidthAttribute($axaButtonLink, expectedWidth);
+  await t
+    .expect($axaButtonShadowElement.getStyleProperty('width'))
+    .eql(expectedWidth);
+});
+
 fixture('Button Link - set properties').page(
   `${host}/iframe.html?id=components-atoms-button-link--button-link`
 );
@@ -49,7 +72,7 @@ test('should render icon', async t => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button-link').shadowRoot
   );
-  const $axaIcon = await $axaButtonShadow.find('axa-icon');
+  const $axaIcon = await $axaButtonShadow.find('.js-button-link__arrow');
   await t.expect($axaIcon.exists).ok();
 });
 

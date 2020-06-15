@@ -1,3 +1,15 @@
+## 4.0.0
+
+- Upgrade to versioned component.
+
+## 3.0.1
+
+- Fix external attribute of link. #1746
+
+## 3.0.0
+
+- BREAKING CHANGE: Now the referenced icons have the dimension 24x24 pixels, which is set by the icons component. (#1725)
+
 ## 2.0.0
 
 - The implementation of the wrapper to make a component React-ready has

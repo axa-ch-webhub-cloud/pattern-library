@@ -1,8 +1,13 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
-
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { LitElement, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
+import AXAButton from '@axa-ch/button';
+import AXAContainer from '@axa-ch/container';
+
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -31,6 +36,9 @@ class AXACookieDisclaimer extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAContainer, AXAButton], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
@@ -79,7 +87,8 @@ class AXACookieDisclaimer extends LitElement {
       'm-cookie-disclaimer': true,
       'm-cookie-disclaimer--fixed': variant === 'fixed',
     };
-    return html`
+    /* eslint-disable indent */
+    return versionedHtml(this)`
       <article class="${classMap(classes)}">
         <axa-container>
           <div class="m-cookie-disclaimer__container">
@@ -88,7 +97,9 @@ class AXACookieDisclaimer extends LitElement {
               <slot></slot>
             </div>
             <div class="m-cookie-disclaimer__container--rx">
-              <axa-button @click="${this.handleButtonClick}" variant="inverted">
+              <axa-button class="js-button" @click="${
+                this.handleButtonClick
+              }" variant="inverted">
                 ${buttonname}
               </axa-button>
             </div>
@@ -99,6 +110,7 @@ class AXACookieDisclaimer extends LitElement {
   }
 }
 
-defineOnce(AXACookieDisclaimer.tagName, AXACookieDisclaimer);
+/* eslint-disable no-undef */
+defineVersioned([AXACookieDisclaimer], __VERSION_INFO__);
 
 export default AXACookieDisclaimer;

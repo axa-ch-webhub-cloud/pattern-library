@@ -1,3 +1,11 @@
+## 5.0.0
+
+- Upgrade to versioned component.
+
+## 4.1.0
+
+- You are able to set the css `width` property and the `button` looks always nice. (#1686)
+
 ## 4.0.2
 
 - When attribute disabled is set and a consumer has a click-listener, the click event is NOT triggered.

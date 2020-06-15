@@ -2,7 +2,7 @@ import { css, unsafeCSS } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -41,7 +41,7 @@ class AXAText extends NoShadowDOM {
         break;
       case 'start':
         if (!this._observer) {
-          this._observer = new MutationObserver(() => this.render());
+          this._observer = new MutationObserver(() => this.customRender());
         }
         this._observer.observe(this, {
           childList: true,
@@ -52,7 +52,10 @@ class AXAText extends NoShadowDOM {
     }
   }
 
-  render() {
+  // we can't use 'render' since this has special semantics under lit-element and its
+  // documentation mandates it should return a lit-element TemplateResult,
+  // while we want to manipulate DOM ourselves here for good reasons.
+  customRender() {
     // do we have 'pure', non-empty text, e.g. <axa-text>Hello, World</axa-text>?
     const nonWhitespaceTextNodes = [...this.childNodes].filter(
       node => node.nodeType === TEXT_NODE_TYPE && node.textContent.trim()
@@ -73,6 +76,11 @@ class AXAText extends NoShadowDOM {
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.customRender();
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
     // remove installed observer
@@ -80,6 +88,7 @@ class AXAText extends NoShadowDOM {
   }
 }
 
-defineOnce(AXAText.tagName, AXAText);
+/* eslint-disable no-undef */
+defineVersioned([AXAText], __VERSION_INFO__);
 
 export default AXAText;

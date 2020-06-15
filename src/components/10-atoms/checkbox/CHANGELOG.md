@@ -1,3 +1,11 @@
+## 5.0.0
+
+- Upgrade to versioned component.
+
+## 4.0.3
+
+- Fixes checkbox controlled mode problem. #1761
+
 ## 4.0.1
 
 - Fixes an optical bug on mobile devices if trying to uncheck with a tap (#1709)

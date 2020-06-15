@@ -2,10 +2,13 @@ import { html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/icon';
+import AXAIcon from '@axa-ch/icon';
 
 import { applyDefaults } from '../../../utils/with-react';
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import buttonLinkCSS from './index.scss';
 import childStyles from './child.scss';
 import InlineStyles from '../../../utils/inline-styles';
@@ -46,6 +49,9 @@ class AXAButtonLink extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAIcon], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   get showIcon() {
@@ -95,15 +101,15 @@ class AXAButtonLink extends InlineStyles {
       >
         <span class="a-button-link__flex-wrapper">
           ${this.showIcon
-            ? html`
+            ? versionedHtml(this)`
                 <axa-icon class="a-button-link__icon" icon="${icon}"></axa-icon>
               `
             : ''}
           <slot></slot>
           ${this.showArrow
-            ? html`
+            ? versionedHtml(this)`
                 <axa-icon
-                  class="a-button-link__arrow"
+                  class="a-button-link__arrow js-button-link__arrow"
                   icon="arrow-right"
                 ></axa-icon>
               `
@@ -117,6 +123,7 @@ class AXAButtonLink extends InlineStyles {
   }
 }
 
-defineOnce(AXAButtonLink.tagName, AXAButtonLink);
+/* eslint-disable no-undef */
+defineVersioned([AXAButtonLink], __VERSION_INFO__);
 
 export default AXAButtonLink;

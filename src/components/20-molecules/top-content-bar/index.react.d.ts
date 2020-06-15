@@ -11,7 +11,8 @@ export interface AXATopContentBarProps {
 }
 
 declare function createAXATopContentBar(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXATopContentBarProps>;
 
 export default createAXATopContentBar;

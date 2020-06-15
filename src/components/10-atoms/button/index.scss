@@ -1,3 +1,7 @@
+:host {
+  display: inline-block;
+}
+
 .a-button {
   @include typo(primary, small);
   position: relative;
@@ -5,6 +9,7 @@
   padding: 0 30px;
   margin: 0;
   min-height: 30px;
+  width: 100%;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -12,7 +17,7 @@
   color: $color-prim-white;
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
-  border-bottom-color: $color-prim-blue-deep-sapphire;
+  border-bottom-color: $color-deep-sapphire;
 
   @include breakpoint($mediaquery-sm-up) {
     @include _text(default);
@@ -24,20 +29,21 @@
   &:focus {
     cursor: pointer;
     text-decoration: none;
-    background-color: $color-prim-blue-deep-sapphire;
-    border-color: $color-prim-blue-deep-sapphire;
+    background-color: $color-deep-sapphire;
+    border-color: $color-deep-sapphire;
   }
 
   &:disabled {
-    color: $color-prim-gray-dusty;
-    background-color: $color-prim-gray-mercury;
-    border-color: $color-prim-gray-mercury;
-    border-bottom-color: $color-prim-gray-silver;
+    color: $color-light-grey;
+    background-color: $color-mercury;
+    border-color: $color-mercury;
+    border-bottom-color: $color-silver;
     pointer-events: none;
   }
 
   &__flex-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
   }
 
@@ -58,7 +64,7 @@
 
   @include breakpoint($mediaquery-sm-up) {
     min-height: 50px;
-    @include _text(medium)
+    @include _text(medium);
   }
 }
 
@@ -88,13 +94,13 @@
     // fix iOS double tap for :hover
     // zero width is considered hidden
     width: 0.001px;
-    height: 550px;
+    height: 100vw;
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: width $button__motion-duration $button__motion-easing 0s;
 
-    background-color: $color-prim-blue-deep-sapphire;
+    background-color: $color-deep-sapphire;
   }
 
   &:hover,
@@ -104,35 +110,35 @@
 
     &::after {
       width: 110%;
-      background-color: $color-prim-blue-deep-sapphire;
+      background-color: $color-deep-sapphire;
     }
   }
 }
 
 .a-button--red {
-  background-color: $color-prim-red-burnt-sienna;
-  border-color: $color-prim-red-burnt-sienna;
-  border-bottom-color: $color-prim-red-flamingo;
+  background-color: $color-burnt-sienna;
+  border-color: $color-burnt-sienna;
+  border-bottom-color: $color-flamingo;
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $color-prim-red-flamingo;
-    border-color: $color-prim-red-flamingo;
+    background-color: $color-flamingo;
+    border-color: $color-flamingo;
   }
 
   &.a-button--motion {
     &::after {
-      background-color: $color-prim-red-flamingo;
+      background-color: $color-flamingo;
     }
 
     &:hover,
     &:focus {
-      background-color: $color-prim-red-burnt-sienna;
+      background-color: $color-burnt-sienna;
       color: $color-prim-white;
 
       &::after {
-        background-color: $color-prim-red-flamingo;
+        background-color: $color-flamingo;
       }
     }
   }
@@ -164,7 +170,7 @@
   &:focus {
     background-color: $color-prim-white;
     border-color: $color-prim-white;
-    color: $color-prim-blue-deep-sapphire;
+    color: $color-deep-sapphire;
   }
 
   &.a-button--motion {
@@ -185,21 +191,21 @@
 }
 
 .a-button--inverted-blue-ocean {
-  @include inverted-color($color-sec-blue-ocean);
+  @include inverted-color($color-ocean-blue);
 }
 
 .a-button--inverted-red-tosca {
-  @include inverted-color($color-sec-red-tosca);
+  @include inverted-color($color-tosca);
 }
 
 .a-button--inverted-purple-logan {
-  @include inverted-color($color-sec-purple-logan);
+  @include inverted-color($color-logan);
 }
 
 .a-button--inverted-green-viridian {
-  @include inverted-color($color-sec-green-viridian);
+  @include inverted-color($color-viridian-green);
 }
 
 .a-button--inverted-blue-teal {
-  @include inverted-color($color-sec-blue-teal);
+  @include inverted-color($color-teal);
 }

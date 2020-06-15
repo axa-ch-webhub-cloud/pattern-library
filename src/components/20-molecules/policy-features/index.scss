@@ -1,6 +1,6 @@
 .m-policy-features {
   padding: 24px 15px;
-  background: $color-prim-blue-dark-indigo;
+  background: $color-dark-indigo;
   color: $color-prim-white;
 
   @include breakpoint($mediaquery-md-up) {
@@ -35,13 +35,13 @@
     }
 
     &-wild-sand {
-      background: $color-prim-gray-wild-sand;
-      color: $color-prim-gray-mine-shaft;
+      background: $color-wild-sand;
+      color: $color-dark-grey;
     }
 
     &-white {
       background: $color-prim-white;
-      color: $color-prim-gray-mine-shaft;
+      color: $color-dark-grey;
     }
   }
 }

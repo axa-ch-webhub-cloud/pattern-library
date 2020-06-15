@@ -2,7 +2,7 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -60,6 +60,7 @@ class AXAHeading extends LitElement {
   }
 }
 
-defineOnce(AXAHeading.tagName, AXAHeading);
+/* eslint-disable no-undef */
+defineVersioned([AXAHeading], __VERSION_INFO__);
 
 export default AXAHeading;

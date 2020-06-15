@@ -20,17 +20,17 @@ axa-textarea {
     @include typo();
     appearance: none;
     background: $color-prim-white;
-    border: 1px solid $color-prim-gray-dusty;
+    border: 1px solid $color-light-grey;
     border-radius: 0;
     box-sizing: border-box;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
     height: 169px;
     padding: 10px 20px;
     width: 100%;
     overflow: auto;
 
     &::placeholder {
-      color: $color-prim-gray-dusty;
+      color: $color-light-grey;
     }
 
     &:hover,
@@ -46,25 +46,25 @@ axa-textarea {
     }
 
     &--error {
-      border: $border-width $border-type $color-validation-error;
+      border: $border-width $border-type $color-shy-tomato;
 
       &:hover,
       &:active,
       &:focus {
-        border: $border-width $border-type $color-validation-error;
+        border: $border-width $border-type $color-shy-tomato;
 
       }
 
       &:focus, &.focus {
-        outline: $border-width $border-type $color-validation-error;
+        outline: $border-width $border-type $color-shy-tomato;
         outline-offset: -2px;
       }
     }
 
     &:disabled {
-      color: $color-prim-gray-dusty;
-      background-color: $color-prim-gray-alabaster;
-      border-color: $color-prim-gray-mercury;
+      color: $color-light-grey;
+      background-color: $color-alabaster;
+      border-color: $color-mercury;
     }
   }
 
@@ -76,12 +76,12 @@ axa-textarea {
     @include typo(primary, medium);
     font-weight: 600;
     display: block;
-    color: $color-prim-gray-mine-shaft;
+    color: $color-dark-grey;
     margin-bottom: 10px;
   }
 
   &[disabled] .a-textarea__label {
-    color: $color-prim-gray-dusty;
+    color: $color-light-grey;
   }
 
   .a-textarea__messages {
@@ -90,7 +90,7 @@ axa-textarea {
   }
 
   .a-textarea__messages--error {
-    color: $color-validation-error;
+    color: $color-shy-tomato;
   }
 
   .a-textarea__messages--hidden {

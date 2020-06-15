@@ -1,10 +1,13 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/icon';
+import AXAIcon from '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 
 class AXALink extends LitElement {
@@ -27,6 +30,9 @@ class AXALink extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    /* eslint-disable no-undef */
+    defineVersioned([AXAIcon], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   render() {
@@ -80,42 +86,33 @@ class AXALink extends LitElement {
           if (typeof this.onClick === 'function') {
             this.onClick();
           } else {
-            window.location.href = this.href;
+            window.open(this.href, this.external ? '_blank' : '_top');
           }
         }}"
-        target="${this.external ? '_blank' : '_top'}"
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
         ${this.variant.includes('arrowleft')
-          ? html`
-            <span class="a-link__icon-wrapper">
-              <axa-icon
-                icon="arrow-right"
-                class="a-link__icon a-link__icon--left"
-              ></axa-icon>
-            </span>`
+          ? versionedHtml(this)`<axa-icon
+                    icon="arrow-right"
+                    class="a-link__icon a-link__icon--left js-icon"
+                  ></axa-icon>`
           : ''}
         ${this.icon &&
         this.variant.includes('icon') &&
         !this.variant.includes('arrow')
-          ? html`
-            <span class="a-link__icon-wrapper">
-              <axa-icon
-                icon="${this.icon}"
-                class="a-link__icon a-link__icon--left"
-              ></axa-icon>
-            </span>`
+          ? versionedHtml(this)`<axa-icon
+                    icon="${this.icon}"
+                    class="a-link__icon a-link__icon--left js-icon"
+                  ></axa-icon>`
           : ''}
           <slot></slot>${this.variant.includes('arrowright')
-          ? html`
-            <span class="a-link__icon-wrapper">
-              <axa-icon icon="arrow-right" class="a-link__icon"></axa-icon>
-            </span>`
+          ? versionedHtml(this)`<axa-icon icon="arrow-right" class="a-link__icon js-icon"></axa-icon>`
           : ''}</a
       >`;
   }
 }
 
-defineOnce(AXALink.tagName, AXALink);
+/* eslint-disable no-undef */
+defineVersioned([AXALink], __VERSION_INFO__);
 
 export default AXALink;

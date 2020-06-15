@@ -1,6 +1,5 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
-import '@axa-ch/input-file';
 import { classMap } from 'lit-html/directives/class-map';
 
 import {
@@ -9,11 +8,15 @@ import {
   ClearSvg,
   AttachFileSvg,
 } from '@axa-ch/materials/icons';
+import AXAInputFile from '@axa-ch/input-file';
 
 // icon isolated from others, because it's a component specific icon
 import { FileUploadGroupSvg } from './icons';
 
-import defineOnce from '../../../utils/define-once';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import compressImage from './utils/imageCompressor';
@@ -91,6 +94,10 @@ class AXAFileUpload extends LitElement {
 
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
+
+    /* eslint-disable no-undef */
+    defineVersioned([AXAInputFile], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   handleAddMoreInputClick() {
@@ -401,7 +408,7 @@ class AXAFileUpload extends LitElement {
           class="${classMap(fileOverviewClasses)}"
         >
           ${!this.showFileOverview
-            ? html`
+            ? versionedHtml(this)`
                 <div>
                   ${FILE_UPLOAD_GROUP_ICON}
                 </div>
@@ -446,6 +453,7 @@ class AXAFileUpload extends LitElement {
   }
 }
 
-defineOnce(AXAFileUpload.tagName, AXAFileUpload);
+/* eslint-disable no-undef */
+defineVersioned([AXAFileUpload], __VERSION_INFO__);
 
 export default AXAFileUpload;

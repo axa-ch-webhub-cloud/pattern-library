@@ -5,15 +5,10 @@
   color: $color-axa-blue;
   align-items: center;
 
-  axa-icon {
-    width: 16px;
-    height: 16px;
-  }
-
   &:active,
   &:hover {
     text-decoration: underline;
-    color: $color-prim-blue-deep-sapphire;
+    color: $color-deep-sapphire;
   }
 
   // Simple Link == Everything except the normal hyperlinks
@@ -23,18 +18,8 @@
     letter-spacing: 0.4px;
   }
 
-  &__icon-wrapper {
-    width: 20px;
-    height: 20px;
-
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   &__icon {
-    display: inline-block;
-    text-align: center;
+    display: flex;
     margin-left: 10px;
 
     &--left {
@@ -51,11 +36,11 @@
   }
 
   &--red {
-    color: $color-prim-red-burnt-sienna;
+    color: $color-burnt-sienna;
 
     &:hover,
     &:active {
-      color: $color-prim-red-flamingo;
+      color: $color-flamingo;
     }
   }
 
@@ -88,10 +73,6 @@
   }
 
   &--motion {
-    .a-link__icon {
-      display: inline-block;
-    }
-
     &:hover,
     &:active,
     &:focus {

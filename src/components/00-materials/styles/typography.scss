@@ -1,0 +1,202 @@
+@import './variables';
+
+/// Source Sans Pro should be mainly used for UI design.
+/// @group fonts
+/// @author Marco Kruse <marco.kruse@axa.ch>
+$font-family-primary: 'Source Sans Pro', Arial, sans-serif;
+
+/// Publico should mainly be used for headline on landinpages.
+/// @group fonts
+/// @author Marco Kruse <marco.kruse@axa.ch>
+$font-family-secondary: 'Publico Headline', Georgia, serif;
+
+/// @group headlines
+/// @author Marco Kruse <marco.kruse@axa.ch>
+$headlines-desktop: (
+  h1: (
+    font-size: 62px,
+    line-height: 72px,
+  ),
+  h2: (
+    font-size: 48px,
+    line-height: 54px,
+  ),
+  h3: (
+    font-size: 36px,
+    line-height: 42px,
+  ),
+  h4: (
+    font-size: 28px,
+    line-height: 32px,
+  ),
+  h5: (
+    font-size: 24px,
+    line-height: 29px,
+  ),
+  h6: (
+    font-size: 20px,
+    line-height: 26px,
+  ),
+);
+
+/// @group headlines
+/// @author Marco Kruse <marco.kruse@axa.ch>
+$headlines-mobile: (
+  h1: (
+    font-size: 36px,
+    line-height: 40px,
+  ),
+  h2: (
+    font-size: 30px,
+    line-height: 34px,
+  ),
+  h3: (
+    font-size: 28px,
+    line-height: 32px,
+  ),
+  h4: (
+    font-size: 25px,
+    line-height: 29px,
+  ),
+  h5: (
+    font-size: 20px,
+    line-height: 24px,
+  ),
+  h6: (
+    font-size: 18px,
+    line-height: 20px,
+  ),
+);
+
+/// @group texts
+/// @author Marco Kruse <marco.kruse@axa.ch>
+$texts: (
+  t1: (
+    font-size: 20px,
+    line-height: 30px,
+    letter-spacing: 0.01em,
+  ),
+  t2: (
+    font-size: 18px,
+    line-height: 27px,
+    letter-spacing: 0.01em,
+  ),
+  t3: (
+    font-size: 16px,
+    line-height: 24px,
+    letter-spacing: 0.02em,
+  ),
+  t4: (
+    font-size: 14px,
+    line-height: 17px,
+    letter-spacing: 0.02em,
+  ),
+);
+
+/// Add not only styles also responsive behavior
+/// @group headlines
+/// @param {h1 | h2 | h3 | h4 | h5 | h6} $headline-size
+/// @param {primary | secondary} $font-family - `primary` is Source Sans Pro and `secondary` is Publico Headline.
+/// @example scss
+///   .element {
+///     @include headline(h1, primary);
+///   }
+/// @example scss
+///   .element {
+///     @include headline(h2, secondary);
+///   }
+/// @author Marco Kruse <marco.kruse@axa.ch>
+@mixin headline($headline-size, $font-family) {
+  @include headline-mobile($headline-size, $font-family);
+
+  @media (min-width: $breakpoint-sm) {
+    @include headline-desktop($headline-size, $font-family);
+  }
+}
+
+/// @group headlines
+/// @param {h1 | h2 | h3 | h4 | h5 | h6} $headline-size
+/// @param {primary | secondary} $font-family - `primary` is Source Sans Pro and `secondary` is Publico Headline.
+/// @example scss
+///   .element {
+///     @include headline-desktop(h1, primary);
+///   }
+/// @example scss
+///   .element {
+///     @include headline-desktop(h2, secondary);
+///   }
+/// @author Marco Kruse <marco.kruse@axa.ch>
+@mixin headline-desktop($headline-size, $font-family) {
+  @include _headline($headline-size, $font-family, $headlines-desktop);
+}
+
+/// @group headlines
+/// @param {h1 | h2 | h3 | h4 | h5 | h6} $headline-size
+/// @param {primary | secondary} $font-family - `primary` is Source Sans Pro and `secondary` is Publico Headline.
+/// @example scss
+///   .element {
+///     @include headline-mobile(h1, primary);
+///   }
+/// @example scss
+///   .element {
+///     @include headline-mobile(h2, secondary);
+///   }
+/// @author Marco Kruse <marco.kruse@axa.ch>
+@mixin headline-mobile($headline-size, $font-family) {
+  @include _headline($headline-size, $font-family, $headlines-mobile);
+}
+
+/// @group texts
+/// @param {t1 | t2 | t3 | t4} $text-size
+/// @param {bold | italic} $text-format - Text can also be used in bold and italic.
+/// @example scss
+///   .element {
+///     @include text(t1);
+///   }
+/// @example scss
+///   .element {
+///     @include text(t2, bold);
+///   }
+/// @example scss
+///   .element {
+///     @include text(t3, italic);
+///   }
+/// @author Marco Kruse <marco.kruse@axa.ch>
+@mixin text($text-size, $text-format: null) {
+  @include _typo($texts, $text-size);
+  font-family: $font-family-primary;
+  @if ($text-format == bold) {
+    font-weight: bold;
+  }
+  @if ($text-format == italic) {
+    font-style: italic;
+  }
+}
+
+/// Use public sass mixins `headline`, `headline-desktop` or `headline-mobile`.
+/// @group headlines
+/// @param {h1 | h2 | h3 | h4 | h5 | h6} $headline-size
+/// @param {primary | secondary} $font-family - `primary` is Source Sans Pro and `secondary` is Publico Headline.
+/// @param {desktop | mobile} $headline-device
+/// @author Marco Kruse <marco.kruse@axa.ch>
+@mixin _headline($headline-size, $font-family, $headline-device) {
+  @include _typo($headline-device, $headline-size);
+  @if ($font-family == primary) {
+    font-family: $font-family-primary;
+  }
+  @if ($font-family == secondary) {
+    font-family: $font-family-secondary;
+  }
+  font-weight: bold;
+  letter-spacing: -0.01em;
+}
+
+/// Use public sass mixins `headline-desktop`, `headline-mobile` or `text`.
+/// @param {$headline-desktop | headline-mobile | text} $style
+/// @param {h1 | h2 | h3 | h4 | h5 | h6 | t1 | t2 | t3 | t4 } $size
+/// @author Marco Kruse <marco.kruse@axa.ch>
+@mixin _typo($style, $size) {
+  font-size: map_get(map_get($style, $size), font-size);
+  letter-spacing: map_get(map_get($style, $size), letter-spacing);
+  line-height: map_get(map_get($style, $size), line-height);
+}

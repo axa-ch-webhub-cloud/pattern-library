@@ -1,7 +1,7 @@
 import { html, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import styles from './index.scss';
 import Swipe from './swipe';
 import debounce from '../../../utils/debounce';
@@ -285,6 +285,7 @@ class AXACarousel extends InlineStyles {
   }
 }
 
-defineOnce(AXACarousel.tagName, AXACarousel);
+/* eslint-disable no-undef */
+defineVersioned([AXACarousel], __VERSION_INFO__);
 
 export default AXACarousel;

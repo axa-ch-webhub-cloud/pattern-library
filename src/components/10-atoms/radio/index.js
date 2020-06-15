@@ -1,6 +1,6 @@
 import { html, svg } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import { applyDefaults } from '../../../utils/with-react';
@@ -176,7 +176,7 @@ class AXARadio extends NoShadowDOM {
         : html`
             <span class="a-radio__icon"></span>
           `}
-      ${icon ? svg([icon]) : html``}
+      ${icon && button ? svg([icon]) : html``}
     `;
 
     return html`
@@ -184,7 +184,7 @@ class AXARadio extends NoShadowDOM {
         ? html`
             <label class="a-radio__wrapper">
               ${inputElement}
-              <div class="a-radio__content">${label}</div>
+              <div class="a-radio__content js-radio__content">${label}</div>
             </label>
           `
         : html`
@@ -198,15 +198,22 @@ class AXARadio extends NoShadowDOM {
   firstUpdated() {
     this.input = this.querySelector('input');
     const { name, button, noAutoWidth } = this;
-    const ourButton = this.querySelector('.a-radio__content');
+    const ourButton = this.querySelector('.js-radio__content');
     radioButtonGroup[name] = radioButtonGroup[name] || new Set();
     radioButtonGroup[name].add(ourButton);
 
     if (button) {
       // give DOM some time to paint before measuring width
       window.requestAnimationFrame(() => {
+        // since up to 16ms could have passed since last animation frame,
+        // do basic sanity checking to ascertain this component instance
+        // is still alive and hasn't been removed (e.g. by React parent)
+        // (isConnected is polyfilled for IE in webcomponentjs polyfill)
+        if (!this || !this.isConnected || !radioButtonGroup[name]) {
+          return;
+        }
         const { width: labelTextWidth } = this.querySelector(
-          '.a-radio__content'
+          '.js-radio__content'
         ).getBoundingClientRect();
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
@@ -244,11 +251,25 @@ class AXARadio extends NoShadowDOM {
   disconnectedCallback() {
     super.disconnectedCallback();
     const { name } = this;
+    // get the set of same-named radio buttons
+    const radioButtonSet = radioButtonGroup[name];
+    // sanity check: at this point we expect to have been rendered at least once,
+    // and never to be disconnected twice for the same instance
+    if (!radioButtonSet) {
+      // oops, one of our expectations is false: likely this asynchronous lifecycle
+      // callback somehow happened out-of-order. There's nothing we can do anymore...
+      return;
+    }
+    // clean up
     delete selectedRadioButton[name]; // help GC
     delete maxWidth[name]; // help GC
-    radioButtonGroup[name].delete(this.querySelector('.a-radio__content'));
-    if (radioButtonGroup[name].size === 0) {
-      delete radioButtonGroup[name]; // help GC
+    // one button less in the set
+    const ourButton = this.querySelector('.js-radio__content');
+    const successfullyDeleted = radioButtonSet.delete(ourButton);
+    // it was the last in the set?
+    if (successfullyDeleted && radioButtonSet.size === 0) {
+      // yes, help GC
+      delete radioButtonGroup[name];
     }
   }
 
@@ -263,6 +284,7 @@ class AXARadio extends NoShadowDOM {
   }
 }
 
-defineOnce(AXARadio.tagName, AXARadio);
+/* eslint-disable no-undef */
+defineVersioned([AXARadio], __VERSION_INFO__);
 
 export default AXARadio;

@@ -7,7 +7,8 @@ export interface AXAFooterProps {
 }
 
 declare function createAXAFooter(
-  createElement: typeof React.createElement
+  createElement: typeof React.createElement,
+  version: string
 ): React.ComponentType<AXAFooterProps>;
 
 export default createAXAFooter;

@@ -2,8 +2,11 @@
 import { LitElement, css, unsafeCSS, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import '@axa-ch/table';
-import defineOnce from '../../../utils/define-once';
+import AXATable from '@axa-ch/table';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import { applyDefaults } from '../../../utils/with-react';
 import tableCss from './index.scss';
@@ -40,13 +43,9 @@ class AXATableSortable extends LitElement {
       sensitivity: 'variant',
     });
     this.lastIndex = -1;
-
-    this.dateColumnsCustomSort = this.dateSortColumnIndex
-      .split(',')
-      .map(cellIndex => {
-        const parsed = parseInt(cellIndex, 10);
-        return isNaN(parsed) ? undefined : parsed;
-      });
+    /* eslint-disable no-undef */
+    defineVersioned([AXATable], __VERSION_INFO__);
+    /* eslint-enable no-undef */
   }
 
   static get tagName() {
@@ -158,6 +157,15 @@ class AXATableSortable extends LitElement {
   // For longer arrays time complexity is Θ(n log(n)) (average case),
   // and space complexity is O(log(n))
   sort(arr, index, sortAs) {
+    // Declaration of dateColumnsCustomSort had to be moved from the constructor, because
+    // the value of this.dateSortColumnIndex wasn't available
+    const dateColumnsCustomSort = this.dateSortColumnIndex
+      .split(',')
+      .map(cellIndex => {
+        const parsed = parseInt(cellIndex, 10);
+        return isNaN(parsed) ? undefined : parsed;
+      });
+
     return arr.sort((rowLx, rowRx) => {
       const {
         [index]: { html: cellRx },
@@ -171,11 +179,7 @@ class AXATableSortable extends LitElement {
         return sortAs === ASC ? compNumber : -compNumber;
       };
       let result;
-
-      if (
-        this.dateSortColumnIndex &&
-        this.dateColumnsCustomSort.includes(index)
-      ) {
+      if (this.dateSortColumnIndex && dateColumnsCustomSort.includes(index)) {
         const cleanDateLx = this.convertDateToUnixEpochInteger(cleanCellLx);
         const cleanDateRx = this.convertDateToUnixEpochInteger(cleanCellRx);
 
@@ -248,12 +252,13 @@ class AXATableSortable extends LitElement {
     }
   };
 
+  /* eslint-disable indent */
   render() {
     const { thead, tbody, tfoot } = this.model;
 
-    return html`
+    return versionedHtml(this)`
       <axa-table
-        class="o-table-sortable"
+        class="o-table-sortable js-table"
         maxheight="${this.maxheight}"
         innerscroll="${this.innerscroll}"
       >
@@ -314,39 +319,42 @@ class AXATableSortable extends LitElement {
                 `
               )}
           </tbody>
-          ${tfoot
-            ? html`
-                <tfoot>
-                  ${tbody &&
-                    tfoot.map(
-                      (cells, index) => html`
-                        <tr
-                          tabindex="0"
-                          @click=${ev => {
-                            this.handleOnClick(ev, index, TABLE_FOOT);
-                          }}
-                          @keypress=${ev => {
-                            this.onKeyPress(ev, index, TABLE_FOOT);
-                          }}
-                        >
-                          ${cells &&
-                            cells.map(
-                              cell => html`
-                                <td>${unsafeHTML(cell.html)}</td>
-                              `
-                            )}
-                        </tr>
-                      `
-                    )}
-                </tfoot>
-              `
-            : ''}
+          ${
+            tfoot
+              ? html`
+                  <tfoot>
+                    ${tbody &&
+                      tfoot.map(
+                        (cells, index) => html`
+                          <tr
+                            tabindex="0"
+                            @click=${ev => {
+                              this.handleOnClick(ev, index, TABLE_FOOT);
+                            }}
+                            @keypress=${ev => {
+                              this.onKeyPress(ev, index, TABLE_FOOT);
+                            }}
+                          >
+                            ${cells &&
+                              cells.map(
+                                cell => html`
+                                  <td>${unsafeHTML(cell.html)}</td>
+                                `
+                              )}
+                          </tr>
+                        `
+                      )}
+                  </tfoot>
+                `
+              : ''
+          }
         </table>
       </axa-table>
     `;
   }
 }
 
-defineOnce(AXATableSortable.tagName, AXATableSortable);
+/* eslint-disable no-undef */
+defineVersioned([AXATableSortable], __VERSION_INFO__);
 
 export default AXATableSortable;

@@ -2,6 +2,7 @@ const path = require('path');
 const base = path.resolve(process.cwd(), 'src');
 const babelOptions = require('./.babelrc'); // get the babelrc file
 const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
 require('dotenv-extended').load();
 
@@ -12,10 +13,17 @@ const globals = require(path.resolve(__dirname, '..', 'config', 'globals.js'))
   .replace(/\\/g, '/'); // use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash
 ;
 
+const { gatherAllVersions } = require(path.resolve(__dirname, '..', 'scripts', 'build', 'version_info.js'));
+const stringifiedVersionInfo = gatherAllVersions(path.resolve(__dirname, '..'));
+
 module.exports = ({ config }) => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
     '~/materials': path.join(base, 'components', 'materials'),
   });
+
+  config.plugins.push(
+    new webpack.DefinePlugin({__VERSION_INFO__: stringifiedVersionInfo})
+  );
 
   config.module.rules.push(
     {
@@ -67,6 +75,11 @@ module.exports = ({ config }) => {
       ]
     }
   );
+
+  config.watchOptions = {
+    poll: 1000,
+    ignored: ["node_modules"]
+  };
 
   return config;
 };

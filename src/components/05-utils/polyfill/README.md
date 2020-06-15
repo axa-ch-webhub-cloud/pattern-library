@@ -60,7 +60,7 @@ For modern browser support in a "pure HTML" page:
 For modern browser support in a typical frontend stack:
 
 ```js
-import '@axa-ch/patterns-library-polyfill/lib/index.webcomponents';
+import '@axa-ch/patterns-library-polyfill/index.webcomponents';
 
 // rest of your code here
 ```

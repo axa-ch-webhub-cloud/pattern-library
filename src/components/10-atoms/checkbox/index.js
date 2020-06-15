@@ -1,7 +1,7 @@
 import { html, svg } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -263,6 +263,7 @@ class AXACheckbox extends NoShadowDOM {
   }
 }
 
-defineOnce(AXACheckbox.tagName, AXACheckbox);
+/* eslint-disable no-undef */
+defineVersioned([AXACheckbox], __VERSION_INFO__);
 
 export default AXACheckbox;
