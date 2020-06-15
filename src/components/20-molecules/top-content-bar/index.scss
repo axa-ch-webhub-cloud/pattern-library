@@ -2,7 +2,7 @@
   display: block;
 
   &__container {
-    @include typo(primary, small);
+    @include text(t4);
 
     background-color: $color-ocean-blue;
     color: $color-prim-white;
