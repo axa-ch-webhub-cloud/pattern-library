@@ -55,7 +55,7 @@ axa-fieldset {
     }
 
     &:after {
-      @include typo(primary, default);
+      @include text(t4);
       content: attr(error);
       position: absolute;
       bottom: 0;
