@@ -498,13 +498,14 @@ class AXADatepicker extends NoShadowDOM {
       return;
     }
 
-    // if year is not member of allowedyears just take the first entry of allowedyears as the new year
-    if (allowedyears && !allowedyears.includes(year)) {
+
+    this.startDate = overrideDate(year, month, day, startDate);
+
+    if (allowedyears && !allowedyears.includes(startDate.getFullYear()) && !allowedyears.includes(year)) {
+      // to avoid an empty datepicker at startup set a valid year
       const [newStartYear] = allowedyears;
       this.year = newStartYear;
     }
-
-    this.startDate = overrideDate(year, month, day, startDate);
 
     this.initDate();
   }
