@@ -13,7 +13,7 @@
 
   // Simple Link == Everything except the normal hyperlinks
   &--simple {
-    @include typo(primary, default, medium);
+    @include text(t4, bold);
     text-transform: uppercase;
     letter-spacing: 0.4px;
   }
