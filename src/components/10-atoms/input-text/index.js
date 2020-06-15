@@ -323,6 +323,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  autofocus
                 />
               `
             : html`
@@ -342,6 +343,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  autofocus
                 />
               `
         }
