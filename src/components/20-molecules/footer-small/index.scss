@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     padding: 15px 0;
     color: $color-prim-white;
-    @include typo(primary, x-small, default);
+    @include text(t4);
 
     @include breakpoint($mediaquery-sm-up) {
       flex-direction: row;
@@ -61,7 +61,7 @@
   }
 
   &__link--bold {
-    @include typo(primary, default, medium);
+    @include text(t4, bold);
   }
 
   a {
