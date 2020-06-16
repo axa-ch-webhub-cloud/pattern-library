@@ -1,16 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { AXAPopupMixin, AXAPopupButton, AXAPopupContent } from '@axa-ch/popup';
-
-import NoShadowDOM from '../../../utils/no-shadow';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
+import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 const PATTERN_DEFAULT = '.*';
