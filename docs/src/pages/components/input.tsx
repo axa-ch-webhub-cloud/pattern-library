@@ -3,9 +3,7 @@ import Page from '../../components/Page';
 import SyntaxHighlighter from '../../components/SyntaxHighlighter';
 import { Input } from '../../patterns';
 
-interface Props {}
-
-export default function InputPage({}: Props): ReactElement {
+export default function InputPage(): ReactElement {
   return (
     <Page>
       <p className="paragraph">

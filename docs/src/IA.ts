@@ -103,6 +103,31 @@ export default {
         ],
       },
       {
+        title: 'Atom Images',
+        items: [
+          {
+            id: 'images',
+            github: githubDocumentationLink('00-materials/'),
+            guideline: designLink('logo'),
+            name: 'Images',
+            related: ['button', 'footer'],
+            image: atomIcon,
+          },
+        ],
+      },
+      {
+        title: 'Atom Logo',
+        items: [
+          {
+            id: 'logo',
+            github: githubDocumentationLink('00-materials/'),
+            guideline: designLink('logo'),
+            name: 'Logo',
+            image: atomIcon,
+          },
+        ],
+      },
+      {
         title: 'Atom Textarea',
         items: [
           {
