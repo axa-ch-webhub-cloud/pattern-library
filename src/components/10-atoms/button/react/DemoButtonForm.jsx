@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AXAButton from './AXAButton';
 
 const DemoButtonForm = () => {
+  const [buttonText, setButtonText] = useState(`0 times clicked`);
+
+  const handleSubmitAndChangeText = ev => {
+    ev.preventDefault();
+    const count = parseInt(buttonText, 10) || 0;
+    setButtonText(`${count + 1} times clicked`);
+  };
+
   const handleSubmit = ev => {
     ev.preventDefault();
   };
@@ -21,6 +29,16 @@ const DemoButtonForm = () => {
           for you for example you can validate me
         </p>
         <AXAButton type="submit">Click me I prevent submit</AXAButton>
+      </form>
+
+      <form onSubmit={handleSubmitAndChangeText}>
+        <p>
+          I&apos;m type submit Button in a form, on click I stop submit event
+          for you and change my child label text
+        </p>
+        <AXAButton type="submit" data-test-id="button-submit-text-change">
+          {buttonText}
+        </AXAButton>
       </form>
 
       <form>
