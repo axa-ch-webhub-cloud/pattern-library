@@ -65,9 +65,13 @@ export default function GridPage({}: Props): ReactElement {
           we use “units” in order to restrict the number of spacing available.
         </p>
 
-        <div className="bg-neutral-200 flex mb-5">
+        <div className="bg-neutral-200 flex mt-5 mb-5">
           <div className="p-3" style={{ flexShrink: 2 }}>
-            <img src={spacingImage} className="Content-image" alt="Spacing" />
+            <img
+              src={spacingImage}
+              className="Content-image mt-0"
+              alt="Spacing"
+            />
           </div>
           <div className="p-3" style={{ flexShrink: 1 }}>
             spacing-3 (24px) on desktop, stays the same on tablet, we define

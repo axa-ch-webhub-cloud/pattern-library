@@ -17,7 +17,6 @@
   line-height: 1.7;
 }
 
-/* .Content p, */
 .paragraph {
   margin-top: var(--space-1);
   margin-bottom: var(--space-1);
@@ -31,35 +30,42 @@
 }
 
 .h1 {
+  font-family: var(--font-headings);
   font-size: var(--font-size-6xl);
   line-height: var(--line-height-6xl);
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 .h2 {
+  font-family: var(--font-headings);
   font-size: var(--font-size-5xl);
   line-height: var(--line-height-5xl);
-  margin-bottom: 16px;
-  margin-top: 42px;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
 }
 
-.Content h3,
 .h3 {
+  font-family: var(--font-headings);
   font-size: var(--font-size-4xl);
   line-height: var(--line-height-4xl);
   margin-top: var(--space-5);
   margin-bottom: var(--space-4);
 }
 
-.Content h4,
 .h4 {
-  font-size: 18px;
+  font-family: var(--font-headings);
+  font-size: var(--font-size-3xl);
+  line-height: --line-height-3xl;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-1);
+}
+
+.h5 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-2xl);
   font-family: var(--font-ui);
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.05px;
-  margin-bottom: 4px;
-  margin-top: 32px;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-1);
 }
 
 .Content a,
