@@ -123,6 +123,10 @@
   font-weight: var(--font-bold);
 }
 
+.heading {
+  font-family: var(--font-headings);
+}
+
 html,
 body {
   -webkit-text-size-adjust: 100%;
