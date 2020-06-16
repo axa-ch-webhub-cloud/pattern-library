@@ -1,3 +1,7 @@
+## 4.1.0
+
+- The new attribute `autofocus` makes it possible for the underlying native &lt;input&gt; element to automatically get focus when the page loads.
+
 ## 4.0.0
 
 - Upgrade to versioned component.
