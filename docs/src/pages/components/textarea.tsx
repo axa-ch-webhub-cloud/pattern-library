@@ -13,7 +13,6 @@ export default function TextareaPage({}: Props): ReactElement {
         {'<textarea>'} element with custom styling and additional functionality,
         e.g. a character counter.
       </p>
-      <h2 className="h2">Usage</h2>
 
       <div className="Preview">
         <Textarea name="">Button</Textarea>

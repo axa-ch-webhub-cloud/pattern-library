@@ -68,7 +68,6 @@
   margin-bottom: var(--space-1);
 }
 
-.Content a,
 .link {
   color: var(--blue-base);
   position: relative;

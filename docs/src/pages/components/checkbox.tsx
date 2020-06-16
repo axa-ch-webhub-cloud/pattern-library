@@ -11,11 +11,6 @@ export default function CheckboxPage({}: Props): ReactElement {
       <p className="paragraph">
         Checkboxes allow the user to select one or more items from a group.
       </p>
-      <h2 className="h2">Usage</h2>
-      <p className="paragraph">
-        Check boxes are most frequently used in forms.
-      </p>
-
       <div className="Preview">
         <Checkbox label="I agree to conditions of data protection" />
       </div>
@@ -24,6 +19,12 @@ import '@axa-ch/checkbox';
 ...
 <axa-checkbox label="I agree to conditions of data protection"></axa-checkbox>
   `}</SyntaxHighlighter>
+
+      <h2 className="h2">Usage</h2>
+      <p className="paragraph">
+        Check boxes are most frequently used in forms.
+      </p>
+
       <h2 className="h2">Variation</h2>
       <div className="Preview">
         <Checkbox

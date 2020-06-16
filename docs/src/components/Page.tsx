@@ -11,6 +11,7 @@ import Layout from './Layout';
 import SEO from './SEO';
 import ComponentIntro from './ComponentIntro';
 import ComponentRelated from './ComponentRelated';
+import Container from './Container';
 
 const flatItems = [
   ...IA.branding.items.map((item) => {
@@ -66,7 +67,7 @@ class Page extends React.Component {
       <>
         <SEO title={metaInfo.name} />
 
-        <main>
+        <Container>
           <ComponentIntro
             name={metaInfo.name}
             githubUrl={metaInfo.github}
@@ -74,18 +75,13 @@ class Page extends React.Component {
           />
 
           <article className="MDXPage">
-            <div
-              className="Container Container--narrow"
-              style={{ marginBottom: 120 }}
-            >
-              <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
+            <DocsMDXProvider>{this.props.children}</DocsMDXProvider>
 
-              {relatedItems.length > 0 && (
-                <ComponentRelated relatedItems={relatedItems} />
-              )}
-            </div>
+            {relatedItems.length > 0 && (
+              <ComponentRelated relatedItems={relatedItems} />
+            )}
           </article>
-        </main>
+        </Container>
       </>
     );
   }
@@ -94,7 +90,7 @@ class Page extends React.Component {
 export default class PageContainer extends React.Component {
   render() {
     return (
-      <Layout>
+      <Layout withInfoBar>
         <Location>
           {({ location }) => {
             return <Page location={location} {...this.props} />;

@@ -1,5 +1,5 @@
 :root {
-  --container-max-width: 1280px;
+  --container-max-width: 840px;
 }
 
 body {
@@ -88,8 +88,6 @@ body {
 .MDXPage-headerContent {
   display: flex;
   align-items: center;
-  padding-top: var(--space-6);
-  padding-bottom: var(--space-6);
 
   width: var(--container-max-width);
 }
@@ -101,16 +99,10 @@ body {
 }
 
 .MDXPage {
+  width: var(--container-max-width);
+
   & .Playground {
     margin-bottom: 48px;
-  }
-
-  & .Container {
-    width: var(--container-max-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--space-3);
-    padding-right: var(--space-3);
   }
 }
 

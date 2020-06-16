@@ -33,7 +33,15 @@ export default function InfoBar(): ReactElement {
         </div>
         <div
           className={`col InfoBar-item ${
-            location.pathname === '/atom' ? 'is-current' : null
+            location.pathname === '/components/button' ||
+            location.pathname === '/components/button-link' ||
+            location.pathname === '/components/checkbox' ||
+            location.pathname === '/components/images' ||
+            location.pathname === '/components/input' ||
+            location.pathname === '/components/logo' ||
+            location.pathname === '/components/textarea'
+              ? 'is-current'
+              : null
           }`}
         >
           <img src={atomIcon} className="InfoBar-image" alt="Atoms" />
@@ -41,7 +49,10 @@ export default function InfoBar(): ReactElement {
         </div>
         <div
           className={`col InfoBar-item ${
-            location.pathname === '/molecule' ? 'is-current' : null
+            location.pathname === '/components/hero' ||
+            location.pathname === '/components/footer'
+              ? 'is-current'
+              : null
           }`}
         >
           <img src={moleculeIcon} className="InfoBar-image" alt="Molecules" />
@@ -49,7 +60,7 @@ export default function InfoBar(): ReactElement {
         </div>
         <div
           className={`col InfoBar-item ${
-            location.pathname === '/organism' ? 'is-current' : null
+            location.pathname === '/components/login' ? 'is-current' : null
           }`}
         >
           <img src={organismIcon} className="InfoBar-image" alt="Organism" />

@@ -13,9 +13,10 @@ export default function ButtonLinkPage({}: Props): ReactElement {
         They may display text, icons, or both. Button links can be styled via
         several properties to change their look-and-feel.
       </p>
-      <h2 className="h2">Usage</h2>
 
-      <ButtonLink href="#axa">I am a Button Link</ButtonLink>
+      <div className="Preview">
+        <ButtonLink href="#axa">I am a Button Link</ButtonLink>
+      </div>
 
       <SyntaxHighlighter>{`
 import '@axa-ch/button-link';

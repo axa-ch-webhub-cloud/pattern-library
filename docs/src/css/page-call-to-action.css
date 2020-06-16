@@ -8,4 +8,5 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: var(--container-max-width);
 }

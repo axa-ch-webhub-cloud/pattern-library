@@ -13,7 +13,6 @@ export default function LogoPage(): ReactElement {
         AXA’s online and offline assets, to spot relevant information more
         easily, and to understand better AXA offers.
       </p>
-      <h2 className="h2">Usage</h2>
 
       <div className="Preview">
         <AxaLogoSvg className="w-8  mr-3" />
