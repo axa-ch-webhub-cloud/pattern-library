@@ -1,0 +1,63 @@
+:root {
+  --font-headings: 'Publico Headline', Georgia, -apple-system, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-ui: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono',
+    'Droid Sans Mono', 'Source Code Pro', monospace;
+
+  font-size: 16px;
+
+  --font-size-xs: 0.813rem; /* 13px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.75rem; /* 28px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 2.688rem; /* 43px */
+  --font-size-6xl: 3.125rem; /* 50px */
+  --font-size-7xl: 3.813rem; /* 61px */
+
+  --line-height-xs: 1.125rem; /* 18px */
+  --line-height-sm: 1.125rem; /* 18px */
+  --line-height-base: 1.375rem; /* 22px */
+  --line-height-lg: 1.5rem; /* 24px */
+  --line-height-xl: 1.563rem; /* 25px */
+  --line-height-2xl: 1.75rem; /* 28px */
+  --line-height-3xl: 2.188rem; /* 35px */
+  --line-height-4xl: 2.625rem; /* 42px */
+  --line-height-5xl: 3.188rem; /* 51px */
+  --line-height-6xl: 3.75rem; /* 60px */
+  --line-height-7xl: 4.438rem; /* 71px */
+
+  --font-bold: 700;
+  --font-semi-bold: 600;
+  --font-regular: 400;
+
+  --space-1: 0.5rem; /* 8px */
+  --space-2: 1rem; /* 16px */
+  --space-3: 1.5rem; /* 24px */
+  --space-4: 2rem; /* 32px */
+  --space-5: 2.5rem; /* 40px */
+  --space-6: 3rem; /* 48px */
+  --space-7: 4rem; /* 64px */
+  --space-8: 6rem; /* 96px */
+}
+
+:root {
+  --color-border-shadow: rgba(0, 0, 0, 0.35);
+  --color-blurry-shadow: rgba(0, 0, 0, 0.25);
+
+  --elevation-1: 0 0 1px var(--color-border-shadow);
+  --elevation-2: 0 0 1px var(--color-border-shadow),
+    0 0 4px var(--color-blurry-shadow);
+  --elevation-3: 0 0 1px var(--color-border-shadow),
+    0 0 8px var(--color-blurry-shadow);
+  --elevation-4: 0 0 1px var(--color-border-shadow),
+    0 0 12px var(--color-blurry-shadow);
+  --elevation-5: 0 0 1px var(--color-border-shadow),
+    0 0 16px var(--color-blurry-shadow);
+}

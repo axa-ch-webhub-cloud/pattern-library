@@ -1,0 +1,31 @@
+.InfoBar {
+  background-color: var(--neutral-200);
+  padding: var(--space-2);
+}
+
+.InfoBar-container {
+  padding-left: var(--space-8);
+  max-width: 840px;
+
+  & .col:not(:last-child) {
+    border-right: 1px solid var(--neutral-400);
+  }
+}
+
+.InfoBar-item {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+
+  &.is-current {
+    opacity: 1;
+  }
+}
+
+.InfoBar-image {
+  max-width: var(--space-4);
+  max-height: var(--space-4);
+  margin-right: var(--space-1);
+}

@@ -1,0 +1,177 @@
+@font-face {
+  font-family: 'Publico Headline';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../../src/static/fonts/PublicoHeadline-Bold-Web.eot'); /* IE9 Compat Modes */
+  src: local('Publico Headline Web'), local('Publico Headline'),
+    /* Super Modern Browsers */
+      url('../../../src/static/fonts/PublicoHeadline-Bold-Web.woff2')
+      format('woff2'),
+    /* Modern Browsers */
+      url('../../../src/static/fonts/PublicoHeadline-Bold-Web.woff')
+      format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../../src/static/fonts/source-sans-pro-v10-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
+    /* Super Modern Browsers */
+      url('../../../src/static/fonts/source-sans-pro-v10-latin-regular.woff2')
+      format('woff2'),
+    /* Modern Browsers */
+      url('../../../src/static/fonts/source-sans-pro-v10-latin-regular.woff')
+      format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../../src/static/fonts/source-sans-pro-v10-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),
+    /* Super Modern Browsers */
+      url('../../../src/static/fonts/source-sans-pro-v10-latin-700.woff2')
+      format('woff2'),
+    /* Modern Browsers */
+      url('../../../src/static/fonts/source-sans-pro-v10-latin-700.woff')
+      format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../../../src/static/fonts/source-sans-pro-v10-latin-600.eot'); /* IE9 Compat Modes */
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'),
+    /* Super Modern Browsers */
+      url('../../../src/static/fonts/source-sans-pro-v10-latin-600.woff2')
+      format('woff2'),
+    /* Modern Browsers */
+      url('../../../src/static/fonts/source-sans-pro-v10-latin-600.woff')
+      format('woff');
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+.font-bold {
+  font-weight: var(--font-bold) !important;
+}
+.font-semi-bold {
+  font-weight: var(--font-semi-bold);
+}
+.font-regular {
+  font-weight: var(--font-regular);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+.text-base {
+  font-size: var(--font-size-base);
+}
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+.text-xl {
+  font-size: var(--font-size-xl);
+}
+.text-2xl {
+  font-size: var(--font-size-2xl);
+}
+.text-3xl {
+  font-size: var(--font-size-3xl);
+}
+.text-4xl {
+  font-size: var(--font-size-4xl);
+}
+.text-5xl {
+  font-size: var(--font-size-5xl);
+}
+.text-6xl {
+  font-size: var(--font-size-6xl);
+}
+.text-7xl {
+  font-size: var(--font-size-7xl);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.heading {
+  font-weight: var(--font-bold);
+}
+
+html,
+body {
+  -webkit-text-size-adjust: 100%;
+  color: var(--black);
+  font-family: var(--font-ui);
+}
+
+.kicker {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-xs);
+}
+
+tt,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.text-white {
+  color: var(--white);
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6,
+  & p {
+    color: var(--white);
+  }
+}
+
+.text-blue-base {
+  color: var(--blue-base);
+}
+.text-neutral-400 {
+  color: var(--neutral-400);
+}
+.text-neutral-600 {
+  color: var(--neutral-600);
+}
+.text-neutral-700 {
+  color: var(--neutral-700);
+}
+
+.text-dark {
+  color: var(--black) !important;
+}
