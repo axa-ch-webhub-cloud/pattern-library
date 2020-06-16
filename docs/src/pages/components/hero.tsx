@@ -32,7 +32,7 @@ export default function HeroPage({}: Props): ReactElement {
           afford
         </p>
         <small slot="disclaimer">Terms and Conditions apply.</small>
-        <ButtonLink href="https://axa.ch" slot="button" size="large">
+        <ButtonLink href="#" slot="button" size="large">
           Get a quote
         </ButtonLink>
       </Hero>
@@ -50,7 +50,7 @@ import '@axa-ch/commercial-hero-banner';
       requirements and offer great product benefits at a price you can afford
     </p>
     <small slot="disclaimer">Terms and Conditions apply.</small>
-   size="large">
+   <axa-button-link size="large">
       Get a quote
     </axa-button-link>
 </axa-commercial-hero-banner>
@@ -71,7 +71,7 @@ import '@axa-ch/commercial-hero-banner';
         </p>
         <small slot="disclaimer">Terms and Conditions apply.</small>
 
-        <ButtonLink href="https://axa.ch" slot="button" variant="inverted">
+        <ButtonLink href="#" slot="button" variant="inverted">
           Get a quote
         </ButtonLink>
       </Hero>
@@ -90,7 +90,7 @@ import '@axa-ch/commercial-hero-banner';
           afford
         </p>
         <small slot="disclaimer">Terms and Conditions apply.</small>
-        <ButtonLink href="https://axa.ch" slot="button" size="large">
+        <ButtonLink href="#" slot="button" size="large">
           Get a quote
         </ButtonLink>
       </Hero>
@@ -107,7 +107,7 @@ import '@axa-ch/commercial-hero-banner';
       requirements and offer great product benefits at a price you can afford
     </p>
     <small slot="disclaimer">Terms and Conditions apply.</small>
-   size="large">
+    <axa-button-link size="large">
       Get a quote
     </axa-button-link>
 </axa-commercial-hero-banner>

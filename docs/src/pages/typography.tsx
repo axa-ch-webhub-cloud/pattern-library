@@ -43,7 +43,7 @@ export default function TypographyPage({}: Props): ReactElement {
           a clear hierarchy and providing a strong visual identity.
         </p>
         <div className="OverviewGrid">
-          <div className="ShadowBox shadow-lg">
+          <div className="ShadowBox shadow-2xl">
             <p className="kicker mb-0 text-neutral-600">Publico headline</p>
             <p className="font-bold text-lg">Bold</p>
             <img
@@ -62,7 +62,7 @@ export default function TypographyPage({}: Props): ReactElement {
           cost.
         </p>
         <div className="OverviewGrid">
-          <div className="ShadowBox shadow-lg">
+          <div className="ShadowBox shadow-2xl">
             <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
             <p className="font-bold text-lg">Bold</p>
             <img
@@ -71,7 +71,7 @@ export default function TypographyPage({}: Props): ReactElement {
               alt="Source sans Pro preview"
             />
           </div>
-          <div className="ShadowBox shadow-lg">
+          <div className="ShadowBox shadow-2xl">
             <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
             <p className="font-bold text-lg">Semibold</p>
             <img
@@ -80,7 +80,7 @@ export default function TypographyPage({}: Props): ReactElement {
               alt="Source sans Pro preview"
             />
           </div>
-          <div className="ShadowBox shadow-lg">
+          <div className="ShadowBox shadow-2xl">
             <p className="kicker mb-0 text-neutral-600">Source sans Pro</p>
             <p className="font-bold text-lg">Regular</p>
             <img
