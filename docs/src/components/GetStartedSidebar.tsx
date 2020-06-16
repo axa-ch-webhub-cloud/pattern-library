@@ -34,10 +34,6 @@ export default class GetStartedSidebar extends PureComponent {
                 label: 'Grid',
               },
               {
-                to: '/images',
-                label: 'Images',
-              },
-              {
                 to: '/typography',
                 label: 'Typography',
               },
@@ -58,8 +54,16 @@ export default class GetStartedSidebar extends PureComponent {
                 label: 'Checkbox',
               },
               {
+                to: '/components/images',
+                label: 'Images',
+              },
+              {
                 to: '/components/input',
                 label: 'Input',
+              },
+              {
+                to: '/components/logo',
+                label: 'Logo',
               },
               {
                 to: '/components/textarea',

@@ -3,9 +3,7 @@ import Page from '../../components/Page';
 import SyntaxHighlighter from '../../components/SyntaxHighlighter';
 import { Sample } from '../../patterns/index';
 
-interface Props {}
-
-export default function SamplePage({}: Props): ReactElement {
+export default function SamplePage(): ReactElement {
   return (
     <Page>
       <p className="paragraph"></p>
