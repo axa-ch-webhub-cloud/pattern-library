@@ -120,7 +120,6 @@
 .h5,
 .h6,
 .heading {
-  font-family: var(--font-headings);
   font-weight: var(--font-bold);
 }
 

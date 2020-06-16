@@ -17,9 +17,7 @@ import Callout from '../components/Callout';
 
 import { fontDownloadUrl } from '../../siteConfig';
 
-interface Props {}
-
-export default function TypographyPage({}: Props): ReactElement {
+export default function TypographyPage(): ReactElement {
   return (
     <Layout withCallToAction withInfoBar>
       <SEO title="Typography" />
@@ -36,7 +34,7 @@ export default function TypographyPage({}: Props): ReactElement {
           Publico Headline typeface.
         </p>
 
-        <h3 className="h3">Publico Headline</h3>
+        <h3 className="h5">Publico Headline</h3>
         <p className="paragraph">
           Publico Headline is the first official serif typeface at AXA. Coupled
           with Source Sans Pro it enhances the design by adding rythm, creating
@@ -54,7 +52,7 @@ export default function TypographyPage({}: Props): ReactElement {
           </div>
         </div>
 
-        <h3 className="h3">Source Sans Pro</h3>
+        <h3 className="h5">Source Sans Pro</h3>
         <p className="paragraph">
           Source Sans Pro is a sans serif typeface that has been chosen to
           transition from ITC Franklin Gothic and Metric as it works pretty well
@@ -94,7 +92,7 @@ export default function TypographyPage({}: Props): ReactElement {
 
       <Container background="bg-neutral-200">
         <h2 className="h2 mt-0">Get the typefaces</h2>
-        <h3 className="h3">Publico headline</h3>
+        <h3 className="h5">Publico headline</h3>
         <p className="paragraph">
           Publico Headline is a typeface, which is not available for free.
           Currently at AXA, each entity needs to purchase it directly on the
@@ -110,7 +108,7 @@ export default function TypographyPage({}: Props): ReactElement {
           linkToUrl={fontDownloadUrl.heading}
         ></Callout>
 
-        <h3 className="h3">Source Sans Pro</h3>
+        <h3 className="h5">Source Sans Pro</h3>
         <Callout
           imageUrl={aaImage}
           title="Get Source Sans Pro typeface"

@@ -72,7 +72,7 @@ export default function startPage() {
           prototype and production work.
         </p>
 
-        <h3 className="h3">Install and use components</h3>
+        <h3 className="h5">Install and use components</h3>
         <p className="paragraph">
           AXA Design System is made up of multiple web components and tools
           which you can import one by one. All you need to do is install the{' '}
