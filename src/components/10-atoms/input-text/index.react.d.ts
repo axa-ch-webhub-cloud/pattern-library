@@ -21,6 +21,7 @@ export interface AXAInputTextProps {
   className?: string;
   pattern?: string;
   inputmode?: string;
+  autofocus?: boolean;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
   onChange?: (e: { target: HTMLInputElement }) => void;
