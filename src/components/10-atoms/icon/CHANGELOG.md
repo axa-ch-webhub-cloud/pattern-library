@@ -1,3 +1,7 @@
+## 5.0.0
+
+- BREAKING CHANGE: The icon `plus` is not available anymore. Use `add` instead.
+
 ## 4.0.0
 
 - Upgrade to versioned component.
