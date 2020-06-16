@@ -3,6 +3,8 @@ import Page from '../../components/Page';
 import SyntaxHighlighter from '../../components/SyntaxHighlighter';
 import { Input, Button, ButtonLink, Checkbox } from '../../patterns';
 
+import loginImage from '../../images/login-illustration.jpg';
+
 interface Props {}
 
 export default function LoginPage({}: Props): ReactElement {
@@ -17,33 +19,44 @@ export default function LoginPage({}: Props): ReactElement {
       </p>
       <h2 className="h2">Usage</h2>
 
-      <div className="Preview" style={{ maxWidth: 480 }}>
-        <h2 className="h3">Secure Member Log-in</h2>
-        <Input
-          name="email"
-          type="text"
-          label="Email"
-          placeholder="albert@science.cool"
-        />
-        <Input
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="*******"
-        />
-        <Checkbox label="Remember me" variant="checkmark" className="mt-3" />
-        <Button size="large" className="mt-3 w-100">
-          Login
-        </Button>
-        <div className="mt-3">
-          <ButtonLink
-            variant="secondary"
-            size="large"
-            icon="arrow-right"
-            className="w-100"
-          >
-            First connexion
-          </ButtonLink>
+      <div className="Preview" style={{ maxWidth: 880, padding: 0 }}>
+        <div className="flex align-center">
+          <div className="col">
+            <img src={loginImage} alt="" className="Content-image mt-0" />
+          </div>
+          <div className="col pl-7 pr-7">
+            <h2 className="h3">Secure Member Log-in</h2>
+            <Input
+              name="email"
+              type="text"
+              label="Email"
+              placeholder="albert@science.cool"
+            />
+            <Input
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="*******"
+            />
+            <Checkbox
+              label="Remember me"
+              variant="checkmark"
+              className="mt-3"
+            />
+            <Button size="large" className="mt-3 w-100">
+              Login
+            </Button>
+            <div className="mt-3">
+              <ButtonLink
+                variant="secondary"
+                size="large"
+                icon="arrow-right"
+                className="w-100"
+              >
+                First connexion
+              </ButtonLink>
+            </div>
+          </div>
         </div>
       </div>
       <SyntaxHighlighter>{`

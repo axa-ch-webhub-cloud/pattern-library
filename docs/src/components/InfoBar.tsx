@@ -1,16 +1,12 @@
 import React, { ReactElement } from 'react';
 import { useLocation } from '@reach/router';
 
-interface Props {
-  currentPath: string;
-}
-
 import brandSystem from '../images/introduction/constant.svg';
 import atomIcon from '../images/icons/atom.svg';
 import moleculeIcon from '../images/icons/molecule.svg';
 import organismIcon from '../images/icons/organism.svg';
 
-export default function InfoBar({ currentPath }: Props): ReactElement {
+export default function InfoBar(): ReactElement {
   const location = useLocation();
 
   return (
