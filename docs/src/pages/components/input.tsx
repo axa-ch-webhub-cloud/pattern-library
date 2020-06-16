@@ -12,7 +12,6 @@ export default function InputPage(): ReactElement {
         most of the same properties as HTML {'<input>'}, but with typerestricted
         to type=text, type=email, or type=password.
       </p>
-      <h2 className="h2">Usage</h2>
       <div className="Preview">
         <Input name="fullname" type="text" />
       </div>

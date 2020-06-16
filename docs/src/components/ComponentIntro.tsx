@@ -16,9 +16,9 @@ export default function ComponentIntro({
   return (
     <div>
       <header className="MDXPage-header">
-        <div className="MDXPage-headerContent Container">
+        <div className="MDXPage-headerContent">
           <div className="MDXPage-headerContentLeft">
-            <h1 className="h1 heading text-5xl">{name}</h1>
+            <h1 className="h1">{name}</h1>
           </div>
 
           {githubUrl && (

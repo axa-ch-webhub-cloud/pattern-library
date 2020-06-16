@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 export default function PageCallToAction() {
   return (
     <section className="PageCallToAction">
-      <div className="Container PageCallToAction-inner">
+      <div className="PageCallToAction-inner">
         <div>
           <p className="text-uppercase text-xs">Help & Contact</p>
           <p className="text-2xl heading">Any question?</p>

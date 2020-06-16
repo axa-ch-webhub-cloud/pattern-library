@@ -11,6 +11,17 @@ export default function ButtonPage({}: Props): ReactElement {
       <p className="paragraph">
         Buttons are CTAs that allow users to make choices and take actions
       </p>
+      <div className="Preview">
+        <Button>Button</Button>
+      </div>
+      <SyntaxHighlighter>{`
+import '@axa-ch/button';
+...
+<axa-button>
+  Button
+</axa-button>
+  `}</SyntaxHighlighter>
+
       <h2 className="h2">Usage</h2>
       <p className="paragraph">
         Buttons are typically placed throughout your UI, in places like:
@@ -22,17 +33,6 @@ export default function ButtonPage({}: Props): ReactElement {
         <li className="li">Cards</li>
         <li className="li">Toolbars</li>
       </ul>
-
-      <div className="Preview">
-        <Button>Button</Button>
-      </div>
-      <SyntaxHighlighter>{`
-import '@axa-ch/button';
-...
-<axa-button>
-  Button
-</axa-button>
-  `}</SyntaxHighlighter>
 
       <h2 className="h2">Variation</h2>
 
