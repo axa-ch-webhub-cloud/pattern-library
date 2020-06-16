@@ -14,10 +14,10 @@ export default function OverviewItem({
 }: Props): ReactElement {
   return (
     <Link to={`/components/${id}`} className="flex align-center OverviewItem">
-      <img className="mw-8" src={image} alt={children} />
+      <img className="mw-7" src={image} alt={children} />
 
       <div className="col">
-        <span className="h3">{children}</span>
+        <span className="h4">{children}</span>
       </div>
       <div className="col text-right mr-5">
         <div className="OverviewKicker">Discover component</div>

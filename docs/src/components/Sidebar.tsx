@@ -35,21 +35,32 @@ export default class Sidebar extends PureComponent {
                 key={group.title || group.links[0].label}
                 className="Sidebar"
               >
-                {group.title && <p className="Sidebar-title">{group.title}</p>}
+                {group.title && (
+                  <p className="Sidebar-title" key={`title-${_.uniqueId()}`}>
+                    {group.title}
+                  </p>
+                )}
                 <nav className="Sidebar-nav">
                   {group.links.map(
                     ({ label, to, branding, atoms, molecules, organisms }) => {
                       return (
                         <>
                           {label && (
-                            <Link key={to} to={to} activeClassName="is-active">
+                            <Link
+                              key={`label-${_.uniqueId()}`}
+                              to={to}
+                              activeClassName="is-active"
+                            >
                               {label}
                             </Link>
                           )}
 
                           {branding && (
                             <>
-                              <p className="Sidebar-subtitle">
+                              <p
+                                key={`subtitle-${_.uniqueId()}`}
+                                className="Sidebar-subtitle"
+                              >
                                 Brand identity elements
                               </p>
                               {branding.map((brand) => {
@@ -68,11 +79,15 @@ export default class Sidebar extends PureComponent {
 
                           {atoms && (
                             <>
-                              <p className="Sidebar-subtitle">Atom</p>
+                              <p
+                                key={`subtitle-${_.uniqueId()}`}
+                                className="Sidebar-subtitle"
+                              >
+                                Atom
+                              </p>
                               {atoms.map((atom) => {
                                 return (
                                   <Link
-                                    key={`atom-${_.uniqueId()}`}
                                     to={atom.to}
                                     activeClassName="is-active"
                                   >
@@ -85,7 +100,12 @@ export default class Sidebar extends PureComponent {
 
                           {molecules && (
                             <>
-                              <p className="Sidebar-subtitle">Molecules</p>
+                              <p
+                                key={`subtitle-${_.uniqueId()}`}
+                                className="Sidebar-subtitle"
+                              >
+                                Molecules
+                              </p>
                               {molecules.map((molecule) => {
                                 return (
                                   <Link
@@ -102,7 +122,12 @@ export default class Sidebar extends PureComponent {
 
                           {organisms && (
                             <>
-                              <p className="Sidebar-subtitle">Organism</p>
+                              <p
+                                key={`subtitle-${_.uniqueId()}`}
+                                className="Sidebar-subtitle"
+                              >
+                                Organism
+                              </p>
                               {organisms.map((organism) => {
                                 return (
                                   <Link

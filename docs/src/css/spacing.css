@@ -142,6 +142,9 @@
   width: var(--space-8);
 }
 
+.p-1 {
+  padding: var(--space-1);
+}
 .p-2 {
   padding: var(--space-2);
 }
@@ -156,4 +159,17 @@
 }
 .p-6 {
   padding: var(--space-6);
+}
+.p-7 {
+  padding: var(--space-7);
+}
+.p-8 {
+  padding: var(--space-8);
+}
+
+.pl-7 {
+  padding-left: var(--space-7);
+}
+.pr-7 {
+  padding-right: var(--space-7);
 }
