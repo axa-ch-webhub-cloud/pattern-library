@@ -563,10 +563,11 @@ test('should allow month change from default date', async t => {
       document.querySelector(`#datepicker-react .js-datepicker__input`).value
   );
 
+  const preSelectedYear = '1971'; // first entry of allowedyears (see README "year")
   const d = new Date();
   const currentMonth = d.getMonth();
   const currentDateString = `${DAY_TO_SELECT}.${currentMonth +
-    1}.${d.getFullYear()}`;
+    1}.${preSelectedYear}`;
 
   // verify committed date meets expectation
   await t
@@ -598,7 +599,7 @@ test('should allow month change from default date', async t => {
   await datePickerAccessor.selectDayOfCurrentMonth(26);
 
   // verify committed date meets expectation: correct month and year
-  const newDateString = `.${newMonth + 1}.${d.getFullYear()}`;
+  const newDateString = `.${newMonth + 1}.${preSelectedYear}`;
 
   // assert date input has the correct year and month
   await t
