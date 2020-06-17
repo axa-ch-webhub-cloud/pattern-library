@@ -16,7 +16,7 @@ export default function ComponentRelated({
   relatedItems,
 }: Props): ReactElement {
   return (
-    <div className="mb-8">
+    <div className="mb-8 mt-8">
       <h2 className="h2">Composition</h2>
       <div className="Overview-groupItems">
         {relatedItems.map((item) => {
