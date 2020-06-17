@@ -1,3 +1,7 @@
+## 5.0.2
+
+- Dynamic button-text updates for submit/reset-type buttons no longer break form submittability. (#1815)
+
 ## 5.0.0
 
 - Upgrade to versioned component.
