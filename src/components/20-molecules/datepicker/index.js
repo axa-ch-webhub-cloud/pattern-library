@@ -475,7 +475,6 @@ class AXADatepicker extends NoShadowDOM {
       day,
       month,
       year,
-      allowedyears,
       autofocus,
       startDate,
     } = this;
