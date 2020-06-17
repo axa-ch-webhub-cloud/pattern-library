@@ -1,5 +1,5 @@
 import { getWeekdays } from './utils/date';
-import { parseAndFormatAllowedYears } from './index';
+import AXADatepicker, { parseAndFormatAllowedYears } from './index';
 
 describe('Datepicker unit tests', () => {
   it('should return correct month names with English abreviations', () => {
@@ -25,7 +25,10 @@ describe('Datepicker unit tests', () => {
       expect(parseAndFormatAllowedYears(['1999-2000'])).toEqual([1999, 2000]);
     });
     it('should return array with allowed years if value is a string (without setting setYear)', () => {
-      expect(parseAndFormatAllowedYears(['1999-2000'], 2020)).toEqual([1999, 2000]);
+      expect(parseAndFormatAllowedYears(['1999-2000'], 2020)).toEqual([
+        1999,
+        2000,
+      ]);
     });
     it('should return array with allowed years without setting setYear', () => {
       expect(parseAndFormatAllowedYears([1999], 2000)).toEqual([1999]);
@@ -38,4 +41,43 @@ describe('Datepicker unit tests', () => {
     });
   });
 
+  describe('initDate()', () => {
+    it('should return undefined', () => {
+      expect(AXADatepicker.prototype.initDate(new Date(), {})).toEqual(
+        undefined
+      );
+    });
+    it('should set class variables', () => {
+      // init values
+      AXADatepicker.prototype._date = null;
+      AXADatepicker.prototype.allowedyears = [1900];
+      AXADatepicker.prototype.cells = null;
+      AXADatepicker.prototype.weekdays = null;
+
+      AXADatepicker.prototype.initDate(new Date(), {});
+
+      expect(AXADatepicker.prototype._date).not.toBe(null);
+      expect(AXADatepicker.prototype.allowedyears).not.toBe([1900]);
+      expect(AXADatepicker.prototype.cells).not.toBe(null);
+      expect(AXADatepicker.prototype.weekdays).not.toBe(null);
+    });
+    it('should set class variables if output:true', () => {
+      // init values
+      AXADatepicker.prototype.outputdate = null;
+      AXADatepicker.prototype._userSelectedDate = null;
+
+      AXADatepicker.prototype.initDate(new Date(), { output: true });
+
+      expect(AXADatepicker.prototype.outputdate).not.toBe(null);
+      expect(AXADatepicker.prototype._userSelectedDate).not.toBe(null);
+    });
+    it('should set class variables if tentative:false', () => {
+      // init values
+      AXADatepicker.prototype._preselectedDate = null;
+
+      AXADatepicker.prototype.initDate(new Date(), { tentative: false });
+
+      expect(AXADatepicker.prototype._userSelectedDate).not.toBe(null);
+    });
+  });
 });
