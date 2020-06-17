@@ -76,6 +76,36 @@ class AXAButton extends InlineStyles {
     return this.icon === ARROW_RIGHT;
   }
 
+  watch(mode) {
+    switch (mode) {
+      case 'stop':
+        if (this._observer) {
+          this._observer.disconnect();
+        }
+        break;
+      case 'start':
+        if (!this._observer) {
+          this._observer = new MutationObserver(() => this.attachFakeButton());
+        }
+        this._observer.observe(this, {
+          childList: true,
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  attachFakeButton() {
+    const fakeButton = document.createElement('button');
+    fakeButton.type = this.type;
+    fakeButton.style.display = 'none';
+    this.watch('stop');
+    this.appendChild(fakeButton);
+    this.watch('start');
+    this.fakeButton = fakeButton;
+  }
+
   firstUpdated() {
     this.inlineStyles('blockMouseEventsCss');
 
@@ -84,12 +114,7 @@ class AXAButton extends InlineStyles {
     // shadow dom submit btn workaround
     // only use fakeButton when shadowDom is natively supported
     if (isNativeShadowDOM && this.isTypeSubmitOrReset) {
-      const fakeButton = document.createElement('button');
-      fakeButton.type = this.type;
-      fakeButton.style.display = 'none';
-      this.appendChild(fakeButton);
-
-      this.fakeButton = fakeButton;
+      this.attachFakeButton();
     }
 
     style.appearance = 'none';
@@ -184,6 +209,12 @@ class AXAButton extends InlineStyles {
         </span>
       </button>
     `;
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    // remove installed observer, if any
+    this.watch('stop');
   }
 }
 

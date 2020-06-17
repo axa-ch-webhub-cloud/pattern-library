@@ -140,3 +140,27 @@ test('should submit only once', async t => {
   );
   await t.expect(await count()).eql('1');
 });
+
+fixture('Button - React form').page(
+  `${host}/iframe.html?id=components-atoms-button-react-demos--feature-button-in-a-form`
+);
+
+test('should submit before and after text child updates', async t => {
+  const $submitButton = await Selector(
+    '[data-test-id="button-submit-text-change"]'
+  );
+
+  await t.expect($submitButton.innerText).contains('0');
+
+  await t.click($submitButton());
+
+  await t.wait(50);
+
+  await t.expect($submitButton.innerText).contains('1');
+
+  await t.click($submitButton());
+
+  await t.wait(50);
+
+  await t.expect($submitButton.innerText).contains('2');
+});
