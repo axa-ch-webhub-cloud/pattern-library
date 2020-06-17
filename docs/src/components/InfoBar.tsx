@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useLocation } from '@reach/router';
 
-import brandSystem from '../images/introduction/constant.svg';
+import brandSystem from '../images/icons/constant-infobar.svg';
 import atomIcon from '../images/icons/atom.svg';
 import moleculeIcon from '../images/icons/molecule.svg';
 import organismIcon from '../images/icons/organism.svg';
