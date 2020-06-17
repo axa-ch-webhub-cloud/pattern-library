@@ -532,11 +532,7 @@ class AXADatepicker extends NoShadowDOM {
       }
     }
 
-    if (
-      this.allowedyears &&
-      !this.allowedyears.includes(this.startDate.getFullYear()) &&
-      !this.allowedyears.includes(this.year)
-    ) {
+    if (this.allowedyears && !this.allowedyears.includes(this.year)) {
       // to avoid that datepicker don't show any days to select and looks like "emtpy"
       const [newStartYear] = this.allowedyears;
       this.year = newStartYear;
