@@ -56,6 +56,7 @@ const applyEffect = self =>
     }, 0 /* execute after render() */);
   });
 
+// export: to use function at unit.test.js
 export const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
   const yearSet = new Set();
   const inputYears = [...allowedyears];
@@ -500,16 +501,6 @@ class AXADatepicker extends NoShadowDOM {
 
     this.startDate = overrideDate(year, month, day, startDate);
 
-    if (
-      allowedyears &&
-      !allowedyears.includes(startDate.getFullYear()) &&
-      !allowedyears.includes(year)
-    ) {
-      // to avoid an empty datepicker at startup set a valid year
-      const [newStartYear] = allowedyears;
-      this.year = newStartYear;
-    }
-
     this.initDate();
   }
 
@@ -540,6 +531,17 @@ class AXADatepicker extends NoShadowDOM {
         this.month = date.getMonth();
       }
     }
+
+    if (
+      this.allowedyears &&
+      !this.allowedyears.includes(this.startDate.getFullYear()) &&
+      !this.allowedyears.includes(this.year)
+    ) {
+      // to avoid that datepicker don't show any days to select and looks like "emtpy"
+      const [newStartYear] = this.allowedyears;
+      this.year = newStartYear;
+    }
+
     const { year, month, day, allowedyears, locale, startDate } = this;
 
     this._date = overrideDate(year, month, day, startDate);
