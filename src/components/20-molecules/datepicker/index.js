@@ -56,7 +56,7 @@ const applyEffect = self =>
     }, 0 /* execute after render() */);
   });
 
-// export: to use function at unit.test.js
+// export: needed in unit tests
 export const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
   const yearSet = new Set();
   const inputYears = [...allowedyears];
@@ -532,7 +532,7 @@ class AXADatepicker extends NoShadowDOM {
     }
 
     if (this.allowedyears && !this.allowedyears.includes(this.year)) {
-      // to avoid that datepicker don't show any days to select and looks like "emtpy"
+      // to avoid that datepicker don't show any days to select and looks like "empty"
       const [newStartYear] = this.allowedyears;
       this.year = newStartYear;
     }

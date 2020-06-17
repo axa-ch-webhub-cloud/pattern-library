@@ -5,7 +5,8 @@ import {
   boolean,
   number,
   select,
-  withKnobs, object,
+  withKnobs,
+  object,
 } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
