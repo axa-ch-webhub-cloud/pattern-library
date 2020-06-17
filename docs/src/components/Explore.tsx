@@ -6,7 +6,7 @@ import moleculeIcon from 'images/icons/molecule.svg';
 export default function Community() {
   return (
     <>
-      <h2 className="h2">AXA Design System</h2>
+      <h2 className="h2 mt-0">AXA Design System</h2>
       <p>
         The AXA Design System has been conceived in a manner to align with the
         core AXA principles and to carry forward this message.

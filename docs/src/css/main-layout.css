@@ -22,11 +22,11 @@ body {
 .MainLayout-content {
   flex: 1;
   overflow-y: auto;
+  height: 100vh;
 }
 
 .MainLayout-contentRight {
   flex: 1;
-  overflow-y: auto;
   display: flex;
   padding-left: var(--space-8);
 }
@@ -35,24 +35,8 @@ body {
   border-right: 1px solid var(--color-border-muted);
   width: 240px;
   overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: var(--neutral-800);
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: var(--neutral-600);
-  }
-
-  &::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255, 0, 0, 0.4);
-  }
+  height: 100vh;
+  padding-bottom: var(--space-8);
 }
 
 .Sidebar-inner {

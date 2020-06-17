@@ -100,7 +100,7 @@ export default function StructurePage() {
 
         <Callout
           imageUrl={organismIcon}
-          title="Create and catgorize new elements"
+          title="Create and categorize new elements"
           description="If you need to create new elements and you ask yourself how to categorize them, try out this tool"
           linkToTitle="Categorize"
           linkToUrl="https://dan503.github.io/Atomic-Categorizer/"

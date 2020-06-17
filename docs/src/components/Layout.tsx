@@ -28,7 +28,7 @@ export default class Layout extends React.Component<Props> {
   render() {
     const {
       children,
-      withCallToAction = false,
+      withCallToAction = true,
       withInfoBar = false,
       withFooter = true,
       withSideBar = true,
