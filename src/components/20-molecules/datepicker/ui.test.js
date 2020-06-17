@@ -661,7 +661,7 @@ test('should allow year ranges', async t => {
   await t.expect(await setDatepicker('allowedyears', ['1920-2003'])).ok();
   await t
     .expect(await setDatepicker('allowedyears'))
-    .eql(JSON.stringify(range(2020 - 100, 2020 - 17).concat([2020]))); // 2020: README states year is always member of allowedyears
+    .eql(JSON.stringify(range(2020 - 100, 2020 - 17)));
 
   // now open calendar
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');
