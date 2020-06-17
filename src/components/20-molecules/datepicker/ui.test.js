@@ -6,6 +6,14 @@ import { range } from './utils/date';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
+const datepickerYearDropdown = Selector(() =>
+  document.querySelector(`axa-datepicker .js-datepicker__dropdown-year`)
+);
+
+const reactDatepickerYearDropdown = Selector(() =>
+  document.querySelector(`#datepicker-react .js-datepicker__dropdown-year`)
+);
+
 fixture('Datepicker')
   .page(`${host}/iframe.html?id=components-molecules-datepicker--datepicker`)
   .afterEach(async t => {
@@ -200,14 +208,9 @@ test('should have a minimum width', async t => {
 });
 
 test('should just add years of a given range', async t => {
-  const datepickerYearDropdown = await Selector(() =>
-    document.querySelector(
-      `axa-datepicker .js-datepicker__dropdown-year`
-    )
-  );
   const setProperties = ClientFunction(() => {
     const datepicker = document.querySelector('axa-datepicker');
-    datepicker.allowedyears = ["1999-2000"];
+    datepicker.allowedyears = ['1999-2000'];
   });
 
   await setProperties();
@@ -215,21 +218,56 @@ test('should just add years of a given range', async t => {
   const itemsString = await datepickerYearDropdown.getAttribute('items');
   const itemsArray = JSON.parse(itemsString);
 
-  await t
-    .expect(itemsArray.length)
-    .eql(2);
+  await t.expect(itemsArray.length).eql(2);
 
+  await t.expect(itemsString).contains('"value":"1999"');
+
+  await t.expect(itemsString).contains('"value":"2000"');
+
+  await t.expect(itemsString).notContains('"value":"2020"');
+});
+
+test('should set the first entry of allowedyears as startup date (no year set; current year not in allowedyears)', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.allowedyears = [1999];
+  });
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await setProperties();
   await t
     .expect(itemsString)
-    .contains('"value":"1999"');
+    .contains('{"selected":true,"name":"2020","value":"2020"},');
+});
 
+test('should set the first entry of allowedyears as startup date (year is set but value not in allowedyears)', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.year = 2019;
+    datepicker.allowedyears = [1999];
+  });
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await setProperties();
   await t
     .expect(itemsString)
-    .contains('"value":"2000"');
+    .contains('{"selected":true,"name":"2020","value":"2020"},');
+});
 
+test('should set current year as startup date', async t => {
+  const currentYear = new Date().getFullYear();
+  const setProperties = ClientFunction(currentYear => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.allowedyears = [1999, currentYear];
+  });
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await setProperties(currentYear);
   await t
     .expect(itemsString)
-    .notContains('"value":"2020"');
+    .contains(
+      `{"selected":true,"name":"${currentYear}","value":"${currentYear}"},`
+    );
 });
 
 fixture('Datepicker - With Locale').page(
@@ -489,12 +527,8 @@ test('should react to programmatic date property changes', async t => {
     .expect(datepickerMonthDropdown.getAttribute('items'))
     .contains('{"selected":true,"name":"April","value":"3"}');
 
-  const datepickerYearDropdown = await Selector(() =>
-    document.querySelector(`#datepicker-react .js-datepicker__dropdown-year`)
-  );
-
   await t
-    .expect(datepickerYearDropdown.getAttribute('items'))
+    .expect(await reactDatepickerYearDropdown.getAttribute('items'))
     .contains('{"selected":true,"name":"2019","value":"2019"}');
 
   await datePickerAccessor.selectDayOfCurrentMonth('27');
