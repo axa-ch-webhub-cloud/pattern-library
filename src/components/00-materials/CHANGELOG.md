@@ -1,3 +1,10 @@
+## 8.0.0
+
+- BREAKING CHANGE: `phone` is now `phone_outlined`; `info-flat` and `plus` were deleted
+- Updated: `check-circle`, `clear`, `date-input`, `add`, `phone` and `info`
+- Outlined versions `stars_outlined`, `email_outlined`, `key_outlined`, `message_outlined`, `person_outlined`, `info_outlined`, `delete-forever_outlined`, `document_outlined`, `cancel_outlined`,`cloud-upload_outlined`, `check-circle_outlined`, `date-input_outlined`, `upload_outlined` and `download_outlined` added.
+- New icon `stars` added.
+
 ## 7.0.0
 
 - BREAKING CHANGE: The Depricated colors `color-validation-error`, `color-validation-valid`, `color-prim-gray-mine-shaft`, `color-prim-gray-scorpion`, `color-sec-blue-logan`, `color-sec-ocean-blue`, `color-sec-green-acid`, `color-sec-orange-apache` and `color-sec-shy-tomato` were removed. The rest of the colors were renamed #1748
