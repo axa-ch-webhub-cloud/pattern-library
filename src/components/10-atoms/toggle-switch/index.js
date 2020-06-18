@@ -1,4 +1,5 @@
 import { css, html, LitElement, unsafeCSS } from 'lit-element';
+import fireCustomEvent from '../../../utils/custom-event';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -50,13 +51,8 @@ class AXAToggleSwitch extends LitElement {
 
   handleChange(event) {
     this.active = event.target.checked;
-
-    this.dispatchEvent(
-      new CustomEvent('change', {
-        detail: this.active,
-      })
-    );
-
+    const { active } = this;
+    fireCustomEvent('change', { active }, this);
     this.onChange(event);
   }
 }
