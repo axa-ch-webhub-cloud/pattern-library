@@ -24,7 +24,11 @@ Create a React-ified toggle-switch with the createElement function from your Rea
 import { createElement } from 'react';
 import createAXAToggleSwitchReact from '@axa-ch/toggle-switch/lib/index.react';
 
-const AXAToggleSwitchReact = createAXAToggleSwitchReact(createElement);
+const optionalVersion = ''; // substitute your SPA's short name for explicit versioning
+const AXAToggleSwitchReact = createAXAToggleSwitchReact(
+  createElement,
+  optionalVersion
+);
 
 export default AXAToggleSwitchReact;
 ```
@@ -57,12 +61,19 @@ Import the toggle-switch-defining script and use a toggle-switch like this:
 
 ### active
 
-The Boolean attribute `active` sets the active/inactive state.
+The Boolean attribute `active` sets the visual state of the toggle switch to active, if true, and inactive otherwise.
 
 ### disabled
 
-The Boolean attribute `disabled` disables the toggle switch natively.
+The Boolean attribute `disabled`, when true, disables the toggle switch natively.
 
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.
+
+The callback function signature is `callBackFunction(nativeChangeEvent)`.
+
+## Events
+
+A `change` event is fired on the component itself. The event bubbles and is cancellable. Its `detail` property contains
+this object: `{active}`, where the meaning of active is as defined above for the same-named property.
