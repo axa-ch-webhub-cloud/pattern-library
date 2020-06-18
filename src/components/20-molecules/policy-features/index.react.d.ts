@@ -10,7 +10,7 @@ export interface AXAPolicyFeaturesProps {
 
 export function createAXAPolicyFeatures(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAPolicyFeaturesProps>;
 
 export interface AXAPolicyFeaturesItemProps {

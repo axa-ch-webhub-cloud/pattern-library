@@ -28,7 +28,7 @@ export interface AXAInputTextProps {
 
 declare function createAXAInputText(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAInputTextProps>;
 
 export default createAXAInputText;

@@ -42,7 +42,7 @@ type AXALinkProps = SharedProps &
 
 declare function createAXALink(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXALinkProps>;
 
 export default createAXALink;

@@ -20,7 +20,7 @@ export interface AXACheckboxProps {
 
 declare function createAXACheckbox(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXACheckboxProps>;
 
 export default createAXACheckbox;

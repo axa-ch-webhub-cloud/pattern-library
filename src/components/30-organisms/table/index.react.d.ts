@@ -6,7 +6,7 @@ export interface AXATableProps {
 
 declare function createAXATable(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXATableProps>;
 
 export default createAXATable;
