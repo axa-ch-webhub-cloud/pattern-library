@@ -9,7 +9,7 @@ export interface AXAToggleSwitchProps {
 
 declare function createAXAToggleSwitch(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAToggleSwitchProps>;
 
 export default createAXAToggleSwitch;
