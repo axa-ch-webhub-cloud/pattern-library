@@ -1,5 +1,5 @@
 import { css, html, LitElement, unsafeCSS } from 'lit-element';
-import defineOnce from '../../../utils/define-once';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -61,5 +61,6 @@ class AXAToggleSwitch extends LitElement {
   }
 }
 
-defineOnce(AXAToggleSwitch.tagName, AXAToggleSwitch);
+/* eslint-disable no-undef */
+defineVersioned([AXAToggleSwitch], __VERSION_INFO__);
 export default AXAToggleSwitch;
