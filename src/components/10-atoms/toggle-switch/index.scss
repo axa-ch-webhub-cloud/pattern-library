@@ -1,0 +1,63 @@
+$toggle-switch-transition: 0.4s ease;
+$toggle-switch-height: 30px;
+$toggle-switch-width: 50px;
+$toggle-switch-spacing: 2px;
+$toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
+
+:host {
+  display: inline-block;
+}
+
+.a-toggle-switch {
+  display: block;
+  position: relative;
+  height: $toggle-switch-height;
+  width: $toggle-switch-width;
+
+  &__input {
+    // The default checkbox should be invisible to the user but not to screen readers.
+    opacity: 0;
+
+    &[checked] {
+      & + .a-toggle-switch__slider {
+        background-color: $color-malachite;
+      }
+
+      & + .a-toggle-switch__slider::before {
+        transform: translateX($toggle-switch-width - $toggle-switch-height);
+      }
+
+      &[disabled] + .a-toggle-switch__slider {
+        background-color: $color-aqua-green;
+      }
+    }
+
+    &[disabled] + .a-toggle-switch__slider {
+      background-color: $color-wild-sand;
+    }
+  } 
+
+  &__slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 18px;
+    background-color: $color-light-grey;
+    transition: $toggle-switch-transition;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: $toggle-switch-spacing;
+      left: $toggle-switch-spacing;
+      height: $toggle-switch-circle-size;
+      width: $toggle-switch-circle-size;
+      border-radius: 50%;
+      background: $color-prim-white;
+      transition: $toggle-switch-transition;
+    }
+  }
+}
