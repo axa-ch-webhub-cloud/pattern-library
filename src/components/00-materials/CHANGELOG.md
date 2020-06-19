@@ -1,3 +1,7 @@
+## 9.0.0
+
+- BREAKING CHANGE: Replaced old typography with new one. `typo()` is now `text()` and `typo-title()` is `headline(h1, primary)`.
+
 ## 8.0.0
 
 - BREAKING CHANGE: `phone` is now `phone_outlined`; `info-flat` and `plus` were deleted
