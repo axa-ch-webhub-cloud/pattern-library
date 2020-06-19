@@ -21,7 +21,7 @@
       border-right-color: var(--blue-base);
     }
 
-    &:last-child {
+    &:nth-last-child(2) {
       margin-top: var(--space-6);
     }
   }

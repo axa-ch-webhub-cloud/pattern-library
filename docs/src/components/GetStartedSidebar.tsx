@@ -92,6 +92,10 @@ export default class GetStartedSidebar extends PureComponent {
             ],
           },
           {
+            to: '/changelog',
+            label: 'What’s new',
+          },
+          {
             to: '/contact',
             label: 'Help & Contact',
           },

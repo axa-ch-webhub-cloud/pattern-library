@@ -53,13 +53,16 @@ import '@axa-ch/button';
 
       <SyntaxHighlighter>{`
 <axa-button>
-  Small size
+  Primary
 </axa-button>
 <axa-button variant="secondary">
-  Medium size
+  Secondary
 </axa-button>
 <axa-button variant="red">
-  Large size
+  Red
+</axa-button>
+<axa-button variant="inverted">
+  Inverted
 </axa-button>
   `}</SyntaxHighlighter>
 
