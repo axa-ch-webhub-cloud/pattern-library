@@ -56,34 +56,6 @@ git push origin develop
 - [ ] Add a link to the sidebar `src/components/GetStartedSidebar.tsx`
 - [ ] Add metadata `src/IA.ts`
 
-## Component status
-
-| Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
-| -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Colors                                 |                             | Constant       | ✅              |
-| Typography                             | Heading                     | Constant       | ✅              |
-|                                        | Text                        | Constant       | ✅              |
-|                                        | Quote                       | Constant       | 🔴              |
-|                                        | Hyperlinks / Simple links   | Constant       | ✅              |
-| -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Input                                  | Date                        | Atom           | 🔴              |
-| Input                                  | Range (slider)              | Atom           | 🔴              |
-| -------------------------------------- | --------------------------- | -------------- | --------------- |
-| MultipleEntries                        | Background White/Blue       | Molecule       | 🔴              |
-|                                        | 3 / 4 columns               | Molecule       | 🔴              |
-| Dropdown (Select)                      |                             | Molecule       | ✅              |
-| Contextual help                        |                             | Molecule       | 🔴              |
-| subMenu                                |                             | Molecule       | 🔴              |
-| Cookie Disclaimer                      |                             | Molecule       | ✅              |
-| -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Table                                  |                             | Organism       | ✅              |
-| Table Sortable                         |                             | Organism       | ✅              |
-
-- ✅ Yes
-- 🔴 No
-- 🌀 Almost
-- ? No idea what is it
-
 ## Source of Truth : Tree IA
 
 ```
