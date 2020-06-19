@@ -34,7 +34,7 @@
   &__title {
     text-transform: uppercase;
 
-    font-size: $font-size-base;
+    @include text(t3);
 
     margin-top: 0;
     margin-bottom: 5px;
