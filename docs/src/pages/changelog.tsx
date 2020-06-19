@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 
 export default function ChangelogPage(): ReactElement {
   return (
-    <Layout>
+    <Layout withCallToAction={false}>
       <Container>
         <PageIntroduction title="What’s new?">
           Here you will find the latest updates on the AXA Design System

@@ -8,7 +8,7 @@ import emailIcon from 'images/icons/email.svg';
 export default function Community() {
   return (
     <>
-      <h2 className="h2">AXA Community</h2>
+      <h2 className="h2 mt-0">AXA Community</h2>
       <p className="paragraph">
         Share your work, ask questions, give feedback, access knowledge, promote
         the AXA tools within your team! Join more than 600 AXA designers,

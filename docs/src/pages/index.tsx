@@ -19,25 +19,25 @@ const mediaItems = [
     title: 'Brand Identity',
     topic: 'Constants',
     image: brandSystem,
-    link: '/structure',
+    link: '/colors',
   },
   {
     title: 'Atoms',
     topic: 'Base elements',
     image: atomsSystem,
-    link: '/structure',
+    link: '/components/button',
   },
   {
     title: 'Molecules',
     topic: 'Components',
     image: moleculesSystem,
-    link: '/structure',
+    link: '/components/datepicker',
   },
   {
     title: 'Organisms',
     topic: 'Complex elements',
     image: organismSystems,
-    link: '/structure',
+    link: '/components/login',
   },
 ];
 

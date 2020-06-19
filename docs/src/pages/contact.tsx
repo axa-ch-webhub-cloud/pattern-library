@@ -22,7 +22,7 @@ const contactItems = [
     description:
       'Tell us about your project, we can propose you a tailored solution on how you can achieve your objectives :',
     linkText: 'Send us a mail',
-    linkUrl: feedback.email,
+    linkUrl: `mailto:${feedback.email}`,
   },
   {
     icon: slackIcon,
@@ -49,7 +49,7 @@ const contactItems = [
 
 export default function contactPage() {
   return (
-    <Layout>
+    <Layout withCallToAction={false}>
       <SEO title="Help and Contact" />
 
       <Container>
