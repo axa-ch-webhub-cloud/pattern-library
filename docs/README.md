@@ -1,7 +1,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/acef601f-d186-458f-8e2e-787ce585bc4a/deploy-status)](https://app.netlify.com/sites/axa-design-system/deploys)
 
-# AXA Design System
+# AXA Design System
 
 > Branding design
 
@@ -22,7 +22,7 @@ You can now view docs in the browser [http://localhost:8000/](http://localhost:8
 ⠀
 View GraphiQL, to explore your site's data and schema [`http://localhost:8000/___graphql`](http://localhost:8000/___graphql)
 
-## Deploy
+## Deploy
 
 Note that the development build is not optimized.
 To create a production build, use `gatsby build`
@@ -37,7 +37,7 @@ Deploy a version to [https://axa-design-system.netlify.app/](https://axa-design-
 git push origin develop
 ```
 
-## Create a new page compoent workflow
+## Import a new axa-component workflow
 
 🔥 Don't break the SSR rendering (Find documention on how [Debugging HTML Builds](https://www.gatsbyjs.org/docs/debugging-html-builds/))
 
@@ -46,9 +46,11 @@ git push origin develop
 - [ ] Go and search on https://patterns.axa.ch
 - [ ] Install from `@axa-ch/sample` with `npm install @axa-ch/sample`
 - [ ] Create the React-ified version with `touch src/patterns/reactified/Sample.tsx`
-- [ ] export it with `@loadable/component` from `src/patterns/reactified/index.tsx`
+- [ ] export it with `@loadable/component` from `src/patterns/index.tsx`
 - [ ] `import { Sample } from '../patterns/';`
 - [ ] You are ready to use it with `<Sample />`
+
+### Create a new component page
 
 - [ ] `cp src/pages/components/sample.tsx src/pages/components/new.tsx`
 - [ ] Add a link to the sidebar `src/components/GetStartedSidebar.tsx`
@@ -58,46 +60,24 @@ git push origin develop
 
 | Component name                         | Component variations        | Component type | 🇨🇭 Pattern Code |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| 🔥 **Icons**                           | icons-raw                   | Constant       | ✅              |
-|                                        | images-raw                  | Constant       | ✅              |
-|                                        | Logo                        | Constant       | ✅              |
-| Grids                                  |                             | Constant       | 🔴              |
 | Colors                                 |                             | Constant       | ✅              |
 | Typography                             | Heading                     | Constant       | ✅              |
 |                                        | Text                        | Constant       | ✅              |
 |                                        | Quote                       | Constant       | 🔴              |
 |                                        | Hyperlinks / Simple links   | Constant       | ✅              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| Image                                  |                             | Atom           | 🔴              |
-| Form container                         |                             | Atom           | 🔴              |
 | Input                                  | Date                        | Atom           | 🔴              |
 | Input                                  | Range (slider)              | Atom           | 🔴              |
-| Radio                                  |                             | Atom           | ✅              |
-| > Social Media                         |                             | Atom           | 🔴              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
-| 🔥 **Header**                          | Main Navigation             | Molecule       | 🌀              |
-|                                        | Meta Navigation             | Molecule       | 🌀              |
-|                                        | Sub-navigation              | Molecule       | 🌀              |
-| Footer                                 |                             | Molecule       | ✅              |
 | MultipleEntries                        | Background White/Blue       | Molecule       | 🔴              |
 |                                        | 3 / 4 columns               | Molecule       | 🔴              |
-| Data-visualisation/KeyFigures          |                             | Molecule       | ?               |
-| Banner/SecondaryPalette/Text-couloured |                             | Molecule       | ?               |
-| Interstitial/TextCTA                   |                             | Molecule       | ?               |
-| Datepicker                             |                             | Molecule       | ✅              |
 | Dropdown (Select)                      |                             | Molecule       | ✅              |
-|                                        | Multiple choice buttons     | Molecule       | ?               |
 | Contextual help                        |                             | Molecule       | 🔴              |
-| > Tabs                                 |                             | Molecule       | 🔴              |
 | subMenu                                |                             | Molecule       | 🔴              |
 | Cookie Disclaimer                      |                             | Molecule       | ✅              |
 | -------------------------------------- | --------------------------- | -------------- | --------------- |
 | Table                                  |                             | Organism       | ✅              |
 | Table Sortable                         |                             | Organism       | ✅              |
-| Commercial Hero Banner                 |                             | Organism       | ✅              |
-| > Navigation Menu                      |                             | Organism       | 🔴              |
-| > Short Page                           |                             | Organism       | 🔴              |
-| > Form Page                            | Login                       | Organism       | 🔴              |
 
 - ✅ Yes
 - 🔴 No

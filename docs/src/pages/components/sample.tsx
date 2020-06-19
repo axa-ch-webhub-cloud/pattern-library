@@ -13,7 +13,7 @@ export default function SamplePage(): ReactElement {
         <Sample>Button</Sample>
       </div>
       <SyntaxHighlighter>{`
-import '@axa-ch/commercial-hero-banner';
+import '@axa-ch/sample';
 ...
   `}</SyntaxHighlighter>
 
