@@ -1,3 +1,7 @@
+## 5.1.0
+
+- Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
+
 ## 5.0.2
 
 - Dynamic button-text updates for submit/reset-type buttons no longer break form submittability. (#1815)
