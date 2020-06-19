@@ -12,7 +12,7 @@ import atomsSystem from '../images/introduction/atoms.svg';
 import moleculesSystem from '../images/introduction/molecules.svg';
 import organismSystems from '../images/introduction/organisms.svg';
 import SEO from '../components/SEO';
-import Button from '../patterns/reactified/Button';
+import { Button } from '../patterns/index';
 
 const mediaItems = [
   {
