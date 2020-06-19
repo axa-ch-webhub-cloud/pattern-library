@@ -22,6 +22,7 @@ export default function Callout({
   linkToTitle,
   linkToUrl,
   isInternalLink,
+  children,
 }: CalloutProps): ReactElement {
   return (
     <div className="flex Callout align-center mt-2 mb-5">
@@ -50,6 +51,7 @@ export default function Callout({
           </NativeLink>
         )}
       </div>
+      {children}
     </div>
   );
 }
