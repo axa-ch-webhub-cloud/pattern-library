@@ -139,6 +139,17 @@ export default {
         ],
       },
       {
+        title: 'Molecule Datepicker',
+        items: [
+          {
+            id: 'datepicker',
+            github: githubDocumentationLink('20-molecules/datepicker'),
+            name: 'Datepicker',
+            image: moleculeIcon,
+          },
+        ],
+      },
+      {
         title: 'Molecule Footer',
         items: [
           {

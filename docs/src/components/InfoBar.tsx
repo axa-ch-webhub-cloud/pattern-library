@@ -50,6 +50,7 @@ export default function InfoBar(): ReactElement {
         <div
           className={`col InfoBar-item ${
             location.pathname === '/components/hero' ||
+            location.pathname === '/components/datepicker' ||
             location.pathname === '/components/footer'
               ? 'is-current'
               : null

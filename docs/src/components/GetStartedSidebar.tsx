@@ -74,6 +74,10 @@ export default class GetStartedSidebar extends PureComponent {
           {
             molecules: [
               {
+                to: '/components/datepicker',
+                label: 'Datepicker',
+              },
+              {
                 to: '/components/hero',
                 label: 'Hero',
               },
