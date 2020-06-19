@@ -21,7 +21,7 @@
   border-bottom-color: $color-deep-sapphire;
 
   @include breakpoint($mediaquery-sm-up) {
-    @include _text(default);
+    min-height: 40px;
   }
 
   &:hover,
@@ -68,10 +68,10 @@
 }
 
 .a-button-link--large {
-  @include _text(default);
+  @include text(t4);
 
   @include breakpoint($mediaquery-sm-up) {
-    @include _text(medium);
+    @include text(t3);
   }
 }
 
@@ -85,7 +85,7 @@
 
 .a-button-link--small .a-button-link__flex-wrapper {
   min-height: 26px;
-  @include _text(small);
+  @include text(t4);
 }
 
 .a-button-link--motion {
