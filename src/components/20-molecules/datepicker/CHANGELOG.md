@@ -1,3 +1,8 @@
+## 9.0.0
+
+- **Breaking change:** The `year` attribute (which is default: current year) is not being automatically added to `allowedyears` if you have specified any `allowedyears`. (#1805)
+- **Breaking change:** If you do not specify any `allowedyears`, the `year` property value will be added to `allowedyears` to avoid an empty year dropdown. (#1810)
+
 ## 8.0.0
 
 - Upgrade to versioned component.

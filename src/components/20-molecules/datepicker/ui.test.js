@@ -6,6 +6,14 @@ import { range } from './utils/date';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
+const datepickerYearDropdown = Selector(() =>
+  document.querySelector(`axa-datepicker .js-datepicker__dropdown-year`)
+);
+
+const reactDatepickerYearDropdown = Selector(() =>
+  document.querySelector(`#datepicker-react .js-datepicker__dropdown-year`)
+);
+
 fixture('Datepicker')
   .page(`${host}/iframe.html?id=components-molecules-datepicker--datepicker`)
   .afterEach(async t => {
@@ -197,6 +205,69 @@ test('should have a minimum width', async t => {
 
   await t.expect(datepicker.clientWidth).eql(minWidth + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
   await t.expect(datepickerWrapMinWidth).eql(`${minWidth}px`); // wrapper has a min-width
+});
+
+test('should just add years of a given range', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.allowedyears = ['1999-2000'];
+  });
+
+  await setProperties();
+
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+  const itemsArray = JSON.parse(itemsString);
+
+  await t.expect(itemsArray.length).eql(2);
+
+  await t.expect(itemsString).contains('"value":"1999"');
+
+  await t.expect(itemsString).contains('"value":"2000"');
+
+  await t.expect(itemsString).notContains('"value":"2020"');
+});
+
+test('should set the first entry of allowedyears as startup date (no year set; current year not in allowedyears)', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.allowedyears = [1999];
+  });
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await setProperties();
+  await t
+    .expect(itemsString)
+    .contains('{"selected":true,"name":"2020","value":"2020"},');
+});
+
+test('should set the first entry of allowedyears as startup date (year is set but value not in allowedyears)', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.year = 2019;
+    datepicker.allowedyears = [1999];
+  });
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await setProperties();
+  await t
+    .expect(itemsString)
+    .contains('{"selected":true,"name":"2020","value":"2020"},');
+});
+
+test('should set current year as startup date', async t => {
+  const currentYear = new Date().getFullYear();
+  const setProperties = ClientFunction(currentYear => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.allowedyears = [1999, currentYear];
+  });
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await setProperties(currentYear);
+  await t
+    .expect(itemsString)
+    .contains(
+      `{"selected":true,"name":"${currentYear}","value":"${currentYear}"},`
+    );
 });
 
 fixture('Datepicker - With Locale').page(
@@ -456,12 +527,8 @@ test('should react to programmatic date property changes', async t => {
     .expect(datepickerMonthDropdown.getAttribute('items'))
     .contains('{"selected":true,"name":"April","value":"3"}');
 
-  const datepickerYearDropdown = await Selector(() =>
-    document.querySelector(`#datepicker-react .js-datepicker__dropdown-year`)
-  );
-
   await t
-    .expect(datepickerYearDropdown.getAttribute('items'))
+    .expect(await reactDatepickerYearDropdown.getAttribute('items'))
     .contains('{"selected":true,"name":"2019","value":"2019"}');
 
   await datePickerAccessor.selectDayOfCurrentMonth('27');
@@ -496,10 +563,11 @@ test('should allow month change from default date', async t => {
       document.querySelector(`#datepicker-react .js-datepicker__input`).value
   );
 
+  const preSelectedYear = '1971'; // first entry of allowedyears (see README "year")
   const d = new Date();
   const currentMonth = d.getMonth();
   const currentDateString = `${DAY_TO_SELECT}.${currentMonth +
-    1}.${d.getFullYear()}`;
+    1}.${preSelectedYear}`;
 
   // verify committed date meets expectation
   await t
@@ -531,7 +599,7 @@ test('should allow month change from default date', async t => {
   await datePickerAccessor.selectDayOfCurrentMonth(26);
 
   // verify committed date meets expectation: correct month and year
-  const newDateString = `.${newMonth + 1}.${d.getFullYear()}`;
+  const newDateString = `.${newMonth + 1}.${preSelectedYear}`;
 
   // assert date input has the correct year and month
   await t
@@ -594,7 +662,7 @@ test('should allow year ranges', async t => {
   await t.expect(await setDatepicker('allowedyears', ['1920-2003'])).ok();
   await t
     .expect(await setDatepicker('allowedyears'))
-    .eql(JSON.stringify(range(2020 - 100, 2020 - 17).concat([2020]))); // 2020: README states year is always member of allowedyears
+    .eql(JSON.stringify(range(2020 - 100, 2020 - 17)));
 
   // now open calendar
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');

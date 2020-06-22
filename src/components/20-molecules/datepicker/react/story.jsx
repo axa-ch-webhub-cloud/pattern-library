@@ -6,6 +6,7 @@ import {
   number,
   select,
   withKnobs,
+  object,
 } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -46,6 +47,12 @@ storiesOf('Components|Molecules/Datepicker/React', module)
     const defaultValue = text('defaultValue', '');
     const width = text('width', '400');
     const height = text('height', '40');
+    const allowedYears = object('allowedyears', [
+      '1971-2000',
+      2012,
+      2014,
+      '2018-2022',
+    ]);
     const div = document.createElement('div');
 
     ReactDOM.render(
@@ -55,7 +62,7 @@ storiesOf('Components|Molecules/Datepicker/React', module)
         inputfield={inputfield}
         checkMark={checkMark}
         disabled={disabled}
-        allowedyears={['1971-2000', 2012, 2014, '2018-2022']}
+        allowedyears={allowedYears}
         year={year}
         month={month}
         day={day}
