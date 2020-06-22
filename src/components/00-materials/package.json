@@ -6,8 +6,8 @@
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
-    "build-icons": "svgo --quiet --disable=removeViewBox -f icons-raw -r -o icons-raw/.tmp",
-    "build-images": "svgo --quiet --disable=removeViewBox --config 'svgo-config.json' -f images-raw -r -o images-raw/.tmp",
+    "build-icons": "rm -rf ./icons-raw/.tmp && svgo --quiet --disable=removeViewBox -f icons-raw -r -o icons-raw/.tmp",
+    "build-images": "rm -rf ./images-raw/.tmp && svgo --quiet --disable=removeViewBox --config 'svgo-config.json' -f images-raw -r -o images-raw/.tmp",
     "build": "node scripts/export-svg"
   },
   "files": [
