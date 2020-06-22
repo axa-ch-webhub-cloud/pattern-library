@@ -1,3 +1,7 @@
+## 8.0.2
+
+- Fix the script that you need if you are adding new SVGs to our project (#1802)
+
 ## 8.0.0
 
 - BREAKING CHANGE: `phone` is now `phone_outlined`; `info-flat` and `plus` were deleted
