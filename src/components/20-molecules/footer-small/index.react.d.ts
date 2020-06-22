@@ -10,7 +10,7 @@ export interface AXAFooterSmallProps {
 
 declare function createAXAFooterSmall(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAFooterSmallProps>;
 
 export default createAXAFooterSmall;

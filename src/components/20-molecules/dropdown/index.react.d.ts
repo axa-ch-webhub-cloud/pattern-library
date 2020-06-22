@@ -38,7 +38,7 @@ export interface AXADropdownProps {
 
 declare function createAXADropdown(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXADropdownProps>;
 
 export default createAXADropdown;

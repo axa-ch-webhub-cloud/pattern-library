@@ -9,7 +9,7 @@ interface AXACarouselProps {
 
 declare function createAXACarousel(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXACarouselProps>;
 
 export = createAXACarousel;

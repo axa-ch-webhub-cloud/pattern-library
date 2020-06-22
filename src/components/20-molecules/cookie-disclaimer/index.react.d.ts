@@ -12,7 +12,7 @@ export interface AXACookieDisclaimerProps {
 
 declare function createAXACookieDisclaimer(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXACookieDisclaimerProps>;
 
 export default createAXACookieDisclaimer;

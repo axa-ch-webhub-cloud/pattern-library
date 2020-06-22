@@ -11,7 +11,7 @@ export interface AXAHeadingProps
 
 declare function createAXAHeading(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAHeadingProps>;
 
 export default createAXAHeading;

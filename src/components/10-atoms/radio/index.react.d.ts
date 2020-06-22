@@ -32,7 +32,7 @@ export interface AXARadioProps {
 
 declare function createAXARadio(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXARadioProps>;
 
 export default createAXARadio;

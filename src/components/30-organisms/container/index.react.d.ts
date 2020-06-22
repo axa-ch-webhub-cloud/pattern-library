@@ -6,7 +6,7 @@ export interface AXAContainerProps {}
 
 declare function createAXAContainer(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAContainerProps>;
 
 export default createAXAContainer;

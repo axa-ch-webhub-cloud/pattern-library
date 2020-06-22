@@ -10,7 +10,7 @@ export interface AXAPopupProps {
 
 declare function createAXAPopup(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAPopupProps>;
 
 export default createAXAPopup;
