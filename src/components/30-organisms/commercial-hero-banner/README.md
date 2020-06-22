@@ -15,8 +15,10 @@ import '@axa-ch/commercial-hero-banner';
 ...
 <axa-commercial-hero-banner variant="dark"
   imagesource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg">
-    <h2 slot="category">This example shows specific picture classes</h2>
-    <h1 slot="title">Drive with peace of mind</h1>
+    <header slot="title">
+      <p>This example shows specific picture classes</p>
+      <h1>Drive with peace of mind</h1>
+    </header>
     <p slot="content">
       Whether you need to insure your first car or renew your existing car
       insurance, AXA can provide a range of car insurance policies to suit your
@@ -53,8 +55,10 @@ import AXAButtonLink from 'AxaButtonLink.js';
   variant="dark"
   imageSource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
 >
-  <h2 slot="category">This example shows specific picture classes</h2>
-  <h1 slot="title">Drive with peace of mind</h1>
+  <header slot="title">
+    <p>This example shows specific picture classes</p>
+    <h1>Drive with peace of mind</h1>
+  </header>
   <p slot="content">
     Whether you need to insure your first car or renew your existing car
     insurance, AXA can provide a range of car insurance policies to suit your
@@ -85,8 +89,10 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
       variant="dark"
       imageSource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
     >
-      <h2 slot="category">This example shows specific picture classes</h2>
-      <h1 slot="title">Drive with peace of mind</h1>
+      <header slot="title">
+        <p>This example shows specific picture classes</p>
+        <h1>Drive with peace of mind</h1>
+      </header>
       <p slot="content">
         Whether you need to insure your first car or renew your existing car
         insurance, AXA can provide a range of car insurance policies to suit
@@ -113,8 +119,10 @@ Import the commercial-hero-banner-defining script and use a commercial-hero-bann
 
 ```js
 <axa-commercial-hero-banner>
-  <h2 slot="category">...</h2>  // Only one category
-  <h1 slot="title">...</h1> // Only one title
+  <header slot="title"> // Only one title
+    <h1>...<h1> // Header
+    <p>...<p> // Subheading
+  </header>
   <p slot="content">...</p> // You can put multiple <p> elements with the 'content' slot
   <small slot="disclaimer">...</small> // Only one disclaimer
   <axa-button-link slot="button" /> // Can also be 'axa-button', meant as CTA (Call to Action)
@@ -133,8 +141,10 @@ Here is a complete example of how you can make use of it, including the position
   variant="dark"
   imageSource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
 >
-  <h2 slot="category">This example shows specific picture classes</h2>
-  <h1 slot="title">Drive with peace of mind</h1>
+  <header slot="title">
+    <p>This example shows specific picture classes</p>
+    <h1>Drive with peace of mind</h1>
+  </header>
   <p slot="content">
     Whether you need to insure your first car or renew your existing car
     insurance, AXA can provide a range of car insurance policies to suit your
