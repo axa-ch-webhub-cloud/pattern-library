@@ -1,6 +1,6 @@
 ## 4.1.0
 
-- The new attribute `autofocus`, when true, sets keyboard focus on the underlying native &lt;input&gt; element after initial rendering of the component.
+- The new attribute `autofocus`, when true, sets keyboard focus on the underlying native &lt;input&gt; element after initial rendering of the component. (#1798)
 
 ## 4.0.0
 
