@@ -1,4 +1,4 @@
-## 5.0.1
+## 5.0.3
 
 - Remove `plus` icon and replace it with `add` in Typescript typings.
 
