@@ -39,6 +39,7 @@ storyInputText.add('Input Text', () => {
   const counterMax = text('counterMax', 'Over character limit!');
   const pattern = text('pattern', '');
   const inputmode = text('inputmode', '');
+  const autofocus = boolean('autofocus', false);
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -60,6 +61,7 @@ storyInputText.add('Input Text', () => {
       ?disabled="${disabled}"
       ?required="${required}"
       ?invalid="${invalid}"
+      ?autofocus="${autofocus}"
     ></axa-input-text>
   `;
 
