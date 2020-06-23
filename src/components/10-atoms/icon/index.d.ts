@@ -5,6 +5,7 @@
  * - a string containing "<svg", will be inlined
  */
 export type Icon =
+  | 'add'
   | 'arrow-left'
   | 'arrow-right'
   | 'collapse'
@@ -14,7 +15,6 @@ export type Icon =
   | 'expand'
   | 'mobile'
   | 'phone'
-  | 'plus'
   | 'search'
   | 'upload'
   | 'cloud-upload'

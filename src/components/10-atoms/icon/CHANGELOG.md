@@ -1,3 +1,7 @@
+## 5.0.3
+
+- Remove `plus` icon and replace it with `add` in Typescript typings.
+
 ## 5.0.0
 
 - BREAKING CHANGE: The icon `plus` is not available anymore. Use `add` instead.
