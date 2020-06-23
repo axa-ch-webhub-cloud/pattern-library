@@ -53,6 +53,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         // pattern="" or pattern="undefined" can cause problems on validating a form. Because of that set a RegEx that allows everything in that case.
         converter: value => value || PATTERN_DEFAULT,
       },
+      autofocus: { type: Boolean },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
@@ -235,14 +236,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     );
   }
 
-  _isFirefox() {
-    return (
-      navigator &&
-      navigator.userAgent &&
-      navigator.userAgent.includes('Firefox')
-    );
-  }
-
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
 
@@ -253,8 +246,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
 
-    // Firefox ignores the html autofocus attribute.
-    if (this._isFirefox() && !document.hasFocus() && this.autofocus) {
+    if (this.autofocus) {
       this.querySelector('input').focus();
     }
   }
@@ -332,7 +324,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
-                  autofocus
                 />
               `
             : html`
@@ -352,7 +343,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
-                  autofocus
                 />
               `
         }
