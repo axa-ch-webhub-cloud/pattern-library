@@ -3,7 +3,10 @@ import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
+import {
+  defineVersioned,
+  versionedHtml,
+} from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
