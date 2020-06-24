@@ -188,7 +188,7 @@ fixture('Input text - autofocus').page(
 
 test('should have focus after initial rendering', async t => {
   const hasFocus = ClientFunction(() => {
-    const activeElement = document.activeElement;
+    const { activeElement } = document;
     const inputElement = document.querySelector('input');
 
     return activeElement === inputElement;
