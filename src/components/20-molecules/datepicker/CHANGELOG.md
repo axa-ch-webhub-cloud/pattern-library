@@ -1,3 +1,7 @@
+## 9.0.1
+
+- Make hover state consistent. (#1825)
+
 ## 9.0.0
 
 - **Breaking change:** The `year` attribute (which is default: current year) is not being automatically added to `allowedyears` if you have specified any `allowedyears`. (#1805)
