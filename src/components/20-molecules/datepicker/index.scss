@@ -36,11 +36,9 @@ axa-datepicker {
       border-color: $color-shy-tomato;
       outline-color: $color-shy-tomato;
     }
-    .m-datepicker__input-wrap:hover {
-      .m-datepicker__input-button {
-        border-color: $color-shy-tomato;
-        outline-color: $color-shy-tomato;
-      }
+    .m-datepicker__input-wrap:hover .m-datepicker__input-button {
+      border-color: $color-shy-tomato;
+      outline-color: $color-shy-tomato;
     }
   }
 
