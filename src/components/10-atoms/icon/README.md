@@ -55,6 +55,7 @@ Import the icon-defining script and use icons like so:
 
 | Attribute              |
 | ---------------------- |
+| `icon="add"`           |
 | `icon="arrow-left"`    |
 | `icon="arrow-right"`   |
 | `icon="collapse"`      |
@@ -64,7 +65,6 @@ Import the icon-defining script and use icons like so:
 | `icon="expand"`        |
 | `icon="mobile"`        |
 | `icon="phone"`         |
-| `icon="plus"`          |
 | `icon="search"`        |
 | `icon="upload"`        |
 | `icon="axa-logo"`      |
