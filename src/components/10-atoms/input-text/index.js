@@ -239,8 +239,13 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     );
   }
 
+  _setNativeInput() {
+    this.nativeInput = this.querySelector('input');
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
+    this._setNativeInput();
 
     if (isReact) {
       this.nativeInput.value = defaultValue || value;
@@ -250,12 +255,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.modelCounter = this.getCounterText;
 
     if (this.autofocus) {
-      this.querySelector('input').focus();
+      this.focus();
     }
   }
 
   updated() {
-    this.nativeInput = this.querySelector('input');
+    this._setNativeInput();
   }
 
   render() {
