@@ -181,3 +181,31 @@ test('input element should have correct html attributes "pattern" and "numeric"'
   await t.expect($axaInputElement.getAttribute('inputmode')).eql('numeric');
   await t.expect($axaInputElement.getAttribute('pattern')).eql('[0-9]*');
 });
+
+fixture('Input text - autofocus').page(
+  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=50&knob-autofocus=true&knob-counter=Still ##counter## characters left&knob-counterMax=Over character limit!&knob-pattern=&knob-inputmode=`
+);
+
+test('should have focus after initial rendering', async t => {
+  const hasFocus = ClientFunction(() => {
+    const activeElement = document.activeElement;
+    const inputElement = document.querySelector('input');
+
+    return activeElement === inputElement;
+  });
+
+  await t.expect(await hasFocus()).ok();
+});
+
+fixture('Input text - defaultValue for react').page(
+  `${host}/iframe.html?id=components-atoms-input-text-react--input-text&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=qwertz&knob-type=text&knob-pattern=&knob-inputmode=`
+);
+
+test('should display correct default value', async t => {
+  const getValue = ClientFunction(() => {
+    const input = document.querySelector('input');
+    return input.value;
+  });
+
+  await t.expect(await getValue()).eql('qwertz');
+});
