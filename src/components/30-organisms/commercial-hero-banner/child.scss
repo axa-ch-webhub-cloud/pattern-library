@@ -19,24 +19,13 @@ axa-commercial-hero-banner {
 
   h1 {
     @include headline(h1, secondary);
-    font-size: 24px; // TODO should this be removed? N.L
     overflow-wrap: break-word;
-
-    @include breakpoint($mediaquery-sm-up) { // TODO should this be removed? N.L
-      font-size: 36px;
-      line-height: 1.13;
-      letter-spacing: 0.015em;
-    }
-
-    @include breakpoint($mediaquery-lg-up) { // TODO should this be removed? N.L
-      font-size: 48px;
-    }
   }
 
   p {
-    @include text(t3);
-    @include breakpoint($mediaquery-md-up) {
-      @include text(t2);
+    @include text(t4);
+    @include breakpoint($mediaquery-sm-up) {
+      @include text(t3);
     }
   }
 
