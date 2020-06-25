@@ -10,7 +10,7 @@
   &__title {
     text-align: center;
     margin: 0;
-    @include headline(h1, secondary);
+    @include headline(h2, secondary);
   }
 
   &__slot {
