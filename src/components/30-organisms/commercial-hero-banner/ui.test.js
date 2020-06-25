@@ -98,7 +98,7 @@ test('should use correct typography for mobile view', async t => {
   await t
     .expect(disclaimer.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
@@ -109,7 +109,7 @@ test('should use correct typography for tablet view', async t => {
   await t
     .expect(title.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
-  await t.expect(title.getStyleProperty('font-size')).eql('36px');
+  await t.expect(title.getStyleProperty('font-size')).eql('30px');
   await t.expect(title.getStyleProperty('font-weight')).eql('700');
 
   const content = await _getContentNode(t);
@@ -123,7 +123,7 @@ test('should use correct typography for tablet view', async t => {
   await t
     .expect(disclaimer.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
@@ -148,7 +148,7 @@ test('should use correct typography for desktop view', async t => {
   await t
     .expect(disclaimer.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
