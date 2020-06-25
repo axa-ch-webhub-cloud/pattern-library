@@ -18,7 +18,7 @@ axa-commercial-hero-banner {
   }
 
   h1 {
-    @include headline(h1, secondary);
+    @include headline(h2, secondary);
     overflow-wrap: break-word;
   }
 
