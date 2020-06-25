@@ -1,3 +1,7 @@
+## 9.0.2
+
+- Make negative Unix Epoch dates valid (#1806)
+
 ## 9.0.1
 
 - Make hover state consistent. (#1825)

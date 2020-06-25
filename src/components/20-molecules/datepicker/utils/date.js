@@ -154,10 +154,6 @@ const parseLocalisedDateIfValid = (
   // explicitly constructing an unambiguous date string here,
   // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
 
-  // CAVEAT: Unix Epoch starts in 1970, as a consequence
-  // years < 1970 lead to negative integers which are considered
-  // invalid below! Rethink validity once such old dates need to be
-  // considered.
   const dateAsUnixEpochInteger = Date.parse(
     `${addLeadingZeroes(year, 4)}-${addLeadingZeroes(
       month,
@@ -165,10 +161,9 @@ const parseLocalisedDateIfValid = (
     )}-${addLeadingZeroes(day, 2)}T00:00:00`
   );
 
-  const isValid =
-    // IE 11 doesn't support Number.isNaN (bleeding-edge ES6)
-    // eslint-disable-next-line no-restricted-globals
-    !isNaN(dateAsUnixEpochInteger) && dateAsUnixEpochInteger >= 0;
+  // IE 11 doesn't support Number.isNaN (bleeding-edge ES6)
+  // eslint-disable-next-line no-restricted-globals
+  const isValid = !isNaN(dateAsUnixEpochInteger);
 
   return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };
