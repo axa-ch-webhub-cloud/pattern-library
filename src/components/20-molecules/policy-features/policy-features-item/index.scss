@@ -38,4 +38,14 @@
   &__description {
     @include text(t3);
   }
+
+  @include breakpoint($mediaquery-md-up) {
+    &__title {
+      @include text(t2, bold);
+    }
+  
+    &__description {
+      @include text(t2);
+    }
+  }
 }
