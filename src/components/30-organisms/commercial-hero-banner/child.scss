@@ -35,6 +35,9 @@ axa-commercial-hero-banner {
 
   p {
     @include text(t3);
+    @include breakpoint($mediaquery-md-up) {
+      @include text(t2);
+    }
   }
 
   header > p {
@@ -43,7 +46,7 @@ axa-commercial-hero-banner {
     overflow-wrap: break-word;
   }
 
-  small { // TODO replace with t4? N.L
+  small {
     @include text(t4);
   }
 }
