@@ -161,9 +161,10 @@ const parseLocalisedDateIfValid = (
     )}-${addLeadingZeroes(day, 2)}T00:00:00`
   );
 
-  // IE 11 doesn't support Number.isNaN (bleeding-edge ES6)
-  // eslint-disable-next-line no-restricted-globals
-  const isValid = !isNaN(dateAsUnixEpochInteger);
+  // Check if its a valid number. Hint: empty string is number 0.
+  const isValid =
+    dateAsUnixEpochInteger >= -9007199254740991 && // Number.MIN_SAFE_INTEGER
+    dateAsUnixEpochInteger !== '';
 
   return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };
