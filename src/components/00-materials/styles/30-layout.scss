@@ -1,21 +1,15 @@
-// Breakpoints
-$breakpoint-small: 576px;
-$breakpoint-medium: 768px;
-$breakpoint-large: 992px;
-$breakpoint-xlarge: 1200px;
-$breakpoint-xxlarge: 1440px;
-
 @import './breakpoint';
+@import './variables';
 @include bkpt-set('to ems', true); // TODO -> SERIOUS EVALUATION HERE NEEDED
 
-$mediaquery-xsm: 0 ($breakpoint-small - 1); // (min-width: 0 and max-width: 575px)
-$mediaquery-sm-up: $breakpoint-small; // (min-width: 576px)
-$mediaquery-sm: $breakpoint-small ($breakpoint-medium - 1px); // (min-width: 576px and max-width: 767px)
-$mediaquery-md-up: $breakpoint-medium; // (min-width: 768px)
-$mediaquery-md: $breakpoint-medium ($breakpoint-large - 1px); // (min-width: 768px and max-width: 991px)
-$mediaquery-lg-up: $breakpoint-large; // (min-width: 992px)
-$mediaquery-lg: $breakpoint-large ($breakpoint-xlarge - 1px); // (min-width: 992px and max-width: 1199px)
-$mediaquery-xlg-up: $breakpoint-xlarge; // (min-width: 1200px)
+$mediaquery-xsm: 0 ($breakpoint-xs - 1); // (min-width: 0 and max-width: 575px)
+$mediaquery-sm-up: $breakpoint-xs; // (min-width: 576px)
+$mediaquery-sm: $breakpoint-xs ($breakpoint-sm - 1px); // (min-width: 576px and max-width: 767px)
+$mediaquery-md-up: $breakpoint-sm; // (min-width: 768px)
+$mediaquery-md: $breakpoint-sm ($breakpoint-md - 1px); // (min-width: 768px and max-width: 991px)
+$mediaquery-lg-up: $breakpoint-md; // (min-width: 992px)
+$mediaquery-lg: $breakpoint-md ($breakpoint-xl - 1px); // (min-width: 992px and max-width: 1199px)
+$mediaquery-xlg-up: $breakpoint-xl; // (min-width: 1200px)
 
 @mixin max-width {
   max-width: 576px;
