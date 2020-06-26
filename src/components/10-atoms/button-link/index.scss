@@ -20,7 +20,7 @@
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-deep-sapphire;
 
-  @include breakpoint($mediaquery-sm-up) {
+  @include breakpoint($mediaquery-xs-up) {
     @include _text(default);
   }
 
@@ -51,7 +51,7 @@
     height: 25px;
     box-sizing: border-box;
 
-    @include breakpoint($mediaquery-sm-up) {
+    @include breakpoint($mediaquery-xs-up) {
       min-height: 36px;
     }
   }
@@ -70,7 +70,7 @@
 .a-button-link--large {
   @include _text(default);
 
-  @include breakpoint($mediaquery-sm-up) {
+  @include breakpoint($mediaquery-xs-up) {
     @include _text(medium);
   }
 }
@@ -78,7 +78,7 @@
 .a-button-link--large .a-button-link__flex-wrapper {
   min-height: 36px;
 
-  @include breakpoint($mediaquery-sm-up) {
+  @include breakpoint($mediaquery-xs-up) {
     min-height: 46px;
   }
 }

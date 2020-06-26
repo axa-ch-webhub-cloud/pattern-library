@@ -230,7 +230,7 @@ axa-dropdown {
 
   // SHOW ENHANCED OR NATIVE
   .m-dropdown__select-wrapper {
-    @include breakpoint($mediaquery-md-up) {
+    @include breakpoint($mediaquery-sm-up) {
       display: none;
     }
   }
@@ -239,7 +239,7 @@ axa-dropdown {
   .m-dropdown__content {
     display: none;
 
-    @include breakpoint($mediaquery-md-up) {
+    @include breakpoint($mediaquery-sm-up) {
       display: block;
     }
   }
@@ -276,7 +276,7 @@ axa-dropdown {
     .m-dropdown__content {
       display: none;
 
-      @include breakpoint($mediaquery-md-up) {
+      @include breakpoint($mediaquery-sm-up) {
         display: none;
       }
     }

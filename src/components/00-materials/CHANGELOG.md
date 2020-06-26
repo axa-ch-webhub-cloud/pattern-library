@@ -1,3 +1,12 @@
+## 9.0.0
+
+- BREAKING CHANGE: Definition of the breakpoints moved in a separat file called `variables.scss`. The naming changed.
+  Before: `$breakpoint-small`, `$breakpoint-medium`, `$breakpoint-large`, `$breakpoint-xlarge`, `$breakpoint-xxlarge`
+  After: `$breakpoint-xs`, `$breakpoint-sm`, `$breakpoint-md`, `$breakpoint-xl` `$breakpoint-xxl`
+- BREAKING CHANGE: The naming of the mediaqueries changed partially.
+  Before: `$mediaquery-xsm`, `$mediaquery-sm-up`, `$mediaquery-sm`, `$mediaquery-md-up`, `$mediaquery-md`, `$mediaquery-lg-up`, `$mediaquery-lg`, `$mediaquery-xlg-up`
+  After: `$mediaquery-xs`, `$mediaquery-xs-up`, `$mediaquery-sm`, `$mediaquery-sm-up`, `$mediaquery-md:`, `$mediaquery-md-up`, `$mediaquery-xl`, `$mediaquery-xl-up`
+
 ## 8.0.2
 
 - Fix the script that you need if you are adding new SVGs to our project (#1802)

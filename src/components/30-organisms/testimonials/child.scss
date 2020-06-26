@@ -7,7 +7,7 @@ axa-testimonials {
     text-transform: uppercase;
     margin-top: 10px;
 
-    @include breakpoint($mediaquery-xlg-up) {
+    @include breakpoint($mediaquery-xl-up) {
       margin-top: 20px;
     }
   }

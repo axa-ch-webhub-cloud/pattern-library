@@ -12,7 +12,7 @@
     color: $color-prim-white;
     @include typo(primary, x-small, default);
 
-    @include breakpoint($mediaquery-md-up) {
+    @include breakpoint($mediaquery-sm-up) {
       flex-direction: row;
       justify-content: space-between;
     }
@@ -54,7 +54,7 @@
 
     padding-top: 10px;
 
-    @include breakpoint($mediaquery-md-up) {
+    @include breakpoint($mediaquery-sm-up) {
       width: auto;
       padding-top: 0px;
     }
