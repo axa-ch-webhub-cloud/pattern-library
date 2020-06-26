@@ -3,7 +3,7 @@
   text-align: center;
   margin: 0 11px;
 
-  @include breakpoint($mediaquery-sm-up) {
+  @include breakpoint($mediaquery-xs-up) {
     width: 240px;
   }
 
