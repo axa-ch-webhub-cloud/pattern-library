@@ -46,7 +46,7 @@ axa-commercial-hero-banner {
       letter-spacing: 0.015em;
     }
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       font-size: 48px;
     }
   }

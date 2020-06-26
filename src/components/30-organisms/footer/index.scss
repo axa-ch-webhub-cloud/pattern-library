@@ -10,7 +10,7 @@
     padding: 40px 0;
   }
 
-  @include breakpoint($mediaquery-lg-up) {
+  @include breakpoint($mediaquery-md-up) {
     padding: 50px 0;
 
     h2 {
@@ -30,7 +30,7 @@
       -ms-grid-columns: 1fr;
     }
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       grid-template-areas: 'links social';
 
       // IE11 workaround
@@ -49,7 +49,7 @@
       -ms-grid-column: 1;
     }
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       // IE11 workaround
       -ms-grid-row: 1;
       -ms-grid-column: 1;
@@ -65,7 +65,7 @@
     // IE11 workaround: This breakpoint will make sure, that everything in it
     // is IE10+ exclusive
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      @include breakpoint($mediaquery-lg-up) {
+      @include breakpoint($mediaquery-md-up) {
         margin-left: 100px;
       }
     }
@@ -78,7 +78,7 @@
       -ms-grid-column: 1;
     }
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       // IE11 workaround
       -ms-grid-row: 1;
       -ms-grid-column: 2;
@@ -132,7 +132,7 @@
         }
       }
 
-      @include breakpoint($mediaquery-lg-up) {
+      @include breakpoint($mediaquery-md-up) {
         padding: 10px 0;
       }
     }

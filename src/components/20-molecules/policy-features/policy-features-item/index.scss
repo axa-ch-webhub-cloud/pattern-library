@@ -11,7 +11,7 @@
     width: 210px;
   }
 
-  @include breakpoint($mediaquery-lg-up) {
+  @include breakpoint($mediaquery-md-up) {
     width: 255px;
     margin: 0; // should display 3 items in smallest lg
   }

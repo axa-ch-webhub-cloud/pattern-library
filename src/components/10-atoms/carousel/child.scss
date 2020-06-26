@@ -9,7 +9,7 @@
     @include typo(primary, large);
   }
 
-  @include breakpoint($mediaquery-lg-up) {
+  @include breakpoint($mediaquery-md-up) {
     @include typo(primary, large-1);
   }
 }

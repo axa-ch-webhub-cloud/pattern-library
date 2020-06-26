@@ -28,7 +28,7 @@ axa-footer {
     &[slot="social-title"] {
       display: none;
 
-      @include breakpoint($mediaquery-lg-up) {
+      @include breakpoint($mediaquery-md-up) {
         display: block;
       }
     }

@@ -1,5 +1,5 @@
 .o-commercial-hero-banner {
-  @include breakpoint($mediaquery-lg-up) {
+  @include breakpoint($mediaquery-md-up) {
     height: 560px;
   }
 
@@ -11,13 +11,13 @@
     left: 0;
     z-index: -10;
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       height: 560px;
     }
   }
 
   &__text--dark {
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       color: $color-prim-white;
     }
   }
@@ -25,7 +25,7 @@
   &__container {
     position: relative;
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       background: linear-gradient(
         270deg,
         rgba(255, 255, 255, 0) 30%,
@@ -35,7 +35,7 @@
     }
 
     &--dark {
-      @include breakpoint($mediaquery-lg-up) {
+      @include breakpoint($mediaquery-md-up) {
         background: linear-gradient(
           270deg,
           rgba(0, 0, 0, 0) 30%,
@@ -52,7 +52,7 @@
     max-height: 560px;
     overflow: hidden;
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       padding: 0;
       background-color: transparent;
 
@@ -65,7 +65,7 @@
 
       word-wrap: break-word;
 
-      @include breakpoint($mediaquery-lg-up) {
+      @include breakpoint($mediaquery-md-up) {
         display: flex;
         flex-basis: 50%;
         align-items: center;

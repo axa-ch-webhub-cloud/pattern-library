@@ -17,7 +17,7 @@
       @include typo-title(huge, secondary);
     }
 
-    @include breakpoint($mediaquery-lg-up) {
+    @include breakpoint($mediaquery-md-up) {
       @include typo-title(huge-2, secondary);
     }
   }
