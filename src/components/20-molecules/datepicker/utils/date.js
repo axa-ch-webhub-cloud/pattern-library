@@ -161,10 +161,9 @@ const parseLocalisedDateIfValid = (
     )}-${addLeadingZeroes(day, 2)}T00:00:00`
   );
 
-  // Check if its a valid number. Hint: empty string is number 0.
   const isValid =
-    dateAsUnixEpochInteger >= -9007199254740991 && // Number.MIN_SAFE_INTEGER
-    dateAsUnixEpochInteger !== '';
+    typeof dateAsUnixEpochInteger === 'number' &&
+    !Number.isNaN(dateAsUnixEpochInteger);
 
   return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };
