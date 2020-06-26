@@ -9,7 +9,7 @@ $mediaquery-md-up: $breakpoint-sm; // (min-width: 768px)
 $mediaquery-md: $breakpoint-sm ($breakpoint-md - 1px); // (min-width: 768px and max-width: 991px)
 $mediaquery-lg-up: $breakpoint-md; // (min-width: 992px)
 $mediaquery-lg: $breakpoint-md ($breakpoint-xl - 1px); // (min-width: 992px and max-width: 1199px)
-$mediaquery-xlg-up: $breakpoint-xl; // (min-width: 1200px)
+$mediaquery-xl-up: $breakpoint-xl; // (min-width: 1200px)
 
 @mixin max-width {
   max-width: 576px;
@@ -27,7 +27,7 @@ $mediaquery-xlg-up: $breakpoint-xl; // (min-width: 1200px)
     max-width: 960px;
   }
 
-  @include breakpoint($mediaquery-xlg-up) {
+  @include breakpoint($mediaquery-xl-up) {
     max-width: 1140px;
   }
 }

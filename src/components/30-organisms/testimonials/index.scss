@@ -35,7 +35,7 @@
     @include breakpoint($mediaquery-sm-up) {
       padding: 30px 5px 50px 5px;
     }
-    @include breakpoint($mediaquery-xlg-up) {
+    @include breakpoint($mediaquery-xl-up) {
       padding: 30px 5px 80px 5px;
     }
   }
