@@ -178,7 +178,7 @@ test('should render badge and addon', async t => {
 });
 
 async function _getTitleNode(t) {
-  const titleNode = await Selector(TAG).find('[slot="title"]');
+  const titleNode = await Selector(TAG).find('h1');
   await t.expect(titleNode.exists).ok();
   return titleNode;
 }
