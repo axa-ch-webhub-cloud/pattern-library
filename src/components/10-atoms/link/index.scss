@@ -4,6 +4,8 @@
   color: $color-axa-blue;
   align-items: center;
 
+  @include text(t3);
+
   &:active,
   &:hover {
     text-decoration: underline;
