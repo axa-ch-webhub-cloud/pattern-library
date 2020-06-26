@@ -1,7 +1,7 @@
 axa-text > * {
   @include typo(primary, medium-1);
 
-  @include breakpoint($mediaquery-md-up) {
+  @include breakpoint($mediaquery-sm-up) {
     @include typo(primary, large);
   }
 
@@ -11,7 +11,7 @@ axa-text > * {
 axa-text[variant="size-2"] > * {
   @include typo(primary, medium);
 
-  @include breakpoint($mediaquery-md-up) {
+  @include breakpoint($mediaquery-sm-up) {
     @include typo(primary, medium-1);
   }
 }
@@ -19,7 +19,7 @@ axa-text[variant="size-2"] > * {
 axa-text[variant="size-3"] > * {
   @include typo(primary, small-1);
 
-  @include breakpoint($mediaquery-md-up) {
+  @include breakpoint($mediaquery-sm-up) {
     @include typo(primary, medium);
   }
 }
