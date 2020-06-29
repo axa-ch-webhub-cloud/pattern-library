@@ -1,11 +1,11 @@
 /* global document */
+import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { storiesOf } from '@storybook/html';
-import { boolean, text, radios, withKnobs } from '@storybook/addon-knobs';
-import AXAInputText from './AXAInputText';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
+import Readme from '../README.md';
+import AXAInputText from './AXAInputText';
 
 const typeOptions = {
   text: 'text',
@@ -37,6 +37,7 @@ storyInputText.add('Input Text', () => {
   const types = radios('type', typeOptions, 'text');
   const pattern = text('pattern', '');
   const inputmode = text('inputmode', '');
+  const autofocus = boolean('autofocus', false);
 
   const wrapper = document.createElement('div');
   ReactDOM.render(
@@ -55,6 +56,7 @@ storyInputText.add('Input Text', () => {
       info={info}
       pattern={pattern}
       inputmode={inputmode}
+      autofocus={autofocus}
     />,
     wrapper
   );
@@ -73,6 +75,7 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
   const invalid = boolean('invalid', false);
   const counter = text('counter', 'Still ##counter## characters left');
   const counterMax = text('counterMax', 'Over character limit!');
+  const autofocus = boolean('autofocus', false);
 
   const wrapper = document.createElement('div');
   // there are two input fields because with only one is not possible to
@@ -95,6 +98,7 @@ storyInputText.add('Input Text - Simulate autocomplete', () => {
         maxlength="5"
         error={error}
         info={info}
+        autofocus={autofocus}
       />
     </form>,
     wrapper
