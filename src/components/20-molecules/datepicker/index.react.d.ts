@@ -1,6 +1,6 @@
 import React from 'react';
 
-type AXADatepickerChangeEvent = {
+export type AXADatepickerChangeEvent = {
   target: {
     value: string;
   };

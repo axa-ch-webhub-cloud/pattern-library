@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'fixed';
+export type Variant = 'fixed';
 
 export interface AXACookieDisclaimerProps {
   variant?: Variant;

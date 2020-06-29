@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@axa-ch/icon/lib/index.d';
 
-type Variant = 'secondary' | 'red' | 'inverted';
+export type Variant = 'secondary' | 'red' | 'inverted';
 
 export interface AXAInputFileProps {
   variant?: Variant;
