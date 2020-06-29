@@ -80,4 +80,28 @@ describe('Datepicker unit tests', () => {
       expect(AXADatepicker.prototype._userSelectedDate).not.toBe(null);
     });
   });
+
+  describe('handleInputKeyUp()', () => {
+    it('should stop event propagation', () => {
+      let stopPropagationCalled = false;
+      const testEventObject = {
+        stopPropagation: () => {
+          stopPropagationCalled = true;
+        },
+      };
+
+      AXADatepicker.prototype.handleInputKeyUp(testEventObject);
+      expect(stopPropagationCalled).toEqual(true);
+    });
+    it('should call onInputfieldKeyUp', () => {
+      const mockOnInputfieldKeyUp = jest.fn();
+      const testEventObject = {
+        stopPropagation: () => {},
+      };
+
+      AXADatepicker.prototype.onInputfieldKeyUp = mockOnInputfieldKeyUp;
+      AXADatepicker.prototype.handleInputKeyUp(testEventObject);
+      expect(mockOnInputfieldKeyUp).toHaveBeenLastCalledWith(testEventObject);
+    });
+  });
 });
