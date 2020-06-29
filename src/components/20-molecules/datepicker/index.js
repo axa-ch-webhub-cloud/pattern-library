@@ -254,7 +254,6 @@ class AXADatepicker extends NoShadowDOM {
     // internal model state
     this.state = {};
     applyDefaults(this);
-    this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
 
@@ -387,6 +386,7 @@ class AXADatepicker extends NoShadowDOM {
                   @blur="${this.handleBlur}"
                   @focus="${this.onFocus}"
                   @change="${e => e.stopPropagation()}"
+                  @keyup="${this.onInputfieldKeyUp}"
                   class="m-datepicker__input js-datepicker__input"
                   type="text"
                   name="${this.name}"
@@ -486,8 +486,6 @@ class AXADatepicker extends NoShadowDOM {
         input.focus();
       }
 
-      input.addEventListener('keyup', this.handleInputKeyUp);
-
       window.setTimeout(() => {
         window.addEventListener('resize', this.debouncedHandleViewportCheck);
         window.addEventListener('scroll', this.debouncedHandleViewportCheck);
@@ -516,9 +514,6 @@ class AXADatepicker extends NoShadowDOM {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this.input) {
-      this.input.removeEventListener('keyup', this.handleInputKeyUp);
-    }
     window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleBodyClick);
     window.removeEventListener('resize', this.debouncedHandleViewportCheck);
@@ -626,13 +621,6 @@ class AXADatepicker extends NoShadowDOM {
       if (this.open) {
         this.toggleDatepicker();
       }
-    }
-  }
-
-  handleInputKeyUp(e) {
-    e.stopPropagation();
-    if (this.onInputfieldKeyUp) {
-      this.onInputfieldKeyUp(e);
     }
   }
 
