@@ -156,6 +156,10 @@ Default: `.*`. This RegEx do not restrict any input. An empty string at this poi
 
 It is a string value. Useful to open up numeric keyboard on touch devices. See official HTML documentation for details.
 
+### autofocus
+
+The Boolean attribute autofocus, when true, sets keyboard focus on the underlying native &lt;input&gt; element after initial rendering of the component.
+
 ## Callbacks
 
 ### onChange

@@ -1,16 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { AXAPopupMixin, AXAPopupButton, AXAPopupContent } from '@axa-ch/popup';
-
-import NoShadowDOM from '../../../utils/no-shadow';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
 import createRefId from '../../../utils/create-ref-id';
+import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 const PATTERN_DEFAULT = '.*';
@@ -57,6 +56,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         // pattern="" or pattern="undefined" can cause problems on validating a form. Because of that set a RegEx that allows everything in that case.
         converter: value => value || PATTERN_DEFAULT,
       },
+      autofocus: { type: Boolean },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
@@ -239,8 +239,13 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     );
   }
 
+  _setNativeInput() {
+    this.nativeInput = this.querySelector('input');
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
+    this._setNativeInput();
 
     if (isReact) {
       this.nativeInput.value = defaultValue || value;
@@ -248,10 +253,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
     this.modelCounter = this.getCounterText;
+
+    if (this.autofocus) {
+      this.focus();
+    }
   }
 
   updated() {
-    this.nativeInput = this.querySelector('input');
+    this._setNativeInput();
   }
 
   render() {
