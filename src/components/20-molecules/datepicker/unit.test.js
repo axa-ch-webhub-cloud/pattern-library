@@ -101,7 +101,7 @@ describe('Datepicker unit tests', () => {
 
       AXADatepicker.prototype.onInputfieldKeyUp = mockOnInputfieldKeyUp;
       AXADatepicker.prototype.handleInputKeyUp(testEventObject);
-      expect(mockOnInputfieldKeyUp).toHaveBeenLastCalledWith(testEventObject);
+      expect(mockOnInputfieldKeyUp).toHaveBeenCalledWith(testEventObject);
     });
   });
 });
