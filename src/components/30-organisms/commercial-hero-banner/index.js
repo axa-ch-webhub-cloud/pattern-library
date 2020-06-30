@@ -77,7 +77,6 @@ class AXACommercialHeroBanner extends InlineStyles {
             <div class="${classMap(contentClasses)}">
               <div class="o-commercial-hero-banner__content-item">
                 <div class="o-commercial-hero-banner__content-item-box">
-                  <slot name="category"></slot>
                   <slot name="title"></slot>
                   <slot name="content"></slot>
                   <slot name="disclaimer"></slot>

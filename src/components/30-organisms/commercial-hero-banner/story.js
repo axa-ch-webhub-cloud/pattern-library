@@ -43,8 +43,10 @@ storyAXACommercialHeroBanner.add('Story', () => {
       variant="${variant}"
       imagesource="${imageSource}"
     >
-      <h2 slot="category">This example shows specific picture classes</h2>
-      <h1 slot="title">Drive with peace of mind</h1>
+      <header slot="title">
+        <p>This example shows specific picture classes</p>
+        <h1>Drive with peace of mind</h1>
+      </header>
       <p slot="content">
         Whether you need to insure your first car or renew your existing car
         insurance, AXA can provide a range of car insurance policies to suit

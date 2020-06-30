@@ -17,56 +17,33 @@ axa-commercial-hero-banner {
     margin-right: 0;
   }
 
-  h2 {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    overflow-wrap: break-word;
-
-    @include breakpoint($mediaquery-xs-up) {
-      font-size: 14px;
-      line-height: 1.21;
-    }
-  }
-
   h1 {
-    font-family: $font-family-publico;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.17;
-    letter-spacing: -0.01em;
+    @include headline(h1, secondary);
+    font-size: 24px; // TODO should this be removed? N.L
     overflow-wrap: break-word;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @include breakpoint($mediaquery-sm-up) { // TODO should this be removed? N.L
       font-size: 36px;
       line-height: 1.13;
       letter-spacing: 0.015em;
     }
 
-    @include breakpoint($mediaquery-md-up) {
+    @include breakpoint($mediaquery-lg-up) { // TODO should this be removed? N.L
       font-size: 48px;
     }
   }
 
   p {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-
-    @include breakpoint($mediaquery-xs-up) {
-      font-size: 16px;
-    }
+    @include text(t3);
   }
 
-  small {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px;
+  header > p {
+    @include text(t4, bold);
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+  }
+
+  small { // TODO replace with t4? N.L
+    @include text(t4);
   }
 }
