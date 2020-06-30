@@ -4,8 +4,10 @@ import AXADatepickerReact from './AXADatepickerReact';
 const DemoDatepickerOnInputfieldKeyUp = () => {
   return (
     <div>
-      <span id="datepicker-react-testoutput" />
-      <br />
+      <p>
+        <span>Last key pressed: </span>
+        <span id="datepicker-react-testoutput" />
+      </p>
       <AXADatepickerReact
         inputfield
         id="datepicker-react-inputfield-on-date-change"
