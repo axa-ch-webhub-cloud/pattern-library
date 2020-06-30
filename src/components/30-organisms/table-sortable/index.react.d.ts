@@ -1,12 +1,12 @@
 import React from 'react';
 
-type Model = {
+export type Model = {
   thead?: Array<any>;
   tbody?: Array<any>;
   tfoot?: Array<any>;
 };
 
-interface AXATableSortableProps {
+export interface AXATableSortableProps {
   model?: Model;
   innerscroll?: number;
   maxheight?: number;
@@ -20,4 +20,4 @@ declare function createAXATableSortable(
   version?: string
 ): React.ComponentType<AXATableSortableProps>;
 
-export = createAXATableSortable;
+export default createAXATableSortable;

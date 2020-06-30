@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'warning';
+export type Variant = 'warning';
 
 export interface AXATopContentBarProps {
   variant?: Variant;

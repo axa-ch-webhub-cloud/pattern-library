@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'foo' | 'bar';
+export type Variant = 'foo' | 'bar';
 
 export interface AXAContainerProps {}
 

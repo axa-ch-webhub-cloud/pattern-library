@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'axa-blue' | 'wild-sand' | 'white';
+export type Variant = 'axa-blue' | 'wild-sand' | 'white';
 
 export interface AXAPolicyFeaturesProps {
   title: string;

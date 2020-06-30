@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXAFileUploadProps {
+export interface AXAFileUploadProps {
   inputFileText?: string;
   maxSizeOfSingleFileKB?: number;
   maxSizeOfAllFilesKB?: number;
@@ -22,4 +22,4 @@ declare function createAXAFileUpload(
   version?: string
 ): React.ComponentType<AXAFileUploadProps>;
 
-export = createAXAFileUpload;
+export default createAXAFileUpload;
