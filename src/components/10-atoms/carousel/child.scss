@@ -1,16 +1,16 @@
 @mixin defaultAttributesChildElements {
-  @include typo(primary);
+  @include text(t4);
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center; // align the dom element itself (f.e. small spans)
 
-  @include breakpoint($mediaquery-xs-up) {
-    @include typo(primary, large);
+  @include breakpoint($mediaquery-sm-up) {
+    @include text(t2);
   }
 
-  @include breakpoint($mediaquery-md-up) {
-    @include typo(primary, large-1);
+  @include breakpoint($mediaquery-lg-up) {
+    @include text(t1);
   }
 }
 
