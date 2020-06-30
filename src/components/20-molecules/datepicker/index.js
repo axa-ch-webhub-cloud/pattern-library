@@ -180,6 +180,7 @@ class AXADatepicker extends NoShadowDOM {
       onDateChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
+      onInputfieldKeyUp: { type: Function, attribute: false },
     };
   }
 
@@ -385,6 +386,7 @@ class AXADatepicker extends NoShadowDOM {
                   @blur="${this.handleBlur}"
                   @focus="${this.onFocus}"
                   @change="${e => e.stopPropagation()}"
+                  @keyup="${this.onInputfieldKeyUp}"
                   class="m-datepicker__input js-datepicker__input"
                   type="text"
                   name="${this.name}"
@@ -483,6 +485,7 @@ class AXADatepicker extends NoShadowDOM {
       if (autofocus) {
         input.focus();
       }
+
       window.setTimeout(() => {
         window.addEventListener('resize', this.debouncedHandleViewportCheck);
         window.addEventListener('scroll', this.debouncedHandleViewportCheck);

@@ -478,6 +478,24 @@ test('should fire onDateChange callback on valid user input', async t => {
     .contains(' Feb 28 2020 ');
 });
 
+fixture('Datepicker React OnInputfieldKeyUp').page(
+  `${host}/iframe.html?id=components-molecules-datepicker-react-demos--using-oninputfieldkeyup-event`
+);
+
+test('should fire onInputfieldKeyUp callback on user input', async t => {
+  const testoutput = await Selector(() =>
+    document.querySelector('#datepicker-react-testoutput')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t.typeText('axa-datepicker', 'x', {
+    replace: true,
+  });
+
+  await t.expect(await testoutput().innerHTML).eql('x');
+});
+
 fixture('Datepicker React inputfield defaultValue').page(
   `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
 );

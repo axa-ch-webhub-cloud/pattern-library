@@ -1,3 +1,7 @@
+## 9.1.0
+
+- New callback `onInputfieldKeyUp` which is called if the user type something at the Inputfield.
+
 ## 9.0.2
 
 - Make negative Unix Epoch dates valid (#1806)
