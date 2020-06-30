@@ -14,7 +14,7 @@ axa-checkbox {
     color: $color;
   }
 
-  @include typo(primary, default);
+  @include text(t4);
   display: block;
 
   .a-checkbox__wrapper {
@@ -172,10 +172,10 @@ axa-checkbox {
   .a-checkbox__children-inline,
   .a-checkbox__children-inline * {
       display: inline;
-      @include typo(primary, small-1);
+      @include text(t4);
 
-      @include breakpoint($mediaquery-sm-up) {
-         @include typo(primary, medium);
+      @include breakpoint($mediaquery-md-up) {
+         @include text(t1);
          line-height: 1;
       }
       line-height: 1;
