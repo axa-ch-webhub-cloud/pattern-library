@@ -13,145 +13,49 @@
 }
 
 h1.a-heading {
-  @include typo-title(large-1);
-
-  @include breakpoint($mediaquery-md) {
-    @include typo-title(huge-1);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
-    @include typo-title(huge-3);
-  }
+  @include headline(h1, primary);
 
   &.a-heading--secondary {
-    @include typo-title(large-1, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(huge-1, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(huge-3, secondary);
-    }
+    @include headline(h1, secondary);
   }
 }
 
 h2.a-heading {
-  @include typo-title(large-1);
-
-  @include breakpoint($mediaquery-md) {
-    @include typo-title(huge);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
-    @include typo-title(huge-2);
-  }
+  @include headline(h2, primary);
 
   &.a-heading--secondary {
-    @include typo-title(large-1, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(huge, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(huge-2, secondary);
-    }
+    @include headline(h2, secondary);
   }
 }
 
 h3.a-heading {
-  @include typo-title(large);
-
-  @include breakpoint($mediaquery-md) {
-    @include typo-title(large-3);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
-    @include typo-title(huge-1);
-  }
+  @include headline(h3, primary);
 
   &.a-heading--secondary {
-    @include typo-title(large, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(large-3, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(huge-1, secondary);
-    }
+    @include headline(h3, secondary);
   }
 }
 
 h4.a-heading {
-  @include typo-title(large);
-
-  @include breakpoint($mediaquery-md) {
-    @include typo-title(large-2);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
-    @include typo-title(large-3);
-  }
+  @include headline(h4, primary);
 
   &.a-heading--secondary {
-    @include typo-title(large, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(large-2, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(large-3, secondary);
-    }
+    @include headline(h4, secondary);
   }
 }
 
 h5.a-heading {
-  @include typo-title(medium-1);
-
-  @include breakpoint($mediaquery-md) {
-    @include typo-title(large);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
-    @include typo-title(large-1);
-  }
+  @include headline(h5, primary);
 
   &.a-heading--secondary {
-    @include typo-title(medium-1, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(large, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(large-1, secondary);
-    }
+    @include headline(h5, secondary);
   }
 }
 
 h6.a-heading {
-  @include typo-title(medium);
-
-  @include breakpoint($mediaquery-md) {
-    @include typo-title(medium-1);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
-    @include typo-title(large);
-  }
+  @include headline(h6, primary);
 
   &.a-heading--secondary {
-    @include typo-title(medium, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(medium-1, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(large, secondary);
-    }
+    @include headline(h6, secondary);
   }
 }
