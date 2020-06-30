@@ -2,13 +2,21 @@
 
 axa-testimonials {
   .o-testimonials__author {
-    @include typo(primary, small, bold);
+    @include text(t4, bold);
     display: block;
     text-transform: uppercase;
     margin-top: 10px;
 
     @include breakpoint($mediaquery-xl-up) {
       margin-top: 20px;
+    }
+  }
+
+  .o-testimonials__vertical-margin {
+    @include text(t4);
+
+    @include breakpoint($mediaquery-sm-up) {
+      @include text(t1);
     }
   }
 

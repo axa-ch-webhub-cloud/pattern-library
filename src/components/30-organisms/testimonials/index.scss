@@ -21,12 +21,12 @@
   }
 
   &__subtitle {
-    @include typo();
+    @include text(t4);
     margin: 20px 30px 0 30px;
     text-align: center;
 
-    @include breakpoint($mediaquery-xs-up) {
-      @include typo(primary, medium);
+    @include breakpoint($mediaquery-sm-up) {
+      @include text(t3);
     }
   }
 
