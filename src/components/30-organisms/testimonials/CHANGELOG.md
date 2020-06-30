@@ -1,3 +1,7 @@
+## 3.1.0
+
+- You can now import ts prop types.
+
 ## 3.0.0
 
 - Upgrade to versioned component.
