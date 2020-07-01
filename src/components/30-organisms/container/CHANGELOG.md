@@ -1,6 +1,6 @@
-## 3.1.0
+## 3.0.1
 
-- You can now import ts type for `variant`.
+- Remove unnecessary ts type for `variant`.
 
 ## 3.0.0
 
