@@ -6,6 +6,8 @@ import { withA11y } from '@storybook/addon-a11y';
 import logo from '../src/static/svg/logo-axa.svg';
 import { withHTML } from './addons/codepreview/decorators/html';
 
+// Old demos were removed with the commit 508818e6452ff9201f2107487cded7f605cad841. If not used till Jan 2021 -> delete this comment
+
 addParameters({
   readme: {
     codeTheme: 'github',
@@ -28,12 +30,10 @@ const landingpage = require.context('../src/other/landingpage', true, /(story\.(
 // N.B. don't-look-into-node-modules behaviour uses negative lookbehind (?<!) as part of its regular expression
 // (https://v8.dev/blog/regexp-lookbehind-assertions), which is supported for node 9 and greater
 const components = require.context('../src/components', true, /(?<!node_modules.*)(story|demo)\.(js|jsx)$/);
-const demos = require.context('../src/other/demo', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const pages = require.context('../src/pages', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
 configure(() => {
   landingpage.keys().forEach(landingpage);
   components.keys().forEach(components);
-  demos.keys().forEach(demos);
   pages.keys().forEach(pages);
 }, module);

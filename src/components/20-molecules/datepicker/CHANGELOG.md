@@ -1,6 +1,10 @@
-## 9.1.0
+## 9.2.0
 
 - You can now import ts type for AXADatepickerChangeEvent.
+
+## 9.1.0
+
+- New callback `onInputfieldKeyUp` which is called if the user type something at the Inputfield.
 
 ## 9.0.2
 

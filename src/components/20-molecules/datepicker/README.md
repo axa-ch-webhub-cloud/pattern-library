@@ -196,8 +196,7 @@ It is also invoked whenever the user presses the OK button to accept a date sele
 
 This property is especially relevant for controlled-component behaviour under React.
 
-An `input` event with `target:{value}` is passed as parameter 1 of the callback, in which `value` represents
-the new date-input string from the free-form date-input field.
+An `input` event with `target:{value}` is passed as parameter 1 of the callback, in which `value` represents the new date-input string from the free-form date-input field.
 
 Note that due to `input` event characteristics, pasting date strings into the free-form date-input field is supported (unlike in native &lt;input type="date"&gt;).
 
@@ -214,6 +213,13 @@ A valid [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 The function-valued attributes `onFocus, onBlur` can be used as callback props for React and other frameworks.
 
 The respective callbacks are invoked with the original native event as their only parameter whenever the free-form date-input field receives or loses focus. As such, they only make sense together with the `inputfield` attribute.
+
+### onInputfieldKeyUp
+
+The function-valued attribute `onInputfieldKeyUp` can be used as a callback prop for React and other frameworks.
+
+The callback is invoked once for every _user input_ at the inputfield. The `keyUp` event object is passed as parameter 1 of the callback.
+As such, it only make sense together with the `inputfield` attribute.
 
 ## Events
 

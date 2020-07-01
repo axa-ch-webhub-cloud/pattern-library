@@ -15,6 +15,7 @@ export interface AXADatepickerProps {
   onDateChange?: (date: Date) => any;
   onFocus?: (e?: any) => void;
   onBlur?: (e?: any) => void;
+  onInputfieldKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   locale?: string;
   date?: Date;
   year?: number;

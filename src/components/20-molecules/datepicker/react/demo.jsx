@@ -10,6 +10,7 @@ import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
 import DemoDatepickerReactPod from './DemoDatepickerReactPod';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
+import DemoDatepickerOnInputfieldKeyUp from './DemoDatepickerOnInputfieldKeyUp';
 
 storiesOf('Components|Molecules/Datepicker/React/Demos', module)
   .addParameters({
@@ -55,5 +56,10 @@ storiesOf('Components|Molecules/Datepicker/React/Demos', module)
   .add('Pod-versioned React-ified Datepicker', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoDatepickerReactPod />, div);
+    return div;
+  })
+  .add('Using onInputfieldKeyUp event', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoDatepickerOnInputfieldKeyUp />, div);
     return div;
   });
