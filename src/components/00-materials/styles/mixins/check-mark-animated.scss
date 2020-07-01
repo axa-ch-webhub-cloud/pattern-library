@@ -19,7 +19,7 @@ $check-mark-animated-size: 26px;
     position: absolute;
     top: 69%;
     left: 22%;
-    height: 13%;
+    height: 12%;
     background: $check-mark-bg;
     border-radius: 6px;
     animation: short .3s ease-in forwards;
@@ -28,7 +28,7 @@ $check-mark-animated-size: 26px;
   &:after {
     content: '';
     position: absolute;
-    top: 80%; left: 52%;
+    top: 80%; left: 55%;
     height: 12%;
     background: $check-mark-bg;
     border-radius: 6px;
