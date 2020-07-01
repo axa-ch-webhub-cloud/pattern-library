@@ -1,3 +1,7 @@
+## 4.1.0
+
+- You can now import ts types for `variant` and props.
+
 ## 4.0.0
 
 - Upgrade to versioned component.

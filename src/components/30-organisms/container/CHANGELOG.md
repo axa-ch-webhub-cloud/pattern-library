@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Remove unnecessary ts type for `variant`.
+
 ## 3.0.0
 
 - Upgrade to versioned component.

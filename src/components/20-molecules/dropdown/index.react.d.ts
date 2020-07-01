@@ -1,13 +1,13 @@
 import React from 'react';
 
-type Item = {
+export type Item = {
   name: string;
   value?: string;
   selected?: boolean;
   disabled?: boolean;
 };
 
-type AXADropdownChangeEvent = {
+export type AXADropdownChangeEvent = {
   target: {
     value: string;
     index: number;

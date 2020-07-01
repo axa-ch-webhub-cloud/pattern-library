@@ -1,9 +1,9 @@
 import React from 'react';
 import { Icon } from '@axa-ch/icon/lib/index.d';
 
-type IconVariant = 'icon' | 'icon-red' | 'icon-white';
+export type IconVariant = 'icon' | 'icon-red' | 'icon-white';
 
-type ArrowVariant =
+export type ArrowVariant =
   | 'arrowright'
   | 'arrowleft'
   | 'arrowleft-animated'
@@ -17,7 +17,7 @@ type ArrowVariant =
   | 'arrowleft-animated-white'
   | 'arrowright-animated-white';
 
-type Variant =
+export type Variant =
   | ArrowVariant
   | 'red'
   | 'white'
@@ -26,7 +26,7 @@ type Variant =
   | 'hyperlink-red'
   | 'hyperlink-red-underline';
 
-type SharedProps = {
+export type SharedProps = {
   href?: string;
   external?: boolean;
   className?: string;
@@ -37,7 +37,7 @@ type SharedProps = {
 /**
  * If icon is present, then require variant: IconVariant; otherwise optional variant: Variant
  */
-type AXALinkProps = SharedProps &
+export type AXALinkProps = SharedProps &
   ({ variant?: Variant } | { variant: IconVariant; icon: Icon });
 
 declare function createAXALink(

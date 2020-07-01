@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXATestimonialsProps {
+export interface AXATestimonialsProps {
   title?: string;
   subtitle?: string;
   autorotatedisabled?: boolean;
@@ -14,4 +14,4 @@ declare function createAXATestimonials(
   version?: string
 ): React.ComponentType<AXATestimonialsProps>;
 
-export = createAXATestimonials;
+export default createAXATestimonials;

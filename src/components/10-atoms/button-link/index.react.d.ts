@@ -1,8 +1,8 @@
 import React from 'react';
 import { Icon } from '@axa-ch/icon/lib/index.d';
 
-type Size = 'small' | 'large';
-type Variant =
+export type Size = 'small' | 'large';
+export type Variant =
   | 'secondary'
   | 'red'
   | 'inverted'

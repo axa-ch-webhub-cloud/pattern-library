@@ -1,3 +1,7 @@
+## 8.1.0
+
+- You can now import ts types for `items` and AXADropdownChangeEvent.
+
 ## 8.0.0
 
 - Upgrade to versioned component.

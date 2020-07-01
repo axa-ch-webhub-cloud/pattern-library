@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Variant = 'light' | 'dark';
+export type Variant = 'light' | 'dark';
 
 export interface AXACommercialHeroBannerProps {
   imageSource: string;

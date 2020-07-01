@@ -1,3 +1,7 @@
+## 5.1.0
+
+- You can now import ts types for `type`, `size` and `variant`.
+
 ## 5.0.2
 
 - Dynamic button-text updates for submit/reset-type buttons no longer break form submittability. (#1815)

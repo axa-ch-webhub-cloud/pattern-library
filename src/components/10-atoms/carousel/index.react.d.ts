@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface AXACarouselProps {
+export interface AXACarouselProps {
   autorotatedisabled?: boolean;
   autorotatetime?: number;
   keysenabled?: boolean;
@@ -12,4 +12,4 @@ declare function createAXACarousel(
   version?: string
 ): React.ComponentType<AXACarouselProps>;
 
-export = createAXACarousel;
+export default createAXACarousel;

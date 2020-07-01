@@ -1,3 +1,7 @@
+## 3.1.0
+
+- You can now import ts types for `variant`.
+
 ## 3.0.0
 
 - Upgrade to versioned component.
