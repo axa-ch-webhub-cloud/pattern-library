@@ -1,3 +1,7 @@
+## 9.2.1
+
+- Fix width problem in Safari. (#1794)
+
 ## 9.2.0
 
 - You can now import ts type for AXADatepickerChangeEvent.
