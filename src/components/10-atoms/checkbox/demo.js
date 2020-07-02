@@ -12,7 +12,7 @@ storiesOf('Components|Checkbox/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - Use your own label as a child of the component', () => {
+  .add('Use your own label as a child of the component', () => {
     const template = html`
       <axa-checkbox
         class="hover"
@@ -32,7 +32,7 @@ storiesOf('Components|Checkbox/Demos', module)
     render(template, wrapper);
     return wrapper;
   })
-  .add('Feature - Use a styled HTML label', () => {
+  .add('Use a styled HTML label', () => {
     const template = html`
       <axa-checkbox
         class="hover"
