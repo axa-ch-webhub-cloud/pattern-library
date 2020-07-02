@@ -19,7 +19,7 @@ storiesOf('Components|Cookie disclaimer/React', module)
     },
     changelog: Changelog,
   })
-  .add('Cookie disclaimer - default', () => {
+  .add('Story', () => {
     const buttonname = text('buttonname', 'Accept');
     const title = text('text', 'Terms and conditions of data protection');
     const description = text(

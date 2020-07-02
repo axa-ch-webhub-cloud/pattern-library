@@ -16,7 +16,7 @@ storiesOf('Components|Cookie disclaimer', module)
     },
     changelog: Changelog,
   })
-  .add('Cookie disclaimer', () => {
+  .add('Story', () => {
     const buttonname = text('buttonname', 'Accept');
     const title = text('text', 'Terms and conditions of data protection');
     const description = text(
