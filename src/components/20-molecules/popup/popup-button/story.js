@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from '../CHANGELOG.md';
 
-const storyPopupButton = storiesOf('Components|Molecules/Popup', module);
+const storyPopupButton = storiesOf('Components|Popup', module);
 storyPopupButton.addDecorator(withKnobs);
 storyPopupButton.addParameters({
   readme: {
