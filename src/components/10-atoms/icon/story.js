@@ -13,7 +13,7 @@ import AXAIcon from './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyIcon = storiesOf('Components|Atoms/Icon', module);
+const storyIcon = storiesOf('Components|Icon', module);
 storyIcon.addDecorator(withKnobs);
 storyIcon.addParameters({
   readme: {
