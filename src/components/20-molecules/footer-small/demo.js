@@ -15,7 +15,7 @@ storiesOf('Components|Footer Small/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Footer Small - Dynamic Links', () => {
+  .add('Dynamic Links', () => {
     const wrapper = document.createElement('div');
     const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';
