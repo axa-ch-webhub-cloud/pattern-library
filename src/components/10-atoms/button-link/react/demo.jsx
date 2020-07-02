@@ -13,7 +13,7 @@ storiesOf('Components|Button Link/React/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - Button Link clickable', () => {
+  .add('Clickable', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonClick />, div);
     return div;
