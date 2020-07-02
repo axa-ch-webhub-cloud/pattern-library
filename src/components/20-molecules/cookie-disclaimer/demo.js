@@ -5,7 +5,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-storiesOf('Components|Molecules/Cookie disclaimer/demo', module)
+storiesOf('Components|Cookie disclaimer/demo', module)
   .addDecorator(story => withNoBorder(story))
   .addDecorator(withNoBorder)
   .addParameters({
