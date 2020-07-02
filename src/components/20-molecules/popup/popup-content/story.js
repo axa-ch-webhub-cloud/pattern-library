@@ -23,7 +23,7 @@ const children = html`
   </p>
 `;
 
-storyPopupContent.add('Popup Content', () => {
+storyPopupContent.add('Story', () => {
   const open = boolean('open', true);
 
   const wrapper = document.createElement('div');
