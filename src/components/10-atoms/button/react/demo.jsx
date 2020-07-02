@@ -14,12 +14,12 @@ storiesOf('Components|Button/React/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - Button clickable', () => {
+  .add('Clickable', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonClick />, div);
     return div;
   })
-  .add('Feature - Button in a form', () => {
+  .add('In a form', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonForm />, div);
     return div;
