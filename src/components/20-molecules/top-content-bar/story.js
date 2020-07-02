@@ -12,7 +12,7 @@ const variantOptions = {
   warning: 'warning',
 };
 
-storiesOf('Components|Top content bar', module)
+storiesOf('Components|Top Content Bar', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
