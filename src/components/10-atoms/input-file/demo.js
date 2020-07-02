@@ -11,7 +11,7 @@ storiesOf('Components|Input File/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - InputFile clickable', () => {
+  .add('Clickable', () => {
     const inputFile = document.createElement('axa-input-file');
     inputFile.setAttribute('multiple', 'multiple');
     let counter = 0;
