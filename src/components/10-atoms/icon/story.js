@@ -23,7 +23,7 @@ storyIcon.addParameters({
 });
 
 storyIcon.add(
-  'Icon',
+  'Story',
   () => {
     const showAll = boolean('Show list of available icons', false);
     const noIcon = boolean('Do not set icon on component', false);
