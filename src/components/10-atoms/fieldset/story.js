@@ -14,7 +14,7 @@ storiesOf('Components|Fieldset', module)
     },
     changelog: Changelog,
   })
-  .add('Fieldset', () => {
+  .add('Story', () => {
     const error = text('error', '');
     const options = {
       none: null,
