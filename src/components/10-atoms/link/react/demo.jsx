@@ -13,7 +13,7 @@ storiesOf('Components|Link/React/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - Link with variable icons', () => {
+  .add('Variable icons', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoLink />, div);
     return div;
