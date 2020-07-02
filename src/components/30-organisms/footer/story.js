@@ -8,7 +8,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Organisms/Footer', module)
+storiesOf('Components|Footer', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
 

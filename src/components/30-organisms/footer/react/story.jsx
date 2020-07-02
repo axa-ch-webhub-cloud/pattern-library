@@ -14,7 +14,7 @@ const setNewlyClickedLink = link => {
   ).innerText = `Last clicked link: ${link}`;
 };
 
-storiesOf('Components|Organisms/Footer/React', module)
+storiesOf('Components|Footer/React', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {
