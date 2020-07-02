@@ -14,7 +14,7 @@ storiesOf('Components|Input Text/React/Demos', module)
     changelog: Changelog,
   })
   /* Default */
-  .add('Feature - Input-Text controlled/uncontrolled', () => {
+  .add('Controlled/uncontrolled', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoInputText />, div);
     return div;
