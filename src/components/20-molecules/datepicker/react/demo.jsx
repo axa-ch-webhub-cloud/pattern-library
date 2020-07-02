@@ -12,7 +12,7 @@ import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 import DemoDatepickerOnInputfieldKeyUp from './DemoDatepickerOnInputfieldKeyUp';
 
-storiesOf('Components|Molecules/Datepicker/React/Demos', module)
+storiesOf('Components|Datepicker/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

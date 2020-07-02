@@ -22,7 +22,7 @@ const localeOptions = {
   'invalid/ unsupported': 'ff-XX', // To show the default language fallback scenario
 };
 
-const story = storiesOf('Components|Molecules/Datepicker', module);
+const story = storiesOf('Components|Datepicker', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
