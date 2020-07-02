@@ -17,7 +17,7 @@ storyAXAHeading.addParameters({
   changelog: Changelog,
 });
 
-storyAXAHeading.add('Heading', () => {
+storyAXAHeading.add('Story', () => {
   const rank = select('Rank', ['1', '2', '3', '4', '5', '6'], '1');
   const secondary = boolean('Secondary (variant)', false);
   const wrapper = document.createElement('div');
