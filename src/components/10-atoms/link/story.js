@@ -41,7 +41,7 @@ storiesOf('Components|Link', module)
     },
     changelog: Changelog,
   })
-  .add('Link', () => {
+  .add('Story', () => {
     const link = text(
       'link',
       'https://www.axa.ch/en/information/data-protection.html'
