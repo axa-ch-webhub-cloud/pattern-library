@@ -15,7 +15,7 @@ storiesOf('Components|Textarea/Demos', module)
     changelog: Changelog,
   })
   .add(
-    'Feature - Textarea with character counter',
+    'Character counter',
     () =>
       `<div>
         <axa-textarea
@@ -39,10 +39,10 @@ storiesOf('Components|Textarea/Demos', module)
       </div>`
   )
   .add(
-    'Textarea - children (default Value)',
+    'Children (default Value)',
     () => `<axa-textarea>prefilled value</axa-textarea>`
   )
-  .add('Textarea maxLength added later', () => {
+  .add('MaxLength added later', () => {
     const label = text('label*', '');
     const name = text('name*', '');
     const refId = text('refId', '');
