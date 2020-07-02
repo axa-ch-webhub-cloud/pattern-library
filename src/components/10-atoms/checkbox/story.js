@@ -7,7 +7,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import createRefId from '../../../utils/create-ref-id';
 
-const storyCheckbox = storiesOf('Components|Atoms/Checkbox', module);
+const storyCheckbox = storiesOf('Components|Checkbox', module);
 storyCheckbox.addDecorator(withKnobs);
 storyCheckbox.addParameters({
   readme: {
