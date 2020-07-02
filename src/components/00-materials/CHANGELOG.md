@@ -1,3 +1,7 @@
+## 9.0.1
+
+- Refactor the checkmark animation to have a clean look even at Safari (#1821)
+
 ## 9.0.0
 
 - BREAKING CHANGE: Definition of the breakpoints moved in a separat file called `variables.scss`. The naming changed.
