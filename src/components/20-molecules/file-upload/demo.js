@@ -12,7 +12,7 @@ storiesOf('Components|File Upload/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - file-upload in a form', () => {
+  .add('In a form', () => {
     const handleSubmit = e => {
       e.preventDefault();
 
