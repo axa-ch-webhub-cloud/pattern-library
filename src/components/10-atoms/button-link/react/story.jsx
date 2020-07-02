@@ -50,7 +50,7 @@ storyButton.addParameters({
   changelog: Changelog,
 });
 
-storyButton.add('Button Link', () => {
+storyButton.add('Story', () => {
   const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
   const external = text('external', '');

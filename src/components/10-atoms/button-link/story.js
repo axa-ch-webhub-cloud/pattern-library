@@ -49,7 +49,7 @@ storyButtonLink.addParameters({
   changelog: Changelog,
 });
 
-storyButtonLink.add('Button Link', () => {
+storyButtonLink.add('Story', () => {
   const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
   const external = text('external', '');
