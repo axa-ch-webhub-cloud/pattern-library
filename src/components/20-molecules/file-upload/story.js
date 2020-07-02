@@ -15,7 +15,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('File upload', () => {
+story.add('Story', () => {
   const wrapperWidth = text('Width', '455px');
   const numberOfFilesSliderOptions = {
     range: true,

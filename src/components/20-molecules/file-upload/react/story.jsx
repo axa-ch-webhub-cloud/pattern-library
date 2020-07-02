@@ -16,7 +16,7 @@ storiesOf('Components|File Upload/React', module)
     },
     changelog: Changelog,
   })
-  .add('File Upload', () => {
+  .add('Story', () => {
     const wrapperWidth = text('Width', '455px');
     const sizeSliderOptions = {
       range: true,
