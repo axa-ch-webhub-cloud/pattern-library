@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyInputText = storiesOf('Components|Atoms/Input Text', module);
+const storyInputText = storiesOf('Components|Input Text', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme: {
