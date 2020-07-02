@@ -6,7 +6,7 @@ import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
 
-const story = storiesOf('Components|Atoms/Toggle Switch', module);
+const story = storiesOf('Components|Toggle Switch', module);
 story.addDecorator(withKnobs);
 
 story.addParameters({
