@@ -25,7 +25,7 @@ storiesOf('Components|Top content bar/React', module)
     changelog: Changelog,
   })
   /* Default */
-  .add('Top content bar', () => {
+  .add('Story', () => {
     const ctatext = text('ctatext', '');
     const variant = select('variant', variantOptions, '');
     const href = text('href', '');

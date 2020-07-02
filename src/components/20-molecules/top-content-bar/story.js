@@ -21,7 +21,7 @@ storiesOf('Components|Top content bar', module)
     },
     changelog: Changelog,
   })
-  .add('Top content bar', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const ctatext = text('ctatext', '');
