@@ -12,7 +12,7 @@ storiesOf('Components|Datepicker/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Feature - Datepicker in a form', () => {
+  .add('In a form', () => {
     const handleSubmit = event => {
       event.preventDefault();
       document.getElementById('form-data').open = true;
@@ -74,7 +74,7 @@ storiesOf('Components|Datepicker/Demos', module)
     render(template, wrapper);
     return wrapper;
   })
-  .add('Feature - Datepicker with onchange handler', () => {
+  .add('With onchange handler', () => {
     const template = html`
       <axa-datepicker
         inputfield
