@@ -15,7 +15,7 @@ storiesOf('Components|Footer/Demos', module)
     changelog: Changelog,
   })
 
-  .add('Feature - Footer Callbacks', () => {
+  .add('Callbacks', () => {
     const wrapper = document.createElement('div');
 
     const footerMarkup = `
