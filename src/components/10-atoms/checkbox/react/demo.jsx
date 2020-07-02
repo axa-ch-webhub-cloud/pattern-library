@@ -15,17 +15,17 @@ storiesOf('Components|Checkbox/React/Demo', module)
     },
     changelog: Changelog,
   })
-  .add('Checkbox - default with label', () => {
+  .add('Default with label', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoCheckboxCallbackProps />, div);
     return div;
   })
-  .add('Checkbox - label as child of the component', () => {
+  .add('Label as child of the component', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoCheckboxLabelAsChildren />, div);
     return div;
   })
-  .add('Checkbox - updates also as child', () => {
+  .add('Updates also as child', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoUpdateLabelChildren />, div);
     return div;
