@@ -14,7 +14,7 @@ storiesOf('Components|Textarea/React/Demos', module)
     changelog: Changelog,
   })
   /* Default */
-  .add('Feature - Textarea controlled/uncontrolled', () => {
+  .add('Controlled/uncontrolled', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoContUncontTextarea />, div);
     return div;
