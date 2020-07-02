@@ -13,7 +13,7 @@ storiesOf('Components|Table', module)
     },
     changelog: Changelog,
   })
-  .add('Table', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const innerscroll = text('innerscroll', '');
