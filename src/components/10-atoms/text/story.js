@@ -14,7 +14,7 @@ const variantOptions = {
   bold: 'bold',
 };
 
-storiesOf('Components|Atoms/Text', module)
+storiesOf('Components|Text', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
