@@ -15,7 +15,7 @@ storyDropdown.addParameters({
   changelog: Changelog,
 });
 
-storyDropdown.add('Dropdown', () => {
+storyDropdown.add('Story', () => {
   const label = text('label', '');
   const value = text('value', '');
   const defaultTitle = text('defaulttitle', 'Select amount');
@@ -57,7 +57,7 @@ storyDropdown.add('Dropdown', () => {
   return wrapper;
 });
 
-storyDropdown.add('Dropdown items delayed and numeric values', () => {
+storyDropdown.add('Items delayed and numeric values', () => {
   const label = text('label', '');
   const value = text('value', '');
   const name = text('name', '');

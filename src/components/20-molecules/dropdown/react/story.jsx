@@ -15,7 +15,7 @@ storiesOf('Components|Dropdown/React', module)
     },
     changelog: Changelog,
   })
-  .add('Dropdown as uncontrolled React Component', () => {
+  .add('Story - uncontrolled', () => {
     const div = document.createElement('div');
 
     const item1 = text('First Item', '< CHF 1,000');
