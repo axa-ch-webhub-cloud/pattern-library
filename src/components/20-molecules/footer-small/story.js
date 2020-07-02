@@ -16,7 +16,7 @@ storiesOf('Components|Footer Small', module)
     },
     changelog: Changelog,
   })
-  .add('Footer Small', () => {
+  .add('Story', () => {
     const language1 = text('First language', `DE`);
     const language2 = text('Second language', `FR`);
     const language3 = text('Third language', `IT`);
