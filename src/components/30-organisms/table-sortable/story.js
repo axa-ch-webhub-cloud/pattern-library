@@ -66,7 +66,7 @@ const model = {
   ],
 };
 
-storiesOf('Components|Organisms/Table Sortable', module)
+storiesOf('Components|Table Sortable', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

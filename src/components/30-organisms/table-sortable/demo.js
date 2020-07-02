@@ -65,7 +65,7 @@ const model = {
   ],
 };
 
-storiesOf('Components|Organisms/Table Sortable/Demos', module)
+storiesOf('Components|Table Sortable/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
