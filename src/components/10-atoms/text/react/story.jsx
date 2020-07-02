@@ -23,7 +23,7 @@ storiesOf('Components|Text/React', module)
     },
     changelog: Changelog,
   })
-  .add('Text', () => {
+  .add('Story', () => {
     const div = document.createElement('div');
     const variant = select('variant', variantOptions, '');
     const addSpanTag = boolean('Add <span> tag', false);
