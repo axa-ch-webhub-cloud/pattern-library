@@ -56,7 +56,7 @@ storyButton.addParameters({
   changelog: Changelog,
 });
 
-storyButton.add('Button', () => {
+storyButton.add('Story', () => {
   const buttonText = text('text', 'Calculate Premium');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
