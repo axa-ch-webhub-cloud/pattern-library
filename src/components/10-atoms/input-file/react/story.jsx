@@ -16,7 +16,7 @@ storiesOf('Components|Input File/React', module)
     },
     changelog: Changelog,
   })
-  .add('Input File', () => {
+  .add('Story', () => {
     const inputText = text('text', 'Select a File');
     const accept = text(
       'accept',
