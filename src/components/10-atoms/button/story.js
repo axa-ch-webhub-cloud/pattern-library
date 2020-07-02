@@ -13,7 +13,7 @@ import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyButton = storiesOf('Components|Atoms/Button', module);
+const storyButton = storiesOf('Components|Button', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {
