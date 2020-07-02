@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const story = storiesOf('Components|Molecules/File Upload', module);
+const story = storiesOf('Components|File Upload', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
