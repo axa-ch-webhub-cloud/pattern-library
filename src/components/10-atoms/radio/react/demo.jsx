@@ -13,7 +13,7 @@ storiesOf('Components|Radio/React/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Controlled-component React-ified radio button', () => {
+  .add('Controlled-component React-ified', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoControlledRadioButtonReact />, div);
     return div;
