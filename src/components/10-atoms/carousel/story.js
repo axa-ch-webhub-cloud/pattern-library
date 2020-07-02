@@ -18,7 +18,7 @@ storyAXACarousel.addParameters({
   changelog: Changelog,
 });
 
-storyAXACarousel.add('Carousel', () => {
+storyAXACarousel.add('Story', () => {
   const autorotatedisabled = boolean('autorotatedisabled', false);
   const autorotatetime = number('autorotatetime', 5000);
   const keysenabled = boolean('keysenabled', true);
