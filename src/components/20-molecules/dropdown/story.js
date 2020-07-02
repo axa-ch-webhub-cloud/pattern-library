@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyDropdown = storiesOf('Components|Molecules/Dropdown', module);
+const storyDropdown = storiesOf('Components|Dropdown', module);
 storyDropdown.addDecorator(withKnobs);
 storyDropdown.addParameters({
   readme: {

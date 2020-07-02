@@ -3,7 +3,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Molecules/Dropdown/Demos', module)
+storiesOf('Components|Dropdown/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
