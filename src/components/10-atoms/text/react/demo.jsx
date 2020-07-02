@@ -15,7 +15,7 @@ storiesOf('Components|Text/React/Demos', module)
     knobs: { disabled: true },
   })
   /* Default */
-  .add('Feature - Text with dynamic children under React', () => {
+  .add('Dynamic children under React', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoTextReact />, div);
     return div;
