@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Fieldset', module)
+storiesOf('Components|Fieldset', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
