@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Organisms/Container', module)
+storiesOf('Components|Container', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
