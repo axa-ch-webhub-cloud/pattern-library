@@ -33,7 +33,7 @@ const variantOptions = {
   'hyperlink-red-underline': 'hyperlink-red-underline',
 };
 
-storiesOf('Components|Atoms/Link', module)
+storiesOf('Components|Link', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
