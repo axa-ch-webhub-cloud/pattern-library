@@ -6,7 +6,7 @@ import DemoControlledRadioButtonReact from './DemoRadioButtonReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Atoms/Radio/React/Demos', module)
+storiesOf('Components|Radio/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

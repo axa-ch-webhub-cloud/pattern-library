@@ -8,7 +8,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Radio/Demos', module)
+storiesOf('Components|Radio/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
