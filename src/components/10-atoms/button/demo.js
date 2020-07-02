@@ -14,10 +14,10 @@ storiesOf('Components|Button/Demos', module)
     knobs: { disabled: true },
   })
   .add(
-    'Feature - Button icon visible',
+    'Icon visible',
     () => '<axa-button icon="arrow-right">Next step</axa-button>'
   )
-  .add('Feature - Button clickable', () => {
+  .add('Clickable', () => {
     const btn = document.createElement('axa-button');
     let counter = 0;
     btn.innerHTML = `You clicked me: ${counter}, btw my event name is click`;
@@ -28,7 +28,7 @@ storiesOf('Components|Button/Demos', module)
 
     return btn;
   })
-  .add('Feature - Button in a form', () => {
+  .add('In a form', () => {
     let count = 0;
     const handleSubmit = ev => {
       const { target } = ev;
@@ -71,12 +71,12 @@ storiesOf('Components|Button/Demos', module)
     return wrapper;
   })
   .add(
-    'Button css width',
+    'Css width',
     () =>
       '<axa-button variant="red" style="width: 100%">This red button has "width: 100%"</axa-button>' +
       '<axa-text>You can simply set width by setting css width.</axa-text>'
   )
-  .add('2 Buttons side by side', () => {
+  .add('Side by side', () => {
     const template = html`
       <div style="display: flex">
         <axa-button variant="red" style="width: 20%">
