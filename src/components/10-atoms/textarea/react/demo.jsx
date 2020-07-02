@@ -6,7 +6,7 @@ import DemoContUncontTextarea from './DemoContUncontTextarea';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Atoms/Textarea/React/Demos', module)
+storiesOf('Components|Textarea/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,

@@ -6,7 +6,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
-storiesOf('Components|Atoms/Textarea/Demos', module)
+storiesOf('Components|Textarea/Demos', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

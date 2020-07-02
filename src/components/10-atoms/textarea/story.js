@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyTextarea = storiesOf('Components|Atoms/Textarea', module);
+const storyTextarea = storiesOf('Components|Textarea', module);
 storyTextarea.addDecorator(withKnobs);
 storyTextarea.addParameters({
   readme: {
