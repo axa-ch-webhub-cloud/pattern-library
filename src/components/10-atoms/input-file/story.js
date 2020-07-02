@@ -7,7 +7,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Input File', module)
+storiesOf('Components|Input File', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
