@@ -8,7 +8,7 @@ import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 
-storiesOf('Components|Molecules/Footer Small/React', module)
+storiesOf('Components|Footer Small/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
