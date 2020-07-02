@@ -31,7 +31,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Datepicker', () => {
+story.add('Story', () => {
   const inputfield = boolean('inputfield', false);
   const locale = select('locale', localeOptions, 'de-CH');
   const year = number('year', 2020);

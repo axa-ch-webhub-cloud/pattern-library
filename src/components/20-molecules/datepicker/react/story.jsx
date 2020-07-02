@@ -29,7 +29,7 @@ storiesOf('Components|Datepicker/React', module)
     },
     changelog: Changelog,
   })
-  .add('Datepicker as React Component', () => {
+  .add('Story', () => {
     const inputfield = boolean('inputfield', false);
     const locale = select('locale', localeOptions, 'de-CH');
     const year = number('year', '');
