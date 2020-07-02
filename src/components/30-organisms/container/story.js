@@ -14,7 +14,7 @@ storiesOf('Components|Container', module)
     },
     changelog: Changelog,
   })
-  .add('Container - default', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const childsText = text('text', 'Some children');
