@@ -23,7 +23,7 @@ story
     changelog: Changelog,
   })
   /* Default */
-  .add('Policy features', () => {
+  .add('Story', () => {
     const variants = select(
       'variant',
       STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),

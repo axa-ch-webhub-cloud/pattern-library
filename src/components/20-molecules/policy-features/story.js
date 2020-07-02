@@ -19,7 +19,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Policy features', () => {
+story.add('Story', () => {
   const variants = select(
     'variant',
     STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
