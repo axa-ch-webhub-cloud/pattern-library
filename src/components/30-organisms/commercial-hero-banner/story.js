@@ -22,7 +22,7 @@ storyAXACommercialHeroBanner.addParameters({
   changelog: Changelog,
 });
 
-storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
+storyAXACommercialHeroBanner.add('Story', () => {
   const variant = radios(
     'Variant',
     {
