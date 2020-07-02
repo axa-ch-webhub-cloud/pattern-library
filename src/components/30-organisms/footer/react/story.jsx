@@ -23,7 +23,7 @@ storiesOf('Components|Footer/React', module)
     changelog: Changelog,
   })
 
-  .add('Feature - Footer Callbacks', () => {
+  .add('Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
     ReactDOM.render(

@@ -18,7 +18,7 @@ storiesOf('Components|Footer', module)
     },
     changelog: Changelog,
   })
-  .add('Footer', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const columnTitle1 = text('First column title', 'axa and you'); // TODO use &, this is a problem with knobs
