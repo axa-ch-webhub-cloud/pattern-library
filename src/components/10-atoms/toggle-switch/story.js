@@ -16,7 +16,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Toggle Switch', () => {
+story.add('Story', () => {
   const active = boolean('active', false);
   const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');
