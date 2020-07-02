@@ -1,3 +1,7 @@
+## 4.0.0
+
+- BREAKING CHANGE: Use correct typography stylings and remove slot="category". All categories must be a child of a `<header slot="title"></header>`. (#1796 and #1750)
+
 ## 3.1.0
 
 - You can now import ts type for `variant`.
