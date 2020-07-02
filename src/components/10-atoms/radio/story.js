@@ -17,7 +17,7 @@ storiesOf('Components|Radio', module)
     },
     changelog: Changelog,
   })
-  .add('Radio', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const label = text('label*', 'car');
