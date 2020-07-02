@@ -72,7 +72,7 @@ storiesOf('Components|Table Sortable/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Table Sortable - on row click', () => {
+  .add('On row click', () => {
     const wrapper = document.createElement('div');
     window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
       if (index > -1) {
