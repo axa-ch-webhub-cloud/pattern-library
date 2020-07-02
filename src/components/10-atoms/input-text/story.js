@@ -21,7 +21,7 @@ const typeOptions = {
   password: 'password',
 };
 
-storyInputText.add('Input Text', () => {
+storyInputText.add('Story', () => {
   const label = text('label*', '');
   const name = text('name*', '');
   const refId = text('refid', '');

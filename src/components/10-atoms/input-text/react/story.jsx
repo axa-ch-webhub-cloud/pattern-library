@@ -22,7 +22,7 @@ storyInputText.addParameters({
   changelog: Changelog,
 });
 
-storyInputText.add('Input Text', () => {
+storyInputText.add('Story', () => {
   const label = text('label*', '');
   const name = text('name*', '');
   const refId = text('refId', '');
@@ -64,7 +64,7 @@ storyInputText.add('Input Text', () => {
   return wrapper;
 });
 
-storyInputText.add('Input Text - Simulate autocomplete', () => {
+storyInputText.add('Story - Simulate autocomplete', () => {
   const label = text('label*', '');
   const placeholder = text('placeholder', '');
   const error = text('error', '');
