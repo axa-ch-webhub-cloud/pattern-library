@@ -74,7 +74,7 @@ storiesOf('Components|Table Sortable', module)
     },
     changelog: Changelog,
   })
-  .add('Table Sortable', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const innerscroll = text('innerscroll', '');
