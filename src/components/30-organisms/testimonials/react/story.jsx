@@ -18,7 +18,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Testimonials', () => {
+story.add('Story', () => {
   const title = text('title', 'Customer Reviews');
   const subtitle = text(
     'Text',
