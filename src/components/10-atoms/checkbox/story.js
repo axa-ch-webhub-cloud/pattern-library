@@ -17,7 +17,7 @@ storyCheckbox.addParameters({
 });
 
 storyCheckbox.add(
-  'Checkbox',
+  'Story',
   () => {
     const refId = text('refId', `checkbox-${createRefId()}`);
     const label = text('label', 'I agree to conditions of data protection.');

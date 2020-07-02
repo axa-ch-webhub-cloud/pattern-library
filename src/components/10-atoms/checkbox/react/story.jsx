@@ -15,7 +15,7 @@ storiesOf('Components|Checkbox/React', module)
     changelog: Changelog,
   })
   .addDecorator(withKnobs)
-  .add('Checkbox - uncontrolled', () => {
+  .add('Story - uncontrolled', () => {
     const label = text('label', 'I agree to conditions of data protection.');
     const name = text('name', 'my-checkbox');
     const variant = select('variant', [
