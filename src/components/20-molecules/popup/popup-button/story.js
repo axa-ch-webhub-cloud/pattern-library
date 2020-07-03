@@ -15,7 +15,7 @@ storyPopupButton.addParameters({
   changelog: Changelog,
 });
 
-storyPopupButton.add('Story', () => {
+storyPopupButton.add('Button Story', () => {
   const open = boolean('open', false);
 
   const wrapper = document.createElement('div');
