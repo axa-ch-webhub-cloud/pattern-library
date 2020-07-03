@@ -334,7 +334,7 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Reactified, dynamic icons').page(
-  `${host}/iframe.html?id=ccomponents-link-react-demos--variable-icons`
+  `${host}/iframe.html?id=components-link-react-demos--variable-icons`
 );
 
 test('should correctly update icon and text', async t => {

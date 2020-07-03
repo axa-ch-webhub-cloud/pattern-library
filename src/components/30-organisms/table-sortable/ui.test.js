@@ -453,7 +453,7 @@ test('should sort also when maxheight is set ', async t => {
 });
 
 fixture('Table Sortable - on row click').page(
-  `${host}/iframe.html?id=components-table-sortable-demos--table-sortable-on-row-click`
+  `${host}/iframe.html?id=components-table-sortable-demos--on-row-click`
 );
 
 test('should react to click on row', async t => {

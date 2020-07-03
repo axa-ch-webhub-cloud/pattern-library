@@ -107,7 +107,7 @@ test('should render icon', async t => {
 });
 
 fixture('Button - react smoke test').page(
-  `${host}/iframe.html?id=components-button--story`
+  `${host}/iframe.html?id=components-button-react--story`
 );
 
 test('should render react button', async t => {
