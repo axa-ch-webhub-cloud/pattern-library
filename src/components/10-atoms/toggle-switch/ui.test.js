@@ -5,7 +5,7 @@ const TAG = 'axa-toggle-switch';
 const CLASS = '.a-toggle-switch';
 
 fixture('Toggle Switch - basic functionality').page(
-  `${host}/iframe.html?id=components-atoms-toggle-switch--toggle-switch`
+  `${host}/iframe.html?id=components-toggle-switch--story`
 );
 
 test('should render toggle-switch', async t => {
