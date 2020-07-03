@@ -103,7 +103,7 @@ test('should show error message and have the correct color', async t => {
 
 // Dropdown react controlled
 fixture('Dropdown React').page(
-  `${host}/iframe.html?id=/components-dropdown-react-demos--react-component`
+  `${host}/iframe.html?id=components-dropdown-react-demos--react-component`
 );
 
 test('should render dropdown as reactified component', async t => {
