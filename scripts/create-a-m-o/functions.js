@@ -204,7 +204,7 @@ const createFiles = (store, a, m, o, done) => () => {
     import Readme from './README.md';
     import Changelog from './CHANGELOG.md';
 
-    const story = storiesOf('Components|${titleMap[type]}/${compTitle}', module);
+    const story = storiesOf('Components|${compTitle}', module);
     story.addDecorator(withKnobs);
     story.addParameters({
       readme: {
@@ -258,7 +258,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=components-${titleMap[type].toLowerCase()}-${fileName}--${fileName}\`);
+    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=components-${fileName}--${fileName}\`);
 
     const TAG = 'axa-${fileName}';
     const CLASS = '.${type}-${fileName}';
