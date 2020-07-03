@@ -4,7 +4,7 @@ import FooterAccessor from './ui.accessor';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer - Basic Functionality')
-  .page(`${host}/iframe.html?id=components-organisms-footer--footer`)
+  .page(`${host}/iframe.html?id=components-footer--story`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -154,7 +154,7 @@ test('should correctly render social media title in desktop view', async t => {
 });
 
 fixture('Footer - React Smoketest').page(
-  `${host}/iframe.html?id=components-organisms-footer-react--feature-footer-callbacks`
+  `${host}/iframe.html?id=components-footer-demos--callbacks`
 );
 
 test('should render footer with working react callbacks', async t => {
@@ -196,7 +196,7 @@ test('should render footer with working react callbacks', async t => {
 });
 
 fixture('Footer - Demo Smoketest').page(
-  `${host}/iframe.html?id=components-organisms-footer-demos--feature-footer-callbacks`
+  `${host}/iframe.html?id=components-footer-demos--callbacks`
 );
 
 test('should render footer with working native callbacks', async t => {
