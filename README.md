@@ -5,11 +5,11 @@
 
 ## [>> Pattern Library Demo](https://patterns.axa.ch)
 
-[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/docs/CONTRIBUTION.md#rules-and-lintings)
+[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/documentation/CONTRIBUTION.md#rules-and-lintings)
 
-[Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop/docs/ARCHITECTURE.md)
+[Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop/documentation/ARCHITECTURE.md)
 
-[Check out our Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop/docs/CODE_OF_CONDUCT.md)
+[Check out our Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop/documentation/CODE_OF_CONDUCT.md)
 
 ## Communication
 
@@ -25,7 +25,7 @@ We release self-contained plug-and-play web components based on the [custom elem
 
 ## Component versioning
 
-Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/docs/COMPONENT_VERSIONING.md).
+Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/documentation/COMPONENT_VERSIONING.md).
 
 ## Released Polyfills
 
@@ -77,11 +77,11 @@ Different versions of our web components can coexist on the same web page! Here 
 Whether you are helping us to fix bugs, or you are more into creating components,
 we would love to have you as contributor of the AXA Pattern Library!
 
-Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tree/develop/docs/CONTRIBUTION.md) for ideas on contributing and setup steps for getting the repository up and running on your local machine.
+Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tree/develop/documentation/CONTRIBUTION.md) for ideas on contributing and setup steps for getting the repository up and running on your local machine.
 
 ## Code of Conduct
 
-We are dedicated to building a welcoming, diverse, and safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/docs/CODE_OF_CONDUCT.md)
+We are dedicated to building a welcoming, diverse, and safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/documentation/CODE_OF_CONDUCT.md)
 
 ## Version Control
 
@@ -114,7 +114,7 @@ Calling this method gives you the `ShadowRoot` in your Selenium environment. **B
 
 ## Dealing with F(lash) O(f) U(nstyled) C(ontent)
 
-As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/docs/ARCHITECTURE.md), FOUC can be mitigated by using the CSSpseudo selector: `:not(:defined)`. Below please find an example of how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there won't have any effect on it. Following the principle of graceful degradation, this if fine, since the only downside in **IE11** is that it doesn't look as good as the other browsers while no real functionality has been lost.
+As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/documentation/ARCHITECTURE.md), FOUC can be mitigated by using the CSSpseudo selector: `:not(:defined)`. Below please find an example of how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there won't have any effect on it. Following the principle of graceful degradation, this if fine, since the only downside in **IE11** is that it doesn't look as good as the other browsers while no real functionality has been lost.
 
 ```html
 <style>

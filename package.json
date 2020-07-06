@@ -1,7 +1,7 @@
 {
   "name": "@axa-ch/patterns-library",
   "version": "2.0.0",
-  "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/docs/CONTRIBUTION.md#rules-and-lintings)",
+  "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/documentation/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
     "build": "NODE_ENV=production npm run build-components",
