@@ -1,1 +1,1 @@
-Copyright 2019 AXA Versicherungen AG
+Copyright 2020 AXA Versicherungen AG

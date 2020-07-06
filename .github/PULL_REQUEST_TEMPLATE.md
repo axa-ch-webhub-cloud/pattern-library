@@ -9,4 +9,4 @@ Fixes #(issue)
 - [ ] The modifications are documented in the code, particularly in hard-to-understand areas (focus on **WHY**).
 - [ ] The modifications are shortly added to CHANGELOG.md with the issue number.
 - [ ] The modifications still work in IE.
-- [ ] The modifications are according to our [Best Practices](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#best-practices)
+- [ ] The modifications are according to our [Best Practices](https://github.com/axa-ch/patterns-library/blob/develop/docs/CONTRIBUTION.md#best-practices)

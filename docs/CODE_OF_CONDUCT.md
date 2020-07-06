@@ -17,7 +17,7 @@ We make sure that our code respects **Prettier, ESlint, StyleLint and EditorConf
 
 You are allowed to breake those rules if the ESLint gets unnecessarily complex or if you cannot do it otherwise.
 
-Respect our [best practices](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#best-practices)
+Respect our [best practices](https://github.com/axa-ch/patterns-library/blob/develop/docs/CONTRIBUTION.md#best-practices)
 
 ## Our Pull Request culture
 We love to give and receive feedbacks on our pull requests (short: PRs). Every feedback is *per se* legitimate.
