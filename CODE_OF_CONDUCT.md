@@ -39,6 +39,13 @@ An example of what a constructive conversation should (not) look like:
 
 **We aim to be as efficient as possible.** On a PR review, we try to explain before referring to specs as we assume everyone have read the specs but maybe not understood it. We use links to specs as a nice add-on to the explanation, not as a minimum viable argument. Of course, if an explanation requires lots of text and time, just referring to a spec might be ok. As a rule of thumb, always choose the review strategy that solves the PR creator's issue as soon as possible, as our goal is to merge a PR as quickly as possible. In a review context, we also assume that everyone is willing to learn. Elements of teaching as part of a review are very welcome, but are based on individual good will rather than being obligatory.
 
+**We will always make a PR, unless there is no change that can be done wrongly**. Code changes and documentation changes **always** require a PR for example, since the PR owner can make code mistakes or grammatical errors.
+
+## Our issues agreements
+We are free to create issues on [GitHub](https://github.com/axa-ch/patterns-library/issues), labeled with **feature-request**, whenever we want, but we won't start working on it before the team approves in a democratic majority (50% + 1). Ideally, we speak about such feature in the after dayli meeting, where we decide if it makes sense or not to implement it. Once the Team approves, we set the label **Accepted**. **Only issues labeled as "Accepted" can be implemented**.
+
+Issues, which differ in functionalities to the documentation or expected behaviour of components will receive the label **bug**. **Issues labeld "bug" always have highest prio**
+
 ## Enforcement
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at luca.mele@axa-winterthur.ch. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate, given the circumstances. The project team is obliged to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
 
