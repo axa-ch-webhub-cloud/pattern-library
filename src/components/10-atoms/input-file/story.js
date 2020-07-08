@@ -49,17 +49,23 @@ storiesOf('Components|Input File', module)
     const multiple = boolean('multiple', false);
 
     const template = html`
-      <axa-input-file
-        variant="${variant}"
-        icon="${icon}"
-        ?large="${large}"
-        ?motionOff="${motionOff}"
-        ?disabled="${disabled}"
-        accept="${accept}"
-        ?capture="${capture}"
-        ?multiple="${multiple}"
-        >${_text}</axa-input-file
+      <div
+        style="${variant.includes('inverted')
+          ? `background-color: #00008f; padding: 10px;`
+          : ''}"
       >
+        <axa-input-file
+          variant="${variant}"
+          icon="${icon}"
+          ?large="${large}"
+          ?motionOff="${motionOff}"
+          ?disabled="${disabled}"
+          accept="${accept}"
+          ?capture="${capture}"
+          ?multiple="${multiple}"
+          >${_text}</axa-input-file
+        >
+      </div>
     `;
 
     const wrapper = document.createElement('div');
