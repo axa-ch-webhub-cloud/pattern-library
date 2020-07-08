@@ -107,5 +107,10 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "homepage": "https://patterns.axa.ch/",
-  "keywords": ["axa", "pattern-library", "design-system", "frontend"]
+  "keywords": [
+    "axa",
+    "pattern-library",
+    "design-system",
+    "frontend"
+  ]
 }
