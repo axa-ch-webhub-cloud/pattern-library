@@ -42,9 +42,9 @@ An example of what a constructive conversation should (not) look like:
 **We will always make a PR, unless there is no change that can be done wrongly**. Code changes and documentation changes **always** require a PR for example, since the PR owner can make code mistakes or grammatical errors.
 
 ## Our issues agreements
-We are free to create issues on [GitHub](https://github.com/axa-ch/patterns-library/issues), labeled with **feature-request**, whenever we want, but we won't start working on it before the team approves in a democratic majority (50% + 1). Ideally, we speak about such feature in the after dayli meeting, where we decide if it makes sense or not to implement it. Once the Team approves, we set the label **Accepted**. **Only issues labeled as "Accepted" can be implemented**.
+We are free to create issues on [GitHub](https://github.com/axa-ch/patterns-library/issues), labeled with **feature-request**, whenever we want, but we won't start working on it before the team approves in a democratic majority (50% + 1). Ideally, we speak about such feature in the after daily meeting, where we decide if it makes sense or not to implement it. Once the Team approves, we set the label **Accepted**. **Only issues labeled as "Accepted" can be implemented**.
 
-Issues, which differ in functionalities to the documentation or expected behaviour of components will receive the label **bug**. **Issues labeld "bug" always have highest prio**
+Issues, which differ in functionalities to the documentation or expected behaviour of components, will receive the label **bug**. **Issues labeld "bug" always have highest prio**. Once **one of the** core developers can reproduce the issue, it will receive the label **Accepted**. **Only issues labeled as "Accepted" can be fixed**.
 
 ## Enforcement
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at luca.mele@axa-winterthur.ch. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate, given the circumstances. The project team is obliged to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
