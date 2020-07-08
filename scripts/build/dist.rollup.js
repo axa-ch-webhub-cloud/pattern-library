@@ -7,7 +7,7 @@ const resolve = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 
 const { commonPlugins } = require('./common.rollup.js');
-const customBabelRc = require('../../.storybook/.babelrc'); // get the babelrc file
+const customBabelRc = require('../../.babelrc'); // get the babelrc file
 
 const memory = {};
 

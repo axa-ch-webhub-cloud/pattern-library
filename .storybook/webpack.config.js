@@ -1,6 +1,6 @@
 const path = require('path');
 const base = path.resolve(process.cwd(), 'src');
-const babelOptions = require('./.babelrc'); // get the babelrc file
+const babelOptions = require('../.babelrc'); // get the babelrc file
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 

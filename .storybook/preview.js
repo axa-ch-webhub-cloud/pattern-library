@@ -1,3 +1,4 @@
+import './polyfills.js';
 import '@axa-ch/patterns-library-polyfill';
 import { addParameters, configure, addDecorator } from '@storybook/html';
 import { create } from '@storybook/theming';
