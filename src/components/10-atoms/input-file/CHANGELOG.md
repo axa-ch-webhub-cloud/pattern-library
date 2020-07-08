@@ -1,5 +1,7 @@
-## 3.3.0
+## 4.0.0
 
+- **BREAKING CHANGE**: You now have to use the property `text` to display text inside the component. (#1838)
+- Text is now vertically centered when `large` is set true.
 - It is now possible to set the css `width` property.
 - Fix: Gap below the component. (#1878)
 
