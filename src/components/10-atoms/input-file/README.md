@@ -69,7 +69,31 @@ inputFile.addEventListener('change', e => {
 
 ## Properties
 
-### Accept
+### variant
+
+| Attribute             | Details                 |
+| --------------------- | ----------------------- |
+| `variant="secondary"` | Button in a ghost state |
+| `variant="red"`       | Button red              |
+| `variant="inverted"`  | Button inverted         |
+
+### icon
+
+Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) README.
+
+### large
+
+The Boolean attribute `large` specifies the size of an input file. Setting this attribute will change the height of an input file.
+
+### motionOff
+
+The Boolean attribute `motionoff` deactivates hover animation.
+
+### disabled
+
+The Boolean attribute `disabled` disables the input file, but not natively like in the button.
+
+### accept
 
 The String attribute `accept` specifies a filter for which file types the user can pick from.
 
@@ -82,7 +106,7 @@ The String attribute `accept` specifies a filter for which file types the user c
 | `accept=".png"`                             | files of the specified extension are accepted |
 | `accept="image/jpg, image/jpeg, image/png"` | Allow multiple file types                     |
 
-### Capture
+### capture
 
 The Boolean attribute `capture` indicates that the capture of media directly from the device’s camera and/or microphone is preferred.
 
@@ -94,25 +118,9 @@ The Boolean attribute `capture` indicates that the capture of media directly fro
 
 You can restrict the different media types like audio, video or photo with the accept attribute.
 
-### Multiple
+### multiple
 
 The Boolean attribute `multiple` specifies how many file the user can select.
-
-### Large
-
-The Boolean attribute `large` specifies the size of an input file. Setting this attribute will change the height of an input file.
-
-### motionOff
-
-The Boolean attribute `motionoff` deactivates hover animation.
-
-### disabled
-
-The Boolean attribute `disabled` disables the input file, but not natively like in the button.
-
-### icon
-
-Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) README.
 
 ### onChange
 
