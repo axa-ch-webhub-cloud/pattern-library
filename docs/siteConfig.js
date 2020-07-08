@@ -14,8 +14,8 @@ module.exports = {
     newsletterUrl: 'https://www.worldwidenews-axa.com/',
   },
   feedback: {
-    email: 'dleuliette@gmail.com',
-    formUrl: 'https://davidl.fr/onboarding',
+    email: 'johanna.buget.haigo@axa.com',
+    formUrl: 'https://axadesignsystem.typeform.com/to/izCGDq',
   },
   fontDownloadUrl: {
     heading: 'https://commercialtype.com/catalog/publico',
