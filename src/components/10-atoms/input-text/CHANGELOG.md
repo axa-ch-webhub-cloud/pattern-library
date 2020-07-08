@@ -1,3 +1,7 @@
+## 4.2.1
+
+- Fixed wrong internal key to get the version of dependency `axa-popup`. (#1842)
+
 ## 4.2.0
 
 - No changes.
