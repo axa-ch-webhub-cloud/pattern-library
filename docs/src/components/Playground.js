@@ -5,7 +5,6 @@ import uniqueId from 'lodash/uniqueId';
 import * as components from '../patterns';
 import Component from '@reactions/component';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import profiles from './examples/profiles.json';
 
 const editorTheme = {
   plain: {
@@ -99,7 +98,7 @@ export default class Playground extends React.Component {
     return (
       <LiveProvider
         theme={editorTheme}
-        scope={{ ReactDOM, Component, profiles, ...components, ...scope }}
+        scope={{ ReactDOM, Component, ...components, ...scope }}
         code={codeText}
         noInline={noInline}
       >
