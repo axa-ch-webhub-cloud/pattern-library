@@ -21,6 +21,8 @@ Please only report technical bugs. Clarify design issues in #ux-ui-support.
 <!--- Not obligatory, but suggest a fix/reason for the bug, -->
 
 ## Steps to Reproduce
+
+Provide a matching link to our [Storybook](https://patterns.axa.ch "Storybook") or a code sandbox.
 <!--- Provide a link to a live example, or an unambiguous set of steps to -->
 <!--- reproduce this bug. Include code to reproduce, if relevant -->
 1.
