@@ -1,11 +1,17 @@
 /* global document */
+import {
+  boolean,
+  radios,
+  select,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
+import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
-import Changelog from './CHANGELOG.md';
 
 storiesOf('Components|Input File', module)
   .addDecorator(withKnobs)
@@ -16,26 +22,48 @@ storiesOf('Components|Input File', module)
     changelog: Changelog,
   })
   .add('Story', () => {
-    const inputText = text('text', 'Select a File');
+    const _text = text('text', 'Select a File');
+
+    const variant = radios(
+      'variant',
+      {
+        default: '',
+        secondary: 'secondary',
+        red: 'red',
+        inverted: 'inverted',
+      },
+      ''
+    );
+
+    const icon = select('icon', iconList, 'cloud-upload');
+    const large = boolean('large', false);
+    const motionOff = boolean('motionOff', false);
+    const disabled = boolean('disabled', false);
+
     const accept = text(
       'accept',
       'image/jpg, image/jpeg, application/pdf, image/png'
     );
-    const icon = select('icon', iconList, 'cloud-upload');
-    const disabled = boolean('disabled', false);
-    const multiple = boolean('multiple', false);
+
     const capture = boolean('capture', false);
-    const wrapper = document.createElement('div');
+    const multiple = boolean('multiple', false);
+
     const template = html`
       <axa-input-file
+        variant="${variant}"
         icon="${icon}"
-        accept="${accept}"
+        ?large="${large}"
+        ?motionOff="${motionOff}"
         ?disabled="${disabled}"
-        ?multiple="${multiple}"
+        accept="${accept}"
         ?capture="${capture}"
-        >${inputText}</axa-input-file
+        ?multiple="${multiple}"
+        >${_text}</axa-input-file
       >
     `;
+
+    const wrapper = document.createElement('div');
     render(template, wrapper);
+
     return wrapper;
   });
