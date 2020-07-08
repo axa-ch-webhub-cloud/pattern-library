@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Please only report technical bugs. Clarify design issues with one of our designers: Ken Brossi, Jonas Güther and Thomas Veit
+Please only report technical bugs. Clarify design issues in #ux-ui-support.
 
 <!--- Provide a general summary of the issue in the Title above -->
 
@@ -30,7 +30,3 @@ Please only report technical bugs. Clarify design issues with one of our designe
 
 ## Context (Environment)
 <!--- How has this issue affected you? What are you trying to accomplish? -->
-<!--- Providing context helps us come up with a solution that is most useful in the real world -->
-
-## Possible Implementation
-<!--- Not obligatory, but suggest an idea for implementing addition or change -->
