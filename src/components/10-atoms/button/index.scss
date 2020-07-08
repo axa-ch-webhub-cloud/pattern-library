@@ -63,7 +63,6 @@
 
   @include breakpoint($mediaquery-xs-up) {
     min-height: 50px;
-    @include text(t4);
   }
 }
 
