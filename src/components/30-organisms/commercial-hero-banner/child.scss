@@ -24,7 +24,7 @@ axa-commercial-hero-banner {
 
   p {
     @include text(t4);
-    @include breakpoint($mediaquery-sm-up) {
+    @include breakpoint($mediaquery-xs-up) {
       @include text(t3);
     }
   }
