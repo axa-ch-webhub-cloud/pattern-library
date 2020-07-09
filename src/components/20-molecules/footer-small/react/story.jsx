@@ -8,7 +8,7 @@ import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 
-storiesOf('Components|Molecules/Footer Small/React', module)
+storiesOf('Components|Footer Small/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -17,7 +17,7 @@ storiesOf('Components|Molecules/Footer Small/React', module)
     },
     changelog: Changelog,
   })
-  .add('Footer with callbacks on language', () => {
+  .add('Callbacks on language', () => {
     const language1 = text('First language', `DE`);
     const language2 = text('Second language', `FR`);
     const language3 = text('Third language', `IT`);
@@ -40,7 +40,7 @@ storiesOf('Components|Molecules/Footer Small/React', module)
     );
     return div;
   })
-  .add('Footer with dynamic change of children upon language change', () => {
+  .add('Dynamic change of children upon language change', () => {
     const div = document.createElement('div');
     div.id = 'footer-small-dynamic-children';
     ReactDOM.render(<DemoFooterSmallDynamicChildren />, div);

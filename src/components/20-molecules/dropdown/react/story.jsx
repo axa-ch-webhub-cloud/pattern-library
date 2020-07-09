@@ -7,7 +7,7 @@ import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Molecules/Dropdown/React', module)
+storiesOf('Components|Dropdown/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -15,7 +15,7 @@ storiesOf('Components|Molecules/Dropdown/React', module)
     },
     changelog: Changelog,
   })
-  .add('Dropdown as uncontrolled React Component', () => {
+  .add('Story - uncontrolled', () => {
     const div = document.createElement('div');
 
     const item1 = text('First Item', '< CHF 1,000');

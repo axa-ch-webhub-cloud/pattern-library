@@ -5,14 +5,14 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
-storiesOf('Components|Atoms/Input text/Demos', module)
+storiesOf('Components|Input text/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Feature - Input Text works in a form', () => {
+  .add('In a form', () => {
     const handleSubmit = ev => {
       ev.preventDefault();
       document.getElementById('form-data-details').open = true;
@@ -81,11 +81,11 @@ storiesOf('Components|Atoms/Input text/Demos', module)
     return wrapper;
   })
   .add(
-    'Feature - Input text native oninput event attribute',
+    'Native oninput event attribute',
     () =>
       `<axa-input-text oninput="console.log('input with')"></axa-input-text>`
   )
-  .add('Feature - Input text info popup', () => {
+  .add('Info popup', () => {
     const info = `<h4>Zeitspanne bis zur Pensionierung</h4>
     <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
     return `<div>
@@ -95,10 +95,10 @@ storiesOf('Components|Atoms/Input text/Demos', module)
             </div>`;
   })
   .add(
-    'no maxlength set', // to ui test this case we need a story because its not working with knobs
+    'No maxlength set', // to ui test this case we need a story because its not working with knobs
     () => `<axa-input-text counter="chars left"></axa-input-text>`
   )
   .add(
-    'no counter set', // to ui test this case we need a story because its not working with knobs
+    'No counter set', // to ui test this case we need a story because its not working with knobs
     () => `<axa-input-text maxlength="50"></axa-input-text>`
   );

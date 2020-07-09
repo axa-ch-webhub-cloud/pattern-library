@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Text - basic functionality')
-  .page(`${host}/iframe.html?id=components-atoms-text--text`)
+  .page(`${host}/iframe.html?id=components-text--story`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -36,9 +36,7 @@ test('should have correct font definitions for text size 1', async t => {
 });
 
 fixture('Text - Size 2')
-  .page(
-    `${host}/iframe.html?id=components-atoms-text--text&knob-variant=size-2`
-  )
+  .page(`${host}/iframe.html?id=components-text--story&knob-variant=size-2`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -64,9 +62,7 @@ test('should have correct font definitions for text size 2', async t => {
 });
 
 fixture('Text - Size 3')
-  .page(
-    `${host}/iframe.html?id=components-atoms-text--text&knob-variant=size-3`
-  )
+  .page(`${host}/iframe.html?id=components-text--story&knob-variant=size-3`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -93,7 +89,7 @@ test('should have correct font definitions for text size 3', async t => {
 
 fixture('Text - Size 2 with custom tag')
   .page(
-    `${host}/iframe.html?id=components-atoms-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`
+    `${host}/iframe.html?id=components-text--story&knob-variant=size-2&knob-add%20<p>%20Tag=true`
   )
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
@@ -120,7 +116,7 @@ test('should have correct font definitions for text size 2 with custom span tag'
 });
 
 fixture('Text - Bold')
-  .page(`${host}/iframe.html?id=components-atoms-text--text&knob-variant=bold`)
+  .page(`${host}/iframe.html?id=components-text--story&knob-variant=bold`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -137,7 +133,7 @@ test('should have correct font weight for text bold', async t => {
 
 fixture('Text - Variant')
   .page(
-    `${host}/iframe.html?id=components-atoms-text--text&knob-variant=size-1%20bold`
+    `${host}/iframe.html?id=components-text--story&knob-variant=size-1%20bold`
   )
   .beforeEach(async t => {
     await t.resizeWindow(800, 600);
@@ -187,7 +183,7 @@ test('should update pure text dynamically and wrap in <p>', async t => {
 
 fixture('Text - React')
   .page(
-    `${host}/iframe.html?id=components-atoms-text-react-demos--feature-text-with-dynamic-children-under-react`
+    `${host}/iframe.html?id=components-text-react-demos--dynamic-children-under-react`
   )
   .beforeEach(async t => {
     await t.resizeWindow(800, 600);

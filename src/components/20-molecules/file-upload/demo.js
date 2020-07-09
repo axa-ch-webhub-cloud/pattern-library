@@ -5,14 +5,14 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
-storiesOf('Components|Molecules/File Upload/Demos', module)
+storiesOf('Components|File Upload/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Feature - file-upload in a form', () => {
+  .add('In a form', () => {
     const handleSubmit = e => {
       e.preventDefault();
 

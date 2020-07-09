@@ -7,7 +7,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Input File', module)
+storiesOf('Components|Input File', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -15,7 +15,7 @@ storiesOf('Components|Atoms/Input File', module)
     },
     changelog: Changelog,
   })
-  .add('Input File', () => {
+  .add('Story', () => {
     const inputText = text('text', 'Select a File');
     const accept = text(
       'accept',

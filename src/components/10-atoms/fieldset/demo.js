@@ -6,14 +6,14 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Fieldset/Demos', module)
+storiesOf('Components|Fieldset/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Fieldset - responsive stretch', () => {
+  .add('Responsive stretch', () => {
     const root = document.createElement('div');
 
     const template = html`

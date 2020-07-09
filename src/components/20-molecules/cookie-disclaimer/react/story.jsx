@@ -10,7 +10,7 @@ import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Molecules/Cookie disclaimer/React', module)
+storiesOf('Components|Cookie Disclaimer/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -19,7 +19,7 @@ storiesOf('Components|Molecules/Cookie disclaimer/React', module)
     },
     changelog: Changelog,
   })
-  .add('Cookie disclaimer - default', () => {
+  .add('Story', () => {
     const buttonname = text('buttonname', 'Accept');
     const title = text('text', 'Terms and conditions of data protection');
     const description = text(

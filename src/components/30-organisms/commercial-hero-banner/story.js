@@ -10,7 +10,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
-  'Components|Organisms/Commercial Hero Banner',
+  'Components|Commercial Hero Banner',
   module
 );
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
@@ -22,7 +22,7 @@ storyAXACommercialHeroBanner.addParameters({
   changelog: Changelog,
 });
 
-storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
+storyAXACommercialHeroBanner.add('Story', () => {
   const variant = radios(
     'Variant',
     {

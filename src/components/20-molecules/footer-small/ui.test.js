@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer Small - Static links').page(
-  `${host}/iframe.html?id=components-molecules-footer-small--footer-small`
+  `${host}/iframe.html?id=components-footer-small--story`
 );
 
 test('should render four languages', async t => {
@@ -74,7 +74,7 @@ test('should have a link in the href attribute', async t => {
 });
 
 fixture('Footer Small - Dynamic Links Demo').page(
-  `${host}/iframe.html?id=components-molecules-footer-small-demos--footer-small-dynamic-links`
+  `${host}/iframe.html?id=components-footer-small-demos--dynamic-links`
 );
 
 test('should update indices on click', async t => {
@@ -93,7 +93,7 @@ test('should update indices on click', async t => {
 });
 
 fixture('Footer Small - React smoke test').page(
-  `${host}/iframe.html?id=components-molecules-footer-small-react--footer-with-callbacks-on-language`
+  `${host}/iframe.html?id=components-footer-small-react--callbacks-on-language`
 );
 
 test('should render Reactified axa-footer-small', async t => {
@@ -109,7 +109,7 @@ test('should render Reactified axa-footer-small', async t => {
 });
 
 fixture('Footer Small - React dynamic children test').page(
-  `${host}/iframe.html?id=components-molecules-footer-small-react--footer-with-dynamic-change-of-children-upon-language-change`
+  `${host}/iframe.html?id=components-footer-small-react--dynamic-change-of-children-upon-language-change`
 );
 
 test('should update Reactified axa-footer-small when children change dynamically', async t => {

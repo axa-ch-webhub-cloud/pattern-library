@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Commercial Hero Banner - basic functionality').page(
-  `${host}/iframe.html?id=components-organisms-commercial-hero-banner--commercial-hero-banner`
+  `${host}/iframe.html?id=components-commercial-hero-banner--story`
 );
 
 const TAG = 'axa-commercial-hero-banner';
@@ -20,7 +20,7 @@ test('should render commercial-hero-banner', async t => {
 });
 
 fixture('Commercial Hero Banner - Dark Mode').page(
-  `${host}/iframe.html?id=components-organisms-commercial-hero-banner--commercial-hero-banner&knob-Variant=dark&knob-Image%20Source=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg`
+  `${host}/iframe.html?id=components-commercial-hero-banner--story&knob-Variant=dark&knob-Image%20Source=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg`
 );
 
 test('should render in dark mode', async t => {
@@ -50,7 +50,7 @@ async function _assertDarkBackgroundGradient(t, container) {
 
 fixture('Commercial Hero Banner - Content')
   .page(
-    `${host}/iframe.html?id=components-organisms-commercial-hero-banner--commercial-hero-banner&knob-Variant=light&knob-Image%20Source=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg`
+    `${host}/iframe.html?id=components-commercial-hero-banner--story&knob-Variant=light&knob-Image%20Source=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg`
   )
   .beforeEach(async t => {
     await t.maximizeWindow();
@@ -175,7 +175,7 @@ test('should use correct typography for desktop view', async t => {
 
 fixture('Commercial Hero Banner - Check addons')
   .page(
-    `${host}/iframe.html?id=components-organisms-commercial-hero-banner-demos--with-badges`
+    `${host}/iframe.html?id=components-commercial-hero-banner-demos--with-badges`
   )
   .beforeEach(async t => {
     await t.maximizeWindow();

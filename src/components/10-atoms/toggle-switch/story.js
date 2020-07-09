@@ -6,7 +6,7 @@ import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
 
-const story = storiesOf('Components|Atoms/Toggle Switch', module);
+const story = storiesOf('Components|Toggle Switch', module);
 story.addDecorator(withKnobs);
 
 story.addParameters({
@@ -16,7 +16,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Toggle Switch', () => {
+story.add('Story', () => {
   const active = boolean('active', false);
   const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');

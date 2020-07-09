@@ -66,7 +66,7 @@ const model = {
   ],
 };
 
-storiesOf('Components|Organisms/Table Sortable', module)
+storiesOf('Components|Table Sortable', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -74,7 +74,7 @@ storiesOf('Components|Organisms/Table Sortable', module)
     },
     changelog: Changelog,
   })
-  .add('Table Sortable', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const innerscroll = text('innerscroll', '');

@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from '../CHANGELOG.md';
 
-const storyPopupContent = storiesOf('Components|Molecules/Popup', module);
+const storyPopupContent = storiesOf('Components|Popup', module);
 storyPopupContent.addDecorator(withKnobs);
 storyPopupContent.addParameters({
   readme: {
@@ -23,7 +23,7 @@ const children = html`
   </p>
 `;
 
-storyPopupContent.add('Popup Content', () => {
+storyPopupContent.add('Content Story', () => {
   const open = boolean('open', true);
 
   const wrapper = document.createElement('div');

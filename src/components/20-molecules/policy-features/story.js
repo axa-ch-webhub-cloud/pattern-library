@@ -9,7 +9,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const story = storiesOf('Components|Molecules/Policy features', module);
+const story = storiesOf('Components|Policy Features', module);
 story.addDecorator(withNoBorder);
 story.addDecorator(withKnobs);
 story.addParameters({
@@ -19,7 +19,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Policy features', () => {
+story.add('Story', () => {
   const variants = select(
     'variant',
     STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),

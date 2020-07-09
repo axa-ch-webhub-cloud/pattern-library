@@ -7,19 +7,19 @@ import Changelog from '../CHANGELOG.md';
 import DemoButtonClick from './DemoButtonClick';
 import DemoButtonForm from './DemoButtonForm';
 
-storiesOf('Components|Atoms/Button/React/Demos', module)
+storiesOf('Components|Button/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Feature - Button clickable', () => {
+  .add('Clickable', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonClick />, div);
     return div;
   })
-  .add('Feature - Button in a form', () => {
+  .add('In a form', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoButtonForm />, div);
     return div;

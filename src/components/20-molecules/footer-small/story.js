@@ -7,7 +7,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Molecules/Footer Small', module)
+storiesOf('Components|Footer Small', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -16,7 +16,7 @@ storiesOf('Components|Molecules/Footer Small', module)
     },
     changelog: Changelog,
   })
-  .add('Footer Small', () => {
+  .add('Story', () => {
     const language1 = text('First language', `DE`);
     const language2 = text('Second language', `FR`);
     const language3 = text('Third language', `IT`);

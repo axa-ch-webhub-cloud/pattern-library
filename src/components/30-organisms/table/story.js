@@ -5,7 +5,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Organisms/Table', module)
+storiesOf('Components|Table', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -13,7 +13,7 @@ storiesOf('Components|Organisms/Table', module)
     },
     changelog: Changelog,
   })
-  .add('Table', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const innerscroll = text('innerscroll', '');

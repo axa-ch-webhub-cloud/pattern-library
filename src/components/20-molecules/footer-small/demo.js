@@ -7,7 +7,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const selectedLanguageKey = '-';
 
-storiesOf('Components|Molecules/Footer Small/Demos', module)
+storiesOf('Components|Footer Small/Demos', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {
@@ -15,7 +15,7 @@ storiesOf('Components|Molecules/Footer Small/Demos', module)
     },
     changelog: Changelog,
   })
-  .add('Footer Small - Dynamic Links', () => {
+  .add('Dynamic Links', () => {
     const wrapper = document.createElement('div');
     const activeLanguage = document.createElement('p');
     activeLanguage.id = 'active-language';

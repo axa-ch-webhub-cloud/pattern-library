@@ -35,7 +35,7 @@ const variantOptions = {
   secondary: 'secondary',
 };
 
-storiesOf('Components|Atoms/Link/React', module)
+storiesOf('Components|Link/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -43,7 +43,7 @@ storiesOf('Components|Atoms/Link/React', module)
     },
     changelog: Changelog,
   })
-  .add('Hyperlink', () => {
+  .add('Story', () => {
     const link = text(
       'link',
       'https://www.axa.ch/en/information/data-protection.html'

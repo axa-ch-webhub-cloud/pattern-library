@@ -4,14 +4,14 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
-storiesOf('Components|Atoms/Input File/Demos', module)
+storiesOf('Components|Input File/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Feature - InputFile clickable', () => {
+  .add('Clickable', () => {
     const inputFile = document.createElement('axa-input-file');
     inputFile.setAttribute('multiple', 'multiple');
     let counter = 0;

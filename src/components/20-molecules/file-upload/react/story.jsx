@@ -8,7 +8,7 @@ import AXAFileUploadReact from './AXAFileUploadReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Molecules/File Upload/React', module)
+storiesOf('Components|File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -16,7 +16,7 @@ storiesOf('Components|Molecules/File Upload/React', module)
     },
     changelog: Changelog,
   })
-  .add('File Upload', () => {
+  .add('Story', () => {
     const wrapperWidth = text('Width', '455px');
     const sizeSliderOptions = {
       range: true,

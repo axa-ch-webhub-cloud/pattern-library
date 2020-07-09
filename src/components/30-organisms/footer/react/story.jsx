@@ -14,7 +14,7 @@ const setNewlyClickedLink = link => {
   ).innerText = `Last clicked link: ${link}`;
 };
 
-storiesOf('Components|Organisms/Footer/React', module)
+storiesOf('Components|Footer/React', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {
@@ -23,7 +23,7 @@ storiesOf('Components|Organisms/Footer/React', module)
     changelog: Changelog,
   })
 
-  .add('Feature - Footer Callbacks', () => {
+  .add('Callbacks', () => {
     const div = document.createElement('div');
     div.id = 'footer';
     ReactDOM.render(

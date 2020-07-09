@@ -7,7 +7,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const story = storiesOf('Components|Organisms/Testimonials', module);
+const story = storiesOf('Components|Testimonials', module);
 story.addDecorator(withKnobs);
 story.addDecorator(withNoBorder);
 story.addParameters({
@@ -17,7 +17,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Testimonials', () => {
+story.add('Story', () => {
   const title = text('title', 'Customer Reviews');
   const subtitle = text(
     'Text',

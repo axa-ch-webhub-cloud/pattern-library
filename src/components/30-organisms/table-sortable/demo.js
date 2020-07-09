@@ -65,14 +65,14 @@ const model = {
   ],
 };
 
-storiesOf('Components|Organisms/Table Sortable/Demos', module)
+storiesOf('Components|Table Sortable/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Table Sortable - on row click', () => {
+  .add('On row click', () => {
     const wrapper = document.createElement('div');
     window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
       if (index > -1) {

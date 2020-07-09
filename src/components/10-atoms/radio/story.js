@@ -9,7 +9,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Radio', module)
+storiesOf('Components|Radio', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -17,7 +17,7 @@ storiesOf('Components|Atoms/Radio', module)
     },
     changelog: Changelog,
   })
-  .add('Radio', () => {
+  .add('Story', () => {
     const wrapper = document.createElement('div');
 
     const label = text('label*', 'car');

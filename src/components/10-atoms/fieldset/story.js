@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Fieldset', module)
+storiesOf('Components|Fieldset', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -14,7 +14,7 @@ storiesOf('Components|Atoms/Fieldset', module)
     },
     changelog: Changelog,
   })
-  .add('Fieldset', () => {
+  .add('Story', () => {
     const error = text('error', '');
     const options = {
       none: null,

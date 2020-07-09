@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyDropdown = storiesOf('Components|Molecules/Dropdown', module);
+const storyDropdown = storiesOf('Components|Dropdown', module);
 storyDropdown.addDecorator(withKnobs);
 storyDropdown.addParameters({
   readme: {
@@ -15,7 +15,7 @@ storyDropdown.addParameters({
   changelog: Changelog,
 });
 
-storyDropdown.add('Dropdown', () => {
+storyDropdown.add('Story', () => {
   const label = text('label', '');
   const value = text('value', '');
   const defaultTitle = text('defaulttitle', 'Select amount');
@@ -57,7 +57,7 @@ storyDropdown.add('Dropdown', () => {
   return wrapper;
 });
 
-storyDropdown.add('Dropdown items delayed and numeric values', () => {
+storyDropdown.add('Items delayed and numeric values', () => {
   const label = text('label', '');
   const value = text('value', '');
   const name = text('name', '');

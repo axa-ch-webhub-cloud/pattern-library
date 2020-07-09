@@ -5,14 +5,14 @@ import Readme from './README.md';
 import './index';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Molecules/Datepicker/Demos', module)
+storiesOf('Components|Datepicker/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Feature - Datepicker in a form', () => {
+  .add('In a form', () => {
     const handleSubmit = event => {
       event.preventDefault();
       document.getElementById('form-data').open = true;
@@ -74,7 +74,7 @@ storiesOf('Components|Molecules/Datepicker/Demos', module)
     render(template, wrapper);
     return wrapper;
   })
-  .add('Feature - Datepicker with onchange handler', () => {
+  .add('With onchange handler', () => {
     const template = html`
       <axa-datepicker
         inputfield

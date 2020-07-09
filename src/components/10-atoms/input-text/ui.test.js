@@ -5,7 +5,7 @@ const TAG = 'axa-input-text';
 const CLASS = '.a-input-text__input';
 
 fixture('Input text - basic functionality').page(
-  `${host}/iframe.html?id=components-atoms-input-text--input-text`
+  `${host}/iframe.html?id=components-input-text--story`
 );
 
 test('should render input-text', async t => {
@@ -56,7 +56,7 @@ test('input element should have correct html attributes', async t => {
 });
 
 fixture('Input text - Form').page(
-  `${host}/iframe.html?id=components-atoms-input-text-demos--feature-input-text-works-in-a-form`
+  `${host}/iframe.html?id=components-input-text-demos--in-a-form`
 );
 
 test('should render label', async t => {
@@ -96,7 +96,7 @@ test('should submit inputs correctly in form', async t => {
 });
 
 fixture('Input text - Max Length').page(
-  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
+  `${host}/iframe.html?id=components-input-text--story&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
 );
 
 test('should correctly show character count with counter within text', async t => {
@@ -132,7 +132,7 @@ test('should correctly show character count with counter within text', async t =
 });
 
 fixture('Input text - no maxlength').page(
-  `${host}/iframe.html?id=components-atoms-input-text-demos--no-maxlength-set`
+  `${host}/iframe.html?id=components-input-text-demos--no-maxlength-set`
 );
 
 test('should not show counter text if maxlength not set', async t => {
@@ -144,7 +144,7 @@ test('should not show counter text if maxlength not set', async t => {
 });
 
 fixture('Input text - no counter').page(
-  `${host}/iframe.html?id=components-atoms-input-text-demos--no-counter-set`
+  `${host}/iframe.html?id=components-input-text-demos--no-counter-set`
 );
 
 test('should not show counter text if counter (text) not set', async t => {
@@ -156,7 +156,7 @@ test('should not show counter text if counter (text) not set', async t => {
 });
 
 fixture('Input text - maxLength works with autocomplete').page(
-  `${host}/iframe.html?id=components-atoms-input-text-react--input-text-simulate-autocomplete`
+  `${host}/iframe.html?id=components-input-text-react--story-simulate-autocomplete`
 );
 
 test('should cut text when autocomplete sets value over maxLength', async t => {
@@ -171,7 +171,7 @@ test('should cut text when autocomplete sets value over maxLength', async t => {
 });
 
 fixture('Input text - Set attributes "pattern" and "numeric"').page(
-  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=&knob-type=text&knob-pattern=[0-9]*&knob-inputmode=numeric&knob-refid=&knob-value=&knob-maxlength=50&knob-counter=Still%20##counter##%20characters%20left&knob-counterMax=Over%20character%20limit!`
+  `${host}/iframe.html?id=components-input-text--story&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=&knob-type=text&knob-pattern=[0-9]*&knob-inputmode=numeric&knob-refid=&knob-value=&knob-maxlength=50&knob-counter=Still%20##counter##%20characters%20left&knob-counterMax=Over%20character%20limit!`
 );
 test('input element should have correct html attributes "pattern" and "numeric"', async t => {
   const $axaInputElement = await Selector(() => document.querySelector(TAG), {
@@ -183,7 +183,7 @@ test('input element should have correct html attributes "pattern" and "numeric"'
 });
 
 fixture('Input text - autofocus').page(
-  `${host}/iframe.html?id=components-atoms-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=50&knob-autofocus=true&knob-counter=Still ##counter## characters left&knob-counterMax=Over character limit!&knob-pattern=&knob-inputmode=`
+  `${host}/iframe.html?id=components-input-text--story&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=50&knob-autofocus=true&knob-counter=Still ##counter## characters left&knob-counterMax=Over character limit!&knob-pattern=&knob-inputmode=`
 );
 
 test('should have focus after initial rendering', async t => {
@@ -198,7 +198,7 @@ test('should have focus after initial rendering', async t => {
 });
 
 fixture('Input text - defaultValue for react').page(
-  `${host}/iframe.html?id=components-atoms-input-text-react--input-text&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=qwertz&knob-type=text&knob-pattern=&knob-inputmode=`
+  `${host}/iframe.html?id=components-input-text-react--story&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=qwertz&knob-type=text&knob-pattern=&knob-inputmode=`
 );
 
 test('should display correct default value', async t => {

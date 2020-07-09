@@ -8,14 +8,14 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Radio/Demos', module)
+storiesOf('Components|Radio/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
   })
-  .add('Radio - default', () => {
+  .add('Default', () => {
     const root = document.createElement('div');
     const error = 'Bitte wählen Sie eine Option aus.';
 
@@ -44,7 +44,7 @@ storiesOf('Components|Atoms/Radio/Demos', module)
     return root;
   })
   .add(
-    'Radio - button, autowidth',
+    'Button, autowidth',
     () => `
 <axa-fieldset horizontal>
 <axa-radio button name="insurance" label="No, I'm already insured"></axa-radio>
@@ -54,7 +54,7 @@ storiesOf('Components|Atoms/Radio/Demos', module)
 </axa-fieldset>`
   )
   .add(
-    'Radio - button, nogap',
+    'Button, nogap',
     () => `
 <axa-fieldset horizontal>
 <axa-radio button nogap name="insurance" label="No, I'm already insured"></axa-radio>
@@ -62,7 +62,7 @@ storiesOf('Components|Atoms/Radio/Demos', module)
 </axa-fieldset>`
   )
   .add(
-    'Radio - button, noautowidth',
+    'Button, noautowidth',
     () => `
 <axa-fieldset horizontal>
 <axa-radio button name="insurance" noautowidth label="No, I'm already insured"></axa-radio>
@@ -70,7 +70,7 @@ storiesOf('Components|Atoms/Radio/Demos', module)
 <axa-radio button name="insurance" noautowidth label="Yes, take out insurance" checked></axa-radio>
 </axa-fieldset>`
   )
-  .add('Radio - button, icon', () => {
+  .add('Button, icon', () => {
     const root = document.createElement('div');
     const template = html`
       <axa-fieldset horizontal>

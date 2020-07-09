@@ -6,7 +6,7 @@ import DemoInputText from './DemoInputText';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Atoms/Input Text/React/Demos', module)
+storiesOf('Components|Input Text/React/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -14,7 +14,7 @@ storiesOf('Components|Atoms/Input Text/React/Demos', module)
     changelog: Changelog,
   })
   /* Default */
-  .add('Feature - Input-Text controlled/uncontrolled', () => {
+  .add('Controlled/uncontrolled', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoInputText />, div);
     return div;

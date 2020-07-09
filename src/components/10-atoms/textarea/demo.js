@@ -6,7 +6,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
-storiesOf('Components|Atoms/Textarea/Demos', module)
+storiesOf('Components|Textarea/Demos', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -15,7 +15,7 @@ storiesOf('Components|Atoms/Textarea/Demos', module)
     changelog: Changelog,
   })
   .add(
-    'Feature - Textarea with character counter',
+    'Character counter',
     () =>
       `<div>
         <axa-textarea
@@ -39,10 +39,10 @@ storiesOf('Components|Atoms/Textarea/Demos', module)
       </div>`
   )
   .add(
-    'Textarea - children (default Value)',
+    'Children (default Value)',
     () => `<axa-textarea>prefilled value</axa-textarea>`
   )
-  .add('Textarea maxLength added later', () => {
+  .add('MaxLength added later', () => {
     const label = text('label*', '');
     const name = text('name*', '');
     const refId = text('refId', '');

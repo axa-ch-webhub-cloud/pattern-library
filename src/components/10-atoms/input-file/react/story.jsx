@@ -8,7 +8,7 @@ import AXAInputFileReact from './AXAInputFileReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Atoms/Input File/React', module)
+storiesOf('Components|Input File/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -16,7 +16,7 @@ storiesOf('Components|Atoms/Input File/React', module)
     },
     changelog: Changelog,
   })
-  .add('Input File', () => {
+  .add('Story', () => {
     const inputText = text('text', 'Select a File');
     const accept = text(
       'accept',

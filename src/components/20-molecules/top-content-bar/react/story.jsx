@@ -15,7 +15,7 @@ const variantOptions = {
   warning: 'warning',
 };
 
-storiesOf('Components|Molecules/Top content bar/React', module)
+storiesOf('Components|Top Content Bar/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -25,7 +25,7 @@ storiesOf('Components|Molecules/Top content bar/React', module)
     changelog: Changelog,
   })
   /* Default */
-  .add('Top content bar', () => {
+  .add('Story', () => {
     const ctatext = text('ctatext', '');
     const variant = select('variant', variantOptions, '');
     const href = text('href', '');

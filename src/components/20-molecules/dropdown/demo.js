@@ -3,7 +3,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Molecules/Dropdown/Demos', module)
+storiesOf('Components|Dropdown/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -11,7 +11,7 @@ storiesOf('Components|Molecules/Dropdown/Demos', module)
     changelog: Changelog,
   })
   .add(
-    'Dropdown inside form',
+    'In a form',
     () => `<form id="dropdown-form" onsubmit="event.preventDefault();document.getElementById('form-data').open=true;document.getElementById('form-data-lang').textContent=(new FormData(this)).get('lang')">
     <fieldset>
     <legend>Language</legend>

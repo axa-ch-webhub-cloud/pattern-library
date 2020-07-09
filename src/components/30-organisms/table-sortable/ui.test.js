@@ -3,9 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table Sortable - basic functionality')
-  .page(
-    `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable`
-  )
+  .page(`${host}/iframe.html?id=components-table-sortable--story`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -340,7 +338,7 @@ test('should not render arrows', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=650`
+  `${host}/iframe.html?id=components-table-sortable--story&knob-innerscroll=650`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -395,7 +393,7 @@ test('should sort also when innerscroll is set ', async t => {
 });
 
 fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
+  `${host}/iframe.html?id=components-table-sortable--story&knob-innerscroll=900&knob-maxheight=160`
 );
 
 test('should sort also when maxheight is set ', async t => {
@@ -455,7 +453,7 @@ test('should sort also when maxheight is set ', async t => {
 });
 
 fixture('Table Sortable - on row click').page(
-  `${host}/iframe.html?id=components-organisms-table-sortable-demos--table-sortable-on-row-click`
+  `${host}/iframe.html?id=components-table-sortable-demos--on-row-click`
 );
 
 test('should react to click on row', async t => {

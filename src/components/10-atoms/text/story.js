@@ -14,7 +14,7 @@ const variantOptions = {
   bold: 'bold',
 };
 
-storiesOf('Components|Atoms/Text', module)
+storiesOf('Components|Text', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -22,7 +22,7 @@ storiesOf('Components|Atoms/Text', module)
     },
     changelog: Changelog,
   })
-  .add('Text', () => {
+  .add('Story', () => {
     const variant = select('variant', variantOptions, '');
     const addSpanTag = boolean('Add <span> tag', false);
     const content = text(

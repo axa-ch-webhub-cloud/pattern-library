@@ -4,7 +4,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Atoms/Button Link/Demos', module)
+storiesOf('Components|Button Link/Demos', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -12,10 +12,10 @@ storiesOf('Components|Atoms/Button Link/Demos', module)
     changelog: Changelog,
   })
   .add(
-    'Feature - Button Link icon visible',
+    'Icon visible',
     () => '<axa-button-link icon="arrow-right">Next step</axa-button-link>'
   )
-  .add('Feature - Button Link clickable', () => {
+  .add('Clickable', () => {
     const btn = document.createElement('axa-button-link');
     let counter = 0;
     btn.innerHTML = `You clicked me: ${counter}`;

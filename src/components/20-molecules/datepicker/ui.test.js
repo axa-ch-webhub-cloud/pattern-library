@@ -15,7 +15,7 @@ const reactDatepickerYearDropdown = Selector(() =>
 );
 
 fixture('Datepicker')
-  .page(`${host}/iframe.html?id=components-molecules-datepicker--datepicker`)
+  .page(`${host}/iframe.html?id=components-datepicker--story`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -271,7 +271,7 @@ test('should set current year as startup date', async t => {
 });
 
 fixture('Datepicker - With Locale').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-locale=en-GB`
+  `${host}/iframe.html?id=components-datepicker--story&knob-locale=en-GB`
 );
 
 test('should display month in English', async t => {
@@ -283,7 +283,7 @@ test('should display month in English', async t => {
 });
 
 fixture('Datepicker - Collapsible Version').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
+  `${host}/iframe.html?id=components-datepicker--story&knob-inputfield=true&knob-year=2019`
 );
 
 test('should write date into input field for input calendars', async t => {
@@ -315,7 +315,7 @@ test('should change enhanced dropdown title (only on large screens) on month cha
 });
 
 fixture('Datepicker - Collapsible Version with it-CH locale').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-CH`
+  `${host}/iframe.html?id=components-datepicker--story&knob-inputfield=true&knob-year=2019&knob-locale=it-CH`
 );
 
 test('should have correct format at input field', async t => {
@@ -336,7 +336,7 @@ test('should have correct format at input field', async t => {
 });
 
 fixture('Datepicker - Collapsible Version with it-IT locale').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-IT`
+  `${host}/iframe.html?id=components-datepicker--story&knob-inputfield=true&knob-year=2019&knob-locale=it-IT`
 );
 
 test('should have correct format at input field', async t => {
@@ -358,7 +358,7 @@ test('should have correct format at input field', async t => {
 
 // React smoke test
 fixture('Datepicker React').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component`
+  `${host}/iframe.html?id=components-datepicker-react--story`
 );
 test('should render datepicker as reactified component', async t => {
   const datepickerReact = await Selector(() =>
@@ -388,7 +388,7 @@ test('should correctly expand year ranges assigned via property', async t => {
 
 // React controlled-component test
 fixture('Datepicker React controlled').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react-demos--controlled-component-react-ified-datepicker-with-inputfield`
+  `${host}/iframe.html?id=components-datepicker-react-demos--controlled-component-with-inputfield`
 );
 test('should behave correctly when controlled', async t => {
   const datepickerReact = await Selector(() =>
@@ -457,7 +457,7 @@ test('should behave correctly when controlled', async t => {
 });
 
 fixture('Datepicker React inputfield').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
+  `${host}/iframe.html?id=components-datepicker-react--story&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should fire onDateChange callback on valid user input', async t => {
@@ -479,7 +479,7 @@ test('should fire onDateChange callback on valid user input', async t => {
 });
 
 fixture('Datepicker React OnInputfieldKeyUp').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react-demos--using-oninputfieldkeyup-event`
+  `${host}/iframe.html?id=components-datepicker-react-demos--using-oninputfieldkeyup-event`
 );
 
 test('should fire onInputfieldKeyUp callback on user input', async t => {
@@ -497,7 +497,7 @@ test('should fire onInputfieldKeyUp callback on user input', async t => {
 });
 
 fixture('Datepicker React inputfield defaultValue').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
+  `${host}/iframe.html?id=components-datepicker-react--story&knob-inputfield=true&knob-locale=de-CH&knob-defaultValue=25.1.2020`
 );
 
 test('should react to programmatic date property changes', async t => {
@@ -558,7 +558,7 @@ test('should react to programmatic date property changes', async t => {
 });
 
 fixture('Datepicker React empty inputfield').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-react--datepicker-as-react-component&knob-inputfield=true&knob-locale=de-CH`
+  `${host}/iframe.html?id=components-datepicker-react--story&knob-inputfield=true&knob-locale=de-CH`
 );
 
 test('should allow month change from default date', async t => {
@@ -709,7 +709,7 @@ test('should allow year ranges', async t => {
 });
 
 fixture('Datepicker Form').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-in-a-form`
+  `${host}/iframe.html?id=components-datepicker-demos--in-a-form`
 );
 test('should submit datepicker correctly in form', async t => {
   const datepickerForm = await Selector(() =>
@@ -739,7 +739,7 @@ test('should have default width', async t => {
 });
 
 fixture('Datepicker with onchange handler').page(
-  `${host}/iframe.html?id=components-molecules-datepicker-demos--feature-datepicker-with-onchange-handler`
+  `${host}/iframe.html?id=components-datepicker-demos--with-onchange-handler`
 );
 test('should fire the right events', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
@@ -775,7 +775,7 @@ test('should fire the right events', async t => {
 });
 
 fixture('Datepicker as inputfield with fixed width and height').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-datepicker--story&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('should have 200px width', async t => {
@@ -818,7 +818,7 @@ test('input wrap should have correct height without a label', async t => {
 });
 
 fixture('Datepicker as inputfield with label').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
+  `${host}/iframe.html?id=components-datepicker--story&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=HelloWorld&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200&knob-height=80`
 );
 
 test('component and input wrap should have correct height', async t => {
@@ -833,7 +833,7 @@ test('component and input wrap should have correct height', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width and 10px height').page(
-  `${host}/iframe.html?id=components-molecules-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
+  `${host}/iframe.html?id=components-datepicker--story&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196&knob-height=10`
 );
 
 test('should have no minimum width', async t => {
