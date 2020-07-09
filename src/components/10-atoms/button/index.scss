@@ -19,7 +19,7 @@
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-deep-sapphire;
 
-  @include breakpoint($mediaquery-sm-up) {
+  @include breakpoint($mediaquery-xs-up) {
     min-height: 40px;
   }
 

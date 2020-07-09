@@ -53,11 +53,10 @@
 
 .a-input-file--large {
   min-height: 40px;
-  @include text(t4);
+  @include text(t3);
 
   @include breakpoint($mediaquery-xs-up) {
     min-height: 50px;
-    @include text(t3);
   }
 }
 
