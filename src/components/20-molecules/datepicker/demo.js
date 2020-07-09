@@ -38,11 +38,12 @@ storiesOf('Components|Datepicker/Demos', module)
             year="2020"
             month="1"
             day="2"
+            width="300px"
           ></axa-datepicker>
           <axa-button type="submit" id="datepicker-forms-submit">OK</axa-button>
           <details
             id="form-data"
-            style="display: inline-block;margin-left: 2rem"
+            style="display: block; margin-top: 2rem; width: 300px"
           >
             <summary
               style="background:rgb(0,0,143);color:#fff;padding:11px;font-family:sans-serif;outline:none"
