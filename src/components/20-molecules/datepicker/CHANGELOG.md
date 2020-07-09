@@ -1,3 +1,7 @@
+## 9.3.0
+
+- Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
+
 ## 9.2.1
 
 - Fix width problem in Safari. (#1794)

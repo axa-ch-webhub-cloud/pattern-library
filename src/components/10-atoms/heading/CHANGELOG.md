@@ -1,6 +1,6 @@
-## 3.0.1
+## 3.1.0
 
-- The font-weight is now 700. #1796
+- Replaced old typography with new one. This changes have changed the components design. The font-weight is now 700. (#1796 and #1750)
 
 ## 3.0.0
 

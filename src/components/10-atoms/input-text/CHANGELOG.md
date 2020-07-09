@@ -1,3 +1,7 @@
+## 4.3.0
+
+- Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
+
 ## 4.2.1
 
 - Fixed wrong internal key to get the version of dependency `axa-popup`. (#1842)
