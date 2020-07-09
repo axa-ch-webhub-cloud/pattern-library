@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Please only report technical bugs. Clarify design issues in #ux-ui-support.
+Please only report technical bugs. Clarify design issues in the slack channel #ux-ui-support.
 
 <!--- Provide a general summary of the issue in the Title above -->
 
@@ -17,14 +17,9 @@ Please only report technical bugs. Clarify design issues in #ux-ui-support.
 ## Current Behavior
 <!--- Tell us what happens instead of the expected behavior -->
 
-## Possible Solution
-<!--- Not obligatory, but suggest a fix/reason for the bug, -->
-
 ## Steps to Reproduce
-
-Provide a matching link to our [Storybook](https://patterns.axa.ch "Storybook") or a code sandbox.
-<!--- Provide a link to a live example, or an unambiguous set of steps to -->
-<!--- reproduce this bug. Include code to reproduce, if relevant -->
+<!--- Provide a link to a live example like our Storybook or a code sandbox -->
+<!--- Add an unambiguous set of steps to reproduce this bug. Include code to reproduce, if relevant -->
 1.
 2.
 3.
@@ -32,3 +27,7 @@ Provide a matching link to our [Storybook](https://patterns.axa.ch "Storybook") 
 
 ## Context (Environment)
 <!--- How has this issue affected you? What are you trying to accomplish? -->
+<!--- What is the environment the bug occures? (OS, version of the component, browser, etc.) -->
+
+## Possible Solution
+<!--- Not obligatory, but suggest a fix/reason for the bug -->
