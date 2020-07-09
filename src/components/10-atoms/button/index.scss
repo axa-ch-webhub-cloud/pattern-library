@@ -3,7 +3,7 @@
 }
 
 .a-button {
-  @include typo(primary, small);
+  @include text(t4);
   position: relative;
   box-sizing: border-box;
   padding: 0 30px;
@@ -20,7 +20,6 @@
   border-bottom-color: $color-deep-sapphire;
 
   @include breakpoint($mediaquery-xs-up) {
-    @include _text(default);
     min-height: 40px;
   }
 
@@ -60,17 +59,16 @@
 
 .a-button--large {
   min-height: 40px;
-  @include _text(default);
+  @include text(t3);
 
   @include breakpoint($mediaquery-xs-up) {
     min-height: 50px;
-    @include _text(medium);
   }
 }
 
 .a-button--small {
   min-height: 30px;
-  @include _text(small);
+  @include text(t4);
 }
 
 .a-button--motion {

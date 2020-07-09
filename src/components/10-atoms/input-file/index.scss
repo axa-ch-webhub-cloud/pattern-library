@@ -1,5 +1,5 @@
 .a-input-file {
-  @include typo(primary, small);
+  @include text(t4);
   position: relative;
   display: inline-block;
   text-align: center;
@@ -15,10 +15,6 @@
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-deep-sapphire;
-
-  @include breakpoint($mediaquery-xs-up) {
-    @include _text(default)
-  }
 
   &__flex-wrapper {
     display: flex;
@@ -57,11 +53,10 @@
 
 .a-input-file--large {
   min-height: 40px;
-  @include _text(default);
+  @include text(t3);
 
   @include breakpoint($mediaquery-xs-up) {
     min-height: 50px;
-    @include _text(medium)
   }
 }
 

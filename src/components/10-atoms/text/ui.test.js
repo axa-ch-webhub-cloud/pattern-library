@@ -20,11 +20,11 @@ test('should have correct font definitions for text size 1', async t => {
     document.querySelector('axa-text > *')
   );
 
-  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('20px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
-    .eql('27px');
+    .eql('30px');
 
   await t.resizeWindow(800, 600);
 
@@ -46,11 +46,11 @@ test('should have correct font definitions for text size 2', async t => {
     document.querySelector('axa-text[variant="size-2"] > *')
   );
 
-  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
-    .eql('24px');
+    .eql('27px');
 
   await t.resizeWindow(800, 600);
 
@@ -72,11 +72,11 @@ test('should have correct font definitions for text size 3', async t => {
     document.querySelector('axa-text[variant="size-3"] > *')
   );
 
-  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('14px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
-    .eql('17px');
+    .eql('24px');
 
   await t.resizeWindow(800, 600);
 
@@ -100,11 +100,11 @@ test('should have correct font definitions for text size 2 with custom span tag'
     document.querySelector('axa-text[variant="size-2"] > *')
   );
 
-  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('16px');
+  await t.expect(await $axaElemChild.getStyleProperty('font-size')).eql('18px');
 
   await t
     .expect(await $axaElemChild.getStyleProperty('line-height'))
-    .eql('24px');
+    .eql('27px');
 
   await t.resizeWindow(800, 600);
 

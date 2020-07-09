@@ -1,9 +1,10 @@
 .a-link {
   display: inline-flex;
-  font-family: $font-family-source-sans, Arial;
   text-decoration: none;
   color: $color-axa-blue;
   align-items: center;
+
+  @include text(t3);
 
   &:active,
   &:hover {
@@ -13,7 +14,7 @@
 
   // Simple Link == Everything except the normal hyperlinks
   &--simple {
-    @include typo(primary, default, medium);
+    @include text(t4, bold);
     text-transform: uppercase;
     letter-spacing: 0.4px;
   }

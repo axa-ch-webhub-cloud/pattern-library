@@ -1,3 +1,7 @@
+## 10.0.0
+
+- BREAKING CHANGE: Replaced old typography with new one. `typo()` is now `text()` and `typo-title()` is `headline(h1, primary)`.
+
 ## 9.0.1
 
 - Refactor the checkmark animation to have a clean look even at Safari (#1821)

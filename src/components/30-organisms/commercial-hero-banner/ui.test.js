@@ -80,18 +80,11 @@ async function _assertLightBackgroundGradient(t, container) {
 test('should use correct typography for mobile view', async t => {
   await t.resizeWindow(575, 700);
 
-  const category = await _getCategoryNode(t);
-  await t
-    .expect(category.getStyleProperty('font-family'))
-    .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(category.getStyleProperty('font-size')).eql('12px');
-  await t.expect(category.getStyleProperty('font-weight')).eql('600');
-
   const title = await _getTitleNode(t);
   await t
     .expect(title.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
-  await t.expect(title.getStyleProperty('font-size')).eql('24px');
+  await t.expect(title.getStyleProperty('font-size')).eql('30px');
   await t.expect(title.getStyleProperty('font-weight')).eql('700');
 
   const content = await _getContentNode(t);
@@ -105,25 +98,18 @@ test('should use correct typography for mobile view', async t => {
   await t
     .expect(disclaimer.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
 test('should use correct typography for tablet view', async t => {
   await t.resizeWindow(576, 700);
 
-  const category = await _getCategoryNode(t);
-  await t
-    .expect(category.getStyleProperty('font-family'))
-    .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(category.getStyleProperty('font-size')).eql('14px');
-  await t.expect(category.getStyleProperty('font-weight')).eql('600');
-
   const title = await _getTitleNode(t);
   await t
     .expect(title.getStyleProperty('font-family'))
     .eql('"Publico Headline", Georgia, serif');
-  await t.expect(title.getStyleProperty('font-size')).eql('36px');
+  await t.expect(title.getStyleProperty('font-size')).eql('30px');
   await t.expect(title.getStyleProperty('font-weight')).eql('700');
 
   const content = await _getContentNode(t);
@@ -137,19 +123,12 @@ test('should use correct typography for tablet view', async t => {
   await t
     .expect(disclaimer.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
 test('should use correct typography for desktop view', async t => {
   await t.resizeWindow(992, 700);
-
-  const category = await _getCategoryNode(t);
-  await t
-    .expect(category.getStyleProperty('font-family'))
-    .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(category.getStyleProperty('font-size')).eql('14px');
-  await t.expect(category.getStyleProperty('font-weight')).eql('600');
 
   const title = await _getTitleNode(t);
   await t
@@ -169,7 +148,7 @@ test('should use correct typography for desktop view', async t => {
   await t
     .expect(disclaimer.getStyleProperty('font-family'))
     .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('13px');
+  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
@@ -198,14 +177,8 @@ test('should render badge and addon', async t => {
     .eql('rgb(201, 20, 50)');
 });
 
-async function _getCategoryNode(t) {
-  const categoryNode = await Selector(TAG).find('[slot="category"]');
-  await t.expect(categoryNode.exists).ok();
-  return categoryNode;
-}
-
 async function _getTitleNode(t) {
-  const titleNode = await Selector(TAG).find('[slot="title"]');
+  const titleNode = await Selector(TAG).find('h1');
   await t.expect(titleNode.exists).ok();
   return titleNode;
 }

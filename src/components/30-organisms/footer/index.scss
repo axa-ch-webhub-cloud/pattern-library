@@ -57,7 +57,7 @@
   }
 
   &__title {
-    @include typo(primary, default, medium);
+    @include text(t4);
     margin: 0;
   }
 
@@ -85,7 +85,7 @@
     }
 
     &-title {
-      @include typo(primary, medium, bold);
+      @include text(t4);
 
       text-transform: uppercase;
       line-height: 1.5;
@@ -139,7 +139,7 @@
   }
 
   &__accordion-button {
-    @include typo(primary, default, medium);
+    @include text(t4);
     display: flex;
     justify-content: space-between;
     color: $color-prim-white;
@@ -205,7 +205,7 @@
       background-color: $color-azure;
 
       &-list-item {
-        @include typo(primary, xx-small, default);
+        @include text(t4);
 
         padding: 0;
         border-bottom: 1px solid $color-dark-indigo;
@@ -217,7 +217,7 @@
         }
 
         @include breakpoint($mediaquery-xs-up) {
-          @include typo(primary, default, default);
+          @include text(t4);
 
           width: 165px;
           margin-top: 8px;

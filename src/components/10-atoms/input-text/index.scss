@@ -25,7 +25,7 @@ axa-input-text {
   }
 
   .a-input-text__input {
-    @include typo();
+    @include text(t4);
     appearance: none;
     background: $color-prim-white;
     border: $border-width $border-type $color-light-grey;
@@ -83,7 +83,7 @@ axa-input-text {
   }
 
   .a-input-text__label {
-    @include typo(primary, medium);
+    @include text(t3);
     display: block;
     font-weight: 600;
     color: $color-dark-grey;
@@ -102,7 +102,7 @@ axa-input-text {
   }
 
   .a-input-text__error {
-    @include typo();
+    @include text(t4);
     display: block;
     color: $color-shy-tomato;
     margin-top: 10px;

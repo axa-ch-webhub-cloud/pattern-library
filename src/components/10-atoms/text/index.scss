@@ -1,29 +1,17 @@
 axa-text > * {
-  @include typo(primary, medium-1);
-
-  @include breakpoint($mediaquery-sm-up) {
-    @include typo(primary, large);
-  }
+  @include text(t1);
 
   margin: 0;
 }
 
 axa-text[variant="size-2"] > * {
-  @include typo(primary, medium);
-
-  @include breakpoint($mediaquery-sm-up) {
-    @include typo(primary, medium-1);
-  }
+  @include text(t2);
 }
 
 axa-text[variant="size-3"] > * {
-  @include typo(primary, small-1);
-
-  @include breakpoint($mediaquery-sm-up) {
-    @include typo(primary, medium);
-  }
+  @include text(t3);
 }
 
 axa-text[variant="bold"] > *{
-  @include _font(primary, bold);
+  @include text(t1, bold);
 }

@@ -32,18 +32,20 @@
   }
 
   &__title {
-    @include typo(primary, medium, bold);
-
-    @include breakpoint($mediaquery-sm-up) {
-      @include typo(primary, medium-1, bold);
-    }
+    @include text(t3, bold);
   }
 
   &__description {
-    @include typo(primary, medium, default);
+    @include text(t3);
+  }
 
-    @include breakpoint($mediaquery-sm-up) {
-      @include typo(primary, medium-1, default);
+  @include breakpoint($mediaquery-sm-up) {
+    &__title {
+      @include text(t2, bold);
+    }
+  
+    &__description {
+      @include text(t2);
     }
   }
 }

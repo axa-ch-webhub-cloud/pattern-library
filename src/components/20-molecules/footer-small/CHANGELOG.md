@@ -1,3 +1,7 @@
+## 5.1.0
+
+- Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
+
 ## 5.0.0
 
 - Upgrade to versioned component.

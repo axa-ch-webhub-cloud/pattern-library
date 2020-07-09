@@ -17,56 +17,25 @@ axa-commercial-hero-banner {
     margin-right: 0;
   }
 
-  h2 {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    overflow-wrap: break-word;
-
-    @include breakpoint($mediaquery-xs-up) {
-      font-size: 14px;
-      line-height: 1.21;
-    }
-  }
-
   h1 {
-    font-family: $font-family-publico;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.17;
-    letter-spacing: -0.01em;
+    @include headline(h2, secondary);
     overflow-wrap: break-word;
-
-    @include breakpoint($mediaquery-xs-up) {
-      font-size: 36px;
-      line-height: 1.13;
-      letter-spacing: 0.015em;
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      font-size: 48px;
-    }
   }
 
   p {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-
+    @include text(t4);
     @include breakpoint($mediaquery-xs-up) {
-      font-size: 16px;
+      @include text(t3);
     }
   }
 
+  header > p {
+    @include text(t4, bold);
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+  }
+
   small {
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px;
+    @include text(t4);
   }
 }

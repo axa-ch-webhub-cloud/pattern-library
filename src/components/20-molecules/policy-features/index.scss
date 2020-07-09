@@ -10,16 +10,7 @@
   &__title {
     text-align: center;
     margin: 0;
-
-    @include typo-title(large-1, secondary);
-
-    @include breakpoint($mediaquery-md) {
-      @include typo-title(huge, secondary);
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(huge-2, secondary);
-    }
+    @include headline(h2, secondary);
   }
 
   &__slot {

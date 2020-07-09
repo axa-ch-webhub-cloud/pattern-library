@@ -61,7 +61,7 @@ test('should render title with correct size on screen lg', async t => {
 test('should render title with correct size on screen md', async t => {
   await t
     .expect(await $axaPolicyFeaturesHeaderEl.getStyleProperty('font-size'))
-    .eql('30px');
+    .eql('48px');
 }).before(async t => {
   await t.resizeWindow(hugeWindowWidth, defaultWindowHeight);
 });
@@ -69,7 +69,7 @@ test('should render title with correct size on screen md', async t => {
 test('should render title with correct size on all other screen sizes', async t => {
   await t
     .expect(await $axaPolicyFeaturesHeaderEl.getStyleProperty('font-size'))
-    .eql('24px');
+    .eql('30px');
 }).before(async t => {
   await t.resizeWindow(large1WindowWidth, defaultWindowHeight);
 });

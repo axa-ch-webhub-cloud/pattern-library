@@ -5,28 +5,18 @@
   color: $color-prim-white;
 
   &__title {
-    @include typo-title(large-1, secondary);
+    @include headline(h2, secondary);
     margin: 30px 30px 0 30px;
     text-align: center;
-
-    @include breakpoint($mediaquery-xs-up) {
-      @include typo-title(huge-1, secondary);
-      margin-top: 50px;
-    }
-
-    @include breakpoint($mediaquery-md-up) {
-      @include typo-title(huge-2, secondary);
-      margin-top: 50px;
-    }
   }
 
   &__subtitle {
-    @include typo();
+    @include text(t4);
     margin: 20px 30px 0 30px;
     text-align: center;
 
     @include breakpoint($mediaquery-xs-up) {
-      @include typo(primary, medium);
+      @include text(t3);
     }
   }
 
