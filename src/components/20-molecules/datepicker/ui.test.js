@@ -731,13 +731,6 @@ test('should submit datepicker correctly in form', async t => {
     .eql('date = 29.2.2020 (of 1 submittable elements)');
 });
 
-test('should have default width', async t => {
-  const datepicker = await Selector(() =>
-    document.querySelector('axa-datepicker')
-  );
-  await t.expect(datepicker.getAttribute('width')).eql('100%');
-});
-
 fixture('Datepicker with onchange handler').page(
   `${host}/iframe.html?id=components-datepicker-demos--with-onchange-handler`
 );
@@ -772,6 +765,13 @@ test('should fire the right events', async t => {
     .wait(50)
     .expect((await Selector('.event-log')).value)
     .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
+});
+
+test('should have default width', async t => {
+  const datepicker = await Selector(() =>
+    document.querySelector('axa-datepicker')
+  );
+  await t.expect(datepicker.getAttribute('width')).eql('100%');
 });
 
 fixture('Datepicker as inputfield with fixed width and height').page(
