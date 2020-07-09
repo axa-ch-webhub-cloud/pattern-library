@@ -10,7 +10,7 @@ axa-footer {
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @include text(t3);
+    @include text(t4, bold);
 
     color: $color-prim-white;
     padding: 0;
