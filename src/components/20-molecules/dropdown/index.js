@@ -185,14 +185,16 @@ class AXADropdown extends NoShadowDOM {
   }
 
   _focusEntry(direction) {
-    if (this.open) {
+    const { open, dropdown } = this;
+
+    if (open) {
       let selectedIndex = -1;
       let newSelectedIndex;
-      const selectedLinkButton = this.dropdown.querySelector(
+      const selectedLinkButton = dropdown.querySelector(
         '.m-dropdown__item--is-selected > button'
       );
-      const focusedLinkButton = this.dropdown.querySelector('button:focus');
-      const links = this.dropdown.querySelectorAll('.js-dropdown__button');
+      const focusedLinkButton = dropdown.querySelector('button:focus');
+      const links = dropdown.querySelectorAll('.js-dropdown__button');
 
       if (focusedLinkButton) {
         forEach(links, (index, link) => {
