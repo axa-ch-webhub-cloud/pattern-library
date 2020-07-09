@@ -1,3 +1,7 @@
+## 8.3.0
+
+- Enable arrowkeys if property `native` set to false. (#1863)
+
 ## 8.2.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
