@@ -1,6 +1,7 @@
 ## 9.2.1
 
 - Fix width problem in Safari. (#1794)
+- Fix that IE adds extra space on top of element. (#1864)
 
 ## 9.2.0
 
