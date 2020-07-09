@@ -216,7 +216,7 @@
           border-bottom: none;
         }
 
-        @include breakpoint($mediaquery-sm-up) {
+        @include breakpoint($mediaquery-xs-up) {
           @include text(t4);
 
           width: 165px;

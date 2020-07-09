@@ -20,7 +20,7 @@ axa-footer {
     text-transform: uppercase;
     line-height: 1.5;
 
-    @include breakpoint($mediaquery-sm-up) {
+    @include breakpoint($mediaquery-xs-up) {
       @include text(t3, bold);
       line-height: 1.5;
     }
