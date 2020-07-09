@@ -5,11 +5,7 @@
   text-align: center;
   justify-content: center; // align the dom element itself (f.e. small spans)
 
-  @include breakpoint($mediaquery-sm-up) {
-    @include text(t2);
-  }
-
-  @include breakpoint($mediaquery-md-up) {
+  @include breakpoint($mediaquery-xs-up) {
     @include text(t1);
   }
 }
