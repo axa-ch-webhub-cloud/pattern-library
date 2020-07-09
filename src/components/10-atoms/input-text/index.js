@@ -78,8 +78,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.isPlaceholderInCounter = false;
 
     /* eslint-disable no-undef */
-    const enrichedVersionInfo = __VERSION_INFO__;
-    const commonPopupVersion = enrichedVersionInfo['axa-popup']['axa-popup'];
+    const enrichedVersionInfo = __VERSION_INFO__; // This object is different at webpack and rollup build!
+    const commonPopupVersion =
+      enrichedVersionInfo['axa-input-text']['axa-popup'];
     enrichedVersionInfo[AXAPopupButton.tagName] = {
       [AXAPopupButton.tagName]: commonPopupVersion,
     };
