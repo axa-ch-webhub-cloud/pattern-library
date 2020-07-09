@@ -1,8 +1,8 @@
 {
-  "name": "storybook-update",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@axa-ch/patterns-library",
+  "version": "2.0.0",
+  "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
+  "module": "lib",
   "scripts": {
     "build": "NODE_ENV=production npm run build-components",
     "watch": "npm run watch-components",
@@ -27,9 +27,6 @@
     "deploy-branch": "npm run build-storybook && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@skatejs/val": "^0.4.0",
     "@webcomponents/webcomponentsjs": "2.2.10",
@@ -99,5 +96,21 @@
     "testcafe": "1.8.2",
     "testcafe-browser-provider-browserstack": "1.12.0",
     "to-string-loader": "^1.1.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axa-ch/patterns-library.git"
+  },
+  "author": "Pattern Warriors",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "homepage": "https://patterns.axa.ch/",
+  "keywords": [
+    "axa",
+    "pattern-library",
+    "design-system",
+    "frontend"
+  ]
 }
