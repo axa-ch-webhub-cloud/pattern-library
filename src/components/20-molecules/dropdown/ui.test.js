@@ -43,6 +43,80 @@ test('On mobiles the first element should have index 1 if defaulttitle is set', 
   await t.resizeWindow(767, 767);
 });
 
+test('should select first element with key', async t => {
+  const dropdown = Selector('axa-dropdown');
+  const firstOptionFocused = Selector(
+    'axa-dropdown button[data-index="1"]:focus'
+  );
+
+  await t
+    .click(dropdown)
+    .pressKey('down')
+    .expect(firstOptionFocused.exists)
+    .ok();
+});
+
+test('should select next element with key if a element is selected', async t => {
+  const dropdown = Selector('axa-dropdown');
+  const firstOption = Selector('axa-dropdown button[data-index="1"]');
+  const secondOptionFocused = Selector(
+    'axa-dropdown button[data-index="2"]:focus'
+  );
+
+  await t
+    .click(dropdown)
+    .click(firstOption)
+    .click(dropdown)
+    .pressKey('down')
+    .expect(secondOptionFocused.exists)
+    .ok();
+});
+
+test('should select previous element with key if a element is selected', async t => {
+  const dropdown = Selector('axa-dropdown');
+  const secondOption = Selector('axa-dropdown button[data-index="2"]');
+  const firstOptionFocused = Selector(
+    'axa-dropdown button[data-index="1"]:focus'
+  );
+
+  await t
+    .click(dropdown)
+    .click(secondOption)
+    .click(dropdown)
+    .pressKey('up')
+    .expect(firstOptionFocused.exists)
+    .ok();
+});
+
+test('should select next element with key if a element has focus', async t => {
+  const dropdown = Selector('axa-dropdown');
+  const secondOptionFocused = Selector(
+    'axa-dropdown button[data-index="2"]:focus'
+  );
+
+  await t
+    .click(dropdown)
+    .pressKey('down')
+    .pressKey('down')
+    .expect(secondOptionFocused.exists)
+    .ok();
+});
+
+test('should select previous element with key if a element has focus', async t => {
+  const dropdown = Selector('axa-dropdown');
+  const firstOptionFocused = Selector(
+    'axa-dropdown button[data-index="1"]:focus'
+  );
+
+  await t
+    .click(dropdown)
+    .pressKey('down')
+    .pressKey('down')
+    .pressKey('up')
+    .expect(firstOptionFocused.exists)
+    .ok();
+});
+
 fixture('Dropdown disabled').page(
   `${host}/iframe.html?id=components-dropdown--story&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
 );
