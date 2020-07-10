@@ -23,6 +23,10 @@ Use the following channels for different kinds of requests/reports:
 
 We release self-contained plug-and-play web components based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), derived from the [lit-element](https://github.com/Polymer/lit-element) base class (maintained by Google).
 
+## Pattern Library via community CDN
+
+You can add any Pattern Library component via the community CDN jsdelivr. This is useful for Prototyping or experimenting or if you don't want to bother with a frontend stack. This works only native (no react support). Here an example on how to add the JS for `<axa-button></axa-button>`: `<script src="https://cdn.jsdelivr.net/npm/@axa-ch/button@latest/dist/index.js"></script>`
+
 ## Component versioning
 
 Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md).
