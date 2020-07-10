@@ -1,6 +1,6 @@
 ## 4.0.1
 
-- Fix button width according to design. #1862
+- Fix button width, that was broken due to button changes. #1862
 
 ## 4.0.0
 
