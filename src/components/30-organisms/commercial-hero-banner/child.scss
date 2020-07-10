@@ -3,10 +3,10 @@ axa-commercial-hero-banner {
 
   axa-button,
   axa-button-link {
-    display: block;
+    display: table;
     margin-top: 28px;
-    width: fit-content;
   }
+
 
   h1 {
     @include headline(h2, secondary);
