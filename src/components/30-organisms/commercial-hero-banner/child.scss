@@ -6,15 +6,8 @@ axa-commercial-hero-banner {
   axa-button,
   axa-button-link {
     display: block;
-
     margin-top: 28px;
-    margin-right: 23px;
-  }
-
-  axa-button:last-child,
-  axa-button-link:last-child {
-    margin-top: 28px;
-    margin-right: 0;
+    width: fit-content;
   }
 
   h1 {
