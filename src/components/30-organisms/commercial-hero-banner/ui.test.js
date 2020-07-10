@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -194,3 +194,26 @@ async function _getDisclaimerNode(t) {
   await t.expect(disclaimerNode.exists).ok();
   return disclaimerNode;
 }
+
+test('should set correct width for button', async t => {
+  const expectedWidth = '157.688px';
+  const $axaButtonLink = await Selector('axa-button-link');
+
+  const $axaButtonLinkShadow = await Selector(
+    () => document.querySelector('axa-button-link').shadowRoot
+  );
+
+  const $axaButtonShadowElement = await $axaButtonLinkShadow.find(
+    '.a-button-link'
+  );
+
+  const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
+    const element = selector();
+    element.style.width = styleValue;
+  });
+
+  await setStyleWidthAttribute($axaButtonLink, expectedWidth);
+  await t
+    .expect($axaButtonShadowElement.getStyleProperty('width'))
+    .eql(expectedWidth);
+});
