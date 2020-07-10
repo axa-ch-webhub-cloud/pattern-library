@@ -1,4 +1,4 @@
-import '@axa-ch/patterns-library-polyfill';
+import './polyfills-ie11.js';
 import { addParameters, configure, addDecorator } from '@storybook/html';
 import { create } from '@storybook/theming';
 import { addReadme } from 'storybook-readme/html';
