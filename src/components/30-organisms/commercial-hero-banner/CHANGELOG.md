@@ -1,3 +1,7 @@
+## 4.0.1
+
+- Fix button width according to design. #1862
+
 ## 4.0.0
 
 - BREAKING CHANGE: Removed slot="category". All categories must be a child of a `<header slot="title"></header>`. (#1796 and #1750)
