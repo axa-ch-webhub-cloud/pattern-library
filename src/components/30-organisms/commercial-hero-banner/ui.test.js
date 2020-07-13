@@ -196,7 +196,7 @@ async function _getDisclaimerNode(t) {
 }
 
 test('should set correct width for button', async t => {
-  const expectedWidth = '157.688px';
+  const expectedWidth = '157px';
   const $axaButtonLink = await Selector('axa-button-link');
 
   const $axaButtonLinkShadow = await Selector(
