@@ -1,21 +1,12 @@
-// TODO Use stuff from typography file as soon as it is ready, instead of
-// hardcoding the whole typography manually.
 axa-commercial-hero-banner {
   color: $color-dark-grey;
 
   axa-button,
   axa-button-link {
-    display: block;
-
+    display: table;
     margin-top: 28px;
-    margin-right: 23px;
   }
 
-  axa-button:last-child,
-  axa-button-link:last-child {
-    margin-top: 28px;
-    margin-right: 0;
-  }
 
   h1 {
     @include headline(h2, secondary);
