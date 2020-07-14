@@ -17,6 +17,8 @@ import { applyDefaults } from '../../../utils/with-react';
 const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
+const FOCUSENTRY_DIRECTION_DOWN = 'down';
+const FOCUSENTRY_DIRECTION_UP = 'up';
 
 // module globals
 let openDropdownInstance;
@@ -56,7 +58,7 @@ const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
     >
   `;
 
-const contentItemsMapper = (clickHandler, defaultTitle) => (
+const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
   { name, value, selected, disabled },
   index
 ) => {
@@ -71,6 +73,7 @@ const contentItemsMapper = (clickHandler, defaultTitle) => (
           <button
             type="button"
             @click="${clickHandler}"
+            @keyup="${keyUpHandler}"
             tabindex="-1"
             class="m-dropdown__button js-dropdown__button"
             data-index="${index + (defaultTitle ? 1 : 0)}"
@@ -156,7 +159,6 @@ class AXADropdown extends NoShadowDOM {
     // to define controlledness
     applyDefaults(this);
     // bound event handlers (so scope and de-registration work as expected)
-    this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleWindowClick = this.handleWindowClick.bind(this);
     this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
@@ -184,11 +186,52 @@ class AXADropdown extends NoShadowDOM {
     }
   }
 
-  handleWindowKeyDown(e) {
+  _focusEntry(direction) {
+    const { open, dropdown } = this;
+
+    if (open) {
+      let selectedIndex = -1;
+      let newSelectedIndex;
+      const selectedLinkButton = dropdown.querySelector(
+        '.m-dropdown__item--is-selected > button'
+      );
+      const focusedLinkButton = dropdown.querySelector('button:focus');
+      const links = dropdown.querySelectorAll('.js-dropdown__button');
+
+      if (focusedLinkButton) {
+        forEach(links, (index, link) => {
+          if (link === focusedLinkButton) selectedIndex = index;
+        });
+      } else if (selectedLinkButton) {
+        forEach(links, (index, link) => {
+          if (link === selectedLinkButton) selectedIndex = index;
+        });
+      }
+
+      if (direction === FOCUSENTRY_DIRECTION_DOWN) {
+        newSelectedIndex = selectedIndex + 1;
+      } else {
+        newSelectedIndex = selectedIndex - 1;
+      }
+
+      if (links[newSelectedIndex]) {
+        links[newSelectedIndex].focus();
+      }
+    }
+  }
+
+  handleKeyUp(e) {
     const { key, keyCode } = e;
+    e.preventDefault();
+
     if (key === 'Escape' || key === 'Esc' || keyCode === 27) {
-      e.preventDefault();
       this.openDropdown(false);
+    } else if (keyCode === 40) {
+      // arrowkey down
+      this._focusEntry(FOCUSENTRY_DIRECTION_DOWN);
+    } else if (keyCode === 38) {
+      // arrowkey up
+      this._focusEntry(FOCUSENTRY_DIRECTION_UP);
     }
   }
 
@@ -304,6 +347,7 @@ class AXADropdown extends NoShadowDOM {
       disabled,
       handleDropdownItemClick,
       handleDropdownClick,
+      handleKeyUp,
       maxHeight,
     } = this;
 
@@ -354,6 +398,7 @@ class AXADropdown extends NoShadowDOM {
             @focus="${this.onFocus}"
             @blur="${this.onBlur}"
             @click="${handleDropdownClick}"
+            @keyup="${handleKeyUp}"
           >
             <span class="m-dropdown__flex-wrapper">
               <span class="js-dropdown__title">${this.title}</span>
@@ -368,7 +413,11 @@ class AXADropdown extends NoShadowDOM {
               : ''}"
           >
             ${items.map(
-              contentItemsMapper(handleDropdownItemClick, defaultTitle)
+              contentItemsMapper(
+                handleDropdownItemClick,
+                handleKeyUp,
+                defaultTitle
+              )
             )}
           </ul>
           <!-- ENHANCED END -->
@@ -393,7 +442,6 @@ class AXADropdown extends NoShadowDOM {
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
     window.addEventListener('resize', this.handleResize);
-    window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleWindowClick);
     window.addEventListener('axa-dropdown-close', this.handleWindowClick);
   }
@@ -408,7 +456,6 @@ class AXADropdown extends NoShadowDOM {
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('keydown', this.handleWindowKeyDown);
     window.removeEventListener('click', this.handleWindowClick);
     window.removeEventListener('axa-dropdown-close', this.handleWindowClick);
   }
