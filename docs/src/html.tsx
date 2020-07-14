@@ -21,8 +21,7 @@ export default function HTML({
     <html {...htmlAttributes}>
       <head>
         <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <meta name="viewport" content="width=1024" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {headComponents}
       </head>
       <body {...bodyAttributes}>
