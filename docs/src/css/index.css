@@ -6,6 +6,7 @@
 @import './grid.css';
 
 /* components */
+@import './alert.css';
 @import './top-bar.css';
 @import './side-bar.css';
 @import './playground.css';

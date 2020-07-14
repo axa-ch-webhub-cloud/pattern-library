@@ -2,12 +2,20 @@ import React, { ReactElement } from 'react';
 import Page from '../../components/Page';
 import SyntaxHighlighter from '../../components/SyntaxHighlighter';
 import footerPreview from '../../images/footer-preview.png';
+import Alert from '../../components/Alert';
 
 interface Props {}
 
 export default function FooterPage({}: Props): ReactElement {
   return (
     <Page>
+      <Alert>
+        <p>
+          This is a working draft component, the preview component page doesn't
+          have the same color as '@axa-ch/footer' - it's temporary.
+        </p>
+      </Alert>
+
       <p className="paragraph">
         A footer is a design element present at the bottom of the page, and is
         an integral part of the user experience.

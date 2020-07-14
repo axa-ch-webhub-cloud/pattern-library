@@ -1,0 +1,11 @@
+.alert {
+  background-color: var(--yellow-light);
+  color: var(--yellow-dark);
+  padding: var(--space-2);
+
+  display: flex;
+
+  & .alert-icon {
+    margin-right: var(--space-1);
+  }
+}
