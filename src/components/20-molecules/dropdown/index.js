@@ -17,6 +17,8 @@ import { applyDefaults } from '../../../utils/with-react';
 const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
+const FOCUSENTRY_DIRECTION_DOWN = 'down';
+const FOCUSENTRY_DIRECTION_UP = 'up';
 
 // module globals
 let openDropdownInstance;
@@ -206,7 +208,7 @@ class AXADropdown extends NoShadowDOM {
         });
       }
 
-      if (direction === 'down') {
+      if (direction === FOCUSENTRY_DIRECTION_DOWN) {
         newSelectedIndex = selectedIndex + 1;
       } else {
         newSelectedIndex = selectedIndex - 1;
@@ -226,10 +228,10 @@ class AXADropdown extends NoShadowDOM {
       this.openDropdown(false);
     } else if (keyCode === 40) {
       // arrowkey down
-      this._focusEntry('down');
+      this._focusEntry(FOCUSENTRY_DIRECTION_DOWN);
     } else if (keyCode === 38) {
       // arrowkey up
-      this._focusEntry('up');
+      this._focusEntry(FOCUSENTRY_DIRECTION_UP);
     }
   }
 
