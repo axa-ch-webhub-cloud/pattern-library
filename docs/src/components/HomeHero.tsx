@@ -24,7 +24,7 @@ export default function HomeHero() {
             components and key concepts.
           </p>
           <div style={{ display: 'flex' }}>
-            <Link is={Link} to="/components/" style={{ marginRight: 32 }}>
+            <Link to="/start" style={{ marginRight: 32 }}>
               <Button size="large">Get started</Button>
             </Link>
             <Button
