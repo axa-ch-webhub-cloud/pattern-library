@@ -85,7 +85,7 @@
     "react-dom": "^16.8.2",
     "react-syntax-highlighter": "^12.2.1",
     "rimraf": "^2.6.3",
-    "rollup": "^1.31.0",
+    "rollup": "^2.21.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-copy": "^2.0.1",
     "rollup-plugin-sass": "^1.1.0",
