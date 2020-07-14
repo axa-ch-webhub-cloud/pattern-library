@@ -16,46 +16,57 @@ interface Props {}
 const colorItems = [
   {
     id: 'blue-base',
+    hexacode: '#00008f',
     usage: 'CTA - Primary color',
   },
   {
     id: 'blue-dark',
+    hexacode: '#000072',
     usage: 'CTA - Active state',
   },
   {
     id: 'blue-light',
+    hexacode: '#4976ba',
     usage: 'Background',
   },
   {
     id: 'black',
+    hexacode: '#333333',
     usage: 'Text - default (primary)',
   },
   {
     id: 'neutral-600',
+    hexacode: '#999999',
     usage: 'Text secondary Placeholder',
   },
   {
     id: 'neutral-500',
+    hexacode: '#c9c9c9',
     usage: 'Text - disabled line and icons',
   },
   {
     id: 'neutral-400',
+    hexacode: ' #d8d8d8',
     usage: 'hover items-list',
   },
   {
     id: 'neutral-200',
+    hexacode: '#eeeeee',
     usage: 'Background disabled',
   },
   {
     id: 'red-base',
+    hexacode: '#f07662',
     usage: 'item-menu-bar-active',
   },
   {
     id: 'red-dark',
+    hexacode: '#c91432',
     usage: 'Error message',
   },
   {
     id: 'green-base',
+    hexacode: '#1cc54e',
     usage: 'Success message',
   },
 ];

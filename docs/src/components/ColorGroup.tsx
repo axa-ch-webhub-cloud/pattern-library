@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 
 interface Color {
   id: string;
+  hexacode: string;
   usage: string;
 }
 
@@ -24,7 +25,12 @@ export default function ColorGroup({ items }: Props): ReactElement {
             <div key={index} className={`shadow-md`}>
               <div className={`bg-${item.id}`} style={{ minHeight: 160 }}></div>
               <div className="p-2">
-                <p className="kicker mb-0 text-neutral-600">{item.id}</p>
+                <p
+                  className="kicker mb-0 text-neutral-600"
+                  style={{ fontWeight: 400 }}
+                >
+                  {item.id} {item.hexacode}
+                </p>
                 <p className="font-bold text-lg">{item.usage}</p>
               </div>
             </div>
