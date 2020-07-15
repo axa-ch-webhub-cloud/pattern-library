@@ -40,9 +40,8 @@ const lib = {
     }),
     copy({
       targets: [
-        'index.d.ts',
-      ],
-      outputFolder: './lib'
+        { src: 'index.d.ts', dest: './lib'}
+      ]
     })
   ],
 };
@@ -56,9 +55,8 @@ const libReact = {
   },
   plugins: [...lib.plugins, copy({
     targets: [
-      'index.react.d.ts',
-    ],
-    outputFolder: './lib'
+      { src: 'index.react.d.ts', dest: './lib'}
+    ]
   })]
 };
 
