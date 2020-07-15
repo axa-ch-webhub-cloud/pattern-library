@@ -1,6 +1,6 @@
 const copy = require('rollup-plugin-copy');
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
-const babel = require('rollup-plugin-babel');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { babel } = require('@rollup/plugin-babel');
 
 const { commonPlugins } = require('./common.rollup.js');
 
@@ -32,7 +32,7 @@ const lib = {
       plugins: ['@babel/plugin-proposal-class-properties'],
       babelrc: false,
       exclude: ['node_modules/**'],
-      runtimeHelpers: false,
+      babelHelpers: 'bundled'
     }),
     nodeResolve({
       mainFields: ['module', 'main'],

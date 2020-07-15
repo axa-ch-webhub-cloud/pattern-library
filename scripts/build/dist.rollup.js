@@ -3,8 +3,8 @@ const { extname } = require('path');
 const { uglify } = require('rollup-plugin-uglify');
 
 const commonjs = require('@rollup/plugin-commonjs');
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
-const babel = require('rollup-plugin-babel');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { babel } = require('@rollup/plugin-babel');
 
 const { commonPlugins } = require('./common.rollup.js');
 const customBabelRc = require('../../.storybook/.babelrc'); // get the babelrc file
@@ -64,7 +64,7 @@ const dist = {
     }),
     babel({
       babelrc: false,
-      runtimeHelpers: true,
+      babelHelpers: 'runtime',
       presets: ['@babel/preset-env'],
       plugins: [
         ...customBabelRc.plugins,
