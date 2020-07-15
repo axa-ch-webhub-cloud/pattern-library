@@ -1,5 +1,5 @@
 const copy = require('rollup-plugin-copy');
-const resolve = require('@rollup/plugin-node-resolve');
+const {nodeResolve} = require('@rollup/plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 
 const { commonPlugins } = require('./common.rollup.js');
@@ -34,7 +34,7 @@ const lib = {
       exclude: ['node_modules/**'],
       runtimeHelpers: false,
     }),
-    resolve({
+    nodeResolve({
       mainFields: ['module', 'main'],
       resolveOnly: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
     }),
