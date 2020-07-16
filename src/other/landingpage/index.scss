@@ -1,0 +1,24 @@
+.landingpage-image {
+    height: 396px;
+}
+
+.landingpage-questions-subtitle {
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+    @include text(t4);
+}
+
+.PageCallToAction {
+    padding: 20px 40px;
+    width: auto;
+    background-color: $color-dark-grey;
+    color: $color-prim-white;
+    
+}
+
+.PageCallToAction-inner {
+    padding-left: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

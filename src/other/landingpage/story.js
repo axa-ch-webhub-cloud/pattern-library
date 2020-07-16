@@ -1,6 +1,9 @@
 import { html, render } from 'lit-html';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
+import styles from './index.scss';
+
+// imagesource="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"
 
 export default {
   title: 'Welcome',
@@ -50,6 +53,7 @@ export const ToPatternLibrary = () => {
   xhttp.send();
 
   const template = html`
+  <style>${styles}</style>
   <axa-container>
     <axa-heading rank="1">AXA’s Design System 🚀</axa-heading>
     <axa-text variant="size-3">
@@ -82,6 +86,7 @@ export const ToPatternLibrary = () => {
         >
       </div>
     </axa-commercial-hero-banner>
+    <img src="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1" class="landingpage-image"><img>
     
     <axa-heading rank="2">Last releases</axa-heading>
     <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
@@ -98,32 +103,6 @@ export const ToPatternLibrary = () => {
         >
       </div>
     </section>
-    
-    <style>
-    
-.landingpage-questions-subtitle {
-    text-transform: uppercase;
-    overflow-wrap: break-word;
-    font-family: 'Source Sans Pro', Arial, sans-serif;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.02em;
-}
-
-.PageCallToAction {
-    padding: 20px 40px;
-    background-color: #333;
-    color: #fff;
-    width: auto;
-}
-  
-.PageCallToAction-inner {
-    padding-left: 96px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-}</style>
   `;
 
   render(template, wrapper);
