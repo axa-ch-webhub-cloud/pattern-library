@@ -12,24 +12,22 @@ npm install @axa-ch/materials
 
 ```js
 import { svg } from 'lit-html';
-import {
-  ArrowRightSvg
-} from '@axa-ch/materials/icons';
-...
-<span>${svg(ArrowRightSvg)}</span>
+import { ArrowRightSvg } from '@axa-ch/materials/icons';
+
+<span>${svg(ArrowRightSvg)}</span>;
 ```
 
 ### React
 
 ```js
-import {
-  ArrowRightSvg
-} from '@axa-ch/materials/icons';
-...
-<ArrowRightSvg />
+import ArrowRightSvg from '@axa-ch/materials/icons-raw/arrow-right.svg';
+
+<ArrowRightSvg />;
 ```
 
-You need to use `SVGR` that takes external SVG files and transforms them into React components with Webpack.
+You need to use `SVGR` that takes external SVG files and transforms them into React components with Webpack. It is installed automatically if you use `create-pod-app`.
+
+If you need to install it manually:
 
 ```bash
 npm install @svgr/webpack --save-dev
@@ -98,7 +96,7 @@ npm install @svgr/webpack --save-dev
 2. Remove unnecessary code inside the SVG:
    - a. `data-name="Layer 2"` # layer info for vector drawing software
    - b. `<path fill="#fff" d="M0 0h96v96H0z"/>` # outer bounding box filled with white background
-3. - a. use the internal [svgo](https://github.com/svg/svgo)-invoking scripts `npm run build-icons` or `npm run build-images` from materials itself to clean up and optimize the SVGs, then copy the optimized files back from the `.tmp` folder to `icons-raw` or `images-raw`
-   - b. alternatively use the [online SVG optimizer](https://jakearchibald.github.io/svgomg/] for the same purpose
+3. - a. use the internal [svgo](https://github.com/svg/svgo) -invoking scripts `npm run build-icons` or `npm run build-images` from materials itself to clean up and optimize the SVGs, then copy the optimized files back from the `.tmp` folder to `icons-raw` or `images-raw`
+   - b. alternatively use the [online SVG optimizer](https://jakearchibald.github.io/svgomg/) for the same purpose
 4. Manually review the SVGs produced in the last step: add or edit &lt;path&gt; attributes, setting `fill="currentColor"` and/or `strokes="currentColor"` as appropriate. Remove unnecessary attributes.
 5. Run `npm run build` to generate a js file for each svg file found. The generated files can be found in the `icons`and `images` folder.

@@ -13,7 +13,9 @@
   "files": [
     "styles",
     "icons",
-    "images"
+    "images",
+    "icons-raw",
+    "images-raw"
   ],
   "publishConfig": {
     "access": "public"

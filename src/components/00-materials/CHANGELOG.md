@@ -1,3 +1,7 @@
+## 10.1.0
+
+- Export the raw SVGs to have the possibility to use them at React projects. (#1756)
+
 ## 10.0.0
 
 - BREAKING CHANGE: Replaced old typography with new one. `typo()` is now `text()` and `typo-title()` is `headline(h1, primary)`.
