@@ -51,6 +51,11 @@ class AXAInputFile extends NoShadowDOM {
     /* eslint-enable no-undef */
   }
 
+  update(changedProperties) {
+    super.update(changedProperties);
+    this.customRender();
+  }
+
   watch(mode) {
     switch (mode) {
       case 'stop':
@@ -97,6 +102,9 @@ class AXAInputFile extends NoShadowDOM {
       'a-input-file--disabled': disabled,
     };
 
+    const text = this.textContent.trim();
+    const div = document.createElement('div');
+
     render(
       html`
         <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
@@ -105,7 +113,7 @@ class AXAInputFile extends NoShadowDOM {
               versionedHtml(this)`
               <axa-icon class="a-input-file__icon js-input-file__icon" icon="${icon}"></axa-icon>
             `}
-            ${this.textContent.trim()}
+            ${text}
           </span>
         </label>
         <input
@@ -118,15 +126,11 @@ class AXAInputFile extends NoShadowDOM {
           id="${this.refId}"
         />
       `,
-      this
+      div
     );
 
+    this.innerHTML = div.innerHTML;
     this.watch('start');
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.customRender();
   }
 
   disconnectedCallback() {
