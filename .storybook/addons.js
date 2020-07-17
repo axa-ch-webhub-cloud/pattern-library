@@ -9,10 +9,10 @@ import addonAPI from '@storybook/addons';
 addonAPI.register('axa-ch/defaultpage', storybookAPI => {
   storybookAPI.on(STORIES_CONFIGURED, (kind, story) => {
     if (storybookAPI.getUrlState().path === '/story/*') {
-      storybookAPI.selectStory('Overview|Introduction', 'Welcome')
+      storybookAPI.selectStory('Overview|Welcome', 'Welcome')
     }
   });
   storybookAPI.on(STORY_MISSING, (kind, story) => {
-    storybookAPI.selectStory('Introduction', 'Welcome')
+    storybookAPI.selectStory('Welcome', 'Welcome')
   })
 });
