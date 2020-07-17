@@ -44,8 +44,9 @@ const rewrite = (someStrings, aTagName, aVersion) =>
 // examples: defineVersioned([AXADatepicker, AXADropdown, AXAButton], __ VERSION_INFO__);
 //           defineVersioned([AXADatepicker],  __ VERSION_INFO__);
 //           defineVersioned([AXADropdown],  __ VERSION_INFO__);
+//           defineVersioned([AXAContainer],  __ VERSION_INFO__, 'axa-footer');
 //           defineVersioned([AXACheckbox], 'rsv');
-const defineVersioned = (dependencies, versionInfo) => {
+const defineVersioned = (dependencies, versionInfo, parentElementName) => {
   // set up
   const customVersion = typeof versionInfo === 'string' && versionInfo;
   let versionedTagName = '';
@@ -55,7 +56,10 @@ const defineVersioned = (dependencies, versionInfo) => {
       dependency instanceof HTMLElement ? dependency.constructor : dependency;
     // extract each dependant component's version
     const { tagName } = componentClass;
-    const externalVersion = versionInfo[tagName];
+
+    // TODO: the versionInfo object is different on every different build (dist, storybook-dist, lib)
+    const externalVersion = versionInfo[tagName] || versionInfo[parentElementName][tagName] || 'truthy'; // any truthy value is working. on falsy we get an error on dist-js-usage.
+
     // ordinary, non-POD versioning?
     if (!customVersion && externalVersion) {
       // yes, first time versioning/registration of this component, but its class
