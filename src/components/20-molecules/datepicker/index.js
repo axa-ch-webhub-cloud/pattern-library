@@ -1,27 +1,26 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import AXADropdown from '@axa-ch/dropdown';
 import { DateInputSvg } from '@axa-ch/materials/icons';
+import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { formatISO } from 'date-fns';
-import AXADropdown from '@axa-ch/dropdown';
-import styles from './index.scss';
-import {
-  getWeekdays,
-  getMonthMatrix,
-  getAllLocaleMonthsArray,
-  parseLocalisedDateIfValid,
-  range,
-} from './utils/date';
-
-import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
-import debounce from '../../../utils/debounce';
-import createRefId from '../../../utils/create-ref-id';
-import fireCustomEvent from '../../../utils/custom-event';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
+import createRefId from '../../../utils/create-ref-id';
+import fireCustomEvent from '../../../utils/custom-event';
+import debounce from '../../../utils/debounce';
+import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
+import styles from './index.scss';
+import {
+  getAllLocaleMonthsArray,
+  getMonthMatrix,
+  getWeekdays,
+  parseLocalisedDateIfValid,
+  range,
+} from './utils/date';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
@@ -169,7 +168,6 @@ class AXADatepicker extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       invaliddatetext: { type: String, defaultValue: 'Invalid date' },
       error: { type: String, reflect: true },
-      height: { type: String, reflect: true, defaultValue: '40' },
       width: { type: String, reflect: true, defaultValue: '100%' },
       disabled: { type: Boolean, reflect: true },
       required: { type: Boolean, reflect: true },
@@ -308,7 +306,6 @@ class AXADatepicker extends NoShadowDOM {
 
     const {
       width = '100%',
-      height = '40',
       error,
       invalid,
       invaliddatetext,
@@ -322,7 +319,6 @@ class AXADatepicker extends NoShadowDOM {
       `${parameter}${/^\d+$/.test(parameter) ? 'px' : ''}`;
 
     style.width = getFormattedStyle(width); // set width to component's css
-    const formattedHeight = getFormattedStyle(height); // set height to input-wrap element because of optional label
 
     const cellClasses = ({ sameMonth, today, inactive, value }) => {
       const userSelected = _userSelectedDate === value;
@@ -376,10 +372,7 @@ class AXADatepicker extends NoShadowDOM {
         ${!this.inputfield
           ? ''
           : html`
-              <div
-                class="m-datepicker__input-wrap"
-                style="height: ${formattedHeight}"
-              >
+              <div class="m-datepicker__input-wrap">
                 <input
                   id="${refId}"
                   @input="${this.handleInputChange}"

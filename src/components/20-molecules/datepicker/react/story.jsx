@@ -46,7 +46,6 @@ storiesOf('Components|Datepicker/React', module)
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
     const width = text('width', '400');
-    const height = text('height', '40');
     const allowedYears = object('allowedyears', [
       '1971-2000',
       2012,
@@ -84,7 +83,6 @@ storiesOf('Components|Datepicker/React', module)
           ).title = newDate;
         }}
         width={width}
-        height={height}
       />,
       div
     );
