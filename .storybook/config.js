@@ -28,7 +28,6 @@ addDecorator(withHTML);
 addDecorator(withA11y);
 
 const landingpage = require.context('../src/other/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const gettingStarted = require.context('../src/other/getting-started', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const whatIsNew = require.context('../src/other/what-is-new', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const contact = require.context('../src/other/contact', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 const guides = require.context('../src/other/guides', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
@@ -39,7 +38,6 @@ const pages = require.context('../src/pages', true, /(story\.(js|jsx)|demo.(js|j
 
 configure(() => {
   landingpage.keys().forEach(landingpage);
-  gettingStarted.keys().forEach(gettingStarted);
   whatIsNew.keys().forEach(whatIsNew);
   contact.keys().forEach(contact);
   guides.keys().forEach(guides);
