@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import '../../components/10-atoms/text';
-import '../../components/10-atoms/heading';
+import '../../../components/10-atoms/text';
+import '../../../components/10-atoms/heading';
 import styles from './index.scss';
 
-const story = storiesOf('Overview|Getting started', module);
+const story = storiesOf('Guides|Getting started', module);
 story.addParameters({
   knobs: { disabled: true },
   changelog: { disabled: true },
