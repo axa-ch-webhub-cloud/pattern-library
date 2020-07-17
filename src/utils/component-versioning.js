@@ -58,7 +58,10 @@ const defineVersioned = (dependencies, versionInfo, parentElementName) => {
     const { tagName } = componentClass;
 
     // TODO: the versionInfo object is different on every different build (dist, storybook-dist, lib)
-    const externalVersion = versionInfo[tagName] || versionInfo[parentElementName][tagName] || 'truthy'; // any truthy value is working. on falsy we get an error on dist-js-usage.
+    const externalVersion =
+      versionInfo[tagName] ||
+      versionInfo[parentElementName][tagName] ||
+      'truthy'; // any truthy value is working. on falsy we get an error on dist-js-usage.
 
     // ordinary, non-POD versioning?
     if (!customVersion && externalVersion) {
