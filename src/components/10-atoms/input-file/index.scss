@@ -1,3 +1,7 @@
+axa-input-file {
+  display: inline-block;
+}
+
 .a-input-file {
   @include text(t4);
   position: relative;
@@ -7,6 +11,7 @@
   padding: 0 30px;
   margin: 0;
   min-height: 40px;
+  vertical-align: bottom;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
