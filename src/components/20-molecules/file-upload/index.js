@@ -96,7 +96,7 @@ class AXAFileUpload extends LitElement {
     this.showAddMoreInputFile = '';
 
     /* eslint-disable no-undef */
-    defineVersioned([AXAInputFile], __VERSION_INFO__);
+    defineVersioned([AXAInputFile], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 

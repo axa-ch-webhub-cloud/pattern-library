@@ -44,7 +44,7 @@ class AXATestimonials extends InlineStyles {
     // default values props
     applyDefaults(this);
     /* eslint-disable no-undef */
-    defineVersioned([AXAContainer, AXACarousel], __VERSION_INFO__);
+    defineVersioned([AXAContainer, AXACarousel], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 

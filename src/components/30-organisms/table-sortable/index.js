@@ -44,7 +44,7 @@ class AXATableSortable extends LitElement {
     });
     this.lastIndex = -1;
     /* eslint-disable no-undef */
-    defineVersioned([AXATable], __VERSION_INFO__);
+    defineVersioned([AXATable], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 
