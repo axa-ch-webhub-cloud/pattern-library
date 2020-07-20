@@ -61,7 +61,7 @@ class AXAFooter extends InlineStyles {
     this.slotsNotPrepared = true;
 
     /* eslint-disable no-undef */
-    defineVersioned([AXAContainer], __VERSION_INFO__, this, this);
+    defineVersioned([AXAContainer], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 
