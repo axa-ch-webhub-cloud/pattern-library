@@ -1,3 +1,8 @@
+@import '../utils/accessory-story.scss';
+
+@include accessory-story-content;
+@include accessory-story-wrapper;
+
 .landingpage-image {
     height: 396px;
 }
@@ -24,15 +29,4 @@
 
 .landingpage-last-releases-image {
     height: 300px;
-}
-
-.landingpage-content {
-    padding-bottom: 131px;
-}
-
-.landingpage-wrapper {
-    position: relative;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
 }

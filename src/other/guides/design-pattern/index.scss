@@ -1,10 +1,4 @@
-.design-pattern-content {
-    padding-bottom: 131px;
-}
+@import '../../utils/accessory-story.scss';
 
-.design-pattern-wrapper {
-    position: relative;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-}
+@include accessory-story-content;
+@include accessory-story-wrapper;
