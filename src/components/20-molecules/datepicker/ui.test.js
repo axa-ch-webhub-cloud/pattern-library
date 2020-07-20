@@ -193,18 +193,18 @@ test('should handle month change with native dropdown element', async t => {
   await t.resizeWindow(200, 200);
 });
 
-test('should have a minimum width', async t => {
-  const minWidth = 260;
+test('should have a fixed width', async t => {
+  const width = 260;
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
   const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
-  const datepickerWrapMinWidth = await datepickerWrap.getStyleProperty(
-    'min-width'
+  const datepickerWrapWidth = await datepickerWrap.getStyleProperty(
+    'width'
   );
 
-  await t.expect(datepicker.clientWidth).eql(minWidth + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
-  await t.expect(datepickerWrapMinWidth).eql(`${minWidth}px`); // wrapper has a min-width
+  await t.expect(datepicker.clientWidth).eql(width + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
+  await t.expect(datepickerWrapWidth).eql(`${width}px`); // wrapper has a min-width
 });
 
 test('should just add years of a given range', async t => {
