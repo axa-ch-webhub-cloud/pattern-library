@@ -199,9 +199,7 @@ test('should have a fixed width', async t => {
     document.querySelector('axa-datepicker')
   );
   const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
-  const datepickerWrapWidth = await datepickerWrap.getStyleProperty(
-    'width'
-  );
+  const datepickerWrapWidth = await datepickerWrap.getStyleProperty('width');
 
   await t.expect(datepicker.clientWidth).eql(width + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
   await t.expect(datepickerWrapWidth).eql(`${width}px`); // wrapper has a min-width
