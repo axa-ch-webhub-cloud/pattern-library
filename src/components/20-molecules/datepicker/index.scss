@@ -93,10 +93,7 @@ axa-datepicker {
   }
 
   &__input-button {
-    display: flex;
     flex-shrink: 0; // because of IE
-    align-items: center;
-    justify-content: center;
     background: $color-prim-white;
     cursor: pointer;
     border: 1px solid;
