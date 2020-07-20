@@ -11,6 +11,7 @@ axa-datepicker {
   &[inputfield] {
     .m-datepicker__wrap {
       position: absolute;
+      margin-top: 1px;
       z-index: 1;
       opacity: 0;
       transition: opacity 0.25s;
@@ -161,7 +162,6 @@ axa-datepicker {
   &__wrap {
     background: $color-prim-white;
     width: 260px;
-    margin-top: 1px;
     padding: 20px 30px;
     background: $color-prim-white;
     border: solid 1px $color-silver;
