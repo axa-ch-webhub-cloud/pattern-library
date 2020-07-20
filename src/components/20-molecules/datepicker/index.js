@@ -1,27 +1,26 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import AXADropdown from '@axa-ch/dropdown';
 import { DateInputSvg } from '@axa-ch/materials/icons';
+import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { formatISO } from 'date-fns';
-import AXADropdown from '@axa-ch/dropdown';
-import styles from './index.scss';
-import {
-  getWeekdays,
-  getMonthMatrix,
-  getAllLocaleMonthsArray,
-  parseLocalisedDateIfValid,
-  range,
-} from './utils/date';
-
-import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
-import debounce from '../../../utils/debounce';
-import createRefId from '../../../utils/create-ref-id';
-import fireCustomEvent from '../../../utils/custom-event';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
+import createRefId from '../../../utils/create-ref-id';
+import fireCustomEvent from '../../../utils/custom-event';
+import debounce from '../../../utils/debounce';
+import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
+import styles from './index.scss';
+import {
+  getAllLocaleMonthsArray,
+  getMonthMatrix,
+  getWeekdays,
+  parseLocalisedDateIfValid,
+  range,
+} from './utils/date';
 
 // module constants
 const dateInputIcon = svg([DateInputSvg]);
