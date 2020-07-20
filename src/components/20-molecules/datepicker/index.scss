@@ -10,21 +10,18 @@ axa-datepicker {
 
   &[inputfield] {
     .m-datepicker__wrap {
-      width: 100%;
       position: absolute;
       z-index: 1;
-      transform: scale(0);
-      transform-origin: top left;
-      transition: transform 0.25s;
+      opacity: 0;
+      transition: opacity 0.25s;
     }
 
     &[inverted] .m-datepicker__wrap {
-      transform-origin: bottom left;
       bottom: 40px;
     }
 
     &[open] .m-datepicker__wrap.m-datepicker__wrap-effect {
-      transform: scale(1);
+      opacity: 1;
       margin-bottom: 1px;
     }
   }
@@ -163,7 +160,7 @@ axa-datepicker {
 
   &__wrap {
     background: $color-prim-white;
-    min-width: 260px;
+    width: 260px;
     margin-top: 1px;
     padding: 20px 30px;
     background: $color-prim-white;
