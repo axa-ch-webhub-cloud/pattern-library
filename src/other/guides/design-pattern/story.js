@@ -15,12 +15,13 @@ story.addParameters({
 
 story.add('Design Pattern', () => {
   const wrapper = document.createElement('div');
+  wrapper.classList.add('design-pattern-wrapper');
 
   const template = html`
     <style>
       ${styles}
     </style>
-    <axa-container>
+    <axa-container class="design-pattern-content">
       <axa-heading rank="1">Design Pattern</axa-heading>
       <axa-text variant="size-1">
         Test

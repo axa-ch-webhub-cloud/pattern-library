@@ -1,12 +1,13 @@
-.landingpage-contact-subtitle {
-    text-transform: uppercase;
-    overflow-wrap: break-word;
-    @include text(t4);
+html, body, #root {
+    height: 100%;
 }
 
 .landingpage-contact {
+    position: absolute;
+    bottom: 8px;
+    right: 0px;
+    left: 0px;
     padding: 20px 40px;
-    width: auto;
     min-width: 420px;
     background-color: $color-dark-grey;
     color: $color-prim-white;
@@ -20,4 +21,10 @@
     @include breakpoint($mediaquery-md-up) {
         padding-left: 80px;
     }
+}
+
+.landingpage-contact-subtitle {
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+    @include text(t4);
 }
