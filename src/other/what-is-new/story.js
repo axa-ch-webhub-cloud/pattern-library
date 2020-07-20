@@ -15,6 +15,7 @@ story.addParameters({
 
 story.add("What's new", () => {
   const wrapper = document.createElement('div');
+  wrapper.classList.add('accessory-story-wrapper');
 
   const template = html`
     <style>

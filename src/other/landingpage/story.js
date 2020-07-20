@@ -31,7 +31,7 @@ const getDateFromGitCommit = answerJson => {
 
 export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
-  wrapper.classList.add('landingpage-wrapper');
+  wrapper.classList.add('accessory-story-wrapper');
 
   const xhttp = new XMLHttpRequest();
   // eslint-disable-next-line func-names
@@ -58,7 +58,7 @@ export const ToPatternLibrary = () => {
     <style>
       ${styles}
     </style>
-    <div class="landingpage-content">
+    <div class="accessory-story-content">
       <axa-container>
         <axa-heading rank="1">AXA’s Design System 🚀</axa-heading>
         <axa-text variant="size-1">

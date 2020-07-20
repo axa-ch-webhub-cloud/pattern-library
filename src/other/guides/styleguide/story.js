@@ -15,6 +15,7 @@ story.addParameters({
 
 story.add('Styleguide', () => {
   const wrapper = document.createElement('div');
+  wrapper.classList.add('accessory-story-wrapper');
 
   const template = html`
     <style>

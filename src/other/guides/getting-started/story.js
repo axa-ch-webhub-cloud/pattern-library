@@ -15,13 +15,13 @@ story.addParameters({
 
 story.add('Getting started', () => {
   const wrapper = document.createElement('div');
-  wrapper.classList.add('getting-started-wrapper');
+  wrapper.classList.add('accessory-story-wrapper');
 
   const template = html`
     <style>
       ${styles}
     </style>
-    <div class="getting-started-content">
+    <div class="accessory-story-content">
       <axa-container>
         <axa-heading rank="1">Getting started</axa-heading>
         <axa-text variant="size-1">

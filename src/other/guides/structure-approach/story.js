@@ -3,7 +3,7 @@ import { html, render } from 'lit-html';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
 import styles from './index.scss';
-import contact from '../../utils/contact-banner';
+import contact from '../../utils/contact-footer';
 
 const story = storiesOf('Guides|Structure Approach', module);
 story.addParameters({
@@ -15,6 +15,7 @@ story.addParameters({
 
 story.add('Structure Approach', () => {
   const wrapper = document.createElement('div');
+  wrapper.classList.add('accessory-story-wrapper');
 
   const template = html`
     <style>
@@ -25,6 +26,32 @@ story.add('Structure Approach', () => {
       <axa-text variant="size-1">
         Test
       </axa-text>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <p>hoi</p>
     </axa-container>
     ${contact}
   `;
