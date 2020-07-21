@@ -22,14 +22,19 @@ story.add("What's new", () => {
       ${styles}
     </style>
     <axa-container>
-      <axa-heading rank="1">What's new</axa-heading>
+      <axa-heading rank="1" variant="secondary">What's new</axa-heading>
       <axa-text variant="size-1">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-        amet.
+        Here you will find the latest updates on the AXA Design System
+        development.
       </axa-text>
+      <axa-heading rank="2" variant="secondary">Update log</axa-heading>
+      <axa-heading rank="5">Component versioning is now live!</axa-heading>
+      <p class="what-is-new-text-with-link">
+        We are happy to introduce to you the AXA Design System V1! Following the
+        MVP, developed at the end of 2019, the V1 comes with improved UX and
+        code integration structure. For more information check out our
+        <axa-link>Introduction</axa-link>
+      </p>
     </axa-container>
     ${contact}
   `;
