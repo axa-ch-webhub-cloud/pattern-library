@@ -22,7 +22,7 @@ module.exports.commonPlugins = [
     '__VERSION_INFO__': stringifiedVersionInfo
   }),
   sass({
-    insert: true,
+    insert: false, /* no automatic style insertion in <head>, style use under component control */
     include: '**/*.scss',
     options: {
       includePaths: [
