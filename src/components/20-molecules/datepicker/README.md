@@ -151,16 +151,6 @@ Example values:
 - `90%`: Sets percentage value of width of parent element.
 - `400`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
 
-### height
-
-String-valued `height` allows to override the intrinsic dimensions of the datepicker. Default is `40`.
-Note that there is a minimum of `40px` if you use it as a inputfield. Note that you can't change height if you use it inline.
-
-Example values:
-
-- `90%`: Sets percentage value of height of parent element. Don't forget to set parent's height in this case.
-- `300`: Sets px value of height of parent element. Note that missing `px` is added to numeric values automatically.
-
 ### label
 
 String-valued `label` sets a label text above the input-field part of the datepicker.

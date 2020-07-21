@@ -1,3 +1,9 @@
+## 10.0.0
+
+- Removed height property. (#1840)
+- `width` now only affects inputfield. (#1840)
+- Implemented a new animation.
+
 ## 9.3.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)

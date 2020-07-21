@@ -53,7 +53,6 @@ story.add('Story', () => {
   const invalid = boolean('invalid', false);
   const placeholder = text('placeholder', 'Please select a date');
   const width = text('width', '');
-  const height = text('height', '40');
 
   const wrapper = document.createElement('div');
 
@@ -76,7 +75,6 @@ story.add('Story', () => {
         monthtitle="${monthtitle}"
         yeartitle="${yeartitle}"
         width="${width}"
-        height="${height}"
         data-test-id="datepicker"
       ></axa-datepicker>
       <span
