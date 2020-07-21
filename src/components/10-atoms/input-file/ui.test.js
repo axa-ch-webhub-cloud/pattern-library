@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
@@ -23,6 +23,23 @@ test('should set input file property icon', async t => {
   await t.expect($axaElem.exists).ok();
   const $axaIcon = await $axaElem.find(ICON_TAG);
   await t.expect($axaIcon.exists).ok();
+});
+
+test('should pass width to internal button', async t => {
+  const expectedWidth = '300px';
+
+  const axaInputFile = Selector('axa-input-file');
+  const axaInputFileLabel = axaInputFile.find('.a-input-file');
+
+  const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
+    const element = selector();
+    element.style.width = styleValue;
+  });
+
+  await setStyleWidthAttribute(axaInputFile, expectedWidth);
+  await t
+    .expect(axaInputFileLabel.getStyleProperty('width'))
+    .eql(expectedWidth);
 });
 
 fixture('Input File - set property accept').page(
