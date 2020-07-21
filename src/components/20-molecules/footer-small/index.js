@@ -88,6 +88,7 @@ class AXAFooterSmall extends InlineStyles {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     // remove installed observer
     this._observer.disconnect();
   }
