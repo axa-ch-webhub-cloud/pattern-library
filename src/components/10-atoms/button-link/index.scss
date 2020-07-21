@@ -1,5 +1,6 @@
 :host {
   display: inline-block;
+  vertical-align: bottom; // Just for IE
 }
 
 .a-button-link {
