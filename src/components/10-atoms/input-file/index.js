@@ -1,19 +1,18 @@
+import { html } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
-import { html } from 'lit-element';
-import { render } from 'lit-html';
-import { classMap } from 'lit-html/directives/class-map';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
-import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
+import NoShadowDOM from '../../../utils/no-shadow';
 import styles from './index.scss';
 
 const TYPE = 'file';
-
 class AXAInputFile extends NoShadowDOM {
   static get tagName() {
     return 'axa-input-file';
@@ -25,7 +24,7 @@ class AXAInputFile extends NoShadowDOM {
 
   static get properties() {
     return {
-      // secondary, red,  inverted
+      // secondary, red,  inverted, inverted-green, inverted-dark-blue
       variant: { type: String },
       icon: { type: String },
       refId: { type: String, defaultValue: `input-file-${createRefId()}` },
@@ -44,39 +43,13 @@ class AXAInputFile extends NoShadowDOM {
 
   constructor() {
     super();
-
     applyDefaults(this);
     /* eslint-disable no-undef */
     defineVersioned([AXAIcon], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 
-  watch(mode) {
-    switch (mode) {
-      case 'stop':
-        if (this._observer) {
-          this._observer.disconnect();
-        }
-
-        break;
-      case 'start':
-        if (!this._observer) {
-          this._observer = new MutationObserver(() => this.customRender());
-        }
-
-        this._observer.observe(this, {
-          childList: true,
-        });
-
-        break;
-      default:
-        break;
-    }
-  }
-
-  customRender() {
-    this.watch('stop');
-
+  render() {
     const {
       large,
       motionOff,
@@ -97,43 +70,26 @@ class AXAInputFile extends NoShadowDOM {
       'a-input-file--disabled': disabled,
     };
 
-    render(
-      html`
-        <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
-          <span class="a-input-file__flex-wrapper">
-            ${icon &&
-              versionedHtml(this)`
+    return html`
+      <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
+        <span class="a-input-file__flex-wrapper">
+          ${icon &&
+            versionedHtml(this)`
               <axa-icon class="a-input-file__icon js-input-file__icon" icon="${icon}"></axa-icon>
             `}
-            ${this.textContent.trim()}
-          </span>
-        </label>
-        <input
-          type="${TYPE}"
-          accept="${accept}"
-          ?multiple="${multiple}"
-          ?capture="${capture}"
-          @change="${this.onChange}"
-          class="a-input-file__input js-input-file__input"
-          id="${this.refId}"
-        />
-      `,
-      this
-    );
-
-    this.watch('start');
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.customRender();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // disconnect installed observer
-    this.watch('stop');
+          ${unsafeHTML(this.innerHTML)}
+        </span>
+      </label>
+      <input
+        type="${TYPE}"
+        accept="${accept}"
+        ?multiple="${multiple}"
+        ?capture="${capture}"
+        @change="${this.onChange}"
+        class="a-input-file__input js-input-file__input"
+        id="${this.refId}"
+      />
+    `;
   }
 }
 
