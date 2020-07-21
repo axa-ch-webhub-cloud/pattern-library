@@ -1,6 +1,6 @@
 @mixin accessory-story-content {
     .accessory-story-content {
-      padding-bottom: 131px;
+      padding-bottom: 179px; // 131px (footer height) + 3em (padding bottom content)
     }
 }
 
