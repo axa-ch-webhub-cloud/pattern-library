@@ -9,7 +9,7 @@ export default html`
       <p class="contact-footer-subtitle">Help & Contact</p>
       <axa-heading rank="4" variant="secondary">Any question?<axa-heading>
     </div>
-    <axa-button-link href="/?path=/story/contact--contact" variant="inverted">
+    <axa-button-link size="large" href="/?path=/story/contact--contact" variant="inverted">
       Get in touch
     </axa-button-link>
   </div>

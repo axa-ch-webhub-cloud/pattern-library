@@ -8,17 +8,19 @@ html, body, #root {
     right: 0px;
     left: 0px;
     padding: 20px 40px;
-    min-width: 420px;
     background-color: $color-dark-grey;
     color: $color-prim-white;
+    @include breakpoint($mediaquery-md-up) {
+        min-width: 420px;
+    }
 }
 
 .contact-footer-inner {
-    padding-left: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     @include breakpoint($mediaquery-md-up) {
+        padding-left: 30px;
         padding-left: 80px;
     }
 }
