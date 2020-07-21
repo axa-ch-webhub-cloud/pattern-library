@@ -55,9 +55,9 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
       dependency instanceof HTMLElement ? dependency.constructor : dependency;
     // extract each dependant component's version
     const { tagName } = componentClass;
-    const externalVersion = versionInfo[tagName];
+    const externalVersion = !customVersion && versionInfo[tagName];
     // ordinary, non-POD versioning?
-    if (!customVersion && externalVersion) {
+    if (externalVersion) {
       // yes, first time versioning/registration of this component, but its class
       // contains a PL-reserved 'versions' property?
       if (!window.customElements.get(tagName) && componentClass.versions) {
@@ -66,7 +66,7 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
           `'versions' is a reserved class property, but was found in ${tagName}'s class`
         );
       }
-      // inject version info into component-defining class
+      // inject version info into component-defining class - this helps for live debugging
       componentClass.versions = externalVersion;
       // define its *unversioned*-tag variant first
       defineOnce(tagName, componentClass);
