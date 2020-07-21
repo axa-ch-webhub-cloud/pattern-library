@@ -5,9 +5,8 @@ import { LitElement } from 'lit-element';
 
 // MODULE GLOBALS
 
-// map: customElementTagName |-> (ownerDocument |-> referenceCount)
+// map: customElementTagName |-> (ownerDocument |-> {referenceCount,style})
 const crossTagReferenceCounts = {};
-let styleTagNode = null;
 
 // BASE CLASS
 export default class InlineStyles extends LitElement {
@@ -24,8 +23,10 @@ export default class InlineStyles extends LitElement {
     // (allowed by the spec).
     const referenceCounts =
       crossTagReferenceCounts[this.tagName] || new WeakMap();
-    // one more reference, caused by this instance (undefined | 0 === 0)
-    const referenceCount = (referenceCounts.get(root) | 0) + 1;
+    // one more reference, caused by this instance
+    const info = referenceCounts.get(root) || {};
+    const referenceCount = (info.referenceCount || 0) + 1;
+    info.referenceCount = referenceCount;
     // persist reference-count metadata
     referenceCounts.set(root, referenceCount);
     crossTagReferenceCounts[this.tagName] = referenceCounts;
@@ -56,12 +57,16 @@ export default class InlineStyles extends LitElement {
         // axa-datepicker-7-0-2 .class1 .... classN { ... }
       }
       style.textContent = cssAsString;
+      style.dataset.name = this.tagName.toLowerCase(); // for testing/debugging purposes
       // append it at the right place, *outside* of this instance's children
       // eslint-disable-next-line no-undef
       const parent = root instanceof ShadowRoot ? root : document.head;
       parent.appendChild(style);
-      styleTagNode = style;
+      info.style = style;
     }
+    // persist reference-count metadata
+    referenceCounts.set(root, info);
+    crossTagReferenceCounts[this.tagName] = referenceCounts;
   }
 
   /* DOM-removal cleanup in module globals */
@@ -73,15 +78,18 @@ export default class InlineStyles extends LitElement {
       return;
     }
     const root = this._rootNode || this.ownerDocument;
-    const referenceCount = (referenceCounts.get(root) | 0) - 1;
+    const info = referenceCounts.get(root) || {};
+    const referenceCount = (info.referenceCount || 0) - 1;
     // remove or update reference-count metadata
     if (referenceCount < 1) {
       referenceCounts.delete(root); // give an early hint to GC
-      if (styleTagNode && styleTagNode.parentNode) {
-        styleTagNode.parentNode.removeChild(styleTagNode); // remove style node as well
+      const { style } = info;
+      if (style && style.parentNode) {
+        style.parentNode.removeChild(style); // remove style node as well
       }
     } else {
-      referenceCounts.set(root, referenceCount);
+      info.referenceCount = referenceCount;
+      referenceCounts.set(root, info);
     }
   }
 }
