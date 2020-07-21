@@ -41,11 +41,11 @@ const rewrite = (someStrings, aTagName, aVersion) =>
 // API functions
 // ///
 
-// examples: defineVersioned([AXADatepicker, AXADropdown, AXAButton], __ VERSION_INFO__);
-//           defineVersioned([AXADatepicker],  __ VERSION_INFO__);
-//           defineVersioned([AXADropdown],  __ VERSION_INFO__);
-//           defineVersioned([AXACheckbox], 'rsv');
-const defineVersioned = (dependencies, versionInfo) => {
+// examples:
+//           defineVersioned([AXADatepicker],  __ VERSION_INFO__); // main component
+//           defineVersioned([AXADropdown],  __ VERSION_INFO__, this); // dependent component
+//           defineVersioned([AXACheckbox], 'rsv'); // custom version
+const defineVersioned = (dependencies, versionInfo, parentInstance) => {
   // set up
   const customVersion = typeof versionInfo === 'string' && versionInfo;
   let versionedTagName = '';
@@ -55,9 +55,9 @@ const defineVersioned = (dependencies, versionInfo) => {
       dependency instanceof HTMLElement ? dependency.constructor : dependency;
     // extract each dependant component's version
     const { tagName } = componentClass;
-    const externalVersion = versionInfo[tagName];
+    const externalVersion = !customVersion && versionInfo[tagName];
     // ordinary, non-POD versioning?
-    if (!customVersion && externalVersion) {
+    if (externalVersion) {
       // yes, first time versioning/registration of this component, but its class
       // contains a PL-reserved 'versions' property?
       if (!window.customElements.get(tagName) && componentClass.versions) {
@@ -66,13 +66,17 @@ const defineVersioned = (dependencies, versionInfo) => {
           `'versions' is a reserved class property, but was found in ${tagName}'s class`
         );
       }
-      // inject version info into component-defining class
+      // inject version info into component-defining class - this helps for live debugging
       componentClass.versions = externalVersion;
       // define its *unversioned*-tag variant first
       defineOnce(tagName, componentClass);
     }
     // extract each dependant component's version,
-    const { versions } = componentClass;
+    let { versions } = componentClass;
+    if (!versions && parentInstance) {
+      // taking the parent component's noted version for this dependency if needed,
+      versions = versionInfo[parentInstance.constructor.tagName];
+    }
     // assembling a new, versioned name,
     const version = customVersion || versions[tagName];
     versionedTagName = versionedTag(tagName, version);

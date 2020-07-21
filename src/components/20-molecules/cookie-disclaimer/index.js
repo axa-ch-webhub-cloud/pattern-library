@@ -37,7 +37,7 @@ class AXACookieDisclaimer extends LitElement {
     super();
     applyDefaults(this);
     /* eslint-disable no-undef */
-    defineVersioned([AXAContainer, AXAButton], __VERSION_INFO__);
+    defineVersioned([AXAContainer, AXAButton], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 

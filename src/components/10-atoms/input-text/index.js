@@ -87,7 +87,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     enrichedVersionInfo[AXAPopupContent.tagName] = {
       [AXAPopupContent.tagName]: commonPopupVersion,
     };
-    defineVersioned([AXAPopupButton, AXAPopupContent], enrichedVersionInfo);
+    defineVersioned(
+      [AXAPopupButton, AXAPopupContent],
+      enrichedVersionInfo,
+      this
+    );
     /* eslint-enable no-undef */
   }
 

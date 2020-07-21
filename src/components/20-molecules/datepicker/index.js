@@ -264,7 +264,7 @@ class AXADatepicker extends NoShadowDOM {
 
     // ensure we use the versioned variant of axa-dropdown internally
     /* eslint-disable no-undef */
-    defineVersioned([AXADropdown], __VERSION_INFO__);
+    defineVersioned([AXADropdown], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 

@@ -45,7 +45,7 @@ class AXAInputFile extends NoShadowDOM {
     super();
     applyDefaults(this);
     /* eslint-disable no-undef */
-    defineVersioned([AXAIcon], __VERSION_INFO__);
+    defineVersioned([AXAIcon], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
   }
 
