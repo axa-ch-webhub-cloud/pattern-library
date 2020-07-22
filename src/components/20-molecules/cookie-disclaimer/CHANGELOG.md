@@ -1,4 +1,4 @@
-## 5.2.3
+## 3.2.2
 
 - Fixed optical bug at storybook (#1860)
 
