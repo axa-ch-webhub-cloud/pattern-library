@@ -19,14 +19,14 @@
     @include breakpoint($mediaquery-md-up) {
         display: block;
         position: absolute;
-        top: 265px;
-        right: 40px;
-        height: 380px;
+        top: 345px;
+        right: 30px;
+        height: 360px;
     }
     @include breakpoint($mediaquery-xl-up) {
         right: 6%;
-        top: 240px;
-        height: 450px;
+        top: 325px;
+        height: 420px;
     }
 }
 
