@@ -61,10 +61,10 @@ storiesOf('Components|Input File', module)
           ?motionOff="${motionOff}"
           ?disabled="${disabled}"
           accept="${accept}"
+          text="${_text}"
           ?capture="${capture}"
           ?multiple="${multiple}"
-          >${_text}</axa-input-file
-        >
+        ></axa-input-file>
       </div>
     `;
 

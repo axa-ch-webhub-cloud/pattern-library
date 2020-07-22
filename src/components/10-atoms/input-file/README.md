@@ -69,6 +69,10 @@ inputFile.addEventListener('change', e => {
 
 ## Properties
 
+## text
+
+The String attribute `text` sets the text of the component.
+
 ### variant
 
 | Attribute             | Details                 |

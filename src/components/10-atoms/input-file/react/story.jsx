@@ -1,12 +1,12 @@
 /* global document */
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
-import AXAInputFileReact from './AXAInputFileReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
+import Readme from '../README.md';
+import AXAInputFileReact from './AXAInputFileReact';
 
 storiesOf('Components|Input File/React', module)
   .addDecorator(withKnobs)
@@ -30,6 +30,7 @@ storiesOf('Components|Input File/React', module)
     const div = document.createElement('div');
     ReactDOM.render(
       <AXAInputFileReact
+        text={inputText}
         onChange={e => {
           console.log('files selected: ', e.target.files);
         }}
@@ -39,9 +40,7 @@ storiesOf('Components|Input File/React', module)
         accept={accept}
         disabled={disabled}
         capture={capture}
-      >
-        {inputText}
-      </AXAInputFileReact>,
+      ></AXAInputFileReact>,
       div
     );
     return div;
