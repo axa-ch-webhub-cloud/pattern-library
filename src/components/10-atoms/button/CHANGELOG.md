@@ -1,4 +1,4 @@
-## 5.2.1
+## 5.2.3
 
 - Fix: Gap below the component. (#1878)
 
