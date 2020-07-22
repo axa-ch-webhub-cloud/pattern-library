@@ -42,6 +42,21 @@ test('should pass width to internal button', async t => {
     .eql(expectedWidth);
 });
 
+test('should set text correctly', async t => {
+  const setText = ClientFunction(text => {
+    const inputFile = document.querySelector('axa-input-file');
+    inputFile.text = text;
+  });
+
+  const getText = ClientFunction(() => {
+    const inputFile = document.querySelector('axa-input-file');
+    return inputFile.textContent.trim();
+  });
+
+  await setText('qwertz');
+  await t.expect(await getText()).eql('qwertz');
+});
+
 fixture('Input File - set property accept').page(
   `${host}/iframe.html?id=components-input-file--story&knob-text=Upload&knob-accept=application/pdf`
 );

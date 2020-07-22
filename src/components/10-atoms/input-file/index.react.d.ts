@@ -4,6 +4,7 @@ import { Icon } from '@axa-ch/icon/lib/index.d';
 export type Variant = 'secondary' | 'red' | 'inverted';
 
 export interface AXAInputFileProps {
+  text: String;
   variant?: Variant;
   icon?: Icon;
   id?: String;

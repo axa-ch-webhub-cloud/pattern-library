@@ -1,18 +1,18 @@
-import { html } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
+import { html } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
-import { applyDefaults } from '../../../utils/with-react';
 import NoShadowDOM from '../../../utils/no-shadow';
+import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 const TYPE = 'file';
+
 class AXAInputFile extends NoShadowDOM {
   static get tagName() {
     return 'axa-input-file';
@@ -24,7 +24,7 @@ class AXAInputFile extends NoShadowDOM {
 
   static get properties() {
     return {
-      // secondary, red,  inverted, inverted-green, inverted-dark-blue
+      text: { type: String },
       variant: { type: String },
       icon: { type: String },
       refId: { type: String, defaultValue: `input-file-${createRefId()}` },
@@ -43,6 +43,7 @@ class AXAInputFile extends NoShadowDOM {
 
   constructor() {
     super();
+
     applyDefaults(this);
     /* eslint-disable no-undef */
     defineVersioned([AXAIcon], __VERSION_INFO__, this);
@@ -51,6 +52,7 @@ class AXAInputFile extends NoShadowDOM {
 
   render() {
     const {
+      text = '',
       large,
       motionOff,
       disabled,
@@ -77,7 +79,7 @@ class AXAInputFile extends NoShadowDOM {
             versionedHtml(this)`
               <axa-icon class="a-input-file__icon js-input-file__icon" icon="${icon}"></axa-icon>
             `}
-          ${unsafeHTML(this.innerHTML)}
+          ${text}
         </span>
       </label>
       <input
