@@ -1,12 +1,19 @@
+axa-input-file {
+  display: inline-block;
+  vertical-align: bottom; // Just for IE
+}
+
 .a-input-file {
   @include text(t4);
   position: relative;
   display: inline-block;
+  width: 100%;
   text-align: center;
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
   min-height: 40px;
+  vertical-align: bottom;
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -81,7 +88,7 @@
     // fix iOS double tap for :hover
     // zero width is considered hidden
     width: 0.001px;
-    height: 550px;
+    height: 100vw;
     content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);

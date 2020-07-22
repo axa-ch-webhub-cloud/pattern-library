@@ -1,3 +1,8 @@
+## 3.3.0
+
+- It is now possible to set the css `width` property.
+- Fix: Gap below the component. (#1878)
+
 ## 3.2.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
