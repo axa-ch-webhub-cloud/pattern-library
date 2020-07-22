@@ -8,3 +8,22 @@
     grid-template-columns: repeat(2,1fr);
     grid-gap: 2.5rem;
 }
+.contact-support-visuals {
+    display: flex;
+    margin-bottom: 2.5rem;
+    align-items: center;
+}
+
+.contact-col-wrapper {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.support-paragraph {
+    @include text(t3);
+}
+
+.support-kicker {
+    @include text(t4);
+    text-transform: uppercase;
+}
