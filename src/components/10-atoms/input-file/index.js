@@ -24,7 +24,6 @@ class AXAInputFile extends NoShadowDOM {
 
   static get properties() {
     return {
-      // secondary, red,  inverted
       text: { type: String },
       variant: { type: String },
       icon: { type: String },
@@ -53,7 +52,7 @@ class AXAInputFile extends NoShadowDOM {
 
   render() {
     const {
-      text,
+      text = '',
       large,
       motionOff,
       disabled,
