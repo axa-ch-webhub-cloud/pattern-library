@@ -2,7 +2,7 @@
     .accessory-story-wrapper {
         padding-left: 1rem;
         @include breakpoint($mediaquery-md-up) {
-            padding-left: 6rem;
+            padding-left: 4rem;
         }
     }
 }
@@ -10,10 +10,11 @@
 @mixin content-padding {
     .accessory-story-content {
         padding: 2rem 1rem 1rem;
-        width: 300px;
-        @include breakpoint($mediaquery-md-up) {
+        width: 88%;
+        @include breakpoint($mediaquery-xs-up) {
             padding: 4rem 3rem 3rem;
-            width: 840px;
+            width: 85%;
+            max-width: 840px;
         }
     }
 }
