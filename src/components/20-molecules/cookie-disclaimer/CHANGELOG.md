@@ -1,3 +1,7 @@
+## 5.2.3
+
+- Fixed optical bug at storybook (#1860)
+
 ## 3.2.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)

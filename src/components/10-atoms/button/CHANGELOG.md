@@ -1,6 +1,5 @@
 ## 5.2.3
 
-- Fixed optical bug at storybook (#1860)
 - Fix: Gap below the component. (#1878)
 
 ## 5.2.0
