@@ -6,3 +6,12 @@
 
 @include accessory-story-content;
 @include accessory-story-wrapper;
+
+.getting-started-subtitle {
+    @include text(t4);
+    text-transform: uppercase;
+    margin-bottom: -20px
+}
+.getting-started-header {
+    margin-top: 18px;
+}

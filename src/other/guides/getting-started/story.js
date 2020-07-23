@@ -30,6 +30,27 @@ story.add('Getting started', () => {
         application logic, while designers can focus on the user experience,
         interactions, and flows.
       </axa-text>
+      <header class="getting-started-header">
+        <p class="getting-started-subtitle">A perfect start for a</p>
+        <axa-heading rank="2" variant="secondary">Developer</axa-heading>
+      </header>
+      <axa-text variant="size-1"
+        >The library provides front-end developers & engineers a collection of
+        reusable Web components to build websites and user interfaces, aligned
+        with the AXA Brand guidelines. Adopting the AXA components library
+        enables you to use consistent markup, styles, and behavior in prototype
+        and production work.</axa-text
+      >
+      <axa-heading rank="3" variant="">Install and use components</axa-heading>
+      <header class="getting-started-header">
+        <p class="getting-started-subtitle">A perfect start for a</p>
+        <axa-heading rank="2" variant="secondary">Designer</axa-heading>
+      </header>
+      <axa-text variant="size-1"
+        >Rapidly build beautiful and accessible experiences. The AXA Design
+        System UI kit contains all resources you need to get started on your AXA
+        digital projects, and save precious time and effort.</axa-text
+      >
     </div>
     ${contact}
   `;
