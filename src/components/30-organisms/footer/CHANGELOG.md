@@ -1,6 +1,6 @@
 ## 4.1.2
 
-- Do not render an empty accordion on mobile if no content is given. #1836
+- Only render accordion on mobile when content is given. #1836
 
 ## 4.1.0
 

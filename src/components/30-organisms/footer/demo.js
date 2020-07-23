@@ -66,6 +66,6 @@ storiesOf('Components|Footer/Demos', module)
   })
   .add('Without content', () => {
     const wrapper = document.createElement('div');
-    wrapper.innerHTML = `<axa-text>This is an emtpy footer. Just for testing.</axa-text><axa-footer></axa-footer>`;
+    wrapper.innerHTML = `<axa-text>This demo is just for UI Testing. It shows the footer without content. Do not use it like this!</axa-text><axa-footer></axa-footer>`;
     return wrapper;
   });
