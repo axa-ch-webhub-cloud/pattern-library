@@ -13,4 +13,5 @@ export default html`
       Get in touch
     </axa-button-link>
   </div>
-</section>`;
+</section>
+`;
