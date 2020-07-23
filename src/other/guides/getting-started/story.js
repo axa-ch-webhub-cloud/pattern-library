@@ -41,16 +41,30 @@ story.add('Getting started', () => {
         enables you to use consistent markup, styles, and behavior in prototype
         and production work.</axa-text
       >
-      <axa-heading rank="3" variant="">Install and use components</axa-heading>
+      <axa-heading rank="3">Install and use components</axa-heading>
       <header class="getting-started-header">
         <p class="getting-started-subtitle">A perfect start for a</p>
         <axa-heading rank="2" variant="secondary">Designer</axa-heading>
       </header>
       <axa-text variant="size-1"
-        >Rapidly build beautiful and accessible experiences. The AXA Design
-        System UI kit contains all resources you need to get started on your AXA
-        digital projects, and save precious time and effort.</axa-text
+        >It is our aim to offer our customers security and trust when using our
+        services. To achieve this, we rely on uniform visual communication and
+        use existing and tested interactions.</axa-text
       >
+      <br />
+      <axa-text variant="size-1"
+        >In order for us to release your application for go-live, the following
+        requirements have to be considered during product development:</axa-text
+      >
+      <axa-heading rank="3">Design- and Product Development Guide</axa-heading>
+      <!-- TODO: Minimal requirements Go live (Figma) -->
+      <iframe
+        style="border: 1px solid rgba(0, 0, 0, 0.1);"
+        width="800"
+        height="450"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F6zurYk3bJpzUg0H2THSxGF%2FAXA-UI-Kit%3Fnode-id%3D0%253A8209%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
+        allowfullscreen
+      ></iframe>
     </div>
     ${contact}
   `;
