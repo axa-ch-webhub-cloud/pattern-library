@@ -63,4 +63,9 @@ storiesOf('Components|Footer/Demos', module)
     });
 
     return wrapper;
+  })
+  .add('Without content', () => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `<axa-text>This is an emtpy footer. Just for testing.</axa-text><axa-footer></axa-footer>`;
+    return wrapper;
   });

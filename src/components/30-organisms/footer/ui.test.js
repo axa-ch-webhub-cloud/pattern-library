@@ -227,3 +227,25 @@ test('should render footer with working native callbacks', async t => {
 
   await t.expect($result.innerText).contains('https://www.facebook.com/axach/');
 });
+
+fixture('Footer - without content').page(
+  `${host}/iframe.html?id=components-footer-demos--without-content`
+);
+
+test('should not render empty accordions on mobile', async t => {
+  const $footerTitleColumn0 = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector(`slot[name='column-0-title']`)
+  );
+  const $footerTitleColumn1 = Selector(() =>
+    document
+      .querySelector('axa-footer')
+      .shadowRoot.querySelector(`slot[name='column-1-title']`)
+  );
+
+  await t.expect($footerTitleColumn0.exists).eql(false);
+  await t.expect($footerTitleColumn1.exists).eql(false);
+}).before(async t => {
+  await t.resizeWindow(767, 767);
+});
