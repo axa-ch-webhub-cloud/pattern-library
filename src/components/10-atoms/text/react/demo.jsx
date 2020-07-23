@@ -6,7 +6,7 @@ import DemoTextReact from './DemoTextReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Text/React/Demos', module)
+storiesOf('Examples/Text/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,

@@ -5,7 +5,7 @@ import Readme from './README.md';
 import './index';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Datepicker/Demos', module)
+storiesOf('Examples/Datepicker/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

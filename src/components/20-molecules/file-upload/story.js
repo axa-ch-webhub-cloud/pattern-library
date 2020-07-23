@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const story = storiesOf('Components|File Upload', module);
+const story = storiesOf('Components', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
@@ -15,7 +15,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Story', () => {
+story.add('File Upload', () => {
   const wrapperWidth = text('Width', '455px');
   const numberOfFilesSliderOptions = {
     range: true,

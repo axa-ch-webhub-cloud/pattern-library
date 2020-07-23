@@ -15,7 +15,7 @@ const variantOptions = {
   bold: 'bold',
 };
 
-storiesOf('Components|Text/React', module)
+storiesOf('Examples/Text/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

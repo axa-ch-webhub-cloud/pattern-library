@@ -7,7 +7,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import createRefId from '../../../utils/create-ref-id';
 
-const storyCheckbox = storiesOf('Components|Checkbox', module);
+const storyCheckbox = storiesOf('Components', module);
 storyCheckbox.addDecorator(withKnobs);
 storyCheckbox.addParameters({
   readme: {
@@ -17,7 +17,7 @@ storyCheckbox.addParameters({
 });
 
 storyCheckbox.add(
-  'Story',
+  'Checkbox',
   () => {
     const refId = text('refId', `checkbox-${createRefId()}`);
     const label = text('label', 'I agree to conditions of data protection.');

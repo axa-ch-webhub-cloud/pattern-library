@@ -33,7 +33,7 @@ const variantOptions = {
   'hyperlink-red-underline': 'hyperlink-red-underline',
 };
 
-storiesOf('Components|Link', module)
+storiesOf('Components', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -41,7 +41,7 @@ storiesOf('Components|Link', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Link', () => {
     const link = text(
       'link',
       'https://www.axa.ch/en/information/data-protection.html'

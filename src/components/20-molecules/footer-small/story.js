@@ -7,7 +7,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Footer Small', module)
+storiesOf('Components', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -16,7 +16,7 @@ storiesOf('Components|Footer Small', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Footer Small', () => {
     const language1 = text('First language', `DE`);
     const language2 = text('Second language', `FR`);
     const language3 = text('Third language', `IT`);

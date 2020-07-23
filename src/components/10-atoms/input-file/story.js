@@ -13,7 +13,7 @@ import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
 
-storiesOf('Components|Input File', module)
+storiesOf('Components', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -21,7 +21,7 @@ storiesOf('Components|Input File', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Input File', () => {
     const _text = text('text', 'Select a File');
 
     const variant = radios(

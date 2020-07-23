@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyTextarea = storiesOf('Components|Textarea', module);
+const storyTextarea = storiesOf('Components', module);
 storyTextarea.addDecorator(withKnobs);
 storyTextarea.addParameters({
   readme: {
@@ -15,7 +15,7 @@ storyTextarea.addParameters({
   changelog: Changelog,
 });
 
-storyTextarea.add('Story', () => {
+storyTextarea.add('Textarea', () => {
   const label = text('label*', 'Please describe the course of events');
   const name = text('name*', '');
   const refId = text('refId', '');

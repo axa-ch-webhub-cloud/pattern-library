@@ -15,7 +15,7 @@ const variantOptions = {
   warning: 'warning',
 };
 
-storiesOf('Components|Top Content Bar/React', module)
+storiesOf('Examples/Top Content Bar/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({

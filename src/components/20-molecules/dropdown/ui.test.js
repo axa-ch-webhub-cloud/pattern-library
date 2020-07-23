@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Dropdown')
-  .page(`${host}/iframe.html?id=components-dropdown--story`)
+  .page(`${host}/iframe.html?id=components--dropdown`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -118,7 +118,7 @@ test('should select previous element with key if a element has focus', async t =
 });
 
 fixture('Dropdown disabled').page(
-  `${host}/iframe.html?id=components-dropdown--story&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
+  `${host}/iframe.html?id=components--dropdown&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
 );
 
 test('should render arrow icon color correctly if disabled', async t => {
@@ -142,7 +142,7 @@ test('should not set any background color on svg parent span', async t => {
 });
 
 fixture('Dropdown check mark').page(
-  `${host}/iframe.html?id=components-dropdown--story&knob-checkmark=true`
+  `${host}/iframe.html?id=components--dropdown&knob-checkmark=true`
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
@@ -152,7 +152,7 @@ test('should show checkmark', async t => {
 });
 
 fixture('Dropdown error').page(
-  `${host}/iframe.html?id=components-dropdown--story&knob-invalid=true&knob-error=error`
+  `${host}/iframe.html?id=components--dropdown&knob-invalid=true&knob-error=error`
 );
 
 test('should show error message and have the correct color', async t => {
@@ -177,7 +177,7 @@ test('should show error message and have the correct color', async t => {
 
 // Dropdown react controlled
 fixture('Dropdown React').page(
-  `${host}/iframe.html?id=components-dropdown-react-demos--react-component`
+  `${host}/iframe.html?id=examples-dropdown-react--react-component`
 );
 
 test('should render dropdown as reactified component', async t => {
@@ -221,7 +221,7 @@ test('should exhibit controlled-component behaviour', async t => {
 
 // Dropdown react controlled forced native-selector
 fixture('Dropdown React native').page(
-  `${host}/iframe.html?id=components-dropdown-react-demos--react-component`
+  `${host}/iframe.html?id=examples-dropdown-react--react-component`
 );
 
 test('should exhibit controlled-component behaviour when native', async t => {
@@ -290,7 +290,7 @@ test('should exhibit controlled-component behaviour when native', async t => {
 
 // Dropdown react uncontrolled
 fixture('Dropdown React uncontrolled').page(
-  `${host}/iframe.html?id=components-dropdown-react--story-uncontrolled`
+  `${host}/iframe.html?id=examples-dropdown-react--story-uncontrolled`
 );
 
 test('should allow setting non-initial item via items property', async t => {
@@ -311,7 +311,7 @@ test('should allow setting non-initial item via items property', async t => {
 
 // Dropdown react focussable
 fixture('Dropdown React uncontrolled').page(
-  `${host}/iframe.html?id=components-dropdown-react-demos--focussable`
+  `${host}/iframe.html?id=examples-dropdown-react--focussable`
 );
 
 test('should fire onFocus/onBlur correctly', async t => {
@@ -348,7 +348,7 @@ test('should fire onFocus/onBlur correctly', async t => {
 });
 
 fixture('Dropdown Form').page(
-  `${host}/iframe.html?id=components-dropdown-demos--in-a-form`
+  `${host}/iframe.html?id=examples-dropdown-pure-html--in-a-form`
 );
 
 test('should submit correct value to form', async t => {

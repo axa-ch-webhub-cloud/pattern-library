@@ -5,7 +5,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
-storiesOf('Components|File Upload/Demos', module)
+storiesOf('Examples/File Upload/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

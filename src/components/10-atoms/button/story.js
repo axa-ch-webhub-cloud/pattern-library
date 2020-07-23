@@ -13,7 +13,7 @@ import { iconList } from '../icon/icon-list';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyButton = storiesOf('Components|Button', module);
+const storyButton = storiesOf('Components', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {
@@ -55,7 +55,7 @@ export const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-storyButton.add('Story', () => {
+storyButton.add('Button', () => {
   const buttonText = text('text', 'Calculate Premium');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');

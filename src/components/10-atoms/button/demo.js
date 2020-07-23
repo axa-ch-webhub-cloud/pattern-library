@@ -1,11 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
+import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
-import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Button/Demos', module)
+storiesOf('Examples/Button/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from '../CHANGELOG.md';
 
-const storyPopupButton = storiesOf('Components|Popup', module);
+const storyPopupButton = storiesOf('Components', module);
 storyPopupButton.addDecorator(withKnobs);
 storyPopupButton.addParameters({
   readme: {
@@ -15,7 +15,7 @@ storyPopupButton.addParameters({
   changelog: Changelog,
 });
 
-storyPopupButton.add('Button Story', () => {
+storyPopupButton.add('Popup Button', () => {
   const open = boolean('open', false);
 
   const wrapper = document.createElement('div');

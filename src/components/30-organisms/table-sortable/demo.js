@@ -65,7 +65,7 @@ const model = {
   ],
 };
 
-storiesOf('Components|Table Sortable/Demos', module)
+storiesOf('Examples/Table Sortable/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

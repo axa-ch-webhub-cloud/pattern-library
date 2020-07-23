@@ -4,7 +4,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Button Link/Demos', module)
+storiesOf('Examples/Button Link/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

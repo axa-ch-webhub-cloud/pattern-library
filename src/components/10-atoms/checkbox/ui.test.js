@@ -4,7 +4,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const TAG = 'axa-checkbox';
 
 fixture('Checkbox - basic functionality').page(
-  `${host}/iframe.html?id=components-checkbox--story`
+  `${host}/iframe.html?id=components--checkbox`
 );
 
 test('should render checkbox', async t => {
@@ -104,7 +104,7 @@ test('should set refId on label and input', async t => {
 });
 
 fixture('Checkbox - Disabled and checked').page(
-  `${host}/iframe.html?id=components-checkbox--story&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=false&knob-disabled=true`
+  `${host}/iframe.html?id=components--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=false&knob-disabled=true`
 );
 
 test('should set checkbox element to disabled + not change state', async t => {
@@ -116,7 +116,7 @@ test('should set checkbox element to disabled + not change state', async t => {
 });
 
 fixture('Checkbox - Label as a child of the component').page(
-  `${host}/iframe.html?id=components-checkbox-demos--use-your-own-label-as-a-child-of-the-component`
+  `${host}/iframe.html?id=examples-checkbox-pure-html--use-your-own-label-as-a-child-of-the-component`
 );
 
 test('should be clickable + change state and render child label', async t => {
@@ -134,7 +134,7 @@ test('should be clickable + change state and render child label', async t => {
 });
 
 fixture('Checkbox - Variant checkmark').page(
-  `${host}/iframe.html?id=components-checkbox--story&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
+  `${host}/iframe.html?id=components--checkbox&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
 );
 
 test('should show checkbox variant checkmark', async t => {
@@ -154,7 +154,7 @@ test('should show checkbox variant checkmark', async t => {
 });
 
 fixture('Checkbox - Variant checkmark-inverted').page(
-  `${host}/iframe.html?id=components-checkbox--story&knob-refId=checkbox-00zf06b7egl3n&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true`
+  `${host}/iframe.html?id=components--checkbox&knob-refId=checkbox-00zf06b7egl3n&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true`
 );
 
 test('box should have correct background-color', async t => {
@@ -200,7 +200,7 @@ test('label text should have correct color', async t => {
 });
 
 fixture('Checkbox - Variant checkmark-inverted: disabled').page(
-  `${host}/iframe.html?id=components-checkbox--story&knob-refId=checkbox-tz6etn0cv7e&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true&knob-disabled=true`
+  `${host}/iframe.html?id=components--checkbox&knob-refId=checkbox-tz6etn0cv7e&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true&knob-disabled=true`
 );
 
 test('if disabled: box should have correct background-color', async t => {
@@ -246,7 +246,7 @@ test('if disabled: label text should have correct color', async t => {
 });
 
 fixture('Checkbox - DOM update works also on children').page(
-  `${host}/iframe.html?id=components-checkbox-react-demo--updates-also-as-child`
+  `${host}/iframe.html?id=examples-checkbox-react--updates-also-as-child`
 );
 
 test('should update checkbox when its children change', async t => {
@@ -274,7 +274,7 @@ test('should update checkbox when its children change', async t => {
 });
 
 fixture('Checkbox - controlled behaviour under React').page(
-  `${host}/iframe.html?id=components-checkbox-react-demo--default-with-label`
+  `${host}/iframe.html?id=examples-checkbox-react--default-with-label`
 );
 
 test('should shows correct controlled behavior', async t => {

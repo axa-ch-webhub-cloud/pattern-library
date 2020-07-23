@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Button Link - basic functionality').page(
-  `${host}/iframe.html?id=components-button-link--story`
+  `${host}/iframe.html?id=components--button-link`
 );
 
 test('should render button-link', async t => {
@@ -50,7 +50,7 @@ test('should pass width to internal button', async t => {
 });
 
 fixture('Button Link - set properties').page(
-  `${host}/iframe.html?id=components-button-link--story`
+  `${host}/iframe.html?id=components--button-link`
 );
 
 test('should set button element disabled', async t => {
@@ -63,7 +63,7 @@ test('should set button element disabled', async t => {
 });
 
 fixture('Button Link - icon').page(
-  `${host}/iframe.html?id=components-button-link-demos--icon-visible`
+  `${host}/iframe.html?id=examples-button-link-pure-html--icon-visible`
 );
 
 test('should render icon', async t => {
@@ -77,7 +77,7 @@ test('should render icon', async t => {
 });
 
 fixture('Button Link - clickable').page(
-  `${host}/iframe.html?id=components-button-link-demos--clickable`
+  `${host}/iframe.html?id=examples-button-link-pure-html--clickable`
 );
 
 test("shouldn't be clickable", async t => {

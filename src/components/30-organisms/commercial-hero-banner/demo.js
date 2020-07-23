@@ -10,7 +10,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
-  'Components|Commercial Hero Banner/Demos',
+  'Examples/Commercial Hero Banner/Pure HTML',
   module
 );
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);

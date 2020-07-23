@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Fieldset/Demos', module)
+storiesOf('Examples/Fieldset/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

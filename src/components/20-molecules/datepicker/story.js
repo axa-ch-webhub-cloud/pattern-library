@@ -22,7 +22,7 @@ const localeOptions = {
   'invalid/ unsupported': 'ff-XX', // To show the default language fallback scenario
 };
 
-const story = storiesOf('Components|Datepicker', module);
+const story = storiesOf('Components', module);
 story.addDecorator(withKnobs);
 story.addParameters({
   readme: {
@@ -31,7 +31,7 @@ story.addParameters({
   changelog: Changelog,
 });
 
-story.add('Story', () => {
+story.add('Datepicker', () => {
   const inputfield = boolean('inputfield', false);
   const locale = select('locale', localeOptions, 'de-CH');
   const year = number('year', 2020);

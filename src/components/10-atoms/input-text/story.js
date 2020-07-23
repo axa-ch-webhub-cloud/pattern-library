@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyInputText = storiesOf('Components|Input Text', module);
+const storyInputText = storiesOf('Components', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme: {
@@ -21,7 +21,7 @@ const typeOptions = {
   password: 'password',
 };
 
-storyInputText.add('Story', () => {
+storyInputText.add('Input Text', () => {
   const label = text('label*', '');
   const name = text('name*', '');
   const refId = text('refid', '');

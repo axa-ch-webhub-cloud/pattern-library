@@ -12,7 +12,7 @@ const variantOptions = {
   warning: 'warning',
 };
 
-storiesOf('Components|Top Content Bar', module)
+storiesOf('Components', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -21,7 +21,7 @@ storiesOf('Components|Top Content Bar', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Top Content Bar', () => {
     const wrapper = document.createElement('div');
 
     const ctatext = text('ctatext', '');

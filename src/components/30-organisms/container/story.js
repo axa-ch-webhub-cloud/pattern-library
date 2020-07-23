@@ -6,7 +6,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Container', module)
+storiesOf('Components', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
@@ -14,7 +14,7 @@ storiesOf('Components|Container', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Container', () => {
     const wrapper = document.createElement('div');
 
     const childsText = text('text', 'Some children');
