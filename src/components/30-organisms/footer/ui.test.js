@@ -229,7 +229,7 @@ test('should render footer with working native callbacks', async t => {
 });
 
 fixture('Footer - without content').page(
-  `${host}/iframe.html?id=components-footer-demos--without-content`
+  `${host}/iframe.html?id=examples-footer-pure-html--without-content`
 );
 
 test('should not render empty accordions on mobile', async t => {
