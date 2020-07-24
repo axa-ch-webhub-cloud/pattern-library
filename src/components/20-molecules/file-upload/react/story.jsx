@@ -8,7 +8,7 @@ import AXAFileUploadReact from './AXAFileUploadReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|File Upload/React', module)
+storiesOf('Examples/File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

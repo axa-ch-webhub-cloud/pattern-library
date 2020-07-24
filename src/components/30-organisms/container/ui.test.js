@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Container - basic functionality').page(
-  `${host}/iframe.html?id=components-container--story`
+  `${host}/iframe.html?id=components--container`
 );
 
 const TAG = 'axa-container';

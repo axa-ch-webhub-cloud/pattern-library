@@ -5,7 +5,7 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Checkbox/Demos', module)
+storiesOf('Examples/Checkbox/Pure HTML', module)
   .addParameters({
     readme: {
       sidebar: Readme,

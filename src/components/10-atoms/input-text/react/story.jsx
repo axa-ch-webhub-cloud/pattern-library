@@ -13,7 +13,7 @@ const typeOptions = {
   password: 'password',
 };
 
-const storyInputText = storiesOf('Components|Input Text/React', module);
+const storyInputText = storiesOf('Examples/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme: {

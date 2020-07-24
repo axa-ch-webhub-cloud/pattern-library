@@ -1,11 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import withNoBorder from '../../../../.storybook/addons/no-border';
+import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
-import Changelog from './CHANGELOG.md';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 
-storiesOf('Components|Cookie Disclaimer/Demo', module)
+storiesOf('Examples/Cookie Disclaimer/Pure HTML', module)
   .addDecorator(story => withNoBorder(story))
   .addDecorator(withNoBorder)
   .addParameters({

@@ -21,7 +21,7 @@ const localeOptions = {
   'fr-CH': 'fr-CH',
 };
 
-storiesOf('Components|Datepicker/React', module)
+storiesOf('Examples/Datepicker/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

@@ -7,7 +7,7 @@ import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Dropdown/React', module)
+storiesOf('Examples/Dropdown/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

@@ -8,7 +8,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const storyAXACarousel = storiesOf('Components|Carousel', module);
+const storyAXACarousel = storiesOf('Components', module);
 storyAXACarousel.addDecorator(withNoBorder);
 storyAXACarousel.addDecorator(withKnobs);
 storyAXACarousel.addParameters({
@@ -18,7 +18,7 @@ storyAXACarousel.addParameters({
   changelog: Changelog,
 });
 
-storyAXACarousel.add('Story', () => {
+storyAXACarousel.add('Carousel', () => {
   const autorotatedisabled = boolean('autorotatedisabled', false);
   const autorotatetime = number('autorotatetime', 5000);
   const keysenabled = boolean('keysenabled', true);

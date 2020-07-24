@@ -9,7 +9,7 @@ import DemoDropdownVersionedReact from './DemoDropdownVersionedReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Dropdown/React/Demos', module)
+storiesOf('Examples/Dropdown/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,

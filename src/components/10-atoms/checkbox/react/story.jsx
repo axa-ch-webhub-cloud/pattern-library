@@ -7,7 +7,7 @@ import AXACheckboxReact from './AXACheckboxReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Checkbox/React', module)
+storiesOf('Examples/Checkbox/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,

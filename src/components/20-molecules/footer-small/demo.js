@@ -7,7 +7,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const selectedLanguageKey = '-';
 
-storiesOf('Components|Footer Small/Demos', module)
+storiesOf('Examples/Footer Small/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {

@@ -1,12 +1,12 @@
 /* global document */
-import { storiesOf } from '@storybook/html';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
+import Readme from './README.md';
 
-storiesOf('Components|Textarea/Demos', module)
+storiesOf('Examples/Textarea/Pure HTML', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

@@ -13,7 +13,7 @@ import AXAIcon from './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyIcon = storiesOf('Components|Icon', module);
+const storyIcon = storiesOf('Components', module);
 storyIcon.addDecorator(withKnobs);
 storyIcon.addParameters({
   readme: {
@@ -23,7 +23,7 @@ storyIcon.addParameters({
 });
 
 storyIcon.add(
-  'Story',
+  'Icon',
   () => {
     const showAll = boolean('Show list of available icons', false);
     const noIcon = boolean('Do not set icon on component', false);

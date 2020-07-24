@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Top content bar - basic functionality').page(
-  `${host}/iframe.html?id=components-top-content-bar--story`
+  `${host}/iframe.html?id=components--top-content-bar`
 );
 
 const TAG = 'axa-top-content-bar';
@@ -71,7 +71,7 @@ test('should render axa-button-link top-content-bar', async t => {
 });
 
 fixture('Top content bar - inline link').page(
-  `${host}/iframe.html?id=components-top-content-bar--story&knob-Text=Undefined%20flighting%20object%20detected%20in%20your%20region.%20People%20are%20paniking.%20Stay%20calm&knob-Add%20axa-link=Test`
+  `${host}/iframe.html?id=components--top-content-bar&knob-Text=Undefined%20flighting%20object%20detected%20in%20your%20region.%20People%20are%20paniking.%20Stay%20calm&knob-Add%20axa-link=Test`
 );
 
 test('should render link as hyperlink and underline in top-content-bar', async t => {

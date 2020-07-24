@@ -1,18 +1,18 @@
 /* global document */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { storiesOf } from '@storybook/html';
 import {
   boolean,
-  select,
   radios,
+  select,
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
-import AXAButton from './AXAButton';
+import { storiesOf } from '@storybook/html';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
-import Readme from './../README.md';
 import Changelog from '../CHANGELOG.md';
+import Readme from './../README.md';
+import AXAButton from './AXAButton';
 
 const variantOptions = {
   default: '',
@@ -47,7 +47,7 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButton = storiesOf('Components|Button/React', module);
+const storyButton = storiesOf('Examples/Button/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme: {

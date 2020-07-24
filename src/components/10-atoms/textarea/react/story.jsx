@@ -1,13 +1,13 @@
 /* global document */
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { storiesOf } from '@storybook/html';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import AXATextarea from './AXATextarea';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
+import Readme from '../README.md';
+import AXATextarea from './AXATextarea';
 
-const storyTextarea = storiesOf('Components|Textarea/React', module);
+const storyTextarea = storiesOf('Examples/Textarea/React', module);
 storyTextarea.addDecorator(withKnobs);
 storyTextarea.addParameters({
   readme: {

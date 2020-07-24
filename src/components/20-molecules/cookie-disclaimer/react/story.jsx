@@ -10,7 +10,7 @@ import AXALinkReact from './AXALinkReact';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Cookie Disclaimer/React', module)
+storiesOf('Examples/Cookie Disclaimer/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({

@@ -35,7 +35,7 @@ const variantOptions = {
   secondary: 'secondary',
 };
 
-storiesOf('Components|Link/React', module)
+storiesOf('Examples/Link/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {

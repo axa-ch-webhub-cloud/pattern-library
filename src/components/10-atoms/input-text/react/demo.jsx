@@ -6,7 +6,7 @@ import DemoInputText from './DemoInputText';
 import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
-storiesOf('Components|Input Text/React/Demos', module)
+storiesOf('Examples/Input Text/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,

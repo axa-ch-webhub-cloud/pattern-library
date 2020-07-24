@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Fieldset - basic functionality').page(
-  `${host}/iframe.html?id=components-fieldset--story`
+  `${host}/iframe.html?id=components--fieldset`
 );
 
 test('should render fieldset', async t => {
@@ -35,7 +35,7 @@ test('should render an error message', async t => {
 });
 
 fixture('Fieldset - horizontal').page(
-  `${host}/iframe.html?id=components-fieldset--story&knob-error=&knob-horizontal=true`
+  `${host}/iframe.html?id=components--fieldset&knob-error=&knob-horizontal=true`
 );
 
 test('should render horizontally', async t => {
@@ -54,7 +54,7 @@ test('should render horizontally', async t => {
 });
 
 fixture('Fieldset - enableResponsiveStretch').page(
-  `${host}/iframe.html?id=components-fieldset--story&knob-error=&knob-horizontal=stretch`
+  `${host}/iframe.html?id=components--fieldset&knob-error=&knob-horizontal=stretch`
 );
 
 test('should responsive stretch', async t => {

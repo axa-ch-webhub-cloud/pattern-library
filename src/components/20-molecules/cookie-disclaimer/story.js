@@ -7,7 +7,7 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-storiesOf('Components|Cookie Disclaimer', module)
+storiesOf('Components', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
@@ -16,7 +16,7 @@ storiesOf('Components|Cookie Disclaimer', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Cookie Disclaimer', () => {
     const buttonname = text('buttonname', 'Accept');
     const title = text('text', 'Terms and conditions of data protection');
     const description = text(

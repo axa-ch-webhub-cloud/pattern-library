@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Input File - basic functionality').page(
-  `${host}/iframe.html?id=components-input-file--story`
+  `${host}/iframe.html?id=components--input-file`
 );
 
 const INPUT_FILE_TAG = 'axa-input-file';
@@ -58,7 +58,7 @@ test('should set text correctly', async t => {
 });
 
 fixture('Input File - set property accept').page(
-  `${host}/iframe.html?id=components-input-file--story&knob-text=Upload&knob-accept=application/pdf`
+  `${host}/iframe.html?id=components--input-file&knob-text=Upload&knob-accept=application/pdf`
 );
 
 test('should set input file accept', async t => {
@@ -70,7 +70,7 @@ test('should set input file accept', async t => {
 });
 
 fixture('Input File - set property multiple').page(
-  `${host}/iframe.html?id=components-input-file--story&knob-text=Upload&knob-multiple=true`
+  `${host}/iframe.html?id=components--input-file&knob-text=Upload&knob-multiple=true`
 );
 
 test('should set input file multiple', async t => {
@@ -80,7 +80,7 @@ test('should set input file multiple', async t => {
 });
 
 fixture('Input File - set property capture').page(
-  `${host}/iframe.html?id=components-input-file--story&knob-text=Upload&knob-capture=true`
+  `${host}/iframe.html?id=components--input-file&knob-text=Upload&knob-capture=true`
 );
 
 test('should set input file capture', async t => {
@@ -90,7 +90,7 @@ test('should set input file capture', async t => {
 });
 
 fixture('Input File - react smoke test').page(
-  `${host}/iframe.html?id=components-input-file-react--story`
+  `${host}/iframe.html?id=examples-input-file-react--story`
 );
 
 test('should render react input file', async t => {

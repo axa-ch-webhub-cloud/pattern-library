@@ -2,12 +2,12 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
+import Readme from '../README.md';
 import DemoButtonClick from './DemoButtonClick';
 import DemoButtonForm from './DemoButtonForm';
 
-storiesOf('Components|Button/React/Demos', module)
+storiesOf('Examples/Button/React', module)
   .addParameters({
     readme: {
       sidebar: Readme,

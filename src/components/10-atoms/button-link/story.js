@@ -40,7 +40,7 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButtonLink = storiesOf('Components|Button Link', module);
+const storyButtonLink = storiesOf('Components', module);
 storyButtonLink.addDecorator(withKnobs);
 storyButtonLink.addParameters({
   readme: {
@@ -49,7 +49,7 @@ storyButtonLink.addParameters({
   changelog: Changelog,
 });
 
-storyButtonLink.add('Story', () => {
+storyButtonLink.add('Button Link', () => {
   const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
   const external = text('external', '');

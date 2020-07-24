@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table - basic functionality')
-  .page(`${host}/iframe.html?id=components-table--story`)
+  .page(`${host}/iframe.html?id=components--table`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -25,7 +25,7 @@ test('should render default table on mobile', async t => {
 });
 
 fixture('Table - maxheight functionality').page(
-  `${host}/iframe.html?id=components-table--story&knob-innerscroll=600&knob-maxheight=160`
+  `${host}/iframe.html?id=components--table&knob-innerscroll=600&knob-maxheight=160`
 );
 
 test('should render maxheight table on mobile', async t => {
@@ -47,7 +47,7 @@ test('should render maxheight table on mobile', async t => {
 });
 
 fixture('Table - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-table--story&knob-innerscroll=500`
+  `${host}/iframe.html?id=components--table&knob-innerscroll=500`
 );
 
 test('should render innerscroll table on mobile', async t => {

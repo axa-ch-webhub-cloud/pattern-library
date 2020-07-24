@@ -1,12 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import './index';
-
 import withNoBorder from '../../../../.storybook/addons/no-border';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
+import './index';
+import Readme from './README.md';
 
-storiesOf('Components|Footer/Demos', module)
+storiesOf('Examples/Footer/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme: {

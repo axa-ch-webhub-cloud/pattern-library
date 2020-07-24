@@ -8,7 +8,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-storiesOf('Components|Footer', module)
+storiesOf('Components', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
 
@@ -18,7 +18,7 @@ storiesOf('Components|Footer', module)
     },
     changelog: Changelog,
   })
-  .add('Story', () => {
+  .add('Footer', () => {
     const wrapper = document.createElement('div');
 
     const columnTitle1 = text('First column title', 'axa and you'); // TODO use &, this is a problem with knobs

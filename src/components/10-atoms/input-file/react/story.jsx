@@ -14,7 +14,7 @@ import Changelog from '../CHANGELOG.md';
 import Readme from '../README.md';
 import AXAInputFileReact from './AXAInputFileReact';
 
-storiesOf('Components|Input File/React', module)
+storiesOf('Examples/Input File/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme: {
