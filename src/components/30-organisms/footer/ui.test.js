@@ -246,6 +246,10 @@ test('should not render empty accordions on mobile', async t => {
 
   await t.expect($footerTitleColumn0.exists).eql(false);
   await t.expect($footerTitleColumn1.exists).eql(false);
-}).before(async t => {
-  await t.resizeWindow(767, 767);
-});
+})
+  .before(async t => {
+    await t.resizeWindow(767, 767);
+  })
+  .after(async t => {
+    await t.maximizeWindow();
+  });
