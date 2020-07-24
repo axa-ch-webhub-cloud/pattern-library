@@ -34,7 +34,7 @@ const guides = require.context('../src/other/guides', true, /(story\.(js|jsx)|de
 // N.B. don't-look-into-node-modules behaviour uses negative lookbehind (?<!) as part of its regular expression
 // (https://v8.dev/blog/regexp-lookbehind-assertions), which is supported for node 9 and greater
 const components = require.context('../src/components', true, /(?<!node_modules.*)(story|demo)\.(js|jsx)$/);
-const pages = require.context('../src/other/pages', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const showcases = require.context('../src/other/showcases', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
 configure(() => {
   landingpage.keys().forEach(landingpage);
@@ -42,5 +42,5 @@ configure(() => {
   contact.keys().forEach(contact);
   guides.keys().forEach(guides);
   components.keys().forEach(components);
-  pages.keys().forEach(pages);
+  showcases.keys().forEach(showcases);
 }, module);
