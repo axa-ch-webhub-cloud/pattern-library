@@ -12,6 +12,7 @@ src/static
 *.png
 *.rtf
 .gitignore
+.DS_Store
 
 # Ignore auto generated files
 node_modules
