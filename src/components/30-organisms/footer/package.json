@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/footer",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "The footer component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/footer#readme",
@@ -26,7 +26,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/container": "^3.0.3",
+    "@axa-ch/container": "3.0.4",
     "@axa-ch/materials": "^10.1.0",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",

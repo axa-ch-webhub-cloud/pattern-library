@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/toggle-switch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The toggle-switch component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/toggle-switch#readme",
