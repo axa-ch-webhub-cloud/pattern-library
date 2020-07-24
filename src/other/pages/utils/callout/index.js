@@ -7,10 +7,7 @@ export default html`
   </style>
   <div class="callout-wrapper">
     <div class="callout-image">
-      <img
-        src="https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8209&scaling=min-zoom"
-        alt="AXA Design System UI Kit"
-      />
+      <img src="figma.png" alt="AXA Design System UI Kit" />
     </div>
     <div class="callout-col callout-col-padding">
       <p class="callout-header">AXA Design System UI Kit</p>

@@ -10,7 +10,10 @@
 
 .callout-image {
     max-width: 4rem;
-    margin-right: 1.5rem;
+    margin-right: 1rem;
+    img {
+        max-width: 100%;
+    }
 }
 
 .callout-col {
@@ -18,7 +21,9 @@
 }
 
 .callout-col-padding {
-    padding-right: 35px; flex: 2 1 0%;
+    padding-right: 35px; 
+    padding-left: 35px; 
+    flex: 2 1 0%;
 }
 
 .callout-header {
