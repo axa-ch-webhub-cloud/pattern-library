@@ -228,43 +228,66 @@ class AXAFooter extends InlineStyles {
           <div class="o-footer__content">
             <div class="o-footer__collection">
               <div class="o-footer__main">
-                <button
-                  class="o-footer__accordion-button"
-                  @click="${ev => this._handleAccordionClick(0, ev)}"
-                >
-                  <slot name="column-0-title" class="o-footer__title"></slot>
-                  <span class="${classMap(accordionCaretState(0))}">
-                    ${showCaret}
-                  </span>
-                </button>
-                <ul class="${classMap(accordionContent)}">
-                  ${repeat(
-                    new Array(
-                      this.querySelectorAll('[slot^="column-0-item-"]').length
-                    ),
-                    (item, index) => _renderFooterLinks(0, index)
-                  )}
-                </ul>
+                ${
+                  this.querySelectorAll('[slot^="column-0-item-"]').length
+                    ? html`
+                        <button
+                          class="o-footer__accordion-button"
+                          @click="${ev => this._handleAccordionClick(0, ev)}"
+                        >
+                          <slot
+                            name="column-0-title"
+                            class="o-footer__title"
+                          ></slot>
+                          <span class="${classMap(accordionCaretState(0))}">
+                            ${showCaret}
+                          </span>
+                        </button>
+                        <ul class="${classMap(accordionContent)}">
+                          ${repeat(
+                            new Array(
+                              this.querySelectorAll(
+                                '[slot^="column-0-item-"]'
+                              ).length
+                            ),
+                            (item, index) => _renderFooterLinks(0, index)
+                          )}
+                        </ul>
+                      `
+                    : ''
+                }
               </div>
 
               <div class="o-footer__main">
-                <button
-                  class="o-footer__accordion-button"
-                  @click="${ev => this._handleAccordionClick(1, ev)}"
-                >
-                  <slot name="column-1-title" class="o-footer__title"></slot>
-                  <span class="${classMap(accordionCaretState(1))}">
-                    ${showCaret}
-                  </span>
-                </button>
-                <ul class="${classMap(shortAccordionContent)}">
-                  ${repeat(
-                    new Array(
-                      this.querySelectorAll('[slot^="column-1-item-"]').length
-                    ),
-                    (item, index) => _renderFooterLinks(1, index)
-                  )}
-                </ul>
+                ${
+                  this.querySelectorAll('[slot^="column-1-item-"]').length
+                    ? html`
+                        <button
+                          class="o-footer__accordion-button"
+                          @click="${ev => this._handleAccordionClick(1, ev)}"
+                        >
+                          <slot
+                            name="column-1-title"
+                            class="o-footer__title"
+                          ></slot>
+                          <span class="${classMap(accordionCaretState(1))}">
+                            ${showCaret}
+                          </span>
+                        </button>
+                        <ul class="${classMap(shortAccordionContent)}">
+                          ${repeat(
+                            new Array(
+                              this.querySelectorAll(
+                                '[slot^="column-1-item-"]'
+                              ).length
+                            ),
+                            (item, index) => _renderFooterLinks(1, index)
+                          )}
+                        </ul>
+                      `
+                    : ''
+                }
+                
               </div>
             </div>
             <div class="o-footer__social-media">

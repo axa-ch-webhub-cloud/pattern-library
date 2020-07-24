@@ -1,3 +1,7 @@
+## 4.1.2
+
+- Only render accordion on mobile when content is given. #1836
+
 ## 4.1.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
