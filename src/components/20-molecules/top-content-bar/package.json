@@ -26,7 +26,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "^2.0.15",
+    "@axa-ch/button": "5.2.4",
     "@axa-ch/button-link": "4.2.4",
     "@axa-ch/container": "3.0.4",
     "@skatejs/val": "^0.4.0",

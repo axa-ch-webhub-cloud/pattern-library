@@ -84,13 +84,14 @@ it('should sum numbers', () => {
 
 - Never calculate *derived properties* (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
 - Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`.
+- Never use axa- component tags in selectors to refer to _dependent components_, since these tags are [versioned](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md). Use classes instead. DO: `axa-top-content-bar .m-top-content-bar__button { ... }` DON'T: `axa-top-content-bar axa-button { ... }`
 - Do not use console logs in the DEMOs because we cannot expect our user to have DEV Tools open
 - Never and in any circumstances use bitwise operators
 - Never and in any circumstances use `==` over `===`
 - Enumerate as many falsy values in your Boolean checks as possible and be aware that `0` and `""` are also falsy.
 - The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle. But even more important is to know exactly when to break it. Sometimes a super DRY climate can lead to over-engineered solutions that end up being unmaintainable :grinning:. There is no rule here, just be careful to not implement a system that is too complex. Lots of options in interfaces or configuration possibilities could be one indicator that the system gets too complex.
 - If you have side effects outside of your component (e.g. global event listeners, added DOM nodes) you have to undo those side effects in disconnectedCallback
-- Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Click [here (pod-havarie)](https://github.com/axa-ch/pod-havarie#other-refactorings-from-wtf-code-to-normal-code) to see an example where the DEV wanted to be cool in not using a for loop and made ugly, harldy readable hacks.
+- Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Click [here (pod-havarie)](https://github.com/axa-ch/pod-havarie#other-refactorings-from-wtf-code-to-normal-code) to see an example where the DEV wanted to be cool in not using a for loop and made ugly, hardly readable hacks.
 
 Here are some example DO'S and DONT'S:
 ```js

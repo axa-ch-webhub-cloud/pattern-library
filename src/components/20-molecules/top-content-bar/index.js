@@ -37,7 +37,11 @@ class AXATopContentBar extends LitElement {
     super();
     applyDefaults(this);
     /* eslint-disable no-undef */
-    defineVersioned([AXAButton, AXAButtonLink, AXAContainer], __VERSION_INFO__);
+    defineVersioned(
+      [AXAButton, AXAButtonLink, AXAContainer],
+      __VERSION_INFO__,
+      this
+    );
     /* eslint-enable no-undef */
   }
 
@@ -55,7 +59,7 @@ class AXATopContentBar extends LitElement {
     if (href && ctatext) {
       return versionedHtml(this)`
         <axa-button-link
-          class="js-button-link"
+          class="m-top-content-bar__button-link js-button-link"
           href="${href}"
           @click="${ev => {
             if (typeof this.onClick === 'function') {
@@ -71,7 +75,7 @@ class AXATopContentBar extends LitElement {
     } else if (ctatext) {
       return versionedHtml(this)`
         <axa-button
-          class="js-button"
+          class="m-top-content-bar__button js-button"
           @click="${ev => {
             if (typeof this.onClick === 'function') {
               ev.preventDefault();
@@ -99,7 +103,7 @@ class AXATopContentBar extends LitElement {
     return versionedHtml(this)`
       <article class="m-top-content-bar">
         <div class="m-top-content-bar__container ${classMap(classes)}">
-          <axa-container>
+          <axa-container class="m-top-content-bar__container-component">
             <span><slot></slot></span>
             ${btnHtml}
           </axa-container>
