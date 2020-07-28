@@ -116,10 +116,10 @@ export default function ColorsPage({}: Props): ReactElement {
 
         <Callout
           imageUrl={LogoImage}
-          title="Typography"
+          title="Colors"
           description="Find rules and best practice on how to make the best of the full AXA design elements on digital."
           linkToTitle="Discover"
-          linkToUrl="https://design.axa.com/web-guidelines/typography"
+          linkToUrl="https://design.axa.com/web-guidelines/color"
         />
       </Container>
     </Layout>
