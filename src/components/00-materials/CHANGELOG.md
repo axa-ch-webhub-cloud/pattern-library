@@ -1,3 +1,7 @@
+## 10.2.0
+
+- Add text format `semibold` to sass mixin `text`. #1895
+
 ## 10.1.0
 
 - Export the raw SVGs to have the possibility to use them at React projects. (#1756)

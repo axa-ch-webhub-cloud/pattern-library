@@ -12,6 +12,10 @@ axa-text[variant="size-3"] > * {
   @include text(t3);
 }
 
-axa-text[variant="bold"] > *{
+axa-text[variant="semibold"] > * {
+  @include text(t1, semibold);
+}
+
+axa-text[variant="bold"] > * {
   @include text(t1, bold);
 }

@@ -75,8 +75,9 @@ Import the text-defining script and use a text like this:
 
 ### Variant
 
-| Attribute          | Details          |
-| ------------------ | ---------------- |
-| `variant="size-2"` | Bigger Text Size |
-| `variant="size-3"` | Large Text Size  |
-| `variant="bold"`   | Bold Text        |
+| Attribute            | Details          |
+| -------------------- | ---------------- |
+| `variant="size-2"`   | Bigger Text Size |
+| `variant="size-3"`   | Large Text Size  |
+| `variant="bold"`     | Bold Text        |
+| `variant="semibold"` | Semi-Bold Text   |
