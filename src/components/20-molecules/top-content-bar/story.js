@@ -29,7 +29,7 @@ storiesOf('Components', module)
     const href = text('href', '');
     const textValue = text(
       'Text',
-      'Undefined flighting object detected in your region. People are paniking. Stay calm'
+      'Unidentified flying object detected in your region. People are panicking. Stay calm!'
     );
     const link = text('Add axa-link', '');
 

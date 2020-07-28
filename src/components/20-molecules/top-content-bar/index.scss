@@ -17,16 +17,16 @@
 
     box-sizing: border-box;
 
-    axa-container {
+    &-component {
       min-height: 40px;
       display:flex;
       align-items:center;
 
-      axa-button, axa-button-link {
+      .m-top-content-bar__button, .m-top-content-bar__button-link {
         margin-left: 10px;
       }
 
-      axa-button-link {
+      .m-top-content-bar__button-link {
         display: inline-flex;
       }
     }
