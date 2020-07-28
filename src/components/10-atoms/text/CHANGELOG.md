@@ -1,3 +1,7 @@
+## 4.3.0
+
+- Add new variant `semibold` with a font-weight of 600. #1895
+
 ## 4.2.0
 
 - Replaced old typography with new one. This changes have changed the components design. (#1796 and #1750)

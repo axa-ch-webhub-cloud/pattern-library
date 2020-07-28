@@ -131,6 +131,20 @@ test('should have correct font weight for text bold', async t => {
     .eql('700');
 });
 
+fixture('Text - Semibold').page(
+  `${host}/iframe.html?id=components--text&knob-variant=semibold`
+);
+
+test('should have correct font weight for text semibold', async t => {
+  const $axaElemChild = await Selector(() =>
+    document.querySelector('axa-text[variant="semibold"] > *')
+  );
+
+  await t
+    .expect(await $axaElemChild.getStyleProperty('font-weight'))
+    .eql('600');
+});
+
 fixture('Text - Variant')
   .page(`${host}/iframe.html?id=components--text&knob-variant=size-1%20bold`)
   .beforeEach(async t => {

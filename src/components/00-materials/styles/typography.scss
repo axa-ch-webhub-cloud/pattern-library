@@ -165,8 +165,10 @@ $texts: (
 @mixin text($text-size, $text-format: null) {
   @include _typo($texts, $text-size);
   font-family: $font-family-primary;
-  @if ($text-format == bold) {
+  @if $text-format == bold {
     font-weight: bold;
+  } @else if $text-format == semibold {
+    font-weight: 600;
   }
   @if ($text-format == italic) {
     font-style: italic;
