@@ -1,6 +1,6 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
-import { InfoFlatSvg, CancelSvg } from '@axa-ch/materials/icons';
+import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons';
 import popupButtonCSS from './index.scss';
 
 import { applyDefaults } from '../../../../utils/with-react';
@@ -33,7 +33,7 @@ class AXAPopupButton extends LitElement {
 
     return html`
       <button class="a-popup-button" @click="${this.onClick}">
-        ${open ? svg([CancelSvg]) : svg([InfoFlatSvg])}
+        ${open ? svg([CancelSvg]) : svg([InfoSvg])}
       </button>
     `;
   }
