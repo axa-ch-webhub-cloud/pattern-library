@@ -30,6 +30,7 @@ const getDateFromGitCommit = answerJson => {
 story.add('to Pattern Library', () => {
   const wrapper = document.createElement('div');
 
+  // eslint-disable-next-line no-undef
   fetch(
     'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
     {
@@ -53,7 +54,7 @@ story.add('to Pattern Library', () => {
       ).innerHTML = getDateFromGitCommit(data);
     })
     .catch(error => {
-      console.error(
+      throw new Error(
         'There has been a problem with your fetch operation:',
         error
       );
