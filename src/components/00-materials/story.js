@@ -50,7 +50,7 @@ storiesOf('Materials', module)
   .add('Icons and Images', () => {
     const backgrounds = select(
       'background color',
-      ['red', 'blue', 'white', 'black'],
+      ['red', 'blue', 'white', 'black', 'thisisnew'],
       'white'
     );
 
