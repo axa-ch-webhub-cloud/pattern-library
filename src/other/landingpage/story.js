@@ -15,14 +15,16 @@ story.addParameters({
   a11y: { disabled: true },
 });
 
-const getFormattedGitCommitMessage = answerJson => {
+const getFormattedGitCommitMessage = answer => {
+  const answerJson = JSON.parse(answer);
   const formattedMessage = answerJson.items[0].commit.message
     .replace('Publish\n\n', '')
     .replace(/- /g, '<br/>');
   return formattedMessage;
 };
 
-const getDateFromGitCommit = answerJson => {
+const getDateFromGitCommit = answer => {
+  const answerJson = JSON.parse(answer);
   const formattedDate = new Date(answerJson.items[0].commit.author.date);
   return formattedDate.toLocaleString(navigator.language);
 };
@@ -30,35 +32,24 @@ const getDateFromGitCommit = answerJson => {
 story.add('to Pattern Library', () => {
   const wrapper = document.createElement('div');
 
-  // eslint-disable-next-line no-undef
-  fetch(
-    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
-    {
-      headers: {
-        Accept: 'application/vnd.github.cloak-preview',
-      },
-    }
-  )
-    .then(val => {
-      if (!val.ok) {
-        throw new Error('Network response was not ok. ');
-      }
-      return val.json();
-    })
-    .then(data => {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
       document.querySelector(
         '#githubResponse'
-      ).innerHTML = getFormattedGitCommitMessage(data);
+      ).innerHTML = getFormattedGitCommitMessage(xhttp.responseText);
       document.querySelector(
         '#githubResponseDate'
-      ).innerHTML = getDateFromGitCommit(data);
-    })
-    .catch(error => {
-      throw new Error(
-        'There has been a problem with your fetch operation:',
-        error
-      );
-    });
+      ).innerHTML = getDateFromGitCommit(xhttp.responseText);
+    }
+  };
+  xhttp.open(
+    'GET',
+    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
+    true
+  );
+  xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
+  xhttp.send();
 
   const template = html`
     <axa-heading rank="2">Welcome to the Pattern Library!</axa-heading>
