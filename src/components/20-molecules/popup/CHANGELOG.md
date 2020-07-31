@@ -1,3 +1,7 @@
+## 3.2.0
+
+- Updated all the icons. #1882
+
 ## 3.1.0
 
 - You can now import ts type for `variant`.
