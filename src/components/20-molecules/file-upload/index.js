@@ -421,9 +421,8 @@ class AXAFileUpload extends LitElement {
                   multiple
                   @change=${this.handleInputFileChange}
                   variant="red"
-                >
-                  ${this.inputFileText}
-                </axa-input-file>
+                  text="${this.inputFileText}"
+                ></axa-input-file>
               `
             : html`
                 ${fileOverview}

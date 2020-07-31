@@ -1,3 +1,8 @@
+## 3.3.0
+
+- New icons. #1882
+- The text of the red button is visible again.
+
 ## 3.2.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
