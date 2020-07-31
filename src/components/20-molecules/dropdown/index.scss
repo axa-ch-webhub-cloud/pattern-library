@@ -102,16 +102,14 @@ axa-dropdown {
   /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
   .m-dropdown__select-icon.m-dropdown__select-icon {
     display: block;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+    position: absolute; // needed for native select: icon should be "behind" the select
+    top: ($dropdown-height / 2) - (24px / 2); // dropdown height / 2 = vertical centered; 24px = height of SVG; 24px / 2 = center of SVG should be center of dropdown
+    right: 10px; // like padding-right
     pointer-events: none;
     height: auto;
 
     svg {
       display: block;
-      width: 10px;
-      height: 10px;
       color: $color-axa-blue;
       transition: transform 0.3s ease;
       pointer-events: none;
