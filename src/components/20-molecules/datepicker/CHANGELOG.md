@@ -1,3 +1,8 @@
+## 10.1.0
+
+- New calendar icon. #1882
+- New arrow icons at the dropdowns. #1882
+
 ## 10.0.0
 
 - Removed height property. (#1840)
