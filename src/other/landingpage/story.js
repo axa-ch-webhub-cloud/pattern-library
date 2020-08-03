@@ -15,16 +15,14 @@ story.addParameters({
   a11y: { disabled: true },
 });
 
-const getFormattedGitCommitMessage = answer => {
-  const answerJson = JSON.parse(answer);
+const getFormattedGitCommitMessage = answerJson => {
   const formattedMessage = answerJson.items[0].commit.message
     .replace('Publish\n\n', '')
     .replace(/- /g, '<br/>');
   return formattedMessage;
 };
 
-const getDateFromGitCommit = answer => {
-  const answerJson = JSON.parse(answer);
+const getDateFromGitCommit = answerJson => {
   const formattedDate = new Date(answerJson.items[0].commit.author.date);
   return formattedDate.toLocaleString(navigator.language);
 };
@@ -35,12 +33,13 @@ story.add('to Pattern Library', () => {
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
+      const responseJson = JSON.parse(xhttp.responseText);
       document.querySelector(
         '#githubResponse'
-      ).innerHTML = getFormattedGitCommitMessage(xhttp.responseText);
+      ).innerHTML = getFormattedGitCommitMessage(responseJson);
       document.querySelector(
         '#githubResponseDate'
-      ).innerHTML = getDateFromGitCommit(xhttp.responseText);
+      ).innerHTML = getDateFromGitCommit(responseJson);
     }
   };
   xhttp.open(
