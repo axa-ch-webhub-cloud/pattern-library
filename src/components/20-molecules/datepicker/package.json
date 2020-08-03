@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@axa-ch/dropdown": "8.3.1",
-    "@axa-ch/materials": "^2.0.2",
+    "@axa-ch/materials": "^10.2.0",
     "@skatejs/val": "^0.4.0",
     "date-fns": "^2.9.0",
     "lit-element": "^2.2.0",

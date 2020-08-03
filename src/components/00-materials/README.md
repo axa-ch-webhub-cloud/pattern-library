@@ -65,7 +65,6 @@ npm install @svgr/webpack --save-dev
 | EmailSvg         |
 | ExpandSvg        |
 | FacebookSvg      |
-| InfoFlatSvg      |
 | InfoSvg          |
 | InstagramSvg     |
 | KeySvg           |
@@ -74,7 +73,6 @@ npm install @svgr/webpack --save-dev
 | MessageSvg       |
 | PersonSvg        |
 | PhoneSvg         |
-| PlusSvg          |
 | PowerSvg         |
 | SearchSvg        |
 | TwitterSvg       |

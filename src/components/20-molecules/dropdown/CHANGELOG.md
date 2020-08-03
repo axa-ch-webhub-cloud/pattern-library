@@ -1,3 +1,7 @@
+## 8.4.0
+
+- New styled icon for the arrow of the dropdown. #1882
+
 ## 8.3.0
 
 - Enable arrowkeys if property `native` set to false. (#1863)
