@@ -55,7 +55,7 @@ story.add('to Pattern Library', () => {
     <axa-text variant="size-3">
       You can find all our Webcomponents here. Check out our Readme below.
     </axa-text>
-    <axa-heading rank="3">Our latest releases:</axa-heading>
+    <axa-heading rank="3">Latest Releases:</axa-heading>
     <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
     <axa-text><span id="githubResponse"></span></axa-text>
   `;
