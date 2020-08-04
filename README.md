@@ -27,6 +27,32 @@ We release self-contained plug-and-play web components based on the [custom elem
 
 You can add any Pattern Library component via the community CDN jsdelivr. This is useful for Prototyping or experimenting or if you don't want to bother with a frontend stack. This works only native (no react support). Here an example on how to add the JS for `<axa-button></axa-button>`: `<script src="https://cdn.jsdelivr.net/npm/@axa-ch/button@latest/dist/index.js"></script>`
 
+## Build Pattern Library components in your own application
+
+The Pattern Library components are exported with 2 build artefacts: `/dist` in ES5 and `/lib` ES6. If you use the pattern library in the DX WebHub Context, you don't have to worry about this topic.
+
+Defacto Standard in the community is to have `/lib` exports in **ES5** + import/export. Due to the nature of Webcomponents and lit-element, however, we are forced to export in ES6. For more details, see the (Custom Element Spec)[https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example].
+
+In order to transpile your application for IE, in your build, you need to INCLUDE the path to our components so that you can export ES5 code. Here an example how you can do it on a webpack config:
+
+```
+{
+  test: /.js$/,
+  include: [
+    /src/,
+    new RegExp(`node_modules${sep}lit-html`),
+    new RegExp(`node_modules${sep}lit-element`),
+    new RegExp(`node_modules${sep}@axa-ch(?!${sep}patterns-library-polyfill)`),
+  ],
+  use: {
+    loader: 'babel-loader',
+    options: {
+      ...babelrc,
+    },
+  },
+},
+```
+
 ## Component versioning
 
 Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md).
