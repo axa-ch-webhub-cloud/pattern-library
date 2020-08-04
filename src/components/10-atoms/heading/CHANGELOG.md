@@ -1,3 +1,7 @@
+## 3.1.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.1.0
 
 - Replaced old typography with new one. This changes have changed the components design. The font-weight is now 700. (#1796 and #1750)
