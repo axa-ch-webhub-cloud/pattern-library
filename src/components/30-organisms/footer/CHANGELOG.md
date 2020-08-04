@@ -1,3 +1,7 @@
+## 4.1.3
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 4.1.2
 
 - Only render accordion on mobile when content is given. #1836

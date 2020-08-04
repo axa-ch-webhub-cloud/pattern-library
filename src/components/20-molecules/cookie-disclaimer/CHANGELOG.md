@@ -1,3 +1,7 @@
+## 3.2.3
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.2.2
 
 - Fixed optical bug at storybook (#1860)

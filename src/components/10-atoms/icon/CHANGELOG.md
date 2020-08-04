@@ -1,3 +1,7 @@
+## 5.0.4
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 5.0.3
 
 - Remove `plus` icon and replace it with `add` in Typescript typings.

@@ -1,3 +1,7 @@
+## 4.0.2
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 4.0.1
 
 - Fix button width, that was broken due to button changes. #1862

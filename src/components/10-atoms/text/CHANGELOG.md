@@ -1,3 +1,7 @@
+## 4.3.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 4.3.0
 
 - Add new variant `semibold` with a font-weight of 600. #1895

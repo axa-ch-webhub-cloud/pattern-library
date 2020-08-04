@@ -1,3 +1,7 @@
+## 10.1.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 10.1.0
 
 - New calendar icon. #1882
