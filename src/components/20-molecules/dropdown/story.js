@@ -46,9 +46,9 @@ storyDropdown.add('Dropdown', () => {
       ?required="${required}"
       ?native="${native}"
       items='[
-        {"label": "< CHF 1,000", "value": "Item 1" },
-        {"label": "From CHF 1,000 to 10,0000", "value": "Item 2" },
-        {"label": "> CHF 10,000", "value": "Item 3" }
+        {"name": "< CHF 1,000", "value": "Item 1" },
+        {"name": "From CHF 1,000 to 10,0000", "value": "Item 2", "disabled": "true" },
+        {"name": "> CHF 10,000", "value": "Item 3" }
      ]'
     ></axa-dropdown>
   `;

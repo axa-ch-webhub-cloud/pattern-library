@@ -45,7 +45,7 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ label, value, selected, disabled }, index) =>
+const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
   html`
     <option
       class="m-dropdown__option"
@@ -54,12 +54,12 @@ const nativeItemsMapper = ({ label, value, selected, disabled }, index) =>
       data-value="${value}"
       ?selected="${selected}"
       ?disabled="${disabled}"
-      >${label}</option
+      >${name}</option
     >
   `;
 
 const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
-  { label, value, selected, disabled },
+  { name, value, selected, disabled },
   index
 ) => {
   const classes = {
@@ -79,7 +79,7 @@ const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
             data-index="${index + (defaultTitle ? 1 : 0)}"
             data-value="${value}"
           >
-            ${label}
+            ${name}
           </button>
         </li>
       `;
@@ -87,7 +87,7 @@ const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
 
 const defaultTitleIfNeeded = (title, anotherSelection) =>
   title
-    ? [{ label: title, disabled: true, selected: !anotherSelection, value: '' }]
+    ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
     : [];
 
 // CE
@@ -271,13 +271,13 @@ class AXADropdown extends NoShadowDOM {
     }
 
     this.selectedIndex = integerIndex;
-    const [{ label }] = this.findByValue(value);
+    const [{ name: optionLabel }] = this.findByValue(value);
     // allow idiomatic event.target.value in onChange callback!
     const details = {
       value,
       name,
+      optionLabel,
       optionIndex: integerIndex,
-      optionLabel: label,
     };
     const syntheticEvent = { target: details };
     onChange(syntheticEvent);
@@ -308,8 +308,8 @@ class AXADropdown extends NoShadowDOM {
     if (!item) {
       return;
     }
-    const { label } = item;
-    this.value = value || label || '';
+    const { name } = item;
+    this.value = value || name || '';
     // clone items array with updated selected property
     // (the fact that items are cloned ensures re-render!)
     this.items = this.items.map((_item, index) => {
@@ -357,7 +357,7 @@ class AXADropdown extends NoShadowDOM {
     } = this;
 
     const [selectedItem] = this.findByValue(null);
-    this.title = selectedItem ? selectedItem.label : defaultTitle;
+    this.title = selectedItem ? selectedItem.name : defaultTitle;
 
     return html`
       ${label &&
