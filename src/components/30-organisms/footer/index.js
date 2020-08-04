@@ -1,4 +1,3 @@
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
@@ -40,8 +39,8 @@ class AXAFooter extends InlineStyles {
     `;
   }
 
-  // Parent class InlineStyles needs a static method to retrive styles
-  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
+  // Parent class InlineStyles needs a static method to retrieve styles;
+  // the name of such method is passed when calling this.inlineStyles('resetHeadingCss');
   static get resetHeadingCss() {
     return childStyles;
   }
@@ -66,7 +65,7 @@ class AXAFooter extends InlineStyles {
   }
 
   firstUpdated() {
-    // call parent class method that add inline styles
+    // call parent class method that adds inline styles
     this.inlineStyles('resetHeadingCss');
   }
 
@@ -85,13 +84,13 @@ class AXAFooter extends InlineStyles {
   }
 
   /**
-   * A slot element needs to be a direct child of a webcomponent. Since AEM
+   * A slot element needs to be a direct child of a web component. Since AEM
    * (and potentially other systems) wrap those children, they are no longer
-   * direct childs to the webcomponents. We workaround this problem by
-   * taking the slot-attribute to the direct children of the component.
+   * direct children of a component. We work around this problem by
+   * copying the slot-attribute to the direct children of the component.
    *
    * @param {*} nestedChild A direct child of the component, which has a slot
-   * element nested somewhere lower, which would belong to the top component.
+   * element nested somewhere lower, which would properly belong to the top component.
    */
   _setSlotNameFromNestedChildToDirectChildNodeOfComponent(nestedChild) {
     let currentNode = nestedChild;
@@ -108,7 +107,7 @@ class AXAFooter extends InlineStyles {
   }
 
   /**
-   * Takes all the child elements and extracts all the ones that come with a
+   * Takes all child elements and extracts the ones that come with a
    * slot-attribute. Those elements will then be changed to be distinguishable
    * from each other. Each block of links will need a title, so that the block will be displayed.
    *
@@ -130,7 +129,7 @@ class AXAFooter extends InlineStyles {
       this.querySelectorAll('[slot]')
     );
 
-    const childrenArr = slotElements.map(c =>
+    const childrenArray = slotElements.map(c =>
       this._setSlotNameFromNestedChildToDirectChildNodeOfComponent(c)
     );
 
@@ -144,11 +143,11 @@ class AXAFooter extends InlineStyles {
       );
     };
 
-    const onlyColumns = childrenArr.filter(
+    const onlyColumns = childrenArray.filter(
       // only accepts those slots that are columns
       filter('column-')
     );
-    const onlySocials = childrenArr.filter(
+    const onlySocials = childrenArray.filter(
       // only accepts those slots that are social columns
       noHeaderFilter('social-')
     );
@@ -185,6 +184,29 @@ class AXAFooter extends InlineStyles {
     });
   }
 
+  _addListenersToLinks(remove) {
+    const links = [...this.querySelectorAll('a')];
+    if (remove) {
+      // clean up listeners
+      links.forEach(link =>
+        link.removeEventListener('click', this._handleLinkClick)
+      );
+      return;
+    }
+    // add event listener to each link/<a> tag, which is inside a slot element,
+    // hence cannot use @click, as it resides in light DOM
+    links.forEach(link =>
+      link.addEventListener('click', this._handleLinkClick)
+    );
+  }
+
+  // throttle re-rendering to once per frame (so that children added late by browser HTML parsers are defined)
+  performUpdate() {
+    new Promise(resolve =>
+      window.requestAnimationFrame(() => resolve())
+    ).then(() => super.performUpdate());
+  }
+
   render() {
     const accordionContent = {
       'o-footer__main-content-panel': true,
@@ -209,12 +231,7 @@ class AXAFooter extends InlineStyles {
 
     const showCaret = svg([CaretSvg || '']);
 
-    const links = this.querySelectorAll('a');
-    // Add event listsner on the <a> tag, which is inside a slot element.
-    // That's why we cannot use @click, as it comes from light dom
-    [].forEach.call(links, link => {
-      link.addEventListener('click', this._handleLinkClick);
-    });
+    this._addListenersToLinks();
 
     if (this.slotsNotPrepared) {
       this._prepareSlotsWithIndexes();
@@ -315,7 +332,7 @@ class AXAFooter extends InlineStyles {
   }
 
   _handleAccordionClick = (index, ev) => {
-    // Toggle opening of correct accordion
+    // toggle opening of correct accordion
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
     this.requestUpdate();
@@ -336,7 +353,7 @@ class AXAFooter extends InlineStyles {
         parentNode: { offsetHeight },
         children,
       } = panel;
-      // Set maxHeight to exactly the height of all elements combined
+      // set maxHeight to exactly the height of all elements combined
       panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
     } else {
       _setMaxHeightToZero(panel);
@@ -361,6 +378,12 @@ class AXAFooter extends InlineStyles {
       }
     }
   };
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    // remove link listeners
+    this._addListenersToLinks(true);
+  }
 }
 
 /* eslint-disable no-undef */
