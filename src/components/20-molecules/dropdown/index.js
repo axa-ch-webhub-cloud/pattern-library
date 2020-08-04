@@ -45,7 +45,7 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
+const nativeItemsMapper = ({ label, value, selected, disabled }, index) =>
   html`
     <option
       class="m-dropdown__option"
@@ -54,12 +54,12 @@ const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
       data-value="${value}"
       ?selected="${selected}"
       ?disabled="${disabled}"
-      >${name}</option
+      >${label}</option
     >
   `;
 
 const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
-  { name, value, selected, disabled },
+  { label, value, selected, disabled },
   index
 ) => {
   const classes = {
@@ -79,7 +79,7 @@ const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
             data-index="${index + (defaultTitle ? 1 : 0)}"
             data-value="${value}"
           >
-            ${name}
+            ${label}
           </button>
         </li>
       `;
@@ -87,7 +87,7 @@ const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
 
 const defaultTitleIfNeeded = (title, anotherSelection) =>
   title
-    ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
+    ? [{ label: title, disabled: true, selected: !anotherSelection, value: '' }]
     : [];
 
 // CE
@@ -255,7 +255,7 @@ class AXADropdown extends NoShadowDOM {
         : target;
 
     const { value, index } = realTarget.dataset;
-    const { onChange, selectedIndex } = this;
+    const { onChange, selectedIndex, name } = this;
 
     this.openDropdown(false);
 
@@ -271,15 +271,20 @@ class AXADropdown extends NoShadowDOM {
     }
 
     this.selectedIndex = integerIndex;
-    const [{ name }] = this.findByValue(value);
+    const [{ label }] = this.findByValue(value);
     // allow idiomatic event.target.value in onChange callback!
-    const syntheticEvent = { target: { value, index: integerIndex, name } };
+    const details = {
+      value,
+      name,
+      optionIndex: integerIndex,
+      optionLabel: label,
+    };
+    const syntheticEvent = { target: details };
     onChange(syntheticEvent);
     if (!this.isControlled) {
       // declare the following value update to be uncontrolled
       this.state.firstTime = false;
       this.value = value; // triggers re-render
-      const details = { value, index: integerIndex, name };
       fireCustomEvent('axa-change', value, this, { bubbles: false });
       fireCustomEvent('change', details, this, { bubbles: false });
     }
@@ -303,8 +308,8 @@ class AXADropdown extends NoShadowDOM {
     if (!item) {
       return;
     }
-    const { name } = item;
-    this.value = value || name || '';
+    const { label } = item;
+    this.value = value || label || '';
     // clone items array with updated selected property
     // (the fact that items are cloned ensures re-render!)
     this.items = this.items.map((_item, index) => {
@@ -352,7 +357,7 @@ class AXADropdown extends NoShadowDOM {
     } = this;
 
     const [selectedItem] = this.findByValue(null);
-    this.title = selectedItem ? selectedItem.name : defaultTitle;
+    this.title = selectedItem ? selectedItem.label : defaultTitle;
 
     return html`
       ${label &&
