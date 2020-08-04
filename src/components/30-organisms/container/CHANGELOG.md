@@ -1,3 +1,7 @@
+## 3.0.2
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.0.1
 
 - Remove unnecessary ts type for `variant`.

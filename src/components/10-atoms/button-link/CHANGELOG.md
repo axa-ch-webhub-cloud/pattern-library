@@ -1,3 +1,7 @@
+## 4.2.4
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 4.2.3
 
 - Fix: Gap below the component. (#1878)

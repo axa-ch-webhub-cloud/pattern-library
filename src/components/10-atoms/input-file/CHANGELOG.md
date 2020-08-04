@@ -1,3 +1,7 @@
+## 4.0.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 4.0.0
 
 - **BREAKING CHANGE**: You now have to use the property `text` to display text inside the component. (#1838)

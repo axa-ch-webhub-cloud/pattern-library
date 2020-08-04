@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.0.0
 
 - Upgrade to versioned component.

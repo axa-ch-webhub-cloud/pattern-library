@@ -1,3 +1,7 @@
+## 3.2.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.2.0
 
 - Replaced old typography with new one. This changes could have changed the components design. (#1796 and #1750)
