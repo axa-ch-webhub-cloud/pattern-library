@@ -29,11 +29,11 @@ You can add any Pattern Library component via the community CDN jsdelivr. This i
 
 ## Build Pattern Library components in your own application
 
-The Pattern Library components are exported with 2 build artefacts: `/dist` in ES5 and `/lib` ES6. If you use the pattern library in the DX WebHub Context, you don't have to worry about this topic.
+Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` in ES5 JavaScript and `/lib/index.*` in ES6. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
 
-Defacto Standard in the community is to have `/lib` exports as ESM which is **ES5** + **import/export**. Due to the nature of Webcomponents and lit-element, however, we are forced to export in ES6. For more details, see the [Custom Element Spec](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example).
+The de-facto standard in the frontend community is to render `/lib` exports as ESM, i.e. **ES5** + **import/export**. Due to the nature of web components and lit-element, however, we are forced to export in ES6. For more details, see the [custom element specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example).
 
-In order to transpile your application for IE, in your build, you need to INCLUDE the path to our components so that you can export ES5 code. Here an example how you can do it on a webpack config:
+If you need to support Internet Explorer (11) in your application, you therefore need to **transpile** our component (/lib) artifacts in your build. To do so, you need to **include** the path to our components (@axa-ch) and their underlying framework (lit-element/html) in the section of your transpilation configuration that describes transpilation to ES5. Here is an example snippet of how this would look in a webpack config:
 
 ```
 {
