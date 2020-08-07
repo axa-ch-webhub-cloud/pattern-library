@@ -430,7 +430,7 @@ class AXADropdown extends NoShadowDOM {
             `
           : ''}
       </div>
-      ${invalid
+      ${invalid && error
         ? html`
             <span class="m-dropdown__error js-dropdown__error">${error}</span>
           `

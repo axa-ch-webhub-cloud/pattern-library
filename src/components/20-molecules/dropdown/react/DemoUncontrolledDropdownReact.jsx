@@ -15,22 +15,32 @@ const DemoUncontrolledDropdown = props => {
   ];
 
   return (
-    <AXADropdownReact
-      data-test-id="uncontrolled-dropdown-react"
-      title="Please Select"
-      items={items}
-      label={props.label}
-      defaultTitle={props.defaultTitle}
-      name={props.name}
-      invalid={props.invalid}
-      error={props.error}
-      native={props.native}
-      required={props.required}
-      checkMark={props.checkMark}
-      disabled={props.disabled}
-      // eslint-disable-next-line no-console
-      onChange={value => console.log(JSON.stringify(value))}
-    />
+    <div
+      style={{
+        height: 80,
+        display: 'flex',
+        alignItems: 'center',
+        border: '2px solid blue',
+        padding: '0 20px',
+      }}
+    >
+      <AXADropdownReact
+        data-test-id="uncontrolled-dropdown-react"
+        title="Please Select"
+        items={items}
+        label={props.label}
+        defaultTitle={props.defaultTitle}
+        name={props.name}
+        invalid={props.invalid}
+        error={props.error}
+        native={props.native}
+        required={props.required}
+        checkMark={props.checkMark}
+        disabled={props.disabled}
+        // eslint-disable-next-line no-console
+        onChange={value => console.log(JSON.stringify(value))}
+      />
+    </div>
   );
 };
 
